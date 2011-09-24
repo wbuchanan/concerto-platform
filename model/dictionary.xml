@@ -1,0 +1,380 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<root>
+    <string id="4">
+        <en>select item HTML template to import:</en>
+        <pl>wybierz szablon HTML elementu do zaimportowania:</pl>
+    </string>
+    <string id="6">
+        <en>timer:</en>
+        <pl>timer:</pl>
+    </string>
+    <string id="7">
+        <en>there's no buttons in HTML</en>
+        <pl>brak przycisków w HTML</pl>
+    </string>
+    <string id="8">
+        <en>there's no inserted session variables into HTML</en>
+        <pl>brak osadzonych zmiennych sesyjnych w HTML</pl>
+    </string>
+    <string id="9">
+        <en>there's no sent session variables from current item HTML</en>
+        <pl>brak wysyłanych zmiennych sesyjnych z HTML obecnego elementu</pl>
+    </string>
+    <string id="10">
+        <en>Are you sure you want to import HTML? Unsaved changes in current HTML will be lost.</en>
+        <pl>Jesteś pewien że chcesz zaimportować HTML? Wszystkie niezapisane zmiany w obecnym HTML zostaną utracone.</pl>
+    </string>
+    <string id="12" type="tip">
+        <en>R code to execute after button is pressed.</en>
+        <pl>Kod R do wykonania po naciśnięciu przycisku.</pl>
+    </string>
+    <string id="13" type="tip">
+        <en>Select button to autoclick when item time runs out.</en>
+        <pl>Wybierz przycisk który ma zostać automatycznie kliknięty gdy czas `timer` elementu dojdzie do zera.</pl>
+    </string>
+    <string id="14" type="tip">
+        <en>Name of an item used in session variable `NextItem` to identify next item to show.</en>
+        <pl>Nazwa elementu wykorzystywana w zmiennej sesyjnej o nazwie `NextItem` która wskazuje element który ma być pokazany następny.</pl>
+    </string>
+    <string id="15" type="tip">
+        <en>Select an item which HTML you want to import to your current item. Only HTML will be imported. Other properties are left intact.</en>
+        <pl>Wybierz element którego HTML chciałbyś zaimportować to obecnego elementu. Jedynie HTML zostanie zaimportowany. Pozostałe właściwości zostaną nie zmienione.</pl>
+    </string>
+    <string id="16" type="tip">
+        <en>Hashed string used to set starting item at client side by inserting 'hash' parameter to URL address. Example: http://slicktestersite.com/?hash=insert_hash_here .</en>
+        <pl>Hash używany by wybrać startowy element po stronie klienta poprzez osadzenie parametru 'hash' w adresie URL. Przykład: http://slicktestersite.com/?hash=miejsce_na_hash .</pl>
+    </string>
+    <string id="17" type="tip">
+        <en>Time in seconds that user has to fill item and submit it. If time runs out default button is autoclicked. Variable {{timer}} can be inserted to HTML to show current time left in seconds at client side.</en>
+        <pl>Czas w sekundach jaki użytkownik ma aby wypełnić element i go przesłać. Jeśli czas dobiegnie końca domyślny przycisk zostanie automatycznie kliknięty. Zmienna {{time}} może zostać osadzona w HTML aby pokazać obecny czas pozostały w sekundach po stronie klienta.</pl>
+    </string>
+    <string id="18" type="tip">
+        <en>Every HTML object like: &lt;input type='button' /&gt; , &lt;input type='image' /&gt; , &lt;button&gt;&lt;/button&gt; with 'name' attribute can be used as item submit button. Every item submit button can execute R code. User can also select which submit button is a default one. Default submit button will be autoclicked when the item time runs out.</en>
+        <pl>Każdy obiekt HTML jak: &lt;input type='button' /&gt; , &lt;input type='image' /&gt; , &lt;button&gt;&lt;/button&gt; z atrybutem 'name' może zostać wykorzystany jako przycisk przesłania. Każdy przycisk przesłania może wykonać kod R. Użytkownik może również wybrać który przycisk powinien być domyślnym. Domyślny przycisk zostanie automatycznie kliknięty gdy czas elementu sie skończy.</pl>
+    </string>
+    <string id="19" type="tip">
+        <en>Present items in system. You can modify items, delete them and add new ones.</en>
+        <pl>Obecne elementy w systemie. Można tutaj modyfikować elementy, usuwać je oraz dodawać nowe.</pl>
+    </string>
+    <string id="23" type="tip">
+        <en>Session variables which are created by current items HTML controls like input, radio button, checkbox, select, etc.</en>
+        <pl>Zmienne sesyjne które są tworzone przez kontrolki HTML obecnego elementu takie jak input, przycisk radio, checkbox, lub select, itd.</pl>
+    </string>
+    <string id="24" type="tip">
+        <en>Session variables which are declared to be inserted into the HTML of the current item.</en>
+        <pl>Zmienne sesyjne które zostały zdeklarowane że mają zostać osadzone w HTML obecnego elementu.</pl>
+    </string>
+    <string id="39">
+        <en>import HTML</en>
+        <pl>importuj HTML</pl>
+    </string>
+    <string id="40">
+        <en>new</en>
+        <pl>nowy</pl>
+    </string>
+    <string id="41">
+        <en>save</en>
+        <pl>zapisz</pl>
+    </string>
+    <string id="42">
+        <en>delete</en>
+        <pl>usuń</pl>
+    </string>
+    <string id="43">
+        <en>edit</en>
+        <pl>edycja</pl>
+    </string>
+    <string id="44" partOf="Item #'+data+' saved.">
+        <en>Item #</en>
+        <pl>Element #</pl>
+    </string>
+    <string id="45" partOf="Item #'+data+' saved.">
+        <en> saved.</en>
+        <pl> zapisany.</pl>
+    </string>
+    <string id="46">
+        <en>Are You sure You want to delete selected item with id:</en>
+        <pl>Jesteś pewien że chcesz usunąć wybrany element o id:</pl>
+    </string>
+    <string id="47" partOf="Item #'+id+' deleted.">
+        <en> deleted.</en>
+        <pl> usunięty.</pl>
+    </string>
+    <string id="49">
+        <en>id</en>
+        <pl>id</pl>
+    </string>
+    <string id="50">
+        <en>name</en>
+        <pl>nazwa</pl>
+    </string>
+    <string id="51">
+        <en>hash</en>
+        <pl>hash</pl>
+    </string>
+    <string id="54">
+        <en>item submit buttons</en>
+        <pl>przyciski przesłania elementu</pl>
+    </string>
+    <string id="55">
+        <en>no.</en>
+        <pl>nr</pl>
+    </string>
+    <string id="56">
+        <en>button name</en>
+        <pl>nazwa przycisku</pl>
+    </string>
+    <string id="58">
+        <en>R code to execute</en>
+        <pl>kod R do wykonania</pl>
+    </string>
+    <string id="59">
+        <en>default button</en>
+        <pl>domyślny przycisk</pl>
+    </string>
+    <string id="67">
+        <en>sent session variables</en>
+        <pl>wysłane zmienne sesyjne</pl>
+    </string>
+    <string id="68">
+        <en>HTML control</en>
+        <pl>kontrolka HTML</pl>
+    </string>
+    <string id="69">
+        <en>inserted session variables</en>
+        <pl>osadzone zmienne sesyjne</pl>
+    </string>
+    <string id="71">
+        <en>items</en>
+        <pl>elementy</pl>
+    </string>
+    <string id="74">
+        <en>log in</en>
+        <pl>zaloguj</pl>
+    </string>
+    <string id="75">
+        <en>cancel</en>
+        <pl>anuluj</pl>
+    </string>
+    <string id="76">
+        <en>login</en>
+        <pl>login</pl>
+    </string>
+    <string id="77">
+        <en>password</en>
+        <pl>hasło</pl>
+    </string>
+    <string id="78">
+        <en>users</en>
+        <pl>użytkownicy</pl>
+    </string>
+    <string id="79">
+        <en>groups</en>
+        <pl>grupy</pl>
+    </string>
+    <string id="80">
+        <en>login/password combination is incorrect!</en>
+        <pl>kombinacja login/hasło jest niepoprawna!</pl>
+    </string>
+    <string id="81">
+        <en>Are you sure you want to delete user</en>
+        <pl>Jesteś pewien że chcesz usunąć użytkownika</pl>
+    </string>
+    <string id="82">
+        <en>Password and password confirmation doesn't match!</en>
+        <pl>Hasło i potwierdzenie hasła nie zgadzają się!</pl>
+    </string>
+    <string id="83">
+        <en>login dialog</en>
+        <pl>logowanie</pl>
+    </string>
+    <string id="84">
+        <en>logged user</en>
+        <pl>zalogowany użytkownik</pl>
+    </string>
+    <string id="85">
+        <en>Access Denied!</en>
+        <pl>Dostęp Wzbroniony!</pl>
+    </string>
+    <string id="86">
+        <en>editing user</en>
+        <pl>edycja użytkownika</pl>
+    </string>
+    <string id="87">
+        <en>creating new user</en>
+        <pl>tworzenie nowego użytkownika</pl>
+    </string>
+    <string id="88">
+        <en>check if you want to set the new password</en>
+        <pl>zaznacz jeśli chcesz ustawić nowe hasło</pl>
+    </string>
+    <string id="89">
+        <en>confirm password</en>
+        <pl>potwierdź hasło</pl>
+    </string>
+    <string id="90">
+        <en>first name</en>
+        <pl>imię</pl>
+    </string>
+    <string id="91">
+        <en>last name</en>
+        <pl>nazwisko</pl>
+    </string>
+    <string id="92">
+        <en>email</en>
+        <pl>email</pl>
+    </string>
+    <string id="93">
+        <en>phone no.</en>
+        <pl>nr telefonu</pl>
+    </string>
+    <string id="94">
+        <en>group</en>
+        <pl>grupa</pl>
+    </string>
+    <string id="95">
+        <en>none</en>
+        <pl>brak</pl>
+    </string>
+    <string id="96">
+        <en>super admin</en>
+        <pl>super admin</pl>
+    </string>
+    <string id="97">
+        <en>available users</en>
+        <pl>dostępni użytkownicy</pl>
+    </string>
+    <string id="98">
+        <en>no users available</en>
+        <pl>brak dostępnych użytkowników</pl>
+    </string>
+    <string id="99">
+        <en>last activity</en>
+        <pl>ostatnia aktywność</pl>
+    </string>
+    <string id="100">
+        <en>actions</en>
+        <pl>akcje</pl>
+    </string>
+    <string id="101">
+        <en>search list:</en>
+        <pl>przeszukaj listę:</pl>
+    </string>
+    <string id="102">
+        <en>per page</en>
+        <pl>na stronę</pl>
+    </string>
+    <string id="103">
+        <en>editing group</en>
+        <pl>edycja grupy</pl>
+    </string>
+    <string id="104">
+        <en>creating new group</en>
+        <pl>tworzenie nowej grupy</pl>
+    </string>
+    <string id="105">
+        <en>sharing</en>
+        <pl>dzielenie</pl>
+    </string>
+    <string id="106">
+        <en>available groups</en>
+        <pl>dostępne grupy</pl>
+    </string>
+    <string id="107">
+        <en>no groups available</en>
+        <pl>brak dostępnych grup</pl>
+    </string>
+    <string id="108">
+        <en>owner</en>
+        <pl>wlaściciel</pl>
+    </string>
+    <string id="109">
+        <en>Are you sure you want to delete group</en>
+        <pl>Jesteś pewien że chcesz usunąć grupę</pl>
+    </string>
+    <string id="110">
+        <en>available items</en>
+        <pl>dostępne elementy</pl>
+    </string>
+    <string id="111">
+        <en>no items available</en>
+        <pl>brak dostępnych elementów</pl>
+    </string>
+    <string id="112">
+        <en>editing item</en>
+        <pl>edycja elementu</pl>
+    </string>
+    <string id="113">
+        <en>creating new item</en>
+        <pl>tworzenie nowego elementu</pl>
+    </string>
+    <string id="114">
+        <en>Are you sure you want to delete item</en>
+        <pl>Jesteś pewien że chcesz usunąć element</pl>
+    </string>
+    <string id="115">
+        <en>preview</en>
+        <pl>podgląd</pl>
+    </string>
+    <string id="116">
+        <en>log out</en>
+        <pl>wyloguj</pl>
+    </string>
+    <string id="117">
+        <en>Presentation and Properties</en>
+        <pl>Prezentacja i Właściwości</pl>
+    </string>
+    <string id="118">
+        <en>R Interaction</en>
+        <pl>Interakcja z R</pl>
+    </string>
+    <string id="119">
+        <en>debug</en>
+        <pl>debug</pl>
+    </string>
+    <string id="120">
+        <en>show session variables</en>
+        <pl>pokaż zmienne sesji</pl>
+    </string>
+    <string id="121">
+        <en>show R variables</en>
+        <pl>pokaż zmienne R</pl>
+    </string>
+    <string id="122">
+        <en>Concerto Platform homepage</en>
+        <pl>strona domowa Concerto Platform</pl>
+    </string>
+    <string id="123">
+        <en>Concerto Platform Google Group</en>
+        <pl>Concerto Platform Google Group</pl>
+    </string>
+    <string id="124">
+        <en>Concerto built in R functions documentation</en>
+        <pl>Dokumentacja wbudowanych funkcji R Concerto</pl>
+    </string>
+    <string id="125">
+        <en>function signature</en>
+        <pl>sygnatura funckji</pl>
+    </string>
+    <string id="126">
+        <en>description</en>
+        <pl>opis</pl>
+    </string>
+    <string id="127">
+        <en>example</en>
+        <pl>przykład</pl>
+    </string>
+    <string id="128">
+        <en>This function sets session variable which can be used in HTML presentation by inserting {{var_name}} string into the item HTML.</en>
+        <pl>Ta funkcja ustawia zmienną sesyjną która potem może zostać użyta w prezentacji HTML poprzez osadzenie ciągu znaków {{var_name}} w HTMLu elementu.</pl>
+    </string>
+    <string id="129">
+        <en>This function sets which item should be load next when the R calculations are finished.</en>
+        <pl>Ta funckja ustawia który element powinien zostać załadowany następny kiedy zakończą się obliczenia R.</pl>
+    </string>
+    <string id="130">
+        <en>item's session variables</en>
+        <pl>zmienne sesyjne elementu</pl>
+    </string>
+</root>
