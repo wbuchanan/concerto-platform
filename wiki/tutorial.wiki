@@ -123,8 +123,10 @@ if(current_question_no < 3) {
   # *'btn_restart'*
 
 Paste this *'R code to execute'*:
+
+{{{
 ## sets item to show up next
 set.next.item("demo_start")
-{{{
-
 }}}
+
+  * save the item by clicking *'save'* button
