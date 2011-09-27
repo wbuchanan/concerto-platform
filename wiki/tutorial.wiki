@@ -100,7 +100,7 @@ set.next.item("demo_item")
   * go to the *'R Interaction'* tab where you can assign R code to the item's buttons
 
 We have two buttons here. 
-  # *'btn_next'*
+  * *'btn_next'*
 
 Paste this *'R code to execute'*:
 
@@ -120,7 +120,7 @@ if(current_question_no < 3) {
 }
 }}}
 
-  # *'btn_restart'*
+  * *'btn_restart'*
 
 Paste this *'R code to execute'*:
 
