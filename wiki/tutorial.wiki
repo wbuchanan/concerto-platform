@@ -41,7 +41,7 @@ We also have here a text box named *'field_name'* which will be filled by user r
 *All of this can also be done in graphical mode but for demonstration purposes it will be easier just to copy the whole source in 'Source' mode.*
 
 Now switch back to *'graphical'* mode.
-See those double brackets with text inside them? You can insert session variables to your HTML presentation this way. This way *{{question}}* will be replaced by session variable named *question* value.
+See those double brackets with text inside them? You can insert session variables to your HTML presentation this way. This way *{{question}}* will be replaced by value of session variable named *question*.
 On this item we have two buttons used to execute R code and two radio buttons from the same group ( they have the same name ). Those radio buttons will be used by user running the test to give you the answer. Answer can be *yes* ( radio button value *0* ) or *no* ( radio button value *1* ).
 
 === `demo_feedback` ===
