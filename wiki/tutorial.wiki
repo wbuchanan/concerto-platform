@@ -10,7 +10,12 @@ We'll try to create a simple test containing three test items. First one will be
 http://dev.myiqtest.org/concerto2/wiki_images/new_item_click.png
 
   * enter *'demo_start'* as an item name in the form
+
+http://dev.myiqtest.org/concerto2/wiki_images/enter_name.png
+
   * go to the *'Presentation and Properties'* tab, switch editor to *'Source'* mode and fill it with following content:
+
+http://dev.myiqtest.org/concerto2/wiki_images/source_click.png
 
 {{{
 <p>
@@ -23,6 +28,8 @@ http://dev.myiqtest.org/concerto2/wiki_images/new_item_click.png
 *All of this can also be done in graphical mode but for demonstration purposes it will be easier just to copy the whole source in 'Source' mode.*
 
   * save the item by clicking *'save'* button
+
+http://dev.myiqtest.org/concerto2/wiki_images/save_click.png
 
 Now switch back to *'graphical'* mode ( click on the *source* button again ).
 We have a button here named *'btn_start'*. We can later assign R code to execute when we click on it while running test.
@@ -87,6 +94,8 @@ http://dev.myiqtest.org/concerto2/wiki_images/demo_feedback.png
   * go to the *'R Interaction'* tab where you can assign R code to the item's buttons
 
 We have only one button in this item: *'btn_start'*. Paste this as a *R code to execute*:
+
+http://dev.myiqtest.org/concerto2/wiki_images/r_code.png
 
 {{{
 ## questions array
