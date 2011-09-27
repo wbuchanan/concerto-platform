@@ -56,6 +56,10 @@ Now switch back to *'graphical'* mode.
 See those double brackets with text inside them? You can insert session variables to your HTML presentation this way. This way *{{question}}* will be replaced by value of session variable named *question*.
 On this item we have two buttons used to execute R code and two radio buttons from the same group ( they have the same name: *field_answer* ). Those radio buttons will be used by user running the test to give you the answer. Answer can be *yes* ( radio button value *0* ) or *no* ( radio button value *1* ).
 
+This HTML should look like this:
+
+http://dev.myiqtest.org/concerto2/wiki_images/demo_item.png
+
 === `demo_feedback` ===
   * to create a new item click *'new'* button in the form on the left side of *'item'* tab
   * enter *'demo_feedback'* as an item name in the form
@@ -69,6 +73,10 @@ On this item we have two buttons used to execute R code and two radio buttons fr
   * save the item by clicking *'save'* button
 
 Only thing worth mentioning here are double brackets used for session variables insertion.
+
+This HTML should look like this:
+
+http://dev.myiqtest.org/concerto2/wiki_images/demo_feedback.png
 
 == step 2: assign R code to item's buttons ==
 === `demo_start` ===
