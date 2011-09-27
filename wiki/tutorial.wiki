@@ -16,6 +16,8 @@
 }}}
 *All of this can also be done in graphical mode but for demonstration purposes it will be easier just to copy the whole source in 'Source' mode.*
 
+  * save the item by clicking *'save'* button
+
 Now switch back to *'graphical'* mode ( click on the *source* button again ).
 We have a button here named *'btn_start'*. We can later assign R code to execute when we click on it while running test.
 We also have here a text box named *'field_name'* which will be filled by user running test and we can use it's value later in HTML presentation or in R calculations.
@@ -40,6 +42,8 @@ We also have here a text box named *'field_name'* which will be filled by user r
 }}}
 *All of this can also be done in graphical mode but for demonstration purposes it will be easier just to copy the whole source in 'Source' mode.*
 
+  * save the item by clicking *'save'* button
+
 Now switch back to *'graphical'* mode.
 See those double brackets with text inside them? You can insert session variables to your HTML presentation this way. This way *{{question}}* will be replaced by value of session variable named *question*.
 On this item we have two buttons used to execute R code and two radio buttons from the same group ( they have the same name: *field_answer* ). Those radio buttons will be used by user running the test to give you the answer. Answer can be *yes* ( radio button value *0* ) or *no* ( radio button value *1* ).
@@ -54,4 +58,73 @@ On this item we have two buttons used to execute R code and two radio buttons fr
 }}}
 *All of this can also be done in graphical mode but for demonstration purposes it will be easier just to copy the whole source in 'Source' mode.*
 
+  * save the item by clicking *'save'* button
+
 Only thing worth mentioning here are double brackets used for session variables insertion.
+
+== step 2: assign R code to item's buttons ==
+=== `demo_start` ===
+  * edit *'demo_start'* item
+  * go to the *'R Interaction'* tab where you can assign R code to the item's buttons
+
+We have only one button in this item: *'btn_start'*. Paste this as a *R code to execute*:
+
+{{{
+## questions array
+x <- array(dim=3)
+x[1]<-"Is 3-2=6?"
+x[2]<-"Is 2+3=6?"
+x[3]<-"Is 3*2=6?"
+
+## correct answers array
+y <- array(dim=3)
+y[1]<-0
+y[2]<-0
+y[3]<-1
+
+## set index of first question to show up
+current_question_no <- 1
+## initialize total score value
+total_score <- 0
+
+## set R variables as session variables for use in presentation HTML and set next item to show up
+set.var("current_question_no",current_question_no)
+set.var("question",x[current_question_no])
+set.next.item("demo_item")
+}}}
+
+  * save the item by clicking *'save'* button
+
+=== `demo_item` ===
+* edit *'demo_item'* item
+  * go to the *'R Interaction'* tab where you can assign R code to the item's buttons
+
+We have two buttons here. 
+  # *'btn_next'*
+
+Paste this *'R code to execute'*:
+
+{{{
+## if answer correct then increment total score value
+if(y[current_question_no] == as.numeric(field_answer)) total_score <- total_score + 1
+  
+## if this isn't the last question then change current question to next one and if it is then show feedback page with total score value
+if(current_question_no < 3) {
+  current_question_no <- current_question_no + 1
+  question <- x[current_question_no]
+  set.var("current_question_no",current_question_no)
+  set.var("question",question)
+} else {
+  set.var("total_score",total_score)
+  set.next.item("demo_feedback") 	
+}
+}}}
+
+  # *'btn_restart'*
+
+Paste this *'R code to execute'*:
+## sets item to show up next
+set.next.item("demo_start")
+{{{
+
+}}}
