@@ -6,6 +6,9 @@ We'll try to create a simple test containing three test items. First one will be
 == step 1: create item's presentation ==
 === `demo_start` ===
   * to create a new item click *'new'* button in the form on the left side of *'item'* tab
+
+http://dev.myiqtest.org/concerto2/wiki_images/new_click.png
+
   * enter *'demo_start'* as an item name in the form
   * go to the *'Presentation and Properties'* tab, switch editor to *'Source'* mode and fill it with following content:
 
