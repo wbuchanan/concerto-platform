@@ -25,6 +25,11 @@ Now switch back to *'graphical'* mode ( click on the *source* button again ).
 We have a button here named *'btn_start'*. We can later assign R code to execute when we click on it while running test.
 We also have here a text box named *'field_name'* which will be filled by user running test and we can use it's value later in HTML presentation or in R calculations.
 
+This HTML should look like this:
+
+http://dev.myiqtest.org/concerto2/wiki_images/demo_start.png
+
+
 === `demo_item` ===
   * to create a new item click *'new'* button in the form on the left side of *'item'* tab
   * enter *'demo_item'* as an item name in the form
