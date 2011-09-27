@@ -155,3 +155,6 @@ You can either run it in *debug* mode to see what's going on behind the scene. Y
 Or you can run it in normal mode by passing item's *hash* value as an URL argument.
 
 e.g. /index.php?*hash=enter_item_hash_here*
+
+= see live demo here =
+[http://dev.myiqtest.org/concerto2/index.php?hash=ab0334826613005bfcf26d52392b7ced click for live demo]
