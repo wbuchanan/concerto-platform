@@ -1,1 +1,47 @@
-totorial will follow soon...
+= Adaptive Test creation tutorial =
+
+== step 1: create item's presentation ==
+=== `demo_start` ===
+  * to create a new item click *'new'* button in the form on the left side of *'item'* tab
+  * enter *'demo_start'* as an item name in the form
+  * go to the *'Presentation and Properties'* tab, switch editor to *'Source'* mode and fill it with following content:
+
+{{{
+<p>
+	This is a demo test.</p>
+<p>
+	Enter your name and click &#39;Start&#39; button.</p>
+<p>
+	name:&nbsp;<input name="field_name" type="text" /><input name="btn_start" type="button" value="Start" /></p>
+}}}
+*All of this can also be done in graphical mode but for demonstration purposes it will be easier just to copy the whole source in 'Source' mode.*
+
+=== `demo_item` ===
+  * to create a new item click *'new'* button in the form on the left side of *'item'* tab
+  * enter *'demo_item'* as an item name in the form
+  * go to the *'Presentation and Properties'* tab, switch editor to *'Source'* mode and fill it with following content:
+
+{{{
+<p>
+	{{field_name}} please answer the question:</p>
+<p style="text-align: center; ">
+	Question #{{current_question_no}}:</p>
+<p style="text-align: center; ">
+	{{question}}</p>
+<p style="text-align: center; ">
+	<input checked="checked" name="field_answer" type="radio" value="0" />no<input name="field_answer" type="radio" value="1" />yes</p>
+<p style="text-align: center; ">
+	<input name="btn_next" type="button" value="next" /><input name="btn_restart" type="button" value="restart" /></p>
+
+}}}
+*All of this can also be done in graphical mode but for demonstration purposes it will be easier just to copy the whole source in 'Source' mode.*
+
+=== `demo_feedback` ===
+  * to create a new item click *'new'* button in the form on the left side of *'item'* tab
+  * enter *'demo_feedback'* as an item name in the form
+  * go to the *'Presentation and Properties'* tab, switch editor to *'Source'* mode and fill it with following content:
+
+{{{
+{{field_name}}, your total score is {{total_score}}.
+}}}
+*All of this can also be done in graphical mode but for demonstration purposes it will be easier just to copy the whole source in 'Source' mode.*
