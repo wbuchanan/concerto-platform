@@ -1,4 +1,4 @@
-= Adaptive Test creation tutorial =
+= test creation tutorial =
 
 == step 1: create item's presentation ==
 === `demo_start` ===
@@ -130,3 +130,12 @@ set.next.item("demo_start")
 }}}
 
   * save the item by clicking *'save'* button
+
+= and that's all =
+You can now run the test you created.
+
+You can either run it in *debug* mode to see what's going on behind the scene. You do it by clicking *'debug'* button next to the item ( *'demo_start'* in this case ).
+
+Or you can run it in normal mode by passing item's *hash* value as an URL argument.
+
+e.g. /index.php?*hash=enter_item_hash_here*
