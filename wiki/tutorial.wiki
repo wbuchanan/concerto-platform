@@ -1,7 +1,7 @@
 = test creation tutorial =
 
 == Concept ==
-We`ll try to create a simple test containing three test items. First one will be the start item where user can enter his or her name and start the test. The name of the user will then be used later in other items. The second item will contain questions and possible answers that user can take. We`ll define simple question bank in R and we`ll populate this item with every question from the bank one by one. To simplify this demo test we`re going to use only yes or no as a possible answer. Finally when we ran out of questions the total score will be shown in final item.
+We'll try to create a simple test containing three test items. First one will be the start item where user can enter his or her name and start the test. The name of the user will then be used later in other items. The second item will contain questions and possible answers that user can take. We'll define simple question bank in R and we'll populate this item with every question from the bank one by one. To simplify this demo test we're going to use only yes or no as a possible answer. Finally when we ran out of questions the total score will be shown in final item.
 
 == step 1: create item's presentation ==
 === `demo_start` ===
