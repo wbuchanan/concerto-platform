@@ -35,6 +35,13 @@ We can divide this section to three parts.
   # import HTML presentation from other item at the top ( you select the item from the list and then you click *import HTML* button
   # item's *default button* and *timer* at the bottom ( *timer* sets maximum time that user has to submit item in seconds and *default button* points to button that will be auto clicked when the times runs out )
 
+  * =="items" tab -> R Interaction tab==
+http://dev.myiqtest.org/concerto2/wiki_images/admin_items_interaction.PNG
+
+Here we have HTML buttons list from the HTML presentation layer. We can assign *R code to execute* for every button. It will be executed when the button will be clicked. You can see the button's name next to the R code area. At the top of this section we have two buttons:
+  # *Concerto built in R functions documentation* - when you click on it it will show you Concerto functions that you can use anywhere in your buttons *R code to execute* with their description and example use.
+  # *item's session variables* - when you click on it it will show you:         *sent session variables* ( session variables that comes from HTML controls and are initialized after item is submitted ), *inserted session variables* ( session variables that the item will look for to insert into it's presentation layer )
+
 ----
 
 *MORE TO COME SOON...*
