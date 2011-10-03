@@ -84,11 +84,17 @@ function Item(parameters,debug)
         }
 		
         //vars
-        for(var key in this.variables)
+        var loop = true;
+        while(loop)
         {
-            while(html.indexOf("{{"+key+"}}")!=-1)
+            loop=false;
+            for(var key in this.variables)
             {
-                html = html.replace("{{"+key+"}}", (this.variables.hasOwnProperty(key)?this.variables[key]:""));
+                while(html.indexOf("{{"+key+"}}")!=-1)
+                {
+                    html = html.replace("{{"+key+"}}", (this.variables.hasOwnProperty(key)?this.variables[key]:""));
+                    if(this.variables.hasOwnProperty(key) && html.indexOf("{{")!=-1) loop = true;
+                }
             }
         }
         return html;
