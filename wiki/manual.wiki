@@ -31,8 +31,8 @@ todo
 
 
   # extract the contents of the [http://code.google.com/p/concerto-platform/downloads/list installation zip archive] to the public web folder of your choice on your server
-  # edit */SETTINGS.php* file to set your MySQL database connection parameters
-  # run */setup.php* page and follow the instructions
+  # edit *installation_path/SETTINGS.php* file to set your MySQL database connection parameters
+  # run *installation_path/setup.php* page and follow the instructions
 
 == Setup Page ==
 
@@ -46,18 +46,41 @@ The setup page will also allow you to create a login for the first user's login 
 
 http://dev.myiqtest.org/concerto2/wiki_images/setup_page.PNG
 
-==ADMIN panel==
-This section is located at */admin*. If you want to create new tests or modify existing ones here is the place for it. You can also create user accounts here which are authorized to log in to admin panel. Admin panel has multi-language support. You'll find currently supported languages at the home page. Default language is english. You can set other language by seting *lng* option through URL, e.g. */admin/?lng=pl* which will run the admin panel and set it's language to polish.
+=Test and Item Template Creator / Administrator Panel =
 
-  * ===header===
+To create or edit tests and item templates go the administration panel: *installation_path/admin*. 
+
+You can also create user accounts here and set the access right. Administration panel has a multi-language support. You can find the list of currently supported languages at the project's page. Let us know if you want to contribute and provide us with a translation to the other language! 
+
+Default language is English. To use other supported language, e.g. Polish set the  *lng* option in the URL, e.g. */admin/?lng=pl*. This will  (PL stands for Polish here).
+
+
+== Elements of the administration Panel ==
+
+There are several sections in the Administration Panel
+
+== Header ==
+
 http://dev.myiqtest.org/concerto2/wiki_images/admin_header.PNG
 
-On the left side there's two buttons. One will redirect you to *code.google.com Concerto Platform homepage* where you can find some help, report an issue with the application, download latest application version or just browse through the source code. The second button will redirect user to *Concerto Platform Google Group* where you can subscribe to recieve latest news about *Concerto* development and future goals. In the center you can see which version of platform is currently installed on your system and below that you can check if there's a newer version available to download. If there is then download link should be visible. On the right side you'll find the information about the person who is currently logged in ( person's name and login ) and a button to log out.
+Buttons on the left allow you to quickly navigate to:
+ * *Concerto Platform homepage on code.google.com* where you can find  support, report an issue with the application, download latest version or just browse through the source code.
+ * *Concerto Platform Google Group* where you can subscribe to recieve latest news about *Concerto* development and our future plans. 
 
-  * ==="items" tab===
-http://dev.myiqtest.org/concerto2/wiki_images/admin_item.PNG
+The central area of the header contains the Concerto version. Below you can find the link to newer version of the system if available. 
+
+On the right side you'll the find the information about the currently logged-in administrator and a log out button.
+
+
+=="Items" tab==
+
+Items Tab is the 
 
 This section is the heart of whole application. Here you can create new test items and modify existing ones. You create here item's HTML presentation using HTML WYSIWYG editor - CKEditor and assign R code to execute for every HTML button that is present in item's presentation layer.
+
+
+http://dev.myiqtest.org/concerto2/wiki_images/admin_item.PNG
+
 
   * ==="items" tab -> items form and list===
 http://dev.myiqtest.org/concerto2/wiki_images/admin_items_formlist.PNG
