@@ -13,27 +13,33 @@ http://dev.myiqtest.org/concerto2/wiki_images/new_item_click.png
 
 http://dev.myiqtest.org/concerto2/wiki_images/enter_name.png
 
-  * go to the *'Presentation and Properties'* tab, switch editor to *'Source'* mode and fill it with following content:
+  * go to the *'Presentation and Properties'* tab
+  * add text field by clicking it's icon 
 
-http://dev.myiqtest.org/concerto2/wiki_images/source_click.png
+http://dev.myiqtest.org/concerto2/wiki_images/ckeditor_tb.png
 
-{{{
-<p>
-	This is a demo test.</p>
-<p>
-	Enter your name and click &#39;Start&#39; button.</p>
-<p>
-	name:&nbsp;<input name="field_name" type="text" /><input name="btn_start" type="button" value="Start" /></p>
-}}}
-*All of this can also be done in graphical mode but for demonstration purposes it will be easier just to copy the whole source in 'Source' mode.*
+  * set text field name to *field_name* and click *OK*
+
+http://dev.myiqtest.org/concerto2/wiki_images/ckeditor_tb_properties.png
+
+  * add button by clicking it's icon
+
+http://dev.myiqtest.org/concerto2/wiki_images/ckeditor_btn.png
+
+  * set button's name to *btn_start*, button's label to *Start* and click *OK*
+
+http://dev.myiqtest.org/concerto2/wiki_images/ckeditor_btn_properties.png
+
+  * add some text directly to the HTML
 
   * save the item by clicking *'save'* button
 
 http://dev.myiqtest.org/concerto2/wiki_images/save_click.png
 
-Now switch back to *'graphical'* mode ( click on the *source* button again ).
+  * summary
+
 We have a button here named *'btn_start'*. We can later assign R code to execute when we click on it while running test.
-We also have here a text box named *'field_name'* which will be filled by user running test and we can use it's value later in HTML presentation or in R calculations.
+We also have here a text box named *'field_name'* which will be filled by user running test and we can use it's value later in HTML presentation or in R calculations. The field will contain user name.
 
 This HTML should look like this:
 
@@ -43,26 +49,28 @@ http://dev.myiqtest.org/concerto2/wiki_images/demo_start.png
 === `demo_item` ===
   * to create a new item click *'new'* button in the form on the left side of *'item'* tab
   * enter *'demo_item'* as an item name in the form
-  * go to the *'Presentation and Properties'* tab, switch editor to *'Source'* mode and fill it with following content:
+  * go to the *'Presentation and Properties'* tab
+  * add radio button by clicking it's icon
 
-{{{
-<p>
-	{{field_name}} please answer the question:</p>
-<p style="text-align: center; ">
-	Question #{{current_question_no}}:</p>
-<p style="text-align: center; ">
-	{{question}}</p>
-<p style="text-align: center; ">
-	<input checked="checked" name="field_answer" type="radio" value="0" />no<input name="field_answer" type="radio" value="1" />yes</p>
-<p style="text-align: center; ">
-	<input name="btn_next" type="button" value="next" /><input name="btn_restart" type="button" value="restart" /></p>
+http://dev.myiqtest.org/concerto2/wiki_images/ckeditor_radio.png
 
-}}}
-*All of this can also be done in graphical mode but for demonstration purposes it will be easier just to copy the whole source in 'Source' mode.*
+  * set it's name to *field_answer*, it's value to *0* and mark that it should be checked by default
+
+http://dev.myiqtest.org/concerto2/wiki_images/ckeditor_radio_porperties_no.png
+
+  * add radio button by clicking it's icon
+  * set it's name to *field_answer* and it's value to *1* 
+
+http://dev.myiqtest.org/concerto2/wiki_images/ckeditor_radio_porperties_yes.png
+
+  * add button named *btn_next* with label *next* and button named *btn_restart* with label *restart*
+
+  * insert somewhere into the HTML text: *{{field_name}} please answer the question:*
+  * insert somewhere into the HTML text: *Question #{{current_question_no}}:*
+  * insert somewhere into the HTML text: *{{question}}*
 
   * save the item by clicking *'save'* button
-
-Now switch back to *'graphical'* mode.
+  * summary
 See those double brackets with text inside them? You can insert session variables to your HTML presentation this way. This way *{{question}}* will be replaced by value of session variable named *question*.
 On this item we have two buttons used to execute R code and two radio buttons from the same group ( they have the same name: *field_answer* ). Those radio buttons will be used by user running the test to give you the answer. Answer can be *yes* ( radio button value *0* ) or *no* ( radio button value *1* ).
 
@@ -73,16 +81,11 @@ http://dev.myiqtest.org/concerto2/wiki_images/demo_item.png
 === `demo_feedback` ===
   * to create a new item click *'new'* button in the form on the left side of *'item'* tab
   * enter *'demo_feedback'* as an item name in the form
-  * go to the *'Presentation and Properties'* tab, switch editor to *'Source'* mode and fill it with following content:
-
-{{{
-{{field_name}}, your total score is {{total_score}}.
-}}}
-*All of this can also be done in graphical mode but for demonstration purposes it will be easier just to copy the whole source in 'Source' mode.*
-
+  * go to the *'Presentation and Properties'* tab
+  * insert somewhere into the HTML text: *{{field_name}}, your total score is {{total_score}}.*
   * save the item by clicking *'save'* button
-
-Only thing worth mentioning here are double brackets used for session variables insertion.
+  * summary
+Only thing worth mentioning here are double brackets used for session variables insertion. User will see his name and his total score.
 
 This HTML should look like this:
 
