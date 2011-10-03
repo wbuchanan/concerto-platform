@@ -12,33 +12,33 @@ This tutorial is based on a very simple item bank declared directly in the R scr
 = Step 1: Create Item Templates =
 == Introduction template ==
   
- * to create a new item template click the *'new'* button on the top left side of the *'item'* tab.
+ * To create a new item template click the *'new'* button on the top left side of the *'item'* tab.
 
 http://dev.myiqtest.org/concerto2/wiki_images/new_item_click.png
 
-  * enter the name of the item, in this case: *'demo_start'* 
+  * Enter the name of the item, in this case: *'demo_start'* 
 
 http://dev.myiqtest.org/concerto2/wiki_images/enter_name.png
 
-  * in the *'Presentation and Properties'* tab add a text field by clicking on the "Text Field" icon. 
+  * In the *'Presentation and Properties'* tab add a text field by clicking on the "*Text Field*" icon. 
 
 http://dev.myiqtest.org/concerto2/wiki_images/ckeditor_tb.png
 
-  * set the name of the Text Field, in this case: *field_name*. The value entered by the user in this Text Field will be stored as a variable under this field's name (in this case  "field_name"). This variable can be later used in other templates or in the R script. In the same window you can also specify a size of the field and choose a default contents (e.g. "Enter your name here". Click *OK* to accept changes.
+  * Set the name of the Text Field, in this case: *field_name*. The value entered by the user in this Text Field will be stored as a variable under this field's name (in this case  "field_name"). This variable can be later used in other templates or in the R script. In the same window you can also specify a size of the field and choose its default contents (e.g. "Enter your name here"). Click *OK* to accept changes.
 
 http://dev.myiqtest.org/concerto2/wiki_images/ckeditor_tb_properties.png
 
-  * now add a button by clicking on the "Button" icon. 
+  * Now add a button by clicking on the "Button" icon. 
 
 http://dev.myiqtest.org/concerto2/wiki_images/ckeditor_btn.png
 
-  * set button's name, in this case *btn_start*, and button's label - e.g. *Start*. Later you will assign an R script to this button to be executed once it's clicked. Accept by clicking *OK*.
+  * Set button's name, in this case *btn_start*, and button's label - e.g. *Start*. Later you will assign an R script to this button to be executed once it's clicked. Accept by clicking *OK*.
 
 http://dev.myiqtest.org/concerto2/wiki_images/ckeditor_btn_properties.png
 
   * Edit the contents of the template using HTML editor, e.g. add some introductory test, like "_This is a demo test. Enter your name in the box below and press "Start" to start the test_". You will see in the manual that virtually any part of the template can be set as "dynamic" and changed by your R script or other external applications.
 
-  * save the item template by clicking *'save'* button.
+  * Save the item template by clicking *'save'* button.
 
 http://dev.myiqtest.org/concerto2/wiki_images/save_click.png
 
@@ -54,7 +54,7 @@ http://dev.myiqtest.org/concerto2/wiki_images/demo_start.png
 
 http://dev.myiqtest.org/concerto2/wiki_images/ckeditor_radio.png
 
-  * set its name (here *field_answer*) and it's value (here: *0*). The value will be stored as a variable under this field's name (if this radio button will be selected by the user the variable "field_answer" will have value "0"). This variable can be later used in other templates or in the R script, e.g. to check which response was selected by the user. Checking the "Selected" option will make this buttonn selected by default.
+  * Set its name (here *field_answer*) and it's value (here: *0*). The value will be stored as a variable under this field's name (if this radio button will be selected by the user the variable "field_answer" will have value "0"). This variable can be later used in other templates or in the R script, e.g. to check which response was selected by the user. Checking the "Selected" option will make this buttonn selected by default.
 
 http://dev.myiqtest.org/concerto2/wiki_images/ckeditor_radio_porperties_no.png
 
@@ -62,16 +62,16 @@ http://dev.myiqtest.org/concerto2/wiki_images/ckeditor_radio_porperties_no.png
 
 http://dev.myiqtest.org/concerto2/wiki_images/ckeditor_radio_porperties_yes.png
 
-  * add button named *btn_next* with label *next* and button named *btn_restart* with label *restart*.
+  * Add button named *btn_next* with label *next* and button named *btn_restart* with label *restart*.
 
   * Edit the template of an item - add:
-    * text *"no"* next to the first radio button and *"yes"* next to the second one. 
-    * text: *"{{field_name}} please answer the question: {{question}}"*. Somewhere above the radio buttons.     
-    * text : *"Question #{{current_question_no}}:"*
+    * Text *"no"* next to the first radio button and *"yes"* next to the second one. 
+    * Text: *"{{field_name}} please answer the question: {{question}}"*. Somewhere above the radio buttons.     
+    * Text : *"Question #{{current_question_no}}:"*
 
   * See those double brackets "{{" with text inside them? You can use them to insert any content to your item templates. You just need to create a session variable of this name (e.g. question) that will contain text, piece of HTML code (e.g. nice set of response options generated by R or stored in an item bank), a link to a picture/video/sound, etc. In this case {{current_question_no}}" and "{{question}}" will be provided by the R script, while {{field_name}} will be filled using the input of the user provided on the "Introduction" item (remember the Text Field called "field_name"?).
 
-  * save the item template by clicking *'save'* button
+  * Save the item template by clicking *'save'* button
  
 This Item template should look more or less like this:
 
@@ -134,7 +134,7 @@ set.var("question",x[current_question_no])
 set.next.item("demo_item")
 }}}
 
-  * click the  *'save'* button to save the changes
+  * Click the  *'save'* button to save the changes
 
 == Test Item Template ==
   * Click edit next to the *'demo_item'* item template and go to the *'R Interaction'*. We have two buttons here: 
