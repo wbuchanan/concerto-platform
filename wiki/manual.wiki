@@ -27,6 +27,14 @@ In the upper part of this section we have item's form. You can set here item's n
     # *sharing* - sharing level of specific item 
     # *actions* - there's three buttons here: *debug* - run test in debug mode, *edit* - edit selected test, *delete* - deletes selected test
 
+  * =="items" tab -> Presentation and Properties tab==
+http://dev.myiqtest.org/concerto2/wiki_images/admin_items_presentation.PNG
+
+We can divide this section to three parts.
+  # HTML WYSIWYG editor - *CKEditor* in the middle ( you can design your HTML presentation layer here )
+  # import HTML presentation from other item at the top ( you select the item from the list and then you click *import HTML* button
+  # item's *default button* and *timer* at the bottom ( *timer* sets maximum time that user has to submit item in seconds and *default button* points to button that will be auto clicked when the times runs out )
+
 ----
 
 *MORE TO COME SOON...*
