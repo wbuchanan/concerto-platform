@@ -7,8 +7,7 @@ Here we show how to create a simple test composed of three Item Templates:
  * *Test questions* - for simplicity with dichotomous (yes/no) response options. 
  * *Feedback* containing user's score.
 
-This tutorial is based on a very simple item bank declared directly in a code, however, we suggest that in the proper tests you should use item banks stored in the SQL table. 
-Also, adaptivity is not used in this tutorial, but you will see how and where adaptive bit of code can be used
+This tutorial is based on a very simple item bank declared directly in the R script and we do not store user scores. However, it is advisable to MySQL to store item banks, user databases, and results in a proper test. Also, adaptivity is not used in this tutorial, but you will see how and where adaptive bit of code can added.
 
 == Step 1: Create Item Templates ==
 === Introduction template ===
