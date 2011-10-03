@@ -1,2 +1,12 @@
 =SETUP page=
-This is the first page that should be run after files extraction. Here you can check if your system meets all requirements and finalize application setup. This page is located at */setup.php*. If you'll pass all the checks here then you should be able to run the application. The tests consists of PHP settings check, directory rights check, MySQL configuration check, etc. The setup page will also ask you for first user login and password, your application installation external URL, RScript path and RStudio integration. This page also checks if there is newer version of *Concerto Platform* available. If any of the checks fail then the setup page will give you recommendation how to fix it. You should solve the problem and restart the setup page.
+This is the first page that should be run after files extraction. Here you can check if your system meets all requirements and finalize application setup. This page is located at */setup.php*. If you'll pass all the checks here then you should be able to run the application. The tests consists of PHP settings check, directory rights check, MySQL configuration check, etc. The setup page will also ask you for first user login and password, your application installation external URL, RScript path and RStudio integration. This page also checks if there is newer version of *Concerto Platform* available. If any of the checks fail then the setup page will give you recommendation how to fix it. You should solve the problem and restart the setup page. 
+
+http://dev.myiqtest.org/concerto2/wiki_images/setup_page.PNG
+
+=ADMIN panel=
+This section is located at */admin*. If you want to create new tests or modify existing ones here is the place for it. You can also create user accounts here which are authorized to log in to admin panel.
+
+  * ==header==
+http://dev.myiqtest.org/concerto2/wiki_images/admin_header.PNG
+
+On the left side there's two buttons. One will redirect you to *code.google.com Concerto Platform homepage* where you can find some help, report an issue with the application, download latest application version or just browse through the source code. The second button will redirect user to *Concerto Platform Google Group* where you can subscribe to recieve latest news about *Concerto* development and future goals. In the center you can see which version of platform is currently installed on your system and below that you can check if there's a newer version available to download. If there is then download link should be visible. On the right side you'll find the information about the person who is currently logged in ( person's name and login ) and a button to log out.
