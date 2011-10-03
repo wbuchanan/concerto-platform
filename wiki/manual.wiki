@@ -72,7 +72,7 @@ http://dev.myiqtest.org/concerto2/wiki_images/admin_item.PNG
 
 http://dev.myiqtest.org/concerto2/wiki_images/admin_items_formlist.PNG
 
-
+Add new item template:
  * Click "New" to add a new item template.
  * Set it's name in the "Name" box.
  * Set it's sharing rights
@@ -91,15 +91,13 @@ Additionally, there are 3 action buttons:
 
 The list can be sorted by clicking on the column header. Use a search box to search for a specific item. The list is paginated and you can select how many items should be displayed per page and which page you want to see.
 
+==="items" tab -> "Presentation and Properties" tab===
 
-
-
-  * ==="items" tab -> "Presentation and Properties" tab===
 http://dev.myiqtest.org/concerto2/wiki_images/admin_items_presentation.PNG
 
 We can divide this section to three parts.
-  # HTML WYSIWYG editor - *CKEditor* in the middle ( you can design your HTML presentation layer here )
-  # import HTML presentation from other item at the top ( you select the item from the list and then you click *import HTML* button
+  # Duplicate Item Template panel allowing to import the HTML layer from   other item at the top ( you select the item from the list and then you click *import HTML* button
+  # HTML WYSIWYG editor (*CKEditor*) in the middle ( you can design your HTML presentation layer here )
   # item's *default button* and *timer* at the bottom ( *timer* sets maximum time that user has to submit item in seconds and *default button* points to button that will be auto clicked when the times runs out )
 
   * ==="items" tab -> "R Interaction" tab===
