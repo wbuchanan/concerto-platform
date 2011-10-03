@@ -47,10 +47,10 @@ Resulting Item Template should look more or less like this:
 http://dev.myiqtest.org/concerto2/wiki_images/demo_start.png
 
 
-== Test Item template ==
+== Test Item Template ==
   * Create a new item by clicking *'new'* button in the top left side of the *'item'* tab.
-  * enter it's name, here: *'demo_item'*.
-  * add radio button in the *'Presentation and Properties'* tab by clicking "Radio Button" icon.
+  * Enter it's name, here: *'demo_item'*.
+  * Add radio button in the *'Presentation and Properties'* tab by clicking "Radio Button" icon.
 
 http://dev.myiqtest.org/concerto2/wiki_images/ckeditor_radio.png
 
