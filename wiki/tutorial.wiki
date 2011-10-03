@@ -12,7 +12,7 @@ This tutorial is based on a very simple item bank declared directly in the R scr
 = Step 1: Create Item Templates =
 == Introduction template ==
   
- * to create a new item template click the *'new'* button on the top left side of an *'item'* tab
+ * to create a new item template click the *'new'* button on the top left side of the *'item'* tab.
 
 http://dev.myiqtest.org/concerto2/wiki_images/new_item_click.png
 
@@ -20,7 +20,7 @@ http://dev.myiqtest.org/concerto2/wiki_images/new_item_click.png
 
 http://dev.myiqtest.org/concerto2/wiki_images/enter_name.png
 
-  * in the *'Presentation and Properties'* tab add a text field by clicking on the "Text Field" icon 
+  * in the *'Presentation and Properties'* tab add a text field by clicking on the "Text Field" icon. 
 
 http://dev.myiqtest.org/concerto2/wiki_images/ckeditor_tb.png
 
@@ -28,17 +28,17 @@ http://dev.myiqtest.org/concerto2/wiki_images/ckeditor_tb.png
 
 http://dev.myiqtest.org/concerto2/wiki_images/ckeditor_tb_properties.png
 
-  * now add a button by clicking on the "Button" icon 
+  * now add a button by clicking on the "Button" icon. 
 
 http://dev.myiqtest.org/concerto2/wiki_images/ckeditor_btn.png
 
-  * set button's name, in this case *btn_start*, and button's label - e.g. *Start*. Later you will assign an R script to this button to be executed once it's clicked. Accept by clicking *OK*
+  * set button's name, in this case *btn_start*, and button's label - e.g. *Start*. Later you will assign an R script to this button to be executed once it's clicked. Accept by clicking *OK*.
 
 http://dev.myiqtest.org/concerto2/wiki_images/ckeditor_btn_properties.png
 
-  * Edit the contents of the template using HTML editor, e.g. add some introductory test, like "This is a demo test. Enter your name in the box below and press "Start" to start the test. You will see in the manual that virtually any part of the template can be set as "dynamic" and changed by your R script or other external applications.
+  * Edit the contents of the template using HTML editor, e.g. add some introductory test, like "_This is a demo test. Enter your name in the box below and press "Start" to start the test_". You will see in the manual that virtually any part of the template can be set as "dynamic" and changed by your R script or other external applications.
 
-  * save the item template by clicking *'save'* button
+  * save the item template by clicking *'save'* button.
 
 http://dev.myiqtest.org/concerto2/wiki_images/save_click.png
 
@@ -48,9 +48,9 @@ http://dev.myiqtest.org/concerto2/wiki_images/demo_start.png
 
 
 == Test Item template ==
-  * Create a new item by clicking *'new'* button in the top left side of the *'item'* tab
-  * enter it's name, here: *'demo_item'*
-  * add radio button in the *'Presentation and Properties'* tab by clicking "Radio Button" icon
+  * Create a new item by clicking *'new'* button in the top left side of the *'item'* tab.
+  * enter it's name, here: *'demo_item'*.
+  * add radio button in the *'Presentation and Properties'* tab by clicking "Radio Button" icon.
 
 http://dev.myiqtest.org/concerto2/wiki_images/ckeditor_radio.png
 
@@ -62,7 +62,7 @@ http://dev.myiqtest.org/concerto2/wiki_images/ckeditor_radio_porperties_no.png
 
 http://dev.myiqtest.org/concerto2/wiki_images/ckeditor_radio_porperties_yes.png
 
-  * add button named *btn_next* with label *next* and button named *btn_restart* with label *restart*
+  * add button named *btn_next* with label *next* and button named *btn_restart* with label *restart*.
 
   * Edit the template of an item - add:
     * text *"no"* next to the first radio button and *"yes"* next to the second one. 
@@ -79,9 +79,9 @@ http://dev.myiqtest.org/concerto2/wiki_images/demo_item.png
 
 
 == Feedback Item Template ==
-  * Create a new item by clicking *'new'* button, enter its name (*'demo_feedback'*)
+  * Create a new item by clicking *'new'* button, enter its name (*'demo_feedback'*).
   * in the *'Presentation and Properties'* tab insert text: *{{field_name}}, your total score is {{total_score}}.*
-  * press *'save'* button to save the item
+  * press *'save'* button to save the item.
  
 This Item template should look more or less like this:
 
