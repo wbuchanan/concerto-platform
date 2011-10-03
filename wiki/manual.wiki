@@ -1,22 +1,24 @@
-=SETUP page=
+=MANUAL=
+
+==SETUP page==
 This is the first page that should be run after files extraction. Here you can check if your system meets all requirements and finalize application setup. This page is located at */setup.php*. If you'll pass all the checks here then you should be able to run the application. The tests consists of PHP settings check, directory rights check, MySQL configuration check, etc. The setup page will also ask you for first user login and password, your application installation external URL, RScript path and RStudio integration. This page also checks if there is newer version of *Concerto Platform* available. If any of the checks fail then the setup page will give you recommendation how to fix it. You should solve the problem and restart the setup page. 
 
 http://dev.myiqtest.org/concerto2/wiki_images/setup_page.PNG
 
-=ADMIN panel=
+==ADMIN panel==
 This section is located at */admin*. If you want to create new tests or modify existing ones here is the place for it. You can also create user accounts here which are authorized to log in to admin panel. Admin panel has multi-language support. You'll find currently supported languages at the home page. Default language is english. You can set other language by seting *lng* option through URL, e.g. */admin/?lng=pl* which will run the admin panel and set it's language to polish.
 
-  * ==header==
+  * ===header===
 http://dev.myiqtest.org/concerto2/wiki_images/admin_header.PNG
 
 On the left side there's two buttons. One will redirect you to *code.google.com Concerto Platform homepage* where you can find some help, report an issue with the application, download latest application version or just browse through the source code. The second button will redirect user to *Concerto Platform Google Group* where you can subscribe to recieve latest news about *Concerto* development and future goals. In the center you can see which version of platform is currently installed on your system and below that you can check if there's a newer version available to download. If there is then download link should be visible. On the right side you'll find the information about the person who is currently logged in ( person's name and login ) and a button to log out.
 
-  * =="items" tab==
+  * ==="items" tab===
 http://dev.myiqtest.org/concerto2/wiki_images/admin_item.PNG
 
 This section is the heart of whole application. Here you can create new test items and modify existing ones. You create here item's HTML presentation using HTML WYSIWYG editor - CKEditor and assign R code to execute for every HTML button that is present in item's presentation layer.
 
-  * =="items" tab -> items form and list==
+  * ==="items" tab -> items form and list===
 http://dev.myiqtest.org/concerto2/wiki_images/admin_items_formlist.PNG
 
 In the upper part of this section we have item's form. You can set here item's name and sharing rights. You'll also find here action buttons to save, delete or create new item from the scratch. In the lower section you can see items list with all item's that currently logged user has right to see. List is sortable. You can sort the list by specific column by clicking on the column header. You can also search the list by typing text to the search box. The list is paginated and you can select how many items should be displayed per page and which page you want to see. The list consists of six columns: 
@@ -27,7 +29,7 @@ In the upper part of this section we have item's form. You can set here item's n
     # *sharing* - sharing level of specific item 
     # *actions* - there's three buttons here: *debug* - run test in debug mode, *edit* - edit selected test, *delete* - deletes selected test
 
-  * =="items" tab -> "Presentation and Properties" tab==
+  * ==="items" tab -> "Presentation and Properties" tab===
 http://dev.myiqtest.org/concerto2/wiki_images/admin_items_presentation.PNG
 
 We can divide this section to three parts.
@@ -35,31 +37,31 @@ We can divide this section to three parts.
   # import HTML presentation from other item at the top ( you select the item from the list and then you click *import HTML* button
   # item's *default button* and *timer* at the bottom ( *timer* sets maximum time that user has to submit item in seconds and *default button* points to button that will be auto clicked when the times runs out )
 
-  * =="items" tab -> "R Interaction" tab==
+  * ==="items" tab -> "R Interaction" tab===
 http://dev.myiqtest.org/concerto2/wiki_images/admin_items_interaction.PNG
 
 Here we have HTML buttons list from the HTML presentation layer. We can assign *R code to execute* for every button. It will be executed when the button will be clicked. You can see the button's name next to the R code area. At the top of this section we have two buttons:
   # *Concerto built in R functions documentation* - when you click on it it will show you Concerto functions that you can use anywhere in your buttons *R code to execute* with their description and example use.
   # *item's session variables* - when you click on it it will show you:         *sent session variables* ( session variables that comes from HTML controls and are initialized after item is submitted ), *inserted session variables* ( session variables that the item will look for to insert into it's presentation layer )
 
-  * =="RStudio" tab==
+  * ==="RStudio" tab===
 http://dev.myiqtest.org/concerto2/wiki_images/admin_rstudio.PNG
 
 If you have *RStudio* installed on your server you can integrate it with  *Concerto Application*. It's optional and you can always switch it on or off in the *setup page* mentioned earlier.
 
-  * =="users" tab==
+  * ==="users" tab===
 http://dev.myiqtest.org/concerto2/wiki_images/admin_users.PNG
 
 This tab is only accesible to user which are *super admins*. It's layout is very similar to item's form and list layout. On the left side we have user's form used to edit or add new users. We can set user's: login, password, first name, last name, email, phone no., group ( user from the same group can share their items if they set their sharing level to *"group"* ) and if user is super admin ( super admin can add, modify and delete other users and user groups ). On the right side we can manage user's groups. 
 
-=Test run environment=
+==Test run environment==
 
-  * ==standard mode==
+  * ===standard mode===
 http://dev.myiqtest.org/concerto2/wiki_images/run_standard.PNG
 
 This section is used to run the tests created in the *admin panel*. It's located at */index.php*. You can set the starting item by passing *hash* option through URL, e.g. */index.php?hash=5da7d117adfd5632b8e8aa661426879f* which will run the test item with a hash of value 5da7d117adfd5632b8e8aa661426879f. You can see your item's hashes at the admin panel. 
 
-  * ==debug mode==
+  * ===debug mode===
 http://dev.myiqtest.org/concerto2/wiki_images/run_debug.PNG
 
 You can also run the test item in *debug mode* where the screen will be divided in two sections. One will be the standard test output visible by the user who runs the test in standard mode and the other section will show you what's happening behind the scenes. You can see there when session variables are initialized, what is passed to R for execution, is R code correct or is there an error in the code. You can also lookup current *session variables* by clicking the button at the top or see *R variables* that are available in your R code. You can turn on this mode by passing *debug* option through URL, e.g. */index.php?hash=5da7d117adfd5632b8e8aa661426879f&debug*. *You must be logged in to do so.* You can also click the *debug* button next to the item at the admin panel.
