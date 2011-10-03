@@ -14,9 +14,7 @@ The Presentation Layer (Item Templates) is  created using open-source HTML WYSIW
 
 = Installation ( v2.0 ) =
 
-
 *DO NOT* install Concerto v2.x on the database used for Concerto v1.x. Create new database to avoid any incompatibility errors.
-
 
   # extract the contents of the [http://code.google.com/p/concerto-platform/downloads/list installation zip archive] to the public web folder of your choice on your server
   # edit *installation_path/SETTINGS.php* file to set your MySQL database connection parameters
@@ -61,7 +59,6 @@ The central area of the header contains the Concerto version. Below you can find
 
 On the right side you'll the find the information about the currently logged-in administrator and a log out button.
 
-
 =="Items" tab==
 
 Items Tab is the heart of whole application. Here you can create/edit/debug item templates and R syntax.
@@ -95,34 +92,67 @@ The list can be sorted by clicking on the column header. Use a search box to sea
 
 http://dev.myiqtest.org/concerto2/wiki_images/admin_items_presentation.PNG
 
-We can divide this section to three parts.
-  # Duplicate Item Template panel allowing to import the HTML layer from   other item at the top ( you select the item from the list and then you click *import HTML* button
-  # HTML WYSIWYG editor (*CKEditor*) in the middle ( you can design your HTML presentation layer here )
-  # item's *default button* and *timer* at the bottom ( *timer* sets maximum time that user has to submit item in seconds and *default button* points to button that will be auto clicked when the times runs out )
+We can divide this section in three parts:
+  # Duplicate Item Template panel allowing to import the HTML layer from another item. Simply select the "source" item from the list and click *import HTML* button.
+  # HTML WYSIWYG editor (*CKEditor*) in the middle - use it to design Item Template's HTML layer)
+  # Item properties, containing:
+    * *default button* - select the button (actually, the R script behind it) that is going to be executed if the time runs out and user did not click any button
+    * *timer* that sets the maximum time in to answer the question on the item. When time runs out, the platform executes the R script assigned to "default button"
 
-  * ==="items" tab -> "R Interaction" tab===
+=== "items" tab -> "R Interaction" tab===
 http://dev.myiqtest.org/concerto2/wiki_images/admin_items_interaction.PNG
 
-Here we have HTML buttons list from the HTML presentation layer. We can assign *R code to execute* for every button. It will be executed when the button will be clicked. You can see the button's name next to the R code area. At the top of this section we have two buttons:
-  # *Concerto built in R functions documentation* - when you click on it it will show you Concerto functions that you can use anywhere in your buttons *R code to execute* with their description and example use.
-  # *item's session variables* - when you click on it it will show you:         *sent session variables* ( session variables that comes from HTML controls and are initialized after item is submitted ), *inserted session variables* ( session variables that the item will look for to insert into it's presentation layer )
+This section contains the list of the HTML buttons that were declared (added) to the HTML presentation layer. You can use the *R code to execute* the assign R syntax that will be executed once the button is pressed by user (or time runs out in case of buttons set as default). 
 
-  * ==="RStudio" tab===
+
+You can also open two "hint" boxes in this section. You can resize/move/close those boxes at any time. 
+ # *Concerto built in R functions documentation* - list of Concerto functions that you can use anywhere in the R syntax
+ # *item's session variables* that contains:
+   * *sent session variables* (list of variables that are acquired from the current Item Template after it is submitted), 
+   * *inserted session variables* (list of inserted variables on a given item. Concerto will look for those variables in the Sessions table to customize this Item template)
+
+=="RStudio" tab==
 http://dev.myiqtest.org/concerto2/wiki_images/admin_rstudio.PNG
 
-If you have *RStudio* installed on your server you can integrate it with  *Concerto Application*. It's optional and you can always switch it on or off in the *setup page* mentioned earlier.
+If you have *RStudio* installed on your server you can integrate it with  *Concerto Platform*. It's optional and you can always switch it on or off using the *setup page* mentioned earlier. 
 
-  * ==="users" tab===
+Use your system account (unix/linux) to enter R studio. 
+
+RStudio can be useful to:
+ * develop and test R code
+ * analyse the results/item banks/etc directly on the server
+ * manage the files on the server (it has a convenient file manager)  
+
+=="users" tab==
 http://dev.myiqtest.org/concerto2/wiki_images/admin_users.PNG
 
-This tab is only accesible to user which are *super admins*. It's layout is very similar to item's form and list layout. On the left side we have user's form used to edit or add new users. We can set user's: login, password, first name, last name, email, phone no., group ( user from the same group can share their items if they set their sharing level to *"group"* ) and if user is super admin ( super admin can add, modify and delete other users and user groups ). On the right side we can manage user's groups. 
+This tab is only accessible for *super admin* users. It allows adding/removing/editing users, user groups, and defining access rights.
 
-==Test run environment==
+You can set user's: login, password, first name, last name, email, phone no., and a user group. 
 
-  * ===standard mode===
-http://dev.myiqtest.org/concerto2/wiki_images/run_standard.PNG
+=== User groups ===
 
-This section is used to run the tests created in the *admin panel*. It's located at */index.php*. You can set the starting item by passing *hash* option through URL, e.g. */index.php?hash=5da7d117adfd5632b8e8aa661426879f* which will run the test item with a hash of value 5da7d117adfd5632b8e8aa661426879f. You can see your item's hashes at the admin panel. 
+You can use "sharing" option to assign item template to one of three groups:
+ # public (all administrators can see/edit it)
+ # private (only you can see/edit it)
+ # group (only members of your group can see/edit it)
+
+Super Admins can add/edit groups and assign users to groups in the "Users Tab".
+
+= Running tests =
+
+==standard mode==
+
+To start the test in a standard mode, use the following URL:
+
+Concerto_installation_path/index.php?hash=[item_hash] 
+
+You can get item's hash from the item template's list. An example of the URL:  
+http://dev.myiqtest.org/concerto2/index.php?hash=ab0334826613005bfcf26d52392b7ced
+
+
+
+This section is used to run the tests created in the *admin panel*. It's located at */index.php*. You can set the starting item by passing *hash* option through URL, e.g. which will run the test item with a hash of value 5da7d117adfd5632b8e8aa661426879f. You can see your item's hashes at the admin panel. 
 
   * ===debug mode===
 http://dev.myiqtest.org/concerto2/wiki_images/run_debug.PNG
