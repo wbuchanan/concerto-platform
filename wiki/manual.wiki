@@ -4,7 +4,7 @@ This is the first page that should be run after files extraction. Here you can c
 http://dev.myiqtest.org/concerto2/wiki_images/setup_page.PNG
 
 =ADMIN panel=
-This section is located at */admin*. If you want to create new tests or modify existing ones here is the place for it. You can also create user accounts here which are authorized to log in to admin panel.
+This section is located at */admin*. If you want to create new tests or modify existing ones here is the place for it. You can also create user accounts here which are authorized to log in to admin panel. Admin panel has multi-language support. You'll find currently supported languages at the home page. Default language is english. You can set other language by seting *lng* option through URL, e.g. */admin/?lng=pl* which will run the admin panel and set it's language to polish.
 
   * ==header==
 http://dev.myiqtest.org/concerto2/wiki_images/admin_header.PNG
@@ -52,6 +52,14 @@ http://dev.myiqtest.org/concerto2/wiki_images/admin_users.PNG
 
 This tab is only accesible to user which are *super admins*. It's layout is very similar to item's form and list layout. On the left side we have user's form used to edit or add new users. We can set user's: login, password, first name, last name, email, phone no., group ( user from the same group can share their items if they set their sharing level to *"group"* ) and if user is super admin ( super admin can add, modify and delete other users and user groups ). On the right side we can manage user's groups. 
 
-----
+=Test run environment=
 
-*MORE TO COME SOON...*
+  * ==standard mode==
+http://dev.myiqtest.org/concerto2/wiki_images/run_standard.PNG
+
+This section is used to run the tests created in the *admin panel*. It's located at */index.php*. You can set the starting item by passing *hash* option through URL, e.g. */index.php?hash=5da7d117adfd5632b8e8aa661426879f* which will run the test item with a hash of value 5da7d117adfd5632b8e8aa661426879f. You can see your item's hashes at the admin panel. 
+
+  * ==debug mode==
+http://dev.myiqtest.org/concerto2/wiki_images/run_debug.PNG
+
+You can also run the test item in *debug mode* where the screen will be divided in two sections. One will be the standard test output visible by the user who runs the test in standard mode and the other section will show you what's happening behind the scenes. You can see there when session variables are initialized, what is passed to R for execution, is R code correct or is there an error in the code. You can also lookup current *session variables* by clicking the button at the top or see *R variables* that are available in your R code. You can turn on this mode by passing *debug* option through URL, e.g. */index.php?hash=5da7d117adfd5632b8e8aa661426879f&debug*. *You must be logged in to do so.* You can also click the *debug* button next to the item at the admin panel.
