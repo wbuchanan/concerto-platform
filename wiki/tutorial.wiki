@@ -55,7 +55,7 @@ http://dev.myiqtest.org/concerto2/wiki_images/demo_start.png
 
 http://dev.myiqtest.org/concerto2/wiki_images/ckeditor_radio.png
 
-  * set its name (here *field_answer*) and it's value (here: *0*). The value will be stored as a variable under this field's name (in this case  "field_answer"). This variable can be later used in other templates or in the R script, e.g. to check which response was selected by the user. Checking the "Selected" option will make this buttonn selected by default.
+  * set its name (here *field_answer*) and it's value (here: *0*). The value will be stored as a variable under this field's name (if this radio button will be selected by the user the variable "field_answer" will have value "0"). This variable can be later used in other templates or in the R script, e.g. to check which response was selected by the user. Checking the "Selected" option will make this buttonn selected by default.
 
 http://dev.myiqtest.org/concerto2/wiki_images/ckeditor_radio_porperties_no.png
 
