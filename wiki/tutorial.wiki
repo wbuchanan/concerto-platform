@@ -25,42 +25,37 @@ http://dev.myiqtest.org/concerto2/wiki_images/enter_name.png
 
 http://dev.myiqtest.org/concerto2/wiki_images/ckeditor_tb.png
 
-  * set the name of the Text Field, in this case: *field_name*. The value entered by the user in this Text Field will be send to your R script as a variable "field_name". In the same window you can also specify a size of the field and choose a default contents (e.g. "Enter your name here". Click *OK* to accept changes.
+  * set the name of the Text Field, in this case: *field_name*. The value entered by the user in this Text Field will be stored as a variable under this field's name (in this case  "field_name"). This variable can be later used in other templates or in the R script. In the same window you can also specify a size of the field and choose a default contents (e.g. "Enter your name here". Click *OK* to accept changes.
 
 http://dev.myiqtest.org/concerto2/wiki_images/ckeditor_tb_properties.png
 
-  * add button by clicking it's icon
+  * now add a button by clicking on the "Button" icon 
 
 http://dev.myiqtest.org/concerto2/wiki_images/ckeditor_btn.png
 
-  * set button's name to *btn_start*, button's label to *Start* and click *OK*
+  * set button's name, in this case *btn_start*, and button's label - e.g. *Start*. Later you will assign an R script to this button to be executed once it's clicked. Accept by clicking *OK*
 
 http://dev.myiqtest.org/concerto2/wiki_images/ckeditor_btn_properties.png
 
-  * add some text directly to the HTML
-  * save the item by clicking *'save'* button
+  * Edit the contents of the template using HTML editor, e.g. add some introductory test, like "This is a demo test. Enter your name in the box below and press "Start" to start the test. You will see in the manual that virtually any part of the template can be set as "dynamic" and changed by your R script or other external applications.
+
+  * save the item template by clicking *'save'* button
 
 http://dev.myiqtest.org/concerto2/wiki_images/save_click.png
 
-  * summary
-
-We have a button here named *'btn_start'*. We can later assign R code to execute when we click on it while running test.
-We also have here a text box named *'field_name'* which will be filled by user running test and we can use it's value later in HTML presentation or in R calculations. The field will contain user name.
-
-This HTML should look like this:
+Resulting Item Template should look more or less like this:
 
 http://dev.myiqtest.org/concerto2/wiki_images/demo_start.png
 
 
-=== `demo_item` ===
-  * to create a new item click *'new'* button in the form on the left side of *'item'* tab
-  * enter *'demo_item'* as an item name in the form
-  * go to the *'Presentation and Properties'* tab
-  * add radio button by clicking it's icon
+=== Test item template ===
+  * Create a new item by clicking *'new'* button in the top left side of the *'item'* tab
+  * enter it's name, here: *'demo_item'*
+  * add radio button in the *'Presentation and Properties'* tab by clicking "Radio Button" icon
 
 http://dev.myiqtest.org/concerto2/wiki_images/ckeditor_radio.png
 
-  * set it's name to *field_answer*, it's value to *0* and mark that it should be checked by default
+  * set its name (here *field_answer*) and it's value (here: *0*). The value will be stored as a variable under this field's name (in this case  "field_answer"). This variable can be later used in other templates or in the R script, e.g. to check which response was selected by the user. Checking the "Selected" option will make this buttonn selected by default.
 
 http://dev.myiqtest.org/concerto2/wiki_images/ckeditor_radio_porperties_no.png
 
