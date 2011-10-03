@@ -48,7 +48,7 @@ Resulting Item Template should look more or less like this:
 http://dev.myiqtest.org/concerto2/wiki_images/demo_start.png
 
 
-=== Test item template ===
+=== Test Item template ===
   * Create a new item by clicking *'new'* button in the top left side of the *'item'* tab
   * enter it's name, here: *'demo_item'*
   * add radio button in the *'Presentation and Properties'* tab by clicking "Radio Button" icon
@@ -66,7 +66,7 @@ http://dev.myiqtest.org/concerto2/wiki_images/ckeditor_radio_porperties_yes.png
   * add button named *btn_next* with label *next* and button named *btn_restart* with label *restart*
 
   * Edit the template of an item - add:
-    * text "no" next to the first radio button and "yes" next to the second one. 
+    * text *"no"* next to the first radio button and *"yes"* next to the second one. 
     * text: *"{{field_name}} please answer the question: {{question}}"*. Somewhere above the radio buttons.     
     * text : *"Question #{{current_question_no}}:"*
 
@@ -79,34 +79,30 @@ This Item template should look more or less like this:
 http://dev.myiqtest.org/concerto2/wiki_images/demo_item.png
 
 
-=== Comments ===
-S
-
-
-=== `demo_feedback` ===
-  * to create a new item click *'new'* button in the form on the left side of *'item'* tab
-  * enter *'demo_feedback'* as an item name in the form
-  * go to the *'Presentation and Properties'* tab
-  * insert somewhere into the HTML text: *{{field_name}}, your total score is {{total_score}}.*
-  * save the item by clicking *'save'* button
-  * summary
-Only thing worth mentioning here are double brackets used for session variables insertion. User will see his name and his total score.
-
-This HTML should look like this:
+=== Feedback Item Template ===
+  * Create a new item by clicking *'new'* button, enter its name (*'demo_feedback'*)
+  * in the *'Presentation and Properties'* tab insert text: *{{field_name}}, your total score is {{total_score}}.*
+  * press *'save'* button to save the item
+ 
+This Item template should look more or less like this:
 
 http://dev.myiqtest.org/concerto2/wiki_images/demo_feedback.png
 
-== step 2: assign R code to item's buttons ==
-=== `demo_start` ===
-  * edit *'demo_start'* item
-  * go to the *'R Interaction'* tab where you can assign R code to the item's buttons
-
-We have only one button in this item: *'btn_start'*. Paste this as a *R code to execute*:
+== Step 2: Assign R code to buttons ==
+=== Start the test button ===
+  * Press "*Edit*"  button next to the *'demo_start'* Item Template
+  * Go to the *'R Interaction'* tab on the right where you can assign R code to the buttons present on a given Template, in this case *'btn_start'*. 
 
 http://dev.myiqtest.org/concerto2/wiki_images/r_code.png
+ 
+  * Paste this syntax in the *R code to execute* field:
 
 {{{
-## questions array
+## Create a simple item bank
+## Note that in a proper test that should be rather stored in 
+## the MySQL database and loaded here using RMySQL package 
+
+## Define a questions array
 x <- array(dim=3)
 x[1]<-"Is 3-2=6?"
 x[2]<-"Is 2+3=6?"
@@ -118,33 +114,47 @@ y[1]<-0
 y[2]<-0
 y[3]<-1
 
-## set index of first question to show up
+## set the starting question
+## Note that this can be selected using a CAT algorithm, 
+## e.g. this provided by catR library
+
 current_question_no <- 1
-## initialize total score value
+
+## create a total score variable
 total_score <- 0
 
-## set R variables as session variables for use in presentation HTML and set next item to show up
+## set session variables that will be used to fill the 
+## Item Templates with the content. 
+## set.var() and set.next.item() are very simple functions 
+## defined by Concerto in each session. Press "Concerto built
+## in R functions documentation" button in the R interaction 
+## section to read their description.
+
 set.var("current_question_no",current_question_no)
 set.var("question",x[current_question_no])
 set.next.item("demo_item")
 }}}
 
-  * save the item by clicking *'save'* button
+  * click the  *'save'* button to save the changes
 
-=== `demo_item` ===
-* edit *'demo_item'* item
-  * go to the *'R Interaction'* tab where you can assign R code to the item's buttons
-
-We have two buttons here. 
-  * *'btn_next'*
-
-Paste this *'R code to execute'*:
+=== Test Item Template ===
+  * Click edit next to the *'demo_item'* item template and go to the *'R Interaction'*. We have two buttons here: 
+   * *'btn_next'*
+   * *'btn_restart'*
+  * Use this code for *'btn_next'*:
 
 {{{
-## if answer correct then increment total score value
+## If the answer is correct add to the total score value
+## Note that you may like to use a fancy IRT based scoring here!
+
 if(y[current_question_no] == as.numeric(field_answer)) total_score <- total_score + 1
   
-## if this isn't the last question then change current question to next one and if it is then show feedback page with total score value
+## Check the stopping rule (here, max 3 questions). 
+## If test is to be terminated activate Feedback Item Template
+## and set the "total_score" session variable. Alternatively, 
+## choose the next question (here literally next one, but you may
+## prefer to use some CAT here!)
+
 if(current_question_no < 3) {
   current_question_no <- current_question_no + 1
   question <- x[current_question_no]
@@ -156,25 +166,27 @@ if(current_question_no < 3) {
 }
 }}}
 
-  * *'btn_restart'*
-
-Paste this *'R code to execute'*:
+ * Use this code for *'btn_restart'*
 
 {{{
-## sets item to show up next
+## Activate the Introduction Item
 set.next.item("demo_start")
+## you don't have to reset other values as they are all set while the "Start" button is pressed.
 }}}
 
   * save the item by clicking *'save'* button
 
-= and that's all =
-You can now run the test you created.
+= You are done! =
 
-You can either run it in *debug* mode to see what's going on behind the scene. You do it by clicking *'debug'* button next to the item ( *'demo_start'* in this case ).
+Obviously, this is the simplest test ever but it nicely shows the idea behind Concerto. 
 
-Or you can run it in normal mode by passing item's *hash* value as an URL argument.
+First, you can try to run your test in the *debug* mode to see what's going on behind the scenes. Clicking *'debug'* button next to the item ( *'demo_start'* in this case ) and play with it!
 
-e.g. /index.php?*hash=enter_item_hash_here*
+If you are ready, give it a real go:
 
-= see live demo here =
-[http://dev.myiqtest.org/concerto2/index.php?hash=ab0334826613005bfcf26d52392b7ced click for live demo]
+Enter the address of the platform, and select the starting item by defining a hash parameter. Take the hash value (next to item's name on item list) and paste it into the following URL  *hash* value as an URL argument.
+
+e.g.  installation_path/index.php?*hash=enter_item_hash_here*
+
+= This test should look like this: =
+[http://dev.myiqtest.org/concerto2/index.php?hash=ab0334826613005bfcf26d52392b7ced Click here to see how it should work]
