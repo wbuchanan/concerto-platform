@@ -1,9 +1,15 @@
-= test creation tutorial =
+= TUTORIAL: How to create a simple test =
 
 == Concept ==
-We'll try to create a simple test containing three test items. First one will be the start item where user can enter his or her name and start the test. The name of the user will then be used later in other items. The second item will contain questions and possible answers that user can take. We'll define simple question bank in R and we'll populate this item with every question from the bank one by one. To simplify this demo test we're going to use only yes or no as a possible answer. Finally when we ran out of questions the total score will be shown in final item.
+Here we show how to create a simple test composed of three elements:
+ * *Introduction* where user can enter her name, which will be later used in other items. 
+ * *Test questions* - for simplicity with dichotomous (yes/no) response options. 
+  * *Feedback* containing user's score.
 
-== step 1: create item's presentation ==
+This tutorial is based on a very simple item bank declared directly in a code, however, we suggest that in the proper tests you should use item banks stored in the SQL table. 
+Also, adaptivity is not used in this tutorial, but you will see how and where adaptive bit of code can be used
+
+== Step 1: create item's presentation ==
 === `demo_start` ===
   * to create a new item click *'new'* button in the form on the left side of *'item'* tab
 
