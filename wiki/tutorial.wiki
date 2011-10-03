@@ -31,7 +31,6 @@ http://dev.myiqtest.org/concerto2/wiki_images/ckeditor_btn.png
 http://dev.myiqtest.org/concerto2/wiki_images/ckeditor_btn_properties.png
 
   * add some text directly to the HTML
-
   * save the item by clicking *'save'* button
 
 http://dev.myiqtest.org/concerto2/wiki_images/save_click.png
