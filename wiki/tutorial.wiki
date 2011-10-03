@@ -2,7 +2,7 @@
 = TUTORIAL: How to create a simple test =
 
 == Concept ==
-Here we show how to create a simple test composed of three elements:
+Here we show how to create a simple test composed of three Item Templates:
  * *Introduction* where user can enter her name, which will be later used in other items. 
  * *Test questions* - for simplicity with dichotomous (yes/no) response options. 
  * *Feedback* containing user's score.
