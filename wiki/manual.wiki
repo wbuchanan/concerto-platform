@@ -1,5 +1,12 @@
 =MANUAL=
 
+==Concept==
+Application concept is to deliver simple yet powerful tools for test creation that combines *HTML presentation* with the *R scripting logic*. You create presentation layer using HTML WYSIWYG editor - CKEditor. Basically you can insert anything that's HTML/CSS/JS, but let's divide your options to four categories:
+  # *HTML buttons and image buttons* - Every button that is in your HTML presentation can have assigned *R code to execute*. Whenever user clicks on this button this code will be executed.
+  # *other HTML controls*, e.g. text fields, text areas, radio buttons, check boxes, drop-down lists, etc. - Yyou can use them to interact with user. When the user submits the item every HTML control will be initiated as a session variable and every session variable is also initiated as a R variable. That means that you can then read the value of the control in R and use it in your own calculations. The name of the variable is the same as the name of the HTML control.
+  # *{{variable_name}}* session variable insert - You can insert session variable anywhere in your HTML presentation by writing those double brackets with the name of the variable between them.
+  # *standard HTML/CSS/JS* code
+
 ==SETUP page==
 This is the first page that should be run after files extraction. Here you can check if your system meets all requirements and finalize application setup. This page is located at */setup.php*. If you'll pass all the checks here then you should be able to run the application. The tests consists of PHP settings check, directory rights check, MySQL configuration check, etc. The setup page will also ask you for first user login and password, your application installation external URL, RScript path and RStudio integration. This page also checks if there is newer version of *Concerto Platform* available. If any of the checks fail then the setup page will give you recommendation how to fix it. You should solve the problem and restart the setup page. 
 
