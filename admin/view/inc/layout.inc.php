@@ -20,8 +20,7 @@
  */
 
 $user = User::get_logged_user();
-if ($user == null)
-    exit();
+if ($user == null) exit();
 ?>
 <script type="text/javascript">
     $(function(){
@@ -29,20 +28,20 @@ if ($user == null)
         });
 
 <?= (Ini::$is_rstudio_on ? '$("#rStudioFrame").css("min-height",$(window).height()-150);' : "") ?>
-    });
-    
-    Methods.checkLatestVersion('<?= Ini::$version ?>', function(isNewerVersion,version,link){
-        var div = $("#divVersionCheck");
-        var newer = isNewerVersion==1;
-        if(newer)
-        {
-            div.addClass("ui-state-error");
-            div.html("Your version is OUTDATED. <a href='"+link+"'>CLICK HERE TO UPDATE TO THE MOST UP TO DATE VERSION: v"+version+"</a>");
-        }
-        else
-        {
-            div.html("your version is up to date");
-        }
+        
+        Methods.checkLatestVersion('<?= Ini::$version ?>', function(isNewerVersion,version,link){
+            var div = $("#divVersionCheck");
+            var newer = isNewerVersion==1;
+            if(newer)
+            {
+                div.addClass("ui-state-error");
+                div.html("Your version is OUTDATED. <a href='"+link+"'>CLICK HERE TO UPDATE TO THE MOST UP TO DATE VERSION: v"+version+"</a>");
+            }
+            else
+            {
+                div.html("your version is up to date");
+            }
+        });
     });
 </script>
 
@@ -55,12 +54,14 @@ if ($user == null)
         <!--<li><a href="#layout_tab5">help</a></li>-->
     </ul>
     <div id="layout_tab1" class="layout_tab"><?php include 'view/inc/tab_item.inc.php' ?></div>
-    <?php if (Ini::$is_rstudio_on) { ?>
+    <?php if (Ini::$is_rstudio_on)
+    { ?>
         <div id="layout_tab2" class="layout_tab">
             <iframe id="rStudioFrame" src="<?= Ini::$rstudio_url ?>" width="100%"></iframe>
         </div>
     <?php } ?>
-    <?php if ($user->is_superadmin()) { ?><div id="layout_tab4" class="layout_tab"><?php include'view/inc/tab_users.inc.php'; ?></div><?php } ?>
+    <?php if ($user->is_superadmin())
+    { ?><div id="layout_tab4" class="layout_tab"><?php include'view/inc/tab_users.inc.php'; ?></div><?php } ?>
 <!--<div id="layout_tab5" class="layout_tab"><?php include 'view/inc/tab_help.inc.php' ?></div>-->
 </div>
 

@@ -373,18 +373,27 @@ Methods.checkLatestVersion=function(currentVersion,callback,proxy)
                 var desc = feed.items[i].description;
                 var version = desc.substr(desc.indexOf("Source-Version:")+15);
                 version = version.substr(0,version.indexOf("\n"));
-                if(""+max<version) 
+                
+                var amax = max.split(".");
+                var avers = version.split(".");
+                
+                for(var a=0;a<3;a++)
                 {
-                    max=version;
-                    link = feed.items[i].link;
-                    isNewerVersion = true;
+                    if(parseInt(amax[a])>parseInt(avers[a])) break;
+                    if(parseInt(amax[a])<parseInt(avers[a])) 
+                    {
+                        max=version;
+                        link = feed.items[i].link;
+                        isNewerVersion = true;
+                        break;
+                    }
                 }
             }
             
             Methods.latestVersion=max;
             Methods.latestVersionLink=link; 
             
-            callback.call(isNewerVersion?1:0,Methods.latestVersion,Methods.latestVersionLink);
+            callback.call(this,isNewerVersion?1:0,Methods.latestVersion,Methods.latestVersionLink);
         }
     });  
 };

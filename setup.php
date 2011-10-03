@@ -409,7 +409,7 @@ class Setup {
         $test = Setup::url_exists_check(Ini::$rstudio_url);
         ?>
         <td class="ui-widget-content">Check if <b>RStudio</b> is running on server.</td>
-        <td class="<?= ($test ? "ui-state-highlight" : "ui-state-error") ?>"><b>Rstudio</b> probably is: <?= ($test ? "RUNNING" : "NOT RUNNING") ?> on your server - <b style="color:<?= ($test ? "green" : "red") ?>"><?= ($test ? "PASSED" : "CAN BE IGNORED") ?></b></td>
+        <td class="<?= ($test ? "ui-state-highlight" : "ui-state-error") ?>"><b>Rstudio</b> is probably: <?= ($test ? "RUNNING" : "NOT RUNNING") ?> on your server - <b style="color:<?= ($test ? "green" : "red") ?>"><?= ($test ? "PASSED" : "CAN BE IGNORED") ?></b></td>
         <td class="ui-widget-content" align="center">
             <?php
             if ($test) {
