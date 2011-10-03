@@ -10,3 +10,7 @@ This section is located at */admin*. If you want to create new tests or modify e
 http://dev.myiqtest.org/concerto2/wiki_images/admin_header.PNG
 
 On the left side there's two buttons. One will redirect you to *code.google.com Concerto Platform homepage* where you can find some help, report an issue with the application, download latest application version or just browse through the source code. The second button will redirect user to *Concerto Platform Google Group* where you can subscribe to recieve latest news about *Concerto* development and future goals. In the center you can see which version of platform is currently installed on your system and below that you can check if there's a newer version available to download. If there is then download link should be visible. On the right side you'll find the information about the person who is currently logged in ( person's name and login ) and a button to log out.
+
+----
+
+*MORE TO COME SOON...*
