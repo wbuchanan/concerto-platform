@@ -47,6 +47,11 @@ http://dev.myiqtest.org/concerto2/wiki_images/admin_rstudio.PNG
 
 If you have *RStudio* installed on your server you can integrate it with  *Concerto Application*. It's optional and you can always switch it on or off in the *setup page* mentioned earlier.
 
+  * =="users" tab==
+http://dev.myiqtest.org/concerto2/wiki_images/admin_users.PNG
+
+This tab is only accesible to user which are *super admins*. It's layout is very similar to item's form and list layout. On the left side we have user's form used to edit or add new users. We can set user's: login, password, first name, last name, email, phone no., group ( user from the same group can share their items if they set their sharing level to *"group"* ) and if user is super admin ( super admin can add, modify and delete other users and user groups ). On the right side we can manage user's groups. 
+
 ----
 
 *MORE TO COME SOON...*
