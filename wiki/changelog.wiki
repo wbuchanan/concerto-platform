@@ -1,2 +1,4 @@
-=v2.0.1=
+=CHANGELOG=
+
+==v2.0.1==
   * new version check fix
