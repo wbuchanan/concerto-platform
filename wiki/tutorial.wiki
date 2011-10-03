@@ -10,22 +10,22 @@ Here we show how to create a simple test composed of three elements:
 This tutorial is based on a very simple item bank declared directly in a code, however, we suggest that in the proper tests you should use item banks stored in the SQL table. 
 Also, adaptivity is not used in this tutorial, but you will see how and where adaptive bit of code can be used
 
-== Step 1: create item's presentation ==
-=== `demo_start` ===
-  * to create a new item click *'new'* button in the form on the left side of *'item'* tab
+== Step 1: Create Item Templates ==
+=== Introduction template ===
+  
+ * to create a new item template click the *'new'* button on the top left side of an *'item'* tab
 
 http://dev.myiqtest.org/concerto2/wiki_images/new_item_click.png
 
-  * enter *'demo_start'* as an item name in the form
+  * enter the name of the item, in this case: *'demo_start'* 
 
 http://dev.myiqtest.org/concerto2/wiki_images/enter_name.png
 
-  * go to the *'Presentation and Properties'* tab
-  * add text field by clicking it's icon 
+  * in the *'Presentation and Properties'* tab add a text field by clicking on the "Text Field" icon 
 
 http://dev.myiqtest.org/concerto2/wiki_images/ckeditor_tb.png
 
-  * set text field name to *field_name* and click *OK*
+  * set the name of the Text Field, in this case: *field_name*. The value entered by the user in this Text Field will be send to your R script as a variable "field_name". In the same window you can also specify a size of the field and choose a default contents (e.g. "Enter your name here". Click *OK* to accept changes.
 
 http://dev.myiqtest.org/concerto2/wiki_images/ckeditor_tb_properties.png
 
