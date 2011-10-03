@@ -2,7 +2,13 @@
 =USER'S MANUAL=
 
 = Concept =
-Application concept is to deliver simple yet powerful tools for test development that combines *HTML presentation* with the *R scripting logic* and SQL database backbone. We tried to rely as much as possible on the popular open source packages in order to maximize safety and reliability of the system and ascertain that its elements will be kept up-to-date. 
+The idea behind Concerto is to deliver simple yet powerful tool for the development of an adaptive on-line test. 
+The platform relies on three main elements:
+ # *HTML presentation layer* 
+ # *R scripting logic* 
+ # *SQL database backbone*
+
+We aimed to rely as much as possible on the popular open source packages in order to maximize safety and reliability of the system and ascertain that its elements will be kept up-to-date. 
 
 == Presentation Layer ==
 
@@ -171,4 +177,3 @@ You will see a screen divided in two sections:
 Additionally, you can use the buttons at the top of the page to see the list of:
  # current *session variables* 
  # variables sent to R (*R variables*)
-
