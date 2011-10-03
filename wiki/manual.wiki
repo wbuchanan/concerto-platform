@@ -123,7 +123,7 @@ RStudio can be useful to:
  * analyse the results/item banks/etc directly on the server
  * manage the files on the server (it has a convenient file manager)  
 
-=="users" tab==
+=="Users" tab==
 http://dev.myiqtest.org/concerto2/wiki_images/admin_users.PNG
 
 This tab is only accessible for *super admin* users. It allows adding/removing/editing users, user groups, and defining access rights.
@@ -141,15 +141,17 @@ Super Admins can add/edit groups and assign users to groups in the "Users Tab".
 
 = Running tests =
 
-==standard mode==
+==Standard mode==
 
 To start the test in a standard mode, use the following URL:
-
+{{{
 Concerto_installation_path/index.php?hash=[item_hash] 
+}}}
 
 You can get item's hash from the item template's list. An example of the URL:  
+{{{
 http://dev.myiqtest.org/concerto2/index.php?hash=ab0334826613005bfcf26d52392b7ced
-
+}}}
 
 
 This section is used to run the tests created in the *admin panel*. It's located at */index.php*. You can set the starting item by passing *hash* option through URL, e.g. which will run the test item with a hash of value 5da7d117adfd5632b8e8aa661426879f. You can see your item's hashes at the admin panel. 
