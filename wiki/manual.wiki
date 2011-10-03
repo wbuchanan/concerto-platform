@@ -1,1 +1,2 @@
-COMING SOON...
+=SETUP page=
+This is the first page that should be run after files extraction. Here you can check if your system meets all requirements and finalize application setup. This page is located at */setup.php*. If you'll pass all the checks here then you should be able to run the application. The tests consists of PHP settings check, directory rights check, MySQL configuration check, etc. The setup page will also ask you for first user login and password, your application installation external URL, RScript path and RStudio integration. This page also checks if there is newer version of *Concerto Platform* available. If any of the checks fail then the setup page will give you recommendation how to fix it. You should solve the problem and restart the setup page.
