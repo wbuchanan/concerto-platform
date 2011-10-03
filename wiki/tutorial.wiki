@@ -179,13 +179,13 @@ set.next.item("demo_start")
 
 Obviously, this is the simplest test ever but it nicely shows the idea behind Concerto.
 
-First, you can try to run your test in the *debug* mode to see what's going on behind the scenes. Clicking *'debug'* button next to the item ( *'demo_start'* in this case ) and play with it!
+First, you can try to run your test in the *debug* mode to see what's going on behind the scenes. Click *'debug'* button next to the item (*'demo_start'* in this case) and play with it!
 
-If you are ready, give it a real go:
-
-Enter the address of the platform, and select the starting item by defining a hash parameter. Take the hash value (next to item's name on item list) and paste it into the following URL  *hash* value as an URL argument.
+If you are ready, give it a real go. Start the test by using this URL:
 
 e.g.  installation_path/index.php?*hash=enter_item_hash_here*
 
+You can find the hash value next to item's name on item list. Obviously, those test can be run as a separate website or embedded in the other websites or applications. Check this out (Concert v1.0): [http://apps.facebook.com/myiq-dev/ MyIQ demo]
+ 
 = This test should look like this: =
 [http://dev.myiqtest.org/concerto2/index.php?hash=ab0334826613005bfcf26d52392b7ced Click here to see how it should work]
