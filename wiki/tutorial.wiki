@@ -47,7 +47,7 @@ Resulting Item Template should look more or less like this:
 http://dev.myiqtest.org/concerto2/wiki_images/demo_start.png
 
 
-=== Test Item template ===
+== Test Item template ==
   * Create a new item by clicking *'new'* button in the top left side of the *'item'* tab
   * enter it's name, here: *'demo_item'*
   * add radio button in the *'Presentation and Properties'* tab by clicking "Radio Button" icon
@@ -78,7 +78,7 @@ This Item template should look more or less like this:
 http://dev.myiqtest.org/concerto2/wiki_images/demo_item.png
 
 
-=== Feedback Item Template ===
+== Feedback Item Template ==
   * Create a new item by clicking *'new'* button, enter its name (*'demo_feedback'*)
   * in the *'Presentation and Properties'* tab insert text: *{{field_name}}, your total score is {{total_score}}.*
   * press *'save'* button to save the item
@@ -87,8 +87,8 @@ This Item template should look more or less like this:
 
 http://dev.myiqtest.org/concerto2/wiki_images/demo_feedback.png
 
-== Step 2: Assign R code to buttons ==
-=== Start the test button ===
+= Step 2: Assign R code to buttons =
+== Start the test button ==
   * Press "*Edit*"  button next to the *'demo_start'* Item Template
   * Go to the *'R Interaction'* tab on the right where you can assign R code to the buttons present on a given Template, in this case *'btn_start'*. 
 
@@ -136,7 +136,7 @@ set.next.item("demo_item")
 
   * click the  *'save'* button to save the changes
 
-=== Test Item Template ===
+== Test Item Template ==
   * Click edit next to the *'demo_item'* item template and go to the *'R Interaction'*. We have two buttons here: 
    * *'btn_next'*
    * *'btn_restart'*
@@ -181,11 +181,9 @@ Obviously, this is the simplest test ever but it nicely shows the idea behind Co
 
 First, you can try to run your test in the *debug* mode to see what's going on behind the scenes. Click *'debug'* button next to the item (*'demo_start'* in this case) and play with it!
 
-If you are ready, give it a real go. Start the test by using this URL:
+If you are ready, give it a real go. Start the test by using this URL: Concerto_installation_path/index.php?*hash=enter_item_hash_here*
 
-e.g.  installation_path/index.php?*hash=enter_item_hash_here*
-
-You can find the hash value next to item's name on item list. Obviously, those test can be run as a separate website or embedded in the other websites or applications. Check this out (Concert v1.0): [http://apps.facebook.com/myiq-dev/ MyIQ demo]
+You can find the hash value next to item's name on item list. Obviously, the test can be run as a separate website or embedded in the other websites or applications. Check this out (Concert v1.0): [http://apps.facebook.com/myiq-dev/ MyIQ demo]
  
 = This test should look like this: =
 [http://dev.myiqtest.org/concerto2/index.php?hash=ab0334826613005bfcf26d52392b7ced Click here to see how it should work]
