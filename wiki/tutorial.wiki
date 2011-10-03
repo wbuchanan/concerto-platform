@@ -7,7 +7,7 @@ Here we show how to create a simple test composed of three Item Templates:
  * *Test questions* - for simplicity with dichotomous (yes/no) response options. 
  * *Feedback* containing user's score.
 
-This tutorial is based on a very simple item bank declared directly in the R script and we do not store user scores. However, it is advisable to MySQL to store item banks, user databases, and results in a proper test. Also, adaptivity is not used in this tutorial, but you will see how and where adaptive bit of code can added.
+This tutorial is based on a very simple item bank declared directly in the R script. However, it is advisable to use MySQL to store item banks, user databases, and results in a proper test. Also, adaptivity is not used in this tutorial, but you will see how and where adaptive bit of code can added.
 
 == Step 1: Create Item Templates ==
 === Introduction template ===
@@ -177,7 +177,7 @@ set.next.item("demo_start")
 
 = You are done! =
 
-Obviously, this is the simplest test ever but it nicely shows the idea behind Concerto. 
+Obviously, this is the simplest test ever but it nicely shows the idea behind Concerto.
 
 First, you can try to run your test in the *debug* mode to see what's going on behind the scenes. Clicking *'debug'* button next to the item ( *'demo_start'* in this case ) and play with it!
 
