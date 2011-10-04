@@ -35,7 +35,7 @@ if ($user == null) exit();
             if(newer)
             {
                 div.addClass("ui-state-error");
-                div.html("Your version is OUTDATED. <a href='"+link+"'>CLICK HERE TO UPDATE TO THE MOST UP TO DATE VERSION: v"+version+"</a>");
+                div.html("Your version is OUTDATED. <a href='"+link+"'>CLICK HERE TO UPDATE THE LATEST PATCH v"+version+"</a>");
             }
             else
             {

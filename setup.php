@@ -18,72 +18,71 @@
   You should have received a copy of the GNU General Public License
   along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
-if (!isset($ini)) {
+if (!isset($ini))
+{
     require_once 'model/Ini.php';
 }
 include'SETTINGS.php';
 
-class Setup {
+class Setup
+{
 
-    public static function php_version_check() {
+    public static function php_version_check()
+    {
         $v = phpversion();
         $nums = explode(".", $v);
-        if ($nums[0] < 5)
-            return false;
-        if ($nums[0] == 5 && $nums[1] < 3)
-            return false;
-        if ($nums[0] == 5 && $nums[1] >= 3)
-            return true;
-        if ($nums[0] > 5)
-            return true;
+        if ($nums[0] < 5) return false;
+        if ($nums[0] == 5 && $nums[1] < 3) return false;
+        if ($nums[0] == 5 && $nums[1] >= 3) return true;
+        if ($nums[0] > 5) return true;
     }
 
-    public static function php_safe_mode_check() {
+    public static function php_safe_mode_check()
+    {
         return!ini_get("safe_mode");
     }
 
-    public static function php_short_open_tag_check() {
+    public static function php_short_open_tag_check()
+    {
         return ini_get("short_open_tag");
     }
 
-    public static function file_paths_check($path) {
-        if (file_exists($path) && is_file($path))
-            return true;
-        else
-            return false;
+    public static function file_paths_check($path)
+    {
+        if (file_exists($path) && is_file($path)) return true;
+        else return false;
     }
 
-    public static function directory_paths_check($path) {
-        if (file_exists($path) && is_dir($path))
-            return true;
-        else
-            return false;
+    public static function directory_paths_check($path)
+    {
+        if (file_exists($path) && is_dir($path)) return true;
+        else return false;
     }
 
-    public static function directory_writable_check($path) {
-        if (is_writable($path))
-            return true;
-        else
-            return false;
+    public static function directory_writable_check($path)
+    {
+        if (is_writable($path)) return true;
+        else return false;
     }
 
-    public static function rscript_check($path) {
-        if ($path == "")
-            return false;
+    public static function rscript_check($path)
+    {
+        if ($path == "") return false;
         $array = array();
         $return = 0;
         exec($path . " -e 1+1", $array, $return);
         return ($return == 0);
     }
 
-    public static function url_exists_check($url, $slash_check=false) {
+    public static function url_exists_check($url, $slash_check=false)
+    {
 // Version 4.x supported
-        if ($url == "")
-            return false;
+        if ($url == "") return false;
         if ($slash_check && substr($url, strlen($url) - 1, 1) != '/')
-            return false;
+                return false;
         $handle = curl_init($url);
-        if (false === $handle) {
+        if (false === $handle)
+        {
             return false;
         }
         curl_setopt($handle, CURLOPT_HEADER, false);
@@ -96,34 +95,32 @@ class Setup {
         return $connectable;
     }
 
-    public static function mysql_connection_check($host, $port, $login, $password) {
-        if (@mysql_connect($host . $port, $login, $password))
-            return true;
-        else
-            return false;
+    public static function mysql_connection_check($host, $port, $login, $password)
+    {
+        if (@mysql_connect($host . $port, $login, $password)) return true;
+        else return false;
     }
 
-    public static function mysql_select_db_check($db_name) {
-        if (@mysql_select_db($db_name))
-            return true;
-        else
-            return false;
+    public static function mysql_select_db_check($db_name)
+    {
+        if (@mysql_select_db($db_name)) return true;
+        else return false;
     }
 
-    public static function r_package_check($path, $package) {
+    public static function r_package_check($path, $package)
+    {
         $array = array();
         $return = 0;
         exec($path . " -e 'library(" . $package . ")'", $array, $return);
         return ($return == 0);
     }
 
-    public static function superadmin_check() {
+    public static function superadmin_check()
+    {
         $sql = sprintf("SELECT * FROM `%s` WHERE `superadmin`=1", User::get_mysql_table());
         $z = mysql_query($sql);
-        if (mysql_num_rows($z) == 0)
-            return false;
-        else
-            return true;
+        if (mysql_num_rows($z) == 0) return false;
+        else return true;
     }
 
 }
@@ -168,7 +165,8 @@ class Setup {
     </tr>
     <?php $ok = $ok && $test; ?>
 
-    <?php if ($ok) { ?>
+    <?php if ($ok)
+    { ?>
         <tr>
             <?php
             $test = Setup::php_safe_mode_check();
@@ -180,7 +178,8 @@ class Setup {
         </tr>
     <?php } ?>
 
-    <?php if ($ok) { ?>
+    <?php if ($ok)
+    { ?>
         <tr>
             <?php
             $test = Setup::php_short_open_tag_check();
@@ -192,7 +191,8 @@ class Setup {
         </tr>
     <?php } ?>
 
-    <?php if ($ok) { ?>
+    <?php if ($ok)
+    { ?>
         <tr>
             <?php
             $test = Setup::mysql_connection_check($db_host, $db_port, $db_user, $db_password);
@@ -204,7 +204,8 @@ class Setup {
         </tr>
     <?php } ?>
 
-    <?php if ($ok) { ?>
+    <?php if ($ok)
+    { ?>
         <tr>
             <?php
             $test = Setup::mysql_select_db_check($db_name);
@@ -216,8 +217,12 @@ class Setup {
         </tr>
     <?php } ?>
 
-    <?php if ($ok) {
-        $ini = new Ini(); ?>
+    <?php
+    if ($ok)
+    {
+        Ini::install_db();
+        $ini = new Ini();
+        ?>
     <script>
         $(function(){
             Methods.checkLatestVersion("<?= Ini::$version ?>", function(isNewerVersion,version,link){
@@ -242,7 +247,8 @@ class Setup {
     </tr>
 <?php } ?>
 
-<?php if ($ok) { ?>
+<?php if ($ok)
+{ ?>
     <tr>
         <?php
         $test = Setup::superadmin_check();
@@ -251,9 +257,9 @@ class Setup {
         <td class="<?= ($test ? "ui-state-highlight" : "ui-state-error") ?>"><b>superadmin</b> user <b><?= ($test ? "EXISTS" : "DOESN'T EXISTS") ?> - <b style="color:<?= ($test ? "green" : "red") ?>"><?= ($test ? "PASSED" : "FAILED") ?></b></td>
         <td class="ui-widget-content" align="center">
             <?php
-            if ($test)
-                echo"-";
-            else {
+            if ($test) echo"-";
+            else
+            {
                 ?>
                 You must create a superadmin user to be able to log in to the Concerto Platform admin panel.<br/><br/>
                 Please fill the form below:
@@ -290,7 +296,7 @@ class Setup {
                         var login = $("#sa_login");
                         var pass = $("#sa_pass");
                         var conf = $("#sa_conf");
-                                                                                    
+                                                                                                            
                         if(login.val()=="" || pass.val()=="" || conf.val()=="")
                         {
                             alert("Every field must be filled.");
@@ -301,7 +307,7 @@ class Setup {
                             alert("Password and password confirmation must match.");
                             return;
                         }
-                                                                                    
+                                                                                                            
                         $.post("admin/query/save_superadmin.php",
                         {
                             login:login.val(),
@@ -311,7 +317,7 @@ class Setup {
                             location.reload();
                         })  
                     };
-                                                                                                                                                                                                                        
+                                                                                                                                                                                                                                                
                     $(function(){
                         Methods.iniIconButtons();
                     })
@@ -322,7 +328,8 @@ class Setup {
     </tr>
 <?php } ?>
 
-<?php if ($ok) { ?>
+<?php if ($ok)
+{ ?>
     <tr>
         <?php
         $test = Setup::rscript_check(Ini::$rscript_path);
@@ -331,9 +338,9 @@ class Setup {
         <td class="<?= ($test ? "ui-state-highlight" : "ui-state-error") ?>">your <b>Rscript</b> file path: <b><?= Ini::$rscript_path ?></b> <b><?= ($test ? "EXISTS" : "DOESN'T EXISTS") ?> - <b style="color:<?= ($test ? "green" : "red") ?>"><?= ($test ? "PASSED" : "FAILED") ?></b></td>
         <td class="ui-widget-content" align="center">
             <?php
-            if ($test)
-                echo"-";
-            else {
+            if ($test) echo"-";
+            else
+            {
                 ?>
                 Rscript file path not set or set incorrectly. If you don't have this file on your system it could mean that your <b>R</b> installation is of version lower than <b>v2.12</b>. If that's the case you should update your R to higher version and set your Rscript path then.<br/>
                 Usually the Rscript file path is <b>/usr/bin/Rscript</b>.<br/><br/>
@@ -352,7 +359,7 @@ class Setup {
                             location.reload();
                         })  
                     };
-                                                                                                                                                                                                                        
+                                                                                                                                                                                                                                                
                     $(function(){
                         Methods.iniIconButtons();
                     })
@@ -363,7 +370,8 @@ class Setup {
     </tr>
 <?php } ?>
 
-<?php if ($ok) { ?>
+<?php if ($ok)
+{ ?>
     <tr>
         <?php
         $test = Setup::url_exists_check(Ini::$external_path, true);
@@ -372,9 +380,9 @@ class Setup {
         <td class="<?= ($test ? "ui-state-highlight" : "ui-state-error") ?>">Your application URL: <b><?= Ini::$external_path ?></b> <b><?= ($test ? "IS CORRECT" : "IS INCORRECT") ?> - <b style="color:<?= ($test ? "green" : "red") ?>"><?= ($test ? "PASSED" : "FAILED") ?></b></td>
         <td class="ui-widget-content" align="center">
             <?php
-            if ($test)
-                echo"-";
-            else {
+            if ($test) echo"-";
+            else
+            {
                 ?>
                 Application URL address must be set. It isn`t right now or it is set incorrectly. It must contain protocol prefix and end with a slash character.<br/><br/>
                 Please enter your application URL address ( e.g. <b>http://yourdomain.com/</b> or <b>http://yourdomain.com/concerto/</b> ):
@@ -392,7 +400,7 @@ class Setup {
                             location.reload();
                         })  
                     };
-                                                                                                                                                                                                                        
+                                                                                                                                                                                                                                                
                     $(function(){
                         Methods.iniIconButtons();
                     })
@@ -403,7 +411,8 @@ class Setup {
     </tr>
 <?php } ?>
 
-<?php if ($ok) { ?>
+<?php if ($ok)
+{ ?>
     <tr>
         <?php
         $test = Setup::url_exists_check(Ini::$rstudio_url);
@@ -412,7 +421,8 @@ class Setup {
         <td class="<?= ($test ? "ui-state-highlight" : "ui-state-error") ?>"><b>Rstudio</b> is probably: <?= ($test ? "RUNNING" : "NOT RUNNING") ?> on your server - <b style="color:<?= ($test ? "green" : "red") ?>"><?= ($test ? "PASSED" : "CAN BE IGNORED") ?></b></td>
         <td class="ui-widget-content" align="center">
             <?php
-            if ($test) {
+            if ($test)
+            {
                 ?>
                 You can turn on option of using <b>RStudio</b> in application.<br/><br/>
                 To turn it on check the checkbox below:<br/>
@@ -430,13 +440,15 @@ class Setup {
                             location.reload();
                         })  
                     };
-                                                                                                                                                                                                                        
+                                                                                                                                                                                                                                                
                     $(function(){
                         Methods.iniIconButtons();
                     })
                 </script>
                 <?php
-            } else {
+            }
+            else
+            {
                 ?>
                 Either install RStudio to have a possibility of using it from within the application or ignore this and run application without RStudio.
             <?php } ?>
@@ -444,7 +456,8 @@ class Setup {
     </tr>
 <?php } ?>
 
-<?php if ($ok) { ?>
+<?php if ($ok)
+{ ?>
     <tr>
         <?php
         $test = Setup::directory_writable_check(Ini::$temp_path);
@@ -456,7 +469,8 @@ class Setup {
     </tr>
 <?php } ?>
 
-<?php if ($ok) { ?>
+<?php if ($ok)
+{ ?>
     <tr>
         <?php
         $test = Setup::directory_writable_check(Ini::$internal_media_path);
@@ -468,19 +482,21 @@ class Setup {
     </tr>
 <?php } ?>
 
-<?php if ($ok) { ?>
+<?php if ($ok)
+{ ?>
     <tr>
         <?php
-        $test = Setup::directory_writable_check(Ini::$internal_path."lib/ckeditor/plugins/pgrfilemanager/PGRThumb/cache");
+        $test = Setup::directory_writable_check(Ini::$internal_path . "lib/ckeditor/plugins/pgrfilemanager/PGRThumb/cache");
         ?>
         <td class="ui-widget-content"><b>/lib/ckeditor/plugins/pgrfilemanager/PGRThumb/cache</b> directory path must be writable</td>
-        <td class="<?= ($test ? "ui-state-highlight" : "ui-state-error") ?>">your <b>/lib/ckeditor/plugins/pgrfilemanager/PGRThumb/cache</b> directory: <b><?= Ini::$internal_path."lib/ckeditor/plugins/pgrfilemanager/PGRThumb/cache" ?></b> <b><?= ($test ? "IS WRITABLE" : "IS NOT WRITABLE") ?> - <b style="color:<?= ($test ? "green" : "red") ?>"><?= ($test ? "PASSED" : "FAILED") ?></b></td>
+        <td class="<?= ($test ? "ui-state-highlight" : "ui-state-error") ?>">your <b>/lib/ckeditor/plugins/pgrfilemanager/PGRThumb/cache</b> directory: <b><?= Ini::$internal_path . "lib/ckeditor/plugins/pgrfilemanager/PGRThumb/cache" ?></b> <b><?= ($test ? "IS WRITABLE" : "IS NOT WRITABLE") ?> - <b style="color:<?= ($test ? "green" : "red") ?>"><?= ($test ? "PASSED" : "FAILED") ?></b></td>
         <td class="ui-widget-content" align="center"><?= ($test ? "-" : "Set <b>/lib/ckeditor/plugins/pgrfilemanager/PGRThumb/cache</b> directory rigths to 0777.") ?></td>
         <?php $ok = $ok && $test; ?>
     </tr>
 <?php } ?>
 
-<?php if ($ok) { ?>
+<?php if ($ok)
+{ ?>
     <tr>
         <?php
         $test = Setup::r_package_check(Ini::$rscript_path, "session");
@@ -492,7 +508,8 @@ class Setup {
     </tr>
 <?php } ?>
 
-<?php if ($ok) { ?>
+<?php if ($ok)
+{ ?>
     <tr>
         <?php
         $test = Setup::r_package_check(Ini::$rscript_path, "RMySQL");
@@ -504,7 +521,8 @@ class Setup {
     </tr>
 <?php } ?>
 
-<?php if ($ok) { ?>
+<?php if ($ok)
+{ ?>
     <tr>
         <?php
         $test = Setup::r_package_check(Ini::$rscript_path, "catR");
@@ -518,15 +536,19 @@ class Setup {
 </tbody>
 </table>
 <br/>
-<?php if (!$ok) { ?>
+<?php if (!$ok)
+{ ?>
     <h1 class="ui-state-error" align="center">Please correct your problems using recommendations and run the test again.</h1>
     <?php
-} else {
+}
+else
+{
     ?>
     <h1 class="ui-state-highlight" align="center" style="color:green;">Test completed. Every item passed correctly.</h1>
+    <h1 class="ui-state-highlight" align="center" style="color:blue;">IT IS STRONGLY RECOMMENDED TO DELETE THIS <b>/setup.php</b> FILE FOR SECURITY REASONS!</h1>
     <h2 class="ui-state-highlight" align="center"><a href="<?= Ini::$external_path . "admin/index.php" ?>">click here to launch Concerto Platform panel</a></h2>
 <?php } ?>
 <br/>
-<?php //echo phpinfo();       ?>
+<?php //echo phpinfo();        ?>
 </body>
 </html>

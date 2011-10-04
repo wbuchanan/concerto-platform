@@ -48,8 +48,6 @@ class Ini {
         if (!$this->initialize_db_connection())
             die("Error initializing DB connection!");
         
-        $this->install_db();
-
         self::load_static_settings();
 
         $this->load_classes();
@@ -108,7 +106,8 @@ class Ini {
             return false;
     }
 
-    private function install_db() {
+    public static function install_db() {
+        //tables creation
         $sql = "CREATE TABLE IF NOT EXISTS `Item` (
 			  `id` bigint(20) NOT NULL auto_increment,
 			  `HTML` text NOT NULL,
@@ -195,7 +194,29 @@ class Ini {
 			  PRIMARY KEY  (`id`)
 			) ENGINE=InnoDB  DEFAULT CHARSET=utf8;";
         mysql_query($sql);
-
+        
+        //patch
+        //v2.0.3
+        $sql = sprintf("ALTER TABLE  `Group` CHANGE  `name`  `name` VARCHAR( 20 ) CHARACTER SET utf8 COLLATE utf8_general_ci NOT NULL");
+        mysql_query($sql);
+        $sql = sprintf("ALTER TABLE `Group` DROP INDEX name");
+        mysql_query($sql);
+        $sql = sprintf("ALTER TABLE  `Group` ADD UNIQUE (`name`)");
+        mysql_query($sql);
+        $sql = sprintf("ALTER TABLE  `Item` CHANGE  `name`  `name` VARCHAR( 20 ) CHARACTER SET utf8 COLLATE utf8_general_ci NOT NULL");
+        mysql_query($sql);
+        $sql = sprintf("ALTER TABLE `Item` DROP INDEX name");
+        mysql_query($sql);
+        $sql = sprintf("ALTER TABLE  `Item` ADD UNIQUE (`name`)");
+        mysql_query($sql);
+        $sql = sprintf("ALTER TABLE  `User` CHANGE  `login`  `login` VARCHAR( 20 ) CHARACTER SET utf8 COLLATE utf8_general_ci NOT NULL");
+        mysql_query($sql);
+        $sql = sprintf("ALTER TABLE `User` DROP INDEX login");
+        mysql_query($sql);
+        $sql = sprintf("ALTER TABLE  `User` ADD UNIQUE (`login`)");
+        mysql_query($sql);
+        
+        //rows insertion
         //Setting
         $sql = sprintf("SELECT * FROM `Setting` WHERE `name`='version'");
         $z = mysql_query($sql);
