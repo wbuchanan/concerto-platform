@@ -109,14 +109,18 @@ OModule.inheritance=function(obj)
             this.getSaveObject(),
             function(data)
             {
-                if(thisClass.currentID!=0) thisClass.uiList();
-                else 
+                if(data.oid!=0)
                 {
-                    thisClass.isNewObjectSaved=true;
-                    thisClass.uiReload(data.oid);
+                    if(thisClass.currentID!=0) thisClass.uiList();
+                    else 
+                    {
+                        thisClass.isNewObjectSaved=true;
+                        thisClass.uiReload(data.oid);
+                    }
+                    if(thisClass.extraSaveCallback) thisClass.extraSaveCallback();
+                    alert(thisClass.className+" #"+data.oid+" saved.");
                 }
-                if(thisClass.extraSaveCallback) thisClass.extraSaveCallback();
-                alert(thisClass.className+" #"+data.oid+" saved.");
+                else alert(Methods.captionNotSaved);
             },"json");
     };
 	

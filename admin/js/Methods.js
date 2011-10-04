@@ -46,6 +46,7 @@ Methods.captionBtnGoogleGroup="";
 Methods.captionBtnBuiltInFunctionsDoc="";
 Methods.captionBtnItemsSessionVariables="";
 Methods.captionRequiredFields="";
+Methods.captionNotSaved="";
 
 Methods.currentVersion="";
 Methods.latestVersion="";

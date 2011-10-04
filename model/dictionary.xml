@@ -381,4 +381,8 @@
         <en>All fields marked with * must be filled.</en>
         <pl>Wszystkie pola oznaczone * muszą zostać wypełnione.</pl>
     </string>
+    <string id="132">
+        <en>Failed to save object. Probably there's another object with the same value of field marked as unique.</en>
+        <pl>Nie udało się zapisać obiektu. Prawdopodobnie istnieje inny obiekt z tą samą wartością pola oznaczonego jako unikatowe.</pl>
+    </string>
 </root>

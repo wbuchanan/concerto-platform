@@ -112,7 +112,7 @@ class Ini {
         $sql = "CREATE TABLE IF NOT EXISTS `Item` (
 			  `id` bigint(20) NOT NULL auto_increment,
 			  `HTML` text NOT NULL,
-			  `name` text NOT NULL,
+			  `name` varchar(20) NOT NULL,
 			  `timer` int(11) NOT NULL,
                           `default_Button_id` bigint(20) NOT NULL,
 			  `time_updated` timestamp NULL default NULL,
@@ -120,7 +120,8 @@ class Ini {
 			  `hash` text NOT NULL,
                           `Sharing_id` int(11) NOT NULL,
                           `Owner_id` bigint(20) NOT NULL,
-			  PRIMARY KEY  (`id`)
+			  PRIMARY KEY  (`id`),
+                          UNIQUE KEY `name` (`name`)
 			) ENGINE=InnoDB  DEFAULT CHARSET=utf8;";
         mysql_query($sql);
 
@@ -152,7 +153,7 @@ class Ini {
 
         $sql = "CREATE TABLE IF NOT EXISTS `User` (
 			  `id` bigint(20) NOT NULL auto_increment,
-			  `login` text NOT NULL,
+			  `login` varchar(20) NOT NULL,
 			  `md5_password` text NOT NULL,
                           `firstname` text NOT NULL,
                           `lastname` text NOT NULL,
@@ -163,7 +164,8 @@ class Ini {
                           `Owner_id` bigint(20) NOT NULL,
                           `Sharing_id` int(11) NOT NULL,
                           `superadmin` tinyint(1) NOT NULL,
-			  PRIMARY KEY  (`id`)
+			  PRIMARY KEY  (`id`),
+                          UNIQUE KEY `login` (`login`)
 			) ENGINE=InnoDB  DEFAULT CHARSET=utf8;";
         mysql_query($sql);
 
@@ -177,10 +179,11 @@ class Ini {
 
         $sql = "CREATE TABLE IF NOT EXISTS `Group` (
 			  `id` bigint(20) NOT NULL auto_increment,
-			  `name` text NOT NULL,
+			  `name` varchar(20) NOT NULL,
                           `Sharing_id` int(11) NOT NULL,
                           `Owner_id` bigint(11) NOT NULL, 
-			  PRIMARY KEY  (`id`)
+			  PRIMARY KEY  (`id`),
+                          UNIQUE KEY `name` (`name`)
 			) ENGINE=InnoDB  DEFAULT CHARSET=utf8;";
         mysql_query($sql);
 
@@ -197,10 +200,10 @@ class Ini {
         $sql = sprintf("SELECT * FROM `Setting` WHERE `name`='version'");
         $z = mysql_query($sql);
         if (mysql_num_rows($z) == 0) {
-            $sql = sprintf("INSERT INTO `Setting` SET `name`='version', `value`='2.0.1'");
+            $sql = sprintf("INSERT INTO `Setting` SET `name`='version', `value`='2.0.3'");
             mysql_query($sql);
         }
-        else self::set_setting(self::SETTING_VERSION,"2.0.1");
+        else self::set_setting(self::SETTING_VERSION,"2.0.3");
 
         $sql = sprintf("SELECT * FROM `Setting` WHERE `name`='rscript_path'");
         $z = mysql_query($sql);

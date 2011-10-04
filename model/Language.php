@@ -85,6 +85,7 @@ class Language
                 Methods.captionBtnBuiltInFunctionsDoc="' . Language::string(124) . '";
                 Methods.captionBtnItemsSessionVariables="' . Language::string(130) . '";
                 Methods.captionRequiredFields="' . Language::string(131) . '";
+                Methods.captionNotSaved="' . Language::string(132) . '";
             </script>
             ';
     }

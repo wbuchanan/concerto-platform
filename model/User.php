@@ -104,7 +104,7 @@ class User extends OModule {
             $post['md5_password'] = md5($post['password']);
         $post['oid'] = parent::mysql_save_from_post($post);
 
-        if ($this->id == 0) {
+        if ($this->id == 0 && $post['oid']!=0) {
             $obj = self::from_mysql_id($post['oid']);
             $obj->Owner_id = $post['oid'];
             $obj->mysql_save();
