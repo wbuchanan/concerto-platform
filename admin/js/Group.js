@@ -35,6 +35,14 @@ Group.extraSaveCallback=function()
     else User.uiEdit(User.currentID);
 };
 
+Group.uiFormNotValidated=function()
+{
+    //required fields
+    var name = $("#form"+this.className+"InputName").val();
+    if(jQuery.trim(name)=="") return Methods.captionRequiredFields;
+    return false;
+};
+
 Group.getSaveObject=function()
 {
     return { 

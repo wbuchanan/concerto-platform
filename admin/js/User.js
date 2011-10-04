@@ -55,18 +55,33 @@ User.getSaveObject=function()
         Group_id:$("#form"+this.className+"SelectGroup").val(),
         modify_password:$("#form"+this.className+"CheckboxPassword").is(":checked")?1:0,
         password:$("#form"+this.className+"InputPassword").val(),
-        superadmin:$("#form"+this.className+"CheckboxSuperadmin").is(":checked")?1:0,
+        superadmin:$("#form"+this.className+"CheckboxSuperadmin").is(":checked")?1:0
     };
 };
 
 User.uiFormNotValidated=function()
 {
     var result;
-    if($("#form"+this.className+"CheckboxPassword").is(":checked")&&$("#form"+this.className+"InputPassword").val()!=$("#form"+this.className+"InputPasswordConf").val())
+    
+    //fields
+    var login = $("#form"+this.className+"InputLogin").val();
+    var password = $("#form"+this.className+"InputPassword").val();
+    var confirmation = $("#form"+this.className+"InputPasswordConf").val();
+    var password_mod = $("#form"+this.className+"CheckboxPassword").is(":checked");
+    
+    //required fields
+    if(jQuery.trim(login)=="") return Methods.captionRequiredFields;
+    if(User.currentID==0)
+    {
+        if(jQuery.trim(password)=="") return Methods.captionRequiredFields;         
+    }
+    
+    if(password_mod&&password!=confirmation)
     {
         result = User.captionPasswordsMismatch;
         return result;
     }
+    
     return false;
 };
 

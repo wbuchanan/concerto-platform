@@ -20,33 +20,35 @@
   along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-class Language {
-
+class Language
+{
     public static $xml;
 
-    public static function string($id) {
+    public static function string($id)
+    {
         $lang = "en";
-        if (isset($_SESSION['lng']))
-            $lang = $_SESSION['lng'];
+        if (isset($_SESSION['lng'])) $lang = $_SESSION['lng'];
         $doc = new DOMDocument('1.0', 'UTF-8');
         $doc->loadXML(self::$xml);
         $xpath = new DOMXPath($doc);
         $string = $xpath->query("/root/string[@id='$id']/$lang");
-        foreach ($string as $s)
-            return $s->nodeValue;
+        foreach ($string as $s) return $s->nodeValue;
     }
 
-    public static function load_dictionary() {
+    public static function load_dictionary()
+    {
         $doc = new DOMDocument('1.0', 'UTF-8');
         $doc->load(Ini::$dictionary_path);
         self::$xml = $doc->saveXML();
     }
 
-    public static function load_js_dictionary($client = false) {
+    public static function load_js_dictionary($client = false)
+    {
         echo'
             <script>
                 ';
-        if (!$client) {
+        if (!$client)
+        {
             echo'
                 User.captionIncorrectLogin="' . Language::string(80) . '";
                 User.captionDelete="' . Language::string(81) . '";
@@ -82,6 +84,7 @@ class Language {
                 Methods.captionBtnGoogleGroup="' . Language::string(123) . '";
                 Methods.captionBtnBuiltInFunctionsDoc="' . Language::string(124) . '";
                 Methods.captionBtnItemsSessionVariables="' . Language::string(130) . '";
+                Methods.captionRequiredFields="' . Language::string(131) . '";
             </script>
             ';
     }

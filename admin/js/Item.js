@@ -342,11 +342,18 @@ Item.getAcceptedVars=function()
     return vars;
 };
 
+Item.uiFormNotValidated=function()
+{
+    //required fields
+    var name = $("#form"+this.className+"InputName").val();
+    if(jQuery.trim(name)=="") return Methods.captionRequiredFields;
+    return false;
+};
+
 Item.getSaveObject=function()
 {
     var buttons = Item.getAllButtons();
     var functions = Item.getButtonsFunctions(buttons);
-    //TODO defaults
     var timerNumber = parseInt($("#form"+this.className+"InputTimer").val());
     
     return { 
@@ -364,14 +371,14 @@ Item.getSaveObject=function()
 
 Item.showBuiltInRFunctionsDocDialog=function()
 {
-  $("#divBuiltInRFunctionsDocDialog").dialog({
-      width:600
-  });
+    $("#divBuiltInRFunctionsDocDialog").dialog({
+        width:600
+    });
 };
 
 Item.showItemsSessionVariablesDialog=function()
 {
-  $("#divItemsSessionVariablesDialog").dialog({
-      width:600
-  });
+    $("#divItemsSessionVariablesDialog").dialog({
+        width:600
+    });
 };

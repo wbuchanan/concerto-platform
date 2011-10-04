@@ -377,4 +377,8 @@
         <en>item's session variables</en>
         <pl>zmienne sesyjne elementu</pl>
     </string>
+    <string id="131">
+        <en>All fields marked with * must be filled.</en>
+        <pl>Wszystkie pola oznaczone * muszą zostać wypełnione.</pl>
+    </string>
 </root>

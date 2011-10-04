@@ -70,15 +70,15 @@ if ($oid != 0) {
 <table class="fullWidth ui-widget-content ui-corner-all formTable ui-state-focus">
     <caption class="ui-widget-header ui-corner-all"><h4><?= $caption ?></h4></caption>
     <tr>
-        <td class="noWrap"><?= Language::string(76) ?>:</td>
+        <td class="noWrap">*<?= Language::string(76) ?>:</td>
         <td class="fullWidth"><input type="text" id="form<?= $class_name ?>InputLogin" value="<?= $obj->login ?>" class="fullWidth" /></td>
     </tr>
     <tr>
-        <td class="noWrap"><input type="checkbox" id="form<?= $class_name ?>CheckboxPassword" title="<?= Language::string(88) ?>" /><?= Language::string(77) ?>:</td>
+        <td class="noWrap"><?=$oid==0?"*":""?><input type="checkbox" id="form<?= $class_name ?>CheckboxPassword" title="<?= Language::string(88) ?>" <?=$oid==0?"checked style='display:none;'":""?> /><?= Language::string(77) ?>:</td>
         <td class="fullWidth"><input type="password" id="form<?= $class_name ?>InputPassword" class="fullWidth" /></td>
     </tr>
     <tr>
-        <td class="noWrap"><?= Language::string(89) ?>:</td>
+        <td class="noWrap"><?=$oid==0?"*":""?><?= Language::string(89) ?>:</td>
         <td class="fullWidth"><input type="password" id="form<?= $class_name ?>InputPasswordConf" class="fullWidth" /></td>
     </tr>
     <tr>
