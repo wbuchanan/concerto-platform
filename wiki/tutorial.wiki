@@ -2,12 +2,12 @@
 = TUTORIAL: How to create a simple test =
 
 == Concept ==
-Here we show how to create a simple test composed of three Item Templates:
- * *Introduction* where user can enter her name, which will be later used in other items. 
- * *Test questions* - for simplicity with dichotomous (yes/no) response options. 
- * *Feedback* containing user's score.
+Here we show you how to create a simple test composed of three Item Templates:
+ * *Introduction* where the user can enter his/her name that will be used later in other items. 
+ * *Test questions* - with dichotomous (yes/no) response options for simplicity at this stage. 
+ * *Feedback* containing the user's score.
 
-This tutorial is based on a very simple item bank declared directly in the R script. However, it is advisable to use MySQL to store item banks, user databases, and results in a proper test. Also, adaptivity is not used in this tutorial, but you will see how and where adaptive bit of code can be added.
+This tutorial is based on a very simple item bank declared directly in the R script. However, in a proper test it is advisable to use MySQL to store item banks, user databases, and results. Also, adaptivity is not used in this tutorial, but you will see how and where a bit of adaptive code can be added.
 
 = Step 1: Create Item Templates =
 == Introduction template ==
@@ -20,45 +20,45 @@ http://dev.myiqtest.org/concerto2/wiki_images/new_item_click.png
 
 http://dev.myiqtest.org/concerto2/wiki_images/enter_name.png
 
-  * In the *'Presentation and Properties'* tab add a text field by clicking on the "*Text Field*" icon. 
+  * In the *'Presentation and Properties'* tab, add a text field by clicking on the "*Text Field*" icon. 
 
 http://dev.myiqtest.org/concerto2/wiki_images/ckeditor_tb.png
 
-  * Set the name of the Text Field, in this case: *field_name*. The value entered by the user in this Text Field will be stored as a variable under this field's name (in this case  "field_name"). This variable can be later used in other templates or in the R script. In the same window you can also specify a size of the field and choose its default contents (e.g. "Enter your name here"). Click *OK* to accept changes.
+  * Set the name of the Text Field, in this case: *field_name*. The value entered by the user in this Text Field will be stored as a variable under this field's name (in this case  "field_name"). This variable can be later used in other templates or in the R script. In the same window you can also specify a size for the field and choose its default contents (e.g. "Enter your name here"). Click *OK* to accept changes.
 
 http://dev.myiqtest.org/concerto2/wiki_images/ckeditor_tb_properties.png
 
-  * Now add a button by clicking on the "Button" icon. 
+  * Now add a button by clicking the "Button" icon. 
 
 http://dev.myiqtest.org/concerto2/wiki_images/ckeditor_btn.png
 
-  * Set button's name, in this case *btn_start*, and button's label - e.g. *Start*. Later you will assign an R script to this button to be executed once it's clicked. Accept by clicking *OK*.
+  * Set the button's name, in this case *btn_start*, and the button's label - e.g. *Start*. Later you will assign an R script to this button to be executed once it's clicked. Accept by clicking *OK*.
 
 http://dev.myiqtest.org/concerto2/wiki_images/ckeditor_btn_properties.png
 
-  * Edit the contents of the template using HTML editor, e.g. add some introductory test, like "_This is a demo test. Enter your name in the box below and press "Start" to start the test_". You will see in the manual that virtually any part of the template can be set as "dynamic" and changed by your R script or other external applications.
+  * Edit the contents of the template using the HTML editor, e.g. add some introductory test, for example "_This is a demo test. Enter your name in the box below and press "Start" to start the test_". You will see in the manual that virtually any part of the template can be set as "dynamic" and changed by your R script or other external applications.
 
-  * Save the item template by clicking *'save'* button.
+  * Save the item template by clicking the *'save'* button.
 
 http://dev.myiqtest.org/concerto2/wiki_images/save_click.png
 
-Resulting Item Template should look more or less like this:
+The resulting Item Template should look more or less like this:
 
 http://dev.myiqtest.org/concerto2/wiki_images/demo_start.png
 
 
 == Test Item Template ==
-  * Create a new item by clicking *'new'* button in the top left side of the *'item'* tab.
+  * Create a new item by clicking the *'new'* button in the top left side of the *'item'* tab.
   * Enter it's name, here: *'demo_item'*.
-  * Add radio button in the *'Presentation and Properties'* tab by clicking "Radio Button" icon.
+  * Add a radio button in the *'Presentation and Properties'* tab by clicking "Radio Button" icon.
 
 http://dev.myiqtest.org/concerto2/wiki_images/ckeditor_radio.png
 
-  * Set its name (here *field_answer*) and it's value (here: *0*). The value will be stored as a variable under this field's name (if this radio button will be selected by the user the variable "field_answer" will have value "0"). This variable can be later used in other templates or in the R script, e.g. to check which response was selected by the user. Checking the "Selected" option will make this buttonn selected by default.
+  * Set its name (here *field_answer*) and it's value (here: *0*). The value will be stored as a variable under this field's name (if this radio button is selected by the user the variable "field_answer" will have value "0"). This variable can be later used in other templates or in the R script, e.g. to check which response was selected by the user. Checking the "Selected" option will select this button by default.
 
 http://dev.myiqtest.org/concerto2/wiki_images/ckeditor_radio_porperties_no.png
 
-  * Add another radio button, give it the same name ("field_answer"), but this time set the value to *1*. Note, that only one of those radio buttons can be selected by the user (for multiple correct response use "check boxes"!), and thus the variable called "field_answer" will take the value assigned to the button selected by the user (here: 0 or 1). You can use any other formats of input in your test, such as "check boxes", "Text Fields", "drop down lists", or even Flash Games that will return a value (or set of values) to the platform. Alternatively, you can declare several buttons with different R script assigned to each of them. 
+  * Add another radio button and give it the same name ("field_answer"), but this time set the value to *1*. Note that only one of these radio buttons can be selected by the user (for multiple correct response use "check boxes"!), and thus the variable called "field_answer" will take the value assigned to the button selected by the user (here: 0 or 1). You can use any other input formats in your test: "check boxes", "Text Fields", "drop down lists", or even Flash Games that return a value (or set of values) to the platform. Alternatively, you can declare several buttons with different R scripts assigned to each of them. 
 
 http://dev.myiqtest.org/concerto2/wiki_images/ckeditor_radio_porperties_yes.png
 
@@ -69,9 +69,9 @@ http://dev.myiqtest.org/concerto2/wiki_images/ckeditor_radio_porperties_yes.png
     * Text: *"{{field_name}} please answer the question: {{question}}"*. Somewhere above the radio buttons.     
     * Text : *"Question #{{current_question_no}}:"*
 
-  * See those double brackets "{{" with text inside them? You can use them to insert any content to your item templates. You just need to create a session variable of this name (e.g. question) that will contain text, piece of HTML code (e.g. nice set of response options generated by R or stored in an item bank), a link to a picture/video/sound, etc. In this case {{current_question_no}}" and "{{question}}" will be provided by the R script, while {{field_name}} will be filled using the input of the user provided on the "Introduction" item (remember the Text Field called "field_name"?).
+  * See those double brackets "{{" with text inside them? You can use them to insert any content to your item templates. You just need to create a session variable of this name (e.g. question) that will contain text, a piece of HTML code (e.g. a nice set of response options generated by R or stored in an item bank), a link to a picture/video/sound, etc. In this case {{current_question_no}}" and "{{question}}" will be provided by the R script, while {{field_name}} will be filled using the input of the user provided on the "Introduction" item (remember the Text Field called "field_name"?).
 
-  * Save the item template by clicking *'save'* button
+  * Save the item template by clicking the *'save'* button
  
 This Item template should look more or less like this:
 
@@ -79,9 +79,9 @@ http://dev.myiqtest.org/concerto2/wiki_images/demo_item.png
 
 
 == Feedback Item Template ==
-  * Create a new item by clicking *'new'* button, enter its name (*'demo_feedback'*).
+  * Create a new item by clicking the *'new'* button, enter its name (*'demo_feedback'*).
   * in the *'Presentation and Properties'* tab insert text: *{{field_name}}, your total score is {{total_score}}.*
-  * press *'save'* button to save the item.
+  * press the *'save'* button to save the item.
  
 This Item template should look more or less like this:
 
@@ -89,8 +89,8 @@ http://dev.myiqtest.org/concerto2/wiki_images/demo_feedback.png
 
 = Step 2: Assign R code to buttons =
 == Start the test button ==
-  * Press "*Edit*"  button next to the *'demo_start'* Item Template
-  * Go to the *'R Interaction'* tab on the right where you can assign R code to the buttons present on a given Template, in this case *'btn_start'*. 
+  * Press the "*Edit*"  button next to the *'demo_start'* Item Template
+  * Go to the *'R Interaction'* tab on the right, where you can assign R code to the buttons present on a given Template, in this case *'btn_start'*. 
 
 http://dev.myiqtest.org/concerto2/wiki_images/r_code.png
  
@@ -98,8 +98,8 @@ http://dev.myiqtest.org/concerto2/wiki_images/r_code.png
 
 {{{
 ## Create a simple item bank
-## Note that in a proper test that should be rather stored in 
-## the MySQL database and loaded here using RMySQL package 
+## Note that in a proper test this should rather be stored in 
+## the MySQL database and loaded here using the RMySQL package 
 
 ## Define a questions array
 x <- array(dim=3)
@@ -115,7 +115,7 @@ y[3]<-1
 
 ## set the starting question
 ## Note that this can be selected using a CAT algorithm, 
-## e.g. this provided by catR library
+## e.g. this provided by the catR library
 
 current_question_no <- 1
 
@@ -123,9 +123,9 @@ current_question_no <- 1
 total_score <- 0
 
 ## set session variables that will be used to fill the 
-## Item Templates with the content. 
+## Item Templates with content. 
 ## set.var() and set.next.item() are very simple functions 
-## defined by Concerto in each session. Press "Concerto built
+## defined by Concerto in each session. Press the "Concerto built
 ## in R functions documentation" button in the R interaction 
 ## section to read their description.
 
@@ -134,10 +134,10 @@ set.var("question",x[current_question_no])
 set.next.item("demo_item")
 }}}
 
-  * Click the  *'save'* button to save the changes
+  * Click the *'save'* button to save the changes
 
 == Test Item Template ==
-  * Click edit next to the *'demo_item'* item template and go to the *'R Interaction'*. We have two buttons here: 
+  * Click edit next to the *'demo_item'* item template and go to *'R Interaction'*. We have two buttons here: 
    * *'btn_next'*
    * *'btn_restart'*
   * Use this code for *'btn_next'*:
@@ -149,9 +149,9 @@ set.next.item("demo_item")
 if(y[current_question_no] == as.numeric(field_answer)) total_score <- total_score + 1
   
 ## Check the stopping rule (here, max 3 questions). 
-## If test is to be terminated activate Feedback Item Template
+## If the test is to be terminated, activate the Feedback Item Template
 ## and set the "total_score" session variable. Alternatively, 
-## choose the next question (here literally next one, but you may
+## choose the next question (here literally the next one, but you may
 ## prefer to use some CAT here!)
 
 if(current_question_no < 3) {
@@ -170,20 +170,22 @@ if(current_question_no < 3) {
 {{{
 ## Activate the Introduction Item
 set.next.item("demo_start")
-## you don't have to reset other values as they are all set while the "Start" button is pressed.
+## you don't have to reset the other values as they are all set when the "Start" button is pressed.
 }}}
 
-  * save the item by clicking *'save'* button
+  * save the item by clicking the *'save'* button
 
 = You are done! =
 
-Obviously, this is the simplest test ever but it nicely shows the idea behind Concerto.
+Obviously, this is the simplest test ever, but it nicely shows the idea behind Concerto.
 
-First, you can try to run your test in the *debug* mode to see what's going on behind the scenes. Click *'debug'* button next to the item (*'demo_start'* in this case) and play with it!
+To begin with, try to run your test in the *debug* mode to see what's going on behind the scenes. Click the *'debug'* button next to the item (*'demo_start'* in this case) and play with it!
 
-If you are ready, give it a real go. Start the test by using this URL: Concerto_installation_path/index.php?*hash=enter_item_hash_here*
+When you are ready, give it a real go. Start the test by using this URL: Concerto_installation_path/index.php?*hash=enter_item_hash_here*
 
-You can find the hash value next to item's name on item list. Obviously, the test can be run as a separate website or embedded in the other websites or applications. Check this out (Concert v1.0): [http://apps.facebook.com/myiq-dev/ MyIQ demo]
+You can find the hash value next to item's name on the item list. 
+
+The test can be run as a separate website or embedded in the other websites or applications. Check this out (Concert v1.0): [http://apps.facebook.com/myiq-dev/ MyIQ demo]
  
 = This test should look like this: =
 [http://dev.myiqtest.org/concerto2/index.php?hash=ab0334826613005bfcf26d52392b7ced Click here to see how it should work]
