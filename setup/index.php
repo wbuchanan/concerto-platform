@@ -546,7 +546,7 @@ else
 {
     ?>
     <h1 class="ui-state-highlight" align="center" style="color:green;">Test completed. Every item passed correctly.</h1>
-    <h1 class="ui-state-highlight" align="center" style="color:blue;">IT IS STRONGLY RECOMMENDED TO DELETE THIS <b>/setup</b> DIRECTORY NOW FOR SECURITY REASONS!</h1>
+    <h1 class="ui-state-highlight" align="center" style="color:blue;">IT IS STRONGLY RECOMMENDED TO DELETE THIS <b>/setup</b> DIRECTORY NOW ALONG WITH ALL IT'S CONTENTS FOR SECURITY REASONS!</h1>
     <h2 class="ui-state-highlight" align="center"><a href="<?= Ini::$external_path . "admin/index.php" ?>">click here to launch Concerto Platform panel</a></h2>
 <?php } ?>
 </body>

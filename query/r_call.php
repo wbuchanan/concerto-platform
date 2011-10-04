@@ -20,32 +20,36 @@
   along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-if (!isset($ini)) {
+if (!isset($ini))
+{
     require_once '../model/Ini.php';
     $ini = new Ini();
 }
 
-$code = "";
+$code = "########## SESSION CODE STARTS ##########\r\n";
 
 //loading session file
 $session_exists = false;
 $session_file = Ini::$temp_path . $_POST['SessionID'] . ".rs";
-if (file_exists($session_file)) {
+if (file_exists($session_file))
+{
     $session_exists = true;
     $code .= "library(session)\r\n";
     $code .= "restore.session(\"" . $session_file . "\")\r\n";
-} else {
+}
+else
+{
     $code .= "library(session)\r\n";
     $code .= "temp_path <- '" . Ini::$temp_path . "'\r\n";
     $code .= "source('" . Ini::$main_methods_r_path . "')\r\n";
 
-    for ($i = 0; $i < count($_POST['var_name']); $i++) {
+    for ($i = 0; $i < count($_POST['var_name']); $i++)
+    {
         $k = $_POST['var_name'][$i];
         $v = $_POST['var_value'][$i];
-        if ($k == "")
-            continue;
+        if ($k == "") continue;
         if ($k == "SessionID" || $k == "button_name" || $k == "item_id")
-            continue;
+                continue;
         ItemButton::delete_rout_variable($_POST['SessionID'], $k);
 
         ItemButton::insert_rout_variable($_POST['SessionID'], $k, $v);
@@ -61,11 +65,11 @@ $code .= "for(con in dbListConnections(drv)) { dbDisconnect(con) }\r\n";
 $code .= "con <- dbConnect(drv, user = db_login, password = db_password, dbname = db_name, host = db_host, port = db_port)\r\n";
 
 //variables
-for ($i = 0; $i < count($_POST['ctr_name']); $i++) {
+for ($i = 0; $i < count($_POST['ctr_name']); $i++)
+{
     $k = $_POST['ctr_name'][$i];
     $v = $_POST['ctr_value'][$i];
-    if ($k == "")
-        continue;
+    if ($k == "") continue;
     ItemButton::delete_rout_variable($_POST['SessionID'], $k);
 
     ItemButton::insert_rout_variable($_POST['SessionID'], $k, $v);
@@ -75,15 +79,17 @@ for ($i = 0; $i < count($_POST['ctr_name']); $i++) {
 unset($_POST['ctr_name']);
 unset($_POST['ctr_value']);
 
-foreach ($_POST as $k => $v) {
-    if ($k == "" || ($session_exists && $k == "SessionID"))
-        continue;
+foreach ($_POST as $k => $v)
+{
+    if ($k == "" || ($session_exists && $k == "SessionID")) continue;
     ItemButton::delete_rout_variable($_POST['SessionID'], $k);
 
     ItemButton::insert_rout_variable($_POST['SessionID'], $k, $v);
 
     $code .= $k . " <- '" . mysql_real_escape_string($v) . "'\r\n";
 }
+
+$code .= "########## SESSION CODE ENDS ##########\r\n";
 
 //clicked button
 $current_item = Item::from_mysql_id($_POST['item_id']);
@@ -92,9 +98,12 @@ $clicked_button = $current_item->get_Button($_POST['button_name']);
 $command = $clicked_button->function;
 
 $isCommandEmpty = (trim($command) == "");
-if (!$isCommandEmpty) {
-    $command = $code . $command . "\r\n";
+if (!$isCommandEmpty)
+{
+    $command = $code . "########## BUTTON '" . $clicked_button->name . " CODE STARTS ##########\r\n" . $command . "\r\n########## BUTTON '" . $clicked_button->name . " CODE ENDS ##########\r\n";
+    $command.="########## SESSION CODE STARTS ##########\r\n";
     $command .= "save.session(\"" . $session_file . "\")\r\n";
+    $command.="########## SESSION CODE ENDS ##########\r\n";
     $output = array();
     $return = 0;
     $tmp_file = Ini::$temp_path . $_POST['SessionID'] . ".r";
@@ -116,7 +125,8 @@ $sql = sprintf("SELECT * FROM `r_out` WHERE
 	`Session_ID`='%d' 
 	ORDER BY `ID` ASC", $_POST['SessionID']);
 $z = mysql_query($sql);
-while ($r = mysql_fetch_array($z)) {
+while ($r = mysql_fetch_array($z))
+{
     $variables[$r['Variable']] = $r['Value'];
 }
 
@@ -127,8 +137,7 @@ $variables['item_id'] = $next_item->id;
 $variables["debug_rcode"] = $command;
 $variables["debug_return"] = $return;
 $variables["debug_output"] = "";
-foreach ($output as $line)
-    $variables["debug_output"].=$line . "<br/>";
+foreach ($output as $line) $variables["debug_output"].=$line . "<br/>";
 
 echo json_encode($variables);
 ?>
