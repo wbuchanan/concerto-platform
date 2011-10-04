@@ -10,14 +10,6 @@ The platform relies on three main elements:
 
 We aimed to rely as much as possible on the popular open source packages in order to maximize safety and reliability of the system and ascertain that its elements will be kept up-to-date. 
 
-== Presentation Layer ==
-
-The Presentation Layer (Item Templates) is  created using open-source HTML WYSIWYG editor - CKEditor. Basically you can insert anything that's HTML/CSS/JS, but let's divide the options to four categories:
-  # *HTML buttons and image buttons* - HTML buttons can have assigned *R code to execute*. Whenever user clicks on this button this code will be executed.
-  # *Other standard HTML controls* including text fields, text areas, radio buttons, check boxes, drop-down lists, etc can be used to interact with the user. When the item is submitted all user entered values will be stored as session variables and sent to R. You can then use them in customizing following items and/or use those variables in R scripts/calculations.
-  # *session variable inserts* - You can insert any session variable anywhere in the HTML layer by defining a piece to be inserted using  double brackets and the name of the session variable (e.g. *{{variable_name}}*). This allows you to control the HTML layer from R or any other external application by simply adding an entry to the session variable tables. 
-  # *standard HTML/CSS/JS* code
-
 = Installation ( v2.0 ) =
 
 *DO NOT* install Concerto v2.x on the database used for Concerto v1.x. Create new database to avoid any incompatibility errors.
@@ -100,16 +92,22 @@ http://dev.myiqtest.org/concerto2/wiki_images/admin_items_presentation.PNG
 
 We can divide this section in three parts:
   # Duplicate Item Template panel allowing to import the HTML layer from another item. Simply select the "source" item from the list and click *import HTML* button.
-  # HTML WYSIWYG editor (*CKEditor*) in the middle - use it to design Item Template's HTML layer)
+  # HTML WYSIWYG editor (open-source *CKEditor*) in the middle - use it to design Item Template's HTML layer)
   # Item properties, containing:
     * *default button* - select the button (actually, the R script behind it) that is going to be executed if the time runs out and user did not click any button
     * *timer* that sets the maximum time in to answer the question on the item. When time runs out, the platform executes the R script assigned to "default button"
+
+The HTML WYSIWYG editor allows you to insert any HTML/CSS/JS code. 
+Important elements include:
+  # *HTML buttons and image buttons* - HTML buttons can have assigned *R code to execute*. Whenever user clicks on the button assigned code is executed.  
+  # *Other standard HTML controls* including text fields, text areas, radio buttons, check boxes, drop-down lists, etc can be used to interact with the user. When the item is submitted all user entered values will be stored as session variables and sent to R. You can then use them in customizing following items and/or use those variables in R scripts/calculations.
+  # *session variable inserts* - You can insert any session variable anywhere in the HTML layer by defining a piece to be inserted using  double brackets and the name of the session variable (e.g. *{{variable_name}}*). This allows you to control the HTML layer from R or any other external application by simply adding an entry to the session variable tables. 
+  # *standard HTML/CSS/JS* code: text, videos, sounds, images, etc.  
 
 === "items" tab -> "R Interaction" tab===
 http://dev.myiqtest.org/concerto2/wiki_images/admin_items_interaction.PNG
 
 This section contains the list of the HTML buttons that were declared (added) to the HTML presentation layer. You can use the *R code to execute* the assign R syntax that will be executed once the button is pressed by user (or time runs out in case of buttons set as default). 
-
 
 You can also open two "hint" boxes in this section. You can resize/move/close those boxes at any time. 
  # *Concerto built in R functions documentation* - list of Concerto functions that you can use anywhere in the R syntax
