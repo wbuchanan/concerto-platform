@@ -4,9 +4,9 @@
 = Concept =
 The idea behind Concerto is to deliver a simple yet powerful tool for the development of an adaptive on-line test. 
 The platform relies on three main elements:
- # *an HTML presentation layer* 
+ # *HTML presentation layer* 
  # *R scripting logic* 
- # *an SQL database backbone*
+ # *SQL database backbone*
 
 We rely as much as possible on popular open source packages in order to maximize the safety and reliability of the system, and to ensure that its elements are kept up-to-date. 
 
@@ -20,13 +20,13 @@ We rely as much as possible on popular open source packages in order to maximize
 
 == Setup Page ==
 
-The Setup Page is the first page that should be run extracting Concerto files. It allows you to check if your system meets all the requirements and finalize the setup of the application. Passing all of the checks hear means that you should not have any problem with running Concerto. The tests consists of:
+The Setup Page is the first page that should be run when extracting Concerto files. It allows you to check whether your system meets all requirements and to finalize the setup of the application. If you pass all the checks here you should not have any problem with running Concerto. The tests consists of:
  * PHP settings check, 
  * Directory rights check, 
  * MySQL configuration check, 
  * etc. 
 
-The setup page will also allow you to create a login for the first user's login and password, your application installation external URL, RScript path and RStudio integration. This page also checks if there is newer version of *Concerto Platform* available. If any of the checks fail then the setup page will give you recommendation of how to fix it. Restart Setup Page after solving the problem. 
+The setup page will also allow you to create a login for the first user's login and password, your application installation external URL, RScript path and RStudio integration. This page also checks if there is a newer version of *Concerto Platform* available. If any of the checks fail then the setup page will give recommendations on how to fix it. You should restart the Setup Page after solving the problem. 
 
 http://dev.myiqtest.org/concerto2/wiki_images/setup_page.PNG
 
