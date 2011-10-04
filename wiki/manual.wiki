@@ -163,7 +163,7 @@ http://dev.myiqtest.org/concerto2/wiki_images/run_debug.PNG
 To start the test in a *debug mode* select the *Debug* button from the Item Template's List. Alternatively, if you are you can enter debug mode by passing *debug* option through URL, e.g. 
 {{{
 */index.php?hash=5da7d117adfd5632b8e8aa661426879f&debug*
-}}}. 
+}}}
 *You must be logged in to the Administration Panel to do so.* 
 
 You will see a screen divided in two sections:
