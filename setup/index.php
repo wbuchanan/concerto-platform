@@ -20,9 +20,9 @@
  */
 if (!isset($ini))
 {
-    require_once 'model/Ini.php';
+    require_once '../model/Ini.php';
 }
-include'SETTINGS.php';
+include'../SETTINGS.php';
 
 class Setup
 {
@@ -132,13 +132,13 @@ class Setup
     <head>
         <meta charset="UTF-8">
         <title>Concerto Platform - test page</title>
-        <link rel="stylesheet" type="text/css" href="css/redmond/jquery-ui-1.8.16.custom.css" />
-        <link rel="stylesheet" type="text/css" href="css/styles.css" />
+        <link rel="stylesheet" type="text/css" href="../css/redmond/jquery-ui-1.8.16.custom.css" />
+        <link rel="stylesheet" type="text/css" href="../css/styles.css" />
 
-        <script type="text/javascript" src="js/lib/jquery-1.6.2.min.js"></script>
-        <script type="text/javascript" src="js/lib/jquery-ui-1.8.16.custom.min.js"></script>
-        <script type="text/javascript" src="admin/js/Methods.js"></script>
-        <script type="text/javascript" src="lib/jfeed/build/dist/jquery.jfeed.js"></script>
+        <script type="text/javascript" src="../js/lib/jquery-1.6.2.min.js"></script>
+        <script type="text/javascript" src="../js/lib/jquery-ui-1.8.16.custom.min.js"></script>
+        <script type="text/javascript" src="../admin/js/Methods.js"></script>
+        <script type="text/javascript" src="../lib/jfeed/build/dist/jquery.jfeed.js"></script>
     </head>
 
     <body>
@@ -222,6 +222,7 @@ class Setup
     {
         Ini::install_db();
         $ini = new Ini();
+        Ini::install_files();
         ?>
     <script>
         $(function(){
@@ -237,7 +238,7 @@ class Setup
                 {
                     $("#tdVersionCheckResult").html("your current version: <b>v"+Methods.currentVersion+"</b> <b style='color:green;'>IS UP TO DATE</b>");
                 }
-            },"lib/jfeed/proxy.php");
+            },"../lib/jfeed/proxy.php");
         });
     </script>
     <tr>
@@ -296,7 +297,7 @@ class Setup
                         var login = $("#sa_login");
                         var pass = $("#sa_pass");
                         var conf = $("#sa_conf");
-                                                                                                            
+                                                                                                                    
                         if(login.val()=="" || pass.val()=="" || conf.val()=="")
                         {
                             alert("Every field must be filled.");
@@ -307,8 +308,8 @@ class Setup
                             alert("Password and password confirmation must match.");
                             return;
                         }
-                                                                                                            
-                        $.post("admin/query/save_superadmin.php",
+                                                                                                                    
+                        $.post("save_superadmin.php",
                         {
                             login:login.val(),
                             pass:pass.val()
@@ -317,7 +318,7 @@ class Setup
                             location.reload();
                         })  
                     };
-                                                                                                                                                                                                                                                
+                                                                                                                                                                                                                                                        
                     $(function(){
                         Methods.iniIconButtons();
                     })
@@ -350,7 +351,7 @@ class Setup
                 <script>
                     function saveRscriptPath()
                     {
-                        $.post("admin/query/save_setting.php",
+                        $.post("save_setting.php",
                         {
                             name:'rscript_path',
                             value:$('#rscriptInput').val()
@@ -359,7 +360,7 @@ class Setup
                             location.reload();
                         })  
                     };
-                                                                                                                                                                                                                                                
+                                                                                                                                                                                                                                                        
                     $(function(){
                         Methods.iniIconButtons();
                     })
@@ -391,7 +392,7 @@ class Setup
                 <script>
                     function saveExternalPath()
                     {
-                        $.post("admin/query/save_setting.php",
+                        $.post("save_setting.php",
                         {
                             name:'external_path',
                             value:$('#externalPathInput').val()
@@ -400,7 +401,7 @@ class Setup
                             location.reload();
                         })  
                     };
-                                                                                                                                                                                                                                                
+                                                                                                                                                                                                                                                        
                     $(function(){
                         Methods.iniIconButtons();
                     })
@@ -431,7 +432,7 @@ class Setup
                 <script>
                     function saveRStudioOn()
                     {
-                        $.post("admin/query/save_setting.php",
+                        $.post("save_setting.php",
                         {
                             name:'is_rstudio_on',
                             value:$('#rStudioOnCheckbox').is(":checked")?1:0
@@ -440,7 +441,7 @@ class Setup
                             location.reload();
                         })  
                     };
-                                                                                                                                                                                                                                                
+                                                                                                                                                                                                                                                        
                     $(function(){
                         Methods.iniIconButtons();
                     })
@@ -545,10 +546,8 @@ else
 {
     ?>
     <h1 class="ui-state-highlight" align="center" style="color:green;">Test completed. Every item passed correctly.</h1>
-    <h1 class="ui-state-highlight" align="center" style="color:blue;">IT IS STRONGLY RECOMMENDED TO DELETE THIS <b>/setup.php</b> FILE FOR SECURITY REASONS!</h1>
+    <h1 class="ui-state-highlight" align="center" style="color:blue;">IT IS STRONGLY RECOMMENDED TO DELETE THIS <b>/setup</b> DIRECTORY NOW FOR SECURITY REASONS!</h1>
     <h2 class="ui-state-highlight" align="center"><a href="<?= Ini::$external_path . "admin/index.php" ?>">click here to launch Concerto Platform panel</a></h2>
 <?php } ?>
-<br/>
-<?php //echo phpinfo();        ?>
 </body>
 </html>

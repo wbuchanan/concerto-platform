@@ -196,23 +196,31 @@ class Ini {
         mysql_query($sql);
         
         //patch
-        //v2.0.3
+        //v2.0.2
         $sql = sprintf("ALTER TABLE  `Group` CHANGE  `name`  `name` VARCHAR( 20 ) CHARACTER SET utf8 COLLATE utf8_general_ci NOT NULL");
         mysql_query($sql);
+        
         $sql = sprintf("ALTER TABLE `Group` DROP INDEX name");
         mysql_query($sql);
+        
         $sql = sprintf("ALTER TABLE  `Group` ADD UNIQUE (`name`)");
         mysql_query($sql);
+        
         $sql = sprintf("ALTER TABLE  `Item` CHANGE  `name`  `name` VARCHAR( 20 ) CHARACTER SET utf8 COLLATE utf8_general_ci NOT NULL");
         mysql_query($sql);
+        
         $sql = sprintf("ALTER TABLE `Item` DROP INDEX name");
         mysql_query($sql);
+        
         $sql = sprintf("ALTER TABLE  `Item` ADD UNIQUE (`name`)");
         mysql_query($sql);
+        
         $sql = sprintf("ALTER TABLE  `User` CHANGE  `login`  `login` VARCHAR( 20 ) CHARACTER SET utf8 COLLATE utf8_general_ci NOT NULL");
         mysql_query($sql);
+        
         $sql = sprintf("ALTER TABLE `User` DROP INDEX login");
         mysql_query($sql);
+        
         $sql = sprintf("ALTER TABLE  `User` ADD UNIQUE (`login`)");
         mysql_query($sql);
         
@@ -221,10 +229,10 @@ class Ini {
         $sql = sprintf("SELECT * FROM `Setting` WHERE `name`='version'");
         $z = mysql_query($sql);
         if (mysql_num_rows($z) == 0) {
-            $sql = sprintf("INSERT INTO `Setting` SET `name`='version', `value`='2.0.3'");
+            $sql = sprintf("INSERT INTO `Setting` SET `name`='version', `value`='2.0.2'");
             mysql_query($sql);
         }
-        else self::set_setting(self::SETTING_VERSION,"2.0.3");
+        else self::set_setting(self::SETTING_VERSION,"2.0.2");
 
         $sql = sprintf("SELECT * FROM `Setting` WHERE `name`='rscript_path'");
         $z = mysql_query($sql);
@@ -266,6 +274,20 @@ class Ini {
             $sql = sprintf("INSERT INTO `DS_Sharing` SET `name`='%s', `value`='%s'", "public", 3);
             mysql_query($sql);
         }
+    }
+    
+    public static function install_files()
+    {
+        //patch
+        //v2.0.2
+        $filename = Ini::$external_path."setup.php";
+        if(file_exists($filename)) unlink($filename);
+        
+        $filename = Ini::$external_path."admin/query/save_setting.php";
+        if(file_exists($filename)) unlink($filename);
+        
+        $filename = Ini::$external_path."admin/query/save_superadmin.php";
+        if(file_exists($filename)) unlink($filename);
     }
 
     private function load_classes() {
