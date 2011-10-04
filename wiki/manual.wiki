@@ -4,19 +4,19 @@
 = Concept =
 The idea behind Concerto is to deliver a simple yet powerful tool for the development of an adaptive on-line test. 
 The platform relies on three main elements:
- # *HTML presentation layer* 
+ # *an HTML presentation layer* 
  # *R scripting logic* 
- # *SQL database backbone*
+ # *an SQL database backbone*
 
-We aimed to rely as much as possible on the popular open source packages in order to maximize safety and reliability of the system and ascertain that its elements will be kept up-to-date. 
+We rely as much as possible on popular open source packages in order to maximize the safety and reliability of the system, and to ensure that its elements are kept up-to-date. 
 
 = Installation ( v2.0 ) =
 
 *DO NOT* install Concerto v2.x on the database used for Concerto v1.x. Create new database to avoid any incompatibility errors.
 
-  # extract the contents of the [http://code.google.com/p/concerto-platform/downloads/list installation zip archive] to the public web folder of your choice on your server
-  # edit *installation_path/SETTINGS.php* file to set your MySQL database connection parameters
-  # run *installation_path/setup.php* page and follow the instructions
+  # extract the contents of the [http://code.google.com/p/concerto-platform/downloads/list installation zip archive] to the public web folder of your choice on your server.
+  # edit *installation_path/SETTINGS.php* file to set your MySQL database connection parameters.
+  # run the *installation_path/setup.php* page and follow the instructions.
 
 == Setup Page ==
 
