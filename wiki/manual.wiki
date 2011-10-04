@@ -2,7 +2,7 @@
 =USER'S MANUAL=
 
 = Concept =
-The idea behind Concerto is to deliver simple yet powerful tool for the development of an adaptive on-line test. 
+The idea behind Concerto is to deliver a simple yet powerful tool for the development of an adaptive on-line test. 
 The platform relies on three main elements:
  # *HTML presentation layer* 
  # *R scripting logic* 
