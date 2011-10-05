@@ -1,0 +1,7 @@
+= Our plans for the future developments of Concert = 
+
+Concerto is constantly evolving in response to the feedback of our users, currently we work on the following functionality:
+
+  * *Background Computation Module*: For slow connections and extensive Item Banks, Concerto will  allow to execute code and download content while item is presented. For instance, while user is thinking about the answer to a given question, R engine is using his previous responses to choose an item and pre-cache it in the local browser. When user submits the response, pre-cached question is showed immediately while Concerto works on choosing the next one. 
+  * *Concerto Local*: application controlling the administration of the test on the local machine (e.g. in a testing centre). It will lock the machine, allow to open the given test only, record system parameters (e.g. screen size) and user's behaviour (sound, video, keyboard if applicable). 
+  * *Concerto TryMe*: Demo version of Concerto hosted on our servers, allowing users to get accustomed with the application.
