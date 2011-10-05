@@ -34,8 +34,8 @@
         <pl>Wybierz przycisk który ma zostać automatycznie kliknięty gdy czas `timer` elementu dojdzie do zera.</pl>
     </string>
     <string id="14" type="tip">
-        <en>Name of an item used in session variable `NextItem` to identify next item to show.</en>
-        <pl>Nazwa elementu wykorzystywana w zmiennej sesyjnej o nazwie `NextItem` która wskazuje element który ma być pokazany następny.</pl>
+        <en>Name of an item template.</en>
+        <pl>Nazwa szablonu elementu.</pl>
     </string>
     <string id="15" type="tip">
         <en>Select an item which HTML you want to import to your current item. Only HTML will be imported. Other properties are left intact.</en>

@@ -50,7 +50,7 @@ else
         $k = $_POST['var_name'][$i];
         $v = $_POST['var_value'][$i];
         if ($k == "") continue;
-        if ($k == "SessionID" || $k == "button_name" || $k == "item_id")
+        if ($k == "SessionID" || $k == "button_name" || $k == "template_id")
                 continue;
         ItemButton::delete_rout_variable($_POST['SessionID'], $k);
 
@@ -94,7 +94,7 @@ foreach ($_POST as $k => $v)
 $code .= "########## SESSION CODE ENDS\r\n\r\n";
 
 //clicked button
-$current_item = Item::from_mysql_id($_POST['item_id']);
+$current_item = Item::from_mysql_id($_POST['template_id']);
 $clicked_button = $current_item->get_Button($_POST['button_name']);
 
 $command = $clicked_button->function;
@@ -132,9 +132,9 @@ while ($r = mysql_fetch_array($z))
     $variables[$r['Variable']] = $r['Value'];
 }
 
-$next_item = Item::from_name($variables["NextItem"]);
+$next_item = Item::from_mysql_id($variables["template_id"]);
 $variables['SessionID'] = $_POST['SessionID'];
-$variables['item_id'] = $next_item->id;
+$variables['template_id'] = $next_item->id;
 
 $variables["debug_rcode"] = $command;
 $variables["debug_return"] = $return;

@@ -18,11 +18,11 @@
     along with this program.  If not, see <http://www.gnu.org/licenses/>.
     */
 
-function Item(parameters,debug)
+function Item(parameters,debug,client)
 {
     this.variables = parameters;
     this.sessionID=parameters.SessionID;
-    this.currentItemID=parameters.item_id;
+    this.currentTemplateID=parameters.template_id;
 	
     this.HTML;
     this.timer;
@@ -221,7 +221,6 @@ function Item(parameters,debug)
         }
         if(Item.debug) Debug.sessionVariableModified("button_name", buttonName, Debug.Item.lastItemContainer);
         if(Item.debug) Debug.sessionVariableModified("time_left", this.timeLeft, Debug.Item.lastItemContainer);
-        if(Item.debug) Debug.sessionVariableModified("item_id", this.currentItemID, Debug.Item.lastItemContainer);
         this.changeProgressBarValue(40, "Getting session data.");
         for(key in this.variables)
         {
@@ -234,7 +233,7 @@ function Item(parameters,debug)
             "query/r_call.php",
             {
                 "SessionID":this.sessionID,
-                "item_id":this.currentItemID,
+                "template_id":this.currentTemplateID,
                 "button_name":buttonName,
                 "time_left":this.timeLeft,
                 "ctr_name[]":ctrName,
@@ -251,7 +250,7 @@ function Item(parameters,debug)
                 delete data.debug_output;
                 
                 Item.Current.variables = data;
-                Item.Current.setCurrentItem(data.item_id);
+                Item.Current.setCurrentItem(data.template_id);
             },"json"
             );
     };
@@ -263,11 +262,11 @@ function Item(parameters,debug)
         this.changeProgressBarValue(80, "Loading item...");
         $.post("query/set_item.php",{
             "SessionID":this.sessionID,
-            "item_id":itemID
+            "template_id":itemID
         },
         function(data)
         {
-            Item.Current.currentItemID=itemID;
+            Item.Current.currentTemplateID=itemID;
             Item.Current.setHTML(data.HTML);
             Item.Current.setTimer(data.timer, data.default_button);
             Item.Current.initializeButtonsTrigger();
@@ -278,7 +277,9 @@ function Item(parameters,debug)
     };
     
     Item.debug=(debug==1);
-    this.setCurrentItem(parameters.item_id);
+    Item.client=(client==1);
+    this.setCurrentItem(parameters.template_id);
 }
 Item.debug=false;
+Item.client = false;
 Item.Current = null;

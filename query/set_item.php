@@ -25,7 +25,7 @@ if (!isset($ini)) {
     $ini = new Ini();
 }
 
-$item = Item::from_mysql_id($_POST['item_id']);
+$item = Item::from_mysql_id($_POST['template_id']);
 
 while (strpos($item->HTML, "{{stitem_") !== false) {
     $html = $item->HTML;

@@ -47,8 +47,8 @@ Debug.Item.loadItem=function(iid)
     Debug.Item.lastItemContainer=$("<div/>",{
         id:"divHistoryItemContainer"+Debug.Item.lastItemIndex, 
         "class":"ui-widget-content ui-state-focus ui-corner-all fullWidth"
-    }).html("<div align='center' class='ui-widget-header ui-corner-all fullWidth'>Item id: "+iid+"</div>"+Debug.getDateTime()+" - " + "Loading new item id: <b>"+iid+"</b>...<br/>").prependTo(Debug.Session.sessionContainer);
-    $("#thSessionItem").html("Item id: <b>"+iid+"</b>");
+    }).html("<div align='center' class='ui-widget-header ui-corner-all fullWidth' style='font-size:1.5em;'>Item template id: "+iid+"</div>"+Debug.getDateTime()+" - " + "Loading new item template id: <b>"+iid+"</b>...<br/>").prependTo(Debug.Session.sessionContainer);
+    $("#thSessionItem").html("Item template id: <b>"+iid+"</b>");
     
     if(Item.Current!=null)
     {
@@ -88,9 +88,9 @@ Debug.Item.RCallResult=function(code,exit,output)
         style:"width:100%; height:200px;"
     }).html(code).appendTo(Debug.Item.lastItemContainer);
     Methods.iniCodeMirror("rcode"+Debug.Item.lastItemIndex, "r",true);
-    Debug.Item.appendToLastItemContainer(exit==0?"<div style='color:green; font-size:12px;' align='center' class='fullWidth'>R code validation <b>PASSED.</b></div><br/>":"<div style='color:red; font-size:12px;' class='ui-state-error fullWidth' align='center'>R code validation <b>FAILED!</b></div><br/>");
+    Debug.Item.appendToLastItemContainer(exit==0?"<div style='color:green; font-size:1.5em;' align='center' class='fullWidth'>R code validation <b>PASSED.</b></div><br/>":"<div style='color:red; font-size:12px;' class='ui-state-error fullWidth' align='center'>R code validation <b>FAILED!</b></div><br/>");
     Debug.Item.appendToLastItemContainer("R code <b>output</b>:<br/>");
-    Debug.Item.appendToLastItemContainer("<div class='fullWidth ui-state-highlight'>"+output+"</div>");
+    Debug.Item.appendToLastItemContainer("<div class='fullWidth ui-state-highlight' style='font-size:1.2em;'>"+output+"</div>");
     
     $.post("query/r_variables.php",{
         oid:Debug.Session.currentSessionID

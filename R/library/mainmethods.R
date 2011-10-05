@@ -35,9 +35,9 @@ set.var <- function(variable, value, sid=SessionID, dbn=db_name){
    print(paste("Session variable modification: '",variable,"'='",value,"'",sep =""))
 }
 
-set.next.item<-function(next.item){
-    print(paste("Setting next item: '",next.item,"'",sep =""))
-    set.var("NextItem", next.item, sid=SessionID, dbn=db_name)
+set.next.template<-function(template_id){
+    print(paste("Setting next item template: '",template_id,"'",sep =""))
+    set.var("template_id", template_id, sid=SessionID, dbn=db_name)
 }
 
 library(RMySQL)

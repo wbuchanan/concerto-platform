@@ -39,14 +39,11 @@ foreach ($_POST as $k => $v) {
     $variables[$k] = $v;
 }
 
-ItemButton::insert_rout_variable($sid, 'NextItem', mysql_real_escape_string($item->name));
-$variables["NextItem"] = $item->name;
+ItemButton::insert_rout_variable($sid, 'template_id', mysql_real_escape_string($item->id));
+$variables["template_id"] = $item->id;
 
 ItemButton::insert_rout_variable($sid, 'SessionID', $sid);
 $variables['SessionID'] = $sid;
-
-ItemButton::insert_rout_variable($sid, 'item_id', $item->id);
-$variables['item_id'] = $item->id;
 
 ItemButton::insert_rout_variable($sid, 'IP', $_SERVER['REMOTE_ADDR']);
 $variables['IP'] = $_SERVER['REMOTE_ADDR'];
