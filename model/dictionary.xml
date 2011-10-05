@@ -2,8 +2,8 @@
 
 <root>
     <string id="4">
-        <en>select item HTML template to import:</en>
-        <pl>wybierz szablon HTML elementu do zaimportowania:</pl>
+        <en>select item template HTML to import:</en>
+        <pl>wybierz element szablonu by zaimportować jego HTML:</pl>
     </string>
     <string id="6">
         <en>timer:</en>
@@ -42,8 +42,8 @@
         <pl>Wybierz element którego HTML chciałbyś zaimportować to obecnego elementu. Jedynie HTML zostanie zaimportowany. Pozostałe właściwości zostaną nie zmienione.</pl>
     </string>
     <string id="16" type="tip">
-        <en>Hashed string used to set starting item at client side by inserting 'hash' parameter to URL address. Example: http://slicktestersite.com/?hash=insert_hash_here .</en>
-        <pl>Hash używany by wybrać startowy element po stronie klienta poprzez osadzenie parametru 'hash' w adresie URL. Przykład: http://slicktestersite.com/?hash=miejsce_na_hash .</pl>
+        <en>Hashed string used to set starting item at client side by inserting 'hash' parameter to URL address. Example: http://concerto.com/?hash=insert_hash_here .</en>
+        <pl>Hash używany by wybrać startowy element po stronie klienta poprzez osadzenie parametru 'hash' w adresie URL. Przykład: http://concerto.com/?hash=miejsce_na_hash .</pl>
     </string>
     <string id="17" type="tip">
         <en>Time in seconds that user has to fill item and submit it. If time runs out default button is autoclicked. Variable {{timer}} can be inserted to HTML to show current time left in seconds at client side.</en>
@@ -54,8 +54,8 @@
         <pl>Każdy obiekt HTML jak: &lt;input type='button' /&gt; , &lt;input type='image' /&gt; , &lt;button&gt;&lt;/button&gt; z atrybutem 'name' może zostać wykorzystany jako przycisk przesłania. Każdy przycisk przesłania może wykonać kod R. Użytkownik może również wybrać który przycisk powinien być domyślnym. Domyślny przycisk zostanie automatycznie kliknięty gdy czas elementu sie skończy.</pl>
     </string>
     <string id="19" type="tip">
-        <en>Present items in system. You can modify items, delete them and add new ones.</en>
-        <pl>Obecne elementy w systemie. Można tutaj modyfikować elementy, usuwać je oraz dodawać nowe.</pl>
+        <en>Present item templates in the system. You can modify, delete and add new ones.</en>
+        <pl>Obecne szablony elementów w systemie. Można tutaj je modyfikować, usuwać oraz dodawać nowe.</pl>
     </string>
     <string id="23" type="tip">
         <en>Session variables which are created by current items HTML controls like input, radio button, checkbox, select, etc.</en>
@@ -84,22 +84,6 @@
     <string id="43">
         <en>edit</en>
         <pl>edycja</pl>
-    </string>
-    <string id="44" partOf="Item #'+data+' saved.">
-        <en>Item #</en>
-        <pl>Element #</pl>
-    </string>
-    <string id="45" partOf="Item #'+data+' saved.">
-        <en> saved.</en>
-        <pl> zapisany.</pl>
-    </string>
-    <string id="46">
-        <en>Are You sure You want to delete selected item with id:</en>
-        <pl>Jesteś pewien że chcesz usunąć wybrany element o id:</pl>
-    </string>
-    <string id="47" partOf="Item #'+id+' deleted.">
-        <en> deleted.</en>
-        <pl> usunięty.</pl>
     </string>
     <string id="49">
         <en>id</en>
@@ -294,24 +278,24 @@
         <pl>Jesteś pewien że chcesz usunąć grupę</pl>
     </string>
     <string id="110">
-        <en>available items</en>
-        <pl>dostępne elementy</pl>
+        <en>available item templates</en>
+        <pl>dostępne szablony elementów</pl>
     </string>
     <string id="111">
-        <en>no items available</en>
-        <pl>brak dostępnych elementów</pl>
+        <en>no item templates available</en>
+        <pl>brak dostępnych szablonów elementów</pl>
     </string>
     <string id="112">
-        <en>editing item</en>
-        <pl>edycja elementu</pl>
+        <en>editing item template</en>
+        <pl>edycja szablonu elementu</pl>
     </string>
     <string id="113">
-        <en>creating new item</en>
-        <pl>tworzenie nowego elementu</pl>
+        <en>creating new item template</en>
+        <pl>tworzenie nowego szablonu elementu</pl>
     </string>
     <string id="114">
-        <en>Are you sure you want to delete item</en>
-        <pl>Jesteś pewien że chcesz usunąć element</pl>
+        <en>Are you sure you want to delete item template</en>
+        <pl>Jesteś pewien że chcesz usunąć szablon elementu</pl>
     </string>
     <string id="115">
         <en>preview</en>
@@ -384,5 +368,9 @@
     <string id="132">
         <en>Failed to save object. Probably there's another object with the same value of field marked as unique.</en>
         <pl>Nie udało się zapisać obiektu. Prawdopodobnie istnieje inny obiekt z tą samą wartością pola oznaczonego jako unikatowe.</pl>
+    </string>
+    <string id="133">
+        <en>Saved.</en>
+        <pl>Zapisano.</pl>
     </string>
 </root>

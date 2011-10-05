@@ -26,7 +26,7 @@ if (!isset($ini))
     $ini = new Ini();
 }
 
-$code = "########## SESSION CODE STARTS ##########\r\n";
+$code = "########## SESSION CODE STARTS\r\n";
 
 //loading session file
 $session_exists = false;
@@ -34,11 +34,13 @@ $session_file = Ini::$temp_path . $_POST['SessionID'] . ".rs";
 if (file_exists($session_file))
 {
     $session_exists = true;
+    $code .= "sink(stdout(), type='message')\r\n";
     $code .= "library(session)\r\n";
     $code .= "restore.session(\"" . $session_file . "\")\r\n";
 }
 else
 {
+    $code .= "sink(stdout(), type='message')\r\n";
     $code .= "library(session)\r\n";
     $code .= "temp_path <- '" . Ini::$temp_path . "'\r\n";
     $code .= "source('" . Ini::$main_methods_r_path . "')\r\n";
@@ -89,7 +91,7 @@ foreach ($_POST as $k => $v)
     $code .= $k . " <- '" . mysql_real_escape_string($v) . "'\r\n";
 }
 
-$code .= "########## SESSION CODE ENDS ##########\r\n";
+$code .= "########## SESSION CODE ENDS\r\n\r\n";
 
 //clicked button
 $current_item = Item::from_mysql_id($_POST['item_id']);
@@ -100,10 +102,10 @@ $command = $clicked_button->function;
 $isCommandEmpty = (trim($command) == "");
 if (!$isCommandEmpty)
 {
-    $command = $code . "########## BUTTON '" . $clicked_button->name . " CODE STARTS ##########\r\n" . $command . "\r\n########## BUTTON '" . $clicked_button->name . " CODE ENDS ##########\r\n";
-    $command.="########## SESSION CODE STARTS ##########\r\n";
+    $command = $code . "########## BUTTON '" . $clicked_button->name . " CODE STARTS\r\n" . $command . "\r\n########## BUTTON '" . $clicked_button->name . " CODE ENDS\r\n\r\n";
+    $command.="########## SESSION CODE STARTS\r\n";
     $command .= "save.session(\"" . $session_file . "\")\r\n";
-    $command.="########## SESSION CODE ENDS ##########\r\n";
+    $command.="########## SESSION CODE ENDS\r\n";
     $output = array();
     $return = 0;
     $tmp_file = Ini::$temp_path . $_POST['SessionID'] . ".r";

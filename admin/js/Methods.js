@@ -47,6 +47,7 @@ Methods.captionBtnBuiltInFunctionsDoc="";
 Methods.captionBtnItemsSessionVariables="";
 Methods.captionRequiredFields="";
 Methods.captionNotSaved="";
+Methods.captionSaved="";
 
 Methods.currentVersion="";
 Methods.latestVersion="";

@@ -41,13 +41,13 @@ Debug.Item.lastItemIndex=0;
 
 Debug.Item.loadItem=function(iid)
 {
-    Debug.Session.sessionContainer.append("<br/><br/>");
+    Debug.Session.sessionContainer.prepend("<br/><br/>");
     
     Debug.Item.lastItemIndex++;
     Debug.Item.lastItemContainer=$("<div/>",{
         id:"divHistoryItemContainer"+Debug.Item.lastItemIndex, 
         "class":"ui-widget-content ui-state-focus ui-corner-all fullWidth"
-    }).html("<div align='center' class='ui-widget-header ui-corner-all fullWidth'>Item id: "+iid+"</div>"+Debug.getDateTime()+" - " + "Loading new item id: <b>"+iid+"</b>...<br/>").appendTo(Debug.Session.sessionContainer);
+    }).html("<div align='center' class='ui-widget-header ui-corner-all fullWidth'>Item id: "+iid+"</div>"+Debug.getDateTime()+" - " + "Loading new item id: <b>"+iid+"</b>...<br/>").prependTo(Debug.Session.sessionContainer);
     $("#thSessionItem").html("Item id: <b>"+iid+"</b>");
     
     if(Item.Current!=null)

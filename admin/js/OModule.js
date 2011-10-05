@@ -118,7 +118,7 @@ OModule.inheritance=function(obj)
                         thisClass.uiReload(data.oid);
                     }
                     if(thisClass.extraSaveCallback) thisClass.extraSaveCallback();
-                    alert(thisClass.className+" #"+data.oid+" saved.");
+                    alert(Methods.captionSaved);
                 }
                 else alert(Methods.captionNotSaved);
             },"json");
