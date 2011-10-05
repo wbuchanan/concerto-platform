@@ -2,6 +2,11 @@
 
 Concerto is constantly evolving in response to the feedback of our users, currently we work on the following functionality:
 
+== Pre-defined Item and User banks ==
+
+For those who do not want to learn MySQL we will add flexible item banks and user/results tables editable from the level of the Administration Panel.
+
+
 ==Background Computation Module==
 For slow connections and extensive Item Banks, Concerto will  allow to execute code and download content while item is presented. For instance, while user is thinking about the answer to a given question, R engine is using his previous responses to choose an item and pre-cache it in the local browser. When user submits the response, pre-cached question is showed immediately while Concerto works on choosing the next one. 
 
