@@ -175,3 +175,10 @@ You will see a screen divided into two sections:
 Additionally, you can use the buttons at the top of the page to see the list of:
  # current *session variables* 
  # variables sent to R (*R variables*)
+
+= Setting Session Variables using URL =
+
+Concerto allows for defining Session Variables using URL. For instance, you can use the following code to preset user_name parameter to a given value, e.g. "Michal". 
+{{{
+Concerto_installation_path/index.php?hash=5da7d117adfd5632b8e8aa661426879f&user_name=Michal
+}}}
