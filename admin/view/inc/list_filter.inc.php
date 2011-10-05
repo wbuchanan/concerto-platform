@@ -28,5 +28,5 @@ if ($user == null)
     die(Language::string(85));
 ?>
 <div class="noWrap fullWidth ui-widget-content ui-corner-all" align="center">
-    <?= Language::string(101) ?> <input type="text" id="table<?= $class_name ?>ListPagerFilter" /><button class="btnCancel" id="table<?= $class_name ?>ListPagerFilterReset"></button>
+    <?= Language::string(101) ?> <input type="text" name="table<?= $class_name ?>ListPagerFilter" id="table<?= $class_name ?>ListPagerFilter" /><button class="btnCancel" id="table<?= $class_name ?>ListPagerFilterReset"></button>
 </div>

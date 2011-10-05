@@ -71,7 +71,7 @@ if ($oid != 0) {
     <caption class="ui-widget-header ui-corner-all"><h4><?= $caption ?></h4></caption>
     <tr>
         <td class="noWrap">*<?= Language::string(50) ?>:</td>
-        <td class="fullWidth"><input type="text" id="form<?= $class_name ?>InputName" value="<?= $obj->name ?>" class="fullWidth" /></td>
+        <td class="fullWidth"><input type="text" name="form<?= $class_name ?>InputName" id="form<?= $class_name ?>InputName" value="<?= $obj->name ?>" class="fullWidth" /></td>
     </tr>
     <tr <?= $oid == 0 ? "style='display:none;'" : "" ?>>
         <td class="noWrap"><?= Language::string(51) ?>:</td>
