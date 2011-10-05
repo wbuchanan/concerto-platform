@@ -54,11 +54,11 @@ if ($oid != 0) {
     $obj = $class_name::from_mysql_id($oid);
 
     $caption = $edit_caption . " #" . $oid;
-    $buttons = $btn_new . $btn_save . $btn_delete;
+    $buttons = $btn_save . $btn_delete;
 } else {
     $obj = new $class_name();
     $caption = $new_caption;
-    $buttons = $btn_new . $btn_save;
+    $buttons = $btn_save;
 }
 ?>
 <script>

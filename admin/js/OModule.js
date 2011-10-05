@@ -66,7 +66,7 @@ OModule.inheritance=function(obj)
     obj.uiList=function()
     {
         var thisClass = this;
-        $.post("view/"+this.className+"_list.php",{},
+        $.post("view/"+this.className+"_list.php",{oid:thisClass.currentID},
             function(data)
             {
                 $('#div'+thisClass.className+'List').html(data);

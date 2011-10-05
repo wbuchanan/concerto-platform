@@ -45,6 +45,8 @@ $num_rows = mysql_num_rows(mysql_query($sql));
     })
 </script>
 
+<div class="fullWidth" align="center"><button class="btnNew" onclick='<?=$class_name?>.uiEdit(0)' /></div>
+
 <?php if ($num_rows > 0)
     include Ini::$internal_path . 'admin/view/inc/list_filter.inc.php'; ?>
 <table class="fullWidth listTable ui-widget-content ui-corner-all" id="table<?= $class_name ?>List">
