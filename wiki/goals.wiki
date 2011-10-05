@@ -8,5 +8,5 @@ For slow connections and extensive Item Banks, Concerto will  allow to execute c
 ==Concerto Local==
 Application controlling the administration of the test on the local machine (e.g. in a testing centre). It will lock the machine, allow to open the given test only, record system parameters (e.g. screen size) and user's behaviour (sound, video, keyboard if applicable). 
 
-==Concerto TryIt==
+== Concerto Showcase ==
 Demo version of Concerto hosted on our servers, allowing users to get accustomed with the application.
