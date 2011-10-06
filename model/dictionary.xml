@@ -377,4 +377,12 @@
         <en>run</en>
         <pl>uruchom</pl>
     </string>
+    <string id="135">
+        <en>execute</en>
+        <pl>wykonaj</pl>
+    </string>
+    <string id="136">
+        <en>choose action:</en>
+        <pl>wybierz akcję:</pl>
+    </string>
 </root>

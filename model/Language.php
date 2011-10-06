@@ -88,6 +88,7 @@ class Language
                 Methods.captionNotSaved="' . Language::string(132) . '";
                 Methods.captionSaved="' . Language::string(133) . '";
                 Methods.captionBtnRun="' . Language::string(134) . '";
+                Methods.captionBtnExecute="' . Language::string(135) . '";
             </script>
             ';
     }

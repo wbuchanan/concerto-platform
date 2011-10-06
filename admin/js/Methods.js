@@ -40,6 +40,7 @@ Methods.captionBtnInfoItemTable="";
 Methods.captionBtnInfoItemDefaultButton="";
 Methods.captionBtnDebug="";
 Methods.captionBtnRun="";
+Methods.captionBtnExecute="";
 Methods.captionBtnSessionVariables="";
 Methods.captionBtnRVariables="";
 Methods.captionBtnHomepage="";
@@ -236,6 +237,13 @@ Methods.iniIconButtons=function()
         label:Methods.captionBtnRun,
         icons:{
             primary: "ui-icon-play"
+        }
+    });
+    
+    $('.btnExecute').button({
+        label:Methods.captionBtnExecute,
+        icons:{
+            primary: "ui-icon-circle-arrow-w"
         }
     });
     

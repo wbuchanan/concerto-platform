@@ -78,9 +78,9 @@ if ($user == null) exit();
             <td class="ui-widget-content ui-corner-all"><b>set.var("greeting","hello!")</b></td>
         </tr>
         <tr>
-            <td class="ui-widget-content ui-corner-all ui-state-highlight"><b>set.next.item(next_item_name)</b></td>
+            <td class="ui-widget-content ui-corner-all ui-state-highlight"><b>set.next.template(next_item_template_id)</b></td>
             <td class="ui-widget-content ui-corner-all"><?= Language::string(129) ?></td>
-            <td class="ui-widget-content ui-corner-all"><b>set.next.item("item2")</b></td>
+            <td class="ui-widget-content ui-corner-all"><b>set.next.template(2)</b></td>
         </tr>
     </table>
 </div>

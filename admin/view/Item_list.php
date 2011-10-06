@@ -19,16 +19,16 @@
   along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-if (!isset($ini)) {
+if (!isset($ini))
+{
     require_once '../../model/Ini.php';
     $ini = new Ini();
 }
 $user = User::get_logged_user();
-if ($user == null)
-    die(Language::string(85));
+if ($user == null) die(Language::string(85));
 
 $oid = 0;
-if(isset($_POST['oid'])) $oid=$_POST['oid'];
+if (isset($_POST['oid'])) $oid = $_POST['oid'];
 
 //////////
 $class_name = "Item";
@@ -42,16 +42,26 @@ $num_rows = mysql_num_rows(mysql_query($sql));
 <script>
     $(function(){
         Methods.iniIconButtons();
-<?php if ($num_rows > 0) { ?>
+<?php if ($num_rows > 0)
+{ ?>
             Methods.iniListTableExtensions("<?= $class_name ?>",true,true,[0,1,2,3]);
 <?php } ?>
-    })
+        $(".list<?= $class_name ?>ActionsSelect").selectmenu({
+            icons:[
+                {find:".optionRun", icon:"ui-icon-play"},
+                {find:".optionDebug", icon:"ui-icon-lightbulb"},
+                {find:".optionEdit", icon:"ui-icon-pencil"},
+                {find:".optionDelete", icon:"ui-icon-trash"}
+            ]
+        });
+        $(".list<?= $class_name ?>ActionsSelect").width($(".list<?= $class_name ?>ActionsSelect").width()+$(".list<?= $class_name ?>ActionsSelect").selectmenu("option","handleWidth"));
+    });
 </script>
 
-<div class="fullWidth" align="center"><button class="btnNew" onclick='<?=$class_name?>.uiEdit(0)' /></div>
-        
+<div class="fullWidth" align="center"><button class="btnNew" onclick='<?= $class_name ?>.uiEdit(0)' /></div>
+
 <?php if ($num_rows > 0)
-    include Ini::$internal_path . 'admin/view/inc/list_filter.inc.php'; ?>
+        include Ini::$internal_path . 'admin/view/inc/list_filter.inc.php'; ?>
 <table class="fullWidth listTable ui-widget-content ui-corner-all" id="table<?= $class_name ?>List">
     <caption class="ui-widget-header ui-corner-all noWrap"><?= $list_caption ?><button class="btnInfoItemTable"></button></caption>
     <thead>
@@ -65,13 +75,14 @@ $num_rows = mysql_num_rows(mysql_query($sql));
         </tr>
     </thead>
     <tbody>
-<?php
-$z = mysql_query($sql);
-while ($r = mysql_fetch_array($z)) {
-    $obj = $class_name::from_mysql_id($r[0]);
-    $owner = $obj->get_owner();
-    $share = $obj->get_sharing();
-    ?>
+        <?php
+        $z = mysql_query($sql);
+        while ($r = mysql_fetch_array($z))
+        {
+            $obj = $class_name::from_mysql_id($r[0]);
+            $owner = $obj->get_owner();
+            $share = $obj->get_sharing();
+            ?>
             <tr id="row<?= $class_name . $obj->id ?>" class="row<?= $class_name ?>">
                 <td class="noWrap ui-widget-content ui-corner-all"><?= $obj->id ?></td>
                 <td class="noWrap fullWidth ui-widget-content ui-corner-all"><?= $obj->name ?></td>
@@ -79,16 +90,39 @@ while ($r = mysql_fetch_array($z)) {
                 <td class="noWrap fullWidth ui-widget-content ui-corner-all"><?= ($owner != null ? $owner->get_full_name() : "&lt;" . Language::string(95) . "&gt;") ?></td>
                 <td class="noWrap fullWidth ui-widget-content ui-corner-all"><?= ($share != null ? $share->name : "&lt;" . Language::string(95) . "&gt;") ?></td>
                 <td class="noWrap">
-                    <button class="btnDebug" onclick="location.href='<?=Ini::$external_path?>index.php?hash=<?=$obj->hash?>&debug'"></button>
-                    <button class="btnEdit" onclick="<?= $class_name ?>.uiEdit(<?= $obj->id ?>)"></button>
-                    <button class="btnDelete" onclick="<?= $class_name ?>.uiDelete(<?= $obj->id ?>)"></button>
+                    <select class="list<?= $class_name ?>ActionsSelect" id="list<?= $class_name ?>ActionsSelect_<?= $obj->id ?>">
+                        <optgroup label="<?=Language::string(136)?>">
+                            <option class="optionRun" value="0"><?= Language::string(134) ?></option>
+                            <option class="optionDebug" value="1"><?= Language::string(119) ?></option>
+                            <option class="optionEdit" value="2"><?= Language::string(43) ?></option>
+                            <option class="optionDelete" value="3"><?= Language::string(42) ?></option>
+                        </optgroup>
+                    </select>
+                    <button class="btnExecute" onclick="
+                        var select = $('#list<?= $class_name ?>ActionsSelect_<?= $obj->id ?>');
+                        switch(select.val())
+                        {
+                            case '0':
+                            location.href='<?= Ini::$external_path ?>index.php?hash=<?= $obj->hash ?>';
+                            break;
+                            case '1':
+                            location.href='<?= Ini::$external_path ?>index.php?hash=<?= $obj->hash ?>&debug';
+                            break;
+                            case '2':
+                            <?= $class_name ?>.uiEdit(<?= $obj->id ?>);
+                            break;
+                            case '3':
+                            <?= $class_name ?>.uiDelete(<?= $obj->id ?>);
+                            break;
+                            }
+                            "></button>
                 </td>
             </tr>
-<?php } ?> 
+        <?php } ?> 
     </tbody>
 </table>
-        <?php if ($num_rows == 0) { ?>
+<?php if ($num_rows == 0)
+{ ?>
     <div class="fullWidth ui-widget-content ui-corner-all noWrap" align="center"><?= $empty_caption ?><button class="btnInfoItemTable"></button></div>
     <?php
-} else
-    include Ini::$internal_path . 'admin/view/inc/list_pager.inc.php'; ?>
+} else include Ini::$internal_path . 'admin/view/inc/list_pager.inc.php'; ?>

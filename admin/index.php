@@ -36,11 +36,13 @@ if (!isset($ini)) {
         <link rel="stylesheet" href="css/jquery.tablesorter.pager.css" />
         <link rel="stylesheet" href="../lib/CodeMirror/lib/codemirror.css" />
         <link rel="stylesheet" href="../lib/CodeMirror/theme/night.css" />
+        <link rel="stylesheet" href="../lib/selectmenu/jquery.ui.selectmenu.css" />
 
         <script type="text/javascript" src="../js/lib/jquery-1.6.2.min.js"></script>
         <script type="text/javascript" src="../js/lib/jquery-ui-1.8.16.custom.min.js"></script>
         <script type="text/javascript" src="../lib/ckeditor/ckeditor.js"></script>
         <script type="text/javascript" src="../lib/ckeditor/adapters/jquery.js"></script>
+        <script type="text/javascript" src="../lib/selectmenu/jquery.ui.selectmenu.js"></script>
 
         <script type="text/javascript" src="js/Methods.js"></script>
         <script type="text/javascript" src="js/OModule.js"></script>
