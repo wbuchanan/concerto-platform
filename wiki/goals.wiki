@@ -2,6 +2,9 @@
 
 Concerto is constantly evolving in response to the feedback of our users, currently we work on the following functionality:
 
+== Improved Performance ==
+
+Concerto is quick, but it could be quicker. One of the next updates will contain significant performance tweaks.
 
 == Concerto for Windows ==
 
