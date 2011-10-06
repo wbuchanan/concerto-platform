@@ -7,10 +7,11 @@
   * added unique fields in forms in admin panel
   * future updates will be handled by patches ( no need to download whole source again )
   * UI tweaks
-  * minor fixes
+  * bug fixes
   * improved performance
   * changed built in R function *set.next.item(item_name)* to *set.next.template(template_id)*
   * location of setup page is now /setup - whole directory should be deleted after first successful run for security reasons
+  * tests can be started directly from the admin panel by clicking *run* button
 
 ==v2.0.1==
   * new version check fix
