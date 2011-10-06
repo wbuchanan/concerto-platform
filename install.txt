@@ -4,12 +4,13 @@ For more info go to: http://www.gnu.org/licenses/gpl-3.0.html
 
 ====== Installation =======
 
-This version is not compatible with previous releases of Concerto Platform. Do not try to install this version using the same MySQL database that you used in previous Concerto Platform releases.
+This version is not compatible with pre v2.0 releases of Concerto Platform. Do not try to install this version using the same MySQL database that you used in previous Concerto Platform releases.
 
 To install application you need to:
   * extract everything from zip archive to public web folder on your server
   * edit /SETTINGS.php file and set your MySQL database connection
-  * run /setup.php and follow it's instructions ( this page will check if you have every required component installed on your server and will let you configure applications settings )
+  * run /setup and follow it's instructions ( this page will check if you have every required component installed on your server and will let you configure applications settings )
+  * it is strongly recommended to delete /setup folder with all it's content after first successful run
 
 Requirments:
   * PHP >= v5.3
