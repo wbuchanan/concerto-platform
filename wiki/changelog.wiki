@@ -5,7 +5,7 @@
   * session variables are now inserted into HTML recurrently
   * added required fields in forms in admin panel
   * added unique fields in forms in admin panel
-  * future updates will be handled by patches ( no need to download whole source again )
+  * from now on future updates ( including this one ) will be handled by patches ( no need to download whole source again )
   * UI tweaks
   * bug fixes
   * improved performance
