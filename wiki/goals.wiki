@@ -1,3 +1,4 @@
+#labels Featured
 = Our plans for the future developments of Concerto = 
 
 Concerto is constantly evolving in response to the feedback of our users, currently we work on the following functionality:
