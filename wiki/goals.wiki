@@ -2,6 +2,11 @@
 
 Concerto is constantly evolving in response to the feedback of our users, currently we work on the following functionality:
 
+
+== Concerto for Windows ==
+
+Self-explainable - enabling to switch between local R/MySQL database and centrally hosted one. 
+
 == Pre-defined Item and User banks ==
 
 For those who do not want to learn MySQL we will add flexible item banks and user/results tables editable from the level of the Administration Panel.
