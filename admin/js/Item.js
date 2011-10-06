@@ -29,6 +29,8 @@ Item.captionImportHTMLConfirm="";
 Item.RCodeMirrorsIds=new Array();
 Item.RCodeMirrors=new Array();
 
+Item.editor=null;
+
 Item.extraDeleteCallback=function()
 {
     };
@@ -36,6 +38,12 @@ Item.extraDeleteCallback=function()
 Item.extraSaveCallback=function()
 {
     };
+
+Item.extraBeforeEditCallback=function()
+{
+    Item.editor.on("blur",function(){
+        });
+};
 
 Item.extraEditCallback=function()
 {
@@ -91,6 +99,9 @@ Item.refreshPresentation=function()
             $("#tabItemPresentation").html(data);
             Item.refreshHTML(Item.currentID);
             
+            Item.editor.on("blur",function(){
+                Item.onEditorHTMLChange();
+            });
         }		
         );
 };

@@ -335,22 +335,11 @@ Methods.iniCKEditor=function(selector,externalPath)
         filebrowserImageBrowseUrl : externalPath+'lib/ckeditor/plugins/pgrfilemanager/PGRFileManager.php?langCode=en&type=image',
         filebrowserFlashBrowseUrl : externalPath+'lib/ckeditor/plugins/pgrfilemanager/PGRFileManager.php?langCode=en&type=flash'		 
     });
-        
-    editor.on("instanceReady",function(){
-        
-        });
-    editor.on("blur",function(){
-        Item.onEditorHTMLChange();
-    });
-
-    editor.on("dataReady",function(){
+    
+    editor.on("afterSetData",function(){
         Item.onEditorHTMLChange();
     });
     
-    editor.on("afterSetData",function(){
-        //Item.onEditorHTMLChange();
-        });
-        
     return editor;
 };
 

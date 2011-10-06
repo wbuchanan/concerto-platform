@@ -67,19 +67,22 @@ $code .= "for(con in dbListConnections(drv)) { dbDisconnect(con) }\r\n";
 $code .= "con <- dbConnect(drv, user = db_login, password = db_password, dbname = db_name, host = db_host, port = db_port)\r\n";
 
 //variables
-for ($i = 0; $i < count($_POST['ctr_name']); $i++)
+if (isset($_POST['ctr_name']) && isset($_POST['ctr_value']))
 {
-    $k = $_POST['ctr_name'][$i];
-    $v = $_POST['ctr_value'][$i];
-    if ($k == "") continue;
-    ItemButton::delete_rout_variable($_POST['SessionID'], $k);
+    for ($i = 0; $i < count($_POST['ctr_name']); $i++)
+    {
+        $k = $_POST['ctr_name'][$i];
+        $v = $_POST['ctr_value'][$i];
+        if ($k == "") continue;
+        ItemButton::delete_rout_variable($_POST['SessionID'], $k);
 
-    ItemButton::insert_rout_variable($_POST['SessionID'], $k, $v);
+        ItemButton::insert_rout_variable($_POST['SessionID'], $k, $v);
 
-    $code .= $k . " <- '" . mysql_real_escape_string($v) . "'\r\n";
+        $code .= $k . " <- '" . mysql_real_escape_string($v) . "'\r\n";
+    }
+    unset($_POST['ctr_name']);
+    unset($_POST['ctr_value']);
 }
-unset($_POST['ctr_name']);
-unset($_POST['ctr_value']);
 
 foreach ($_POST as $k => $v)
 {
@@ -100,14 +103,14 @@ $clicked_button = $current_item->get_Button($_POST['button_name']);
 $command = $clicked_button->function;
 
 $isCommandEmpty = (trim($command) == "");
+$output = array();
+$return = 0;
 if (!$isCommandEmpty)
 {
     $command = $code . "########## BUTTON '" . $clicked_button->name . " CODE STARTS\r\n" . $command . "\r\n########## BUTTON '" . $clicked_button->name . " CODE ENDS\r\n\r\n";
     $command.="########## SESSION CODE STARTS\r\n";
     $command .= "save.session(\"" . $session_file . "\")\r\n";
     $command.="########## SESSION CODE ENDS\r\n";
-    $output = array();
-    $return = 0;
     $tmp_file = Ini::$temp_path . $_POST['SessionID'] . ".r";
     $file = fopen($tmp_file, 'w');
     fwrite($file, $command);
@@ -132,9 +135,7 @@ while ($r = mysql_fetch_array($z))
     $variables[$r['Variable']] = $r['Value'];
 }
 
-$next_item = Item::from_mysql_id($variables["template_id"]);
 $variables['SessionID'] = $_POST['SessionID'];
-$variables['template_id'] = $next_item->id;
 
 $variables["debug_rcode"] = $command;
 $variables["debug_return"] = $return;

@@ -277,7 +277,7 @@ function Item(parameters,debug,client)
     };
     
     Item.debug=(debug==1);
-    Item.client=(client==1);
+    Item.client=(client!=null&&client==1);
     this.setCurrentItem(parameters.template_id);
 }
 Item.debug=false;

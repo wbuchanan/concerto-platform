@@ -41,6 +41,7 @@ OModule.inheritance=function(obj)
     obj.uiEdit=function(oid)
     {
         var thisClass = this;
+        if(thisClass.extraBeforeEditCallback) thisClass.extraBeforeEditCallback();
         if(this.currentID==0 && !this.isNewObjectSaved) this.uiDeleteTempRecords();
         this.isNewObjectSaved=false;
         if(oid==0) this.tempID=this.uiRegenerateTempID();

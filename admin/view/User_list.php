@@ -41,7 +41,7 @@ $num_rows = mysql_num_rows(mysql_query($sql));
         Methods.iniIconButtons();
 <?php if ($num_rows > 0) { ?>
             Methods.iniListTableExtensions("<?= $class_name ?>",true,true,[0,1,2,3,4]);
-<?php } ?>
+<?php } ?> 
     })
 </script>
 
