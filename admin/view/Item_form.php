@@ -43,6 +43,12 @@ else {
     echo "<script>" . $class_name . ".tempID='$temp_id';</script>";
 }
 
+$obj = null;
+if($oid!=0) $obj = $class_name::from_mysql_id($oid);
+else $obj = new $class_name();
+
+$btn_run = "<button class='btnRun' onclick='location.href=\"".Ini::$external_path."index.php?hash=".$obj->hash."\"'></button>";
+$btn_debug = "<button class='btnDebug' onclick='location.href=\"".Ini::$external_path."index.php?hash=".$obj->hash."&debug\"'></button>";
 $btn_new = "<button class='btnNew' onclick='" . $class_name . ".uiEdit(0)'></button>";
 $btn_delete = "<button class='btnDelete' onclick='" . $class_name . ".uiDelete($oid)'></button>";
 $btn_save = "<button class='btnSave' onclick='" . $class_name . ".uiSave()'></button>";
@@ -50,13 +56,9 @@ $btn_save = "<button class='btnSave' onclick='" . $class_name . ".uiSave()'></bu
 $caption = "";
 $buttons = "";
 if ($oid != 0) {
-    $oid = $_POST['oid'];
-    $obj = $class_name::from_mysql_id($oid);
-
     $caption = $edit_caption . " #" . $oid;
-    $buttons = $btn_save . $btn_delete;
+    $buttons = $btn_run.$btn_debug.$btn_save . $btn_delete;
 } else {
-    $obj = new $class_name();
     $caption = $new_caption;
     $buttons = $btn_save;
 }
@@ -67,29 +69,6 @@ if ($oid != 0) {
     });
 </script>
 
-<table class="fullWidth ui-widget-content ui-corner-all formTable ui-state-focus">
-    <caption class="ui-widget-header ui-corner-all"><h4><?= $caption ?></h4></caption>
-    <tr>
-        <td class="noWrap">*<?= Language::string(50) ?>:</td>
-        <td class="fullWidth"><input type="text" name="form<?= $class_name ?>InputName" id="form<?= $class_name ?>InputName" value="<?= $obj->name ?>" class="fullWidth" /></td>
-    </tr>
-    <tr <?= $oid == 0 ? "style='display:none;'" : "" ?>>
-        <td class="noWrap"><?= Language::string(51) ?>:</td>
-        <td class="fullWidth"><input type="text" id="form<?= $class_name ?>InputHash" value="<?= $obj->hash ?>" class="fullWidth" readonly /></td>
-    </tr>
-    <tr>
-        <td class="noWrap"><?= Language::string(105) ?>:</td>
-        <td class="fullWidth">
-            <select id="form<?= $class_name ?>SelectSharing" class="fullWidth">
-<?php foreach (DS_Sharing::get_all() as $share) { ?>
-                    <option value="<?= $share->id ?>" <?= ($share->id == $obj->Sharing_id ? "selected" : "") ?>><?= $share->name ?></option>
-                <?php } ?>
-            </select>
-        </td>
-    </tr>
-    <tr>
-        <td colspan="2" align="center">
-<?= $buttons ?>
-        </td>
-    </tr>
-</table>
+<div class="fullWidth ui-widget-header ui-corner-all" align="center">
+    <h4><?= $caption ?> <?= $buttons ?></h4>
+</div>

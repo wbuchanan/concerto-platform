@@ -58,7 +58,7 @@ $num_rows = mysql_num_rows(mysql_query($sql));
         <tr>
             <th class="ui-widget-header ui-corner-all"><?= Language::string(49); ?></th>                                                              <!--id-->
             <th class="ui-widget-header ui-corner-all noWrap"><?= Language::string(50); ?><button class="btnInfoItemName"></button></th>           <!--name-->
-            <th class="ui-widget-header ui-corner-all noWrap"><?= Language::string(51); ?><button class="btnInfoItemHash"></button></th>           <!--hash-->
+            <th class="ui-widget-header ui-corner-all noWrap" style="display:none;"><?= Language::string(51); ?><button class="btnInfoItemHash"></button></th>           <!--hash-->
             <th class="ui-widget-header ui-corner-all"><?= Language::string(108); ?></th>                                                             <!--owner-->
             <th class="ui-widget-header ui-corner-all"><?= Language::string(105); ?></th>                                                             <!--sharing-->
             <th class="noWrap ui-widget-header ui-corner-all"><?= Language::string(100); ?></th>
@@ -75,7 +75,7 @@ while ($r = mysql_fetch_array($z)) {
             <tr id="row<?= $class_name . $obj->id ?>" class="row<?= $class_name ?>">
                 <td class="noWrap ui-widget-content ui-corner-all"><?= $obj->id ?></td>
                 <td class="noWrap fullWidth ui-widget-content ui-corner-all"><?= $obj->name ?></td>
-                <td class="noWrap fullWidth ui-widget-content ui-corner-all"><?= $obj->hash ?></td>
+                <td class="noWrap fullWidth ui-widget-content ui-corner-all" style="display:none;"><?= $obj->hash ?></td>
                 <td class="noWrap fullWidth ui-widget-content ui-corner-all"><?= ($owner != null ? $owner->get_full_name() : "&lt;" . Language::string(95) . "&gt;") ?></td>
                 <td class="noWrap fullWidth ui-widget-content ui-corner-all"><?= ($share != null ? $share->name : "&lt;" . Language::string(95) . "&gt;") ?></td>
                 <td class="noWrap">

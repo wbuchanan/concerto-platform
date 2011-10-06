@@ -373,4 +373,8 @@
         <en>Saved.</en>
         <pl>Zapisano.</pl>
     </string>
+    <string id="134">
+        <en>run</en>
+        <pl>uruchom</pl>
+    </string>
 </root>

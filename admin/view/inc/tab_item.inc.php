@@ -53,11 +53,10 @@ if (User::get_logged_user() == null)
 <table style="width: 100%;">
     <tr>
         <td class="tableLayout">
-            <div id="divItemForm" class="fullWidth"><?php include Ini::$internal_path . "admin/view/Item_form.php"; ?></div><br/><br/>
             <div id="divItemList" class="fullWidth"><?php include Ini::$internal_path . "admin/view/Item_list.php"; ?></div>
         </td>
         <td class="tableLayout" style="width:100%;">
-
+            <div id="divItemForm" class="fullWidth"><?php include Ini::$internal_path . "admin/view/Item_form.php"; ?></div>
             <div id="divItemTabs">
                 <ul>
                     <li><a href="#tabItemPresentation"><?= Language::string(117) ?></a></li>

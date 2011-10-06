@@ -26,7 +26,7 @@ class Ini {
     const SETTING_RSCRIPT_PATH="rscript_path";
     const SETTING_IS_RSTUDIO_ON="is_rstudio_on";
 
-    private static $error_reporting = false;
+    private static $error_reporting = true;
     public static $version = "";
     public static $internal_path = "";
     public static $external_path = "";

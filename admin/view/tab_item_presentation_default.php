@@ -45,16 +45,7 @@ $buttons = (isset($_POST['buttons']) ? $_POST['buttons'] : array());
 $selection = $default_btn != null ? $default_btn->name : (isset($_POST['selection']) ? $_POST['selection'] : "");
 ?>
 
-<script>
-    $(function(){
-        Methods.iniIconButtons(); 
-    });
-</script>
-
-
-<button class="btnInfoItemDefaultButton"></button>
-<label><?= Language::string(59) ?></label>
-<select id="formItemSelectDefault">
+<select id="formItemSelectDefault" class="fullWidth">
     <option value="0">&lt;<?= Language::string(95) ?>&gt;</option>
     <?php
     foreach ($buttons as $button) {

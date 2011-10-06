@@ -39,6 +39,7 @@ Methods.captionBtnInfoAcceptedVariables="";
 Methods.captionBtnInfoItemTable="";
 Methods.captionBtnInfoItemDefaultButton="";
 Methods.captionBtnDebug="";
+Methods.captionBtnRun="";
 Methods.captionBtnSessionVariables="";
 Methods.captionBtnRVariables="";
 Methods.captionBtnHomepage="";
@@ -231,6 +232,13 @@ Methods.iniIconButtons=function()
         }
     });
     
+    $('.btnRun').button({
+        label:Methods.captionBtnRun,
+        icons:{
+            primary: "ui-icon-play"
+        }
+    });
+    
     $('.btnSessionVariables').button({
         label:Methods.captionBtnSessionVariables,
         icons:{
@@ -306,7 +314,7 @@ Methods.iniListTableExtensions=function(className,pager,filter,cols)
 Methods.iniCKEditor=function(selector,externalPath)
 {
     var minHeight = 300;
-    var clientHeight = $(window).height()-400;
+    var clientHeight = $(window).height()-490;
     var height = minHeight;
     if(clientHeight>minHeight) height = clientHeight;
     

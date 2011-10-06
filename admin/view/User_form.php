@@ -71,31 +71,31 @@ if ($oid != 0) {
     <caption class="ui-widget-header ui-corner-all"><h4><?= $caption ?></h4></caption>
     <tr>
         <td class="noWrap">*<?= Language::string(76) ?>:</td>
-        <td class="fullWidth"><input type="text" id="form<?= $class_name ?>InputLogin" value="<?= $obj->login ?>" class="fullWidth" /></td>
+        <td class="fullWidth"><input type="text" name="form<?= $class_name ?>InputLogin" id="form<?= $class_name ?>InputLogin" value="<?= $obj->login ?>" class="fullWidth" /></td>
     </tr>
     <tr>
         <td class="noWrap"><?=$oid==0?"*":""?><input type="checkbox" id="form<?= $class_name ?>CheckboxPassword" title="<?= Language::string(88) ?>" <?=$oid==0?"checked style='display:none;'":""?> /><?= Language::string(77) ?>:</td>
-        <td class="fullWidth"><input type="password" id="form<?= $class_name ?>InputPassword" class="fullWidth" /></td>
+        <td class="fullWidth"><input type="password" name="form<?= $class_name ?>InputPassword" id="form<?= $class_name ?>InputPassword" class="fullWidth" /></td>
     </tr>
     <tr>
         <td class="noWrap"><?=$oid==0?"*":""?><?= Language::string(89) ?>:</td>
-        <td class="fullWidth"><input type="password" id="form<?= $class_name ?>InputPasswordConf" class="fullWidth" /></td>
+        <td class="fullWidth"><input type="password" name="form<?= $class_name ?>InputPasswordConf" id="form<?= $class_name ?>InputPasswordConf" class="fullWidth" /></td>
     </tr>
     <tr>
         <td class="noWrap"><?= Language::string(90) ?>:</td>
-        <td class="fullWidth"><input type="text" id="form<?= $class_name ?>InputFirstname" value="<?= $obj->firstname ?>" class="fullWidth" /></td>
+        <td class="fullWidth"><input type="text" name="form<?= $class_name ?>InputFirstname" id="form<?= $class_name ?>InputFirstname" value="<?= $obj->firstname ?>" class="fullWidth" /></td>
     </tr>
     <tr>
         <td class="noWrap"><?= Language::string(91) ?>:</td>
-        <td class="fullWidth"><input type="text" id="form<?= $class_name ?>InputLastname" value="<?= $obj->lastname ?>" class="fullWidth" /></td>
+        <td class="fullWidth"><input type="text" name="form<?= $class_name ?>InputLastname" id="form<?= $class_name ?>InputLastname" value="<?= $obj->lastname ?>" class="fullWidth" /></td>
     </tr>
     <tr>
         <td class="noWrap"><?= Language::string(92) ?>:</td>
-        <td class="fullWidth"><input type="text" id="form<?= $class_name ?>InputEmail" value="<?= $obj->email ?>" class="fullWidth" /></td>
+        <td class="fullWidth"><input type="text" name="form<?= $class_name ?>InputEmail" id="form<?= $class_name ?>InputEmail" value="<?= $obj->email ?>" class="fullWidth" /></td>
     </tr>
     <tr>
         <td class="noWrap"><?= Language::string(93) ?>:</td>
-        <td class="fullWidth"><input type="text" id="form<?= $class_name ?>InputPhone" value="<?= $obj->phone ?>" class="fullWidth" /></td>
+        <td class="fullWidth"><input type="text" name="form<?= $class_name ?>InputPhone" id="form<?= $class_name ?>InputPhone" value="<?= $obj->phone ?>" class="fullWidth" /></td>
     </tr>
     <tr>
         <td class="noWrap"><?= Language::string(94) ?>:</td>
