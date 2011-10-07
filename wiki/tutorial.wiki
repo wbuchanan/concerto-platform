@@ -16,7 +16,7 @@ This tutorial is based on a very simple item bank declared directly in the R scr
   
  * To create a new item template click the *'new'* button on the top left side of the *'item'* tab.
 
-http://ns39618.ovh.net/~michal/concerto/create_new.png
+http://ns39618.ovh.net/~michal/concerto/create_new.jpg
 
   * Enter the name of the item, in this case: *'demo_start'* 
 
