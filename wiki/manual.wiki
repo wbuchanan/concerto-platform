@@ -46,7 +46,7 @@ The default language is English. To use another supported language, e.g. Polish,
 
 There are several sections in the Administration Panel. You can get help related to particular objects by hovering over the question mark icon:
 
-http://ns39618.ovh.net/~michal/concerto/question.PNG
+http://ns39618.ovh.net/~michal/concerto/question.png
 
 == Header ==
 
@@ -64,11 +64,11 @@ On the right side you'll the find the information about the currently logged-in 
 
 Items Tab is the heart of whole application. Here you can create/edit/debug item templates and R syntax.
 
-http://ns39618.ovh.net/~michal/concerto/create_item.PNG
+http://ns39618.ovh.net/~michal/concerto/create_item.png
 
 === List of item templates ===
 
-http://ns39618.ovh.net/~michal/concerto/item_list.PNG
+http://ns39618.ovh.net/~michal/concerto/item_list.png
 
 The list of available item templates consists all of the items that the currently logged user has the right to see. It has 5 columns: 
     # *ID* - the item template's unique system id. This ID is used in the set.next.template(template_id) function used to switch item templates.
@@ -81,10 +81,10 @@ The list of available item templates consists all of the items that the currentl
 
 Clicking on the choose action drop-down button:
 
-http://ns39618.ovh.net/~michal/concerto/choose_action.PNG
+http://ns39618.ovh.net/~michal/concerto/choose_action.png
 
 Shows a list of possible actions:
-http://ns39618.ovh.net/~michal/concerto/actions.PNG
+http://ns39618.ovh.net/~michal/concerto/actions.png
 
 Available actions include:
  * *Run* -  start the test using given item_template
