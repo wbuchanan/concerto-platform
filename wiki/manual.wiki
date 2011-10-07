@@ -143,13 +143,21 @@ This function sets session variable which can be used in HTML presentation by in
 set.var("greeting","hello!")
 }}}
 and use this variable on the item templates by inserting string in the HTML editor:
+
 http://ns39618.ovh.net/~michal/concerto/greeting.PNG
+
+Obviously, this function should be used to fill item templates with content, e.g. text, pictures, sounds, etc. For instance, click the
+http://ns39618.ovh.net/~michal/concerto/img.PNG icon in the HTML layer editor, and insert string {{image_source}} in the "URL" field:
+http://ns39618.ovh.net/~michal/concerto/image_source.PNG
+Later you can use set.var() function to set this image from the R script level, e.g.: 
+http://ns39618.ovh.net/~michal/concerto/r_image.PNG
 
 == set.next.template(next_item_template_id) ==
 
 This function sets which item should be load next when the R calculations are finished. You should use the id assigned to a given item that you can find on the item list on the right. 
 
 For instance, if you want to set next template to demo1 (of id: 7):
+
 http://ns39618.ovh.net/~michal/concerto/id.jpg
 
 {{{ 
