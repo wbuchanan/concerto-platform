@@ -3,6 +3,10 @@
 
 =USER'S MANUAL=
 
+* We suggest that you start with a [http://code.google.com/p/concerto-platform/wiki/tutorial Step-by-Step tutorial]. As it explains Concerto concepts in a more user-friendly manner. Also, please let us know if something sounds unclear to you!*
+
+
+
 = Concept =
 The idea behind Concerto is to deliver a simple yet powerful tool for the development of an adaptive on-line test. 
 The platform relies on three main elements:
@@ -16,8 +20,6 @@ We rely as much as possible on popular open source packages in order to maximize
 =Test and Item Template Creator / Administrator Panel =
 
 To create or edit tests and item templates go to the administration panel: *installation_path/admin*. 
-
-* We suggest that you start with a [http://code.google.com/p/concerto-platform/wiki/tutorial Step-by-Step tutorial].
 
 You can also create user accounts here and set the access rights. The Administration Panel has multi-language support. You can find the list of currently supported languages at the project's page. Let us know if you want to contribute and provide us with a translation to another language! 
 
