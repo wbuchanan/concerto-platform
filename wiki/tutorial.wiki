@@ -120,7 +120,7 @@ total_score <- 0
 
 ## set session variables that will be used to fill the 
 ## Item Templates with content. 
-## set.var() and set.next.item() are very simple functions 
+## set.var() and set.next.template() are very simple functions 
 ## defined by Concerto in each session. Press the "Concerto built
 ## in R functions documentation" button in the R interaction 
 ## section to read their description.
@@ -131,12 +131,12 @@ set.next.template(TEST_ITEM_TEMPLATE_ID)
 }}}
 
 
-  * *Modify the last line of the code. In the function:
+*Modify the last line of the code. In the function*:
 {{{
 set.next.template(TEST_ITEM_TEMPLATE_ID)
 }}}
 
-Replace the "TEST_ITEM_TEMPLATE_ID" with the ID of this item that you can find on the list of the items:
+*Replace the "TEST_ITEM_TEMPLATE_ID" with the ID of this item that you can find on the list of the items:*
 
 http://ns39618.ovh.net/~michal/concerto/id_demo_item.PNG
 
@@ -146,7 +146,7 @@ set.next.template(10)
 }}}
 
 
-  * Click the *'save'* button to save the changes
+ * Click the *'save'* button to save the changes
 
 == Test Item Template ==
   * Click edit next to the *'demo_item'* item template and go to *'R Interaction'*. We have two buttons here: 
