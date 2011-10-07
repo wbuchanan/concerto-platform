@@ -143,9 +143,7 @@ This function sets session variable which can be used in HTML presentation by in
 set.var("greeting","hello!")
 }}}
 and use this variable on the item templates by inserting string in the HTML editor:
-{{{
-{{greeting}}
-}}}
+http://ns39618.ovh.net/~michal/concerto/greeting.PNG
 
 == set.next.template(next_item_template_id) ==
 
@@ -157,7 +155,6 @@ http://ns39618.ovh.net/~michal/concerto/id.jpg
 {{{ 
 set.next.template(7)
 }}}
-
 
 = Running tests =
 
