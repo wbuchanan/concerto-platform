@@ -44,9 +44,7 @@ The default language is English. To use another supported language, e.g. Polish,
 
 == Elements of the administration Panel ==
 
-There are several sections in the Administration Panel. You can get help related to particular objects by hovering over the question mark icon:
-
-http://ns39618.ovh.net/~michal/concerto/question.png
+There are several sections in the Administration Panel. You can get help related to particular objects by hovering over the question mark icon: http://ns39618.ovh.net/~michal/concerto/question.png
 
 == Header ==
 
@@ -79,11 +77,9 @@ The list of available item templates consists all of the items that the currentl
 
 === Actions ===
 
-Clicking on the choose action drop-down button:
-
+Clicking on the choose action drop-down button
 http://ns39618.ovh.net/~michal/concerto/choose_action.png
-
-Shows a list of possible actions:
+shows a list of possible actions:
 
 http://ns39618.ovh.net/~michal/concerto/actions.png
 
