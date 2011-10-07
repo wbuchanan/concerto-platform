@@ -1,5 +1,5 @@
 #labels Featured
-= This document is relevant to Concerto 2.0.2 and higher. If you have older version installed, upgrade it (recommended) or see the [manual_201 old manual] =
+== This document is relevant to Concerto 2.0.2 and higher. If you have older version installed, upgrade it (recommended) or see the [manual_201 old manual]. ==
 
 =USER'S MANUAL=
 
