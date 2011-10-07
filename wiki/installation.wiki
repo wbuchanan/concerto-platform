@@ -1,3 +1,15 @@
+= System requirements (v2.0 ) =
+  * *PHP* >= v5.3
+  * PHP *'short open tags'* option must be set to on
+  * PHP *'safe mode'* must be turned off
+  * *R*   >= v2.12 [http://www.r-project.org/]
+  * *session* R package installed from R console as a root
+  * *RMySQL* R package installed from R console as a root
+    [http://biostat.mc.vanderbilt.edu/wiki/Main/RMySQL]
+  * *catR* R package installed from R console as a root
+  * *MySQL* >= v5.0
+  * optionaly: *RStudio *
+    [http://rstudio.org/]
 
 = Installation ( v2.x ) =
 
@@ -18,3 +30,9 @@ The Setup Page is the first page that should be run when extracting Concerto fil
 The setup page will also allow you to create a login for the first user's login and password, your application installation external URL, RScript path and RStudio integration. This page also checks if there is a newer version of *Concerto Platform* available. If any of the checks fail then the setup page will give recommendations on how to fix it. You should restart the Setup Page after solving the problem. 
 
 http://dev.myiqtest.org/concerto2/wiki_images/setup_page.PNG
+
+= First use =
+
+First, read the [manual Manual] and [tutorial Tutorial - Simple test Step-By-Step], then:
+ * To enter the test creator navigate to *installation_path/admin*
+ * To start the test navigate to *installation_path/index.php?hash=enter_item_hash_here*
