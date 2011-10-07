@@ -161,7 +161,7 @@ This function sets which item should be load next when the R calculations are fi
 
 For instance, if you want to set next template to demo1 (of id: 7):
 
-http://ns39618.ovh.net/~michal/concerto/id.jpg
+http://ns39618.ovh.net/~michal/concerto/id.png
 
 {{{ 
 set.next.template(7)
