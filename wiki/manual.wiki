@@ -18,7 +18,7 @@ We rely as much as possible on popular open source packages in order to maximize
 
   # extract the contents of the [http://code.google.com/p/concerto-platform/downloads/list installation zip archive] to the public web folder of your choice on your server.
   # edit *installation_path/SETTINGS.php* file to set your MySQL database connection parameters.
-  # run the *installation_path/setup.php* page and follow the instructions.
+  # run the *installation_path/setup/* page and follow the instructions.
 
 == Setup Page ==
 
