@@ -280,13 +280,13 @@ class Ini {
     {
         //patch
         //v2.0.2
-        $filename = Ini::$external_path."setup.php";
+        $filename = Ini::$internal_path."setup.php";
         if(file_exists($filename)) unlink($filename);
         
-        $filename = Ini::$external_path."admin/query/save_setting.php";
+        $filename = Ini::$internal_path."admin/query/save_setting.php";
         if(file_exists($filename)) unlink($filename);
         
-        $filename = Ini::$external_path."admin/query/save_superadmin.php";
+        $filename = Ini::$internal_path."admin/query/save_superadmin.php";
         if(file_exists($filename)) unlink($filename);
     }
 

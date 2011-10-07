@@ -6,7 +6,7 @@ For more info go to: http://www.gnu.org/licenses/gpl-3.0.html
 
 This version is not compatible with pre v2.0 releases of Concerto Platform. Do not try to install this version using the same MySQL database that you used in previous Concerto Platform releases.
 
-To install application you need to:
+To install ( or patch ) application you need to :
   * extract everything from zip archive to public web folder on your server
   * edit /SETTINGS.php file and set your MySQL database connection
   * run /setup and follow it's instructions ( this page will check if you have every required component installed on your server and will let you configure applications settings )
