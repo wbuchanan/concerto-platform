@@ -18,7 +18,8 @@
   You should have received a copy of the GNU General Public License
   along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
-if (!isset($ini)) {
+if (!isset($ini))
+{
     require_once '../model/Ini.php';
     $ini = new Ini();
 }
@@ -69,11 +70,16 @@ if (!isset($ini)) {
         </script>
         <?php
         $user = User::get_logged_user();
-        if ($user == null) {
+        if ($user == null)
+        {
             include'view/inc/login.inc.php';
-        } else {
+        }
+        else
+        {
             include'view/inc/layout.inc.php';
         }
         ?>
+        <div style="display:none;" id="divGeneralDialog">
+        </div>
     </body>
 </html>

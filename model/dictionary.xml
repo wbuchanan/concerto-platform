@@ -385,4 +385,16 @@
         <en>choose action:</en>
         <pl>wybierz akcję:</pl>
     </string>
+    <string id="136">
+        <en>Are you sure you want to delete file</en>
+        <pl>Jesteś pewien, że chcesz usunąć plik</pl>
+    </string>
+    <string id="137">
+        <en>Concerto Platform message</en>
+        <pl>Komunikat z Concerto Platform</pl>
+    </string>
+    <string id="138">
+        <en>Concerto Platform confirmation</en>
+        <pl>Potwierdzenie z Concerto Platform</pl>
+    </string>
 </root>

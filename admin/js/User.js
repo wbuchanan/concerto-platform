@@ -104,7 +104,7 @@ User.uiLogin=function()
         function(data)
         {
             if(data.success=="1") location.reload(true);
-            else alert(User.captionIncorrectLogin);
+            else Methods.alert(User.captionIncorrectLogin,"alert");
         },
         "json");		
 };

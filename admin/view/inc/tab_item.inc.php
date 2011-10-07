@@ -25,7 +25,7 @@ if (User::get_logged_user() == null)
 ?>
 
 <script type="text/javascript">
-    $(function(){
+    $(function(){       
         $("#divItemTabs").tabs({
             show:function(ui,event)
             {

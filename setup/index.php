@@ -297,18 +297,18 @@ class Setup
                         var login = $("#sa_login");
                         var pass = $("#sa_pass");
                         var conf = $("#sa_conf");
-                                                                                                                    
+                                                                                                                                    
                         if(login.val()=="" || pass.val()=="" || conf.val()=="")
                         {
-                            alert("Every field must be filled.");
+                            Methods.alert("Every field must be filled.","alert");
                             return;
                         }
                         if(pass.val()!=conf.val())
                         {
-                            alert("Password and password confirmation must match.");
+                            Methods.alert("Password and password confirmation must match.","alert");
                             return;
                         }
-                                                                                                                    
+                                                                                                                                    
                         $.post("save_superadmin.php",
                         {
                             login:login.val(),
@@ -318,7 +318,7 @@ class Setup
                             location.reload();
                         })  
                     };
-                                                                                                                                                                                                                                                        
+                                                                                                                                                                                                                                                                        
                     $(function(){
                         Methods.iniIconButtons();
                     })
@@ -360,7 +360,7 @@ class Setup
                             location.reload();
                         })  
                     };
-                                                                                                                                                                                                                                                        
+                                                                                                                                                                                                                                                                        
                     $(function(){
                         Methods.iniIconButtons();
                     })
@@ -401,7 +401,7 @@ class Setup
                             location.reload();
                         })  
                     };
-                                                                                                                                                                                                                                                        
+                                                                                                                                                                                                                                                                        
                     $(function(){
                         Methods.iniIconButtons();
                     })
@@ -441,7 +441,7 @@ class Setup
                             location.reload();
                         })  
                     };
-                                                                                                                                                                                                                                                        
+                                                                                                                                                                                                                                                                        
                     $(function(){
                         Methods.iniIconButtons();
                     })
@@ -549,5 +549,7 @@ else
     <h1 class="ui-state-highlight" align="center" style="color:blue;">IT IS STRONGLY RECOMMENDED TO DELETE THIS <b>/setup</b> DIRECTORY NOW ALONG WITH ALL IT'S CONTENTS FOR SECURITY REASONS!</h1>
     <h2 class="ui-state-highlight" align="center"><a href="<?= Ini::$external_path . "admin/index.php" ?>">click here to launch Concerto Platform panel</a></h2>
 <?php } ?>
+<div style="display:none;" id="divGeneralDialog">
+</div>
 </body>
 </html>

@@ -45,7 +45,7 @@ if ($user == null)
             {
                 switch(file.code)
                 {
-                    case "-1": alert("Max files limit reached. Delete current files to upload new ones.");
+                    case "-1": Methods.alert("Max files limit reached. Delete current files to upload new ones.","alert");
                         break;
                 }
 <?= $class_name ?>.uiFilesList();

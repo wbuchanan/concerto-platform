@@ -23,13 +23,15 @@ OModule.inheritance(Item);
 
 Item.className="Item";
 
-Item.captionDelete="Are you sure you want to delete group";
+Item.captionDelete="";
 Item.captionImportHTMLConfirm="";
 
 Item.RCodeMirrorsIds=new Array();
 Item.RCodeMirrors=new Array();
 
-Item.editor=null;
+Item.editorHTMLChangedEvent=function(){
+    Item.onEditorHTMLChange();
+}
 
 Item.extraDeleteCallback=function()
 {
@@ -41,8 +43,7 @@ Item.extraSaveCallback=function()
 
 Item.extraBeforeEditCallback=function()
 {
-    Item.editor.on("blur",function(){
-        });
+    if(CKEDITOR.instances["htmlEditor"]!=null) CKEDITOR.instances["htmlEditor"].removeListener("blur",Item.editorHTMLChangedEvent);
 };
 
 Item.extraEditCallback=function()
@@ -79,13 +80,17 @@ Item.refreshHTML=function(oid)
         },
         function(data) 
         { 
-            CKEDITOR.instances.htmlEditor.setData(data);
+            //$("#htmlEditor").val(data);
+            //Methods.iniCKEditor("#htmlEditor")
+            CKEDITOR.instances["htmlEditor"].setData(data);
         });
 };
 
 Item.importHTML=function(oid)
 {
-    if(confirm(Item.captionImportHTMLConfirm)) Item.refreshHTML(oid);
+    Methods.confirm(Item.captionImportHTMLConfirm,null,function(){
+        Item.refreshHTML(oid);
+    });
 };
 
 Item.refreshPresentation=function()
@@ -97,11 +102,9 @@ Item.refreshPresentation=function()
         function(data) 
         { 
             $("#tabItemPresentation").html(data);
-            Item.refreshHTML(Item.currentID);
+            Item.onEditorHTMLChange();
             
-            Item.editor.on("blur",function(){
-                Item.onEditorHTMLChange();
-            });
+            CKEDITOR.instances["htmlEditor"].on("blur",Item.editorHTMLChangedEvent);
         }		
         );
 };
@@ -383,6 +386,8 @@ Item.getSaveObject=function()
 Item.showBuiltInRFunctionsDocDialog=function()
 {
     $("#divBuiltInRFunctionsDocDialog").dialog({
+        show:"fade",
+        hide:"fade",
         width:600
     });
 };
@@ -390,6 +395,8 @@ Item.showBuiltInRFunctionsDocDialog=function()
 Item.showItemsSessionVariablesDialog=function()
 {
     $("#divItemsSessionVariablesDialog").dialog({
+        show:"fade",
+        hide:"fade",
         width:600
     });
 };

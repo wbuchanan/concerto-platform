@@ -50,6 +50,9 @@ Methods.captionBtnItemsSessionVariables="";
 Methods.captionRequiredFields="";
 Methods.captionNotSaved="";
 Methods.captionSaved="";
+Methods.captionDeleteFileConfirmation="";
+Methods.captionDefaultAlertTitle="";
+Methods.captionDefaultConfirmationTitle="";
 
 Methods.currentVersion="";
 Methods.latestVersion="";
@@ -320,27 +323,27 @@ Methods.iniListTableExtensions=function(className,pager,filter,cols)
 };
 
 Methods.iniCKEditor=function(selector,externalPath)
-{
+{  
     var minHeight = 300;
     var clientHeight = $(window).height()-490;
     var height = minHeight;
     if(clientHeight>minHeight) height = clientHeight;
     
     var name = $(selector).attr("name");
-    var instance = CKEDITOR.instances[name];
-    if(instance) CKEDITOR.remove(instance);
-    var editor = CKEDITOR.replace(name,{
+    if(CKEDITOR.instances[name]!=null) 
+    {
+        CKEDITOR.remove(CKEDITOR.instances["htmlEditor"]);
+    }
+    CKEDITOR.replace(name,{
         height: height,
         filebrowserBrowseUrl : externalPath+'lib/ckeditor/plugins/pgrfilemanager/PGRFileManager.php?langCode=en&type=Link',
         filebrowserImageBrowseUrl : externalPath+'lib/ckeditor/plugins/pgrfilemanager/PGRFileManager.php?langCode=en&type=image',
         filebrowserFlashBrowseUrl : externalPath+'lib/ckeditor/plugins/pgrfilemanager/PGRFileManager.php?langCode=en&type=flash'		 
     });
+        
+    CKEDITOR.instances[name].on("dataReady",Item.editorHTMLChangedEvent);
     
-    editor.on("afterSetData",function(){
-        Item.onEditorHTMLChange();
-    });
-    
-    return editor;
+    CKEDITOR.instances[name].on("blur",Item.editorHTMLChangedEvent);
 };
 
 Methods.getCKEditorData=function(selector)
@@ -410,3 +413,45 @@ Methods.checkLatestVersion=function(currentVersion,callback,proxy)
         }
     });  
 };
+
+Methods.confirm=function(message,title,callback)
+{
+    if(title==null) title=Methods.captionDefaultConfirmationTitle;
+    $("#divGeneralDialog").html('<span class="ui-icon ui-icon-help" style="float:left; margin:0 7px 0px 0;"></span>'+message);
+    $("#divGeneralDialog").dialog({
+        title:title,
+        minHeight:50,
+        show:"fade",
+        hide:"fade",
+        resizable:false,
+        buttons:
+        {
+            no:function(){
+                $(this).dialog("close");
+            },
+            yes:function(){
+                callback.call(this);
+                $(this).dialog("close");
+            }
+        }
+    });
+};
+
+Methods.alert=function(message,icon,title)
+{
+    if(title==null) title=Methods.captionDefaultAlertTitle;
+    $("#divGeneralDialog").html((icon!=null?'<span class="ui-icon ui-icon-'+icon+'" style="float:left; margin:0 7px 0px 0;"></span>':'')+message);
+    $("#divGeneralDialog").dialog({
+        title:title,
+        minHeight:50,
+        show:"fade",
+        hide:"fade",
+        resizable:false,
+        buttons:
+        {
+            ok:function(){
+                $(this).dialog("close");
+            }
+        }
+    });
+}

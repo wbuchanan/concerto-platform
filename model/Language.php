@@ -89,6 +89,9 @@ class Language
                 Methods.captionSaved="' . Language::string(133) . '";
                 Methods.captionBtnRun="' . Language::string(134) . '";
                 Methods.captionBtnExecute="' . Language::string(135) . '";
+                Methods.captionDeleteFileConfirmation="'.Language::string(136).'";
+                Methods.captionDefaultAlertTitle="'.Language::string(137).'";
+                Methods.captionDefaultConfirmationTitle="'.Language::string(138).'";
             </script>
             ';
     }

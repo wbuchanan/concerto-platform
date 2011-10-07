@@ -67,28 +67,31 @@ OModule.inheritance=function(obj)
     obj.uiList=function()
     {
         var thisClass = this;
-        $.post("view/"+this.className+"_list.php",{oid:thisClass.currentID},
-            function(data)
-            {
-                $('#div'+thisClass.className+'List').html(data);
-                thisClass.highlightCurrentElement();
-            });
+        $.post("view/"+this.className+"_list.php",{
+            oid:thisClass.currentID
+        },
+        function(data)
+        {
+            $('#div'+thisClass.className+'List').html(data);
+            thisClass.highlightCurrentElement();
+        });
     };
 	
     obj.uiDelete=function(oid)
     {
         var thisClass = this;
-        if(!confirm(this.captionDelete+" #"+oid+"?")) return;
-        if(oid==this.currentID) this.uiEdit(0);
-        $.post("query/delete_object.php",
-        {
-            class_name:this.className,
-            oid:oid
-        },
-        function(data)
-        {
-            thisClass.uiList();
-            if(thisClass.extraDeleteCallback) thisClass.extraDeleteCallback();
+        Methods.confirm(this.captionDelete+" #"+oid+"?",null,function(){
+            if(oid==thisClass.currentID) thisClass.uiEdit(0);
+            $.post("query/delete_object.php",
+            {
+                class_name:thisClass.className,
+                oid:oid
+            },
+            function(data)
+            {
+                thisClass.uiList();
+                if(thisClass.extraDeleteCallback) thisClass.extraDeleteCallback();
+            });
         });
     };
 	
@@ -101,7 +104,7 @@ OModule.inheritance=function(obj)
             var notValidated = this.uiFormNotValidated();
             if(notValidated) 
             {
-                alert(notValidated);
+                Methods.alert(notValidated,"alert");
                 return;
             }
         }
@@ -119,9 +122,9 @@ OModule.inheritance=function(obj)
                         thisClass.uiReload(data.oid);
                     }
                     if(thisClass.extraSaveCallback) thisClass.extraSaveCallback();
-                    alert(Methods.captionSaved);
+                    Methods.alert(Methods.captionSaved,"info");
                 }
-                else alert(Methods.captionNotSaved);
+                else Methods.alert(Methods.captionNotSaved,"alert");
             },"json");
     };
 	
@@ -139,15 +142,16 @@ OModule.inheritance=function(obj)
     obj.uiDeleteFile=function(oid)
     {
         var thisClass=this;
-        if(!confirm("Are you sure you want to delete file #"+oid+"?")) return;
-        $.post("query/delete_object.php",
-        {
-            class_name:"File",
-            oid:oid
-        },
-        function(data)
-        {
-            thisClass.uiFilesList();
+        Methods.confirm(Methods.captionDeleteFileConfirmation+" #"+oid+"?",null,function(){
+            $.post("query/delete_object.php",
+            {
+                class_name:"File",
+                oid:oid
+            },
+            function(data)
+            {
+                thisClass.uiFilesList();
+            });
         });
     };
 	

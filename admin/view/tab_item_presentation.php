@@ -18,12 +18,6 @@
     along with this program.  If not, see <http://www.gnu.org/licenses/>.
 -->
 
-<script>
-    $(function(){
-        Methods.iniIconButtons(); 
-    });
-</script>
-
 <?php
 if (!isset($ini))
 {
@@ -33,7 +27,7 @@ if (!isset($ini))
 $user = User::get_logged_user();
 if ($user == null) die(Language::string(85));
 
-$oid = isset($_POST['oid']) ? $_POST['oid'] : array();
+$oid = isset($_POST['oid']) ? $_POST['oid'] : 0;
 
 $item = Item::from_mysql_id($oid);
 if ($item == null) $item = new Item();
@@ -41,7 +35,8 @@ if ($item == null) $item = new Item();
 
 <script>
     $(function(){
-        Item.editor = Methods.iniCKEditor("#htmlEditor", "<?= Ini::$external_path ?>"); 
+        Methods.iniIconButtons(); 
+        Methods.iniCKEditor("#htmlEditor", "<?= Ini::$external_path ?>"); 
     });
 </script>
 
@@ -59,10 +54,10 @@ if ($item == null) $item = new Item();
             <option value="<?= $obj->id ?>">id: <?= $obj->id ?> - <?= $obj->name ?></option>
         <?php } ?>
     </select>
-    <button class="btnImportHTML" onmouseup="Item.importHTML($('#selectHTMLTemplate').val())"></button>
+    <button class="btnImportHTML" onclick="Item.importHTML($('#selectHTMLTemplate').val())"></button>
 </div>
 
-<textarea id="htmlEditor" name="htmlEditor" ></textarea>
+<textarea id="htmlEditor" name="htmlEditor" ><?=$item->HTML?></textarea>
 
 <div class="ui-widget-content ui-corner-all fullWidth ui-state-focus" style="">
     <table class="fullWidth formTable">
@@ -83,7 +78,7 @@ if ($item == null) $item = new Item();
                 <select id="formItemSelectSharing" class="fullWidth">
                     <?php foreach (DS_Sharing::get_all() as $share)
                     { ?>
-                        <option value="<?= $share->id ?>" <?= ($share->id == $obj->Sharing_id ? "selected" : "") ?>><?= $share->name ?></option>
+                        <option value="<?= $share->id ?>" <?= ($share->id == $item->Sharing_id ? "selected" : "") ?>><?= $share->name ?></option>
                     <?php } ?>
                 </select>
             </td>
