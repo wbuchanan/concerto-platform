@@ -49,7 +49,7 @@ There are several sections in the Administration Panel
 
 == Header ==
 
-http://dev.myiqtest.org/concerto2/wiki_images/admin_header.PNG
+http://ns39618.ovh.net/~michal/concerto/header.jpg
 
 Buttons on the left allow you to quickly navigate to:
  * *Concerto Platform homepage on code.google.com* where you can find  support, report an issue with the application, download the latest version or just browse through the source code.
