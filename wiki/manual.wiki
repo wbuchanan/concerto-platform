@@ -148,8 +148,11 @@ http://ns39618.ovh.net/~michal/concerto/greeting.PNG
 
 Obviously, this function should be used to fill item templates with content, e.g. text, pictures, sounds, etc. For instance, click the
 http://ns39618.ovh.net/~michal/concerto/img.PNG icon in the HTML layer editor, and insert string {{image_source}} in the "URL" field:
+
 http://ns39618.ovh.net/~michal/concerto/image_source.PNG
+
 Later you can use set.var() function to set this image from the R script level, e.g.: 
+
 http://ns39618.ovh.net/~michal/concerto/r_image.PNG
 
 == set.next.template(next_item_template_id) ==
