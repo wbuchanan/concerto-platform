@@ -163,6 +163,8 @@ For instance, if you want to set next template to demo1 (of id: 7):
 
 http://ns39618.ovh.net/~michal/concerto/id.png
 
+use this R code:
+
 {{{ 
 set.next.template(7)
 }}}
@@ -182,7 +184,7 @@ http://dev.myiqtest.org/concerto2/index.php?hash=ab0334826613005bfcf26d52392b7ce
 }}}
 
 ==Debug mode==
-http://ns39618.ovh.net/~michal/concerto/debug.png
+http://ns39618.ovh.net/~michal/concerto/debug.PNG
 
 To start the test in *debug mode* select the *Debug* button from the Item Template's List. Alternatively, if you are an administrator you can enter debug mode by passing the *debug* option through the URL, e.g. 
 {{{
