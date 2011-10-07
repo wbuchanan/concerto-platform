@@ -210,3 +210,7 @@ Concerto allows for defining Session Variables using URL. For instance, you can 
 {{{
 Concerto_installation_path/index.php?hash=5da7d117adfd5632b8e8aa661426879f&user_name=Michal
 }}}
+
+= MySQL =
+
+Note that you can access MySQL server from the R level using pre-installed RMySQL library or any other library that you have installed on your server. This allows you to create and access custom tables (e.g. user scores table, item bank table).
