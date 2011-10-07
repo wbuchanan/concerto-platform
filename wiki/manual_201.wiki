@@ -1,4 +1,4 @@
-== This document is relevant only to version 2.0.0 and 2.0.1.==
+== This document is relevant only to versions 2.0.0 and 2.0.1.==
 
 =USER'S MANUAL=
 
