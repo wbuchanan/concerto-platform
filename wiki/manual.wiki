@@ -105,7 +105,7 @@ You can also open two "hint" boxes in this section. You can resize/move/close th
    * *inserted session variables* (the list of inserted variables for a given item. Concerto will look for these variables in the Sessions table to customize the Item template)
 
 =="RStudio" tab==
-http://dev.myiqtest.org/concerto2/wiki_images/admin_rstudio.PNG
+http://ns39618.ovh.net/~michal/concerto/r_studio.PNG
 
 If you have *RStudio* installed on your server you can integrate it with the *Concerto Platform*. It's optional, and you can always switch it on or off using the *setup page* mentioned earlier. 
 
@@ -117,7 +117,7 @@ RStudio can be useful to:
  * manage the files on the server (it has a convenient file manager). 
 
 =="Users" tab==
-http://dev.myiqtest.org/concerto2/wiki_images/admin_users.PNG
+http://ns39618.ovh.net/~michal/concerto/users.PNG
 
 This tab is only accessible for *super admin* users. It allows him/her to add/remove/edit users and user groups, and to define access rights.
 
@@ -131,6 +131,33 @@ You can use the "sharing" option to assign an item template to one of three grou
  # group (only members of your group can see/edit it)
 
 Super Admins can add/edit groups and assign users to groups in the "Users Tab".
+
+= Custom R functions in Concerto =
+
+There are two custom R functions available in Concerto
+
+== set.var(var_name,var_value)==
+
+This function sets session variable which can be used in HTML presentation by inserting {{var_name}} string into the item HTML. For instance you can set session variable "greeting" to value "hello":
+{{{ 
+set.var("greeting","hello!")
+}}}
+and use this variable on the item templates by inserting:
+{{{
+{{greeting}}
+}}}
+
+== set.next.template(next_item_template_id) ==
+
+This function sets which item should be load next when the R calculations are finished. You should use the id assigned to a given item that you can find on the item list on the right. 
+
+For instance, if you want to set next template to demo1 (of id: 7):
+http://ns39618.ovh.net/~michal/concerto/item_list.jpg
+
+{{{ 
+set.next.template(7)
+}}}
+
 
 = Running tests =
 
@@ -147,7 +174,7 @@ http://dev.myiqtest.org/concerto2/index.php?hash=ab0334826613005bfcf26d52392b7ce
 }}}
 
 ==Debug mode==
-http://dev.myiqtest.org/concerto2/wiki_images/run_debug.PNG
+http://ns39618.ovh.net/~michal/concerto/debug.png
 
 To start the test in *debug mode* select the *Debug* button from the Item Template's List. Alternatively, if you are an administrator you can enter debug mode by passing the *debug* option through the URL, e.g. 
 {{{
