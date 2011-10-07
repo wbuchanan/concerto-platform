@@ -136,11 +136,11 @@ set.next.template(TEST_ITEM_TEMPLATE_ID)
 set.next.template(TEST_ITEM_TEMPLATE_ID)
 }}}
 
-*Replace the "TEST_ITEM_TEMPLATE_ID" with the ID of this item that you can find on the list of the items:*
+*Replace the "TEST_ITEM_TEMPLATE_ID" with the ID of the "demo_item" that you can find on the items' list:*
 
 http://ns39618.ovh.net/~michal/concerto/id_demo_item.PNG
 
-In my case, ID of this item was 10, and thus this function should look like that:
+In my case, ID of the demo_item was 10, and thus set.next.template()  function look like that:
 {{{
 set.next.template(10)
 }}}
@@ -178,7 +178,7 @@ if(current_question_no < 3) {
 }}}
 
 
-*Again, replace the "FEEDBACK_TEMPLATE_ID" with the ID of the Feedback item.*
+*Again, replace the "FEEDBACK_TEMPLATE_ID" with the ID of the demo_feedback item.*
 
  * Use this code for *'btn_restart'*
 
