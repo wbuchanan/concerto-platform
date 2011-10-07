@@ -103,17 +103,11 @@ http://dev.myiqtest.org/concerto2/wiki_images/r_code.png
 ## Note that in a proper test this should rather be stored in 
 ## the MySQL database and loaded here using the RMySQL package 
 
-## Define a questions array
-x <- array(dim=3)
-x[1]<-"Is 3-2=6?"
-x[2]<-"Is 2+3=6?"
-x[3]<-"Is 3*2=6?"
+## Define a questions' content vector:
+x <- c("Is 3-2=6?", "Is 2+3=6?", "Is 3*2=6?")
 
-## correct answers array
-y <- array(dim=3)
-y[1]<-0
-y[2]<-0
-y[3]<-1
+## correct answers vector:
+y <- c(0,0,1)
 
 ## set the starting question
 ## Note that this can be selected using a CAT algorithm, 
@@ -133,8 +127,24 @@ total_score <- 0
 
 set.var("current_question_no",current_question_no)
 set.var("question",x[current_question_no])
-set.next.item("demo_item")
+set.next.template(TEST_ITEM_TEMPLATE_ID)
 }}}
+
+
+  * *Modify the last line of the code. In the function:
+{{{
+set.next.template(TEST_ITEM_TEMPLATE_ID)
+}}}
+
+Replace the "TEST_ITEM_TEMPLATE_ID" with the ID of this item that you can find on the list of the items:
+
+http://ns39618.ovh.net/~michal/concerto/id_demo_item.PNG
+
+In my case, ID of this item was 10, and thus this function should look like that:
+{{{
+set.next.template(10)
+}}}
+
 
   * Click the *'save'* button to save the changes
 
@@ -163,17 +173,22 @@ if(current_question_no < 3) {
   set.var("question",question)
 } else {
   set.var("total_score",total_score)
-  set.next.item("demo_feedback") 	
+  set.next.template(FEEDBACK_TEMPLATE_ID) 	
 }
 }}}
+
+
+*Again, replace the "FEEDBACK_TEMPLATE_ID" with the ID of the Feedback item.*
 
  * Use this code for *'btn_restart'*
 
 {{{
 ## Activate the Introduction Item
-set.next.item("demo_start")
+set.next.template(START_TEMPLATE_ID) 
 ## you don't have to reset the other values as they are all set when the "Start" button is pressed.
 }}}
+
+*Where "START_TEMPLATE_ID" is an ID of the Start Item.*
 
   * save the item by clicking the *'save'* button
 
