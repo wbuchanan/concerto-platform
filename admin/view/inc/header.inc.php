@@ -35,16 +35,16 @@ if ($user == null)
 <table class="fullWidth">
     <tr>
         <td class="noWrap" align="center" style="width:33%;" valign="middle">
-            <div><button class="btnHomepage" onclick="location.href='http://code.google.com/p/concerto-platform'" style="width:250px;"/></div>
-            <div style="margin-top:5px;"><button class="btnGoogleGroup" onclick="location.href='http://groups.google.com/group/concerto-platform'"  style="width:250px;"/></div>
+            <button class="btnHomepage" onclick="location.href='http://code.google.com/p/concerto-platform'" />
+            <button class="btnGoogleGroup" onclick="location.href='http://groups.google.com/group/concerto-platform'" style="margin-left:5px;"/>
         </td>
         <td class="noWrap" align="center" style="width:33%;" valign="middle">
-            <h2>Concerto Platform, v<?= Ini::$version ?></h2> 
+            <div style="font-size:1.2em; font-weight: bold;">Concerto Platform, v<?= Ini::$version ?></div>
             <div id="divVersionCheck"></div>
         </td>
         <td class="noWrap" align="center" style="width:33%;" valign="middle">
-            <?= Language::string(84) ?>: <b><?= $user->login . ", " . $user->get_full_name() ?><br/>
-                <button class="btnLogout" onclick="User.uiLogOut()"/>
+            <label for="btnLogout"><?= Language::string(84) ?>: <b><?= $user->login . ", " . $user->get_full_name() ?></label>
+            <button name="btnLogout" id="btnLogout" class="btnLogout" onclick="User.uiLogOut()"/>
         </td>
     </tr>
 </table>

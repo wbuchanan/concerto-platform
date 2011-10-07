@@ -50,12 +50,12 @@ if (User::get_logged_user() == null)
     });
 </script>
 
-<table style="width: 100%;">
+<table class="fullWidth noMarginPadding" >
     <tr>
-        <td class="tableLayout">
+        <td class="noMarginPadding" style="padding-right:10px; vertical-align: top;">
             <div id="divItemList" class="fullWidth"><?php include Ini::$internal_path . "admin/view/Item_list.php"; ?></div>
         </td>
-        <td class="tableLayout" style="width:100%;">
+        <td style="vertical-align: top;" class="fullWidth noMarginPadding">
             <div id="divItemForm" class="fullWidth"><?php include Ini::$internal_path . "admin/view/Item_form.php"; ?></div>
             <div id="divItemTabs">
                 <ul>
@@ -78,7 +78,7 @@ if (User::get_logged_user() == null)
     <table class="fullWidth">
         <tr>
             <td valign="top" align="center">
-                <table style="width:100%;" class="ui-widget-content ui-corner-all">
+                <table class="ui-widget-content ui-corner-all fullWidth">
                     <caption class="ui-widget-header ui-corner-all noWrap">
                         <?= Language::string(67) ?>
                         <button class="btnInfoSentVariables"></button>
@@ -94,7 +94,7 @@ if (User::get_logged_user() == null)
                 </table>
             </td>
             <td valign="top" align="center">
-                <table style="width:100%;" class="ui-widget-content ui-corner-all">
+                <table class="ui-widget-content ui-corner-all fullWidth">
                     <caption class="ui-widget-header ui-corner-all noWrap">
                         <?= Language::string(69) ?>
                         <button class="btnInfoAcceptedVariables"></button>

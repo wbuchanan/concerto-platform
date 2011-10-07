@@ -28,15 +28,15 @@ if ($user == null)
     die(Language::string(85));
 ?>
 
-<table class="fullWidth">
+<table class="fullWidth noMarginPadding">
     <tr>
         <?php if ($user->is_superadmin()) { ?>
-            <td class="ui-widget-content ui-corner-all" valign="top" style="width:50%;">
+            <td class="noMarginPadding" valign="top" style="width:50%;">
                 <div class="fullWidth ui-widget-content ui-corner-all" align="center"><?= Language::string(78) ?></div>
                 <div class="fullWidth" align="center" id="divUserForm"><?php include Ini::$internal_path . 'admin/view/User_form.php'; ?></div><br />
                 <div class="fullWidth" align="center" id="divUserList"><?php include Ini::$internal_path . 'admin/view/User_list.php'; ?></div>
             </td>
-            <td class="ui-widget-content ui-corner-all" valign="top" style="width:50%;">
+            <td class="noMarginPadding" valign="top" style="width:50%; padding-left: 10px;">
                 <div class="fullWidth ui-widget-content ui-corner-all" align="center"><?= Language::string(79) ?></div>
                 <div class="fullWidth" align="center" id="divGroupForm"><?php include Ini::$internal_path . 'admin/view/Group_form.php'; ?></div><br />
                 <div class="fullWidth" align="center" id="divGroupList"><?php include Ini::$internal_path . 'admin/view/Group_list.php'; ?></div>

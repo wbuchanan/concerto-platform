@@ -325,7 +325,7 @@ Methods.iniListTableExtensions=function(className,pager,filter,cols)
 Methods.iniCKEditor=function(selector,externalPath)
 {  
     var minHeight = 300;
-    var clientHeight = $(window).height()-490;
+    var clientHeight = $(window).height()-400;
     var height = minHeight;
     if(clientHeight>minHeight) height = clientHeight;
     

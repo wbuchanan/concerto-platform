@@ -55,11 +55,8 @@ if ($item == null) $item = new Item();
         <?php } ?>
     </select>
     <button class="btnImportHTML" onclick="Item.importHTML($('#selectHTMLTemplate').val())"></button>
-</div>
 
 <textarea id="htmlEditor" name="htmlEditor" ><?=$item->HTML?></textarea>
-
-<div class="ui-widget-content ui-corner-all fullWidth ui-state-focus" style="">
     <table class="fullWidth formTable">
         <tr>
             <td class="noWrap">
@@ -69,7 +66,7 @@ if ($item == null) $item = new Item();
                 <input type="text" class="fullWidth" name="formItemInputName" id="formItemInputName" value="<?= $item->name ?>" />
             </td>
             
-            <td rowspan="3" style="border-right:solid 1px black;"></td>
+            <td rowspan="3" style="border-right:dotted 1px white;"></td>
 
             <td class="noWrap">
                 <?= Language::string(105) ?>:

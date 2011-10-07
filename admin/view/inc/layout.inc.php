@@ -57,7 +57,7 @@ if ($user == null) exit();
     <?php if (Ini::$is_rstudio_on)
     { ?>
         <div id="layout_tab2" class="layout_tab">
-            <iframe id="rStudioFrame" src="<?= Ini::$rstudio_url ?>" width="100%"></iframe>
+            <iframe id="rStudioFrame" src="<?= Ini::$rstudio_url ?>" width="100%" frameborder="0"></iframe>
         </div>
     <?php } ?>
     <?php if ($user->is_superadmin())

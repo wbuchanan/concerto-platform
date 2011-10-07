@@ -9,14 +9,10 @@ body
 }
 td { padding:3px; }
 .tdClean { padding:0px;}
-.tableLayout 
-{
-    vertical-align: top;
-    height:100%;
-}
 #layoutTabs
 {
-    padding:0px;		
+    padding:0px;	
+    margin: 0px;
 }
 .layoutTab 
 {
@@ -86,4 +82,10 @@ td { padding:3px; }
 .noWrap
 {
     white-space: nowrap;		
+}
+
+.noMarginPadding
+{
+    margin:0px;
+    padding:0px;
 }

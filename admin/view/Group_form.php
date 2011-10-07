@@ -67,8 +67,8 @@ if ($oid != 0) {
     });
 </script>
 
+<div class="ui-widget-header ui-corner-all fullWidth"><h4><?= $caption ?></h4></div>
 <table class="fullWidth ui-widget-content ui-corner-all formTable ui-state-focus">
-    <caption class="ui-widget-header ui-corner-all"><h4><?= $caption ?></h4></caption>
     <tr>
         <td class="noWrap">*<?= Language::string(50) ?>:</td>
         <td class="fullWidth"><input type="text" id="form<?= $class_name ?>InputName" name="form<?= $class_name ?>InputName" value="<?= $obj->name ?>" class="fullWidth" /></td>

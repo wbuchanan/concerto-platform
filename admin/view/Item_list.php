@@ -52,7 +52,15 @@ $num_rows = mysql_num_rows(mysql_query($sql));
                 {find:".optionDebug", icon:"ui-icon-lightbulb"},
                 {find:".optionEdit", icon:"ui-icon-pencil"},
                 {find:".optionDelete", icon:"ui-icon-trash"}
-            ]
+            ],
+            style:"popup",
+            change:function(){
+                if($(this).val()!=-1)
+                {
+                    eval($(this).val());
+                    $(this).selectmenu("value",-1);
+                }
+            }
         });
         $(".list<?= $class_name ?>ActionsSelect").width($(".list<?= $class_name ?>ActionsSelect").width()+$(".list<?= $class_name ?>ActionsSelect").selectmenu("option","handleWidth"));
     });
@@ -91,31 +99,12 @@ $num_rows = mysql_num_rows(mysql_query($sql));
                 <td class="noWrap fullWidth ui-widget-content ui-corner-all"><?= ($share != null ? $share->name : "&lt;" . Language::string(95) . "&gt;") ?></td>
                 <td class="noWrap">
                     <select class="list<?= $class_name ?>ActionsSelect" id="list<?= $class_name ?>ActionsSelect_<?= $obj->id ?>">
-                        <optgroup label="<?=Language::string(136)?>">
-                            <option class="optionRun" value="0"><?= Language::string(134) ?></option>
-                            <option class="optionDebug" value="1"><?= Language::string(119) ?></option>
-                            <option class="optionEdit" value="2"><?= Language::string(43) ?></option>
-                            <option class="optionDelete" value="3"><?= Language::string(42) ?></option>
-                        </optgroup>
+                        <option value="-1"><?= Language::string(136) ?></option>
+                        <option class="optionRun" value="window.open('<?= Ini::$external_path ?>index.php?hash=<?= $obj->hash ?>','_blank')"><?= Language::string(134) ?></option>
+                        <option class="optionDebug" value="window.open('<?= Ini::$external_path ?>index.php?hash=<?= $obj->hash ?>&debug','_blank')"><?= Language::string(119) ?></option>
+                        <option class="optionEdit" value="<?= $class_name ?>.uiEdit(<?= $obj->id ?>)"><?= Language::string(43) ?></option>
+                        <option class="optionDelete" value="<?= $class_name ?>.uiDelete(<?= $obj->id ?>)"><?= Language::string(42) ?></option>
                     </select>
-                    <button class="btnExecute" onclick="
-                        var select = $('#list<?= $class_name ?>ActionsSelect_<?= $obj->id ?>');
-                        switch(select.val())
-                        {
-                            case '0':
-                            location.href='<?= Ini::$external_path ?>index.php?hash=<?= $obj->hash ?>';
-                            break;
-                            case '1':
-                            location.href='<?= Ini::$external_path ?>index.php?hash=<?= $obj->hash ?>&debug';
-                            break;
-                            case '2':
-                            <?= $class_name ?>.uiEdit(<?= $obj->id ?>);
-                            break;
-                            case '3':
-                            <?= $class_name ?>.uiDelete(<?= $obj->id ?>);
-                            break;
-                            }
-                            "></button>
                 </td>
             </tr>
         <?php } ?> 

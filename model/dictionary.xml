@@ -306,8 +306,8 @@
         <pl>wyloguj</pl>
     </string>
     <string id="117">
-        <en>Presentation and Properties</en>
-        <pl>Prezentacja i Właściwości</pl>
+        <en>HTML layer</en>
+        <pl>warstwa HTML</pl>
     </string>
     <string id="118">
         <en>R Interaction</en>
@@ -326,12 +326,12 @@
         <pl>pokaż zmienne R</pl>
     </string>
     <string id="122">
-        <en>Concerto Platform homepage</en>
-        <pl>strona domowa Concerto Platform</pl>
+        <en>homepage</en>
+        <pl>strona domowa</pl>
     </string>
     <string id="123">
-        <en>Concerto Platform Google Group</en>
-        <pl>Concerto Platform Google Group</pl>
+        <en>Google Group</en>
+        <pl>Google Group</pl>
     </string>
     <string id="124">
         <en>Concerto built in R functions documentation</en>
