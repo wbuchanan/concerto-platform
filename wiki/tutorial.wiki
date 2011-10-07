@@ -1,4 +1,6 @@
 #labels Featured
+= This document is relevant to Concerto 2.0.2 and higher. If you have older version installed, upgrade it (recommended) or see the [tutorial_201 old tutorial] =
+
 = TUTORIAL: How to create a simple test =
 
 == Concept ==
