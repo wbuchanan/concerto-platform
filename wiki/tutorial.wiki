@@ -16,11 +16,11 @@ This tutorial is based on a very simple item bank declared directly in the R scr
   
  * To create a new item template click the *'new'* button on the top left side of the *'item'* tab.
 
-http://dev.myiqtest.org/concerto2/wiki_images/create_new.png
+http://ns39618.ovh.net/~michal/concerto/create_new.png
 
   * Enter the name of the item, in this case: *'demo_start'* 
 
-http://dev.myiqtest.org/concerto2/wiki_images/item_name.PNG
+http://ns39618.ovh.net/~michal/concerto/item_name.PNG
 
   * In the *'HTML Layer'* tab, add a text field by clicking on the "*Text Field*" icon. 
 
@@ -42,7 +42,7 @@ http://dev.myiqtest.org/concerto2/wiki_images/ckeditor_btn_properties.png
 
   * Save the item template by clicking the *'save'* button.
 
-http://dev.myiqtest.org/concerto2/wiki_images/save.PNG
+http://ns39618.ovh.net/~michal/concerto/save.PNG
 
 The resulting Item Template should look more or less like this:
 
