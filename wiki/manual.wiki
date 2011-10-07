@@ -142,7 +142,7 @@ This function sets session variable which can be used in HTML presentation by in
 {{{ 
 set.var("greeting","hello!")
 }}}
-and use this variable on the item templates by inserting:
+and use this variable on the item templates by inserting string in the HTML editor:
 {{{
 {{greeting}}
 }}}
@@ -152,7 +152,7 @@ and use this variable on the item templates by inserting:
 This function sets which item should be load next when the R calculations are finished. You should use the id assigned to a given item that you can find on the item list on the right. 
 
 For instance, if you want to set next template to demo1 (of id: 7):
-http://ns39618.ovh.net/~michal/concerto/item_list.jpg
+http://ns39618.ovh.net/~michal/concerto/id.jpg
 
 {{{ 
 set.next.template(7)
