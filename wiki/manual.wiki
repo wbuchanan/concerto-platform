@@ -84,6 +84,7 @@ Clicking on the choose action drop-down button:
 http://ns39618.ovh.net/~michal/concerto/choose_action.png
 
 Shows a list of possible actions:
+
 http://ns39618.ovh.net/~michal/concerto/actions.png
 
 Available actions include:
