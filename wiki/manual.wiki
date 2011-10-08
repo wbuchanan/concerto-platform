@@ -4,7 +4,7 @@
 
 =USER'S MANUAL=
 
-* We suggest that you start with a [http://code.google.com/p/concerto-platform/wiki/tutorial Step-by-Step tutorial]. As it explains Concerto concepts in a more user-friendly manner. Also, please let us know if something sounds unclear to you!*
+* We suggest that you start with a [http://code.google.com/p/concerto-platform/wiki/tutorial Step-by-Step tutorial]. Also, please let us know if something sounds unclear to you!*
 
 
 
