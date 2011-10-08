@@ -26,7 +26,7 @@ http://ns39618.ovh.net/~michal/concerto/item_name.PNG
 
   * In the *'HTML Layer'* tab, add a text field by clicking on the "*Text Field*" icon. 
 
-http://dev.myiqtest.org/concerto2/wiki_images/ckeditor_tb.png
+http://ns39618.ovh.net/~michal/concerto/cke_text.PNG
 
   * Set the name of the Text Field, in this case: *field_name*. The value entered by the user in this Text Field will be stored as a variable under this field's name (in this case  "field_name"). This variable can be later used in other templates or in the R script. In the same window you can also specify a size for the field and choose its default contents (e.g. "Enter your name here"). Click *OK* to accept changes.
 
