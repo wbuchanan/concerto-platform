@@ -66,7 +66,7 @@ http://ns39618.ovh.net/~michal/concerto/radio_properties.PNG
 
 http://ns39618.ovh.net/~michal/concerto/radio_properties2.PNG
 
-  * Add button named *btn_next* with label *next* and button named *btn_restart* with label *restart*.
+  * Add button named *btn_next* with label *next*.
 
   * Edit the template of an item - add:
     * Text *"No"* next to the first radio button and *"Yes"* next to the second one. 
@@ -149,9 +149,7 @@ set.next.template(10)
  * Click the *'save'* button to save the changes
 
 == Test Item Template ==
-  * Click edit next to the *'demo_item'* item template and go to *'R Interaction'*. We have two buttons here: 
-   * *'btn_next'*
-   * *'btn_restart'*
+  * Click edit next to the *'demo_item'* item template and go to *'R Interaction'*.
   * Use this code for *'btn_next'*:
 
 {{{
@@ -178,16 +176,6 @@ if(current_question < 3) {
 
 
 *Again, replace the "FEEDBACK_TEMPLATE_ID" with the ID of the demo_feedback item.*
-
- * Use this code for *'btn_restart'*
-
-{{{
-## Activate the Introduction Item
-set.next.template(START_TEMPLATE_ID) 
-## you don't have to reset the other values as they are all set when the "Start" button is pressed.
-}}}
-
-*Where "START_TEMPLATE_ID" is an ID of the Start Item.*
 
   * save the item by clicking the *'save'* button
 
