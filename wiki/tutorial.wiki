@@ -34,7 +34,7 @@ http://ns39618.ovh.net/~michal/concerto/user_name.PNG
 
   * Now add a button by clicking the "Button" icon. 
 
-http://dev.myiqtest.org/concerto2/wiki_images/ckeditor_btn.png
+http://ns39618.ovh.net/~michal/concerto/cke_button.PNG
 
   * Set the button's name, in this case *btn_start*, and the button's label - e.g. *Start*. Later you will assign an R script to this button to be executed once it's clicked. Accept by clicking *OK*.
 
