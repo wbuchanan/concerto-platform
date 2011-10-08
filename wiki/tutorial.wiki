@@ -30,7 +30,7 @@ http://ns39618.ovh.net/~michal/concerto/cke_text.PNG
 
   * Set the name of the Text Field, in this case: *user_name*. The value entered by the user in this Text Field will be stored as a variable under this field's name (in this case  "user_name"). This variable can be later used in other templates or in the R script. In the same window you can also specify a size for the field and choose its default contents (e.g. "Enter your name here"). Click *OK* to accept changes.
 
-http://ns39618.ovh.net/~michal/concerto/cke_button.PNG
+http://ns39618.ovh.net/~michal/concerto/user_name.PNG
 
   * Now add a button by clicking the "Button" icon. 
 
