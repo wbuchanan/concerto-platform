@@ -90,7 +90,7 @@ http://ns39618.ovh.net/~michal/concerto/item_html.PNG
 
 == Feedback Item Template ==
   * Create a new item by clicking the *'new'* button, enter its name (*'demo_feedback'*).
-  * in the *'Presentation and Properties'* tab insert text: *{{user_name}}, your total score is {{total_score}}.*
+  * in the *'HTML layer'* tab insert text: *{{user_name}}, your total score is {{total_score}}.*
   * press the *'save'* button to save the item.
  
 This Item template should look more or less like this:
