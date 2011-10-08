@@ -15,7 +15,7 @@ This tutorial is based on a very simple item bank declared directly in the R scr
 
 = Login to Concerto = 
 
-If you haven't installed Concerto on your platform, you can use our Demo installation. Email [mailto:mk583@cam.ac.uk Michal Kosinski] to  get demo account.
+Go to *concerto_installation_path/admin* and login using your credentials. If you haven't installed Concerto on your server, you can use our Demo installation. Email [mailto:mk583@cam.ac.uk Michal Kosinski] to  get demo account.
 
 Demo installation: http://dev.myiqtest.org/concerto/admin/
 
