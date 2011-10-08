@@ -15,6 +15,8 @@ This tutorial is based on a very simple item bank declared directly in the R scr
 
 = Login to Concerto = 
 
+*I personally experience problems while editing Item Templates using Mozilla Firefox - you may like to use Internet Explorer or Google Chrome to run administration panel*
+
 Go to *concerto_installation_path/admin* and login using your credentials. If you haven't installed Concerto on your server, you can use our demo installation. Email [mailto:mk583@cam.ac.uk Michal Kosinski] to  get demo account.
 
 Demo installation: http://dev.myiqtest.org/concerto/admin/
