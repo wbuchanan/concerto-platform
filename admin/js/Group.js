@@ -38,9 +38,17 @@ Group.extraSaveCallback=function()
 Group.uiFormNotValidated=function()
 {
     //required fields
-    var name = $("#form"+this.className+"InputName").val();
-    if(jQuery.trim(name)=="") return Methods.captionRequiredFields;
-    return false;
+    var result = true;
+    var name = $("#form"+this.className+"InputName");
+    if(jQuery.trim(name.val())=="") 
+    {
+        result = false;
+        name.addClass("ui-state-error");
+    }
+    else name.removeClass("ui-state-error");
+    
+   if(result) return false;
+   else return Methods.captionRequiredFields;
 };
 
 Group.getSaveObject=function()

@@ -46,8 +46,8 @@ $obj = null;
 if ($oid != 0) $obj = $class_name::from_mysql_id($oid);
 else $obj = new $class_name();
 
-$btn_run = "<button class='btnRun' onclick='location.href=\"" . Ini::$external_path . "index.php?hash=" . $obj->hash . "\"'></button>";
-$btn_debug = "<button class='btnDebug' onclick='location.href=\"" . Ini::$external_path . "index.php?hash=" . $obj->hash . "&debug\"'></button>";
+$btn_run = "<button class='btnRun' onclick='window.open(\"" . Ini::$external_path . "index.php?hash=" . $obj->hash . "\",\"_blank\")'></button>";
+$btn_debug = "<button class='btnDebug' onclick='window.open(\"" . Ini::$external_path . "index.php?hash=" . $obj->hash . "&debug\",\"_blank\")'></button>";
 $btn_new = "<button class='btnNew' onclick='" . $class_name . ".uiEdit(0)'></button>";
 $btn_delete = "<button class='btnDelete' onclick='" . $class_name . ".uiDelete($oid)'></button>";
 $btn_save = "<button class='btnSave' onclick='" . $class_name . ".uiSave()'></button>";

@@ -2,12 +2,12 @@
 
 <root>
     <string id="4">
-        <en>select item template HTML to import:</en>
-        <pl>wybierz element szablonu by zaimportować jego HTML:</pl>
+        <en>select item template HTML to import</en>
+        <pl>wybierz element szablonu by zaimportować jego HTML</pl>
     </string>
     <string id="6">
-        <en>timer:</en>
-        <pl>timer:</pl>
+        <en>timer</en>
+        <pl>timer</pl>
     </string>
     <string id="7">
         <en>there's no buttons in HTML</en>

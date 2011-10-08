@@ -41,22 +41,6 @@ if ($item == null) $item = new Item();
 </script>
 
 <div class="ui-widget-content ui-corner-all fullWidth ui-state-focus noWrap" align="center">
-    <button class="btnInfoItemTemplate"></button>
-    <label><?= Language::string(4) ?></label>
-    <select id="selectHTMLTemplate">
-        <?php
-        $sql = $user->mysql_list_rights_filter("Item", "`Item`.`name` ASC");
-        $z = mysql_query($sql);
-        while ($r = mysql_fetch_array($z))
-        {
-            $obj = Item::from_mysql_id($r[0]);
-            ?>
-            <option value="<?= $obj->id ?>">id: <?= $obj->id ?> - <?= $obj->name ?></option>
-        <?php } ?>
-    </select>
-    <button class="btnImportHTML" onclick="Item.importHTML($('#selectHTMLTemplate').val())"></button>
-
-<textarea id="htmlEditor" name="htmlEditor" ><?=$item->HTML?></textarea>
     <table class="fullWidth formTable">
         <tr>
             <td class="noWrap">
@@ -65,9 +49,33 @@ if ($item == null) $item = new Item();
             <td style="width:50%;">
                 <input type="text" class="fullWidth" name="formItemInputName" id="formItemInputName" value="<?= $item->name ?>" />
             </td>
-            
+
             <td rowspan="3" style="border-right:dotted 1px white;"></td>
 
+            <td class="noWrap">
+                <button class="btnInfoItemTemplate"></button>
+                <?= Language::string(4) ?>:
+            </td>
+            <td style="width:50%;">
+                <select id="selectHTMLTemplate">
+                    <?php
+                    $sql = $user->mysql_list_rights_filter("Item", "`Item`.`name` ASC");
+                    $z = mysql_query($sql);
+                    while ($r = mysql_fetch_array($z))
+                    {
+                        $obj = Item::from_mysql_id($r[0]);
+                        ?>
+                        <option value="<?= $obj->id ?>">id: <?= $obj->id ?> - <?= $obj->name ?></option>
+                    <?php } ?>
+                </select>
+                <button class="btnImportHTML" onclick="Item.importHTML($('#selectHTMLTemplate').val())"></button>
+            </td>
+        </tr>
+    </table>
+
+    <textarea id="htmlEditor" name="htmlEditor" ><?= $item->HTML ?></textarea>
+    <table class="fullWidth formTable">
+        <tr>
             <td class="noWrap">
                 <?= Language::string(105) ?>:
             </td>
@@ -79,14 +87,24 @@ if ($item == null) $item = new Item();
                     <?php } ?>
                 </select>
             </td>
-        </tr>
-        
-        <tr>
+
+            <td rowspan="3" style="border-right:dotted 1px white;"></td>
+
             <td class="noWrap">
                 <?= Language::string(51) ?>:
             </td>
-            <td>
+            <td style="width:50%;">
                 <input type="text" id="formItemInputHash" name="formItemInputHash" value="<?= $item->hash ?>" readonly class="fullWidth" />
+            </td>
+        </tr>
+
+        <tr>
+            <td class="noWrap">
+                <button class="btnInfoItemTimer"></button>
+                <?= Language::string(6) ?>:
+            </td>
+            <td>
+                <input type="text" id="formItemInputTimer" name="formItemInputTimer" value="<?= $item->timer ?>" class="fullWidth" />
             </td>
 
             <td class="noWrap">
@@ -96,18 +114,6 @@ if ($item == null) $item = new Item();
             <td class="noWrap" id="tdDefaultButton">
                 <?php include Ini::$internal_path . "admin/view/tab_item_presentation_default.php"; ?>
             </td>
-        </tr>
-        
-        <tr>
-            <td class="noWrap">
-                <button class="btnInfoItemTimer"></button>
-                <?= Language::string(6) ?>
-            </td>
-            <td>
-                <input type="text" id="formItemInputTimer" name="formItemInputTimer" value="<?= $item->timer ?>" class="fullWidth" />
-            </td>
-            <td></td>
-            <td></td>
         </tr>
     </table>
 </div>

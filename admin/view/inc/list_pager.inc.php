@@ -35,7 +35,7 @@ if ($user == null)
         <input type="text" class="pagedisplay" readonly style="width: 50px;" />
         <select class="pagesize">
             <option value="10">10 <?= Language::string(102) ?></option>
-            <option value="25">25 <?= Language::string(102) ?></option>
+            <option value="25" selected>25 <?= Language::string(102) ?></option>
             <option value="50">50 <?= Language::string(102) ?></option>
             <option value="100">100 <?= Language::string(102) ?></option>
         </select>

@@ -308,7 +308,8 @@ Methods.iniListTableExtensions=function(className,pager,filter,cols)
     {
         ts = ts.tablesorterPager({
             container: $("#table"+className+"ListPager"),
-            positionFixed:false
+            positionFixed:false,
+            size:25
         });
     }
     if(filter)

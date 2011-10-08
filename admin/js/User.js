@@ -61,28 +61,56 @@ User.getSaveObject=function()
 
 User.uiFormNotValidated=function()
 {
-    var result;
+    //required fields
+    var result = true;
+    var message = "";
     
-    //fields
-    var login = $("#form"+this.className+"InputLogin").val();
-    var password = $("#form"+this.className+"InputPassword").val();
-    var confirmation = $("#form"+this.className+"InputPasswordConf").val();
+    var login = $("#form"+this.className+"InputLogin");
+    var password = $("#form"+this.className+"InputPassword");
+    var confirmation = $("#form"+this.className+"InputPasswordConf");
     var password_mod = $("#form"+this.className+"CheckboxPassword").is(":checked");
     
-    //required fields
-    if(jQuery.trim(login)=="") return Methods.captionRequiredFields;
+    if(jQuery.trim(login.val())=="")
+    {
+        result = false;
+        login.addClass("ui-state-error");
+        message+=Methods.captionRequiredFields+"\n";
+    }
+    else login.removeClass("ui-state-error");
+    
     if(User.currentID==0)
     {
-        if(jQuery.trim(password)=="") return Methods.captionRequiredFields;         
+        if(jQuery.trim(password.val())=="") 
+        {
+            result=false;
+            if(message.indexOf(Methods.captionRequiredFields)==-1) message+=Methods.captionRequiredFields+"\n";
+            password.addClass("ui-state-error");
+        }
+        else
+        {
+            password.removeClass("ui-state-error");
+        }
     }
+    else password.removeClass("ui-state-error");
     
-    if(password_mod&&password!=confirmation)
+    if(!password.hasClass("ui-state-error"))
     {
-        result = User.captionPasswordsMismatch;
-        return result;
+        if(password_mod&&password.val()!=confirmation.val())
+        {
+            result=false;
+            password.addClass("ui-state-error");
+            confirmation.addClass("ui-state-error");
+            message+=User.captionPasswordsMismatch+"\n";
+        }
+        else
+        {
+            password.removeClass("ui-state-error"); 
+            confirmation.removeClass("ui-state-error");
+        }
     }
     
-    return false;
+    if(result) return false;
+    else return message;
 };
 
 User.uiLogOut=function()
