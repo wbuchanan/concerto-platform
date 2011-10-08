@@ -18,7 +18,7 @@ The platform relies on three main elements:
 We rely as much as possible on popular open source packages in order to maximize the safety and reliability of the system, and to ensure that its elements are kept up-to-date. 
 
 
-=Test and Item Template Creator / Administrator Panel =
+= Administrator Panel =
 
 To create or edit tests and item templates go to the administration panel: *installation_path/admin*. 
 
