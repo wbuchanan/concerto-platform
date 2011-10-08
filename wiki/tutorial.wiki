@@ -43,11 +43,11 @@ http://ns39618.ovh.net/~michal/concerto/user_name.PNG
 
 http://ns39618.ovh.net/~michal/concerto/cke_button.PNG
 
-  * Set the button's name to *btn_start*, and the button's label - e.g. *Start*. Later you will assign an R script to this button to be executed once it's clicked. Accept by clicking *OK*.
+  * Set the button's name to *btn_start*, and button text(value) to  *Start*. Later you will assign an R script to this button to be executed once it's clicked. Accept by clicking *OK*.
 
 http://dev.myiqtest.org/concerto2/wiki_images/ckeditor_btn_properties.png
 
-  * Edit the contents of the template using the HTML editor, e.g. add some introductory test, for example "_This is a demo test. Enter your name in the box below and press "Start" to start the test_". Note, that you can fully control the looks of this item by using the whole range of HTML functionalities. Usually, your web designer will prepare a nice HTML template for you!  
+  * Edit the contents of the template using the HTML editor, e.g. add some introductory test, for example "_Enter your name and press 'Start' button_". Note, that you can fully control the looks of this item by using the whole range of HTML functionalities. Usually, your web designer will prepare a nice HTML template for you!  
 
   * Save the item template by clicking the *'save'* button.
 
