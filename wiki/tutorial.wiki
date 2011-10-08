@@ -185,13 +185,11 @@ if(current_question < 3) {
 
 Obviously, this is the simplest test ever, but it nicely shows the idea behind Concerto.
 
-To begin with, try to run your test in the *debug* mode to see what's going on behind the scenes. Click the *'debug'* button next to the item (*'demo_start'* in this case) and play with it!
+To begin with, try to run your test in the *debug* mode to see what's going on behind the scenes. Choose the *'debug'* option from the drop-down list next to the item *'demo_start'* and play with it!
 
-When you are ready, give it a real go. Start the test by using this URL: Concerto_installation_path/index.php?*hash=enter_item_hash_here*
+You can also run it in the regular mode - choose "run" from the drop down list. You can copy the URL and give it to others.
 
-You can find the hash value next to item's name on the item list. 
-
-The test can be run as a separate website or embedded in the other websites or applications. Check this out (Concert v1.0): [http://apps.facebook.com/myiq-dev/ MyIQ demo]
+The test can be run as a separate website or embedded in the other websites or applications. Check this out (Concerto v1.0): [http://apps.facebook.com/myiq-dev/ MyIQ demo]
  
 = This test should look like this: =
 [http://dev.myiqtest.org/concerto/index.php?hash=96429388f1901156270cc6b1726c7bbf Click here to see how it should work]
