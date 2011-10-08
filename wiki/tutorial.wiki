@@ -23,7 +23,7 @@ Demo installation: http://dev.myiqtest.org/concerto/admin/
 = Step 1: Create Item Templates =
 == Introduction template ==
   
- * To create a new item template click the *'new'* button on the top left side of the *'item'* tab.
+ * To create a new item template click the *'create new'* button on the top left side of the *'item'* tab.
 
 http://ns39618.ovh.net/~michal/concerto/create_new.jpg
 
@@ -59,7 +59,7 @@ http://dev.myiqtest.org/concerto2/wiki_images/demo_start.png
 
 
 == Test Item Template ==
-  * Create a new item by clicking the *'new'* button in the top left side of the *'item'* tab.
+  * Create a new item by clicking the *'create new'* button in the top left side of the *'item'* tab.
   * Enter it's name in the HTML layer tab: *'demo_item'*.
   * Add a radio button in the *'HTML layer'* tab by clicking "Radio Button" icon.
 
@@ -89,7 +89,7 @@ http://ns39618.ovh.net/~michal/concerto/item_html.PNG
 
 
 == Feedback Item Template ==
-  * Create a new item by clicking the *'new'* button, enter its name (*'demo_feedback'*).
+  * Create a new item by clicking the *'create new'* button, enter its name (*'demo_feedback'*).
   * in the *'HTML layer'* tab insert text: *{{user_name}}, your total score is {{total_score}}.*
   * press the *'save'* button to save the item.
  
