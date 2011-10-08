@@ -65,11 +65,11 @@ http://dev.myiqtest.org/concerto2/wiki_images/demo_start.png
 
 http://ns39618.ovh.net/~michal/concerto/cke_radio.PNG
 
-  * Set radio button's name to *radio1* and it's value to *0*. The value will be stored as a variable under this field's name (if this radio button is selected by the user the variable "radio1" will have value "0"). This variable can be later used in other templates or in the R script, e.g. to check which response was selected by the user. Checking the "Selected" option will select this button by default.
+  * Set radio button's name to *radio1* and it's value to *0*. Checking the "Selected" option will select this button by default.
 
 http://ns39618.ovh.net/~michal/concerto/radio_properties.PNG
 
-  * Add another radio button and give it the same name as the previous one - "radio1", but this time set the value to *1*. In this way if user selects the first of the radio buttons the "radio1" variable will be set to "0", but if the user selects the second radio button, the "radio1" variable will be set to "1". Note that only one of these radio buttons can be selected by the user (for multiple correct response use "check boxes"!), and thus the variable called "radio1" will take the value assigned to the button selected by the user (here: 0 or 1). You can use any other input formats in your test: "check boxes", "Text Fields", "drop down lists", or even Flash Games that return a value (or set of values) to the platform. Alternatively, you can declare several buttons with different R scripts assigned to each of them. 
+  * Add another radio button and give it the same name as the previous one - "*radio1*", but this time set the value to *1*. The value of the radio button selected by the user is stored as a variable under button's name. Hence, selecting first of the radio buttons sets the "radio1" variable to "0", and selecting the second one sets "radio1" to "1". Note, that radio buttons allow user to select one of the possible responses, for multiple correct response use "check boxes"!. Variable "*radio1*" can be later used in other templates or in the R script, e.g. to check which response was selected by the user. You can use any other input formats in your test: "check boxes", "Text Fields", "drop down lists", or even Flash Games that return a value (or set of values) to the platform. Alternatively, you can declare several buttons with different R scripts assigned to each of them. 
 
 http://ns39618.ovh.net/~michal/concerto/radio_properties2.PNG
 
@@ -102,7 +102,7 @@ http://ns39618.ovh.net/~michal/concerto/feedback_html.PNG
   * Press the "*Edit*"  button next to the *'demo_start'* Item Template
 http://ns39618.ovh.net/~michal/concerto/edit_action.png
 
-  * Go to the *'R Interaction'* tab on the right, where you can assign R code to the buttons present on a given Template.
+  * Go to the *'R Interaction'* tab, where you can assign R code to the buttons present on a given Template.
 
 http://dev.myiqtest.org/concerto2/wiki_images/r_code.png
  
@@ -158,7 +158,7 @@ set.next.template(10)
  * Click the *'save'* button to save the changes
 
 == Test Item Template ==
-  * Click edit next to the *'demo_item'* item template and go to *'R Interaction'*.
+  * Choose "*edit*" from the drop down list next to the *'demo_item'*  template and go to *'R Interaction'*.
   * Use this code for *'btn_next'*:
 
 {{{
