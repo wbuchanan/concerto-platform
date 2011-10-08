@@ -20,7 +20,7 @@ This tutorial is based on a very simple item bank declared directly in the R scr
 
 http://ns39618.ovh.net/~michal/concerto/create_new.jpg
 
-  * Enter the name of the item, in this case: *'demo_start'* 
+  * Enter the name of the item (e.g. *'demo_start'*)
 
 http://ns39618.ovh.net/~michal/concerto/item_name.PNG
 
@@ -28,7 +28,7 @@ http://ns39618.ovh.net/~michal/concerto/item_name.PNG
 
 http://ns39618.ovh.net/~michal/concerto/cke_text.PNG
 
-  * Set the name of the Text Field, in this case: *user_name*. The value entered by the user in this Text Field will be stored as a variable under this field's name (in this case  "user_name"). This variable can be later used in other templates or in the R script. In the same window you can also specify a size for the field and choose its default contents (e.g. "Enter your name here"). Click *OK* to accept changes.
+  * Set the name of the Text Field to *user_name*. The value entered by the user in this Text Field will be stored as a variable under this field's name ("user_name"). This variable can be later used in other templates or in the R script. In the same window you can also specify a size for the field and choose its default contents (e.g. "Enter your name here"). Click *OK* to accept changes.
 
 http://ns39618.ovh.net/~michal/concerto/user_name.PNG
 
@@ -36,7 +36,7 @@ http://ns39618.ovh.net/~michal/concerto/user_name.PNG
 
 http://ns39618.ovh.net/~michal/concerto/cke_button.PNG
 
-  * Set the button's name, in this case *btn_start*, and the button's label - e.g. *Start*. Later you will assign an R script to this button to be executed once it's clicked. Accept by clicking *OK*.
+  * Set the button's name to *btn_start*, and the button's label - e.g. *Start*. Later you will assign an R script to this button to be executed once it's clicked. Accept by clicking *OK*.
 
 http://dev.myiqtest.org/concerto2/wiki_images/ckeditor_btn_properties.png
 
@@ -53,7 +53,7 @@ http://dev.myiqtest.org/concerto2/wiki_images/demo_start.png
 
 == Test Item Template ==
   * Create a new item by clicking the *'new'* button in the top left side of the *'item'* tab.
-  * Enter it's name in the HTML layer tab, here: *'demo_item'*.
+  * Enter it's name in the HTML layer tab: *'demo_item'*.
   * Add a radio button in the *'HTML layer'* tab by clicking "Radio Button" icon.
 
 http://ns39618.ovh.net/~michal/concerto/cke_radio.PNG
@@ -95,7 +95,7 @@ http://ns39618.ovh.net/~michal/concerto/feedback_html.PNG
   * Press the "*Edit*"  button next to the *'demo_start'* Item Template
 http://ns39618.ovh.net/~michal/concerto/edit_action.png
 
-  * Go to the *'R Interaction'* tab on the right, where you can assign R code to the buttons present on a given Template, in this case *'btn_start'*. 
+  * Go to the *'R Interaction'* tab on the right, where you can assign R code to the buttons present on a given Template.
 
 http://dev.myiqtest.org/concerto2/wiki_images/r_code.png
  
@@ -142,7 +142,7 @@ set.next.template(TEST_ITEM_TEMPLATE_ID)
 
 http://ns39618.ovh.net/~michal/concerto/id_demo_item.PNG
 
-In my case, ID of the demo_item was 10, and thus set.next.template()  function look like that:
+In my case, ID of the demo_item was 10, and thus set.next.template()  function looks like that:
 {{{
 set.next.template(10)
 }}}
