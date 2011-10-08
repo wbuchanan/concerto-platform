@@ -13,6 +13,15 @@ Here we show you how to create a simple test composed of three Item Templates:
 
 This tutorial is based on a very simple item bank declared directly in the R script. However, in a proper test it is advisable to use MySQL to store item banks, user databases, and results. Also, adaptivity is not used in this tutorial, but you will see how and where a bit of adaptive code can be added.
 
+= Login to Concerto = 
+
+If you haven't installed Concerto on your platform, you can use our Demo installation. Email [mailto:mk583@cam.ac.uk Michal Kosinski] to  get demo account.
+
+Demo installation: http://dev.myiqtest.org/concerto/admin/
+
+
+
+
 = Step 1: Create Item Templates =
 == Introduction template ==
   
