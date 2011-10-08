@@ -194,4 +194,4 @@ You can find the hash value next to item's name on the item list.
 The test can be run as a separate website or embedded in the other websites or applications. Check this out (Concert v1.0): [http://apps.facebook.com/myiq-dev/ MyIQ demo]
  
 = This test should look like this: =
-[http://dev.myiqtest.org/concerto2/index.php?hash=ab0334826613005bfcf26d52392b7ced Click here to see how it should work]
+[http://dev.myiqtest.org/concerto/index.php?hash=96429388f1901156270cc6b1726c7bbf Click here to see how it should work]
