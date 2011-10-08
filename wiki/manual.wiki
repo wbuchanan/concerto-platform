@@ -15,21 +15,30 @@ The platform relies on three main elements:
 
 We rely as much as possible on popular open source packages in order to maximize the safety and reliability of the system, and to ensure that its elements are kept up-to-date. 
 
+= Tips =
+You can get help and tips related to particular objects by hovering your mouse pointer over the question mark icon: http://ns39618.ovh.net/~michal/concerto/question.png
 
 = Administrator Panel =
 
-To create or edit tests and item templates go to the administration panel: *installation_path/admin*. For instance:
+Administration Panel can be found here: *Concert_installation_path/admin*. For instance:
 {{{
 http://dev.myiqtest.org/concerto/admin/
 }}} 
 
-You can also create user accounts here and set the access rights. The Administration Panel has multi-language support. You can find the list of currently supported languages at the project's page. Let us know if you want to contribute and provide us with a translation to another language! 
+Administration Panel allows you to:
+ * create or edit tests and item templates
+ * create user accounts
+ * set the access rights
+ * Use R studio
+
+=== Multi-language support ===
+The Administration Panel has multi-language support. You can find the list of currently supported languages at the [http://code.google.com/p/concerto-platform/ project's page]. Let us know if you want to contribute and provide us with a translation to another language! 
 
 The default language is English. To use another supported language, e.g. Polish, set the  *lng* option in the URL, e.g. */admin/?lng=pl*. This will (PL stands for Polish here).
 
 == Elements of the administration Panel ==
 
-There are several sections in the Administration Panel. You can get help related to particular objects by hovering your mouse pointer over the question mark icon: http://ns39618.ovh.net/~michal/concerto/question.png
+There are several sections in the Administration Panel. 
 
 == Header ==
 
@@ -39,13 +48,13 @@ Buttons on the left allow you to quickly navigate to:
  * *Concerto Platform homepage on code.google.com* where you can find  support, report an issue with the application, download the latest version or just browse through the source code.
  * *Concerto Platform Google Group* where you can subscribe to receive the latest news about *Concerto* development and our future plans. 
 
-The central area of the header contains the Concerto version. Below you can find the link to newer version of the system if available. 
+The central area of the header contains the version of Concerto. Below you can find the link to newer version of the system if available. 
 
-On the right side you'll the find the information about the currently logged-in administrator and a log out button.
+On the right side you'll find your login details and a log out button.
 
 == Items tab==
 
-Items Tab is the heart of whole application. Here you can create/edit/debug item templates and R syntax.
+Items Tab is the heart of Concerto. Here you can create/edit/debug item templates and R syntax.
 
 http://ns39618.ovh.net/~michal/concerto/create_item.png
 
@@ -53,18 +62,20 @@ http://ns39618.ovh.net/~michal/concerto/create_item.png
 
 http://ns39618.ovh.net/~michal/concerto/item_list.jpg
 
-The list of available item templates consists all of the items that the currently logged user has the right to see. It has 5 columns: 
+This list contains your item templates (and templates created by others bt shared with you). It has 5 columns: 
     # *ID* - the item template's unique system id. This ID is used in the set.next.template(template_id) function used to switch item templates.
     # *name* - the item template's name typed by the user.
     # *owner* - the person that created the item template and has full rights to modify it.
     # *sharing* - the sharing level of the specific item template.
     # *actions* - drop-down list that contains possible actions related to the item
 
+The list can be sorted by clicking on the column header. Use a search box to search for a specific item. The list is paginated, and you can select how many items should be displayed per page and which page you want to see.
+
 === Actions ===
 
-Clicking on the choose action drop-down button
 http://ns39618.ovh.net/~michal/concerto/choose_action.png
-shows a list of possible actions:
+
+Clicking on the choose action drop-down button shows a list of possible actions:
 
 http://ns39618.ovh.net/~michal/concerto/actions.png
 
@@ -73,8 +84,6 @@ Available actions include:
  * *Debug*  -  start the test in a *debug* mode using given item_template
  * *edit* - open the template for editing
  * *delete* - delete template
-
-The list can be sorted by clicking on the column header. Use a search box to search for a specific item. The list is paginated, and you can select how many items should be displayed per page and which page you want to see.
 
 === HTML layer tab===
 
@@ -93,7 +102,7 @@ We can divide this section into three parts:
 *The HTML WYSIWYG editor allows you to insert any HTML/CSS/JS code. 
 Important elements include:*
   # *HTML buttons and image buttons* - HTML buttons can have assigned *R code to execute*. Whenever the user clicks on the button, the assigned code is executed.  
-  # *Other standard HTML controls* including text fields, text areas, radio buttons, check boxes, drop-down lists, etc. can be used to interact with the user. When the item is submitted, all user entered values will be stored as session variables and sent to R. You can then use them to customize any following items and/or use those variables in R scripts/calculations.
+  # *Other standard HTML controls* including text fields, text areas, radio buttons, check boxes, drop-down lists, etc. can be used to interact with the user. When the item is submitted, all user entered values will be stored as session variables and sent to R. You can then use them to customize any following items and/or in R scripts/calculations.
   # *session variable inserts* - You can insert any session variable anywhere in the HTML layer by defining a piece to be inserted using  double brackets and the name of the session variable (e.g. *{{variable_name}}*). This allows you to control the HTML layer from R or any other external application by simply adding an entry to the session variable tables. 
   # *standard HTML/CSS/JS* code: text, videos, sounds, images, etc.  
 
@@ -102,39 +111,11 @@ http://ns39618.ovh.net/~michal/concerto/r_interaction.png
 
 This section contains a list of the HTML buttons that were declared (added) to the HTML presentation layer. You can use *R code to execute* to assign R syntax that will be executed once the button is pressed by the user (or if time runs out in the case of buttons set as default). 
 
-You can also open two "hint" boxes in this section. You can resize/move/close these boxes at any time. 
+There are two "hint" boxes in this section. You can resize/move/close these boxes at any time. 
  # *Concerto built in R functions documentation* - list of Concerto functions that you can use anywhere in the R syntax.
  # *item's session variables* that contains:
    * *sent session variables* (the list of variables acquired from the current Item Template after it is submitted), 
    * *inserted session variables* (the list of inserted variables for a given item. Concerto will look for these variables in the Sessions table to customize the Item template)
-
-=="RStudio" tab==
-http://ns39618.ovh.net/~michal/concerto/r_studio.PNG
-
-If you have *RStudio* installed on your server you can integrate it with the *Concerto Platform*. It's optional, and you can always switch it on or off using the *setup page* mentioned earlier. 
-
-Use your system account (unix/linux) to enter R studio. 
-
-RStudio can be useful to:
- * develop and test R code.
- * analyse the results/item banks/etc. directly on the server.
- * manage the files on the server (it has a convenient file manager). 
-
-=="Users" tab==
-http://ns39618.ovh.net/~michal/concerto/users.PNG
-
-This tab is only accessible for *super admin* users. It allows him/her to add/remove/edit users and user groups, and to define access rights.
-
-You can set the user's login, password, first name, last name, email, phone no., and a user group. 
-
-=== User groups ===
-
-You can use the "sharing" option to assign an item template to one of three groups:
- # public (all administrators can see/edit it)
- # private (only you can see/edit it)
- # group (only members of your group can see/edit it)
-
-Super Admins can add/edit groups and assign users to groups in the "Users Tab".
 
 = Custom R functions in Concerto =
 
@@ -212,6 +193,36 @@ Concerto allows for defining Session Variables using URL. For instance, you can 
 {{{
 Concerto_installation_path/index.php?hash=5da7d117adfd5632b8e8aa661426879f&user_name=Michal
 }}}
+
+=="RStudio" tab==
+http://ns39618.ovh.net/~michal/concerto/r_studio.PNG
+
+If you have *RStudio* installed on your server you can integrate it with the *Concerto Platform*. It's optional, and you can always switch it on or off using the *setup page* mentioned earlier. 
+
+Use your system account (unix/linux) to log-in to R studio. 
+
+RStudio can be useful to:
+ * develop and test R code.
+ * analyse the results/item banks/etc. directly on the server.
+ * manage the files on the server (it has a convenient file manager). 
+
+=="Users" tab==
+http://ns39618.ovh.net/~michal/concerto/users.PNG
+
+This tab is only accessible for *super admin* users. It allows him/her to add/remove/edit users and user groups, and to define access rights.
+
+You can set the user's login, password, first name, last name, email, phone no., and a user group. 
+
+=== User groups ===
+
+You can use the "sharing" option to assign an item template to one of three groups:
+ # public (all administrators can see/edit it)
+ # private (only you can see/edit it)
+ # group (only members of your group can see/edit it)
+
+Super Admins can add/edit groups and assign users to groups in the "Users Tab".
+
+
 
 = Interaction MySQL =
 
