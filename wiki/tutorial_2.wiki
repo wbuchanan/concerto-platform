@@ -8,12 +8,12 @@ It is assumed that before you start this tutorial you've SUCCESSFULLY finished t
 [http://code.google.com/p/concerto-platform/wiki/tutorial?ts=1318172928&updated=tutorial Step-by-Step tutorial to make a simple test]. 
 
 == Concept ==
-Here we show how to create a simple 2PL adaptive test based. It is composed of three Item Templates:
+Here we show how to create a simple 2PL adaptive test based. It is composed of three item templates:
  * *Introduction*
  * *Test item* - with a simple mathematical task. 
  * *Feedback* containing the user's score.
 
-Item bank and item parameters are be generated at the beginning of the test. Obviously, in the actual test you will use the real item bank stored in the text file or MySQL table
+Item bank and item parameters are to be generated at the beginning of the test. Obviously, in the actual test you will use the real item bank stored in the text file or MySQL table
 
 To fully understand what is going on, you need to know basics of R. In particular I've used few functions from [http://cran.r-project.org/web/packages/catR/index.html catR library], although I will try explaining what is going on. Note, that you can use any other R library, or simply write your own equations, while working on your own test.
 
