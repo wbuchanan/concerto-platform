@@ -74,6 +74,14 @@ plot_graph<-function(){
 #### END OF THE plot_graph FUNCTION
 }
 
+### Add variables to store theta and sem history
+xtheta<-NA     #define theta history
+xsem<-NA       #define sem history
+
+### run the function
+plot_graph()
+}}}
+
 * Save the first template *
 
 = Step 2: Edit the first (Introduction) template of the test =
@@ -81,13 +89,9 @@ plot_graph<-function(){
 Now edit the second template of your test. Add the image to the 
 
 
-### Add variables to store theta and sem history
-xtheta<-NA     #define theta history
-xsem<-NA       #define sem history
 
-### run the function
-plot_graph()
 
+{{{
 #### PLOT GADGET
 xtheta<-c(xtheta,theta)
 xsem<-c(xsem,sem)
