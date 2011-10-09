@@ -1,7 +1,3 @@
-= Warning =
-
-*This document is relevant to Concerto 2.0.2 and higher. If you have older version installed, upgrade it (recommended) or see the [tutorial_201 old tutorial]. *
-
 = TUTORIAL: How to create an ADAPTIVE test =
 
 The test you are going to create here will look like that:
@@ -10,6 +6,8 @@ The test you are going to create here will look like that:
 
 It is assumed that before you start this tutorial you've SUCCESSFULLY finished this one:
 [http://code.google.com/p/concerto-platform/wiki/tutorial?ts=1318172928&updated=tutorial Step-by-Step tutorial to make a simple test]. 
+
+*This document is relevant to Concerto 2.0.2 and higher. If you use an older version, upgrade it.*
 
 == Concept ==
 Here we show how to create a simple 2PL adaptive test based. It is composed of three templates:
