@@ -13,7 +13,7 @@ Here we show how to create a simple 2PL adaptive test based. It is composed of t
  * *Test item* - with a simple mathematical task. 
  * *Feedback* containing the user's score.
 
-Item bank and item parameters are to be generated at the beginning of the test. To fully understand what is going on, you need to know basics of R. In particular I've used few functions from [http://cran.r-project.org/web/packages/catR/index.html catR library], although I will try explaining what is going on. Note, that you can use any other R library, or simply write your own equations, while working on your own test.
+Item bank and item parameters are to be generated at the beginning of the test. To fully understand what is going on, you need to know basics of R. I've used few functions from [http://cran.r-project.org/web/packages/catR/index.html catR library] but they should be pretty self-explainable. Note, that you can use any other R library, or simply write your own equations, while working on your own test.
 
 = Login to Concerto = 
 *I personally experience problems while editing Item Templates using Mozilla Firefox - try using Internet Explorer or Google Chrome to run administration panel*
