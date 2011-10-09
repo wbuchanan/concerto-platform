@@ -60,7 +60,7 @@ Well done, you've dealt with the graphical layout of your test. It is quite ugly
 
 Below you will find the R code that you need to add to the buttons on the first and second item. Edit your first item (the one with the introduction), go to the *R interaction* tab and enter the in the *R code to execute* field. (You already know how to do it, right? [http://code.google.com/p/concerto-platform/wiki/tutorial?ts=1318172928&updated=tutorial Step-by-Step tutorial to make a simple test].)
 
-You can just copy paste the code from this window but try to *READ AND UNDERSTAND* what is going on. You *need to change one thing only:* set the proper item id in the *set.next.template()* function. For instance, in the code assigned to the first template (Introduction) you should use this function to switch to the second template (Test Item). Feel free to modify the R code as you wish, just don't overdo it.
+You can just copy paste the code from this window but try to *READ IT AND UNDERSTAND* what is going on. You *need to change one thing only:* set the proper item id in the *set.next.template()* function. For instance, in the code assigned to the first template (Introduction) you should use this function to switch to the second template (Test Item). Feel free to modify the R code as you wish, just don't overdo it.
 
 * Don't forget to save the template after each modification *
 
