@@ -40,10 +40,10 @@ http://ns39618.ovh.net/~michal/concerto/item1.PNG
  * a *text field* called "*response*" where user will write his response
    * IMPORTANT: make sure you have called this *text field* "*response*" as that's how we refer to it in R code. You can give it a different name, but you will have to change R code accordingly.
    * If you don't know how to add a text field, take the  [http://code.google.com/p/concerto-platform/wiki/tutorial?ts=1318172928&updated=tutorial Step-by-Step tutorial to make a simple test].
-and look like that:
  * A button 
  * And, for presentation purposes, fields {{theta}}, {{sem}}, {{difficulty}}, {{discrimination}}. We will use R syntax to show current values of those parameters there.
-It should look like that:
+
+This item should look like that:
 http://ns39618.ovh.net/~michal/concerto/item2.PNG
 
 ===Third item template should contain:===
