@@ -1,0 +1,41 @@
+
+
+{{{
+##### GRAPHICAL GADGET
+## gadget function
+plot_graph<-function(){
+  setwd("/var/www/vhosts/dev.myiqtest.org/httpdocs/concerto/temp/")
+  ### add theta and sem to the xtheta and xsem vecotors
+  x_axis<-1:max_items ### prepare the x axis of  max_items legth
+  y_axis<-sample(c(-2,2),max_items, replace=T) ### prepare the y axis ranging from -2 to 2
+  colors<-rainbow(3) #### prepare colors for sem, theta, difficulty
+  counter<-length(items)
+  set.var("item_count", counter)
+  png(filename = paste(SessionID, "_", counter, ".png", sep=""), width = 600, height = 450, pointsize = 12, res=80, bg = "white") #quality = 100,
+  #### set up plot area
+  plot(x_axis, y_axis, type="n", axes = F, xlab="responses", ylab="", frame.plot=F) 
+  axis(1, 1:max_items, pos=0)
+  axis(2, -4:4/2, pos=0.8)
+  
+  # add a title and subtitle 
+  title("Sem, Theta, and Item Difficulty graph")
+  # add a legend 
+  legend(1, 2, c("SEM", "THETA", "DIFFICULTY"), cex=0.8, col=colors, pch=1:3, lty=1:3,  bty="n", horiz =T)
+  ##### PLOT LINES
+  lines(1:length(items), xsem, type="b", lwd=3, lty=1, col=colors[1], pch=1) 
+  lines(1:length(items), xtheta, type="b", lwd=3, lty=2, col=colors[2], pch=2)
+  lines(1:length(items), difficulty[items], type="b", lwd=3, lty=3, col=colors[3], pch=3)
+  dev.off()}
+
+
+xtheta<-NA           #theta history (used in graphical gadget)
+xsem<-NA             #sem history (used in graphical gadget)
+plot_graph()
+
+#### PLOT GADGET
+xtheta<-c(xtheta,theta)
+xsem<-c(xsem,sem)
+plot_graph()
+
+
+}}}
