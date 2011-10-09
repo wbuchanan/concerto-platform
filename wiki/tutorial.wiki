@@ -4,12 +4,11 @@
 In this tutorial you are going to develop a test that looks more or less like that:
  * *[http://dev.myiqtest.org/concerto/index.php?hash=96429388f1901156270cc6b1726c7bbf Simple test]*
 
- * *This document is relevant to Concerto 2.0.2 and higher. If you use an older version, upgrade it*
- * *I experience problems while editing Templates using Mozilla Firefox - you may like to use Internet Explorer or Google Chrome to run administration panel*
+Remarks:
+ * This document is relevant to Concerto 2.0.2 and higher. If you use an older version, upgrade it
+ * I experience problems while editing Templates using Mozilla Firefox - you may like to use Internet Explorer or Google Chrome to run administration panel
 
-= TUTORIAL: How to create a simple test =
-
-== Concept ==
+= Concept =
 Here we show you how to create a simple test composed of three HTML Templates:
  * *Introduction* where the user can enter his/her name that will be used later in other HTML templates. 
  * *Test questions* - with dichotomous (yes/no) response options for simplicity at this stage. 
