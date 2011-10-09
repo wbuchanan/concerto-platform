@@ -37,8 +37,8 @@ http://ns39618.ovh.net/~michal/concerto/item1.PNG
  * a friendly title and a short instruction 
  * an equation: *{{a}} + {{b}} =* to be solved by the testee 
    * note that *a* and *b* values will be set up by R syntax
- * a *text field* where user will write his response
-   * IMPORTANT: call this *text field* "*response*" as that's how we refer to it in R code. You can give it a different name, but you will have to change R code accordingly.
+ * a *text field* called "*response*" where user will write his response
+   * IMPORTANT: make sure you have called this *text field* "*response*" as that's how we refer to it in R code. You can give it a different name, but you will have to change R code accordingly.
    * If you don't know how to add a text field, take the  [http://code.google.com/p/concerto-platform/wiki/tutorial?ts=1318172928&updated=tutorial Step-by-Step tutorial to make a simple test].
 and look like that:
  * A button 
