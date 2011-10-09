@@ -56,7 +56,7 @@ http://ns39618.ovh.net/~michal/concerto/item2.PNG
 
 = Step 2: Add R code to the item templates =
   
-Well done, you've dealt with the graphical layout of your test. It is quite ugly, I know, but I assure you that your marketing director, web designer, or son, could add some style to it! 
+Well done, you've dealt with the graphical layout of your test. It is quite ugly, I know, but I assure you that your marketing staff, web designer, or son, could add a lot of style to it! 
 
 Below you will find the R code that you need to add to buttons on the first and second item. Click edit next to your first item (the one with the introduction) and go to the *R interaction* tab. (You already know how to do it, right? [http://code.google.com/p/concerto-platform/wiki/tutorial?ts=1318172928&updated=tutorial Step-by-Step tutorial to make a simple test].)
 
