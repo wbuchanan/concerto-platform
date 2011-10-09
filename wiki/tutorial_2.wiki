@@ -4,7 +4,7 @@
 
 = TUTORIAL: How to create an ADAPTIVE test =
 
-It is assumed that you've already taken this tutorial:
+It is assumed that before you start this tutorial you've SUCCESSFULLY finished this one:
 [http://code.google.com/p/concerto-platform/wiki/tutorial?ts=1318172928&updated=tutorial Step-by-Step tutorial to make a simple test]. 
 
 == Concept ==
