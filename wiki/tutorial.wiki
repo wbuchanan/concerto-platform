@@ -29,7 +29,7 @@ Demo installation: http://dev.myiqtest.org/concerto/admin/
 
 http://ns39618.ovh.net/~michal/concerto/create_new.jpg
 
-  * Enter the name of the item (e.g. *'Mike's first item'*)
+  * Enter the name of the item (e.g. *'my first item'*) - *note that you will not be able to save it without giving it a name*
 
 http://ns39618.ovh.net/~michal/concerto/item_name.PNG
 
@@ -62,7 +62,7 @@ http://dev.myiqtest.org/concerto2/wiki_images/demo_start.png
 
 == Test Item Template ==
   * Create a new item by clicking the *'create new'* button in the top left side of the *'item'* tab.
-  * Give it a name in the HTML layer tab, e.g.: *'Mike's question template'*.
+  * Give it a name in the HTML layer tab - *note that you will not be able to save it without giving it a name*
   * Add a radio button in the *'HTML layer'* tab by clicking "Radio Button" icon.
 
 http://ns39618.ovh.net/~michal/concerto/cke_radio.PNG
@@ -91,7 +91,7 @@ http://ns39618.ovh.net/~michal/concerto/item_html.PNG
 
 
 == Feedback Item Template ==
-  * Create a new item by clicking the *'create new'* button, give it a name, e.g.  (*'Mike's feedback item'*).
+  * Create a new item by clicking the *'create new'* button, give it a name - *note that you will not be able to save it without giving it a name*
   * in the *'HTML layer'* tab insert text: *{{user_name}}, your total score is {{total_score}}.*
   * press the *'save'* button to save the item.
  
