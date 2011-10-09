@@ -1,4 +1,4 @@
-= TUTORIAL: How to create an ADAPTIVE test =
+= TUTORIAL: Create you first ADAPTIVE test. =
 
 The test you are going to create here will look like that:
  * *[http://dev.myiqtest.org/concerto/index.php?hash=004d269f4604dbc8058ae8384e6a239c Concerto v2.0 Simple Adaptive Test demo]* (without the fancy graph at the bottom)
