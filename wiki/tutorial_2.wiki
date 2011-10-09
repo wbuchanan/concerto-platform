@@ -24,7 +24,7 @@ Demo installation: http://dev.myiqtest.org/concerto/admin/
 
 = Step 1: Create Item Templates =
 
-First, you need to create 3 item templates using an HTML Layer tab. If you don't know how to do it, take [http://code.google.com/p/concerto-platform/wiki/tutorial?ts=1318172928&updated=tutorial Step-by-Step tutorial to make a simple test].
+First, you need to create 3 item templates using an HTML Layer tab. If you don't know how to do it, take the [http://code.google.com/p/concerto-platform/wiki/tutorial?ts=1318172928&updated=tutorial Step-by-Step tutorial to make a simple test].
 
 ===First item template should contain:===
  * a friendly title 
