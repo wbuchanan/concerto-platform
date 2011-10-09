@@ -1,6 +1,11 @@
 #labels Featured
 =CHANGELOG=
 
+==v2.0.3==
+  * bug fixes
+  * UI tweaks
+  * it is now possible to have multiple item templates with the same name
+
 ==v2.0.2==
   * session variables are now inserted into HTML recurrently
   * added required fields in forms in admin panel
