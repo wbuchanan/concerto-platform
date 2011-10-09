@@ -21,7 +21,7 @@
  */
 
 if (!isset($ini)) {
-    require_once '../../model/Ini.php';
+    require_once '../model/Ini.php';
     $ini = new Ini();
 }
 

@@ -25,6 +25,12 @@ OModule.inheritance=function(obj)
     obj.isNewObjectSaved=false;
     obj.tempID='';
     obj.currentID=0;
+    obj.listLength=10;
+    
+    obj.uiChangeListLength=function(length)
+    {
+        this.listLength=length;
+    };
 	
     obj.uiReload=function(oid)
     {

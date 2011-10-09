@@ -212,9 +212,6 @@ class Ini {
         $sql = sprintf("ALTER TABLE `Item` DROP INDEX name");
         mysql_query($sql);
         
-        $sql = sprintf("ALTER TABLE  `Item` ADD UNIQUE (`name`)");
-        mysql_query($sql);
-        
         $sql = sprintf("ALTER TABLE  `User` CHANGE  `login`  `login` VARCHAR( 20 ) CHARACTER SET utf8 COLLATE utf8_general_ci NOT NULL");
         mysql_query($sql);
         

@@ -19,16 +19,17 @@
   along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-if (!isset($ini))
-{
+if (!isset($ini)) {
     require_once '../../model/Ini.php';
     $ini = new Ini();
 }
 $user = User::get_logged_user();
-if ($user == null) die(Language::string(85));
+if ($user == null)
+    die(Language::string(85));
 
 $oid = 0;
-if (isset($_POST['oid'])) $oid = $_POST['oid'];
+if (isset($_POST['oid']))
+    $oid = $_POST['oid'];
 
 //////////
 $class_name = "Item";
@@ -42,10 +43,6 @@ $num_rows = mysql_num_rows(mysql_query($sql));
 <script>
     $(function(){
         Methods.iniIconButtons();
-<?php if ($num_rows > 0)
-{ ?>
-            Methods.iniListTableExtensions("<?= $class_name ?>",true,true,[0,1,2,3]);
-<?php } ?>
         $(".list<?= $class_name ?>ActionsSelect").selectmenu({
             icons:[
                 {find:".optionRun", icon:"ui-icon-play"},
@@ -63,13 +60,16 @@ $num_rows = mysql_num_rows(mysql_query($sql));
             }
         });
         $(".list<?= $class_name ?>ActionsSelect").width($(".list<?= $class_name ?>ActionsSelect").width()+$(".list<?= $class_name ?>ActionsSelect").selectmenu("option","handleWidth"));
+<?php if ($num_rows > 0) { ?>
+            Methods.iniListTableExtensions("<?= $class_name ?>",true,true,[0,1,2,3],<?=$class_name?>.listLength);
+<?php } ?>
     });
 </script>
 
 <div class="fullWidth" align="center"><button class="btnNew" onclick='<?= $class_name ?>.uiEdit(0)' /></div>
 
 <?php if ($num_rows > 0)
-        include Ini::$internal_path . 'admin/view/inc/list_filter.inc.php'; ?>
+    include Ini::$internal_path . 'admin/view/inc/list_filter.inc.php'; ?>
 <table class="fullWidth listTable ui-widget-content ui-corner-all" id="table<?= $class_name ?>List">
     <caption class="ui-widget-header ui-corner-all noWrap"><?= $list_caption ?><button class="btnInfoItemTable"></button></caption>
     <thead>
@@ -85,8 +85,7 @@ $num_rows = mysql_num_rows(mysql_query($sql));
     <tbody>
         <?php
         $z = mysql_query($sql);
-        while ($r = mysql_fetch_array($z))
-        {
+        while ($r = mysql_fetch_array($z)) {
             $obj = $class_name::from_mysql_id($r[0]);
             $owner = $obj->get_owner();
             $share = $obj->get_sharing();
@@ -110,8 +109,8 @@ $num_rows = mysql_num_rows(mysql_query($sql));
         <?php } ?> 
     </tbody>
 </table>
-<?php if ($num_rows == 0)
-{ ?>
+<?php if ($num_rows == 0) { ?>
     <div class="fullWidth ui-widget-content ui-corner-all noWrap" align="center"><?= $empty_caption ?><button class="btnInfoItemTable"></button></div>
     <?php
-} else include Ini::$internal_path . 'admin/view/inc/list_pager.inc.php'; ?>
+} else
+    include Ini::$internal_path . 'admin/view/inc/list_pager.inc.php'; ?>

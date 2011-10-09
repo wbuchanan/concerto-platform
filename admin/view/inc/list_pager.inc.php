@@ -28,14 +28,20 @@ if ($user == null)
     die(Language::string(85));
 ?>
 
+<script>
+    $(function(){
+        $("#listLength<?= $class_name ?>").val(<?= $class_name ?>.listLength);
+    });
+</script>
+
 <div class="pager fullWidth ui-widget-header ui-corner-all" align="center" id="table<?= $class_name ?>ListPager">
     <form>
         <button class="first btnFirstOnly ui-icon-seek-first"></button>
         <button class="prev btnPrevOnly ui-icon-seek-prev"></button>
         <input type="text" class="pagedisplay" readonly style="width: 50px;" />
-        <select class="pagesize">
+        <select class="pagesize" id="listLength<?= $class_name ?>" onchange="<?=$class_name?>.uiChangeListLength(this.value)">
             <option value="10">10 <?= Language::string(102) ?></option>
-            <option value="25" selected>25 <?= Language::string(102) ?></option>
+            <option value="25">25 <?= Language::string(102) ?></option>
             <option value="50">50 <?= Language::string(102) ?></option>
             <option value="100">100 <?= Language::string(102) ?></option>
         </select>

@@ -22,6 +22,7 @@ function Item() { };
 OModule.inheritance(Item);
 
 Item.className="Item";
+Item.listLength=25;
 
 Item.captionDelete="";
 Item.captionImportHTMLConfirm="";

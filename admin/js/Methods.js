@@ -299,7 +299,7 @@ Methods.getTempID=function()
     return User.sessionID+"_"+time;
 };
 
-Methods.iniListTableExtensions=function(className,pager,filter,cols)
+Methods.iniListTableExtensions=function(className,pager,filter,cols,listLength)
 {
     var ts = $("#table"+className+"List").tablesorter({
         fixedWidth:true
@@ -309,7 +309,7 @@ Methods.iniListTableExtensions=function(className,pager,filter,cols)
         ts = ts.tablesorterPager({
             container: $("#table"+className+"ListPager"),
             positionFixed:false,
-            size:25
+            size:listLength
         });
     }
     if(filter)
