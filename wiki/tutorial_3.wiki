@@ -13,6 +13,8 @@ Here we show how to create a simple graph using the built in graphical capabilit
 
 = Step 1: Edit the first (Introduction) template of the test =
 
+*Note that in this tutorial we are editing templates created in the previous one ([http://dev.myiqtest.org/concerto/index.php?hash=004d269f4604dbc8058ae8384e6a239c Concerto v2.0 Simple Adaptive Test demo]). *
+
 Add the following R syntax at the end of the existing syntax. Try to READ AND UNDERSTAND IT.
 
 {{{
@@ -86,16 +88,24 @@ plot_graph()
 
 = Step 2: Edit the first (Introduction) template of the test =
 
-Now edit the second template of your test. Add the image to the 
+Now edit the second template of your test. Add the image by clicking on the add image icon, set its URL to:
+{{{
+http://dev.myiqtest.org/concerto/temp/{{image_source}}
+}}}
+Note that {{image_source}} variable will be sent to HTML layer by R syntax. Set width to 600 and height to 450 (this was the size defined for the image in the R syntax).  
 
+http://ns39618.ovh.net/~michal/concerto/item1.PNG
 
-
+Go to the *R interaction Tab* and add this piece of code at the end of the existing one:
 
 {{{
-#### PLOT GADGET
+## update theta and sem history
 xtheta<-c(xtheta,theta)
 xsem<-c(xsem,sem)
+
+## plot, baby!
 plot_graph()
-
-
 }}}
+
+
+= You are done! =
