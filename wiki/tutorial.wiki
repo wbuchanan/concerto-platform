@@ -1,7 +1,8 @@
 #labels Featured
 = TUTORIAL: Create a simple test step-by-step =
 
-[http://dev.myiqtest.org/concerto/index.php?hash=96429388f1901156270cc6b1726c7bbf Click here to see how it should work]
+In this tutorial you are going to develop a test that looks more or less like that:
+ * *[http://dev.myiqtest.org/concerto/index.php?hash=96429388f1901156270cc6b1726c7bbf Simple test]*
 
  * *This document is relevant to Concerto 2.0.2 and higher. If you use an older version, upgrade it*
  * *I experience problems while editing Templates using Mozilla Firefox - you may like to use Internet Explorer or Google Chrome to run administration panel*
