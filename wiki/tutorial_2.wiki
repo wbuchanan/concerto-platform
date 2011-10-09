@@ -35,7 +35,7 @@ http://ns39618.ovh.net/~michal/concerto/item1.PNG
 
 ===Second item template should contain:===
  * a friendly title and a short instruction 
- * an equation: *{{a}} + {{b}} =* 
+ * an equation: *{{a}} + {{b}} =* to be solved by the testee 
    * note that *a* and *b* values will be set up by R syntax
  * a *text field* where user will write his response
    * IMPORTANT: call this *text field* "*response*" as that's how we refer to it in R code. You can give it a different name, but you will have to change R code accordingly.
