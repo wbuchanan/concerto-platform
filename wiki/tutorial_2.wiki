@@ -8,7 +8,7 @@ It is assumed that before you start this tutorial you've SUCCESSFULLY finished t
 [http://code.google.com/p/concerto-platform/wiki/tutorial?ts=1318172928&updated=tutorial Step-by-Step tutorial to make a simple test]. 
 
 == Concept ==
-Here we show how to create a simple 2PL adaptive test based. It is composed of three item templates:
+Here we show how to create a simple 2PL adaptive test based. It is composed of three templates:
  * *Introduction*
  * *Test item* - with a simple mathematical task. 
  * *Feedback* containing the user's score.
@@ -16,24 +16,24 @@ Here we show how to create a simple 2PL adaptive test based. It is composed of t
 Item bank and item parameters are to be generated at the beginning of the test. To fully understand what is going on, you need to know basics of R. I've used few functions from [http://cran.r-project.org/web/packages/catR/index.html catR library] but they should be pretty self-explainable. Note, that you have complete freedom while using Concerto: you can use any other R library or simply write your own equations.
 
 = Login to Concerto = 
-*I personally experience problems while editing Item Templates using Mozilla Firefox - try using Internet Explorer or Google Chrome to run administration panel*
+*I personally experience problems while editing Templates using Mozilla Firefox - try using Internet Explorer or Google Chrome to run administration panel*
 
 Go to *concerto_installation_path/admin* and login using your credentials. If you haven't installed Concerto on your server, you can use our demo installation. Email [mailto:mk583@cam.ac.uk Michal Kosinski] to  get demo account.
 
 Demo installation: http://dev.myiqtest.org/concerto/admin/
 
-= Step 1: Create Item Templates =
+= Step 1: Create HTML Templates =
 
-First, you need to create 3 item templates using an HTML Layer tab. If you don't know how to do it, take the [http://code.google.com/p/concerto-platform/wiki/tutorial?ts=1318172928&updated=tutorial Step-by-Step tutorial to make a simple test].
+First, you need to create 3 HTML templates using an HTML Layer tab. If you don't know how to do it, take the [http://code.google.com/p/concerto-platform/wiki/tutorial?ts=1318172928&updated=tutorial Step-by-Step tutorial to make a simple test].
 
-===First item template should contain:===
+===First HTML template should contain:===
  * a friendly title 
  * a button with a meaningful name, e.g. "Start"
 and look like that:
 
 http://ns39618.ovh.net/~michal/concerto/item1.PNG
 
-===Second item template should contain:===
+===Second HTML template should contain:===
  * a friendly title and a short instruction 
  * an equation: *{{a}} + {{b}} =* to be solved by the testee 
    * note that *a* and *b* values will be set up by R syntax
@@ -43,10 +43,10 @@ http://ns39618.ovh.net/~michal/concerto/item1.PNG
  * A button 
  * And, for presentation purposes, fields {{theta}}, {{sem}}, {{difficulty}}, {{discrimination}}. We will use R syntax to fill those fields with the current values of those parameters.
 
-This item should look like that:
+This template should look like that:
 http://ns39618.ovh.net/~michal/concerto/item2.PNG
 
-===Third item template should contain:===
+===Third template should contain:===
  * a friendly title
  * few words of a warm feedback
  * fields {{theta}} and {{sem}} to be filled by the R syntax
@@ -54,17 +54,17 @@ http://ns39618.ovh.net/~michal/concerto/item2.PNG
 It should look like that:
 http://ns39618.ovh.net/~michal/concerto/item2.PNG
 
-= Step 2: Add R code to the item templates =
+= Step 2: Add R code to the templates =
   
 Well done, you've dealt with the graphical layout of your test. It is quite ugly, I know, but I assure you that your marketing staff, web designer, or son, could add a lot of style to it! 
 
-Below you will find the R code that you need to add to the buttons on the first and second item. Edit your first item (the one with the introduction), go to the *R interaction* tab and enter the in the *R code to execute* field. (You already know how to do it, right? [http://code.google.com/p/concerto-platform/wiki/tutorial?ts=1318172928&updated=tutorial Step-by-Step tutorial to make a simple test].)
+Below you will find the R code that you need to add to the buttons on the first and second templates. Edit your first template(the one with the introduction), go to the *R interaction* tab and enter the in the *R code to execute* field. (You already know how to do it, right? [http://code.google.com/p/concerto-platform/wiki/tutorial?ts=1318172928&updated=tutorial Step-by-Step tutorial to make a simple test].)
 
-You can just copy paste the code from this window but try to *READ IT AND UNDERSTAND* what is going on. You *need to change one thing only:* set the proper item id in the *set.next.template()* function. For instance, in the code assigned to the first template (Introduction) you should use this function to switch to the second template (Test Item). Feel free to modify the R code as you wish, just don't overdo it.
+You can just copy paste the code from this window but try to *READ IT AND UNDERSTAND* what is going on. You *need to change one thing only:* set the proper template id in the *set.next.template()* function. For instance, in the code assigned to the first template (Introduction) you should use this function to switch to the second template (Test Item). Feel free to modify the R code as you wish, just don't overdo it.
 
 * Don't forget to save the template after each modification *
 
-== Code for the first item template ==
+== R Code for the first template ==
 {{{
 ### Define the stopping rules - they will be used later
 max_items <- 15
@@ -113,10 +113,10 @@ set.var("sem", "not available")
 ### Concerto function: Now select the second template 
 ### PUT SECOND TEMPLATE'S ID IN THE BRACKETS (you can find
 ### the ID on the template's list on the left)
-set.next.template(ENTER ID OF THE NEXT ITEM HERE)  
+set.next.template(ENTER ID OF THE NEXT TEMPLATE HERE)  
 }}}
 
-== Code for the second item template ==
+== R Code for the second template ==
 {{{
 ### "response" variable is provided to R by HTML Layer
 ### (Remember the text field called "response"?)
@@ -167,9 +167,10 @@ set.var("sem", format(sem, digits=3))
 
 ### STOPPING CONDITIONS 
 ### Simple: if length is higher than limit of items or sem is lower
-### than a border value, set next item template to the third 
+### than a border value, set next template to the third 
 ###(feedback) template 
-### note that max_items and min_sem were set on the previous item
+### note that max_items and min_sem were set in the code assigned
+### to the button on the previous template 
 
 if (length(items) > max_items || sem < min_sem) {
   set.next.template(---FEEDBACK TEMPLATE'S ID HERE----)
