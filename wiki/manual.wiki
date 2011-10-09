@@ -228,3 +228,16 @@ Super Admins can add/edit groups and assign users to groups in the "Users Tab".
 Note that you can access MySQL server from the R syntax level using pre-installed RMySQL library or any other library that you have installed on your server. This allows you to create and access custom tables (e.g. user scores table, item bank table).
 
 We also suggest PhPMyAdmin for easy management of the MySQL server.
+
+= Will be added here soon =
+
+ * saving and loading files
+ * list of special variables always available in R:
+   * SessionID <- '262'
+   * temp_path
+   * hash <- '004d269f4604dbc8058ae8384e6a239c'
+   * IP <- '131.111.185.81'
+   * browser <- 'Mozilla/5.0 (Windows NT 6.1; WOW64) AppleWebKit/535.1 (KHTML, like Gecko) Chrome/14.0.835.202 Safari/535.1'
+   * template_id <- '20'
+   * button_name <- 'submit'
+   * time_left <- '-9'
