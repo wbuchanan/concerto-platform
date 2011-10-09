@@ -2,21 +2,20 @@
 =CHANGELOG=
 
 ==v2.0.3==
-  * bug fixes
-  * UI tweaks
+  * minor bug fixes
+  * Administrator Panel design changed
   * it is now possible to have multiple item templates with the same name
 
 ==v2.0.2==
+  * changed built-in R function *set.next.item(item_name)* to *set.next.template(template_id)*
   * session variables are now inserted into HTML recurrently
-  * added required fields in forms in admin panel
-  * added unique fields in forms in admin panel
-  * from now on future updates ( including this one ) will be handled by patches ( no need to download whole source again )
-  * UI tweaks
-  * bug fixes
+  * Administrator Panel design changed
+  * Added unique fields in forms in the administrator panel
+  * from now on, future updates (including this one) will be handled by patches (no need to download the whole source again)
+  * minor bug fixes
   * improved performance
-  * changed built in R function *set.next.item(item_name)* to *set.next.template(template_id)*
-  * location of setup page is now */setup* - whole directory should be deleted after first successful run for security reasons
-  * tests can be started directly from the admin panel by clicking *run* button
+  * location of the setup page is now */setup* -  delete this directory after the installation 
+  * added *run* button to the administration panel
 
 ==v2.0.1==
   * new version check fix
