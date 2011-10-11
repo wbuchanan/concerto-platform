@@ -176,7 +176,7 @@ set.var("sem", format(sem, digits=3))
 ### to the button on the previous template 
 
 if (length(items) > max_items || sem < min_sem) {
-  set.next.template(---FEEDBACK TEMPLATE'S ID HERE----)
+  set.next.template(---FEEDBACK TEMPLATE ID HERE----)
   }
 
 }}}
