@@ -153,8 +153,8 @@ You can add new languages by inserting <some_language>string translated into som
         <pl>typ obiektu HTML</pl>
     </string>
     <string id="69">
-        <en>INSERTS and USER INPUTS</en>
-        <pl>INSERTY i POLA WYPELNIANIA</pl>
+        <en>INSERTS</en>
+        <pl>INSERTY</pl>
     </string>
     <string id="71">
         <en>Test designer</en>
@@ -385,8 +385,8 @@ You can add new languages by inserting <some_language>string translated into som
         <pl>Ta funckja pozwala zmienić następny Szablon HTML (domyślnie, Szablon pozostaje ten sam)</pl>
     </string>
     <string id="130">
-        <en>INSERTS</en>
-        <pl>INSERTY</pl>
+        <en>INSERTS and USER INPUTS</en>
+        <pl>INSERTY i POLA WYPELNIANIA</pl>
     </string>
     <string id="131">
         <en>All fields marked with * must be filled.</en>
