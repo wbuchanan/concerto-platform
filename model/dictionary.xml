@@ -23,110 +23,109 @@ Concerto Testing Platform,
 <!-- You can put comments this way. -->
 
 <!-- 
-If you feel you can contribute and translate to language not yet supported by Concerto or you feel that translation needs to be corrected then please let us know and we will add you as a contributor to the project.
-You will then have the ability to edit this dictionary.xml file. 
+If you feel you can contribute and translate to language not yet supported by Concerto or you feel that translation needs to be corrected then please let us know and we will add you as a contributor which will allow you to edit dictionary.xml file. 
 You can add new languages by inserting <some_language>string translated into some_language</some_language> tag inside <string> tags.
 -->
 
 <root>
     <string id="4">
-        <en>select item template HTML to import</en>
-        <pl>wybierz element szablonu by zaimportować jego HTML</pl>
+        <en>Select HTML Template to import</en>
+        <pl>Wybierz Szablon HTML do importu</pl>
     </string>
     <string id="6">
-        <en>timer</en>
-        <pl>timer</pl>
+        <en>Timer</en>
+        <pl>Timer</pl>
     </string>
     <string id="7">
-        <en>there's no buttons in HTML</en>
-        <pl>brak przycisków w HTML</pl>
+        <en>There are no BUTTONS in this HTML Template</en>
+        <pl>Brak przycisków w tym Szablonie HTML</pl>
     </string>
     <string id="8">
-        <en>there's no inserted session variables into HTML</en>
-        <pl>brak osadzonych zmiennych sesyjnych w HTML</pl>
+        <en>There are no INSERTS in this HTML Template</en>
+        <pl>Brak INSERTÓW w tym Szablonie HTML</pl>
     </string>
     <string id="9">
-        <en>there's no sent session variables from current item HTML</en>
-        <pl>brak wysyłanych zmiennych sesyjnych z HTML obecnego elementu</pl>
+        <en>There are no USER INPUTS in this HTML Template</en>
+        <pl>Brak PÓL WPROWADZANIA w tym Szablonie HTML</pl>
     </string>
     <string id="10">
-        <en>Are you sure you want to import HTML? Unsaved changes in current HTML will be lost.</en>
-        <pl>Jesteś pewien że chcesz zaimportować HTML? Wszystkie niezapisane zmiany w obecnym HTML zostaną utracone.</pl>
+        <en>Are you sure that you want to import HTML from this HTML Template? Unsaved changes in the HTML will be lost</en>
+        <pl>Czy jesteś pewien, że chcesz zaimportować HTML z tego Szablonu? Wszystkie niezapisane zmiany w obecnym HTML zostaną utracone</pl>
     </string>
     <string id="12" type="tip">
-        <en>R code to execute after button is pressed.</en>
-        <pl>Kod R do wykonania po naciśnięciu przycisku.</pl>
+        <en>R code to be executed after BUTTON is pressed</en>
+        <pl>Kod R do wykonania po naciśnięciu przycisku</pl>
     </string>
     <string id="13" type="tip">
-        <en>Select button to autoclick when item time runs out.</en>
-        <pl>Wybierz przycisk który ma zostać automatycznie kliknięty gdy czas `timer` elementu dojdzie do zera.</pl>
+        <en>Select the BUTTON to submit on time-out</en>
+        <pl>Wybierz przycisk który ma zostać automatycznie kliknięty gdy skończy się czas ustawiony w polu `timer`</pl>
     </string>
     <string id="14" type="tip">
-        <en>Name of an item template.</en>
-        <pl>Nazwa szablonu elementu.</pl>
+        <en>HTML Template name</en>
+        <pl>Nazwa Szablonu HTML</pl>
     </string>
     <string id="15" type="tip">
-        <en>Select an item which HTML you want to import to your current item. Only HTML will be imported. Other properties are left intact.</en>
-        <pl>Wybierz element którego HTML chciałbyś zaimportować to obecnego elementu. Jedynie HTML zostanie zaimportowany. Pozostałe właściwości zostaną nie zmienione.</pl>
+        <en>Select a source HTML Template to import. Only HTML code will be imported while other properties of this HTML Template are not changed</en>
+        <pl>Wybierz źródłowy Szablon HTML do importu. Tylko kod HTML zostanie zaimportowany. Pozostałe właściwości obecnego Szablony HTML nie będą zmienione</pl>
     </string>
     <string id="16" type="tip">
-        <en>Hashed string used to set starting item at client side by inserting 'hash' parameter to URL address. Example: http://concerto.com/?hash=insert_hash_here .</en>
-        <pl>Hash używany by wybrać startowy element po stronie klienta poprzez osadzenie parametru 'hash' w adresie URL. Przykład: http://concerto.com/?hash=miejsce_na_hash .</pl>
+        <en>HASH string can be used to start a test with a given HTML Template using URL. Example: http://yourdomain.com/?hash=insert_hash_here .</en>
+        <pl>HASH może być zastosowany do uruchomienia testu od danego Szablonu za pomoca adresu URL. Przykład: http://twojadomena.com/?hash=to_umiesc_hash .</pl>
     </string>
     <string id="17" type="tip">
-        <en>Time in seconds that user has to fill item and submit it. If time runs out default button is autoclicked. Variable {{timer}} can be inserted to HTML to show current time left in seconds at client side.</en>
-        <pl>Czas w sekundach jaki użytkownik ma aby wypełnić element i go przesłać. Jeśli czas dobiegnie końca domyślny przycisk zostanie automatycznie kliknięty. Zmienna {{time}} może zostać osadzona w HTML aby pokazać obecny czas pozostały w sekundach po stronie klienta.</pl>
+        <en>Maximum Time (in seconds) to answer the question on this template. When the time runs our the default button is submitted automatically. INSERT {{timer}} showing the time left in seconds can be used in the HTML Template</en>
+        <pl>Czas w sekundach na odpowiedź na pytanie znajdujące się na tym Szablonie HTML. Jeżeli czas się skończy domyślny przycisk zostanie automatycznie zatwierdzony. INSERT {{time}} pokazujący czas pozostały do końca może być zastosowana w Szablonie HTML</pl>
     </string>
     <string id="18" type="tip">
-        <en>Every HTML object like: &lt;input type='button' /&gt; , &lt;input type='image' /&gt; , &lt;button&gt;&lt;/button&gt; with 'name' attribute can be used as item submit button. Every item submit button can execute R code. User can also select which submit button is a default one. Default submit button will be autoclicked when the item time runs out.</en>
-        <pl>Każdy obiekt HTML jak: &lt;input type='button' /&gt; , &lt;input type='image' /&gt; , &lt;button&gt;&lt;/button&gt; z atrybutem 'name' może zostać wykorzystany jako przycisk przesłania. Każdy przycisk przesłania może wykonać kod R. Użytkownik może również wybrać który przycisk powinien być domyślnym. Domyślny przycisk zostanie automatycznie kliknięty gdy czas elementu sie skończy.</pl>
+        <en>Every HTML object like: &lt;input type='button' /&gt; , &lt;input type='image' /&gt; , &lt;button&gt;&lt;/button&gt; with 'name' attribute can have a R code assigned to it to be run after it is selected by the user. You can select a default button that will be submitted on the time-out (if timer is set)</en>
+        <pl> Każdy obiekt HTML taki jak: &lt;input type='button' /&gt; , &lt;input type='image' /&gt; , &lt;button&gt;&lt;/button&gt; posiadający atrybut 'name' może mieć przypisany kod R który zostanie uruchomiony po wciśnięciu przycisku. Moźesz wybrać domyślny przycisk który zostanie automatycznie wybrany jeżeli czas na odpowiedź na pytanie skończy się</pl>
     </string>
     <string id="19" type="tip">
-        <en>Present item templates in the system. You can modify, delete and add new ones.</en>
-        <pl>Obecne szablony elementów w systemie. Można tutaj je modyfikować, usuwać oraz dodawać nowe.</pl>
+        <en> The list of HTML Templates that you have access to</en>
+        <pl> Lista Szablonów HTML do których masz dostęp</pl>
     </string>
     <string id="23" type="tip">
-        <en>Session variables which are created by current items HTML controls like input, radio button, checkbox, select, etc.</en>
-        <pl>Zmienne sesyjne które są tworzone przez kontrolki HTML obecnego elementu takie jak input, przycisk radio, checkbox, lub select, itd.</pl>
+        <en> The list of USER INPUTS present on a current HTML template, such as Fields, Radio Buttons, Checkboxes, etc. Values entered by users will be stored under the name of the name of a given USER INPUT</en>
+        <pl> Lista PÓL WPROWADZANIA obecnych na obecnym Szablonie HTML, takich jak Text Fields, Radio Buttons, Checkboxes, etc. Wartości wprowadzone przez użytkowników zostaną zapisane pod nazwą danego POLA WPROWADZANIA</pl>
     </string>
     <string id="24" type="tip">
-        <en>Session variables which are declared to be inserted into the HTML of the current item.</en>
-        <pl>Zmienne sesyjne które zostały zdeklarowane że mają zostać osadzone w HTML obecnego elementu.</pl>
+        <en> The list of INSERTS (e.g. {{cool_insert}}) that were declared in the current HTML Template</en>
+        <pl> Lista INSERTÓW zadeklarownych w obecnym Szablonie HTML</pl>
     </string>
     <string id="39">
-        <en>import HTML</en>
-        <pl>importuj HTML</pl>
+        <en>Import the HTML</en>
+        <pl>Importuj kod HTML</pl>
     </string>
     <string id="40">
-        <en>create new</en>
-        <pl>stwórz nowe</pl>
+        <en>Create new</en>
+        <pl>Dodaj</pl>
     </string>
     <string id="41">
-        <en>save</en>
-        <pl>zapisz</pl>
+        <en>Save</en>
+        <pl>Zapisz</pl>
     </string>
     <string id="42">
-        <en>delete</en>
+        <en>Delete</en>
         <pl>usuń</pl>
     </string>
     <string id="43">
-        <en>edit</en>
-        <pl>edycja</pl>
+        <en>Edit</en>
+        <pl>Edycja</pl>
     </string>
     <string id="49">
-        <en>id</en>
-        <pl>id</pl>
+        <en>Id</en>
+        <pl>Id</pl>
     </string>
     <string id="50">
-        <en>name</en>
-        <pl>nazwa</pl>
+        <en>Name</en>
+        <pl>Nazwa</pl>
     </string>
     <string id="51">
-        <en>hash</en>
-        <pl>hash</pl>
+        <en>Hash</en>
+        <pl>Hash</pl>
     </string>
     <string id="54">
-        <en>item submit buttons</en>
+        <en>Item submit buttons</en>
         <pl>przyciski przesłania elementu</pl>
     </string>
     <string id="55">
