@@ -229,7 +229,12 @@ Note that you can access MySQL server from the R syntax level using pre-installe
 
 We also suggest PhPMyAdmin for easy management of the MySQL server.
 
-= Will be added here soon =
+= mainmethods.r =
+
+Starting parameters of R (including default functions and libraries) are stored in the file: ../R/library/ 
+
+
+= To be added here soon =
 
  * saving and loading files
  * list of special variables always available in R:
