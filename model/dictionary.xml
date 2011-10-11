@@ -1,5 +1,33 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<!--
+Concerto Testing Platform,
+  Web based adaptive testing platform utilizing R language for computing purposes.
+
+  Copyright (C) 2011  Psychometrics Centre, Cambridge University
+
+  This program is free software: you can redistribute it and/or modify
+  it under the terms of the GNU General Public License as published by
+  the Free Software Foundation, either version 3 of the License, or
+  (at your option) any later version.
+
+  This program is distributed in the hope that it will be useful,
+  but WITHOUT ANY WARRANTY; without even the implied warranty of
+  MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+  GNU General Public License for more details.
+
+  You should have received a copy of the GNU General Public License
+  along with this program.  If not, see <http://www.gnu.org/licenses/>.
+-->
+
+<!-- You can put comments this way. -->
+
+<!-- 
+If you feel you can contribute and translate to language not yet supported by Concerto or you feel that translation needs to be corrected then please let us know and we will add you as a contributor to the project.
+You will then have the ability to edit this dictionary.xml file. 
+You can add new languages by inserting <some_language>string translated into some_language</some_language> tag inside <string> tags.
+-->
+
 <root>
     <string id="4">
         <en>select item template HTML to import</en>
