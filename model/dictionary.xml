@@ -78,19 +78,19 @@ You can add new languages by inserting <some_language>string translated into som
     </string>
     <string id="18" type="tip">
         <en>Every HTML object like: &lt;input type='button' /&gt; , &lt;input type='image' /&gt; , &lt;button&gt;&lt;/button&gt; with 'name' attribute can have a R code assigned to it to be run after it is selected by the user. You can select a default button that will be submitted on the time-out (if timer is set)</en>
-        <pl> Każdy obiekt HTML taki jak: &lt;input type='button' /&gt; , &lt;input type='image' /&gt; , &lt;button&gt;&lt;/button&gt; posiadający atrybut 'name' może mieć przypisany kod R który zostanie uruchomiony po wciśnięciu przycisku. Moźesz wybrać domyślny przycisk który zostanie automatycznie wybrany jeżeli czas na odpowiedź na pytanie skończy się</pl>
+        <pl>Każdy obiekt HTML taki jak: &lt;input type='button' /&gt; , &lt;input type='image' /&gt; , &lt;button&gt;&lt;/button&gt; posiadający atrybut 'name' może mieć przypisany kod R który zostanie uruchomiony po wciśnięciu przycisku. Moźesz wybrać domyślny przycisk który zostanie automatycznie wybrany jeżeli czas na odpowiedź na pytanie skończy się</pl>
     </string>
     <string id="19" type="tip">
-        <en> The list of HTML Templates that you have access to</en>
-        <pl> Lista Szablonów HTML do których masz dostęp</pl>
+        <en>The list of HTML Templates that you have access to</en>
+        <pl>Lista Szablonów HTML do których masz dostęp</pl>
     </string>
     <string id="23" type="tip">
-        <en> The list of USER INPUTS present on a current HTML template, such as Fields, Radio Buttons, Checkboxes, etc. Values entered by users will be stored under the name of the name of a given USER INPUT</en>
-        <pl> Lista PÓL WPROWADZANIA obecnych na obecnym Szablonie HTML, takich jak Text Fields, Radio Buttons, Checkboxes, etc. Wartości wprowadzone przez użytkowników zostaną zapisane pod nazwą danego POLA WPROWADZANIA</pl>
+        <en>The list of USER INPUTS present on a current HTML template, such as Fields, Radio Buttons, Checkboxes, etc. Values entered by users will be stored under the name of a given USER INPUT</en>
+        <pl>Lista PÓL WPROWADZANIA obecnych na obecnym Szablonie HTML, takich jak Text Fields, Radio Buttons, Checkboxes, etc. Wartości wprowadzone przez użytkowników zostaną zapisane pod nazwą danego POLA WPROWADZANIA</pl>
     </string>
     <string id="24" type="tip">
-        <en> The list of INSERTS (e.g. {{cool_insert}}) that were declared in the current HTML Template</en>
-        <pl> Lista INSERTÓW zadeklarownych w obecnym Szablonie HTML</pl>
+        <en>The list of INSERTS (e.g. {{cool_insert}}) that were declared in the current HTML Template</en>
+        <pl>Lista INSERTÓW zadeklarownych w obecnym Szablonie HTML</pl>
     </string>
     <string id="39">
         <en>Import the HTML</en>
@@ -125,303 +125,303 @@ You can add new languages by inserting <some_language>string translated into som
         <pl>Hash</pl>
     </string>
     <string id="54">
-        <en>Item submit buttons</en>
-        <pl>przyciski przesłania elementu</pl>
+        <en>Assigning R code to BUTTONS</en>
+        <pl>Przypisywanie kodu R do przycisków</pl>
     </string>
     <string id="55">
         <en>no.</en>
         <pl>nr</pl>
     </string>
     <string id="56">
-        <en>button name</en>
-        <pl>nazwa przycisku</pl>
+        <en>BUTTON name</en>
+        <pl>Nazwa przycisku</pl>
     </string>
     <string id="58">
         <en>R code to execute</en>
-        <pl>kod R do wykonania</pl>
+        <pl>Kod R do wykonania</pl>
     </string>
     <string id="59">
-        <en>default button</en>
-        <pl>domyślny przycisk</pl>
+        <en>Default BUTTON</en>
+        <pl>Domyślny przycisk</pl>
     </string>
     <string id="67">
-        <en>sent session variables</en>
-        <pl>wysłane zmienne sesyjne</pl>
+        <en>USER INPUTS</en>
+        <pl>POLA WPROWADZANIA</pl>
     </string>
     <string id="68">
-        <en>HTML control</en>
-        <pl>kontrolka HTML</pl>
+        <en>HTML object type</en>
+        <pl>typ obiektu HTML</pl>
     </string>
     <string id="69">
-        <en>inserted session variables</en>
-        <pl>osadzone zmienne sesyjne</pl>
+        <en>INSERTS</en>
+        <pl>INSERTY</pl>
     </string>
     <string id="71">
-        <en>items</en>
-        <pl>elementy</pl>
+        <en>Test designer</en>
+        <pl>Kreator testów</pl>
     </string>
     <string id="74">
-        <en>log in</en>
-        <pl>zaloguj</pl>
+        <en>Log in</en>
+        <pl>Zaloguj</pl>
     </string>
     <string id="75">
-        <en>cancel</en>
-        <pl>anuluj</pl>
+        <en>Cancel</en>
+        <pl>Anuluj</pl>
     </string>
     <string id="76">
-        <en>login</en>
-        <pl>login</pl>
+        <en>Login</en>
+        <pl>Login</pl>
     </string>
     <string id="77">
-        <en>password</en>
-        <pl>hasło</pl>
+        <en>Password</en>
+        <pl>Hasło</pl>
     </string>
     <string id="78">
-        <en>users</en>
-        <pl>użytkownicy</pl>
+        <en>Users</en>
+        <pl>Użytkownicy</pl>
     </string>
     <string id="79">
-        <en>groups</en>
-        <pl>grupy</pl>
+        <en>Groups</en>
+        <pl>Grupy</pl>
     </string>
     <string id="80">
-        <en>login/password combination is incorrect!</en>
-        <pl>kombinacja login/hasło jest niepoprawna!</pl>
+        <en>The login/password combination is incorrect!</en>
+        <pl>Kombinacja login/hasło jest niepoprawna!</pl>
     </string>
     <string id="81">
-        <en>Are you sure you want to delete user</en>
-        <pl>Jesteś pewien że chcesz usunąć użytkownika</pl>
+        <en>Are you sure you want to delete the user?</en>
+        <pl>Czy jesteś pewien, że chcesz usunąć użytkownika?</pl>
     </string>
     <string id="82">
-        <en>Password and password confirmation doesn't match!</en>
+        <en>Password and password confirmation don't match!</en>
         <pl>Hasło i potwierdzenie hasła nie zgadzają się!</pl>
     </string>
     <string id="83">
-        <en>login dialog</en>
-        <pl>logowanie</pl>
+        <en>Login dialog</en>
+        <pl>Logowanie</pl>
     </string>
     <string id="84">
-        <en>logged user</en>
-        <pl>zalogowany użytkownik</pl>
+        <en>Current user</en>
+        <pl>Bieżący użytkownik</pl>
     </string>
     <string id="85">
         <en>Access Denied!</en>
         <pl>Dostęp Wzbroniony!</pl>
     </string>
     <string id="86">
-        <en>editing user</en>
-        <pl>edycja użytkownika</pl>
+        <en>Editing user</en>
+        <pl>Edycja użytkownika</pl>
     </string>
     <string id="87">
-        <en>creating new user</en>
-        <pl>tworzenie nowego użytkownika</pl>
+        <en>Creating new user</en>
+        <pl>Tworzenie nowego użytkownika</pl>
     </string>
     <string id="88">
-        <en>check if you want to set the new password</en>
-        <pl>zaznacz jeśli chcesz ustawić nowe hasło</pl>
+        <en>Check if you want to set the new password</en>
+        <pl>Zaznacz jeśli chcesz ustawić nowe hasło</pl>
     </string>
     <string id="89">
-        <en>confirm password</en>
-        <pl>potwierdź hasło</pl>
+        <en>Confirm the password</en>
+        <pl>Potwierdź hasło</pl>
     </string>
     <string id="90">
-        <en>first name</en>
-        <pl>imię</pl>
+        <en>First name</en>
+        <pl>Imię</pl>
     </string>
     <string id="91">
-        <en>last name</en>
-        <pl>nazwisko</pl>
+        <en>Last name</en>
+        <pl>Nazwisko</pl>
     </string>
     <string id="92">
-        <en>email</en>
-        <pl>email</pl>
+        <en>Email</en>
+        <pl>Email</pl>
     </string>
     <string id="93">
-        <en>phone no.</en>
-        <pl>nr telefonu</pl>
+        <en>Phone no.</en>
+        <pl>Nr telefonu</pl>
     </string>
     <string id="94">
-        <en>group</en>
-        <pl>grupa</pl>
+        <en>Group</en>
+        <pl>Grupa</pl>
     </string>
     <string id="95">
-        <en>none</en>
-        <pl>brak</pl>
+        <en>None</en>
+        <pl>Brak</pl>
     </string>
     <string id="96">
-        <en>super admin</en>
-        <pl>super admin</pl>
+        <en>Super admin</en>
+        <pl>Super admin</pl>
     </string>
     <string id="97">
-        <en>available users</en>
-        <pl>dostępni użytkownicy</pl>
+        <en>Available users</en>
+        <pl>Dostępni użytkownicy</pl>
     </string>
     <string id="98">
-        <en>no users available</en>
-        <pl>brak dostępnych użytkowników</pl>
+        <en>No users are available</en>
+        <pl>Brak dostępnych użytkowników</pl>
     </string>
     <string id="99">
-        <en>last activity</en>
-        <pl>ostatnia aktywność</pl>
+        <en>Last activity</en>
+        <pl>Ostatnia aktywność</pl>
     </string>
     <string id="100">
-        <en>actions</en>
-        <pl>akcje</pl>
+        <en>Actions</en>
+        <pl>Akcje</pl>
     </string>
     <string id="101">
-        <en>search list:</en>
-        <pl>przeszukaj listę:</pl>
+        <en>Search the list:</en>
+        <pl>Przeszukaj listę:</pl>
     </string>
     <string id="102">
         <en>per page</en>
         <pl>na stronę</pl>
     </string>
     <string id="103">
-        <en>editing group</en>
-        <pl>edycja grupy</pl>
+        <en>Editing the group</en>
+        <pl>Edycja grupy</pl>
     </string>
     <string id="104">
-        <en>creating new group</en>
-        <pl>tworzenie nowej grupy</pl>
+        <en>Creating new group</en>
+        <pl>Tworzenie nowej grupy</pl>
     </string>
     <string id="105">
-        <en>sharing</en>
-        <pl>dzielenie</pl>
+        <en>Sharing</en>
+        <pl>Dzielenie</pl>
     </string>
     <string id="106">
-        <en>available groups</en>
-        <pl>dostępne grupy</pl>
+        <en>Available groups</en>
+        <pl>Dostępne grupy</pl>
     </string>
     <string id="107">
-        <en>no groups available</en>
-        <pl>brak dostępnych grup</pl>
+        <en>No groups are available</en>
+        <pl>Brak dostępnych grup</pl>
     </string>
     <string id="108">
-        <en>owner</en>
-        <pl>wlaściciel</pl>
+        <en>Owner</en>
+        <pl>Właściciel</pl>
     </string>
     <string id="109">
-        <en>Are you sure you want to delete group</en>
-        <pl>Jesteś pewien że chcesz usunąć grupę</pl>
+        <en>Do you really want to delete this group</en>
+        <pl>Czy jesteś pewien, że chcesz usunąć tą grupę</pl>
     </string>
     <string id="110">
-        <en>available item templates</en>
-        <pl>dostępne szablony elementów</pl>
+        <en>Available HTML Templates</en>
+        <pl>Dostępne Szablony HTML</pl>
     </string>
     <string id="111">
-        <en>no item templates available</en>
-        <pl>brak dostępnych szablonów elementów</pl>
+        <en>No HTML templates are available</en>
+        <pl>Brak dostępnych szablonów HTML</pl>
     </string>
     <string id="112">
-        <en>editing item template</en>
-        <pl>edycja szablonu elementu</pl>
+        <en>Editing HTML template</en>
+        <pl>Edycja Szablonu HTML</pl>
     </string>
     <string id="113">
-        <en>creating new item template</en>
-        <pl>tworzenie nowego szablonu elementu</pl>
+        <en>Creating new HTML Template</en>
+        <pl>Tworzenie nowego Szablonu HTML</pl>
     </string>
     <string id="114">
-        <en>Are you sure you want to delete item template</en>
-        <pl>Jesteś pewien że chcesz usunąć szablon elementu</pl>
+        <en>Do you really want to delete this HTML template?</en>
+        <pl>Czy jesteś pewien, że chcesz usunąć ten szablon elementu?</pl>
     </string>
     <string id="115">
-        <en>preview</en>
-        <pl>podgląd</pl>
+        <en>Preview</en>
+        <pl>Podgląd</pl>
     </string>
     <string id="116">
-        <en>log out</en>
-        <pl>wyloguj</pl>
+        <en>Log out</en>
+        <pl>Wyloguj</pl>
     </string>
     <string id="117">
         <en>HTML layer</en>
-        <pl>warstwa HTML</pl>
+        <pl>Warstwa HTML</pl>
     </string>
     <string id="118">
-        <en>R Interaction</en>
-        <pl>Interakcja z R</pl>
+        <en>R Code</en>
+        <pl>Kod R</pl>
     </string>
     <string id="119">
-        <en>debug</en>
-        <pl>debug</pl>
+        <en>Debug</en>
+        <pl>Debug</pl>
     </string>
     <string id="120">
-        <en>show session variables</en>
-        <pl>pokaż zmienne sesji</pl>
+        <en>Show variables sent to R</en>
+        <pl>Pokaż zmienne wysyłane do R </pl>
     </string>
     <string id="121">
-        <en>show R variables</en>
-        <pl>pokaż zmienne R</pl>
+        <en>Show R objects</en>
+        <pl>Pokaż obiekty R</pl>
     </string>
     <string id="122">
-        <en>homepage</en>
-        <pl>strona domowa</pl>
+        <en>Concerto Homepage</en>
+        <pl>Strona domowa Concerto</pl>
     </string>
     <string id="123">
-        <en>Google Group</en>
-        <pl>Google Group</pl>
+        <en>Concerto Google Group</en>
+        <pl>Google GroupConcerto  </pl>
     </string>
     <string id="124">
-        <en>Concerto built in R functions documentation</en>
-        <pl>Dokumentacja wbudowanych funkcji R Concerto</pl>
+        <en>Documentation of the built-in R functions</en>
+        <pl>Dokumentacja wbudowanych funkcji R</pl>
     </string>
     <string id="125">
-        <en>function signature</en>
-        <pl>sygnatura funckji</pl>
+        <en>Function</en>
+        <pl>Funckja</pl>
     </string>
     <string id="126">
-        <en>description</en>
-        <pl>opis</pl>
+        <en>Description</en>
+        <pl>Opis</pl>
     </string>
     <string id="127">
-        <en>example</en>
-        <pl>przykład</pl>
+        <en>Example</en>
+        <pl>Przykład</pl>
     </string>
     <string id="128">
-        <en>This function sets session variable which can be used in HTML presentation by inserting {{var_name}} string into the item HTML.</en>
-        <pl>Ta funkcja ustawia zmienną sesyjną która potem może zostać użyta w prezentacji HTML poprzez osadzenie ciągu znaków {{var_name}} w HTMLu elementu.</pl>
+        <en>This function allows to send INSERTS to the HTML Layer. set.var("var_name", "Hello") will change {{var_name}} in HTML to Hello</en>
+        <pl>Ta funkcja pozwala wysyłać INSERTY do warstwy HTML. set.var("var_name", "Hello") zamieni {{var_name}} w HTMLu na Hello</pl>
     </string>
     <string id="129">
-        <en>This function sets which item should be load next when the R calculations are finished.</en>
-        <pl>Ta funckja ustawia który element powinien zostać załadowany następny kiedy zakończą się obliczenia R.</pl>
+        <en>This function allows to change the next HTML Template (by default HTML Template stays the same)</en>
+        <pl>Ta funckja pozwala zmienić następny Szablon HTML (domyślnie, Szablon pozostaje ten sam)</pl>
     </string>
     <string id="130">
-        <en>item's session variables</en>
-        <pl>zmienne sesyjne elementu</pl>
+        <en>INSERTS</en>
+        <pl>INSERTY</pl>
     </string>
     <string id="131">
         <en>All fields marked with * must be filled.</en>
         <pl>Wszystkie pola oznaczone * muszą zostać wypełnione.</pl>
     </string>
     <string id="132">
-        <en>Failed to save object. Probably there's another object with the same value of field marked as unique.</en>
-        <pl>Nie udało się zapisać obiektu. Prawdopodobnie istnieje inny obiekt z tą samą wartością pola oznaczonego jako unikatowe.</pl>
+        <en>Failed to save object. Copy R and HTML code to your local computer (e.g. using CTRL-C) and refresh the page</en>
+        <pl>Nie udało się zapisać obiektu. Zapisz kod R i HTML na dysku lokalnym (np. używając CTRL-C) i odśwież stronę</pl>
     </string>
     <string id="133">
-        <en>Saved.</en>
-        <pl>Zapisano.</pl>
+        <en>Saved</en>
+        <pl>Zapisano</pl>
     </string>
     <string id="134">
-        <en>run</en>
-        <pl>uruchom</pl>
+        <en>Run</en>
+        <pl>Uruchom</pl>
     </string>
     <string id="135">
-        <en>execute</en>
-        <pl>wykonaj</pl>
+        <en>Execute</en>
+        <pl>Wykonaj</pl>
     </string>
     <string id="136">
-        <en>choose action:</en>
-        <pl>wybierz akcję:</pl>
+        <en>Choose an action:</en>
+        <pl>Wybierz akcję:</pl>
     </string>
     <string id="136">
-        <en>Are you sure you want to delete file</en>
-        <pl>Jesteś pewien, że chcesz usunąć plik</pl>
+        <en>Are you sure that you want to delete the file?</en>
+        <pl>Czy jesteś pewien, że chcesz usunąć ten plik?</pl>
     </string>
     <string id="137">
         <en>Concerto Platform message</en>
-        <pl>Komunikat z Concerto Platform</pl>
+        <pl>Komunikat z Platformy Concerto</pl>
     </string>
     <string id="138">
         <en>Concerto Platform confirmation</en>
-        <pl>Potwierdzenie z Concerto Platform</pl>
+        <pl>Potwierdzenie z Platformy Concerto</pl>
     </string>
 </root>
