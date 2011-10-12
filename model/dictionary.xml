@@ -211,8 +211,8 @@ You can add new languages by inserting <some_language>string translated into som
             <pl>Bieżący użytkownik</pl>
         </string>
         <string id="85">
-            <en>Access Denied!</en>
-            <pl>Dostęp Wzbroniony!</pl>
+            <en>Access Denied! It's possible that it is because of timed out session. If you think that is the case please refresh your browser.</en>
+            <pl>Dostęp Wzbroniony! Istnieje mozliwosc, ze jest to spowodowany wygasnieta sesja. Jesli uwazasz ze to jest powodem to prosze odswiezyc przegladarke.</pl>
         </string>
         <string id="86">
             <en>Editing user</en>
@@ -399,8 +399,8 @@ You can add new languages by inserting <some_language>string translated into som
             <pl>Wszystkie pola oznaczone * muszą zostać wypełnione.</pl>
         </string>
         <string id="132">
-            <en>Failed to save object. Copy R and HTML code to your local computer (e.g. using CTRL-C) and refresh the page</en>
-            <pl>Nie udało się zapisać obiektu. Zapisz kod R i HTML na dysku lokalnym (np. używając CTRL-C) i odśwież stronę</pl>
+            <en>Failed to save object. Probably object with the same value of field marked as unique already exists in the system.</en>
+            <pl>Nie udało się zapisać obiektu. Prawdopodobnie obiekt z taka sama wartoscia pola oznaczonego jako unikatowe istnieje juz w systemie.</pl>
         </string>
         <string id="133">
             <en>Saved</en>
@@ -441,6 +441,14 @@ You can add new languages by inserting <some_language>string translated into som
         <string id="141">
             <en>your version is up to date</en>
             <pl>twoja wersja jest aktualna </pl>
+        </string>
+        <string id="142">
+            <en>Send user login credentials</en>
+            <pl>Wyslac uzytkownikowi dane logowania</pl>
+        </string>
+        <string id="143">
+            <en>Welcome message</en>
+            <pl>Wiadomosc powitalna</pl>
         </string>
     </strings>
 </root>

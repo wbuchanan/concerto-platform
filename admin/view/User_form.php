@@ -118,6 +118,14 @@ while ($r = mysql_fetch_array($z)) {
         <td class="noWrap"><?= Language::string(96) ?>:</td>
         <td class="fullWidth"><input type="checkbox" id="form<?= $class_name ?>CheckboxSuperadmin" <?= $obj->is_superadmin() ? "checked" : "" ?> /></td>
     </tr>
+    <tr <?=($oid!=0?"style='display:none;'":"")?>>
+        <td class="noWrap"><?= Language::string(142) ?>:</td>
+        <td class="fullWidth"><input type="checkbox" id="form<?= $class_name ?>CheckboxSendCredentials" onchange="this.checked?$('#row<?=$class_name?>Welcome').css('display',''):$('#row<?=$class_name?>Welcome').css('display','none')" /></td>
+    </tr>
+    <tr id="row<?=$class_name?>Welcome" style="display:none;">
+        <td class="noWrap"><?= Language::string(143) ?>:</td>
+        <td class="fullWidth"><textarea name="form<?= $class_name ?>TextareaWelcome" id="form<?= $class_name ?>TextareaWelcome" class="fullWidth" style="height:150px;"></textarea></td>
+    </tr>
 
     <tr>
         <td colspan="2" align="center">

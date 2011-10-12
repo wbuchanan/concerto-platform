@@ -55,7 +55,9 @@ User.getSaveObject=function()
         Group_id:$("#form"+this.className+"SelectGroup").val(),
         modify_password:$("#form"+this.className+"CheckboxPassword").is(":checked")?1:0,
         password:$("#form"+this.className+"InputPassword").val(),
-        superadmin:$("#form"+this.className+"CheckboxSuperadmin").is(":checked")?1:0
+        superadmin:$("#form"+this.className+"CheckboxSuperadmin").is(":checked")?1:0,
+        send_credentials:$("#form"+this.className+"CheckboxSendCredentials").is(":checked")?1:0,
+        welcome:$("#form"+this.className+"TextareaWelcome").val()
     };
 };
 
