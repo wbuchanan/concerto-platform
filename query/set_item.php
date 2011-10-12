@@ -27,13 +27,13 @@ if (!isset($ini)) {
 
 $item = Item::from_mysql_id($_POST['template_id']);
 
-while (strpos($item->HTML, "{{stitem_") !== false) {
+while (strpos($item->HTML, "{{template:") !== false) {
     $html = $item->HTML;
-    $index = strpos($item->HTML, "{{stitem_");
-    $html = substr($html, $index + 9);
-    $name = substr($html, 0, strpos($html, "}}"));
-    $subitem = Item::from_name($name);
-    $item->HTML = str_replace("{{stitem_" . $name . "}}", $subitem->HTML, $item->HTML);
+    $index = strpos($item->HTML, "{{template:");
+    $html = substr($html, $index + 11);
+    $id = substr($html, 0, strpos($html, "}}"));
+    $subitem = Item::from_mysql_id($id);
+    $item->HTML = str_replace("{{template:" . $id . "}}", $subitem->HTML, $item->HTML);
 }
 
 $vars_array = array(

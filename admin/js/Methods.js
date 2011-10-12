@@ -425,6 +425,7 @@ Methods.confirm=function(message,title,callback)
         show:"fade",
         hide:"fade",
         resizable:false,
+        modal:true,
         buttons:
         {
             no:function(){
@@ -448,6 +449,7 @@ Methods.alert=function(message,icon,title)
         show:"fade",
         hide:"fade",
         resizable:false,
+        modal:true,
         buttons:
         {
             ok:function(){

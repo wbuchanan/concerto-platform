@@ -16,14 +16,13 @@
 ###  You should have received a copy of the GNU General Public License
 ###  along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
- args <- commandArgs(T)
- db_host <- args[2]
- db_port <- as.numeric(args[3])
- db_login <- args[4]
- db_password <- args[5]
- db_name <- args[6]
+args <- commandArgs(T)
+db_host <- args[2]
+db_port <- as.numeric(args[3])
+db_login <- args[4]
+db_password <- args[5]
+db_name <- args[6]
  
-ptm <- proc.time()
 setwd(temp_path)
 library(catR)
 options(digits=3)

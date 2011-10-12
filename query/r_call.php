@@ -26,7 +26,7 @@ if (!isset($ini))
     $ini = new Ini();
 }
 
-$code = "########## SESSION CODE STARTS\r\n";
+$code = "########## SESSION CODE STARTS\r\nsystem_proc_time_start<-proc.time()\r\n";
 
 //loading session file
 $session_exists = false;
@@ -110,6 +110,8 @@ if (!$isCommandEmpty)
     $command = $code . "########## BUTTON '" . $clicked_button->name . " CODE STARTS\r\n" . $command . "\r\n########## BUTTON '" . $clicked_button->name . " CODE ENDS\r\n\r\n";
     $command.="########## SESSION CODE STARTS\r\n";
     $command .= "save.session(\"" . $session_file . "\")\r\n";
+    $command .= "system_proc_time <- proc.time()-system_proc_time_start\r\n";
+    $command .= "print(paste('Total elapsed time: ',system_proc_time[3],' secs',sep=''))\r\n";
     $command.="########## SESSION CODE ENDS\r\n";
     $tmp_file = Ini::$temp_path . $_POST['SessionID'] . ".r";
     $file = fopen($tmp_file, 'w');
