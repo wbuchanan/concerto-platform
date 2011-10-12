@@ -26,7 +26,7 @@ class Ini {
     const SETTING_RSCRIPT_PATH="rscript_path";
     const SETTING_IS_RSTUDIO_ON="is_rstudio_on";
 
-    private static $error_reporting = false;
+    private static $error_reporting = true;
     public static $version = "";
     public static $internal_path = "";
     public static $external_path = "";
@@ -226,10 +226,10 @@ class Ini {
         $sql = sprintf("SELECT * FROM `Setting` WHERE `name`='version'");
         $z = mysql_query($sql);
         if (mysql_num_rows($z) == 0) {
-            $sql = sprintf("INSERT INTO `Setting` SET `name`='version', `value`='2.0.3'");
+            $sql = sprintf("INSERT INTO `Setting` SET `name`='version', `value`='2.0.4'");
             mysql_query($sql);
         }
-        else self::set_setting(self::SETTING_VERSION,"2.0.3");
+        else self::set_setting(self::SETTING_VERSION,"2.0.4");
 
         $sql = sprintf("SELECT * FROM `Setting` WHERE `name`='rscript_path'");
         $z = mysql_query($sql);

@@ -35,11 +35,11 @@ if ($user == null) exit();
             if(newer)
             {
                 div.addClass("ui-state-error");
-                div.html("Your version is OUTDATED. <a href='"+link+"'>CLICK HERE TO UPDATE THE LATEST PATCH v"+version+"</a>");
+                div.html("<?=Language::string(139)?> <a href='"+link+"'><?=Language::string(140)?> v"+version+"</a>");
             }
             else
             {
-                div.html("your version is up to date");
+                div.html("<?=Language::string(141)?>");
             }
         });
     });

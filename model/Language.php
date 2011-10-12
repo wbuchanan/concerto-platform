@@ -31,8 +31,17 @@ class Language
         $doc = new DOMDocument('1.0', 'UTF-8');
         $doc->loadXML(self::$xml);
         $xpath = new DOMXPath($doc);
-        $string = $xpath->query("/root/string[@id='$id']/$lang");
+        $string = $xpath->query("/root/strings/string[@id='$id']/$lang");
         foreach ($string as $s) return $s->nodeValue;
+    }
+    
+    public static function languages()
+    {
+        $doc = new DOMDocument('1.0', 'UTF-8');
+        $doc->loadXML(self::$xml);
+        $xpath = new DOMXPath($doc);
+        $lngs = $xpath->query("/root/languages/language");
+        return $lngs;
     }
 
     public static function load_dictionary()

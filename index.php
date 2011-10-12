@@ -19,9 +19,18 @@
   along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-if (!isset($ini)) {
+if (!isset($ini))
+{
     require_once 'model/Ini.php';
     $ini = new Ini();
+
+    $debug = false;
+    if (isset($_GET['debug']))
+    {
+        unset($_GET['debug']);
+        if (User::get_logged_user() == null) die(Language::string(85));
+        else $debug = true;
+    }
 }
 ?>
 
@@ -30,33 +39,33 @@ if (!isset($ini)) {
     <head>
         <meta charset="UTF-8" />
         <title>Concerto Platform</title>
-        <link rel="stylesheet" type="text/css" href="css/redmond/jquery-ui-1.8.16.custom.css" />
+        <?php if ($debug)
+        { ?><link rel="stylesheet" type="text/css" href="css/redmond/jquery-ui-1.8.16.custom.css" /><?php } ?>
         <script type="text/javascript" src="js/lib/jquery-1.6.2.min.js"></script>
-        <script type="text/javascript" src="js/lib/jquery-ui-1.8.16.custom.min.js"></script>
+        <?php if ($debug)
+        { ?><script type="text/javascript" src="js/lib/jquery-ui-1.8.16.custom.min.js"></script><?php } ?>
         <script type="text/javascript" src="admin/js/Methods.js"></script>
         <script type="text/javascript" src="js/Item.js"></script>
-        <script type="text/javascript" src="js/Debug.js"></script>
-        <link rel="stylesheet" href="lib/CodeMirror/lib/codemirror.css" />
-        <link rel="stylesheet" href="lib/CodeMirror/theme/night.css" />
-        <script src="lib/CodeMirror/lib/codemirror.js"></script>
-        <script src="lib/CodeMirror/mode/r/r.js"></script>
+        <?php if ($debug)
+        { ?><script type="text/javascript" src="js/Debug.js"></script><?php } ?>
+        <?php if ($debug)
+        { ?><link rel="stylesheet" href="lib/CodeMirror/lib/codemirror.css" /><?php } ?>
+        <?php if ($debug)
+        { ?><link rel="stylesheet" href="lib/CodeMirror/theme/night.css" /><?php } ?>
+        <?php if ($debug)
+        { ?><script src="lib/CodeMirror/lib/codemirror.js"></script><?php } ?>
+        <?php if ($debug)
+        { ?><script src="lib/CodeMirror/mode/r/r.js"></script><?php } ?>
     </head>
     <body>
 
         <?php
         Language::load_js_dictionary(true);
-        $debug = false;
-        if (isset($_GET['debug'])) {
-            unset($_GET['debug']);
-            if (User::get_logged_user() == null)
-                die(Language::string(85));
-            else
-                $debug = true;
-        }
         ?>
 
         <table style="width:100%;">
-            <?php if ($debug) { ?>
+            <?php if ($debug)
+            { ?>
                 <tr>
                     <th id="thSessionHistory" class="ui-widget-header noWrap ui-corner-all" style="font-size: 9px; width:50%;" align="center">
 
@@ -67,21 +76,18 @@ if (!isset($ini)) {
                 </tr>
             <?php } ?>
             <tr>
-                <?php if ($debug) { ?><td id="history" class="ui-widget-content ui-corner-all" valign="top"  style="font-size: 9px;"><?php } ?>
+                <?php if ($debug)
+                { ?><td id="history" class="ui-widget-content ui-corner-all" valign="top"  style="font-size: 9px;"><?php } ?>
 
                 </td>
                 <td id="item" valign="top" class="<?= ($debug ? "ui-widget-content ui-corner-all" : "") ?>">
-
+                    <div align='center' style='width:100%;'><img src='css/img/ajax-loader.gif' /></div>
                 </td>
             </tr>
         </table>
 
-        <div id='hzn_progressDialog' title='submiting item' style="display: none; font-size: 9px;">
-            <p id='hzn_progressDialogText' style="font-size: 9px;"></p>
-            <div id='hzn_progressBar' style="font-size: 9px;"></div>
-        </div>
-
-        <?php if ($debug) { ?>
+        <?php if ($debug)
+        { ?>
             <div id='hzn_sessionVariables' title='session variables' style="font-size: 9px; display:none;">
                 No session variables available yet.
             </div>
@@ -92,11 +98,14 @@ if (!isset($ini)) {
         <?php } ?>
     </body>
     <script type="text/javascript">
-<?php if ($debug) { ?>Debug.Session.createSession();<?php } ?>
+<?php if ($debug)
+{ ?>Debug.Session.createSession();<?php } ?>
 <?php
 $session_builder = "{";
-if (count($_GET) > 0) {
-    foreach ($_GET as $k => $v) {
+if (count($_GET) > 0)
+{
+    foreach ($_GET as $k => $v)
+    {
         $session_builder.="'$k':'$v',";
     }
     $session_builder = substr($session_builder, 0, strlen($session_builder) - 1);
@@ -109,7 +118,8 @@ $session_builder.="}"
 <?= $session_builder ?>, 
         function(data)
         {
-<?php if ($debug) { ?>
+<?php if ($debug)
+{ ?>
                 Debug.Session.sessionCreated(data.SessionID);
                 for(var key in data)
                 {

@@ -61,7 +61,7 @@ if (!isset($ini))
         <script src="../lib/CodeMirror/mode/r/r.js"></script>
         <script src="../lib/jfeed/build/dist/jquery.jfeed.js"></script>
     </head>
-    <body>
+    <body style="min-width:1200px;">
         <?php Language::load_js_dictionary(); ?>
         <script>
             $(function(){

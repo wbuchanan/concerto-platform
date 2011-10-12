@@ -28,400 +28,419 @@ You can add new languages by inserting <some_language>string translated into som
 -->
 
 <root>
-    <string id="4">
-        <en>Select HTML Template to import</en>
-        <pl>Wybierz Szablon HTML do importu</pl>
-    </string>
-    <string id="6">
-        <en>Timer</en>
-        <pl>Timer</pl>
-    </string>
-    <string id="7">
-        <en>There are no BUTTONS in this HTML Template</en>
-        <pl>Brak przycisków w tym Szablonie HTML</pl>
-    </string>
-    <string id="8">
-        <en>There are no INSERTS in this HTML Template</en>
-        <pl>Brak INSERTÓW w tym Szablonie HTML</pl>
-    </string>
-    <string id="9">
-        <en>There are no USER INPUTS in this HTML Template</en>
-        <pl>Brak PÓL WPROWADZANIA w tym Szablonie HTML</pl>
-    </string>
-    <string id="10">
-        <en>Are you sure that you want to import HTML from this HTML Template? Unsaved changes in the HTML will be lost</en>
-        <pl>Czy jesteś pewien, że chcesz zaimportować HTML z tego Szablonu? Wszystkie niezapisane zmiany w obecnym HTML zostaną utracone</pl>
-    </string>
-    <string id="12" type="tip">
-        <en>R code to be executed after BUTTON is pressed</en>
-        <pl>Kod R do wykonania po naciśnięciu przycisku</pl>
-    </string>
-    <string id="13" type="tip">
-        <en>Select the BUTTON to submit on time-out</en>
-        <pl>Wybierz przycisk który ma zostać automatycznie kliknięty gdy skończy się czas ustawiony w polu `timer`</pl>
-    </string>
-    <string id="14" type="tip">
-        <en>HTML Template name</en>
-        <pl>Nazwa Szablonu HTML</pl>
-    </string>
-    <string id="15" type="tip">
-        <en>Select a source HTML Template to import. Only HTML code will be imported while other properties of the current HTML Template are not changed</en>
-        <pl>Wybierz źródłowy Szablon HTML do importu. Tylko kod HTML zostanie zaimportowany. Pozostałe właściwości obecnego Szablony HTML nie będą zmienione</pl>
-    </string>
-    <string id="16" type="tip">
-        <en>HASH string can be used to start a test with a given HTML Template using URL. Example: http://yourdomain.com/?hash=insert_hash_here .</en>
-        <pl>HASH może być zastosowany do uruchomienia testu od danego Szablonu za pomoca adresu URL. Przykład: http://twojadomena.com/?hash=to_umiesc_hash .</pl>
-    </string>
-    <string id="17" type="tip">
-        <en>Maximum Time (in seconds) to answer the question on this template. When the time runs our the default button is submitted automatically. INSERT {{timer}} showing the time left in seconds can be used in the HTML Template</en>
-        <pl>Czas w sekundach na odpowiedź na pytanie znajdujące się na tym Szablonie HTML. Jeżeli czas się skończy domyślny przycisk zostanie automatycznie zatwierdzony. INSERT {{time}} pokazujący czas pozostały do końca może być zastosowana w Szablonie HTML</pl>
-    </string>
-    <string id="18" type="tip">
-        <en>Every HTML object like: &lt;input type='button' /&gt; , &lt;input type='image' /&gt; , &lt;button&gt;&lt;/button&gt; with 'name' attribute can have a R code assigned to it to be run after it is selected by the user. You can also select a default button that will be submitted on the time-out (if timer is set)</en>
-        <pl>Każdy obiekt HTML taki jak: &lt;input type='button' /&gt; , &lt;input type='image' /&gt; , &lt;button&gt;&lt;/button&gt; posiadający atrybut 'name' może mieć przypisany kod R który zostanie uruchomiony po wciśnięciu przycisku. Moźesz także wybrać domyślny przycisk który zostanie automatycznie wybrany jeżeli czas na odpowiedź na pytanie skończy się</pl>
-    </string>
-    <string id="19" type="tip">
-        <en>The list of HTML Templates that you can access</en>
-        <pl>Lista Szablonów HTML do których masz dostęp</pl>
-    </string>
-    <string id="23" type="tip">
-        <en>The list of USER INPUTS present on a current HTML template, such as Fields, Radio Buttons, Checkboxes, etc. Values entered by users will be stored under the name of a given USER INPUT</en>
-        <pl>Lista PÓL WPROWADZANIA obecnych na obecnym Szablonie HTML, takich jak Text Fields, Radio Buttons, Checkboxes, etc. Wartości wprowadzone przez użytkowników zostaną zapisane pod nazwą danego POLA WPROWADZANIA</pl>
-    </string>
-    <string id="24" type="tip">
-        <en>The list of INSERTS (e.g. {{cool_insert}}) that were declared in the current HTML Template</en>
-        <pl>Lista INSERTÓW zadeklarownych w obecnym Szablonie HTML</pl>
-    </string>
-    <string id="39">
-        <en>Import the HTML</en>
-        <pl>Importuj kod HTML</pl>
-    </string>
-    <string id="40">
-        <en>Create new</en>
-        <pl>Dodaj</pl>
-    </string>
-    <string id="41">
-        <en>Save</en>
-        <pl>Zapisz</pl>
-    </string>
-    <string id="42">
-        <en>Delete</en>
-        <pl>usuń</pl>
-    </string>
-    <string id="43">
-        <en>Edit</en>
-        <pl>Edycja</pl>
-    </string>
-    <string id="49">
-        <en>Id</en>
-        <pl>Id</pl>
-    </string>
-    <string id="50">
-        <en>Name</en>
-        <pl>Nazwa</pl>
-    </string>
-    <string id="51">
-        <en>Hash</en>
-        <pl>Hash</pl>
-    </string>
-    <string id="54">
-        <en>Assigning R code to BUTTONS</en>
-        <pl>Przypisywanie kodu R do przycisków</pl>
-    </string>
-    <string id="55">
-        <en>no.</en>
-        <pl>nr</pl>
-    </string>
-    <string id="56">
-        <en>BUTTON name</en>
-        <pl>Nazwa przycisku</pl>
-    </string>
-    <string id="58">
-        <en>R code to execute</en>
-        <pl>Kod R do wykonania</pl>
-    </string>
-    <string id="59">
-        <en>Default BUTTON</en>
-        <pl>Domyślny przycisk</pl>
-    </string>
-    <string id="67">
-        <en>USER INPUTS</en>
-        <pl>POLA WPROWADZANIA</pl>
-    </string>
-    <string id="68">
-        <en>HTML object type</en>
-        <pl>typ obiektu HTML</pl>
-    </string>
-    <string id="69">
-        <en>INSERTS</en>
-        <pl>INSERTY</pl>
-    </string>
-    <string id="71">
-        <en>Test designer</en>
-        <pl>Kreator testów</pl>
-    </string>
-    <string id="74">
-        <en>Log in</en>
-        <pl>Zaloguj</pl>
-    </string>
-    <string id="75">
-        <en>Cancel</en>
-        <pl>Anuluj</pl>
-    </string>
-    <string id="76">
-        <en>Login</en>
-        <pl>Login</pl>
-    </string>
-    <string id="77">
-        <en>Password</en>
-        <pl>Hasło</pl>
-    </string>
-    <string id="78">
-        <en>Users</en>
-        <pl>Użytkownicy</pl>
-    </string>
-    <string id="79">
-        <en>Groups</en>
-        <pl>Grupy</pl>
-    </string>
-    <string id="80">
-        <en>The login/password combination is incorrect!</en>
-        <pl>Kombinacja login/hasło jest niepoprawna!</pl>
-    </string>
-    <string id="81">
-        <en>Are you sure you want to delete the user?</en>
-        <pl>Czy jesteś pewien, że chcesz usunąć użytkownika?</pl>
-    </string>
-    <string id="82">
-        <en>Password and password confirmation don't match!</en>
-        <pl>Hasło i potwierdzenie hasła nie zgadzają się!</pl>
-    </string>
-    <string id="83">
-        <en>Login dialog</en>
-        <pl>Logowanie</pl>
-    </string>
-    <string id="84">
-        <en>Current user</en>
-        <pl>Bieżący użytkownik</pl>
-    </string>
-    <string id="85">
-        <en>Access Denied!</en>
-        <pl>Dostęp Wzbroniony!</pl>
-    </string>
-    <string id="86">
-        <en>Editing user</en>
-        <pl>Edycja użytkownika</pl>
-    </string>
-    <string id="87">
-        <en>Creating new user</en>
-        <pl>Tworzenie nowego użytkownika</pl>
-    </string>
-    <string id="88">
-        <en>Check if you want to set the new password</en>
-        <pl>Zaznacz jeśli chcesz ustawić nowe hasło</pl>
-    </string>
-    <string id="89">
-        <en>Confirm the password</en>
-        <pl>Potwierdź hasło</pl>
-    </string>
-    <string id="90">
-        <en>First name</en>
-        <pl>Imię</pl>
-    </string>
-    <string id="91">
-        <en>Last name</en>
-        <pl>Nazwisko</pl>
-    </string>
-    <string id="92">
-        <en>Email</en>
-        <pl>Email</pl>
-    </string>
-    <string id="93">
-        <en>Phone no.</en>
-        <pl>Nr telefonu</pl>
-    </string>
-    <string id="94">
-        <en>Group</en>
-        <pl>Grupa</pl>
-    </string>
-    <string id="95">
-        <en>None</en>
-        <pl>Brak</pl>
-    </string>
-    <string id="96">
-        <en>Super admin</en>
-        <pl>Super admin</pl>
-    </string>
-    <string id="97">
-        <en>Available users</en>
-        <pl>Dostępni użytkownicy</pl>
-    </string>
-    <string id="98">
-        <en>No users are available</en>
-        <pl>Brak dostępnych użytkowników</pl>
-    </string>
-    <string id="99">
-        <en>Last activity</en>
-        <pl>Ostatnia aktywność</pl>
-    </string>
-    <string id="100">
-        <en>Actions</en>
-        <pl>Akcje</pl>
-    </string>
-    <string id="101">
-        <en>Search the list:</en>
-        <pl>Przeszukaj listę:</pl>
-    </string>
-    <string id="102">
-        <en>per page</en>
-        <pl>na stronę</pl>
-    </string>
-    <string id="103">
-        <en>Editing the group</en>
-        <pl>Edycja grupy</pl>
-    </string>
-    <string id="104">
-        <en>Creating new group</en>
-        <pl>Tworzenie nowej grupy</pl>
-    </string>
-    <string id="105">
-        <en>Sharing</en>
-        <pl>Dzielenie</pl>
-    </string>
-    <string id="106">
-        <en>Available groups</en>
-        <pl>Dostępne grupy</pl>
-    </string>
-    <string id="107">
-        <en>No groups are available</en>
-        <pl>Brak dostępnych grup</pl>
-    </string>
-    <string id="108">
-        <en>Owner</en>
-        <pl>Właściciel</pl>
-    </string>
-    <string id="109">
-        <en>Do you really want to delete this group</en>
-        <pl>Czy jesteś pewien, że chcesz usunąć tą grupę</pl>
-    </string>
-    <string id="110">
-        <en>Available HTML Templates</en>
-        <pl>Dostępne Szablony HTML</pl>
-    </string>
-    <string id="111">
-        <en>No HTML templates are available</en>
-        <pl>Brak dostępnych szablonów HTML</pl>
-    </string>
-    <string id="112">
-        <en>Editing HTML template</en>
-        <pl>Edycja Szablonu HTML</pl>
-    </string>
-    <string id="113">
-        <en>Creating new HTML Template</en>
-        <pl>Tworzenie nowego Szablonu HTML</pl>
-    </string>
-    <string id="114">
-        <en>Do you really want to delete this HTML template?</en>
-        <pl>Czy jesteś pewien, że chcesz usunąć ten szablon elementu?</pl>
-    </string>
-    <string id="115">
-        <en>Preview</en>
-        <pl>Podgląd</pl>
-    </string>
-    <string id="116">
-        <en>Log out</en>
-        <pl>Wyloguj</pl>
-    </string>
-    <string id="117">
-        <en>HTML layer</en>
-        <pl>Warstwa HTML</pl>
-    </string>
-    <string id="118">
-        <en>R Code</en>
-        <pl>Kod R</pl>
-    </string>
-    <string id="119">
-        <en>Debug</en>
-        <pl>Debug</pl>
-    </string>
-    <string id="120">
-        <en>Show variables sent to R</en>
-        <pl>Pokaż zmienne wysyłane do R </pl>
-    </string>
-    <string id="121">
-        <en>Show R objects</en>
-        <pl>Pokaż obiekty R</pl>
-    </string>
-    <string id="122">
-        <en>Concerto Homepage</en>
-        <pl>Strona domowa Concerto</pl>
-    </string>
-    <string id="123">
-        <en>Concerto Google Group</en>
-        <pl>Google GroupConcerto  </pl>
-    </string>
-    <string id="124">
-        <en>Documentation of the built-in R functions</en>
-        <pl>Dokumentacja wbudowanych funkcji R</pl>
-    </string>
-    <string id="125">
-        <en>Function</en>
-        <pl>Funckja</pl>
-    </string>
-    <string id="126">
-        <en>Description</en>
-        <pl>Opis</pl>
-    </string>
-    <string id="127">
-        <en>Example</en>
-        <pl>Przykład</pl>
-    </string>
-    <string id="128">
-        <en>This function allows sending INSERTS to the HTML Layer. set.var("var_name", "Hello") will change {{var_name}} in HTML to Hello</en>
-        <pl>Ta funkcja pozwala wysyłać INSERTY do warstwy HTML. set.var("var_name", "Hello") zamieni {{var_name}} w HTMLu na Hello</pl>
-    </string>
-    <string id="129">
-        <en>This function allows changing the next HTML Template (by default the HTML Template stays the same)</en>
-        <pl>Ta funckja pozwala zmienić następny Szablon HTML (domyślnie, Szablon pozostaje ten sam)</pl>
-    </string>
-    <string id="130">
-        <en>INSERTS and USER INPUTS</en>
-        <pl>INSERTY i POLA WYPELNIANIA</pl>
-    </string>
-    <string id="131">
-        <en>All fields marked with * must be filled.</en>
-        <pl>Wszystkie pola oznaczone * muszą zostać wypełnione.</pl>
-    </string>
-    <string id="132">
-        <en>Failed to save object. Copy R and HTML code to your local computer (e.g. using CTRL-C) and refresh the page</en>
-        <pl>Nie udało się zapisać obiektu. Zapisz kod R i HTML na dysku lokalnym (np. używając CTRL-C) i odśwież stronę</pl>
-    </string>
-    <string id="133">
-        <en>Saved</en>
-        <pl>Zapisano</pl>
-    </string>
-    <string id="134">
-        <en>Run</en>
-        <pl>Uruchom</pl>
-    </string>
-    <string id="135">
-        <en>Execute</en>
-        <pl>Wykonaj</pl>
-    </string>
-    <string id="136">
-        <en>Choose an action:</en>
-        <pl>Wybierz akcję:</pl>
-    </string>
-    <string id="136">
-        <en>Are you sure that you want to delete the file?</en>
-        <pl>Czy jesteś pewien, że chcesz usunąć ten plik?</pl>
-    </string>
-    <string id="137">
-        <en>Concerto Platform message</en>
-        <pl>Komunikat z Platformy Concerto</pl>
-    </string>
-    <string id="138">
-        <en>Concerto Platform confirmation</en>
-        <pl>Potwierdzenie z Platformy Concerto</pl>
-    </string>
+    <languages>
+        <language id="en">english</language>
+        <language id="pl">polski</language>
+    </languages>
+    
+    <strings>
+        <string id="4">
+            <en>Select HTML Template to import</en>
+            <pl>Wybierz Szablon HTML do importu</pl>
+        </string>
+        <string id="6">
+            <en>Timer</en>
+            <pl>Timer</pl>
+        </string>
+        <string id="7">
+            <en>There are no BUTTONS in this HTML Template</en>
+            <pl>Brak przycisków w tym Szablonie HTML</pl>
+        </string>
+        <string id="8">
+            <en>There are no INSERTS in this HTML Template</en>
+            <pl>Brak INSERTÓW w tym Szablonie HTML</pl>
+        </string>
+        <string id="9">
+            <en>There are no USER INPUTS in this HTML Template</en>
+            <pl>Brak PÓL WPROWADZANIA w tym Szablonie HTML</pl>
+        </string>
+        <string id="10">
+            <en>Are you sure that you want to import HTML from this HTML Template? Unsaved changes in the HTML will be lost</en>
+            <pl>Czy jesteś pewien, że chcesz zaimportować HTML z tego Szablonu? Wszystkie niezapisane zmiany w obecnym HTML zostaną utracone</pl>
+        </string>
+        <string id="12" type="tip">
+            <en>R code to be executed after BUTTON is pressed</en>
+            <pl>Kod R do wykonania po naciśnięciu przycisku</pl>
+        </string>
+        <string id="13" type="tip">
+            <en>Select the BUTTON to submit on time-out</en>
+            <pl>Wybierz przycisk który ma zostać automatycznie kliknięty gdy skończy się czas ustawiony w polu `timer`</pl>
+        </string>
+        <string id="14" type="tip">
+            <en>HTML Template name</en>
+            <pl>Nazwa Szablonu HTML</pl>
+        </string>
+        <string id="15" type="tip">
+            <en>Select a source HTML Template to import. Only HTML code will be imported while other properties of the current HTML Template are not changed</en>
+            <pl>Wybierz źródłowy Szablon HTML do importu. Tylko kod HTML zostanie zaimportowany. Pozostałe właściwości obecnego Szablony HTML nie będą zmienione</pl>
+        </string>
+        <string id="16" type="tip">
+            <en>HASH string can be used to start a test with a given HTML Template using URL. Example: http://yourdomain.com/?hash=insert_hash_here .</en>
+            <pl>HASH może być zastosowany do uruchomienia testu od danego Szablonu za pomoca adresu URL. Przykład: http://twojadomena.com/?hash=to_umiesc_hash .</pl>
+        </string>
+        <string id="17" type="tip">
+            <en>Maximum Time (in seconds) to answer the question on this template. When the time runs our the default button is submitted automatically. INSERT {{timer}} showing the time left in seconds can be used in the HTML Template</en>
+            <pl>Czas w sekundach na odpowiedź na pytanie znajdujące się na tym Szablonie HTML. Jeżeli czas się skończy domyślny przycisk zostanie automatycznie zatwierdzony. INSERT {{time}} pokazujący czas pozostały do końca może być zastosowana w Szablonie HTML</pl>
+        </string>
+        <string id="18" type="tip">
+            <en>Every HTML object like: &lt;input type='button' /&gt; , &lt;input type='image' /&gt; , &lt;button&gt;&lt;/button&gt; with 'name' attribute can have a R code assigned to it to be run after it is selected by the user. You can also select a default button that will be submitted on the time-out (if timer is set)</en>
+            <pl>Każdy obiekt HTML taki jak: &lt;input type='button' /&gt; , &lt;input type='image' /&gt; , &lt;button&gt;&lt;/button&gt; posiadający atrybut 'name' może mieć przypisany kod R który zostanie uruchomiony po wciśnięciu przycisku. Moźesz także wybrać domyślny przycisk który zostanie automatycznie wybrany jeżeli czas na odpowiedź na pytanie skończy się</pl>
+        </string>
+        <string id="19" type="tip">
+            <en>The list of HTML Templates that you can access</en>
+            <pl>Lista Szablonów HTML do których masz dostęp</pl>
+        </string>
+        <string id="23" type="tip">
+            <en>The list of USER INPUTS present on a current HTML template, such as Fields, Radio Buttons, Checkboxes, etc. Values entered by users will be stored under the name of a given USER INPUT</en>
+            <pl>Lista PÓL WPROWADZANIA obecnych na obecnym Szablonie HTML, takich jak Text Fields, Radio Buttons, Checkboxes, etc. Wartości wprowadzone przez użytkowników zostaną zapisane pod nazwą danego POLA WPROWADZANIA</pl>
+        </string>
+        <string id="24" type="tip">
+            <en>The list of INSERTS (e.g. {{cool_insert}}) that were declared in the current HTML Template</en>
+            <pl>Lista INSERTÓW zadeklarownych w obecnym Szablonie HTML</pl>
+        </string>
+        <string id="39">
+            <en>Import the HTML</en>
+            <pl>Importuj kod HTML</pl>
+        </string>
+        <string id="40">
+            <en>Create new</en>
+            <pl>Dodaj</pl>
+        </string>
+        <string id="41">
+            <en>Save</en>
+            <pl>Zapisz</pl>
+        </string>
+        <string id="42">
+            <en>Delete</en>
+            <pl>usuń</pl>
+        </string>
+        <string id="43">
+            <en>Edit</en>
+            <pl>Edycja</pl>
+        </string>
+        <string id="49">
+            <en>Id</en>
+            <pl>Id</pl>
+        </string>
+        <string id="50">
+            <en>Name</en>
+            <pl>Nazwa</pl>
+        </string>
+        <string id="51">
+            <en>Hash</en>
+            <pl>Hash</pl>
+        </string>
+        <string id="54">
+            <en>Assigning R code to BUTTONS</en>
+            <pl>Przypisywanie kodu R do przycisków</pl>
+        </string>
+        <string id="55">
+            <en>no.</en>
+            <pl>nr</pl>
+        </string>
+        <string id="56">
+            <en>BUTTON name</en>
+            <pl>Nazwa przycisku</pl>
+        </string>
+        <string id="58">
+            <en>R code to execute</en>
+            <pl>Kod R do wykonania</pl>
+        </string>
+        <string id="59">
+            <en>Default BUTTON</en>
+            <pl>Domyślny przycisk</pl>
+        </string>
+        <string id="67">
+            <en>USER INPUTS</en>
+            <pl>POLA WPROWADZANIA</pl>
+        </string>
+        <string id="68">
+            <en>HTML object type</en>
+            <pl>typ obiektu HTML</pl>
+        </string>
+        <string id="69">
+            <en>INSERTS</en>
+            <pl>INSERTY</pl>
+        </string>
+        <string id="71">
+            <en>Test designer</en>
+            <pl>Kreator testów</pl>
+        </string>
+        <string id="74">
+            <en>Log in</en>
+            <pl>Zaloguj</pl>
+        </string>
+        <string id="75">
+            <en>Cancel</en>
+            <pl>Anuluj</pl>
+        </string>
+        <string id="76">
+            <en>Login</en>
+            <pl>Login</pl>
+        </string>
+        <string id="77">
+            <en>Password</en>
+            <pl>Hasło</pl>
+        </string>
+        <string id="78">
+            <en>Users</en>
+            <pl>Użytkownicy</pl>
+        </string>
+        <string id="79">
+            <en>Groups</en>
+            <pl>Grupy</pl>
+        </string>
+        <string id="80">
+            <en>The login/password combination is incorrect!</en>
+            <pl>Kombinacja login/hasło jest niepoprawna!</pl>
+        </string>
+        <string id="81">
+            <en>Are you sure you want to delete the user?</en>
+            <pl>Czy jesteś pewien, że chcesz usunąć użytkownika?</pl>
+        </string>
+        <string id="82">
+            <en>Password and password confirmation don't match!</en>
+            <pl>Hasło i potwierdzenie hasła nie zgadzają się!</pl>
+        </string>
+        <string id="83">
+            <en>Login dialog</en>
+            <pl>Logowanie</pl>
+        </string>
+        <string id="84">
+            <en>Current user</en>
+            <pl>Bieżący użytkownik</pl>
+        </string>
+        <string id="85">
+            <en>Access Denied!</en>
+            <pl>Dostęp Wzbroniony!</pl>
+        </string>
+        <string id="86">
+            <en>Editing user</en>
+            <pl>Edycja użytkownika</pl>
+        </string>
+        <string id="87">
+            <en>Creating new user</en>
+            <pl>Tworzenie nowego użytkownika</pl>
+        </string>
+        <string id="88">
+            <en>Check if you want to set the new password</en>
+            <pl>Zaznacz jeśli chcesz ustawić nowe hasło</pl>
+        </string>
+        <string id="89">
+            <en>Confirm the password</en>
+            <pl>Potwierdź hasło</pl>
+        </string>
+        <string id="90">
+            <en>First name</en>
+            <pl>Imię</pl>
+        </string>
+        <string id="91">
+            <en>Last name</en>
+            <pl>Nazwisko</pl>
+        </string>
+        <string id="92">
+            <en>Email</en>
+            <pl>Email</pl>
+        </string>
+        <string id="93">
+            <en>Phone no.</en>
+            <pl>Nr telefonu</pl>
+        </string>
+        <string id="94">
+            <en>Group</en>
+            <pl>Grupa</pl>
+        </string>
+        <string id="95">
+            <en>None</en>
+            <pl>Brak</pl>
+        </string>
+        <string id="96">
+            <en>Super admin</en>
+            <pl>Super admin</pl>
+        </string>
+        <string id="97">
+            <en>Available users</en>
+            <pl>Dostępni użytkownicy</pl>
+        </string>
+        <string id="98">
+            <en>No users are available</en>
+            <pl>Brak dostępnych użytkowników</pl>
+        </string>
+        <string id="99">
+            <en>Last activity</en>
+            <pl>Ostatnia aktywność</pl>
+        </string>
+        <string id="100">
+            <en>Actions</en>
+            <pl>Akcje</pl>
+        </string>
+        <string id="101">
+            <en>Search the list:</en>
+            <pl>Przeszukaj listę:</pl>
+        </string>
+        <string id="102">
+            <en>per page</en>
+            <pl>na stronę</pl>
+        </string>
+        <string id="103">
+            <en>Editing the group</en>
+            <pl>Edycja grupy</pl>
+        </string>
+        <string id="104">
+            <en>Creating new group</en>
+            <pl>Tworzenie nowej grupy</pl>
+        </string>
+        <string id="105">
+            <en>Sharing</en>
+            <pl>Dzielenie</pl>
+        </string>
+        <string id="106">
+            <en>Available groups</en>
+            <pl>Dostępne grupy</pl>
+        </string>
+        <string id="107">
+            <en>No groups are available</en>
+            <pl>Brak dostępnych grup</pl>
+        </string>
+        <string id="108">
+            <en>Owner</en>
+            <pl>Właściciel</pl>
+        </string>
+        <string id="109">
+            <en>Do you really want to delete this group</en>
+            <pl>Czy jesteś pewien, że chcesz usunąć tą grupę</pl>
+        </string>
+        <string id="110">
+            <en>Available HTML Templates</en>
+            <pl>Dostępne Szablony HTML</pl>
+        </string>
+        <string id="111">
+            <en>No HTML templates are available</en>
+            <pl>Brak dostępnych szablonów HTML</pl>
+        </string>
+        <string id="112">
+            <en>Editing HTML template</en>
+            <pl>Edycja Szablonu HTML</pl>
+        </string>
+        <string id="113">
+            <en>Creating new HTML Template</en>
+            <pl>Tworzenie nowego Szablonu HTML</pl>
+        </string>
+        <string id="114">
+            <en>Do you really want to delete this HTML template?</en>
+            <pl>Czy jesteś pewien, że chcesz usunąć ten szablon elementu?</pl>
+        </string>
+        <string id="115">
+            <en>Preview</en>
+            <pl>Podgląd</pl>
+        </string>
+        <string id="116">
+            <en>Log out</en>
+            <pl>Wyloguj</pl>
+        </string>
+        <string id="117">
+            <en>HTML layer</en>
+            <pl>Warstwa HTML</pl>
+        </string>
+        <string id="118">
+            <en>R Code</en>
+            <pl>Kod R</pl>
+        </string>
+        <string id="119">
+            <en>Debug</en>
+            <pl>Debug</pl>
+        </string>
+        <string id="120">
+            <en>Show variables sent to R</en>
+            <pl>Pokaż zmienne wysyłane do R </pl>
+        </string>
+        <string id="121">
+            <en>Show R objects</en>
+            <pl>Pokaż obiekty R</pl>
+        </string>
+        <string id="122">
+            <en>Concerto Homepage</en>
+            <pl>Strona domowa Concerto</pl>
+        </string>
+        <string id="123">
+            <en>Concerto Google Group</en>
+            <pl>Google GroupConcerto  </pl>
+        </string>
+        <string id="124">
+            <en>Documentation of the built-in R functions</en>
+            <pl>Dokumentacja wbudowanych funkcji R</pl>
+        </string>
+        <string id="125">
+            <en>Function</en>
+            <pl>Funckja</pl>
+        </string>
+        <string id="126">
+            <en>Description</en>
+            <pl>Opis</pl>
+        </string>
+        <string id="127">
+            <en>Example</en>
+            <pl>Przykład</pl>
+        </string>
+        <string id="128">
+            <en>This function allows sending INSERTS to the HTML Layer. set.var("var_name", "Hello") will change {{var_name}} in HTML to Hello</en>
+            <pl>Ta funkcja pozwala wysyłać INSERTY do warstwy HTML. set.var("var_name", "Hello") zamieni {{var_name}} w HTMLu na Hello</pl>
+        </string>
+        <string id="129">
+            <en>This function allows changing the next HTML Template (by default the HTML Template stays the same)</en>
+            <pl>Ta funckja pozwala zmienić następny Szablon HTML (domyślnie, Szablon pozostaje ten sam)</pl>
+        </string>
+        <string id="130">
+            <en>INSERTS and USER INPUTS</en>
+            <pl>INSERTY i POLA WYPELNIANIA</pl>
+        </string>
+        <string id="131">
+            <en>All fields marked with * must be filled.</en>
+            <pl>Wszystkie pola oznaczone * muszą zostać wypełnione.</pl>
+        </string>
+        <string id="132">
+            <en>Failed to save object. Copy R and HTML code to your local computer (e.g. using CTRL-C) and refresh the page</en>
+            <pl>Nie udało się zapisać obiektu. Zapisz kod R i HTML na dysku lokalnym (np. używając CTRL-C) i odśwież stronę</pl>
+        </string>
+        <string id="133">
+            <en>Saved</en>
+            <pl>Zapisano</pl>
+        </string>
+        <string id="134">
+            <en>Run</en>
+            <pl>Uruchom</pl>
+        </string>
+        <string id="135">
+            <en>Execute</en>
+            <pl>Wykonaj</pl>
+        </string>
+        <string id="136">
+            <en>Choose an action:</en>
+            <pl>Wybierz akcję:</pl>
+        </string>
+        <string id="136">
+            <en>Are you sure that you want to delete the file?</en>
+            <pl>Czy jesteś pewien, że chcesz usunąć ten plik?</pl>
+        </string>
+        <string id="137">
+            <en>Concerto Platform message</en>
+            <pl>Komunikat z Platformy Concerto</pl>
+        </string>
+        <string id="138">
+            <en>Concerto Platform confirmation</en>
+            <pl>Potwierdzenie z Platformy Concerto</pl>
+        </string>
+        <string id="139">
+            <en>Your version is OUTDATED.</en>
+            <pl>Twoja wersja jest NIEAKTUALNA.</pl>
+        </string>
+        <string id="140">
+            <en>CLICK HERE TO DOWNLOAD THE LATEST PATCH</en>
+            <pl>KLIKNIJ TUTAJ ABY POBRAC NAJNOWSZY PATCH</pl>
+        </string>
+        <string id="141">
+            <en>your version is up to date</en>
+            <pl>twoja wersja jest aktualna </pl>
+        </string>
+    </strings>
 </root>
