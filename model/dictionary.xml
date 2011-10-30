@@ -30,6 +30,7 @@ You can add new languages by inserting <some_language>string translated into som
         <language id="en">english</language>
         <language id="pl">polski</language>
         <language id="cn">中文</language>
+        <language id="bg">български</language>
     </languages>
     
     <strings>
@@ -37,26 +38,31 @@ You can add new languages by inserting <some_language>string translated into som
             <en>Select HTML Template to import</en>
             <pl>Wybierz Szablon HTML do importu</pl>
             <cn>选择导入HTML模板</cn>
+          <bg>Изберете HTML шаблон за импортиране</bg>
         </string>
         <string id="6">
             <en>Timer</en>
             <pl>Timer</pl>
             <cn>计时器</cn>
+            <bg>Таймер</bg>
         </string>
         <string id="7">
             <en>There are no BUTTONS in this HTML Template</en>
             <pl>Brak przycisków w tym Szablonie HTML</pl>
             <cn>此HTML模板不存在按钮</cn>
+            <bg>Няма БУТОНИ в този HTML шаблон</bg>
         </string>
         <string id="8">
             <en>There are no INSERTS in this HTML Template</en>
             <pl>Brak INSERTÓW w tym Szablonie HTML</pl>
             <cn>此HMTL模板不存在插入</cn>
+            <bg>Няма ВМЪКВАНЕ в този HTML шаблон</bg>
         </string>
         <string id="9">
             <en>There are no USER INPUTS in this HTML Template</en>
             <pl>Brak PÓL WPROWADZANIA w tym Szablonie HTML</pl>
             <cn>此HTML模板不存在用户输入</cn>
+            <bg>Няма ПОЛЕТА ЗА ВЪВЕЖДАНЕ в този HTML шаблон</bg>
         </string>
         <string id="10">
             <en>Are you sure that you want to import HTML from this HTML Template? Unsaved changes in the HTML will be lost</en>
