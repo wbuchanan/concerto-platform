@@ -68,31 +68,37 @@ You can add new languages by inserting <some_language>string translated into som
             <en>Are you sure that you want to import HTML from this HTML Template? Unsaved changes in the HTML will be lost</en>
             <pl>Czy jesteś pewien, że chcesz zaimportować HTML z tego Szablonu? Wszystkie niezapisane zmiany w obecnym HTML zostaną utracone</pl>
             <cn>确定导入此HTML模板？当前HTML中未保存修改将丢失</cn>
+            <bg>Сигурни ли сте, че искате да импортирате HTML от този HTML шаблон? Несъхранените промени в HTML ще бъдат изгубени</bg>
         </string>
         <string id="12" type="tip">
             <en>R code to be executed after BUTTON is pressed</en>
             <pl>Kod R do wykonania po naciśnięciu przycisku</pl>
             <cn>用于按键执行的R代码</cn>
+            <bg>R кодът ще бъде изпълнен след като се натисне БУТОН</bg>
         </string>
         <string id="13" type="tip">
             <en>Select the BUTTON to submit on time-out</en>
             <pl>Wybierz przycisk który ma zostać automatycznie kliknięty gdy skończy się czas ustawiony w polu `timer`</pl>
             <cn>选择超时情况下执行按钮</cn>
+          <bg>Изберете БУТОН, за да изпращане, след като времето изтече</bg>
         </string>
         <string id="14" type="tip">
             <en>HTML Template name</en>
             <pl>Nazwa Szablonu HTML</pl>
             <cn>HTML模板名称</cn>
+          <bg>Име на HTML шаблона</bg>
         </string>
         <string id="15" type="tip">
             <en>Select a source HTML Template to import. Only HTML code will be imported while other properties of the current HTML Template are not changed</en>
             <pl>Wybierz źródłowy Szablon HTML do importu. Tylko kod HTML zostanie zaimportowany. Pozostałe właściwości obecnego Szablony HTML nie będą zmienione</pl>
             <cn>选择导入HTML模板源代码。仅导入HTML代码并保持当前HTML模板其他属性</cn>
+            <bg>Изберете HTMP код за импорт. Само HTML кодът ще бъде импортиран, докато другите свойства на настоящия HTML ще бъдат запазени</bg>
         </string>
         <string id="16" type="tip">
             <en>HASH string can be used to start a test with a given HTML Template using URL. Example: http://yourdomain.com/?hash=insert_hash_here .</en>
             <pl>HASH może być zastosowany do uruchomienia testu od danego Szablonu za pomoca adresu URL. Przykład: http://twojadomena.com/?hash=to_umiesc_hash .</pl>
             <cn>可以通过URL使用HASH序列启动给定HTML模板的测试。示例：http://yourdomain.com/?hash=于此处插入HASH .</cn>
+          <bg>HASH може а бъде използван, за да се стартира теста с даден HTML шаблон като се използва URL. Например: http://вашиядомейн.com/?hash=вмъкни hash тук.</bg>
         </string>
         <string id="17" type="tip">
             <en>Maximum Time (in seconds) to answer the question on this template. When the time runs our the default button is submitted automatically. INSERT {{timer}} showing the time left in seconds can be used in the HTML Template</en>
