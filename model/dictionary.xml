@@ -1,12 +1,4 @@
-<html>
-
-<head>
-<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
-<title>New Page 1</title>
-</head>
-
-<body>
-<?xml version="1.0" encoding="UTF-8"?>
+﻿<?xml version="1.0" encoding="UTF-8"?>
 <!--
 Concerto Testing Platform,
   Web based adaptive testing platform utilizing R language for computing purposes.
@@ -668,6 +660,3 @@ You can add new languages by inserting <some_language>string translated into som
         </string>
     </strings>
 </root>
-</body>
-
-</html>
