@@ -233,6 +233,25 @@ We also suggest PhPMyAdmin for easy management of the MySQL server.
 
 Starting parameters of R (including default functions and libraries) are stored in the file: ../R/library/ 
 
+= Using JavaScript = 
+
+It is possible to use JavaScript in the HTML. When editing the HMTL layer, you can insert JavaScript snippets in the HTML code. Here is an example that imitates the built in timer:
+
+{{{
+<p>
+	After three seconds the variable &quot;Var1&quot; will be set to &quot;yuppie&quot;. Or if you click the button. Really the button is clicked for you after 3 seconds. Formally there is a HTML form called &quot;yabba&quot; with the button &quot;next&quot;. The JavaScript function &quot;setTimeout&quot; is used. Note that in contrast to the built in timer, the time could now be a variable. <SCRIPT LANGUAGE="JavaScript"><!--
+setTimeout('document.yabba.next.click()',3000);
+//--></SCRIPT></p>
+<form id="form1" method="post" name="yabba">
+	<p>
+		<input name="next" type="button" value="Change to yuppie" /></p>
+</form>
+<p>
+	<input name="next2" type="button" value="Change to yippie" /></p>
+<p>
+	{{Var1}}</p>
+}}}
+
 
 = To be added here soon =
 
