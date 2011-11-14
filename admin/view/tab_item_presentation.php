@@ -73,7 +73,7 @@ if ($item == null) $item = new Item();
         </tr>
     </table>
 
-    <textarea id="htmlEditor" name="htmlEditor" ><?= $item->HTML ?></textarea>
+    <textarea id="htmlEditor" name="htmlEditor" ><?= htmlspecialchars(stripslashes($item->HTML)) ?></textarea>
     <table class="fullWidth formTable">
         <tr>
             <td class="noWrap">
