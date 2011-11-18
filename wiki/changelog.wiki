@@ -1,6 +1,13 @@
 #labels Featured
 =CHANGELOG=
 
+==v2.0.4==
+  * added chinese translation
+  * added bulgarian translation
+  * fixed text area in item template
+  * added language 'selectmenu'
+  * added new users greeting functionality
+
 ==v2.0.3==
   * minor bug fixes
   * Administrator Panel design changed
