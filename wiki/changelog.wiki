@@ -7,6 +7,8 @@
   * fixed text area in item template
   * added language 'selectmenu'
   * added new users greeting functionality
+  * UI tweaks
+  * language/naming corrections
 
 ==v2.0.3==
   * minor bug fixes
