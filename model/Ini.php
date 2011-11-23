@@ -229,7 +229,7 @@ class Ini {
             $sql = sprintf("INSERT INTO `Setting` SET `name`='version', `value`='2.0.4'");
             mysql_query($sql);
         }
-        else self::set_setting(self::SETTING_VERSION,"2.0.4");
+        else self::set_setting(self::SETTING_VERSION,"2.0.5");
 
         $sql = sprintf("SELECT * FROM `Setting` WHERE `name`='rscript_path'");
         $z = mysql_query($sql);

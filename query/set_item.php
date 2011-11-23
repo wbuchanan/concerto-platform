@@ -26,7 +26,7 @@ if (!isset($ini)) {
 }
 
 $item = Item::from_mysql_id($_POST['template_id']);
-
+$item->HTML = stripslashes($item->HTML);
 while (strpos($item->HTML, "{{template:") !== false) {
     $html = $item->HTML;
     $index = strpos($item->HTML, "{{template:");
