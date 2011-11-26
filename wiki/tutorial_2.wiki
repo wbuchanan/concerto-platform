@@ -55,7 +55,7 @@ http://ns39618.ovh.net/~michal/concerto/item2.PNG
  * fields {{theta}} and {{sem}} to be filled by the R syntax
 
 It should look like that:
-http://ns39618.ovh.net/~michal/concerto/item2.PNG
+http://ns39618.ovh.net/~michal/concerto/item3.PNG
 
 = Step 2: Add R code to the templates =
   
