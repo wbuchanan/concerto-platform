@@ -18,22 +18,21 @@ Demo installation: [http://dev.myiqtest.org/concerto3_demo/cms/]
 ==Preliminary Step: Creating a test==
 Go to the ‘tests’ tab. Click ‘+’ at the end of the list of available objects, to create a new test. Assign a relevant name for the test and click ‘OK’. 
 
-To edit a test (or html template) at any time, click on the pencil symbol towards the right end of the specific test you want to edit. Be careful not the click the last symbol on the right (bin) unless you wish to delete your test!
-
-IMAGE
+To edit a test (or html template) at any time, click the _pencil_ icon near the specific test you want to edit. Be careful not to the click the last symbol on the right (bin) unless you wish to delete your test!
 
 
 ==Step 1: Create HTML Templates==
-
+===Test item template===
 Create a new template called _test item_ and add the following content:
  * *{{question}}* insert  that will be filled by concerto
  * "*=*" sign
  * An input *text field* called "*response*" 
   * Ensure you call this text field "*response*" as that's how we refer to it in R code. You can give it a different name, but you will have to change R code accordingly.
   * If you don't know how to add a text field, see the *Concerto v3.0 Tutorials: Create an adaptive test* section.
- * Button called “*Submit*” 
+ * A button called "*Submit*"
  * For presentation purposes, fields *{{theta}}*, *{{sem}}*, and *{{difficulty}}*. 
 
+===Feedback template===
 Create another new template called _feedback_ that contains:
  * A suitable title
  * A few words of empathic feedback
@@ -42,110 +41,53 @@ Create another new template called _feedback_ that contains:
 
 ==Step 2: Creating an Item Bank/Table from a CSV File==
 
-Here you need to create your item bank. Normally, you would use software like R and ltm package to generate item parameters. Here, let’s use a mock-up item bank with only one item parameter (difficulty) – one that could be generated using Rasch model.
-Download and unzip this CSV file: http://ns39618.ovh.net/wiki2/_media/public/ibank.zip and explore it using Excel or notepad. 
-Go to the Tables tab and click ‘+’ icon to add a new table. Assign a meaningful name and save it. 
-Now click the ‘8’ sign above table structure and data to import a table from a csv file that you have downloaded. 
-Concerto will automatically read the data into table format. Now, alter the column names and their format. Use the example below:
+The next step is to create an item bank for the test. Usually, software like R and LTM package are used to generate item parameters. Here, let’s use a mock-up item bank with only one item parameter (difficulty) which can be generated using the Rasch model.
+
+Download and unzip this CSV file: [http://ns39618.ovh.net/wiki2/_media/public/ibank.zip] and explore it using Excel or notepad. 
+
+Go to the *tables* tab and click the ‘+’ icon to add a new table. Assign a meaningful name (E.g. adaptive_test) and save it. 
+Click the _link_ icon above _table structure and data_ to import a table from a csv file that you have downloaded. Concerto will automatically read the data into table format. All you need to do is alter the column names and their format (E.g. see screenshot below).
 
 
-----------------------
-The test you create will be composed of three HTML Templates:
- * *Introduction* - where the user can enter his/her name that will be used later to customise other HTML templates.
- * *Test items* - with dichotomous (yes/no) response options.
- * *Feedback* - containing the user's score.
- 
-_Adaptivity is not used in this tutorial, but you will see how and where a bit of adaptive code can be added._
+==Step 3: Creating test sections==
 
+Follow the images and corresponding text to create the structure of your test by adding new sections, in the *tests* tab.
 
-==Step 1: Create HTML Templates==
-===Introduction template===
- * _Create a template:_ Click the “HTML templates” tab on the upper left side of the page. Click the ‘+’ icon at the end of the list of templates to add a new item. Enter a unique name for the template (E.g. “introduction”) and click ‘save’ at the bottom of the page.  
+ * Declare a “*theta*” insert to be shown on the test item as “*not available yet*”
+ * Creates a vector of *difficulties* for ALL items in the item bank table 
+ * Sets starting item to 50
 
-IMAGE
+ * Create an empty vector “*responses*” where users’ responses are to be stored
+* Creates a matrix of item parameters for the catR library with following columns: 
+  * discrimination
+  * difficulty
+  * guessing
+  * innatention 
+_Note, that discrimination is fixed to 1, guessing to 0 and innatention to 1 – which is an equivalent of ignoring those parameters._
+ * Transforms the _itempar_ matrix into catBank object as required by catR library. _(Google “catR R” to get the catR manual)_
+ * Creates the vector items_administered that stores items already administered to the testee – adds current item to this vector.
 
- * _Add suitable text:_ Type in a welcome message and instructions for the participants. 
- * _Add a user input field:_ Click ‘Text Field’ and enter a name (E.g. user_name). Click ‘OK’. Ensure that your instructions indicate that participants should type their name here.
- * _Add a Start button:_ Click ‘Button’ and enter a name (e.g. btn_start), text (“Start”) and click ‘OK’.
- * Save the template!
+ * Get the text content for the current item
+ * Get the difficulty of the current item (alternatively you could use: SET VARIABLE _difficulty_  =  by R code - _difficulties[current_item]_)
 
-IMAGE
+ * Get the _correct answer_ for the current item
+ * Load HTML template _test item_.
 
+ * Ensures that the response field was not empty (_nchar()_ returns the number of characters in a string). If ‘response’ is empty then it will equal 0; hence, set missing values to “*-9999*”. 
+ * Compare response with a correct answer and add it to the vector storing user’s responses (i.e. “*responses*”).
+ * Calculate the new _theta_ using _thetaEst_ function from catR package. (Object “_it_” contains item parameters for the items already administered).
 
-=== Test Items Template===
- * _Create a template:_ Click the “HTML templates” tab on the upper left side of the page. Click ‘+’ at the end of the list of templates to add a new item. Enter a name for the template (E.g. “test items”) and click ‘save’ at the bottom of the page. 
- * _Add questions/text:_ Edit the template and add the following text:
-    {{user_name}}, please answer the following question:
-    {{question}}
- * _Add radio buttons:_ Click ‘Radio Button’ and assign a name (radio1) and value (0); click ‘OK’. Type ‘No’ next to it. Similarly, create another radio button with the same name but different value (1) and type ‘Yes’ next to it.
- * _Add a Submit button:_ Click ‘Button’ and assign a name (btn_submit) and text value (Submit). Click ‘OK’.
- * Save the template!
+ * Compute the new value for _current_item_ variable using _nextItem_ function from catR package. This function is defined by the catBank object, current theta and items that were already administered (_out =_).
+ * Add current item to _items_administered_.
+ * Check whether test is shorter than 20 items. If so, go back and show next item; if not, proceed.
 
-IMAGE
+ * Shows the HTML template _feedback_.
 
+Don't forget to save the test at frequent intervals!
 
-===Feedback Template===
- * _Create a template:_ Click the “HTML templates” tab on the upper left side of the page. Click ‘+’ at the end of the list of templates to add a new item. Enter a name for the template (E.g.“feedback”) and click ‘save’ at the bottom of the page. 
- * _Add text:_ Add text suitable for the feedback page, including:
-    {{user_name}}, your total score is {{total_score}}.
- * Save the template!
+==Run your test==
+Use the following URL (with the correct *test id* to run your test: *[concerto_installation_path]/?tid=[TEST_ID]*
 
-IMAGE
-
-
-==Step 2: Creating an item bank==
-
-Go to the ‘tables’ tab (next to HTML templates). 
- * _Add a new table:_ Click the ‘+’ icon at the end of the list of available tables. Assign a name and save it.
- * _Add columns:_ Click the ‘+’ icon located just below table structure and data field. Enter the column name (“question”) and select string as the data type. Click ‘ok’. 
- * _Add additional columns:_ Click the ‘+’ icon on the right side of the column names. Add a second column (“answer”) consisting of numeric type data and a third column (“item_id”) consisting of numeric type data.
-_Your item bank is nearly done. Now you need to fill the table with the items in your test. The items should be structured such that they can be answered with yes/no options, as in your “items” template._
- * _Add rows:_ Click the ‘+’ icon below the column names. Now, you can directly type in your items and corresponding answers. 
- Note: In your Items template, you have assigned 0 to a radio button described as “No” and 1 to a radio button described as “Yes”. Thus, if “yes” is the correct answer to your question – put 1 in the Answer column. If “no” is the correct answer, put 0 in the Answer column. Fill item_id with consecutive numbers starting from 1.
- * Save your table!
-
-_Note: You can import your tables from CSV files (R, SPSS, Excel) and also manage tables using a professional MySQL tool._
-
-IMAGE
-
-
-==Step 3: Creating and adding sections to your test==
-
-Go to the ‘tests’ tab on the upper left side of the page. Create a new test logic by clicking the ‘+’ icon towards the bottom of the list of available tests (it is likely to be empty!), on the left side of the page. Assign a relevant name for the test and click ‘OK’. 
-
-To edit a test at any time, click on the pencil symbol towards the right of the specific test you want to edit. Be careful not to click the ‘bin’ icon (last symbol on the right) unless you wish to delete your test!
-
-IMAGE
-
-
-This step involves editing your test overall. Click the ‘tests’ tab on the upper left side of the page and click the _pencil_ icon on your specific test to edit it. To add a new section, click the ‘+’ at the bottom of the last section. At this point, the last section is ‘1. start’.
-
-Follow the table below to add new sections to your test, using the editor. Be careful not to make spelling errors!
-
-|| *SECTION TYPE* || *DETAILS* ||
-|| Load HTML template || Choose the HTML template: _introduction_ (or whatever name you gave to this HTML template). Please note that this HTML template will provide you with “user_name” variable, as indicated in “returns:”. _(Remember adding text field “user_name” to this HTML template?)_ ||
-|| Set variable || SET VARIABLE:  _current_question_  =  by R code:  _1_.  (We will use this variable to control which question to show!)||
-|| Set variable || SET VARIABLE:  _total_score_  =  by R code:  _0_.  (This variable will be used to count the total score of the individual.)||
-|| Set variable || SET VARIABLE: _question_  =  from table: _simple_test_table_  COLUMN: _question_  WHERE: _item_id_ - _equal_ - _current_question_.  (Note what happens - we simply select one cell from the table you’ve created earlier. Concerto will take the content of the cell in the “question” column and a row where item_id equals 1 (you have set current_question to 1 few steps ago))||
-|| Set variable || SET VARIABLE: _answer_  =  from table: _simple_test_table_  COLUMN: _answer_  WHERE: _item_id_ - _equal_ - _current_question_.  (Now we set variable “answer” to the appropriate value from the table.)||
-|| Load HTML template || Choose the HTML template: _test items_ (or whatever name you gave to this HTML template).||
-|| IF statement || IF _answer_ - _equal_ - _as.numeric(radio1)_  THEN CLICK '+' ICON BELOW 'THEN'. SET VARIABLE: _total_score_ = by R code - _total_score + 1_. (Simple! *If* answer is equal to the value of the radio button selected by the user *then* increase total score by 1. _Note: to add the next section “outside of the if clause” use the ‘+’ icon at the very bottom of the entire IF statement box._)||
-|| Set variable || SET VARIABLE:  _current_question_  =  by R code:  _current_question + 1_.  (Add one to the current_question value to select the 2nd question from the table next time!)||
-|| IF statement || IF _current_question_ - _equal or lesser than_ - _4_ THEN CLICK '+' ICON BELOW 'THEN'. GO TO - SET SECTION: _(from the drop-down list select the section of the test you want to GO TO. You want to the section where you were setting the value of the “question” variable)_ Ok, this one looks difficult but it is not! First you check *if* you haven’t reached the maximum number of questions you wanted to show. If you haven’t *then* you go back in the test structure –not to the very beginning but to the place where you were getting some values from the table. Lastly, click the ‘+’ at the bottom of the *IF statement box* to add a new section.||
-|| Load HTML template || Choose the HTML template: _feedback_ (or whatever else you named this template)||
-|| || _END_ ||
-
-
-To run your test, check its ID number (first column from the list of available objects in the _tests_ tab):
-
-IMAGE
-
-Use the following URL: *[concerto_installation_path]/?tid=[TEST_ID]*
-
-In case of the demo installation, this link looks like this: [http://dev.myiqtest.org/concerto3_DEMO/?tid=85] 
+In case of the demo installation, the link looks like this: [http://dev.myiqtest.org/concerto3_DEMO/?tid=82] 
 
   _Note: Substitute the last 2 digits in the URL with the test id of your choice._
-
-
-Obviously, this is a very basic test, but it easily shows the idea behind Concerto. The tests that you develop can be run as a separate website or embedded in the other websites or applications. 
- 
