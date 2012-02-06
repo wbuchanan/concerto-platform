@@ -1,5 +1,5 @@
 = Concerto v3.0 Tutorials: Create a simple test =
-== _(under revision)_ == 
+                            == _(under revision)_ == 
 
 This tutorial will help you create a simple test on Concerto v3.0. 
 You can preview the test here: 
@@ -82,6 +82,27 @@ _Note: You can import your tables from CSV files (R, SPSS, Excel) and also manag
 Go to the ‘tests’ tab on the upper left side of the page. Create a new test logic by clicking the ‘+’ icon towards the bottom of the list of available tests (it is likely to be empty!), on the left side of the page. Assign a relevant name for the test and click ‘OK’. 
 
 To edit a test at any time, click on the pencil symbol towards the right of the specific test you want to edit. Be careful not to click the ‘bin’ icon (last symbol on the right) unless you wish to delete your test!
+
+[IMAGE]
+
+
+This step involves editing your test overall. Click the ‘tests’ tab on the upper left side of the page and click the _pencil_ icon on your specific test to edit it. To add a new section, click the ‘+’ at the bottom of the last section. At this point, the last section is ‘1. start’.
+
+Follow the table below to add new sections to your test, using the editor. Be careful not to make spelling errors!
+
+|| *SECTION TYPE* || *DETAILS* ||
+|| Load HTML template || Choose the HTML template: _introduction_ (or whatever name you gave to this HTML template). Please note that this HTML template will provide you with “user_name” variable, as indicated in “returns:”. _(Remember adding text field “user_name” to this HTML template?)_ ||
+|| Set variable || SET VARIABLE:  _current_question_  =  by R code:  _1_.  (We will use this variable to control which question to show!)||
+|| Set variable || SET VARIABLE:  _total_score_  =  by R code:  _0_.  (This variable will be used to count the total score of the individual.)||
+|| Set variable || SET VARIABLE: _question_  =  from table: _simple_test_table_  COLUMN: _question_  WHERE: _item_id_ - _equal_ - _current_question_.  (Note what happens - we simply select one cell from the table you’ve created earlier. Concerto will take the content of the cell in the “question” column and a row where item_id equals 1 (you have set current_question to 1 few steps ago))||
+|| Set variable || SET VARIABLE: _answer_  =  from table: _simple_test_table_  COLUMN: _answer_  WHERE: _item_id_ - _equal_ - _current_question_.  (Now we set variable “answer” to the appropriate value from the table.)||
+|| Load HTML template || Choose the HTML template: _items_ (or whatever name you gave to this HTML template).||
+|| IF statement || IF _answer_ - _equal_ - _as.numeric(radio1)_  THEN CLICK '+' ICON BELOW 'THEN'. SET VARIABLE: _total_score_ = by R code - _total_score + 1_. (Simple! *If* answer is equal to the value of the radio button selected by the user *then* increase total score by 1. _Note: to add the next section “outside of the if clause” use the ‘+’ icon at the very bottom of the entire IF statement box._)||
+|| Set variable || SET VARIABLE:  _current_question_  =  by R code:  _current_question + 1_.  (Add one to the current_question value to select the 2nd question from the table next time!)||
+|| IF statement || IF _current_question_ - _equal or lesser than_ - _4_ THEN CLICK '+' ICON BELOW 'THEN'. GO TO - SET SECTION: _(from the drop-down list select the section of the test you want to GO TO. You want to the section where you were setting the value of the “question” variable)_ Ok, this one looks difficult but it is not! First you check *if* you haven’t reached the maximum number of questions you wanted to show. If you haven’t *then* you go back in the test structure –not to the very beginning but to the place where you were getting some values from the table. Lastly, click the ‘+’ at the bottom of the *IF statement box* to add a new section.||
+|| Load HTML template || Choose the HTML template: _feedback_ (or whatever else you named this template)||
+|| || _END_ ||
+
 
 
 ------------------------------
