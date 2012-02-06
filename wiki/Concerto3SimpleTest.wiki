@@ -30,14 +30,14 @@ _Adaptivity is not used in this tutorial, but you will see how and where a bit o
 ===Introduction template===
  * _Create a template:_ Click the “HTML templates” tab on the upper left side of the page. Click the ‘+’ icon at the end of the list of templates to add a new item. Enter a unique name for the template (E.g. “introduction”) and click ‘save’ at the bottom of the page.  
 
-[IMAGE]
+IMAGE
 
  * _Add suitable text:_ Type in a welcome message and instructions for the participants. 
  * _Add a user input field:_ Click ‘Text Field’ and enter a name (E.g. user_name). Click ‘OK’. Ensure that your instructions indicate that participants should type their name here.
  * _Add a Start button:_ Click ‘Button’ and enter a name (e.g. btn_start), text (“Start”) and click ‘OK’.
  * Save the template!
 
-[IMAGE]
+IMAGE
 
 
 === Test Items Template===
@@ -49,7 +49,7 @@ _Adaptivity is not used in this tutorial, but you will see how and where a bit o
  * _Add a Submit button:_ Click ‘Button’ and assign a name (btn_submit) and text value (Submit). Click ‘OK’.
  * Save the template!
 
-[IMAGE]
+IMAGE
 
 
 ===Feedback Template===
@@ -58,7 +58,7 @@ _Adaptivity is not used in this tutorial, but you will see how and where a bit o
     {{user_name}}, your total score is {{total_score}}.
  * Save the template!
 
-[IMAGE]
+IMAGE
 
 
 ==Step 2: Creating an item bank==
@@ -74,7 +74,7 @@ _Your item bank is nearly done. Now you need to fill the table with the items in
 
 _Note: You can import your tables from CSV files (R, SPSS, Excel) and also manage tables using a professional MySQL tool._
 
-[IMAGE]
+IMAGE
 
 
 ==Step 3: Creating and adding sections to your test==
@@ -83,7 +83,7 @@ Go to the ‘tests’ tab on the upper left side of the page. Create a new test 
 
 To edit a test at any time, click on the pencil symbol towards the right of the specific test you want to edit. Be careful not to click the ‘bin’ icon (last symbol on the right) unless you wish to delete your test!
 
-[IMAGE]
+IMAGE
 
 
 This step involves editing your test overall. Click the ‘tests’ tab on the upper left side of the page and click the _pencil_ icon on your specific test to edit it. To add a new section, click the ‘+’ at the bottom of the last section. At this point, the last section is ‘1. start’.
@@ -105,7 +105,8 @@ Follow the table below to add new sections to your test, using the editor. Be ca
 
 
 To run your test, check its ID number (first column from the list of available objects in the _tests_ tab):
-[IMAGE]
+
+IMAGE
 
 Use the following URL: *[concerto_installation_path]/?tid=[TEST_ID]*
 
