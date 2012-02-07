@@ -13,7 +13,7 @@ We rely as much as possible on popular open source packages in order to maximize
 
 
 ==General Guide & Key==
-
+  
 || *Symbol* || *Description* ||
 ||  || Add new object ||
 ||  || Edit object ||
@@ -50,3 +50,19 @@ When you create a new test or select an existing test to be edited, it will be d
 
 
 ==Custom Test Sections==
+
+This section is used to create custom test logic sections for more experienced users and/or advanced tests. Rather than having a complicated SQL query/statement that needs to be integrated into the R code, you can develop custom test sections and save them for easier use and access. If you are confident, they may also be shared and accessible by others (group or public access rights)!
+
+
+==HTML Templates==
+
+This section is used to create HTML templates that will be presented as is to the test taker. Thus, you can make template as simple or comprehensive as you like.
+
+The left side of the page shows the list of HTML templates that are available to you. Any templates that you create will be visible here. Use this area to create a new template, edit or delete existing templates. You can search for any specific template you want by typing in the template id/name or owner in the search list. You can also manually navigate between items page-by-page. 
+
+When you click on the edit icon of a specific HTML template, it opens the template on the right side of the page. You can then edit the template as you want it to appear to the test taker. The tool bar includes a range of options for formatting, response options and inserts etc. 
+
+
+==Tables==
+
+This section is used to create tables for storing data to be used in a test (E.g. test items and response options) or data collected as the result of a test (E.g. test taker’s responses). Again, the page is divided into the list of available objects/tables, on the left side, and the table being edited, on the right side. When creating or editing tables, you can directly key in the data (e.g. test items) or import tables from MySQL or a CSV file. The table you create here can also be exported as a CSV file. 
