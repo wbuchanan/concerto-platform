@@ -1,4 +1,5 @@
 =Concerto v3.0 Tutorials: Section overview=
+                        ==_[under revision]_==
 
 _This document is relevant to Concerto v3.0 and higher. If you have an older version installed, it is recommended that you upgrade to the latest version._
 
@@ -22,5 +23,6 @@ When you create a new test or select an existing test to be edited, it will be d
  * R code - directly use R code to define variables, run commands etc.
  * Set variable - Define variables to be used in the test (may be visible in the HTML layer or only to R) using R code, table data or a previously declared variable.
  * Table modification - Modify existing tables (insert, modify or delete table rows) as your test proceeds and collects data.
+
 
 ==Custom Test Sections==
