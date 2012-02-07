@@ -3,16 +3,14 @@
 
 _This document is relevant to Concerto v3.0 and higher. If you have an older version installed, it is recommended that you upgrade to the latest version (or else refer to relevant manual)._
 
-Working with Concerto v3.0 can be easy as A-B-C if you are well oriented with the user interface. This tutorial is a guide to the sections (i.e. tabs) that you can use when working with Concerto v3.0. These sections include:
- * Tests
- * Custom test sections
- * HTML templates
- * Tables
+Working with Concerto v3.0 can be easy as A-B-C if you are well oriented with the user interface. This tutorial is a guide to the administration panel and sections (i.e. tabs) that you can use when working with Concerto v3.0. 
 
 We rely as much as possible on popular open source packages in order to maximize the safety and reliability of the system and to ensure that its elements are kept up-to-date.
 
 
-===General Guide & Key===
+==General Guide & Key==
+
+Before we go into the details of the administration panel, you should familiarise yourself with the basic icons present in Concerto v3.0.
   
 || *Symbol* || *Description* ||
 ||  || Add new object ||
@@ -34,6 +32,27 @@ We rely as much as possible on popular open source packages in order to maximize
 ||  || Who owns the object ||
 ||  || Who can access the object  ||
 ||  ||  ||
+
+
+==Administration Panel==
+
+The administration panel consists of several elements and sections. 
+These elements include:
+ * Header 
+ * Sections
+  * Tests
+  * Custom test sections
+  * HTML templates
+  * Tables
+
+
+===Header===
+
+The header of Concerto v3.0 is simple with minimal icons. On the left side:
+ * *Theme* - Change the appearance of the user interface to suit your preferences.
+ * *User information* - Your login id and full name as specified in your account. You may logout by clicking the _log out_ icon.
+ * *Language support* - Change the language of the interface for easier navigation etc. 
+
 
 ===Tests===
 
