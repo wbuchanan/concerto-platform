@@ -1,28 +1,52 @@
 =Concerto v3.0 Tutorials: Section overview=
-                        ==_[under revision]_==
+                        ==_(under revision)_==
 
 _This document is relevant to Concerto v3.0 and higher. If you have an older version installed, it is recommended that you upgrade to the latest version._
 
 Working with Concerto v3.0 can be easy as A-B-C if you are well oriented with the user interface. This tutorial is a guide to the sections (i.e. tabs) that you can use when working with Concerto v3.0. These sections include:
- * tests
- * custom test sections
+ * Tests
+ * Custom test sections
  * HTML templates
- * tables
+ * Tables
 
 We rely as much as possible on popular open source packages in order to maximize the safety and reliability of the system and to ensure that its elements are kept up-to-date.
 
 
+==General Guide & Key==
+
+|| *Symbol* || *Description* ||
+||  || Add new object ||
+||  || Edit object ||
+||  || Delete object ||
+||  || Export object ||
+||  || Import object ||
+||  || Go to last page ||
+||  || Go to next page ||
+||  || Go to first page ||
+||  || Go to previous page ||
+||  || Search for an object using id, name or owner ||
+||  || Help text; hover over the symbol for a basic description ||
+||  || Cancel changes made to object since last _Save_ ||
+||  || Save changes made to object since last _Save_ ||
+||  || Delete ||
+||  || ID of the object ||
+||  || Name of the object ||
+||  || Who owns the object ||
+||  || Who can access the object  ||
+||  ||  ||
+
 ==Tests==
+
 This section is used to create, edit and manage tests as a whole or specific test logic sections. 
 The left side of the page shows the list of tests that are available to you. Any tests that you create will be visible here. Use this area to create a new test, edit or delete existing tests. You can search for any specific test you want by typing in the test id/name or owner in the search list. You can also manually navigate between tests page-by-page. 
 
 When you create a new test or select an existing test to be edited, it will be displayed on the right side of the page, adjacent to the list of _available objects_. Here you can structure your test using a number of predefined basic test sections, including:
- * Go to - Select which section to proceed to; can skip sections, go forward, backward, make a loop etc.
- * IF statement - make conditional statements regarding how your test should proceed. E.g. _If_ total score is equal to 10, _then_ proceed to last section. Multiple conditions can be set too.
- * Load HTML template - Stops the R engine and loads a HTML template as specified.
- * R code - directly use R code to define variables, run commands etc.
- * Set variable - Define variables to be used in the test (may be visible in the HTML layer or only to R) using R code, table data or a previously declared variable.
- * Table modification - Modify existing tables (insert, modify or delete table rows) as your test proceeds and collects data.
+ * *Go to* - Select which section to proceed to; can skip sections, go forward, backward, make a loop etc.
+ * *IF statement* - make conditional statements regarding how your test should proceed. E.g. _If_ total score is equal to 10, _then_ proceed to last section. Multiple conditions can be set too.
+ * *Load HTML template* - Stops the R engine and loads a HTML template as specified.
+ * *R code* - directly use R code to define variables, run commands etc.
+ * *Set variable* - Define variables to be used in the test (may be visible in the HTML layer or only to R) using R code, table data or a previously declared variable.
+ * *Table modification* - Modify existing tables (insert, modify or delete table rows) as your test proceeds and collects data.
 
 
 ==Custom Test Sections==
