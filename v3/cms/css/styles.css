@@ -1,0 +1,94 @@
+root { 
+    display: block;
+}
+
+body{
+    font-size: 10px;
+    background: url(img/stripe.png) repeat;
+}
+
+.padding {
+    padding:5px;
+}
+
+.horizontalPadding {
+    padding-left:5px;
+    padding-right:5px;
+}
+
+.margin{
+    margin:5px;
+}
+
+.horizontalMargin {
+    margin-left:5px;
+    margin-right:5px;
+}
+
+.smallMargin{
+    margin:2px;
+}
+
+.fullWidth{
+    width:100%;
+}
+
+.fullHeight
+{
+    height:100%;
+}
+
+.hcenter{
+    margin:auto;
+}
+
+.noWrap{
+    white-space: nowrap;		
+}
+
+.noSpace
+{
+    margin:0px;
+    padding:0px;
+}
+
+.notVisible {
+    display:none;
+}
+
+.ui-autocomplete-loading { 
+    background: white url('img/ajax-loader.gif') right center no-repeat; 
+}
+
+.ui-sortable-placeholder { border: 1px dotted black; visibility: visible !important; height: 50px !important; }
+.ui-sortable-placeholder * { visibility: hidden; }
+
+.thSortable{
+    cursor: pointer;
+}
+
+.textareaCode {
+}
+
+.spanIcon{
+    cursor:pointer;
+}
+
+.divSection{
+    -webkit-box-shadow: 10px 10px 5px rgba(0, 0, 0, 0.4);  
+    -moz-box-shadow: 10px 10px 5px rgba(0, 0, 0, 0.4);  
+    box-shadow: 10px 10px 5px rgba(0, 0, 0, 0.4);  
+    margin-top: 20px;
+    margin-bottom: 20px;
+}
+
+.divSubsection {
+}
+
+ul {
+    margin:0px;
+}
+
+.tooltipWindow{
+    max-width: 200px;
+}

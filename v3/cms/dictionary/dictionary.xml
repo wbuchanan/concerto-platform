@@ -1,0 +1,1280 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- You can put comments this way. -->
+
+<!--
+If you feel you can contribute and translate to language not yet supported by Concerto or you feel that translation needs to be corrected then please let us know and we will add you as a contributor which will allow you to edit dictionary.xml file.
+You can add new languages by inserting <some_language>string translated into some_language</some_language> tag inside <string> tags.
+-->
+<root>
+    <languages>
+        <language id="en">english</language>
+        <language id="pl">polski</language>
+    </languages>
+    
+    <strings>
+        <string id="1" js="1">
+            <en><![CDATA[Variable name validation failed. Only alphanumeric, '_' and '.' characters allowed and value can't start with numbers. Value has been changed.<br/><br/>old value: <b>{0}</b></br>new value: <b>{1}</b>]]></en>
+            <pl><![CDATA[Walidacja zmiennej nie powiodla sie. Tylko znaki alfanumeryczne, '_' i '.' sa dozwolone, oraz zmienna nie moze zaczynac sie od numeru. Wartosc zostala zmieniona.<br/><br/>poprzednia wartosc: <b>{0}</b></br>nowa wartosc: <b>{1}</b>]]></pl>
+        </string>
+        <string id="2" js="1">
+            <en>variable validation</en>
+            <pl>walidacja zmiennej</pl>
+        </string>
+        <string id="3" js="1">
+            <en>changing description</en>
+            <pl>zmiana opisu</pl>
+        </string>
+        <string id="4" js="1">
+            <en>Concerto - confirmation</en>
+            <pl>Concerto - potwierdzenie</pl>
+        </string>
+        <string id="5" js="1">
+            <en>Concerto - alert</en>
+            <pl>Concerto - alert</pl>
+        </string>
+        <string id="6" js="1">
+            <en>HTML controls `name` validation failed. Only alphanumeric, '_' and '.' characters allowed and value can't start with numbers. Value has been changed.\r\n\r\nold value: {0}\r\nnew value: {1}</en>
+            <pl>Walidacja pola `nazwa` kontrolki HTML nie powiodla sie. Tylko wartosci alfanumeryczne, '_' i '.' sa dozwolone, oraz wartosc nie moze zaczynac sie od liczby. Wartosc zostala zmieniona.\r\n\r\npoprzednia wartosc: {0}\r\nnowa wartosc: {1}</pl>
+        </string>
+        <string id="7" js="1">
+            <en>adding new object</en>
+            <pl>dodawanie nowego obiektu</pl>
+        </string>
+        <string id="8" js="1">
+            <en>Are you sure you want to delete object #{0}?</en>
+            <pl>Jestes pewien ze chcesz usunac obiekt #{0}?</pl>
+        </string>
+        <string id="9" js="1">
+            <en>Object has been saved.</en>
+            <pl>Obiekt zostal zapisany.</pl>
+        </string>
+        <string id="10" js="1">
+            <en>Object has NOT been saved.</en>
+            <pl>Obiekt NIE zostal zapisany.</pl>
+        </string>
+        <string id="11" js="1">
+            <en>remove row</en>
+            <pl>usun rekord</pl>
+        </string>
+        <string id="12" js="1">
+            <en>editing column</en>
+            <pl>edytowanie kolumny</pl>
+        </string>
+        <string id="13" js="1">
+            <en>Column name must not be empty.</en>
+            <pl>Nazwa kolumny nie moze byc pusta.</pl>
+        </string>
+        <string id="14" js="1">
+            <en>change column name</en>
+            <pl>zmiana nazwy kolumny</pl>
+        </string>
+        <string id="15" js="1">
+            <en>Column with that name already exists.</en>
+            <pl>Kolumna o tej nazwie juz istnieje.</pl>
+        </string>
+        <string id="16" js="1">
+            <en>string</en>
+            <pl>tekst</pl>
+        </string>
+        <string id="17" js="1">
+            <en>numeric</en>
+            <pl>liczba</pl>
+        </string>
+        <string id="18" js="1">
+            <en>HTML</en>
+            <pl>HTML</pl>
+        </string>
+        <string id="19" js="1">
+            <en>edit column</en>
+            <pl>edytuj kolumne</pl>
+        </string>
+        <string id="20" js="1">
+            <en>remove column</en>
+            <pl>usun kolumne</pl>
+        </string>
+        <string id="21" js="1">
+            <en>importing table from MySQL table</en>
+            <pl>importowanie tabeli z tabeli MySQL</pl>
+        </string>
+        <string id="22" js="1">
+            <en>import</en>
+            <pl>importuj</pl>
+        </string>
+        <string id="23" js="1">
+            <en>cancel</en>
+            <pl>anuluj</pl>
+        </string>
+        <string id="24" js="1">
+            <en>No table selected.</en>
+            <pl>Nie wybrano tabeli.</pl>
+        </string>
+        <string id="25" js="1">
+            <en>importing table</en>
+            <pl>importowanie tabeli</pl>
+        </string>
+        <string id="26" js="1">
+            <en>Table structure and data imported.</en>
+            <pl>Struktura i dane tabeli zostaly zaimportowane.</pl>
+        </string>
+        <string id="27" js="1">
+            <en>importing table from CSV file</en>
+            <pl>importowanie tabeli z pliku CSV</pl>
+        </string>
+        <string id="28" js="1">
+            <en>Are you sure you want to replace current table structure and data with the one from file?</en>
+            <pl>Jestes pewien ze chcesz zastapic obecna strukture i dane tabeli tymi z pliku?</pl>
+        </string>
+        <string id="29" js="1">
+            <en>file uploaded</en>
+            <pl>plik wyslany</pl>
+        </string>
+        <string id="30" js="1">
+            <en>There was an error importing table structure and data.</en>
+            <pl>Wystapil blad podczas importowania struktury i danych tabeli.</pl>
+        </string>
+        <string id="31" js="1">
+            <en>adding new column</en>
+            <pl>dodawanie nowej kolumny</pl>
+        </string>
+        <string id="32" js="1">
+            <en>Are you sure you want to delete this row?</en>
+            <pl>Jestes pewien ze chcesz usunac ten rekord?</pl>
+        </string>
+        <string id="33" js="1">
+            <en>deleting table row</en>
+            <pl>usuwanie rekordu tabeli</pl>
+        </string>
+        <string id="34" js="1">
+            <en>Are you sure you want to delete this column</en>
+            <pl>Jestes pewien ze chcesz usunac ta kolumne?</pl>
+        </string>
+        <string id="35" js="1">
+            <en>deleting table column</en>
+            <pl>usuwanie kolumny tabeli</pl>
+        </string>
+        <string id="36" js="1">
+            <en>changing HTML</en>
+            <pl>zmiana HTML</pl>
+        </string>
+        <string id="37" js="1">
+            <en>add</en>
+            <pl>dodaj</pl>
+        </string>
+        <string id="38" js="1">
+            <en>change</en>
+            <pl>zmien</pl>
+        </string>
+        <string id="39" js="1">
+            <en>Edit HTML. Current HTML:</en>
+            <pl>Edycja HTML. Obecny HTML:</pl>
+        </string>
+        <string id="40" js="1">
+            <en>Using this section you can interpret some R code.</en>
+            <pl>Uzywajac tej sekcji mozna zinterpretowac dowolny kod R.</pl>
+        </string>
+        <string id="41" js="1">
+            <en>This section stops R backend and loads choosen HTML template.</en>
+            <pl>Ta sekcja przerywa wykonywanie kodu R i wyswietla uzytkownikowi szablon HTML.</pl>
+        </string>
+        <string id="42" js="1">
+            <en>This section lets you skip to any other choosen section.</en>
+            <pl>Ta sekcja pozwala przejsc do innej wybranej sekcji.</pl>
+        </string>
+        <string id="43" js="1">
+            <en><![CDATA[Using this section you can make some conditional statements. Multiple conditions are allowed and you can include multiple sections in <b>THEN</b> clause. IF statements can't be nested.]]></en>
+            <pl><![CDATA[Dzieki tej sekcji mozna tworzyc twierdzenia warunkowe. Dozwolone jest wiele warunkow oraz mozna zamieszczac wiele sekcji w bloku <b>WTEDY</b>. Nie mozna zagniezdzac twierdzen JEZELI.]]></pl>
+        </string>
+        <string id="44" js="1">
+            <en><![CDATA[This section gives you possibility to set variable in your test logic backend. You can additionaly check the checkbox to make this variable visible in your HTML item templates. You can set the variable using one of the three methods:<ul><li><b>from table</b>: you can select previously defined table in Concerto and filter it for some specific rows and columns. You can also set the whole table by leaving the <b>WHERE</b> clause empty</li><li><b>by R code</b>: you can set your variable using the R code. This can basically be anything what you can do in R code. E.g. function result, mathematical calulation</li><li><b>using variable</b>: you can set your variable using value of other variable. This option is usefull as it has autocomplete feature that will help you find the variable you want to use from the previously declared variables</li></ul>]]></en>
+            <pl><![CDATA[Ta sekcja daje mozliwosc zadeklarowania zmiennej w logice testu. Mozna dodatkowo rowniez zaznaczyc checkbox aby sprawic zeby zmienna byla widoczna w szablonie HTML. Mozna ustawic zmienna jedna z trzech metod:<ul><li><b>z tabeli</b>: mozna wybrac wczesniej zdefiniowana tabele w Concerto, oraz jej konkretne rekordy i kolumny. Mozna rowniez wybrac cala tabele pozostawiajac blok <b>GDZIE</b> pusty</li><li><b>przez kod R</b>: mozna ustawic zmienna uzywajac kodu R. Moze to byc cokolwiek co da sie zrobic w jezyku R. Np. rezultat funkcji, matematyczne oblieczenie</li><li><b>uzywajac zmiennej</b>: mozna ustawic zmienna uzywajac wartosci innej zmiennej. Ta opcja jest uzyteczna gdyz posiada funkcje autouzupelniania ktore pomaga odnalezc zmienna ktora chce sie uzyc z wczesniej zadeklarowanych zmiennych</li></ul>]]></pl>
+        </string>
+        <string id="45" js="1">
+            <en>This is the start section. You can't modify it. This is just the entry point to your test logic.</en>
+            <pl>To jest sekcja poczatkowa. Nie mozna jej modyfikowac. Stanowi punkt wejsciowy do logiki testu.</pl>
+        </string>
+        <string id="46" js="1">
+            <en>This is the end section. You can't modify it. This is the finish section of your test logic.</en>
+            <pl>To jest sekcja koncowa. Nie mozna jej modyfikowac. To jest sekcja konczaca logike testu.</pl>
+        </string>
+        <string id="47" js="1">
+            <en><![CDATA[Using this section you can modify previously defined table of your choice. You can do three basic database operation here:<ul><li><b>INSERT</b>: using this command you can insert a single row and choose the value for the table columns</li><li><b>UPDATE</b>: using this command you can modify table rows that meets the criteria found in the <b>WHERE</b> clause. You can set wich columns you want to modify and what value you want to give them.</li><li><b>DELETE</b>: using this command you can delete table rows that meets the criteria found in the <b>WHERE</b> clause.</li></ul>]]></en>
+            <pl><![CDATA[Uzywajac tej sekcji mozna zmodyfikowac wczescniej zdefiniowane tabele. Mozna wykonac trzy podstawowoe operacje na bazie danych:<ul><li><b>DODANIE</b>: uzywajac tej komendy mozna dodac nowy pojedynczy rekord z wybranymi wartosciami</li><li><b>ZMIANA</b>: uzywajac tej komendy mozna zmodyfikowac rekordy tabeli ktore spelniaja podane kryteria w bloku <b>GDZIE</b>. Mozna ustawic ktore kolumny chce sie zmodyfikowac i jaka wartosc chce sie im dac.</li><li><b>USUN</b>: uzywajac tej komendy mozesz usunac rekordy tabeli ktore spelniaja kryteria podane w bloku <b>GDZIE</b>.</li></ul>]]></pl>
+        </string>
+        <string id="48" js="1">
+            <en>This is custom section.</en>
+            <pl>To jest sekcja wlasna.</pl>
+        </string>
+        <string id="49" js="1">
+            <en>R code</en>
+            <pl>kod R</pl>
+        </string>
+        <string id="50" js="1">
+            <en>load HTML template</en>
+            <pl>wczytaj szablon HTML</pl>
+        </string>
+        <string id="51" js="1">
+            <en>go to</en>
+            <pl>idz do</pl>
+        </string>
+        <string id="52" js="1">
+            <en>IF statement</en>
+            <pl>twierdzenie JESLI</pl>
+        </string>
+        <string id="53" js="1">
+            <en>set variable</en>
+            <pl>ustaw zmienna</pl>
+        </string>
+        <string id="54" js="1">
+            <en>start</en>
+            <pl>poczatek</pl>
+        </string>
+        <string id="55" js="1">
+            <en>end</en>
+            <pl>koniec</pl>
+        </string>
+        <string id="56" js="1">
+            <en>table modification</en>
+            <pl>modyfikacja tabeli</pl>
+        </string>
+        <string id="57" js="1">
+            <en>custom section</en>
+            <pl>wlasna sekcja</pl>
+        </string>
+        <string id="58" js="1">
+            <en>ignore</en>
+            <pl>zignoruj</pl>
+        </string>
+        <string id="59" js="1">
+            <en>remove test logic section</en>
+            <pl>usun sekcje logiki testu</pl>
+        </string>
+        <string id="60" js="1">
+            <en>add test logic section</en>
+            <pl>dodaj sekcje logiki testu</pl>
+        </string>
+        <string id="61" js="1">
+            <en>adding new section</en>
+            <pl>dodawanie nowej sekcji</pl>
+        </string>
+        <string id="62" js="1">
+            <en>are you sure you want to remove test section?</en>
+            <pl>jestes pewien ze chcesz usunac sekcje testu?</pl>
+        </string>
+        <string id="63" js="1">
+            <en>removing test section</en>
+            <pl>usuwanie sekcji testu</pl>
+        </string>
+        <string id="64" js="1">
+            <en>close</en>
+            <pl>zamknij</pl>
+        </string>
+        <string id="65" js="1">
+            <en>test logic variables</en>
+            <pl>zmienne logiki testu</pl>
+        </string>
+        <string id="66" js="1">
+            <en>Password and password confirmation doesn't match!</en>
+            <pl>Haslo i jego potwierdzenie musza sie zgadzac!</pl>
+        </string>
+        <string id="67" js="1">
+            <en>login/password combination is incorrect!</en>
+            <pl>kombinacja login/haslo jest niepoprawna!</pl>
+        </string>
+        <string id="68">
+            <en>unnamed custom section</en>
+            <pl>nienazwana sekcja wlasna</pl>
+        </string>
+        <string id="69">
+            <en>id</en>
+            <pl>id</pl>
+        </string>
+        <string id="70" js="1">
+            <en>name</en>
+            <pl>nazwa</pl>
+        </string>
+        <string id="71">
+            <en>owner</en>
+            <pl>wlasciciel</pl>
+        </string>
+        <string id="72">
+            <en>access rigths</en>
+            <pl>prawa dostepu</pl>
+        </string>
+        <string id="73">
+            <en>none</en>
+            <pl>brak</pl>
+        </string>
+        <string id="74">
+            <en>unnamed table</en>
+            <pl>nienazwana tabela</pl>
+        </string>
+        <string id="75">
+            <en>unnamed template</en>
+            <pl>nienazwany szablon</pl>
+        </string>
+        <string id="76">
+            <en>unnamed test</en>
+            <pl>nienazwany test</pl>
+        </string>
+        <string id="77">
+            <en>incognito</en>
+            <pl>inkognito</pl>
+        </string>
+        <string id="78">
+            <en>unknown</en>
+            <pl>nieznany</pl>
+        </string>
+        <string id="79">
+            <en>unnamed user group</en>
+            <pl>nienazwana grupa uzytkownikow</pl>
+        </string>
+        <string id="80">
+            <en>unnamed user type</en>
+            <pl>nienazwany typ uzytkownikow</pl>
+        </string>
+        <string id="81" js="1">
+            <en>Access denied!</en>
+            <pl>Dostep wzbroniony!</pl>
+        </string>
+        <string id="82">
+            <en>logged user</en>
+            <pl>zalogowany uzytkownik</pl>
+        </string>
+        <string id="83">
+            <en>log out</en>
+            <pl>wyloguj</pl>
+        </string>
+        <string id="84">
+            <en>custom test sections</en>
+            <pl>wlasne sekcje testu</pl>
+        </string>
+        <string id="85">
+            <en>tables</en>
+            <pl>tabele</pl>
+        </string>
+        <string id="86">
+            <en>file</en>
+            <pl>plik</pl>
+        </string>
+        <string id="87">
+            <en>templates</en>
+            <pl>szablony</pl>
+        </string>
+        <string id="88">
+            <en>tests</en>
+            <pl>testy</pl>
+        </string>
+        <string id="89">
+            <en>admins</en>
+            <pl>administratorzy</pl>
+        </string>
+        <string id="90">
+            <en>admin types</en>
+            <pl>typy administratorow</pl>
+        </string>
+        <string id="91">
+            <en>admin groups</en>
+            <pl>grupy administratorow</pl>
+        </string>
+        <string id="92">
+            <en>editing custom test section</en>
+            <pl>edycja wlasnej sekcji testu</pl>
+        </string>
+        <string id="93">
+            <en>creating new custom test section</en>
+            <pl>tworzenie nowej wlasnej sekcji testu</pl>
+        </string>
+        <string id="94">
+            <en>delete</en>
+            <pl>usun</pl>
+        </string>
+        <string id="95">
+            <en>save</en>
+            <pl>zapisz</pl>
+        </string>
+        <string id="96">
+            <en>name of the custom section</en>
+            <pl>nazwa wlasnej sekcji</pl>
+        </string>
+        <string id="97">
+            <en>description</en>
+            <pl>opis</pl>
+        </string>
+        <string id="98">
+            <en>custom section description that will be visible in the test logic when you'll add this section</en>
+            <pl>opis wlasnej sekcji ktory bedzie widoczny w logice tekstu po dodaniu sekcji</pl>
+        </string>
+        <string id="99">
+            <en>access rights to this custom section</en>
+            <pl>prawa dostepu dla sekcji wlasnej</pl>
+        </string>
+        <string id="100">
+            <en>private</en>
+            <pl>prywatne</pl>
+        </string>
+        <string id="101">
+            <en>group</en>
+            <pl>grupowe</pl>
+        </string>
+        <string id="102">
+            <en>public</en>
+            <pl>publiczne</pl>
+        </string>
+        <string id="103">
+            <en>owner of this custom section</en>
+            <pl>wlasciciel wlasnej sekcji</pl>
+        </string>
+        <string id="104">
+            <en>Edit description. Current description:</en>
+            <pl>Edytuj opis. Obecny opis:</pl>
+        </string>
+        <string id="105">
+            <en>Here you can define section input parameters. You can use the variables that you declare here in the section R code.</en>
+            <pl>Tutaj mozesz zdefiniowac parametry wejsciowe sekcji. Mozna uzywac zmiennych ktore tutaj zostaly zadeklarowane w kodzie R sekcji.</pl>
+        </string>
+        <string id="106">
+            <en>parameters</en>
+            <pl>parametry</pl>
+        </string>
+        <string id="107">
+            <en>edit description</en>
+            <pl>edytuj opis</pl>
+        </string>
+        <string id="108">
+            <en>no parameters defined</en>
+            <pl>brak zdefiniowanych parametrow</pl>
+        </string>
+        <string id="109">
+            <en>add parameter variable</en>
+            <pl>dodaj parametr</pl>
+        </string>
+        <string id="110">
+            <en>remove parameter variable</en>
+            <pl>usun parametr</pl>
+        </string>
+        <string id="111">
+            <en>Here is section R code. You can use in it parameters that you declared above.</en>
+            <pl>To jest kod R sekcji. Mozesz uzywac w nim parametrow ktore zadeklarowales powyzej.</pl>
+        </string>
+        <string id="112">
+            <en>Here you can define which variables used in this section you would like to pass further outside the section. Those variables can then be used in other test logic sections.</en>
+            <pl>Tutaj mozesz zdefiniowac ktore zmienne uzyte w sekcji chcialbys przekazac poza sekcje. Zmienne te nastepnie moga zostac uzyte w innych sekcjach logiki.</pl>
+        </string>
+        <string id="113">
+            <en>returns</en>
+            <pl>zwrot</pl>
+        </string>
+        <string id="114">
+            <en>no returns defined</en>
+            <pl>brak zdefiniowanego zwrotu</pl>
+        </string>
+        <string id="115">
+            <en>add return variable</en>
+            <pl>dodaj zmienna zwrotu</pl>
+        </string>
+        <string id="116">
+            <en>remvoe return variable</en>
+            <pl>usun zmienna zwrotu</pl>
+        </string>
+        <string id="117">
+            <en>editing table</en>
+            <pl>edycja tabeli</pl>
+        </string>
+        <string id="118">
+            <en>creating new table</en>
+            <pl>tworzenie nowej tabeli</pl>
+        </string>
+        <string id="119">
+            <en>name of the table</en>
+            <pl>nazwa tabeli</pl>
+        </string>
+        <string id="120">
+            <en>access rights of the table</en>
+            <pl>prawa dostepu tabeli</pl>
+        </string>
+        <string id="121">
+            <en>owner of the table</en>
+            <pl>wlasciciel tabeli</pl>
+        </string>
+        <string id="122" js="1">
+            <en>type</en>
+            <pl>typ</pl>
+        </string>
+        <string id="123">
+            <en>no object selected</en>
+            <pl>nie wybrano zadnego obiektu</pl>
+        </string>
+        <string id="124">
+            <en>MySQL table</en>
+            <pl>tabela MySQL</pl>
+        </string>
+        <string id="125">
+            <en>import table from MySQL table</en>
+            <pl>import tabeli z tabeli MySQL</pl>
+        </string>
+        <string id="126">
+            <en>import table from CSV file</en>
+            <pl>import tabeli z pliku CSV</pl>
+        </string>
+        <string id="127">
+            <en>export table to CSV file</en>
+            <pl>eksport tabeli do pliku CSV</pl>
+        </string>
+        <string id="128">
+            <en>table structure and data</en>
+            <pl>struktura tabeli i dane</pl>
+        </string>
+        <string id="129">
+            <en>add column</en>
+            <pl>dodaj kolumne</pl>
+        </string>
+        <string id="130">
+            <en>edit HTML</en>
+            <pl>edycja HTML</pl>
+        </string>
+        <string id="131">
+            <en>add row</en>
+            <pl>dodaj rekord</pl>
+        </string>
+        <string id="132">
+            <en>table is empty</en>
+            <pl>tabela jest pusta</pl>
+        </string>
+        <string id="133">
+            <en>editing HTML template</en>
+            <pl>edycja szablonu HTML</pl>
+        </string>
+        <string id="134">
+            <en>creating new HTML template</en>
+            <pl>tworzenie nowego szablonu HTML</pl>
+        </string>
+        <string id="135">
+            <en>name of the HTML template</en>
+            <pl>nazwa szablonu HTML</pl>
+        </string>
+        <string id="136">
+            <en>HTML content of the template</en>
+            <pl>zawartosc HTML szablonu</pl>
+        </string>
+        <string id="137">
+            <en>template access rights</en>
+            <pl>prawa dostepu szablonu</pl>
+        </string>
+        <string id="138">
+            <en>owner of the template</en>
+            <pl>wlasciciel szablonu</pl>
+        </string>
+        <string id="139">
+            <en>editing test</en>
+            <pl>edycja testu</pl>
+        </string>
+        <string id="140">
+            <en>creating new test</en>
+            <pl>tworzenie nowego testu</pl>
+        </string>
+        <string id="141">
+            <en>name of the test</en>
+            <pl>nazwa testu</pl>
+        </string>
+        <string id="142">
+            <en>test access rights</en>
+            <pl>prawa dostepu testu</pl>
+        </string>
+        <string id="143">
+            <en>owner of the test</en>
+            <pl>wlasciciel testu</pl>
+        </string>
+        <string id="144">
+            <en>show test variables</en>
+            <pl>pokaz zmienne testu</pl>
+        </string>
+        <string id="145">
+            <en>test logic is empty</en>
+            <pl>logika testu jest pusta</pl>
+        </string>
+        <string id="146">
+            <en>choose section type</en>
+            <pl>wybierz typ sekcji</pl>
+        </string>
+        <string id="147">
+            <en>basic sections</en>
+            <pl>podstawowe sekcje</pl>
+        </string>
+        <string id="148">
+            <en>custom sections</en>
+            <pl>wlasne sekcje</pl>
+        </string>
+        <string id="149">
+            <en>variable name</en>
+            <pl>nazwa zmiennej</pl>
+        </string>
+        <string id="150">
+            <en>section</en>
+            <pl>sekcja</pl>
+        </string>
+        <string id="151">
+            <en>parameter/return</en>
+            <pl>parametr/zwrot</pl>
+        </string>
+        <string id="152">
+            <en>editing admin group</en>
+            <pl>edycja grupy aministratorow</pl>
+        </string>
+        <string id="153">
+            <en>creating admin group</en>
+            <pl>tworzenie grupy aministratorow</pl>
+        </string>
+        <string id="154">
+            <en>name of the admin group</en>
+            <pl>nazwa grupy aministratorow</pl>
+        </string>
+        <string id="155">
+            <en>admin group access rights</en>
+            <pl>prawa dostepu grupy aministratorow</pl>
+        </string>
+        <string id="156">
+            <en>owner of the admin group</en>
+            <pl>wlasciciel grupy administratorow</pl>
+        </string>
+        <string id="157">
+            <en>editing admin type</en>
+            <pl>edycja typu administratora</pl>
+        </string>
+        <string id="158">
+            <en>creating new admin type</en>
+            <pl>tworzenie nowego typu administratora</pl>
+        </string>
+        <string id="159">
+            <en>name of the admin type</en>
+            <pl>nazwa typu administratora</pl>
+        </string>
+        <string id="160">
+            <en>acces rigths of the admin type</en>
+            <pl>prawa dostepu typu administratora</pl>
+        </string>
+        <string id="161">
+            <en>admin type owner</en>
+            <pl>wlasciciel typu administratora</pl>
+        </string>
+        <string id="162">
+            <en>admin type rights</en>
+            <pl>prawa typu administratora</pl>
+        </string>
+        <string id="163">
+            <en>module</en>
+            <pl>modul</pl>
+        </string>
+        <string id="164">
+            <en>read rights</en>
+            <pl>prawa odczytu</pl>
+        </string>
+        <string id="165">
+            <en>write rights</en>
+            <pl>prawa zapisu</pl>
+        </string>
+        <string id="166">
+            <en>owner change</en>
+            <pl>zmiana wlasciciela</pl>
+        </string>
+        <string id="167">
+            <en>HTML templates</en>
+            <pl>szablony HTML</pl>
+        </string>
+        <string id="168">
+            <en>standard</en>
+            <pl>standardowe</pl>
+        </string>
+        <string id="169">
+            <en>all</en>
+            <pl>wszystko</pl>
+        </string>
+        <string id="170">
+            <en>editing admin</en>
+            <pl>edycja administratora</pl>
+        </string>
+        <string id="171">
+            <en>creating new admin</en>
+            <pl>tworzenie nowego administratora</pl>
+        </string>
+        <string id="172">
+            <en>creating new admin</en>
+            <pl>tworzenie nowego administratora</pl>
+        </string>
+        <string id="173">
+            <en>login</en>
+            <pl>login</pl>
+        </string>
+        <string id="174">
+            <en>email</en>
+            <pl>email</pl>
+        </string>
+        <string id="175">
+            <en>last activity</en>
+            <pl>ostatnia aktywnosc</pl>
+        </string>
+        <string id="176">
+            <en>admin group</en>
+            <pl>grupa administratora</pl>
+        </string>
+        <string id="177">
+            <en>admin type</en>
+            <pl>typ administratora</pl>
+        </string>
+        <string id="178">
+            <en>admin login</en>
+            <pl>login administratora</pl>
+        </string>
+        <string id="179">
+            <en>password</en>
+            <pl>haslo</pl>
+        </string>
+        <string id="180">
+            <en>check if you want to set the password</en>
+            <pl>zaznacz jesli chcesz ustawic haslo</pl>
+        </string>
+        <string id="181">
+            <en>admin password</en>
+            <pl>haslo administratora</pl>
+        </string>
+        <string id="182">
+            <en>password confirmation</en>
+            <pl>potwierdzenie hasla</pl>
+        </string>
+        <string id="183">
+            <en>password confirmation must match the password field above</en>
+            <pl>potwierdzenie hasla musi sie zgadzac z polem hasla powyzej</pl>
+        </string>
+        <string id="184">
+            <en>first name</en>
+            <pl>imie</pl>
+        </string>
+        <string id="185">
+            <en>last name</en>
+            <pl>nazwisko</pl>
+        </string>
+        <string id="186">
+            <en>admin first name</en>
+            <pl>imie administratora</pl>
+        </string>
+        <string id="187">
+            <en>admin last name</en>
+            <pl>nazwisko administratora</pl>
+        </string>
+        <string id="188">
+            <en>admin email</en>
+            <pl>email administratora</pl>
+        </string>
+        <string id="189">
+            <en>phone no.</en>
+            <pl>nr telefonu</pl>
+        </string>
+        <string id="190">
+            <en>admin phone no.</en>
+            <pl>nr telefonu administratora</pl>
+        </string>
+        <string id="191">
+            <en>admin group</en>
+            <pl>grupa administratora</pl>
+        </string>
+        <string id="192">
+            <en>admin type</en>
+            <pl>typ administratora</pl>
+        </string>
+        <string id="193">
+            <en>In this tab you can create tests.</en>
+            <pl>W tej zakladce mozna tworzyc testy.</pl>
+        </string>
+        <string id="194">
+            <en>In this tab you can create your own custom test logic sections and then use them in your tests.</en>
+            <pl>W tej zakladce mozna stworzyc wlasne sekcje logiki testu i uzyc ich w testach.</pl>
+        </string>
+        <string id="195">
+            <en>In this tab you can create item HTML templates which will be shown to user who's taking the test.</en>
+            <pl>W tej zakladce mozna stworzyc szablony HTML elementow testu ktore bedzie widzial uzytkownik bioracy udzial w tescie.</pl>
+        </string>
+        <string id="196">
+            <en>In this tab you can create data tables that will be used in your tests.</en>
+            <pl>W tej zakladce mozna stworzyc tabele z danymi ktore mozna pozniej uzywac w tescie.</pl>
+        </string>
+        <string id="197">
+            <en>This tab is for creating admin users who can use this panel. You can set their access rights and create groups of users which will share some objects.</en>
+            <pl>Ta zakladka sluzy do tworzenia kont administratorow ktorzy beda mogli korzystac z tego panelu. Mozesz tutaj ustalic prawa dostepu oraz stworzyc grupy w obrebie ktorych administratorzy beda dzielic wskazane obiekty.</pl>
+        </string>
+        <string id="198">
+            <en>admins, admin groups and admin types</en>
+            <pl>administratorzy, grupy administratorow oraz typy administratorow</pl>
+        </string>
+        <string id="199">
+            <en>available objects</en>
+            <pl>dostepne obiekty</pl>
+        </string>
+        <string id="200">
+            <en>no available objects</en>
+            <pl>brak dostepnych obiektow</pl>
+        </string>
+        <string id="201">
+            <en>reset search filter</en>
+            <pl>resetuj filtr wyszukiwania</pl>
+        </string>
+        <string id="202">
+            <en>actions</en>
+            <pl>akcje</pl>
+        </string>
+        <string id="203">
+            <en>edit object</en>
+            <pl>edytuj obiekt</pl>
+        </string>
+        <string id="204">
+            <en>delete object</en>
+            <pl>usun obiekt</pl>
+        </string>
+        <string id="205">
+            <en>add new object</en>
+            <pl>dodaj nowy obiekt</pl>
+        </string>
+        <string id="206">
+            <en>first page</en>
+            <pl>pierwsza strona</pl>
+        </string>
+        <string id="207">
+            <en>previous page</en>
+            <pl>poprzednia strona</pl>
+        </string>
+        <string id="208">
+            <en>next page</en>
+            <pl>nastepna strona</pl>
+        </string>
+        <string id="209">
+            <en>last page</en>
+            <pl>ostatnia strona</pl>
+        </string>
+        <string id="210">
+            <en>per page</en>
+            <pl>na strone</pl>
+        </string>
+        <string id="211">
+            <en>login to platform</en>
+            <pl>logowanie do platformy</pl>
+        </string>
+        <string id="212">
+            <en>Enter your login and password.</en>
+            <pl>Podaj swoj login i haslo.</pl>
+        </string>
+        <string id="213">
+            <en>Choose HTML template you want to load.</en>
+            <pl>Wybierz szablon HTML ktory chcesz wczytac.</pl>
+        </string>
+        <string id="214">
+            <en> Currently selected HTML template preview</en>
+            <pl> Podglad obecnie wybranego szablonu HTML</pl>
+        </string>
+        <string id="215">
+            <en>value of this variable will be inserted into the HTML template</en>
+            <pl>wartosc tej zmiennej zostanie osadzona w szablonie HTML</pl>
+        </string>
+        <string id="216">
+            <en><![CDATA[Time in seconds user has to submit test item. If the value is 0 - it means that the time is unlimited. You can insert <b>{{TIME_LEFT}}</b> variable into your HTML to see the timer countdown.]]></en>
+            <pl><![CDATA[Czas w sekundach jaki uzytkownik posiada aby przeslac element. Jesli wartosc jest rowna 0 - oznacza to ze czas jest nieograniczony. Mozna wstawic zmienna <b>{{TIME_LEFT}}</b> do HTML aby wyswietlic odliczanie.]]></pl>
+        </string>
+        <string id="217">
+            <en>this variable type is</en>
+            <pl>typem tej zmiennej jest</pl>
+        </string>
+        <string id="218">
+            <en>no outputs at this HTML template</en>
+            <pl>brak zwrotu na tym szablonie HTML</pl>
+        </string>
+        <string id="219">
+            <en>GO TO SECTION</en>
+            <pl>PRZEJDZ DO SEKCJI</pl>
+        </string>
+        <string id="220">
+            <en>sets which section should be run next</en>
+            <pl>wskazuje ktora sekcja powinna byc wykonana nastepna</pl>
+        </string>
+        <string id="221">
+            <en>not equal</en>
+            <pl>nie rowne</pl>
+        </string>
+        <string id="222">
+            <en>equal</en>
+            <pl>rowne</pl>
+        </string>
+        <string id="223">
+            <en>greater than</en>
+            <pl>wieksze niz</pl>
+        </string>
+        <string id="224">
+            <en>equal or greater than</en>
+            <pl>rowne lub wieksze niz</pl>
+        </string>
+        <string id="225">
+            <en>lesser than</en>
+            <pl>mniejsze niz</pl>
+        </string>
+        <string id="226">
+            <en>equal or lesser than</en>
+            <pl>rowne lub mniejsze niz</pl>
+        </string>
+        <string id="227">
+            <en>AND</en>
+            <pl>I</pl>
+        </string>
+        <string id="228">
+            <en>OR</en>
+            <pl>LUB</pl>
+        </string>
+        <string id="229">
+            <en>add condition</en>
+            <pl>dodaj warunek</pl>
+        </string>
+        <string id="230">
+            <en>remove condition</en>
+            <pl>usun warunek</pl>
+        </string>
+        <string id="231">
+            <en>THEN</en>
+            <pl>WTEDY</pl>
+        </string>
+        <string id="232">
+            <en>add test logic section to IF clause</en>
+            <pl>dodaj sekcje logiki testu do bloku JESLI</pl>
+        </string>
+        <string id="233">
+            <en>SET VARIABLE</en>
+            <pl>USTAW ZMIENNA</pl>
+        </string>
+        <string id="235">
+            <en>from table</en>
+            <pl>z tabeli</pl>
+        </string>
+        <string id="236">
+            <en>by R code</en>
+            <pl>poprzez kod R</pl>
+        </string>
+        <string id="238">
+            <en>SELECT FROM TABLE</en>
+            <pl>WYBIERZ Z TABELI</pl>
+        </string>
+        <string id="239">
+            <en>no table selected</en>
+            <pl>nie wybrano tabeli</pl>
+        </string>
+        <string id="240">
+            <en>COLUMNS</en>
+            <pl>KOLUMNY</pl>
+        </string>
+        <string id="241">
+            <en>no column selected</en>
+            <pl>nie wybrano kolumny</pl>
+        </string>
+        <string id="242">
+            <en>WHERE</en>
+            <pl>GDZIE</pl>
+        </string>
+        <string id="243">
+            <en>like</en>
+            <pl>podobne</pl>
+        </string>
+        <string id="244">
+            <en>not like</en>
+            <pl>niepodobne</pl>
+        </string>
+        <string id="245">
+            <en>id of test</en>
+            <pl>id testu</pl>
+        </string>
+        <string id="246">
+            <en>id of test session</en>
+            <pl>id sesji testu</pl>
+        </string>
+        <string id="247">
+            <en>IN TABLE</en>
+            <pl>W TABELI</pl>
+        </string>
+        <string id="248">
+            <en>insert</en>
+            <pl>dodaj</pl>
+        </string>
+        <string id="249">
+            <en>update</en>
+            <pl>zmien</pl>
+        </string>
+        <string id="250">
+            <en>delete</en>
+            <pl>usun</pl>
+        </string>
+        <string id="251">
+            <en>SET</en>
+            <pl>USTAW</pl>
+        </string>
+        <string id="252">
+            <en>search list</en>
+            <pl>przeszukaj liste</pl>
+        </string>
+        <string id="253">
+            <en>choose the type of section you would like to add to the test logic</en>
+            <pl>wybierz typ sekcji jaka chcialbys dodac do logiki testu</pl>
+        </string>
+        <string id="254">
+            <en>enter variable description that will be visible to everyone that will use this section in their test</en>
+            <pl>wprowadz opis zmiennej ktory bedzie widoczny dla kazdego kto uzyje tej sekcji w swym tescie</pl>
+        </string>
+        <string id="255">
+            <en>choose MySQL table which structure and data you would like to import into this table</en>
+            <pl>wybierz tabele MySQL ktorej strukture i dane chcialbys zaimportowac do tej tabeli</pl>
+        </string>
+        <string id="256">
+            <en>choose the CSV file that you would like to import</en>
+            <pl>wybierz plik CSV ktory chcialbys zaimportowac</pl>
+        </string>
+        <string id="257">
+            <en>choose the name of the column</en>
+            <pl>wybierz nazwe kolumny</pl>
+        </string>
+        <string id="258">
+            <en>choose the type of the column</en>
+            <pl>wybierz typ kolumny</pl>
+        </string>
+        <string id="259">
+            <en>enter HTML value of the cell</en>
+            <pl>wprowadz wartosc HTML komorki</pl>
+        </string>
+        <string id="260">
+            <en>enter your login</en>
+            <pl>wprowadz swoj login</pl>
+        </string>
+        <string id="261">
+            <en>enter your password</en>
+            <pl>wprowadz swoje haslo</pl>
+        </string>
+        <string id="262">
+            <en>Your version is OUTDATED.</en>
+            <pl>Twoja wersja jest NIEAKTUALNA.</pl>
+        </string>
+        <string id="263">
+            <en>CLICK HERE TO DOWNLOAD THE LATEST VERSION</en>
+            <pl>KLIKNIJ TUTAJ ABY POBRAC NAJNOWSZA WERSJE</pl>
+        </string>
+        <string id="264">
+            <en>your version is up to date</en>
+            <pl>twoja wersja jest aktualna</pl>
+        </string>
+        <string id="265">
+            <en>export</en>
+            <pl>eksport</pl>
+        </string>
+        <string id="266">
+            <en>import new object</en>
+            <pl>zaimportuj nowy obiekt</pl>
+        </string>
+        <string id="267">
+            <en>choose the exported object file</en>
+            <pl>wybierz plik z wyeksportowanym obiektem</pl>
+        </string>
+        <string id="268" js="1">
+            <en>importing object</en>
+            <pl>importowanie obiektu</pl>
+        </string>
+        <string id="269" js="1">
+            <en>are you sure you want to import the object from this file?</en>
+            <pl>jestes pewien ze chcesz zaimportowac obiekt z tego pliku?</pl>
+        </string>
+        <string id="270" js="1">
+            <en>object imported</en>
+            <pl>obiekt zaimportowany</pl>
+        </string>
+        <string id="271" js="1">
+            <en>there was an error importing object</en>
+            <pl>wystapil blad podczas importowania obiektu</pl>
+        </string>
+        <string id="272" js="1">
+            <en>File doesn't exists.</en>
+            <pl>Plik nie istnieje.</pl>
+        </string>
+        <string id="273" js="1">
+            <en>deleting object</en>
+            <pl>uwuanie obiektu</pl>
+        </string>
+        <string id="274" js="1">
+            <en>saving object</en>
+            <pl>zapisywanie obiektu</pl>
+        </string>
+        <string id="275" js="1">
+            <en>R</en>
+            <pl>R</pl>
+        </string>
+        <string id="276" js="1">
+            <en><![CDATA[R & HTML]]></en>
+            <pl>R i HTML</pl>
+        </string>
+        <string id="277">
+            <en>IN</en>
+            <pl>W</pl>
+        </string>
+        <string id="278" js="1">
+            <en>not logged in</en>
+            <pl>nie zalogowany</pl>
+        </string>
+        <string id="279">
+            <en>AS</en>
+            <pl>JAKO</pl>
+        </string>
+        <string id="280" js="1">
+            <en>default</en>
+            <pl>domyslny</pl>
+        </string>
+        <string id="281" js="1">
+            <en>string</en>
+            <pl>ciag znakow</pl>
+        </string>
+        <string id="282" js="1">
+            <en>numeric</en>
+            <pl>numeryczny</pl>
+        </string>
+        <string id="283">
+            <en>this is a system variable</en>
+            <pl>jest to zmienna systemowa</pl>
+        </string>
+        <string id="284" js="1">
+            <en>debug</en>
+            <pl>debug</pl>
+        </string>
+        <string id="285" js="1">
+            <en><![CDATA[Test #{0} - debug <b>(idle)</b>]]></en>
+            <pl><![CDATA[Test #{0} - debug <b>(bezczynny)</b>]]></pl>
+        </string>
+        <string id="286" js="1">
+            <en>Test #{0} - debug</en>
+            <pl>Test #{0} - debug</pl>
+        </string>
+        <string id="287" js="1">
+            <en>Please remember that you need to save your current test logic before you run debug. Any unsaved changes won't be debugged.</en>
+            <pl>Prosze pamietac ze nalezy zachowac biezaca logike testu zanim sie uruchomi debug. Wszelkie niezapisane zmiany nie beda brane pod uwage podczas debuggowania.</pl>
+        </string>
+        <string id="288" js="1">
+            <en><![CDATA[Please press the <b>start</b> button.]]></en>
+            <pl><![CDATA[Prosze nacisnac przycisk <b>start</b>.]]></pl>
+        </string>
+        <string id="289" js="1">
+            <en><![CDATA[Test #{0} - syntax validation <b>(in progress...)]]></en>
+            <pl><![CDATA[Test #{0} - walidacja skladni <b>(w trakcie...)]]></pl>
+        </string>
+        <string id="290" js="1">
+            <en>Syntax validation</en>
+            <pl>Walidacja skladni</pl>
+        </string>
+        <string id="291" js="1">
+            <en><![CDATA[Test section with index #{0} syntax validation: <font style='color:green;'><b>PASSED</b></font>]]></en>
+            <pl><![CDATA[Walidacja skladni sekcji testu o indeksie #{0}: <font style='color:green;'><b>POWIODLA SIE</b></font>]]></pl>
+        </string>
+        <string id="292" js="1">
+            <en><![CDATA[Test section with index #{0} syntax validation: <font style='color:red;'><b>FAILED</b></font>]]></en>
+            <pl><![CDATA[Walidacja skladni sekcji testu o indeksie #{0}: <font style='color:red;'><b>NIE POWIODLA SIE</b></font>]]></pl>
+        </string>
+        <string id="293" js="1">
+            <en><![CDATA[Test #{0} - syntax validation <b>(finished)</b>]]></en>
+            <pl><![CDATA[Test #{0} - walidacja skladni <b>(zakonczona)</b>]]></pl>
+        </string>
+        <string id="294" js="1">
+            <en><![CDATA[Syntax validation <font style='color:green;'>PASSED</font>.]]></en>
+            <pl><![CDATA[Walidacja skladni <font style='color:green;'>POMYSLNA</font>.]]></pl>
+        </string>
+        <string id="295" js="1">
+            <en><![CDATA[Test #{0} - syntax validation <b>(FAILED on section index #{1} - debug HALTED)</b>]]></en>
+            <pl><![CDATA[Test #{0} - walidacja skladni <b>(NIE POWIODLA SIE przy sekcji o indeksie #{1} - debug ZATRZYMANY)</b>]]></pl>
+        </string>
+        <string id="296" js="1">
+            <en><![CDATA[Syntax validation <font style='color:red;'><b>FAILED</b></font> on section index #{0} - debug <font style='color:red;'><b>HALTED</b></font>]]></en>
+            <pl><![CDATA[Walidacja skladni <font style='color:red;'><b>NIE POWIODLA SIE</b></font> dla sekcji o indeksie #{0} - debug <font style='color:red;'><b>ZATRZYMANY</b></font>]]></pl>
+        </string>
+        <string id="297" js="1">
+            <en>Runtime debug</en>
+            <pl>Debug na zywo</pl>
+        </string>
+        <string id="298" js="1">
+            <en>Running test #{0}...</en>
+            <pl>Uruchomienie testu #{0}...</pl>
+        </string>
+        <string id="299" js="1">
+            <en><![CDATA[Test #{0} - runtime debug <b>(R code is being interpreted...)</b>]]></en>
+            <pl><![CDATA[Test #{0} - debug na zywo <b>(kod R jest interpretowany..)</b>]]></pl>
+        </string>
+        <string id="300" js="1">
+            <en>R code is being interpreted...</en>
+            <pl>Kod R jest interpretowany...</pl>
+        </string>
+        <string id="301" js="1">
+            <en>R code response recieved.</en>
+            <pl>Otrzymano odowiedz kodu R.</pl>
+        </string>
+        <string id="302" js="1">
+            <en><![CDATA[Test #{0}, session #{1} - runtime debug <b>(R logic error - debug HALTED)</b>]]></en>
+            <pl><![CDATA[Test #{0}, sesja #{1} - debug na zywo <b>(blad w logice R - debug ZATRZYMANY</b>]]></pl>
+        </string>
+        <string id="303" js="1">
+            <en><![CDATA[R logic <font style='color:red;'><b>error</b></font>. Check R code output for additional info. Debug HALTED.]]></en>
+            <pl><![CDATA[<font style='color:red;'><b>Blad</b></font> w logice R. Prosze sprawdzic wynik kodu R dla dodatkowych informacji. Debug ZATRZYMANY.]]></pl>
+        </string>
+        <string id="304" js="1">
+            <en><![CDATA[R logic validation <font style='color:green;'><b>PASSED</b></font>.]]></en>
+            <pl><![CDATA[Walidacja logiki R <font style='color:green;'><b>POWIODLA SIE</b></font>.]]></pl>
+        </string>
+        <string id="305" js="1">
+            <en>current HTML variables</en>
+            <pl>obecne zmienne HTML</pl>
+        </string>
+        <string id="306" js="1">
+            <en>value</en>
+            <pl>wartosc</pl>
+        </string>
+        <string id="307" js="1">
+            <en><![CDATA[Test #{0}, session #{1} - runtime debug <b><font style='color:green;'>PASSED</font></b>]]></en>
+            <pl><![CDATA[Test #{0}, sesja #{1} - debug na zywo <b><font style='color:green;'>POWIODL SIE</font></b>]]></pl>
+        </string>
+        <string id="308" js="1">
+            <en>End section reached. The test is finished.</en>
+            <pl>Osiagnieto koncowa sekcje. Test zostal skonczony.</pl>
+        </string>
+        <string id="309" js="1">
+            <en>Template #{0}</en>
+            <pl>Szablon #{0}</pl>
+        </string>
+        <string id="310" js="1">
+            <en>Template #{0} loaded ( time limit: {1} ).</en>
+            <pl>Szablon #{0} wczytany ( limit czasu: {1} ).</pl>
+        </string>
+        <string id="311" js="1">
+            <en>unlimited</en>
+            <pl>nieograniczony</pl>
+        </string>
+        <string id="312" js="1">
+            <en>sec.</en>
+            <pl>sek.</pl>
+        </string>
+        <string id="313" js="1">
+            <en>Awaiting user input...</en>
+            <pl>Oczekiwanie na ruch uzytkownika...</pl>
+        </string>
+        <string id="314" js="1">
+            <en><![CDATA[Test #{0}, session #{1}, template #{2} - runtime debug <b>(template loaded - awaiting user input...)</b>]]></en>
+            <pl><![CDATA[Test #{0}, sesja #{1}, szablon #{2} - debug na zywo <b>(szablon wczytany - oczekiwanie na ruch uzytkownika...)</b>]]></pl>
+        </string>
+        <string id="315" js="1">
+            <en>Item submited. Time limit reached.</en>
+            <pl>Element wyslany. Limit czasowy zostal osiagniety.</pl>
+        </string>
+        <string id="316" js="1">
+            <en><![CDATA[Item submited. Button with name <b>{0}</b> clicked.]]></en>
+            <pl><![CDATA[Element wyslany. Przycisk o nazwie <b>{0}</b> zostal klikniety.]]></pl>
+        </string>
+        <string id="317" js="1">
+            <en>variables send</en>
+            <pl>wyslane zmienne</pl>
+        </string>
+        <string id="318" js="1">
+            <en>range</en>
+            <pl>zakres</pl>
+        </string>
+    </strings>
+</root>
