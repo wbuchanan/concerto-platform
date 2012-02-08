@@ -53,10 +53,9 @@ if ($oid != 0)
             Methods.iniIconButton(".btnCancel", "cancel");
             Methods.iniIconButton(".btnSave", "disk");
             Methods.iniIconButton(".btnDelete", "trash");
-    <?php if ($oid != -1)
-    { ?>
-                Methods.iniCKEditor("#form<?= $class_name ?>TextareaHTML");
-    <?php } ?>
+            Methods.iniCKEditor("#form<?= $class_name ?>TextareaHTML",function(){
+                $("#divAddFormDialog").dialog("option","position","center"); 
+            });
             Methods.iniTooltips();
         });
     </script>

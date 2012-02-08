@@ -156,9 +156,8 @@ Table.uiEditColumn=function(col){
     
     $("#div"+this.className+"Dialog").dialog({
         title:dictionary["s12"],
-        show:"slide" ,
-        hide:"slide",
         modal:true,
+        resizable:false,
         close:function(){
             $(this).dialog("destroy");
         },
@@ -258,10 +257,8 @@ Table.uiImportTable=function(){
         
         $("#div"+Table.className+"DialogImportMySQL").dialog({
             title:dictionary["s21"],
-            show:"slide",
-            hide:"slide",
             modal:true,
-            width:600,
+            resizable:false,
             buttons:[{
                 text:dictionary["s22"],
                 click:function(){
@@ -310,10 +307,8 @@ Table.isFileUploaded = false;
 Table.uiImportCSV=function(){
     $("#div"+Table.className+"DialogImportCSV").dialog({
         title:dictionary["s27"],
-        show:"slide" ,
-        hide:"slide",
+        resizable:false,
         modal:true,
-        width:600,
         close:function(){
         },
         beforeClose:function(){
@@ -385,8 +380,7 @@ Table.uiAddColumn=function(){
     
     $("#div"+this.className+"Dialog").dialog({
         title:dictionary["s31"],
-        show:"slide" ,
-        hide:"slide",
+        resizable:false,
         modal:true,
         close:function(){
             $(this).dialog("destroy");
@@ -499,11 +493,9 @@ Table.uiChangeHTML=function(obj){
     $("#form"+Table.className+"TextareaHTML").val(obj.val());
     $("#div"+Table.className+"DialogHTML").dialog({
         title:dictionary["s36"],
-        show:"slide" ,
-        hide:"slide",
+        resizable:false,
         modal:true,
         width:800,
-        height:500,
         close:function(){
         //$(this).dialog("destroy");
         },
@@ -511,7 +503,9 @@ Table.uiChangeHTML=function(obj){
             Methods.removeCKEditor($(this).find('textarea'));
         },
         open:function(){
-            Methods.iniCKEditor($(this).find("textarea"));
+            Methods.iniCKEditor($(this).find("textarea"),function(){
+                $("#div"+Table.className+"DialogHTML").dialog("option","position","center");
+            });
         },
         buttons:[
         {

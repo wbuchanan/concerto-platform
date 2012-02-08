@@ -344,8 +344,7 @@ Test.uiAddLogicSession=function(container,ifstatement,parent){
     $("#divTestDialog").dialog( {
         modal:true,
         title:dictionary["s61"],
-        show:"slide",
-        hide:"slide",
+        resizable:false,
         buttons:[
         {
             text:dictionary["s23"],
@@ -775,10 +774,8 @@ Test.uiRefreshDebugCodeMirrors=function(){
 Test.uiIniDebug=function(){
     $("#divTestDebugDialog").dialog({
         title:dictionary["s284"],
-        show:"slide" ,
-        hide:"slide",
-        width:640,
-        height:480,
+        width:800,
+        height:600,
         resizeStop:function(){
             $("#divTestDebugAccordion").accordion("resize");
         },

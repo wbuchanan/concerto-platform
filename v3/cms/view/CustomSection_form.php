@@ -53,10 +53,11 @@ if ($oid != 0)
             Methods.iniIconButton(".btnCancel", "cancel");
             Methods.iniIconButton(".btnSave", "disk");
             Methods.iniIconButton(".btnDelete", "trash");
-    <?php if ($oid != -1)
-    { ?>
-                Methods.iniCKEditor("#form<?= $class_name ?>TextareaDescription");
-    <?php } ?>
+
+            Methods.iniCKEditor("#form<?= $class_name ?>TextareaDescription",function(){
+                $("#divAddFormDialog").dialog("option","position","center"); 
+            });
+
             Methods.iniTooltips();
         });
     </script>
@@ -78,7 +79,7 @@ if ($oid != 0)
                 <td><span class="tooltip spanIcon ui-icon ui-icon-help" title="<?=Language::string(98)?>"></span></td>
                 <td class="fullWidth">
                     <div class="horizontalMargin">
-                        <textarea id="form<?= $class_name ?>TextareaDescription" name="form<?= $class_name ?>TextareaDescription" class="fullWidth ui-widget-content ui-corner-all" style="width:500px; height:400px;"><?= htmlspecialchars(stripslashes($obj->description)) ?></textarea>
+                        <textarea id="form<?= $class_name ?>TextareaDescription" name="form<?= $class_name ?>TextareaDescription" class="fullWidth ui-widget-content ui-corner-all"><?= htmlspecialchars(stripslashes($obj->description)) ?></textarea>
                     </div>
                 </td>
             </tr>

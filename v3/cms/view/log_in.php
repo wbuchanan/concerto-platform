@@ -11,8 +11,7 @@ if (!isset($ini))
         $("#dd_login").dialog({
             modal:true,
             title:"<?=Language::string(211)?>",
-            show:"slide",
-            hide:"slide",
+            resizeable:false,
             open:function(){
                 Methods.iniTooltips();
             },

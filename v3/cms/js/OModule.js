@@ -35,10 +35,9 @@ OModule.inheritance=function(obj)
             $("#divAddFormDialog").html(data);
             $("#divAddFormDialog").dialog({
                 modal:true,
+                resizable:false,
                 title:dictionary["s7"],
-                show:"slide",
-                hide:"slide",
-                width:600,
+                width:400,
                 open:function(){
                     if(thisClass.onAfterAdd) thisClass.onAfterAdd();
                 },
@@ -123,10 +122,9 @@ OModule.inheritance=function(obj)
         var thisClass = this;
         $("#div"+this.className+"DialogImport").dialog({
             title:dictionary["s268"],
-            show:"slide" ,
-            hide:"slide",
             modal:true,
-            width:600,
+            resizable:false,
+            minHeight: 50,
             close:function(){
             },
             beforeClose:function(){

@@ -39,8 +39,6 @@ Methods.confirm=function(message,title,callback)
     $("#divGeneralDialog").dialog({
         title:title,
         minHeight:50,
-        show:"fade",
-        hide:"fade",
         resizable:false,
         modal:true,
         buttons:
@@ -64,8 +62,6 @@ Methods.alert=function(message,icon,title)
     $("#divGeneralDialog").dialog({
         title:title,
         minHeight:50,
-        show:"fade",
-        hide:"fade",
         resizable:false,
         modal:true,
         buttons:
@@ -170,13 +166,15 @@ Methods.CKEditorDialogShowListener=function(e){
     }
 };
 
-Methods.iniCKEditor=function(selector)
+Methods.iniCKEditor=function(selector,callback)
 {
     Methods.removeCKEditor(selector);
     var editor = $(selector).ckeditor(function(){
         this.removeListener('dialogShow', Methods.CKEditorDialogShowListener);
         this.on( 'dialogShow', Methods.CKEditorDialogShowListener);
+        if(callback!=null) callback.call(this);
     });
+    return editor;
 };
 
 

@@ -13,7 +13,8 @@ CustomSection.onAfterSave=function()
 };
 
 CustomSection.onAfterAdd=function(){
-    Methods.iniCKEditor("#form"+this.className+"TextareaDescription");
+    $("#divAddFormDialog").dialog("option","width",800);
+    $("#divAddFormDialog").dialog("option","position","center"); 
 }
 
 CustomSection.getAddSaveObject=function()
@@ -139,11 +140,9 @@ CustomSection.uiEditVariableDescription=function(obj){
     $("#formDialog"+CustomSection.className+"TextareaDescription").val(obj.val());
     $("#div"+CustomSection.className+"DialogDescription").dialog({
         title:dictionary["s3"],
-        show:"slide" ,
-        hide:"slide",
         modal:true,
+        resizable:false,
         width:800,
-        height:500,
         close:function(){
         //$(this).dialog("destroy");
         },
@@ -151,7 +150,9 @@ CustomSection.uiEditVariableDescription=function(obj){
             Methods.removeCKEditor($(this).find('textarea'));
         },
         open:function(){
-            Methods.iniCKEditor($(this).find("textarea"));
+            Methods.iniCKEditor($(this).find("textarea"),function(){
+                $("#div"+CustomSection.className+"DialogDescription").dialog("option","position","center");
+            });
         },
         buttons:{
             change:function(){

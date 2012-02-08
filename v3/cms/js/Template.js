@@ -17,7 +17,8 @@ Template.onAfterDelete=function(){
 }
 
 Template.onAfterAdd=function(){
-    Methods.iniCKEditor("#form"+this.className+"TextareaHTML");
+    $("#divAddFormDialog").dialog("option","width",800);
+    $("#divAddFormDialog").dialog("option","position","center"); 
 }
 
 Template.getAddSaveObject=function()
