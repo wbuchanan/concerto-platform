@@ -36,8 +36,8 @@ OModule.inheritance=function(obj)
             $("#divAddFormDialog").dialog({
                 modal:true,
                 title:dictionary["s7"],
-                show:"fadeIn",
-                hide:"fadeOut",
+                show:"slide",
+                hide:"slide",
                 width:600,
                 open:function(){
                     if(thisClass.onAfterAdd) thisClass.onAfterAdd();
@@ -123,8 +123,8 @@ OModule.inheritance=function(obj)
         var thisClass = this;
         $("#div"+this.className+"DialogImport").dialog({
             title:dictionary["s268"],
-            show:"fadeIn" ,
-            hide:"fadeIn",
+            show:"slide" ,
+            hide:"slide",
             modal:true,
             width:600,
             close:function(){

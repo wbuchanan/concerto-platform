@@ -156,8 +156,8 @@ Table.uiEditColumn=function(col){
     
     $("#div"+this.className+"Dialog").dialog({
         title:dictionary["s12"],
-        show:"fadeIn" ,
-        hide:"fadeIn",
+        show:"slide" ,
+        hide:"slide",
         modal:true,
         close:function(){
             $(this).dialog("destroy");
@@ -258,8 +258,8 @@ Table.uiImportTable=function(){
         
         $("#div"+Table.className+"DialogImportMySQL").dialog({
             title:dictionary["s21"],
-            show:"fadeIn",
-            hide:"fadeOut",
+            show:"slide",
+            hide:"slide",
             modal:true,
             width:600,
             buttons:[{
@@ -310,8 +310,8 @@ Table.isFileUploaded = false;
 Table.uiImportCSV=function(){
     $("#div"+Table.className+"DialogImportCSV").dialog({
         title:dictionary["s27"],
-        show:"fadeIn" ,
-        hide:"fadeIn",
+        show:"slide" ,
+        hide:"slide",
         modal:true,
         width:600,
         close:function(){
@@ -385,8 +385,8 @@ Table.uiAddColumn=function(){
     
     $("#div"+this.className+"Dialog").dialog({
         title:dictionary["s31"],
-        show:"fadeIn" ,
-        hide:"fadeIn",
+        show:"slide" ,
+        hide:"slide",
         modal:true,
         close:function(){
             $(this).dialog("destroy");
@@ -499,8 +499,8 @@ Table.uiChangeHTML=function(obj){
     $("#form"+Table.className+"TextareaHTML").val(obj.val());
     $("#div"+Table.className+"DialogHTML").dialog({
         title:dictionary["s36"],
-        show:"fadeIn" ,
-        hide:"fadeIn",
+        show:"slide" ,
+        hide:"slide",
         modal:true,
         width:800,
         height:500,

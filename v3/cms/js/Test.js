@@ -344,8 +344,8 @@ Test.uiAddLogicSession=function(container,ifstatement,parent){
     $("#divTestDialog").dialog( {
         modal:true,
         title:dictionary["s61"],
-        show:"fadeIn",
-        hide:"fadeOut",
+        show:"slide",
+        hide:"slide",
         buttons:[
         {
             text:dictionary["s23"],
@@ -722,8 +722,8 @@ Test.uiRefreshSection=function(counter,type){
 
 Test.uiShowVarsDialog=function(){
     $("#divTestVarsDialog").dialog({
-        show:"fadeIn",
-        hide:"fadeOut",
+        show:"slide",
+        hide:"slide",
         title:dictionary["s65"],
         width:600,
         close:function(){
@@ -775,8 +775,8 @@ Test.uiRefreshDebugCodeMirrors=function(){
 Test.uiIniDebug=function(){
     $("#divTestDebugDialog").dialog({
         title:dictionary["s284"],
-        show:"fadeIn" ,
-        hide:"fadeIn",
+        show:"slide" ,
+        hide:"slide",
         width:640,
         height:480,
         resizeStop:function(){

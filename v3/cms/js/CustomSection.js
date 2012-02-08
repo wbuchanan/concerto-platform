@@ -139,8 +139,8 @@ CustomSection.uiEditVariableDescription=function(obj){
     $("#formDialog"+CustomSection.className+"TextareaDescription").val(obj.val());
     $("#div"+CustomSection.className+"DialogDescription").dialog({
         title:dictionary["s3"],
-        show:"fadeIn" ,
-        hide:"fadeIn",
+        show:"slide" ,
+        hide:"slide",
         modal:true,
         width:800,
         height:500,
