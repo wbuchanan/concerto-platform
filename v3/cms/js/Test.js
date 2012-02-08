@@ -721,8 +721,6 @@ Test.uiRefreshSection=function(counter,type){
 
 Test.uiShowVarsDialog=function(){
     $("#divTestVarsDialog").dialog({
-        show:"slide",
-        hide:"slide",
         title:dictionary["s65"],
         width:600,
         close:function(){
