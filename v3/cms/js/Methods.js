@@ -31,10 +31,9 @@ Methods.iniIconButton=function(selector,icon){
     });
 }
 
-Methods.captionDefaultConfirmationTitle=dictionary["s4"];
 Methods.confirm=function(message,title,callback)
 {
-    if(title==null) title=Methods.captionDefaultConfirmationTitle;
+    if(title==null) title=dictionary["s4"];
     $("#divGeneralDialog").html('<span class="ui-icon ui-icon-help" style="float:left; margin:0 7px 0px 0;"></span>'+message);
     $("#divGeneralDialog").dialog({
         title:title,
@@ -54,10 +53,9 @@ Methods.confirm=function(message,title,callback)
     });
 };
 
-Methods.captionDefaultAlertTitle=dictionary["s5"];
 Methods.alert=function(message,icon,title)
 {
-    if(title==null) title=Methods.captionDefaultAlertTitle;
+    if(title==null) title=dictionary["s5"];
     $("#divGeneralDialog").html((icon!=null?'<span class="ui-icon ui-icon-'+icon+'" style="float:left; margin:0 7px 0px 0;"></span>':'')+message);
     $("#divGeneralDialog").dialog({
         title:title,

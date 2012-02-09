@@ -5,6 +5,7 @@ CustomSection.className="CustomSection";
 
 CustomSection.onAfterEdit=function()
 {
+    
     };
 
 CustomSection.onAfterSave=function()
@@ -13,8 +14,10 @@ CustomSection.onAfterSave=function()
 };
 
 CustomSection.onAfterAdd=function(){
-    $("#divAddFormDialog").dialog("option","width",800);
-    $("#divAddFormDialog").dialog("option","position","center"); 
+    Methods.iniCKEditor("#form"+this.className+"TextareaDescription",function(){
+        $("#divAddFormDialog").dialog("option","width",800);
+        $("#divAddFormDialog").dialog("option","position","center"); 
+    });
 }
 
 CustomSection.getAddSaveObject=function()
@@ -143,26 +146,27 @@ CustomSection.uiEditVariableDescription=function(obj){
         modal:true,
         resizable:false,
         width:800,
-        close:function(){
-        //$(this).dialog("destroy");
-        },
-        beforeClose:function(){
-            Methods.removeCKEditor($(this).find('textarea'));
-        },
-        open:function(){
+        create:function(){
+            var thisDialog = $("#div"+CustomSection.className+"DialogDescription");
             Methods.iniCKEditor($(this).find("textarea"),function(){
-                $("#div"+CustomSection.className+"DialogDescription").dialog("option","position","center");
+                thisDialog.dialog("option","position","center");
             });
         },
-        buttons:{
-            change:function(){
+        buttons:[
+        {
+            text:dictionary["s38"],
+            click:function(){
                 obj.val(Methods.getCKEditorData($(this).find('textarea')));
                 $(this).dialog("close");
-            },
-            cancel:function(){
+            }
+        },
+        {
+            text:dictionary["s23"],
+            click:function(){
                 $(this).dialog("close");
             }
         }
+        ]
     }); 
 }
 

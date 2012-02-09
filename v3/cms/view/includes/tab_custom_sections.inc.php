@@ -53,3 +53,21 @@ if ($logged_user == null) die(Language::string(81));
         </table>
     </div>
 </div>
+
+<div id="divCustomSectionDialogDescription" class="notVisible">
+    <div class="padding ui-widget-content ui-corner-all margin">
+        <table>
+            <tr>
+                <td class="noWrap horizontalPadding ui-widget-header"><?= Language::string(97) ?>:</td>
+                <td><span class="tooltip spanIcon ui-icon ui-icon-help" title="<?= Language::string(254) ?>"></span></td>
+                <td class="fullWidth">
+                    <div class="horizontalMargin">
+                        <textarea id="formDialogCustomSectionTextareaDescription" name="formDialogCustomSectionTextareaDescription" class="fullWidth ui-widget-content ui-corner-all">
+                                                                                                
+                        </textarea>
+                    </div>
+                </td>
+            </tr>
+        </table>
+    </div>
+</div>

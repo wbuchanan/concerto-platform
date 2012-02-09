@@ -388,7 +388,7 @@ You can add new languages by inserting <some_language>string translated into som
             <en>delete</en>
             <pl>usun</pl>
         </string>
-        <string id="95">
+        <string id="95" js="1">
             <en>save</en>
             <pl>zapisz</pl>
         </string>

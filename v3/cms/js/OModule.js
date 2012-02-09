@@ -29,27 +29,43 @@ OModule.inheritance=function(obj)
         
         if(this.currentID!=0) this.uiEdit(0);
         
+        Methods.loading("#divAddFormDialog");
+        $("#divAddFormDialog").dialog({
+            modal:true,
+            resizable:false,
+            title:dictionary["s7"],
+            width:400,
+            open:function(){
+            },
+            buttons:{
+                save:function(){
+                    thisClass.uiSave();
+                },
+                cancel:function(){
+                    $(this).dialog("close");
+                }
+            }
+        })
+        
         $.post("view/"+this.className+"_form.php",{
             oid:-1
         },function(data){
             $("#divAddFormDialog").html(data);
-            $("#divAddFormDialog").dialog({
-                modal:true,
-                resizable:false,
-                title:dictionary["s7"],
-                width:400,
-                open:function(){
-                    if(thisClass.onAfterAdd) thisClass.onAfterAdd();
-                },
-                buttons:{
-                    save:function(){
+            if(thisClass.onAfterAdd) thisClass.onAfterAdd();
+            $("#divAddFormDialog").dialog("option","buttons",[
+                {
+                    text:dictionary["s95"],
+                    click:function(){
                         thisClass.uiSave();
-                    },
-                    cancel:function(){
+                    }
+                },
+                {
+                    text:dictionary["s23"],
+                    click:function(){
                         $(this).dialog("close");
                     }
                 }
-            })
+            ])
         })
     }
 	

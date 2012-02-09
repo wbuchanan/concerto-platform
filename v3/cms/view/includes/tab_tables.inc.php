@@ -32,7 +32,7 @@ if ($logged_user == null)
                     <div align="center" id="div<?= $class_name ?>Form"><?php include Ini::$path_internal . 'cms/view/' . $class_name . '_form.php'; ?></div><br />
                 <?php } ?>
             </td>
-            <?php } ?>
+        <?php } ?>
     </tr>
 </table>
 
@@ -40,7 +40,7 @@ if ($logged_user == null)
     <div class="padding ui-widget-content ui-corner-all margin">
         <table>
             <tr>
-                <td class="noWrap horizontalPadding ui-widget-header"><?=Language::string(86)?>:</td>
+                <td class="noWrap horizontalPadding ui-widget-header"><?= Language::string(86) ?>:</td>
                 <td><span class="tooltip spanIcon ui-icon ui-icon-help" title="<?= Language::string(256) ?>"></span></td>
                 <td class="fullWidth">
                     <div class="horizontalMargin" align="center">
@@ -69,5 +69,22 @@ if ($logged_user == null)
 </div>
 
 <div id="div<?= $class_name ?>DialogImportMySQL" class="notVisible">
+</div>
 
+<div id="div<?= $class_name ?>DialogHTML" class="notVisible">
+    <div class="padding ui-widget-content ui-corner-all margin">
+        <table>
+            <tr>
+                <td class="noWrap horizontalPadding ui-widget-header"><?= Language::string(18) ?>:</td>
+                <td><span class="tooltip spanIcon ui-icon ui-icon-help" title="<?= Language::string(259) ?>"></span></td>
+                <td class="fullWidth">
+                    <div class="horizontalMargin">
+                        <textarea id="form<?= $class_name ?>TextareaHTML" name="form<?= $class_name ?>TextareaHTML" class="fullWidth ui-widget-content ui-corner-all">
+                                                                                                                        
+                        </textarea>
+                    </div>
+                </td>
+            </tr>
+        </table>
+    </div>
 </div>

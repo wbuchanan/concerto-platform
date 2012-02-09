@@ -496,15 +496,10 @@ Table.uiChangeHTML=function(obj){
         resizable:false,
         modal:true,
         width:800,
-        close:function(){
-        //$(this).dialog("destroy");
-        },
-        beforeClose:function(){
-            Methods.removeCKEditor($(this).find('textarea'));
-        },
-        open:function(){
+        create:function(){
+            var thisDialog = $("#div"+Table.className+"DialogHTML");
             Methods.iniCKEditor($(this).find("textarea"),function(){
-                $("#div"+Table.className+"DialogHTML").dialog("option","position","center");
+                thisDialog.dialog("option","position","center");
             });
         },
         buttons:[

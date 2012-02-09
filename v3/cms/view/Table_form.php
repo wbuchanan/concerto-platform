@@ -1,12 +1,10 @@
 <?php
-if (!isset($ini))
-{
+if (!isset($ini)) {
     require_once'../../Ini.php';
     $ini = new Ini();
 }
 $logged_user = User::get_logged_user();
-if ($logged_user == null)
-{
+if ($logged_user == null) {
     echo "<script>location.reload();</script>";
     die(Language::string(278));
 }
@@ -17,10 +15,12 @@ $edit_caption = Language::string(117);
 $new_caption = Language::string(118);
 //////////
 
-if (!$logged_user->is_module_writeable($class_name)) die(Language::string(81));
+if (!$logged_user->is_module_writeable($class_name))
+    die(Language::string(81));
 
 $oid = 0;
-if (isset($_POST['oid']) && $_POST['oid'] != 0) $oid = $_POST['oid'];
+if (isset($_POST['oid']) && $_POST['oid'] != 0)
+    $oid = $_POST['oid'];
 
 $btn_cancel = "<button class='btnCancel' onclick='" . $class_name . ".uiEdit(0)'>" . Language::string(23) . "</button>";
 $btn_delete = "<button class='btnDelete' onclick='" . $class_name . ".uiDelete($oid)'>" . Language::string(94) . "</button>";
@@ -28,25 +28,23 @@ $btn_save = "<button class='btnSave' onclick='" . $class_name . ".uiSave()'>" . 
 
 $caption = "";
 $buttons = "";
-if ($oid > 0)
-{
+if ($oid > 0) {
     $oid = $_POST['oid'];
     $obj = $class_name::from_mysql_id($oid);
 
-    if (!$logged_user->is_object_editable($obj)) die(Language::string(81));
+    if (!$logged_user->is_object_editable($obj))
+        die(Language::string(81));
 
     $caption = $edit_caption . " #" . $oid;
     $buttons = $btn_cancel . $btn_save . $btn_delete;
 }
-else
-{
+else {
     $obj = new $class_name();
     $caption = $new_caption;
     $buttons = "";
 }
 
-if ($oid != 0)
-{
+if ($oid != 0) {
     ?>
     <script>
         $(function(){
@@ -54,7 +52,7 @@ if ($oid != 0)
             Methods.iniIconButton(".btnDelete", "trash");
             Methods.iniIconButton(".btnCancel", "cancel");
             Methods.iniSortableTableHeaders();
-                                                                                        
+                                                                                                    
             Table.checkAddRowBtnEnabled();
             Table.checkTableEmpty();
             Methods.iniTooltips();
@@ -80,19 +78,17 @@ if ($oid != 0)
                     <div class="horizontalMargin">
                         <select id="form<?= $class_name ?>SelectSharing" class="fullWidth ui-widget-content ui-corner-all">
                             <?php
-                            foreach (DS_Sharing::get_all() as $share)
-                            {
+                            foreach (DS_Sharing::get_all() as $share) {
                                 ?>
                                 <option value="<?= $share->id ?>" <?= ($share->id == $obj->Sharing_id ? "selected" : "") ?>><?= $share->get_name() ?></option>
-    <?php } ?>
+                            <?php } ?>
                         </select>
                     </div>
                 </td>
             </tr>
 
             <?php
-            if ($oid > 0 && $logged_user->is_ownerhsip_changeable($obj))
-            {
+            if ($oid > 0 && $logged_user->is_ownerhsip_changeable($obj)) {
                 ?>
                 <tr>
                     <td class="noWrap horizontalPadding ui-widget-header"><?= Language::string(71) ?>:</td>
@@ -104,12 +100,11 @@ if ($oid != 0)
                                 <?php
                                 $sql = $logged_user->mysql_list_rights_filter("User", "`User`.`lastname` ASC");
                                 $z = mysql_query($sql);
-                                while ($r = mysql_fetch_array($z))
-                                {
+                                while ($r = mysql_fetch_array($z)) {
                                     $owner = User::from_mysql_id($r[0]);
                                     ?>
                                     <option value="<?= $owner->id ?>" <?= ($obj->Owner_id == $owner->id ? "selected" : "") ?>><?= $owner->get_full_name() ?></option>
-        <?php } ?>
+                                <?php } ?>
                             </select>
                         </div>
                     </td>
@@ -117,8 +112,7 @@ if ($oid != 0)
             <?php } ?>
 
             <?php
-            if ($oid != -1)
-            {
+            if ($oid != -1) {
                 ?>
                 <tr>
                     <td colspan="3"><hr/></td>
@@ -126,7 +120,7 @@ if ($oid != 0)
                 <tr>
                     <td colspan="3" align="center">
 
-                <?php include Ini::$path_internal . 'cms/view/Table_structure.php'; ?>
+                        <?php include Ini::$path_internal . 'cms/view/Table_structure.php'; ?>
                     </td>
                 </tr>
                 <?php
@@ -134,14 +128,13 @@ if ($oid != 0)
             ?>
             <tr>
                 <td colspan="3" align="center">
-    <?= $buttons ?>
+                    <?= $buttons ?>
                 </td>
             </tr>
         </table>
 
         <?php
-        if ($oid != -1)
-        {
+        if ($oid != -1) {
             ?>
             <div id="div<?= $class_name ?>Dialog" class="notVisible">
                 <div class="padding ui-widget-content ui-corner-all margin">
@@ -163,8 +156,7 @@ if ($oid != 0)
                                     <select id="form<?= $class_name ?>SelectColumnType" class="fullWidth ui-widget-content ui-corner-all">
                                         <?php
                                         $types = DS_TableColumnType::get_all();
-                                        foreach ($types as $type)
-                                        {
+                                        foreach ($types as $type) {
                                             ?>
                                             <option value="<?= $type->id ?>"><?= $type->get_name() ?></option>
                                             <?php
@@ -177,32 +169,12 @@ if ($oid != 0)
                     </table>
                 </div>
             </div>
-
-            <div id="div<?= $class_name ?>DialogHTML" class="notVisible">
-                <div class="padding ui-widget-content ui-corner-all margin">
-                    <table>
-                        <tr>
-                            <td class="noWrap horizontalPadding ui-widget-header"><?= Language::string(18) ?>:</td>
-                            <td><span class="tooltip spanIcon ui-icon ui-icon-help" title="<?= Language::string(259) ?>"></span></td>
-                            <td class="fullWidth">
-                                <div class="horizontalMargin">
-                                    <textarea id="form<?= $class_name ?>TextareaHTML" name="form<?= $class_name ?>TextareaHTML" class="fullWidth ui-widget-content ui-corner-all">
-                                                                                                                        
-                                    </textarea>
-                                </div>
-                            </td>
-                        </tr>
-                    </table>
-                </div>
-            </div>
             <?php
         }
         ?>
     </div>
     <?php
-}
-else
-{
+} else {
     ?>
     <div class="padding margin ui-state-error " align="center"><?= Language::string(123) ?></div>
     <?php

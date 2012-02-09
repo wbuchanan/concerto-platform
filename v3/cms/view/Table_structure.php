@@ -18,15 +18,19 @@ if(!$logged_user->is_object_editable($obj)) die(Language::string(81));
 <script>
     $(function(){
         Table.uiIniHTMLTooltips();
+        Methods.iniIconButton("#btnTableStructureImportTable", "arrowthickstop-1-s");
+        Methods.iniIconButton("#btnTableStructureImportCSV", "arrowthickstop-1-s");
+        Methods.iniIconButton("#btnTableStructureExportCSV", "arrowthickstop-1-n");
     });
 </script>
 <table>
     <tr>
-        <td><span class="spanIcon tooltip ui-icon ui-icon-extlink" onclick="Table.uiImportTable()" title="<?=Language::string(125)?>"></span></td>
-        <td><span class="spanIcon tooltip ui-icon ui-icon-arrowreturn-1-s" onclick="Table.uiImportCSV()" title="<?=Language::string(126)?>"></span></td>
-        <td><span class="spanIcon tooltip ui-icon ui-icon-arrowreturn-1-n" onclick="Table.uiExportCSV()" title="<?=Language::string(127)?>"></span></td>
+        <td><button id="btnTableStructureImportTable" onclick="Table.uiImportTable()"><?=Language::string(125)?></button></td>
+        <td><button id="btnTableStructureImportCSV" onclick="Table.uiImportCSV()"><?=Language::string(126)?></button></td>
+        <td><button id="btnTableStructureExportCSV" onclick="Table.uiExportCSV()"><?=Language::string(127)?></button></td>
     </tr>
 </table>
+<br/>
 <table id="form<?= $class_name ?>Table">
     <caption class="ui-widget-header"><?=Language::string(128)?></caption>
     <thead class="theadTable">
