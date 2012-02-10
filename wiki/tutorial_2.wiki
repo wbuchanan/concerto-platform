@@ -1,4 +1,3 @@
-#labels Featured
 = TUTORIAL: Create you first ADAPTIVE test. =
 
 The test you are going to create here will look like that:
