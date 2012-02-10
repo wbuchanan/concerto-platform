@@ -1,4 +1,3 @@
-#labels Featured
 = TUTORIAL: Create a simple test step-by-step =
 
 In this tutorial you are going to develop a test that looks more or less like that:
