@@ -30,9 +30,10 @@ Before we go into the details of the administration panel, you should familiaris
 ||  || Delete ||
 ||  || ID of the object ||
 ||  || Name of the object ||
-||  || Who owns the object ||
+||  || Owner of the object ||
 ||  || Who can access the object  ||
-||  ||  ||
+||  || Debug a test to identify issues/errors ||
+||  || Show variables that have been specified in the test ||
 
 
 ==Administration Panel==
