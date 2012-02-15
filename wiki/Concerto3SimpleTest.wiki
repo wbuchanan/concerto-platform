@@ -4,7 +4,7 @@
 
 This tutorial will help you create a simple test on Concerto v3.0. 
 You can preview the test here: 
- * *[http://dev.myiqtest.org/concerto3/?tid=85 Concerto v3.0 Simple Test]*
+ * *[http://dev.myiqtest.org/concerto3_demo/index.php?tid=17 Concerto v3.0 Simple Test]*
 
 Note:
  * This document is relevant to Concerto v3.0. If you use an older version, please upgrade it (or else refer to relevant tutorials).
@@ -109,7 +109,7 @@ To run your test, check its ID number (first column from the list of available o
 
 IMAGE
 
-Use the following URL: *[concerto_installation_path]/?tid=[TEST_ID]*
+Use the following URL: *(concerto_installation_path)/?tid=(TEST_ID)*
 
 In case of the demo installation, this link looks like this: [http://dev.myiqtest.org/concerto3_demo/index.php?tid=17] 
 
