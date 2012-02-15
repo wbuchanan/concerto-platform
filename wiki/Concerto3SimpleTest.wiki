@@ -42,7 +42,7 @@ IMAGE
 
 
 === Test Items Template===
- * _Create a template:_ Click the “HTML templates” tab on the upper left side of the page. Click ‘+’ at the end of the list of templates to add a new item. Enter a name for the template (E.g. “test items”) and click ‘save’ at the bottom of the page. 
+ * _Create a template:_ Click the “HTML templates” tab on the upper left side of the page. Click ‘+’ at the end of the list of templates to add a new item. Enter a name for the template (E.g. “items”) and click ‘save’ at the bottom of the page. 
  * _Add questions/text:_ Edit the template and add the following text:
     {{user_name}}, please answer the following question:
     {{question}}
@@ -92,14 +92,14 @@ This step involves editing your test overall. Click the ‘tests’ tab on the u
 Follow the table below to add new sections to your test, using the editor. Be careful not to make spelling errors!
 
 || *SECTION TYPE* || *DETAILS* ||
-|| Load HTML template || Choose the HTML template: _introduction_ (or whatever name you gave to this HTML template). Please note that this HTML template will provide you with “user_name” variable, as indicated in “returns:”. _(Remember adding text field “user_name” to this HTML template?)_ ||
-|| Set variable || SET VARIABLE:  _current_question_  =  by R code:  _1_.  (We will use this variable to control which question to show!)||
-|| Set variable || SET VARIABLE:  _total_score_  =  by R code:  _0_.  (This variable will be used to count the total score of the individual.)||
-|| Set variable || SET VARIABLE: _question_  =  from table: _simple_test_table_  COLUMN: _question_  WHERE: _item_id_ - _equal_ - _current_question_.  (Note what happens - we simply select one cell from the table you’ve created earlier. Concerto will take the content of the cell in the “question” column and a row where item_id equals 1 (you have set current_question to 1 few steps ago))||
-|| Set variable || SET VARIABLE: _answer_  =  from table: _simple_test_table_  COLUMN: _answer_  WHERE: _item_id_ - _equal_ - _current_question_.  (Now we set variable “answer” to the appropriate value from the table.)||
-|| Load HTML template || Choose the HTML template: _test items_ (or whatever name you gave to this HTML template).||
-|| IF statement || IF _answer_ - _equal_ - _as.numeric(radio1)_  THEN CLICK '+' ICON BELOW 'THEN'. SET VARIABLE: _total_score_ = by R code - _total_score + 1_. (Simple! *If* answer is equal to the value of the radio button selected by the user *then* increase total score by 1. _Note: to add the next section “outside of the if clause” use the ‘+’ icon at the very bottom of the entire IF statement box._)||
-|| Set variable || SET VARIABLE:  _current_question_  =  by R code:  _current_question + 1_.  (Add one to the current_question value to select the 2nd question from the table next time!)||
+|| Load HTML template || Choose the HTML template: _introduction_ (or whatever name you gave to this HTML template). Please note that this HTML template will provide you with “user_name” variable in 'R & HTML' AS 'default' (indicated in “returns:”). _(Remember adding text field “user_name” to this HTML template?)_ ||
+|| Set variable || SET VARIABLE:  _current_question_  IN  _R & HTML_  AS  _numeric_  by R code:  _1_.  (We will use this variable to control which question to show!)||
+|| Set variable || SET VARIABLE:  _total_score_  IN  _R & HTML_  AS  _numeric_  by R code:  _0_.  (This variable will be used to count the total score of the individual.)||
+|| Set variable || SET VARIABLE: _question_  IN  _R & HTML_  AS  _default_  from table: _simple_test_table_  COLUMN: _question_  WHERE: _item_id_ - _equal_ - _current_question_.  (Note what happens - we simply select one cell from the table you’ve created earlier. Concerto will take the content of the cell in the “question” column and a row where item_id equals 1 (you have set current_question to 1 few steps ago))||
+|| Set variable || SET VARIABLE: _answer_  IN  _R & HTML_  AS  _default_  from table: _simple_test_table_  COLUMN: _answer_  WHERE: _item_id_ - _equal_ - _current_question_.  (Now we set variable “answer” to the appropriate value from the table.)||
+|| Load HTML template || Choose the HTML template: _items_ (or whatever name you gave to this HTML template). ||
+|| IF statement || IF _answer_ - _equal_ - _radio1_  THEN CLICK '+' ICON BELOW 'THEN'. SET VARIABLE: _total_score_  IN _R & HTML_  AS _numeric_  by R code - _total_score + 1_. (Simple! *If* answer is equal to the value of the radio button selected by the user *then* increase total score by 1. _Note: to add the next section “outside of the if clause” use the ‘+’ icon at the very bottom of the entire IF statement box._)||
+|| Set variable || SET VARIABLE:  _current_question_  IN _R & HTML_  AS _default_  by R code:  _current_question + 1_.  (Add one to the current_question value to select the 2nd question from the table next time!)||
 || IF statement || IF _current_question_ - _equal or lesser than_ - _4_ THEN CLICK '+' ICON BELOW 'THEN'. GO TO - SET SECTION: _(from the drop-down list select the section of the test you want to GO TO. You want to the section where you were setting the value of the “question” variable)_ Ok, this one looks difficult but it is not! First you check *if* you haven’t reached the maximum number of questions you wanted to show. If you haven’t *then* you go back in the test structure –not to the very beginning but to the place where you were getting some values from the table. Lastly, click the ‘+’ at the bottom of the *IF statement box* to add a new section.||
 || Load HTML template || Choose the HTML template: _feedback_ (or whatever else you named this template)||
 || || _END_ ||
@@ -111,9 +111,9 @@ IMAGE
 
 Use the following URL: *[concerto_installation_path]/?tid=[TEST_ID]*
 
-In case of the demo installation, this link looks like this: [http://dev.myiqtest.org/concerto3_DEMO/?tid=85] 
+In case of the demo installation, this link looks like this: [http://dev.myiqtest.org/concerto3_demo/index.php?tid=17] 
 
-  _Note: Substitute the last 2 digits in the URL with the test id of your choice._
+  _Note: Substitute the last 2 digits in the URL with the _test id_ of your specific test._
 
 
 Obviously, this is a very basic test, but it easily shows the idea behind Concerto. The tests that you develop can be run as a separate website or embedded in the other websites or applications. 
