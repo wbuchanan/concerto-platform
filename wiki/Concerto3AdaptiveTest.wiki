@@ -29,7 +29,7 @@ Create a new template called _test item_ and add the following content:
  * "*=*" sign
  * An input *text field* called "*response*" 
   * Ensure you call this text field "*response*" as that's how we refer to it in R code. You can give it a different name, but you will have to change R code accordingly.
-  * If you don't know how to add a text field, see the *Concerto v3.0 Tutorials: Create an adaptive test* section.
+  * If you don't know how to add a text field, see the *Concerto v3.0 Tutorials: Create a simple test* section.
  * A button called "*Submit*"
  * For presentation purposes, fields *{{theta}}*, *{{sem}}*, and *{{difficulty}}*. 
 
