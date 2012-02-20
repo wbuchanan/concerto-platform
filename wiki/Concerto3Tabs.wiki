@@ -69,6 +69,8 @@ When you create a new test or select an existing test to be edited, it will be d
  * *Set variable* - Define variables to be used in the test (may be visible in the HTML layer or only to R) using R code, table data or a previously declared variable.
  * *Table modification* - Modify existing tables (insert, modify or delete table rows) as your test proceeds and collects data.
 
+_Note: To make a variable visible across all sections, it needs to be declared as a global variable using: var *<<-* 'value'_
+
 
 ===Custom Test Sections===
 
