@@ -1,6 +1,7 @@
 #labels Featured,Tutorial
 = Concerto v3.0 Tutorials: Create a simple test =
                             == _(under revision)_ == 
+(Download screenshots [http://code.google.com/p/concerto-platform/downloads/detail?name=screenshots_download.doc&can=2&q=#makechanges here])
 
 This tutorial will help you create a simple test on Concerto v3.0. 
 You can preview the test here: 
