@@ -1,8 +1,6 @@
 #labels Featured,Tutorial
 = Concerto v3.0 Tutorials: Create a simple test =
-                            == _(under revision)_ == 
-(Download screenshots [http://code.google.com/p/concerto-platform/downloads/detail?name=screenshots_download.doc&can=2&q=#makechanges here])
-
+                            
 This tutorial will help you create a simple test on Concerto v3.0. 
 You can preview the test here: 
  * *[http://dev.myiqtest.org/concerto3_demo/index.php?tid=17 Concerto v3.0 Simple Test]*
@@ -36,7 +34,7 @@ _Adaptivity is not used in this tutorial, but you will see how and where a bit o
  * _Add a Start button:_ Click ‘Button’ and enter a name (e.g. btn_start), text (“Start”) and click ‘OK’.
  * Save the template!
 
-http://ns39618.ovh.net/~vaishali/simple/intro.bmp
+http://ns39618.ovh.net/~vaishali/simple/intro.jpg
 
 
 === Test Items Template===
@@ -48,7 +46,7 @@ http://ns39618.ovh.net/~vaishali/simple/intro.bmp
  * _Add a Submit button:_ Click ‘Button’ and assign a name (btn_submit) and text value (Submit). Click ‘OK’.
  * Save the template!
 
-http://ns39618.ovh.net/~vaishali/simple/items.bmp
+http://ns39618.ovh.net/~vaishali/simple/items.jpg
 
 
 ===Feedback Template===
@@ -73,7 +71,7 @@ _Your item bank is nearly done. Now you need to fill the table with the items in
 
 _Note: You can import your tables from CSV files (R, SPSS, Excel) and also manage tables using a professional MySQL tool._
 
-http://ns39618.ovh.net/~vaishali/simple/tables.bmp
+http://ns39618.ovh.net/~vaishali/simple/tables.jpg
 
 
 ==Step 3: Creating and adding sections to your test==
@@ -89,24 +87,24 @@ Follow the table below to add new sections to your test, using the editor. Be ca
 || *SECTION TYPE* || *DETAILS* ||
 || Load HTML template || Choose the HTML template: _introduction_ (or whatever name you gave to this HTML template). Please note that this HTML template will provide you with “user_name” variable in 'R & HTML' AS 'default' (indicated in “returns:”). _(Remember adding text field “user_name” to this HTML template?)_ ||
 || Set variable || SET VARIABLE:  _current_question_  IN  _R & HTML_  AS  _numeric_  by R code:  _1_.  (We will use this variable to control which question to show!)||
-|| - || http://ns39618.ovh.net/~vaishali/simple/test1.bmp ||
+|| - || http://ns39618.ovh.net/~vaishali/simple/test1.jpg ||
 
 || *SECTION TYPE* || *DETAILS* ||
 || Set variable || SET VARIABLE:  _total_score_  IN  _R & HTML_  AS  _numeric_  by R code:  _0_.  (This variable will be used to count the total score of the individual.)||
 || Set variable || SET VARIABLE: _question_  IN  _R & HTML_  AS  _default_  from table: _simple_test_table_  COLUMN: _question_  WHERE: _item_id_ - _equal_ - _current_question_.  (Note what happens - we simply select one cell from the table you’ve created earlier. Concerto will take the content of the cell in the “question” column and a row where item_id equals 1 (you have set current_question to 1 few steps ago))||
 || Set variable || SET VARIABLE: _answer_  IN  _R & HTML_  AS  _default_  from table: _simple_test_table_  COLUMN: _answer_  WHERE: _item_id_ - _equal_ - _current_question_.  (Now we set variable “answer” to the appropriate value from the table.)||
-|| - || http://ns39618.ovh.net/~vaishali/simple/test2.bmp ||
+|| - || http://ns39618.ovh.net/~vaishali/simple/test2.jpg ||
 
 || *SECTION TYPE* || *DETAILS* ||
 || Load HTML template || Choose the HTML template: _items_ (or whatever name you gave to this HTML template). ||
 || IF statement || IF _answer_ - _equal_ - _radio1_  THEN CLICK '+' ICON BELOW 'THEN'. SET VARIABLE: _total_score_  IN _R & HTML_  AS _numeric_  by R code - _total_score + 1_. (Simple! *If* answer is equal to the value of the radio button selected by the user *then* increase total score by 1. _Note: to add the next section “outside of the if clause” use the ‘+’ icon at the very bottom of the entire IF statement box._)||
 || Set variable || SET VARIABLE:  _current_question_  IN _R & HTML_  AS _default_  by R code:  _current_question + 1_.  (Add one to the current_question value to select the 2nd question from the table next time!)||
-|| - || http://ns39618.ovh.net/~vaishali/simple/test3.bmp ||
+|| - || http://ns39618.ovh.net/~vaishali/simple/test3.jpg ||
 
 || *SECTION TYPE* || *DETAILS* ||
 || IF statement || IF _current_question_ - _equal or lesser than_ - _4_ THEN CLICK '+' ICON BELOW 'THEN'. GO TO - SET SECTION: _(from the drop-down list select the section of the test you want to GO TO. You want to the section where you were setting the value of the “question” variable)_ Ok, this one looks difficult but it is not! First you check *if* you haven’t reached the maximum number of questions you wanted to show. If you haven’t *then* you go back in the test structure –not to the very beginning but to the place where you were getting some values from the table. Lastly, click the ‘+’ at the bottom of the *IF statement box* to add a new section.||
 || Load HTML template || Choose the HTML template: _feedback_ (or whatever else you named this template)||
-|| - || http://ns39618.ovh.net/~vaishali/simple/test4.bmp ||
+|| - || http://ns39618.ovh.net/~vaishali/simple/test4.jpg ||
 || || _END_ ||
 
 
