@@ -4,6 +4,8 @@ OModule.inheritance=function(obj)
 {
     obj.currentID=0;
     obj.listLength=10;
+    obj.reloadOnModification=false;
+    obj.reloadHash="";
     
     obj.uiChangeListLength=function(length)
     {
@@ -22,10 +24,13 @@ OModule.inheritance=function(obj)
         $("#row"+this.className+this.currentID+" td").addClass("ui-state-highlight");
     };
     
-    obj.uiAdd=function()
+    obj.uiAdd=function(ignoreOnBefore)
     {
+        if(ignoreOnBefore==null) ignoreOnBefore=false;
         var thisClass = this;
-        if(thisClass.onBeforeAdd) thisClass.onBeforeAdd();
+        if(thisClass.onBeforeAdd && !ignoreOnBefore) {
+            if(!thisClass.onBeforeAdd()) return;
+        }
         
         if(this.currentID!=0) this.uiEdit(0);
         
@@ -53,26 +58,29 @@ OModule.inheritance=function(obj)
             $("#divAddFormDialog").html(data);
             if(thisClass.onAfterAdd) thisClass.onAfterAdd();
             $("#divAddFormDialog").dialog("option","buttons",[
-                {
-                    text:dictionary["s95"],
-                    click:function(){
-                        thisClass.uiSave();
-                    }
-                },
-                {
-                    text:dictionary["s23"],
-                    click:function(){
-                        $(this).dialog("close");
-                    }
+            {
+                text:dictionary["s95"],
+                click:function(){
+                    thisClass.uiSave();
                 }
+            },
+            {
+                text:dictionary["s23"],
+                click:function(){
+                    $(this).dialog("close");
+                }
+            }
             ])
         })
     }
 	
-    obj.uiEdit=function(oid)
+    obj.uiEdit=function(oid,ignoreOnBefore)
     {
+        if(ignoreOnBefore==null) ignoreOnBefore=false;
         var thisClass = this;
-        if(thisClass.onBeforeEdit) thisClass.onBeforeEdit();
+        if(thisClass.onBeforeEdit && !ignoreOnBefore) {
+            if(!thisClass.onBeforeEdit()) return;
+        }
 		
         this.currentID=oid;
         $.post("view/"+this.className+"_form.php",
@@ -102,11 +110,21 @@ OModule.inheritance=function(obj)
         });
     };
 	
-    obj.uiDelete=function(oid)
+    obj.uiDelete=function(oid,ignoreOnBefore)
     {
+        if(ignoreOnBefore==null) ignoreOnBefore=false;
         var thisClass = this;
+        
+        if(thisClass.onBeforeDelete && !ignoreOnBefore) {
+            if(!thisClass.onBeforeDelete(oid)) return;
+        }
+        
         Methods.confirm(dictionary["s8"].format(oid),null,function(){
-            if(oid==thisClass.currentID) thisClass.uiEdit(0);
+            if(thisClass.reloadOnModification) { 
+                Methods.modalLoading();
+            }
+            
+            if(oid==thisClass.currentID && !thisClass.reloadOnModification) thisClass.uiEdit(0);
             $.post("query/delete_object.php",
             {
                 class_name:thisClass.className,
@@ -114,15 +132,24 @@ OModule.inheritance=function(obj)
             },
             function(data)
             {
+                if(thisClass.reloadOnModification) $("#divLoadingDialog").dialog("close");
                 switch(data.result){
                     case 0:{
-                        thisClass.uiList();
-                        if(thisClass.onAfterDelete) thisClass.onAfterDelete();
+                        if(!thisClass.reloadOnModification) {
+                            thisClass.uiList();
+                            if(thisClass.onAfterDelete) thisClass.onAfterDelete();
+                        }
+                        else {
+                            Methods.modalLoading();
+                            Methods.reload(thisClass.reloadHash);
+                        }
                         break;
                     }
                     case -1:{
-                        Methods.alert(dictionary["s278"], "alert", dictionary["s273"]);
-                        location.reload();
+                        Methods.alert(dictionary["s278"], "alert", dictionary["s273"],function(){
+                            Methods.modalLoading();
+                            Methods.reload(thisClass.reloadHash); 
+                        });
                         break;
                     }
                     case -2:{
@@ -204,8 +231,9 @@ OModule.inheritance=function(obj)
         location.href="query/export_object.php?class_name="+this.className+"&oid="+oid;
     };
 	
-    obj.uiSave=function()
+    obj.uiSave=function(ignoreOnBefore)
     {
+        if(ignoreOnBefore==null) ignoreOnBefore=false;
         var thisClass = this;
 		
         if(this.uiFormNotValidated)
@@ -217,27 +245,51 @@ OModule.inheritance=function(obj)
                 return;
             }
         }
+        
+        if(thisClass.onBeforeSave && !ignoreOnBefore) {
+            if(!thisClass.onBeforeSave()) return;
+        }
 		
+        if(thisClass.reloadOnModification) { 
+            Methods.modalLoading();
+        }
+        
         $.post("query/save_object.php",
             (this.currentID==0?this.getAddSaveObject():this.getFullSaveObject()),
             function(data)
             {
                 if(thisClass.currentID==0) $("#divAddFormDialog").dialog("close");
+                
+                if(thisClass.reloadOnModification) { 
+                    $("#divLoadingDialog").dialog("close");
+                }
+                
                 switch(data.result){
                     case 0:{
                         if(data.oid!=0)
                         {
-                            if(thisClass.currentID!=0) thisClass.uiList();
-                            else thisClass.uiReload(data.oid);
-                            if(thisClass.onAfterSave) thisClass.onAfterSave();
-                            Methods.alert(dictionary["s9"],"info", dictionary["s274"]);
+                            if(!thisClass.reloadOnModification) { 
+                                if(thisClass.currentID!=0) thisClass.uiList();
+                                else thisClass.uiReload(data.oid);
+                                if(thisClass.onAfterSave) thisClass.onAfterSave();
+                            }
+                            Methods.alert(dictionary["s9"],"info", dictionary["s274"],function(){
+                                if(thisClass.reloadOnModification) {
+                                    Methods.modalLoading();
+                                    Methods.reload(thisClass.reloadHash);
+                                }
+                            });
                         }
-                        else Methods.alert(dictionary["s10"],"alert", dictionary["s274"]);
+                        else {
+                            Methods.alert(dictionary["s10"],"alert", dictionary["s274"]);
+                        }
                         break;
                     }
                     case -1:{
-                        Methods.alert(dictionary["s278"], "alert", dictionary["s274"]);
-                        location.reload();
+                        Methods.alert(dictionary["s278"], "alert", dictionary["s274"],function(){
+                            Methods.modalLoading();
+                            Methods.reload(thisClass.reloadHash); 
+                        });
                         break;     
                     }
                     case -2:{

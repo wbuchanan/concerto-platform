@@ -1276,5 +1276,21 @@ You can add new languages by inserting <some_language>string translated into som
             <en>range</en>
             <pl>zakres</pl>
         </string>
+        <string id="319" js="1">
+            <en>please wait...</en>
+            <pl>prosze czekac...</pl>
+        </string>
+        <string id="320" js="1">
+            <en>Possible loss of unsaved data.</en>
+            <pl>Mozliwa utrata niezapisanych danych.</pl>
+        </string>
+        <string id="321" js="1">
+            <en>Are you sure you want to continue? This action will reset any unsaved changes in modules:</en>
+            <pl>Jestes pewien ze chcesz kontynuowac? Ta czynnosc moze anulowac wszystkie niezapisane zmiany w nastepujacych modulach:</pl>
+        </string>
+        <string id="322" js="1">
+            <en>Are you sure you want to continue? This action will reset any unsaved changes in every module.</en>
+            <pl>Jestes pewien ze chcesz kontynuowac? Ta czynnosc moze anulowac wszystkie niezapisane zmiany we wszystkich modulach.</pl>
+        </string>
     </strings>
 </root>

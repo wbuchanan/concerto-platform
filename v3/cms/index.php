@@ -81,6 +81,7 @@ if (!isset($ini))
             ?>
         </div>
 
+        <div id="divLoadingDialog" class="notVisible"></div>
         <div id="divGeneralDialog" class="notVisible"></div>
         <div id="divAddFormDialog" class="notVisible"></div>
     </body>

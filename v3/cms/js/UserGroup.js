@@ -3,23 +3,31 @@ OModule.inheritance(UserGroup);
 
 UserGroup.className="UserGroup";
 
+UserGroup.reloadOnModification=true;
+UserGroup.reloadHash="tnd_mainMenu-users";
+
+UserGroup.onBeforeSave=function(){
+    Methods.confirmUnsavedLost(function(){
+        UserGroup.uiSave(true);
+    });
+}
+
+UserGroup.onBeforeDelete=function(oid){
+    Methods.confirmUnsavedLost(function(){
+        UserGroup.uiDelete(oid,true);
+    });
+}
+
 UserGroup.onAfterEdit=function()
 {
     $("#divUsersAccordion").accordion("resize");
 };
 
 UserGroup.onAfterList=function(){
-}
+    }
 
 UserGroup.onAfterChangeListLength=function(){
     $("#divUsersAccordion").accordion("resize");
-};
-
-UserGroup.onAfterSave=function()
-{
-    if(this.currentID!=0 && User.currentID!=0) User.uiReload(User.currentID);
-    if(this.currentID==0 && User.currentID!=0) User.uiEdit(User.currentID);
-    if(this.currentID!=0 && User.currentID==0) User.uiList();
 };
 
 UserGroup.getAddSaveObject=function()
@@ -31,12 +39,6 @@ UserGroup.getAddSaveObject=function()
         Sharing_id:$("#form"+this.className+"SelectSharing").val()
     };
 };
-
-UserGroup.onAfterDelete=function(){
-    if(this.currentID!=0 && User.currentID!=0) User.uiReload(User.currentID);
-    if(this.currentID==0 && User.currentID!=0) User.uiEdit(User.currentID);
-    if(this.currentID!=0 && User.currentID==0) User.uiList();
-}
 
 UserGroup.getFullSaveObject=function()
 {

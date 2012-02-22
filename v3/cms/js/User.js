@@ -3,6 +3,20 @@ OModule.inheritance(User);
 
 User.className="User";
 User.sessionID="";
+User.reloadOnModification=true;
+User.reloadHash="tnd_mainMenu-users";
+
+User.onBeforeSave=function(){
+    Methods.confirmUnsavedLost(function(){
+        User.uiSave(true);
+    });
+}
+
+User.onBeforeDelete=function(oid){
+    Methods.confirmUnsavedLost(function(){
+        User.uiDelete(oid,true);
+    });
+}
 
 User.onAfterEdit=function() {
     $("#divUsersAccordion").accordion("resize");
@@ -11,23 +25,6 @@ User.onAfterEdit=function() {
 User.onAfterChangeListLength=function(){
     $("#divUsersAccordion").accordion("resize");
 };
-
-User.onAfterSave=function() 
-{
-    UserType.uiList();
-    UserGroup.uiList();
-    Template.uiList();
-    Test.uiList();
-    Table.uiList();
-};
-
-User.onAfterDelete=function(){
-    UserType.uiList();
-    UserGroup.uiList();
-    Template.uiList();
-    Test.uiList();
-    Table.uiList();
-}
 
 User.onAfterList=function(){
 }
@@ -70,17 +67,21 @@ User.uiFormNotValidated=function()
 User.uiLogIn=function()
 {
     var thisClass=this;
+    Methods.modalLoading();
     $.post("query/log_in.php",
     {
         login:$("#dd_login_inp_login").val(),
         password:$("#dd_login_inp_password").val()
     },
     function(data){
+        $("#divLoadingDialog").dialog("close");
         if(data.success==1)
         {
             $("#dd_login").dialog("close");
+            Methods.modalLoading();
             $.post("view/layout.php",{},
                 function(data){
+                    $("#divLoadingDialog").dialog("close");
                     $("#content").html(data);
                 });
         }
@@ -90,6 +91,7 @@ User.uiLogIn=function()
 
 User.uiLogOut=function()
 {
+    Methods.modalLoading();
     $.post("query/log_out.php",{},
         function(data){
             location.href="index.php";

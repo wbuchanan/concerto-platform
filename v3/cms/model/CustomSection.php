@@ -1,45 +1,52 @@
 <?php
 
-class CustomSection extends OModule {
-
+class CustomSection extends OModule
+{
     public $name = "";
     public $description = "";
     public $code = "";
-    
     public static $exportable = true;
     public static $mysql_table_name = "CustomSection";
-    
+
     public function __construct($params = array())
     {
         $this->name = Language::string(68);
         parent::__construct($params);
     }
 
-    public function mysql_delete() {
+    public function mysql_delete()
+    {
         $this->delete_object_links(CustomSectionVariable::get_mysql_table());
         $this->mysql_delete_object();
     }
 
-    public function get_CustomSectionVariables() {
+    public function get_CustomSectionVariables()
+    {
         return CustomSectionVariable::from_property(array("CustomSection_id" => $this->id));
     }
 
-    public function get_parameter_CustomSectionVariables() {
+    public function get_parameter_CustomSectionVariables()
+    {
         return CustomSectionVariable::from_property(array("CustomSection_id" => $this->id, "type" => 0));
     }
 
-    public function get_return_CustomSectionVariables() {
+    public function get_return_CustomSectionVariables()
+    {
         return CustomSectionVariable::from_property(array("CustomSection_id" => $this->id, "type" => 1));
     }
 
-    public function mysql_save_from_post($post) {
+    public function mysql_save_from_post($post)
+    {
         $lid = parent::mysql_save_from_post($post);
 
-        if ($this->id != 0) {
+        if ($this->id != 0)
+        {
             $this->delete_object_links(CustomSectionVariable::get_mysql_table());
             $i = 0;
-            if (array_key_exists("parameters", $post)) {
-                foreach ($post["parameters"] as $param) {
+            if (array_key_exists("parameters", $post))
+            {
+                foreach ($post["parameters"] as $param)
+                {
                     $p = json_decode($param);
                     $var = new CustomSectionVariable();
                     $var->description = $p->description;
@@ -51,8 +58,10 @@ class CustomSection extends OModule {
                     $i++;
                 }
             }
-            if (array_key_exists("returns", $post)) {
-                foreach ($post["returns"] as $ret) {
+            if (array_key_exists("returns", $post))
+            {
+                foreach ($post["returns"] as $ret)
+                {
                     $r = json_decode($ret);
                     $var = new CustomSectionVariable();
                     $var->description = $r->description;
@@ -66,7 +75,7 @@ class CustomSection extends OModule {
             }
         }
     }
-    
+
     public function export()
     {
         $xml = new DOMDocument();
@@ -110,14 +119,14 @@ class CustomSection extends OModule {
                 }
             }
         }
-        
+
         $lid = $this->mysql_save();
-        
+
         $elements = $xpath->query("/export/CustomSections/CustomSection/CustomSectionVariables/CustomSectionVariable");
         foreach ($elements as $element)
         {
             $obj = new CustomSectionVariable();
-            $obj->CustomSection_id=$lid;
+            $obj->CustomSection_id = $lid;
             $children = $element->childNodes;
             foreach ($children as $child)
             {
@@ -153,24 +162,25 @@ class CustomSection extends OModule {
 
         $description = $xml->createElement("description", htmlspecialchars($this->description, ENT_QUOTES));
         $element->appendChild($description);
-        
+
         $code = $xml->createElement("code", htmlspecialchars($this->code, ENT_QUOTES));
         $element->appendChild($code);
-        
+
         $csv = $xml->createElement("CustomSectionVariables");
         $element->appendChild($csv);
-        
+
         $elems = $this->get_CustomSectionVariables();
-        foreach($elems as $elem)
+        foreach ($elems as $elem)
         {
             $e = $elem->to_XML();
-            $e = $xml->importNode($e,true);
-            
+            $e = $xml->importNode($e, true);
+
             $csv->appendChild($e);
         }
 
         return $element;
     }
+
 }
 
 ?>

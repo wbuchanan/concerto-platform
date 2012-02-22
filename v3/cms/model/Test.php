@@ -61,6 +61,7 @@ class Test extends OModule {
 
     public function mysql_delete() {
         $this->delete_sections();
+        $this->delete_sessions();
         parent::mysql_delete();
     }
 
@@ -68,6 +69,13 @@ class Test extends OModule {
         $sections = TestSection::from_property(array("Test_id" => $this->id));
         foreach ($sections as $section) {
             $section->mysql_delete();
+        }
+    }
+    
+    public function delete_sessions() {
+        $sessions = TestSession::from_property(array("Test_id" => $this->id));
+        foreach ($sessions as $session) {
+            $session->mysql_delete();
         }
     }
 

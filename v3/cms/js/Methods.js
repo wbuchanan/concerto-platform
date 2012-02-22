@@ -14,6 +14,26 @@ Methods.loading=function(selector){
     $(selector).html("<div align='center' style='width:100%;height:100%;'><table style='width:100%;height:100%;'><tr><td valign='middle' align='center'><img src='css/img/ajax-loader.gif' /></td></tr></table></div>")  
 };
 
+Methods.modalLoading=function(title){
+    if(title==null) title=dictionary["s319"];
+    Methods.loading("#divLoadingDialog");
+    $("#divLoadingDialog").dialog({
+        title:title,
+        minHeight:50,
+        resizable:false,
+        modal:true,
+        buttons:
+        {
+    }
+    });
+}
+
+Methods.reload=function(hash){
+    var address = location.href.split("#");
+    location.replace(address[0]+(hash!=null?"#"+hash:""));
+    location.reload();
+}
+
 Methods.iniSortableTableHeaders=function(){
     $(".thSortable").mouseover(function(){
         $(this).addClass("ui-state-highlight");
@@ -31,6 +51,19 @@ Methods.iniIconButton=function(selector,icon){
     });
 }
 
+Methods.confirmUnsavedLost=function(callback,modules){
+    var message = "";
+    if(modules!=null) {
+        message = dictionary["s321"];
+        message+="<br/><br/>";
+        for(var i=0;i<modules.length;i++){
+            message += "<b>"+modules[i]+"</b><br/>"
+        }
+    }
+    else message=dictionary["s322"];
+    Methods.confirm(message, dictionary["s320"], callback);
+}
+
 Methods.confirm=function(message,title,callback)
 {
     if(title==null) title=dictionary["s4"];
@@ -46,14 +79,14 @@ Methods.confirm=function(message,title,callback)
                 $(this).dialog("close");
             },
             yes:function(){
-                callback.call(null);
                 $(this).dialog("close");
+                callback.call(this);
             }
         }
     });
 };
 
-Methods.alert=function(message,icon,title)
+Methods.alert=function(message,icon,title,callback)
 {
     if(title==null) title=dictionary["s5"];
     $("#divGeneralDialog").html((icon!=null?'<span class="ui-icon ui-icon-'+icon+'" style="float:left; margin:0 7px 0px 0;"></span>':'')+message);
@@ -66,6 +99,7 @@ Methods.alert=function(message,icon,title)
         {
             ok:function(){
                 $(this).dialog("close");
+                if(callback!=null) callback.call(this);
             }
         }
     });

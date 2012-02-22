@@ -3,6 +3,21 @@ OModule.inheritance(UserType);
 
 UserType.className="UserType";
 
+UserType.reloadOnModification=true;
+UserType.reloadHash="tnd_mainMenu-users";
+
+UserType.onBeforeSave=function(){
+    Methods.confirmUnsavedLost(function(){
+        UserType.uiSave(true);
+    });
+}
+
+UserType.onBeforeDelete=function(oid){
+    Methods.confirmUnsavedLost(function(){
+        UserType.uiDelete(oid,true);
+    });
+}
+
 UserType.onAfterEdit=function()
 {
     User.uiReload(User.currentID);
@@ -15,19 +30,6 @@ UserType.onAfterList=function(){
 UserType.onAfterChangeListLength=function(){
     $("#divUsersAccordion").accordion("resize");
 };
-
-UserType.onAfterSave=function()
-{
-    if(this.currentID!=0 && User.currentID!=0) User.uiReload(User.currentID);
-    if(this.currentID==0 && User.currentID!=0) User.uiEdit(User.currentID);
-    if(this.currentID!=0 && User.currentID==0) User.uiList();
-};
-
-UserType.onAfterDelete=function(){
-    if(this.currentID!=0 && User.currentID!=0) User.uiReload(User.currentID);
-    if(this.currentID==0 && User.currentID!=0) User.uiEdit(User.currentID);
-    if(this.currentID!=0 && User.currentID==0) User.uiList();
-}
 
 UserType.getAddSaveObject=function()
 {
