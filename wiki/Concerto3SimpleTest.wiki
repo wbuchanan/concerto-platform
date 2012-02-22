@@ -31,15 +31,12 @@ _Adaptivity is not used in this tutorial, but you will see how and where a bit o
 ==Step 1: Create HTML Templates==
 ===Introduction template===
  * _Create a template:_ Click the “HTML templates” tab on the upper left side of the page. Click the ‘+’ icon at the end of the list of templates to add a new item. Enter a unique name for the template (E.g. “introduction”) and click ‘save’ at the bottom of the page.  
-
-IMAGE
-
  * _Add suitable text:_ Type in a welcome message and instructions for the participants. 
  * _Add a user input field:_ Click ‘Text Field’ and enter a name (E.g. user_name). Click ‘OK’. Ensure that your instructions indicate that participants should type their name here.
  * _Add a Start button:_ Click ‘Button’ and enter a name (e.g. btn_start), text (“Start”) and click ‘OK’.
  * Save the template!
 
-IMAGE
+http://ns39618.ovh.net/~vaishali/simple/intro template.bmp
 
 
 === Test Items Template===
@@ -51,7 +48,7 @@ IMAGE
  * _Add a Submit button:_ Click ‘Button’ and assign a name (btn_submit) and text value (Submit). Click ‘OK’.
  * Save the template!
 
-IMAGE
+http://ns39618.ovh.net/~vaishali/simple/items template.bmp
 
 
 ===Feedback Template===
@@ -60,7 +57,7 @@ IMAGE
     {{user_name}}, your total score is {{total_score}}.
  * Save the template!
 
-IMAGE
+http://ns39618.ovh.net/~vaishali/simple/feedback.bmp
 
 
 ==Step 2: Creating an item bank==
@@ -76,7 +73,7 @@ _Your item bank is nearly done. Now you need to fill the table with the items in
 
 _Note: You can import your tables from CSV files (R, SPSS, Excel) and also manage tables using a professional MySQL tool._
 
-IMAGE
+http://ns39618.ovh.net/~vaishali/simple/Tables.bmp
 
 
 ==Step 3: Creating and adding sections to your test==
@@ -85,9 +82,6 @@ Go to the ‘tests’ tab on the upper left side of the page. Create a new test 
 
 To edit a test at any time, click on the pencil symbol towards the right of the specific test you want to edit. Be careful not to click the ‘bin’ icon (last symbol on the right) unless you wish to delete your test!
 
-IMAGE
-
-
 This step involves editing your test overall. Click the ‘tests’ tab on the upper left side of the page and click the _pencil_ icon on your specific test to edit it. To add a new section, click the ‘+’ at the bottom of the last section. At this point, the last section is ‘1. start’.
 
 Follow the table below to add new sections to your test, using the editor. Be careful not to make spelling errors!
@@ -95,22 +89,29 @@ Follow the table below to add new sections to your test, using the editor. Be ca
 || *SECTION TYPE* || *DETAILS* ||
 || Load HTML template || Choose the HTML template: _introduction_ (or whatever name you gave to this HTML template). Please note that this HTML template will provide you with “user_name” variable in 'R & HTML' AS 'default' (indicated in “returns:”). _(Remember adding text field “user_name” to this HTML template?)_ ||
 || Set variable || SET VARIABLE:  _current_question_  IN  _R & HTML_  AS  _numeric_  by R code:  _1_.  (We will use this variable to control which question to show!)||
+|| - || http://ns39618.ovh.net/~vaishali/simple/test - 1.bmp ||
+
+|| *SECTION TYPE* || *DETAILS* ||
 || Set variable || SET VARIABLE:  _total_score_  IN  _R & HTML_  AS  _numeric_  by R code:  _0_.  (This variable will be used to count the total score of the individual.)||
 || Set variable || SET VARIABLE: _question_  IN  _R & HTML_  AS  _default_  from table: _simple_test_table_  COLUMN: _question_  WHERE: _item_id_ - _equal_ - _current_question_.  (Note what happens - we simply select one cell from the table you’ve created earlier. Concerto will take the content of the cell in the “question” column and a row where item_id equals 1 (you have set current_question to 1 few steps ago))||
 || Set variable || SET VARIABLE: _answer_  IN  _R & HTML_  AS  _default_  from table: _simple_test_table_  COLUMN: _answer_  WHERE: _item_id_ - _equal_ - _current_question_.  (Now we set variable “answer” to the appropriate value from the table.)||
+|| - || http://ns39618.ovh.net/~vaishali/simple/test - 2.bmp ||
+
+|| *SECTION TYPE* || *DETAILS* ||
 || Load HTML template || Choose the HTML template: _items_ (or whatever name you gave to this HTML template). ||
 || IF statement || IF _answer_ - _equal_ - _radio1_  THEN CLICK '+' ICON BELOW 'THEN'. SET VARIABLE: _total_score_  IN _R & HTML_  AS _numeric_  by R code - _total_score + 1_. (Simple! *If* answer is equal to the value of the radio button selected by the user *then* increase total score by 1. _Note: to add the next section “outside of the if clause” use the ‘+’ icon at the very bottom of the entire IF statement box._)||
 || Set variable || SET VARIABLE:  _current_question_  IN _R & HTML_  AS _default_  by R code:  _current_question + 1_.  (Add one to the current_question value to select the 2nd question from the table next time!)||
+|| - || http://ns39618.ovh.net/~vaishali/simple/test - 3.bmp ||
+
+|| *SECTION TYPE* || *DETAILS* ||
 || IF statement || IF _current_question_ - _equal or lesser than_ - _4_ THEN CLICK '+' ICON BELOW 'THEN'. GO TO - SET SECTION: _(from the drop-down list select the section of the test you want to GO TO. You want to the section where you were setting the value of the “question” variable)_ Ok, this one looks difficult but it is not! First you check *if* you haven’t reached the maximum number of questions you wanted to show. If you haven’t *then* you go back in the test structure –not to the very beginning but to the place where you were getting some values from the table. Lastly, click the ‘+’ at the bottom of the *IF statement box* to add a new section.||
 || Load HTML template || Choose the HTML template: _feedback_ (or whatever else you named this template)||
+|| - || http://ns39618.ovh.net/~vaishali/simple/test - 4.bmp ||
 || || _END_ ||
 
 
-To run your test, check its ID number (first column from the list of available objects in the _tests_ tab):
-
-IMAGE
-
-Use the following URL: *(concerto_installation_path)/?tid=(TEST_ID)*
+To run your test, use the following URL: 
+*(concerto_installation_path)/?tid=(TEST_ID)*
 
 In case of the demo installation, this link looks like this: [http://dev.myiqtest.org/concerto3_demo/index.php?tid=17] 
 
