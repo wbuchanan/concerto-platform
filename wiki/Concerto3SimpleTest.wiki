@@ -57,7 +57,7 @@ http://ns39618.ovh.net/~vaishali/simple/items.bmp
     {{user_name}}, your total score is {{total_score}}.
  * Save the template!
 
-http://ns39618.ovh.net/~vaishali/simple/feedback.bmp
+http://ns39618.ovh.net/~vaishali/simple/feedback.jpg
 
 
 ==Step 2: Creating an item bank==
