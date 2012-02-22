@@ -14,26 +14,26 @@ We rely as much as possible on popular open source packages in order to maximize
 Before we go into the details of the administration panel, you should familiarise yourself with the basic icons present in Concerto v3.0.
   
 || *Symbol* || *Description* ||
-||  || Add new object ||
-||  || Edit object ||
-||  || Delete object ||
-||  || Export object ||
-||  || Import object ||
-||  || Go to last page ||
-||  || Go to next page ||
-||  || Go to first page ||
-||  || Go to previous page ||
-||  || Search for an object using id, name or owner ||
-||  || Help text; hover over the symbol for a basic description ||
-||  || Cancel changes made to object since last _Save_ ||
-||  || Save changes made to object since last _Save_ ||
-||  || Delete ||
-||  || ID of the object ||
-||  || Name of the object ||
-||  || Owner of the object ||
-||  || Who can access the object  ||
-||  || Debug a test to identify issues/errors ||
-||  || Show variables that have been specified in the test ||
+|| http://ns39618.ovh.net/~vaishali/sections/new_object.jpg || Add new object ||
+|| http://ns39618.ovh.net/~vaishali/sections/edit_obj.jpg || Edit object ||
+|| http://ns39618.ovh.net/~vaishali/sections/delete_obj.jpg || Delete object ||
+|| http://ns39618.ovh.net/~vaishali/sections/export_obj.jpg || Export object ||
+|| http://ns39618.ovh.net/~vaishali/sections/import_obj.jpg || Import object ||
+|| http://ns39618.ovh.net/~vaishali/sections/last_page.jpg || Go to last page ||
+|| http://ns39618.ovh.net/~vaishali/sections/next_page.jpg || Go to next page ||
+|| http://ns39618.ovh.net/~vaishali/sections/first_page.jpg || Go to first page ||
+|| http://ns39618.ovh.net/~vaishali/sections/previous_page.jpg || Go to previous page ||
+|| http://ns39618.ovh.net/~vaishali/sections/search_list.jpg || Search for an object using id, name or owner ||
+|| http://ns39618.ovh.net/~vaishali/sections/help.jpg || Help text; hover over the symbol for a basic description ||
+|| http://ns39618.ovh.net/~vaishali/sections/cancel.jpg || Cancel changes made to object since last _Save_ ||
+|| http://ns39618.ovh.net/~vaishali/sections/save.jpg || Save changes made to object since last _Save_ ||
+|| http://ns39618.ovh.net/~vaishali/sections/delete.jpg || Delete object ||
+|| http://ns39618.ovh.net/~vaishali/sections/id.jpg || ID of the object ||
+|| http://ns39618.ovh.net/~vaishali/sections/name.jpg || Name of the object ||
+|| http://ns39618.ovh.net/~vaishali/sections/owner.jpg || Owner of the object ||
+|| http://ns39618.ovh.net/~vaishali/sections/access.jpg || Who can access the object  ||
+|| http://ns39618.ovh.net/~vaishali/sections/debug.jpg || Debug a test to identify issues/errors ||
+|| http://ns39618.ovh.net/~vaishali/sections/show_variables.jpg || Show variables that have been specified in the test ||
 
 
 ==Administration Panel==
