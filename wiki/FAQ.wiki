@@ -17,7 +17,15 @@ Yes, you can email [mailto:vm298@cam.ac.uk?cc=mk583@cam.ac.uk Vaishali Mahalinga
 ===Can I develop tutorials for Concerto?===
 Of course! We are very happy to expand the list of available tutorials. Please *[mailto:vm298@cam.ac.uk?cc=mk583@cam.ac.uk contact us]* if you would like to help the Concerto user community by developing tutorials.
 
-===What are the other uses of Concerto besides online testing?===
+===Do you conduct workshops regarding Concerto and related subjects?===
+Yes, we conduct workshops on adaptive testing, item response theory etc in-house and across the globe. Please check our [http://www.psychometrics.cam.ac.uk/page/29/trainingworkshops.htm website] for more information on upcoming workshops. 
 
-===Do you conduct any workshops regarding Concerto and related subjects?===
 ===Can Concerto handle only _alternate-choice_ (e.g. yes/no) items?===
+No, Concerto is flexible enough that you can develop tests with virtually any response format. E.g. multiple choice, likert scales, open text, heat maps, flash games and even trace mouse movements. More advanced response options may require some basic knowledge of web design. 
+
+===Can reaction times be recorded? If so, to what precision?===
+Yes, reaction time can be measured using the timer (time_left) function. Further, it can also be recorded with very high precision (almost to 1 millisecond). Such precise measurements would require basic javascript coding knowledge as we don't have that functionality built into concerto, currently. _It has been added to the list of features for the new version._
+
+===What is the nature of your subject pool?===
+Concerto does not have a specific sample pool for people to register. It is a testing platform and not a test administration service. You can create your test on Concerto and then invite your subjects to respond to it. 
+
