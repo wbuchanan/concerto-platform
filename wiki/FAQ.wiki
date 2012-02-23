@@ -1,0 +1,17 @@
+.
+=Concerto v3.0 Tutorials: _Frequently Asked Questions_=
+
+_This document is relevant to Concerto v3.0 and higher. If you have an older version installed, it is recommended that you upgrade to the latest version (or else refer to relevant manual)._
+
+If you don't see the answer to your question on any of our pages, please feel free to *[mailto:vm298@cam.ac.uk?cc=mk583@cam.ac.uk email us]* and we will get back to you as soon as possible.
+
+===What is the best way to learn to use Concerto?===
+Working with Concerto v3.0 can be fairly easy if you are well oriented with the user interface. The easiest way to get started is to go through the tutorials. Once you are familiar with the *[http://code.google.com/p/concerto-platform/wiki/Concerto3Tabs General manual]*, you should attempt to explore the sections by yourself. Next, go through the tutorial and *[http://code.google.com/p/concerto-platform/wiki/Concerto3SimpleTest create a simple test]* exactly as instructed. Following this, try to upload a few simple tests using the techniques that you have already learnt. Then, go through the tutorial and *[http://code.google.com/p/concerto-platform/wiki/Concerto3AdaptiveTest create an adaptive test]*. Again, once you have mastered the tutorial, attempt to create your own tests by applying the recently learnt techniques. 
+
+===How much does it cost?===
+===How is the project being funded, currently?===
+===Can I develop tutorial material for Concerto?===
+===What are the other uses of Concerto besides online testing?===
+===Can I try it out without downloading the full package?===
+===Do you conduct any workshops regarding Concerto and related subjects?===
+===Can Concerto handle only _alternate-choice_ (e.g. yes/no) items?===
