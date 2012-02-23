@@ -161,8 +161,10 @@ Table.uiEditColumn=function(col){
         close:function(){
             $(this).dialog("destroy");
         },
-        buttons:{
-            save:function(){
+        buttons:[
+        {
+            text:dictionary["s95"],
+            click:function(){
                 name.val($.trim(name.val()));
                 
                 if(name.val()=="")
@@ -237,11 +239,15 @@ Table.uiEditColumn=function(col){
                 Methods.iniSortableTableHeaders();
                 Methods.iniTooltips();
                 Table.uiIniHTMLTooltips();
-            },
-            cancel:function(){
+            }
+        },
+        {
+            text:dictionary["s23"],
+            click:function(){
                 $(this).dialog("close");
             }
         }
+        ]
     });
 }
 
@@ -251,7 +257,9 @@ Table.uiExportCSV=function(){
 
 Table.uiImportTable=function(){
     var thisClass = this;
+    Methods.modalLoading();
     $.post("view/Table_import_mysql.php",{},function(data){
+        Methods.stopModalLoading();
         $("#div"+Table.className+"DialogImportMySQL").html(data);
         var selectTable = $("#form"+thisClass.className+"SelectMySQLTable");
         
@@ -266,10 +274,12 @@ Table.uiImportTable=function(){
                         Methods.alert(dictionary["s24"], "alert", dictionary["s25"]);
                         return;
                     }
+                    $("#div"+Table.className+"DialogImportMySQL").mask(dictionary["s319"]);
                     $.post("query/Table_mysql_import.php",{
                         oid:thisClass.currentID,
                         table:selectTable.val()
                     },function(data){
+                        $("#div"+Table.className+"DialogImportMySQL").unmask();
                         $("#div"+Table.className+"DialogImportMySQL").dialog("close");
                         switch(data.result){
                             case 0:{
@@ -328,11 +338,13 @@ Table.uiImportCSV=function(){
                     $.each(data.result, function (index, file) {
                         Table.isFileUploaded = true;
                         Methods.confirm(dictionary["s28"], dictionary["s29"], function(){
+                            $("#div"+Table.className+"DialogImportCSV").mask(dictionary["s319"]);
                             $.post("query/Table_csv_import.php",{
                                 oid:Table.currentID,
                                 file:file.name
                             },function(data){
-                                $("#div"+Table.className+"DialogImport").dialog("close");
+                                $("#div"+Table.className+"DialogImportCSV").unmask();
+                                $("#div"+Table.className+"DialogImportCSV").dialog("close");
                                 switch(data.result){
                                     case 0:{
                                         Methods.alert(dictionary["s26"], "info", dictionary["s25"]);

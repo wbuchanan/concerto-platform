@@ -34,44 +34,36 @@ OModule.inheritance=function(obj)
         
         if(this.currentID!=0) this.uiEdit(0);
         
-        Methods.loading("#divAddFormDialog");
-        $("#divAddFormDialog").dialog({
-            modal:true,
-            resizable:false,
-            title:dictionary["s7"],
-            width:400,
-            open:function(){
-            },
-            buttons:{
-                save:function(){
-                    thisClass.uiSave();
-                },
-                cancel:function(){
-                    $(this).dialog("close");
-                }
-            }
-        })
-        
+        Methods.modalLoading();
         $.post("view/"+this.className+"_form.php",{
             oid:-1
         },function(data){
             $("#divAddFormDialog").html(data);
-            if(thisClass.onAfterAdd) thisClass.onAfterAdd();
-            $("#divAddFormDialog").dialog("option","buttons",[
-            {
-                text:dictionary["s95"],
-                click:function(){
-                    thisClass.uiSave();
+            $("#divAddFormDialog").dialog({
+                modal:true,
+                resizable:false,
+                title:dictionary["s7"],
+                width:400,
+                open:function(){
+                    Methods.stopModalLoading();
+                    if(thisClass.onAfterAdd) thisClass.onAfterAdd();
+                },
+                buttons:[
+                {
+                    text:dictionary["s95"],
+                    click:function(){
+                        thisClass.uiSave();
+                    }
+                },
+                {
+                    text:dictionary["s23"],
+                    click:function(){
+                        $(this).dialog("close");
+                    }
                 }
-            },
-            {
-                text:dictionary["s23"],
-                click:function(){
-                    $(this).dialog("close");
-                }
-            }
-            ])
-        })
+                ]
+            })
+        });
     }
 	
     obj.uiEdit=function(oid,ignoreOnBefore)
@@ -83,11 +75,13 @@ OModule.inheritance=function(obj)
         }
 		
         this.currentID=oid;
+        $("#div"+thisClass.className+"Form").mask(dictionary["s319"]);
         $.post("view/"+this.className+"_form.php",
         {
             oid:oid
         },
         function(data){
+            $("#div"+thisClass.className+"Form").unmask();
             $("#div"+thisClass.className+"Form").html(data);
             thisClass.highlightCurrentElement();
             if(thisClass.onAfterEdit) thisClass.onAfterEdit();
@@ -97,6 +91,7 @@ OModule.inheritance=function(obj)
     obj.uiList=function()
     {
         var thisClass = this;
+        $('#div'+thisClass.className+'List').mask(dictionary["s319"]);
         $.post("view/list.php",{
             oid:thisClass.currentID,
             class_name:thisClass.className,
@@ -104,6 +99,7 @@ OModule.inheritance=function(obj)
         },
         function(data)
         {
+            $('#div'+thisClass.className+'List').unmask();
             $('#div'+thisClass.className+'List').html(data);
             thisClass.highlightCurrentElement();
             if(thisClass.onAfterList) thisClass.onAfterList();
@@ -132,7 +128,7 @@ OModule.inheritance=function(obj)
             },
             function(data)
             {
-                if(thisClass.reloadOnModification) $("#divLoadingDialog").dialog("close");
+                if(thisClass.reloadOnModification) Methods.stopModalLoading();
                 switch(data.result){
                     case 0:{
                         if(!thisClass.reloadOnModification) {
@@ -187,10 +183,12 @@ OModule.inheritance=function(obj)
                         $.each(data.result, function (index, file) {
                             Table.isFileUploaded = true;
                             Methods.confirm(dictionary["s269"], dictionary["s29"], function(){
+                                $("#div"+thisClass.className+"DialogImport").mask(dictionary["s319"]);
                                 $.post("query/import_object.php",{
                                     class_name:thisClass.className,
                                     file:file.name
                                 },function(data){
+                                    $("#div"+thisClass.className+"DialogImport").unmask();
                                     $("#div"+thisClass.className+"DialogImport").dialog("close");
                                     switch(data.result){
                                         case 0:{
@@ -254,14 +252,18 @@ OModule.inheritance=function(obj)
             Methods.modalLoading();
         }
         
+        $("#divAddFormDialog").mask(dictionary["s319"]);
+        $("#div"+thisClass.className+"Form").mask(dictionary["s319"]);
         $.post("query/save_object.php",
             (this.currentID==0?this.getAddSaveObject():this.getFullSaveObject()),
             function(data)
             {
+                $("#divAddFormDialog").unmask();
+                $("#div"+thisClass.className+"Form").unmask();
                 if(thisClass.currentID==0) $("#divAddFormDialog").dialog("close");
                 
                 if(thisClass.reloadOnModification) { 
-                    $("#divLoadingDialog").dialog("close");
+                    Methods.stopModalLoading();
                 }
                 
                 switch(data.result){

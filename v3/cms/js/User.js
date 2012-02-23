@@ -67,21 +67,21 @@ User.uiFormNotValidated=function()
 User.uiLogIn=function()
 {
     var thisClass=this;
-    Methods.modalLoading();
+    $("#dd_login").mask(dictionary["s319"]);
     $.post("query/log_in.php",
     {
         login:$("#dd_login_inp_login").val(),
         password:$("#dd_login_inp_password").val()
     },
     function(data){
-        $("#divLoadingDialog").dialog("close");
+        $("#dd_login").unmask();
         if(data.success==1)
         {
             $("#dd_login").dialog("close");
             Methods.modalLoading();
             $.post("view/layout.php",{},
                 function(data){
-                    $("#divLoadingDialog").dialog("close");
+                    Methods.stopModalLoading();
                     $("#content").html(data);
                 });
         }

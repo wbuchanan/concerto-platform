@@ -28,6 +28,10 @@ Methods.modalLoading=function(title){
     });
 }
 
+Methods.stopModalLoading=function(){
+    $("#divLoadingDialog").dialog("close");
+}
+
 Methods.reload=function(hash){
     var address = location.href.split("#");
     location.replace(address[0]+(hash!=null?"#"+hash:""));

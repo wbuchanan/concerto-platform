@@ -1292,5 +1292,13 @@ You can add new languages by inserting <some_language>string translated into som
             <en>Are you sure you want to continue? This action will reset any unsaved changes in every module.</en>
             <pl>Jestes pewien ze chcesz kontynuowac? Ta czynnosc moze anulowac wszystkie niezapisane zmiany we wszystkich modulach.</pl>
         </string>
+        <string id="323" js="1">
+            <en>begin</en>
+            <pl>zacznij</pl>
+        </string>
+        <string id="324" js="1">
+            <en>restart</en>
+            <pl>zacznij od nowa</pl>
+        </string>
     </strings>
 </root>

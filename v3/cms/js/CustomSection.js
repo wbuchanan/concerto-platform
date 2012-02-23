@@ -128,6 +128,8 @@ CustomSection.uiRemoveReturn=function(){
 CustomSection.uiRefreshLogic=function(parameters,returns){
     if(parameters==null) parameters=this.getSerializedParameterVariables();
     if(returns==null) returns = this.getSerializedReturnVariables();
+    
+    $("#td"+CustomSection.className+"Logic").mask(dictionary["s319"]);
     $.post("view/CustomSection_logic.php",{
         oid:this.currentID,
         class_name:this.className,
@@ -135,6 +137,7 @@ CustomSection.uiRefreshLogic=function(parameters,returns){
         parameters:parameters,
         returns:returns
     },function(data){
+        $("#td"+CustomSection.className+"Logic").unmask();
         $("#td"+CustomSection.className+"Logic").html(data);
     })
 }

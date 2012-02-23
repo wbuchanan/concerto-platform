@@ -234,12 +234,14 @@ Test.uiRefreshSectionContent=function(type,counter,value,oid){
             break;
         }
     }
+    $("#divSection_"+counter).mask(dictionary["s319"]);
     $.post("view/section_content_"+type+".php",{
         type:type,
         counter:counter,
         value:value,
         oid:oid
     },function(data){
+        $("#divSection_"+counter).unmask();
         $("#divSection_"+counter+"_content").html(data);
         switch(type){
             case Test.sectionTypes.RCode:{
@@ -788,12 +790,12 @@ Test.uiIniDebug=function(){
         },
         buttons:[
         {
-            text:"start",
+            text:dictionary["s323"],
             click:function(){
                 Test.startDebug();
                 $("#divTestDebugDialog").dialog("option","buttons",[
                 {
-                    text:"restart",
+                    text:dictionary["s324"],
                     click:function(){
                         Test.restartDebug();
                     }
