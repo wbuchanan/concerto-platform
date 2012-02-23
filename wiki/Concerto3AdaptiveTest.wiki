@@ -3,7 +3,7 @@
                             == _(under revision)_ == 
 
 This tutorial will show you how to create a simple 2PL adaptive test on Concerto v3.0 that looks like this: 
-It is assumed that you’ve already taken the [http://code.google.com/p/concerto-platform/wiki/Concerto3SimpleTest *Concerto v3.0 Tutorials: Create a simple test*] section and are familiar with the basic functions of Concerto v3.0.
+It is assumed that you’ve already taken the *[http://code.google.com/p/concerto-platform/wiki/Concerto3SimpleTest Concerto v3.0 Tutorials: Create a simple test]* section and are familiar with the basic functions of Concerto v3.0.
 
 Note:
  * This document is relevant to Concerto v3.0. If you use an older version, please upgrade it (or else refer to relevant tutorials).
