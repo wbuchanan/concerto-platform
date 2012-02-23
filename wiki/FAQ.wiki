@@ -9,9 +9,15 @@ If you don't see the answer to your question on any of our pages, please feel fr
 Working with Concerto v3.0 can be fairly easy if you are well oriented with the user interface. The easiest way to get started is to go through the tutorials. Once you are familiar with the *[http://code.google.com/p/concerto-platform/wiki/Concerto3Tabs General manual]*, you should attempt to explore the sections by yourself. Next, go through the tutorial and *[http://code.google.com/p/concerto-platform/wiki/Concerto3SimpleTest create a simple test]* exactly as instructed. Following this, try to upload a few simple tests using the techniques that you have already learnt. Then, go through the tutorial and *[http://code.google.com/p/concerto-platform/wiki/Concerto3AdaptiveTest create an adaptive test]*. Again, once you have mastered the tutorial, attempt to create your own tests by applying the recently learnt techniques. 
 
 ===How much does it cost?===
-===How is the project being funded, currently?===
-===Can I develop tutorial material for Concerto?===
+Concerto is an open source project so anyone can use it free of charge.
+
+===Can I try out Concerto without downloading the full package?===
+Yes, you can email [mailto:vm298@cam.ac.uk?cc=mk583@cam.ac.uk Vaishali Mahalingam] in order to get a _demo account_. You can then login [http://dev.myiqtest.org/concerto3_demo/cms/index.php here]. 
+
+===Can I develop tutorials for Concerto?===
+Of course! We are very happy to expand the list of available tutorials. Please *[mailto:vm298@cam.ac.uk?cc=mk583@cam.ac.uk contact us]* if you would like to help the Concerto user community by developing tutorials.
+
 ===What are the other uses of Concerto besides online testing?===
-===Can I try it out without downloading the full package?===
+
 ===Do you conduct any workshops regarding Concerto and related subjects?===
 ===Can Concerto handle only _alternate-choice_ (e.g. yes/no) items?===
