@@ -12,6 +12,8 @@ if (!isset($ini))
             modal:true,
             title:"<?=Language::string(211)?>",
             resizeable:false,
+            closeOnEscape:false,
+            dialogClass:"no-close",
             open:function(){
                 Methods.iniTooltips();
             },

@@ -22,6 +22,8 @@ Methods.modalLoading=function(title){
         minHeight:50,
         resizable:false,
         modal:true,
+        closeOnEscape:false,
+        dialogClass:"no-close",
         buttons:
         {
     }
@@ -77,6 +79,8 @@ Methods.confirm=function(message,title,callback)
         minHeight:50,
         resizable:false,
         modal:true,
+        closeOnEscape:false,
+        dialogClass:"no-close",
         buttons:
         {
             no:function(){
@@ -99,6 +103,9 @@ Methods.alert=function(message,icon,title,callback)
         minHeight:50,
         resizable:false,
         modal:true,
+        close:function(){
+            if(callback!=null) callback.call(this);
+        },
         buttons:
         {
             ok:function(){
