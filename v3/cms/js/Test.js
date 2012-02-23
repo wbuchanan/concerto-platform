@@ -772,6 +772,11 @@ Test.uiRefreshDebugCodeMirrors=function(){
 }
 
 Test.uiIniDebug=function(){
+    try{
+        $("#divTestDebugDialog").dialog("close");
+    } catch(err){
+    }
+    
     $("#divTestDebugDialog").dialog({
         title:dictionary["s284"],
         width:800,
@@ -787,6 +792,9 @@ Test.uiIniDebug=function(){
                     Test.uiRefreshDebugCodeMirrors();
                 }
             });
+        },
+        beforeClose:function(){
+            Test.stopRunTimeDebug();
         },
         buttons:[
         {
@@ -893,6 +901,15 @@ Test.startSyntaxDebug=function(){
 Test.runTimeResponseIndex = 0;
 Test.runTimeCurrentTemplateID = 0;
 Test.debugCodeMirrors = new Array();
+Test.testObject = null;
+
+Test.stopRunTimeDebug=function(){
+    if(Test.testObject!=null) {
+        Test.testObject.stop();
+        Test.testObject = null;
+    }
+}
+
 Test.startRunTimeDebug=function(){
     var thisClass = this;
     Test.appendDebugConsole(dictionary["s297"], "ui-widget-header");
@@ -900,7 +917,8 @@ Test.startRunTimeDebug=function(){
     Test.appendDebugConsole(dictionary["s298"].format(this.currentID));
     Test.setDebugStatus(dictionary["s299"].format(this.currentID));
     Test.appendDebugConsole(dictionary["s300"]);
-    var test = new Concerto("#divTestDebugTest",null,this.currentID,"../query/",function(data){
+    Test.stopRunTimeDebug();
+    Test.testObject = new Concerto("#divTestDebugTest",null,this.currentID,"../query/",function(data){
         Test.runTimeResponseIndex++;
         Test.appendDebugConsole(dictionary["s301"]);
         
@@ -985,5 +1003,5 @@ Test.startRunTimeDebug=function(){
         
         Test.setDebugStatus(dictionary["s299"].format(thisClass.currentID));
     });
-    test.run();
+    Test.testObject.run();
 }

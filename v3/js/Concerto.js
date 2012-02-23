@@ -5,6 +5,7 @@ function Concerto(selector,sid,tid,queryPath,callbackGet,callbackSend){
     this.queryPath = queryPath==null?"query/":queryPath;
     this.callbackGet = callbackGet;
     this.callbackSend = callbackSend;
+    this.isStopped = false;
     
     this.lastResults = null;
     
@@ -28,6 +29,7 @@ function Concerto(selector,sid,tid,queryPath,callbackGet,callbackSend){
     }
     
     this.timeTick = function(){
+        if(this.isStopped) return;
         if(this.timer>0){
             this.timer--;
             $(".fontTimeLeft").html(this.timer);
@@ -37,7 +39,13 @@ function Concerto(selector,sid,tid,queryPath,callbackGet,callbackSend){
         }
     }
     
+    this.stop=function(){
+        this.clearTimer();
+        this.isStopped = true;
+    }
+    
     this.run=function(btnName,values){
+        if(this.isStopped) return;
         ConcertoMethods.loading(this.selector);
         var thisClass = this;
         
@@ -196,6 +204,7 @@ function Concerto(selector,sid,tid,queryPath,callbackGet,callbackSend){
     }
     
     this.submit=function(btnName){
+        if(this.isStopped) return;
         var vals = this.getControlsValues();
         this.clearTimer();
         this.run(btnName,vals);
