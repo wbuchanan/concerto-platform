@@ -161,7 +161,7 @@ class TestSection extends OTable
                         if ($vals[$j + 1] == 1 || $vals[$j + 1] == 2)
                         {
                             $code.=sprintf("
-                            set.var('%s',toString(%s))
+                            set.var('%s',%s)
                             ", $vals[$j], $ret->name);
                         }
                         $j = $j + 3;
@@ -240,7 +240,7 @@ class TestSection extends OTable
                         if ($column == null)
                                 return sprintf("stop('Invalid table column index: %s of table id: %s in section #%s')", $vals[4 + $i * 2], $vals[3], $this->counter);
                         if ($i > 0) $set.=",";
-                        $set.=sprintf("`%s`='\",toString(%s),\"'", $column->name, $vals[4 + $i * 2 + 1]);
+                        $set.=sprintf("`%s`='\",dbEscapeStrings(con,toString(%s)),\"'", $column->name, $vals[4 + $i * 2 + 1]);
                     }
 
                     $where = "";
@@ -252,7 +252,7 @@ class TestSection extends OTable
                                 return sprintf("stop('Invalid table column index: %s of table id: %s in section #%s')", $vals[$j + 1], $vals[3], $this->counter);
 
                         if ($i > 0) $where .=sprintf("%s", $vals[$j]);
-                        $where.=sprintf("`%s` %s '\",toString(%s),\"'", $column->name, $vals[$j + 2], $vals[$j + 3]);
+                        $where.=sprintf("`%s` %s '\",dbEscapeStrings(con,toString(%s)),\"'", $column->name, $vals[$j + 2], $vals[$j + 3]);
                     }
 
                     $sql = "";
@@ -287,7 +287,7 @@ class TestSection extends OTable
 
                     $set_var_code = "";
                     if ($vals[4] == 1 || $vals[4] == 2)
-                            $set_var_code = sprintf('set.var("%s",toString(%s))', $vals[6], $vals[6]);
+                            $set_var_code = sprintf('set.var("%s",%s)', $vals[6], $vals[6]);
 
                     $set_rvar_code = "";
                     if ($vals[4] == 0 || $vals[4] == 2)
@@ -352,9 +352,9 @@ class TestSection extends OTable
                                 $j++;
 
                                 if ($i > 1)
-                                        $sql.=sprintf("%s `%s` %s '\",toString(%s),\"' ", $link, $cond_col->name, $operator, $exp);
+                                        $sql.=sprintf("%s `%s` %s '\",dbEscapeStrings(con,toString(%s)),\"' ", $link, $cond_col->name, $operator, $exp);
                                 else
-                                        $sql.=sprintf("`%s` %s '\",toString(%s),\"' ", $cond_col->name, $operator, $exp);
+                                        $sql.=sprintf("`%s` %s '\",dbEscapeStrings(con,toString(%s)),\"' ", $cond_col->name, $operator, $exp);
                             }
                         }
 

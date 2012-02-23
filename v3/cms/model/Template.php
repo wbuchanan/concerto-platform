@@ -23,6 +23,7 @@ class Template extends OModule
             if (strpos($html, "}}") !== false)
             {
                 $name = substr($html, 0, strpos($html, "}}"));
+                if($name=="TIME_LEFT") continue;
                 if (!in_array($name, $inserts)) array_push($inserts, $name);
             }
         }
