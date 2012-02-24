@@ -3,7 +3,8 @@
 = Concerto v3.0 Tutorials: Create an adaptive test =
                             == _(under revision)_ == 
 
-This tutorial will show you how to create a simple adaptive test on Concerto v3.0 that looks like this: http://dev.myiqtest.org/concerto3_demo/index.php?tid=47
+This tutorial will show you how to create a simple adaptive test on Concerto v3.0 that looks like this: 
+[http://dev.myiqtest.org/concerto3_demo/index.php?tid=47 Concerto v3.0 Adaptive test]
 
 It is assumed that you’ve already taken the *[http://code.google.com/p/concerto-platform/wiki/Concerto3SimpleTest Concerto v3.0 Tutorials: Create a simple test]* section and are familiar with the basic functions of Concerto v3.0.
 
