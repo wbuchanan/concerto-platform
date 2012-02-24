@@ -183,12 +183,12 @@ OModule.inheritance=function(obj)
                         $.each(data.result, function (index, file) {
                             Table.isFileUploaded = true;
                             Methods.confirm(dictionary["s269"], dictionary["s29"], function(){
-                                $("#div"+thisClass.className+"DialogImport").mask(dictionary["s319"]);
+                                $("#div"+thisClass.className+"DialogImport").parent().mask(dictionary["s319"]);
                                 $.post("query/import_object.php",{
                                     class_name:thisClass.className,
                                     file:file.name
                                 },function(data){
-                                    $("#div"+thisClass.className+"DialogImport").unmask();
+                                    $("#div"+thisClass.className+"DialogImport").parent().unmask();
                                     $("#div"+thisClass.className+"DialogImport").dialog("close");
                                     switch(data.result){
                                         case 0:{
@@ -256,13 +256,13 @@ OModule.inheritance=function(obj)
             Methods.modalLoading();
         }
         
-        $("#divAddFormDialog").mask(dictionary["s319"]);
+        $("#divAddFormDialog").parent().mask(dictionary["s319"]);
         $("#div"+thisClass.className+"Form").mask(dictionary["s319"]);
         $.post("query/save_object.php",
             (this.currentID==0?this.getAddSaveObject():this.getFullSaveObject()),
             function(data)
             {
-                $("#divAddFormDialog").unmask();
+                $("#divAddFormDialog").parent().unmask();
                 $("#div"+thisClass.className+"Form").unmask();
                 if(thisClass.currentID==0) $("#divAddFormDialog").dialog("close");
                 

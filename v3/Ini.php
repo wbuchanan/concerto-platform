@@ -2,7 +2,7 @@
 
 class Ini
 {
-    private static $error_reporting = false;
+    private static $error_reporting = true;
     public static $path_internal = "";
     public static $path_external = "";
     public static $path_internal_media = "";
@@ -15,7 +15,7 @@ class Ini
     function __construct($connect = true)
     {
         include __DIR__ . "/SETTINGS.php";
-
+        if (substr_count($_SERVER['HTTP_ACCEPT_ENCODING'], 'gzip')) ob_start("ob_gzhandler"); else ob_start();
         @session_start();
         date_default_timezone_set($timezone);
         if (self::$error_reporting) error_reporting(E_ALL);

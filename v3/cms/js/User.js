@@ -67,14 +67,14 @@ User.uiFormNotValidated=function()
 User.uiLogIn=function()
 {
     var thisClass=this;
-    $("#dd_login").mask(dictionary["s319"]);
+    $("#dd_login").parent().mask(dictionary["s319"]);
     $.post("query/log_in.php",
     {
         login:$("#dd_login_inp_login").val(),
         password:$("#dd_login_inp_password").val()
     },
     function(data){
-        $("#dd_login").unmask();
+        $("#dd_login").parent().unmask();
         if(data.success==1)
         {
             $("#dd_login").dialog("close");

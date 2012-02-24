@@ -22,17 +22,12 @@
 
 class Language
 {
+    public static $dictionary;
     public static $xml;
 
     public static function string($id)
     {
-        $lang = "en";
-        if (isset($_SESSION['lng'])) $lang = $_SESSION['lng'];
-        $doc = new DOMDocument('1.0', 'UTF-8');
-        $doc->loadXML(self::$xml);
-        $xpath = new DOMXPath($doc);
-        $string = $xpath->query("/root/strings/string[@id='$id']/$lang");
-        foreach ($string as $s) return $s->nodeValue;
+        return self::$dictionary[$id];
     }
 
     public static function languages()
@@ -46,9 +41,22 @@ class Language
 
     public static function load_dictionary()
     {
+        self::$dictionary=array();
+        
         $doc = new DOMDocument('1.0', 'UTF-8');
         $doc->load(Ini::$path_internal . "/cms/dictionary/dictionary.xml");
         self::$xml = $doc->saveXML();
+        $lang = "en";
+        if (isset($_SESSION['lng'])) $lang = $_SESSION['lng'];
+        $xpath = new DOMXPath($doc);
+        $string = $xpath->query("/root/strings/string");
+        foreach ($string as $s) 
+        {
+            foreach($s->childNodes as $child)
+            {
+                if($child->nodeName==$lang) self::$dictionary[$s->getAttribute("id")]=$child->nodeValue;
+            }
+        }
     }
 
     public static function load_js_dictionary($client = false)

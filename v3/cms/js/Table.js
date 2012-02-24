@@ -295,12 +295,12 @@ Table.uiImportTable=function(){
                         Methods.alert(dictionary["s24"], "alert", dictionary["s25"]);
                         return;
                     }
-                    $("#div"+Table.className+"DialogImportMySQL").mask(dictionary["s319"]);
+                    $("#div"+Table.className+"DialogImportMySQL").parent().mask(dictionary["s319"]);
                     $.post("query/Table_mysql_import.php",{
                         oid:thisClass.currentID,
                         table:selectTable.val()
                     },function(data){
-                        $("#div"+Table.className+"DialogImportMySQL").unmask();
+                        $("#div"+Table.className+"DialogImportMySQL").parent().unmask();
                         $("#div"+Table.className+"DialogImportMySQL").dialog("close");
                         switch(data.result){
                             case 0:{
@@ -357,15 +357,15 @@ Table.uiImportCSV=function(){
                     }]  
                 },
                 send: function(e,data){
-                    $("#div"+Table.className+"DialogImportCSV").mask(dictionary["s319"]);
+                    $("#div"+Table.className+"DialogImportCSV").parent().mask(dictionary["s319"]);
                 },
                 done: function (e, data) {
-                    $("#div"+Table.className+"DialogImportCSV").unmask();
+                    $("#div"+Table.className+"DialogImportCSV").parent().unmask();
                     $.each(data.result, function (index, file) {
                         Table.isFileUploaded = true;
                         
                         Methods.confirm(dictionary["s28"], dictionary["s29"], function(){
-                            $("#div"+Table.className+"DialogImportCSV").mask(dictionary["s319"]);
+                            $("#div"+Table.className+"DialogImportCSV").parent().mask(dictionary["s319"]);
                             $.post("query/Table_csv_import.php",{
                                 oid:Table.currentID,
                                 file:file.name,
@@ -373,7 +373,7 @@ Table.uiImportCSV=function(){
                                 enclosure:$("#inputTableCSVImportEnclosure").val(),
                                 header:$("#inputTableCSVImportHeader").is(":checked")?1:0
                             },function(data){
-                                $("#div"+Table.className+"DialogImportCSV").unmask();
+                                $("#div"+Table.className+"DialogImportCSV").parent().unmask();
                                 $("#div"+Table.className+"DialogImportCSV").dialog("close");
                                 switch(data.result){
                                     case 0:{

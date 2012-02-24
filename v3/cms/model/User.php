@@ -10,7 +10,7 @@ class User extends OModule
     public $md5_password = "";
     public $UserType_id = 0;
     public $UserGroup_id = 0;
-    public $last_activity = "";
+    public $last_login = "";
     public static $mysql_table_name = "User";
 
     public function __construct($params = array())
@@ -50,12 +50,7 @@ class User extends OModule
                         "login" => $_SESSION['ptap_logged_login'],
                         "md5_password" => $_SESSION['ptap_logged_md5_password']
                             ), false);
-            if ($user != null)
-            {
-                $user->last_activity = date("Y-m-d H:i:s");
-                $user->mysql_save();
-                return $user;
-            }
+            if ($user != null) return $user;
         }
         return null;
     }
@@ -68,6 +63,9 @@ class User extends OModule
                         ), false);
         if ($user != null)
         {
+            $user->last_login = date("Y-m-d H:i:s");
+            $user->mysql_save();
+            
             $_SESSION['ptap_logged_login'] = $login;
             $_SESSION['ptap_logged_md5_password'] = md5($password);
         }
@@ -286,7 +284,7 @@ class User extends OModule
         ));
         array_push($cols, array(
             "name" => Language::string(175),
-            "property" => "last_activity",
+            "property" => "last_login",
             "searchable" => true,
             "sortable" => true
         ));
@@ -358,7 +356,7 @@ class User extends OModule
             `md5_password` text NOT NULL,
             `UserType_id` bigint(20) NOT NULL,
             `UserGroup_id` bigint(20) NOT NULL,
-            `last_activity` timestamp NOT NULL default '0000-00-00 00:00:00',
+            `last_login` timestamp NOT NULL default '0000-00-00 00:00:00',
             `Sharing_id` int(11) NOT NULL,
             `Owner_id` bigint(20) NOT NULL,
             PRIMARY KEY  (`id`)
@@ -367,7 +365,7 @@ class User extends OModule
         if (!mysql_query($sql)) return false;
 
         $sql = "
-            INSERT INTO `User` (`id`, `updated`, `created`, `login`, `firstname`, `lastname`, `email`, `phone`, `md5_password`, `UserType_id`, `UserGroup_id`, `last_activity`, `Sharing_id`, `Owner_id`) VALUES (NULL, CURRENT_TIMESTAMP, NOW(), 'admin', 'unknown', '', '', '', MD5('admin'), '1', '', '0000-00-00 00:00:00', '1', '1');
+            INSERT INTO `User` (`id`, `updated`, `created`, `login`, `firstname`, `lastname`, `email`, `phone`, `md5_password`, `UserType_id`, `UserGroup_id`, `last_login`, `Sharing_id`, `Owner_id`) VALUES (NULL, CURRENT_TIMESTAMP, NOW(), 'admin', 'unknown', '', '', '', MD5('admin'), '1', '', '0000-00-00 00:00:00', '1', '1');
             ";
         return mysql_query($sql);
     }
@@ -386,8 +384,10 @@ class User extends OModule
 
         if (Ini::does_patch_apply("3.1.0", $previous_version))
         {
+            //UNREACHABLE CODE START
             $sql = "ALTER TABLE `User` CHANGE `last_activity` `last_login` timestamp NOT NULL default '0000-00-00 00:00:00';";
             if (!mysql_query($sql)) return false;
+            //UNREACHABLE CODE END
         }
         return true;
     }
