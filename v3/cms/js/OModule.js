@@ -209,6 +209,10 @@ OModule.inheritance=function(obj)
                                             Methods.alert(dictionary["s271"], "alert", dictionary["s268"]);
                                             break;
                                         }
+                                        case -4:{
+                                            Methods.alert(dictionary["s333"], "alert", dictionary["s268"]);
+                                            break;
+                                        }
                                     }
                                 },"json");
                             });

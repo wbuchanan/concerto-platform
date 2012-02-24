@@ -2,7 +2,7 @@
 
 class Ini
 {
-    private static $error_reporting = false;
+    private static $error_reporting = true;
     public static $path_internal = "";
     public static $path_external = "";
     public static $path_internal_media = "";
@@ -10,7 +10,7 @@ class Ini
     public static $path_r_script = "";
     public static $path_temp = "";
     public static $path_mysql_home = "";
-    public static $version = "3.0.1";
+    public static $version = "3.1.0";
 
     function __construct($connect=true)
     {

@@ -1332,5 +1332,9 @@ You can add new languages by inserting <some_language>string translated into som
             <en>Check if you want to export CSV with a header row. Header row will be first row in CSV with table column names.</en>
             <pl>Zaznacz jesli chcesz wyeksportowac CSV z rzedem naglowka. Rzad naglowka bedzie pierwszym rzedem w CSV z nazwami kolumn tabeli.</pl>
         </string>
+        <string id="333" js="1">
+            <en>Error loading XML file. Can't continue with import.</en>
+            <pl>Blad przy wczytywaniu pliku XML. Import nie moze byc kontynuowany.</pl>
+        </string>
     </strings>
 </root>

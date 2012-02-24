@@ -193,7 +193,7 @@ class Template extends OModule
     public function import($path)
     {
         $xml = new DOMDocument();
-        $xml->load($path);
+        if(!$xml->load($path)) return -4;
 
         $this->Sharing_id = 1;
 
