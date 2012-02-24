@@ -19,6 +19,8 @@ Demo installation: [http://dev.myiqtest.org/concerto3_demo/cms/]
 ===Introduction template===
 Create a new template called _introduction_ and add some suitable text to describe the test and make testees feel comfortable. 
 
+http://ns39618.ovh.net/~vaishali/adaptive/intro.jpg
+
 ===Test item template===
 Create a new template called _test item_ and add the following content:
  * *{{question}}* insert  that will be filled by concerto
@@ -27,7 +29,9 @@ Create a new template called _test item_ and add the following content:
   * Ensure you call this text field "*response*" as that's how we refer to it in R code. You can give it a different name, but you will have to change R code accordingly.
   * If you don't know how to add a text field, see the *Concerto v3.0 Tutorials: Create a simple test* section.
  * A button called "*Submit*"
- * For presentation purposes, fields *{{theta}}*, *{{sem}}*, and *{{difficulty}}*. 
+ * For presentation purposes, add the field *{{theta}}*.
+
+http://ns39618.ovh.net/~vaishali/adaptive/items.jpg
 
 ===Feedback template===
 Create another new template called _feedback_ that contains:
@@ -35,6 +39,7 @@ Create another new template called _feedback_ that contains:
  * A few words of empathic feedback
  * Fields *{{theta}}*, *{{sem}}* 
 
+http://ns39618.ovh.net/~vaishali/adaptive/feedback.jpg
 
 ==Step 2: Creating an Item Bank/Table from a CSV File==
 
@@ -45,12 +50,43 @@ Download and unzip this CSV file: [http://ns39618.ovh.net/wiki2/_media/public/ib
 Go to the *tables* tab and click the ‘+’ icon to add a new table. Assign a meaningful name (E.g. adaptive_test) and save it. 
 Click the _link_ icon above _table structure and data_ to import a table from a csv file that you have downloaded. Concerto will automatically read the data into table format. All you need to do is alter the column names and their format (E.g. see screenshot below).
 
+http://ns39618.ovh.net/~vaishali/adaptive/table.jpg
 
 ==Step 3: Creating a test and adding sections==
 
 In the 'tests' tab, create a new test by adding a new object. Follow the images and corresponding text to create the structure of your test by adding new sections.
 
+|| *SECTION TYPE* || *DETAILS* ||
+|| Load HTML template || Select the _introduction_ template (or whatever you named it)||
+|| Set variable || SET VARIABLE *theta* IN *HTML* AS *default*; *by R code* _"Score not available yet"_||
+|| Set variable || SET VARIABLE *difficulties* IN *R* AS *default*; *from table* _adaptive_test_table_ (or whatever you named it); COLUMNS *difficulty* ||
+|| Set variable || SET VARIABLE *current_item* IN *R & HTML* AS *numeric*; *by R code* _50_||
+|| - || http://ns39618.ovh.net/~vaishali/adaptive/test1.jpg ||
 
+
+|| *SECTION TYPE* || *DETAILS* ||
+|| Set variable || SET VARIABLE *responses* IN *R & HTML* AS *default*; *by R code* _NULL_||
+|| Set variable || SET VARIABLE *itempar* IN *R & HTML* AS *default*; *by R code* _as.matrix(cbind(1,difficulties,0,1))_||
+|| Set variable || SET VARIABLE *catBank* IN *R & HTML* AS *default*; *by R code* _createItemBank(itempar,model="1pl")_||
+|| Set variable || SET VARIABLE *items_administered* IN *R & HTML* AS *default*; *by R code* _current_item_||
+|| Set variable || SET VARIABLE *question* IN *HTML* AS *default*; *from table* _adaptive_test_table_ (or whatever you named it); COLUMNS *content* WHERE *id* *equal* *current_item* ||
+|| - || http://ns39618.ovh.net/~vaishali/adaptive/test2.jpg ||
+
+
+|| *SECTION TYPE* || *DETAILS* ||
+||  ||  ||
+|| - || http://ns39618.ovh.net/~vaishali/adaptive/test3.jpg ||
+
+
+|| *SECTION TYPE* || *DETAILS* ||
+||  ||  ||
+|| - || http://ns39618.ovh.net/~vaishali/adaptive/test4.jpg ||
+
+
+|| *SECTION TYPE* || *DETAILS* ||
+||  ||  ||
+|| - || http://ns39618.ovh.net/~vaishali/adaptive/test5.jpg ||
+|| - || *_END_* ||
 
 
 
