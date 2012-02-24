@@ -13,7 +13,7 @@ Working with Concerto v3.0 can be fairly easy if you are well oriented with the 
 Concerto is an open source project so anyone can use it free of charge.
 
 ===Can I try out Concerto without downloading the full package?===
-Yes, you can email [mailto:vm298@cam.ac.uk?cc=mk583@cam.ac.uk Vaishali Mahalingam] in order to get a _demo account_. You can then login [http://dev.myiqtest.org/concerto3_demo/cms/index.php here]. 
+Yes, you can email [mailto:vm298@cam.ac.uk?cc=mk583@cam.ac.uk&subject=Concerto%20demo%20account Ms. Vaishali Mahalingam] in order to get a _demo account_. You can then login [http://dev.myiqtest.org/concerto3_demo/cms/index.php here]. 
 
 ===Can I develop tutorials for Concerto?===
 Of course! We are very happy to expand the list of available tutorials. Please *[mailto:vm298@cam.ac.uk?cc=mk583@cam.ac.uk contact us]* if you would like to help the Concerto user community by developing tutorials.
