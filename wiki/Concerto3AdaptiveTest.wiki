@@ -58,68 +58,43 @@ In the 'tests' tab, create a new test by adding a new object. Follow the images 
 
 || *SECTION TYPE* || *DETAILS* ||
 || Load HTML template || Select the _introduction_ template (or whatever you named it)||
-|| Set variable || SET VARIABLE *theta* IN *HTML* AS *default*; *by R code* _"Score not available yet"_||
+|| Set variable || SET VARIABLE *theta* IN *HTML* AS *default*; *by R code* - _"Score not available yet"_||
 || Set variable || SET VARIABLE *difficulties* IN *R* AS *default*; *from table* _adaptive_test_table_ (or whatever you named it); COLUMNS *difficulty* ||
-|| Set variable || SET VARIABLE *current_item* IN *R & HTML* AS *numeric*; *by R code* _50_||
+|| Set variable || SET VARIABLE *current_item* IN *R & HTML* AS *numeric*; *by R code* - _50_||
 || - || http://ns39618.ovh.net/~vaishali/adaptive/test1.jpg ||
 
 
 || *SECTION TYPE* || *DETAILS* ||
-|| Set variable || SET VARIABLE *responses* IN *R & HTML* AS *default*; *by R code* _NULL_||
-|| Set variable || SET VARIABLE *itempar* IN *R & HTML* AS *default*; *by R code* _as.matrix(cbind(1,difficulties,0,1))_||
-|| Set variable || SET VARIABLE *catBank* IN *R & HTML* AS *default*; *by R code* _createItemBank(itempar,model="1pl")_||
-|| Set variable || SET VARIABLE *items_administered* IN *R & HTML* AS *default*; *by R code* _current_item_||
-|| Set variable || SET VARIABLE *question* IN *HTML* AS *default*; *from table* _adaptive_test_table_ (or whatever you named it); COLUMNS *content* WHERE *id* *equal* *current_item* ||
+|| Set variable || SET VARIABLE *responses* IN *R & HTML* AS *default*; *by R code* - _NULL_||
+|| Set variable || SET VARIABLE *itempar* IN *R & HTML* AS *default*; *by R code* - _as.matrix(cbind(1,difficulties,0,1))_||
+|| Set variable || SET VARIABLE *catBank* IN *R & HTML* AS *default*; *by R code* - _createItemBank(itempar,model="1pl")_||
+|| Set variable || SET VARIABLE *items_administered* IN *R & HTML* AS *default*; *by R code* - _current_item_||
+|| Set variable || SET VARIABLE *question* IN *HTML* AS *default*; *from table* _adaptive_test_table_ (or whatever you named it); COLUMNS *content* WHERE *id* - *equal* - *current_item* ||
 || - || http://ns39618.ovh.net/~vaishali/adaptive/test2.jpg ||
 
 
 || *SECTION TYPE* || *DETAILS* ||
-||  ||  ||
+|| Set variable || SET VARIABLE *difficulty* IN *R & HTML* AS *numeric*; *from table* _adaptive_test_table_ (or whatever you named it); COLUMNS *difficulty* WHERE *id* - *equal* - *current_item* ||
+|| Set variable || SET VARIABLE *correct_answer* IN *R* AS *numeric*; *from table* _adaptive_test_table_ (or whatever you named it); COLUMNS *correct_answer* WHERE *id* - *equal* - *current_item* ||
+|| Load HTML template || Select the _test_items_ template (or whatever you named it)||
+|| Set variable || SET VARIABLE *response* IN *R & HTML* AS *default*; *by R code* - _response_||
 || - || http://ns39618.ovh.net/~vaishali/adaptive/test3.jpg ||
 
 
 || *SECTION TYPE* || *DETAILS* ||
-||  ||  ||
+|| Set variable || SET VARIABLE *responses* IN *R* AS *default*; *by R code* - _if (is.na(response)) {response <- -9999}. c(responses, correct_answer == response)_||
+|| Set variable || SET VARIABLE *theta* IN *R & HTML* AS *default*; *by R code* - _it<-matrix(itempar[items_administered,],nrow=length(items_administered)). thetaEst(it, responses)_||
+|| Set variable || SET VARIABLE *current_item* IN *R & HTML* AS *default*; *by R code* - _nextItem(catBank, theta, out=as.numeric(items_administered))[[1]]_||
+|| Set variable || SET VARIABLE *items_administered* IN *R* AS *default*; *by R code* - _c(items_administered, current_item)_||
+|| Set variable || SET VARIABLE *nitems* IN *R & HTML* AS *default*; *by R code* - _length(items_administered)_||
 || - || http://ns39618.ovh.net/~vaishali/adaptive/test4.jpg ||
 
 
 || *SECTION TYPE* || *DETAILS* ||
-||  ||  ||
+|| IF statement || *nitems* - *equal or lesser than* - *15* THEN _GO TO_ *11.set variable* (this is the section where you set the variable "question") ||
+|| Load HTML template || Select _feedback_ template (or whatever else you named it) ||
 || - || http://ns39618.ovh.net/~vaishali/adaptive/test5.jpg ||
 || - || *_END_* ||
-
-
-
-
- * Declare a “*theta*” insert to be shown on the test item as “*not available yet*”
- * Creates a vector of *difficulties* for ALL items in the item bank table 
- * Sets starting item to 50
-
- * Create an empty vector “*responses*” where users’ responses are to be stored
-* Creates a matrix of item parameters for the catR library with following columns: 
-  * discrimination
-  * difficulty
-  * guessing
-  * innatention 
-_Note, that discrimination is fixed to 1, guessing to 0 and innatention to 1 – which is an equivalent of ignoring those parameters._
- * Transforms the _itempar_ matrix into catBank object as required by catR library. _(Google “catR R” to get the catR manual)_
- * Creates the vector items_administered that stores items already administered to the testee – adds current item to this vector.
-
- * Get the text content for the current item
- * Get the difficulty of the current item (alternatively you could use: SET VARIABLE _difficulty_  =  by R code - _difficulties[current_item]_)
-
- * Get the _correct answer_ for the current item
- * Load HTML template _test item_.
-
- * Ensures that the response field was not empty (_nchar()_ returns the number of characters in a string). If ‘response’ is empty then it will equal 0; hence, set missing values to “*-9999*”. 
- * Compare response with a correct answer and add it to the vector storing user’s responses (i.e. “*responses*”).
- * Calculate the new _theta_ using _thetaEst_ function from catR package. (Object “_it_” contains item parameters for the items already administered).
-
- * Compute the new value for _current_item_ variable using _nextItem_ function from catR package. This function is defined by the catBank object, current theta and items that were already administered (_out =_).
- * Add current item to _items_administered_.
- * Check whether test is shorter than 20 items. If so, go back and show next item; if not, proceed.
-
- * Shows the HTML template _feedback_.
 
 Don't forget to save the test at frequent intervals!
 
