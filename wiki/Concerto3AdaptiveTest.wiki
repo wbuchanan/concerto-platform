@@ -15,14 +15,10 @@ It is best to use Google Chrome to run the Concerto administration panel. Please
 
 Demo installation: [http://dev.myiqtest.org/concerto3_demo/cms/]
 
-
-==Preliminary Step: Creating a test==
-Go to the ‘tests’ tab. Click ‘+’ at the end of the list of available objects, to create a new test. Assign a relevant name for the test and click ‘OK’. 
-
-To edit a test (or html template) at any time, click the _pencil_ icon near the specific test you want to edit. Be careful not to the click the last symbol on the right (bin) unless you wish to delete your test!
-
-
 ==Step 1: Create HTML Templates==
+===Introduction template===
+Create a new template called _introduction_ and add some suitable text to describe the test and make testees feel comfortable. 
+
 ===Test item template===
 Create a new template called _test item_ and add the following content:
  * *{{question}}* insert  that will be filled by concerto
@@ -50,9 +46,14 @@ Go to the *tables* tab and click the ‘+’ icon to add a new table. Assign a m
 Click the _link_ icon above _table structure and data_ to import a table from a csv file that you have downloaded. Concerto will automatically read the data into table format. All you need to do is alter the column names and their format (E.g. see screenshot below).
 
 
-==Step 3: Creating test sections==
+==Step 3: Creating a test and adding sections==
 
-Follow the images and corresponding text to create the structure of your test by adding new sections, in the *tests* tab.
+In the 'tests' tab, create a new test by adding a new object. Follow the images and corresponding text to create the structure of your test by adding new sections.
+
+
+
+
+
 
  * Declare a “*theta*” insert to be shown on the test item as “*not available yet*”
  * Creates a vector of *difficulties* for ALL items in the item bank table 
