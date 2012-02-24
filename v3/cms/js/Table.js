@@ -252,7 +252,28 @@ Table.uiEditColumn=function(col){
 }
 
 Table.uiExportCSV=function(){
-    location.href='query/Table_csv_export.php?oid='+this.currentID;
+    var thisClass = this;
+    $("#div"+Table.className+"DialogExportCSV").dialog({
+        title:dictionary["s329"],
+        modal:true,
+        resizable:false,
+        buttons:[{
+            text:dictionary["s265"],
+            click:function(){
+                var delimeter = $("#inputTableCSVExportDelimeter").val();
+                var enclosure = $("#inputTableCSVExportEnclosure").val();
+                var header = $("#inputTableCSVExportHeader").is(":checked")?1:0;
+                location.href='query/Table_csv_export.php?oid='+thisClass.currentID+"&delimeter="+delimeter+"&enclosure="+enclosure+"&header="+header;
+                $(this).dialog("close");
+            }
+        },{
+            text:dictionary["s23"],
+            click:function(){
+                $(this).dialog("close");
+            }
+        }
+        ]
+    });
 }
 
 Table.uiImportTable=function(){
@@ -319,6 +340,7 @@ Table.uiImportCSV=function(){
         title:dictionary["s27"],
         resizable:false,
         modal:true,
+        width:400,
         close:function(){
         },
         beforeClose:function(){
@@ -334,14 +356,22 @@ Table.uiImportCSV=function(){
                         value:Table.currentID
                     }]  
                 },
+                send: function(e,data){
+                    $("#div"+Table.className+"DialogImportCSV").mask(dictionary["s319"]);
+                },
                 done: function (e, data) {
+                    $("#div"+Table.className+"DialogImportCSV").unmask();
                     $.each(data.result, function (index, file) {
                         Table.isFileUploaded = true;
+                        
                         Methods.confirm(dictionary["s28"], dictionary["s29"], function(){
                             $("#div"+Table.className+"DialogImportCSV").mask(dictionary["s319"]);
                             $.post("query/Table_csv_import.php",{
                                 oid:Table.currentID,
-                                file:file.name
+                                file:file.name,
+                                delimeter:$("#inputTableCSVImportDelimeter").val(),
+                                enclosure:$("#inputTableCSVImportEnclosure").val(),
+                                header:$("#inputTableCSVImportHeader").is(":checked")?1:0
                             },function(data){
                                 $("#div"+Table.className+"DialogImportCSV").unmask();
                                 $("#div"+Table.className+"DialogImportCSV").dialog("close");
@@ -366,6 +396,7 @@ Table.uiImportCSV=function(){
                                     }
                                     default:{
                                         Methods.alert(dictionary["s30"], "alert", dictionary["s25"]);
+                                        Table.uiEdit(Table.currentID);
                                         break;
                                     }
                                 }

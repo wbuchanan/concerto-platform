@@ -275,37 +275,46 @@ class Table extends OModule
         return 0;
     }
 
-    public function import_from_csv($path)
+    public function import_from_csv($path, $delimeter=",", $enclosure=",", $header=false)
     {
         $this->mysql_delete_Table();
 
         $row = 1;
+        $column_names = array();
         if (($handle = fopen($path, "r")) !== FALSE)
         {
-            while (($data = fgetcsv($handle)) !== FALSE)
+            while (($data = fgetcsv($handle, 0, $delimeter, $enclosure)) !== FALSE)
             {
                 if ($row == 1)
                 {
                     $sql = "CREATE TABLE  " . $this->get_table_name() . " (";
                     for ($i = 1; $i <= count($data); $i++)
                     {
+                        $column_name = "c" . $i;
+                        if ($header) $column_name = $data[$i - 1];
+                        array_push($column_names, $column_name);
                         if ($i > 1) $sql.=",";
-                        $sql.="`c" . $i . "`  TEXT NOT NULL";
+                        $sql.="`" . $column_name . "`  TEXT NOT NULL";
 
-                        $sql2 = sprintf("INSERT INTO `%s` (`index`,`name`,`Table_id`,`TableColumnType_id`) VALUES (%d,'%s',%d,%d)", TableColumn::get_mysql_table(), $i, "c" . $i, $this->id, 1);
-                        mysql_query($sql2);
+                        $sql2 = sprintf("INSERT INTO `%s` (`index`,`name`,`Table_id`,`TableColumnType_id`) VALUES (%d,'%s',%d,%d)", TableColumn::get_mysql_table(), $i, $column_name, $this->id, 1);
+                        if(!mysql_query($sql2)) return -4;
                     }
                     $sql.=") ENGINE = INNODB;";
-                    mysql_query($sql);
+                    if(!mysql_query($sql)) return -4;
+                    if ($header)
+                    {
+                        $row++;
+                        continue;
+                    }
                 }
 
                 $sql = sprintf("INSERT INTO `%s` SET ", $this->get_table_name());
                 for ($i = 1; $i <= count($data); $i++)
                 {
                     if ($i > 1) $sql.=", ";
-                    $sql.=sprintf("`%s`='%s'", "c" . $i, mysql_real_escape_string($data[$i - 1]));
+                    $sql.=sprintf("`%s`='%s'", $column_names[$i - 1], mysql_real_escape_string($data[$i - 1]));
                 }
-                mysql_query($sql);
+                if(!mysql_query($sql)) return -4;
                 $row++;
             }
             fclose($handle);
@@ -410,7 +419,7 @@ class Table extends OModule
             $column = $xml->createElement("TableColumn");
             $column = $xml->importNode($column, true);
             $columns->appendChild($column);
-            
+
             $name = $xml->createElement("name", $col->name);
             $column->appendChild($name);
             $type = $xml->createElement("TableColumnType_id", $col->TableColumnType_id);
@@ -428,7 +437,7 @@ class Table extends OModule
 
             foreach ($cols as $col)
             {
-                $cell = $xml->createElement($col->name,$r[$col->name]);
+                $cell = $xml->createElement($col->name, $r[$col->name]);
                 $row->appendChild($cell);
             }
 

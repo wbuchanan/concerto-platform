@@ -1060,7 +1060,7 @@ You can add new languages by inserting <some_language>string translated into som
             <en>your version is up to date</en>
             <pl>twoja wersja jest aktualna</pl>
         </string>
-        <string id="265">
+        <string id="265" js="1">
             <en>export</en>
             <pl>eksport</pl>
         </string>
@@ -1299,6 +1299,38 @@ You can add new languages by inserting <some_language>string translated into som
         <string id="324" js="1">
             <en>restart</en>
             <pl>zacznij od nowa</pl>
+        </string>
+        <string id="325">
+            <en>field delimeter</en>
+            <pl>separator pol</pl>
+        </string>
+        <string id="326">
+            <en><![CDATA[Single character used to separate fields in a row. Default character is '<b>,</b>'.]]></en>
+            <pl><![CDATA[Pojedynczy znak uzywany do oddzielenia pol w rzedzie. Domyslny znak to '<b>,</b>'.]]></pl>
+        </string>
+        <string id="327">
+            <en>field enclosure</en>
+            <pl>objecie pola</pl>
+        </string>
+        <string id="328">
+            <en><![CDATA[Single character used to enclose string. Default character is '<b>"</b>'.]]></en>
+            <pl><![CDATA[Pojedynczy znak uzywany do objecia zakresu pola. Domyslny znak to '<b>"</b>'.]]></pl>
+        </string>
+        <string id="329" js="1">
+            <en>exporting table to CSV file</en>
+            <pl>eksportowanie tabeli do pliku CSV</pl>
+        </string>
+        <string id="330">
+            <en>header row</en>
+            <pl>rzad naglowka</pl>
+        </string>
+        <string id="331">
+            <en>Check if you want to import CSV with a header row. Header row values will be used as column names.</en>
+            <pl>Zaznacz jesli chcesz zaimportowac CSV z rzedem naglowka. Wartosci rzedu naglowka zostana uzyte jako nazwy kolumn.</pl>
+        </string>
+        <string id="332">
+            <en>Check if you want to export CSV with a header row. Header row will be first row in CSV with table column names.</en>
+            <pl>Zaznacz jesli chcesz wyeksportowac CSV z rzedem naglowka. Rzad naglowka bedzie pierwszym rzedem w CSV z nazwami kolumn tabeli.</pl>
         </string>
     </strings>
 </root>

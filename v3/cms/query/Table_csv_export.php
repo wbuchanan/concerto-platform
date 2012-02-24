@@ -9,13 +9,13 @@ $logged_user = User::get_logged_user();
 if ($logged_user == null) die(Language::string(81));
 
 $table = Table::from_mysql_id($_GET['oid']);
-if(!$logged_user->is_object_readable($table)) die(Language::string(81));
+if (!$logged_user->is_object_readable($table)) die(Language::string(81));
 
 /**
  * Generatting CSV formatted string from an array.
  * By Sergey Gurevich.
  */
-function array_to_scv($array, $header_row = true, $col_sep = ",", $row_sep = "\n", $qut = '"')
+function array_to_scv($array, $header_row = true, $col_sep = ",", $row_sep = "\r\n", $qut = '"')
 {
     if (!is_array($array) or !is_array($array[0])) return false;
     $output = "";
@@ -24,6 +24,7 @@ function array_to_scv($array, $header_row = true, $col_sep = ",", $row_sep = "\n
     {
         foreach ($array[0] as $key => $val)
         {
+            if (is_numeric($key)) continue;
             //Escaping quotes.
             $key = str_replace($qut, "$qut$qut", $key);
             $output .= "$col_sep$qut$key$qut";
@@ -36,6 +37,7 @@ function array_to_scv($array, $header_row = true, $col_sep = ",", $row_sep = "\n
         $tmp = '';
         foreach ($val as $cell_key => $cell_val)
         {
+            if (is_numeric($cell_key)) continue;
             //Escaping quotes.
             $cell_val = str_replace($qut, "$qut$qut", $cell_val);
             $tmp .= "$col_sep$qut$cell_val$qut";
@@ -59,6 +61,6 @@ while ($r = mysql_fetch_array($z))
     array_push($rows, $r);
 }
 
-echo array_to_scv($rows, false);
+echo array_to_scv($rows, $_GET['header'] == 1, $_GET['delimeter'], "\r\n", $_GET['enclosure']);
 exit();
 ?>

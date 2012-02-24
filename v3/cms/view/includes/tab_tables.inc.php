@@ -36,9 +36,70 @@ if ($logged_user == null)
     </tr>
 </table>
 
+<div id="divTableDialogExportCSV" class="notVisible">
+    <div class="padding ui-widget-content ui-corner-all margin">
+        <table>
+            <tr>
+                <td class="noWrap horizontalPadding ui-widget-header"><?= Language::string(330) ?>:</td>
+                <td><span class="tooltip spanIcon ui-icon ui-icon-help" title="<?= Language::string(332) ?>"></span></td>
+                <td class="fullWidth">
+                    <div class="horizontalMargin" align="center">
+                        <input id="inputTableCSVExportHeader" type="checkbox" class="ui-widget-content ui-corner-all" value="1" />
+                    </div>
+                </td>
+            </tr>
+            <tr>
+                <td class="noWrap horizontalPadding ui-widget-header"><?= Language::string(325) ?>:</td>
+                <td><span class="tooltip spanIcon ui-icon ui-icon-help" title="<?= Language::string(326) ?>"></span></td>
+                <td class="fullWidth">
+                    <div class="horizontalMargin" align="center">
+                        <input id="inputTableCSVExportDelimeter" type="text" maxlength="1" class="fullWidth ui-widget-content ui-corner-all" value="," />
+                    </div>
+                </td>
+            </tr>
+            <tr>
+                <td class="noWrap horizontalPadding ui-widget-header"><?= Language::string(327) ?>:</td>
+                <td><span class="tooltip spanIcon ui-icon ui-icon-help" title="<?= htmlspecialchars(Language::string(328)) ?>"></span></td>
+                <td class="fullWidth">
+                    <div class="horizontalMargin" align="center">
+                        <input id="inputTableCSVExportEnclosure" type="text" maxlength="1" class="fullWidth ui-widget-content ui-corner-all" value='"' />
+                    </div>
+                </td>
+            </tr>
+        </table>
+    </div>
+</div>
+
 <div id="divTableDialogImportCSV" class="notVisible">
     <div class="padding ui-widget-content ui-corner-all margin">
         <table>
+            <tr>
+                <td class="noWrap horizontalPadding ui-widget-header"><?= Language::string(330) ?>:</td>
+                <td><span class="tooltip spanIcon ui-icon ui-icon-help" title="<?= Language::string(331) ?>"></span></td>
+                <td class="fullWidth">
+                    <div class="horizontalMargin" align="center">
+                        <input id="inputTableCSVImportHeader" type="checkbox" class="ui-widget-content ui-corner-all" value="1" />
+                    </div>
+                </td>
+            </tr>
+            <tr>
+                <td class="noWrap horizontalPadding ui-widget-header"><?= Language::string(325) ?>:</td>
+                <td><span class="tooltip spanIcon ui-icon ui-icon-help" title="<?= Language::string(326) ?>"></span></td>
+                <td class="fullWidth">
+                    <div class="horizontalMargin" align="center">
+                        <input id="inputTableCSVImportDelimeter" type="text" maxlength="1" class="fullWidth ui-widget-content ui-corner-all" value="," />
+                    </div>
+                </td>
+            </tr>
+            <tr>
+                <td class="noWrap horizontalPadding ui-widget-header"><?= Language::string(327) ?>:</td>
+                <td><span class="tooltip spanIcon ui-icon ui-icon-help" title="<?= htmlspecialchars(Language::string(328)) ?>"></span></td>
+                <td class="fullWidth">
+                    <div class="horizontalMargin" align="center">
+                        <input id="inputTableCSVImportEnclosure" type="text" maxlength="1" class="fullWidth ui-widget-content ui-corner-all" value='"' />
+                    </div>
+                </td>
+            </tr>
             <tr>
                 <td class="noWrap horizontalPadding ui-widget-header"><?= Language::string(86) ?>:</td>
                 <td><span class="tooltip spanIcon ui-icon ui-icon-help" title="<?= Language::string(256) ?>"></span></td>
