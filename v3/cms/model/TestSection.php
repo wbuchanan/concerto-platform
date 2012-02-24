@@ -432,6 +432,28 @@ class TestSection extends OTable
         return $element;
     }
 
+    public static function create_db($delete = false)
+    {
+        if ($delete)
+        {
+            if (!mysql_query("DROP TABLE IF EXISTS `TestSection`;"))
+                    return false;
+        }
+        $sql = "
+            CREATE TABLE IF NOT EXISTS `TestSection` (
+            `id` bigint(20) NOT NULL auto_increment,
+            `created` timestamp NOT NULL default CURRENT_TIMESTAMP on update CURRENT_TIMESTAMP,
+            `updated` timestamp NOT NULL default '0000-00-00 00:00:00',
+            `counter` int(11) NOT NULL,
+            `TestSectionType_id` int(11) NOT NULL,
+            `Test_id` bigint(20) NOT NULL,
+            `parent_counter` int(11) NOT NULL,
+            PRIMARY KEY  (`id`)
+            ) ENGINE=InnoDB  DEFAULT CHARSET=utf8;
+            ";
+        return mysql_query($sql);
+    }
+
 }
 
 ?>

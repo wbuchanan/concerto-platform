@@ -166,6 +166,10 @@ class OTable
         return $subject;
     }
 
+    public static function update_db($previous_version)
+    {
+        return true;
+    }
 }
 
 ?>

@@ -709,8 +709,8 @@ You can add new languages by inserting <some_language>string translated into som
             <pl>email</pl>
         </string>
         <string id="175">
-            <en>last activity</en>
-            <pl>ostatnia aktywnosc</pl>
+            <en>last login</en>
+            <pl>ostatni login</pl>
         </string>
         <string id="176">
             <en>admin group</en>

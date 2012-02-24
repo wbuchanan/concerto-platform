@@ -107,7 +107,7 @@ class TestSession extends OTable
         return $result;
     }
 
-    public function RCall($code, $debug_syntax=false)
+    public function RCall($code, $debug_syntax = false)
     {
         $command = "";
         if (!$debug_syntax)
@@ -119,7 +119,7 @@ class TestSession extends OTable
 
             $command.=$this->get_post_RCode();
         }
-        else $command = "sink(stdout(), type='message')\n".$code;
+        else $command = "sink(stdout(), type='message')\n" . $code;
 
         $this->write_RSource_file($command);
 
@@ -230,6 +230,26 @@ class TestSession extends OTable
             $v[$var->name] = $var->value;
         }
         return $v;
+    }
+
+    public static function create_db($delete = false)
+    {
+        if ($delete)
+        {
+            if (!mysql_query("DROP TABLE IF EXISTS `TestSession`;"))
+                    return false;
+        }
+        $sql = "
+            CREATE TABLE IF NOT EXISTS `TestSession` (
+            `id` bigint(20) NOT NULL auto_increment,
+            `updated` timestamp NOT NULL default CURRENT_TIMESTAMP on update CURRENT_TIMESTAMP,
+            `created` timestamp NOT NULL default '0000-00-00 00:00:00',
+            `Test_id` bigint(20) NOT NULL,
+            `counter` int(11) NOT NULL,
+            PRIMARY KEY  (`id`)
+            ) ENGINE=InnoDB  DEFAULT CHARSET=utf8;
+            ";
+        return mysql_query($sql);
     }
 
 }

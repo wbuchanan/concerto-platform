@@ -43,6 +43,39 @@ class DS_TestSectionType extends ODataSet
         }
     }
 
+    public static function create_db($delete = false)
+    {
+        if ($delete)
+        {
+            if (!mysql_query("DROP TABLE IF EXISTS `DS_TestSectionType`;"))
+                    return false;
+        }
+        $sql = "
+            CREATE TABLE IF NOT EXISTS `DS_TestSectionType` (
+            `id` int(11) NOT NULL auto_increment,
+            `name` text NOT NULL,
+            `value` text NOT NULL,
+            `position` int(11) NOT NULL,
+            PRIMARY KEY  (`id`)
+            ) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=10 ;
+            ";
+        if (!mysql_query($sql)) return false;
+
+        $sql = "
+            INSERT INTO `DS_TestSectionType` (`id`, `name`, `value`, `position`) VALUES
+            (1, 'R code', '1', 1),
+            (2, 'load HTML template', '2', 2),
+            (3, 'go to', '3', 3),
+            (4, 'IF statement', '4', 4),
+            (5, 'set variable', '5', 5),
+            (6, 'start', '6', 6),
+            (7, 'end', '7', 7),
+            (8, 'table modification', '8', 8),
+            (9, 'custom section', '9', 9);
+            ";
+        return mysql_query($sql);
+    }
+
 }
 
 ?>

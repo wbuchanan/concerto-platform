@@ -23,7 +23,7 @@ class Template extends OModule
             if (strpos($html, "}}") !== false)
             {
                 $name = substr($html, 0, strpos($html, "}}"));
-                if($name=="TIME_LEFT") continue;
+                if ($name == "TIME_LEFT") continue;
                 if (!in_array($name, $inserts)) array_push($inserts, $name);
             }
         }
@@ -193,7 +193,7 @@ class Template extends OModule
     public function import($path)
     {
         $xml = new DOMDocument();
-        if(!$xml->load($path)) return -4;
+        if (!$xml->load($path)) return -4;
 
         $this->Sharing_id = 1;
 
@@ -233,6 +233,27 @@ class Template extends OModule
         $element->appendChild($HTML);
 
         return $element;
+    }
+
+    public static function create_db($delete = false)
+    {
+        if ($delete)
+        {
+            if (!mysql_query("DROP TABLE IF EXISTS `Template`;")) return false;
+        }
+        $sql = "
+            CREATE TABLE IF NOT EXISTS `Template` (
+            `id` bigint(20) NOT NULL auto_increment,
+            `updated` timestamp NOT NULL default CURRENT_TIMESTAMP on update CURRENT_TIMESTAMP,
+            `created` timestamp NOT NULL default '0000-00-00 00:00:00',
+            `name` text NOT NULL,
+            `HTML` text NOT NULL,
+            `Sharing_id` int(11) NOT NULL,
+            `Owner_id` bigint(20) NOT NULL,
+            PRIMARY KEY  (`id`)
+            ) ENGINE=InnoDB  DEFAULT CHARSET=utf8;
+            ";
+        return mysql_query($sql);
     }
 
 }

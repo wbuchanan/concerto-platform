@@ -12,7 +12,7 @@ class User extends OModule
     public $UserGroup_id = 0;
     public $last_activity = "";
     public static $mysql_table_name = "User";
-    
+
     public function __construct($params = array())
     {
         $this->login = Language::string(77);
@@ -148,8 +148,8 @@ class User extends OModule
         if ($val == 1) return true;
         else return false;
     }
-    
-    public function is_object_accessible($obj,$rw)
+
+    public function is_object_accessible($obj, $rw)
     {
         $val = $this->get_module_permission_value($obj::get_mysql_table(), $rw);
         switch ($val)
@@ -221,12 +221,12 @@ class User extends OModule
 
     public function is_object_editable($obj)
     {
-        return $this->is_object_accessible($obj,"w");
+        return $this->is_object_accessible($obj, "w");
     }
-    
+
     public function is_object_readable($obj)
     {
-        return $this->is_object_accessible($obj,"r");
+        return $this->is_object_accessible($obj, "r");
     }
 
     public function mysql_list_rights_filter($table_name, $sort)
@@ -271,7 +271,7 @@ class User extends OModule
     public static function get_list_columns()
     {
         $cols = parent::get_list_columns();
-        
+
         array_push($cols, array(
             "name" => Language::string(173),
             "property" => "login",
@@ -302,20 +302,20 @@ class User extends OModule
             "searchable" => true,
             "sortable" => true
         ));
-        
-        for($i=0;$i<count($cols);$i++)
+
+        for ($i = 0; $i < count($cols); $i++)
         {
-            if($cols[$i]["property"]=="name")
+            if ($cols[$i]["property"] == "name")
             {
                 array_splice($cols, $i, 1);
                 $i--;
             }
-            if($cols[$i]["property"]=="get_owner_full_name")
+            if ($cols[$i]["property"] == "get_owner_full_name")
             {
                 array_splice($cols, $i, 1);
                 $i--;
             }
-            if($cols[$i]["property"]=="get_sharing_name")
+            if ($cols[$i]["property"] == "get_sharing_name")
             {
                 array_splice($cols, $i, 1);
                 $i--;
@@ -337,6 +337,59 @@ class User extends OModule
         $type = $this->get_UserType();
         if ($type == null) return null;
         return $type->name;
+    }
+
+    public static function create_db($delete = false)
+    {
+        if ($delete)
+        {
+            if (!mysql_query("DROP TABLE IF EXISTS `User`;")) return false;
+        }
+        $sql = "
+            CREATE TABLE IF NOT EXISTS `User` (
+            `id` bigint(20) NOT NULL auto_increment,
+            `updated` timestamp NOT NULL default CURRENT_TIMESTAMP on update CURRENT_TIMESTAMP,
+            `created` timestamp NOT NULL default '0000-00-00 00:00:00',
+            `login` text NOT NULL,
+            `firstname` text NOT NULL,
+            `lastname` text NOT NULL,
+            `email` text NOT NULL,
+            `phone` text NOT NULL,
+            `md5_password` text NOT NULL,
+            `UserType_id` bigint(20) NOT NULL,
+            `UserGroup_id` bigint(20) NOT NULL,
+            `last_activity` timestamp NOT NULL default '0000-00-00 00:00:00',
+            `Sharing_id` int(11) NOT NULL,
+            `Owner_id` bigint(20) NOT NULL,
+            PRIMARY KEY  (`id`)
+            ) ENGINE=InnoDB  DEFAULT CHARSET=utf8;
+            ";
+        if (!mysql_query($sql)) return false;
+
+        $sql = "
+            INSERT INTO `User` (`id`, `updated`, `created`, `login`, `firstname`, `lastname`, `email`, `phone`, `md5_password`, `UserType_id`, `UserGroup_id`, `last_activity`, `Sharing_id`, `Owner_id`) VALUES (NULL, CURRENT_TIMESTAMP, NOW(), 'admin', 'unknown', '', '', '', MD5('admin'), '1', '', '0000-00-00 00:00:00', '1', '1');
+            ";
+        return mysql_query($sql);
+    }
+
+    public static function update_db($previous_version)
+    {
+        ///COMPATIBILITY FIX FOR V3.0.0 START
+        $sql = "SHOW COLUMNS FROM `User` WHERE `Field`='last_activity'";
+        $z = mysql_query($sql);
+        if (mysql_num_rows($z) > 0)
+        {
+            $sql = "ALTER TABLE `User` CHANGE `last_activity` `last_login` timestamp NOT NULL default '0000-00-00 00:00:00';";
+            if (!mysql_query($sql)) return false;
+        }
+        ///COMPATIBILITY FIX FOR V3.0.0 END
+
+        if (Ini::does_patch_apply("3.1.0", $previous_version))
+        {
+            $sql = "ALTER TABLE `User` CHANGE `last_activity` `last_login` timestamp NOT NULL default '0000-00-00 00:00:00';";
+            if (!mysql_query($sql)) return false;
+        }
+        return true;
     }
 
 }

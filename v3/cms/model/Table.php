@@ -275,7 +275,7 @@ class Table extends OModule
         return 0;
     }
 
-    public function import_from_csv($path, $delimeter=",", $enclosure=",", $header=false)
+    public function import_from_csv($path, $delimeter = ",", $enclosure = ",", $header = false)
     {
         $this->mysql_delete_Table();
 
@@ -297,10 +297,10 @@ class Table extends OModule
                         $sql.="`" . $column_name . "`  TEXT NOT NULL";
 
                         $sql2 = sprintf("INSERT INTO `%s` (`index`,`name`,`Table_id`,`TableColumnType_id`) VALUES (%d,'%s',%d,%d)", TableColumn::get_mysql_table(), $i, $column_name, $this->id, 1);
-                        if(!mysql_query($sql2)) return -4;
+                        if (!mysql_query($sql2)) return -4;
                     }
                     $sql.=") ENGINE = INNODB;";
-                    if(!mysql_query($sql)) return -4;
+                    if (!mysql_query($sql)) return -4;
                     if ($header)
                     {
                         $row++;
@@ -314,7 +314,7 @@ class Table extends OModule
                     if ($i > 1) $sql.=", ";
                     $sql.=sprintf("`%s`='%s'", $column_names[$i - 1], mysql_real_escape_string($data[$i - 1]));
                 }
-                if(!mysql_query($sql)) return -4;
+                if (!mysql_query($sql)) return -4;
                 $row++;
             }
             fclose($handle);
@@ -343,7 +343,7 @@ class Table extends OModule
     public function import($path)
     {
         $xml = new DOMDocument();
-        if(!$xml->load($path)) return -4;
+        if (!$xml->load($path)) return -4;
 
         $this->Sharing_id = 1;
 
@@ -445,6 +445,26 @@ class Table extends OModule
         }
 
         return $element;
+    }
+
+    public static function create_db($delete = false)
+    {
+        if ($delete)
+        {
+            if (!mysql_query("DROP TABLE IF EXISTS `Table`;")) return false;
+        }
+        $sql = "
+            CREATE TABLE IF NOT EXISTS `Table` (
+            `id` bigint(20) NOT NULL auto_increment,
+            `updated` timestamp NOT NULL default CURRENT_TIMESTAMP on update CURRENT_TIMESTAMP,
+            `created` timestamp NOT NULL default '0000-00-00 00:00:00',
+            `name` text NOT NULL,
+            `Sharing_id` int(11) NOT NULL,
+            `Owner_id` bigint(20) NOT NULL,
+            PRIMARY KEY  (`id`)
+            ) ENGINE=InnoDB  DEFAULT CHARSET=utf8;
+            ";
+        return mysql_query($sql);
     }
 
 }

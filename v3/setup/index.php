@@ -274,11 +274,11 @@ class Setup
                     <tr>
                         <?php
                         $test = $ini->check_db_structure();
-                        if (!$test) $ini->update_db_structure();
                         ?>
                         <td class="ui-widget-content"><b>MySQL</b> database tables structure test</td>
                         <td class="<?= ($test ? "ui-state-highlight" : "ui-state-error") ?>"><b>MySQL</b> database <b><?= $db_name ?></b> tables structure <b><?= ($test ? "IS CORRECT" : "IS NOT CORRECT") ?> - <b style="color:<?= ($test ? "green" : "red") ?>"><?= ($test ? "PASSED" : "FAILED") ?></b></td>
-                        <td class="ui-widget-content" align="center"><?= ($test ? "-" : "Tables structure has been automaticaly recreated. Any present previous Concerto tables has been removed. No further action is required.") ?></td>
+                        <td class="ui-widget-content" align="center"><?= ($test ? "-" : "Setup application was unable to create valid database structure.") ?></td>
+                        <?php $ok = $ok && $test; ?>
                     </tr>
                 <?php } ?>
 
