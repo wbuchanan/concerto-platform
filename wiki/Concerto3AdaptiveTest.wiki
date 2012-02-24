@@ -1,26 +1,30 @@
 #labels Featured,Tutorial
+.
 = Concerto v3.0 Tutorials: Create an adaptive test =
                             == _(under revision)_ == 
 
-This tutorial will show you how to create a simple 2PL adaptive test on Concerto v3.0 that looks like this: 
+This tutorial will show you how to create a simple adaptive test on Concerto v3.0 that looks like this: http://dev.myiqtest.org/concerto3_demo/index.php?tid=47
+
 It is assumed that you’ve already taken the *[http://code.google.com/p/concerto-platform/wiki/Concerto3SimpleTest Concerto v3.0 Tutorials: Create a simple test]* section and are familiar with the basic functions of Concerto v3.0.
 
-Note:
+*Note:*
  * This document is relevant to Concerto v3.0. If you use an older version, please upgrade it (or else refer to relevant tutorials).
  * You may experience some problems while using different browsers. Currently, it is best to use Google Chrome to run the administration panel.
 
-
+.
 ==Login to Concerto==
 It is best to use Google Chrome to run the Concerto administration panel. Please ensure that you have Concerto v3.0, the latest version. Go to *concerto_installation_path/admin* and login using your credentials. If you haven't installed Concerto on your server, you can use our demo installation. Email [mailto:vm298@cam.ac.uk?cc=mk583@cam.ac.uk&subject=Concerto%20demo%20account Ms. Vaishali Mahalingam] to get a demo account. 
 
 Demo installation: [http://dev.myiqtest.org/concerto3_demo/cms/]
-
+.
 ==Step 1: Create HTML Templates==
+.
 ===Introduction template===
+
 Create a new template called _introduction_ and add some suitable text to describe the test and make testees feel comfortable. 
 
 http://ns39618.ovh.net/~vaishali/adaptive/intro.jpg
-
+.
 ===Test item template===
 Create a new template called _test item_ and add the following content:
  * *{{question}}* insert  that will be filled by concerto
@@ -32,7 +36,7 @@ Create a new template called _test item_ and add the following content:
  * For presentation purposes, add the field *{{theta}}*.
 
 http://ns39618.ovh.net/~vaishali/adaptive/items.jpg
-
+.
 ===Feedback template===
 Create another new template called _feedback_ that contains:
  * A suitable title
@@ -40,7 +44,7 @@ Create another new template called _feedback_ that contains:
  * Fields *{{theta}}*, *{{sem}}* 
 
 http://ns39618.ovh.net/~vaishali/adaptive/feedback.jpg
-
+.
 ==Step 2: Creating an Item Bank/Table from a CSV File==
 
 The next step is to create an item bank for the test. Usually, software like R and LTM package are used to generate item parameters. Here, let’s use a mock-up item bank with only one item parameter (difficulty) which can be generated using the Rasch model.
@@ -51,18 +55,18 @@ Go to the *tables* tab and click the ‘+’ icon to add a new table. Assign a m
 Click the _link_ icon above _table structure and data_ to import a table from a csv file that you have downloaded. Concerto will automatically read the data into table format. All you need to do is alter the column names and their format (E.g. see screenshot below).
 
 http://ns39618.ovh.net/~vaishali/adaptive/table.jpg
-
+.
 ==Step 3: Creating a test and adding sections==
 
 In the 'tests' tab, create a new test by adding a new object (covered in the [http://code.google.com/p/concerto-platform/wiki/Concerto3Tabs General manual] and [http://code.google.com/p/concerto-platform/wiki/Concerto3SimpleTest Create a simple test] tutorials). Follow the images and corresponding text to create the structure of your test by adding new sections.
-
+.
 || *SECTION TYPE* || *DETAILS* ||
 || Load HTML template || Select the _introduction_ template (or whatever you named it)||
 || Set variable || SET VARIABLE *theta* IN *HTML* AS *default*; *by R code* - _"Score not available yet"_||
 || Set variable || SET VARIABLE *difficulties* IN *R* AS *default*; *from table* _adaptive_test_table_ (or whatever you named it); COLUMNS *difficulty* ||
 || Set variable || SET VARIABLE *current_item* IN *R & HTML* AS *numeric*; *by R code* - _50_||
 || - || http://ns39618.ovh.net/~vaishali/adaptive/test1.jpg ||
-
+.
 
 || *SECTION TYPE* || *DETAILS* ||
 || Set variable || SET VARIABLE *responses* IN *R & HTML* AS *default*; *by R code* - _NULL_||
@@ -71,7 +75,7 @@ In the 'tests' tab, create a new test by adding a new object (covered in the [ht
 || Set variable || SET VARIABLE *items_administered* IN *R & HTML* AS *default*; *by R code* - _current_item_||
 || Set variable || SET VARIABLE *question* IN *HTML* AS *default*; *from table* _adaptive_test_table_ (or whatever you named it); COLUMNS *content* WHERE *id* - *equal* - *current_item* ||
 || - || http://ns39618.ovh.net/~vaishali/adaptive/test2.jpg ||
-
+.
 
 || *SECTION TYPE* || *DETAILS* ||
 || Set variable || SET VARIABLE *difficulty* IN *R & HTML* AS *numeric*; *from table* _adaptive_test_table_ (or whatever you named it); COLUMNS *difficulty* WHERE *id* - *equal* - *current_item* ||
@@ -79,7 +83,7 @@ In the 'tests' tab, create a new test by adding a new object (covered in the [ht
 || Load HTML template || Select the _test_items_ template (or whatever you named it)||
 || Set variable || SET VARIABLE *response* IN *R & HTML* AS *default*; *by R code* - _response_||
 || - || http://ns39618.ovh.net/~vaishali/adaptive/test3.jpg ||
-
+.
 
 || *SECTION TYPE* || *DETAILS* ||
 || Set variable || SET VARIABLE *responses* IN *R* AS *default*; *by R code* - _if (is.na(response)) {response <- -9999}. c(responses, correct_answer == response)_||
@@ -88,19 +92,20 @@ In the 'tests' tab, create a new test by adding a new object (covered in the [ht
 || Set variable || SET VARIABLE *items_administered* IN *R* AS *default*; *by R code* - _c(items_administered, current_item)_||
 || Set variable || SET VARIABLE *nitems* IN *R & HTML* AS *default*; *by R code* - _length(items_administered)_||
 || - || http://ns39618.ovh.net/~vaishali/adaptive/test4.jpg ||
-
+.
 
 || *SECTION TYPE* || *DETAILS* ||
 || IF statement || *nitems* - *equal or lesser than* - *15* THEN _GO TO_ *11.set variable* (this is the section where you set the variable "question") ||
 || Load HTML template || Select _feedback_ template (or whatever else you named it) ||
 || - || http://ns39618.ovh.net/~vaishali/adaptive/test5.jpg ||
 || - || *_END_* ||
-
+.
 Don't forget to save the test at frequent intervals!
-
+.
 ==Run your test==
 Use the following URL (with the correct *test id* to run your test: *[concerto_installation_path]/?tid=[TEST_ID]*
 
 In case of the demo installation, the link looks like this: [http://dev.myiqtest.org/concerto3_DEMO/?tid=82] 
 
   _Note: Substitute the last 2 digits in the URL with the test id of your choice._
+.
