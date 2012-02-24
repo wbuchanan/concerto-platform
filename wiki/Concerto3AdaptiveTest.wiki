@@ -105,9 +105,12 @@ In the 'tests' tab, create a new test by adding a new object (covered in the [ht
 || Load HTML template || Select _feedback_ template (or whatever else you named it) ||
 || - || http://ns39618.ovh.net/~vaishali/adaptive/test5.jpg ||
 || - || *_END_* ||
+
 .
+
 Don't forget to save the test at frequent intervals!
 .
+
 ==Run your test==
 Use the following URL (with the correct *test id* to run your test: *[concerto_installation_path]/?tid=[TEST_ID]*
 
