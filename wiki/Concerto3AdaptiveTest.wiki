@@ -54,7 +54,7 @@ http://ns39618.ovh.net/~vaishali/adaptive/table.jpg
 
 ==Step 3: Creating a test and adding sections==
 
-In the 'tests' tab, create a new test by adding a new object. Follow the images and corresponding text to create the structure of your test by adding new sections.
+In the 'tests' tab, create a new test by adding a new object (covered in the [http://code.google.com/p/concerto-platform/wiki/Concerto3Tabs General manual] and [http://code.google.com/p/concerto-platform/wiki/Concerto3SimpleTest Create a simple test] tutorials). Follow the images and corresponding text to create the structure of your test by adding new sections.
 
 || *SECTION TYPE* || *DETAILS* ||
 || Load HTML template || Select the _introduction_ template (or whatever you named it)||
