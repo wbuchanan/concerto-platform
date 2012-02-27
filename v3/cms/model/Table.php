@@ -275,7 +275,7 @@ class Table extends OModule
         return 0;
     }
 
-    public function import_from_csv($path, $delimeter = ",", $enclosure = ",", $header = false)
+    public function import_from_csv($path, $delimeter = ",", $enclosure = '"', $header = false)
     {
         $this->mysql_delete_Table();
 
