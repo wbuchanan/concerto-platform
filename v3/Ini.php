@@ -10,7 +10,7 @@ class Ini
     public static $path_r_script = "";
     public static $path_temp = "";
     public static $path_mysql_home = "";
-    public static $version = "3.1.0";
+    public static $version = "3.1.1";
 
     function __construct($connect = true)
     {

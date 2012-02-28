@@ -190,15 +190,35 @@ function Concerto(selector,sid,tid,queryPath,callbackGet,callbackSend){
             values.push($.toJSON(obj));
         });
         
-        $(this.selector+" input:radio:checked").each(function(){
+        var radios = {};
+        $(this.selector+" input:radio").each(function(){
+            var checked = $(this).is(":checked");
+            var name = $(this).attr("name");
+            
             var obj = {
-                name:$(this).attr("name"),
-                value:$(this).val(),
+                name:name,
+                value:(checked?$(this).val():"NA"),
                 visibility:$(this).attr("returnvisibility"),
-                type:$(this).attr("returntype")
+                type:(checked?$(this).attr("returntype"):3)
             };
-            values.push($.toJSON(obj));
+            
+            var found = false;
+            for(var key in radios){
+                if(key==name) {
+                    if(checked&&radios[key].type==3) {
+                        radios[key]=obj;
+                        found = true;
+                        break;
+                    }
+                }
+            }
+            if(!found){
+                radios[name]=obj;
+            }
         });
+        for(var key in radios){
+            values.push($.toJSON(radios[key]));
+        }
         
         return values;
     }

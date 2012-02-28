@@ -974,7 +974,7 @@ Test.startRunTimeDebug=function(){
             var val = jQuery.parseJSON(vals[i]);
             var visibility = "";
             var type = "";
-            switch(val.visibility){
+            switch(parseInt(val.visibility)){
                 case 0:
                     visibility = dictionary["s275"];
                     break;
@@ -985,7 +985,7 @@ Test.startRunTimeDebug=function(){
                     visibility = dictionary["s276"];
                     break;
             }
-            switch(type){
+            switch(parseInt(val.type)){
                 case 0:
                     type = dictionary["s280"];
                     break;
@@ -994,6 +994,9 @@ Test.startRunTimeDebug=function(){
                     break;
                 case 2:
                     type = dictionary["s282"];
+                    break;
+                case 3:
+                    type="NA";
                     break;
             }
             html+="<tr><td class='ui-widget-content'>"+val.name+"</td><td class='ui-widget-content'>"+val.value+"</td><td class='ui-widget-content'>"+visibility+"</td><td class='ui-widget-content'>"+type+"</td></tr>";
