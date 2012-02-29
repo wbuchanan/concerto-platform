@@ -34,7 +34,7 @@ You can add new languages by inserting <some_language>string translated into som
         </string>
         <string id="6" js="1">
             <en>HTML controls `name` validation failed. Only alphanumeric, '_' and '.' characters allowed and value can't start with numbers. Value has been changed.\r\n\r\nold value: {0}\r\nnew value: {1}</en>
-            <pl>Walidacja pola `nazwa` kontrolki HTML nie powiodla sie. Tylko wartosci alfanumeryczne, '_' i '.' sa dozwolone, oraz wartosc nie moze zaczynac sie od liczby. Wartosc zostala zmieniona.\r\n\r\npoprzednia wartosc: {0}\r\nnowa wartosc: {1}</pl>
+            <pl>Walidacja pola `nazwa` kontrolki HTML nie powiodła się. Tylko wartości alfanumeryczne, '_' i '.' są dozwolone, oraz wartość nie może zaczynać się od liczby. Wartość została zmieniona.\r\n\r\npoprzednia wartość: {0}\r\nnowa wartość: {1}</pl>
         </string>
         <string id="7" js="1">
             <en>adding new object</en>
@@ -42,19 +42,19 @@ You can add new languages by inserting <some_language>string translated into som
         </string>
         <string id="8" js="1">
             <en>Are you sure you want to delete object #{0}?</en>
-            <pl>Jestes pewien ze chcesz usunac obiekt #{0}?</pl>
+            <pl>Jesteś pewien, że chcesz usunąć obiekt #{0}?</pl>
         </string>
         <string id="9" js="1">
             <en>Object has been saved.</en>
-            <pl>Obiekt zostal zapisany.</pl>
+            <pl>Obiekt został zapisany.</pl>
         </string>
         <string id="10" js="1">
             <en>Object has NOT been saved.</en>
-            <pl>Obiekt NIE zostal zapisany.</pl>
+            <pl>Obiekt NIE został zapisany.</pl>
         </string>
         <string id="11" js="1">
             <en>remove row</en>
-            <pl>usun rekord</pl>
+            <pl>usuń rekord</pl>
         </string>
         <string id="12" js="1">
             <en>editing column</en>
@@ -62,7 +62,7 @@ You can add new languages by inserting <some_language>string translated into som
         </string>
         <string id="13" js="1">
             <en>Column name must not be empty.</en>
-            <pl>Nazwa kolumny nie moze byc pusta.</pl>
+            <pl>Nazwa kolumny nie może być pusta.</pl>
         </string>
         <string id="14" js="1">
             <en>change column name</en>
@@ -70,7 +70,7 @@ You can add new languages by inserting <some_language>string translated into som
         </string>
         <string id="15" js="1">
             <en>Column with that name already exists.</en>
-            <pl>Kolumna o tej nazwie juz istnieje.</pl>
+            <pl>Kolumna o tej nazwie już istnieje.</pl>
         </string>
         <string id="16" js="1">
             <en>string</en>
@@ -86,11 +86,11 @@ You can add new languages by inserting <some_language>string translated into som
         </string>
         <string id="19" js="1">
             <en>edit column</en>
-            <pl>edytuj kolumne</pl>
+            <pl>edytuj kolumnę</pl>
         </string>
         <string id="20" js="1">
             <en>remove column</en>
-            <pl>usun kolumne</pl>
+            <pl>usuń kolumnę</pl>
         </string>
         <string id="21" js="1">
             <en>importing table from MySQL table</en>
@@ -114,7 +114,7 @@ You can add new languages by inserting <some_language>string translated into som
         </string>
         <string id="26" js="1">
             <en>Table structure and data imported.</en>
-            <pl>Struktura i dane tabeli zostaly zaimportowane.</pl>
+            <pl>Struktura i dane tabeli zostały zaimportowane.</pl>
         </string>
         <string id="27" js="1">
             <en>importing table from CSV file</en>
@@ -122,15 +122,15 @@ You can add new languages by inserting <some_language>string translated into som
         </string>
         <string id="28" js="1">
             <en>Are you sure you want to replace current table structure and data with the one from file?</en>
-            <pl>Jestes pewien ze chcesz zastapic obecna strukture i dane tabeli tymi z pliku?</pl>
+            <pl>Jesteś pewien że chcesz zastąpić obecną strukturę i dane tabeli tymi z pliku?</pl>
         </string>
         <string id="29" js="1">
             <en>file uploaded</en>
-            <pl>plik wyslany</pl>
+            <pl>plik wysłany</pl>
         </string>
         <string id="30" js="1">
             <en>There was an error importing table structure and data.</en>
-            <pl>Wystapil blad podczas importowania struktury i danych tabeli.</pl>
+            <pl>Wystąpił błąd podczas importowania struktury i danych tabeli.</pl>
         </string>
         <string id="31" js="1">
             <en>adding new column</en>
@@ -138,7 +138,7 @@ You can add new languages by inserting <some_language>string translated into som
         </string>
         <string id="32" js="1">
             <en>Are you sure you want to delete this row?</en>
-            <pl>Jestes pewien ze chcesz usunac ten rekord?</pl>
+            <pl>Jesteś pewien, że chcesz usunąć ten rekord?</pl>
         </string>
         <string id="33" js="1">
             <en>deleting table row</en>
@@ -146,7 +146,7 @@ You can add new languages by inserting <some_language>string translated into som
         </string>
         <string id="34" js="1">
             <en>Are you sure you want to delete this column</en>
-            <pl>Jestes pewien ze chcesz usunac ta kolumne?</pl>
+            <pl>Jesteś pewien że chcesz usunąć tą kolumnę?</pl>
         </string>
         <string id="35" js="1">
             <en>deleting table column</en>
@@ -162,7 +162,7 @@ You can add new languages by inserting <some_language>string translated into som
         </string>
         <string id="38" js="1">
             <en>change</en>
-            <pl>zmien</pl>
+            <pl>zmień</pl>
         </string>
         <string id="39" js="1">
             <en>Edit HTML. Current HTML:</en>
@@ -170,39 +170,39 @@ You can add new languages by inserting <some_language>string translated into som
         </string>
         <string id="40" js="1">
             <en>Using this section you can interpret some R code.</en>
-            <pl>Uzywajac tej sekcji mozna zinterpretowac dowolny kod R.</pl>
+            <pl>Używając tej sekcji można zinterpretować dowolny kod R.</pl>
         </string>
         <string id="41" js="1">
             <en>This section stops R backend and loads choosen HTML template.</en>
-            <pl>Ta sekcja przerywa wykonywanie kodu R i wyswietla uzytkownikowi szablon HTML.</pl>
+            <pl>Ta sekcja przerywa wykonywanie kodu R i wyświetla użytkownikowi szablon HTML.</pl>
         </string>
         <string id="42" js="1">
             <en>This section lets you skip to any other choosen section.</en>
-            <pl>Ta sekcja pozwala przejsc do innej wybranej sekcji.</pl>
+            <pl>Ta sekcja pozwala przejść do innej wybranej sekcji.</pl>
         </string>
         <string id="43" js="1">
             <en><![CDATA[Using this section you can make some conditional statements. Multiple conditions are allowed and you can include multiple sections in <b>THEN</b> clause. IF statements can't be nested.]]></en>
-            <pl><![CDATA[Dzieki tej sekcji mozna tworzyc twierdzenia warunkowe. Dozwolone jest wiele warunkow oraz mozna zamieszczac wiele sekcji w bloku <b>WTEDY</b>. Nie mozna zagniezdzac twierdzen JEZELI.]]></pl>
+            <pl><![CDATA[Dzięki tej sekcji można tworzyć twierdzenia warunkowe. Dozwolone jest wiele warunków, oraz można zamieszczać wiele sekcji w bloku <b>WTEDY</b>. Nie można zagnieżdżać twierdzen JEŻELI.]]></pl>
         </string>
         <string id="44" js="1">
-            <en><![CDATA[This section gives you possibility to set variable in your test logic backend. You can additionaly check the checkbox to make this variable visible in your HTML item templates. You can set the variable using one of the three methods:<ul><li><b>from table</b>: you can select previously defined table in Concerto and filter it for some specific rows and columns. You can also set the whole table by leaving the <b>WHERE</b> clause empty</li><li><b>by R code</b>: you can set your variable using the R code. This can basically be anything what you can do in R code. E.g. function result, mathematical calulation</li><li><b>using variable</b>: you can set your variable using value of other variable. This option is usefull as it has autocomplete feature that will help you find the variable you want to use from the previously declared variables</li></ul>]]></en>
-            <pl><![CDATA[Ta sekcja daje mozliwosc zadeklarowania zmiennej w logice testu. Mozna dodatkowo rowniez zaznaczyc checkbox aby sprawic zeby zmienna byla widoczna w szablonie HTML. Mozna ustawic zmienna jedna z trzech metod:<ul><li><b>z tabeli</b>: mozna wybrac wczesniej zdefiniowana tabele w Concerto, oraz jej konkretne rekordy i kolumny. Mozna rowniez wybrac cala tabele pozostawiajac blok <b>GDZIE</b> pusty</li><li><b>przez kod R</b>: mozna ustawic zmienna uzywajac kodu R. Moze to byc cokolwiek co da sie zrobic w jezyku R. Np. rezultat funkcji, matematyczne oblieczenie</li><li><b>uzywajac zmiennej</b>: mozna ustawic zmienna uzywajac wartosci innej zmiennej. Ta opcja jest uzyteczna gdyz posiada funkcje autouzupelniania ktore pomaga odnalezc zmienna ktora chce sie uzyc z wczesniej zadeklarowanych zmiennych</li></ul>]]></pl>
+            <en><![CDATA[This section gives you possibility to set variable in your test logic backend. You can additionaly check the checkbox to make this variable visible in your HTML item templates. You can set the variable using one of the three methods:<ul><li><b>from table</b>: you can select previously defined table in Concerto and filter it for some specific rows and columns. You can also set the whole table by leaving the <b>WHERE</b> clause empty</li><li><b>by R code</b>: you can set your variable using the R code. This can basically be anything what you can do in R code. E.g. function result, mathematical calulation</li></ul>]]></en>
+            <pl><![CDATA[Ta sekcja daje mozliwość zadeklarowania zmiennej w logice testu. Można dodatkowo również zaznaczyć checkbox aby sprawić żeby zmienna była widoczna w szablonie HTML. Można ustawić zmienną jedną z trzech metod:<ul><li><b>z tabeli</b>: można wybrać wcześniej zdefiniowaną tabelę w Concerto, oraz jej konkretne rekordy i kolumny. Można również wybrać całą tabelę pozostawiając blok <b>GDZIE</b> pusty</li><li><b>przez kod R</b>: można ustawić zmienną używając kodu R. Może to być cokolwiek co da się wykonać w języku R. Np. rezultat funkcji, matematyczne obliczenie</li></ul>]]></pl>
         </string>
         <string id="45" js="1">
             <en>This is the start section. You can't modify it. This is just the entry point to your test logic.</en>
-            <pl>To jest sekcja poczatkowa. Nie mozna jej modyfikowac. Stanowi punkt wejsciowy do logiki testu.</pl>
+            <pl>To jest sekcja początkowa. Nie można jej modyfikować. Stanowi punkt wejściowy do logiki testu.</pl>
         </string>
         <string id="46" js="1">
             <en>This is the end section. You can't modify it. This is the finish section of your test logic.</en>
-            <pl>To jest sekcja koncowa. Nie mozna jej modyfikowac. To jest sekcja konczaca logike testu.</pl>
+            <pl>To jest sekcja końcowa. Nie można jej modyfikowac. To jest sekcja kończąca logikę testu.</pl>
         </string>
         <string id="47" js="1">
             <en><![CDATA[Using this section you can modify previously defined table of your choice. You can do three basic database operation here:<ul><li><b>INSERT</b>: using this command you can insert a single row and choose the value for the table columns</li><li><b>UPDATE</b>: using this command you can modify table rows that meets the criteria found in the <b>WHERE</b> clause. You can set wich columns you want to modify and what value you want to give them.</li><li><b>DELETE</b>: using this command you can delete table rows that meets the criteria found in the <b>WHERE</b> clause.</li></ul>]]></en>
-            <pl><![CDATA[Uzywajac tej sekcji mozna zmodyfikowac wczescniej zdefiniowane tabele. Mozna wykonac trzy podstawowoe operacje na bazie danych:<ul><li><b>DODANIE</b>: uzywajac tej komendy mozna dodac nowy pojedynczy rekord z wybranymi wartosciami</li><li><b>ZMIANA</b>: uzywajac tej komendy mozna zmodyfikowac rekordy tabeli ktore spelniaja podane kryteria w bloku <b>GDZIE</b>. Mozna ustawic ktore kolumny chce sie zmodyfikowac i jaka wartosc chce sie im dac.</li><li><b>USUN</b>: uzywajac tej komendy mozesz usunac rekordy tabeli ktore spelniaja kryteria podane w bloku <b>GDZIE</b>.</li></ul>]]></pl>
+            <pl><![CDATA[Używajac tej sekcji można zmodyfikować wcześniej zdefiniowane tabele. Można wykonać trzy podstawowoe operacje na bazie danych:<ul><li><b>DODANIE</b>: używajac tej komendy można dodać nowy pojedyńczy rekord z wybranymi wartościami</li><li><b>ZMIANA</b>: używając tej komendy można zmodyfikować rekordy tabeli które spełniaja podane kryteria w bloku <b>GDZIE</b>. Można ustawić które kolumny chce się zmodyfikować i jaką wartość chce się im dać.</li><li><b>USUŃ</b>: używając tej komendy możesz usunąć rekordy tabeli które spełniają kryteria podane w bloku <b>GDZIE</b>.</li></ul>]]></pl>
         </string>
         <string id="48" js="1">
             <en>This is custom section.</en>
-            <pl>To jest sekcja wlasna.</pl>
+            <pl>To jest sekcja własna.</pl>
         </string>
         <string id="49" js="1">
             <en>R code</en>

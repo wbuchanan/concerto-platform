@@ -205,9 +205,9 @@ function Concerto(selector,sid,tid,queryPath,callbackGet,callbackSend){
             var found = false;
             for(var key in radios){
                 if(key==name) {
+                    found = true;
                     if(checked&&radios[key].type==3) {
                         radios[key]=obj;
-                        found = true;
                         break;
                     }
                 }
