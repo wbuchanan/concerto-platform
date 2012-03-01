@@ -114,7 +114,7 @@ Don't forget to save the test at frequent intervals!
 ==Run your test==
 Use the following URL (with the correct *test id* to run your test: *[concerto_installation_path]/?tid=[TEST_ID]*
 
-In case of the demo installation, the link looks like this: [http://dev.myiqtest.org/concerto3_demo/?tid=47] 
+In case of the demo installation, the link looks like this: [http://dev.myiqtest.org/concerto3_demo/?tid=69] 
 
   _Note: Substitute the last 2 digits in the URL with the test id of your choice._
 .
