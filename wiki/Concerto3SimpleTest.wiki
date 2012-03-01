@@ -3,7 +3,7 @@
                             
 This tutorial will help you create a simple test on Concerto v3.0. 
 You can preview the test here: 
- * *[http://dev.myiqtest.org/concerto3_demo/index.php?tid=17 Concerto v3.0 Simple Test]*
+ * *[http://dev.myiqtest.org/concerto3_demo/index.php?tid=61 Concerto v3.0 Simple Test]*
 
 Note:
  * This document is relevant to Concerto v3.0. If you use an older version, please upgrade it (or else refer to relevant tutorials).
@@ -97,6 +97,7 @@ Follow the table below to add new sections to your test, using the editor. Be ca
 
 || *SECTION TYPE* || *DETAILS* ||
 || Load HTML template || Choose the HTML template: _items_ (or whatever name you gave to this HTML template). ||
+|| IF statement || IF _is.na(radio1)_ - _equal_ - _T_  THEN CLICK '+' ICON BELOW 'THEN'. GO TO SECTION: _load items template_ (i.e. go to the previous section in your test. This step presents the testee with the same item if no radio button is selected.) ||
 || IF statement || IF _answer_ - _equal_ - _radio1_  THEN CLICK '+' ICON BELOW 'THEN'. SET VARIABLE: _total_score_  IN _R & HTML_  AS _numeric_  by R code - _total_score + 1_. (Simple! *If* answer is equal to the value of the radio button selected by the user *then* increase total score by 1. _Note: to add the next section “outside of the if clause” use the ‘+’ icon at the very bottom of the entire IF statement box._)||
 || Set variable || SET VARIABLE:  _current_question_  IN _R & HTML_  AS _default_  by R code:  _current_question + 1_.  (Add one to the current_question value to select the 2nd question from the table next time!)||
 || - || http://ns39618.ovh.net/~vaishali/simple/test3.jpg ||
@@ -111,7 +112,7 @@ Follow the table below to add new sections to your test, using the editor. Be ca
 To run your test, use the following URL: 
 *(concerto_installation_path)/?tid=(TEST_ID)*
 
-In case of the demo installation, this link looks like this: [http://dev.myiqtest.org/concerto3_demo/index.php?tid=17] 
+In case of the demo installation, this link looks like this: [http://dev.myiqtest.org/concerto3_demo/index.php?tid=61] 
 
   _Note: Substitute the last 2 digits in the URL with the _test id_ of your specific test._
 
