@@ -112,7 +112,7 @@ Follow the table below to add new sections to your test, using the editor. Be ca
 To run your test, use the following URL: 
 *(concerto_installation_path)/?tid=(TEST_ID)*
 
-In case of the demo installation, this link looks like this: [http://dev.myiqtest.org/concerto3_demo/index.php?tid=61] 
+In case of the demo installation, this link looks like this: [http://dev.myiqtest.org/concerto3_demo/index.php?tid=69] 
 
   _Note: Substitute the last 2 digits in the URL with the _test id_ of your specific test._
 
