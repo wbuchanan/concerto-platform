@@ -92,20 +92,20 @@ In the 'tests' tab, create a new test by adding a new object (covered in the [ht
 .
 
 || *SECTION TYPE* || *DETAILS* ||
-|| Set variable || SET VARIABLE *responses* IN *R* AS *default*; *by R code* - _if (is.na(response)) {response <- -9999}. c(responses, correct_answer == response)_||
+|| IF statement || *response* - *equal* - *""* (empty string) *OR* - *suppressWarnings(!is.na(as.numeric(response)))* - *not equal* - *T* THEN _GO TO_ *14.load HTML template* (this is the section where you load the items template) ||
+|| Set variable || SET VARIABLE *responses* IN *R & HTML* AS *default*; *by R code* - _c(responses, correct_answer == response)_||
 || Set variable || SET VARIABLE *theta* IN *R & HTML* AS *default*; *by R code* - _it<-matrix(itempar[items_administered,],nrow=length(items_administered)). thetaEst(it, responses)_||
 || Set variable || SET VARIABLE *current_item* IN *R & HTML* AS *default*; *by R code* - _nextItem(catBank, theta, out=as.numeric(items_administered))[[1]]_||
 || Set variable || SET VARIABLE *items_administered* IN *R* AS *default*; *by R code* - _c(items_administered, current_item)_||
-|| Set variable || SET VARIABLE *nitems* IN *R & HTML* AS *default*; *by R code* - _length(items_administered)_||
-|| - || http://ns39618.ovh.net/~vaishali/adaptive/test4.jpg ||
+|| - || http://ns39618.ovh.net/~vaishali/adaptive/test-4.jpg ||
 .
 
 || *SECTION TYPE* || *DETAILS* ||
+|| Set variable || SET VARIABLE *nitems* IN *R & HTML* AS *default*; *by R code* - _length(items_administered)_||
 || IF statement || *nitems* - *equal or lesser than* - *15* THEN _GO TO_ *11.set variable* (this is the section where you set the variable "question") ||
 || Load HTML template || Select _feedback_ template (or whatever else you named it) ||
-|| - || http://ns39618.ovh.net/~vaishali/adaptive/test5.jpg ||
+|| - || http://ns39618.ovh.net/~vaishali/adaptive/test-5.jpg ||
 || - || *_END_* ||
-
 .
 
 Don't forget to save the test at frequent intervals!
