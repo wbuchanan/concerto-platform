@@ -1,7 +1,7 @@
 #labels Featured
 =CHANGELOG=
 
-
+==v3 changelog can be found in SVN repository source changes history==
 
 ----
 
