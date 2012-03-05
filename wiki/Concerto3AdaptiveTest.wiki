@@ -14,7 +14,7 @@ It is assumed that you’ve already taken the *[http://code.google.com/p/concert
 
 .
 ==Login to Concerto==
-It is best to use Google Chrome to run the Concerto administration panel. Please ensure that you have Concerto v3.0, the latest version. Go to *concerto_installation_path/admin* and login using your credentials. If you haven't installed Concerto on your server, you can use our demo installation. Email [mailto:vm298@cam.ac.uk?cc=mk583@cam.ac.uk&subject=Concerto%20demo%20account Ms. Vaishali Mahalingam] to get a demo account. 
+It is best to use Google Chrome to run the Concerto administration panel. Please ensure that you have Concerto v3.0, the latest version. Go to *concerto_installation_path/cms* and login using your credentials. If you haven't installed Concerto on your server, you can use our demo installation. Email [mailto:vm298@cam.ac.uk?cc=mk583@cam.ac.uk&subject=Concerto%20demo%20account Ms. Vaishali Mahalingam] to get a demo account. 
 
 Demo installation: [http://dev.myiqtest.org/concerto3_demo/cms/]
 
