@@ -1,4 +1,23 @@
 <?php
+/*
+  Concerto Platform - Online Adaptive Testing Platform
+  Copyright (C) 2011-2012, The Psychometrics Centre, Cambridge University
+
+  This program is free software; you can redistribute it and/or
+  modify it under the terms of the GNU General Public License
+  as published by the Free Software Foundation; version 2
+  of the License, and not any of the later versions.
+
+  This program is distributed in the hope that it will be useful,
+  but WITHOUT ANY WARRANTY; without even the implied warranty of
+  MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+  GNU General Public License for more details.
+
+  You should have received a copy of the GNU General Public License
+  along with this program; if not, write to the Free Software
+  Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA.
+ */
+
 if (!isset($ini))
 {
     require_once'../Ini.php';
@@ -14,19 +33,19 @@ if (!isset($ini))
         <meta name="author" content="Przemyslaw Lis" />
         <title>Concerto Platform</title>
         <link rel="stylesheet" href="css/styles.css" />
-        
+
         <link rel="stylesheet" href="js/lib/loadmask/jquery.loadmask.css" />
         <link rel="stylesheet" href="lib/CodeMirror/lib/codemirror.css" />
         <link rel="stylesheet" href="lib/CodeMirror/theme/night.css" />
         <link rel="stylesheet" href="js/lib/jquery-ui/themes/base/jquery.ui.tooltip.css" />
         <link rel="stylesheet" href="js/lib/selectmenu/jquery.ui.selectmenu.css" />
-        
+
         <script type="text/javascript" src="js/lib/jquery-1.7.1.min.js"></script>
         <script type="text/javascript" src="js/lib/jquery-ui/ui/minified/jquery-ui.min.js"></script>
         <script type="text/javascript" src="js/lib/selectmenu/jquery.ui.selectmenu.js"></script>
         <script type="text/javascript" src="js/lib/jquery.json-2.3.min.js"></script>
         <script type="text/javascript" src="js/lib/loadmask/jquery.loadmask.min.js"></script>
-        
+
         <script src="../js/ConcertoMethods.js"></script>
         <script src="../js/Concerto.js"></script>
 
@@ -66,7 +85,7 @@ if (!isset($ini))
                 });
             })
         </script>
-        <?=  Language::load_js_dictionary()?>
+        <?= Language::load_js_dictionary() ?>
     </head>
     <body>
         <div id="switcher"></div>

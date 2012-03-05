@@ -1,4 +1,23 @@
 <?php
+/*
+  Concerto Platform - Online Adaptive Testing Platform
+  Copyright (C) 2011-2012, The Psychometrics Centre, Cambridge University
+
+  This program is free software; you can redistribute it and/or
+  modify it under the terms of the GNU General Public License
+  as published by the Free Software Foundation; version 2
+  of the License, and not any of the later versions.
+
+  This program is distributed in the hope that it will be useful,
+  but WITHOUT ANY WARRANTY; without even the implied warranty of
+  MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+  GNU General Public License for more details.
+
+  You should have received a copy of the GNU General Public License
+  along with this program; if not, write to the Free Software
+  Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA.
+ */
+
 if (!isset($ini))
 {
     require_once'../../Ini.php';
@@ -26,35 +45,36 @@ if ($logged_user == null)
                     catch(err){
                     }
                 }
-            }
-        });
-        $(".tooltipTabs").tooltip({
-            position:{ my: "left top", at: "left bottom", offset: "15 0" },
-            tooltipClass:"tooltipWindow"
-        });
-        
-        Methods.currentVersion = "<?= Ini::$version ?>";
-        Methods.checkLatestVersion(function(isNewerVersion,version){
-            var div = $("#divVersionCheck");
-            var newer = isNewerVersion==1;
-            if(newer)
-            {
-                div.addClass("ui-state-error");
-                div.html("<?= Language::string(262) ?> <a href='http://code.google.com/p/concerto-platform'><?= Language::string(263) ?> v"+version+"</a>");
-            }
-            else
-            {
-                div.html("<?= Language::string(264) ?>");
-            }
-        });
-        $("#divUsersAccordion").accordion({
-            collapsible:true,
-            active:false,
-            change:function(){
-                $(this).accordion("resize");
-            }
-        });
+        }
     });
+    $(".tooltipTabs").tooltip({
+        position:{ my: "left top", at: "left bottom", offset: "15 0" },
+        tooltipClass:"tooltipWindow"
+    });
+        
+    Methods.currentVersion = "<?= Ini::$version ?>";
+    Methods.checkLatestVersion(function(isNewerVersion,version){
+        var div = $("#divVersionCheck");
+        var newer = isNewerVersion==1;
+        if(newer)
+        {
+            div.addClass("ui-state-error");
+            div.html("<?= Language::string(262) ?> <a href='http://code.google.com/p/concerto-platform'><?= Language::string(263) ?> v"+version+"</a>");
+        }
+        else
+        {
+            div.html("<?= Language::string(264) ?>");
+        }
+    });
+    $("#divUsersAccordion").accordion({
+        collapsible:true,
+        active:false,
+        animated:false,
+        change:function(){
+            $(this).accordion("resize");
+        }
+    });
+});
 </script>
 <div class="ui-widget-content ui-corner-all margin" align="center"><?php include Ini::$path_internal . 'cms/view/includes/header.inc.php'; ?></div>
 <div align="center" class="margin" >

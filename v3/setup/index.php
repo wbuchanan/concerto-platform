@@ -1,14 +1,12 @@
 <?php
 /*
-  Concerto Testing Platform,
-  Web based adaptive testing platform utilizing R language for computing purposes.
+  Concerto Platform - Online Adaptive Testing Platform
+  Copyright (C) 2011-2012, The Psychometrics Centre, Cambridge University
 
-  Copyright (C) 2011  Psychometrics Centre, Cambridge University
-
-  This program is free software: you can redistribute it and/or modify
-  it under the terms of the GNU General Public License as published by
-  the Free Software Foundation, either version 3 of the License, or
-  (at your option) any later version.
+  This program is free software; you can redistribute it and/or
+  modify it under the terms of the GNU General Public License
+  as published by the Free Software Foundation; version 2
+  of the License, and not any of the later versions.
 
   This program is distributed in the hope that it will be useful,
   but WITHOUT ANY WARRANTY; without even the implied warranty of
@@ -16,7 +14,8 @@
   GNU General Public License for more details.
 
   You should have received a copy of the GNU General Public License
-  along with this program.  If not, see <http://www.gnu.org/licenses/>.
+  along with this program; if not, write to the Free Software
+  Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA.
  */
 
 if (!isset($ini))
@@ -40,7 +39,7 @@ class Setup
 
     public static function php_safe_mode_check()
     {
-        return !ini_get("safe_mode");
+        return!ini_get("safe_mode");
     }
 
     public static function php_short_open_tag_check()
@@ -201,7 +200,7 @@ class Setup
                         <td class="ui-widget-content">PHP version at least <b>v5.3</b></td>
                         <td class="<?= ($test ? "ui-state-highlight" : "ui-state-error") ?>">your PHP version: <b><?= phpversion() ?> - <b style="color:<?= ($test ? "green" : "red") ?>"><?= ($test ? "PASSED" : "FAILED") ?></b></td>
                         <td class="ui-widget-content" align="center"><?= ($test ? "-" : "Update your PHP to v5.3 or higher") ?></td>
-                    <?php $ok = $ok && $test; ?>
+                        <?php $ok = $ok && $test; ?>
                     </tr>
                 <?php } ?>
 
@@ -216,7 +215,7 @@ class Setup
                         <td class="ui-widget-content">PHP <b>'safe mode'</b> must be turned <b>OFF</b></td>
                         <td class="<?= ($test ? "ui-state-highlight" : "ui-state-error") ?>">your PHP <b>'safe mode'</b> is turned <b><?= ($test ? "OFF" : "ON") ?> - <b style="color:<?= ($test ? "green" : "red") ?>"><?= ($test ? "PASSED" : "FAILED") ?></b></td>
                         <td class="ui-widget-content" align="center"><?= ($test ? "-" : "Ask your server administrator to turn PHP 'safe mode' OFF") ?></td>
-                    <?php $ok = $ok && $test; ?>
+                        <?php $ok = $ok && $test; ?>
                     </tr>
                 <?php } ?>
 
@@ -231,7 +230,7 @@ class Setup
                         <td class="ui-widget-content">PHP <b>'short open tag'</b> must be turned <b>ON</b></td>
                         <td class="<?= ($test ? "ui-state-highlight" : "ui-state-error") ?>">your PHP <b>'short open tag'</b> is turned <b><?= ($test ? "ON" : "OFF") ?> - <b style="color:<?= ($test ? "green" : "red") ?>"><?= ($test ? "PASSED" : "FAILED") ?></b></td>
                         <td class="ui-widget-content" align="center"><?= ($test ? "-" : "Ask your server administrator to turn PHP 'short open tag' ON") ?></td>
-                    <?php $ok = $ok && $test; ?>
+                        <?php $ok = $ok && $test; ?>
                     </tr>
                 <?php } ?>
 
@@ -247,7 +246,7 @@ class Setup
                         <td class="ui-widget-content"><b>MySQL</b> connection test</td>
                         <td class="<?= ($test ? "ui-state-highlight" : "ui-state-error") ?>">Host: <b><?= $db_host ?></b>, Port: <b><?= $db_port ?></b>, Login: <b><?= $db_user ?></b> <b><?= ($test ? "CONNECTED" : "CAN'T CONNECT") ?></b> - <b style="color:<?= ($test ? "green" : "red") ?>"><?= ($test ? "PASSED" : "FAILED") ?></b></td>
                         <td class="ui-widget-content" align="center"><?= ($test ? "-" : "Set <b>db_host, db_port, db_user, db_password</b> in /SETTINGS.php file.") ?></td>
-                    <?php $ok = $ok && $test; ?>
+                        <?php $ok = $ok && $test; ?>
                     </tr>
                 <?php } ?>
 
@@ -262,7 +261,7 @@ class Setup
                         <td class="ui-widget-content"><b>MySQL</b> database connection test</td>
                         <td class="<?= ($test ? "ui-state-highlight" : "ui-state-error") ?>"><b>MySQL</b> database <b><?= $db_name ?></b> <b><?= ($test ? "IS CONNECTABLE" : "IS NOT CONNECTABLE") ?> - <b style="color:<?= ($test ? "green" : "red") ?>"><?= ($test ? "PASSED" : "FAILED") ?></b></td>
                         <td class="ui-widget-content" align="center"><?= ($test ? "-" : "Set <b>db_name</b> in <b>/SETTINGS.php</b> file. Check if database name is correct and if it is - check if MySQL user has required permissions to access this database.") ?></td>
-                    <?php $ok = $ok && $test; ?>
+                        <?php $ok = $ok && $test; ?>
                     </tr>
                 <?php } ?>
 
@@ -300,9 +299,9 @@ class Setup
                                 ?>
                                 Rscript file path not set or set incorrectly. If you don't have this file on your system it could mean that your <b>R</b> installation is of version lower than <b>v2.12</b>. If that's the case you should update your R to higher version and set your Rscript path then.<br/>
                                 Usually the Rscript file path is <b>/usr/bin/Rscript</b>. Set your Rscript path in <b>/SETTINGS.php</b> file.
-                        <?php } ?>
+                            <?php } ?>
                         </td>
-                    <?php $ok = $ok && $test; ?>
+                        <?php $ok = $ok && $test; ?>
                     </tr>
                 <?php } ?>
 
@@ -323,9 +322,9 @@ class Setup
                             {
                                 ?>
                                 Application URL address must be set. It isn`t right now or it is set incorrectly. It must contain protocol prefix and end with a slash character. Set your application URL address in <b>/SETTINGS.php</b> file.
-                        <?php } ?>
+                            <?php } ?>
                         </td>
-                    <?php $ok = $ok && $test; ?>
+                        <?php $ok = $ok && $test; ?>
                     </tr>
                 <?php } ?>
 
@@ -340,7 +339,7 @@ class Setup
                         <td class="ui-widget-content"><b>/temp</b> directory path must be writable</td>
                         <td class="<?= ($test ? "ui-state-highlight" : "ui-state-error") ?>">your <b>/temp</b> directory: <b><?= Ini::$path_temp ?></b> <b><?= ($test ? "IS WRITABLE" : "IS NOT WRITABLE") ?> - <b style="color:<?= ($test ? "green" : "red") ?>"><?= ($test ? "PASSED" : "FAILED") ?></b></td>
                         <td class="ui-widget-content" align="center"><?= ($test ? "-" : "Set <b>/temp</b> directory rigths to 0777.") ?></td>
-                    <?php $ok = $ok && $test; ?>
+                        <?php $ok = $ok && $test; ?>
                     </tr>
                 <?php } ?>
 
@@ -356,7 +355,7 @@ class Setup
                         <td class="ui-widget-content"><b>/cms/js/lib/fileupload/php/files</b> directory path must be writable</td>
                         <td class="<?= ($test ? "ui-state-highlight" : "ui-state-error") ?>">your <b>/cms/js/lib/fileupload/php/files</b> directory: <b><?= $path ?></b> <b><?= ($test ? "IS WRITABLE" : "IS NOT WRITABLE") ?> - <b style="color:<?= ($test ? "green" : "red") ?>"><?= ($test ? "PASSED" : "FAILED") ?></b></td>
                         <td class="ui-widget-content" align="center"><?= ($test ? "-" : "Set <b>/cms/js/lib/fileupload/php/files</b> directory rigths to 0777.") ?></td>
-                    <?php $ok = $ok && $test; ?>
+                        <?php $ok = $ok && $test; ?>
                     </tr>
                 <?php } ?>
 
@@ -371,7 +370,7 @@ class Setup
                         <td class="ui-widget-content"><b>/media</b> directory path must be writable</td>
                         <td class="<?= ($test ? "ui-state-highlight" : "ui-state-error") ?>">your <b>/media</b> directory: <b><?= Ini::$path_internal_media ?></b> <b><?= ($test ? "IS WRITABLE" : "IS NOT WRITABLE") ?> - <b style="color:<?= ($test ? "green" : "red") ?>"><?= ($test ? "PASSED" : "FAILED") ?></b></td>
                         <td class="ui-widget-content" align="center"><?= ($test ? "-" : "Set <b>/media</b> directory rigths to 0777.") ?></td>
-                    <?php $ok = $ok && $test; ?>
+                        <?php $ok = $ok && $test; ?>
                     </tr>
                 <?php } ?>
 
@@ -386,7 +385,7 @@ class Setup
                         <td class="ui-widget-content"><b>/cms/lib/ckeditor/plugins/pgrfilemanager/PGRThumb/cache</b> directory path must be writable</td>
                         <td class="<?= ($test ? "ui-state-highlight" : "ui-state-error") ?>">your <b>/cms/lib/ckeditor/plugins/pgrfilemanager/PGRThumb/cache</b> directory: <b><?= Ini::$path_internal . "cms/lib/ckeditor/plugins/pgrfilemanager/PGRThumb/cache" ?></b> <b><?= ($test ? "IS WRITABLE" : "IS NOT WRITABLE") ?> - <b style="color:<?= ($test ? "green" : "red") ?>"><?= ($test ? "PASSED" : "FAILED") ?></b></td>
                         <td class="ui-widget-content" align="center"><?= ($test ? "-" : "Set <b>/cms/lib/ckeditor/plugins/pgrfilemanager/PGRThumb/cache</b> directory rigths to 0777.") ?></td>
-                    <?php $ok = $ok && $test; ?>
+                        <?php $ok = $ok && $test; ?>
                     </tr>
                 <?php } ?>
 
@@ -401,7 +400,7 @@ class Setup
                         <td class="ui-widget-content"><b>session</b> R package must be installed.</td>
                         <td class="<?= ($test ? "ui-state-highlight" : "ui-state-error") ?>"><b>session</b> package <b><?= ($test ? "IS INSTALLED" : "IS NOT INSTALLED") ?> - <b style="color:<?= ($test ? "green" : "red") ?>"><?= ($test ? "PASSED" : "FAILED") ?></b></td>
                         <td class="ui-widget-content" align="center"><?= ($test ? "-" : "Install <b>session</b> package to main R library directory.") ?></td>
-                    <?php $ok = $ok && $test; ?>
+                        <?php $ok = $ok && $test; ?>
                     </tr>
                 <?php } ?>
 
@@ -416,7 +415,7 @@ class Setup
                         <td class="ui-widget-content"><b>RMySQL</b> R package must be installed.</td>
                         <td class="<?= ($test ? "ui-state-highlight" : "ui-state-error") ?>"><b>RMySQL</b> package <b><?= ($test ? "IS INSTALLED" : "IS NOT INSTALLED") ?> - <b style="color:<?= ($test ? "green" : "red") ?>"><?= ($test ? "PASSED" : "FAILED") ?></b></td>
                         <td class="ui-widget-content" align="center"><?= ($test ? "-" : "Install <b>RMySQL</b> package to main R library directory.") ?></td>
-                    <?php $ok = $ok && $test; ?>
+                        <?php $ok = $ok && $test; ?>
                     </tr>
                 <?php } ?>
 
@@ -431,9 +430,9 @@ class Setup
                         <td class="ui-widget-content"><b>catR</b> R package must be installed.</td>
                         <td class="<?= ($test ? "ui-state-highlight" : "ui-state-error") ?>"><b>catR</b> package <b><?= ($test ? "IS INSTALLED" : "IS NOT INSTALLED") ?> - <b style="color:<?= ($test ? "green" : "red") ?>"><?= ($test ? "PASSED" : "FAILED") ?></b></td>
                         <td class="ui-widget-content" align="center"><?= ($test ? "-" : "Install <b>catR</b> package to main R library directory.") ?></td>
-                    <?php $ok = $ok && $test; ?>
+                        <?php $ok = $ok && $test; ?>
                     </tr>
-<?php } ?>
+                <?php } ?>
                 </tbody>
             </table>
         </div>
@@ -451,7 +450,7 @@ class Setup
             <h1 class="" align="center" style="color:green;">Test completed. Every item passed correctly.</h1>
             <h1 class="ui-state-highlight" align="center" style="color:blue;">IT IS STRONGLY RECOMMENDED TO DELETE THIS <b>/setup</b> DIRECTORY NOW ALONG WITH ALL IT'S CONTENTS FOR SECURITY REASONS!</h1>
             <h2 class="" align="center"><a href="<?= Ini::$path_external . "cms/index.php" ?>">click here to launch Concerto Platform panel</a> - if this is fresh installation of Concerto then default admin account is <b>login:admin/password:admin</b></h2>
-<?php } ?>
+        <?php } ?>
         <div style="display:none;" id="divGeneralDialog">
         </div>
     </body>

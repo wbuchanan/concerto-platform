@@ -1,18 +1,37 @@
 <?php
+/*
+  Concerto Platform - Online Adaptive Testing Platform
+  Copyright (C) 2011-2012, The Psychometrics Centre, Cambridge University
+
+  This program is free software; you can redistribute it and/or
+  modify it under the terms of the GNU General Public License
+  as published by the Free Software Foundation; version 2
+  of the License, and not any of the later versions.
+
+  This program is distributed in the hope that it will be useful,
+  but WITHOUT ANY WARRANTY; without even the implied warranty of
+  MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+  GNU General Public License for more details.
+
+  You should have received a copy of the GNU General Public License
+  along with this program; if not, write to the Free Software
+  Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA.
+ */
+
 if (!isset($ini))
 {
     require_once'../../Ini.php';
     $ini = new Ini();
 }
 $logged_user = User::get_logged_user();
-if ($logged_user == null) 
+if ($logged_user == null)
 {
     echo "<script>location.reload();</script>";
     die(Language::string(278));
 }
 
-if(!$logged_user->is_module_writeable($class_name)) die(Language::string(81));
-if(!$logged_user->is_object_editable($obj)) die(Language::string(81));
+if (!$logged_user->is_module_writeable($class_name)) die(Language::string(81));
+if (!$logged_user->is_object_editable($obj)) die(Language::string(81));
 ?>
 
 <script>
@@ -25,14 +44,14 @@ if(!$logged_user->is_object_editable($obj)) die(Language::string(81));
 </script>
 <table>
     <tr>
-        <td><button id="btnTableStructureImportTable" onclick="Table.uiImportTable()"><?=Language::string(125)?></button></td>
-        <td><button id="btnTableStructureImportCSV" onclick="Table.uiImportCSV()"><?=Language::string(126)?></button></td>
-        <td><button id="btnTableStructureExportCSV" onclick="Table.uiExportCSV()"><?=Language::string(127)?></button></td>
+        <td><button id="btnTableStructureImportTable" onclick="Table.uiImportTable()"><?= Language::string(125) ?></button></td>
+        <td><button id="btnTableStructureImportCSV" onclick="Table.uiImportCSV()"><?= Language::string(126) ?></button></td>
+        <td><button id="btnTableStructureExportCSV" onclick="Table.uiExportCSV()"><?= Language::string(127) ?></button></td>
     </tr>
 </table>
 <br/>
 <table id="form<?= $class_name ?>Table">
-    <caption class="ui-widget-header"><?=Language::string(128)?></caption>
+    <caption class="ui-widget-header"><?= Language::string(128) ?></caption>
     <thead class="theadTable">
         <tr>
             <?php
@@ -51,8 +70,8 @@ if(!$logged_user->is_object_editable($obj)) die(Language::string(81));
                 <tbody>
                     <tr>
                         <td class="fullWidth"><?= $col->name ?> ( <?= $type->get_name() ?> )</td>
-                        <td><span class="spanIcon tooltip ui-icon ui-icon-pencil" onclick="Table.uiEditColumn($(this).parent().parent().parent().parent().parent())" title="<?=Language::string(19)?>"></span></td>
-                        <td><span class="spanIcon tooltip ui-icon ui-icon-trash" onclick="Table.uiRemoveColumn($(this).parent().parent().parent().parent().parent())" title="<?=Language::string(20)?>"></span></td>
+                        <td><span class="spanIcon tooltip ui-icon ui-icon-pencil" onclick="Table.uiEditColumn($(this).parent().parent().parent().parent().parent())" title="<?= Language::string(19) ?>"></span></td>
+                        <td><span class="spanIcon tooltip ui-icon ui-icon-trash" onclick="Table.uiRemoveColumn($(this).parent().parent().parent().parent().parent())" title="<?= Language::string(20) ?>"></span></td>
                     </tr>
                 </tbody>
             </table>
@@ -61,7 +80,7 @@ if(!$logged_user->is_object_editable($obj)) die(Language::string(81));
     }
 }
 ?>
-<th class="ui-widget-header" align="center"><span class="spanIcon tooltip ui-icon ui-icon-plus" onclick="<?= $class_name ?>.uiAddColumn()" title="<?=Language::string(129)?>"></span></th>
+<th class="ui-widget-header" align="center"><span class="spanIcon tooltip ui-icon ui-icon-plus" onclick="<?= $class_name ?>.uiAddColumn()" title="<?= Language::string(129) ?>"></span></th>
 </tr>
 </thead>
 <tbody class="tbodyTable">
@@ -74,10 +93,10 @@ if(!$logged_user->is_object_editable($obj)) die(Language::string(81));
         {
             ?>
             <tr>
-                    <?php
-                    foreach ($cols as $col)
-                    {
-                        ?>
+                <?php
+                foreach ($cols as $col)
+                {
+                    ?>
                     <td class='noWrap ui-widget-content'>
                         <?php
                         if ($col->TableColumnType_id == 1)
@@ -96,21 +115,21 @@ if(!$logged_user->is_object_editable($obj)) die(Language::string(81));
                         {
                             ?>
                             <div class="horizontalMargin" align="center">
-                                <span class="spanIcon tooltipTableStructure ui-icon ui-icon-document-b" onclick="Table.uiChangeHTML($(this).next())" title="<?=Language::string(130)?>"></span>
+                                <span class="spanIcon tooltipTableStructure ui-icon ui-icon-document-b" onclick="Table.uiChangeHTML($(this).next())" title="<?= Language::string(130) ?>"></span>
                                 <textarea class="notVisible"><?= $r[$col->name] ?></textarea>
                             </div>
-                    <?php
-                }
-            }
-            ?>
+                            <?php
+                        }
+                    }
+                    ?>
                 </td>
-                <td class='ui-widget-header' align='center' style='width:50px;'><span class='spanIcon tooltip ui-icon ui-icon-trash' onclick='Table.uiRemoveRow($(this).parent().parent())' title="<?=Language::string(11)?>"></span></td>
+                <td class='ui-widget-header' align='center' style='width:50px;'><span class='spanIcon tooltip ui-icon ui-icon-trash' onclick='Table.uiRemoveRow($(this).parent().parent())' title="<?= Language::string(11) ?>"></span></td>
             </tr>
-        <?php
+            <?php
+        }
     }
-}
-?>
+    ?>
 </tbody>
 </table>
-<div class="margin" align="center"><span class="spanIcon tooltip ui-icon ui-icon-plus" onclick="<?= $class_name ?>.uiAddRow()" title="<?=Language::string(131)?>"></span></div>
-<div class="margin ui-widget-content ui-state-error" id="div<?= $class_name ?>EmptyTable"><?=Language::string(132)?></div>
+<div class="margin" align="center"><span class="spanIcon tooltip ui-icon ui-icon-plus" onclick="<?= $class_name ?>.uiAddRow()" title="<?= Language::string(131) ?>"></span></div>
+<div class="margin ui-widget-content ui-state-error" id="div<?= $class_name ?>EmptyTable"><?= Language::string(132) ?></div>

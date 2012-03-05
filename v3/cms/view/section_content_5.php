@@ -1,4 +1,23 @@
 <?php
+/*
+  Concerto Platform - Online Adaptive Testing Platform
+  Copyright (C) 2011-2012, The Psychometrics Centre, Cambridge University
+
+  This program is free software; you can redistribute it and/or
+  modify it under the terms of the GNU General Public License
+  as published by the Free Software Foundation; version 2
+  of the License, and not any of the later versions.
+
+  This program is distributed in the hope that it will be useful,
+  but WITHOUT ANY WARRANTY; without even the implied warranty of
+  MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+  GNU General Public License for more details.
+
+  You should have received a copy of the GNU General Public License
+  along with this program; if not, write to the Free Software
+  Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA.
+ */
+
 if (!isset($ini))
 {
     require_once'../../Ini.php';
@@ -35,12 +54,12 @@ if (array_key_exists('oid', $_POST) && $_POST['oid'] != 0)
 </select>
 <br/>
 <div align="center">
-<?= Language::string(235) ?> <input type="radio" name="radioSetVarType_<?= $_POST['counter'] ?>" class="radioSetVarType_<?= $_POST['counter'] ?> radioSetVarType" <?= !isset($vals[2]) || $vals[2] == 0 ? "checked" : "" ?> value="0" onchange="Test.changeSetVarType(<?= $_POST['counter'] ?>)" />, 
+    <?= Language::string(235) ?> <input type="radio" name="radioSetVarType_<?= $_POST['counter'] ?>" class="radioSetVarType_<?= $_POST['counter'] ?> radioSetVarType" <?= !isset($vals[2]) || $vals[2] == 0 ? "checked" : "" ?> value="0" onchange="Test.changeSetVarType(<?= $_POST['counter'] ?>)" />, 
     <?= Language::string(236) ?> <input type="radio" name="radioSetVarType_<?= $_POST['counter'] ?>" class="radioSetVarType_<?= $_POST['counter'] ?> radioSetVarType" <?= $vals[2] == 1 ? "checked" : "" ?> value="1" onchange="Test.changeSetVarType(<?= $_POST['counter'] ?>)" />
 </div>
 
 <div class="divSetVarType_0_<?= $_POST['counter'] ?> <?= isset($vals[2]) && $vals[2] != 0 ? "notVisible" : "" ?>">
-        <?= Language::string(238) ?> 
+    <?= Language::string(238) ?> 
     <select class="controlValue<?= $_POST['counter'] ?> ui-widget-content ui-corner-all" onchange="Test.uiRefreshSectionContent(<?= $_POST['type'] ?>, <?= $_POST['counter'] ?>, Test.getSectionValues(Test.sectionDivToObject($('#divSection_<?= $_POST['counter'] ?>'))))">
         <option value="0">&lt;<?= Language::string(239) ?>&gt;</option>
         <?php
@@ -53,7 +72,7 @@ if (array_key_exists('oid', $_POST) && $_POST['oid'] != 0)
             <option value="<?= $table->id ?>" <?= isset($vals[7]) && $vals[7] == $table->id ? "selected" : "" ?> ><?= $table->name ?> ( <?= $table->get_system_data() ?> )</option>
         <?php } ?>
     </select> <br/>
-        <?= Language::string(240) ?> <br/>
+    <?= Language::string(240) ?> <br/>
     <select class="controlValue<?= $_POST['counter'] ?> controlValue<?= $_POST['counter'] ?>_column ui-widget-content ui-corner-all">
         <option value="0">&lt;<?= Language::string(241) ?>&gt;</option>
         <?php
@@ -67,19 +86,19 @@ if (array_key_exists('oid', $_POST) && $_POST['oid'] != 0)
                 {
                     ?>
                     <option value="<?= $col->index ?>" <?= isset($vals[8]) && $vals[8] == $col->index ? "selected" : "" ?> ><?= $col->name ?></option>
-                <?php
+                    <?php
+                }
             }
         }
-    }
-    ?>
+        ?>
     </select><br/>
 
-        <?php
-        if (isset($vals[0]))
+    <?php
+    if (isset($vals[0]))
+    {
+        for ($i = 1; $i <= $vals[0]; $i++)
         {
-            for ($i = 1; $i <= $vals[0]; $i++)
-            {
-                ?>
+            ?>
             ,<select class="controlValue<?= $_POST['counter'] ?> controlValue<?= $_POST['counter'] ?>_column ui-widget-content ui-corner-all">
                 <option value="0">&lt;<?= Language::string(241) ?>&gt;</option>
                 <?php
@@ -93,11 +112,11 @@ if (array_key_exists('oid', $_POST) && $_POST['oid'] != 0)
                         {
                             ?>
                             <option value="<?= $col->index ?>" <?= isset($vals[8 + $i]) && $vals[8 + $i] == $col->index ? "selected" : "" ?> ><?= $col->name ?></option>
-                    <?php
+                            <?php
+                        }
+                    }
                 }
-            }
-        }
-        ?>
+                ?>
             </select><br/>
             <?php
         }
@@ -112,37 +131,37 @@ if (array_key_exists('oid', $_POST) && $_POST['oid'] != 0)
         </tr>
     </table>
 
-        <?= Language::string(242) ?> <br/>
-        <?php
-        if (isset($vals[1]))
+    <?= Language::string(242) ?> <br/>
+    <?php
+    if (isset($vals[1]))
+    {
+        $i = 9 + $vals[0];
+        for ($j = 1; $j <= $vals[1]; $j++)
         {
-            $i = 9 + $vals[0];
-            for ($j = 1; $j <= $vals[1]; $j++)
-            {
-                ?>
+            ?>
             <select class="controlValue<?= $_POST['counter'] ?> controlValue<?= $_POST['counter'] ?>_link ui-widget-content ui-corner-all <?= ($j != 1 ? "" : "notVisible") ?>">
                 <option value="AND" <?= isset($vals[$i]) && $vals[$i] == "AND" ? "selected" : "" ?>><?= Language::string(227) ?></option>
                 <option value="OR" <?= isset($vals[$i]) && $vals[$i] == "OR" ? "selected" : "" ?>><?= Language::string(228) ?></option>
             </select>
-                <?php $i++; ?>
+            <?php $i++; ?>
             <select class="controlValue<?= $_POST['counter'] ?> ui-widget-content ui-corner-all">
                 <option value="0">&lt;<?= Language::string(241) ?>&gt;</option>
-            <?php
-            if (isset($vals[7]))
-            {
-                $table = Table::from_mysql_id($vals[7]);
-                if ($table != null)
+                <?php
+                if (isset($vals[7]))
                 {
-                    $cols = $table->get_TableColumns();
-                    foreach ($cols as $col)
+                    $table = Table::from_mysql_id($vals[7]);
+                    if ($table != null)
                     {
-                        ?>
+                        $cols = $table->get_TableColumns();
+                        foreach ($cols as $col)
+                        {
+                            ?>
                             <option value="<?= $col->index ?>" <?= isset($vals[$i]) && $vals[$i] == $col->index ? "selected" : "" ?> ><?= $col->name ?></option>
-                        <?php
+                            <?php
+                        }
                     }
                 }
-            }
-            ?>
+                ?>
             </select> 
             <?php $i++; ?>
             <select class="controlValue<?= $_POST['counter'] ?> ui-widget-content ui-corner-all">
@@ -155,20 +174,20 @@ if (array_key_exists('oid', $_POST) && $_POST['oid'] != 0)
                 <option value="LIKE" <?= isset($vals[$i]) && $vals[$i] == "LIKE" ? "selected" : "" ?>><?= Language::string(243) ?></option>
                 <option value="NOT LIKE" <?= isset($vals[$i]) && $vals[$i] == "NOT LIKE" ? "selected" : "" ?>><?= Language::string(244) ?></option>
             </select> 
-        <?php $i++; ?>
+            <?php $i++; ?>
             <input type="text" class="controlValue<?= $_POST['counter'] ?> ui-widget-content ui-corner-all comboboxVars" value="<?= htmlspecialchars(isset($vals[$i]) ? $vals[$i] : "", ENT_QUOTES) ?>" /> 
             <br/>
-        <?php
-        $i++;
+            <?php
+            $i++;
+        }
     }
-}
-?>
+    ?>
 
     <table class="tableSetVarConditionControl_<?= $_POST['counter'] ?>">
         <tr>
             <td><span class="spanIcon tooltip ui-icon ui-icon-plus" onclick="Test.uiAddSetVarCondition(<?= $_POST['counter'] ?>)"  title="<?= Language::string(229) ?>"></span></td>
             <td><?php if (isset($vals[1]) && $vals[1] > 0)
-{ ?><span class="spanIcon tooltip ui-icon ui-icon-minus" onclick="Test.uiRemoveSetVarCondition(<?= $_POST['counter'] ?>)" title="<?= Language::string(230) ?>"></span><?php } ?></td>
+    { ?><span class="spanIcon tooltip ui-icon ui-icon-minus" onclick="Test.uiRemoveSetVarCondition(<?= $_POST['counter'] ?>)" title="<?= Language::string(230) ?>"></span><?php } ?></td>
         </tr>
     </table>
 </div>

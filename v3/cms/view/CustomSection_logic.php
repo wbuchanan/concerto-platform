@@ -1,11 +1,30 @@
 <?php
+/*
+  Concerto Platform - Online Adaptive Testing Platform
+  Copyright (C) 2011-2012, The Psychometrics Centre, Cambridge University
+
+  This program is free software; you can redistribute it and/or
+  modify it under the terms of the GNU General Public License
+  as published by the Free Software Foundation; version 2
+  of the License, and not any of the later versions.
+
+  This program is distributed in the hope that it will be useful,
+  but WITHOUT ANY WARRANTY; without even the implied warranty of
+  MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+  GNU General Public License for more details.
+
+  You should have received a copy of the GNU General Public License
+  along with this program; if not, write to the Free Software
+  Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA.
+ */
+
 if (!isset($ini))
 {
     require_once'../../Ini.php';
     $ini = new Ini();
 }
 $logged_user = User::get_logged_user();
-if ($logged_user == null) 
+if ($logged_user == null)
 {
     echo "<script>location.reload();</script>";
     die(Language::string(278));
@@ -13,21 +32,23 @@ if ($logged_user == null)
 
 if (isset($oid))
 {
-    if(!$logged_user->is_module_writeable($class_name)) die(Language::string(81));
-    
+    if (!$logged_user->is_module_writeable($class_name))
+            die(Language::string(81));
+
     $parameters = $obj->get_parameter_CustomSectionVariables();
     $returns = $obj->get_return_CustomSectionVariables();
     $code = $obj->code;
 }
 else
 {
-    if(!$logged_user->is_module_writeable($_POST['class_name'])) die(Language::string(81));
-    
+    if (!$logged_user->is_module_writeable($_POST['class_name']))
+            die(Language::string(81));
+
     $oid = $_POST['oid'];
     $obj = CustomSection::from_mysql_id($oid);
-    
-    if(!$logged_user->is_object_editable($obj)) die(Language::string(81));
-    
+
+    if (!$logged_user->is_object_editable($obj)) die(Language::string(81));
+
     $parameters = array();
     if (array_key_exists("parameters", $_POST))
     {
@@ -110,10 +131,11 @@ else
     </div>
     <table>
         <tr>
-            <td><span class="spanIcon tooltip ui-icon ui-icon-plus" onclick="CustomSection.uiAddParameter()" title="<?=Language::string(109)?>"></span></td>
-            <td><?php if (count($parameters) > 0)
-        {
-            ?><span class="spanIcon tooltip ui-icon ui-icon-minus" onclick="CustomSection.uiRemoveParameter()" title="<?=Language::string(110)?>"></span><?php } ?></td>
+            <td><span class="spanIcon tooltip ui-icon ui-icon-plus" onclick="CustomSection.uiAddParameter()" title="<?= Language::string(109) ?>"></span></td>
+            <td><?php
+                if (count($parameters) > 0)
+                {
+                    ?><span class="spanIcon tooltip ui-icon ui-icon-minus" onclick="CustomSection.uiRemoveParameter()" title="<?= Language::string(110) ?>"></span><?php } ?></td>
         </tr>
     </table>
 </div>
@@ -121,8 +143,8 @@ else
 
 <table>
     <tr>
-        <td><span class="spanIcon ui-icon ui-icon-help tooltip" title="<?=Language::string(111)?>"></span></td>
-        <td><b><?=Language::string(49)?>:</b></td>
+        <td><span class="spanIcon ui-icon ui-icon-help tooltip" title="<?= Language::string(111) ?>"></span></td>
+        <td><b><?= Language::string(49) ?>:</b></td>
     </tr>
 </table>
 <textarea id="form<?= $class_name ?>TextareaCode" class="fullWidth ui-widget-content ui-corner-all textareaCode"><?= $code ?></textarea>
@@ -130,8 +152,8 @@ else
 <br/>
 <table>
     <tr>
-        <td><span class="spanIcon ui-icon ui-icon-help tooltip" title="<?=Language::string(112)?>"></span></td>
-        <td><b><?=Language::string(113)?>:</b></td>
+        <td><span class="spanIcon ui-icon ui-icon-help tooltip" title="<?= Language::string(112) ?>"></span></td>
+        <td><b><?= Language::string(113) ?>:</b></td>
     </tr>
 </table>
 <div class="ui-widget-content ui-state-focus">
@@ -147,7 +169,7 @@ else
                             <input onchange="CustomSection.uiVarNameChanged($(this))" type="text" class="ui-state-focus comboboxCustomSectionVars comboboxCustomSectionVarsReturn ui-widget-content ui-corner-all" value="<?= htmlspecialchars($ret->name, ENT_QUOTES) ?>" />
                         </td>
                         <td>
-                            <span class="spanIcon tooltipCustomSectionLogic ui-icon ui-icon-document-b" onclick="CustomSection.uiEditVariableDescription($(this).next())" title="<?=Language::string(107)?>"></span>
+                            <span class="spanIcon tooltipCustomSectionLogic ui-icon ui-icon-document-b" onclick="CustomSection.uiEditVariableDescription($(this).next())" title="<?= Language::string(107) ?>"></span>
                             <textarea class="notVisible"><?= $ret->description ?></textarea>
                         </td>
                     </tr>
@@ -158,10 +180,10 @@ else
         if (count($returns) == 0)
         {
             ?>
-            <div class="ui-state-error padding margin" align="center"><?=Language::string(114)?></div>
-            <?php
-        }
-        ?>
+            <div class="ui-state-error padding margin" align="center"><?= Language::string(114) ?></div>
+    <?php
+}
+?>
     </div>
     <div class="notVisible">
         <?php
@@ -169,16 +191,17 @@ else
         {
             ?>
             <input class="inputCustomSectionReturnVar" type="hidden" value="<?= $ret->name ?>" />
-            <?php
-        }
-        ?>
+    <?php
+}
+?>
     </div>
     <table>
         <tr>
-            <td><span class="spanIcon tooltip ui-icon ui-icon-plus" onclick="CustomSection.uiAddReturn()" title="<?=Language::string(115)?>"></span></td>
-            <td><?php if (count($returns) > 0)
-        {
-            ?><span class="spanIcon tooltip ui-icon ui-icon-minus" onclick="CustomSection.uiRemoveReturn()" title="<?=Language::string(116)?>"></span><?php } ?></td>
+            <td><span class="spanIcon tooltip ui-icon ui-icon-plus" onclick="CustomSection.uiAddReturn()" title="<?= Language::string(115) ?>"></span></td>
+            <td><?php
+                if (count($returns) > 0)
+                {
+                    ?><span class="spanIcon tooltip ui-icon ui-icon-minus" onclick="CustomSection.uiRemoveReturn()" title="<?= Language::string(116) ?>"></span><?php } ?></td>
         </tr>
     </table>
 </div>

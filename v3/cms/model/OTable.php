@@ -1,5 +1,24 @@
 <?php
 
+/*
+  Concerto Platform - Online Adaptive Testing Platform
+  Copyright (C) 2011-2012, The Psychometrics Centre, Cambridge University
+
+  This program is free software; you can redistribute it and/or
+  modify it under the terms of the GNU General Public License
+  as published by the Free Software Foundation; version 2
+  of the License, and not any of the later versions.
+
+  This program is distributed in the hope that it will be useful,
+  but WITHOUT ANY WARRANTY; without even the implied warranty of
+  MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+  GNU General Public License for more details.
+
+  You should have received a copy of the GNU General Public License
+  along with this program; if not, write to the Free Software
+  Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA.
+ */
+
 class OTable
 {
     public $id = 0;
@@ -24,7 +43,7 @@ class OTable
     {
         foreach ($post as $pk => $pv)
         {
-            if(is_string($pv)) $pv = trim($pv);
+            if (is_string($pv)) $pv = trim($pv);
             foreach (get_object_vars($this) as $ok => $ov)
             {
                 if ($pk == $ok) $this->$ok = $pv;
@@ -48,7 +67,7 @@ class OTable
         $i = 0;
         foreach (get_object_vars($this) as $k => $v)
         {
-            if(is_string($v)) $v = mysql_real_escape_string($v);
+            if (is_string($v)) $v = mysql_real_escape_string($v);
             if (in_array($k, $exclude)) continue;
             if ($i > 0) $sql.=", ";
             $sql.=sprintf("`%s`='%s' ", $k, $v);
@@ -170,6 +189,7 @@ class OTable
     {
         return true;
     }
+
 }
 
 ?>

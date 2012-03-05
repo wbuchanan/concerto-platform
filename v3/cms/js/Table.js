@@ -1,3 +1,22 @@
+/*
+Concerto Platform - Online Adaptive Testing Platform
+Copyright (C) 2011-2012, The Psychometrics Centre, Cambridge University
+
+This program is free software; you can redistribute it and/or
+modify it under the terms of the GNU General Public License
+as published by the Free Software Foundation; version 2
+of the License, and not any of the later versions.
+
+This program is distributed in the hope that it will be useful,
+but WITHOUT ANY WARRANTY; without even the implied warranty of
+MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+GNU General Public License for more details.
+
+You should have received a copy of the GNU General Public License
+along with this program; if not, write to the Free Software
+Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA.
+*/
+
 function Table() { };
 OModule.inheritance(Table);
 
@@ -262,6 +281,12 @@ Table.uiExportCSV=function(){
             click:function(){
                 var delimeter = $("#inputTableCSVExportDelimeter").val();
                 var enclosure = $("#inputTableCSVExportEnclosure").val();
+                
+                if($.trim(delimeter)=="" || $.trim(enclosure)==""){
+                    Methods.alert(dictionary["s334"], "alert", dictionary["s25"]);
+                    return;
+                }
+                
                 var header = $("#inputTableCSVExportHeader").is(":checked")?1:0;
                 location.href='query/Table_csv_export.php?oid='+thisClass.currentID+"&delimeter="+delimeter+"&enclosure="+enclosure+"&header="+header;
                 $(this).dialog("close");
@@ -363,14 +388,21 @@ Table.uiImportCSV=function(){
                     $("#div"+Table.className+"DialogImportCSV").parent().unmask();
                     $.each(data.result, function (index, file) {
                         Table.isFileUploaded = true;
+                        var delimeter = $("#inputTableCSVImportDelimeter").val();
+                        var enclosure = $("#inputTableCSVImportEnclosure").val();
                         
+                        if($.trim(delimeter)=="" || $.trim(enclosure)==""){
+                            Methods.alert(dictionary["s334"], "alert", dictionary["s25"]);
+                            return;
+                        }
+                            
                         Methods.confirm(dictionary["s28"], dictionary["s29"], function(){
                             $("#div"+Table.className+"DialogImportCSV").parent().mask(dictionary["s319"]);
                             $.post("query/Table_csv_import.php",{
                                 oid:Table.currentID,
                                 file:file.name,
-                                delimeter:$("#inputTableCSVImportDelimeter").val(),
-                                enclosure:$("#inputTableCSVImportEnclosure").val(),
+                                delimeter:delimeter,
+                                enclosure:enclosure,
                                 header:$("#inputTableCSVImportHeader").is(":checked")?1:0
                             },function(data){
                                 $("#div"+Table.className+"DialogImportCSV").parent().unmask();

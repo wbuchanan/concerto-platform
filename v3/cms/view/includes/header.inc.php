@@ -1,4 +1,23 @@
 <?php
+/*
+  Concerto Platform - Online Adaptive Testing Platform
+  Copyright (C) 2011-2012, The Psychometrics Centre, Cambridge University
+
+  This program is free software; you can redistribute it and/or
+  modify it under the terms of the GNU General Public License
+  as published by the Free Software Foundation; version 2
+  of the License, and not any of the later versions.
+
+  This program is distributed in the hope that it will be useful,
+  but WITHOUT ANY WARRANTY; without even the implied warranty of
+  MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+  GNU General Public License for more details.
+
+  You should have received a copy of the GNU General Public License
+  along with this program; if not, write to the Free Software
+  Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA.
+ */
+
 if (!isset($ini))
 {
     require_once'../../Ini.php';
@@ -45,7 +64,7 @@ foreach (Language::languages() as $lng_node)
             <button class="btnLogout" onclick="User.uiLogOut()"><?= Language::string(83) ?></button>
         </td>
         <td style="width:33%;" align="center" valign="middle">
-            <h2>CONCERTO v<?=Ini::$version?></h2>
+            <h2>CONCERTO v<?= Ini::$version ?></h2>
             <div id="divVersionCheck"></div>
         </td>
         <td style="width:33%;" align="center" valign="middle">

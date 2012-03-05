@@ -1,15 +1,13 @@
 <?php
 
 /*
-  Concerto Testing Platform,
-  Web based adaptive testing platform utilizing R language for computing purposes.
+  Concerto Platform - Online Adaptive Testing Platform
+  Copyright (C) 2011-2012, The Psychometrics Centre, Cambridge University
 
-  Copyright (C) 2011  Psychometrics Centre, Cambridge University
-
-  This program is free software: you can redistribute it and/or modify
-  it under the terms of the GNU General Public License as published by
-  the Free Software Foundation, either version 3 of the License, or
-  (at your option) any later version.
+  This program is free software; you can redistribute it and/or
+  modify it under the terms of the GNU General Public License
+  as published by the Free Software Foundation; version 2
+  of the License, and not any of the later versions.
 
   This program is distributed in the hope that it will be useful,
   but WITHOUT ANY WARRANTY; without even the implied warranty of
@@ -17,7 +15,8 @@
   GNU General Public License for more details.
 
   You should have received a copy of the GNU General Public License
-  along with this program.  If not, see <http://www.gnu.org/licenses/>.
+  along with this program; if not, write to the Free Software
+  Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA.
  */
 
 class Language
@@ -41,8 +40,8 @@ class Language
 
     public static function load_dictionary()
     {
-        self::$dictionary=array();
-        
+        self::$dictionary = array();
+
         $doc = new DOMDocument('1.0', 'UTF-8');
         $doc->load(Ini::$path_internal . "/cms/dictionary/dictionary.xml");
         self::$xml = $doc->saveXML();
@@ -50,11 +49,12 @@ class Language
         if (isset($_SESSION['lng'])) $lang = $_SESSION['lng'];
         $xpath = new DOMXPath($doc);
         $string = $xpath->query("/root/strings/string");
-        foreach ($string as $s) 
+        foreach ($string as $s)
         {
-            foreach($s->childNodes as $child)
+            foreach ($s->childNodes as $child)
             {
-                if($child->nodeName==$lang) self::$dictionary[$s->getAttribute("id")]=$child->nodeValue;
+                if ($child->nodeName == $lang)
+                        self::$dictionary[$s->getAttribute("id")] = $child->nodeValue;
             }
         }
     }

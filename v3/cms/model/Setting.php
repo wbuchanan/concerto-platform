@@ -1,9 +1,28 @@
 <?php
 
+/*
+  Concerto Platform - Online Adaptive Testing Platform
+  Copyright (C) 2011-2012, The Psychometrics Centre, Cambridge University
+
+  This program is free software; you can redistribute it and/or
+  modify it under the terms of the GNU General Public License
+  as published by the Free Software Foundation; version 2
+  of the License, and not any of the later versions.
+
+  This program is distributed in the hope that it will be useful,
+  but WITHOUT ANY WARRANTY; without even the implied warranty of
+  MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+  GNU General Public License for more details.
+
+  You should have received a copy of the GNU General Public License
+  along with this program; if not, write to the Free Software
+  Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA.
+ */
+
 class Setting extends OTable
 {
     public static $mysql_table_name = "UserTypeRight";
-    
+
     public static function create_db($delete = false)
     {
         if ($delete)
@@ -30,7 +49,7 @@ class Setting extends OTable
     {
         $sql = sprintf("SELECT `value` FROM `Setting` WHERE `name`='%s'", $name);
         $z = @mysql_query($sql);
-        if(!$z) return null;
+        if (!$z) return null;
         while ($r = mysql_fetch_array($z)) return $r[0];
         return null;
     }
@@ -38,9 +57,10 @@ class Setting extends OTable
     public static function set_setting($name, $value)
     {
         $sql = sprintf("UPDATE `Setting` SET `value`='%s' WHERE `name`='%s'", $value, $name);
-        if(!mysql_query($sql)) return false;
+        if (!mysql_query($sql)) return false;
         return true;
     }
 
 }
+
 ?>

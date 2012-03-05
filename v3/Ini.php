@@ -1,5 +1,24 @@
 <?php
 
+/*
+  Concerto Platform - Online Adaptive Testing Platform
+  Copyright (C) 2011-2012, The Psychometrics Centre, Cambridge University
+
+  This program is free software; you can redistribute it and/or
+  modify it under the terms of the GNU General Public License
+  as published by the Free Software Foundation; version 2
+  of the License, and not any of the later versions.
+
+  This program is distributed in the hope that it will be useful,
+  but WITHOUT ANY WARRANTY; without even the implied warranty of
+  MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+  GNU General Public License for more details.
+
+  You should have received a copy of the GNU General Public License
+  along with this program; if not, write to the Free Software
+  Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA.
+ */
+
 class Ini
 {
     private static $error_reporting = true;
@@ -10,12 +29,13 @@ class Ini
     public static $path_r_script = "";
     public static $path_temp = "";
     public static $path_mysql_home = "";
-    public static $version = "3.1.2";
+    public static $version = "3.2.0";
 
     function __construct($connect = true)
     {
         include __DIR__ . "/SETTINGS.php";
-        if (substr_count($_SERVER['HTTP_ACCEPT_ENCODING'], 'gzip')) ob_start("ob_gzhandler"); else ob_start();
+        if (substr_count($_SERVER['HTTP_ACCEPT_ENCODING'], 'gzip'))
+                ob_start("ob_gzhandler"); else ob_start();
         @session_start();
         date_default_timezone_set($timezone);
         if (self::$error_reporting) error_reporting(E_ALL);
@@ -50,34 +70,36 @@ class Ini
         self::$path_temp = self::$path_internal . "temp/";
         self::$path_mysql_home = $path_mysql_home;
     }
-    
-    public static function does_patch_apply($patch_version,$previous_version)
+
+    public static function does_patch_apply($patch_version, $previous_version)
     {
         $patch_elems = explode(".", $patch_version);
-        $previous_elems = explode(".",$previous_version);
-        
-        if($previous_elems[0]<$patch_elems[0]) return true;
-        if($previous_elems[0]==$patch_elems[0] && $previous_elems[1]<$patch_elems[1]) return true;
-        if($previous_elems[0]==$patch_elems[0] && $previous_elems[1]==$patch_elems[1] && $previous_elems[2]<$patch_elems[2]) return true;
+        $previous_elems = explode(".", $previous_version);
+
+        if ($previous_elems[0] < $patch_elems[0]) return true;
+        if ($previous_elems[0] == $patch_elems[0] && $previous_elems[1] < $patch_elems[1])
+                return true;
+        if ($previous_elems[0] == $patch_elems[0] && $previous_elems[1] == $patch_elems[1] && $previous_elems[2] < $patch_elems[2])
+                return true;
         return false;
     }
 
     public function check_db_structure()
     {
         $version = Setting::get_setting("version");
-        if($version == null) $version = Ini::$version;
-        
+        if ($version == null) $version = Ini::$version;
+
         foreach (self::get_system_tables() as $table)
         {
             $sql = sprintf("SHOW TABLES LIKE '%s'", $table);
             $z = mysql_query($sql);
-            if (mysql_num_rows($z) == 0) 
+            if (mysql_num_rows($z) == 0)
             {
-                if(!$table::create_db()) return false;
+                if (!$table::create_db()) return false;
             }
-            else 
+            else
             {
-                if(!$table::update_db($version)) return false;
+                if (!$table::update_db($version)) return false;
             }
         }
         Setting::set_setting("version", Ini::$version);

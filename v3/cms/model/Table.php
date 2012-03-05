@@ -1,5 +1,24 @@
 <?php
 
+/*
+  Concerto Platform - Online Adaptive Testing Platform
+  Copyright (C) 2011-2012, The Psychometrics Centre, Cambridge University
+
+  This program is free software; you can redistribute it and/or
+  modify it under the terms of the GNU General Public License
+  as published by the Free Software Foundation; version 2
+  of the License, and not any of the later versions.
+
+  This program is distributed in the hope that it will be useful,
+  but WITHOUT ANY WARRANTY; without even the implied warranty of
+  MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+  GNU General Public License for more details.
+
+  You should have received a copy of the GNU General Public License
+  along with this program; if not, write to the Free Software
+  Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA.
+ */
+
 class Table extends OModule
 {
     public $name = "";
@@ -292,6 +311,7 @@ class Table extends OModule
                     {
                         $column_name = "c" . $i;
                         if ($header) $column_name = $data[$i - 1];
+                        if (trim($column_name) == "") continue;
                         array_push($column_names, $column_name);
                         if ($i > 1) $sql.=",";
                         $sql.="`" . $column_name . "`  TEXT NOT NULL";
@@ -309,7 +329,7 @@ class Table extends OModule
                 }
 
                 $sql = sprintf("INSERT INTO `%s` SET ", $this->get_table_name());
-                for ($i = 1; $i <= count($data); $i++)
+                for ($i = 1; $i <= count($column_names); $i++)
                 {
                     if ($i > 1) $sql.=", ";
                     $sql.=sprintf("`%s`='%s'", $column_names[$i - 1], mysql_real_escape_string($data[$i - 1]));

@@ -1,3 +1,22 @@
+/*
+Concerto Platform - Online Adaptive Testing Platform
+Copyright (C) 2011-2012, The Psychometrics Centre, Cambridge University
+
+This program is free software; you can redistribute it and/or
+modify it under the terms of the GNU General Public License
+as published by the Free Software Foundation; version 2
+of the License, and not any of the later versions.
+
+This program is distributed in the hope that it will be useful,
+but WITHOUT ANY WARRANTY; without even the implied warranty of
+MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+GNU General Public License for more details.
+
+You should have received a copy of the GNU General Public License
+along with this program; if not, write to the Free Software
+Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA.
+*/
+
 function Test() { };
 OModule.inheritance(Test);
 
@@ -272,16 +291,16 @@ Test.uiRefreshSectionContent=function(type,counter,value,oid){
     });
 };
 
-Test.uiWriteSection=function(type,container,parent,counter,value,oid,append,refresh,csid){
+Test.uiWriteSection=function(type,container,parent,counter,value,oid,prepend,refresh,csid,after){
     if(refresh==null) refresh=true;
     if(parent==null) parent = 0;
     if(counter==null) counter = Test.getCounter();
-    if(append==null) append=false;
     if(csid==null) csid = 0;
+    if(prepend==null) prepend = false;
     if(csid!=0 && value==null) value=[csid];
     var sortable = true;
     if(type==Test.sectionTypes.start||type==Test.sectionTypes.end || parent!=0) sortable = false;
-    var mainContainer = $("#divTestLogic");
+    if(container==null) container = $("#divTestLogic");
     var section = $("<div />",{
         "class": ""+(type==Test.sectionTypes.ifStatement?"ui-corner-all":"")+" margin divSection divSectionType"+type+" ui-state-default "+(!sortable?"notSortable":"sortable"),
         id:"divSection_"+counter,
@@ -300,7 +319,7 @@ Test.uiWriteSection=function(type,container,parent,counter,value,oid,append,refr
     var divSubSection = '';
     if(type==Test.sectionTypes.ifStatement) divSubSection = '<div id="divSectionSubContent_'+counter+'" class="divSubsection"></div>';
     if(type!=Test.sectionTypes.start && type!=Test.sectionTypes.end) spanDelete = '<span class="spanIcon tooltip ui-icon ui-icon-trash" onclick="Test.uiRemoveSection(\''+counter+'\')" title="'+dictionary["s59"]+'"></span>';
-    if(type!=Test.sectionTypes.end) spanAddAfter = '<span class="spanIcon tooltip ui-icon ui-icon-plus" onclick="Test.uiAddLogicSession($(this).parent().parent().parent().parent().parent().parent(),'+(parent!=0?"true":"null")+','+parent+')" title="'+dictionary["s60"]+'"></span>';
+    if(type!=Test.sectionTypes.end) spanAddAfter = '<span class="spanIcon tooltip ui-icon ui-icon-plus" onclick="Test.uiAddLogicSection(null,'+(parent!=0?"true":"null")+','+parent+',$(this).parent().parent().parent().parent().parent().parent())" title="'+dictionary["s60"]+'"></span>';
     if(spanDelete!='' || spanAddAfter!='') divControl = '<div><table><tbody><tr><td>'+spanAddAfter+'</td><td>'+spanDelete+'</td></tbody></table></div>';
     
     var html='<div class="ui-widget-header margin sortableHandle" '+(sortable?'style="cursor:move;"':'')+'><table><tr><td><span class="spanIcon ui-icon ui-icon-help tooltip" title="'+Test.getSectionTypeDescription(type)+'"></span></td><td>'+counter+'. '+Test.getSectionTypeName(type)+'</td></tr></table></div>';
@@ -309,15 +328,16 @@ Test.uiWriteSection=function(type,container,parent,counter,value,oid,append,refr
         
     section.html(html);
         
-    if(container==null) 
-    {
-        if(append) mainContainer.append(section);
-        else mainContainer.prepend(section);
+    if(after!=null){
+        after.after(section);
     }
-    else 
-    {
-        if(!append) container.after(section);
-        else container.append(section);
+    else {
+        if(prepend){
+            container.prepend(section);
+        }
+        else{
+            container.append(section);
+        }
     }
     
     if(refresh) Test.uiRefreshSectionContent(type,counter,value,oid);
@@ -329,7 +349,7 @@ Test.uiWriteSection=function(type,container,parent,counter,value,oid,append,refr
     
 };
 
-Test.uiAddLogicSession=function(container,ifstatement,parent){
+Test.uiAddLogicSection=function(container,ifstatement,parent,after,prepend){
     var type = $("#formTestSelectSectionType");
     
     if(ifstatement==null) ifstatement=false;
@@ -366,7 +386,7 @@ Test.uiAddLogicSession=function(container,ifstatement,parent){
                 }
                 else t = parseInt(vls);
                 
-                Test.uiWriteSection(t,container,parent,null,null,null,null,null,csid);
+                Test.uiWriteSection(t,container,parent,null,null,null,prepend,null,csid,after);
                 $(this).dialog("close");
             }
         }
@@ -788,8 +808,10 @@ Test.uiIniDebug=function(){
             Test.resetDebug();
             $("#divTestDebugAccordion").accordion({
                 fillSpace:true,
+                animated:false,
                 change:function(event,ui){
                     Test.uiRefreshDebugCodeMirrors();
+                    $("#divTestDebugAccordion").accordion("resize");
                 }
             });
         },
@@ -824,9 +846,10 @@ Test.setDebugStatus=function(data,error){
     $("#pTestDebugStatus").html(data);
 }
 
-Test.appendDebugConsole=function(data,style){
+Test.appendDebugConsole=function(data,style,tag){
+    if(tag==null) tag="p";
     if(style==null) style="";
-    $("#divTestDebugConsole").prepend("<p class='"+style+"'>"+data+"</p>");
+    $("#divTestDebugConsole").append("<"+tag+" class='"+style+"'>"+data+"</"+tag+">").scrollTop($("#divTestDebugConsole")[0].scrollHeight);
 }
 
 Test.resetDebug=function(){
@@ -871,7 +894,7 @@ Test.startSyntaxDebug=function(){
                     validationPassed = false;
                     counterFailed = counter;
                     Test.appendDebugConsole(dictionary["s292"].format(counter),"ui-state-error");
-                    Test.appendDebugConsole("<textarea id='textareaDebugSyntax_"+counter+"'>"+data.data[k]["code"]+"</textarea>");
+                    Test.appendDebugConsole("<textarea id='textareaDebugSyntax_"+counter+"'>"+data.data[k]["code"]+"</textarea>",null,"div");
                     Test.debugCodeMirrors.push(Methods.iniCodeMirror("textareaDebugSyntax_"+counter, "r", true));
                     var output = data.data[k]["output"].join("<br/>");
                     Test.appendDebugConsole(output,"ui-state-highlight");
@@ -923,7 +946,7 @@ Test.startRunTimeDebug=function(){
         Test.appendDebugConsole(dictionary["s301"]);
         
         //code
-        Test.appendDebugConsole("<textarea id='textareaDebugRun_"+Test.runTimeResponseIndex+"'>"+data["result"]["code"]+"</textarea>");
+        Test.appendDebugConsole("<textarea id='textareaDebugRun_"+Test.runTimeResponseIndex+"'>"+data["result"]["code"]+"</textarea>",null,"div");
         Test.debugCodeMirrors.push(Methods.iniCodeMirror("textareaDebugRun_"+Test.runTimeResponseIndex, "r", true));
         
         //output
