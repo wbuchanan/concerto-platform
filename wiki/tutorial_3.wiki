@@ -86,7 +86,7 @@ plot_graph()
 
 * Save the first template *
 
-= Step 2: Edit the first (Introduction) template of the test =
+= Step 2: Edit the second template of the test =
 
 Now edit the second template of your test. Add the image by clicking on the add image icon, set its URL to:
 {{{
