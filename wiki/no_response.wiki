@@ -25,7 +25,7 @@ When no option is selected from a group of radio buttons (with similar names but
 The only step is to create a loop with the help of a conditional 'IF' statement (see picture below). The condition specifies that if the value of the radio button does not exist (i.e. is NA), then the same item should be presented.
 
 || *SECTION TYPE* || *DETAILS* ||
-|| IF statement || IF _is.na(radio1)_ - _equal_ - _T_  THEN CLICK '+' ICON BELOW 'THEN'. GO TO SECTION: _load items template_ (i.e. go to the previous section in your test in which the items template is loaded) ||
+|| IF statement || IF *is.na(radio1)* - *equal* - *T*  THEN *GO TO SECTION* - _8.load HTML template_ (this is the section in your test where the items template is loaded) ||
 
 . 
 
@@ -41,7 +41,7 @@ In the section below, the first condition ensures that an empty dialogue box (no
 
 
 || *SECTION TYPE* || *DETAILS* ||
-|| IF statement || *response* - *equal* - *""* (empty string) *OR* - *suppressWarnings(!is.na(as.numeric(response)))* - *not equal* - *T* THEN _GO TO_ *14.load HTML template* (this is the section where you load the items template) ||
+|| IF statement || *response* - *equal* - *""* (empty string) *OR* - *suppressWarnings(!is.na(as.numeric(response)))* - *not equal* - *T* THEN *GO TO SECTION* - _14.load HTML template_ (this is the section in your test where the items template is loaded) ||
 
 .
 
