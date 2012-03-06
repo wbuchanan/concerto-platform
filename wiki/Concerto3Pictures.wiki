@@ -1,4 +1,3 @@
-#labels Featured,Tutorial
 .
 = Concerto v3.0 Tutorials: Preventing 'no response' situations=
 
