@@ -1091,7 +1091,7 @@ Note: You can add new languages by inserting "<new_language>string translated in
         <string id="212">
             <en>Enter your login and password.</en>
             <pl>Podaj swoj login i haslo.</pl>
-            cn>输入用户名和密码</cn>
+            <cn>输入用户名和密码</cn>
         </string>
         <string id="213">
             <en>Select the HTML template to be loaded.</en>
@@ -1476,222 +1476,222 @@ Note: You can add new languages by inserting "<new_language>string translated in
         <string id="291" js="1">
             <en><![CDATA[Test section with index #{0} syntax validation: <font style='color:green;'><b>PASSED</b></font>]]></en>
             <pl><![CDATA[Walidacja skladni sekcji testu o indeksie #{0}: <font style='color:green;'><b>POWIODLA SIE</b></font>]]></pl>
-            
+            <cn><![CDATA[测试章节索引 #{0} 句法验证： < font style='color:green;'><b>通过</b></font>]]></cn>
         </string>
         <string id="292" js="1">
             <en><![CDATA[Test section with index #{0} syntax validation: <font style='color:red;'><b>FAILED</b></font>]]></en>
             <pl><![CDATA[Walidacja skladni sekcji testu o indeksie #{0}: <font style='color:red;'><b>NIE POWIODLA SIE</b></font>]]></pl>
-            
+            <cn><![CDATA[测试章节索引 #{0} 句法验证： <font style='color:red;'><b>失败</b></font>]]></cn>
         </string>
         <string id="293" js="1">
             <en><![CDATA[Test #{0} - syntax validation <b>(finished)</b>]]></en>
             <pl><![CDATA[Test #{0} - walidacja skladni <b>(zakonczona)</b>]]></pl>
-            
+            <cn><![CDATA[测试 #{0} – 句法验证 <b>(完成)</b>]]></cn>
         </string>
         <string id="294" js="1">
             <en><![CDATA[Syntax validation <font style='color:green;'>PASSED</font>.]]></en>
             <pl><![CDATA[Walidacja skladni <font style='color:green;'>POMYSLNA</font>.]]></pl>
-            
+            <cn><![CDATA[句法验证 <font style='color:green;'>通过</font>.]]></cn>
         </string>
         <string id="295" js="1">
             <en><![CDATA[Test #{0} - syntax validation <b>(FAILED on section index #{1} - debug HALTED)</b>]]></en>
             <pl><![CDATA[Test #{0} - walidacja skladni <b>(NIE POWIODLA SIE przy sekcji o indeksie #{1} - debug ZATRZYMANY)</b>]]></pl>
-            
+            <cn><![CDATA[测试 #{0} – 句法验证 <b>(在章节索引 #{1} 处失败 – 调试中止)</b>]]></cn>
         </string>
         <string id="296" js="1">
             <en><![CDATA[Syntax validation <font style='color:red;'><b>FAILED</b></font> on section index #{0} - debug <font style='color:red;'><b>HALTED</b></font>]]></en>
             <pl><![CDATA[Walidacja skladni <font style='color:red;'><b>NIE POWIODLA SIE</b></font> dla sekcji o indeksie #{0} - debug <font style='color:red;'><b>ZATRZYMANY</b></font>]]></pl>
-            
+            <cn><![CDATA[句法验证 <font style='color:red;'><b>F失败</b></font> 在章节索引 #{0} 处– 调试 <font style='color:red;'><b>中止</b></font>]]></cn>
         </string>
         <string id="297" js="1">
             <en>Runtime debug</en>
             <pl>Debug na zywo</pl>
-            
+            <cn>运行时间调试</cn>
         </string>
         <string id="298" js="1">
             <en>Running test #{0}...</en>
             <pl>Uruchomienie testu #{0}...</pl>
-            
+            <cn>运行测试#{0}……</cn>
         </string>
         <string id="299" js="1">
             <en><![CDATA[Test #{0} - runtime debug <b>(R code is being interpreted...)</b>]]></en>
             <pl><![CDATA[Test #{0} - debug na zywo <b>(kod R jest interpretowany..)</b>]]></pl>
-            
+            <cn><![CDATA[测试 #{0} – 运行时间调试 <b>(R代码正在被编译…)</b>]]></cn>
         </string>
         <string id="300" js="1">
             <en>R code is being interpreted...</en>
             <pl>Kod R jest interpretowany...</pl>
-            
+            <cn> R代码正在被编译…</cn>
         </string>
         <string id="301" js="1">
             <en>R code response receIved.</en>
             <pl>Otrzymano odowiedz kodu R.</pl>
-            
+            <cn>收到R代码回复。</cn>
         </string>
         <string id="302" js="1">
             <en><![CDATA[Test #{0}, session #{1} - runtime debug <b>(R logic error - debug HALTED)</b>]]></en>
             <pl><![CDATA[Test #{0}, sesja #{1} - debug na zywo <b>(blad w logice R - debug ZATRZYMANY</b>]]></pl>
-            
+            <cn><![CDATA[测试 #{0}，场次 #{1} – 运行时间调试 <b>(R逻辑错误 – 调试中止)</b>]]></cn>
         </string>
         <string id="303" js="1">
             <en><![CDATA[R logic <font style='color:red;'><b>error</b></font>. Check R code output for additional info. Debug HALTED.]]></en>
             <pl><![CDATA[<font style='color:red;'><b>Blad</b></font> w logice R. Prosze sprawdzic wynik kodu R dla dodatkowych informacji. Debug ZATRZYMANY.]]></pl>
-            
+            <cn><![CDATA[R逻辑 <font style='color:red;'><b>错误</b></font>。更多信息详见R代码输出。调试中止。]]></cn>
         </string>
         <string id="304" js="1">
             <en><![CDATA[R logic validation <font style='color:green;'><b>PASSED</b></font>.]]></en>
             <pl><![CDATA[Walidacja logiki R <font style='color:green;'><b>POWIODLA SIE</b></font>.]]></pl>
-            
+            <cn><![CDATA[R逻辑验证 <font style='color:green;'><b>通过</b></font>.]]></cn>
         </string>
         <string id="305" js="1">
             <en>current HTML variables</en>
             <pl>obecne zmienne HTML</pl>
-            
+            <cn>当前HTML变量</cn>
         </string>
         <string id="306" js="1">
             <en>value</en>
             <pl>wartosc</pl>
-            
+            <cn>数值</cn>
         </string>
         <string id="307" js="1">
             <en><![CDATA[Test #{0}, session #{1} - runtime debug <b><font style='color:green;'>PASSED</font></b>]]></en>
             <pl><![CDATA[Test #{0}, sesja #{1} - debug na zywo <b><font style='color:green;'>POWIODL SIE</font></b>]]></pl>
-            
+            <cn><![CDATA[测试 #{0}，场次 #{1} – 运行时间调试 <b><font style='color:green;'>通过</font></b>]]></cn>
         </string>
         <string id="308" js="1">
             <en>End section reached. The test has finished.</en>
             <pl>Osiagnieto koncowa sekcje. Test zostal skonczony.</pl>
-            
+            <cn>到达结束章节。测试已完成。</cn>
         </string>
         <string id="309" js="1">
             <en>Template #{0}</en>
             <pl>Szablon #{0}</pl>
-            
+            <cn>模板#{0}</cn>
         </string>
         <string id="310" js="1">
             <en>Template #{0} loaded ( time limit: {1} ).</en>
             <pl>Szablon #{0} wczytany ( limit czasu: {1} ).</pl>
-            
+            <cn> 载入模板 #{0} ( 时限： {1} )。</cn>
         </string>
         <string id="311" js="1">
             <en>unlimited</en>
             <pl>nieograniczony</pl>
-            
+            <cn>无限的</cn>
         </string>
         <string id="312" js="1">
             <en>sec.</en>
             <pl>sek.</pl>
-            
+            <cn>秒</cn>
         </string>
         <string id="313" js="1">
             <en>Awaiting user input...</en>
             <pl>Oczekiwanie na ruch uzytkownika...</pl>
-            
+            <cn>等待用户输入…</cn>
         </string>
         <string id="314" js="1">
             <en><![CDATA[Test #{0}, session #{1}, template #{2} - runtime debug <b>(template loaded - awaiting user input...)</b>]]></en>
             <pl><![CDATA[Test #{0}, sesja #{1}, szablon #{2} - debug na zywo <b>(szablon wczytany - oczekiwanie na ruch uzytkownika...)</b>]]></pl>
-            
+            <cn><![CDATA[测试 #{0}，场次 #{1}，模板 #{2} – 运行时间调试 <b>(载入模板 – 等待用户输入……)</b>]]></cn>
         </string>
         <string id="315" js="1">
             <en>Item submitted. Time limit reached.</en>
             <pl>Element wyslany. Limit czasowy zostal osiagniety.</pl>
-            
+            <cn>提交项目。已到达时限。</cn>
         </string>
         <string id="316" js="1">
             <en><![CDATA[Item submitted. Button with name <b>{0}</b> clicked.]]></en>
             <pl><![CDATA[Element wyslany. Przycisk o nazwie <b>{0}</b> zostal klikniety.]]></pl>
-            
+            <cn><![CDATA[提交项目。按键名称 <b>{0}</b> 。]]></cn>
         </string>
         <string id="317" js="1">
             <en>variables send</en>
             <pl>wyslane zmienne</pl>
-            
+            <cn>发送变量</cn>
         </string>
         <string id="318" js="1">
             <en>range</en>
             <pl>zakres</pl>
-            
+            <cn>范围</cn>
         </string>
         <string id="319" js="1">
             <en>please wait...</en>
             <pl>prosze czekac...</pl>
-            
+            <cn></cn>
         </string>
         <string id="320" js="1">
             <en>Possible loss of unsaved data.</en>
             <pl>Mozliwa utrata niezapisanych danych.</pl>
-            
+            <cn></cn>
         </string>
         <string id="321" js="1">
             <en>Are you sure you want to continue? This action will reset unsaved changes in the following modules:</en>
             <pl>Jestes pewien ze chcesz kontynuowac? Ta czynnosc moze anulowac wszystkie niezapisane zmiany w nastepujacych modulach:</pl>
-            
+            <cn></cn>
         </string>
         <string id="322" js="1">
             <en>Are you sure you want to continue? This action will reset unsaved changes in all modules.</en>
             <pl>Jestes pewien ze chcesz kontynuowac? Ta czynnosc moze anulowac wszystkie niezapisane zmiany we wszystkich modulach.</pl>
-            
+            <cn></cn>
         </string>
         <string id="323" js="1">
             <en>begin</en>
             <pl>zacznij</pl>
-            
+            <cn></cn>
         </string>
         <string id="324" js="1">
             <en>restart</en>
             <pl>zacznij od nowa</pl>
-            
+            <cn></cn>
         </string>
         <string id="325">
             <en>field delimeter</en>
             <pl>separator pol</pl>
-            
+            <cn></cn>
         </string>
         <string id="326">
             <en><![CDATA[Single character used to separate fields in a row. Default character is '<b>,</b>'.]]></en>
             <pl><![CDATA[Pojedynczy znak uzywany do oddzielenia pol w rzedzie. Domyslny znak to '<b>,</b>'.]]></pl>
-            
+            <cn></cn>
         </string>
         <string id="327">
             <en>field enclosure</en>
             <pl>objecie pola</pl>
-            
+            <cn></cn>
         </string>
         <string id="328">
             <en><![CDATA[Single character used to enclose string. Default character is '<b>"</b>'.]]></en>
             <pl><![CDATA[Pojedynczy znak uzywany do objecia zakresu pola. Domyslny znak to '<b>"</b>'.]]></pl>
-            
+            <cn></cn>
         </string>
         <string id="329" js="1">
             <en>Exporting table to CSV file</en>
             <pl>eksportowanie tabeli do pliku CSV</pl>
-            
+            <cn></cn>
         </string>
         <string id="330">
             <en>header row</en>
             <pl>rzad naglowka</pl>
-            
+            <cn></cn>
         </string>
         <string id="331">
             <en>Check box to import CSV with a header row. Header row values will be used as column names.</en>
             <pl>Zaznacz jesli chcesz zaimportowac CSV z rzedem naglowka. Wartosci rzedu naglowka zostana uzyte jako nazwy kolumn.</pl>
-            
+            <cn></cn>
         </string>
         <string id="332">
             <en>Check box to export CSV with a header row. Header row will be first row in CSV with table column names.</en>
             <pl>Zaznacz jesli chcesz wyeksportowac CSV z rzedem naglowka. Rzad naglowka bedzie pierwszym rzedem w CSV z nazwami kolumn tabeli.</pl>
-            
+            <cn></cn>
         </string>
         <string id="333" js="1">
             <en>Error loading XML file. Cannot continue with import.</en>
             <pl>Blad przy wczytywaniu pliku XML. Import nie moze byc kontynuowany.</pl>
-            
+            <cn></cn>
         </string>
         <string id="334" js="1">
             <en>Column delimiter and enclosure fields are mandatory.</en>
             <pl>Pola separacji i objecia kolumn nie moga byc puste.</pl>
-            
+            <cn></cn>
         </string>
     </strings>
 </root>
