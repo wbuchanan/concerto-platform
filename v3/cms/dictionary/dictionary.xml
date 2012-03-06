@@ -116,157 +116,157 @@ Note: You can add new languages by inserting "<new_language>string translated in
         <string id="17" js="1">
             <en>numeric</en>
             <pl>liczba</pl>
-            
+            <cn>数值</cn>
         </string>
         <string id="18" js="1">
             <en>HTML</en>
             <pl>HTML</pl>
-            
+            <cn>HTML</cn>
         </string>
         <string id="19" js="1">
             <en>edit column</en>
             <pl>edytuj kolumnę</pl>
-            
+            <cn>编辑列</cn>
         </string>
         <string id="20" js="1">
             <en>remove column</en>
             <pl>usuń kolumnę</pl>
-            
+            <cn>移除列</cn>
         </string>
         <string id="21" js="1">
             <en>importing table from MySQL table</en>
             <pl>importowanie tabeli z tabeli MySQL</pl>
-            
+            <cn>从MySQL表格中导入表格</cn>
         </string>
         <string id="22" js="1">
             <en>import</en>
             <pl>importuj</pl>
-            
+            <cn>导入</cn>
         </string>
         <string id="23" js="1">
             <en>cancel</en>
             <pl>anuluj</pl>
-            
+            <cn>取消</cn>
         </string>
         <string id="24" js="1">
             <en>No table selected.</en>
             <pl>Nie wybrano tabeli.</pl>
-            
+            <cn>未选择表格</cn>
         </string>
         <string id="25" js="1">
             <en>importing table</en>
             <pl>importowanie tabeli</pl>
-            
+            <cn>导入表格</cn>
         </string>
         <string id="26" js="1">
             <en>Table structure and data imported.</en>
             <pl>Struktura i dane tabeli zostały zaimportowane.</pl>
-            
+            <cn>已导入表格结构和数据。</cn>
         </string>
         <string id="27" js="1">
             <en>Importing table from CSV file</en>
             <pl>importowanie tabeli z pliku CSV</pl>
-            
+            <cn>从CSV文件中导入表格</cn>
         </string>
         <string id="28" js="1">
             <en>Are you sure you want to replace the current table structure and data with that from the selected file?</en>
             <pl>Jesteś pewien że chcesz zastąpić obecną strukturę i dane tabeli tymi z pliku?</pl>
-            
+            <cn>确认使用所选文件表格结构数据替代当前表格？</cn>
         </string>
         <string id="29" js="1">
             <en>file uploaded</en>
             <pl>plik wysłany</pl>
-            
+            <cn>已上传文件</cn>
         </string>
         <string id="30" js="1">
             <en>There was an error in importing table structure and data.</en>
             <pl>Wystąpił błąd podczas importowania struktury i danych tabeli.</pl>
-            
+            <cn>导入表格结构数据发生错误。</cn>
         </string>
         <string id="31" js="1">
             <en>adding new column</en>
             <pl>dodawanie nowej kolumny</pl>
-            
+            <cn>添加列</cn>
         </string>
         <string id="32" js="1">
             <en>Are you sure you want to delete this row?</en>
             <pl>Jesteś pewien, że chcesz usunąć ten rekord?</pl>
-            
+            <cn>确认删除此行？</cn>
         </string>
         <string id="33" js="1">
             <en>deleting table row</en>
             <pl>usuwanie rekordu tabeli</pl>
-            
+            <cn>删除行</cn>
         </string>
         <string id="34" js="1">
             <en>Are you sure you want to delete this column</en>
             <pl>Jesteś pewien że chcesz usunąć tą kolumnę?</pl>
-            
+            <cn>确认删除此列？</cn>
         </string>
         <string id="35" js="1">
             <en>deleting table column</en>
             <pl>usuwanie kolumny tabeli</pl>
-            
+            <cn>删除列</cn>
         </string>
         <string id="36" js="1">
             <en>changing HTML</en>
             <pl>zmiana HTML</pl>
-            
+            <cn>修改HTML</cn>
         </string>
         <string id="37" js="1">
             <en>add</en>
             <pl>dodaj</pl>
-            
+            <cn>添加</cn>
         </string>
         <string id="38" js="1">
             <en>change</en>
             <pl>zmień</pl>
-            
+            <cn>修改</cn>
         </string>
         <string id="39" js="1">
             <en>Edit HTML. Current HTML:</en>
             <pl>Edycja HTML. Obecny HTML:</pl>
-            
+            <cn>编辑HTML。当前HTML：</cn>
         </string>
         <string id="40" js="1">
             <en>Directly enter R code that is to be interpreted.</en>
             <pl>Używając tej sekcji można zinterpretować dowolny kod R.</pl>
-            
+            <cn>直接编译R代码。点击输入需编译的R代码。</cn>
         </string>
         <string id="41" js="1">
             <en>Stop R processes and load selected HTML template.</en>
             <pl>Ta sekcja przerywa wykonywanie kodu R i wyświetla użytkownikowi szablon HTML.</pl>
-            
+            <cn>停止R运行，导入所选HTML模板。</cn>
         </string>
         <string id="42" js="1">
             <en>Skip to a specific section of the test.</en>
             <pl>Ta sekcja pozwala przejść do innej wybranej sekcji.</pl>
-            
+            <cn>转入测试特定章节。</cn>
         </string>
         <string id="43" js="1">
             <en><![CDATA[Specify conditions and their consequences. Multiple conditions and consequences can be specified. IF statements can't be nested within each other.]]></en>
             <pl><![CDATA[Dzięki tej sekcji można tworzyć twierdzenia warunkowe. Dozwolone jest wiele warunków, oraz można zamieszczać wiele sekcji w bloku <b>WTEDY</b>. Nie można zagnieżdżać twierdzen JEŻELI.]]></pl>
-            
+            <cn><![CDATA[声明条件及其结果。允许多重条件及结果。IF语句不可嵌入。]]></cn>
         </string>
         <string id="44" js="1">
             <en><![CDATA[Define variables (i.e. set variables) and variable type in R, HTML templates or both. Methods to set variable: <ul><li><b>from table</b>: select a previously defined table in Concerto and filter necessary rows and columns. Set the whole table by leaving the <b>WHERE</b> clause empty</li><li><b>by R code</b>: directly type in R code. E.g. function result, mathematical calculation</li></ul>]]></en>
             <pl><![CDATA[Ta sekcja daje mozliwość zadeklarowania zmiennej w logice testu. Można dodatkowo również zaznaczyć checkbox aby sprawić żeby zmienna była widoczna w szablonie HTML. Można ustawić zmienną jedną z trzech metod:<ul><li><b>z tabeli</b>: można wybrać wcześniej zdefiniowaną tabelę w Concerto, oraz jej konkretne rekordy i kolumny. Można również wybrać całą tabelę pozostawiając blok <b>GDZIE</b> pusty</li><li><b>przez kod R</b>: można ustawić zmienną używając kodu R. Może to być cokolwiek co da się wykonać w języku R. Np. rezultat funkcji, matematyczne obliczenie</li></ul>]]></pl>
-            
+            <cn><![CDATA[在R，HTML模板中定义变量及变量类型。方法如下： <ul><li><b>来自表格</b>：选择之前在Concerto中定义的表格并筛选特定的行列。若保留<b>当</b> 语句为空可选定全部表格</li><li><b>通过R代码</b>：直接输入R代码，例如函数结论，数学计算。</li><li><b>使用变量</b>：根据已定义变量设定新变量。使用自动填充功能方便从已声明变量中查找特定变量。</li></ul>]]></cn>
         </string>
         <string id="45" js="1">
             <en>The start section is the entry point to your test logic. It cannot be modified.</en>
             <pl>To jest sekcja początkowa. Nie można jej modyfikować. Stanowi punkt wejściowy do logiki testu.</pl>
-            
+            <cn>启动章节是测试逻辑的起点，不可修改。</cn>
         </string>
         <string id="46" js="1">
             <en>The End section is the last section of your test logic.It cannot be modified.</en>
             <pl>To jest sekcja końcowa. Nie można jej modyfikowac. To jest sekcja kończąca logikę testu.</pl>
-            
+            <cn>结束章节是测试逻辑的终点，不可修改。</cn>
         </string>
         <string id="47" js="1">
             <en><![CDATA[Modify existing tables with the help of three basic database operations:<ul><li><b>INSERT</b>: insert a single row and values corresponding to each column</li><li><b>UPDATE</b>: modify table rows that meet criteria found in the <b>WHERE</b> clause. Specify which columns you want to modify and values for each.</li><li><b>DELETE</b>: delete table rows that meet criteria found in the <b>WHERE</b> clause.</li></ul>]]></en>
             <pl><![CDATA[Używajac tej sekcji można zmodyfikować wcześniej zdefiniowane tabele. Można wykonać trzy podstawowoe operacje na bazie danych:<ul><li><b>DODANIE</b>: używajac tej komendy można dodać nowy pojedyńczy rekord z wybranymi wartościami</li><li><b>ZMIANA</b>: używając tej komendy można zmodyfikować rekordy tabeli które spełniaja podane kryteria w bloku <b>GDZIE</b>. Można ustawić które kolumny chce się zmodyfikować i jaką wartość chce się im dać.</li><li><b>USUŃ</b>: używając tej komendy możesz usunąć rekordy tabeli które spełniają kryteria podane w bloku <b>GDZIE</b>.</li></ul>]]></pl>
-            
+            <cn><![CDATA[借助以下三种基本数据库操作修改已有表格：<ul><li><b>插入</b>：插入一行及每列数值</li><li><b>更新</b>：修改表格行以满足 <b>当</b> 语句中的标准。可以指定修改的列及其数值。</li><li><b>删除</b>：删除表格中满足<b>当</b> 语句中标准的行。</li></ul>]]></cn>
         </string>
         <string id="48" js="1">
             <en>This is the custom test section.</en>
