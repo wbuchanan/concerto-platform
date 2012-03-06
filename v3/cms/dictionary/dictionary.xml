@@ -816,282 +816,282 @@ Note: You can add new languages by inserting "<new_language>string translated in
         <string id="157">
             <en>editing admin type</en>
             <pl>edycja typu administratora</pl>
-            <cn>编辑管理类型</cn>
+            <cn>编辑管理员类型</cn>
         </string>
         <string id="158">
             <en>creating new admin type</en>
             <pl>tworzenie nowego typu administratora</pl>
-            <cn>创建管理类型</cn>
+            <cn>创建管理员类型</cn>
         </string>
         <string id="159">
             <en>name of the admin type</en>
             <pl>nazwa typu administratora</pl>
-            
+            <cn>管理员类型名称</cn>
         </string>
         <string id="160">
             <en>access rights of the admin type</en>
             <pl>prawa dostepu typu administratora</pl>
-            
+            <cn>管理员类型访问权限</cn>
         </string>
         <string id="161">
             <en>admin type owner</en>
             <pl>wlasciciel typu administratora</pl>
-            
+            <cn>管理类型所有者</cn>
         </string>
         <string id="162">
             <en>admin type rights</en>
             <pl>prawa typu administratora</pl>
-            
+            <cn>管理员类型权限</cn>
         </string>
         <string id="163">
             <en>module</en>
             <pl>modul</pl>
-            
+            <cn>模块</cn>
         </string>
         <string id="164">
             <en>read rights</en>
             <pl>prawa odczytu</pl>
-            
+            <cn>阅读权限</cn>
         </string>
         <string id="165">
             <en>write rights</en>
             <pl>prawa zapisu</pl>
-            
+            <cn>书写权限</cn>
         </string>
         <string id="166">
             <en>owner change</en>
             <pl>zmiana wlasciciela</pl>
-            
+            <cn>所有者变更</cn>
         </string>
         <string id="167">
             <en>HTML templates</en>
             <pl>szablony HTML</pl>
-            
+            <cn>HTML模板</cn>
         </string>
         <string id="168">
             <en>standard</en>
             <pl>standardowe</pl>
-            
+            <cn>标准</cn>
         </string>
         <string id="169">
             <en>all</en>
             <pl>wszystko</pl>
-            
+            <cn>全部</cn>
         </string>
         <string id="170">
             <en>editing admin</en>
             <pl>edycja administratora</pl>
-            
+            <cn>编辑管理者</cn>
         </string>
         <string id="171">
             <en>creating new admin</en>
             <pl>tworzenie nowego administratora</pl>
-            
+            <cn>创建管理者</cn>
         </string>
         <string id="172">
             <en>creating new admin</en>
             <pl>tworzenie nowego administratora</pl>
-            
+            <cn>创建管理者</cn>
         </string>
         <string id="173">
             <en>login</en>
             <pl>login</pl>
-            
+            <cn>登入</cn>
         </string>
         <string id="174">
             <en>email</en>
             <pl>email</pl>
-            
+            <cn>邮箱</cn>
         </string>
         <string id="175">
             <en>last login</en>
             <pl>ostatni login</pl>
-            
+            <cn>上次登入</cn>
         </string>
         <string id="176">
             <en>admin group</en>
             <pl>grupa administratora</pl>
-            
+            <cn>管理群</cn>
         </string>
         <string id="177">
             <en>admin type</en>
             <pl>typ administratora</pl>
-            
+            <cn>管理员类型</cn>
         </string>
         <string id="178">
             <en>admin login</en>
             <pl>login administratora</pl>
-            
+            <cn>管理员登入</cn>
         </string>
         <string id="179">
             <en>password</en>
             <pl>haslo</pl>
-            
+            <cn>密码</cn>
         </string>
         <string id="180">
             <en>Select box to set the password</en>
             <pl>zaznacz jesli chcesz ustawic haslo</pl>
-            
+            <cn>设置密码选项</cn>
         </string>
         <string id="181">
             <en>admin password</en>
             <pl>haslo administratora</pl>
-            
+            <cn>管理员密码</cn>
         </string>
         <string id="182">
             <en>password confirmation</en>
             <pl>potwierdzenie hasla</pl>
-            
+            <cn>确认密码</cn>
         </string>
         <string id="183">
             <en>password confirmation must match the password field above</en>
             <pl>potwierdzenie hasla musi sie zgadzac z polem hasla powyzej</pl>
-            
+            <cn>确认密码必须与上方密码栏一致</cn>
         </string>
         <string id="184">
             <en>first name</en>
             <pl>imie</pl>
-            
+            <cn>名</cn>
         </string>
         <string id="185">
             <en>last name</en>
             <pl>nazwisko</pl>
-            
+            <cn>姓</cn>
         </string>
         <string id="186">
             <en>admin first name</en>
             <pl>imie administratora</pl>
-            
+            <cn>管理员名</cn>
         </string>
         <string id="187">
             <en>admin last name</en>
             <pl>nazwisko administratora</pl>
-            
+            <cn>管理员姓</cn>
         </string>
         <string id="188">
             <en>admin email</en>
             <pl>email administratora</pl>
-            
+            <cn>管理员邮箱</cn>
         </string>
         <string id="189">
             <en>phone no.</en>
             <pl>nr telefonu</pl>
-            
+            <cn>电话</cn>
         </string>
         <string id="190">
             <en>admin phone no.</en>
             <pl>nr telefonu administratora</pl>
-            
+            <cn>管理员电话</cn>
         </string>
         <string id="191">
             <en>admin group</en>
             <pl>grupa administratora</pl>
-            
+            <cn>管理群</cn>
         </string>
         <string id="192">
             <en>admin type</en>
             <pl>typ administratora</pl>
-            
+            <cn>管理员类型</cn>
         </string>
         <string id="193">
             <en>Create and manage the entire structure of each test.</en>
             <pl>W tej zakladce mozna tworzyc testy.</pl>
-            
+            <cn>以整体创建并管理测试结果。</cn>
         </string>
         <string id="194">
             <en>Create custom test logic sections to meet the requirements of specific tests.</en>
             <pl>W tej zakladce mozna stworzyc wlasne sekcje logiki testu i uzyc ich w testach.</pl>
-            
+            <cn>创建满足特定测试需求的自主测试章节。</cn>
         </string>
         <string id="195">
             <en>Create and edit HTML templates as they are visible to the test taker.</en>
             <pl>W tej zakladce mozna stworzyc szablony HTML elementow testu ktore bedzie widzial uzytkownik bioracy udzial w tescie.</pl>
-            
+            <cn>创建并编辑向参与测试用户显示的HTML模板。</cn>
         </string>
         <string id="196">
             <en>Create tables for storing and managing test data, including item content, correct responses and response history etc.</en>
             <pl>W tej zakladce mozna stworzyc tabele z danymi ktore mozna pozniej uzywac w tescie.</pl>
-            
+            <cn>创建表格以存储并管理测试数据，包括项目内容，正确答复以及答复历史等。</cn>
         </string>
         <string id="197">
             <en>Create and manage admin and standard user accounts, user groups and access rights of users.</en>
             <pl>Ta zakladka sluzy do tworzenia kont administratorow ktorzy beda mogli korzystac z tego panelu. Mozesz tutaj ustalic prawa dostepu oraz stworzyc grupy w obrebie ktorych administratorzy beda dzielic wskazane obiekty.</pl>
-            
+            <cn>创建并维护管理员及标准用户帐户，用户群及用户访问权限。</cn>
         </string>
         <string id="198">
             <en>admins, admin groups and admin types</en>
             <pl>administratorzy, grupy administratorow oraz typy administratorow</pl>
-            
+            <cn>管理员，管理群以及管理员类型</cn>
         </string>
         <string id="199">
             <en>available objects</en>
             <pl>dostepne obiekty</pl>
-            
+            <cn>可用对象</cn>
         </string>
         <string id="200">
             <en>no available objects</en>
             <pl>brak dostepnych obiektow</pl>
-            
+            <cn>不可用对象</cn>
         </string>
         <string id="201">
             <en>reset search filter</en>
             <pl>resetuj filtr wyszukiwania</pl>
-            
+            <cn>重设搜索选项</cn>
         </string>
         <string id="202">
             <en>actions</en>
             <pl>akcje</pl>
-            
+            <cn>操作</cn>
         </string>
         <string id="203">
             <en>edit object</en>
             <pl>edytuj obiekt</pl>
-            
+            <cn>编辑对象</cn>
         </string>
         <string id="204">
             <en>delete object</en>
             <pl>usun obiekt</pl>
-            
+            <cn>删除对象</cn>
         </string>
         <string id="205">
             <en>add new object</en>
             <pl>dodaj nowy obiekt</pl>
-            
+            <cn>添加对象</cn>
         </string>
         <string id="206">
             <en>first page</en>
             <pl>pierwsza strona</pl>
-            
+            <cn>首页</cn>
         </string>
         <string id="207">
             <en>previous page</en>
             <pl>poprzednia strona</pl>
-            
+            <cn>前一页</cn>
         </string>
         <string id="208">
             <en>next page</en>
             <pl>nastepna strona</pl>
-            
+            <cn>下一页</cn>
         </string>
         <string id="209">
             <en>last page</en>
             <pl>ostatnia strona</pl>
-            
+            <cn>尾页</cn>
         </string>
         <string id="210">
             <en>per page</en>
             <pl>na strone</pl>
-            
+            <cn>每页</cn>
         </string>
         <string id="211">
             <en>login to platform</en>
             <pl>logowanie do platformy</pl>
-            
+            <cn>登入系统</cn>
         </string>
         <string id="212">
             <en>Enter your login and password.</en>
             <pl>Podaj swoj login i haslo.</pl>
-            
+            cn>输入用户名和密码</cn>
         </string>
         <string id="213">
             <en>Select the HTML template to be loaded.</en>
