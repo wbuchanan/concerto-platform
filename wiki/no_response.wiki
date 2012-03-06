@@ -14,21 +14,28 @@ It is assumed that you’ve already taken the *[http://code.google.com/p/concert
 ==Creating a loop==
 The basic concept here is to loop the test logic sections such that the testee is presented with the same item page until he/she responds. In many cases, this merely involves the addition of a few conditional statements. The conditional statements specify that IF no response is selected/given THEN the same question should be presented.
 
+It is important to note that the test section used to create the loop should be inserted following the section that loads the item template.
+
 .
 
-*Radio Buttons in Concerto v3*
+===Radio Buttons in Concerto v3===
+
 When no option is selected from a group of radio buttons (with similar names but different values), the response is validated as NA in R and "NA" (string) in HTML/MySQL by default. i.e. this makes our life easier since we do not have to _set variable_ as NA or -9999 for missing data. 
 
-The only step is to create a loop with the help of a conditional 'IF' statement (see picture below). 
+The only step is to create a loop with the help of a conditional 'IF' statement (see picture below). The condition specifies that if the value of the radio button does not exist (i.e. is NA), then the same item should be presented.
+
+|| *SECTION TYPE* || *DETAILS* ||
+|| IF statement || IF _is.na(radio1)_ - _equal_ - _T_  THEN CLICK '+' ICON BELOW 'THEN'. GO TO SECTION: _load items template_ (i.e. go to the previous section in your test in which the items template is loaded) ||
 
 . 
+
 http://ns39618.ovh.net/~vaishali/mini/noresp3.jpg
 
-*Dialogue Boxes in Concerto v3*
-
-http://ns39618.ovh.net/~vaishali/mini/noresp2.jpg
-
 .
+
+===Dialogue Boxes in Concerto v3===
+
+When no response is given and a dialogue box is left empty, the response is validated as "" (an empty string), rather than NA. This changes the looping method slightly, compared to radio buttons. 
 
 In the section below, the first condition ensures that an empty dialogue box (no response) will bring the testee back to the same item, while the second condition prevents non-numeric responses (typing errors or intentional attempts at skipping items!).
 
@@ -37,4 +44,5 @@ In the section below, the first condition ensures that an empty dialogue box (no
 || IF statement || *response* - *equal* - *""* (empty string) *OR* - *suppressWarnings(!is.na(as.numeric(response)))* - *not equal* - *T* THEN _GO TO_ *14.load HTML template* (this is the section where you load the items template) ||
 
 .
+
 http://ns39618.ovh.net/~vaishali/mini/noresp1.jpg
