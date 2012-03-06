@@ -2,8 +2,7 @@
 = Concerto v3.0 Tutorials: Create a simple test =
                             
 This tutorial will help you create a simple test on Concerto v3.0. 
-You can preview the test here: 
- * *[http://dev.myiqtest.org/concerto3_demo/index.php?tid=61 Concerto v3.0 Simple Test]*
+You can preview the test here: *[http://dev.myiqtest.org/concerto3_demo/index.php?tid=61 Concerto v3.0 Simple Test]*
 
 Note:
  * This document is relevant to Concerto v3.0. If you use an older version, please upgrade it (or else refer to relevant tutorials).
