@@ -1616,82 +1616,82 @@ Note: You can add new languages by inserting "<new_language>string translated in
         <string id="319" js="1">
             <en>please wait...</en>
             <pl>prosze czekac...</pl>
-            <cn></cn>
+            <cn>请等待……</cn>
         </string>
         <string id="320" js="1">
             <en>Possible loss of unsaved data.</en>
             <pl>Mozliwa utrata niezapisanych danych.</pl>
-            <cn></cn>
+            <cn>可能丢失未保存数据。</cn>
         </string>
         <string id="321" js="1">
             <en>Are you sure you want to continue? This action will reset unsaved changes in the following modules:</en>
             <pl>Jestes pewien ze chcesz kontynuowac? Ta czynnosc moze anulowac wszystkie niezapisane zmiany w nastepujacych modulach:</pl>
-            <cn></cn>
+            <cn>确认继续？此操作将在以下模块中重置未保存修改：</cn>
         </string>
         <string id="322" js="1">
             <en>Are you sure you want to continue? This action will reset unsaved changes in all modules.</en>
             <pl>Jestes pewien ze chcesz kontynuowac? Ta czynnosc moze anulowac wszystkie niezapisane zmiany we wszystkich modulach.</pl>
-            <cn></cn>
+            <cn>确认继续？此操作将在所有模块中重置未保存修改。</cn>
         </string>
         <string id="323" js="1">
             <en>begin</en>
             <pl>zacznij</pl>
-            <cn></cn>
+            <cn>开始</cn>
         </string>
         <string id="324" js="1">
             <en>restart</en>
             <pl>zacznij od nowa</pl>
-            <cn></cn>
+            <cn>重启</cn>
         </string>
         <string id="325">
-            <en>field delimeter</en>
+            <en>field delimiter</en>
             <pl>separator pol</pl>
-            <cn></cn>
+            <cn>区域分割符</cn>
         </string>
         <string id="326">
             <en><![CDATA[Single character used to separate fields in a row. Default character is '<b>,</b>'.]]></en>
             <pl><![CDATA[Pojedynczy znak uzywany do oddzielenia pol w rzedzie. Domyslny znak to '<b>,</b>'.]]></pl>
-            <cn></cn>
+            <cn><![CDATA[在行内用于划分区域的单一字符。默认字符为'<b>,</b>'。]]></cn>
         </string>
         <string id="327">
             <en>field enclosure</en>
             <pl>objecie pola</pl>
-            <cn></cn>
+            <cn>区域边界</cn>
         </string>
         <string id="328">
             <en><![CDATA[Single character used to enclose string. Default character is '<b>"</b>'.]]></en>
             <pl><![CDATA[Pojedynczy znak uzywany do objecia zakresu pola. Domyslny znak to '<b>"</b>'.]]></pl>
-            <cn></cn>
+            <cn><![CDATA[用于标记字符串的单一字符。默认字符为'<b>"</b>'。]]></cn>
         </string>
         <string id="329" js="1">
             <en>Exporting table to CSV file</en>
             <pl>eksportowanie tabeli do pliku CSV</pl>
-            <cn></cn>
+            <cn>导出表格至CSV文件</cn>
         </string>
         <string id="330">
             <en>header row</en>
             <pl>rzad naglowka</pl>
-            <cn></cn>
+            <cn>标题行</cn>
         </string>
         <string id="331">
             <en>Check box to import CSV with a header row. Header row values will be used as column names.</en>
             <pl>Zaznacz jesli chcesz zaimportowac CSV z rzedem naglowka. Wartosci rzedu naglowka zostana uzyte jako nazwy kolumn.</pl>
-            <cn></cn>
+            <cn>包含标题行导入CSV。标题行数值将作为列名称。</cn>
         </string>
         <string id="332">
             <en>Check box to export CSV with a header row. Header row will be first row in CSV with table column names.</en>
             <pl>Zaznacz jesli chcesz wyeksportowac CSV z rzedem naglowka. Rzad naglowka bedzie pierwszym rzedem w CSV z nazwami kolumn tabeli.</pl>
-            <cn></cn>
+            <cn>包含标题行导出CSV。标题行将作为表格列名称出现在CSV的第一行。</cn>
         </string>
         <string id="333" js="1">
             <en>Error loading XML file. Cannot continue with import.</en>
             <pl>Blad przy wczytywaniu pliku XML. Import nie moze byc kontynuowany.</pl>
-            <cn></cn>
+            <cn>载入XML文件错误。无法继续导入。</cn>
         </string>
         <string id="334" js="1">
             <en>Column delimiter and enclosure fields are mandatory.</en>
             <pl>Pola separacji i objecia kolumn nie moga byc puste.</pl>
-            <cn></cn>
+            <cn>列分隔符与区域标记为必需。</cn>
         </string>
     </strings>
-</root>
+</root> 
