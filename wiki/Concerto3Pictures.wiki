@@ -1,0 +1,14 @@
+#labels Featured,Tutorial
+.
+= Concerto v3.0 Tutorials: Preventing 'no response' situations=
+
+This tutorial explains how to add pictures to your test. 
+
+It is assumed that you’ve already taken the *[http://code.google.com/p/concerto-platform/wiki/Concerto3SimpleTest Concerto v3.0 Tutorials: Create a simple test]* section and are familiar with the basic functions of Concerto v3.0.
+
+*Note:*
+ * This document is relevant to Concerto v3.0. If you use an older version, please upgrade it (or else refer to relevant tutorials).
+ * You may experience some problems while using different browsers. Currently, it is best to use Google Chrome to run the administration panel.
+
+.
+==
