@@ -531,297 +531,297 @@ Note: You can add new languages by inserting "<new_language>string translated in
         <string id="100">
             <en>private</en>
             <pl>prywatne</pl>
-            
+            <cn>未公开</cn>
         </string>
         <string id="101">
             <en>group</en>
             <pl>grupowe</pl>
-            
+            <cn>群</cn>
         </string>
         <string id="102">
             <en>public</en>
             <pl>publiczne</pl>
-            
+            <cn>公开</cn>
         </string>
         <string id="103">
             <en>owner of this custom section</en>
             <pl>wlasciciel wlasnej sekcji</pl>
-            
+            <cn>此自主章节所有者</cn>
         </string>
         <string id="104">
             <en>Edit description. Current description:</en>
             <pl>Edytuj opis. Obecny opis:</pl>
-            
+            <cn>编辑描述。当前描述：</cn>
         </string>
         <string id="105">
             <en>Define section input parameters. Use variables thus declared in the R code section.</en>
             <pl>Tutaj mozesz zdefiniowac parametry wejsciowe sekcji. Mozna uzywac zmiennych ktore tutaj zostaly zadeklarowane w kodzie R sekcji.</pl>
-            
+            <cn>定义章节输入参数。使用在在章节R代码中声明的变量。</cn>
         </string>
         <string id="106">
             <en>parameters</en>
             <pl>parametry</pl>
-            
+            <cn>参数</cn>
         </string>
         <string id="107">
             <en>edit description</en>
             <pl>edytuj opis</pl>
-            
+            <cn>编辑描述</cn>
         </string>
         <string id="108">
             <en>no parameters defined</en>
             <pl>brak zdefiniowanych parametrow</pl>
-            
+            <cn>未定义参数</cn>
         </string>
         <string id="109">
             <en>add parameter variable</en>
             <pl>dodaj parametr</pl>
-            
+            <cn>添加参数变量</cn>
         </string>
         <string id="110">
             <en>remove parameter variable</en>
             <pl>usun parametr</pl>
-            
+            <cn>移除参数变量</cn>
         </string>
         <string id="111">
             <en>R code relevant for this section. Parameters declared above can be used here.</en>
             <pl>To jest kod R sekcji. Mozesz uzywac w nim parametrow ktore zadeklarowales powyzej.</pl>
-            
+            <cn>此章节相关R代码。已声明参数可在此使用。</cn>
         </string>
         <string id="112">
             <en>Specify variables used in this section to be made available globally, for use in other test sections.</en>
             <pl>Tutaj mozesz zdefiniowac ktore zmienne uzyte w sekcji chcialbys przekazac poza sekcje. Zmienne te nastepnie moga zostac uzyte w innych sekcjach logiki.</pl>
-            
+            <cn>指定此章节内可在其他章节使用的总体变量。</cn>
         </string>
         <string id="113">
             <en>returns</en>
             <pl>zwrot</pl>
-            
+            <cn>返回值</cn>
         </string>
         <string id="114">
             <en>no returns defined</en>
             <pl>brak zdefiniowanego zwrotu</pl>
-            
+            <cn>未定义返回值</cn>
         </string>
         <string id="115">
             <en>add return variable</en>
             <pl>dodaj zmienna zwrotu</pl>
-            
+            <cn>添加返回变量</cn>
         </string>
         <string id="116">
             <en>remvoe return variable</en>
             <pl>usun zmienna zwrotu</pl>
-            
+            <cn>移除返回变量</cn>
         </string>
         <string id="117">
             <en>editing table</en>
             <pl>edycja tabeli</pl>
-            
+            <cn>编辑表格</cn>
         </string>
         <string id="118">
             <en>creating new table</en>
             <pl>tworzenie nowej tabeli</pl>
-            
+            <cn>创建表格</cn>
         </string>
         <string id="119">
             <en>name of the table</en>
             <pl>nazwa tabeli</pl>
-            
+            <cn>表格名称</cn>
         </string>
         <string id="120">
             <en>table access rights</en>
             <pl>prawa dostepu tabeli</pl>
-            
+            <cn>表格访问权限</cn>
         </string>
         <string id="121">
             <en>owner of the table</en>
             <pl>wlasciciel tabeli</pl>
-            
+            <cn>表格所有者</cn>
         </string>
         <string id="122" js="1">
             <en>type</en>
             <pl>typ</pl>
-            
+            <cn>类型</cn>
         </string>
         <string id="123">
             <en>no object selected</en>
             <pl>nie wybrano zadnego obiektu</pl>
-            
+            <cn>未选择对象</cn>
         </string>
         <string id="124">
             <en>MySQL table</en>
             <pl>tabela MySQL</pl>
-            
+            <cn>MySQL表格</cn>
         </string>
         <string id="125">
             <en>import table from MySQL table</en>
             <pl>import tabeli z tabeli MySQL</pl>
-            
+            <cn>从MySQL表格导入表格</cn>
         </string>
         <string id="126">
             <en>import table from CSV file</en>
             <pl>import tabeli z pliku CSV</pl>
-            
+            <cn>从CSV文件导入表格</cn>
         </string>
         <string id="127">
             <en>export table to CSV file</en>
             <pl>eksport tabeli do pliku CSV</pl>
-            
+            <cn>导出表格到CSV文件</cn>
         </string>
         <string id="128">
             <en>table structure and data</en>
             <pl>struktura tabeli i dane</pl>
-            
+            <cn>表格结构与数据</cn>
         </string>
         <string id="129">
             <en>add column</en>
             <pl>dodaj kolumne</pl>
-            
+            <cn>添加列</cn>
         </string>
         <string id="130">
             <en>edit HTML</en>
             <pl>edycja HTML</pl>
-            
+            <cn>编辑HTML</cn>
         </string>
         <string id="131">
             <en>add row</en>
             <pl>dodaj rekord</pl>
-            
+            <cn>添加行</cn>
         </string>
         <string id="132">
             <en>table is empty</en>
             <pl>tabela jest pusta</pl>
-            
+            <cn>表格空白</cn>
         </string>
         <string id="133">
             <en>editing HTML template</en>
             <pl>edycja szablonu HTML</pl>
-            
+            <cn>编辑HTML模板</cn>
         </string>
         <string id="134">
             <en>creating new HTML template</en>
             <pl>tworzenie nowego szablonu HTML</pl>
-            
+            <cn>创建HTML模板</cn>
         </string>
         <string id="135">
             <en>name of HTML template</en>
             <pl>nazwa szablonu HTML</pl>
-            
+            <cn>HTML模板名称</cn>
         </string>
         <string id="136">
             <en>HTML content of the template</en>
             <pl>zawartosc HTML szablonu</pl>
-            
+            <cn>HTML模板内容</cn>
         </string>
         <string id="137">
             <en>template access rights</en>
             <pl>prawa dostepu szablonu</pl>
-            
+            <cn>模板访问权限</cn>
         </string>
         <string id="138">
             <en>owner of the template</en>
             <pl>wlasciciel szablonu</pl>
-            
+            <cn>模板所有者</cn>
         </string>
         <string id="139">
             <en>editing test</en>
             <pl>edycja testu</pl>
-            
+            <cn>编辑测试</cn>
         </string>
         <string id="140">
             <en>creating new test</en>
             <pl>tworzenie nowego testu</pl>
-            
+            <cn>创建测试</cn>
         </string>
         <string id="141">
             <en>name of the test</en>
             <pl>nazwa testu</pl>
-            
+            <cn>测试名称</cn>
         </string>
         <string id="142">
             <en>test access rights</en>
             <pl>prawa dostepu testu</pl>
-            
+            <cn>测试访问权限</cn>
         </string>
         <string id="143">
             <en>owner of the test</en>
             <pl>wlasciciel testu</pl>
-            
+            <cn>测试所有者</cn>
         </string>
         <string id="144">
             <en>show test variables</en>
             <pl>pokaz zmienne testu</pl>
-            
+            <cn>显示测试变量</cn>
         </string>
         <string id="145">
             <en>test logic is empty</en>
             <pl>logika testu jest pusta</pl>
-            
+            <cn>测试逻辑空白</cn>
         </string>
         <string id="146">
             <en>choose section type</en>
             <pl>wybierz typ sekcji</pl>
-            
+            <cn>选择章节类型</cn>
         </string>
         <string id="147">
             <en>basic sections</en>
             <pl>podstawowe sekcje</pl>
-            
+            <cn>基础章节</cn>
         </string>
         <string id="148">
             <en>custom sections</en>
             <pl>wlasne sekcje</pl>
-            
+            <cn>自主章节</cn>
         </string>
         <string id="149">
             <en>variable name</en>
             <pl>nazwa zmiennej</pl>
-            
+            <cn>变量名称</cn>
         </string>
         <string id="150">
             <en>section</en>
             <pl>sekcja</pl>
-            
+            <cn>章节</cn>
         </string>
         <string id="151">
             <en>parameter/return</en>
             <pl>parametr/zwrot</pl>
-            
+            <cn>参数/返回</cn>
         </string>
         <string id="152">
             <en>editing admin group</en>
             <pl>edycja grupy aministratorow</pl>
-            
+            <cn>编辑管理群</cn>
         </string>
         <string id="153">
             <en>creating admin group</en>
             <pl>tworzenie grupy aministratorow</pl>
-            
+            <cn>创建管理群</cn>
         </string>
         <string id="154">
             <en>name of the admin group</en>
             <pl>nazwa grupy aministratorow</pl>
-            
+            <cn>管理群名称</cn>
         </string>
         <string id="155">
             <en>admin group access rights</en>
             <pl>prawa dostepu grupy aministratorow</pl>
-            
+            <cn>管理群访问权限</cn>
         </string>
         <string id="156">
             <en>owner of the admin group</en>
             <pl>wlasciciel grupy administratorow</pl>
-            
+            <cn>管理群所有者</cn>
         </string>
         <string id="157">
             <en>editing admin type</en>
             <pl>edycja typu administratora</pl>
-            
+            <cn>编辑管理类型</cn>
         </string>
         <string id="158">
             <en>creating new admin type</en>
             <pl>tworzenie nowego typu administratora</pl>
-            
+            <cn>创建管理类型</cn>
         </string>
         <string id="159">
             <en>name of the admin type</en>
