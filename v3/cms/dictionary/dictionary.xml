@@ -3,7 +3,7 @@
 Concerto Platform - Online Adaptive Testing Platform
 Copyright (C) 2011-2012, The Psychometrics Centre, Cambridge University
 
-This program is free software; you can redistribute it and/or
+This is a free software; you can redistribute it and/or
 modify it under the terms of the GNU General Public License
 as published by the Free Software Foundation; version 2
 of the License, and not any of the later versions.
@@ -21,8 +21,9 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA.
 <!-- You can put comments this way. -->
 
 <!--
-If you feel you can contribute and translate to language not yet supported by Concerto or you feel that translation needs to be corrected then please let us know and we will add you as a contributor which will allow you to edit dictionary.xml file.
-You can add new languages by inserting <some_language>string translated into some_language</some_language> tag inside <string> tags.
+If you are interested in translating Concerto v3 to a language that is not yet supported, please contact us. Similarly, changes and/or corrections to translations are also important. We can add you as a contributor and allow you to edit the dictionary.xml file.
+Note: You can add new languages by inserting "<new_language>string translated into new_language</new_language>" tag inside <string> tags.
+
 -->
 <root>
     <languages>
@@ -32,7 +33,7 @@ You can add new languages by inserting <some_language>string translated into som
     
     <strings>
         <string id="1" js="1">
-            <en><![CDATA[Variable name validation failed. Only alphanumeric, '_' and '.' characters allowed and value can't start with numbers. Value has been changed.<br/><br/>old value: <b>{0}</b></br>new value: <b>{1}</b>]]></en>
+            <en><![CDATA[Variable name validation failed. Only alphanumeric, '_' and '.' characters allowed and the value can't begin with a numeric. Value has been changed.<br/><br/>old value: <b>{0}</b></br>new value: <b>{1}</b>]]></en>
             <pl><![CDATA[Walidacja zmiennej nie powiodla sie. Tylko znaki alfanumeryczne, '_' i '.' sa dozwolone, oraz zmienna nie moze zaczynac sie od numeru. Wartosc zostala zmieniona.<br/><br/>poprzednia wartosc: <b>{0}</b></br>nowa wartosc: <b>{1}</b>]]></pl>
         </string>
         <string id="2" js="1">
@@ -52,7 +53,7 @@ You can add new languages by inserting <some_language>string translated into som
             <pl>Concerto - alert</pl>
         </string>
         <string id="6" js="1">
-            <en>HTML controls `name` validation failed. Only alphanumeric, '_' and '.' characters allowed and value can't start with numbers. Value has been changed.\r\n\r\nold value: {0}\r\nnew value: {1}</en>
+            <en>HTML controls `name` validation failed. Only alphanumeric, '_' and '.' characters allowed and the value can't begin with a numeric. Value has been changed.\r\n\r\nold value: {0}\r\nnew value: {1}</en>
             <pl>Walidacja pola `nazwa` kontrolki HTML nie powiodła się. Tylko wartości alfanumeryczne, '_' i '.' są dozwolone, oraz wartość nie może zaczynać się od liczby. Wartość została zmieniona.\r\n\r\npoprzednia wartość: {0}\r\nnowa wartość: {1}</pl>
         </string>
         <string id="7" js="1">
@@ -60,7 +61,7 @@ You can add new languages by inserting <some_language>string translated into som
             <pl>dodawanie nowego obiektu</pl>
         </string>
         <string id="8" js="1">
-            <en>Are you sure you want to delete object #{0}?</en>
+            <en>Are you sure you want to delete this object #{0}?</en>
             <pl>Jesteś pewien, że chcesz usunąć obiekt #{0}?</pl>
         </string>
         <string id="9" js="1">
@@ -80,7 +81,7 @@ You can add new languages by inserting <some_language>string translated into som
             <pl>edytowanie kolumny</pl>
         </string>
         <string id="13" js="1">
-            <en>Column name must not be empty.</en>
+            <en>Column name is a mandatory field.</en>
             <pl>Nazwa kolumny nie może być pusta.</pl>
         </string>
         <string id="14" js="1">
@@ -88,7 +89,7 @@ You can add new languages by inserting <some_language>string translated into som
             <pl>zmiana nazwy kolumny</pl>
         </string>
         <string id="15" js="1">
-            <en>Column with that name already exists.</en>
+            <en>A column with that name already exists.</en>
             <pl>Kolumna o tej nazwie już istnieje.</pl>
         </string>
         <string id="16" js="1">
@@ -136,11 +137,11 @@ You can add new languages by inserting <some_language>string translated into som
             <pl>Struktura i dane tabeli zostały zaimportowane.</pl>
         </string>
         <string id="27" js="1">
-            <en>importing table from CSV file</en>
+            <en>Importing table from CSV file</en>
             <pl>importowanie tabeli z pliku CSV</pl>
         </string>
         <string id="28" js="1">
-            <en>Are you sure you want to replace current table structure and data with the one from file?</en>
+            <en>Are you sure you want to replace the current table structure and data with that from the selected file?</en>
             <pl>Jesteś pewien że chcesz zastąpić obecną strukturę i dane tabeli tymi z pliku?</pl>
         </string>
         <string id="29" js="1">
@@ -148,7 +149,7 @@ You can add new languages by inserting <some_language>string translated into som
             <pl>plik wysłany</pl>
         </string>
         <string id="30" js="1">
-            <en>There was an error importing table structure and data.</en>
+            <en>There was an error in importing table structure and data.</en>
             <pl>Wystąpił błąd podczas importowania struktury i danych tabeli.</pl>
         </string>
         <string id="31" js="1">
@@ -188,39 +189,39 @@ You can add new languages by inserting <some_language>string translated into som
             <pl>Edycja HTML. Obecny HTML:</pl>
         </string>
         <string id="40" js="1">
-            <en>Using this section you can interpret some R code.</en>
+            <en>Directly enter R code that is to be interpreted.</en>
             <pl>Używając tej sekcji można zinterpretować dowolny kod R.</pl>
         </string>
         <string id="41" js="1">
-            <en>This section stops R backend and loads choosen HTML template.</en>
+            <en>Stop R processes and load selected HTML template.</en>
             <pl>Ta sekcja przerywa wykonywanie kodu R i wyświetla użytkownikowi szablon HTML.</pl>
         </string>
         <string id="42" js="1">
-            <en>This section lets you skip to any other choosen section.</en>
+            <en>Skip to a specific section of the test.</en>
             <pl>Ta sekcja pozwala przejść do innej wybranej sekcji.</pl>
         </string>
         <string id="43" js="1">
-            <en><![CDATA[Using this section you can make some conditional statements. Multiple conditions are allowed and you can include multiple sections in <b>THEN</b> clause. IF statements can't be nested.]]></en>
+            <en><![CDATA[Specify conditions and their consequences. Multiple conditions and consequences can be specified. IF statements can't be nested within each other.]]></en>
             <pl><![CDATA[Dzięki tej sekcji można tworzyć twierdzenia warunkowe. Dozwolone jest wiele warunków, oraz można zamieszczać wiele sekcji w bloku <b>WTEDY</b>. Nie można zagnieżdżać twierdzen JEŻELI.]]></pl>
         </string>
         <string id="44" js="1">
-            <en><![CDATA[This section gives you possibility to set variable in your test logic backend. You can additionaly check the checkbox to make this variable visible in your HTML item templates. You can set the variable using one of the three methods:<ul><li><b>from table</b>: you can select previously defined table in Concerto and filter it for some specific rows and columns. You can also set the whole table by leaving the <b>WHERE</b> clause empty</li><li><b>by R code</b>: you can set your variable using the R code. This can basically be anything what you can do in R code. E.g. function result, mathematical calulation</li></ul>]]></en>
+            <en><![CDATA[Define variables (i.e. set variables) and variable type in R, HTML templates or both. Methods to set variable: <ul><li><b>from table</b>: select a previously defined table in Concerto and filter necessary rows and columns. Set the whole table by leaving the <b>WHERE</b> clause empty</li><li><b>by R code</b>: directly type in R code. E.g. function result, mathematical calculation</li></ul>]]></en>
             <pl><![CDATA[Ta sekcja daje mozliwość zadeklarowania zmiennej w logice testu. Można dodatkowo również zaznaczyć checkbox aby sprawić żeby zmienna była widoczna w szablonie HTML. Można ustawić zmienną jedną z trzech metod:<ul><li><b>z tabeli</b>: można wybrać wcześniej zdefiniowaną tabelę w Concerto, oraz jej konkretne rekordy i kolumny. Można również wybrać całą tabelę pozostawiając blok <b>GDZIE</b> pusty</li><li><b>przez kod R</b>: można ustawić zmienną używając kodu R. Może to być cokolwiek co da się wykonać w języku R. Np. rezultat funkcji, matematyczne obliczenie</li></ul>]]></pl>
         </string>
         <string id="45" js="1">
-            <en>This is the start section. You can't modify it. This is just the entry point to your test logic.</en>
+            <en>The start section is the entry point to your test logic. It cannot be modified.</en>
             <pl>To jest sekcja początkowa. Nie można jej modyfikować. Stanowi punkt wejściowy do logiki testu.</pl>
         </string>
         <string id="46" js="1">
-            <en>This is the end section. You can't modify it. This is the finish section of your test logic.</en>
+            <en>The End section is the last section of your test logic.It cannot be modified.</en>
             <pl>To jest sekcja końcowa. Nie można jej modyfikowac. To jest sekcja kończąca logikę testu.</pl>
         </string>
         <string id="47" js="1">
-            <en><![CDATA[Using this section you can modify previously defined table of your choice. You can do three basic database operation here:<ul><li><b>INSERT</b>: using this command you can insert a single row and choose the value for the table columns</li><li><b>UPDATE</b>: using this command you can modify table rows that meets the criteria found in the <b>WHERE</b> clause. You can set wich columns you want to modify and what value you want to give them.</li><li><b>DELETE</b>: using this command you can delete table rows that meets the criteria found in the <b>WHERE</b> clause.</li></ul>]]></en>
+            <en><![CDATA[Modify existing tables with the help of three basic database operations:<ul><li><b>INSERT</b>: insert a single row and values corresponding to each column</li><li><b>UPDATE</b>: modify table rows that meet criteria found in the <b>WHERE</b> clause. Specify which columns you want to modify and values for each.</li><li><b>DELETE</b>: delete table rows that meet criteria found in the <b>WHERE</b> clause.</li></ul>]]></en>
             <pl><![CDATA[Używajac tej sekcji można zmodyfikować wcześniej zdefiniowane tabele. Można wykonać trzy podstawowoe operacje na bazie danych:<ul><li><b>DODANIE</b>: używajac tej komendy można dodać nowy pojedyńczy rekord z wybranymi wartościami</li><li><b>ZMIANA</b>: używając tej komendy można zmodyfikować rekordy tabeli które spełniaja podane kryteria w bloku <b>GDZIE</b>. Można ustawić które kolumny chce się zmodyfikować i jaką wartość chce się im dać.</li><li><b>USUŃ</b>: używając tej komendy możesz usunąć rekordy tabeli które spełniają kryteria podane w bloku <b>GDZIE</b>.</li></ul>]]></pl>
         </string>
         <string id="48" js="1">
-            <en>This is custom section.</en>
+            <en>This is the custom test section.</en>
             <pl>To jest sekcja własna.</pl>
         </string>
         <string id="49" js="1">
@@ -276,7 +277,7 @@ You can add new languages by inserting <some_language>string translated into som
             <pl>dodawanie nowej sekcji</pl>
         </string>
         <string id="62" js="1">
-            <en>are you sure you want to remove test section?</en>
+            <en>are you sure you want to remove this test section?</en>
             <pl>jestes pewien ze chcesz usunac sekcje testu?</pl>
         </string>
         <string id="63" js="1">
@@ -292,7 +293,7 @@ You can add new languages by inserting <some_language>string translated into som
             <pl>zmienne logiki testu</pl>
         </string>
         <string id="66" js="1">
-            <en>Password and password confirmation doesn't match!</en>
+            <en>Password and password confirmation do not match!</en>
             <pl>Haslo i jego potwierdzenie musza sie zgadzac!</pl>
         </string>
         <string id="67" js="1">
@@ -316,7 +317,7 @@ You can add new languages by inserting <some_language>string translated into som
             <pl>wlasciciel</pl>
         </string>
         <string id="72">
-            <en>access rigths</en>
+            <en>access rights</en>
             <pl>prawa dostepu</pl>
         </string>
         <string id="73">
@@ -420,7 +421,7 @@ You can add new languages by inserting <some_language>string translated into som
             <pl>opis</pl>
         </string>
         <string id="98">
-            <en>custom section description that will be visible in the test logic when you'll add this section</en>
+            <en>Brief description of the custom section that will be visible in the test logic when the section is used.</en>
             <pl>opis wlasnej sekcji ktory bedzie widoczny w logice tekstu po dodaniu sekcji</pl>
         </string>
         <string id="99">
@@ -448,7 +449,7 @@ You can add new languages by inserting <some_language>string translated into som
             <pl>Edytuj opis. Obecny opis:</pl>
         </string>
         <string id="105">
-            <en>Here you can define section input parameters. You can use the variables that you declare here in the section R code.</en>
+            <en>Define section input parameters. Use variables thus declared in the R code section.</en>
             <pl>Tutaj mozesz zdefiniowac parametry wejsciowe sekcji. Mozna uzywac zmiennych ktore tutaj zostaly zadeklarowane w kodzie R sekcji.</pl>
         </string>
         <string id="106">
@@ -472,11 +473,11 @@ You can add new languages by inserting <some_language>string translated into som
             <pl>usun parametr</pl>
         </string>
         <string id="111">
-            <en>Here is section R code. You can use in it parameters that you declared above.</en>
+            <en>R code relevant for this section. Parameters declared above can be used here.</en>
             <pl>To jest kod R sekcji. Mozesz uzywac w nim parametrow ktore zadeklarowales powyzej.</pl>
         </string>
         <string id="112">
-            <en>Here you can define which variables used in this section you would like to pass further outside the section. Those variables can then be used in other test logic sections.</en>
+            <en>Specify variables used in this section to be made available globally, for use in other test sections.</en>
             <pl>Tutaj mozesz zdefiniowac ktore zmienne uzyte w sekcji chcialbys przekazac poza sekcje. Zmienne te nastepnie moga zostac uzyte w innych sekcjach logiki.</pl>
         </string>
         <string id="113">
@@ -508,7 +509,7 @@ You can add new languages by inserting <some_language>string translated into som
             <pl>nazwa tabeli</pl>
         </string>
         <string id="120">
-            <en>access rights of the table</en>
+            <en>table access rights</en>
             <pl>prawa dostepu tabeli</pl>
         </string>
         <string id="121">
@@ -568,7 +569,7 @@ You can add new languages by inserting <some_language>string translated into som
             <pl>tworzenie nowego szablonu HTML</pl>
         </string>
         <string id="135">
-            <en>name of the HTML template</en>
+            <en>name of HTML template</en>
             <pl>nazwa szablonu HTML</pl>
         </string>
         <string id="136">
@@ -668,7 +669,7 @@ You can add new languages by inserting <some_language>string translated into som
             <pl>nazwa typu administratora</pl>
         </string>
         <string id="160">
-            <en>acces rigths of the admin type</en>
+            <en>access rights of the admin type</en>
             <pl>prawa dostepu typu administratora</pl>
         </string>
         <string id="161">
@@ -748,7 +749,7 @@ You can add new languages by inserting <some_language>string translated into som
             <pl>haslo</pl>
         </string>
         <string id="180">
-            <en>check if you want to set the password</en>
+            <en>Select box to set the password</en>
             <pl>zaznacz jesli chcesz ustawic haslo</pl>
         </string>
         <string id="181">
