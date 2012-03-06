@@ -801,23 +801,23 @@ Note: You can add new languages by inserting "<new_language>string translated in
             <pl>typ administratora</pl>
         </string>
         <string id="193">
-            <en>In this tab you can create tests.</en>
+            <en>Create and manage the entire structure of each test.</en>
             <pl>W tej zakladce mozna tworzyc testy.</pl>
         </string>
         <string id="194">
-            <en>In this tab you can create your own custom test logic sections and then use them in your tests.</en>
+            <en>Create custom test logic sections to meet the requirements of specific tests.</en>
             <pl>W tej zakladce mozna stworzyc wlasne sekcje logiki testu i uzyc ich w testach.</pl>
         </string>
         <string id="195">
-            <en>In this tab you can create item HTML templates which will be shown to user who's taking the test.</en>
+            <en>Create and edit HTML templates as they are visible to the test taker.</en>
             <pl>W tej zakladce mozna stworzyc szablony HTML elementow testu ktore bedzie widzial uzytkownik bioracy udzial w tescie.</pl>
         </string>
         <string id="196">
-            <en>In this tab you can create data tables that will be used in your tests.</en>
+            <en>Create tables for storing and managing test data, including item content, correct responses and response history etc.</en>
             <pl>W tej zakladce mozna stworzyc tabele z danymi ktore mozna pozniej uzywac w tescie.</pl>
         </string>
         <string id="197">
-            <en>This tab is for creating admin users who can use this panel. You can set their access rights and create groups of users which will share some objects.</en>
+            <en>Create and manage admin and standard user accounts, user groups and access rights of users.</en>
             <pl>Ta zakladka sluzy do tworzenia kont administratorow ktorzy beda mogli korzystac z tego panelu. Mozesz tutaj ustalic prawa dostepu oraz stworzyc grupy w obrebie ktorych administratorzy beda dzielic wskazane obiekty.</pl>
         </string>
         <string id="198">
@@ -881,11 +881,11 @@ Note: You can add new languages by inserting "<new_language>string translated in
             <pl>Podaj swoj login i haslo.</pl>
         </string>
         <string id="213">
-            <en>Choose HTML template you want to load.</en>
+            <en>Select the HTML template to be loaded.</en>
             <pl>Wybierz szablon HTML ktory chcesz wczytac.</pl>
         </string>
         <string id="214">
-            <en> Currently selected HTML template preview</en>
+            <en> Preview of selected HTML template.</en>
             <pl> Podglad obecnie wybranego szablonu HTML</pl>
         </string>
         <string id="215">
@@ -893,7 +893,7 @@ Note: You can add new languages by inserting "<new_language>string translated in
             <pl>wartosc tej zmiennej zostanie osadzona w szablonie HTML</pl>
         </string>
         <string id="216">
-            <en><![CDATA[Time in seconds user has to submit test item. If the value is 0 - it means that the time is unlimited. You can insert <b>{{TIME_LEFT}}</b> variable into your HTML to see the timer countdown.]]></en>
+            <en><![CDATA[Time left (in seconds) to submit test item. A value of 0 implies unlimited time. Insert <b>{{TIME_LEFT}}</b> variable into HTML templates to make the timer visible.]]></en>
             <pl><![CDATA[Czas w sekundach jaki uzytkownik posiada aby przeslac element. Jesli wartosc jest rowna 0 - oznacza to ze czas jest nieograniczony. Mozna wstawic zmienna <b>{{TIME_LEFT}}</b> do HTML aby wyswietlic odliczanie.]]></pl>
         </string>
         <string id="217">
@@ -901,7 +901,7 @@ Note: You can add new languages by inserting "<new_language>string translated in
             <pl>typem tej zmiennej jest</pl>
         </string>
         <string id="218">
-            <en>no outputs at this HTML template</en>
+            <en>no output from this HTML template</en>
             <pl>brak zwrotu na tym szablonie HTML</pl>
         </string>
         <string id="219">
@@ -1033,27 +1033,27 @@ Note: You can add new languages by inserting "<new_language>string translated in
             <pl>przeszukaj liste</pl>
         </string>
         <string id="253">
-            <en>choose the type of section you would like to add to the test logic</en>
+            <en>Select the type of section to be added to the test logic</en>
             <pl>wybierz typ sekcji jaka chcialbys dodac do logiki testu</pl>
         </string>
         <string id="254">
-            <en>enter variable description that will be visible to everyone that will use this section in their test</en>
+            <en>Enter variable description that will be visible to anyone using this section in their test.</en>
             <pl>wprowadz opis zmiennej ktory bedzie widoczny dla kazdego kto uzyje tej sekcji w swym tescie</pl>
         </string>
         <string id="255">
-            <en>choose MySQL table which structure and data you would like to import into this table</en>
+            <en>Select the MySQL table whose structure and data are to be imported into this table.</en>
             <pl>wybierz tabele MySQL ktorej strukture i dane chcialbys zaimportowac do tej tabeli</pl>
         </string>
         <string id="256">
-            <en>choose the CSV file that you would like to import</en>
+            <en>Select the CSV file to be imported.</en>
             <pl>wybierz plik CSV ktory chcialbys zaimportowac</pl>
         </string>
         <string id="257">
-            <en>choose the name of the column</en>
+            <en>Select the name of the column</en>
             <pl>wybierz nazwe kolumny</pl>
         </string>
         <string id="258">
-            <en>choose the type of the column</en>
+            <en>Select the column type</en>
             <pl>wybierz typ kolumny</pl>
         </string>
         <string id="259">
@@ -1061,11 +1061,11 @@ Note: You can add new languages by inserting "<new_language>string translated in
             <pl>wprowadz wartosc HTML komorki</pl>
         </string>
         <string id="260">
-            <en>enter your login</en>
+            <en>Enter your unique login id</en>
             <pl>wprowadz swoj login</pl>
         </string>
         <string id="261">
-            <en>enter your password</en>
+            <en>Enter your password</en>
             <pl>wprowadz swoje haslo</pl>
         </string>
         <string id="262">
@@ -1077,47 +1077,47 @@ Note: You can add new languages by inserting "<new_language>string translated in
             <pl>KLIKNIJ TUTAJ ABY POBRAC NAJNOWSZA WERSJE</pl>
         </string>
         <string id="264">
-            <en>your version is up to date</en>
+            <en>Your version is up-to-date</en>
             <pl>twoja wersja jest aktualna</pl>
         </string>
         <string id="265" js="1">
-            <en>export</en>
+            <en>Export</en>
             <pl>eksport</pl>
         </string>
         <string id="266">
-            <en>import new object</en>
+            <en>Import new object</en>
             <pl>zaimportuj nowy obiekt</pl>
         </string>
         <string id="267">
-            <en>choose the exported object file</en>
+            <en>Select file to be exported</en>
             <pl>wybierz plik z wyeksportowanym obiektem</pl>
         </string>
         <string id="268" js="1">
-            <en>importing object</en>
+            <en>Importing object</en>
             <pl>importowanie obiektu</pl>
         </string>
         <string id="269" js="1">
-            <en>are you sure you want to import the object from this file?</en>
+            <en>Are you sure you want to import the object from this file?</en>
             <pl>jestes pewien ze chcesz zaimportowac obiekt z tego pliku?</pl>
         </string>
         <string id="270" js="1">
-            <en>object imported</en>
+            <en>Object imported</en>
             <pl>obiekt zaimportowany</pl>
         </string>
         <string id="271" js="1">
-            <en>there was an error importing object</en>
+            <en>There was an error while importing the object</en>
             <pl>wystapil blad podczas importowania obiektu</pl>
         </string>
         <string id="272" js="1">
-            <en>File doesn't exists.</en>
+            <en>File does not exist.</en>
             <pl>Plik nie istnieje.</pl>
         </string>
         <string id="273" js="1">
-            <en>deleting object</en>
+            <en>Deleting object</en>
             <pl>uwuanie obiektu</pl>
         </string>
         <string id="274" js="1">
-            <en>saving object</en>
+            <en>Saving object</en>
             <pl>zapisywanie obiektu</pl>
         </string>
         <string id="275" js="1">
@@ -1133,7 +1133,7 @@ Note: You can add new languages by inserting "<new_language>string translated in
             <pl>W</pl>
         </string>
         <string id="278" js="1">
-            <en>not logged in</en>
+            <en>Not logged in</en>
             <pl>nie zalogowany</pl>
         </string>
         <string id="279">
@@ -1153,7 +1153,7 @@ Note: You can add new languages by inserting "<new_language>string translated in
             <pl>numeryczny</pl>
         </string>
         <string id="283">
-            <en>this is a system variable</en>
+            <en>This is a system variable</en>
             <pl>jest to zmienna systemowa</pl>
         </string>
         <string id="284" js="1">
@@ -1169,7 +1169,7 @@ Note: You can add new languages by inserting "<new_language>string translated in
             <pl>Test #{0} - debug</pl>
         </string>
         <string id="287" js="1">
-            <en>Please remember that you need to save your current test logic before you run debug. Any unsaved changes won't be debugged.</en>
+            <en>Please ensure that all changes to the test logic have been saved prior to debugging. Unsaved changes will not be considered in the debugging process.</en>
             <pl>Prosze pamietac ze nalezy zachowac biezaca logike testu zanim sie uruchomi debug. Wszelkie niezapisane zmiany nie beda brane pod uwage podczas debuggowania.</pl>
         </string>
         <string id="288" js="1">
@@ -1225,7 +1225,7 @@ Note: You can add new languages by inserting "<new_language>string translated in
             <pl>Kod R jest interpretowany...</pl>
         </string>
         <string id="301" js="1">
-            <en>R code response recieved.</en>
+            <en>R code response receIved.</en>
             <pl>Otrzymano odowiedz kodu R.</pl>
         </string>
         <string id="302" js="1">
@@ -1253,7 +1253,7 @@ Note: You can add new languages by inserting "<new_language>string translated in
             <pl><![CDATA[Test #{0}, sesja #{1} - debug na zywo <b><font style='color:green;'>POWIODL SIE</font></b>]]></pl>
         </string>
         <string id="308" js="1">
-            <en>End section reached. The test is finished.</en>
+            <en>End section reached. The test has finished.</en>
             <pl>Osiagnieto koncowa sekcje. Test zostal skonczony.</pl>
         </string>
         <string id="309" js="1">
@@ -1281,11 +1281,11 @@ Note: You can add new languages by inserting "<new_language>string translated in
             <pl><![CDATA[Test #{0}, sesja #{1}, szablon #{2} - debug na zywo <b>(szablon wczytany - oczekiwanie na ruch uzytkownika...)</b>]]></pl>
         </string>
         <string id="315" js="1">
-            <en>Item submited. Time limit reached.</en>
+            <en>Item submitted. Time limit reached.</en>
             <pl>Element wyslany. Limit czasowy zostal osiagniety.</pl>
         </string>
         <string id="316" js="1">
-            <en><![CDATA[Item submited. Button with name <b>{0}</b> clicked.]]></en>
+            <en><![CDATA[Item submitted. Button with name <b>{0}</b> clicked.]]></en>
             <pl><![CDATA[Element wyslany. Przycisk o nazwie <b>{0}</b> zostal klikniety.]]></pl>
         </string>
         <string id="317" js="1">
@@ -1305,11 +1305,11 @@ Note: You can add new languages by inserting "<new_language>string translated in
             <pl>Mozliwa utrata niezapisanych danych.</pl>
         </string>
         <string id="321" js="1">
-            <en>Are you sure you want to continue? This action will reset any unsaved changes in modules:</en>
+            <en>Are you sure you want to continue? This action will reset unsaved changes in the following modules:</en>
             <pl>Jestes pewien ze chcesz kontynuowac? Ta czynnosc moze anulowac wszystkie niezapisane zmiany w nastepujacych modulach:</pl>
         </string>
         <string id="322" js="1">
-            <en>Are you sure you want to continue? This action will reset any unsaved changes in every module.</en>
+            <en>Are you sure you want to continue? This action will reset unsaved changes in all modules.</en>
             <pl>Jestes pewien ze chcesz kontynuowac? Ta czynnosc moze anulowac wszystkie niezapisane zmiany we wszystkich modulach.</pl>
         </string>
         <string id="323" js="1">
@@ -1337,7 +1337,7 @@ Note: You can add new languages by inserting "<new_language>string translated in
             <pl><![CDATA[Pojedynczy znak uzywany do objecia zakresu pola. Domyslny znak to '<b>"</b>'.]]></pl>
         </string>
         <string id="329" js="1">
-            <en>exporting table to CSV file</en>
+            <en>Exporting table to CSV file</en>
             <pl>eksportowanie tabeli do pliku CSV</pl>
         </string>
         <string id="330">
@@ -1345,19 +1345,19 @@ Note: You can add new languages by inserting "<new_language>string translated in
             <pl>rzad naglowka</pl>
         </string>
         <string id="331">
-            <en>Check if you want to import CSV with a header row. Header row values will be used as column names.</en>
+            <en>Check box to import CSV with a header row. Header row values will be used as column names.</en>
             <pl>Zaznacz jesli chcesz zaimportowac CSV z rzedem naglowka. Wartosci rzedu naglowka zostana uzyte jako nazwy kolumn.</pl>
         </string>
         <string id="332">
-            <en>Check if you want to export CSV with a header row. Header row will be first row in CSV with table column names.</en>
+            <en>Check box to export CSV with a header row. Header row will be first row in CSV with table column names.</en>
             <pl>Zaznacz jesli chcesz wyeksportowac CSV z rzedem naglowka. Rzad naglowka bedzie pierwszym rzedem w CSV z nazwami kolumn tabeli.</pl>
         </string>
         <string id="333" js="1">
-            <en>Error loading XML file. Can't continue with import.</en>
+            <en>Error loading XML file. Cannot continue with import.</en>
             <pl>Blad przy wczytywaniu pliku XML. Import nie moze byc kontynuowany.</pl>
         </string>
         <string id="334" js="1">
-            <en>Column delimiter and enclosure fields must not be empty.</en>
+            <en>Column delimiter and enclosure fields are mandatory.</en>
             <pl>Pola separacji i objecia kolumn nie moga byc puste.</pl>
         </string>
     </strings>
