@@ -45,8 +45,8 @@ Another way of adding interesting elements to your test is by directly inserting
 http://ns39618.ovh.net/~vaishali/mini/source_btn.jpg - Click the _source_ icon in the toolbar to view/edit the HTML code.
 
 
-For example, the following code is used to add background music to your test page.
+For example, pasting the following code into the source page will add background music to your test page.
 
 *<embed autostart="true" hidden="true" loop="false" src="http://ns39618.ovh.net/~abcde/Nara.mp3"></embed>* 
 
-_autostart_ indicates whether the song file should start playing automatically or not. _hidden_ indicates whether the media player is hidden or not. _loop_ indicates whether the clip should be repeated. _src_ is the url of your audio clip.
+The _src_ attribute has to be necessarily modified (substitute the url of your audio clip). The other attributes in the code can be modified to suit your needs. _autostart_ indicates whether the song file should start playing automatically or not. _hidden_ indicates whether the media player is hidden or not. _loop_ indicates whether the clip should be repeated.
