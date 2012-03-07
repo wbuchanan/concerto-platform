@@ -27,7 +27,9 @@ class TestServer
     private $last_action_time;
     private $main_sock;
     private $clients;
+    private $instances;
 
+    //mixed static calls with object
     public function log_debug($message)
     {
         $lfh = fopen(Ini::$path_temp . "test_server.log
@@ -54,9 +56,10 @@ class TestServer
         $this->last_action_time = time();
         if (self::$debug) log_debug("TestServer started");
         $this->main_sock = socket_create(AF_INET, SOCK_STREAM, SOL_TCP);
-        socket_bind($this->main_sock, "127.0.0.1");
+        socket_bind($this->main_sock, "127.0.0.1",9000);
         socket_listen($this->main_sock);
         $this->clients = array();
+        $this->instances = array();
 
         while (true)
         {
@@ -73,10 +76,10 @@ class TestServer
             {
                 for ($i = 0; $i < self::$max_clients; $i++)
                 {
-                    if (empty($this->client[$i]['sock']))
+                    if (empty($this->clients[$i]['sock']))
                     {
                         if (self::$debug) log_debug("Client #" . $i . " added");
-                        $this->client[$i]['sock'] = socket_accept($this->main_sock);
+                        $this->clients[$i]['sock'] = socket_accept($this->main_sock);
                         break;
                     }
                     if ($i == self::$max_clients - 1)
@@ -89,35 +92,65 @@ class TestServer
 
             for ($i = 0; $i < self::$max_clients; $i++)
             {
-                if (isset($this->client[$i]['sock']))
+                if (isset($this->clients[$i]['sock']))
                 {
-                    if (in_array($this->client[$i]['sock'], $read))
+                    if (in_array($this->clients[$i]['sock'], $read))
                     {
-                        $input = socket_read($this->client[$i]['sock'], 4096);
+                        $input = socket_read($this->clients[$i]['sock'], 4096);
                         if ($input == null)
                         {
                             if (self::$debug)
                                     log_debug("Connection with client #" . $i . " terminated");
-                            socket_close($this->client[$i]['sock']);
-                            unset($this->client[$i]);
+                            socket_close($this->clients[$i]['sock']);
+                            unset($this->clients[$i]);
                         }
                         else
                         {
                             if (self::$debug)
                                     log_debug("Recieved data from client #" . $i);
                             $this->last_action_time = time();
+
+                            $this->get_data($i, $input);
                         }
                     }
                     else
                     {
-                        socket_close($this->client[$i]['sock']);
-                        unset($this->client[$i]);
+                        socket_close($this->clients[$i]['sock']);
+                        unset($this->clients[$i]);
                     }
                 }
             }
             if (time() - $this->last_action_time > self::$max_idle_time) break;
         }
         $this->stop();
+    }
+
+    public function get_data($client_index, $data)
+    {
+        $data = json_decode($data);
+        $key = "sid" . $data->session_id;
+
+        if (!array_key_exists($key, $this->instances))
+        {
+            $this->instances[$key] = new TestInstance();
+        }
+        if (!$this->instances[$key]->is_started())
+        {
+            $this->instances[$key]->start();
+        }
+
+        $this->instances[$key]->send($data->code);
+        $response = $this->instances[$key]->read();
+
+        $response = array(
+            "return" => $this->instances[$key]->code_execution_halted ? 1 : 0,
+            "code" => $data,
+            "output" => $response
+        );
+
+        $response = json_encode($response);
+
+        socket_write($this->clients[$client_index]["sock"], $response.char(0));
     }
 
 }

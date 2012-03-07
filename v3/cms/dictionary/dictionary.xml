@@ -341,7 +341,7 @@ Note: You can add new languages by inserting "<new_language>string translated in
         <string id="62" js="1">
             <en>are you sure you want to remove this test section?</en>
             <pl>jestes pewien ze chcesz usunac sekcje testu?</pl>
-            cn>确认移除此测试章节？</cn>
+            <cn>确认移除此测试章节？</cn>
         </string>
         <string id="63" js="1">
             <en>removing test section</en>

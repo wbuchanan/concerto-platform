@@ -23,10 +23,11 @@ class TestInstance
 {
     private $r = null;
     private $pipes;
-    private $code_execution_halted = false;
+    public $code_execution_halted = false;
     private static $max_idle_time = 60;
+    public $is_working = false;
 
-    private function is_started()
+    public function is_started()
     {
         if ($this->r == null) return false;
         if (is_resource($this->r))
@@ -62,14 +63,15 @@ class TestInstance
         return null;
     }
 
-    private function send($code)
+    public function send($code)
     {
         fwrite($this->pipes[0], $code . "
         print('CODE EXECUTION FINISHED')
         ");
+        $this->is_working = true;
     }
 
-    private function read()
+    public function read()
     {
         $this->code_execution_halted = false;
         stream_set_blocking($this->pipes[1], 0);
@@ -86,6 +88,7 @@ class TestInstance
             if (strpos($result, '"CODE EXECUTION FINISHED"') !== false || strpos($result, "Error:") !== false)
             {
                 $cont = false;
+                $this->is_working = false;
             }
             else
             {
@@ -98,6 +101,7 @@ class TestInstance
                     $cont = false;
                     $result = $error;
                     $this->code_execution_halted = true;
+                    $this->is_working = false;
                 }
             }
         }
