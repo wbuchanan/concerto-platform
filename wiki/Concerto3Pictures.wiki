@@ -12,26 +12,29 @@ It is assumed that you are familiar with the *[http://code.google.com/p/concerto
 .
 ==Uploading Files to the Host Server==
 
-An essential part of setting up web pages is its publication. This includes uploading related files (pictures etc.) to the host server where the web page is likely to be located. More specifically, an FTP program is used for this purpose. In the case of a test, images and clips need to be uploaded to a publicly (www) accessible directory. Thus, the first step is to get an FTP account with a public access directory and upload the relevant files. Don't freak out if you dont understand this... just Google it! 
+An essential part of setting up web pages is its publication. This includes uploading related files (pictures etc.) to the host server where the web page is likely to be located. More specifically, an FTP program is used for this purpose. In the case of a test, images and clips need to be uploaded to a publicly (www) accessible directory. Thus, the first step is to get an FTP account with a public access directory and upload the relevant files. 
 
 .
 
-==Inserting Images Using Toolbar==
-The best way to insert images is to do so directly using the toolbar in the templates tab. Click the _insert image_ icon and enter relevant details as shown below.
+==Inserting Images Using Image Icon==
+The best way to insert images is to do so directly using the toolbar in the templates tab. Click the _image_ icon http://ns39618.ovh.net/~vaishali/mini/img_btn.jpg and enter relevant details as shown below.
 
 URL: _www location of your uploaded files_
 Alternative Text: _Brief description of image_
 Width, Height, Border, HSpace, VSpace, Align: _size, position etc._
 
-You can preview your image as you type the specifications. Click OK to insert image.
+You can preview your image as you type the specifications. Click OK to insert image into the HTML template.
 .
 
 http://ns39618.ovh.net/~vaishali/mini/img_prop.jpg
 
 .
 
-==Using HTML Tags to==
+==Insert Audio & Video Clips Using Link Icon==
+Inserting audio and video clips can be done via the _link_ icon http://ns39618.ovh.net/~vaishali/mini/link_btn.jpg on the toolbar. Specify the details of the link as shown below. Further, you can also set the _target_ such that the video/audio clip opens in the same window or pop-up window etc. 
 
+.
 
+http://ns39618.ovh.net/~vaishali/mini/link_prop.jpg
 
 .
