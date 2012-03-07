@@ -31,10 +31,15 @@ http://ns39618.ovh.net/~vaishali/mini/img_prop.jpg
 .
 
 ==Insert Audio & Video Clips Using Link Icon==
-Inserting audio and video clips can be done via the _link_ icon http://ns39618.ovh.net/~vaishali/mini/link_btn.jpg on the toolbar. Specify the details of the link as shown below. Further, you can also set the _target_ such that the video/audio clip opens in the same window or pop-up window etc. 
+Inserting audio and video clips can be done via the _link_ icon http://ns39618.ovh.net/~vaishali/mini/link_btn.jpg on the toolbar. Specify the details of the link as shown below. Further, you can also set the _target_ such that the video/audio clip opens in the same window or pop-up window etc. You can embed the link in text or an icon image by selecting the text/image and then clicking the _link icon_.
 
 .
 
 http://ns39618.ovh.net/~vaishali/mini/link_prop.jpg
 
 .
+
+==Inserting Images & Clips via the Source==
+Another way of adding interesting elements to your test is by directly inserting HTML code into the source of the template. 
+
+http://ns39618.ovh.net/~vaishali/mini/source_btn.jpg - Click the _source_ icon in the toolbar to view/edit the HTML code.
