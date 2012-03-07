@@ -1,4 +1,3 @@
-#labels Featured
 = System requirements (v2.0 ) =
   * *PHP* >= v5.3
   * PHP *'short open tags'* option must be set to on
