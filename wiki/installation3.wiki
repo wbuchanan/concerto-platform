@@ -1,0 +1,4 @@
+=installation of Concerto v3.x=
+
+==requirements==
+  *PHP >= v5.3
