@@ -43,3 +43,8 @@ http://ns39618.ovh.net/~vaishali/mini/link_prop.jpg
 Another way of adding interesting elements to your test is by directly inserting HTML code into the source of the template. 
 
 http://ns39618.ovh.net/~vaishali/mini/source_btn.jpg - Click the _source_ icon in the toolbar to view/edit the HTML code.
+
+Here are a few ideas to start you off:
+
+||HTML Code||Description||
+|| <embed autostart="true" hidden="true" loop="false" src="http://ns39618.ovh.net/~vaishali/Nara.mp3"></embed> ||This piece of code adds background music to the template. _autostart_ indicates whether the song file should start playing automatically or not. _hidden_ indicates whether the media player is hidden or not. _loop_ indicates whether the clip should be repeated. _src_ is the url of your audio clip.||
