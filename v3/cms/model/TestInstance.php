@@ -24,8 +24,20 @@ class TestInstance
     private $r = null;
     private $pipes;
     public $code_execution_halted = false;
-    private static $max_idle_time = 60;
+    public static $max_idle_time = 720;
     public $is_working = false;
+    private $last_action_time;
+
+    public function is_timedout()
+    {
+        if (time() - $this->last_action_time > self::$max_idle_time)
+        {
+            if (TestServer::$debug)
+                    TestServer::log_debug("TestInstance->is_timedout() --- Test instance timedout");
+            return true;
+        }
+        else return false;
+    }
 
     public function is_started()
     {
@@ -38,8 +50,11 @@ class TestInstance
         else return false;
     }
 
-    private function start()
+    public function start()
     {
+        if (TestServer::$debug)
+                TestServer::log_debug("TestInstance->start() --- Test instance starting");
+        $this->last_action_time = time();
         $descriptorspec = array(
             0 => array("pipe", "r"),
             1 => array("pipe", "w"),
@@ -47,32 +62,48 @@ class TestInstance
         );
 
         $this->r = proc_open("/usr/bin/R --no-save", $descriptorspec, $this->pipes, Ini::$path_temp);
-        if (is_resource($this->r)) return true;
-        else return false;
+        if (is_resource($this->r))
+        {
+            if (TestServer::$debug)
+                    TestServer::log_debug("TestInstance->start() --- Test instance started");
+            return true;
+        }
+        else
+        {
+            if (TestServer::$debug)
+                    TestServer::log_debug("TestInstance->start() --- Test instance NOT started");
+            return false;
+        }
     }
 
-    private function stop()
+    public function stop()
     {
-        if ($this->is_open())
+        if ($this->is_started())
         {
             fclose($this->pipes[0]);
             fclose($this->pipes[1]);
             fclose($this->pipes[2]);
-            return proc_close($this->r);
+            $ret = proc_close($this->r);
+            if (TestServer::$debug)
+                    TestServer::log_debug("TestInstance->stop() --- Test instance closed with: " . $ret);
         }
         return null;
     }
 
     public function send($code)
     {
-        fwrite($this->pipes[0], $code . "
+        $this->last_action_time = time();
+        $bytes = fwrite($this->pipes[0], $code . "
         print('CODE EXECUTION FINISHED')
         ");
+        if (TestServer::$debug)
+                TestServer::log_debug("TestInstance->send() --- ".$bytes . " written to test instance");
         $this->is_working = true;
     }
 
     public function read()
     {
+        $this->last_action_time = time();
         $this->code_execution_halted = false;
         stream_set_blocking($this->pipes[1], 0);
         stream_set_blocking($this->pipes[2], 0);

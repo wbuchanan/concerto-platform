@@ -21,136 +21,330 @@
 
 class TestServer
 {
-    private static $max_clients = 100;
-    private static $max_idle_time = 60;
-    private static $debug = true;
+    private static $max_idle_time = 900;
+    public static $debug = true;
     private $last_action_time;
     private $main_sock;
     private $clients;
     private $instances;
+    public static $host = "127.0.0.1";
+    public static $port = 8888;
 
-    //mixed static calls with object
-    public function log_debug($message)
+    public static function log_debug($message)
     {
-        $lfh = fopen(Ini::$path_temp . "test_server.log
-            ", "a");
-        fwrite($lfh, $message);
+        $lfh = fopen(Ini::$path_temp . "test-server.log", "a");
+        fwrite($lfh, date("Y-m-d H:i:s") . " --- " . $message . "\r\n");
         fclose($lfh);
     }
 
     public function stop()
     {
-        foreach ($this->clients as $client)
+        foreach ($this->clients as $k => $v)
         {
-            if (array_key_exists("sock", $client) && is_resource($client["sock"]))
-            {
-                socket_close($client["sock"]);
-            }
+            $this->close_instance($k);
         }
-        socket_close($this->sock);
-        if (self::$debug) log_debug("TestServer stopped");
+        socket_close($this->main_sock);
+        if (self::$debug) self::log_debug("TestServer->stop() --- TestServer stopped");
+    }
+
+    public static function send($data)
+    {
+        if (self::$debug)
+        {
+            self::log_debug("TestServer::send() --- Client sends data");
+        }
+        $socket = socket_create(AF_INET, SOCK_STREAM, SOL_TCP);
+        if (!$socket)
+        {
+            if (self::$debug)
+            {
+                self::log_debug("TestServer::send() --- Error: (socket_create) " . socket_last_error() . " - " . socket_strerror(socket_last_error()));
+            }
+            return false;
+        }
+        $result = socket_connect($socket, self::$host, self::$port);
+        if (!$result)
+        {
+            if (self::$debug)
+            {
+                self::log_debug("TestServer::send() --- Error: (socket_connect) " . socket_last_error() . " - " . socket_strerror(socket_last_error()));
+            }
+            socket_close($socket);
+            return false;
+        }
+        socket_write($socket, $data . "\n", strlen($data . "\n"));
+        $result = socket_read($socket, 1024);
+        socket_close($socket);
+        if (!$result)
+        {
+            if (self::$debug)
+            {
+                self::log_debug("TestServer::send() --- Error: (socket_read) " . socket_last_error() . " - " . socket_strerror(socket_last_error()));
+            }
+            return false;
+        }
+        return trim($result);
+    }
+
+    public static function is_running()
+    {
+        if (self::$debug)
+        {
+            //self::log_debug("TestServer::is_running() --- Checking if server is running");
+        }
+        $socket = socket_create(AF_INET, SOCK_STREAM, SOL_TCP);
+        if (!$socket)
+        {
+            if (self::$debug)
+            {
+                self::log_debug("TestServer::is_running() --- Error: (socket_create) " . socket_last_error() . " - " . socket_strerror(socket_last_error()));
+            }
+            return false;
+        }
+        $result = @socket_connect($socket, self::$host, self::$port);
+        if (!$result)
+        {
+            if (self::$debug)
+            {
+                //self::log_debug("TestServer::is_running() --- Server is not running");
+            }
+            socket_close($socket);
+            return false;
+        }
+        if (self::$debug)
+        {
+            self::log_debug("TestServer::is_running() --- Server is running");
+        }
+        return true;
+    }
+    
+    public static function start_process()
+    {
+        $output = array();
+        $return = 0;
+        $command = 'nohup /usr/bin/php '.Ini::$path_internal.'cms/query/socket_start.php > /dev/null 2>&1 & echo $!';
+        exec($command,$output,$return);
+        while(!self::is_running())
+        {
+            usleep(1);
+        }
     }
 
     public function start()
     {
         $this->last_action_time = time();
-        if (self::$debug) log_debug("TestServer started");
+        if (self::$debug) self::log_debug("TestServer->start() --- TestServer started");
         $this->main_sock = socket_create(AF_INET, SOCK_STREAM, SOL_TCP);
-        socket_bind($this->main_sock, "127.0.0.1",9000);
-        socket_listen($this->main_sock);
+        if (!$this->main_sock)
+        {
+            if (self::$debug)
+            {
+                self::log_debug("TestServer->start() --- Error: (socket_create) " . socket_last_error() . " - " . socket_strerror(socket_last_error()));
+                self::log_debug("TestServer->start() --- Server halted!");
+            }
+            return;
+        }
+
+        if (!socket_set_option($this->main_sock, SOL_SOCKET, SO_REUSEADDR, 1))
+        {
+            if (self::$debug)
+            {
+                self::log_debug("TestServer->start() --- Error: (socket_set_option) " . socket_last_error() . " - " . socket_strerror(socket_last_error()));
+                self::log_debug("TestServer->start() --- Server halted!");
+            }
+            $this->stop();
+            return;
+        }
+
+        if (!socket_bind($this->main_sock, self::$host, self::$port))
+        {
+            if (self::$debug)
+            {
+                self::log_debug("TestServer->start() --- Error: (socket_bind) " . socket_last_error() . " - " . socket_strerror(socket_last_error()));
+                self::log_debug("TestServer->start() --- Server halted!");
+            }
+            $this->stop();
+            return;
+        }
+        if (!socket_listen($this->main_sock))
+        {
+            if (self::$debug)
+            {
+                self::log_debug("TestServer->start() --- Error: (socket_listen) " . socket_last_error() . " - " . socket_strerror(socket_last_error()));
+                self::log_debug("TestServer->start() --- Server halted!");
+            }
+            $this->stop();
+            return;
+        }
         $this->clients = array();
         $this->instances = array();
 
-        while (true)
+        if (self::$debug) self::log_debug("TestServer->start() --- TestServer initialized");
+
+        do
         {
-            $read[0] = $this->main_sock;
-            for ($i = 0; $i < self::$max_clients; $i++)
+            if (time() - $this->last_action_time > self::$max_idle_time)
             {
-                if (isset($this->clients[$i]['sock']))
-                        $read[$i + 1] = $this->client[$i]['sock'];
+                if (self::$debug) self::log_debug("TestServer->start() --- Reached max idle time");
+                break;
             }
-
-            if (socket_select($read, null, null, 5) < 1) continue;
-
-            if (in_array($this->main_sock, $read))
+            foreach ($this->clients as $k => $v)
             {
-                for ($i = 0; $i < self::$max_clients; $i++)
+                if ($this->instances[$k]->is_timedout())
                 {
-                    if (empty($this->clients[$i]['sock']))
+                    if (self::$debug)
                     {
-                        if (self::$debug) log_debug("Client #" . $i . " added");
-                        $this->clients[$i]['sock'] = socket_accept($this->main_sock);
-                        break;
+                        self::log_debug("TestServer->start() --- Client '$k' timedout");
                     }
-                    if ($i == self::$max_clients - 1)
-                    {
-                        if (self::$debug)
-                                log_debug("Limit of " . self::$max_clients . " clients reached");
-                    }
+                    $this->close_instance($k);
                 }
             }
 
-            for ($i = 0; $i < self::$max_clients; $i++)
+            if (!socket_set_nonblock($this->main_sock))
             {
-                if (isset($this->clients[$i]['sock']))
+                if (self::$debug)
                 {
-                    if (in_array($this->clients[$i]['sock'], $read))
-                    {
-                        $input = socket_read($this->clients[$i]['sock'], 4096);
-                        if ($input == null)
-                        {
-                            if (self::$debug)
-                                    log_debug("Connection with client #" . $i . " terminated");
-                            socket_close($this->clients[$i]['sock']);
-                            unset($this->clients[$i]);
-                        }
-                        else
-                        {
-                            if (self::$debug)
-                                    log_debug("Recieved data from client #" . $i);
-                            $this->last_action_time = time();
-
-                            $this->get_data($i, $input);
-                        }
-                    }
-                    else
-                    {
-                        socket_close($this->clients[$i]['sock']);
-                        unset($this->clients[$i]);
-                    }
+                    self::log_debug("TestServer->start() --- Error: (socket_set_nonblock)");
+                    self::log_debug("TestServer->start() --- Server halted!");
+                    break;
                 }
             }
-            if (time() - $this->last_action_time > self::$max_idle_time) break;
+            $client_sock = @socket_accept($this->main_sock);
+            if (!$client_sock)
+            {
+                continue;
+            }
+
+            $read = socket_read($client_sock, 2048);
+            if (!$read)
+            {
+                if (self::$debug)
+                {
+                    self::log_debug("TestServer->start() --- Error: (socket_read) " . socket_last_error() . " - " . socket_strerror(socket_last_error()));
+                    continue;
+                }
+            }
+            $input = trim($read);
+            if ($input != "")
+            {
+                if ($input == "exit")
+                {
+                    if (self::$debug) self::log_debug("TestServer->start() --- Exit command recieved");
+                    break;
+                }
+                $this->last_action_time = time();
+                $client = $this->get_client($client_sock, $input);
+                $this->interpret_input($client, $input);
+            }
         }
+        while (true);
+
         $this->stop();
     }
 
-    public function get_data($client_index, $data)
+    private function close_instance($key)
     {
-        $data = json_decode($data);
+        if (array_key_exists($key, $this->instances))
+        {
+            if ($this->instances[$key]->is_started())
+            {
+                $this->instances[$key]->stop();
+                unset($this->instances[$key]);
+            }
+        }
+        if (array_key_exists($key, $this->clients))
+        {
+            socket_close($this->clients[$key]["sock"]);
+            unset($this->clients[$key]);
+        }
+        if (self::$debug)
+        {
+            self::log_debug("TestServer->close_instance() --- Client '$key' closed");
+        }
+    }
+
+    private function get_client($client_sock, $input)
+    {
+        $data = json_decode($input);
+        $key = "sid" . $data->session_id;
+
+        if (!array_key_exists($key, $this->clients))
+        {
+            $this->clients[$key] = array();
+            $this->clients[$key]["sock"] = $client_sock;
+            if (self::$debug)
+            {
+                self::log_debug("TestServer->get_client() --- Client '$key' added");
+            }
+        }
+        else
+        {
+            if (is_resource($this->clients[$key]["sock"]))
+            {
+                socket_close($this->clients[$key]["sock"]);
+                $this->clients[$key]["sock"] = $client_sock;
+            }
+            if (self::$debug)
+            {
+                self::log_debug("TestServer->get_client() --- Client '$key' loaded");
+            }
+        }
+        return $this->clients[$key];
+    }
+
+    private function interpret_input($client, $input)
+    {
+        $data = json_decode($input);
         $key = "sid" . $data->session_id;
 
         if (!array_key_exists($key, $this->instances))
         {
             $this->instances[$key] = new TestInstance();
+            if (self::$debug)
+            {
+                self::log_debug("TestServer->interpret_input() --- Client '$key' test instance created");
+            }
         }
         if (!$this->instances[$key]->is_started())
         {
             $this->instances[$key]->start();
+            if (self::$debug)
+            {
+                self::log_debug("TestServer->interpret_input() --- Client '$key' test instance started");
+            }
         }
 
         $this->instances[$key]->send($data->code);
+        if (self::$debug)
+        {
+            self::log_debug("TestServer->interpret_input() --- Client '$key' test data sent");
+        }
         $response = $this->instances[$key]->read();
+        if (self::$debug)
+        {
+            self::log_debug("TestServer->interpret_input() --- Client '$key' test data read");
+        }
 
         $response = array(
             "return" => $this->instances[$key]->code_execution_halted ? 1 : 0,
-            "code" => $data,
+            "code" => $data->code,
             "output" => $response
         );
 
         $response = json_encode($response);
 
-        socket_write($this->clients[$client_index]["sock"], $response.char(0));
+        if (!socket_write($client["sock"], $response . "\n"))
+        {
+            if (self::$debug)
+                    self::log_debug("TestServer->interpret_input() --- Error: (socket_write) " . socket_last_error() . " - " . socket_strerror(socket_last_error()));
+        }
+        else
+        {
+            if (self::$debug)
+            {
+                self::log_debug("TestServer->interpret_input() --- Client '$key' test response sent back");
+            }
+        }
     }
 
 }

@@ -31,12 +31,12 @@ class Ini
     public static $path_mysql_home = "";
     public static $version = "3.2.0";
 
-    function __construct($connect = true)
+    function __construct($connect = true, $session = true)
     {
         include __DIR__ . "/SETTINGS.php";
         if (substr_count($_SERVER['HTTP_ACCEPT_ENCODING'], 'gzip'))
                 ob_start("ob_gzhandler"); else ob_start();
-        @session_start();
+        if ($session) @session_start();
         date_default_timezone_set($timezone);
         if (self::$error_reporting) error_reporting(E_ALL);
         else error_reporting(0);
@@ -50,13 +50,16 @@ class Ini
         }
         $this->load_classes();
 
-        if (!isset($_GET['lng']))
+        if ($session)
         {
-            if (!isset($_SESSION['lng'])) $_SESSION['lng'] = "en";
-        }
-        else $_SESSION['lng'] = $_GET['lng'];
+            if (!isset($_GET['lng']))
+            {
+                if (!isset($_SESSION['lng'])) $_SESSION['lng'] = "en";
+            }
+            else $_SESSION['lng'] = $_GET['lng'];
 
-        Language::load_dictionary();
+            Language::load_dictionary();
+        }
     }
 
     private function load_settings()
@@ -181,6 +184,8 @@ class Ini
         require_once self::$path_internal . "cms/model/Table.php";
         require_once self::$path_internal . "cms/model/TableColumn.php";
         require_once self::$path_internal . "cms/model/Test.php";
+        require_once self::$path_internal . "cms/model/TestServer.php";
+        require_once self::$path_internal . "cms/model/TestInstance.php";
         require_once self::$path_internal . "cms/model/TestSection.php";
         require_once self::$path_internal . "cms/model/TestSectionValue.php";
         require_once self::$path_internal . "cms/model/TestSession.php";
