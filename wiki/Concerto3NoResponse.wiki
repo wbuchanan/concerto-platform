@@ -37,11 +37,11 @@ http://ns39618.ovh.net/~vaishali/mini/noresp3.jpg
 
 When no response is given and a dialogue box is left empty, the response is validated as "" (an empty string), rather than NA. This changes the looping method slightly, compared to radio buttons. 
 
-In the section below, the first condition ensures that an empty dialogue box (no response) will bring the testee back to the same item, while the second condition prevents non-numeric responses (typing errors or intentional attempts at skipping items!).
+In the section below, the condition ensures that an empty dialogue box (no response) will bring the testee back to the same item, while preventing non-numeric responses (typing errors or intentional attempts at skipping items!). In order to ensure non-numeric responses, please ensure that *response* is returned as *numeric* in the test item template preceding this looping section.
 
 
 || *SECTION TYPE* || *DETAILS* ||
-|| IF statement || *response* - *equal* - *""* (empty string) *OR* - *suppressWarnings(!is.na(as.numeric(response)))* - *not equal* - *T* THEN *GO TO SECTION* - _14.load HTML template_ (this is the section in your test where the items template is loaded) ||
+|| IF statement || IF *is.na(response)* - *equal* - *1* THEN *GO TO SECTION* - _14.load HTML template_ (this is the section in your test where the items template is loaded) ||
 
 .
 
