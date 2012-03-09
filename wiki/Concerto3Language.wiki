@@ -12,4 +12,4 @@ It is assumed that you are familiar with the *[http://code.google.com/p/concerto
 .
 
 ===Creating an Item Bank in Multiple Languages===
-The only difference here is to create separate columns for each language. I.e. If you want to present your test in English and French, you need separate columns for English and French items (ensuring that translations of each item are in the same row!).
+The only difference here is to create separate columns for each language. i.e. If you want to present your test in English and French, you need separate columns for English and French items (ensuring that translations of each item are in the same row!).
