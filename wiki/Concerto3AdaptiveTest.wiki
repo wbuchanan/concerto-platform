@@ -86,13 +86,12 @@ In the 'tests' tab, create a new test by adding a new object (covered in the [ht
 || *SECTION TYPE* || *DETAILS* ||
 || Set variable || SET VARIABLE *difficulty* IN *R & HTML* AS *numeric*; *from table* _adaptive_test_table_ (or whatever you named it); COLUMNS *difficulty* WHERE *id* - *equal* - *current_item* ||
 || Set variable || SET VARIABLE *correct_answer* IN *R* AS *numeric*; *from table* _adaptive_test_table_ (or whatever you named it); COLUMNS *correct_answer* WHERE *id* - *equal* - *current_item* ||
-|| Load HTML template || Select the _test_items_ template (or whatever you named it)||
-|| Set variable || SET VARIABLE *response* IN *R & HTML* AS *default*; *by R code* - _response_||
-|| - || http://ns39618.ovh.net/~vaishali/adaptive/test3.jpg ||
+|| Load HTML template || Select the _test_items_ template (or whatever you named it). Returns: Response AS *response* IN *R & HTML* AS *numeric*||
+|| - || http://ns39618.ovh.net/~vaishali/adaptive/test-3.jpg ||
 .
 
 || *SECTION TYPE* || *DETAILS* ||
-|| IF statement || *response* - *equal* - *""* (empty string) *OR* - *suppressWarnings(!is.na(as.numeric(response)))* - *not equal* - *T* THEN _GO TO_ *14.load HTML template* (this is the section where you load the items template). This step is to ensure that there are no missing responses or non-numeric type responses. ||
+|| IF statement || *is.na(response)* - *equal* - *1* THEN _GO TO_ *14.load HTML template* (this is the section where you load the items template). This step is to ensure that there are no missing responses or non-numeric type responses. ||
 || Set variable || SET VARIABLE *responses* IN *R & HTML* AS *default*; *by R code* - _c(responses, correct_answer == response)_||
 || Set variable || SET VARIABLE *theta* IN *R & HTML* AS *default*; *by R code* - _it<-matrix(itempar[items_administered,],nrow=length(items_administered)). thetaEst(it, responses)_||
 || Set variable || SET VARIABLE *current_item* IN *R & HTML* AS *default*; *by R code* - _nextItem(catBank, theta, out=as.numeric(items_administered))[[1]]_||
