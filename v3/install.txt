@@ -17,7 +17,6 @@ Requirments:
   * PHP 'short open tags' option must be set to on
   * PHP 'safe mode' must be turned off
   * R   >= v2.12
-  * session R package installed in main R library directory
   * RMySQL R package installed in main R library directory
   * catR R package installed in main R library directory
   * MySQL >= v5.0

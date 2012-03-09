@@ -21,7 +21,7 @@
 
 class TestServer
 {
-    private static $max_idle_time = 900;
+    private static $max_idle_time = 180;
     public static $debug = true;
     private $last_action_time;
     private $main_sock;
@@ -30,10 +30,10 @@ class TestServer
     public static $host = "127.0.0.1";
     public static $port = 8888;
 
-    public static function log_debug($message)
+    public static function log_debug($message, $timestamp=true)
     {
         $lfh = fopen(Ini::$path_temp . "test-server.log", "a");
-        fwrite($lfh, date("Y-m-d H:i:s") . " --- " . $message . "\r\n");
+        fwrite($lfh, ($timestamp ? date("Y-m-d H:i:s") . " --- " : "") . $message . "\r\n");
         fclose($lfh);
     }
 
@@ -44,7 +44,8 @@ class TestServer
             $this->close_instance($k);
         }
         socket_close($this->main_sock);
-        if (self::$debug) self::log_debug("TestServer->stop() --- TestServer stopped");
+        if (self::$debug)
+                self::log_debug("TestServer->stop() --- TestServer stopped");
     }
 
     public static function send($data)
@@ -73,7 +74,17 @@ class TestServer
             return false;
         }
         socket_write($socket, $data . "\n", strlen($data . "\n"));
-        $result = socket_read($socket, 1024);
+        if (self::$debug)
+        {
+            self::log_debug("TestServer::send() --- sent data");
+            self::log_debug($data, false);
+        }
+        $result = socket_read($socket, 32648);
+        if (self::$debug)
+        {
+            self::log_debug("TestServer::send() --- data recieved");
+            self::log_debug($result, false);
+        }
         socket_close($socket);
         if (!$result)
         {
@@ -102,13 +113,13 @@ class TestServer
             return false;
         }
         $result = @socket_connect($socket, self::$host, self::$port);
+        socket_close($socket);
         if (!$result)
         {
             if (self::$debug)
             {
                 //self::log_debug("TestServer::is_running() --- Server is not running");
             }
-            socket_close($socket);
             return false;
         }
         if (self::$debug)
@@ -117,23 +128,28 @@ class TestServer
         }
         return true;
     }
-    
+
     public static function start_process()
     {
-        $output = array();
-        $return = 0;
-        $command = 'nohup /usr/bin/php '.Ini::$path_internal.'cms/query/socket_start.php > /dev/null 2>&1 & echo $!';
-        exec($command,$output,$return);
-        while(!self::is_running())
+        if (self::$debug)
+        {
+            self::log_debug("TestServer::start_process() --- Starting server process");
+        }
+        session_write_close();
+        $command = 'nohup ' . Ini::$path_php_exe . ' ' . Ini::$path_internal . 'cms/query/socket_start.php > /dev/null 2>&1 & echo $!';
+        exec($command);
+        while (!self::is_running())
         {
             usleep(1);
         }
+        session_start();
     }
 
     public function start()
     {
         $this->last_action_time = time();
-        if (self::$debug) self::log_debug("TestServer->start() --- TestServer started");
+        if (self::$debug)
+                self::log_debug("TestServer->start() --- TestServer started");
         $this->main_sock = socket_create(AF_INET, SOCK_STREAM, SOL_TCP);
         if (!$this->main_sock)
         {
@@ -179,13 +195,15 @@ class TestServer
         $this->clients = array();
         $this->instances = array();
 
-        if (self::$debug) self::log_debug("TestServer->start() --- TestServer initialized");
+        if (self::$debug)
+                self::log_debug("TestServer->start() --- TestServer initialized");
 
         do
         {
             if (time() - $this->last_action_time > self::$max_idle_time)
             {
-                if (self::$debug) self::log_debug("TestServer->start() --- Reached max idle time");
+                if (self::$debug)
+                        self::log_debug("TestServer->start() --- Reached max idle time");
                 break;
             }
             foreach ($this->clients as $k => $v)
@@ -215,7 +233,7 @@ class TestServer
                 continue;
             }
 
-            $read = socket_read($client_sock, 2048);
+            $read = socket_read($client_sock, 32648);
             if (!$read)
             {
                 if (self::$debug)
@@ -227,9 +245,15 @@ class TestServer
             $input = trim($read);
             if ($input != "")
             {
+                if (self::$debug)
+                {
+                    self::log_debug("TestServer->start() --- data recieved");
+                    self::log_debug($input, false);
+                }
                 if ($input == "exit")
                 {
-                    if (self::$debug) self::log_debug("TestServer->start() --- Exit command recieved");
+                    if (self::$debug)
+                            self::log_debug("TestServer->start() --- Exit command recieved");
                     break;
                 }
                 $this->last_action_time = time();
@@ -299,7 +323,7 @@ class TestServer
 
         if (!array_key_exists($key, $this->instances))
         {
-            $this->instances[$key] = new TestInstance();
+            $this->instances[$key] = new TestInstance($data->session_id);
             if (self::$debug)
             {
                 self::log_debug("TestServer->interpret_input() --- Client '$key' test instance created");
@@ -318,11 +342,13 @@ class TestServer
         if (self::$debug)
         {
             self::log_debug("TestServer->interpret_input() --- Client '$key' test data sent");
+            self::log_debug($data->code, false);
         }
         $response = $this->instances[$key]->read();
         if (self::$debug)
         {
             self::log_debug("TestServer->interpret_input() --- Client '$key' test data read");
+            self::log_debug($response, false);
         }
 
         $response = array(
@@ -343,6 +369,7 @@ class TestServer
             if (self::$debug)
             {
                 self::log_debug("TestServer->interpret_input() --- Client '$key' test response sent back");
+                self::log_debug($response, false);
             }
         }
     }

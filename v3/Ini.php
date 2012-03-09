@@ -26,16 +26,16 @@ class Ini
     public static $path_external = "";
     public static $path_internal_media = "";
     public static $path_external_media = "";
+    public static $path_php_exe = "";
+    public static $path_r_exe = "";
     public static $path_r_script = "";
     public static $path_temp = "";
     public static $path_mysql_home = "";
-    public static $version = "3.2.0";
+    public static $version = "3.3.0";
 
     function __construct($connect = true, $session = true)
     {
         include __DIR__ . "/SETTINGS.php";
-        if (substr_count($_SERVER['HTTP_ACCEPT_ENCODING'], 'gzip'))
-                ob_start("ob_gzhandler"); else ob_start();
         if ($session) @session_start();
         date_default_timezone_set($timezone);
         if (self::$error_reporting) error_reporting(E_ALL);
@@ -70,6 +70,8 @@ class Ini
         self::$path_internal = __DIR__ . "/";
         self::$path_internal_media = self::$path_internal . "media/";
         self::$path_r_script = $path_r_script;
+        self::$path_r_exe = $path_r_exe;
+        self::$path_php_exe = $path_php_exe;
         self::$path_temp = self::$path_internal . "temp/";
         self::$path_mysql_home = $path_mysql_home;
     }

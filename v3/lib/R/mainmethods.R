@@ -18,17 +18,24 @@
 ##
 
 args <- commandArgs(T)
-DB_HOST <- args[2]
-DB_PORT <- as.numeric(args[3])
-DB_LOGIN <- args[4]
-DB_PASSWORD <- args[5]
-DB_NAME <- args[6]
-TEST_SESSION_ID <- args[7]
+DB_HOST <- args[1]
+DB_PORT <- as.numeric(args[2])
+DB_LOGIN <- args[3]
+DB_PASSWORD <- args[4]
+DB_NAME <- args[5]
+TEST_SESSION_ID <- args[6]
+
+print(DB_HOST)
+print(DB_PORT)
+print(DB_LOGIN)
+print(DB_PASSWORD)
+print(DB_NAME)
+print(TEST_SESSION_ID)
  
 setwd(TEMP_PATH)
 library(catR)
 options(digits=3)
-if(!is.na(args[8])) Sys.setenv("MYSQL_HOME"=args[8])
+if(!is.na(args[7])) Sys.setenv("MYSQL_HOME"=args[7])
 print(Sys.getenv("MYSQL_HOME"))
 
 set.var <- function(variable, value, sid=TEST_SESSION_ID, dbn=DB_NAME){
@@ -51,3 +58,5 @@ get.var <- function(variable, sid=TEST_SESSION_ID, dbn=DB_NAME){
 }
 
 library(RMySQL)
+drv <- dbDriver('MySQL')
+con <- dbConnect(drv, user = DB_LOGIN, password = DB_PASSWORD, dbname = DB_NAME, host = DB_HOST, port = DB_PORT)

@@ -24,9 +24,15 @@ class TestInstance
     private $r = null;
     private $pipes;
     public $code_execution_halted = false;
-    public static $max_idle_time = 720;
+    public static $max_idle_time = 120;
     public $is_working = false;
     private $last_action_time;
+    public $session_id=0;
+    
+    public function __construct($session_id=0)
+    {
+        $this->session_id=$session_id;
+    }
 
     public function is_timedout()
     {
@@ -61,7 +67,8 @@ class TestInstance
             2 => array("pipe", "w")
         );
 
-        $this->r = proc_open("/usr/bin/R --no-save", $descriptorspec, $this->pipes, Ini::$path_temp);
+        include Ini::$path_internal . 'SETTINGS.php';
+        $this->r = proc_open(Ini::$path_r_exe . " --vanilla --args " . $db_host . " " . ($db_port != "" ? $db_port : "3306") . " " . $db_user . " " . $db_password . " " . $db_name . " " . $this->session_id . " " . (Ini::$path_mysql_home != "" ? "'" . Ini::$path_mysql_home . "'" : ""), $descriptorspec, $this->pipes, Ini::$path_temp);
         if (is_resource($this->r))
         {
             if (TestServer::$debug)
@@ -97,7 +104,7 @@ class TestInstance
         print('CODE EXECUTION FINISHED')
         ");
         if (TestServer::$debug)
-                TestServer::log_debug("TestInstance->send() --- ".$bytes . " written to test instance");
+                TestServer::log_debug("TestInstance->send() --- " . $bytes . " written to test instance");
         $this->is_working = true;
     }
 

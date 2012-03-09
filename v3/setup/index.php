@@ -65,12 +65,11 @@ class Setup
         else return false;
     }
 
-    public static function rscript_check($path)
+    public static function rscript_check()
     {
-        if ($path == "") return false;
         $array = array();
         $return = 0;
-        exec("'" . $path . "' -e 1+1", $array, $return);
+        exec("'" . Ini::$path_r_script . "' -e 1+1", $array, $return);
         return ($return == 0);
     }
 
@@ -107,11 +106,11 @@ class Setup
         else return false;
     }
 
-    public static function r_package_check($path, $package)
+    public static function r_package_check($package)
     {
         $array = array();
         $return = 0;
-        exec("'" . $path . "' -e 'library(" . $package . ")'", $array, $return);
+        exec("'" . Ini::$path_r_script . "' -e 'library(" . $package . ")'", $array, $return);
         return ($return == 0);
     }
 
@@ -280,6 +279,54 @@ class Setup
                         <?php $ok = $ok && $test; ?>
                     </tr>
                 <?php } ?>
+                    
+                <?php
+                if ($ok)
+                {
+                    ?>
+                    <tr>
+                        <?php
+                        $test = Setup::file_paths_check(Ini::$path_php_exe);
+                        ?>
+                        <td class="ui-widget-content"><b>PHP</b> executable file path must be set.</td>
+                        <td class="<?= ($test ? "ui-state-highlight" : "ui-state-error") ?>">your <b>PHP</b> executable file path: <b><?= Ini::$path_php_exe ?></b> <b><?= ($test ? "EXISTS" : "DOESN'T EXISTS") ?> - <b style="color:<?= ($test ? "green" : "red") ?>"><?= ($test ? "PASSED" : "FAILED") ?></b></td>
+                        <td class="ui-widget-content" align="center">
+                            <?php
+                            if ($test) echo"-";
+                            else
+                            {
+                                ?>
+                                PHP executable file path not set or set incorrectly.<br/>
+                                Usually the PHP executable file path is <b>/usr/bin/php</b>. Set your PHP executable path in <b>/SETTINGS.php</b> file.
+                            <?php } ?>
+                        </td>
+                        <?php $ok = $ok && $test; ?>
+                    </tr>
+                <?php } ?>
+                    
+                <?php
+                if ($ok)
+                {
+                    ?>
+                    <tr>
+                        <?php
+                        $test = Setup::file_paths_check(Ini::$path_r_exe);
+                        ?>
+                        <td class="ui-widget-content"><b>R</b> executable file path must be set.</td>
+                        <td class="<?= ($test ? "ui-state-highlight" : "ui-state-error") ?>">your <b>R</b> executable file path: <b><?= Ini::$path_r_exe ?></b> <b><?= ($test ? "EXISTS" : "DOESN'T EXISTS") ?> - <b style="color:<?= ($test ? "green" : "red") ?>"><?= ($test ? "PASSED" : "FAILED") ?></b></td>
+                        <td class="ui-widget-content" align="center">
+                            <?php
+                            if ($test) echo"-";
+                            else
+                            {
+                                ?>
+                                R executable file path not set or set incorrectly.<br/>
+                                Usually the R executable file path is <b>/usr/bin/R</b>. Set your R executable path in <b>/SETTINGS.php</b> file.
+                            <?php } ?>
+                        </td>
+                        <?php $ok = $ok && $test; ?>
+                    </tr>
+                <?php } ?>
 
                 <?php
                 if ($ok)
@@ -287,7 +334,7 @@ class Setup
                     ?>
                     <tr>
                         <?php
-                        $test = Setup::rscript_check(Ini::$path_r_script);
+                        $test = Setup::rscript_check();
                         ?>
                         <td class="ui-widget-content"><b>Rscript</b> file path must be set.</td>
                         <td class="<?= ($test ? "ui-state-highlight" : "ui-state-error") ?>">your <b>Rscript</b> file path: <b><?= Ini::$path_r_script ?></b> <b><?= ($test ? "EXISTS" : "DOESN'T EXISTS") ?> - <b style="color:<?= ($test ? "green" : "red") ?>"><?= ($test ? "PASSED" : "FAILED") ?></b></td>
@@ -395,22 +442,7 @@ class Setup
                     ?>
                     <tr>
                         <?php
-                        $test = Setup::r_package_check(Ini::$path_r_script, "session");
-                        ?>
-                        <td class="ui-widget-content"><b>session</b> R package must be installed.</td>
-                        <td class="<?= ($test ? "ui-state-highlight" : "ui-state-error") ?>"><b>session</b> package <b><?= ($test ? "IS INSTALLED" : "IS NOT INSTALLED") ?> - <b style="color:<?= ($test ? "green" : "red") ?>"><?= ($test ? "PASSED" : "FAILED") ?></b></td>
-                        <td class="ui-widget-content" align="center"><?= ($test ? "-" : "Install <b>session</b> package to main R library directory.") ?></td>
-                        <?php $ok = $ok && $test; ?>
-                    </tr>
-                <?php } ?>
-
-                <?php
-                if ($ok)
-                {
-                    ?>
-                    <tr>
-                        <?php
-                        $test = Setup::r_package_check(Ini::$path_r_script, "RMySQL");
+                        $test = Setup::r_package_check("RMySQL");
                         ?>
                         <td class="ui-widget-content"><b>RMySQL</b> R package must be installed.</td>
                         <td class="<?= ($test ? "ui-state-highlight" : "ui-state-error") ?>"><b>RMySQL</b> package <b><?= ($test ? "IS INSTALLED" : "IS NOT INSTALLED") ?> - <b style="color:<?= ($test ? "green" : "red") ?>"><?= ($test ? "PASSED" : "FAILED") ?></b></td>
@@ -425,7 +457,7 @@ class Setup
                     ?>
                     <tr>
                         <?php
-                        $test = Setup::r_package_check(Ini::$path_r_script, "catR");
+                        $test = Setup::r_package_check("catR");
                         ?>
                         <td class="ui-widget-content"><b>catR</b> R package must be installed.</td>
                         <td class="<?= ($test ? "ui-state-highlight" : "ui-state-error") ?>"><b>catR</b> package <b><?= ($test ? "IS INSTALLED" : "IS NOT INSTALLED") ?> - <b style="color:<?= ($test ? "green" : "red") ?>"><?= ($test ? "PASSED" : "FAILED") ?></b></td>

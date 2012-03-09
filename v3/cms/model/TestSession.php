@@ -50,6 +50,8 @@ class TestSession extends OTable
 
     public function run_Test($counter = null, $values = array())
     {
+        $first_run = false;
+        if ($counter == null) $first_run = true;
         $test = $this->get_Test();
         if ($counter == null)
         {
@@ -101,7 +103,7 @@ class TestSession extends OTable
             }
             ", $counter, $section->get_RFunctionName());
 
-        $result = $this->RCall($code);
+        $result = $this->RCall($code, false, $first_run);
         $values = $this->get_variables();
 
         $end = false;
@@ -134,111 +136,36 @@ class TestSession extends OTable
         return $result;
     }
 
-    public function RCall($code, $debug_syntax = false)
+    public function RCall($code, $debug_syntax = false, $first_run = false)
     {
         $command = "";
-        if (!$debug_syntax)
-        {
-            if (!$this->does_RSession_file_exists())
-                    $command = $this->get_first_ini_RCode();
-            else $command = $this->get_next_ini_RCode();
-            $command = $command . $this->get_common_ini_RCode() . $code;
+        if (!$debug_syntax && $first_run) $command = $this->get_ini_RCode();
+        $command.=$code;
 
-            $command.=$this->get_post_RCode();
-        }
-        else $command = "sink(stdout(), type='message')\n" . $code;
+        $command_obj = json_encode(array(
+            "session_id"=>$this->id,
+            "code"=>$command
+        ));
+        
+        if (!TestServer::is_running()) TestServer::start_process();
+        $result = json_decode(TestServer::send($command_obj));
 
-        $this->write_RSource_file($command);
-
-        $output = array();
-        $return = -999;
-        include Ini::$path_internal . 'SETTINGS.php';
-        exec("\"" . Ini::$path_r_script . "\" --vanilla \"" . $this->get_RSource_file_path() . "\" --args " . $db_host . " " . ($db_port != "" ? substr($db_port, 1) : "3306") . " " . $db_user . " " . $db_password . " " . $db_name . " " . $this->id . " " . (Ini::$path_mysql_home != "" ? "'" . Ini::$path_mysql_home . "'" : ""), $output, $return);
-        return array("return" => $return, "output" => $output, "code" => $command);
-    }
-
-    public function write_RSource_file($code)
-    {
-        $file = fopen($this->get_RSource_file_path(), 'w');
-        fwrite($file, $code);
-        fclose($file);
-    }
-
-    public function delete_RSource_file()
-    {
-        if (file_exists($this->get_RSource_file_path()))
-                unlink($this->get_RSource_file_path());
+        return array("return" => $result->return, "output" => explode("\n", $result->output), "code" => $result->code);
     }
 
     public function mysql_delete()
     {
-        $this->delete_RSource_file();
         $this->delete_object_links(TestSessionVariable::get_mysql_table());
         parent::mysql_delete();
     }
 
-    public function get_RSource_file_path()
-    {
-        return Ini::$path_temp . "session_" . $this->id . ".R";
-    }
-
-    public function get_RSession_file_path()
-    {
-        return Ini::$path_temp . "session_" . $this->id . ".Rs";
-    }
-
-    public function does_RSession_file_exists()
-    {
-        if (file_exists($this->get_RSession_file_path())) return true;
-        else return false;
-    }
-
-    public function get_first_ini_RCode()
+    public function get_ini_RCode()
     {
         $code = "
-            sink(stdout(), type='message')
-            library(session)
             TEMP_PATH <- '" . Ini::$path_temp . "'
             source('" . Ini::$path_internal . "lib/R/mainmethods.R" . "')
             ";
         $code .=$this->get_Test()->get_TestSections_RFunction_declaration();
-        return $code;
-    }
-
-    public function get_set_section_index_RCode($counter)
-    {
-        $code = "
-            CURRENT_SECTION_INDEX <<- " . $counter . "
-            set.var('CURRENT_SECTION_INDEX'," . $counter . ")
-            ";
-        return $code;
-    }
-
-    public function get_next_ini_RCode()
-    {
-        $code = "
-            sink(stdout(), type='message')
-            library(session)
-            restore.session('" . $this->get_RSession_file_path() . "')
-            ";
-        return $code;
-    }
-
-    public function get_post_RCode()
-    {
-        $code = "
-            save.session('" . $this->get_RSession_file_path() . "')
-            ";
-        return $code;
-    }
-
-    public function get_common_ini_RCode()
-    {
-        $code = "
-            drv <- dbDriver('MySQL')
-            for(con in dbListConnections(drv)) { dbDisconnect(con) }
-            con <- dbConnect(drv, user = DB_LOGIN, password = DB_PASSWORD, dbname = DB_NAME, host = DB_HOST, port = DB_PORT)
-            ";
         return $code;
     }
 
