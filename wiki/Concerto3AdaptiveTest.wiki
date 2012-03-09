@@ -96,7 +96,7 @@ In the 'tests' tab, create a new test by adding a new object (covered in the [ht
 || Set variable || SET VARIABLE *theta* IN *R & HTML* AS *default*; *by R code* - _it<-matrix(itempar[items_administered,],nrow=length(items_administered)). thetaEst(it, responses)_||
 || Set variable || SET VARIABLE *current_item* IN *R & HTML* AS *default*; *by R code* - _nextItem(catBank, theta, out=as.numeric(items_administered))[[1]]_||
 || Set variable || SET VARIABLE *items_administered* IN *R* AS *default*; *by R code* - _c(items_administered, current_item)_||
-|| - || http://ns39618.ovh.net/~vaishali/adaptive/test4.jpg ||
+|| - || http://ns39618.ovh.net/~vaishali/adaptive/test-4.jpg ||
 .
 
 || *SECTION TYPE* || *DETAILS* ||
