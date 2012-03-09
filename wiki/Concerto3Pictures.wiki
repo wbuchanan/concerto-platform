@@ -52,6 +52,6 @@ For example, pasting the following code into the source page will add background
 
 The following HTML code will embed an audio clip with audio controls on the test page.
 
-*<audio controls="controls"><source src="http://ns39618.ovh.net/~abcde/Nara.mp3" type="audio/mpeg"> Your browser does not support the audio element.</source></audio>*
+*<audio controls="controls"><source src="http://ns39618.ovh.net/~abcde/Nara.mp3" type="audio/mpeg"></source></audio>*
 
 The _src_ attribute has to be necessarily modified (substitute the url of your audio clip). The other attributes in the code can be modified to suit your needs. _autostart_ indicates whether the song file should start playing automatically or not. _hidden_ indicates whether the media player is hidden or not. _loop_ indicates whether the clip should be repeated.
