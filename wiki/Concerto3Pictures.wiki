@@ -22,7 +22,9 @@ An essential part of setting up web pages is its publication. This includes uplo
 The best way to insert images is to do so directly using the toolbar in the templates tab. Click the _image_ icon http://ns39618.ovh.net/~vaishali/mini/img_btn.jpg and enter relevant details as shown below.
 
 URL: _www location of your uploaded files_
+
 Alternative Text: _Brief description of image_
+
 Width, Height, Border, HSpace, VSpace, Align: _size, position etc._
 
 You can preview your image as you type the specifications. Click OK to insert image into the HTML template.
