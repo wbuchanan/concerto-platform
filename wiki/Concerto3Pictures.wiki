@@ -18,6 +18,7 @@ An essential part of setting up web pages is its publication. This includes uplo
 .
 
 ==Inserting Images Using Image Icon==
+
 The best way to insert images is to do so directly using the toolbar in the templates tab. Click the _image_ icon http://ns39618.ovh.net/~vaishali/mini/img_btn.jpg and enter relevant details as shown below.
 
 URL: _www location of your uploaded files_
@@ -55,6 +56,8 @@ The following HTML code will embed an audio clip with audio controls on the test
 *<audio controls="controls"><source src="http://ns39618.ovh.net/~abcde/Nara.mp3" type="audio/mpeg"></source></audio>*
 
 The _src_ attribute has to be necessarily modified (substitute the url of your audio clip). The other attributes in the code can be modified to suit your needs. _autostart_ indicates whether the song file should start playing automatically or not. _hidden_ indicates whether the media player is hidden or not. _loop_ indicates whether the clip should be repeated.
+
+.
 
 ==Inserting Images & Clips from Tables==
 If the items on your test are images, audio clips or video clips, create a table of items that consists of the images/clips. 
