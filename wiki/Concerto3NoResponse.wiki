@@ -45,4 +45,4 @@ In the section below, the first condition ensures that an empty dialogue box (no
 
 .
 
-http://ns39618.ovh.net/~vaishali/mini/noresp1.jpg
+http://ns39618.ovh.net/~vaishali/mini/noresp.jpg
