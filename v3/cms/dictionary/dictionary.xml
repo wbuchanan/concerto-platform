@@ -545,7 +545,7 @@ Note: You can add new languages by inserting "<new_language>string translated in
         </string>
         <string id="103">
             <en>owner of this custom section</en>
-            <pl>wlasciciel wlasnej sekcji</pl>
+            <pl>własciciel własnej sekcji</pl>
             <cn>此自主章节所有者</cn>
         </string>
         <string id="104">
@@ -555,7 +555,7 @@ Note: You can add new languages by inserting "<new_language>string translated in
         </string>
         <string id="105">
             <en>Define section input parameters. Use variables thus declared in the R code section.</en>
-            <pl>Tutaj mozesz zdefiniowac parametry wejsciowe sekcji. Mozna uzywac zmiennych ktore tutaj zostaly zadeklarowane w kodzie R sekcji.</pl>
+            <pl>Tutaj możesz zdefiniować parametry wejściowe sekcji. Można używać zmiennych które tutaj zostały zdeklarowane w kodzie R sekcji.</pl>
             <cn>定义章节输入参数。使用在在章节R代码中声明的变量。</cn>
         </string>
         <string id="106">
@@ -570,7 +570,7 @@ Note: You can add new languages by inserting "<new_language>string translated in
         </string>
         <string id="108">
             <en>no parameters defined</en>
-            <pl>brak zdefiniowanych parametrow</pl>
+            <pl>brak zdefiniowanych parametrów</pl>
             <cn>未定义参数</cn>
         </string>
         <string id="109">
@@ -580,17 +580,17 @@ Note: You can add new languages by inserting "<new_language>string translated in
         </string>
         <string id="110">
             <en>remove parameter variable</en>
-            <pl>usun parametr</pl>
+            <pl>usuń parametr</pl>
             <cn>移除参数变量</cn>
         </string>
         <string id="111">
             <en>R code relevant for this section. Parameters declared above can be used here.</en>
-            <pl>To jest kod R sekcji. Mozesz uzywac w nim parametrow ktore zadeklarowales powyzej.</pl>
+            <pl>To jest kod R sekcji. Możesz używać w nim parametrów które zdeklarowałeś powyżej.</pl>
             <cn>此章节相关R代码。已声明参数可在此使用。</cn>
         </string>
         <string id="112">
             <en>Specify variables used in this section to be made available globally, for use in other test sections.</en>
-            <pl>Tutaj mozesz zdefiniowac ktore zmienne uzyte w sekcji chcialbys przekazac poza sekcje. Zmienne te nastepnie moga zostac uzyte w innych sekcjach logiki.</pl>
+            <pl>Tutaj możesz zdefiniować które zmienne użyte w sekcji chciałbyś przekazać poza sekcję. Zmienne te następnie mogą zostać użyte w innych sekcjach logiki.</pl>
             <cn>指定此章节内可在其他章节使用的总体变量。</cn>
         </string>
         <string id="113">
@@ -605,12 +605,12 @@ Note: You can add new languages by inserting "<new_language>string translated in
         </string>
         <string id="115">
             <en>add return variable</en>
-            <pl>dodaj zmienna zwrotu</pl>
+            <pl>dodaj zmienną zwrotu</pl>
             <cn>添加返回变量</cn>
         </string>
         <string id="116">
             <en>remvoe return variable</en>
-            <pl>usun zmienna zwrotu</pl>
+            <pl>usuń zmienną zwrotu</pl>
             <cn>移除返回变量</cn>
         </string>
         <string id="117">
@@ -630,12 +630,12 @@ Note: You can add new languages by inserting "<new_language>string translated in
         </string>
         <string id="120">
             <en>table access rights</en>
-            <pl>prawa dostepu tabeli</pl>
+            <pl>prawa dostępu tabeli</pl>
             <cn>表格访问权限</cn>
         </string>
         <string id="121">
             <en>owner of the table</en>
-            <pl>wlasciciel tabeli</pl>
+            <pl>wlaściciel tabeli</pl>
             <cn>表格所有者</cn>
         </string>
         <string id="122" js="1">
@@ -645,7 +645,7 @@ Note: You can add new languages by inserting "<new_language>string translated in
         </string>
         <string id="123">
             <en>no object selected</en>
-            <pl>nie wybrano zadnego obiektu</pl>
+            <pl>nie wybrano żadnego obiektu</pl>
             <cn>未选择对象</cn>
         </string>
         <string id="124">
@@ -675,7 +675,7 @@ Note: You can add new languages by inserting "<new_language>string translated in
         </string>
         <string id="129">
             <en>add column</en>
-            <pl>dodaj kolumne</pl>
+            <pl>dodaj kolumnę</pl>
             <cn>添加列</cn>
         </string>
         <string id="130">
@@ -710,17 +710,17 @@ Note: You can add new languages by inserting "<new_language>string translated in
         </string>
         <string id="136">
             <en>HTML content of the template</en>
-            <pl>zawartosc HTML szablonu</pl>
+            <pl>zawartoćś HTML szablonu</pl>
             <cn>HTML模板内容</cn>
         </string>
         <string id="137">
             <en>template access rights</en>
-            <pl>prawa dostepu szablonu</pl>
+            <pl>prawa dostępu szablonu</pl>
             <cn>模板访问权限</cn>
         </string>
         <string id="138">
             <en>owner of the template</en>
-            <pl>wlasciciel szablonu</pl>
+            <pl>wlaściciel szablonu</pl>
             <cn>模板所有者</cn>
         </string>
         <string id="139">
@@ -740,17 +740,17 @@ Note: You can add new languages by inserting "<new_language>string translated in
         </string>
         <string id="142">
             <en>test access rights</en>
-            <pl>prawa dostepu testu</pl>
+            <pl>prawa dostępu testu</pl>
             <cn>测试访问权限</cn>
         </string>
         <string id="143">
             <en>owner of the test</en>
-            <pl>wlasciciel testu</pl>
+            <pl>wlaściciel testu</pl>
             <cn>测试所有者</cn>
         </string>
         <string id="144">
             <en>show test variables</en>
-            <pl>pokaz zmienne testu</pl>
+            <pl>pokaż zmienne testu</pl>
             <cn>显示测试变量</cn>
         </string>
         <string id="145">
@@ -770,7 +770,7 @@ Note: You can add new languages by inserting "<new_language>string translated in
         </string>
         <string id="148">
             <en>custom sections</en>
-            <pl>wlasne sekcje</pl>
+            <pl>własne sekcje</pl>
             <cn>自主章节</cn>
         </string>
         <string id="149">
@@ -790,27 +790,27 @@ Note: You can add new languages by inserting "<new_language>string translated in
         </string>
         <string id="152">
             <en>editing admin group</en>
-            <pl>edycja grupy aministratorow</pl>
+            <pl>edycja grupy aministratorów</pl>
             <cn>编辑管理群</cn>
         </string>
         <string id="153">
             <en>creating admin group</en>
-            <pl>tworzenie grupy aministratorow</pl>
+            <pl>tworzenie grupy aministratorów</pl>
             <cn>创建管理群</cn>
         </string>
         <string id="154">
             <en>name of the admin group</en>
-            <pl>nazwa grupy aministratorow</pl>
+            <pl>nazwa grupy aministratorów</pl>
             <cn>管理群名称</cn>
         </string>
         <string id="155">
             <en>admin group access rights</en>
-            <pl>prawa dostepu grupy aministratorow</pl>
+            <pl>prawa dostepu grupy aministratorów</pl>
             <cn>管理群访问权限</cn>
         </string>
         <string id="156">
             <en>owner of the admin group</en>
-            <pl>wlasciciel grupy administratorow</pl>
+            <pl>wlaściciel grupy administratorów</pl>
             <cn>管理群所有者</cn>
         </string>
         <string id="157">
@@ -830,12 +830,12 @@ Note: You can add new languages by inserting "<new_language>string translated in
         </string>
         <string id="160">
             <en>access rights of the admin type</en>
-            <pl>prawa dostepu typu administratora</pl>
+            <pl>prawa dostępu typu administratora</pl>
             <cn>管理员类型访问权限</cn>
         </string>
         <string id="161">
             <en>admin type owner</en>
-            <pl>wlasciciel typu administratora</pl>
+            <pl>wlaściciel typu administratora</pl>
             <cn>管理类型所有者</cn>
         </string>
         <string id="162">
@@ -845,7 +845,7 @@ Note: You can add new languages by inserting "<new_language>string translated in
         </string>
         <string id="163">
             <en>module</en>
-            <pl>modul</pl>
+            <pl>moduł</pl>
             <cn>模块</cn>
         </string>
         <string id="164">
@@ -860,7 +860,7 @@ Note: You can add new languages by inserting "<new_language>string translated in
         </string>
         <string id="166">
             <en>owner change</en>
-            <pl>zmiana wlasciciela</pl>
+            <pl>zmiana wlaściciela</pl>
             <cn>所有者变更</cn>
         </string>
         <string id="167">
@@ -925,32 +925,32 @@ Note: You can add new languages by inserting "<new_language>string translated in
         </string>
         <string id="179">
             <en>password</en>
-            <pl>haslo</pl>
+            <pl>hasło</pl>
             <cn>密码</cn>
         </string>
         <string id="180">
             <en>Select box to set the password</en>
-            <pl>zaznacz jesli chcesz ustawic haslo</pl>
+            <pl>zaznacz jeśli chcesz ustawić hasło</pl>
             <cn>设置密码选项</cn>
         </string>
         <string id="181">
             <en>admin password</en>
-            <pl>haslo administratora</pl>
+            <pl>hasło administratora</pl>
             <cn>管理员密码</cn>
         </string>
         <string id="182">
             <en>password confirmation</en>
-            <pl>potwierdzenie hasla</pl>
+            <pl>potwierdzenie hasła</pl>
             <cn>确认密码</cn>
         </string>
         <string id="183">
             <en>password confirmation must match the password field above</en>
-            <pl>potwierdzenie hasla musi sie zgadzac z polem hasla powyzej</pl>
+            <pl>potwierdzenie hasła musi sie zgadzać z polem hasła powyżej</pl>
             <cn>确认密码必须与上方密码栏一致</cn>
         </string>
         <string id="184">
             <en>first name</en>
-            <pl>imie</pl>
+            <pl>imię</pl>
             <cn>名</cn>
         </string>
         <string id="185">
@@ -960,7 +960,7 @@ Note: You can add new languages by inserting "<new_language>string translated in
         </string>
         <string id="186">
             <en>admin first name</en>
-            <pl>imie administratora</pl>
+            <pl>imię administratora</pl>
             <cn>管理员名</cn>
         </string>
         <string id="187">
@@ -995,42 +995,42 @@ Note: You can add new languages by inserting "<new_language>string translated in
         </string>
         <string id="193">
             <en>Create and manage the entire structure of each test.</en>
-            <pl>W tej zakladce mozna tworzyc testy.</pl>
+            <pl>W tej zakładce można tworzyć testy.</pl>
             <cn>以整体创建并管理测试结果。</cn>
         </string>
         <string id="194">
             <en>Create custom test logic sections to meet the requirements of specific tests.</en>
-            <pl>W tej zakladce mozna stworzyc wlasne sekcje logiki testu i uzyc ich w testach.</pl>
+            <pl>W tej zakładce można stworzyć własne sekcje logiki testu i użyc ich w testach.</pl>
             <cn>创建满足特定测试需求的自主测试章节。</cn>
         </string>
         <string id="195">
             <en>Create and edit HTML templates as they are visible to the test taker.</en>
-            <pl>W tej zakladce mozna stworzyc szablony HTML elementow testu ktore bedzie widzial uzytkownik bioracy udzial w tescie.</pl>
+            <pl>W tej zakładce można stworzyć szablony HTML elementów testu, które będzie widział użytkownik biorący udział w teście.</pl>
             <cn>创建并编辑向参与测试用户显示的HTML模板。</cn>
         </string>
         <string id="196">
             <en>Create tables for storing and managing test data, including item content, correct responses and response history etc.</en>
-            <pl>W tej zakladce mozna stworzyc tabele z danymi ktore mozna pozniej uzywac w tescie.</pl>
+            <pl>W tej zakładce można stworzyć tabele z danymi, które można później używać w teście.</pl>
             <cn>创建表格以存储并管理测试数据，包括项目内容，正确答复以及答复历史等。</cn>
         </string>
         <string id="197">
             <en>Create and manage admin and standard user accounts, user groups and access rights of users.</en>
-            <pl>Ta zakladka sluzy do tworzenia kont administratorow ktorzy beda mogli korzystac z tego panelu. Mozesz tutaj ustalic prawa dostepu oraz stworzyc grupy w obrebie ktorych administratorzy beda dzielic wskazane obiekty.</pl>
+            <pl>Ta zakładka służy do tworzenia kont administratorów, którzy będą mogli korzystać z tego panelu. Możesz tutaj ustalić prawa dostępu, oraz stworzyć grupy w obrębie których administratorzy będą dzielić wskazane obiekty.</pl>
             <cn>创建并维护管理员及标准用户帐户，用户群及用户访问权限。</cn>
         </string>
         <string id="198">
             <en>admins, admin groups and admin types</en>
-            <pl>administratorzy, grupy administratorow oraz typy administratorow</pl>
+            <pl>administratorzy, grupy administratorów, oraz typy administratorów</pl>
             <cn>管理员，管理群以及管理员类型</cn>
         </string>
         <string id="199">
             <en>available objects</en>
-            <pl>dostepne obiekty</pl>
+            <pl>dostępne obiekty</pl>
             <cn>可用对象</cn>
         </string>
         <string id="200">
             <en>no available objects</en>
-            <pl>brak dostepnych obiektow</pl>
+            <pl>brak dostępnych obiektów</pl>
             <cn>不可用对象</cn>
         </string>
         <string id="201">
@@ -1050,7 +1050,7 @@ Note: You can add new languages by inserting "<new_language>string translated in
         </string>
         <string id="204">
             <en>delete object</en>
-            <pl>usun obiekt</pl>
+            <pl>usuń obiekt</pl>
             <cn>删除对象</cn>
         </string>
         <string id="205">
@@ -1070,7 +1070,7 @@ Note: You can add new languages by inserting "<new_language>string translated in
         </string>
         <string id="208">
             <en>next page</en>
-            <pl>nastepna strona</pl>
+            <pl>następna strona</pl>
             <cn>下一页</cn>
         </string>
         <string id="209">
@@ -1080,7 +1080,7 @@ Note: You can add new languages by inserting "<new_language>string translated in
         </string>
         <string id="210">
             <en>per page</en>
-            <pl>na strone</pl>
+            <pl>na stronę</pl>
             <cn>每页</cn>
         </string>
         <string id="211">
@@ -1090,27 +1090,27 @@ Note: You can add new languages by inserting "<new_language>string translated in
         </string>
         <string id="212">
             <en>Enter your login and password.</en>
-            <pl>Podaj swoj login i haslo.</pl>
+            <pl>Podaj swój login i hasło.</pl>
             <cn>输入用户名和密码</cn>
         </string>
         <string id="213">
             <en>Select the HTML template to be loaded.</en>
-            <pl>Wybierz szablon HTML ktory chcesz wczytac.</pl>
+            <pl>Wybierz szablon HTML, który chcesz wczytać.</pl>
             <cn>选择载入HTML模板</cn>
         </string>
         <string id="214">
-            <en> Preview of selected HTML template.</en>
-            <pl> Podglad obecnie wybranego szablonu HTML</pl>
+            <en>Preview of selected HTML template.</en>
+            <pl>Podgląd obecnie wybranego szablonu HTML</pl>
             <cn>所选HTML模板预览</cn>
         </string>
         <string id="215">
             <en>value of this variable will be inserted into the HTML template</en>
-            <pl>wartosc tej zmiennej zostanie osadzona w szablonie HTML</pl>
+            <pl>wartość tej zmiennej zostanie osadzona w szablonie HTML</pl>
             <cn>在HTML模板中插入此变量值</cn>
         </string>
         <string id="216">
             <en><![CDATA[Time left (in seconds) to submit test item. A value of 0 implies unlimited time. Insert <b>{{TIME_LEFT}}</b> variable into HTML templates to make the timer visible.]]></en>
-            <pl><![CDATA[Czas w sekundach jaki uzytkownik posiada aby przeslac element. Jesli wartosc jest rowna 0 - oznacza to ze czas jest nieograniczony. Mozna wstawic zmienna <b>{{TIME_LEFT}}</b> do HTML aby wyswietlic odliczanie.]]></pl>
+            <pl><![CDATA[Czas w sekundach jaki użytkownik posiada aby przesłać element. Jeśli wartość jest równa 0 - oznacza to, że czas jest nieograniczony. Można wstawić zmienną <b>{{TIME_LEFT}}</b> do HTML aby wyświetlić odliczanie.]]></pl>
             <cn><![CDATA[提交测试项目剩余时间（秒）。数值0表示无时间限制。在HTML模板中插入<b>{{剩余时间}}</b> 变量以显示倒计时。]]></cn>
         </string>
         <string id="217">
@@ -1125,42 +1125,42 @@ Note: You can add new languages by inserting "<new_language>string translated in
         </string>
         <string id="219">
             <en>GO TO SECTION</en>
-            <pl>PRZEJDZ DO SEKCJI</pl>
+            <pl>PRZEJDŹ DO SEKCJI</pl>
             <cn>前往章节</cn>
         </string>
         <string id="220">
             <en>sets which section should be run next</en>
-            <pl>wskazuje ktora sekcja powinna byc wykonana nastepna</pl>
+            <pl>wskazuje która sekcja powinna być wykonana następna</pl>
             <cn>设置下一章节为</cn>
         </string>
         <string id="221">
             <en>not equal</en>
-            <pl>nie rowne</pl>
+            <pl>nie równe</pl>
             <cn>不等于</cn>
         </string>
         <string id="222">
             <en>equal</en>
-            <pl>rowne</pl>
+            <pl>równe</pl>
             <cn>等于</cn>
         </string>
         <string id="223">
             <en>greater than</en>
-            <pl>wieksze niz</pl>
+            <pl>większe niż</pl>
             <cn>大于</cn>
         </string>
         <string id="224">
             <en>equal or greater than</en>
-            <pl>rowne lub wieksze niz</pl>
+            <pl>równe lub większe niż</pl>
             <cn>大于或等于</cn>
         </string>
         <string id="225">
             <en>lesser than</en>
-            <pl>mniejsze niz</pl>
+            <pl>mniejsze niż</pl>
             <cn>小于</cn>
         </string>
         <string id="226">
             <en>equal or lesser than</en>
-            <pl>rowne lub mniejsze niz</pl>
+            <pl>równe lub mniejsze niż</pl>
             <cn>小于或等于</cn>
         </string>
         <string id="227">
@@ -1180,7 +1180,7 @@ Note: You can add new languages by inserting "<new_language>string translated in
         </string>
         <string id="230">
             <en>remove condition</en>
-            <pl>usun warunek</pl>
+            <pl>usuń warunek</pl>
             <cn>移除条件</cn>
         </string>
         <string id="231">
@@ -1190,12 +1190,12 @@ Note: You can add new languages by inserting "<new_language>string translated in
         </string>
         <string id="232">
             <en>add test logic section to IF clause</en>
-            <pl>dodaj sekcje logiki testu do bloku JESLI</pl>
+            <pl>dodaj sekcję logiki testu do bloku JEŚLI</pl>
             <cn>为条件语句添加测试逻辑章节</cn>
         </string>
         <string id="233">
             <en>SET VARIABLE</en>
-            <pl>USTAW ZMIENNA</pl>
+            <pl>USTAW ZMIENNĄ</pl>
             <cn>设置变量</cn>
         </string>
         <string id="235">
@@ -1265,12 +1265,12 @@ Note: You can add new languages by inserting "<new_language>string translated in
         </string>
         <string id="249">
             <en>update</en>
-            <pl>zmien</pl>
+            <pl>zmień</pl>
             <cn>更新</cn>
         </string>
         <string id="250">
             <en>delete</en>
-            <pl>usun</pl>
+            <pl>usuń</pl>
             <cn>删除</cn>
         </string>
         <string id="251">
@@ -1280,52 +1280,52 @@ Note: You can add new languages by inserting "<new_language>string translated in
         </string>
         <string id="252">
             <en>search list</en>
-            <pl>przeszukaj liste</pl>
+            <pl>przeszukaj listę</pl>
             <cn>搜索列表</cn>
         </string>
         <string id="253">
             <en>Select the type of section to be added to the test logic</en>
-            <pl>wybierz typ sekcji jaka chcialbys dodac do logiki testu</pl>
+            <pl>wybierz typ sekcji jaką chciałbyś dodać do logiki testu</pl>
             <cn>选择加入测试逻辑的章节类型</cn>
         </string>
         <string id="254">
             <en>Enter variable description that will be visible to anyone using this section in their test.</en>
-            <pl>wprowadz opis zmiennej ktory bedzie widoczny dla kazdego kto uzyje tej sekcji w swym tescie</pl>
+            <pl>Wprowadź opis zmiennej który będzie widoczny dla każdego kto użyje tej sekcji w swym teście.</pl>
             <cn>添加向使用此章节用户显示的变量描述</cn>
         </string>
         <string id="255">
             <en>Select the MySQL table whose structure and data are to be imported into this table.</en>
-            <pl>wybierz tabele MySQL ktorej strukture i dane chcialbys zaimportowac do tej tabeli</pl>
+            <pl>Wybierz tabelę MySQL, której strukturę i dane chciałbyś zaimportować do tej tabeli.</pl>
              <cn>选择MySQL表格导入其结构和数据至此表格</cn>
         </string>
         <string id="256">
             <en>Select the CSV file to be imported.</en>
-            <pl>wybierz plik CSV ktory chcialbys zaimportowac</pl>
+            <pl>Wybierz plik CSV, który chciałbyś zaimportować.</pl>
             <cn>选择导入的CSV文件</cn>
         </string>
         <string id="257">
             <en>Select the name of the column</en>
-            <pl>wybierz nazwe kolumny</pl>
+            <pl>Wybierz nazwę kolumny</pl>
             <cn>选择列名称</cn>
         </string>
         <string id="258">
             <en>Select the column type</en>
-            <pl>wybierz typ kolumny</pl>
+            <pl>Wybierz typ kolumny</pl>
             <cn>选择列类型</cn>
         </string>
         <string id="259">
             <en>enter HTML value of the cell</en>
-            <pl>wprowadz wartosc HTML komorki</pl>
+            <pl>wprowadź wartość HTML komórki</pl>
             <cn>输入单元格的HTML数值</cn>
         </string>
         <string id="260">
             <en>Enter your unique login id</en>
-            <pl>wprowadz swoj login</pl>
+            <pl>Wprowadź swój login</pl>
             <cn>输入用户名</cn>
         </string>
         <string id="261">
             <en>Enter your password</en>
-            <pl>wprowadz swoje haslo</pl>
+            <pl>Wprowadź swoje hasło</pl>
             <cn>输入密码</cn>
         </string>
         <string id="262">
@@ -1335,47 +1335,47 @@ Note: You can add new languages by inserting "<new_language>string translated in
         </string>
         <string id="263">
             <en>CLICK HERE TO DOWNLOAD THE LATEST VERSION</en>
-            <pl>KLIKNIJ TUTAJ ABY POBRAC NAJNOWSZA WERSJE</pl>
+            <pl>KLIKNIJ TUTAJ ABY POBRAĆ NAJNOWSZĄ WERSJĘ</pl>
             <cn>点此下载最新版本</cn>
         </string>
         <string id="264">
             <en>Your version is up-to-date</en>
-            <pl>twoja wersja jest aktualna</pl>
+            <pl>Twoja wersja jest aktualna</pl>
             <cn>已更新至最新版本</cn>
         </string>
         <string id="265" js="1">
             <en>Export</en>
-            <pl>eksport</pl>
+            <pl>Eksport</pl>
              <cn>导出</cn>
         </string>
         <string id="266">
             <en>Import new object</en>
-            <pl>zaimportuj nowy obiekt</pl>
+            <pl>Zaimportuj nowy obiekt</pl>
             <cn>导入新对象</cn>
         </string>
         <string id="267">
             <en>Select file to be exported</en>
-            <pl>wybierz plik z wyeksportowanym obiektem</pl>
+            <pl>Wybierz plik z wyeksportowanym obiektem</pl>
             <cn>选择导出文件</cn>
         </string>
         <string id="268" js="1">
             <en>Importing object</en>
-            <pl>importowanie obiektu</pl>
+            <pl>Importowanie obiektu</pl>
             <cn>导入对象</cn>
         </string>
         <string id="269" js="1">
             <en>Are you sure you want to import the object from this file?</en>
-            <pl>jestes pewien ze chcesz zaimportowac obiekt z tego pliku?</pl>
+            <pl>Jesteś pewien, że chcesz zaimportować obiekt z tego pliku?</pl>
             <cn>确认从此文件中导入对象？</cn>
         </string>
         <string id="270" js="1">
             <en>Object imported</en>
-            <pl>obiekt zaimportowany</pl>
+            <pl>Obiekt zaimportowany</pl>
              <cn>已导入对象</cn>
         </string>
         <string id="271" js="1">
             <en>There was an error while importing the object</en>
-            <pl>wystapil blad podczas importowania obiektu</pl>
+            <pl>Wystąpił błąd podczas importowania obiektu</pl>
             <cn>导入对象发生错误</cn>
         </string>
         <string id="272" js="1">
@@ -1385,12 +1385,12 @@ Note: You can add new languages by inserting "<new_language>string translated in
         </string>
         <string id="273" js="1">
             <en>Deleting object</en>
-            <pl>uwuanie obiektu</pl>
+            <pl>Usuwanie obiektu</pl>
             <cn>删除对象</cn>
         </string>
         <string id="274" js="1">
             <en>Saving object</en>
-            <pl>zapisywanie obiektu</pl>
+            <pl>Zapisywanie obiektu</pl>
             <cn>保存对象</cn>
         </string>
         <string id="275" js="1">
@@ -1410,7 +1410,7 @@ Note: You can add new languages by inserting "<new_language>string translated in
         </string>
         <string id="278" js="1">
             <en>Not logged in</en>
-            <pl>nie zalogowany</pl>
+            <pl>Nie zalogowany</pl>
             <cn>未登入</cn>
         </string>
         <string id="279">
@@ -1420,12 +1420,12 @@ Note: You can add new languages by inserting "<new_language>string translated in
         </string>
         <string id="280" js="1">
             <en>default</en>
-            <pl>domyslny</pl>
+            <pl>domyślny</pl>
             <cn>默认</cn>
         </string>
         <string id="281" js="1">
             <en>string</en>
-            <pl>ciag znakow</pl>
+            <pl>ciąg znaków</pl>
             <cn>字符串</cn>
         </string>
         <string id="282" js="1">
@@ -1435,7 +1435,7 @@ Note: You can add new languages by inserting "<new_language>string translated in
         </string>
         <string id="283">
             <en>This is a system variable</en>
-            <pl>jest to zmienna systemowa</pl>
+            <pl>Jest to zmienna systemowa</pl>
             <cn>这是系统变量</cn>
         </string>
         <string id="284" js="1">
@@ -1455,57 +1455,57 @@ Note: You can add new languages by inserting "<new_language>string translated in
         </string>
         <string id="287" js="1">
             <en>Please ensure that all changes to the test logic have been saved prior to debugging. Unsaved changes will not be considered in the debugging process.</en>
-            <pl>Prosze pamietac ze nalezy zachowac biezaca logike testu zanim sie uruchomi debug. Wszelkie niezapisane zmiany nie beda brane pod uwage podczas debuggowania.</pl>
+            <pl>Proszę pamiętać, że należy zachować bieżącą logikę testu zanim się uruchomi debug. Wszelkie niezapisane zmiany nie bedą brane pod uwagę podczas debuggowania.</pl>
             <cn>请确认在调试前保存当前测试逻辑的所有修改。未保存的修改将不会被调试。</cn>
         </string>
         <string id="288" js="1">
             <en><![CDATA[Please press the <b>start</b> button.]]></en>
-            <pl><![CDATA[Prosze nacisnac przycisk <b>start</b>.]]></pl>
+            <pl><![CDATA[Proszę nacisnąć przycisk <b>start</b>.]]></pl>
             <cn><![CDATA[请按 <b>开始</b> 键.]]></cn>
         </string>
         <string id="289" js="1">
             <en><![CDATA[Test #{0} - syntax validation <b>(in progress...)]]></en>
-            <pl><![CDATA[Test #{0} - walidacja skladni <b>(w trakcie...)]]></pl>
+            <pl><![CDATA[Test #{0} - walidacja składni <b>(w trakcie...)]]></pl>
             <cn><![CDATA[测试 #{0} – 句法验证 <b>(进行中……)]]></cn>
         </string>
         <string id="290" js="1">
             <en>Syntax validation</en>
-            <pl>Walidacja skladni</pl>
+            <pl>Walidacja składni</pl>
             <cn>句法验证</cn>
         </string>
         <string id="291" js="1">
             <en><![CDATA[Test section with index #{0} syntax validation: <font style='color:green;'><b>PASSED</b></font>]]></en>
-            <pl><![CDATA[Walidacja skladni sekcji testu o indeksie #{0}: <font style='color:green;'><b>POWIODLA SIE</b></font>]]></pl>
+            <pl><![CDATA[Walidacja składni sekcji testu o indeksie #{0}: <font style='color:green;'><b>POWIODŁA SIĘ</b></font>]]></pl>
             <cn><![CDATA[测试章节索引 #{0} 句法验证： < font style='color:green;'><b>通过</b></font>]]></cn>
         </string>
         <string id="292" js="1">
             <en><![CDATA[Test section with index #{0} syntax validation: <font style='color:red;'><b>FAILED</b></font>]]></en>
-            <pl><![CDATA[Walidacja skladni sekcji testu o indeksie #{0}: <font style='color:red;'><b>NIE POWIODLA SIE</b></font>]]></pl>
+            <pl><![CDATA[Walidacja składni sekcji testu o indeksie #{0}: <font style='color:red;'><b>NIE POWIODŁA SIĘ</b></font>]]></pl>
             <cn><![CDATA[测试章节索引 #{0} 句法验证： <font style='color:red;'><b>失败</b></font>]]></cn>
         </string>
         <string id="293" js="1">
             <en><![CDATA[Test #{0} - syntax validation <b>(finished)</b>]]></en>
-            <pl><![CDATA[Test #{0} - walidacja skladni <b>(zakonczona)</b>]]></pl>
+            <pl><![CDATA[Test #{0} - walidacja składni <b>(zakończona)</b>]]></pl>
             <cn><![CDATA[测试 #{0} – 句法验证 <b>(完成)</b>]]></cn>
         </string>
         <string id="294" js="1">
             <en><![CDATA[Syntax validation <font style='color:green;'>PASSED</font>.]]></en>
-            <pl><![CDATA[Walidacja skladni <font style='color:green;'>POMYSLNA</font>.]]></pl>
+            <pl><![CDATA[Walidacja składni <font style='color:green;'>POMYŚLNA</font>.]]></pl>
             <cn><![CDATA[句法验证 <font style='color:green;'>通过</font>.]]></cn>
         </string>
         <string id="295" js="1">
             <en><![CDATA[Test #{0} - syntax validation <b>(FAILED on section index #{1} - debug HALTED)</b>]]></en>
-            <pl><![CDATA[Test #{0} - walidacja skladni <b>(NIE POWIODLA SIE przy sekcji o indeksie #{1} - debug ZATRZYMANY)</b>]]></pl>
+            <pl><![CDATA[Test #{0} - walidacja składni <b>(NIE POWIODŁA SIĘ przy sekcji o indeksie #{1} - debug ZATRZYMANY)</b>]]></pl>
             <cn><![CDATA[测试 #{0} – 句法验证 <b>(在章节索引 #{1} 处失败 – 调试中止)</b>]]></cn>
         </string>
         <string id="296" js="1">
             <en><![CDATA[Syntax validation <font style='color:red;'><b>FAILED</b></font> on section index #{0} - debug <font style='color:red;'><b>HALTED</b></font>]]></en>
-            <pl><![CDATA[Walidacja skladni <font style='color:red;'><b>NIE POWIODLA SIE</b></font> dla sekcji o indeksie #{0} - debug <font style='color:red;'><b>ZATRZYMANY</b></font>]]></pl>
+            <pl><![CDATA[Walidacja składni <font style='color:red;'><b>NIE POWIODŁA SIĘ</b></font> dla sekcji o indeksie #{0} - debug <font style='color:red;'><b>ZATRZYMANY</b></font>]]></pl>
             <cn><![CDATA[句法验证 <font style='color:red;'><b>F失败</b></font> 在章节索引 #{0} 处– 调试 <font style='color:red;'><b>中止</b></font>]]></cn>
         </string>
         <string id="297" js="1">
             <en>Runtime debug</en>
-            <pl>Debug na zywo</pl>
+            <pl>Debug na żywo</pl>
             <cn>运行时间调试</cn>
         </string>
         <string id="298" js="1">
@@ -1515,7 +1515,7 @@ Note: You can add new languages by inserting "<new_language>string translated in
         </string>
         <string id="299" js="1">
             <en><![CDATA[Test #{0} - runtime debug <b>(R code is being interpreted...)</b>]]></en>
-            <pl><![CDATA[Test #{0} - debug na zywo <b>(kod R jest interpretowany..)</b>]]></pl>
+            <pl><![CDATA[Test #{0} - debug na żywo <b>(kod R jest interpretowany..)</b>]]></pl>
             <cn><![CDATA[测试 #{0} – 运行时间调试 <b>(R代码正在被编译…)</b>]]></cn>
         </string>
         <string id="300" js="1">
@@ -1525,22 +1525,22 @@ Note: You can add new languages by inserting "<new_language>string translated in
         </string>
         <string id="301" js="1">
             <en>R code response receIved.</en>
-            <pl>Otrzymano odowiedz kodu R.</pl>
+            <pl>Otrzymano odpowiedź kodu R.</pl>
             <cn>收到R代码回复。</cn>
         </string>
         <string id="302" js="1">
             <en><![CDATA[Test #{0}, session #{1} - runtime debug <b>(R logic error - debug HALTED)</b>]]></en>
-            <pl><![CDATA[Test #{0}, sesja #{1} - debug na zywo <b>(blad w logice R - debug ZATRZYMANY</b>]]></pl>
+            <pl><![CDATA[Test #{0}, sesja #{1} - debug na żywo <b>(błąd w logice R - debug ZATRZYMANY</b>]]></pl>
             <cn><![CDATA[测试 #{0}，场次 #{1} – 运行时间调试 <b>(R逻辑错误 – 调试中止)</b>]]></cn>
         </string>
         <string id="303" js="1">
             <en><![CDATA[R logic <font style='color:red;'><b>error</b></font>. Check R code output for additional info. Debug HALTED.]]></en>
-            <pl><![CDATA[<font style='color:red;'><b>Blad</b></font> w logice R. Prosze sprawdzic wynik kodu R dla dodatkowych informacji. Debug ZATRZYMANY.]]></pl>
+            <pl><![CDATA[<font style='color:red;'><b>Błąd</b></font> w logice R. Prosze sprawdzić wynik kodu R dla dodatkowych informacji. Debug ZATRZYMANY.]]></pl>
             <cn><![CDATA[R逻辑 <font style='color:red;'><b>错误</b></font>。更多信息详见R代码输出。调试中止。]]></cn>
         </string>
         <string id="304" js="1">
             <en><![CDATA[R logic validation <font style='color:green;'><b>PASSED</b></font>.]]></en>
-            <pl><![CDATA[Walidacja logiki R <font style='color:green;'><b>POWIODLA SIE</b></font>.]]></pl>
+            <pl><![CDATA[Walidacja logiki R <font style='color:green;'><b>POWIODŁA SIĘ</b></font>.]]></pl>
             <cn><![CDATA[R逻辑验证 <font style='color:green;'><b>通过</b></font>.]]></cn>
         </string>
         <string id="305" js="1">
@@ -1550,17 +1550,17 @@ Note: You can add new languages by inserting "<new_language>string translated in
         </string>
         <string id="306" js="1">
             <en>value</en>
-            <pl>wartosc</pl>
+            <pl>wartość</pl>
             <cn>数值</cn>
         </string>
         <string id="307" js="1">
             <en><![CDATA[Test #{0}, session #{1} - runtime debug <b><font style='color:green;'>PASSED</font></b>]]></en>
-            <pl><![CDATA[Test #{0}, sesja #{1} - debug na zywo <b><font style='color:green;'>POWIODL SIE</font></b>]]></pl>
+            <pl><![CDATA[Test #{0}, sesja #{1} - debug na żywo <b><font style='color:green;'>POWIODŁ SIĘ</font></b>]]></pl>
             <cn><![CDATA[测试 #{0}，场次 #{1} – 运行时间调试 <b><font style='color:green;'>通过</font></b>]]></cn>
         </string>
         <string id="308" js="1">
             <en>End section reached. The test has finished.</en>
-            <pl>Osiagnieto koncowa sekcje. Test zostal skonczony.</pl>
+            <pl>Osiągnieto końcową sekcję. Test został skończony.</pl>
             <cn>到达结束章节。测试已完成。</cn>
         </string>
         <string id="309" js="1">
@@ -1585,27 +1585,27 @@ Note: You can add new languages by inserting "<new_language>string translated in
         </string>
         <string id="313" js="1">
             <en>Awaiting user input...</en>
-            <pl>Oczekiwanie na ruch uzytkownika...</pl>
+            <pl>Oczekiwanie na ruch użytkownika...</pl>
             <cn>等待用户输入…</cn>
         </string>
         <string id="314" js="1">
             <en><![CDATA[Test #{0}, session #{1}, template #{2} - runtime debug <b>(template loaded - awaiting user input...)</b>]]></en>
-            <pl><![CDATA[Test #{0}, sesja #{1}, szablon #{2} - debug na zywo <b>(szablon wczytany - oczekiwanie na ruch uzytkownika...)</b>]]></pl>
+            <pl><![CDATA[Test #{0}, sesja #{1}, szablon #{2} - debug na żywo <b>(szablon wczytany - oczekiwanie na ruch użytkownika...)</b>]]></pl>
             <cn><![CDATA[测试 #{0}，场次 #{1}，模板 #{2} – 运行时间调试 <b>(载入模板 – 等待用户输入……)</b>]]></cn>
         </string>
         <string id="315" js="1">
             <en>Item submitted. Time limit reached.</en>
-            <pl>Element wyslany. Limit czasowy zostal osiagniety.</pl>
+            <pl>Element wysłany. Limit czasowy został osiągnięty.</pl>
             <cn>提交项目。已到达时限。</cn>
         </string>
         <string id="316" js="1">
             <en><![CDATA[Item submitted. Button with name <b>{0}</b> clicked.]]></en>
-            <pl><![CDATA[Element wyslany. Przycisk o nazwie <b>{0}</b> zostal klikniety.]]></pl>
+            <pl><![CDATA[Element wysłany. Przycisk o nazwie <b>{0}</b> został kliknięty.]]></pl>
             <cn><![CDATA[提交项目。按键名称 <b>{0}</b> 。]]></cn>
         </string>
         <string id="317" js="1">
             <en>variables send</en>
-            <pl>wyslane zmienne</pl>
+            <pl>wysłane zmienne</pl>
             <cn>发送变量</cn>
         </string>
         <string id="318" js="1">
@@ -1615,22 +1615,22 @@ Note: You can add new languages by inserting "<new_language>string translated in
         </string>
         <string id="319" js="1">
             <en>please wait...</en>
-            <pl>prosze czekac...</pl>
+            <pl>proszę czekać...</pl>
             <cn>请等待……</cn>
         </string>
         <string id="320" js="1">
             <en>Possible loss of unsaved data.</en>
-            <pl>Mozliwa utrata niezapisanych danych.</pl>
+            <pl>Możliwa utrata niezapisanych danych.</pl>
             <cn>可能丢失未保存数据。</cn>
         </string>
         <string id="321" js="1">
             <en>Are you sure you want to continue? This action will reset unsaved changes in the following modules:</en>
-            <pl>Jestes pewien ze chcesz kontynuowac? Ta czynnosc moze anulowac wszystkie niezapisane zmiany w nastepujacych modulach:</pl>
+            <pl>Jesteś pewien, że chcesz kontynuować? Ta czynność może anulować wszystkie niezapisane zmiany w nastepujących modułach:</pl>
             <cn>确认继续？此操作将在以下模块中重置未保存修改：</cn>
         </string>
         <string id="322" js="1">
             <en>Are you sure you want to continue? This action will reset unsaved changes in all modules.</en>
-            <pl>Jestes pewien ze chcesz kontynuowac? Ta czynnosc moze anulowac wszystkie niezapisane zmiany we wszystkich modulach.</pl>
+            <pl>Jesteś pewien, że chcesz kontynuować? Ta czynność może anulować wszystkie niezapisane zmiany we wszystkich modułach.</pl>
             <cn>确认继续？此操作将在所有模块中重置未保存修改。</cn>
         </string>
         <string id="323" js="1">
@@ -1645,52 +1645,52 @@ Note: You can add new languages by inserting "<new_language>string translated in
         </string>
         <string id="325">
             <en>field delimiter</en>
-            <pl>separator pol</pl>
+            <pl>separator pól</pl>
             <cn>区域分割符</cn>
         </string>
         <string id="326">
             <en><![CDATA[Single character used to separate fields in a row. Default character is '<b>,</b>'.]]></en>
-            <pl><![CDATA[Pojedynczy znak uzywany do oddzielenia pol w rzedzie. Domyslny znak to '<b>,</b>'.]]></pl>
+            <pl><![CDATA[Pojedyńczy znak używany do oddzielenia pól w rzędzie. Domyślny znak to '<b>,</b>'.]]></pl>
             <cn><![CDATA[在行内用于划分区域的单一字符。默认字符为'<b>,</b>'。]]></cn>
         </string>
         <string id="327">
             <en>field enclosure</en>
-            <pl>objecie pola</pl>
+            <pl>objęcie pola</pl>
             <cn>区域边界</cn>
         </string>
         <string id="328">
             <en><![CDATA[Single character used to enclose string. Default character is '<b>"</b>'.]]></en>
-            <pl><![CDATA[Pojedynczy znak uzywany do objecia zakresu pola. Domyslny znak to '<b>"</b>'.]]></pl>
+            <pl><![CDATA[Pojedyńczy znak używany do objęcia zakresu pola. Domyślny znak to '<b>"</b>'.]]></pl>
             <cn><![CDATA[用于标记字符串的单一字符。默认字符为'<b>"</b>'。]]></cn>
         </string>
         <string id="329" js="1">
             <en>Exporting table to CSV file</en>
-            <pl>eksportowanie tabeli do pliku CSV</pl>
+            <pl>Eksportowanie tabeli do pliku CSV</pl>
             <cn>导出表格至CSV文件</cn>
         </string>
         <string id="330">
             <en>header row</en>
-            <pl>rzad naglowka</pl>
+            <pl>rząd naglówka</pl>
             <cn>标题行</cn>
         </string>
         <string id="331">
             <en>Check box to import CSV with a header row. Header row values will be used as column names.</en>
-            <pl>Zaznacz jesli chcesz zaimportowac CSV z rzedem naglowka. Wartosci rzedu naglowka zostana uzyte jako nazwy kolumn.</pl>
+            <pl>Zaznacz jeśli chcesz zaimportować CSV z rzędem nagłówka. Wartości rzędu nagłówka zostaną użyte jako nazwy kolumn.</pl>
             <cn>包含标题行导入CSV。标题行数值将作为列名称。</cn>
         </string>
         <string id="332">
             <en>Check box to export CSV with a header row. Header row will be first row in CSV with table column names.</en>
-            <pl>Zaznacz jesli chcesz wyeksportowac CSV z rzedem naglowka. Rzad naglowka bedzie pierwszym rzedem w CSV z nazwami kolumn tabeli.</pl>
+            <pl>Zaznacz jeśli chcesz wyeksportować CSV z rzędem nagłówka. Rząd nagłówka będzie pierwszym rzędem w CSV z nazwami kolumn tabeli.</pl>
             <cn>包含标题行导出CSV。标题行将作为表格列名称出现在CSV的第一行。</cn>
         </string>
         <string id="333" js="1">
             <en>Error loading XML file. Cannot continue with import.</en>
-            <pl>Blad przy wczytywaniu pliku XML. Import nie moze byc kontynuowany.</pl>
+            <pl>Błąd przy wczytywaniu pliku XML. Import nie może być kontynuowany.</pl>
             <cn>载入XML文件错误。无法继续导入。</cn>
         </string>
         <string id="334" js="1">
             <en>Column delimiter and enclosure fields are mandatory.</en>
-            <pl>Pola separacji i objecia kolumn nie moga byc puste.</pl>
+            <pl>Pola separacji i objęcia kolumn nie mogą być puste.</pl>
             <cn>列分隔符与区域标记为必需。</cn>
         </string>
     </strings>
