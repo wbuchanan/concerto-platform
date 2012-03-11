@@ -285,22 +285,22 @@ Note: You can add new languages by inserting "<new_language>string translated in
         </string>
         <string id="51" js="1">
             <en>go to</en>
-            <pl>idz do</pl>
+            <pl>idź do</pl>
             <cn>前往</cn>
         </string>
         <string id="52" js="1">
             <en>IF statement</en>
-            <pl>twierdzenie JESLI</pl>
+            <pl>twierdzenie JEŚLI</pl>
             <cn>条件性语句</cn>
         </string>
         <string id="53" js="1">
             <en>set variable</en>
-            <pl>ustaw zmienna</pl>
+            <pl>ustaw zmienną</pl>
             <cn>设定变量</cn>
         </string>
         <string id="54" js="1">
             <en>start</en>
-            <pl>poczatek</pl>
+            <pl>początek</pl>
             <cn>开始</cn>
         </string>
         <string id="55" js="1">
@@ -315,7 +315,7 @@ Note: You can add new languages by inserting "<new_language>string translated in
         </string>
         <string id="57" js="1">
             <en>custom section</en>
-            <pl>wlasna sekcja</pl>
+            <pl>własna sekcja</pl>
             <cn>自主章节</cn>
         </string>
         <string id="58" js="1">
@@ -325,12 +325,12 @@ Note: You can add new languages by inserting "<new_language>string translated in
         </string>
         <string id="59" js="1">
             <en>remove test logic section</en>
-            <pl>usun sekcje logiki testu</pl>
+            <pl>usuń sekcję logiki testu</pl>
             <cn>移除测试逻辑章节</cn>
         </string>
         <string id="60" js="1">
             <en>add test logic section</en>
-            <pl>dodaj sekcje logiki testu</pl>
+            <pl>dodaj sekcję logiki testu</pl>
             <cn>添加测试逻辑章节</cn>
         </string>
         <string id="61" js="1">
@@ -340,7 +340,7 @@ Note: You can add new languages by inserting "<new_language>string translated in
         </string>
         <string id="62" js="1">
             <en>are you sure you want to remove this test section?</en>
-            <pl>jestes pewien ze chcesz usunac sekcje testu?</pl>
+            <pl>jesteś pewien, że chcesz usunąć sekcję testu?</pl>
             <cn>确认移除此测试章节？</cn>
         </string>
         <string id="63" js="1">
@@ -360,17 +360,17 @@ Note: You can add new languages by inserting "<new_language>string translated in
         </string>
         <string id="66" js="1">
             <en>Password and password confirmation do not match!</en>
-            <pl>Haslo i jego potwierdzenie musza sie zgadzac!</pl>
+            <pl>Hasło i jego potwierdzenie muszą się zgadzać!</pl>
             <cn>密码与密码确认不一致！</cn>
         </string>
         <string id="67" js="1">
             <en>login/password combination is incorrect!</en>
-            <pl>kombinacja login/haslo jest niepoprawna!</pl>
+            <pl>kombinacja login/hasło jest niepoprawna!</pl>
             <cn>用户名与密码不匹配！</cn>
         </string>
         <string id="68">
             <en>unnamed custom section</en>
-            <pl>nienazwana sekcja wlasna</pl>
+            <pl>nienazwana sekcja własna</pl>
             <cn>未命名的自主章节</cn>
         </string>
         <string id="69">
@@ -385,12 +385,12 @@ Note: You can add new languages by inserting "<new_language>string translated in
         </string>
         <string id="71">
             <en>owner</en>
-            <pl>wlasciciel</pl>
+            <pl>właściciel</pl>
             <cn>所有者</cn>
         </string>
         <string id="72">
             <en>access rights</en>
-            <pl>prawa dostepu</pl>
+            <pl>prawa dostępu</pl>
             <cn>访问权限</cn>
         </string>
         <string id="73">
@@ -425,22 +425,22 @@ Note: You can add new languages by inserting "<new_language>string translated in
         </string>
         <string id="79">
             <en>unnamed user group</en>
-            <pl>nienazwana grupa uzytkownikow</pl>
+            <pl>nienazwana grupa użytkowników</pl>
             <cn>未命名用户群</cn>
         </string>
         <string id="80">
             <en>unnamed user type</en>
-            <pl>nienazwany typ uzytkownikow</pl>
+            <pl>nienazwany typ użytkowników</pl>
             <cn>未命名用户类型</cn>
         </string>
         <string id="81" js="1">
             <en>Access denied!</en>
-            <pl>Dostep wzbroniony!</pl>
+            <pl>Dostęp wzbroniony!</pl>
             <cn>拒绝访问！</cn>
         </string>
         <string id="82">
             <en>logged user</en>
-            <pl>zalogowany uzytkownik</pl>
+            <pl>zalogowany użytkownik</pl>
             <cn>已登入用户</cn>
         </string>
         <string id="83">
@@ -450,7 +450,7 @@ Note: You can add new languages by inserting "<new_language>string translated in
         </string>
         <string id="84">
             <en>custom test sections</en>
-            <pl>wlasne sekcje testu</pl>
+            <pl>własne sekcje testu</pl>
             <cn>自主测试章节</cn>
         </string>
         <string id="85">
@@ -480,27 +480,27 @@ Note: You can add new languages by inserting "<new_language>string translated in
         </string>
         <string id="90">
             <en>admin types</en>
-            <pl>typy administratorow</pl>
+            <pl>typy administratorów</pl>
             <cn>管理员类型</cn>
         </string>
         <string id="91">
             <en>admin groups</en>
-            <pl>grupy administratorow</pl>
+            <pl>grupy administratorów</pl>
             <cn>管理群</cn>
         </string>
         <string id="92">
             <en>editing custom test section</en>
-            <pl>edycja wlasnej sekcji testu</pl>
+            <pl>edycja własnej sekcji testu</pl>
             <cn>编辑自主测试章节</cn>
         </string>
         <string id="93">
             <en>creating new custom test section</en>
-            <pl>tworzenie nowej wlasnej sekcji testu</pl>
+            <pl>tworzenie nowej własnej sekcji testu</pl>
             <cn>创建自主测试章节</cn>
         </string>
         <string id="94">
             <en>delete</en>
-            <pl>usun</pl>
+            <pl>usuń</pl>
             <cn>删除</cn>
         </string>
         <string id="95" js="1">
@@ -510,7 +510,7 @@ Note: You can add new languages by inserting "<new_language>string translated in
         </string>
         <string id="96">
             <en>name of the custom section</en>
-            <pl>nazwa wlasnej sekcji</pl>
+            <pl>nazwa własnej sekcji</pl>
             <cn>自主章节名称</cn>
         </string>
         <string id="97">
@@ -520,12 +520,12 @@ Note: You can add new languages by inserting "<new_language>string translated in
         </string>
         <string id="98">
             <en>Brief description of the custom section that will be visible in the test logic when the section is used.</en>
-            <pl>opis wlasnej sekcji ktory bedzie widoczny w logice tekstu po dodaniu sekcji</pl>
+            <pl>opis własnej sekcji, który będzie widoczny w logice tekstu po dodaniu sekcji</pl>
             <cn>使用此章节时在测试逻辑中显示的简介</cn>
         </string>
         <string id="99">
             <en>access rights to this custom section</en>
-            <pl>prawa dostepu dla sekcji wlasnej</pl>
+            <pl>prawa dostępu dla sekcji własnej</pl>
             <cn>此自主章节的访问权限</cn>
         </string>
         <string id="100">
