@@ -1,7 +1,7 @@
 .
 = Concerto v3.0 Tutorials: Multilingual tests=
 
-This tutorial explains how to create a test that can be taken in multiple languages. For example, test takers can select whether they would like to take a test in English, German, Tamil or any other language of your choice. The only key is that you will need to be able to translate the items! :) _Please note that the example test shown here is very simple and has no correct/wrong responses or feedback etc. The test just shows you the multi-language feature._
+This tutorial explains how to create a test that can be taken in multiple languages ([http://dev.myiqtest.org/concerto3_demo/index.php?tid=90 see this basic demo]). For example, test takers can select whether they would like to take a test in English, German, Tamil or any other language of your choice. The only key is that you will need to be able to translate the items! :) _Please note that the example test shown here is very simple and has no correct/wrong responses or feedback etc. The test just shows you the multi-language feature._
 
 It is assumed that you are familiar with the *[http://code.google.com/p/concerto-platform/wiki/Concerto3SimpleTest Concerto v3.0 Tutorials: Create a simple test]* section and are familiar with the basic functions of Concerto v3.0 (*[http://code.google.com/p/concerto-platform/wiki/Concerto3Tabs Concerto v3.0 Tutorials: General Manual]*).
 
