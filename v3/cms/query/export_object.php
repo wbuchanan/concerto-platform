@@ -18,7 +18,6 @@
   along with this program; if not, write to the Free Software
   Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA.
  */
-
 if (!isset($ini))
 {
     require_once '../../Ini.php';
@@ -30,7 +29,8 @@ if ($logged_user == null) die(Language::string(81));
 $obj = $_GET['class_name']::from_mysql_id($_GET['oid']);
 if (!$logged_user->is_object_readable($obj)) die(Language::string(81));
 
-header("Content-Type:text/xml");
 header('Content-Disposition: attachment; filename="export_' . $_GET['class_name'] . '_' . $_GET['oid'] . '.xml"');
+header("Content-Type:text/xml; charset=utf-8");
 
 echo $obj->export();
+?>

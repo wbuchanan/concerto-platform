@@ -147,7 +147,7 @@ class Test extends OModule
 
     public function export()
     {
-        $xml = new DOMDocument();
+        $xml = new DOMDocument('1.0', 'UTF-8');
 
         $export = $xml->createElement("export");
         $export->setAttribute("version", Ini::$version);
@@ -165,8 +165,8 @@ class Test extends OModule
 
     public function import($path)
     {
-        $xml = new DOMDocument();
-        if (!$xml->load($path)) return -4;
+        $xml = new DOMDocument('1.0', 'UTF-8');
+        if (!@$xml->load($path)) return -4;
 
         $this->Sharing_id = 1;
 
@@ -250,10 +250,10 @@ class Test extends OModule
         $element = $xml->createElement("Test");
         $xml->appendChild($element);
 
-        $id = $xml->createElement("id", htmlspecialchars($this->id, ENT_QUOTES));
+        $id = $xml->createElement("id", htmlspecialchars($this->id, ENT_QUOTES,"UTF-8"));
         $element->appendChild($id);
 
-        $name = $xml->createElement("name", htmlspecialchars($this->name, ENT_QUOTES));
+        $name = $xml->createElement("name", htmlspecialchars($this->name, ENT_QUOTES,"UTF-8"));
         $element->appendChild($name);
 
         $sections = $xml->createElement("TestSections");

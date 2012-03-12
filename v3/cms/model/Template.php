@@ -151,7 +151,9 @@ class Template extends OModule {
     }
 
     public function export() {
-        $xml = new DOMDocument();
+        $xml = new DOMDocument('1.0',"UTF-8");
+        $xml->preserveWhiteSpace = false;
+        $xml->formatOutput = true;
 
         $export = $xml->createElement("export");
         $export->setAttribute("version", Ini::$version);
@@ -164,11 +166,11 @@ class Template extends OModule {
         $obj = $xml->importNode($element, true);
         $group->appendChild($obj);
 
-        return $xml->saveXML();
+        return trim($xml->saveXML());
     }
 
     public function import($path) {
-        $xml = new DOMDocument();
+        $xml = new DOMDocument('1.0', 'UTF-8');
         if (!$xml->load($path))
             return -4;
 
@@ -191,18 +193,18 @@ class Template extends OModule {
     }
 
     public function to_XML() {
-        $xml = new DOMDocument();
+        $xml = new DOMDocument('1.0', 'UTF-8');
 
         $element = $xml->createElement("Template");
         $xml->appendChild($element);
 
-        $id = $xml->createElement("id", htmlspecialchars($this->id, ENT_QUOTES));
+        $id = $xml->createElement("id", htmlspecialchars($this->id, ENT_QUOTES,"UTF-8"));
         $element->appendChild($id);
 
-        $name = $xml->createElement("name", htmlspecialchars($this->name, ENT_QUOTES));
+        $name = $xml->createElement("name", htmlspecialchars($this->name, ENT_QUOTES,"UTF-8"));
         $element->appendChild($name);
 
-        $HTML = $xml->createElement("HTML", htmlspecialchars($this->HTML, ENT_QUOTES));
+        $HTML = $xml->createElement("HTML", htmlspecialchars($this->HTML, ENT_QUOTES,"UTF-8"));
         $element->appendChild($HTML);
 
         return $element;

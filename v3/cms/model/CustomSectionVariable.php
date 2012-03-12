@@ -35,21 +35,21 @@ class CustomSectionVariable extends OTable
 
     public function to_XML()
     {
-        $xml = new DOMDocument();
+        $xml = new DOMDocument('1.0',"UTF-8");
 
         $element = $xml->createElement("CustomSectionVariable");
         $xml->appendChild($element);
 
-        $name = $xml->createElement("name", htmlspecialchars($this->name, ENT_QUOTES));
+        $name = $xml->createElement("name", htmlspecialchars($this->name, ENT_QUOTES,"UTF-8"));
         $element->appendChild($name);
 
-        $description = $xml->createElement("description", htmlspecialchars($this->description, ENT_QUOTES));
+        $description = $xml->createElement("description", htmlspecialchars($this->description, ENT_QUOTES,"UTF-8"));
         $element->appendChild($description);
 
-        $index = $xml->createElement("index", htmlspecialchars($this->index, ENT_QUOTES));
+        $index = $xml->createElement("index", htmlspecialchars($this->index, ENT_QUOTES,"UTF-8"));
         $element->appendChild($index);
 
-        $type = $xml->createElement("type", htmlspecialchars($this->type, ENT_QUOTES));
+        $type = $xml->createElement("type", htmlspecialchars($this->type, ENT_QUOTES,"UTF-8"));
         $element->appendChild($type);
 
         return $element;

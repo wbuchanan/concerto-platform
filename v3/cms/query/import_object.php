@@ -42,4 +42,12 @@ $path = Ini::$path_internal . "cms/js/lib/fileupload/php/files/" . $_POST['file'
 $obj = new $_POST['class_name']();
 $obj->Owner_id = $logged_user->id;
 $oid = $obj->import($path);
-echo json_encode(array("result" => (is_numeric($oid) ? 0 : -3), "oid" => $oid));
+
+$result = $oid;
+if(!is_numeric($result)) $result = -3;
+else 
+{
+    if($result>0) $result = 0;
+}
+
+echo json_encode(array("result" => $result, "oid" => $oid));

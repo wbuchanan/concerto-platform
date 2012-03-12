@@ -24,7 +24,6 @@ if (!isset($ini))
     $ini = new Ini();
 }
 ?>
-
 <!DOCTYPE html>
 <html>
     <head>

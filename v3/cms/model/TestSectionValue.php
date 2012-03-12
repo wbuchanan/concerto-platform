@@ -33,7 +33,7 @@ class TestSectionValue extends OTable
 
     public function to_XML()
     {
-        $xml = new DOMDocument();
+        $xml = new DOMDocument('1.0',"UTF-8");
 
         $tsv = $xml->createElement("TestSectionValue");
         $xml->appendChild($tsv);
@@ -41,7 +41,7 @@ class TestSectionValue extends OTable
         $index = $xml->createElement("index", $this->index);
         $tsv->appendChild($index);
 
-        $value = $xml->createElement("value", htmlspecialchars($this->value, ENT_QUOTES));
+        $value = $xml->createElement("value", htmlspecialchars($this->value, ENT_QUOTES,"UTF-8"));
         $tsv->appendChild($value);
 
         return $tsv;

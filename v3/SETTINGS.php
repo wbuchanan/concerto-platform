@@ -16,4 +16,4 @@ $path_mysql_home    = "";                                        //Home director
 
 //general
 $timezone = 'Europe/London';
-?> 
+?>

@@ -39,21 +39,21 @@ class TableColumn extends OTable
 
     public function to_XML()
     {
-        $xml = new DOMDocument();
+        $xml = new DOMDocument('1.0',"UTF-8");
 
         $element = $xml->createElement("TableColumn");
         $xml->appendChild($element);
 
-        $id = $xml->createElement("id", htmlspecialchars($this->id, ENT_QUOTES));
+        $id = $xml->createElement("id", htmlspecialchars($this->id, ENT_QUOTES,"UTF-8"));
         $element->appendChild($id);
 
-        $index = $xml->createElement("index", htmlspecialchars($this->index, ENT_QUOTES));
+        $index = $xml->createElement("index", htmlspecialchars($this->index, ENT_QUOTES,"UTF-8"));
         $element->appendChild($index);
 
-        $name = $xml->createElement("name", htmlspecialchars($this->name, ENT_QUOTES));
+        $name = $xml->createElement("name", htmlspecialchars($this->name, ENT_QUOTES,"UTF-8"));
         $element->appendChild($name);
 
-        $type = $xml->createElement("TableColumnType_id", htmlspecialchars($this->TableColumnType_id, ENT_QUOTES));
+        $type = $xml->createElement("TableColumnType_id", htmlspecialchars($this->TableColumnType_id, ENT_QUOTES,"UTF-8"));
         $element->appendChild($type);
 
         return $element;

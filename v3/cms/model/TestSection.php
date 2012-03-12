@@ -422,18 +422,18 @@ class TestSection extends OTable
 
     public function to_XML()
     {
-        $xml = new DOMDocument();
+        $xml = new DOMDocument('1.0',"UTF-8");
 
         $element = $xml->createElement("TestSection");
         $xml->appendChild($element);
 
-        $counter = $xml->createElement("counter", htmlspecialchars($this->counter, ENT_QUOTES));
+        $counter = $xml->createElement("counter", htmlspecialchars($this->counter, ENT_QUOTES,"UTF-8"));
         $element->appendChild($counter);
 
-        $parent = $xml->createElement("parent_counter", htmlspecialchars($this->parent_counter, ENT_QUOTES));
+        $parent = $xml->createElement("parent_counter", htmlspecialchars($this->parent_counter, ENT_QUOTES,"UTF-8"));
         $element->appendChild($parent);
 
-        $tstid = $xml->createElement("TestSectionType_id", htmlspecialchars($this->TestSectionType_id, ENT_QUOTES));
+        $tstid = $xml->createElement("TestSectionType_id", htmlspecialchars($this->TestSectionType_id, ENT_QUOTES,"UTF-8"));
         $element->appendChild($tstid);
 
         $tsv = $xml->createElement("TestSectionValues");

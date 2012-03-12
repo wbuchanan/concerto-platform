@@ -97,7 +97,7 @@ class CustomSection extends OModule
 
     public function export()
     {
-        $xml = new DOMDocument();
+        $xml = new DOMDocument('1.0',"UTF-8");
 
         $export = $xml->createElement("export");
         $export->setAttribute("version", Ini::$version);
@@ -115,7 +115,7 @@ class CustomSection extends OModule
 
     public function import($path)
     {
-        $xml = new DOMDocument();
+        $xml = new DOMDocument('1.0',"UTF-8");
         if (!$xml->load($path)) return -4;
 
         $this->Sharing_id = 1;
@@ -168,21 +168,21 @@ class CustomSection extends OModule
 
     public function to_XML()
     {
-        $xml = new DOMDocument();
+        $xml = new DOMDocument('1.0',"UTF-8");
 
         $element = $xml->createElement("CustomSection");
         $xml->appendChild($element);
 
-        $id = $xml->createElement("id", htmlspecialchars($this->id, ENT_QUOTES));
+        $id = $xml->createElement("id", htmlspecialchars($this->id, ENT_QUOTES,"UTF-8"));
         $element->appendChild($id);
 
-        $name = $xml->createElement("name", htmlspecialchars($this->name, ENT_QUOTES));
+        $name = $xml->createElement("name", htmlspecialchars($this->name, ENT_QUOTES,"UTF-8"));
         $element->appendChild($name);
 
-        $description = $xml->createElement("description", htmlspecialchars($this->description, ENT_QUOTES));
+        $description = $xml->createElement("description", htmlspecialchars($this->description, ENT_QUOTES,"UTF-8"));
         $element->appendChild($description);
 
-        $code = $xml->createElement("code", htmlspecialchars($this->code, ENT_QUOTES));
+        $code = $xml->createElement("code", htmlspecialchars($this->code, ENT_QUOTES,"UTF-8"));
         $element->appendChild($code);
 
         $csv = $xml->createElement("CustomSectionVariables");
