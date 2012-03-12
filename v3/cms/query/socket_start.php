@@ -1,7 +1,7 @@
 <?php
 if (!isset($ini))
 {
-    require_once'Ini.php';
+    require_once $argv[1].'Ini.php';
     $ini = new Ini();
 }
 

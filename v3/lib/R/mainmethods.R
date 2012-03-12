@@ -24,13 +24,6 @@ DB_LOGIN <- args[3]
 DB_PASSWORD <- args[4]
 DB_NAME <- args[5]
 TEST_SESSION_ID <- args[6]
-
-print(DB_HOST)
-print(DB_PORT)
-print(DB_LOGIN)
-print(DB_PASSWORD)
-print(DB_NAME)
-print(TEST_SESSION_ID)
  
 setwd(TEMP_PATH)
 library(catR)

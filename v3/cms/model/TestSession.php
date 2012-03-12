@@ -143,10 +143,10 @@ class TestSession extends OTable
         $command.=$code;
 
         $command_obj = json_encode(array(
-            "session_id"=>$this->id,
-            "code"=>$command
-        ));
-        
+            "session_id" => $this->id,
+            "code" => $command
+                ));
+
         if (!TestServer::is_running()) TestServer::start_process();
         $result = json_decode(TestServer::send($command_obj));
 

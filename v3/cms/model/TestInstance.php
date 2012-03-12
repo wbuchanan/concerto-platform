@@ -24,7 +24,7 @@ class TestInstance
     private $r = null;
     private $pipes;
     public $code_execution_halted = false;
-    public static $max_idle_time = 120;
+    public static $max_idle_time = 1800;
     public $is_working = false;
     private $last_action_time;
     public $session_id=0;

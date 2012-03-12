@@ -21,7 +21,7 @@
 
 class TestServer
 {
-    private static $max_idle_time = 180;
+    private static $max_idle_time = 3600;
     public static $debug = true;
     private $last_action_time;
     private $main_sock;
@@ -136,11 +136,15 @@ class TestServer
             self::log_debug("TestServer::start_process() --- Starting server process");
         }
         session_write_close();
-        $command = 'nohup ' . Ini::$path_php_exe . ' ' . Ini::$path_internal . 'cms/query/socket_start.php > /dev/null 2>&1 & echo $!';
+        $command = 'nohup ' . Ini::$path_php_exe . ' ' . Ini::$path_internal . 'cms/query/socket_start.php '.Ini::$path_internal.' > /dev/null 2>&1 & echo $!';
         exec($command);
         while (!self::is_running())
         {
             usleep(1);
+        }
+        if (self::$debug)
+        {
+            self::log_debug("TestServer::start_process() --- Server process started");
         }
         session_start();
     }
