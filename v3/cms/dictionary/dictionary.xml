@@ -1414,8 +1414,8 @@ Note: You can add new languages by inserting "<new_language>string translated in
             <cn>未登入</cn>
         </string>
         <string id="279">
-            <en>AS</en>
-            <pl>JAKO</pl>
+            <en>FROM</en>
+            <pl>Z</pl>
             <cn>作为</cn>
         </string>
         <string id="280" js="1">
@@ -1697,6 +1697,11 @@ Note: You can add new languages by inserting "<new_language>string translated in
             <en>session count</en>
             <pl>liczba sesji</pl>
             <cn>章节计数</cn>
+        </string>
+        <string id="336" js="1">
+            <en>At least one of the fields that should be unique already exists in the system.</en>
+            <pl>Przynajmniej jedno pole, ktore powinno byc unikalne, juz istnieje w systemie.</pl>
+            <cn></cn>
         </string>
     </strings>
 </root> 

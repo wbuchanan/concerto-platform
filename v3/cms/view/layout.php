@@ -76,7 +76,8 @@ if ($logged_user == null)
     });
 });
 </script>
-<div class="ui-widget-content ui-corner-all margin" align="center"><?php include Ini::$path_internal . 'cms/view/includes/header.inc.php'; ?></div>
+<div style="display: table;" class="padding ui-widget-content ui-corner-all margin" align="center"><?php include Ini::$path_internal . 'cms/view/includes/header.inc.php'; ?></div>
+
 <div align="center" class="margin" >
     <div id="tnd_mainMenu">
         <ul>
@@ -164,4 +165,4 @@ if ($logged_user == null)
     </div>
 </div>
 
-<div class="margin ui-widget-content ui-corner-all" align="center"><?php include Ini::$path_internal . 'cms/view/includes/footer.inc.php'; ?></div>
+<div style="display: table;" class="margin padding ui-widget-content ui-corner-all" align="center"><?php include Ini::$path_internal . 'cms/view/includes/footer.inc.php'; ?></div>

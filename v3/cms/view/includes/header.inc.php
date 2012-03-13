@@ -57,7 +57,7 @@ foreach (Language::languages() as $lng_node)
     });
 </script>
 
-<table class="fullWidth">
+<table>
     <tr>
         <td style="width:33%;" align="center" valign="middle">
             <?= Language::string(82) ?>: <b><?= $logged_user->login . "</b>, <b>" . $logged_user->get_full_name() ?></b>

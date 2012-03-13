@@ -251,22 +251,10 @@ OModule.inheritance=function(obj)
     obj.uiExport=function(oid){
         location.href="query/export_object.php?class_name="+this.className+"&oid="+oid;
     };
-	
-    obj.uiSave=function(ignoreOnBefore)
-    {
-        if(ignoreOnBefore==null) ignoreOnBefore=false;
+    
+    obj.uiSaveValidated=function(ignoreOnBefore){
         var thisClass = this;
-		
-        if(this.uiFormNotValidated)
-        {
-            var notValidated = this.uiFormNotValidated();
-            if(notValidated) 
-            {
-                Methods.alert(notValidated,"alert");
-                return;
-            }
-        }
-        
+            
         if(thisClass.onBeforeSave && !ignoreOnBefore) {
             if(!thisClass.onBeforeSave()) return;
         }
@@ -323,5 +311,14 @@ OModule.inheritance=function(obj)
                     }
                 }
             },"json");
+    }
+	
+    obj.uiSave=function(ignoreOnBefore)
+    {
+        if(ignoreOnBefore==null) ignoreOnBefore=false;
+        var thisClass = this;
+        
+        if(thisClass.uiSaveValidate) thisClass.uiSaveValidate(ignoreOnBefore);
+        else thisClass.uiSaveValidated(ignoreOnBefore);
     };
 };

@@ -116,7 +116,7 @@ class User extends OModule
     }
 
     public function mysql_save_from_post($post)
-    {
+    {   
         if ($post['modify_password'] == 1)
                 $post['md5_password'] = md5($post['password']);
         $post['oid'] = parent::mysql_save_from_post($post);

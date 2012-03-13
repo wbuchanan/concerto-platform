@@ -72,16 +72,28 @@ User.getFullSaveObject=function()
     return obj;
 }
 
-User.uiFormNotValidated=function()
-{
-    var result;
+User.uiSaveValidate=function(ignoreOnBefore){
     if($("#form"+this.className+"CheckboxPassword").is(":checked")&&$("#form"+this.className+"InputPassword").val()!=$("#form"+this.className+"InputPasswordConf").val())
     {
-        result = dictionary["s66"];
-        return result;
+        Methods.alert(dictionary["s66"],"alert");
+        return false;
     }
-    return false;
-};
+    
+    $.post("query/check_module_unique_fields.php", {
+        "login":$("#form"+this.className+"InputLogin").val()
+    },function(data){
+        switch(data.result){
+            case 0: {
+                User.uiSaveValidated(ignoreOnBefore);
+                break;
+            }
+            case -1:{
+                Methods.alert(dictionary["s336"],"alert");
+                return false;    
+            }
+        }
+    },"json");
+}
 
 User.uiLogIn=function()
 {
