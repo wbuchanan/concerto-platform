@@ -284,6 +284,16 @@ class User extends OModule
 		ORDER BY %s", self::get_mysql_table(), $where, $sort);
         return $sql;
     }
+    
+    public function get_session_count()
+    {
+        $sql = sprintf("SELECT `TestSession`.`id` 
+            FROM `TestSession` 
+            LEFT JOIN `Test` ON `TestSession`.`Test_id`=`Test`.`id`
+            LEFT JOIN `User` ON `User`.`id`=`Test`.`Owner_id`
+            WHERE `User`.`id`='%s'",  $this->id);
+        return mysql_num_rows(mysql_query($sql));
+    }
 
     public static function get_list_columns()
     {
@@ -317,6 +327,12 @@ class User extends OModule
             "name" => Language::string(177),
             "property" => "get_UserType_name",
             "searchable" => true,
+            "sortable" => true
+        ));
+        array_push($cols, array(
+            "name" => Language::string(335),
+            "property" => "get_session_count",
+            "searchable" => false,
             "sortable" => true
         ));
 

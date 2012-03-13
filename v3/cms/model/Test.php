@@ -269,6 +269,12 @@ class Test extends OModule
 
         return $element;
     }
+    
+    public function get_session_count()
+    {
+        $sql = sprintf("SELECT * FROM `TestSession` WHERE `Test_id`='%s'",  $this->id);
+        return mysql_num_rows(mysql_query($sql));
+    }
 
     public static function create_db($delete = false)
     {
@@ -288,6 +294,20 @@ class Test extends OModule
             ) ENGINE=InnoDB  DEFAULT CHARSET=utf8;
             ";
         return mysql_query($sql);
+    }
+    
+    public static function get_list_columns()
+    {
+        $cols = parent::get_list_columns();
+
+        array_push($cols, array(
+            "name" => Language::string(335),
+            "property" => "get_session_count",
+            "searchable" => false,
+            "sortable" => true
+        ));
+
+        return $cols;
     }
 
 }

@@ -1693,5 +1693,10 @@ Note: You can add new languages by inserting "<new_language>string translated in
             <pl>Pola separacji i objęcia kolumn nie mogą być puste.</pl>
             <cn>列分隔符与区域标记为必需。</cn>
         </string>
+        <string id="335">
+            <en>session count</en>
+            <pl>liczba sesji</pl>
+            <cn></cn>
+        </string>
     </strings>
 </root> 
