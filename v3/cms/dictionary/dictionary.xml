@@ -1531,7 +1531,7 @@ Note: You can add new languages by inserting "<new_language>string translated in
         <string id="302" js="1">
             <en><![CDATA[Test #{0}, session #{1} - runtime debug <b>(R logic error - debug HALTED)</b>]]></en>
             <pl><![CDATA[Test #{0}, sesja #{1} - debug na żywo <b>(błąd w logice R - debug ZATRZYMANY</b>]]></pl>
-            <cn><![CDATA[测试 #{0}，场次 #{1} – 运行时间调试 <b>(R逻辑错误 – 调试中止)</b>]]></cn>
+            <cn><![CDATA[测试 #{0}，章节 #{1} – 运行时间调试 <b>(R逻辑错误 – 调试中止)</b>]]></cn>
         </string>
         <string id="303" js="1">
             <en><![CDATA[R logic <font style='color:red;'><b>error</b></font>. Check R code output for additional info. Debug HALTED.]]></en>
@@ -1556,7 +1556,7 @@ Note: You can add new languages by inserting "<new_language>string translated in
         <string id="307" js="1">
             <en><![CDATA[Test #{0}, session #{1} - runtime debug <b><font style='color:green;'>PASSED</font></b>]]></en>
             <pl><![CDATA[Test #{0}, sesja #{1} - debug na żywo <b><font style='color:green;'>POWIODŁ SIĘ</font></b>]]></pl>
-            <cn><![CDATA[测试 #{0}，场次 #{1} – 运行时间调试 <b><font style='color:green;'>通过</font></b>]]></cn>
+            <cn><![CDATA[测试 #{0}，章节 #{1} – 运行时间调试 <b><font style='color:green;'>通过</font></b>]]></cn>
         </string>
         <string id="308" js="1">
             <en>End section reached. The test has finished.</en>
@@ -1591,7 +1591,7 @@ Note: You can add new languages by inserting "<new_language>string translated in
         <string id="314" js="1">
             <en><![CDATA[Test #{0}, session #{1}, template #{2} - runtime debug <b>(template loaded - awaiting user input...)</b>]]></en>
             <pl><![CDATA[Test #{0}, sesja #{1}, szablon #{2} - debug na żywo <b>(szablon wczytany - oczekiwanie na ruch użytkownika...)</b>]]></pl>
-            <cn><![CDATA[测试 #{0}，场次 #{1}，模板 #{2} – 运行时间调试 <b>(载入模板 – 等待用户输入……)</b>]]></cn>
+            <cn><![CDATA[测试 #{0}，章节 #{1}，模板 #{2} – 运行时间调试 <b>(载入模板 – 等待用户输入……)</b>]]></cn>
         </string>
         <string id="315" js="1">
             <en>Item submitted. Time limit reached.</en>
@@ -1696,7 +1696,7 @@ Note: You can add new languages by inserting "<new_language>string translated in
         <string id="335">
             <en>session count</en>
             <pl>liczba sesji</pl>
-            <cn></cn>
+            <cn>章节计数</cn>
         </string>
     </strings>
 </root> 
