@@ -79,6 +79,7 @@ class TestServer
             self::log_debug("TestServer::send() --- sent data");
             self::log_debug($data, false);
         }
+
         $result = socket_read($socket, 32648);
         if (self::$debug)
         {
@@ -136,11 +137,10 @@ class TestServer
             self::log_debug("TestServer::start_process() --- Starting server process");
         }
         session_write_close();
-        $command = 'nohup ' . Ini::$path_php_exe . ' ' . Ini::$path_internal . 'cms/query/socket_start.php '.Ini::$path_internal.' > /dev/null 2>&1 & echo $!';
+        $command = 'nohup ' . Ini::$path_php_exe . ' ' . Ini::$path_internal . 'cms/query/socket_start.php ' . Ini::$path_internal . ' > /dev/null 2>&1 & echo $!';
         exec($command);
         while (!self::is_running())
         {
-            usleep(1);
         }
         if (self::$debug)
         {
@@ -221,6 +221,49 @@ class TestServer
                     $this->close_instance($k);
                 }
             }
+
+            //interpret data start
+            foreach ($this->clients as $k => $v)
+            {
+                if ($this->instances[$k]->is_working)
+                {
+                    $response = $this->instances[$k]->read();
+
+                    if ($response!=null)
+                    {
+                        $this->instances[$k]->is_data_ready = false;
+                        $this->instances[$k]->is_working = false;
+                        if (self::$debug)
+                        {
+                            self::log_debug("TestServer->start() --- Client '$k' test data read");
+                            self::log_debug($response, false);
+                        }
+
+                        $response = array(
+                            "return" => $this->instances[$k]->code_execution_halted ? 1 : 0,
+                            "code" => $this->instances[$k]->code,
+                            "output" => $response
+                        );
+
+                        $response = json_encode($response);
+
+                        if (!socket_write($this->clients[$k]["sock"], $response . "\n"))
+                        {
+                            if (self::$debug)
+                                    self::log_debug("TestServer->start() --- Error: (socket_write) " . socket_last_error() . " - " . socket_strerror(socket_last_error()));
+                        }
+                        else
+                        {
+                            if (self::$debug)
+                            {
+                                self::log_debug("TestServer->start() --- Client '$key' test response sent back");
+                                self::log_debug($response, false);
+                            }
+                        }
+                    }
+                }
+            }
+            //interpret data end
 
             if (!socket_set_nonblock($this->main_sock))
             {
@@ -345,36 +388,8 @@ class TestServer
         $this->instances[$key]->send($data->code);
         if (self::$debug)
         {
-            self::log_debug("TestServer->interpret_input() --- Client '$key' test data sent");
+            self::log_debug("TestServer->interpret_input() --- Client '$key' test data sending");
             self::log_debug($data->code, false);
-        }
-        $response = $this->instances[$key]->read();
-        if (self::$debug)
-        {
-            self::log_debug("TestServer->interpret_input() --- Client '$key' test data read");
-            self::log_debug($response, false);
-        }
-
-        $response = array(
-            "return" => $this->instances[$key]->code_execution_halted ? 1 : 0,
-            "code" => $data->code,
-            "output" => $response
-        );
-
-        $response = json_encode($response);
-
-        if (!socket_write($client["sock"], $response . "\n"))
-        {
-            if (self::$debug)
-                    self::log_debug("TestServer->interpret_input() --- Error: (socket_write) " . socket_last_error() . " - " . socket_strerror(socket_last_error()));
-        }
-        else
-        {
-            if (self::$debug)
-            {
-                self::log_debug("TestServer->interpret_input() --- Client '$key' test response sent back");
-                self::log_debug($response, false);
-            }
         }
     }
 
