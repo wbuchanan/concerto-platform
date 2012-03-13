@@ -90,7 +90,7 @@ if ($oid != 0)
                 </td>
             </tr>
             <tr>
-                <td class="noWrap horizontalPadding ui-widget-header"><input class="tooltip" type="checkbox" id="form<?= $class_name ?>CheckboxPassword" title="<?= Language::string(180) ?>" /><?= Language::string(179) ?>:</td>
+                <td class="noWrap horizontalPadding ui-widget-header"><input class="tooltip" type="checkbox" id="form<?= $class_name ?>CheckboxPassword" title="<?= Language::string(180) ?>" <?=$oid==-1?"checked style='display:none;'":""?> /><?= Language::string(179) ?>:</td>
                 <td><span class="tooltip spanIcon ui-icon ui-icon-help" title="<?= Language::string(181) ?>"></span></td>
                 <td class="fullWidth">
                     <div class="horizontalMargin">
