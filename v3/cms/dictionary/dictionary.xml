@@ -1416,7 +1416,7 @@ Note: You can add new languages by inserting "<new_language>string translated in
         <string id="279">
             <en>FROM</en>
             <pl>Z</pl>
-            <cn>作为</cn>
+            <cn>来自</cn>
         </string>
         <string id="280" js="1">
             <en>default</en>
@@ -1701,7 +1701,7 @@ Note: You can add new languages by inserting "<new_language>string translated in
         <string id="336" js="1">
             <en>At least one of the fields that should be unique already exists in the system.</en>
             <pl>Przynajmniej jedno pole, ktore powinno byc unikalne, juz istnieje w systemie.</pl>
-            <cn></cn>
+            <cn>系统内存在相同区域。</cn>
         </string>
     </strings>
 </root> 
