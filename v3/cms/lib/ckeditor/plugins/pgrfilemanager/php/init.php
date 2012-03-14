@@ -28,9 +28,16 @@ include_once dirname(__FILE__) . '/../myconfig.php';
 
 require dirname(__FILE__) . '/../../../../../../Ini.php';
 $ini = new Ini();
+$logged_user = User::get_logged_user();
 
-PGRFileManagerConfig::$rootPath=substr(Ini::$path_internal_media,0,  strlen(Ini::$path_internal_media)-1);
-PGRFileManagerConfig::$urlPath=substr(Ini::$path_external_media,0,  strlen(Ini::$path_external_media)-1);
+$internal_path = Ini::$path_internal_media.$logged_user->id;
+$external_path = Ini::$path_external_media.$logged_user->id;
+
+if(!is_dir($internal_path)) mkdir($internal_path,0777);
+if(!is_dir($external_path)) mkdir($external_path,0777);
+
+PGRFileManagerConfig::$rootPath=$internal_path;
+PGRFileManagerConfig::$urlPath=$external_path;
 
 PGRFileManagerConfig::$rootDir = PGRFileManagerConfig::$rootPath;
 

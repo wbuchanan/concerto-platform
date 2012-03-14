@@ -161,8 +161,10 @@ class TestSession extends OTable
 
     public function get_ini_RCode()
     {
+        $path = Ini::$path_temp.$this->get_Test()->Owner_id;
+        if(!is_dir($path)) mkdir($path,0777);
         $code = "
-            TEMP_PATH <- '" . Ini::$path_temp . "'
+            TEMP_PATH <- '" . $path . "'
             source('" . Ini::$path_internal . "lib/R/mainmethods.R" . "')
             ";
         $code .=$this->get_Test()->get_TestSections_RFunction_declaration();
