@@ -3,6 +3,8 @@
 
 This tutorial explains how to create a test in which the items are presented for a specified amount of time. For example, if you want to present the stimulus item (a picture) for 3 seconds exactly, following which the picture disappears but leaves the test taker with the response options.
 
+This manipulation will help with the test setting, so that participants will get prepared before the presentation and have a limited time window to view the image, which could be critical for psychology experiments.
+
 It is assumed that you are familiar with the *[http://code.google.com/p/concerto-platform/wiki/Concerto3SimpleTest Concerto v3.0 Tutorials: Create a simple test]* section and are familiar with the basic functions of Concerto v3.0 (*[http://code.google.com/p/concerto-platform/wiki/Concerto3Tabs Concerto v3.0 Tutorials: General manual]*).
 
 *Note:*
@@ -15,7 +17,15 @@ It is assumed that you are familiar with the *[http://code.google.com/p/concerto
 
 You may want to time your presentation and manipulate the showing sequence. Currently we don’t have a built-in function to achieve this effect. However, by adding a few lines of Java script, you can easily make your presentation dynamic!
 
-For instance, in the example below, two time points are defined: t1, at which point it starts to show the ‘img’, and t2, when the ‘img’ will disappear. With these several lines at the beginning of the HTML source, the template will only show the image from 200 ms to 3200 ms for 3 seconds, while leave the remaining objects intact on the screen for the whole period. Notable, the first few lines clear the previous timing, in order to start a new timing for each presentation. This manipulation will help with the test setting, so that participants will get prepared before the presentation and have a limited time window to view the image, which could be critical for psychology experiments.
+For instance, in the example below, two time points are defined: 
+ *t1, at which point the image (‘img’) is shown, and 
+ *t2, when the ‘img’ will disappear 
+
+With these several lines of code at the beginning of the HTML source, the template will only show the image for 3 seconds (from 200 ms to 3200 ms), while leaving the remaining objects intact on the screen for the whole period. 
+
+*Note:* the first few lines clear the previous timing, in order to start a new timing for each presentation. 
+
+
 
 <script>
 
@@ -43,3 +53,4 @@ t2 = setTimeout("$('img').hide()",3200);
 
 </script>
 
+.
