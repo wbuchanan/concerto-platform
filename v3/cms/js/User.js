@@ -80,16 +80,25 @@ User.uiSaveValidate=function(ignoreOnBefore){
     }
     
     $.post("query/check_module_unique_fields.php", {
-        "login":$("#form"+this.className+"InputLogin").val()
+        "class_name":this.className,
+        "oid":this.currentID,
+        "fields[]":[$.toJSON({
+            name:"login",
+            value:$("#form"+this.className+"InputLogin").val()
+        })]
     },function(data){
         switch(data.result){
             case 0: {
                 User.uiSaveValidated(ignoreOnBefore);
                 break;
             }
-            case -1:{
-                Methods.alert(dictionary["s336"],"alert");
+            case 1:{
+                Methods.alert(dictionary["s336"],"alert",dictionary["s274"]);
                 return false;    
+            }
+            case -1:{
+                Methods.alert(dictionary["s278"], "alert", dictionary["s274"]);
+                return false;
             }
         }
     },"json");

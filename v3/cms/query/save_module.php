@@ -25,7 +25,12 @@ if (!isset($ini))
     $ini = new Ini();
 }
 $logged_user = User::get_logged_user();
-if ($logged_user == null) die("Access denied!");
+if ($logged_user == null)
+{
+
+    echo json_encode(array("oid" => -1));
+    exit();
+}
 
 $obj = $_POST['class_name']::from_mysql_id($_POST['oid']);
 if ($obj == null)
@@ -43,6 +48,14 @@ if ($obj == null)
     }
     if ($is_ownable) $obj->Owner_id = $logged_user->id;
     if (isset($_POST['Sharing_id'])) $obj->Sharing_id = $_POST['Sharing_id'];
+}
+else
+{
+    if (!$logged_user->is_object_editable($obj))
+    {
+        echo json_encode(array("oid" => -2));
+        exit();
+    }
 }
 
 $_POST['oid'] = $obj->mysql_save_from_post($_POST);
