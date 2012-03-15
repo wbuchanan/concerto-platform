@@ -36,11 +36,13 @@ if (!isset($ini))
         <link rel="stylesheet" href="js/lib/loadmask/jquery.loadmask.css" />
         <link rel="stylesheet" href="lib/CodeMirror/lib/codemirror.css" />
         <link rel="stylesheet" href="lib/CodeMirror/theme/night.css" />
-        <link rel="stylesheet" href="js/lib/jquery-ui/themes/base/jquery.ui.tooltip.css" />
         <link rel="stylesheet" href="js/lib/selectmenu/jquery.ui.selectmenu.css" />
+        <link rel="stylesheet" href="js/lib/tooltip/jquery.ui.tooltip.min.css" />
 
         <script type="text/javascript" src="js/lib/jquery-1.7.1.min.js"></script>
-        <script type="text/javascript" src="js/lib/jquery-ui/ui/minified/jquery-ui.min.js"></script>
+        <script type="text/javascript" src="js/lib/jquery-ui-1.8.18.custom.min.js"></script>
+        <script type="text/javascript" src="js/lib/tooltip/jquery.ui.widget.js"></script>
+        <script type="text/javascript" src="js/lib/tooltip/jquery.ui.tooltip.js"></script>
         <script type="text/javascript" src="js/lib/selectmenu/jquery.ui.selectmenu.js"></script>
         <script type="text/javascript" src="js/lib/jquery.json-2.3.min.js"></script>
         <script type="text/javascript" src="js/lib/loadmask/jquery.loadmask.min.js"></script>
