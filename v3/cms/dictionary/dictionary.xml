@@ -1706,12 +1706,12 @@ Note: You can add new languages by inserting "<new_language>string translated in
         <string id="337">
             <en>list of available objects</en>
             <pl>lista dostepnych obiektow</pl>
-            <cn></cn>
+            <cn>可用对象列表</cn>
         </string>
         <string id="338" js="1">
             <en>currently selected object:</en>
             <pl>aktualnie wybrany obiekt:</pl>
-            <cn></cn>
+            <cn>当前所选对象</cn>
         </string>
     </strings>
 </root> 
