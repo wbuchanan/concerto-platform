@@ -43,6 +43,13 @@ foreach (Language::languages() as $lng_node)
 
 <script type="text/javascript">
     $(function(){
+        $('#switcher').themeswitcher({
+            loadTheme:"Cupertino",
+            imgpath: "js/lib/themeswitcher/images/",
+            onSelect:function(){
+            }
+        });
+        
         Methods.iniIconButton(".btnLogout", "person");
         
         $("#selectLanguage").selectmenu({
@@ -68,7 +75,7 @@ foreach (Language::languages() as $lng_node)
             <div id="divVersionCheck"></div>
         </td>
         <td style="width:33%;" align="center" valign="middle">
-            <select id="selectLanguage">
+            <select id="selectLanguage" class="smallMargin">
                 <?php
                 foreach (Language::languages() as $lng_node)
                 {
@@ -77,6 +84,8 @@ foreach (Language::languages() as $lng_node)
                     <option class="flagIcon_<?= $attr->value ?>" value="<?= $attr->value ?>" <?= $_SESSION['lng'] == $attr->value ? "selected" : "" ?>><?= $lng_node->nodeValue ?></option>
                 <?php } ?>
             </select>
+
+            <div id="switcher" class="smallMargin"></div>
         </td>
     </tr>
 </table>

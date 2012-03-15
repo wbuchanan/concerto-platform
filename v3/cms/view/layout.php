@@ -38,13 +38,6 @@ if ($logged_user == null)
                 if(ui.index==0){
                     Test.uiRefreshCodeMirrors();
                 }
-                if(ui.index==4){
-                    try{
-                        $("#divUsersAccordion").accordion("resize");
-                    }
-                    catch(err){
-                    }
-                }
         }
     });
     $(".tooltipTabs").tooltip({
@@ -76,9 +69,9 @@ if ($logged_user == null)
     });
 });
 </script>
-<div style="display: table;" class="padding ui-widget-content ui-corner-all margin" align="center"><?php include Ini::$path_internal . 'cms/view/includes/header.inc.php'; ?></div>
+<div class="padding ui-widget-content ui-corner-all margin table" align="center"><?php include Ini::$path_internal . 'cms/view/includes/header.inc.php'; ?></div>
 
-<div align="center" class="margin" >
+<div align="center" class="margin table" style="min-width: 970px;" >
     <div id="tnd_mainMenu">
         <ul>
             <?php
@@ -165,4 +158,4 @@ if ($logged_user == null)
     </div>
 </div>
 
-<div style="display: table;" class="margin padding ui-widget-content ui-corner-all" align="center"><?php include Ini::$path_internal . 'cms/view/includes/footer.inc.php'; ?></div>
+<div class="margin padding ui-widget-content ui-corner-all table" align="center"><?php include Ini::$path_internal . 'cms/view/includes/footer.inc.php'; ?></div>

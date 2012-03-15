@@ -25,6 +25,7 @@ OModule.inheritance=function(obj)
     obj.listLength=10;
     obj.reloadOnModification=false;
     obj.reloadHash="";
+    obj.currentPanel = "list";
     
     obj.uiChangeListLength=function(length)
     {
@@ -84,6 +85,26 @@ OModule.inheritance=function(obj)
             })
         });
     }
+    
+    obj.uiShowForm=function(){
+        if(this.currentPanel=="form") return;
+        $("#div"+this.className+"List").hide();
+        $("#div"+this.className+"Form").show();
+        $("#radio"+this.className+"List").removeAttr("checked");
+        $("#radio"+this.className+"Form").attr("checked","checked");
+        $( "#div"+this.className+"RadioMenu" ).buttonset("refresh"); 
+        this.currentPanel="form";
+    }
+    
+    obj.uiShowList=function(){
+        if(this.currentPanel=="list") return;
+        $("#div"+this.className+"Form").hide();
+        $("#div"+this.className+"List").show();
+        $("#radio"+this.className+"Form").removeAttr("checked");
+        $("#radio"+this.className+"List").attr("checked","checked");
+        $( "#div"+this.className+"RadioMenu" ).buttonset("refresh"); 
+        this.currentPanel="list";
+    }
 	
     obj.uiEdit=function(oid,ignoreOnBefore)
     {
@@ -94,6 +115,18 @@ OModule.inheritance=function(obj)
         }
 		
         this.currentID=oid;
+        
+        if(this.currentID>0) {
+            $("#radio"+this.className+"Form").button("enable");
+            $("#radio"+this.className+"Form").button("option","label",dictionary["s338"]+" #"+this.currentID);
+            this.uiShowForm();
+        }
+        else {
+            $("#radio"+this.className+"Form").button("disable");
+            $("#radio"+this.className+"Form").button("option","label",dictionary["s338"]+" "+dictionary["s73"]);
+            this.uiShowList();
+        }
+        
         $("#div"+thisClass.className+"Form").mask(dictionary["s319"]);
         $.post("view/"+this.className+"_form.php",
         {

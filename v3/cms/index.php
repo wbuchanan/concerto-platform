@@ -73,22 +73,10 @@ if (!isset($ini))
         <script src="lib/jfeed/build/dist/jquery.jfeed.js"></script>
 
         <script>User.sessionID='<?= session_id(); ?>';</script>
-        <script>
-            
-            $(function(){
-                $('#switcher').themeswitcher({
-                    loadTheme:"Cupertino",
-                    imgpath: "js/lib/themeswitcher/images/",
-                    onSelect:function(){
-                    }
-                });
-            })
-        </script>
         <?= Language::load_js_dictionary() ?>
     </head>
     <body>
-        <div id="switcher"></div>
-        <div id="content">
+        <div id="content" align="center">
             <?php
             if (User::get_logged_user() == null)
             {

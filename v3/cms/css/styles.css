@@ -113,3 +113,7 @@ ul {
 }
 
 .no-close .ui-dialog-titlebar-close {display: none }
+
+.table {
+    display:table;
+}

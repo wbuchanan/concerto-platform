@@ -26,112 +26,55 @@ if (!isset($ini))
 
 $logged_user = User::get_logged_user();
 if ($logged_user == null) die(Language::string(81));
+
+$class_names = array("User", "UserGroup", "UserType");
+$class_labels = array(Language::string(89), Language::string(91), Language::string(90));
+$readables = array($logged_user->is_module_accesible($class_names[0]), $logged_user->is_module_accesible($class_names[1]), $logged_user->is_module_accesible($class_names[2]));
+$writeables = array($logged_user->is_module_writeable($class_names[0]), $logged_user->is_module_writeable($class_names[1]), $logged_user->is_module_writeable($class_names[2]));
+
+if ($readables[0] || $readables[1] || $readables[2])
+{
+    ?>
+
+    <script>
+        $(function(){
+           $("#divUserTabs").tabs(); 
+        });
+    </script>
+
+    <div id="divUserTabs">
+        <ul>
+            <?php
+            for ($i = 0; $i < 3; $i++)
+            {
+                if (!$readables[$i]) continue;
+                ?>
+                <li><a href="#divUserTabs<?= $class_names[$i] ?>"><?= $class_labels[$i] ?></a></li>
+                <?php
+            }
+            ?>
+        </ul>
+        <?php
+        for ($j = 0; $j < 3; $j++)
+        {
+            if (!$readables[$j]) continue;
+            ?>
+            <div id="divUserTabs<?= $class_names[$j] ?>">
+                <?php
+                $class_name = $class_names[$j];
+                $class_label = $class_labels[$j];
+                $readable = $readables[$j];
+                $writeable = $writeables[$j];
+
+                include Ini::$path_internal . "cms/view/includes/tab.inc.php";
+                ?>
+            </div>
+            <?php
+        }
+        ?>
+    </div>
+    <?php
+}
 ?>
 
-<script>
-    $(function(){
-        Methods.iniIconButton(".btnAdd", "plus");
-    })
-</script>
 
-<div id="divUsersAccordion" class="margin">
-    <h3><a href="#"><?= Language::string(89) ?></a></h3>
-    <div>
-        <table class="margin ui-widget-content ui-corner-all">
-            <tr>
-                <?php
-                $class_name = "User";
-                $class_label = Language::string(89);
-                if ($logged_user->is_module_accesible($class_name))
-                {
-                    ?>
-                    <td colspan="2">
-                        <div class="fullWidth ui-widget-header" align="center" colspan="2">
-                            <h3><?= $class_label ?></h3>
-                        </div>
-                    </td>
-                </tr>
-                <tr>
-                    <td class="padding" valign="top">
-                        <div align="center" id="div<?= $class_name ?>List"><?php include Ini::$path_internal . 'cms/view/list.php'; ?></div>
-                    </td>
-
-                    <td class="padding" valign="top">
-                        <?php
-                        if ($logged_user->is_module_writeable($class_name))
-                        {
-                            ?>
-                            <div align="center" id="div<?= $class_name ?>Form"><?php include Ini::$path_internal . 'cms/view/' . $class_name . '_form.php'; ?></div><br />
-                        <?php } ?>
-                    </td>
-                <?php } ?>
-            </tr>
-        </table>
-    </div>
-    <h3><a href="#"><?= Language::string(90) ?></a></h3>
-    <div>
-        <table class="margin ui-widget-content ui-corner-all">
-            <tr>
-                <?php
-                $class_name = "UserType";
-                $class_label = Language::string(90);
-                if ($logged_user->is_module_accesible($class_name))
-                {
-                    ?>
-                    <td colspan="2">
-                        <div class="fullWidth ui-widget-header" align="center" colspan="2">
-                            <h3><?= $class_label ?></h3>
-                        </div>
-                    </td>
-                </tr>
-                <tr>
-                    <td class="padding" valign="top">
-                        <div align="center" id="div<?= $class_name ?>List"><?php include Ini::$path_internal . 'cms/view/list.php'; ?></div>
-                    </td>
-
-                    <td class="padding" valign="top">
-                        <?php
-                        if ($logged_user->is_module_writeable($class_name))
-                        {
-                            ?>
-                            <div align="center" id="div<?= $class_name ?>Form"><?php include Ini::$path_internal . 'cms/view/' . $class_name . '_form.php'; ?></div><br />
-                        <?php } ?>
-                    </td>
-                <?php } ?>
-            </tr>
-        </table>
-    </div>
-    <h3><a href="#"><?= Language::string(91) ?></a></h3>
-    <div>
-        <table class="margin ui-widget-content ui-corner-all">
-            <tr>
-                <?php
-                $class_name = "UserGroup";
-                $class_label = Language::string(91);
-                if ($logged_user->is_module_accesible($class_name))
-                {
-                    ?>
-                    <td colspan="2">
-                        <div class="fullWidth ui-widget-header" align="center" colspan="2">
-                            <h3><?= $class_label ?></h3>
-                        </div>
-                    </td>
-                </tr>
-                <tr>
-                    <td class="padding" valign="top">
-                        <div align="center" id="div<?= $class_name ?>List"><?php include Ini::$path_internal . 'cms/view/list.php'; ?></div>
-                    </td>
-
-                    <td class="padding" valign="top">
-                        <?php
-                        if ($logged_user->is_module_writeable($class_name))
-                        {
-                            ?>
-                            <div align="center" id="div<?= $class_name ?>Form"><?php include Ini::$path_internal . 'cms/view/' . $class_name . '_form.php'; ?></div><br />
-                        <?php } ?>
-                    </td>
-                <?php } ?>
-            </tr>
-        </table>
-    </div>
-</div>

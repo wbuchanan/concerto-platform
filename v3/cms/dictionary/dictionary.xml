@@ -393,7 +393,7 @@ Note: You can add new languages by inserting "<new_language>string translated in
             <pl>prawa dostępu</pl>
             <cn>访问权限</cn>
         </string>
-        <string id="73">
+        <string id="73" js="1">
             <en>none</en>
             <pl>brak</pl>
             <cn>空缺</cn>
@@ -1702,6 +1702,16 @@ Note: You can add new languages by inserting "<new_language>string translated in
             <en>At least one of the fields that should be unique already exists in the system.</en>
             <pl>Przynajmniej jedno pole, ktore powinno byc unikalne, juz istnieje w systemie.</pl>
             <cn>系统内存在相同区域。</cn>
+        </string>
+        <string id="337">
+            <en>list of available objects</en>
+            <pl>lista dostepnych obiektow</pl>
+            <cn></cn>
+        </string>
+        <string id="338" js="1">
+            <en>currently selected object:</en>
+            <pl>aktualnie wybrany obiekt:</pl>
+            <cn></cn>
         </string>
     </strings>
 </root> 
