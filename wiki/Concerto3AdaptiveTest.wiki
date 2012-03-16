@@ -94,7 +94,7 @@ In the 'tests' tab, create a new test by adding a new object (covered in the [ht
 || IF statement || *is.na(response)* - *equal* - *1* THEN _GO TO_ *14.load HTML template* (this is the section where you load the items template). This step is to ensure that there are no missing responses or non-numeric type responses. ||
 || Set variable || SET VARIABLE *responses* IN *R & HTML* AS *default*; *by R code* - _c(responses, correct_answer == response)_||
 || Set variable || SET VARIABLE *theta* IN *R & HTML* AS *default*; *by R code* - _it<-matrix(itempar[items_administered,],nrow=length(items_administered)). thetaEst(it, responses)_||
-|| Set variable || SET VARIABLE *current_item* IN *R & HTML* AS *default*; *by R code* - _nextItem(catBank, theta, out=as.numeric(items_administered))[[1]]_||
+|| Set variable || SET VARIABLE *current_item* IN *R & HTML* AS *default*; *by R code* - _nextItem(catBank, theta, out=as.numeric(items_administered)){{{[[1]]}}}_||
 || Set variable || SET VARIABLE *items_administered* IN *R* AS *default*; *by R code* - _c(items_administered, current_item)_||
 || - || http://ns39618.ovh.net/~vaishali/adaptive/test_4.jpg ||
 .
