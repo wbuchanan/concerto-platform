@@ -38,6 +38,8 @@ if (!isset($ini))
         <link rel="stylesheet" href="lib/CodeMirror/theme/night.css" />
         <link rel="stylesheet" href="js/lib/selectmenu/jquery.ui.selectmenu.css" />
         <link rel="stylesheet" href="js/lib/tooltip/jquery.ui.tooltip.min.css" />
+        <link rel="stylesheet" href="js/lib/kendo-ui/styles/kendo.common.css" />
+        <link rel="stylesheet" href="js/lib/kendo-ui/styles/kendo.default.css" />
 
         <script type="text/javascript" src="js/lib/jquery-1.7.1.min.js"></script>
         <script type="text/javascript" src="js/lib/jquery-ui-1.8.18.custom.min.js"></script>
@@ -46,6 +48,7 @@ if (!isset($ini))
         <script type="text/javascript" src="js/lib/selectmenu/jquery.ui.selectmenu.js"></script>
         <script type="text/javascript" src="js/lib/jquery.json-2.3.min.js"></script>
         <script type="text/javascript" src="js/lib/loadmask/jquery.loadmask.min.js"></script>
+        <script type="text/javascript" src="js/lib/kendo-ui/kendo.all.min.js"></script>
 
         <script src="../js/ConcertoMethods.js"></script>
         <script src="../js/Concerto.js"></script>

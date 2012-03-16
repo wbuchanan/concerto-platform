@@ -304,7 +304,10 @@ class Test extends OModule
             "name" => Language::string(335),
             "property" => "get_session_count",
             "searchable" => false,
-            "sortable" => true
+            "sortable" => true,
+            "type" => "number",
+            "groupable" => false,
+            "width" => 100
         ));
 
         return $cols;

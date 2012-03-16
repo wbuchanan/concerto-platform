@@ -27,6 +27,12 @@ if (!isset($ini))
 
 <script>
     $(function(){
+        $('#divHiddenThemer').themeswitcher({
+            loadTheme:"Cupertino",
+            imgpath: "js/lib/themeswitcher/images/",
+            onSelect:function(){
+            }
+        });
         $("#dd_login").dialog({
             modal:true,
             title:"<?= Language::string(211) ?>",
@@ -66,4 +72,7 @@ if (!isset($ini))
             </tr>
         </table>
     </div>	 
+</div>
+
+<div id="divHiddenThemer" style="display:none;">
 </div>

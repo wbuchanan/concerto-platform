@@ -22,7 +22,7 @@ function OModule() {};
 OModule.inheritance=function(obj)
 {
     obj.currentID=0;
-    obj.listLength=10;
+    obj.listLength=50;
     obj.reloadOnModification=false;
     obj.reloadHash="";
     obj.currentPanel = "list";
@@ -143,19 +143,11 @@ OModule.inheritance=function(obj)
     obj.uiList=function()
     {
         var thisClass = this;
-        $('#div'+thisClass.className+'List').mask(dictionary["s319"]);
-        $.post("view/list.php",{
-            oid:thisClass.currentID,
-            class_name:thisClass.className,
-            list_length:thisClass.listLength
-        },
-        function(data)
-        {
-            $('#div'+thisClass.className+'List').unmask();
-            $('#div'+thisClass.className+'List').html(data);
-            thisClass.highlightCurrentElement();
-            if(thisClass.onAfterList) thisClass.onAfterList();
-        });
+        $("#div"+thisClass.className+"List").mask(dictionary["s319"]);
+        var grid = $("#div"+thisClass.className+"Grid").data("kendoGrid");
+        grid.dataSource.read(); 
+        grid.refresh();
+        $("#div"+thisClass.className+"List").unmask();
     };
 	
     obj.uiDelete=function(oid,ignoreOnBefore)

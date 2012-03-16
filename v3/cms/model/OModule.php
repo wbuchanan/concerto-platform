@@ -49,7 +49,7 @@ class OModule extends OTable
         {
             if ($cols[$index]["property"] == $k)
             {
-                return ($v != null ? $v : "&lt;" . Language::string(73) . "&gt;");
+                return ($v != null || is_numeric($v) ? $v : "&lt;" . Language::string(73) . "&gt;");
             }
         }
 
@@ -58,7 +58,7 @@ class OModule extends OTable
             if ($cols[$index]["property"] == $k)
             {
                 $val = call_user_func_array(array($this, $k), array());
-                return ($val != null ? $val : "&lt;" . Language::string(73) . "&gt;");
+                return ($val != null || is_numeric($val) ? $val : "&lt;" . Language::string(73) . "&gt;");
             }
         }
 
@@ -103,25 +103,35 @@ class OModule extends OTable
             "name" => Language::string(69),
             "property" => "id",
             "searchable" => true,
-            "sortable" => true
+            "sortable" => true,
+            "type" => "number",
+            "groupable" => false,
+            "width" => 40
         ));
         array_push($cols, array(
             "name" => Language::string(70),
             "property" => "name",
             "searchable" => true,
-            "sortable" => true
+            "sortable" => true,
+            "type" => "string",
+            "groupable" => false
         ));
         array_push($cols, array(
             "name" => Language::string(71),
             "property" => "get_owner_full_name",
             "searchable" => true,
-            "sortable" => true
+            "sortable" => true,
+            "type" => "string",
+            "groupable" => true
         ));
         array_push($cols, array(
             "name" => Language::string(72),
             "property" => "get_sharing_name",
             "searchable" => true,
-            "sortable" => true
+            "sortable" => true,
+            "type" => "string",
+            "groupable" => true,
+            "width" => 100
         ));
 
         return $cols;

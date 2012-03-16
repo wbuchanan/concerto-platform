@@ -36,10 +36,9 @@ $edit_caption = Language::string(92);
 $new_caption = Language::string(93);
 //////////
 
-if (!$logged_user->is_module_writeable($class_name)) die(Language::string(81));
-
 $oid = 0;
 if (isset($_POST['oid']) && $_POST['oid'] != 0) $oid = $_POST['oid'];
+if (!$logged_user->is_module_writeable($class_name) && $oid!=0) die(Language::string(81));
 
 $btn_cancel = "<button class='btnCancel' onclick='" . $class_name . ".uiEdit(0)'>" . Language::string(23) . "</button>";
 $btn_delete = "<button class='btnDelete' onclick='" . $class_name . ".uiDelete($oid)'>" . Language::string(94) . "</button>";

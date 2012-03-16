@@ -303,37 +303,50 @@ class User extends OModule
             "name" => Language::string(173),
             "property" => "login",
             "searchable" => true,
-            "sortable" => true
+            "sortable" => true,
+            "type" => "string",
+            "groupable" => false
         ));
         array_push($cols, array(
             "name" => Language::string(174),
             "property" => "email",
             "searchable" => true,
-            "sortable" => true
+            "sortable" => true,
+            "type" => "string",
+            "groupable" => true
         ));
         array_push($cols, array(
             "name" => Language::string(175),
             "property" => "last_login",
             "searchable" => true,
-            "sortable" => true
+            "sortable" => true,
+            "type" => "date",
+            "groupable" => false
         ));
         array_push($cols, array(
             "name" => Language::string(176),
             "property" => "get_UserGroup_name",
             "searchable" => true,
-            "sortable" => true
+            "sortable" => true,
+            "type" => "string",
+            "groupable" => true
         ));
         array_push($cols, array(
             "name" => Language::string(177),
             "property" => "get_UserType_name",
             "searchable" => true,
-            "sortable" => true
+            "sortable" => true,
+            "type" => "string",
+            "groupable" => true
         ));
         array_push($cols, array(
             "name" => Language::string(335),
             "property" => "get_session_count",
             "searchable" => false,
-            "sortable" => true
+            "sortable" => true,
+            "type" => "number",
+            "groupable" => false,
+            "width" => 100
         ));
 
         for ($i = 0; $i < count($cols); $i++)
