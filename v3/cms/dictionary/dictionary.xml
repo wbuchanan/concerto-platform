@@ -1133,42 +1133,42 @@ Note: You can add new languages by inserting "<new_language>string translated in
             <pl>wskazuje która sekcja powinna być wykonana następna</pl>
             <cn>设置下一章节为</cn>
         </string>
-        <string id="221">
+        <string id="221" js="1">
             <en>not equal</en>
             <pl>nie równe</pl>
             <cn>不等于</cn>
         </string>
-        <string id="222">
+        <string id="222" js="1">
             <en>equal</en>
             <pl>równe</pl>
             <cn>等于</cn>
         </string>
-        <string id="223">
+        <string id="223" js="1">
             <en>greater than</en>
             <pl>większe niż</pl>
             <cn>大于</cn>
         </string>
-        <string id="224">
+        <string id="224" js="1">
             <en>equal or greater than</en>
             <pl>równe lub większe niż</pl>
             <cn>大于或等于</cn>
         </string>
-        <string id="225">
+        <string id="225" js="1">
             <en>lesser than</en>
             <pl>mniejsze niż</pl>
             <cn>小于</cn>
         </string>
-        <string id="226">
+        <string id="226" js="1">
             <en>equal or lesser than</en>
             <pl>równe lub mniejsze niż</pl>
             <cn>小于或等于</cn>
         </string>
-        <string id="227">
+        <string id="227" js="1">
             <en>AND</en>
             <pl>I</pl>
             <cn>并且</cn>
         </string>
-        <string id="228">
+        <string id="228" js="1">
             <en>OR</en>
             <pl>LUB</pl>
             <cn>或者</cn>
@@ -1712,6 +1712,61 @@ Note: You can add new languages by inserting "<new_language>string translated in
             <en>currently selected object:</en>
             <pl>aktualnie wybrany obiekt:</pl>
             <cn>当前所选对象</cn>
+        </string>
+        <string id="339" js="1">
+            <en>Drag a column header and drop it here to group by that column</en>
+            <pl>Przeciagnij naglowek kolumny i upusc go tutaj aby grupowac wedlug danej kolumny</pl>
+            <cn></cn>
+        </string>
+        <string id="340" js="1">
+            <en>Show rows with value that:</en>
+            <pl>Pokaz rzedy z wartoscia ktora:</pl>
+            <cn></cn>
+        </string>
+        <string id="341" js="1">
+            <en>Filter</en>
+            <pl>Filtruj</pl>
+            <cn></cn>
+        </string>
+        <string id="342" js="1">
+            <en>Clear</en>
+            <pl>Wyczysc</pl>
+            <cn></cn>
+        </string>
+        <string id="343" js="1">
+            <en>starts with</en>
+            <pl>zaczyna sie od</pl>
+            <cn></cn>
+        </string>
+        <string id="344" js="1">
+            <en>contains</en>
+            <pl>zawiera</pl>
+            <cn></cn>
+        </string>
+        <string id="345" js="1">
+            <en>ends with</en>
+            <pl>konczy sie na</pl>
+            <cn></cn>
+        </string>
+        <string id="346" js="1">
+            <en>after or equal</en>
+            <pl>po lub rowne</pl>
+            <cn></cn>
+        </string>
+        <string id="347" js="1">
+            <en>after</en>
+            <pl>po</pl>
+            <cn></cn>
+        </string>
+        <string id="348" js="1">
+            <en>before or equal</en>
+            <pl>przed lub rowne</pl>
+            <cn></cn>
+        </string>
+        <string id="349" js="1">
+            <en>before</en>
+            <pl>przed</pl>
+            <cn></cn>
         </string>
     </strings>
 </root> 

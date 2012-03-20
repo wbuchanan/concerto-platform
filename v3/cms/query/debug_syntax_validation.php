@@ -43,9 +43,11 @@ if ($test == null)
 $sections = TestSection::from_property(array("Test_id" => $test->id));
 
 $result = array();
-foreach ($sections as $section)
+for($i=0;$i<count($sections);$i++)
 {
-    $result["counter" . $section->counter] = $session->debug_syntax($section->id);
+    $section = $sections[$i];
+    $close = $i==(count($sections)-1);
+    $result["counter" . $section->counter] = $session->debug_syntax($section->id, $close);
 }
 $session->mysql_delete();
 

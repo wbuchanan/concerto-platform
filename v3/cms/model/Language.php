@@ -58,6 +58,29 @@ class Language
             }
         }
     }
+    
+    public static function get_kendo_culture()
+    {
+        $lang = "en";
+        if (isset($_SESSION['lng'])) $lang = $_SESSION['lng'];
+        
+        switch($lang)
+        {
+            case "en":
+            {
+                return "en-GB";
+            }
+            case "pl":
+            {
+                return "pl-PL";
+            }
+            case "cn":
+            {
+                return "zh-CHS";
+            }
+        }
+        return "en-GB";
+    }
 
     public static function load_js_dictionary($client = false)
     {

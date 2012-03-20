@@ -50,8 +50,8 @@ class TestSession extends OTable
 
     public function run_Test($counter = null, $values = array())
     {
-        $first_run = false;
-        if ($counter == null) $first_run = true;
+        $ini_code_required = false;
+        if ($counter == null) $ini_code_required = true;
         $test = $this->get_Test();
         if ($counter == null)
         {
@@ -103,7 +103,7 @@ class TestSession extends OTable
             }
             ", $counter, $section->get_RFunctionName());
 
-        $result = $this->RCall($code, false, $first_run);
+        $result = $this->RCall($code, $ini_code_required);
         $values = $this->get_variables();
 
         $end = false;
@@ -129,26 +129,30 @@ class TestSession extends OTable
         );
     }
 
-    public function debug_syntax($ts_id)
+    public function debug_syntax($ts_id,$close = false)
     {
         $ts = TestSection::from_mysql_id($ts_id);
-        $result = $this->RCall($ts->get_RFunction(), true);
+        $result = $this->RCall($ts->get_RFunction(), false, $close);
         return $result;
     }
 
-    public function RCall($code, $debug_syntax = false, $first_run = false)
+    public function RCall($code, $include_ini_code = false, $close = false)
     {
         $command = "";
-        if (!$debug_syntax && $first_run) $command = $this->get_ini_RCode();
+        if ($include_ini_code) $command = $this->get_ini_RCode();
         $command.=$code;
 
         $command_obj = json_encode(array(
             "session_id" => $this->id,
-            "code" => $command
+            "code" => $command,
+            "close" => $close?1:0
                 ));
 
+        if(TestServer::$debug) TestServer::log_debug ("TestSession->RCall --- checking for server");
         if (!TestServer::is_running()) TestServer::start_process();
+        if(TestServer::$debug) TestServer::log_debug ("TestSession->RCall --- server found, trying to send");
         $result = json_decode(TestServer::send($command_obj));
+        if(TestServer::$debug) TestServer::log_debug ("TestSession->RCall --- sent and recieved response");
 
         return array("return" => $result->return, "output" => explode("\n", $result->output), "code" => $result->code);
     }
@@ -164,6 +168,8 @@ class TestSession extends OTable
         $path = Ini::$path_temp.$this->get_Test()->Owner_id;
         if(!is_dir($path)) mkdir($path,0777);
         $code = "
+            ##sink(stdout(), type='message')
+            options(encoding='UTF-8')
             TEMP_PATH <- '" . $path . "'
             source('" . Ini::$path_internal . "lib/R/mainmethods.R" . "')
             ";

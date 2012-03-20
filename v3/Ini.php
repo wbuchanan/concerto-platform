@@ -32,6 +32,10 @@ class Ini
     public static $path_temp = "";
     public static $path_mysql_home = "";
     public static $version = "3.3.0";
+    public static $sock_host = "127.0.0.1";
+    public static $sock_port = "8888";
+    public static $unix_sock = "";
+    public static $sock_type_used = 0;
 
     function __construct($connect = true, $session = true)
     {
@@ -76,6 +80,7 @@ class Ini
         self::$path_php_exe = $path_php_exe;
         self::$path_temp = self::$path_internal . "temp/";
         self::$path_mysql_home = $path_mysql_home;
+        self::$unix_sock = self::$path_internal."socks/RConcerto.sock";
     }
 
     public static function does_patch_apply($patch_version, $previous_version)

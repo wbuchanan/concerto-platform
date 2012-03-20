@@ -48,7 +48,6 @@ if (!isset($ini))
         <script type="text/javascript" src="js/lib/selectmenu/jquery.ui.selectmenu.js"></script>
         <script type="text/javascript" src="js/lib/jquery.json-2.3.min.js"></script>
         <script type="text/javascript" src="js/lib/loadmask/jquery.loadmask.min.js"></script>
-        <script type="text/javascript" src="js/lib/kendo-ui/kendo.all.min.js"></script>
 
         <script src="../js/ConcertoMethods.js"></script>
         <script src="../js/Concerto.js"></script>
@@ -79,6 +78,11 @@ if (!isset($ini))
 
         <script>User.sessionID='<?= session_id(); ?>';</script>
         <?= Language::load_js_dictionary() ?>
+        <script type="text/javascript" src="js/lib/kendo-ui/kendo.all.min.js"></script>
+        <script type="text/javascript" src="js/lib/kendo-ui/cultures/kendo.culture.<?=Language::get_kendo_culture()?>.min.js"></script>
+        <script type="text/javascript">
+            kendo.culture("<?=Language::get_kendo_culture()?>");
+        </script>
     </head>
     <body>
         <div id="content" align="center">

@@ -31,10 +31,9 @@ if ($logged_user == null)
     die(Language::string(278));
 }
 $writeable = $logged_user->is_module_writeable($class_name);
-
 ?>
 <script type="text/x-kendo-template" id="script<?= $class_name ?>ToolbarTemplate">
-    <div class="toolbar">
+    <div class="toolbar" style="margin:0px;">
         <?php
         if ($writeable)
         {
@@ -51,7 +50,6 @@ $writeable = $logged_user->is_module_writeable($class_name);
     </div>
 </script>
 <?php
-
 $cols = $class_name::get_list_columns();
 $fields_schema = "";
 foreach ($cols as $col)
@@ -77,13 +75,13 @@ foreach ($cols as $col)
     $columns_def.=",";
 }
 
-$action_template='#if(editable) {#<span style="display:inline-block;" class="spanIcon tooltip ui-icon ui-icon-pencil" onclick="' . $class_name . '.uiEdit(${ id })" title="' . Language::string(203) . '"></span>#}#';
+$action_template = '#if(editable) {#<span style="display:inline-block;" class="spanIcon tooltip ui-icon ui-icon-pencil" onclick="' . $class_name . '.uiEdit(${ id })" title="' . Language::string(203) . '"></span>#}#';
 $action_template.='#if(editable) {#<span style="display:inline-block;" class="spanIcon tooltip ui-icon ui-icon-trash" onclick="' . $class_name . '.uiDelete(${ id })" title="' . Language::string(204) . '"></span>#}#';
 if ($class_name::$exportable)
 {
     $action_template.='<span style="display:inline-block;" class="spanIcon tooltip ui-icon ui-icon-arrowthickstop-1-n" onclick="' . $class_name . '.uiExport(${ id })" title="' . Language::string(265) . '"></span>';
 }
-$columns_def.=sprintf("{ title:'', width:80, field: 'actions', filterable: false, sortable: false, groupable: false, template: '%s'}", $action_template);
+$columns_def.=sprintf("{ title:'', width:70, filterable: false, sortable: false, groupable: false, template: '%s'}", $action_template);
 $columns_def.="]";
 ?>
 
@@ -93,7 +91,11 @@ $columns_def.="]";
             dataBound:function(e){
                 Methods.iniTooltips();
             },
-            toolbar: kendo.template($("#script<?= $class_name ?>ToolbarTemplate").html()),
+            //toolbar: kendo.template($("#script<?= $class_name ?>ToolbarTemplate").html()),
+            toolbar: [
+                { name: "add", template: '<button style="height:25px;" class="btnAdd" onclick="<?= $class_name ?>.uiAdd()"><?= Language::string(205) ?></button>'},
+                { name: "import", template: '<button style="height:25px;" class="btnImport" onclick="<?= $class_name ?>.uiImport()"><?= Language::string(266) ?></button>' }
+            ],
             dataSource: {
                 transport:{
                     read: {
@@ -118,6 +120,9 @@ $columns_def.="]";
             groupable:true,
             columns:<?= $columns_def ?>
         });
+            
+        Methods.iniIconButton(".btnAdd", "plus");
+        Methods.iniIconButton(".btnImport","arrowthickstop-1-s");
     });
 </script>
 

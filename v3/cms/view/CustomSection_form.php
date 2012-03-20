@@ -104,7 +104,7 @@ if ($oid != 0)
                 </td>
             </tr>
             <tr>
-                <td class="noWrap horizontalPadding ui-widget-header">access <?= Language::string(72) ?>:</td>
+                <td class="noWrap horizontalPadding ui-widget-header"><?= Language::string(72) ?>:</td>
                 <td><span class="tooltip spanIcon ui-icon ui-icon-help" title="<?= Language::string(99) ?>"></span></td>
                 <td class="fullWidth">
                     <div class="horizontalMargin">

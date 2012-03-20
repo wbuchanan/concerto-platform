@@ -53,3 +53,4 @@ get.var <- function(variable, sid=TEST_SESSION_ID, dbn=DB_NAME){
 library(RMySQL)
 drv <- dbDriver('MySQL')
 con <- dbConnect(drv, user = DB_LOGIN, password = DB_PASSWORD, dbname = DB_NAME, host = DB_HOST, port = DB_PORT)
+dbSendQuery(con,statement = "SET NAMES 'utf8';")

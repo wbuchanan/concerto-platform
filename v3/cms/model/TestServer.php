@@ -23,17 +23,23 @@ class TestServer
 {
     private static $max_idle_time = 3600;
     public static $debug = true;
+    public static $debug_stream_data = false;
     private $last_action_time;
     private $main_sock;
     private $clients;
     private $instances;
     public static $host = "127.0.0.1";
-    public static $port = 8888;
+    public static $port = 9676;
 
     public static function log_debug($message, $timestamp=true)
     {
-        $lfh = fopen(Ini::$path_temp . "test-server.log", "a");
-        fwrite($lfh, ($timestamp ? date("Y-m-d H:i:s") . " --- " : "") . $message . "\r\n");
+        $t = microtime(true);
+        $micro = sprintf("%06d", ($t - floor($t)) * 1000000);
+        $d = new DateTime(date('Y-m-d H:i:s.' . $micro, $t));
+        $datetime = $d->format("Y-m-d H:i:s.u");
+
+        $lfh = fopen(Ini::$path_temp . date('Y-m-d').".socket.log", "a");
+        fwrite($lfh, ($timestamp ? $datetime . " --- " : "") . $message . "\r\n");
         fclose($lfh);
     }
 
@@ -43,6 +49,7 @@ class TestServer
         {
             $this->close_instance($k);
         }
+        @socket_shutdown($this->main_sock);
         socket_close($this->main_sock);
         if (self::$debug)
                 self::log_debug("TestServer->stop() --- TestServer stopped");
@@ -54,7 +61,9 @@ class TestServer
         {
             self::log_debug("TestServer::send() --- Client sends data");
         }
-        $socket = socket_create(AF_INET, SOCK_STREAM, SOL_TCP);
+        $socket = null;
+        if(Ini::$sock_type_used==1) $socket = socket_create(AF_INET, SOCK_STREAM, SOL_TCP);
+        if(Ini::$sock_type_used==0) $socket = socket_create(AF_UNIX, SOCK_STREAM, 0);
         if (!$socket)
         {
             if (self::$debug)
@@ -63,13 +72,16 @@ class TestServer
             }
             return false;
         }
-        $result = socket_connect($socket, self::$host, self::$port);
+        $result = null;
+        if(Ini::$sock_type_used==1) $result = socket_connect($socket, Ini::$sock_host, Ini::$sock_port);
+        if(Ini::$sock_type_used==0) $result = socket_connect($socket, Ini::$unix_sock);
         if (!$result)
         {
             if (self::$debug)
             {
                 self::log_debug("TestServer::send() --- Error: (socket_connect) " . socket_last_error() . " - " . socket_strerror(socket_last_error()));
             }
+            @socket_shutdown($socket);
             socket_close($socket);
             return false;
         }
@@ -77,15 +89,16 @@ class TestServer
         if (self::$debug)
         {
             self::log_debug("TestServer::send() --- sent data");
-            self::log_debug($data, false);
+            if (self::$debug_stream_data) self::log_debug($data, false);
         }
 
         $result = socket_read($socket, 32648);
         if (self::$debug)
         {
             self::log_debug("TestServer::send() --- data recieved");
-            self::log_debug($result, false);
+            if (self::$debug_stream_data) self::log_debug($result, false);
         }
+        @socket_shutdown($socket);
         socket_close($socket);
         if (!$result)
         {
@@ -104,7 +117,9 @@ class TestServer
         {
             //self::log_debug("TestServer::is_running() --- Checking if server is running");
         }
-        $socket = socket_create(AF_INET, SOCK_STREAM, SOL_TCP);
+        $socket = null;
+        if(Ini::$sock_type_used==1) $socket = socket_create(AF_INET, SOCK_STREAM, SOL_TCP);
+        if(Ini::$sock_type_used==0) $socket = socket_create(AF_UNIX, SOCK_STREAM, 0);
         if (!$socket)
         {
             if (self::$debug)
@@ -113,7 +128,11 @@ class TestServer
             }
             return false;
         }
-        $result = @socket_connect($socket, self::$host, self::$port);
+        
+        $result = null;
+        if(Ini::$sock_type_used==1) $result = @socket_connect($socket, Ini::$sock_host, Ini::$sock_port);
+        if(Ini::$sock_type_used==0) $result = @socket_connect($socket, Ini::$unix_sock);
+        @socket_shutdown($socket);
         socket_close($socket);
         if (!$result)
         {
@@ -141,6 +160,7 @@ class TestServer
         exec($command);
         while (!self::is_running())
         {
+            
         }
         if (self::$debug)
         {
@@ -154,7 +174,8 @@ class TestServer
         $this->last_action_time = time();
         if (self::$debug)
                 self::log_debug("TestServer->start() --- TestServer started");
-        $this->main_sock = socket_create(AF_INET, SOCK_STREAM, SOL_TCP);
+        if(Ini::$sock_type_used==1) $this->main_sock = socket_create(AF_INET, SOCK_STREAM, SOL_TCP);
+        if(Ini::$sock_type_used==0) $this->main_sock = socket_create(AF_UNIX, SOCK_STREAM, 0);
         if (!$this->main_sock)
         {
             if (self::$debug)
@@ -176,7 +197,10 @@ class TestServer
             return;
         }
 
-        if (!socket_bind($this->main_sock, self::$host, self::$port))
+        $bind = null;
+        if(Ini::$sock_type_used==1) $bind = socket_bind($this->main_sock, Ini::$sock_host, Ini::$sock_port);
+        if(Ini::$sock_type_used==0) $bind = socket_bind($this->main_sock, Ini::$unix_sock);
+        if (!$bind)
         {
             if (self::$debug)
             {
@@ -201,6 +225,16 @@ class TestServer
 
         if (self::$debug)
                 self::log_debug("TestServer->start() --- TestServer initialized");
+
+        if (!socket_set_nonblock($this->main_sock))
+        {
+            if (self::$debug)
+            {
+                self::log_debug("TestServer->start() --- Error: (socket_set_nonblock)");
+                self::log_debug("TestServer->start() --- Server halted!");
+            }
+            break;
+        }
 
         do
         {
@@ -229,14 +263,15 @@ class TestServer
                 {
                     $response = $this->instances[$k]->read();
 
-                    if ($response!=null)
+                    if ($response != null)
                     {
                         $this->instances[$k]->is_data_ready = false;
                         $this->instances[$k]->is_working = false;
                         if (self::$debug)
                         {
                             self::log_debug("TestServer->start() --- Client '$k' test data read");
-                            self::log_debug($response, false);
+                            if (self::$debug_stream_data)
+                                    self::log_debug($response, false);
                         }
 
                         $response = array(
@@ -256,24 +291,19 @@ class TestServer
                         {
                             if (self::$debug)
                             {
-                                self::log_debug("TestServer->start() --- Client '$key' test response sent back");
-                                self::log_debug($response, false);
+                                self::log_debug("TestServer->start() --- Client '$k' test response sent back");
+                                if (self::$debug_stream_data)
+                                        self::log_debug($response, false);
                             }
                         }
+
+                        if ($this->instances[$k]->code_execution_halted || $this->instances[$k]->close)
+                                $this->close_instance($k);
                     }
                 }
             }
             //interpret data end
 
-            if (!socket_set_nonblock($this->main_sock))
-            {
-                if (self::$debug)
-                {
-                    self::log_debug("TestServer->start() --- Error: (socket_set_nonblock)");
-                    self::log_debug("TestServer->start() --- Server halted!");
-                    break;
-                }
-            }
             $client_sock = @socket_accept($this->main_sock);
             if (!$client_sock)
             {
@@ -286,8 +316,8 @@ class TestServer
                 if (self::$debug)
                 {
                     self::log_debug("TestServer->start() --- Error: (socket_read) " . socket_last_error() . " - " . socket_strerror(socket_last_error()));
-                    continue;
                 }
+                continue;
             }
             $input = trim($read);
             if ($input != "")
@@ -295,7 +325,8 @@ class TestServer
                 if (self::$debug)
                 {
                     self::log_debug("TestServer->start() --- data recieved");
-                    self::log_debug($input, false);
+                    if (self::$debug_stream_data)
+                            self::log_debug($input, false);
                 }
                 if ($input == "exit")
                 {
@@ -325,6 +356,7 @@ class TestServer
         }
         if (array_key_exists($key, $this->clients))
         {
+            @socket_shutdown($this->clients[$key]["sock"]);
             socket_close($this->clients[$key]["sock"]);
             unset($this->clients[$key]);
         }
@@ -352,6 +384,7 @@ class TestServer
         {
             if (is_resource($this->clients[$key]["sock"]))
             {
+                @socket_shutdown($this->clients[$key]["sock"]);
                 socket_close($this->clients[$key]["sock"]);
                 $this->clients[$key]["sock"] = $client_sock;
             }
@@ -385,11 +418,13 @@ class TestServer
             }
         }
 
+        $this->instances[$key]->close = $data->close == 1;
+
         $this->instances[$key]->send($data->code);
         if (self::$debug)
         {
-            self::log_debug("TestServer->interpret_input() --- Client '$key' test data sending");
-            self::log_debug($data->code, false);
+            self::log_debug("TestServer->interpret_input() --- Client '$key' test data sent");
+            if (self::$debug_stream_data) self::log_debug($data->code, false);
         }
     }
 

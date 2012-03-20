@@ -31,6 +31,7 @@ class TestInstance
     public $is_data_ready = false;
     public $response = "";
     public $code = "";
+    public $close = false;
 
     public function __construct($session_id=0)
     {
@@ -76,6 +77,24 @@ class TestInstance
         {
             if (TestServer::$debug)
                     TestServer::log_debug("TestInstance->start() --- Test instance started");
+
+            if (!stream_set_blocking($this->pipes[1], 0))
+            {
+                if (TestServer::$debug)
+                {
+                    TestServer::log_debug("TestInstance->read() --- Error: (stream_set_blocking) #1");
+                    break;
+                }
+            }
+            if (!stream_set_blocking($this->pipes[2], 0))
+            {
+                if (TestServer::$debug)
+                {
+                    TestServer::log_debug("TestInstance->read() --- Error: (stream_set_blocking) #2");
+                    break;
+                }
+            }
+
             return true;
         }
         else
@@ -119,50 +138,31 @@ class TestInstance
     {
         $this->last_action_time = time();
         $this->code_execution_halted = false;
-        
-        if (!stream_set_blocking($this->pipes[1], 0))
-        {
-            if (TestServer::$debug)
-            {
-                TestServer::log_debug("TestInstance->read() --- Error: (stream_set_blocking) #1");
-                break;
-            }
-        }
-        if (!stream_set_blocking($this->pipes[2], 0))
-        {
-            if (TestServer::$debug)
-            {
-                TestServer::log_debug("TestInstance->read() --- Error: (stream_set_blocking) #2");
-                break;
-            }
-        }
-        
+
         $result = "";
         $error = "";
-        while ($append = fread($this->pipes[1], 4096))
+        while ($append = fread($this->pipes[1], 32496))
         {
             $result.=$append;
         }
-        if (strpos($result, '"CODE EXECUTION FINISHED"') !== false || strpos($result, "Error:") !== false)
+        if (strpos($result, '"CODE EXECUTION FINISHED"') !== false)
         {
             $this->is_data_ready = true;
         }
-        else
+
+        while ($append = fread($this->pipes[2], 32496))
         {
-            while ($append = fread($this->pipes[2], 4096))
-            {
-                $error.=$append;
-            }
-            if (strpos($error, "Error:") !== false)
-            {
-                $result = $error;
-                $this->code_execution_halted = true;
-                $this->is_data_ready = true;
-            }
+            $error.=$append;
         }
-        
+        if (strpos($error, 'Execution halted') !== false)
+        {
+            $result .= $error;
+            $this->code_execution_halted = true;
+            $this->is_data_ready = true;
+        }
+
         $this->response.=$result;
-        if($this->is_data_ready) 
+        if ($this->is_data_ready)
         {
             return $this->response;
         }
