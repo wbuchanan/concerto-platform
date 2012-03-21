@@ -96,6 +96,13 @@ class User extends OModule
         unset($_SESSION['ptap_logged_login']);
         unset($_SESSION['ptap_logged_md5_password']);
     }
+    
+    public function get_last_login()
+    {
+        $datetime = explode(" ",$this->last_login);
+        if($datetime[0]=="0000-00-00") $datetime[0] = "&lt;".Language::string (73)."&gt;";
+        return $datetime[0];
+    }
 
     public function get_full_name()
     {
@@ -317,10 +324,10 @@ class User extends OModule
         ));
         array_push($cols, array(
             "name" => Language::string(175),
-            "property" => "last_login",
+            "property" => "get_last_login",
             "searchable" => true,
             "sortable" => true,
-            "type" => "date",
+            "type" => "string",
             "groupable" => false
         ));
         array_push($cols, array(

@@ -66,6 +66,10 @@ foreach ($cols as $col)
     $columns_def.="{";
     if (array_key_exists("width", $col))
             $columns_def.=sprintf("width: %s,", $col["width"]);
+    if (array_key_exists("format", $col))
+            $columns_def.=sprintf("format: %s,", $col["format"]);
+    if (array_key_exists("template", $col))
+            $columns_def.=sprintf("'template': %s,", $col["template"]);
     $columns_def.=sprintf("title: '%s',", $col["name"]);
     $columns_def.=sprintf("field: '%s',", $col["property"]);
     $columns_def.=sprintf("filterable: %s,", $col["searchable"] ? "true" : "false");
@@ -93,8 +97,8 @@ $columns_def.="]";
             },
             //toolbar: kendo.template($("#script<?= $class_name ?>ToolbarTemplate").html()),
             toolbar: [
-                { name: "add", template: '<button style="height:25px;" class="btnAdd" onclick="<?= $class_name ?>.uiAdd()"><?= Language::string(205) ?></button>'},
-                { name: "import", template: '<button style="height:25px;" class="btnImport" onclick="<?= $class_name ?>.uiImport()"><?= Language::string(266) ?></button>' }
+                { name: "add", template: '<button class="btnAdd" onclick="<?= $class_name ?>.uiAdd()"><?= Language::string(205) ?></button>'},
+                { name: "import", template: '<button class="btnImport" onclick="<?= $class_name ?>.uiImport()"><?= Language::string(266) ?></button>' }
             ],
             dataSource: {
                 transport:{
@@ -113,7 +117,7 @@ $columns_def.="]";
             //scrollable: {
             //    virtual: true
             //},
-            height:500,
+            //height:500,
             filterable:true,
             sortable:true,
             pageable:true,

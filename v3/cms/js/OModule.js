@@ -22,7 +22,7 @@ function OModule() {};
 OModule.inheritance=function(obj)
 {
     obj.currentID=0;
-    obj.listLength=50;
+    obj.listLength=25;
     obj.reloadOnModification=false;
     obj.reloadHash="";
     obj.currentPanel = "list";
