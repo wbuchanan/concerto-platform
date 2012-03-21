@@ -1751,7 +1751,7 @@ Note: You can add new languages by inserting "<new_language>string translated in
         <string id="346" js="1">
             <en>after or equal</en>
             <pl>po lub rowne</pl>
-            <cn>迟于（包括）</cn>
+            <cn>迟于（包括</cn>
         </string>
         <string id="347" js="1">
             <en>after</en>
@@ -1761,7 +1761,7 @@ Note: You can add new languages by inserting "<new_language>string translated in
         <string id="348" js="1">
             <en>before or equal</en>
             <pl>przed lub rowne</pl>
-            <cn>早于（包括）/cn>
+            <cn>早于（包括</cn>
         </string>
         <string id="349" js="1">
             <en>before</en>

@@ -114,10 +114,7 @@ $columns_def.="]";
                 },
                 pageSize:<?= $class_name ?>.listLength
             },
-            //scrollable: {
-            //    virtual: true
-            //},
-            //height:500,
+            //scrollable: false,
             filterable:true,
             sortable:true,
             pageable:true,
