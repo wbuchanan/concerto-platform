@@ -1048,12 +1048,12 @@ Note: You can add new languages by inserting "<new_language>string translated in
             <pl>edytuj obiekt</pl>
             <cn>编辑对象</cn>
         </string>
-        <string id="204">
+        <string id="204" js="1">
             <en>delete object</en>
             <pl>usuń obiekt</pl>
             <cn>删除对象</cn>
         </string>
-        <string id="205">
+        <string id="205" js="1">
             <en>add new object</en>
             <pl>dodaj nowy obiekt</pl>
             <cn>添加对象</cn>

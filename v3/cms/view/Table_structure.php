@@ -40,6 +40,10 @@ if (!$logged_user->is_object_editable($obj)) die(Language::string(81));
         Methods.iniIconButton("#btnTableStructureImportTable", "arrowthickstop-1-s");
         Methods.iniIconButton("#btnTableStructureImportCSV", "arrowthickstop-1-s");
         Methods.iniIconButton("#btnTableStructureExportCSV", "arrowthickstop-1-n");
+        
+        //table structure
+        Table.uiIniStructureGrid();
+        Table.uiIniDataGrid();
     });
 </script>
 <table>
@@ -50,6 +54,15 @@ if (!$logged_user->is_object_editable($obj)) die(Language::string(81));
     </tr>
 </table>
 <br/>
+
+<!--grid magic starts here-->
+
+<div id="div<?=$class_name?>GridStructure" align="left"></div>
+<br/>
+<div id="div<?=$class_name?>GridDataContainer" align="left">
+</div>
+<br/>
+
 <table id="form<?= $class_name ?>Table">
     <caption class="ui-widget-header"><?= Language::string(128) ?></caption>
     <thead class="theadTable">

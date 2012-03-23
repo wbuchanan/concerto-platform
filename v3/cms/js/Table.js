@@ -15,7 +15,7 @@ GNU General Public License for more details.
 You should have received a copy of the GNU General Public License
 along with this program; if not, write to the Free Software
 Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA.
-*/
+ */
 
 function Table() { };
 OModule.inheritance(Table);
@@ -51,6 +51,282 @@ Table.getFullSaveObject=function(){
     if($("#form"+this.className+"SelectOwner").length==1) obj["Owner_id"]=$("#form"+this.className+"SelectOwner").val();
     
     return obj;
+}
+
+Table.dataGridSchema
+Table.uiRemoveColumn=function(obj){
+    var thisClass = this;
+    Methods.confirm(dictionary["s34"], dictionary["s35"], function(){
+        var grid = $("#div"+thisClass.className+"GridStructure").data('kendoGrid');
+        var index = obj.closest('tr')[0].sectionRowIndex;
+        var item = grid.dataItem(grid.tbody.find("tr:eq("+index+")"));
+        
+        var dataGrid = $("#div"+thisClass.className+"GridData").data('kendoGrid');
+        
+        dataGrid.columns.splice(index,1);
+        for(var i=0;i<dataGrid.dataSource.data().length;i++){
+            delete dataGrid.dataSource.data()[i][item.name];
+        }
+        delete Table.dataGridSchemaFields[item.name];
+        
+        grid.removeRow(grid.tbody.find("tr:eq("+index+")"));
+        Table.uiRefreshDataGrid();
+    });
+}
+Table.addStructureRow=function(){
+    $("#div"+this.className+"GridStructure").data('kendoGrid').addRow();
+}
+
+
+Table.getDataGridColumns=function(){
+    var grid = $("#div"+this.className+"GridData").data('kendoGrid');
+    return grid.columns;
+}
+Table.getDataGridItems=function(){
+    var grid = $("#div"+this.className+"GridData").data('kendoGrid');
+    return grid.dataSource.data();
+}
+Table.getDataGridFields=function(){
+    return Table.dataGridSchemaFields;
+}
+
+Table.uiRefreshDataGrid=function(){
+    var columns = Table.getDataGridColumns();
+    var items = Table.getDataGridItems();
+    
+    Table.uiReloadDataGrid(items, columns);
+    
+}
+
+
+Table.dataGridSchemaFields=null;
+
+
+Table.uiReloadDataGrid=function(data,columns){
+    var thisClass = this;
+    
+    $("#div"+this.className+"GridDataContainer").html("<div id='div"+this.className+"GridData'></div>");
+        
+    var dataSource = new kendo.data.DataSource({
+        data:data,
+        schema:{
+            model:{
+                fields:Table.dataGridSchemaFields
+            }
+        },
+        pageSize:25
+    });
+    
+    $("#div"+thisClass.className+"GridData").kendoGrid({
+        dataBound:function(e){
+            Methods.iniTooltips();  
+        },
+        dataSource: dataSource,
+        columns: columns,
+        toolbar:[
+        {
+            name: "create", 
+            template: '<button class="btnAdd" onclick="Table.addStructureRow()">'+dictionary["s37"]+'</button>'
+        },
+        {
+            name: "save", 
+            template: '<button class="btnSave" rel="save">'+dictionary["s95"]+'</button>'
+        },
+        {
+            name: "cancel", 
+            template: '<button class="btnCancel" rel="cancel">'+dictionary["s23"]+'</button>'
+        }
+        ],
+        editable: {
+            mode:"incell",
+            confirmation:false,
+            update:true
+        }
+    });
+    Methods.iniIconButton(".btnAdd", "plus");
+    Methods.iniIconButton(".btnSave", "disk");
+    Methods.iniIconButton(".btnCancel", "cancel");
+}
+
+Table.uiIniDataGrid=function(){
+    var thisClass = this;
+    
+    $("#div"+this.className+"GridDataContainer").html("<div id='div"+this.className+"GridData'></div>");
+    
+    $.post("query/Table_column_list.php?oid="+this.currentID,{},function(data){
+        var fields = {};
+        var columns = [];
+        for(var i=0;i<data.length;i++)
+        {
+            var title = data[i].name;
+            switch(parseInt(data[i].type)){
+                case 1:
+                    title+=" ("+dictionary["s16"]+")";
+                    break;
+                case 2:
+                    title+=" ("+dictionary["s17"]+")";
+                    break;
+                case 3:
+                    title+=" ("+dictionary["s18"]+")";
+                    break;
+            }
+            fields[data[i].name] = {}
+            var col = {
+                title:title,
+                field:data[i].name
+            };
+            switch(data[i].type){
+                case 1:{
+                    fields[data[i].name]["type"] = "string";
+                    fields[data[i].name]["defaultValue"] = "";
+                    break;
+                }
+                case 2:{
+                    fields[data[i].name]["type"]="number";
+                    fields[data[i].name]["defaultValue"] = "0";
+                    break;
+                }
+                case 3:{
+                    fields[data[i].name]["type"]="string";
+                    fields[data[i].name]["defaultValue"] = "";
+                    break;
+                }
+            }
+            columns.push(col);
+        }
+        
+        var dataSource = new kendo.data.DataSource({
+            transport:{
+                read: {
+                    url:"query/Table_data_list.php?oid="+thisClass.currentID,
+                    dataType:"json"
+                }
+            },
+            schema:{
+                model:{
+                    fields:fields
+                }
+            },
+            pageSize:25
+        });
+        
+        Table.dataGridSchemaFields = fields;
+    
+        $("#div"+thisClass.className+"GridData").kendoGrid({
+            dataBound:function(e){
+                Methods.iniTooltips();  
+            },
+            dataSource: dataSource,
+            columns: columns,
+            toolbar:[
+            {
+                name: "create", 
+                template: '<button class="btnAdd" onclick="Table.addStructureRow()">'+dictionary["s37"]+'</button>'
+            },
+            {
+                name: "save", 
+                template: '<button class="btnSave" rel="save">'+dictionary["s95"]+'</button>'
+            },
+            {
+                name: "cancel", 
+                template: '<button class="btnCancel" rel="cancel">'+dictionary["s23"]+'</button>'
+            }
+            ],
+            editable: {
+                mode:"incell",
+                confirmation:false,
+                update:true
+            }
+        });
+        Methods.iniIconButton(".btnAdd", "plus");
+        Methods.iniIconButton(".btnSave", "disk");
+        Methods.iniIconButton(".btnCancel", "cancel");
+        
+    },"json");
+}
+Table.uiIniStructureGrid=function(){
+    var thisClass = this;
+    var dataSource = new kendo.data.DataSource({
+        transport:{
+            read: {
+                url:"query/Table_column_list.php?oid="+thisClass.currentID,
+                dataType:"json"
+            }
+        },
+        schema:{
+            model:{
+                id:"id",
+                fields:{
+                    id:{
+                        type:"number"
+                    },
+                    name:{
+                        type:"string"
+                    },
+                    type:{
+                        type:"number",
+                        defaultValue:1
+                    }
+                }
+            }
+        },
+        pageSize:10,
+        batch:true
+    });
+    
+    $("#div"+this.className+"GridStructure").kendoGrid({
+        dataBound:function(e){
+            Methods.iniTooltips();  
+        },
+        remove:function(e){
+            
+        },
+        dataSource: dataSource,
+        columns: [{
+            title:"name",
+            field:"name"
+        },{
+            title:"type",
+            field:"type",
+            template: "# if(type==1){# "+dictionary["s16"]+" #} else if(type==2){# "+dictionary["s17"]+" #} else if(type==3){# "+dictionary["s18"]+" #}#",
+            editor: function(container, options) {
+                $('<input data-text-field="text" data-value-field="value" data-bind="value:' + options.field + '"/>').appendTo(container).kendoDropDownList({
+                    dataSource: {
+                        data: [{
+                            text:dictionary["s16"], 
+                            value:1
+                        },{
+                            text:dictionary["s17"], 
+                            value:2
+                        },{
+                            text:dictionary["s18"], 
+                            value:3
+                        }]
+                    },
+                    dataValueField: "value",
+                    dataTextField: "text",
+                    autoBind: true
+                });
+            }
+        },{
+            title:' ',
+            field:'action',
+            width:30,
+            template:'<span style="display:inline-block;" class="spanIcon tooltip ui-icon ui-icon-trash" onclick="'+thisClass.className+'.uiRemoveColumn($(this))" title="'+dictionary["s204"]+'"></span>'
+        }],
+        toolbar:[
+        {
+            name: "create", 
+            template: '<button class="btnAdd" onclick="Table.uiAddColumn()">'+dictionary["s37"]+'</button>'
+        }
+        ],
+        editable: {
+            confirmation:false
+        }
+    });
+    Methods.iniIconButton(".btnAdd", "plus");
+    Methods.iniIconButton(".btnSave", "disk");
+    Methods.iniIconButton(".btnCancel", "cancel");
 }
 
 Table.uiAddRow=function(){
@@ -448,7 +724,7 @@ Table.uiImportCSV=function(){
 }
 
 Table.uiAddColumn=function(){
-    var id = "#form"+Table.className+"Table";
+    var thisClass = this;
     
     var name = $("#form"+Table.className+"InputColumnName");
     var type = $("#form"+Table.className+"SelectColumnType");
@@ -492,36 +768,40 @@ Table.uiAddColumn=function(){
                         break;
                     }
                 }
-                $(id+" .theadTable tr:first th:last").before('<th class="ui-widget-header thSortable noWrap" colname="'+name.val()+'" coloid="0" coltype="'+type.val()+'"><table class="fullWidth"><tr><td>'+name.val()+' ( '+typeName+' )</td><td><span class="spanIcon tooltip ui-icon ui-icon-pencil" onclick="Table.uiEditColumn($(this).parent().parent().parent().parent().parent())" title="'+dictionary["s19"]+'"></span></td><td><span class="spanIcon tooltip ui-icon ui-icon-trash" onclick="Table.uiRemoveColumn($(this).parent().parent().parent().parent().parent())" title="'+dictionary["s20"]+'"></span></td></tr></table></th>');
                 
-                var colsHTML="<td class='noWrap ui-widget-content'>";
-                switch(type.val()){
-                    case "1":{
-                        colsHTML+='<div class="horizontalMargin"><input type="text" value="" class="fullWidth ui-widget-content ui-corner-all" /></div>';
-                        break;
-                    }
-                    case "2":{
-                        colsHTML+='<div class="horizontalMargin"><input type="text" value="" class="fullWidth ui-widget-content ui-corner-all" /></div>';
-                        break;
-                    }
-                    case "3":{
-                        colsHTML+='<div class="horizontalMargin" align="center"><span class="spanIcon tooltipTableStructure ui-icon ui-icon-document-b" onclick="Table.uiChangeHTML($(this).next())" title="edit HTML"></span><textarea class="notVisible"></textarea></div>';
-                        break;
-                    }
-                }
-                colsHTML+="</td>";
+                var structGrid = $("#div"+thisClass.className+"GridStructure").data('kendoGrid');
+                structGrid.dataSource.add({
+                    name:name.val(),
+                    type:type.val()
+                })
                 
-                $(id+" .tbodyTable tr").each(function(){
-                    $(this).children("td:last").before(colsHTML);
+                //dataGrid mod start
+                var dataGrid = $("#div"+thisClass.className+"GridData").data('kendoGrid');
+        
+                dataGrid.columns.push({
+                    title:name.val()+" ("+typeName+")",
+                    field:name.val()
                 });
+                Table.dataGridSchemaFields[name.val()] = {
+                    type:type.val(),
+                    defaultValue:(type.val()==2?0:"")
+                }
+                var data = [];
+                for(var i=0;i<dataGrid.dataSource.data().length;i++){
+                    var row = dataGrid.dataSource.data()[i];
+                    row[name.val()]="";
+                }
+                dataGrid.dataSource.read(data);
+        
+                Table.uiRefreshDataGrid();
+                
                 $(this).dialog("close");
                 
                 name.val("");
                 
-                Methods.iniSortableTableHeaders();
-                Table.checkAddRowBtnEnabled();
                 Methods.iniTooltips();
                 Table.uiIniHTMLTooltips();
+            //dataGrid mod end
             }
         },
         {
@@ -550,18 +830,6 @@ Table.uiRemoveRow=function(row){
         row.remove();  
         Table.checkTableEmpty();
     });
-}
-
-Table.uiRemoveColumn=function(col){
-    Methods.confirm(dictionary["s34"], dictionary["s35"], function(){
-        var id = "#form"+Table.className+"Table";
-        var index = col.index();
-        $(id+" .theadTable th:eq("+index+")").remove();  
-        $(id+" .tbodyTable tr").each(function(){
-            $(this).children("td:eq("+index+")").remove();
-        });
-        Table.checkAddRowBtnEnabled();
-    }); 
 }
 
 Table.uiChangeHTML=function(obj){

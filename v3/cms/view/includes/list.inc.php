@@ -31,25 +31,7 @@ if ($logged_user == null)
     die(Language::string(278));
 }
 $writeable = $logged_user->is_module_writeable($class_name);
-?>
-<script type="text/x-kendo-template" id="script<?= $class_name ?>ToolbarTemplate">
-    <div class="toolbar" style="margin:0px;">
-        <?php
-        if ($writeable)
-        {
-            ?>
-            <span style="display:inline-block;" class="spanIcon tooltip ui-icon ui-icon-plus" onclick="<?= $class_name ?>.uiAdd()" title="<?= Language::string(205) ?>"></span>
-            <?php
-        }
-        if ($class_name::$exportable)
-        {
-            ?><span style="display:inline-block;" class="spanIcon tooltip ui-icon ui-icon-arrowthickstop-1-s" onclick="<?= $class_name ?>.uiImport()" title="<?= Language::string(266) ?>"></span>
-            <?php
-        }
-        ?>
-    </div>
-</script>
-<?php
+
 $cols = $class_name::get_list_columns();
 $fields_schema = "";
 foreach ($cols as $col)
