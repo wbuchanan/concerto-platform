@@ -1766,22 +1766,22 @@ Note: You can add new languages by inserting "<new_language>string translated in
         <string id="350">
             <en>table structure definition</en>
             <pl>definicja struktury tabeli</pl>
-            <cn></cn>
+            <cn>表格结构定义</cn>
         </string>
         <string id="351">
             <en>table data</en>
             <pl>dane tabeli</pl>
-            <cn></cn>
+            <cn>表格数据</cn>
         </string>
         <string id="352">
             <en>table structure not defined</en>
             <pl>struktura tabeli jest niezdefiniowana</pl>
-            <cn></cn>
+            <cn>未定义表格结构</cn>
         </string>
         <string id="353" js="1">
             <en>Cannot save table with undefined structure.</en>
             <pl>Nie można zapisać tabeli, gdyż posiada ona niezdefiniowaną strukturę.</pl>
-            <cn></cn>
+            <cn>未定义表格结构，无法保存</cn>
         </string>
     </strings>
 </root> 
