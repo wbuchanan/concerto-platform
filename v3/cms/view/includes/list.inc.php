@@ -109,5 +109,5 @@ $columns_def.="]";
     });
 </script>
 
-<div id="div<?= $class_name ?>Grid" style="min-width:800px;" align="left" class="margin">
+<div id="div<?= $class_name ?>Grid" align="left" class="margin grid">
 </div>

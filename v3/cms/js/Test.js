@@ -562,7 +562,7 @@ Test.uiSetVarNameChanged=function(obj){
         if(!Test.variableValidation(oldValue)){
             var newValue = Test.convertVariable(oldValue);
             obj.val(newValue);
-            Methods.alert(dictionary["s1"].format(oldValue,newValue), "info", "variable validation");
+            Methods.alert(dictionary["s1"].format(oldValue,newValue), "info", dictionary["s2"]);
         }
     }
     

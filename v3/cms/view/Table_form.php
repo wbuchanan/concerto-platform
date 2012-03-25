@@ -72,10 +72,6 @@ if ($oid != 0)
             Methods.iniIconButton(".btnSave", "disk");
             Methods.iniIconButton(".btnDelete", "trash");
             Methods.iniIconButton(".btnCancel", "cancel");
-            Methods.iniSortableTableHeaders();
-                                                                                                        
-            Table.checkAddRowBtnEnabled();
-            Table.checkTableEmpty();
             Methods.iniTooltips();
         });
     </script>

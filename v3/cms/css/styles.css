@@ -117,3 +117,7 @@ ul {
 .table {
     display:table;
 }
+
+.grid {
+    min-width:950px;
+}

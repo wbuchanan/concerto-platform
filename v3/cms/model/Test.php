@@ -303,7 +303,7 @@ class Test extends OModule
         array_push($cols, array(
             "name" => Language::string(335),
             "property" => "get_session_count",
-            "searchable" => false,
+            "searchable" => true,
             "sortable" => true,
             "type" => "number",
             "groupable" => false,

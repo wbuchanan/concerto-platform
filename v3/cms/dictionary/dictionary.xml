@@ -668,17 +668,12 @@ Note: You can add new languages by inserting "<new_language>string translated in
             <pl>eksport tabeli do pliku CSV</pl>
             <cn>导出表格到CSV文件</cn>
         </string>
-        <string id="128">
-            <en>table structure and data</en>
-            <pl>struktura tabeli i dane</pl>
-            <cn>表格结构与数据</cn>
-        </string>
         <string id="129">
             <en>add column</en>
             <pl>dodaj kolumnę</pl>
             <cn>添加列</cn>
         </string>
-        <string id="130">
+        <string id="130" js="1">
             <en>edit HTML</en>
             <pl>edycja HTML</pl>
             <cn>编辑HTML</cn>
@@ -1700,12 +1695,12 @@ Note: You can add new languages by inserting "<new_language>string translated in
         </string>
         <string id="336" js="1">
             <en>At least one of the fields that should be unique already exists in the system.</en>
-            <pl>Przynajmniej jedno pole, ktore powinno byc unikalne, juz istnieje w systemie.</pl>
+            <pl>Przynajmniej jedno pole, które powinno być unikalne, już istnieje w systemie.</pl>
             <cn>系统内存在相同区域。</cn>
         </string>
         <string id="337">
             <en>list of available objects</en>
-            <pl>lista dostepnych obiektow</pl>
+            <pl>lista dostępnych obiektów</pl>
             <cn>可用对象列表</cn>
         </string>
         <string id="338" js="1">
@@ -1715,12 +1710,12 @@ Note: You can add new languages by inserting "<new_language>string translated in
         </string>
         <string id="339" js="1">
             <en>Drag a column header and drop it here to group by that column</en>
-            <pl>Przeciagnij naglowek kolumny i upusc go tutaj aby grupowac wedlug danej kolumny</pl>
+            <pl>Przeciągnij nagłówek kolumny i upuść go tutaj aby grupować według danej kolumny</pl>
             <cn>拖动列标题至此以按此列分类</cn>
         </string>
         <string id="340" js="1">
             <en>Show rows with value that:</en>
-            <pl>Pokaz rzedy z wartoscia ktora:</pl>
+            <pl>Pokaż rzędy z wartością która:</pl>
             <cn>显示包含以下数值的行：</cn>
         </string>
         <string id="341" js="1">
@@ -1730,12 +1725,12 @@ Note: You can add new languages by inserting "<new_language>string translated in
         </string>
         <string id="342" js="1">
             <en>Clear</en>
-            <pl>Wyczysc</pl>
+            <pl>Wyczyść</pl>
             <cn>清空</cn>
         </string>
         <string id="343" js="1">
             <en>starts with</en>
-            <pl>zaczyna sie od</pl>
+            <pl>zaczyna się od</pl>
             <cn>起始于</cn>
         </string>
         <string id="344" js="1">
@@ -1745,12 +1740,12 @@ Note: You can add new languages by inserting "<new_language>string translated in
         </string>
         <string id="345" js="1">
             <en>ends with</en>
-            <pl>konczy sie na</pl>
+            <pl>kończy się na</pl>
             <cn>结束于</cn>
         </string>
         <string id="346" js="1">
             <en>after or equal</en>
-            <pl>po lub rowne</pl>
+            <pl>po lub równe</pl>
             <cn>迟于（包括</cn>
         </string>
         <string id="347" js="1">
@@ -1760,13 +1755,33 @@ Note: You can add new languages by inserting "<new_language>string translated in
         </string>
         <string id="348" js="1">
             <en>before or equal</en>
-            <pl>przed lub rowne</pl>
+            <pl>przed lub równe</pl>
             <cn>早于（包括</cn>
         </string>
         <string id="349" js="1">
             <en>before</en>
             <pl>przed</pl>
             <cn>早于</cn>
+        </string>
+        <string id="350">
+            <en>table structure definition</en>
+            <pl>definicja struktury tabeli</pl>
+            <cn></cn>
+        </string>
+        <string id="351">
+            <en>table data</en>
+            <pl>dane tabeli</pl>
+            <cn></cn>
+        </string>
+        <string id="352">
+            <en>table structure not defined</en>
+            <pl>struktura tabeli jest niezdefiniowana</pl>
+            <cn></cn>
+        </string>
+        <string id="353" js="1">
+            <en>Cannot save table with undefined structure.</en>
+            <pl>Nie można zapisać tabeli, gdyż posiada ona niezdefiniowaną strukturę.</pl>
+            <cn></cn>
         </string>
     </strings>
 </root> 
