@@ -18,15 +18,13 @@
   Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA.
  */
 
-if (!isset($ini))
-{
+if (!isset($ini)) {
     require_once'../../Ini.php';
     $ini = new Ini();
     $logged_user = User::get_logged_user();
 }
 
-if ($logged_user == null)
-{
+if ($logged_user == null) {
     echo "<script>location.reload();</script>";
     die(Language::string(278));
 }
@@ -34,24 +32,24 @@ $writeable = $logged_user->is_module_writeable($class_name);
 
 $cols = $class_name::get_list_columns();
 $fields_schema = "";
-foreach ($cols as $col)
-{
-    if ($fields_schema != "") $fields_schema.=",";
-    else $fields_schema.="{";
+foreach ($cols as $col) {
+    if ($fields_schema != "")
+        $fields_schema.=",";
+    else
+        $fields_schema.="{";
     $fields_schema.=sprintf("'%s': { type: '%s'}", $col["property"], $col["type"]);
 }
 $fields_schema.="}";
 
 $columns_def = "[";
-foreach ($cols as $col)
-{
+foreach ($cols as $col) {
     $columns_def.="{";
     if (array_key_exists("width", $col))
-            $columns_def.=sprintf("width: %s,", $col["width"]);
+        $columns_def.=sprintf("width: %s,", $col["width"]);
     if (array_key_exists("format", $col))
-            $columns_def.=sprintf("format: %s,", $col["format"]);
+        $columns_def.=sprintf("format: %s,", $col["format"]);
     if (array_key_exists("template", $col))
-            $columns_def.=sprintf("'template': %s,", $col["template"]);
+        $columns_def.=sprintf("'template': %s,", $col["template"]);
     $columns_def.=sprintf("title: '%s',", $col["name"]);
     $columns_def.=sprintf("field: '%s',", $col["property"]);
     $columns_def.=sprintf("filterable: %s,", $col["searchable"] ? "true" : "false");
@@ -63,8 +61,7 @@ foreach ($cols as $col)
 
 $action_template = '#if(editable) {#<span style="display:inline-block;" class="spanIcon tooltip ui-icon ui-icon-pencil" onclick="' . $class_name . '.uiEdit(${ id })" title="' . Language::string(203) . '"></span>#}#';
 $action_template.='#if(editable) {#<span style="display:inline-block;" class="spanIcon tooltip ui-icon ui-icon-trash" onclick="' . $class_name . '.uiDelete(${ id })" title="' . Language::string(204) . '"></span>#}#';
-if ($class_name::$exportable)
-{
+if ($class_name::$exportable) {
     $action_template.='<span style="display:inline-block;" class="spanIcon tooltip ui-icon ui-icon-arrowthickstop-1-n" onclick="' . $class_name . '.uiExport(${ id })" title="' . Language::string(265) . '"></span>';
 }
 $columns_def.=sprintf("{ title:'', width:70, filterable: false, sortable: false, groupable: false, template: '%s'}", $action_template);
@@ -76,6 +73,18 @@ $columns_def.="]";
         $("#div<?= $class_name ?>Grid").kendoGrid({
             dataBound:function(e){
                 Methods.iniTooltips();
+                if(this.dataSource.group().length == 0) {
+                    setTimeout( function() {
+                        $(".k-grouping-header").html(dictionary["s339"]);
+                        $("select[name='logic']").each(function() {
+                            $(this).data("kendoDropDownList").dataSource.data([
+                                {text: dictionary["s227"], value: "and"},
+                                {text: dictionary["s228"], value: "or"}
+                            ]);
+                            $(this).data("kendoDropDownList").select(0);
+                        });
+                    });
+                }
             },
             //toolbar: kendo.template($("#script<?= $class_name ?>ToolbarTemplate").html()),
             toolbar: [
@@ -97,7 +106,30 @@ $columns_def.="]";
                 pageSize:<?= $class_name ?>.listLength
             },
             //scrollable: false,
-            filterable:true,
+            filterable:{
+                messages: {
+                    info: dictionary["s340"],
+                    filter: dictionary["s341"],
+                    clear: dictionary["s342"]
+                },
+                operators: {
+                    string: {
+                        eq: dictionary["s222"],
+                        neq: dictionary["s221"],
+                        startswith: dictionary["s343"],
+                        contains: dictionary["s344"],
+                        endswith: dictionary["s345"]
+                    },
+                    number: {
+                        eq: dictionary["s222"],
+                        neq: dictionary["s221"],
+                        gte: dictionary["s224"],
+                        gt: dictionary["s223"],
+                        lte: dictionary["s226"],
+                        lt: dictionary["s225"]
+                    }
+                }
+            },
             sortable:true,
             pageable:true,
             groupable:true,
