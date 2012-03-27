@@ -30,6 +30,7 @@ class TestServer
     private $instances;
     public static $host = "127.0.0.1";
     public static $port = 9676;
+    private $is_alive = false;
 
     public static function log_debug($message, $timestamp=true)
     {
@@ -38,7 +39,7 @@ class TestServer
         $d = new DateTime(date('Y-m-d H:i:s.' . $micro, $t));
         $datetime = $d->format("Y-m-d H:i:s.u");
 
-        $lfh = fopen(Ini::$path_temp . date('Y-m-d').".socket.log", "a");
+        $lfh = fopen(Ini::$path_temp . date('Y-m-d') . ".socket.log", "a");
         fwrite($lfh, ($timestamp ? $datetime . " --- " : "") . $message . "\r\n");
         fclose($lfh);
     }
@@ -51,8 +52,10 @@ class TestServer
         }
         @socket_shutdown($this->main_sock);
         socket_close($this->main_sock);
+        if(file_exists(Ini::$unix_sock)) unlink(Ini::$unix_sock);
         if (self::$debug)
                 self::log_debug("TestServer->stop() --- TestServer stopped");
+        $this->is_alive = false;
     }
 
     public static function send($data)
@@ -62,8 +65,10 @@ class TestServer
             self::log_debug("TestServer::send() --- Client sends data");
         }
         $socket = null;
-        if(Ini::$sock_type_used==1) $socket = socket_create(AF_INET, SOCK_STREAM, SOL_TCP);
-        if(Ini::$sock_type_used==0) $socket = socket_create(AF_UNIX, SOCK_STREAM, 0);
+        if (Ini::$sock_type_used == 1)
+                $socket = socket_create(AF_INET, SOCK_STREAM, SOL_TCP);
+        if (Ini::$sock_type_used == 0)
+                $socket = socket_create(AF_UNIX, SOCK_STREAM, 0);
         if (!$socket)
         {
             if (self::$debug)
@@ -73,8 +78,10 @@ class TestServer
             return false;
         }
         $result = null;
-        if(Ini::$sock_type_used==1) $result = socket_connect($socket, Ini::$sock_host, Ini::$sock_port);
-        if(Ini::$sock_type_used==0) $result = socket_connect($socket, Ini::$unix_sock);
+        if (Ini::$sock_type_used == 1)
+                $result = socket_connect($socket, Ini::$sock_host, Ini::$sock_port);
+        if (Ini::$sock_type_used == 0)
+                $result = socket_connect($socket, Ini::$unix_sock);
         if (!$result)
         {
             if (self::$debug)
@@ -118,8 +125,10 @@ class TestServer
             //self::log_debug("TestServer::is_running() --- Checking if server is running");
         }
         $socket = null;
-        if(Ini::$sock_type_used==1) $socket = socket_create(AF_INET, SOCK_STREAM, SOL_TCP);
-        if(Ini::$sock_type_used==0) $socket = socket_create(AF_UNIX, SOCK_STREAM, 0);
+        if (Ini::$sock_type_used == 1)
+                $socket = socket_create(AF_INET, SOCK_STREAM, SOL_TCP);
+        if (Ini::$sock_type_used == 0)
+                $socket = socket_create(AF_UNIX, SOCK_STREAM, 0);
         if (!$socket)
         {
             if (self::$debug)
@@ -128,10 +137,12 @@ class TestServer
             }
             return false;
         }
-        
+
         $result = null;
-        if(Ini::$sock_type_used==1) $result = @socket_connect($socket, Ini::$sock_host, Ini::$sock_port);
-        if(Ini::$sock_type_used==0) $result = @socket_connect($socket, Ini::$unix_sock);
+        if (Ini::$sock_type_used == 1)
+                $result = @socket_connect($socket, Ini::$sock_host, Ini::$sock_port);
+        if (Ini::$sock_type_used == 0)
+                $result = @socket_connect($socket, Ini::$unix_sock);
         @socket_shutdown($socket);
         socket_close($socket);
         if (!$result)
@@ -174,8 +185,10 @@ class TestServer
         $this->last_action_time = time();
         if (self::$debug)
                 self::log_debug("TestServer->start() --- TestServer started");
-        if(Ini::$sock_type_used==1) $this->main_sock = socket_create(AF_INET, SOCK_STREAM, SOL_TCP);
-        if(Ini::$sock_type_used==0) $this->main_sock = socket_create(AF_UNIX, SOCK_STREAM, 0);
+        if (Ini::$sock_type_used == 1)
+                $this->main_sock = socket_create(AF_INET, SOCK_STREAM, SOL_TCP);
+        if (Ini::$sock_type_used == 0)
+                $this->main_sock = socket_create(AF_UNIX, SOCK_STREAM, 0);
         if (!$this->main_sock)
         {
             if (self::$debug)
@@ -198,8 +211,10 @@ class TestServer
         }
 
         $bind = null;
-        if(Ini::$sock_type_used==1) $bind = socket_bind($this->main_sock, Ini::$sock_host, Ini::$sock_port);
-        if(Ini::$sock_type_used==0) $bind = socket_bind($this->main_sock, Ini::$unix_sock);
+        if (Ini::$sock_type_used == 1)
+                $bind = socket_bind($this->main_sock, Ini::$sock_host, Ini::$sock_port);
+        if (Ini::$sock_type_used == 0)
+                $bind = socket_bind($this->main_sock, Ini::$unix_sock);
         if (!$bind)
         {
             if (self::$debug)
@@ -235,6 +250,7 @@ class TestServer
             }
             break;
         }
+        $this->is_alive = true;
 
         do
         {
@@ -334,12 +350,19 @@ class TestServer
                             self::log_debug("TestServer->start() --- Exit command recieved");
                     break;
                 }
+                if (strpos($input, "close:") === 0)
+                {
+                    if (self::$debug)
+                            self::log_debug("TestServer->start() --- Close command recieved");
+                    $vars = explode(":", $input);
+                    $this->close_instance("sid" . $vars[1]);
+                }
                 $this->last_action_time = time();
                 $client = $this->get_client($client_sock, $input);
                 $this->interpret_input($client, $input);
             }
         }
-        while (true);
+        while ($this->is_alive);
 
         $this->stop();
     }

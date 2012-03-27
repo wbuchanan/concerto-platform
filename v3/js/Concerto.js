@@ -166,7 +166,7 @@ function Concerto(selector,sid,tid,queryPath,callbackGet,callbackSend){
                 name:$(this).attr("name"),
                 value:$(this).val(),
                 visibility:(hasVisibility?$(this).attr("returnvisibility"):2),
-                type:(hasType?0:$(this).attr("returntype"))
+                type:(hasType?$(this).attr("returntype"):0)
             };
             values.push($.toJSON(obj));
         });
@@ -178,7 +178,7 @@ function Concerto(selector,sid,tid,queryPath,callbackGet,callbackSend){
                 name:$(this).attr("name"),
                 value:$(this).val(),
                 visibility:(hasVisibility?$(this).attr("returnvisibility"):2),
-                type:(hasType?0:$(this).attr("returntype"))
+                type:(hasType?$(this).attr("returntype"):0)
             };
             values.push($.toJSON(obj));
         });
@@ -190,7 +190,7 @@ function Concerto(selector,sid,tid,queryPath,callbackGet,callbackSend){
                 name:$(this).attr("name"),
                 value:$(this).val(),
                 visibility:(hasVisibility?$(this).attr("returnvisibility"):2),
-                type:(hasType?0:$(this).attr("returntype"))
+                type:(hasType?$(this).attr("returntype"):0)
             };
             values.push($.toJSON(obj));
         });
@@ -202,7 +202,7 @@ function Concerto(selector,sid,tid,queryPath,callbackGet,callbackSend){
                 name:$(this).attr("name"),
                 value:$(this).val(),
                 visibility:(hasVisibility?$(this).attr("returnvisibility"):2),
-                type:(hasType?0:$(this).attr("returntype"))
+                type:(hasType?$(this).attr("returntype"):0)
             };
             values.push($.toJSON(obj));
         });
@@ -214,7 +214,7 @@ function Concerto(selector,sid,tid,queryPath,callbackGet,callbackSend){
                 name:$(this).attr("name"),
                 value:$(this).is(":checked")?1:0,
                 visibility:(hasVisibility?$(this).attr("returnvisibility"):2),
-                type:(hasType?0:$(this).attr("returntype"))
+                type:(hasType?$(this).attr("returntype"):0)
             };
             values.push($.toJSON(obj));
         });
@@ -230,7 +230,7 @@ function Concerto(selector,sid,tid,queryPath,callbackGet,callbackSend){
                 name:name,
                 value:(checked?$(this).val():"NA"),
                 visibility:(hasVisibility?$(this).attr("returnvisibility"):2),
-                type:(checked?$(hasType?0:$(this).attr("returntype")):3)
+                type:(checked?(hasType?$(this).attr("returntype"):0):3)
             };
             
             var found = false;

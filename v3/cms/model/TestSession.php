@@ -111,7 +111,12 @@ class TestSession extends OTable
 
         foreach ($values as $k => $v)
         {
-            if ($k == "CURRENT_SECTION_INDEX" && $v == 0) $end = true;
+            if ($k == "CURRENT_SECTION_INDEX" && $v == 0)
+            {
+                $end = true;
+                if (TestServer::is_running())
+                        TestServer::send("close:" . $this->id);
+            }
         }
 
         if (!$end)
@@ -129,7 +134,7 @@ class TestSession extends OTable
         );
     }
 
-    public function debug_syntax($ts_id,$close = false)
+    public function debug_syntax($ts_id, $close = false)
     {
         $ts = TestSection::from_mysql_id($ts_id);
         $result = $this->RCall($ts->get_RFunction(), false, $close);
@@ -145,14 +150,17 @@ class TestSession extends OTable
         $command_obj = json_encode(array(
             "session_id" => $this->id,
             "code" => $command,
-            "close" => $close?1:0
+            "close" => $close ? 1 : 0
                 ));
 
-        if(TestServer::$debug) TestServer::log_debug ("TestSession->RCall --- checking for server");
+        if (TestServer::$debug)
+                TestServer::log_debug("TestSession->RCall --- checking for server");
         if (!TestServer::is_running()) TestServer::start_process();
-        if(TestServer::$debug) TestServer::log_debug ("TestSession->RCall --- server found, trying to send");
+        if (TestServer::$debug)
+                TestServer::log_debug("TestSession->RCall --- server found, trying to send");
         $result = json_decode(TestServer::send($command_obj));
-        if(TestServer::$debug) TestServer::log_debug ("TestSession->RCall --- sent and recieved response");
+        if (TestServer::$debug)
+                TestServer::log_debug("TestSession->RCall --- sent and recieved response");
 
         return array("return" => $result->return, "output" => explode("\n", $result->output), "code" => $result->code);
     }
@@ -165,8 +173,8 @@ class TestSession extends OTable
 
     public function get_ini_RCode()
     {
-        $path = Ini::$path_temp.$this->get_Test()->Owner_id;
-        if(!is_dir($path)) mkdir($path,0777);
+        $path = Ini::$path_temp . $this->get_Test()->Owner_id;
+        if (!is_dir($path)) mkdir($path, 0777);
         $code = "
             ##sink(stdout(), type='message')
             options(encoding='UTF-8')
