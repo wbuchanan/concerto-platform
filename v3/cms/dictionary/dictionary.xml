@@ -1798,5 +1798,10 @@ Note: You can add new languages by inserting "<new_language>string translated in
             <pl>wybierz szablon HTML:</pl>
             <cn></cn>
         </string>
+        <string id="357">
+            <en>IF</en>
+            <pl>JESLI</pl>
+            <cn></cn>
+        </string>
     </strings>
 </root> 

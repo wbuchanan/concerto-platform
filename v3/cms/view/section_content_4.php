@@ -42,7 +42,7 @@ if (array_key_exists('oid', $_POST) && $_POST['oid'] != 0)
 }
 ?>
 
-IF<br/>
+<?=Language::string(357)?><br/>
 <input type="text" class="ui-widget-content ui-corner-all comboboxVars controlValue<?= $_POST['counter'] ?>" value="<?= htmlspecialchars($vals[0], ENT_QUOTES) ?>" />
 <select class="ui-widget-content ui-corner-all controlValue<?= $_POST['counter'] ?>">
     <option value="!=" <?= $vals[1] == "!=" ? "selected" : "" ?>><?= Language::string(221) ?></option>

@@ -160,51 +160,61 @@ function Concerto(selector,sid,tid,queryPath,callbackGet,callbackSend){
         var values = new Array();
         
         $(this.selector+" input:text").each(function(){
+            var hasVisibility = $(this).is("[returnvisibility]");
+            var hasType = $(this).is("[returntype]");
             var obj = {
                 name:$(this).attr("name"),
                 value:$(this).val(),
-                visibility:$(this).attr("returnvisibility"),
-                type:$(this).attr("returntype")
+                visibility:(hasVisibility?$(this).attr("returnvisibility"):2),
+                type:(hasType?0:$(this).attr("returntype"))
             };
             values.push($.toJSON(obj));
         });
         
         $(this.selector+" input:password").each(function(){
+            var hasVisibility = $(this).is("[returnvisibility]");
+            var hasType = $(this).is("[returntype]");
             var obj = {
                 name:$(this).attr("name"),
                 value:$(this).val(),
-                visibility:$(this).attr("returnvisibility"),
-                type:$(this).attr("returntype")
+                visibility:(hasVisibility?$(this).attr("returnvisibility"):2),
+                type:(hasType?0:$(this).attr("returntype"))
             };
             values.push($.toJSON(obj));
         });
         
         $(this.selector+" textarea").each(function(){
+            var hasVisibility = $(this).is("[returnvisibility]");
+            var hasType = $(this).is("[returntype]");
             var obj = {
                 name:$(this).attr("name"),
                 value:$(this).val(),
-                visibility:$(this).attr("returnvisibility"),
-                type:$(this).attr("returntype")
+                visibility:(hasVisibility?$(this).attr("returnvisibility"):2),
+                type:(hasType?0:$(this).attr("returntype"))
             };
             values.push($.toJSON(obj));
         });
         
         $(this.selector+" select").each(function(){
+            var hasVisibility = $(this).is("[returnvisibility]");
+            var hasType = $(this).is("[returntype]");
             var obj = {
                 name:$(this).attr("name"),
                 value:$(this).val(),
-                visibility:$(this).attr("returnvisibility"),
-                type:$(this).attr("returntype")
+                visibility:(hasVisibility?$(this).attr("returnvisibility"):2),
+                type:(hasType?0:$(this).attr("returntype"))
             };
             values.push($.toJSON(obj));
         });
         
         $(this.selector+" input:checkbox").each(function(){
+            var hasVisibility = $(this).is("[returnvisibility]");
+            var hasType = $(this).is("[returntype]");
             var obj = {
                 name:$(this).attr("name"),
                 value:$(this).is(":checked")?1:0,
-                visibility:$(this).attr("returnvisibility"),
-                type:$(this).attr("returntype")
+                visibility:(hasVisibility?$(this).attr("returnvisibility"):2),
+                type:(hasType?0:$(this).attr("returntype"))
             };
             values.push($.toJSON(obj));
         });
@@ -213,12 +223,14 @@ function Concerto(selector,sid,tid,queryPath,callbackGet,callbackSend){
         $(this.selector+" input:radio").each(function(){
             var checked = $(this).is(":checked");
             var name = $(this).attr("name");
+            var hasVisibility = $(this).is("[returnvisibility]");
+            var hasType = $(this).is("[returntype]");
             
             var obj = {
                 name:name,
                 value:(checked?$(this).val():"NA"),
-                visibility:$(this).attr("returnvisibility"),
-                type:(checked?$(this).attr("returntype"):3)
+                visibility:(hasVisibility?$(this).attr("returnvisibility"):2),
+                type:(checked?$(hasType?0:$(this).attr("returntype")):3)
             };
             
             var found = false;
