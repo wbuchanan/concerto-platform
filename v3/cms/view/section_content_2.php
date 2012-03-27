@@ -113,7 +113,7 @@ if ($vals[0] != 0 && $template != null) {
             <?php
         }
         ?>
-<b>choose the HTML template:</b>
+    <b><?=Language::string(356)?></b>
 <table>
     <tr>
         <td>

@@ -28,8 +28,9 @@ class DS_TableColumnType extends ODataSet
         switch ($this->id)
         {
             case 1: return Language::string(16);
-            case 2: return Language::string(17);
-            case 3: return Language::string(18);
+            case 2: return Language::string(354);
+            case 3: return Language::string(355);
+            case 4: return Language::string(18);
         }
     }
 
@@ -47,17 +48,68 @@ class DS_TableColumnType extends ODataSet
             `value` text NOT NULL,
             `position` int(11) NOT NULL,
             PRIMARY KEY  (`id`)
-            ) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=4 ;
+            ) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=5 ;
             ";
         if (!mysql_query($sql)) return false;
 
         $sql = "
             INSERT INTO `DS_TableColumnType` (`id`, `name`, `value`, `position`) VALUES
             (1, 'string', 'string', 1),
-            (2, 'numeric', 'numeric', 2),
-            (3, 'HTML', 'HTML', 3);
+            (2, 'integer', 'integer', 2),
+            (3, 'float', 'float', 3),
+            (4, 'HTML', 'HTML', 4);
             ";
         return mysql_query($sql);
+    }
+
+    public static function update_db($previous_version)
+    {
+        if (Ini::does_patch_apply("3.3.0", $previous_version))
+        {
+            $id_4_found = false;
+            $sql = sprintf("SELECT * FROM `%s`", self::get_mysql_table());
+            $z = mysql_query($sql);
+            while ($r = mysql_fetch_array($z))
+            {
+                switch ($r['id'])
+                {
+                    case 2:
+                        {
+                            if ($r['name'] != "integer")
+                            {
+                                $sql2 = sprintf("UPDATE `%s` SET `name`='%s', value='%s' WHERE `id`='%d'", self::get_mysql_table(), "integer", "integer", 2);
+                                if(!mysql_query($sql2)) return false;
+                            }
+                            break;
+                        }
+                    case 3:
+                        {
+                            if ($r['name'] != "float")
+                            {
+                                $sql2 = sprintf("UPDATE `%s` SET `name`='%s', value='%s' WHERE `id`='%d'", self::get_mysql_table(), "float", "float", 3);
+                                if(!mysql_query($sql2)) return false;
+                            }
+                            break;
+                        }
+                    case 4:
+                        {
+                            $id_4_found = true;
+                            if ($r['name'] != "HTML")
+                            {
+                                $sql2 = sprintf("UPDATE `%s` SET `name`='%s', value='%s' WHERE `id`='%d'", self::get_mysql_table(), "HTML", "HTML", 4);
+                                if(!mysql_query($sql2)) return false;
+                            }
+                            break;
+                        }
+                }
+            }
+            if (!$id_4_found)
+            {
+                $sql2 = sprintf("INSERT INTO `%s` SET `id`=4, `name`='%s', value='%s', `position`=4", self::get_mysql_table(), "HTML", "HTML");
+                if(!mysql_query($sql2)) return false;
+            }
+        }
+        return true;
     }
 
 }

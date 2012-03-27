@@ -171,9 +171,12 @@ Table.uiIniDataGrid=function(){
                     title+=" ("+dictionary["s16"]+")";
                     break;
                 case 2:
-                    title+=" ("+dictionary["s17"]+")";
+                    title+=" ("+dictionary["s354"]+")";
                     break;
                 case 3:
+                    title+=" ("+dictionary["s355"]+")";
+                    break;
+                case 4:
                     title+=" ("+dictionary["s18"]+")";
                     break;
             }
@@ -191,14 +194,15 @@ Table.uiIniDataGrid=function(){
                     fields[data[i].name]["defaultValue"] = "";
                     break;
                 }
-                case 2:{
+                case 2:
+                case 3:{
                     col["editor"] = Table.numberEditor;
                     fields[data[i].name]["type"]="number";
                     fields[data[i].name]["editable"] = true;
                     fields[data[i].name]["defaultValue"] = "0";
                     break;
                 }
-                case 3:{
+                case 4:{
                     col["editor"] = Table.htmlEditor;
                     col["template"] = '<div class="horizontalMargin" align="center">'+
                     '<span class="spanIcon tooltipTableStructure ui-icon ui-icon-document-b" onclick="Table.uiChangeHTML($(this).next(),\''+data[i].name+'\')" title="'+dictionary["s130"]+'"></span>'+
@@ -346,7 +350,7 @@ Table.uiIniStructureGrid=function(){
         },{
             title:"type",
             field:"type",
-            template: "# if(type==1){# "+dictionary["s16"]+" #} else if(type==2){# "+dictionary["s17"]+" #} else if(type==3){# "+dictionary["s18"]+" #}#"
+            template: "# if(type==1){# "+dictionary["s16"]+" #} else if(type==2){# "+dictionary["s354"]+" #} else if(type==3){# "+dictionary["s355"]+" #} else if(type==4){# "+dictionary["s18"]+" #}#"
 
         },{
             title:' ',
@@ -378,7 +382,7 @@ Table.uiAddRow=function(){
 Table.getColumns=function(){
     var grid = $("#div"+this.className+"GridStructure").data('kendoGrid');
     var cols = new Array();
-    
+    if(grid==null) return cols;
     var data = grid.dataSource.data();
     
     for(var i=0;i<data.length;i++){
@@ -418,6 +422,7 @@ Table.getRows=function(){
     return result;
 }
 
+/*
 Table.uiSaveValidate=function(ignoreOnBefore){
     if(Table.getColumns().length==0){
         Methods.alert(dictionary["s353"], "alert",dictionary["s274"]);
@@ -425,6 +430,7 @@ Table.uiSaveValidate=function(ignoreOnBefore){
     }
     this.uiSaveValidated(ignoreOnBefore);
 }
+*/
 
 Table.doesColumnExists=function(name){
     var grid = $("#div"+this.className+"GridData").data('kendoGrid');
@@ -492,10 +498,15 @@ Table.uiEditColumn=function(obj){
                 {
                     case "2":
                     {
-                        typeName=dictionary["s17"];
+                        typeName=dictionary["s354"];
                         break;
                     }
                     case "3":
+                    {
+                        typeName=dictionary["s355"];
+                        break;
+                    }
+                    case "4":
                     {
                         typeName=dictionary["s18"];
                         break;
@@ -514,7 +525,8 @@ Table.uiEditColumn=function(obj){
                 var ftype="string";
                 var fdefault="";
                 switch(parseInt(type.val())){
-                    case 2:{
+                    case 2:
+                    case 3:{
                         ftype="number";
                         fdefault=0;
                         break;
@@ -524,7 +536,7 @@ Table.uiEditColumn=function(obj){
                 Table.dataGridSchemaFields[name.val()] = {
                     type:ftype,
                     defaultValue:fdefault,
-                    editable: parseInt(type.val())!=3
+                    editable: parseInt(type.val())!=4
                 }
         
                 dataGrid.columns[index] = {
@@ -537,11 +549,12 @@ Table.uiEditColumn=function(obj){
                         dataGrid.columns[index].editor = Table.stringEditor;
                         break;
                     }
-                    case 2:{
+                    case 2:
+                    case 3:{
                         dataGrid.columns[index].editor = Table.numberEditor;
                         break;
                     }
-                    case 3:{
+                    case 4:{
                         dataGrid.columns[index].editor = Table.htmlEditor;
                         dataGrid.columns[index].template = '<div class="horizontalMargin" align="center">'+
                         '<span class="spanIcon tooltipTableStructure ui-icon ui-icon-document-b" onclick="Table.uiChangeHTML($(this).next(),\''+name.val()+'\')" title="'+dictionary["s130"]+'"></span>'+
@@ -562,7 +575,7 @@ Table.uiEditColumn=function(obj){
                     item.fields[name.val()]={
                         type:ftype,
                         defaultValue:fdefault,
-                        editable: parseInt(type.val())!=3
+                        editable: parseInt(type.val())!=4
                     }
                     item.defaults[name.val()]=fdefault;
                 }
@@ -824,10 +837,15 @@ Table.uiAddColumn=function(){
                 {
                     case "2":
                     {
-                        typeName=dictionary["s17"];
+                        typeName=dictionary["s354"];
                         break;
                     }
                     case "3":
+                    {
+                        typeName=dictionary["s355"];
+                        break;
+                    }
+                    case "4":
                     {
                         typeName=dictionary["s18"];
                         break;
@@ -846,7 +864,8 @@ Table.uiAddColumn=function(){
                 var ftype="string";
                 var fdefault="";
                 switch(parseInt(type.val())){
-                    case 2:{
+                    case 2:
+                    case 3:{
                         ftype="number";
                         fdefault=0;
                         break;
@@ -867,12 +886,13 @@ Table.uiAddColumn=function(){
                         Table.dataGridSchemaFields[name.val()].editable = true;
                         break;
                     }
-                    case 2:{
+                    case 2:
+                    case 3:{
                         col.editor = Table.numberEditor;
                         Table.dataGridSchemaFields[name.val()].editable = true;
                         break;
                     }
-                    case 3:{
+                    case 4:{
                         col.editor = Table.htmlEditor;
                         Table.dataGridSchemaFields[name.val()].editable = false;
                         col.template = '<div class="horizontalMargin" align="center">'+
@@ -891,7 +911,7 @@ Table.uiAddColumn=function(){
                     row.fields[name.val()]={
                         type:ftype,
                         defaultValue:fdefault,
-                        editable: parseInt(type.val())!=3
+                        editable: parseInt(type.val())!=4
                     }
                     row.defaults[name.val()]=fdefault;
                 }

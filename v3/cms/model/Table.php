@@ -48,61 +48,6 @@ class Table extends OModule
         parent::mysql_delete();
     }
 
-    public static function get_mysql_optimal_numeric_type($rows, $name)
-    {
-        $max_int = 0;
-        $int_length = 0;
-        $dec_length = 0;
-        $signed = false;
-
-        foreach ($rows as $row)
-        {
-            foreach ($row as $col_name => $col_value)
-            {
-                $col_value = trim($col_value);
-                if (substr($col_value, 0, 1) == "-")
-                {
-                    $signed = true;
-                    $col_value = substr($col_value, 1);
-                }
-                if ($name == $col_name)
-                {
-                    $part = explode(".", $col_value);
-                    $int = $part[0];
-                    $max_int = max($int, $max_int);
-                    $int_length = max(strlen($int), $int_length);
-                    if (count($part) > 1)
-                    {
-                        $dec = $part[1];
-                        $dec_length = max($dec_length, strlen($dec));
-                    }
-                    break;
-                }
-            }
-        }
-
-        $type = "";
-
-        if ($dec_length > 0)
-        {
-            if ($dec_length > 0) $type = "FLOAT";
-            if ($dec_length > 5) $type = "DOUBLE";
-
-            return $type;
-        }
-        else
-        {
-            if ($max_int >= 0) $type = "TINYINT";
-            if ($max_int >= 129) $type = "SMALLINT";
-            if ($max_int >= 32769) $type = "MEDIUMINT";
-            if ($max_int >= 8388609) $type = "INT";
-            if ($max_int >= 2147483649) $type = "BIGINT";
-
-            return $type;
-        }
-        return "INT";
-    }
-
     public function mysql_save_from_post($post)
     {
         $lid = parent::mysql_save_from_post($post);
@@ -124,18 +69,19 @@ class Table extends OModule
                 switch ($col->type)
                 {
                     case 1:
-                    case 3:
+                    case 4:
                         {
                             $sql.="TEXT NOT NULL";
                             break;
                         }
                     case 2:
                         {
-                            if (array_key_exists("rows", $post) && $post['rows'] != null && is_array($post['rows']))
-                            {
-                                $sql.=Table::get_mysql_optimal_numeric_type($post['rows'], $col->name) . " NOT NULL";
-                            }
-                            else $sql.="INT NOT NULL";
+                            $sql.="BIGINT NOT NULL";
+                            break;
+                        }
+                    case 3:
+                        {
+                            $sql.="DOUBLE NOT NULL";
                             break;
                         }
                 }
@@ -310,7 +256,7 @@ class Table extends OModule
                     for ($i = 1; $i <= count($data); $i++)
                     {
                         $column_name = "c" . $i;
-                        if ($header) $column_name = $data[$i - 1];
+                        if ($header) $column_name = Table::format_column_name ($data[$i - 1]);
                         if (trim($column_name) == "") continue;
                         array_push($column_names, $column_name);
                         if ($i > 1) $sql.=",";
@@ -332,7 +278,7 @@ class Table extends OModule
                 for ($i = 1; $i <= count($column_names); $i++)
                 {
                     if ($i > 1) $sql.=", ";
-                    $sql.=sprintf("`%s`='%s'", $column_names[$i - 1], mysql_real_escape_string($data[$i - 1]));
+                    $sql.=sprintf("`%s`='%s'", $column_names[$i - 1], mysql_real_escape_string(Table::filterText($data[$i - 1])));
                 }
                 if (!mysql_query($sql)) return -4;
                 $row++;
@@ -341,10 +287,17 @@ class Table extends OModule
         }
         return 0;
     }
+    
+    public static function format_column_name($name)
+    {
+        $name = preg_replace("/[^A-Z^a-z^0-9._]/i", "", $name);
+        $name = preg_replace("/^[0-9]*/", "", $name);
+        return $name;
+    }
 
     public function export()
     {
-        $xml = new DOMDocument('1.0',"UTF-8");
+        $xml = new DOMDocument('1.0', "UTF-8");
 
         $export = $xml->createElement("export");
         $export->setAttribute("version", Ini::$version);
@@ -362,7 +315,7 @@ class Table extends OModule
 
     public function import($path)
     {
-        $xml = new DOMDocument('1.0',"UTF-8");
+        $xml = new DOMDocument('1.0', "UTF-8");
         if (!$xml->load($path)) return -4;
 
         $this->Sharing_id = 1;
@@ -419,15 +372,15 @@ class Table extends OModule
 
     public function to_XML()
     {
-        $xml = new DOMDocument('1.0',"UTF-8");
+        $xml = new DOMDocument('1.0', "UTF-8");
 
         $element = $xml->createElement("Table");
         $xml->appendChild($element);
 
-        $id = $xml->createElement("id", htmlspecialchars($this->id, ENT_QUOTES,"UTF-8"));
+        $id = $xml->createElement("id", htmlspecialchars($this->id, ENT_QUOTES, "UTF-8"));
         $element->appendChild($id);
 
-        $name = $xml->createElement("name", htmlspecialchars($this->name, ENT_QUOTES,"UTF-8"));
+        $name = $xml->createElement("name", htmlspecialchars($this->name, ENT_QUOTES, "UTF-8"));
         $element->appendChild($name);
 
         $columns = $xml->createElement("TableColumns");
@@ -485,6 +438,44 @@ class Table extends OModule
             ) ENGINE=InnoDB  DEFAULT CHARSET=utf8;
             ";
         return mysql_query($sql);
+    }
+
+    public static function filterText($text)
+    {
+        $search = array(
+            chr(212),
+            chr(213),
+            chr(210),
+            chr(211),
+            chr(209),
+            chr(208),
+            chr(201),
+            chr(145),
+            chr(146),
+            chr(147),
+            chr(148),
+            chr(151),
+            chr(150),
+            chr(133)
+        );
+        $replace = array(
+            '"',
+            "'",
+            '&#8217;',
+            '&#8220;',
+            '&#8221;',
+            '&#8211;',
+            '&#8212;',
+            "'",
+            "'",
+            '&#8217;',
+            '&#8220;',
+            '&#8221;',
+            '&#8211;',
+            '&#8212;',
+            "'"
+        );
+        return str_replace($search, $replace, $text);
     }
 
 }

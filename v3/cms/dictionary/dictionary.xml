@@ -1783,5 +1783,20 @@ Note: You can add new languages by inserting "<new_language>string translated in
             <pl>Nie można zapisać tabeli, gdyż posiada ona niezdefiniowaną strukturę.</pl>
             <cn>未定义表格结构，无法保存</cn>
         </string>
+        <string id="354" js="1">
+            <en>integer</en>
+            <pl>liczba calkowita</pl>
+            <cn></cn>
+        </string>
+        <string id="355" js="1">
+            <en>float</en>
+            <pl>liczba zmiennoprzecinkowa</pl>
+            <cn></cn>
+        </string>
+        <string id="356">
+            <en>choose the HTML template:</en>
+            <pl>wybierz szablon HTML:</pl>
+            <cn></cn>
+        </string>
     </strings>
 </root> 

@@ -39,21 +39,21 @@ class TableColumn extends OTable
 
     public function to_XML()
     {
-        $xml = new DOMDocument('1.0',"UTF-8");
+        $xml = new DOMDocument('1.0', "UTF-8");
 
         $element = $xml->createElement("TableColumn");
         $xml->appendChild($element);
 
-        $id = $xml->createElement("id", htmlspecialchars($this->id, ENT_QUOTES,"UTF-8"));
+        $id = $xml->createElement("id", htmlspecialchars($this->id, ENT_QUOTES, "UTF-8"));
         $element->appendChild($id);
 
-        $index = $xml->createElement("index", htmlspecialchars($this->index, ENT_QUOTES,"UTF-8"));
+        $index = $xml->createElement("index", htmlspecialchars($this->index, ENT_QUOTES, "UTF-8"));
         $element->appendChild($index);
 
-        $name = $xml->createElement("name", htmlspecialchars($this->name, ENT_QUOTES,"UTF-8"));
+        $name = $xml->createElement("name", htmlspecialchars($this->name, ENT_QUOTES, "UTF-8"));
         $element->appendChild($name);
 
-        $type = $xml->createElement("TableColumnType_id", htmlspecialchars($this->TableColumnType_id, ENT_QUOTES,"UTF-8"));
+        $type = $xml->createElement("TableColumnType_id", htmlspecialchars($this->TableColumnType_id, ENT_QUOTES, "UTF-8"));
         $element->appendChild($type);
 
         return $element;
@@ -79,6 +79,46 @@ class TableColumn extends OTable
             ) ENGINE=InnoDB  DEFAULT CHARSET=utf8;
             ";
         return mysql_query($sql);
+    }
+
+    public static function update_db($previous_version)
+    {
+        if (Ini::does_patch_apply("3.3.0", $previous_version))
+        {
+            $sql = sprintf("SELECT * FROM `TableColumn`");
+            $z = mysql_query($sql);
+            while ($r = mysql_fetch_array($z))
+            {
+                $table = Table::from_mysql_id($r['Table_id']);
+                $table_name = $table->get_table_name();
+                $type = "TEXT NOT NULL";
+                switch ($r['TableColumnType_id'])
+                {
+                    case 2:
+                        {
+                            $type = "BIGINT NOT NULL";
+                            break;
+                        }
+                    case 3:
+                        {
+                            $type = "DOUBLE NOT NULL";
+                            break;
+                        }
+                }
+                $old_name = $r['name'];
+                $new_name = Table::format_column_name($old_name);
+
+                if ($old_name != $new_name)
+                {
+                    $sql2 = sprintf("ALTER TABLE `%s` CHANGE `%s` `%s` %s;", $table_name, $old_name, $new_name, $type);
+                    if (!mysql_query($sql2)) return false;
+
+                    $sql2 = sprintf("UPDATE `TableColumn` SET `name`='%s' WHERE `id`='%d'", $new_name, $r['id']);
+                    if (!mysql_query($sql2)) return false;
+                }
+            }
+        }
+        return true;
     }
 
 }

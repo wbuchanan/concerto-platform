@@ -141,43 +141,6 @@ Methods.alert=function(message,icon,title,callback)
     });
 }
 
-Methods.iniListTableExtensions=function(selector,size,cols,filter,onPageSizeChange)
-{
-    /*
-    $.tablesorter.addParser({ 
-        id: 'circaK', 
-        is: function(s) { 
-            return false; 
-        }, 
-        format: function(s) { 
-            return s.replace(/~/,'').replace(/K/,''); 
-        }, 
-        type: 'numeric' 
-    });             
-     */
-   
-    var ts = $(selector).tablesorter({
-        widthFixed:true
-    });
-    
-    ts = ts.tablesorterPager({
-        container: $(selector+"Pager"),
-        positionFixed:false,
-        size:size,
-        onPageSizeChange:onPageSizeChange
-    });
-    
-    if(filter)
-    {
-        ts.tablesorterFilter({
-            filterContainer: $(selector+"PagerFilter"),
-            filterClearContainer: $(selector+"PagerFilterReset"),
-            filterColumns: cols,
-            filterCaseSensitive: false
-        });
-    }
-};
-
 Methods.CKEditorDialogShowListener=function(e){
     var dialog = CKEDITOR.dialog.getCurrent();
     var validatedDialogs = [

@@ -17,6 +17,8 @@ along with this program; if not, write to the Free Software
 Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA.
 */
 
+test = null;
+
 function Test() { };
 OModule.inheritance(Test);
 
@@ -924,12 +926,12 @@ Test.startSyntaxDebug=function(){
 Test.runTimeResponseIndex = 0;
 Test.runTimeCurrentTemplateID = 0;
 Test.debugCodeMirrors = new Array();
-Test.testObject = null;
+test = null;
 
 Test.stopRunTimeDebug=function(){
-    if(Test.testObject!=null) {
-        Test.testObject.stop();
-        Test.testObject = null;
+    if(test!=null) {
+        test.stop();
+        test = null;
     }
 }
 
@@ -941,7 +943,7 @@ Test.startRunTimeDebug=function(){
     Test.setDebugStatus(dictionary["s299"].format(this.currentID));
     Test.appendDebugConsole(dictionary["s300"]);
     Test.stopRunTimeDebug();
-    Test.testObject = new Concerto("#divTestDebugTest",null,this.currentID,"../query/",function(data){
+    test = new Concerto("#divTestDebugTest",null,this.currentID,"../query/",function(data){
         Test.runTimeResponseIndex++;
         Test.appendDebugConsole(dictionary["s301"]);
         
@@ -1029,5 +1031,5 @@ Test.startRunTimeDebug=function(){
         
         Test.setDebugStatus(dictionary["s299"].format(thisClass.currentID));
     });
-    Test.testObject.run();
+    test.run();
 }
