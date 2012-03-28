@@ -1786,22 +1786,22 @@ Note: You can add new languages by inserting "<new_language>string translated in
         <string id="354" js="1">
             <en>integer</en>
             <pl>liczba calkowita</pl>
-            <cn></cn>
+            <cn>整数</cn>
         </string>
         <string id="355" js="1">
             <en>float</en>
             <pl>liczba zmiennoprzecinkowa</pl>
-            <cn></cn>
+            <cn>浮点数</cn>
         </string>
         <string id="356">
             <en>choose the HTML template:</en>
             <pl>wybierz szablon HTML:</pl>
-            <cn></cn>
+            <cn>选择HTML模板：</cn>
         </string>
         <string id="357">
             <en>IF</en>
             <pl>JESLI</pl>
-            <cn></cn>
+            <cn>如果</cn>
         </string>
     </strings>
 </root> 
