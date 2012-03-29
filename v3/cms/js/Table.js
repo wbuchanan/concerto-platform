@@ -133,9 +133,12 @@ Table.uiReloadDataGrid=function(data,columns){
             Table.uiIniHTMLTooltips();
         },
         dataSource: dataSource,
-        scrollable: {
-            virtual: true
-        },
+        scrollable:true,
+        pageable:true,
+        sortable:true,
+        //scrollable: {
+        //    virtual: true
+        //},
         columns: columns,
         toolbar:[
         {
@@ -247,9 +250,12 @@ Table.uiIniDataGrid=function(){
                 Table.uiIniHTMLTooltips();
             },
             dataSource: dataSource,
-            scrollable: {
-                virtual: true
-            },
+            scrollable:true,
+            pageable:true,
+            sortable:true,
+            //scrollable: {
+            //    virtual: true
+            //},
             columns: columns,
             toolbar:[
             {
