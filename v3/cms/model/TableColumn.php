@@ -90,6 +90,7 @@ class TableColumn extends OTable
             while ($r = mysql_fetch_array($z))
             {
                 $table = Table::from_mysql_id($r['Table_id']);
+                if($table==null) continue;
                 $table_name = $table->get_table_name();
                 $type = "TEXT NOT NULL";
                 switch ($r['TableColumnType_id'])
@@ -107,7 +108,13 @@ class TableColumn extends OTable
                 }
                 $old_name = $r['name'];
                 $new_name = Table::format_column_name($old_name);
-
+                
+                if($r['TableColumnType_id']==3)
+                {
+                    $sql2 = sprintf("UPDATE `TableColumn` SET `TableColumnType_id`='%d' WHERE `id`='%d'", 4, $r['id']);
+                    if (!mysql_query($sql2)) return false;
+                }
+                
                 if ($old_name != $new_name)
                 {
                     $sql2 = sprintf("ALTER TABLE `%s` CHANGE `%s` `%s` %s;", $table_name, $old_name, $new_name, $type);
