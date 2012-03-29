@@ -180,6 +180,7 @@ class TestServer
 
     public function start()
     {
+        if(file_exists(Ini::$unix_sock)) unlink(Ini::$unix_sock);
         $this->last_action_time = time();
         if (self::$debug)
                 self::log_debug("TestServer->start() --- TestServer started");
