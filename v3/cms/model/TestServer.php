@@ -97,7 +97,7 @@ class TestServer
             if (self::$debug_stream_data) self::log_debug($data, false);
         }
 
-        $result = socket_read($socket, 32648);
+        $result = socket_read($socket, 133693415);
         if (self::$debug)
         {
             self::log_debug("TestServer::send() --- data recieved");
@@ -324,7 +324,7 @@ class TestServer
                 continue;
             }
 
-            $read = socket_read($client_sock, 32648);
+            $read = socket_read($client_sock, 133693415);
             if (!$read)
             {
                 if (self::$debug)
