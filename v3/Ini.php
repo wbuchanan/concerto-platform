@@ -39,7 +39,7 @@ class Ini
 
     function __construct($connect = true, $session = true)
     {
-        if (substr_count($_SERVER['HTTP_ACCEPT_ENCODING'], 'gzip')) @ob_start("ob_gzhandler"); 
+        if (@substr_count($_SERVER['HTTP_ACCEPT_ENCODING'], 'gzip')) @ob_start("ob_gzhandler"); 
         else @ob_start();
         include __DIR__ . "/SETTINGS.php";
         if ($session) @session_start();

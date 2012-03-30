@@ -158,7 +158,8 @@ class TestSession extends OTable
         if (!TestServer::is_running()) TestServer::start_process();
         if (TestServer::$debug)
                 TestServer::log_debug("TestSession->RCall --- server found, trying to send");
-        $result = json_decode(TestServer::send($command_obj));
+        $response = TestServer::send($command_obj);
+        $result = json_decode($response);
         if (TestServer::$debug)
                 TestServer::log_debug("TestSession->RCall --- sent and recieved response");
 

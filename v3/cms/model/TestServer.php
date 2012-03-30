@@ -97,7 +97,7 @@ class TestServer
             if (self::$debug_stream_data) self::log_debug($data, false);
         }
 
-        $result = socket_read($socket, 133693415);
+        $result = socket_read($socket, 8388608);
         if (self::$debug)
         {
             self::log_debug("TestServer::send() --- data recieved");
@@ -165,7 +165,7 @@ class TestServer
             self::log_debug("TestServer::start_process() --- Starting server process");
         }
         session_write_close();
-        $command = 'nohup ' . Ini::$path_php_exe . ' ' . Ini::$path_internal . 'cms/query/socket_start.php ' . Ini::$path_internal . ' > '.Ini::$path_temp . date('Y-m-d') . ".socket.log".' 2>&1 & echo $!';
+        $command = 'nohup ' . Ini::$path_php_exe . ' ' . Ini::$path_internal . 'cms/query/socket_start.php ' . Ini::$path_internal . ' > '.Ini::$path_temp . date('Y-m-d') . ".php.log".' 2>&1 & echo $!';
         exec($command);
         while (!self::is_running())
         {
@@ -325,7 +325,7 @@ class TestServer
                 continue;
             }
 
-            $read = socket_read($client_sock, 133693415);
+            $read = socket_read($client_sock, 8388608);
             if (!$read)
             {
                 if (self::$debug)
