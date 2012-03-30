@@ -552,9 +552,21 @@ Test.variableValidation=function(value){
     else return true;
 }
 
-Test.convertVariable=function(value){
-    value = value.replace(/[^A-Z^a-z^0-9._]/gi,"")
-    value = value.replace(/^[0-9]*/,"");
+Test.convertVariable=function(value,dots){
+    if(dots == null) dots = true;
+    if(dots) value = value.replace(/[^A-Z^a-z^0-9\._]/gi,"");
+    else value = value.replace(/[^A-Z^a-z^0-9_]/gi,"");
+    value = value.replace(/^[0-9]*/gi,"");
+    value = value.replace(/_\./gi,"");
+    value = value.replace(/\._/gi,"");
+    value = value.replace(/\.\./gi,"");
+    value = value.replace(/__/gi,"");
+    value = value.replace(/\.[0-9]/gi,"");
+    if(!dots){
+        value = value.replace(/^[0-9]*/,"");
+    }
+    value = value.replace(/\.+$/gi,"");
+    value = value.replace(/\_+$/gi,"");
     return value;
 }
 

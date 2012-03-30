@@ -493,7 +493,7 @@ Table.uiEditColumn=function(obj){
                 if ( !Test.variableValidation(name.val()))
                 {
                     var oldValue = name.val();
-                    var newValue = Test.convertVariable(name.val());
+                    var newValue = Test.convertVariable(name.val(),false);
                     name.val(newValue);
                     Methods.alert(dictionary["s1"].format(oldValue,newValue), "info", dictionary["s2"]);
                     return;
@@ -832,7 +832,7 @@ Table.uiAddColumn=function(){
                 if ( !Test.variableValidation(name.val()))
                 {
                     var oldValue = name.val();
-                    var newValue = Test.convertVariable(name.val());
+                    var newValue = Test.convertVariable(name.val(),false);
                     name.val(newValue);
                     Methods.alert(dictionary["s1"].format(oldValue,newValue), "info", dictionary["s2"]);
                     return;

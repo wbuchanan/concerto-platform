@@ -48,7 +48,7 @@ class TestServer
         {
             $this->close_instance($k);
         }
-        @socket_shutdown($this->main_sock);
+        //@socket_shutdown($this->main_sock);
         socket_close($this->main_sock);
         if(file_exists(Ini::$unix_sock)) unlink(Ini::$unix_sock);
         if (self::$debug)
@@ -86,7 +86,7 @@ class TestServer
             {
                 self::log_debug("TestServer::send() --- Error: (socket_connect) " . socket_last_error() . " - " . socket_strerror(socket_last_error()));
             }
-            @socket_shutdown($socket);
+            //@socket_shutdown($socket);
             socket_close($socket);
             return false;
         }
@@ -103,7 +103,7 @@ class TestServer
             self::log_debug("TestServer::send() --- data recieved");
             if (self::$debug_stream_data) self::log_debug($result, false);
         }
-        @socket_shutdown($socket);
+        //@socket_shutdown($socket);
         socket_close($socket);
         if (!$result)
         {
@@ -141,7 +141,7 @@ class TestServer
                 $result = @socket_connect($socket, Ini::$sock_host, Ini::$sock_port);
         if (Ini::$sock_type_used == 0)
                 $result = @socket_connect($socket, Ini::$unix_sock);
-        @socket_shutdown($socket);
+        //@socket_shutdown($socket);
         socket_close($socket);
         if (!$result)
         {
@@ -165,7 +165,7 @@ class TestServer
             self::log_debug("TestServer::start_process() --- Starting server process");
         }
         session_write_close();
-        $command = 'nohup ' . Ini::$path_php_exe . ' ' . Ini::$path_internal . 'cms/query/socket_start.php ' . Ini::$path_internal . ' > /dev/null 2>&1 & echo $!';
+        $command = 'nohup ' . Ini::$path_php_exe . ' ' . Ini::$path_internal . 'cms/query/socket_start.php ' . Ini::$path_internal . ' > '.Ini::$path_temp . date('Y-m-d') . ".socket.log".' 2>&1 & echo $!';
         exec($command);
         while (!self::is_running())
         {
@@ -378,7 +378,7 @@ class TestServer
         }
         if (array_key_exists($key, $this->clients))
         {
-            @socket_shutdown($this->clients[$key]["sock"]);
+            //@socket_shutdown($this->clients[$key]["sock"]);
             socket_close($this->clients[$key]["sock"]);
             unset($this->clients[$key]);
         }
@@ -406,7 +406,7 @@ class TestServer
         {
             if (is_resource($this->clients[$key]["sock"]))
             {
-                @socket_shutdown($this->clients[$key]["sock"]);
+                //@socket_shutdown($this->clients[$key]["sock"]);
                 socket_close($this->clients[$key]["sock"]);
                 $this->clients[$key]["sock"] = $client_sock;
             }
