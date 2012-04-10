@@ -23,7 +23,7 @@ class TestServer
 {
     private static $max_idle_time = 3600;
     public static $debug = true;
-    public static $debug_stream_data = false;
+    public static $debug_stream_data = true;
     private $last_action_time;
     private $main_sock;
     private $clients;
@@ -50,7 +50,7 @@ class TestServer
         }
         //@socket_shutdown($this->main_sock);
         socket_close($this->main_sock);
-        if(file_exists(Ini::$unix_sock)) unlink(Ini::$unix_sock);
+        if (file_exists(Ini::$unix_sock)) unlink(Ini::$unix_sock);
         if (self::$debug)
                 self::log_debug("TestServer->stop() --- TestServer stopped");
         $this->is_alive = false;
@@ -97,15 +97,24 @@ class TestServer
             if (self::$debug_stream_data) self::log_debug($data, false);
         }
 
-        $result = socket_read($socket, 8388608);
+        $data = "";
+        while (($result = socket_read($socket, 4096)) !== false)
+        {
+            if ($result == "") break;
+            $data.=$result;
+            if (self::$debug)
+            {
+                self::log_debug("TestServer::send() --- data recieved");
+                if (self::$debug_stream_data) self::log_debug($data, false);
+            }
+        }
         if (self::$debug)
         {
-            self::log_debug("TestServer::send() --- data recieved");
-            if (self::$debug_stream_data) self::log_debug($result, false);
+            self::log_debug("TestServer::send() --- reading finished");
         }
         //@socket_shutdown($socket);
         socket_close($socket);
-        if (!$result)
+        if ($result === false)
         {
             if (self::$debug)
             {
@@ -113,7 +122,7 @@ class TestServer
             }
             return false;
         }
-        return trim($result);
+        return trim($data);
     }
 
     public static function is_running()
@@ -165,7 +174,7 @@ class TestServer
             self::log_debug("TestServer::start_process() --- Starting server process");
         }
         session_write_close();
-        $command = 'nohup ' . Ini::$path_php_exe . ' ' . Ini::$path_internal . 'cms/query/socket_start.php ' . Ini::$path_internal . ' > '.Ini::$path_temp . date('Y-m-d') . ".php.log".' 2>&1 & echo $!';
+        $command = 'nohup ' . Ini::$path_php_exe . ' ' . Ini::$path_internal . 'cms/query/socket_start.php ' . Ini::$path_internal . ' > ' . Ini::$path_temp . date('Y-m-d') . ".php.log" . ' 2>&1 & echo $!';
         exec($command);
         while (!self::is_running())
         {
@@ -180,7 +189,7 @@ class TestServer
 
     public function start()
     {
-        if(file_exists(Ini::$unix_sock)) unlink(Ini::$unix_sock);
+        if (file_exists(Ini::$unix_sock)) unlink(Ini::$unix_sock);
         $this->last_action_time = time();
         if (self::$debug)
                 self::log_debug("TestServer->start() --- TestServer started");
@@ -325,8 +334,13 @@ class TestServer
                 continue;
             }
 
-            $read = socket_read($client_sock, 8388608);
-            if (!$read)
+            $data = "";
+            while (($read = socket_read($client_sock, 4096)) !== false)
+            {
+                if ($read == "") break;
+                $data.=$read;
+            }
+            if ($read === false)
             {
                 if (self::$debug)
                 {
@@ -334,7 +348,8 @@ class TestServer
                 }
                 continue;
             }
-            $input = trim($read);
+
+            $input = trim($data);
             if ($input != "")
             {
                 if (self::$debug)

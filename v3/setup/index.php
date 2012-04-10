@@ -126,7 +126,7 @@ class Setup
         <link rel="stylesheet" href="../cms/css/styles.css" />
 
         <script type="text/javascript" src="../cms/js/lib/jquery-1.7.1.min.js"></script>
-        <script type="text/javascript" src="../cms/js/lib/jquery-ui/ui/minified/jquery-ui.min.js"></script>
+        <script type="text/javascript" src="../cms/js/lib/jquery-ui-1.8.18.custom.min.js"></script>
         <script type="text/javascript" src="../cms/js/Methods.js"></script>
         <script src="../cms/js/lib/themeswitcher/jquery.themeswitcher.min.js"></script>
         <script src="../cms/lib/jfeed/build/dist/jquery.jfeed.js"></script>

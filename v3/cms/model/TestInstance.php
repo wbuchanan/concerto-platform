@@ -141,7 +141,7 @@ class TestInstance
 
         $result = "";
         $error = "";
-        while ($append = fread($this->pipes[1], 8388608))
+        while ($append = fread($this->pipes[1], 4096))
         {
             $result.=$append;
         }
@@ -150,7 +150,7 @@ class TestInstance
             $this->is_data_ready = true;
         }
 
-        while ($append = fread($this->pipes[2], 8388608))
+        while ($append = fread($this->pipes[2], 4096))
         {
             $error.=$append;
         }

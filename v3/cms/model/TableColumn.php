@@ -112,16 +112,22 @@ class TableColumn extends OTable
                 if($r['TableColumnType_id']==3)
                 {
                     $sql2 = sprintf("UPDATE `TableColumn` SET `TableColumnType_id`='%d' WHERE `id`='%d'", 4, $r['id']);
-                    if (!mysql_query($sql2)) return false;
+                    if (!mysql_query($sql2)) {
+                        return false;
+                    }
                 }
                 
                 if ($old_name != $new_name)
                 {
                     $sql2 = sprintf("ALTER TABLE `%s` CHANGE `%s` `%s` %s;", $table_name, $old_name, $new_name, $type);
-                    if (!mysql_query($sql2)) return false;
+                    if (!mysql_query($sql2)) {
+                        return false;
+                    }
 
                     $sql2 = sprintf("UPDATE `TableColumn` SET `name`='%s' WHERE `id`='%d'", $new_name, $r['id']);
-                    if (!mysql_query($sql2)) return false;
+                    if (!mysql_query($sql2)) {
+                        return false;
+                    }
                 }
             }
         }
