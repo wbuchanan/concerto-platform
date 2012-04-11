@@ -280,7 +280,7 @@ function Concerto(selector,sid,tid,queryPath,callbackGet,callbackSend){
             name:"TIME_TAKEN",
             value:thisClass.timePassed,
             visibility:2,
-            type:0
+            type:2
         }));
         this.run(btnName,vals);
         if(this.callbackSend!=null) this.callbackSend.call(this,btnName,vals);

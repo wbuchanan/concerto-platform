@@ -23,7 +23,7 @@ class TestServer
 {
     private static $max_idle_time = 3600;
     public static $debug = true;
-    public static $debug_stream_data = true;
+    public static $debug_stream_data = false;
     private $last_action_time;
     private $main_sock;
     private $clients;
@@ -38,7 +38,7 @@ class TestServer
         $datetime = $d->format("Y-m-d H:i:s.u");
 
         $lfh = fopen(Ini::$path_temp . date('Y-m-d') . ".socket.log", "a");
-        fwrite($lfh, ($timestamp ? $datetime . " --- " : "") . $message . "\r\n");
+        fwrite($lfh, ($timestamp ? $datetime : "") . " {" .memory_get_peak_usage(true)."B} --- " . $message . "\r\n");
         fclose($lfh);
     }
 
@@ -90,7 +90,7 @@ class TestServer
             socket_close($socket);
             return false;
         }
-        socket_write($socket, $data . "\n", strlen($data . "\n"));
+        socket_write($socket, $data . chr(0));
         if (self::$debug)
         {
             self::log_debug("TestServer::send() --- sent data");
@@ -98,15 +98,17 @@ class TestServer
         }
 
         $data = "";
-        while (($result = socket_read($socket, 4096)) !== false)
+        while ($result = socket_read($socket, 4096))
         {
-            if ($result == "") break;
+            $len = strlen($result);
             $data.=$result;
             if (self::$debug)
             {
-                self::log_debug("TestServer::send() --- data recieved");
+                self::log_debug("TestServer::send() --- data recieved (" . $len . ")");
                 if (self::$debug_stream_data) self::log_debug($data, false);
             }
+            if (substr($result, -1, 1) == chr(0)) break;
+            //if ($len < 4096) break;
         }
         if (self::$debug)
         {
@@ -174,7 +176,7 @@ class TestServer
             self::log_debug("TestServer::start_process() --- Starting server process");
         }
         session_write_close();
-        $command = 'nohup ' . Ini::$path_php_exe . ' ' . Ini::$path_internal . 'cms/query/socket_start.php ' . Ini::$path_internal . ' > ' . Ini::$path_temp . date('Y-m-d') . ".php.log" . ' 2>&1 & echo $!';
+        $command = 'nohup ' . Ini::$path_php_exe . ' ' . Ini::$path_internal . 'cms/query/socket_start.php ' . Ini::$path_internal . ' >> ' . Ini::$path_temp . date('Y-m-d') . ".php.log" . ' 2>&1 & echo $!';
         exec($command);
         while (!self::is_running())
         {
@@ -256,7 +258,7 @@ class TestServer
                 self::log_debug("TestServer->start() --- Error: (socket_set_nonblock)");
                 self::log_debug("TestServer->start() --- Server halted!");
             }
-            break;
+            return;
         }
         $this->is_alive = true;
 
@@ -306,7 +308,7 @@ class TestServer
 
                         $response = json_encode($response);
 
-                        if (!socket_write($this->clients[$k]["sock"], $response . "\n"))
+                        if (!socket_write($this->clients[$k]["sock"], $response . chr(0)))
                         {
                             if (self::$debug)
                                     self::log_debug("TestServer->start() --- Error: (socket_write) " . socket_last_error() . " - " . socket_strerror(socket_last_error()));
@@ -334,11 +336,22 @@ class TestServer
                 continue;
             }
 
-            $data = "";
-            while (($read = socket_read($client_sock, 4096)) !== false)
+            if (self::$debug)
             {
-                if ($read == "") break;
+                self::log_debug("TestServer->start() --- socket accepted");
+            }
+
+            $data = "";
+            while ($read = socket_read($client_sock, 4096))
+            {
+                $len = strlen($read);
+                if (self::$debug)
+                {
+                    self::log_debug("TestServer->start() --- socket read (" . $len . ")");
+                }
                 $data.=$read;
+                if (substr($read, -1, 1) == chr(0)) break;
+                //if ($len < 4096) break;
             }
             if ($read === false)
             {
@@ -346,6 +359,7 @@ class TestServer
                 {
                     self::log_debug("TestServer->start() --- Error: (socket_read) " . socket_last_error() . " - " . socket_strerror(socket_last_error()));
                 }
+                socket_close($client_sock);
                 continue;
             }
 
