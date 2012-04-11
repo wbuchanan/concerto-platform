@@ -30,9 +30,16 @@ function Concerto(selector,sid,tid,queryPath,callbackGet,callbackSend){
     
     this.timer = 0;
     this.timeObj = null;
+    
+    this.timePassed = 0;
+    this.timePassedObj = null;
+    
     this.clearTimer=function(){
         if(this.timeObj!=null) {
             clearTimeout(this.timeObj);
+        }
+        if(this.timePassedObj!=null){
+            clearTimeout(this.timePassedObj);
         }
     }
     this.iniTimer = function(){
@@ -45,6 +52,16 @@ function Concerto(selector,sid,tid,queryPath,callbackGet,callbackSend){
                 thisClass.timeTick();
             },1000);
         }
+        
+        this.timePassed=0;
+        this.timePassedObj = setInterval(function(){
+            thisClass.timePassedTick();
+        },1000);
+    }
+    
+    this.timePassedTick = function(){
+        if(this.isStopped) return;
+        this.timePassed++;
     }
     
     this.timeTick = function(){
@@ -255,9 +272,16 @@ function Concerto(selector,sid,tid,queryPath,callbackGet,callbackSend){
     }
     
     this.submit=function(btnName){
+        var thisClass=this;
         if(this.isStopped) return;
         var vals = this.getControlsValues();
         this.clearTimer();
+        vals.push($.toJSON({
+            name:"TIME_TAKEN",
+            value:thisClass.timePassed,
+            visibility:2,
+            type:0
+        }));
         this.run(btnName,vals);
         if(this.callbackSend!=null) this.callbackSend.call(this,btnName,vals);
     };

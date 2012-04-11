@@ -189,6 +189,11 @@ while ($r = mysql_fetch_array($z)) {
                     <td>LAST_PRESSED_BUTTON_NAME</td>
                     <td>&nbsp;</td>
                 </tr>
+                <tr>
+                    <td><span class="spanIcon ui-icon ui-icon-help tooltip" title="<?= Language::string(283) ?>"></span></td>
+                    <td>TIME_TAKEN</td>
+                    <td>&nbsp;</td>
+                </tr>
             </table> 
         </div>
         <div class="notVisible">
@@ -201,6 +206,7 @@ while ($r = mysql_fetch_array($z)) {
     ?>
             <input class="inputReturnVar" type="hidden" value="CURRENT_TEMPLATE_ID" />
             <input class="inputReturnVar" type="hidden" value="LAST_PRESSED_BUTTON_NAME" />
+            <input class="inputReturnVar" type="hidden" value="TIME_TAKEN" />
         </div>
     </div>
             <?php
