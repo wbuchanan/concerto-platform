@@ -30,163 +30,195 @@ Note: You can add new languages by inserting "<new_language>string translated in
         <language id="en">english</language>
         <language id="pl">polski</language>
     	  <language id="cn">中文</language>
+           <language id="fr">francais</language>
        </languages>
     
     <strings>
         <string id="1" js="1">
             <en><![CDATA[Variable name validation failed. Only alphanumeric, '_' and '.' characters allowed and the value can't begin with a numeric. Value has been changed.<br/><br/>old value: <b>{0}</b></br>new value: <b>{1}</b>]]></en>
             <pl><![CDATA[Walidacja zmiennej nie powiodla sie. Tylko znaki alfanumeryczne, '_' i '.' sa dozwolone, oraz zmienna nie moze zaczynac sie od numeru. Wartosc zostala zmieniona.<br/><br/>poprzednia wartosc: <b>{0}</b></br>nowa wartosc: <b>{1}</b>]]></pl>
-            <cn><![CDATA[变量名称验证失败。只允许使用字母、数字以及'_'和'.'，并且不可以数字开头。数值已更改。<br/><br/>旧数值: <b>{0}</b></br>新数值: <b>{1}</b>]]></cn>        
+            <cn><![CDATA[变量名称验证失败。只允许使用字母、数字以及'_'和'.'，并且不可以数字开头。数值已更改。<br/><br/>旧数值: <b>{0}</b></br>新数值: <b>{1}</b>]]></cn>  
+        <fr><![CDATA[La validation du nom de la variable a échoué. Seuls les caractères alphanumériques, les '_' et les '.' sont acceptés et la vaeur ne peut pas commencer par un chiffre. La valeur a été changée.<br/><br/>ancienne valeur: <b>{0}</b></br>nouvelle valeur: <b>{1}</b>]]></fr>      
         </string>
         <string id="2" js="1">
             <en>variable validation</en>
             <pl>walidacja zmiennej</pl>
-            <cn>变量验证</cn>		
+            <cn>变量验证</cn>	
+            <fr>validation de la variable</fr>
         </string>
         <string id="3" js="1">
             <en>changing description</en>
             <pl>zmiana opisu</pl>
             <cn>改变描述</cn>
+             <fr>changement de description</fr>
         </string>
         <string id="4" js="1">
             <en>Concerto - confirmation</en>
             <pl>Concerto - potwierdzenie</pl>
             <cn>Concerto - 确认</cn>
+             <fr>Concerto - confirmation</fr>
         </string>
         <string id="5" js="1">
             <en>Concerto - alert</en>
             <pl>Concerto - alert</pl>
             <cn>Concerto - 警告</cn>
+             <fr>Concerto - alerte</fr>
         </string>
         <string id="6" js="1">
             <en>HTML controls `name` validation failed. Only alphanumeric, '_' and '.' characters allowed and the value can't begin with a numeric. Value has been changed.\r\n\r\nold value: {0}\r\nnew value: {1}</en>
             <pl>Walidacja pola `nazwa` kontrolki HTML nie powiodła się. Tylko wartości alfanumeryczne, '_' i '.' są dozwolone, oraz wartość nie może zaczynać się od liczby. Wartość została zmieniona.\r\n\r\npoprzednia wartość: {0}\r\nnowa wartość: {1}</pl>
             <cn>HTML控制`名称`验证失败。只允许使用字母、数字以及'_'和'.'，并且不可以数字开头。数值已更改。\r\n\r\n旧数值: {0}\r\n新数值: {1}</cn>
+              <fr>HTML le contrôle de la variable `nom` a échoué. seuls les caractères alphanumériques, les  '_' et '.' sont acceptés et la valeur ne peut pas commencer per un chiffre. la valeur a été changée\n\r\nancienne valeur: {0}\r\nnouvelle valeur: {1}</en>
         </string>
         <string id="7" js="1">
             <en>adding new object</en>
             <pl>dodawanie nowego obiektu</pl>
             <cn>添加新对象</cn>
+             <fr>ajouter un nouvel objet</fr>
         </string>
         <string id="8" js="1">
             <en>Are you sure you want to delete this object #{0}?</en>
             <pl>Jesteś pewien, że chcesz usunąć obiekt #{0}?</pl>
             <cn>确认删除对象 #{0}?</cn>
+            <fr> Êtes-vous certain de vouloir supprimer cet objet? #{0}?</fr>
         </string>
         <string id="9" js="1">
             <en>Object has been saved.</en>
             <pl>Obiekt został zapisany.</pl>
             <cn>对象已保存。</cn>
+            <fr>L'objet a été sauvegardé.</fr>
         </string>
         <string id="10" js="1">
             <en>Object has NOT been saved.</en>
             <pl>Obiekt NIE został zapisany.</pl>
             <cn>对象未保存。</cn>
+            <fr>L'objet N'A PAS été sauvegardé.</fr>
         </string>
         <string id="11" js="1">
             <en>remove row</en>
             <pl>usuń rekord</pl>
             <cn>移除行</cn>
+            <fr>supprimer la ligne</fr>
         </string>
         <string id="12" js="1">
             <en>editing column</en>
             <pl>edytowanie kolumny</pl>
             <cn>编辑列</cn>
+            <fr>modifier la colonne</fr>
         </string>
         <string id="13" js="1">
             <en>Column name is a mandatory field.</en>
             <pl>Nazwa kolumny nie może być pusta.</pl>
             <cn>列名称不可为空。</cn>
+            <fr>Le nom de colonne est un champ obligatoire.</fr>
         </string>
         <string id="14" js="1">
             <en>change column name</en>
             <pl>zmiana nazwy kolumny</pl>
             <cn>修改列名称</cn>
+            <fr>modifier le nom de la colonne</fr>
         </string>
         <string id="15" js="1">
             <en>A column with that name already exists.</en>
             <pl>Kolumna o tej nazwie już istnieje.</pl>
             <cn>列名称重复。</cn>
+            <fr>Une colonne de ce nom existe déjà.</fr>
         </string>
         <string id="16" js="1">
             <en>string</en>
             <pl>tekst</pl>
             <cn>字符串</cn>
+            <fr>libre</fr>
         </string>
         <string id="17" js="1">
             <en>numeric</en>
             <pl>liczba</pl>
             <cn>数值</cn>
+            <fr>numérique</fr>
         </string>
         <string id="18" js="1">
             <en>HTML</en>
             <pl>HTML</pl>
             <cn>HTML</cn>
+            <fr>HTML</fr>
         </string>
         <string id="19" js="1">
             <en>edit column</en>
             <pl>edytuj kolumnę</pl>
             <cn>编辑列</cn>
+            <fr>modifier la colonne</fr>
         </string>
         <string id="20" js="1">
             <en>remove column</en>
             <pl>usuń kolumnę</pl>
             <cn>移除列</cn>
+            <fr>supprimer la colonne</fr>
         </string>
         <string id="21" js="1">
             <en>importing table from MySQL table</en>
             <pl>importowanie tabeli z tabeli MySQL</pl>
             <cn>从MySQL表格中导入表格</cn>
+            <fr>importation d'un tableau provenant de MySQL table</fr>
         </string>
         <string id="22" js="1">
             <en>import</en>
             <pl>importuj</pl>
             <cn>导入</cn>
+            <fr>importer</fr>
         </string>
         <string id="23" js="1">
             <en>cancel</en>
             <pl>anuluj</pl>
             <cn>取消</cn>
+            <fr>annuler</fr>
         </string>
         <string id="24" js="1">
             <en>No table selected.</en>
             <pl>Nie wybrano tabeli.</pl>
             <cn>未选择表格</cn>
+            <fr>Aucun tableau sélectionnée.</fr>
         </string>
         <string id="25" js="1">
             <en>importing table</en>
             <pl>importowanie tabeli</pl>
             <cn>导入表格</cn>
+            <fr>Importation d'un tableau</fr>
         </string>
         <string id="26" js="1">
             <en>Table structure and data imported.</en>
             <pl>Struktura i dane tabeli zostały zaimportowane.</pl>
             <cn>已导入表格结构和数据。</cn>
+            <fr>La structure et les données du tabeau ont été importées.</fr>
         </string>
         <string id="27" js="1">
             <en>Importing table from CSV file</en>
             <pl>importowanie tabeli z pliku CSV</pl>
             <cn>从CSV文件中导入表格</cn>
+            <fr>Importation d'un tableau provenant d'un fichier CSV</fr>
         </string>
         <string id="28" js="1">
             <en>Are you sure you want to replace the current table structure and data with that from the selected file?</en>
             <pl>Jesteś pewien że chcesz zastąpić obecną strukturę i dane tabeli tymi z pliku?</pl>
             <cn>确认使用所选文件表格结构数据替代当前表格？</cn>
+             <fr>Êtes-vous certain de vouloir remplacer la structure et les données du présent tableau par celles du fichier sélectionné?</fr>
         </string>
         <string id="29" js="1">
             <en>file uploaded</en>
             <pl>plik wysłany</pl>
             <cn>已上传文件</cn>
+            <fr>fichier téléchargé</fr>
         </string>
         <string id="30" js="1">
             <en>There was an error in importing table structure and data.</en>
             <pl>Wystąpił błąd podczas importowania struktury i danych tabeli.</pl>
             <cn>导入表格结构数据发生错误。</cn>
+            <fr>Une erreur est survenue en important la structure et les données du tableau.</fr>
         </string>
         <string id="31" js="1">
             <en>adding new column</en>
             <pl>dodawanie nowej kolumny</pl>
             <cn>添加列</cn>
+            <fr>ajout d'une nouvelle colonne</fr>
         </string>
         <string id="32" js="1">
             <en>Are you sure you want to delete this row?</en>
