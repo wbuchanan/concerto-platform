@@ -191,6 +191,7 @@ class TestServer
 
     public function start()
     {
+        gc_enable();
         if (file_exists(Ini::$unix_sock)) unlink(Ini::$unix_sock);
         $this->last_action_time = time();
         if (self::$debug)
@@ -264,6 +265,7 @@ class TestServer
 
         do
         {
+            gc_collect_cycles();
             if (time() - $this->last_action_time > self::$max_idle_time)
             {
                 if (self::$debug)
@@ -393,6 +395,8 @@ class TestServer
         while ($this->is_alive);
 
         $this->stop();
+        gc_collect_cycles();
+        gc_disable();
     }
 
     private function close_instance($key)

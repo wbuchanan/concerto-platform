@@ -41,6 +41,11 @@ class Setup
     {
         return!ini_get("safe_mode");
     }
+    
+    public static function php_magic_quotes_check()
+    {
+        return !ini_get( 'magic_quotes_gpc' );
+    }
 
     public static function php_short_open_tag_check()
     {
@@ -71,27 +76,6 @@ class Setup
         $return = 0;
         exec("'" . Ini::$path_r_script . "' -e 1+1", $array, $return);
         return ($return == 0);
-    }
-
-    public static function url_exists_check($url, $slash_check = false)
-    {
-// Version 4.x supported
-        if ($url == "") return false;
-        if ($slash_check && substr($url, strlen($url) - 1, 1) != '/')
-                return false;
-        $handle = curl_init($url);
-        if (false === $handle)
-        {
-            return false;
-        }
-        curl_setopt($handle, CURLOPT_HEADER, false);
-        curl_setopt($handle, CURLOPT_FAILONERROR, true);  // this works
-        curl_setopt($handle, CURLOPT_HTTPHEADER, Array("User-Agent: Mozilla/5.0 (Windows; U; Windows NT 5.1; en-US; rv:1.8.1.15) Gecko/20080623 Firefox/2.0.0.15")); // request as if Firefox   
-        curl_setopt($handle, CURLOPT_NOBODY, true);
-        curl_setopt($handle, CURLOPT_RETURNTRANSFER, false);
-        $connectable = curl_exec($handle);
-        curl_close($handle);
-        return $connectable;
     }
 
     public static function mysql_connection_check($host, $port, $login, $password)
@@ -214,6 +198,21 @@ class Setup
                         <td class="ui-widget-content">PHP <b>'safe mode'</b> must be turned <b>OFF</b></td>
                         <td class="<?= ($test ? "ui-state-highlight" : "ui-state-error") ?>">your PHP <b>'safe mode'</b> is turned <b><?= ($test ? "OFF" : "ON") ?> - <b style="color:<?= ($test ? "green" : "red") ?>"><?= ($test ? "PASSED" : "FAILED") ?></b></td>
                         <td class="ui-widget-content" align="center"><?= ($test ? "-" : "Ask your server administrator to turn PHP 'safe mode' OFF") ?></td>
+                        <?php $ok = $ok && $test; ?>
+                    </tr>
+                <?php } ?>
+                    
+                <?php
+                if ($ok)
+                {
+                    ?>
+                    <tr>
+                        <?php
+                        $test = Setup::php_magic_quotes_check();
+                        ?>
+                        <td class="ui-widget-content">PHP <b>'magic quotes'</b> must be turned <b>OFF</b></td>
+                        <td class="<?= ($test ? "ui-state-highlight" : "ui-state-error") ?>">your PHP <b>'magic quotes'</b> is turned <b><?= ($test ? "OFF" : "ON") ?> - <b style="color:<?= ($test ? "green" : "red") ?>"><?= ($test ? "PASSED" : "FAILED") ?></b></td>
+                        <td class="ui-widget-content" align="center"><?= ($test ? "-" : "Ask your server administrator to turn PHP 'magic quotes' OFF") ?></td>
                         <?php $ok = $ok && $test; ?>
                     </tr>
                 <?php } ?>
@@ -346,29 +345,6 @@ class Setup
                                 ?>
                                 Rscript file path not set or set incorrectly. If you don't have this file on your system it could mean that your <b>R</b> installation is of version lower than <b>v2.12</b>. If that's the case you should update your R to higher version and set your Rscript path then.<br/>
                                 Usually the Rscript file path is <b>/usr/bin/Rscript</b>. Set your Rscript path in <b>/SETTINGS.php</b> file.
-                            <?php } ?>
-                        </td>
-                        <?php $ok = $ok && $test; ?>
-                    </tr>
-                <?php } ?>
-
-                <?php
-                if ($ok)
-                {
-                    ?>
-                    <tr>
-                        <?php
-                        $test = Setup::url_exists_check(Ini::$path_external, true);
-                        ?>
-                        <td class="ui-widget-content">You must set your application URL address.</td>
-                        <td class="<?= ($test ? "ui-state-highlight" : "ui-state-error") ?>">Your application URL: <b><?= Ini::$path_external ?></b> <b><?= ($test ? "IS CORRECT" : "IS INCORRECT") ?> - <b style="color:<?= ($test ? "green" : "red") ?>"><?= ($test ? "PASSED" : "FAILED") ?></b></td>
-                        <td class="ui-widget-content" align="center">
-                            <?php
-                            if ($test) echo"-";
-                            else
-                            {
-                                ?>
-                                Application URL address must be set. It isn`t right now or it is set incorrectly. It must contain protocol prefix and end with a slash character. Set your application URL address in <b>/SETTINGS.php</b> file.
                             <?php } ?>
                         </td>
                         <?php $ok = $ok && $test; ?>
