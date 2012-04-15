@@ -866,83 +866,98 @@ Note: You can add new languages by inserting "<new_language>string translated in
             <en>name of the test</en>
             <pl>nazwa testu</pl>
             <cn>测试名称</cn>
-            <fr>nom dutest</fr>
+            <fr>nom du test</fr>
         </string>
         <string id="142">
             <en>test access rights</en>
             <pl>prawa dostępu testu</pl>
             <cn>测试访问权限</cn>
+            <fr>droits d'accès au test</fr>
         </string>
         <string id="143">
             <en>owner of the test</en>
             <pl>wlaściciel testu</pl>
             <cn>测试所有者</cn>
+            <fr>propriétaire du test</fr>
         </string>
         <string id="144">
             <en>show test variables</en>
             <pl>pokaż zmienne testu</pl>
             <cn>显示测试变量</cn>
+            <fr>voir les variables du test</fr>
         </string>
         <string id="145">
             <en>test logic is empty</en>
             <pl>logika testu jest pusta</pl>
             <cn>测试逻辑空白</cn>
+            <fr>la logique du test est vide</fr>
         </string>
         <string id="146">
             <en>choose section type</en>
             <pl>wybierz typ sekcji</pl>
             <cn>选择章节类型</cn>
+             <fr>choisir un type de section</fr>
         </string>
         <string id="147">
             <en>basic sections</en>
             <pl>podstawowe sekcje</pl>
             <cn>基础章节</cn>
+            <fr>sections de base</fr>
         </string>
         <string id="148">
             <en>custom sections</en>
             <pl>własne sekcje</pl>
             <cn>自主章节</cn>
+            <fr>section personnalisée</fr>
         </string>
         <string id="149">
             <en>variable name</en>
             <pl>nazwa zmiennej</pl>
             <cn>变量名称</cn>
+            <fr>nom de la variable</fr>
         </string>
         <string id="150">
             <en>section</en>
             <pl>sekcja</pl>
             <cn>章节</cn>
+            <fr>section</fr>
         </string>
         <string id="151">
             <en>parameter/return</en>
             <pl>parametr/zwrot</pl>
             <cn>参数/返回</cn>
+            <fr>paramètre/retour</fr>
         </string>
         <string id="152">
             <en>editing admin group</en>
             <pl>edycja grupy aministratorów</pl>
             <cn>编辑管理群</cn>
+            <fr>modifier les groupes d'administrateurs</fr>
         </string>
         <string id="153">
             <en>creating admin group</en>
             <pl>tworzenie grupy aministratorów</pl>
             <cn>创建管理群</cn>
+            <fr>créer un groupe d'administrateurs</fr>
         </string>
         <string id="154">
             <en>name of the admin group</en>
             <pl>nazwa grupy aministratorów</pl>
             <cn>管理群名称</cn>
+            <fr>nom du groupe d'administrateurs</fr>
         </string>
         <string id="155">
             <en>admin group access rights</en>
             <pl>prawa dostepu grupy aministratorów</pl>
             <cn>管理群访问权限</cn>
-        </string>
+            <fr>droits d'accès du groupe d'administrateurs</fr>
+            </string>
         <string id="156">
             <en>owner of the admin group</en>
             <pl>wlaściciel grupy administratorów</pl>
             <cn>管理群所有者</cn>
-        </string>
+            <fr>propriétaire du groupe d'administrateurs</fr>
+            <string>
         <string id="157">
             <en>editing admin type</en>
             <pl>edycja typu administratora</pl>
@@ -952,31 +967,37 @@ Note: You can add new languages by inserting "<new_language>string translated in
             <en>creating new admin type</en>
             <pl>tworzenie nowego typu administratora</pl>
             <cn>创建管理员类型</cn>
+            <fr>créer un nouveau type d'administrateur</fr>
         </string>
         <string id="159">
             <en>name of the admin type</en>
             <pl>nazwa typu administratora</pl>
             <cn>管理员类型名称</cn>
+            <fr>nom du type d'administrateur</fr>
         </string>
         <string id="160">
             <en>access rights of the admin type</en>
             <pl>prawa dostępu typu administratora</pl>
             <cn>管理员类型访问权限</cn>
+            <fr>droits d'accès du type d'administrateur</fr>
         </string>
         <string id="161">
             <en>admin type owner</en>
             <pl>wlaściciel typu administratora</pl>
             <cn>管理类型所有者</cn>
+            <fr>propriétaire du type d'accès</fr>
         </string>
         <string id="162">
             <en>admin type rights</en>
             <pl>prawa typu administratora</pl>
             <cn>管理员类型权限</cn>
+            <fr>droits d'accès d'administrateurs</fr>
         </string>
         <string id="163">
             <en>module</en>
             <pl>moduł</pl>
             <cn>模块</cn>
+            <fr>module</fr>
         </string>
         <string id="164">
             <en>read rights</en>
