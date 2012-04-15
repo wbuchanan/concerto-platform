@@ -457,7 +457,7 @@ Note: You can add new languages by inserting "<new_language>string translated in
             <en>owner</en>
             <pl>właściciel</pl>
             <cn>所有者</cn>
-            <fr>propriéyaite</fr>
+            <fr>propriétaire</fr>
         </string>
         <string id="72">
             <en>access rights</en>
@@ -469,11 +469,13 @@ Note: You can add new languages by inserting "<new_language>string translated in
             <en>none</en>
             <pl>brak</pl>
             <cn>空缺</cn>
+            <fr>aucun</fr>
         </string>
         <string id="74">
-            <en>unnamed table</en>
+            <en>unamed variable</en>
             <pl>nienazwana tabela</pl>
             <cn>未命名表格</cn>
+             <en>veriable sans nom</en>
         </string>
         <string id="75">
             <en>unnamed template</en>
@@ -507,7 +509,7 @@ Note: You can add new languages by inserting "<new_language>string translated in
             <en>unnamed user type</en>
             <pl>nienazwany typ użytkowników</pl>
             <cn>未命名用户类型</cn>
-            <fr>tupe d'utilisateur sans nom</fr>
+            <fr>type d'utilisateur sans nom</fr>
         </string>
         <string id="81" js="1">
             <en>Access denied!</en>
@@ -618,211 +620,253 @@ Note: You can add new languages by inserting "<new_language>string translated in
             <en>access rights to this custom section</en>
             <pl>prawa dostępu dla sekcji własnej</pl>
             <cn>此自主章节的访问权限</cn>
+            <fr>droits d'accès à cette section personnalisée</fr>
         </string>
         <string id="100">
             <en>private</en>
             <pl>prywatne</pl>
             <cn>未公开</cn>
+            <fr>privé</fr>
         </string>
         <string id="101">
             <en>group</en>
             <pl>grupowe</pl>
             <cn>群</cn>
+            <fr>groupe</fr>
         </string>
         <string id="102">
             <en>public</en>
             <pl>publiczne</pl>
             <cn>公开</cn>
+            <fr>publique</fr>
         </string>
         <string id="103">
             <en>owner of this custom section</en>
             <pl>własciciel własnej sekcji</pl>
             <cn>此自主章节所有者</cn>
+            <fr>propriétaire de cette section personnalisée</fr>
         </string>
         <string id="104">
             <en>Edit description. Current description:</en>
             <pl>Edytuj opis. Obecny opis:</pl>
             <cn>编辑描述。当前描述：</cn>
+            <fr>Modifier la description. Description actuelle:</fr>
         </string>
         <string id="105">
             <en>Define section input parameters. Use variables thus declared in the R code section.</en>
             <pl>Tutaj możesz zdefiniować parametry wejściowe sekcji. Można używać zmiennych które tutaj zostały zdeklarowane w kodzie R sekcji.</pl>
             <cn>定义章节输入参数。使用在在章节R代码中声明的变量。</cn>
+            <fr>Définir les paramètres d'entrée de la section. utiliser les variables ainsi définies dans le code R de la section.</fr>
         </string>
         <string id="106">
             <en>parameters</en>
             <pl>parametry</pl>
             <cn>参数</cn>
+            <fr>paramètres</fr>
         </string>
         <string id="107">
             <en>edit description</en>
             <pl>edytuj opis</pl>
             <cn>编辑描述</cn>
+            <fr>modifier la description</fr>
         </string>
         <string id="108">
             <en>no parameters defined</en>
             <pl>brak zdefiniowanych parametrów</pl>
             <cn>未定义参数</cn>
+            <fr>aucun paramètres de définis</fr>
         </string>
         <string id="109">
             <en>add parameter variable</en>
             <pl>dodaj parametr</pl>
             <cn>添加参数变量</cn>
+            <fr>ajouter une variable paramètre</fr>
         </string>
         <string id="110">
             <en>remove parameter variable</en>
             <pl>usuń parametr</pl>
             <cn>移除参数变量</cn>
+            <fr>enlever une variable paramètre</fr>
         </string>
         <string id="111">
             <en>R code relevant for this section. Parameters declared above can be used here.</en>
             <pl>To jest kod R sekcji. Możesz używać w nim parametrów które zdeklarowałeś powyżej.</pl>
             <cn>此章节相关R代码。已声明参数可在此使用。</cn>
+            <fr>code R pertinent à cette section. Les paramètres déclarés ci-dessus peuvent être utilisés ici.</fr>
         </string>
         <string id="112">
             <en>Specify variables used in this section to be made available globally, for use in other test sections.</en>
             <pl>Tutaj możesz zdefiniować które zmienne użyte w sekcji chciałbyś przekazać poza sekcję. Zmienne te następnie mogą zostać użyte w innych sekcjach logiki.</pl>
             <cn>指定此章节内可在其他章节使用的总体变量。</cn>
+            <fr>Spécifier que les variables utilisées dans cette section puissent être disponible globallement, afin qu'elles soient utilisées dans d'autres sections du test.</fr>
         </string>
         <string id="113">
             <en>returns</en>
             <pl>zwrot</pl>
             <cn>返回值</cn>
+            <fr>retours</fr>
         </string>
         <string id="114">
             <en>no returns defined</en>
             <pl>brak zdefiniowanego zwrotu</pl>
             <cn>未定义返回值</cn>
+            <fr>aucun retour défini</fr>
         </string>
         <string id="115">
             <en>add return variable</en>
             <pl>dodaj zmienną zwrotu</pl>
             <cn>添加返回变量</cn>
+            <fr>ajout d'une variable retour</fr>
         </string>
         <string id="116">
-            <en>remvoe return variable</en>
+            <en>remove return variable</en>
             <pl>usuń zmienną zwrotu</pl>
             <cn>移除返回变量</cn>
+            <fr>enlever une variable retour</fr>
         </string>
         <string id="117">
             <en>editing table</en>
             <pl>edycja tabeli</pl>
             <cn>编辑表格</cn>
+            <fr>modifier un tableau</fr>
         </string>
         <string id="118">
             <en>creating new table</en>
             <pl>tworzenie nowej tabeli</pl>
             <cn>创建表格</cn>
+            <fr>créer un nouveau tableau</fr>
         </string>
         <string id="119">
             <en>name of the table</en>
             <pl>nazwa tabeli</pl>
             <cn>表格名称</cn>
+            <fr>nom du tableau</fr>
         </string>
         <string id="120">
             <en>table access rights</en>
             <pl>prawa dostępu tabeli</pl>
             <cn>表格访问权限</cn>
+            <fr>accès aux droits du tableau</fr>
         </string>
         <string id="121">
             <en>owner of the table</en>
             <pl>wlaściciel tabeli</pl>
             <cn>表格所有者</cn>
+            <fr>propriétaire du tableau</fr>
         </string>
         <string id="122" js="1">
             <en>type</en>
             <pl>typ</pl>
             <cn>类型</cn>
+            <fr>type</fr>
         </string>
         <string id="123">
             <en>no object selected</en>
             <pl>nie wybrano żadnego obiektu</pl>
             <cn>未选择对象</cn>
+            <fr>aucun objet sélectionné</fr>
         </string>
         <string id="124">
             <en>MySQL table</en>
             <pl>tabela MySQL</pl>
             <cn>MySQL表格</cn>
+            <fr>Tableau MySQL</fr>
         </string>
         <string id="125">
             <en>import table from MySQL table</en>
             <pl>import tabeli z tabeli MySQL</pl>
             <cn>从MySQL表格导入表格</cn>
+            <fr>importer un tableau à partir d'un tableau MySQL</fr>
         </string>
         <string id="126">
             <en>import table from CSV file</en>
             <pl>import tabeli z pliku CSV</pl>
             <cn>从CSV文件导入表格</cn>
+            <fr>importer un tableau à partir d'un fichier CSV</fr>
         </string>
         <string id="127">
             <en>export table to CSV file</en>
             <pl>eksport tabeli do pliku CSV</pl>
             <cn>导出表格到CSV文件</cn>
+            <fr>exporter un tableau à partir d'un fichier CSV</fr>
         </string>
         <string id="129">
             <en>add column</en>
             <pl>dodaj kolumnę</pl>
             <cn>添加列</cn>
+            <fr>ajouter une colonne</fr>
         </string>
         <string id="130" js="1">
             <en>edit HTML</en>
             <pl>edycja HTML</pl>
             <cn>编辑HTML</cn>
+            <fr>modifier HTML</fr>
         </string>
         <string id="131">
             <en>add row</en>
             <pl>dodaj rekord</pl>
             <cn>添加行</cn>
+            <fr>ajouter une ligne</fr>
         </string>
         <string id="132">
             <en>table is empty</en>
             <pl>tabela jest pusta</pl>
             <cn>表格空白</cn>
+            <fr>le tableau est vide</fr>
         </string>
         <string id="133">
             <en>editing HTML template</en>
             <pl>edycja szablonu HTML</pl>
             <cn>编辑HTML模板</cn>
+            <fr>modifier un modèle HTML</fr>
         </string>
         <string id="134">
             <en>creating new HTML template</en>
             <pl>tworzenie nowego szablonu HTML</pl>
             <cn>创建HTML模板</cn>
+            <fr>créer un nouveau modèle HTML</fr>
         </string>
         <string id="135">
             <en>name of HTML template</en>
             <pl>nazwa szablonu HTML</pl>
             <cn>HTML模板名称</cn>
+            <fr>nom du modèle HTML</fr>
         </string>
         <string id="136">
             <en>HTML content of the template</en>
             <pl>zawartoćś HTML szablonu</pl>
             <cn>HTML模板内容</cn>
+            <fr>contenu HTML du modèle</fr>
         </string>
         <string id="137">
             <en>template access rights</en>
             <pl>prawa dostępu szablonu</pl>
             <cn>模板访问权限</cn>
+            <f>droits d'accès du modèle</fr>
         </string>
         <string id="138">
             <en>owner of the template</en>
             <pl>wlaściciel szablonu</pl>
             <cn>模板所有者</cn>
+            <fr>propriétaire du modèle</fr>
         </string>
         <string id="139">
             <en>editing test</en>
             <pl>edycja testu</pl>
             <cn>编辑测试</cn>
+            <fr>modification du test</fr>
         </string>
         <string id="140">
             <en>creating new test</en>
             <pl>tworzenie nowego testu</pl>
             <cn>创建测试</cn>
+            <fr>créer un nouveau test</fr>
         </string>
         <string id="141">
             <en>name of the test</en>
             <pl>nazwa testu</pl>
             <cn>测试名称</cn>
+            <fr>nom dutest</fr>
         </string>
         <string id="142">
             <en>test access rights</en>
