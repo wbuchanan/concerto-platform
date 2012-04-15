@@ -457,11 +457,13 @@ Note: You can add new languages by inserting "<new_language>string translated in
             <en>owner</en>
             <pl>właściciel</pl>
             <cn>所有者</cn>
+            <fr>propriéyaite</fr>
         </string>
         <string id="72">
             <en>access rights</en>
             <pl>prawa dostępu</pl>
             <cn>访问权限</cn>
+            <fr>droits d'accès</fr>
         </string>
         <string id="73" js="1">
             <en>none</en>
@@ -477,16 +479,19 @@ Note: You can add new languages by inserting "<new_language>string translated in
             <en>unnamed template</en>
             <pl>nienazwany szablon</pl>
             <cn>未命名模板</cn>
+            <fr>modèle sans nom</fr>
         </string>
         <string id="76">
             <en>unnamed test</en>
             <pl>nienazwany test</pl>
             <cn>未命名测试</cn>
+            <fr>test sans nom</fr>
         </string>
         <string id="77">
             <en>incognito</en>
             <pl>inkognito</pl>
             <cn>匿名</cn>
+            <fr>incognito</fr>
         </string>
         <string id="78">
             <en>unknown</en>
@@ -502,31 +507,37 @@ Note: You can add new languages by inserting "<new_language>string translated in
             <en>unnamed user type</en>
             <pl>nienazwany typ użytkowników</pl>
             <cn>未命名用户类型</cn>
+            <fr>tupe d'utilisateur sans nom</fr>
         </string>
         <string id="81" js="1">
             <en>Access denied!</en>
             <pl>Dostęp wzbroniony!</pl>
             <cn>拒绝访问！</cn>
+            <fr>Accès refusé!</fr>
         </string>
         <string id="82">
             <en>logged user</en>
             <pl>zalogowany użytkownik</pl>
             <cn>已登入用户</cn>
+            <fr>utilisateur connecté</fr>
         </string>
         <string id="83">
             <en>log out</en>
             <pl>wyloguj</pl>
             <cn>登出</cn>
+            <fr>se déconnecter</fr>
         </string>
         <string id="84">
             <en>custom test sections</en>
             <pl>własne sekcje testu</pl>
             <cn>自主测试章节</cn>
-        </string>
+            <fr>section de test personnalisée</fr>
+            </string>
         <string id="85">
             <en>tables</en>
             <pl>tabele</pl>
             <cn>表格</cn>
+            <fr>tableux</fr>
         </string>
         <string id="86">
             <en>file</en>
@@ -537,6 +548,7 @@ Note: You can add new languages by inserting "<new_language>string translated in
             <en>templates</en>
             <pl>szablony</pl>
             <cn>模板</cn>
+            <fr>modèles</fr>
         </string>
         <string id="88">
             <en>tests</en>
@@ -552,46 +564,55 @@ Note: You can add new languages by inserting "<new_language>string translated in
             <en>admin types</en>
             <pl>typy administratorów</pl>
             <cn>管理员类型</cn>
+             <fr>atypes d'administrateurs</fr>
         </string>
         <string id="91">
             <en>admin groups</en>
             <pl>grupy administratorów</pl>
             <cn>管理群</cn>
+            <fr>groupes d'administrateurs</fr>
         </string>
         <string id="92">
             <en>editing custom test section</en>
             <pl>edycja własnej sekcji testu</pl>
             <cn>编辑自主测试章节</cn>
+            <fr>modifier les sections de test personnalisées</fr>
         </string>
         <string id="93">
             <en>creating new custom test section</en>
             <pl>tworzenie nowej własnej sekcji testu</pl>
             <cn>创建自主测试章节</cn>
+            <fr>créer une enouvelle section de test personnalisée</fr>
         </string>
         <string id="94">
             <en>delete</en>
             <pl>usuń</pl>
             <cn>删除</cn>
+            <fr>supprimer</fr>
         </string>
         <string id="95" js="1">
             <en>save</en>
             <pl>zapisz</pl>
             <cn>保存</cn>
+            <fr>sauvegarder</fr>
         </string>
         <string id="96">
             <en>name of the custom section</en>
             <pl>nazwa własnej sekcji</pl>
             <cn>自主章节名称</cn>
+            <fr>nom de la section personnalisée</fr>
         </string>
         <string id="97">
             <en>description</en>
             <pl>opis</pl>
             <cn>描述</cn>
+            <fr>description</fr>
         </string>
         <string id="98">
             <en>Brief description of the custom section that will be visible in the test logic when the section is used.</en>
             <pl>opis własnej sekcji, który będzie widoczny w logice tekstu po dodaniu sekcji</pl>
             <cn>使用此章节时在测试逻辑中显示的简介</cn>
+            <fr>Brève description de la section personnalisée qui sera visible dans la logique du test lorsque la section est utilisée.</fr>
         </string>
         <string id="99">
             <en>access rights to this custom section</en>
