@@ -32,31 +32,29 @@ function Concerto(selector,sid,tid,queryPath,callbackGet,callbackSend){
     this.timeObj = null;
     
     this.timePassed = 0;
-    this.timePassedObj = null;
     
     this.clearTimer=function(){
         if(this.timeObj!=null) {
             clearTimeout(this.timeObj);
         }
-        if(this.timePassedObj!=null){
-            clearTimeout(this.timePassedObj);
-        }
     }
     this.iniTimer = function(){
         var thisClass=this;
         var limit = this.getTimeLimit();
+        
+        this.timePassed=0;
+        
         if(limit>0){
             this.timer = limit;
             $(".fontTimeLeft").html(this.timer);
             this.timeObj = setInterval(function(){
+                thisClass.timePassedTick();
                 thisClass.timeTick();
             },1000);
         }
-        
-        this.timePassed=0;
-        this.timePassedObj = setInterval(function(){
+        else {
             thisClass.timePassedTick();
-        },1000);
+        }
     }
     
     this.timePassedTick = function(){
@@ -273,9 +271,9 @@ function Concerto(selector,sid,tid,queryPath,callbackGet,callbackSend){
     
     this.submit=function(btnName){
         var thisClass=this;
+        this.clearTimer();
         if(this.isStopped) return;
         var vals = this.getControlsValues();
-        this.clearTimer();
         vals.push($.toJSON({
             name:"TIME_TAKEN",
             value:thisClass.timePassed,
