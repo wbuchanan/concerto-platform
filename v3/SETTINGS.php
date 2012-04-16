@@ -14,6 +14,10 @@ $path_php_exe       = "/usr/bin/php";                            //e.g. /usr/bin
 $path_mysql_home    = "";                                        //Home directory of MySQL server. It will be probably needed if you want to install Concerto on Windows platform.
                                                                  //e.g. C:/Program Files/MySQL/MySQL Server 5.5
 
+//R
+$r_instances_persistant = true;                                  //true  - R instances are persistant and open throughout the whole test ( faster, but consumes more system resources )
+                                                                 //false - R instances are closed and restored when needed ( slower, but consumes less system resources )
+
 //general
 $timezone = 'Europe/London';
 ?>

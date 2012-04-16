@@ -36,6 +36,7 @@ class Ini
     public static $sock_port = "8888";
     public static $unix_sock = "";
     public static $sock_type_used = 0;
+    public static $r_instances_persistant = false;
 
     function __construct($connect = true, $session = true)
     {
@@ -81,6 +82,7 @@ class Ini
         self::$path_temp = self::$path_internal . "temp/";
         self::$path_mysql_home = $path_mysql_home;
         self::$unix_sock = self::$path_internal."socks/RConcerto.sock";
+        self::$r_instances_persistant = $r_instances_persistant;
     }
 
     public static function does_patch_apply($patch_version, $previous_version)

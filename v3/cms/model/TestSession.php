@@ -137,37 +137,118 @@ class TestSession extends OTable
     public function debug_syntax($ts_id, $close = false)
     {
         $ts = TestSection::from_mysql_id($ts_id);
-        $result = $this->RCall($ts->get_RFunction(), false, $close);
+        $result = $this->RCall($ts->get_RFunction(), false, $close, true);
         return $result;
     }
 
-    public function RCall($code, $include_ini_code = false, $close = false)
+    public function does_RSession_file_exists()
+    {
+        if (file_exists($this->get_RSession_file_path())) return true;
+        else return false;
+    }
+
+    public function RCall($code, $include_ini_code = false, $close = false, $debug_syntax = false)
     {
         $command = "";
-        if ($include_ini_code) $command = $this->get_ini_RCode();
+        if (!$debug_syntax)
+        {
+            if ($include_ini_code) $command = $this->get_ini_RCode();
+            else $command.=$this->get_next_ini_RCode();
+        }
+        else if (!Ini::$r_instances_persistant)
+        {
+            $command.="
+            sink(stdout(), type='message')
+            ";
+        }
+
         $command.=$code;
+        if (!$debug_syntax) $command.=$this->get_post_RCode();
 
-        $command_obj = json_encode(array(
-            "session_id" => $this->id,
-            "code" => $command,
-            "close" => $close ? 1 : 0
-                ));
+        if (Ini::$r_instances_persistant)
+        {
+            $command_obj = json_encode(array(
+                "session_id" => $this->id,
+                "code" => $command,
+                "close" => $close ? 1 : 0
+                    ));
 
-        if (TestServer::$debug)
-                TestServer::log_debug("TestSession->RCall --- checking for server");
-        if (!TestServer::is_running()) TestServer::start_process();
-        if (TestServer::$debug)
-                TestServer::log_debug("TestSession->RCall --- server found, trying to send");
-        $response = TestServer::send($command_obj);
-        $result = json_decode(trim($response));
-        if (TestServer::$debug)
-                TestServer::log_debug("TestSession->RCall --- sent and recieved response");
+            if (TestServer::$debug)
+                    TestServer::log_debug("TestSession->RCall --- checking for server");
+            if (!TestServer::is_running()) TestServer::start_process();
+            if (TestServer::$debug)
+                    TestServer::log_debug("TestSession->RCall --- server found, trying to send");
+            $response = TestServer::send($command_obj);
+            $result = json_decode(trim($response));
+            if (TestServer::$debug)
+                    TestServer::log_debug("TestSession->RCall --- sent and recieved response");
+            return array("return" => $result->return, "output" => explode("\n", $result->output), "code" => $result->code);
+        }
+        else
+        {
+            $this->write_RSource_file($command);
 
-        return array("return" => $result->return, "output" => explode("\n", $result->output), "code" => $result->code);
+            $output = array();
+            $return = -999;
+            include Ini::$path_internal . 'SETTINGS.php';
+            exec("\"" . Ini::$path_r_script . "\" --vanilla \"" . $this->get_RSource_file_path() . "\" " . $db_host . " " . ($db_port != "" ? $db_port : "3306") . " " . $db_user . " " . $db_password . " " . $db_name . " " . $this->id . " " . (Ini::$path_mysql_home != "" ? "'" . Ini::$path_mysql_home . "'" : ""), $output, $return);
+            return array("return" => $return, "output" => $output, "code" => $command);
+        }
+    }
+
+    public function get_next_ini_RCode()
+    {
+        $code = "";
+        if (!Ini::$r_instances_persistant)
+        {
+            $code = "
+            sink(stdout(), type='message')
+            library(session)
+            restore.session('" . $this->get_RSession_file_path() . "')
+            drv <- dbDriver('MySQL')
+            for(con in dbListConnections(drv)) { dbDisconnect(con) }
+            con <- dbConnect(drv, user = DB_LOGIN, password = DB_PASSWORD, dbname = DB_NAME, host = DB_HOST, port = DB_PORT)
+            ";
+        }
+        return $code;
+    }
+
+    public function get_post_RCode()
+    {
+        $code = "";
+        if (!Ini::$r_instances_persistant)
+        {
+            $code = "
+            save.session('" . $this->get_RSession_file_path() . "')
+            ";
+        }
+        return $code;
+    }
+
+    public function write_RSource_file($code)
+    {
+        $file = fopen($this->get_RSource_file_path(), 'w');
+        fwrite($file, $code);
+        fclose($file);
+    }
+
+    public function get_RSource_file_path()
+    {
+        return Ini::$path_temp . "session_" . $this->id . ".R";
+    }
+
+    public function get_RSession_file_path()
+    {
+        return Ini::$path_temp . "session_" . $this->id . ".Rs";
     }
 
     public function mysql_delete()
     {
+        if (file_exists($this->get_RSource_file_path()))
+                unlink($this->get_RSource_file_path());
+        if (file_exists($this->get_RSession_file_path()))
+                unlink($this->get_RSession_file_path());
+
         $this->delete_object_links(TestSessionVariable::get_mysql_table());
         parent::mysql_delete();
     }
@@ -176,10 +257,23 @@ class TestSession extends OTable
     {
         $path = Ini::$path_temp . $this->get_Test()->Owner_id;
         if (!is_dir($path)) mkdir($path, 0777);
-        $code = "
-            ##sink(stdout(), type='message')
+        $code = "";
+        if (!Ini::$r_instances_persistant)
+        {
+            $code.="
+            sink(stdout(), type='message')
+            ";
+        }
+        $code .= "
             options(encoding='UTF-8')
-            TEMP_PATH <- '" . $path . "'
+            ";
+        if (!Ini::$r_instances_persistant)
+        {
+            $code.="
+            library(session)
+            ";
+        }
+        $code .= "TEMP_PATH <- '" . $path . "'
             source('" . Ini::$path_internal . "lib/R/mainmethods.R" . "')
             ";
         $code .=$this->get_Test()->get_TestSections_RFunction_declaration();
