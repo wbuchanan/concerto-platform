@@ -234,12 +234,12 @@ class TestSession extends OTable
 
     public function get_RSource_file_path()
     {
-        return Ini::$path_temp . "session_" . $this->id . ".R";
+        return Ini::$path_temp . $this->get_Test()->Owner_id."/session_" . $this->id . ".R";
     }
 
     public function get_RSession_file_path()
     {
-        return Ini::$path_temp . "session_" . $this->id . ".Rs";
+        return Ini::$path_temp . $this->get_Test()->Owner_id."/session_" . $this->id . ".Rs";
     }
 
     public function mysql_delete()
