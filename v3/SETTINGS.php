@@ -15,7 +15,7 @@ $path_mysql_home    = "";                                        //Home director
                                                                  //e.g. C:/Program Files/MySQL/MySQL Server 5.5
 
 //R
-$r_instances_persistant = true;                                  //true  - R instances are persistant and open throughout the whole test ( faster, but consumes more system resources )
+$r_instances_persistant = false;                                 //true  - R instances are persistant and open throughout the whole test ( faster, but consumes more system resources, EXPERIMENTAL )
                                                                  //false - R instances are closed and restored when needed ( slower, but consumes less system resources )
 
 //general
