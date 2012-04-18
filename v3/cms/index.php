@@ -63,10 +63,6 @@ if (!isset($ini))
         <script src="js/CustomSection.js"></script>
         <script src="lib/ckeditor/ckeditor.js"></script>
         <script src="lib/ckeditor/adapters/jquery.js"></script>
-        <script src="js/lib/jquery.metadata.js"></script>
-        <script src="js/lib/jquery-tablesorter.min.js"></script>
-        <script src="js/lib/jquery-tablesorter-pager.js"></script>
-        <script src="js/lib/jquery.tablesorter.filter.js"></script>
         <script src="lib/CodeMirror/lib/codemirror.js"></script>
         <script src="lib/CodeMirror/mode/htmlmixed/htmlmixed.js"></script>
         <script src="lib/CodeMirror/mode/r/r.js"></script>
