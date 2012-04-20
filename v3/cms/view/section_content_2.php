@@ -121,7 +121,7 @@ if ($vals[0] != 0 && $template != null) {
         </td>
         <td>
             <select id="selectTemplate_<?= $_POST['counter'] ?>" class="fullWidth ui-widget-content ui-corner-all" onchange="Test.uiTemplatesChanged()">
-                <option value="0">&lt;from CURRENT_TEMPLATE_ID&gt;</option>
+                <option value="0">&lt;<?=Language::string(73)?>&gt;</option>
 <?php
 $sql = $logged_user->mysql_list_rights_filter("Template", "`name` ASC");
 $z = mysql_query($sql);
@@ -148,14 +148,8 @@ while ($r = mysql_fetch_array($z)) {
 
     for ($i = 0; $i < count($outputs); $i++) {
         $ret = $outputs[$i]["name"];
-        if (isset($vals[$vals[1] + 3 + $i * 3]) && $vals[$vals[1] + 3 + $i * 3] != "")
-            $ret = $vals[$vals[1] + 3 + $i * 3];
-        $vis = 2;
-        if (isset($vals[$vals[1] + 3 + $i * 3 + 1]))
-            $vis = $vals[$vals[1] + 3 + $i * 3 + 1];
-        $type = 0;
-        if (isset($vals[$vals[1] + 3 + $i * 3 + 2]))
-            $type = $vals[$vals[1] + 3 + $i * 3 + 2];
+        if (isset($vals[$vals[1] + 3 + $i]) && $vals[$vals[1] + 3 + $i] != "")
+            $ret = $vals[$vals[1] + 3 + $i];
         ?>
                     <tr>
                         <td><span class="spanIcon ui-icon ui-icon-help tooltip" title="<?= Language::string(217) ?>: <b><?= $outputs[$i]["type"] ?></b>"></span></td>

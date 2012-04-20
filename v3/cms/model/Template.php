@@ -74,54 +74,18 @@ class Template extends OModule {
         return $name;
     }
 
-    public function get_return_visibility($name, $vals, $output = null) {
-        if($output == null) $output = $this->get_outputs();
-        $j = 3 + $vals[1];
-        foreach ($output as $ret) {
-            if ($ret["name"] == $name)
-                return $vals[$j + 1];
-
-            $j = $j + 3;
-        }
-        return 2;
-    }
-
-    public function get_return_type($name, $vals, $output = null) {
-        if($output == null) $output = $this->get_outputs();
-        $j = 3 + $vals[1];
-        foreach ($output as $ret) {
-            if ($ret["name"] == $name)
-                return $vals[$j + 2];
-
-            $j = $j + 3;
-        }
-        return 0;
-    }
-
     public function get_html_with_return_properties($vals) {
         $html = str_get_html($this->HTML);
         $outputs = $this->get_outputs();
 
         foreach ($outputs as $out) {
             $elems = $html->find("[name='" . $out["name"] . "']");
-            $visibility = null;
-            $type = null;
             $reference = null;
             foreach ($elems as $elem) {
-                if ($visibility == null && $type == null && $reference == null) {
-                    $visibility = $this->get_return_visibility($out["name"], $vals, $outputs);
-                    $type = $this->get_return_type($out["name"], $vals, $outputs);
+                if ($reference == null) {
                     $reference = $this->get_return_reference($out["name"], $vals, $outputs);
-                    
-                    $elem->setAttribute("returnvisibility", $visibility);
-                    $elem->setAttribute("returntype", $type);
-                    $elem->setAttribute("name", $reference);
                 }
-                else {
-                    $elem->setAttribute("returnvisibility", $visibility);
-                    $elem->setAttribute("returntype", $type);
-                    $elem->setAttribute("name", $reference);
-                }
+                $elem->setAttribute("name", $reference);
             }
         }
         return $html->save();

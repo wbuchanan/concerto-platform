@@ -51,5 +51,5 @@ for($i=0;$i<count($sections);$i++)
 }
 $session->mysql_delete();
 
-echo json_encode(array("result" => 0, "data" => $result));
+echo json_encode(array("result" => 0, "response" => $result));
 ?>

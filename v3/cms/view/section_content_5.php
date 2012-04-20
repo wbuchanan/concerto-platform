@@ -41,17 +41,7 @@ if (array_key_exists('oid', $_POST) && $_POST['oid'] != 0)
     $vals = $section->get_values();
 }
 ?>
-<b><?= Language::string(233) ?></b> <input onchange="Test.uiSetVarNameChanged($(this))" type="text" class="ui-state-focus comboboxSetVars comboboxVars controlValue<?= $_POST['counter'] ?> ui-widget-content ui-corner-all" value="<?= htmlspecialchars(isset($vals[6]) ? $vals[6] : "", ENT_QUOTES) ?>" /> 
-<b><?= Language::string(277) ?></b> <select class="controlValue<?= $_POST['counter'] ?>_visibility ui-widget-content ui-corner-all">
-    <option value="0" <?= ($vals[4] == 0 ? "selected" : "") ?>><?= Language::string(275) ?></option>
-    <option value="1" <?= ($vals[4] == 1 ? "selected" : "") ?>><?= Language::string(18) ?></option>
-    <option value="2" <?= ($vals[4] == 2 ? "selected" : "") ?>><?= Language::string(276) ?></option>
-</select> 
-<b><?= Language::string(279) ?></b> <select class="controlValue<?= $_POST['counter'] ?>_type ui-widget-content ui-corner-all">
-    <option value="0" <?= ($vals[5] == 0 ? "selected" : "") ?>><?= Language::string(280) ?></option>
-    <option value="1" <?= ($vals[5] == 1 ? "selected" : "") ?>><?= Language::string(281) ?></option>
-    <option value="2" <?= ($vals[5] == 2 ? "selected" : "") ?>><?= Language::string(282) ?></option>
-</select>
+<b><?= Language::string(233) ?></b> <input onchange="Test.uiSetVarNameChanged($(this))" type="text" class="ui-state-focus comboboxSetVars comboboxVars controlValue<?= $_POST['counter'] ?> ui-widget-content ui-corner-all" value="<?= htmlspecialchars(isset($vals[4]) ? $vals[4] : "", ENT_QUOTES) ?>" /> 
 <br/>
 <div align="center">
     <?= Language::string(235) ?> <input type="radio" name="radioSetVarType_<?= $_POST['counter'] ?>" class="radioSetVarType_<?= $_POST['counter'] ?> radioSetVarType" <?= !isset($vals[2]) || $vals[2] == 0 ? "checked" : "" ?> value="0" onchange="Test.changeSetVarType(<?= $_POST['counter'] ?>)" />, 
@@ -69,23 +59,23 @@ if (array_key_exists('oid', $_POST) && $_POST['oid'] != 0)
         {
             $table = Table::from_mysql_id($r[0]);
             ?>
-            <option value="<?= $table->id ?>" <?= isset($vals[7]) && $vals[7] == $table->id ? "selected" : "" ?> ><?= $table->name ?> ( <?= $table->get_system_data() ?> )</option>
+            <option value="<?= $table->id ?>" <?= isset($vals[5]) && $vals[5] == $table->id ? "selected" : "" ?> ><?= $table->name ?> ( <?= $table->get_system_data() ?> )</option>
         <?php } ?>
     </select> <br/>
     <?= Language::string(240) ?> <br/>
     <select class="controlValue<?= $_POST['counter'] ?> controlValue<?= $_POST['counter'] ?>_column ui-widget-content ui-corner-all">
         <option value="0">&lt;<?= Language::string(241) ?>&gt;</option>
         <?php
-        if (isset($vals[7]))
+        if (isset($vals[5]))
         {
-            $table = Table::from_mysql_id($vals[7]);
+            $table = Table::from_mysql_id($vals[5]);
             if ($table != null)
             {
                 $cols = $table->get_TableColumns();
                 foreach ($cols as $col)
                 {
                     ?>
-                    <option value="<?= $col->index ?>" <?= isset($vals[8]) && $vals[8] == $col->index ? "selected" : "" ?> ><?= $col->name ?></option>
+                    <option value="<?= $col->index ?>" <?= isset($vals[6]) && $vals[6] == $col->index ? "selected" : "" ?> ><?= $col->name ?></option>
                     <?php
                 }
             }
@@ -102,16 +92,16 @@ if (array_key_exists('oid', $_POST) && $_POST['oid'] != 0)
             ,<select class="controlValue<?= $_POST['counter'] ?> controlValue<?= $_POST['counter'] ?>_column ui-widget-content ui-corner-all">
                 <option value="0">&lt;<?= Language::string(241) ?>&gt;</option>
                 <?php
-                if (isset($vals[7]))
+                if (isset($vals[5]))
                 {
-                    $table = Table::from_mysql_id($vals[7]);
+                    $table = Table::from_mysql_id($vals[5]);
                     if ($table != null)
                     {
                         $cols = $table->get_TableColumns();
                         foreach ($cols as $col)
                         {
                             ?>
-                            <option value="<?= $col->index ?>" <?= isset($vals[8 + $i]) && $vals[8 + $i] == $col->index ? "selected" : "" ?> ><?= $col->name ?></option>
+                            <option value="<?= $col->index ?>" <?= isset($vals[6 + $i]) && $vals[6 + $i] == $col->index ? "selected" : "" ?> ><?= $col->name ?></option>
                             <?php
                         }
                     }
@@ -135,7 +125,7 @@ if (array_key_exists('oid', $_POST) && $_POST['oid'] != 0)
     <?php
     if (isset($vals[1]))
     {
-        $i = 9 + $vals[0];
+        $i = 7 + $vals[0];
         for ($j = 1; $j <= $vals[1]; $j++)
         {
             ?>
@@ -147,9 +137,9 @@ if (array_key_exists('oid', $_POST) && $_POST['oid'] != 0)
             <select class="controlValue<?= $_POST['counter'] ?> ui-widget-content ui-corner-all">
                 <option value="0">&lt;<?= Language::string(241) ?>&gt;</option>
                 <?php
-                if (isset($vals[7]))
+                if (isset($vals[5]))
                 {
-                    $table = Table::from_mysql_id($vals[7]);
+                    $table = Table::from_mysql_id($vals[5]);
                     if ($table != null)
                     {
                         $cols = $table->get_TableColumns();

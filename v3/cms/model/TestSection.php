@@ -121,19 +121,17 @@ class TestSection extends OTable
             case DS_TestSectionType::START:
                 {
                     $code = sprintf("
-                    CURRENT_SECTION_INDEX <<- %d  
-                    
                     return(%d)
-                    ", $next_counter, $next_counter);
+                    ", $next_counter);
                     return $code;
                 }
             case DS_TestSectionType::END:
                 {
                     $code = sprintf("
-                    CURRENT_SECTION_INDEX <<- %d
-                    set.var('CURRENT_SECTION_INDEX',%d)
+                    update.session.status(%d)    
+                    update.session.counter(%d)
                     return(%d)
-                    ", $next_counter, $next_counter, $next_counter);
+                    ", TestSession::TEST_SESSION_STATUS_FINISHED, $next_counter, $next_counter);
                     return $code;
                 }
             case DS_TestSectionType::CUSTOM:
@@ -143,9 +141,7 @@ class TestSection extends OTable
                             return sprintf("stop('Invalid custom section #%s')", $this->counter);
                     $parameters = $cs->get_parameter_CustomSectionVariables();
                     $returns = $cs->get_return_CustomSectionVariables();
-                    $code = sprintf("
-                        CURRENT_SECTION_INDEX <<- %d
-                        ", $next_counter);
+                    $code = "";
                     $j = 1;
                     foreach ($parameters as $param)
                     {
@@ -157,33 +153,15 @@ class TestSection extends OTable
                     $code.=$cs->code;
                     foreach ($returns as $ret)
                     {
-                        if ($vals[$j + 1] == 0 || $vals[$j + 1] == 2)
-                        {
-                            $code.=sprintf("
+                        $code.=sprintf("
                             %s <<- %s
                             ", $vals[$j], $ret->name);
 
-                            if ($vals[$j + 2] == 1)
-                            {
-                                $code.=sprintf("
-                                %s <<- toString(%s)
-                                ", $vals[$j], $vals[$j]);
-                            }
-                            if ($vals[$j + 2] == 2)
-                            {
-                                $code.=sprintf("
-                                %s <<- as.numeric(%s)
-                                ", $vals[$j], $vals[$j]);
-                            }
-                        }
+                        $code.=sprintf("
+                            if(suppressWarnings(!is.na(as.numeric(%s)))) %s <- as.numeric(%s)
+                            ", $vals[$j], $vals[$j]);
 
-                        if ($vals[$j + 1] == 1 || $vals[$j + 1] == 2)
-                        {
-                            $code.=sprintf("
-                            set.var('%s',%s)
-                            ", $vals[$j], $ret->name);
-                        }
-                        $j = $j + 3;
+                        $j++;
                     }
                     $code.=sprintf("
                         return(%d)
@@ -193,53 +171,49 @@ class TestSection extends OTable
             case DS_TestSectionType::R_CODE:
                 {
                     $code = sprintf("
-                        CURRENT_SECTION_INDEX <<- %d
                         %s
                         return(%d)
-                        ", $next_counter, $vals[0], $next_counter
+                        ", $vals[0], $next_counter
                     );
                     return $code;
                 }
             case DS_TestSectionType::LOAD_HTML_TEMPLATE:
                 {
                     $template_id = $vals[0];
-                    if ($template_id == 0) $template_id = "CURRENT_TEMPLATE_ID";
-                    else
-                    {
-                        $template = Template::from_mysql_id($template_id);
-                        if ($template == null)
-                                return sprintf("stop('Invalid template id: %s in section #%s')", $template_id, $this->counter);
-                    }
+                    $template = Template::from_mysql_id($template_id);
+                    if ($template == null)
+                            return sprintf("stop('Invalid template id: %s in section #%s')", $template_id, $this->counter);
 
+                    //replace HTML vars names with the refefence
+                    $html = $template->get_html_with_return_properties($this->get_values());
+                    
                     $code = sprintf("
-                        CURRENT_SECTION_INDEX <<- %d
-                        set.var('LOAD_HTML_SECTION_INDEX',%d)
-                        set.var('CURRENT_SECTION_INDEX',%d)
-                        
-                        CURRENT_TEMPLATE_ID <<- %s
-                        set.var('CURRENT_TEMPLATE_ID',CURRENT_TEMPLATE_ID)
-                        set.var('HALT_TYPE',%d)
+                        update.session.template_id(%d)
+                        if(!exists('TIME_LIMIT')) TIME_LIMIT <<- 0
+                        update.session.time_limit(TIME_LIMIT)
+                        update.session.status(%d)
+                        update.session.counter(%d)
+                        update.session.HTML(fill.session.HTML('%s'))
+
                         return(-1)
-                        ", $next_counter, $this->counter, $next_counter, $template_id, $this->TestSectionType_id
+                        ", $template_id, TestSession::TEST_SESSION_STATUS_TEMPLATE, $next_counter, $html
                     );
+                    
                     return $code;
                 }
             case DS_TestSectionType::GO_TO:
                 {
                     $code = sprintf("
-                        CURRENT_SECTION_INDEX <<- %d
-                        set.var('CURRENT_SECTION_INDEX',%d)
                         return(%d)
-                        ", $vals[0], $vals[0], $vals[0]
+                        ", $vals[0]
                     );
                     return $code;
                 }
             case DS_TestSectionType::IF_STATEMENT:
                 {
                     $code = sprintf("
-                        CURRENT_SECTION_INDEX <<- %d
                         return(%d)
-                        ", $next_counter, $next_counter);
+                        ", $next_counter);
                     return $code;
                 }
             case DS_TestSectionType::TABLE_MOD:
@@ -289,12 +263,10 @@ class TestSection extends OTable
                     }
 
                     $code = sprintf('
-                        CURRENT_SECTION_INDEX <<- %d
-                        
                         sqlCommand <- paste("%s",sep="")
                         sqlResult <- dbSendQuery(con,sqlCommand)
                         return(%d)
-                        ', $next_counter, $sql, $next_counter);
+                        ', $sql, $next_counter);
 
                     return $code;
                 }
@@ -304,44 +276,26 @@ class TestSection extends OTable
                     $columns_count = $vals[0];
                     $conds_count = $vals[1];
 
-                    $set_var_code = "";
-                    if ($vals[4] == 1 || $vals[4] == 2)
-                            $set_var_code = sprintf('set.var("%s",%s)', $vals[6], $vals[6]);
-
-                    $set_rvar_code = "";
-                    if ($vals[4] == 0 || $vals[4] == 2)
-                            $set_rvar_code = sprintf('
-                                %s <<- %s
-                                ', $vals[6], $vals[6]);
-                    if ($vals[5] == 1)
-                    {
-                        $set_rvar_code .= sprintf('
-                                %s <<- toString(%s)
-                                ', $vals[6], $vals[6]);
-                    }
-                    if ($vals[5] == 2)
-                    {
-                        $set_rvar_code .= sprintf('
-                                %s <<- as.numeric(%s)
-                                ', $vals[6], $vals[6]);
-                    }
+                    $set_rvar_code = sprintf('
+                                if(suppressWarnings(!is.na(as.numeric(%s)))) %s <<- as.numeric(%s)
+                                ', $vals[4], $vals[4], $vals[4]);
 
                     if ($type == 0)
                     {
-                        $table = Table::from_mysql_id($vals[7]);
+                        $table = Table::from_mysql_id($vals[5]);
                         if ($table == null)
-                                return sprintf("stop('Invalid table id: %s in section #%s')", $vals[7], $this->counter);
+                                return sprintf("stop('Invalid table id: %s in section #%s')", $vals[5], $this->counter);
 
-                        $column = TableColumn::from_property(array("Table_id" => $table->id, "index" => $vals[8]), false);
+                        $column = TableColumn::from_property(array("Table_id" => $table->id, "index" => $vals[6]), false);
                         if ($column == null)
-                                return sprintf("stop('Invalid table column index: %s of table id: %s in section #%s')", $vals[8], $table->id, $this->counter);
+                                return sprintf("stop('Invalid table column index: %s of table id: %s in section #%s')", $vals[6], $table->id, $this->counter);
 
                         $sql = sprintf("SELECT `%s`", $column->name);
                         for ($i = 1; $i <= $columns_count; $i++)
                         {
-                            $column = TableColumn::from_property(array("Table_id" => $table->id, "index" => $vals[8 + $i]), false);
+                            $column = TableColumn::from_property(array("Table_id" => $table->id, "index" => $vals[6 + $i]), false);
                             if ($column == null)
-                                    return sprintf("stop('Invalid table column index: %s of table id: %s in section #%s')", $vals[8 + $i], $table->id, $this->counter);
+                                    return sprintf("stop('Invalid table column index: %s of table id: %s in section #%s')", $vals[6 + $i], $table->id, $this->counter);
 
                             $sql.=sprintf(",`%s`", $column->name);
                         }
@@ -351,7 +305,7 @@ class TestSection extends OTable
                         {
                             $sql.=sprintf("WHERE ");
 
-                            $j = 9 + $columns_count;
+                            $j = 7 + $columns_count;
                             for ($i = 1; $i <= $conds_count; $i++)
                             {
                                 if ($i > 1)
@@ -378,29 +332,23 @@ class TestSection extends OTable
                         }
 
                         $code = sprintf('
-                        CURRENT_SECTION_INDEX <<- %d
-                        
                         sqlCommand <- paste("%s",sep="")
                         sqlResult <- dbSendQuery(con,sqlCommand)
-                        %s <- fetch(sqlResult,n=-1)
-                        %s
+                        %s <<- fetch(sqlResult,n=-1)
                         %s
                         return(%d)
-                        ', $next_counter, $sql, $vals[6], $set_var_code, $set_rvar_code, $next_counter);
+                        ', $sql, $vals[4], $set_rvar_code, $next_counter);
                         return $code;
                     }
                     if ($type == 1)
                     {
                         $code = sprintf('
-                        CURRENT_SECTION_INDEX <<- %d
-                        
-                        %s <- {
+                        %s <<- {
                         %s
                         }
                         %s
-                        %s
                         return(%d)
-                        ', $next_counter, $vals[6], $vals[3], $set_var_code, $set_rvar_code, $next_counter
+                        ', $vals[4], $vals[3], $set_rvar_code, $next_counter
                         );
                         return $code;
                     }
@@ -422,18 +370,18 @@ class TestSection extends OTable
 
     public function to_XML()
     {
-        $xml = new DOMDocument('1.0',"UTF-8");
+        $xml = new DOMDocument('1.0', "UTF-8");
 
         $element = $xml->createElement("TestSection");
         $xml->appendChild($element);
 
-        $counter = $xml->createElement("counter", htmlspecialchars($this->counter, ENT_QUOTES,"UTF-8"));
+        $counter = $xml->createElement("counter", htmlspecialchars($this->counter, ENT_QUOTES, "UTF-8"));
         $element->appendChild($counter);
 
-        $parent = $xml->createElement("parent_counter", htmlspecialchars($this->parent_counter, ENT_QUOTES,"UTF-8"));
+        $parent = $xml->createElement("parent_counter", htmlspecialchars($this->parent_counter, ENT_QUOTES, "UTF-8"));
         $element->appendChild($parent);
 
-        $tstid = $xml->createElement("TestSectionType_id", htmlspecialchars($this->TestSectionType_id, ENT_QUOTES,"UTF-8"));
+        $tstid = $xml->createElement("TestSectionType_id", htmlspecialchars($this->TestSectionType_id, ENT_QUOTES, "UTF-8"));
         $element->appendChild($tstid);
 
         $tsv = $xml->createElement("TestSectionValues");

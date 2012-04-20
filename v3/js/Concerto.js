@@ -26,7 +26,9 @@ function Concerto(selector,sid,tid,queryPath,callbackGet,callbackSend){
     this.callbackSend = callbackSend;
     this.isStopped = false;
     
-    this.lastResults = null;
+    this.data = null;
+    this.debug = null;
+    this.status = Concerto.statusTypes.started;
     
     this.timer = 0;
     this.timeObj = null;
@@ -40,7 +42,7 @@ function Concerto(selector,sid,tid,queryPath,callbackGet,callbackSend){
     }
     this.iniTimer = function(){
         var thisClass=this;
-        var limit = this.getTimeLimit();
+        var limit = this.data["TIME_LIMIT"];
         
         this.timePassed=0;
         
@@ -80,6 +82,7 @@ function Concerto(selector,sid,tid,queryPath,callbackGet,callbackSend){
     
     this.run=function(btnName,values){
         if(this.isStopped) return;
+        this.status = Concerto.statusTypes.loading;
         ConcertoMethods.loading(this.selector);
         var thisClass = this;
         
@@ -98,52 +101,44 @@ function Concerto(selector,sid,tid,queryPath,callbackGet,callbackSend){
         $.post(this.queryPath+"r_call.php",
             params,
             function(data){
-                thisClass.lastResults = data;
-                
-                thisClass.sessionID = thisClass.getVariableValue("TEST_SESSION_ID");
-                thisClass.testID = thisClass.getVariableValue("TEST_ID");
-                
-                if(data.control.halt_type == Concerto.haltTypes.loadTemplate && data.result["return"] == 0)
-                {
-                    thisClass.loadTemplate(thisClass.getVariableValue("CURRENT_TEMPLATE_ID"));
+                thisClass.data = data.data;
+                if(data.debug){
+                    thisClass.debug = data.debug;
                 }
                 
-                if(data.control.end && data.result["return"] == 0)
-                {
-                    $(thisClass.selector).html("");
-                }
+                thisClass.sessionID = thisClass.data["TEST_SESSION_ID"];
+                thisClass.testID = thisClass.data["TEST_ID"];
+                thisClass.status = thisClass.data["STATUS"];
                 
-                if(data.result["return"] != 0){
-                    $(thisClass.selector).html("<h2>RScript return code</h2>");
-                    $(thisClass.selector).append(data.result["return"]);
-                    $(thisClass.selector).append("<hr/>");
-                    $(thisClass.selector).append("<h2>HTML variables</h2>");
-                    for(var k in data.values){
-                        $(thisClass.selector).append("<b>"+k+"</b> = "+data.values[k].replace(/\n/g,'<br />')+"<br/>") ;
+                if(thisClass.data["STATUS"]==Concerto.statusTypes.template) thisClass.loadTemplate(thisClass.data["HTML"]);
+                if(thisClass.data["STATUS"]==Concerto.statusTypes.finished) $(thisClass.selector).html("");
+                
+                if(thisClass.data["STATUS"]==Concerto.statusTypes.error){
+                    if(thisClass.debug==null){
+                        $(thisClass.selector).html("<h2>Fatal test exception encounterd. Test halted.</h2>");
                     }
-                    $(thisClass.selector).append("<hr/>");
-                    $(thisClass.selector).append("<h2>R code</h2>");
-                    $(thisClass.selector).append(data.result.code.replace(/\n/g,'<br />'));
-                    $(thisClass.selector).append("<hr/>");
-                    $(thisClass.selector).append("<h2>R output</h2>");
-                    for(var i=0; i<data.result.output.length;i++){
-                        $(thisClass.selector).append(data.result.output[i].replace(/\n/g,'<br />')+"<br/>");
+                    else {
+                        $(thisClass.selector).html("<h2>RScript return code</h2>");
+                        $(thisClass.selector).append(thisClass.debug["return"]);
+                        $(thisClass.selector).append("<hr/>");
+                        //$(thisClass.selector).append("<h2>HTML variables</h2>");
+                        //for(var k in data.values){
+                        //    $(thisClass.selector).append("<b>"+k+"</b> = "+data.values[k].replace(/\n/g,'<br />')+"<br/>") ;
+                        //}
+                        //$(thisClass.selector).append("<hr/>");
+                        $(thisClass.selector).append("<h2>R code</h2>");
+                        $(thisClass.selector).append(thisClass.debug["code"].replace(/\n/g,'<br />'));
+                        $(thisClass.selector).append("<hr/>");
+                        $(thisClass.selector).append("<h2>R output</h2>");
+                        for(var i=0; i<thisClass.debug["output"].length;i++){
+                            $(thisClass.selector).append(thisClass.debug["output"][i].replace(/\n/g,'<br />')+"<br/>");
+                        }
                     }
                 }
                 if(thisClass.callbackGet!=null) thisClass.callbackGet.call(thisClass, data);
-                return data;
+                return thisClass.data;
             },"json");
         return null;
-    };
-    
-    this.getVariableValue=function(name){
-        var result = this.lastResults.values[name];
-        return result;
-    };
-    
-    this.getValues=function(){
-        var result = this.lastResults.values;
-        return result;
     };
     
     this.insertSpecialVariables=function(html){
@@ -151,85 +146,52 @@ function Concerto(selector,sid,tid,queryPath,callbackGet,callbackSend){
         return html;
     };
     
-    this.loadTemplate=function(templateID){
+    this.loadTemplate=function(html){
         var thisClass = this;
-        
-        $.post(this.queryPath+"get_html.php",{
-            template_id:templateID,
-            values:this.getValues()
-        },function(data){
-            $(thisClass.selector).html(thisClass.insertSpecialVariables(data.html));
-            thisClass.addSubmitEvents();
-            thisClass.iniTimer();
-        },"json");
+        $(thisClass.selector).html(thisClass.insertSpecialVariables(html));
+        thisClass.addSubmitEvents();
+        thisClass.iniTimer();
     };
-    
-    this.getTimeLimit=function(){
-        if(this.getVariableValue("TIME_LIMIT")){
-            return this.getVariableValue("TIME_LIMIT");
-        }
-        return 0;
-    }
     
     this.getControlsValues=function(){
         var values = new Array();
         
         $(this.selector+" input:text").each(function(){
-            var hasVisibility = $(this).is("[returnvisibility]");
-            var hasType = $(this).is("[returntype]");
             var obj = {
                 name:$(this).attr("name"),
-                value:$(this).val(),
-                visibility:(hasVisibility?$(this).attr("returnvisibility"):2),
-                type:(hasType?$(this).attr("returntype"):0)
+                value:$(this).val()
             };
             values.push($.toJSON(obj));
         });
         
         $(this.selector+" input:password").each(function(){
-            var hasVisibility = $(this).is("[returnvisibility]");
-            var hasType = $(this).is("[returntype]");
             var obj = {
                 name:$(this).attr("name"),
-                value:$(this).val(),
-                visibility:(hasVisibility?$(this).attr("returnvisibility"):2),
-                type:(hasType?$(this).attr("returntype"):0)
+                value:$(this).val()
             };
             values.push($.toJSON(obj));
         });
         
         $(this.selector+" textarea").each(function(){
-            var hasVisibility = $(this).is("[returnvisibility]");
-            var hasType = $(this).is("[returntype]");
             var obj = {
                 name:$(this).attr("name"),
-                value:$(this).val(),
-                visibility:(hasVisibility?$(this).attr("returnvisibility"):2),
-                type:(hasType?$(this).attr("returntype"):0)
+                value:$(this).val()
             };
             values.push($.toJSON(obj));
         });
         
         $(this.selector+" select").each(function(){
-            var hasVisibility = $(this).is("[returnvisibility]");
-            var hasType = $(this).is("[returntype]");
             var obj = {
                 name:$(this).attr("name"),
-                value:$(this).val(),
-                visibility:(hasVisibility?$(this).attr("returnvisibility"):2),
-                type:(hasType?$(this).attr("returntype"):0)
+                value:$(this).val()
             };
             values.push($.toJSON(obj));
         });
         
         $(this.selector+" input:checkbox").each(function(){
-            var hasVisibility = $(this).is("[returnvisibility]");
-            var hasType = $(this).is("[returntype]");
             var obj = {
                 name:$(this).attr("name"),
-                value:$(this).is(":checked")?1:0,
-                visibility:(hasVisibility?$(this).attr("returnvisibility"):2),
-                type:(hasType?$(this).attr("returntype"):0)
+                value:$(this).is(":checked")?1:0
             };
             values.push($.toJSON(obj));
         });
@@ -238,21 +200,17 @@ function Concerto(selector,sid,tid,queryPath,callbackGet,callbackSend){
         $(this.selector+" input:radio").each(function(){
             var checked = $(this).is(":checked");
             var name = $(this).attr("name");
-            var hasVisibility = $(this).is("[returnvisibility]");
-            var hasType = $(this).is("[returntype]");
             
             var obj = {
                 name:name,
-                value:(checked?$(this).val():"NA"),
-                visibility:(hasVisibility?$(this).attr("returnvisibility"):2),
-                type:(checked?(hasType?$(this).attr("returntype"):0):3)
+                value:(checked?$(this).val():"NA")
             };
             
             var found = false;
             for(var key in radios){
                 if(key==name) {
                     found = true;
-                    if(checked&&radios[key].type==3) {
+                    if(checked&&radios[key].value=="NA") {
                         radios[key]=obj;
                         break;
                     }
@@ -276,9 +234,7 @@ function Concerto(selector,sid,tid,queryPath,callbackGet,callbackSend){
         var vals = this.getControlsValues();
         vals.push($.toJSON({
             name:"TIME_TAKEN",
-            value:thisClass.timePassed,
-            visibility:2,
-            type:2
+            value:thisClass.timePassed
         }));
         this.run(btnName,vals);
         if(this.callbackSend!=null) this.callbackSend.call(this,btnName,vals);
@@ -299,6 +255,11 @@ function Concerto(selector,sid,tid,queryPath,callbackGet,callbackSend){
     }
 };
 
-Concerto.haltTypes={
-    loadTemplate:2
+Concerto.statusTypes={
+    started:0,
+    loading:1,
+    template:2,
+    completed:3,
+    stopped:4,
+    error:5
 };

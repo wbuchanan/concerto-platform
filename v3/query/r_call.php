@@ -37,9 +37,7 @@ if (array_key_exists('sid', $_POST))
         {
             array_push($_POST['values'], json_encode(array(
                         "name" => "LAST_PRESSED_BUTTON_NAME",
-                        "value" => $_POST['btn_name'],
-                        "visibility" => 2,
-                        "type" => 0
+                        "value" => $_POST['btn_name']
                     )));
         }
 
@@ -53,15 +51,6 @@ else
         $session = TestSession::start_new($_POST['tid']);
 
         if (!array_key_exists('values', $_POST)) $_POST['values'] = array();
-        if (array_key_exists('btn_name', $_POST))
-        {
-            array_push($_POST['values'], json_encode(array(
-                        "name" => "LAST_PRESSED_BUTTON_NAME",
-                        "value" => $_POST['btn_name'],
-                        "visibility" => 2,
-                        "type" => 0
-                    )));
-        }
 
         $result = $session->run_test(null, $_POST['values']);
     }

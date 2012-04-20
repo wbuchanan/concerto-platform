@@ -77,6 +77,27 @@ class Setup
         exec("'" . Ini::$path_r_script . "' -e 1+1", $array, $return);
         return ($return == 0);
     }
+    
+    public static function r_version_check($version)
+    {
+        $elems = explode(".", $version);
+        if($elems[0]>2) return true;
+        if($elems[0]==2)
+        {
+            if($elems[1]>=15) return true;
+        }
+        return false;
+    }
+    
+    public static function get_r_version()
+    {
+        $output = array();
+        $return = 0;
+        exec("'" . Ini::$path_r_script . "' --version -e 1+1", $output, $return);
+        $version = substr($output[0],10);
+        $version = substr($version,0,  strpos($version, " "));
+        return $version;
+    }
 
     public static function mysql_connection_check($host, $port, $login, $password)
     {
@@ -345,6 +366,29 @@ class Setup
                                 ?>
                                 Rscript file path not set or set incorrectly. If you don't have this file on your system it could mean that your <b>R</b> installation is of version lower than <b>v2.12</b>. If that's the case you should update your R to higher version and set your Rscript path then.<br/>
                                 Usually the Rscript file path is <b>/usr/bin/Rscript</b>. Set your Rscript path in <b>/SETTINGS.php</b> file.
+                            <?php } ?>
+                        </td>
+                        <?php $ok = $ok && $test; ?>
+                    </tr>
+                <?php } ?>
+                    
+                <?php
+                if ($ok)
+                {
+                    ?>
+                    <tr>
+                        <?php
+                        $test = Setup::r_version_check(Setup::get_r_version());
+                        ?>
+                        <td class="ui-widget-content">R version installed must be at least <b>v2.15</b> .</td>
+                        <td class="<?= ($test ? "ui-state-highlight" : "ui-state-error") ?>">your <b>R</b> version is: <b>v<?= Setup::get_r_version() ?></b> <b><?= ($test ? "CORRECT" : "INCORRECT") ?> - <b style="color:<?= ($test ? "green" : "red") ?>"><?= ($test ? "PASSED" : "FAILED") ?></b></td>
+                        <td class="ui-widget-content" align="center">
+                            <?php
+                            if ($test) echo"-";
+                            else
+                            {
+                                ?>
+                                Please update your R installation to version <b>v2.15</b> at least.
                             <?php } ?>
                         </td>
                         <?php $ok = $ok && $test; ?>

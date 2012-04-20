@@ -95,7 +95,7 @@ Test.getSectionValues=function(section){
             var values = [
             $(".divSection[seccounter="+section.counter+"] #selectTemplate_"+section.counter).val(),
             $(".divSection[seccounter="+section.counter+"] .controlValue"+section.counter+"_params").length,
-            $(".divSection[seccounter="+section.counter+"] .controlValue"+section.counter+"_rets").length/3,
+            $(".divSection[seccounter="+section.counter+"] .controlValue"+section.counter+"_rets").length,
             ];
             $(".divSection[seccounter="+section.counter+"] .controlValue"+section.counter+"_params").each(function(){
                 values.push($(this).val());
@@ -110,9 +110,7 @@ Test.getSectionValues=function(section){
             $(".divSection[seccounter="+section.counter+"] .controlValue"+section.counter+"_column").length-1,
             $(".divSection[seccounter="+section.counter+"] .controlValue"+section.counter+"_link").length,
             $(".divSection[seccounter="+section.counter+"] .radioSetVarType_"+section.counter+":checked").val(),
-            $(".divSection[seccounter="+section.counter+"] #textareaCodeMirror_"+section.counter).val(),
-            $(".divSection[seccounter="+section.counter+"] .controlValue"+section.counter+"_visibility").val(),
-            $(".divSection[seccounter="+section.counter+"] .controlValue"+section.counter+"_type").val()
+            $(".divSection[seccounter="+section.counter+"] #textareaCodeMirror_"+section.counter).val()
             ];
             $(".divSection[seccounter="+section.counter+"] .controlValue"+section.counter).each(function(){
                 values.push($(this).val());
@@ -243,7 +241,7 @@ Test.uiRefreshSectionContent=function(type,counter,value,oid){
             break;
         }
         case Test.sectionTypes.setVariable:{
-            if(value==null) value=[0,0,0,"",2,0,"",0,0];
+            if(value==null) value=[0,0,0,"","",0,0];
             break;
         }
         case Test.sectionTypes.tableModification:{
@@ -512,12 +510,12 @@ Test.uiRemoveIfCond=function(counter){
 Test.uiAddSetVarColumn=function(counter){
     var vals = Test.getSectionValues(Test.sectionDivToObject($('#divSection_'+counter)));
     vals[0]++;
-    vals.splice(vals[0]+8, 0, 0);
+    vals.splice(vals[0]+6, 0, 0);
     Test.uiRefreshSectionContent(Test.sectionTypes.setVariable,counter,vals);
 }
 Test.uiRemoveSetVarColumn=function(counter){
     var vals = Test.getSectionValues(Test.sectionDivToObject($('#divSection_'+counter)));
-    vals.splice(vals[0]+8, 1);
+    vals.splice(vals[0]+6, 1);
     vals[0]--;
     Test.uiRefreshSectionContent(Test.sectionTypes.setVariable,counter,vals);
 }
@@ -700,9 +698,9 @@ Test.getSetVars=function(){
         var s = Test.sectionDivToObject($(this));
         if(s.type==Test.sectionTypes.setVariable){
             var value = Test.getSectionValues(Test.sectionDivToObject($('#divSection_'+s.counter)));
-            if(value[6]!="") {
+            if(value[4]!="") {
                 var v = {
-                    name:value[6],
+                    name:value[4],
                     section:[s],
                     type:["return"]
                 };
@@ -898,19 +896,19 @@ Test.startSyntaxDebug=function(){
         var validationPassed = true;
         var counterFailed = 0;
         if(data.result==0){
-            for(var k in data.data){
+            for(var k in data.response){
                 var counter = k.substring(7);
-                if(data.data[k]["return"]==0){
+                if(data.response[k].debug["return"]==0){
                     Test.appendDebugConsole(dictionary["s291"].format(counter));
-                    Test.debugSectionCode[k] = data.data[k]["code"];
+                    Test.debugSectionCode[k] = data.response[k].debug.code;
                 }
                 else {
                     validationPassed = false;
                     counterFailed = counter;
                     Test.appendDebugConsole(dictionary["s292"].format(counter),"ui-state-error");
-                    Test.appendDebugConsole("<textarea id='textareaDebugSyntax_"+counter+"'>"+data.data[k]["code"]+"</textarea>",null,"div");
+                    Test.appendDebugConsole("<textarea id='textareaDebugSyntax_"+counter+"'>"+data.response[k].debug.code+"</textarea>",null,"div");
                     Test.debugCodeMirrors.push(Methods.iniCodeMirror("textareaDebugSyntax_"+counter, "r", true));
-                    var output = data.data[k]["output"].join("<br/>");
+                    var output = data.response[k].debug.output.join("<br/>");
                     Test.appendDebugConsole(output,"ui-state-highlight");
                 }
             }
@@ -960,15 +958,15 @@ Test.startRunTimeDebug=function(){
         Test.appendDebugConsole(dictionary["s301"]);
         
         //code
-        Test.appendDebugConsole("<textarea id='textareaDebugRun_"+Test.runTimeResponseIndex+"'>"+data["result"]["code"]+"</textarea>",null,"div");
+        Test.appendDebugConsole("<textarea id='textareaDebugRun_"+Test.runTimeResponseIndex+"'>"+data.debug.code+"</textarea>",null,"div");
         Test.debugCodeMirrors.push(Methods.iniCodeMirror("textareaDebugRun_"+Test.runTimeResponseIndex, "r", true));
         
         //output
-        var output = data["result"]["output"].join("<br/>");
+        var output = data.debug.output.join("<br/>");
         Test.appendDebugConsole(output,"ui-state-highlight");
         
         //validation
-        if(data["result"]["return"]!=0){
+        if(data.debug["return"]!=0){
             Test.setDebugStatus(dictionary["s302"].format(thisClass.currentID,this.sessionID),true);
             Test.appendDebugConsole(dictionary["s303"],"ui-state-error");
         }
@@ -977,22 +975,24 @@ Test.startRunTimeDebug=function(){
         }
         
         //HTML values
+        /*
         var html = "<table><caption class='ui-widget-header'>"+dictionary["s305"]+"</caption><thead><tr><th class='ui-widget-header'>"+dictionary["s70"]+"</th><th class='ui-widget-header'>"+dictionary["s306"]+"</th></tr></thead><tbody>";
         for(var k in data["values"]){
             html+="<tr><td class='ui-widget-content'><b>"+k+"</b></td><td class='ui-widget-content'>"+data['values'][k]+"</td></tr>";
         }
         html+="</tbody></table>";
         Test.appendDebugConsole(html);
-        
+        */
+       
         //template
-        if(data.control.end && data.result["return"] == 0) {
+        if(data.data.STATUS==Concerto.statusTypes.completed) {
             Test.setDebugStatus(dictionary["s307"].format(thisClass.currentID,this.sessionID));
             Test.appendDebugConsole(dictionary["s308"],"ui-state-highlight");
         } else {
-            if(data["result"]["return"]==0){
-                Test.runTimeCurrentTemplateID = data["values"]["CURRENT_TEMPLATE_ID"];
+            if(data.data.STATUS!=Concerto.statusTypes.error){
+                Test.runTimeCurrentTemplateID = data.data.TEMPLATE_ID;
                 Test.appendDebugConsole(dictionary["s309"].format(Test.runTimeCurrentTemplateID), "ui-widget-header");
-                Test.appendDebugConsole(dictionary["s310"].format(Test.runTimeCurrentTemplateID,data['values']["TIME_LIMIT"]==null || data['values']["TIME_LIMIT"]==0?dictionary["s311"]:data['values']["TIME_LIMIT"]+" "+dictionary["s312"]));
+                Test.appendDebugConsole(dictionary["s310"].format(Test.runTimeCurrentTemplateID,data.data.TIME_LIMIT==null || data.data.TIME_LIMIT==0?dictionary["s311"]:data.data.TIME_LIMIT+" "+dictionary["s312"]));
                 Test.appendDebugConsole(dictionary["s313"]);
                 Test.setDebugStatus(dictionary["s314"].format(thisClass.currentID,this.sessionID,Test.runTimeCurrentTemplateID));
             }

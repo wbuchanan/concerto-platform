@@ -47,9 +47,7 @@ if (!isset($ini))
 ?>
         values.push($.toJSON({
             name:"<?=$key?>",
-            value:"<?=$value?>",
-            visibility:2,
-            type:0
+            value:"<?=$value?>"
         }));
 <?php
     }

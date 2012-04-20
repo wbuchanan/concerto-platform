@@ -31,23 +31,60 @@ options(digits=3)
 if(!is.na(args[7])) Sys.setenv("MYSQL_HOME"=args[7])
 print(Sys.getenv("MYSQL_HOME"))
 
-set.var <- function(variable, value, sid=TEST_SESSION_ID, dbn=DB_NAME){
-
-   variable <- dbEscapeStrings(con,toString(variable))
+update.session.counter <- function(value, sid=TEST_SESSION_ID, dbn=DB_NAME){
    value <- dbEscapeStrings(con,toString(value))
 
-   sql <- sprintf("REPLACE INTO `%s`.`TestSessionVariable` (`TestSession_id`,`name`,`value`) VALUES('%s','%s','%s')",dbn,sid,variable,value)
+   sql <- sprintf("UPDATE `%s`.`TestSession` SET `counter` = '%s' WHERE `id`=%s",dbn,value,sid)
 
    dbSendQuery(con, statement = sql)
-   print(paste("HTML variable <b>",variable,"</b> set to: <b>",value,"</b>",sep=''))
 }
 
-get.var <- function(variable, sid=TEST_SESSION_ID, dbn=DB_NAME){
-    variable <- dbEscapeStrings(con,toString(variable))
+update.session.status <- function(value, sid=TEST_SESSION_ID, dbn=DB_NAME){
+   value <- dbEscapeStrings(con,toString(value))
 
-    query <- sprintf("SELECT `value` FROM `TestSessionVariable` WHERE `TestSession_id`='%s' AND `name`='%s'",sid,variable)
-    sqlResult <- dbSendQuery(con, statement = query)
-    return(fetch(sqlResult,n=-1))
+   sql <- sprintf("UPDATE `%s`.`TestSession` SET `status` = '%s' WHERE `id`=%s",dbn,value,sid)
+
+   dbSendQuery(con, statement = sql)
+}
+
+update.session.time_limit <- function(value, sid=TEST_SESSION_ID, dbn=DB_NAME){
+   value <- dbEscapeStrings(con,toString(value))
+
+   sql <- sprintf("UPDATE `%s`.`TestSession` SET `time_limit` = '%s' WHERE `id`=%s",dbn,value,sid)
+
+   dbSendQuery(con, statement = sql)
+}
+
+update.session.template_id <- function(value, sid=TEST_SESSION_ID, dbn=DB_NAME){
+   value <- dbEscapeStrings(con,toString(value))
+
+   sql <- sprintf("UPDATE `%s`.`TestSession` SET `Template_id` ='%s' WHERE `id`=%s",dbn,value,sid)
+
+   dbSendQuery(con, statement = sql)
+}
+
+update.session.HTML <- function(value, sid=TEST_SESSION_ID, dbn=DB_NAME){
+   value <- dbEscapeStrings(con,toString(value))
+
+   sql <- sprintf("UPDATE `%s`.`TestSession` SET `HTML` = '%s' WHERE `id`=%s",dbn,value,sid)
+
+   dbSendQuery(con, statement = sql)
+}
+
+fill.session.HTML <- function(html){
+    inserts <- gregexpr("\\{\\{[^\\}\\}]*\\}\\}",html)
+    matches <- regmatches(html,inserts)
+    matches <- unlist(matches)
+    i <- 1
+    while(i<=length(matches)){
+        val <- gsub("\\{\\{","",matches[i])
+        val <- gsub("\\}\\}","",val)
+        if(exists(val)){
+            html <- gsub(matches[i],get(val),html, fixed=TRUE)
+        }
+        i=i+1
+    }
+    return(html)
 }
 
 library(RMySQL)

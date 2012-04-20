@@ -23,6 +23,18 @@ class TestSession extends OTable
 {
     public $Test_id = 0;
     public static $mysql_table_name = "TestSession";
+    public $counter = 1;
+    public $status = 0;
+    public $time_limit = 0;
+    public $HTML = "";
+    public $Template_id = 0;
+
+    const TEST_SESSION_STATUS_STARTED = 0;
+    const TEST_SESSION_STATUS_LOADING = 1;
+    const TEST_SESSION_STATUS_TEMPLATE = 2;
+    const TEST_SESSION_STATUS_FINISHED = 3;
+    const TEST_SESSION_STATUS_STOPPED = 4;
+    const TEST_SESSION_STATUS_ERROR = 5;
 
     public function get_Test()
     {
@@ -36,16 +48,12 @@ class TestSession extends OTable
         $lid = $session->mysql_save();
 
         $session = TestSession::from_mysql_id($lid);
-        $session->replace_TestSessionVariable("TEST_SESSION_ID", $session->id);
-        $session->replace_TestSessionVariable("TEST_ID", $test_id);
         return $session;
     }
 
     public function resume($values = array())
     {
-        $vals = $this->get_variables();
-        $counter = $vals["CURRENT_SECTION_INDEX"];
-        return $this->run_Test($counter, $values);
+        return $this->run_Test($this->counter, $values);
     }
 
     public function run_Test($counter = null, $values = array())
@@ -57,40 +65,26 @@ class TestSession extends OTable
         {
             $counter = $test->get_starting_counter();
         }
+        $this->counter = $counter;
+        $this->mysql_save();
 
-        $this->replace_TestSessionVariable("CURRENT_SECTION_INDEX", $counter);
-
-        $code = "
-            TEST_ID <<- get.var('TEST_ID')
-            TEST_SESSION_ID <<- get.var('TEST_SESSION_ID')
-            ";
+        $code = "";
         foreach ($values as $v)
         {
             $val = json_decode($v);
-            if ($val->visibility == 1 || $val->visibility == 2)
-                    $this->replace_TestSessionVariable(mysql_real_escape_string($val->name), mysql_real_escape_string($val->value));
 
-            if ($val->visibility == 0 || $val->visibility == 2)
+            if ($val->value == "NA")
             {
-                if ($val->type != 3)
-                {
-                    $code.=sprintf("
-                    %s <- '%s'
-                    ", $val->name, addslashes($val->value));
-                }
-                if ($val->type == 3)
-                {
-                    $code.=sprintf("
+                $code.=sprintf("
                         %s <- NA
                         ", $val->name);
-                }
-
-                if ($val->type == 2)
-                {
-                    $code.=sprintf("
-                        %s <- as.numeric(%s)
-                        ", $val->name, $val->name);
-                }
+            }
+            else
+            {
+                $code.=sprintf("
+                    %s <- '%s'
+                    if(suppressWarnings(!is.na(as.numeric(%s)))) %s <- as.numeric(%s)
+                    ", $val->name, addslashes($val->value), $val->name, $val->name, $val->name);
             }
         }
 
@@ -103,35 +97,7 @@ class TestSession extends OTable
             }
             ", $counter, $section->get_RFunctionName());
 
-        $result = $this->RCall($code, $ini_code_required);
-        $values = $this->get_variables();
-
-        $end = false;
-        $halt_type = 0;
-
-        foreach ($values as $k => $v)
-        {
-            if ($k == "CURRENT_SECTION_INDEX" && $v == 0)
-            {
-                $end = true;
-                if (TestServer::is_running())
-                        TestServer::send("close:" . $this->id);
-            }
-        }
-
-        if (!$end)
-        {
-            foreach ($values as $k => $v)
-            {
-                if ($k == "HALT_TYPE") $halt_type = $v;
-            }
-        }
-
-        return array(
-            "result" => $result,
-            "values" => $this->get_variables(),
-            "control" => array("end" => $end, "halt_type" => $halt_type)
-        );
+        return $this->RCall($code, $ini_code_required);
     }
 
     public function debug_syntax($ts_id, $close = false)
@@ -164,7 +130,10 @@ class TestSession extends OTable
 
         $command.=$code;
         if (!$debug_syntax) $command.=$this->get_post_RCode();
-
+        
+        $output = array();
+        $return = -999;
+        
         if (Ini::$r_instances_persistant)
         {
             $command_obj = json_encode(array(
@@ -182,18 +151,70 @@ class TestSession extends OTable
             $result = json_decode(trim($response));
             if (TestServer::$debug)
                     TestServer::log_debug("TestSession->RCall --- sent and recieved response");
-            return array("return" => $result->return, "output" => explode("\n", $result->output), "code" => $result->code);
+            
+            $output = explode("\n", $result->output);
+            $return = $result->return;
         }
         else
         {
             $this->write_RSource_file($command);
-
-            $output = array();
-            $return = -999;
+            
             include Ini::$path_internal . 'SETTINGS.php';
             exec("\"" . Ini::$path_r_script . "\" --vanilla \"" . $this->get_RSource_file_path() . "\" " . $db_host . " " . ($db_port != "" ? $db_port : "3306") . " " . $db_user . " " . $db_password . " " . $db_name . " " . $this->id . " " . (Ini::$path_mysql_home != "" ? "'" . Ini::$path_mysql_home . "'" : ""), $output, $return);
-            return array("return" => $return, "output" => $output, "code" => $command);
         }
+
+        $thisSession = TestSession::from_mysql_id($this->id);
+        $this->counter = $thisSession->counter;
+        $this->status = $thisSession->status;
+        $this->time_limit = $thisSession->time_limit;
+        $this->HTML = $thisSession->HTML;
+        $this->Template_id = $thisSession->Template_id;
+        
+        if($return != 0){
+            $this->status = TestSession::TEST_SESSION_STATUS_ERROR;
+            $thisSession->status = TestSession::TEST_SESSION_STATUS_ERROR;
+            $thisSession->mysql_save();
+        }
+
+        if ($this->status == TestSession::TEST_SESSION_STATUS_FINISHED || $this->status == TestSession::TEST_SESSION_STATUS_ERROR)
+        {
+            if (Ini::$r_instances_persistant)
+            {
+                if (TestServer::is_running())
+                        TestServer::send("close:" . $this->id);
+            }
+        }
+        
+        $test = Test::from_mysql_id($this->Test_id);
+        $logged_user = User::get_logged_user();
+        $debug_mode = $logged_user->is_object_readable($test);
+        
+        $response = array(
+            "data" => array(
+                "TIME_LIMIT" => $this->time_limit,
+                "HTML" => $this->HTML,
+                "TEST_ID" => $this->Test_id,
+                "TEST_SESSION_ID" => $this->id,
+                "STATUS" => $this->status,
+                "TEMPLATE_ID" => $this->Template_id
+            )
+        );
+        
+        if($debug_mode)
+        {
+            $command = htmlspecialchars($command,ENT_QUOTES);
+            for($i=0;$i<count($output);$i++)
+            {
+                $output[$i]=htmlspecialchars($output[$i],ENT_QUOTES);
+            }
+            $response["debug"] = array(
+                "code"=>$command,
+                "return"=>$return,
+                "output"=>  $output
+            );
+        }
+
+        return $response;
     }
 
     public function get_next_ini_RCode()
@@ -234,12 +255,12 @@ class TestSession extends OTable
 
     public function get_RSource_file_path()
     {
-        return Ini::$path_temp . $this->get_Test()->Owner_id."/session_" . $this->id . ".R";
+        return Ini::$path_temp . $this->get_Test()->Owner_id . "/session_" . $this->id . ".R";
     }
 
     public function get_RSession_file_path()
     {
-        return Ini::$path_temp . $this->get_Test()->Owner_id."/session_" . $this->id . ".Rs";
+        return Ini::$path_temp . $this->get_Test()->Owner_id . "/session_" . $this->id . ".Rs";
     }
 
     public function mysql_delete()
@@ -248,8 +269,6 @@ class TestSession extends OTable
                 unlink($this->get_RSource_file_path());
         if (file_exists($this->get_RSession_file_path()))
                 unlink($this->get_RSession_file_path());
-
-        $this->delete_object_links(TestSessionVariable::get_mysql_table());
         parent::mysql_delete();
     }
 
@@ -273,28 +292,15 @@ class TestSession extends OTable
             library(session)
             ";
         }
+        $code .= sprintf("
+            TEST_ID <- %d
+            TEST_SESSION_ID <- %d
+            ", $this->Test_id, $this->id);
         $code .= "TEMP_PATH <- '" . $path . "'
             source('" . Ini::$path_internal . "lib/R/mainmethods.R" . "')
             ";
         $code .=$this->get_Test()->get_TestSections_RFunction_declaration();
         return $code;
-    }
-
-    public function replace_TestSessionVariable($name, $value)
-    {
-        $sql = sprintf("REPLACE INTO `%s` SET `name`='%s',`value`='%s',`TestSession_id`=%d", TestSessionVariable::get_mysql_table(), $name, $value, $this->id);
-        mysql_query($sql);
-    }
-
-    public function get_variables()
-    {
-        $v = array();
-        $vars = TestSessionVariable::from_property(array("TestSession_id" => $this->id));
-        foreach ($vars as $var)
-        {
-            $v[$var->name] = $var->value;
-        }
-        return $v;
     }
 
     public static function create_db($delete = false)
@@ -311,12 +317,34 @@ class TestSession extends OTable
             `created` timestamp NOT NULL default '0000-00-00 00:00:00',
             `Test_id` bigint(20) NOT NULL,
             `counter` int(11) NOT NULL,
+            `status` tinyint(4) NOT NULL,
+            `time_limit` int(11) NOT NULL,
+            `HTML` text NOT NULL,
+            `Template_id` bigint(20) NOT NULL,
             PRIMARY KEY  (`id`)
             ) ENGINE=InnoDB  DEFAULT CHARSET=utf8;
             ";
         return mysql_query($sql);
     }
 
+    public static function update_db($previous_version)
+    {
+        if (Ini::does_patch_apply("3.4.0", $previous_version))
+        {
+            $sql = "ALTER TABLE `TestSession` ADD `status` tinyint(4) NOT NULL default '0';";
+            if (!mysql_query($sql)) return false;
+            
+            $sql = "ALTER TABLE `TestSession` ADD `time_limit` int(11) NOT NULL default '0';";
+            if (!mysql_query($sql)) return false;
+            
+            $sql = "ALTER TABLE `TestSession` ADD `HTML` text NOT NULL default '';";
+            if (!mysql_query($sql)) return false;
+            
+            $sql = "ALTER TABLE `TestSession` ADD `Template_id` bigint(20) NOT NULL default '0';";
+            if (!mysql_query($sql)) return false;
+        }
+        return true;
+    }
 }
 
 ?>

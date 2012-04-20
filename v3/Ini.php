@@ -31,7 +31,7 @@ class Ini
     public static $path_r_script = "";
     public static $path_temp = "";
     public static $path_mysql_home = "";
-    public static $version = "3.3.0";
+    public static $version = "3.4.0";
     public static $sock_host = "127.0.0.1";
     public static $sock_port = "8888";
     public static $unix_sock = "";
@@ -137,7 +137,6 @@ class Ini
         TestSection::create_db(true);
         TestSectionValue::create_db(true);
         TestSession::create_db(true);
-        TestSessionVariable::create_db(true);
         User::create_db(true);
         UserGroup::create_db(true);
         UserType::create_db(true);
@@ -162,7 +161,6 @@ class Ini
             "TestSection",
             "TestSectionValue",
             "TestSession",
-            "TestSessionVariable",
             "User",
             "UserGroup",
             "UserType",
@@ -200,7 +198,6 @@ class Ini
         require_once self::$path_internal . "cms/model/TestSection.php";
         require_once self::$path_internal . "cms/model/TestSectionValue.php";
         require_once self::$path_internal . "cms/model/TestSession.php";
-        require_once self::$path_internal . "cms/model/TestSessionVariable.php";
         require_once self::$path_internal . "cms/model/CustomSection.php";
         require_once self::$path_internal . "cms/model/CustomSectionVariable.php";
         require_once self::$path_internal . "cms/model/ODataSet.php";
