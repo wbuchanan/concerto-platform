@@ -28,6 +28,7 @@ class TestSession extends OTable
     public $time_limit = 0;
     public $HTML = "";
     public $Template_id = 0;
+    public $time_tamper_prevention = 0;
 
     const TEST_SESSION_STATUS_STARTED = 0;
     const TEST_SESSION_STATUS_LOADING = 1;
@@ -35,6 +36,7 @@ class TestSession extends OTable
     const TEST_SESSION_STATUS_FINISHED = 3;
     const TEST_SESSION_STATUS_STOPPED = 4;
     const TEST_SESSION_STATUS_ERROR = 5;
+    const TEST_SESSION_STATUS_TAMPERED = 6;
 
     public function get_Test()
     {
@@ -178,12 +180,19 @@ class TestSession extends OTable
             $thisSession->mysql_save();
         }
 
-        if ($this->status == TestSession::TEST_SESSION_STATUS_FINISHED || $this->status == TestSession::TEST_SESSION_STATUS_ERROR)
+        if ($this->status == TestSession::TEST_SESSION_STATUS_FINISHED || 
+                $this->status == TestSession::TEST_SESSION_STATUS_ERROR || 
+                $this->status == TestSession::TEST_SESSION_STATUS_STOPPED || 
+                $this->status == TestSession::TEST_SESSION_STATUS_TAMPERED)
         {
             if (Ini::$r_instances_persistant)
             {
                 if (TestServer::is_running())
                         TestServer::send("close:" . $this->id);
+            }
+            else 
+            {
+                $this->mysql_delete();
             }
         }
         
@@ -214,6 +223,12 @@ class TestSession extends OTable
                 "return"=>$return,
                 "output"=>  $output
             );
+        }
+        
+        if(Ini::$timer_tamper_prevention)
+        {
+            $sql = sprintf("UPDATE `%s` SET `time_tamper_prevention`=%d WHERE `id`=%d",  TestSession::get_mysql_table(),time(),$this->id);
+            mysql_query($sql);
         }
 
         return $response;
@@ -357,6 +372,9 @@ class TestSession extends OTable
             if (!mysql_query($sql)) return false;
             
             $sql = "ALTER TABLE `TestSession` ADD `Template_id` bigint(20) NOT NULL default '0';";
+            if (!mysql_query($sql)) return false;
+            
+            $sql = "ALTER TABLE  `TestSession` ADD  `time_tamper_prevention` INT NOT NULL;";
             if (!mysql_query($sql)) return false;
         }
         return true;

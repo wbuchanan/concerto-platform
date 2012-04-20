@@ -1,4 +1,5 @@
 <?php
+
 /*
   Concerto Platform - Online Adaptive Testing Platform
   Copyright (C) 2011-2012, The Psychometrics Centre, Cambridge University
@@ -17,7 +18,7 @@
   along with this program; if not, write to the Free Software
   Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA.
  */
-
+$time = time();
 if (!isset($ini))
 {
     require_once'../Ini.php';
@@ -29,6 +30,7 @@ $result = array();
 if (array_key_exists('sid', $_POST))
 {
     $session = TestSession::from_mysql_id($_POST['sid']);
+
     if ($session != null)
     {
         if (!array_key_exists('values', $_POST)) $_POST['values'] = array();
@@ -41,7 +43,30 @@ if (array_key_exists('sid', $_POST))
                     )));
         }
 
-        $result = $session->resume($_POST['values']);
+        if (Ini::$timer_tamper_prevention && $session->time_limit > 0 && $time - $session->time_tamper_prevention - Ini::$timer_tamper_prevention_tolerance > $session->time_limit)
+        {
+            if (Ini::$r_instances_persistant)
+            {
+                if (TestServer::is_running())
+                        TestServer::send("close:" . $session->id);
+            }
+            else
+            {
+                $session->mysql_delete();
+            }
+
+            $result = array(
+                "data" => array(
+                    "TIME_LIMIT" => 0,
+                    "HTML" => "",
+                    "TEST_ID" => 0,
+                    "TEST_SESSION_ID" => 0,
+                    "STATUS" => TestSession::TEST_SESSION_STATUS_TAMPERED,
+                    "TEMPLATE_ID" => 0
+                )
+            );
+        }
+        else $result = $session->resume($_POST['values']);
     }
 }
 else

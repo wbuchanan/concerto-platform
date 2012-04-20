@@ -37,6 +37,8 @@ class Ini
     public static $unix_sock = "";
     public static $sock_type_used = 0;
     public static $r_instances_persistant = false;
+    public static $timer_tamper_prevention = true;
+    public static $timer_tamper_prevention_tolerance = 3;
 
     function __construct($connect = true, $session = true)
     {
