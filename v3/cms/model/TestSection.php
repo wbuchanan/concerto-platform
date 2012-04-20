@@ -159,7 +159,7 @@ class TestSection extends OTable
 
                         $code.=sprintf("
                             if(suppressWarnings(!is.na(as.numeric(%s)))) %s <- as.numeric(%s)
-                            ", $vals[$j], $vals[$j]);
+                            ", $vals[$j], $vals[$j], $vals[$j]);
 
                         $j++;
                     }

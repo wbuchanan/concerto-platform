@@ -1395,14 +1395,14 @@ Note: You can add new languages by inserting "<new_language>string translated in
             <cn>不类似于 </cn>
         </string>
         <string id="245">
-            <en>id of test</en>
-            <pl>id testu</pl>
-            <cn>测试id</cn>
+            <en>Test id. Read only variable.</en>
+            <pl>ID testu. Zmienna tylko do odczytu.</pl>
+            <cn></cn>
         </string>
         <string id="246">
-            <en>id of test session</en>
-            <pl>id sesji testu</pl>
-            <cn>测试章节id</cn>
+            <en>Test session id. Read only variable.</en>
+            <pl>ID sesji testu. Zmienna tylko do odczytu.</pl>
+            <cn></cn>
         </string>
         <string id="247">
             <en>IN TABLE</en>
@@ -1958,6 +1958,26 @@ Note: You can add new languages by inserting "<new_language>string translated in
             <en>IF</en>
             <pl>JESLI</pl>
             <cn>如果</cn>
+        </string>
+        <string id="358">
+            <en>protected variables</en>
+            <pl>chronione zmienne</pl>
+            <cn></cn>
+        </string>
+        <string id="359">
+            <en>test logic</en>
+            <pl>logika testu</pl>
+            <cn></cn>
+        </string>
+        <string id="360" js="1">
+            <en>Are you sure you want to delete this protected variable?</en>
+            <pl>Jesteś pewien, że chcesz usunąć ta chroniona zmienna?</pl>
+            <cn></cn>
+        </string>
+        <string id="361" js="1">
+            <en>deleting protected variable</en>
+            <pl>usuwanie chronionej zmiennej</pl>
+            <cn></cn>
         </string>
     </strings>
 </root> 

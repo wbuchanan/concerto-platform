@@ -69,9 +69,11 @@ class TestSession extends OTable
         $this->mysql_save();
 
         $code = "";
+        $protected_vars = $test->get_TestProtectedVariables();
         foreach ($values as $v)
         {
             $val = json_decode($v);
+            if(in_array(trim($val->name), $protected_vars)) continue;
 
             if ($val->value == "NA")
             {

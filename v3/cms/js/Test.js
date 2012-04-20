@@ -57,6 +57,7 @@ Test.getAddSaveObject=function()
 
 Test.getFullSaveObject = function() {
     var obj = this.getAddSaveObject();
+    obj["protected"] = Test.getSerializedProtected();
     obj["sections"] = Test.getSerializedSections();
     if($("#form"+this.className+"SelectOwner").length==1) obj["Owner_id"]=$("#form"+this.className+"SelectOwner").val();
     return obj;
@@ -1044,4 +1045,34 @@ Test.startRunTimeDebug=function(){
         Test.setDebugStatus(dictionary["s299"].format(thisClass.currentID));
     });
     test.run();
+}
+
+Test.uiAddProtectedVar=function(obj){
+    var grid = $("#div"+this.className+"GridProtectedVars").data('kendoGrid');
+    grid.addRow();
+    
+    Methods.iniTooltips();
+}
+
+Test.uiRemoveProtectedVar=function(obj){
+    var thisClass=this;
+    Methods.confirm(dictionary["s360"], dictionary["s361"], function(){
+        var grid = $("#div"+thisClass.className+"GridProtectedVars").data('kendoGrid');
+        var index = obj.closest('tr')[0].sectionRowIndex;
+        grid.removeRow(grid.tbody.find("tr:eq("+index+")"));
+    });
+}
+
+Test.getSerializedProtected=function(){
+    var grid = $("#div"+this.className+"GridProtectedVars").data('kendoGrid');
+    var prot = new Array();
+    if(grid==null) return prot;
+    var data = grid.dataSource.data();
+    
+    for(var i=0;i<data.length;i++){
+        prot.push($.toJSON({
+            name:data[i].name
+        }))
+    }
+    return prot;
 }

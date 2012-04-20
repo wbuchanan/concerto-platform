@@ -351,10 +351,10 @@ Table.uiIniStructureGrid=function(){
         },
         dataSource: dataSource,
         columns: [{
-            title:"name",
+            title:dictionary["s70"],
             field:"name"
         },{
-            title:"type",
+            title:dictionary["s122"],
             field:"type",
             template: "# if(type==1){# "+dictionary["s16"]+" #} else if(type==2){# "+dictionary["s354"]+" #} else if(type==3){# "+dictionary["s355"]+" #} else if(type==4){# "+dictionary["s18"]+" #}#"
 

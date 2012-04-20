@@ -158,6 +158,7 @@ class Ini
             "TableColumn",
             "Template",
             "Test",
+            "TestProtectedVariable",
             "TestSection",
             "TestSectionValue",
             "TestSession",
@@ -193,6 +194,7 @@ class Ini
         require_once self::$path_internal . "cms/model/Table.php";
         require_once self::$path_internal . "cms/model/TableColumn.php";
         require_once self::$path_internal . "cms/model/Test.php";
+        require_once self::$path_internal . "cms/model/TestProtectedVariable.php";
         require_once self::$path_internal . "cms/model/TestServer.php";
         require_once self::$path_internal . "cms/model/TestInstance.php";
         require_once self::$path_internal . "cms/model/TestSection.php";

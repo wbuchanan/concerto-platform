@@ -80,6 +80,20 @@ class Test extends OModule
                 }
             }
         }
+
+        $sql = sprintf("DELETE FROM `%s` WHERE `Test_id`=%d", TestProtectedVariable::get_mysql_table(), $lid);
+        mysql_query($sql);
+        if (array_key_exists("protected", $post))
+        {
+            foreach ($post['protected'] as $var)
+            {
+                $var = json_decode($var);
+                $s = new TestProtectedVariable();
+                $s->name = $var->name;
+                $s->Test_id = $lid;
+                $slid = $s->mysql_save();
+            }
+        }
         return $lid;
     }
 
@@ -250,10 +264,10 @@ class Test extends OModule
         $element = $xml->createElement("Test");
         $xml->appendChild($element);
 
-        $id = $xml->createElement("id", htmlspecialchars($this->id, ENT_QUOTES,"UTF-8"));
+        $id = $xml->createElement("id", htmlspecialchars($this->id, ENT_QUOTES, "UTF-8"));
         $element->appendChild($id);
 
-        $name = $xml->createElement("name", htmlspecialchars($this->name, ENT_QUOTES,"UTF-8"));
+        $name = $xml->createElement("name", htmlspecialchars($this->name, ENT_QUOTES, "UTF-8"));
         $element->appendChild($name);
 
         $sections = $xml->createElement("TestSections");
@@ -269,10 +283,10 @@ class Test extends OModule
 
         return $element;
     }
-    
+
     public function get_session_count()
     {
-        $sql = sprintf("SELECT * FROM `TestSession` WHERE `Test_id`='%s'",  $this->id);
+        $sql = sprintf("SELECT * FROM `TestSession` WHERE `Test_id`='%s'", $this->id);
         return mysql_num_rows(mysql_query($sql));
     }
 
@@ -295,7 +309,7 @@ class Test extends OModule
             ";
         return mysql_query($sql);
     }
-    
+
     public static function get_list_columns()
     {
         $cols = parent::get_list_columns();
@@ -311,6 +325,21 @@ class Test extends OModule
         ));
 
         return $cols;
+    }
+    
+    public function get_TestProtectedVariables()
+    {
+        $result = array(
+            "TEST_ID",
+            "TEST_SESSION_ID"
+        );
+        
+        $tpv = TestProtectedVariable::from_property(array("Test_id"=>$this->id));
+        foreach($tpv as $v)
+        {
+            array_push($result, $v->name);
+        }
+        return $result;
     }
 
 }

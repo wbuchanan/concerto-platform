@@ -108,7 +108,10 @@ if ($oid != 0)
     </table>
 </div>
 
-<div id="divTestLogic" class="margin">
+<?php include Ini::$path_internal."cms/view/Test_security.php"; ?>
+<br/>
+<div class="ui-widget-header margin"><?= Language::string(359) ?></div>
+<div id="divTestLogic" class="">
     <div id="divTestEmptyLogic" class="margin padding ui-state-error" align="center">
         <?= Language::string(145) ?>
     </div>
