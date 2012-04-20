@@ -155,20 +155,6 @@ while ($r = mysql_fetch_array($z)) {
                         <td><span class="spanIcon ui-icon ui-icon-help tooltip" title="<?= Language::string(217) ?>: <b><?= $outputs[$i]["type"] ?></b>"></span></td>
                         <td><?= $outputs[$i]["name"] ?></td>
                         <td><?= Language::string(279) ?> <input onchange="Test.uiSetVarNameChanged($(this))" type="text" class="ui-state-focus comboboxSetVars comboboxVars controlValue<?= $_POST['counter'] ?>_rets ui-widget-content ui-corner-all" value="<?= htmlspecialchars($ret, ENT_QUOTES) ?>" /></td>
-                        <td>
-                            <b><?= Language::string(277) ?></b> <select class="controlValue<?= $_POST['counter'] ?>_rets ui-widget-content ui-corner-all">
-                                <option value="0" <?= ($vis == 0 ? "selected" : "") ?>><?= Language::string(275) ?></option>
-                                <option value="1" <?= ($vis == 1 ? "selected" : "") ?>><?= Language::string(18) ?></option>
-                                <option value="2" <?= ($vis == 2 ? "selected" : "") ?>><?= Language::string(276) ?></option>
-                            </select>
-                        </td>
-                        <td>
-                            <b><?= Language::string(279) ?></b> <select class="controlValue<?= $_POST['counter'] ?>_rets ui-widget-content ui-corner-all">
-                                <option value="0" <?= ($type == 0 ? "selected" : "") ?>><?= Language::string(280) ?></option>
-                                <option value="1" <?= ($type == 1 ? "selected" : "") ?>><?= Language::string(281) ?></option>
-                                <option value="2" <?= ($type == 2 ? "selected" : "") ?>><?= Language::string(282) ?></option>
-                            </select>
-                        </td>
                     </tr>
         <?php
     }

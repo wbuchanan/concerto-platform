@@ -226,9 +226,23 @@ class TestSession extends OTable
             sink(stdout(), type='message')
             library(session)
             restore.session('" . $this->get_RSession_file_path() . "')
+                
+            args <- commandArgs(T)
+            DB_HOST <- args[1]
+            DB_PORT <- as.numeric(args[2])
+            DB_LOGIN <- args[3]
+            DB_PASSWORD <- args[4]
+            DB_NAME <- args[5]
+
             drv <- dbDriver('MySQL')
             for(con in dbListConnections(drv)) { dbDisconnect(con) }
             con <- dbConnect(drv, user = DB_LOGIN, password = DB_PASSWORD, dbname = DB_NAME, host = DB_HOST, port = DB_PORT)
+            
+            rm(DB_HOST)
+            rm(DB_PORT)
+            rm(DB_LOGIN)
+            rm(DB_PASSWORD)
+            rm(args)
             ";
         }
         return $code;
