@@ -417,154 +417,180 @@ Note: You can add new languages by inserting "<new_language>string translated in
             <pl>koniec</pl>
             <cn>结束</cn>
             <fr>fin</fr>
+            <bg>край</bg>
         </string>
         <string id="56" js="1">
             <en>table modification</en>
             <pl>modyfikacja tabeli</pl>
             <cn>修改表格</cn>
             <en>modification du tableau</en>
+            <bg>промяна на таблицата</bg>
         </string>
         <string id="57" js="1">
             <en>custom section</en>
             <pl>własna sekcja</pl>
             <cn>自主章节</cn>
             <fr>section personnalisée</fr>
+            <bg>персонализирана секция</bg>
         </string>
         <string id="58" js="1">
             <en>ignore</en>
             <pl>zignoruj</pl>
             <cn>忽略</cn>
             <fr>ignorer</fr>
+            <bg>игнорирай</bg>
         </string>
         <string id="59" js="1">
             <en>remove test logic section</en>
             <pl>usuń sekcję logiki testu</pl>
             <cn>移除测试逻辑章节</cn>
             <fr>enlever la section logique du test</fr>
+            <bg>премахни секцията за логиката на теста</bg>
         </string>
         <string id="60" js="1">
             <en>add test logic section</en>
             <pl>dodaj sekcję logiki testu</pl>
             <cn>添加测试逻辑章节</cn>
             <fr>ajouter une section logique du test</fr>
+            <bg>прибави секция с логиката на теста</bg>
         </string>
         <string id="61" js="1">
             <en>adding new section</en>
             <pl>dodawanie nowej sekcji</pl>
             <cn>添加新章节</cn>
             <fr>ajouter une nouvelle section</fr>
+            <bg>прибавете нова секция</bg>
         </string>
         <string id="62" js="1">
             <en>are you sure you want to remove this test section?</en>
             <pl>jesteś pewien, że chcesz usunąć sekcję testu?</pl>
             <cn>确认移除此测试章节？</cn>
             <fr>ête-vous certain de vouloir supprimer cette section du test?</fr>
+            <bg>сигурни ли сте, че искате да премахнете този секция на теста</bg>
         </string>
         <string id="63" js="1">
             <en>removing test section</en>
             <pl>usuwanie sekcji testu</pl>
             <cn>移除测试章节</cn>
             <fr>suppression de lasection du test</fr>
+            <bg>премахване на секция от теста</bg>
         </string>
         <string id="64" js="1">
             <en>close</en>
             <pl>zamknij</pl>
             <cn>关闭</cn>
             <fr>fermer</fr>
+            <bg>затваряне</bg>
         </string>
         <string id="65" js="1">
             <en>test logic variables</en>
             <pl>zmienne logiki testu</pl>
             <cn>测试章节变量</cn>
             <fr>variables de la logique du test</fr>
+            <bg>променливи на тестовата логика</bg>
         </string>
         <string id="66" js="1">
             <en>Password and password confirmation do not match!</en>
             <pl>Hasło i jego potwierdzenie muszą się zgadzać!</pl>
             <cn>密码与密码确认不一致！</cn>
             <fr>Le mot de passe et la confirmation du mot de passe ne correspondent pas!</fr>
+            <bg>Паролата и потвърждението на паролата на съответстват</bg>
         </string>
         <string id="67" js="1">
             <en>login/password combination is incorrect!</en>
             <pl>kombinacja login/hasło jest niepoprawna!</pl>
             <cn>用户名与密码不匹配！</cn>
           <fr>La combinaison nom d'utilisateur/mot de passe est incorrecte!</fr>
+          <bg>Комбинацията потребителско име/парола е грешна</bg>
         </string>
         <string id="68">
             <en>unnamed custom section</en>
             <pl>nienazwana sekcja własna</pl>
             <cn>未命名的自主章节</cn>
             <fr>section personnalisée sans nom</fr>
+            <bg>неименувана персонализирана секция</bg>
         </string>
         <string id="69">
             <en>id</en>
             <pl>id</pl>
             <cn>id</cn>
             <fr>id</fr>
+            <bg>id</bg>
         </string>
         <string id="70" js="1">
             <en>name</en>
             <pl>nazwa</pl>
             <cn>名称</cn>
             <fr>nom</fr>
+            <bg>име</bg>
         </string>
         <string id="71">
             <en>owner</en>
             <pl>właściciel</pl>
             <cn>所有者</cn>
             <fr>propriétaire</fr>
+            <bg>собственик</bg>
         </string>
         <string id="72">
             <en>access rights</en>
             <pl>prawa dostępu</pl>
             <cn>访问权限</cn>
             <fr>droits d'accès</fr>
+            <bg>права за достъп</bg>
         </string>
         <string id="73" js="1">
             <en>none</en>
             <pl>brak</pl>
             <cn>空缺</cn>
             <fr>aucun</fr>
+            <bg>липса</bg>
         </string>
         <string id="74">
             <en>unamed variable</en>
             <pl>nienazwana tabela</pl>
             <cn>未命名表格</cn>
              <en>veriable sans nom</en>
+             <bg>променлива без име</bg>
         </string>
         <string id="75">
             <en>unnamed template</en>
             <pl>nienazwany szablon</pl>
             <cn>未命名模板</cn>
             <fr>modèle sans nom</fr>
+            <bg>шаблон без име</bg>
         </string>
         <string id="76">
             <en>unnamed test</en>
             <pl>nienazwany test</pl>
             <cn>未命名测试</cn>
             <fr>test sans nom</fr>
+            <bg>тест без име</bg>
         </string>
         <string id="77">
             <en>incognito</en>
             <pl>inkognito</pl>
             <cn>匿名</cn>
             <fr>incognito</fr>
+            <bg>инкогнито</bg>
         </string>
         <string id="78">
             <en>unknown</en>
             <pl>nieznany</pl>
             <cn>未知</cn>
+            <bg>непознат</bg>
         </string>
         <string id="79">
             <en>unnamed user group</en>
             <pl>nienazwana grupa użytkowników</pl>
             <cn>未命名用户群</cn>
+            <bg>потребителска група без име</bg>
         </string>
         <string id="80">
             <en>unnamed user type</en>
             <pl>nienazwany typ użytkowników</pl>
             <cn>未命名用户类型</cn>
             <fr>type d'utilisateur sans nom</fr>
+            <bg>Тип на потребител без име</bg>
         </string>
         <string id="81" js="1">
             <en>Access denied!</en>
