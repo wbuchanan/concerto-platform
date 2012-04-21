@@ -783,108 +783,126 @@ Note: You can add new languages by inserting "<new_language>string translated in
             <pl>brak zdefiniowanych parametrów</pl>
             <cn>未定义参数</cn>
             <fr>aucun paramètres de définis</fr>
+            <bg>не са дефинирани параметри</bg>
         </string>
         <string id="109">
             <en>add parameter variable</en>
             <pl>dodaj parametr</pl>
             <cn>添加参数变量</cn>
             <fr>ajouter une variable paramètre</fr>
+            <bg>добави параметър</bg>
         </string>
         <string id="110">
             <en>remove parameter variable</en>
             <pl>usuń parametr</pl>
             <cn>移除参数变量</cn>
             <fr>enlever une variable paramètre</fr>
+            <bg>премахни параметър</bg>
         </string>
         <string id="111">
             <en>R code relevant for this section. Parameters declared above can be used here.</en>
             <pl>To jest kod R sekcji. Możesz używać w nim parametrów które zdeklarowałeś powyżej.</pl>
             <cn>此章节相关R代码。已声明参数可在此使用。</cn>
             <fr>code R pertinent à cette section. Les paramètres déclarés ci-dessus peuvent être utilisés ici.</fr>
+            <bg>R код, отнасящ се за тази секция. Рараметрите декларирани по-горе, може да бъдат използвани тук</bg>
         </string>
         <string id="112">
             <en>Specify variables used in this section to be made available globally, for use in other test sections.</en>
             <pl>Tutaj możesz zdefiniować które zmienne użyte w sekcji chciałbyś przekazać poza sekcję. Zmienne te następnie mogą zostać użyte w innych sekcjach logiki.</pl>
             <cn>指定此章节内可在其他章节使用的总体变量。</cn>
             <fr>Spécifier que les variables utilisées dans cette section puissent être disponible globallement, afin qu'elles soient utilisées dans d'autres sections du test.</fr>
+            <bg>Дефинирайте променливите в тази секция, за да могат да бъдат достъпни глобално и да бъдат използвани в другите секции</bg>
         </string>
         <string id="113">
             <en>returns</en>
             <pl>zwrot</pl>
             <cn>返回值</cn>
             <fr>retours</fr>
+            <bg>връща</bg>
         </string>
         <string id="114">
             <en>no returns defined</en>
             <pl>brak zdefiniowanego zwrotu</pl>
             <cn>未定义返回值</cn>
             <fr>aucun retour défini</fr>
+            <bg>не е дефинирано връщане</bg>
         </string>
         <string id="115">
             <en>add return variable</en>
             <pl>dodaj zmienną zwrotu</pl>
             <cn>添加返回变量</cn>
             <fr>ajout d'une variable retour</fr>
+            <bg>прибави променлива за връщане</bg>
         </string>
         <string id="116">
             <en>remove return variable</en>
             <pl>usuń zmienną zwrotu</pl>
             <cn>移除返回变量</cn>
             <fr>enlever une variable retour</fr>
+            <bg>премахни променлива за връщане</bg>
         </string>
         <string id="117">
             <en>editing table</en>
             <pl>edycja tabeli</pl>
             <cn>编辑表格</cn>
             <fr>modifier un tableau</fr>
+            <bg>редактиране на таблица</bg>
         </string>
         <string id="118">
             <en>creating new table</en>
             <pl>tworzenie nowej tabeli</pl>
             <cn>创建表格</cn>
             <fr>créer un nouveau tableau</fr>
+            <bg>създаване на нова таблица</bg>
         </string>
         <string id="119">
             <en>name of the table</en>
             <pl>nazwa tabeli</pl>
             <cn>表格名称</cn>
             <fr>nom du tableau</fr>
+            <bg>има на таблицата</bg>
         </string>
         <string id="120">
             <en>table access rights</en>
             <pl>prawa dostępu tabeli</pl>
             <cn>表格访问权限</cn>
             <fr>accès aux droits du tableau</fr>
+            <bg>права за достъп до таблицата</bg>
         </string>
         <string id="121">
             <en>owner of the table</en>
             <pl>wlaściciel tabeli</pl>
             <cn>表格所有者</cn>
             <fr>propriétaire du tableau</fr>
+            <bg>собственик на таблицата</bg>
         </string>
         <string id="122" js="1">
             <en>type</en>
             <pl>typ</pl>
             <cn>类型</cn>
             <fr>type</fr>
+            <bg>вид</bg>
         </string>
         <string id="123">
             <en>no object selected</en>
             <pl>nie wybrano żadnego obiektu</pl>
             <cn>未选择对象</cn>
             <fr>aucun objet sélectionné</fr>
+            <bg>не е избран обект</bg>
         </string>
         <string id="124">
             <en>MySQL table</en>
             <pl>tabela MySQL</pl>
             <cn>MySQL表格</cn>
             <fr>Tableau MySQL</fr>
+            <bg>MySQL таблица</bg>
         </string>
         <string id="125">
             <en>import table from MySQL table</en>
             <pl>import tabeli z tabeli MySQL</pl>
             <cn>从MySQL表格导入表格</cn>
             <fr>importer un tableau à partir d'un tableau MySQL</fr>
+            <bg>Импортирай таблицата от MySQL таблицата</bg>
         </string>
         <string id="126">
             <en>import table from CSV file</en>
@@ -897,72 +915,84 @@ Note: You can add new languages by inserting "<new_language>string translated in
             <pl>eksport tabeli do pliku CSV</pl>
             <cn>导出表格到CSV文件</cn>
             <fr>exporter un tableau à partir d'un fichier CSV</fr>
+            <bg>експортирай таблицата към CSV файл</bg>
         </string>
         <string id="129">
             <en>add column</en>
             <pl>dodaj kolumnę</pl>
             <cn>添加列</cn>
             <fr>ajouter une colonne</fr>
+            <bg>прибави колона</bg>
         </string>
         <string id="130" js="1">
             <en>edit HTML</en>
             <pl>edycja HTML</pl>
             <cn>编辑HTML</cn>
             <fr>modifier HTML</fr>
+            <bg>редактирай HTML</bg>
         </string>
         <string id="131">
             <en>add row</en>
             <pl>dodaj rekord</pl>
             <cn>添加行</cn>
             <fr>ajouter une ligne</fr>
+          <bg>прибави ред</bg>
         </string>
         <string id="132">
             <en>table is empty</en>
             <pl>tabela jest pusta</pl>
             <cn>表格空白</cn>
             <fr>le tableau est vide</fr>
+            <bg>таблицата е празна</bg>
         </string>
         <string id="133">
             <en>editing HTML template</en>
             <pl>edycja szablonu HTML</pl>
             <cn>编辑HTML模板</cn>
             <fr>modifier un modèle HTML</fr>
+            <bg>редактиране на HTML шаблона</bg>
         </string>
         <string id="134">
             <en>creating new HTML template</en>
             <pl>tworzenie nowego szablonu HTML</pl>
             <cn>创建HTML模板</cn>
             <fr>créer un nouveau modèle HTML</fr>
+            <bg>създаване на нов HTML шаблон</bg>
         </string>
         <string id="135">
             <en>name of HTML template</en>
             <pl>nazwa szablonu HTML</pl>
             <cn>HTML模板名称</cn>
             <fr>nom du modèle HTML</fr>
+            <bg>име на HTML шаблона</bg>
         </string>
         <string id="136">
             <en>HTML content of the template</en>
             <pl>zawartoćś HTML szablonu</pl>
             <cn>HTML模板内容</cn>
             <fr>contenu HTML du modèle</fr>
+            <bg>HTML съдържание на шаблона</bg>
         </string>
         <string id="137">
             <en>template access rights</en>
             <pl>prawa dostępu szablonu</pl>
             <cn>模板访问权限</cn>
             <f>droits d'accès du modèle</fr>
+            <bg>права за достъп до шаблона</bg>
         </string>
         <string id="138">
             <en>owner of the template</en>
             <pl>wlaściciel szablonu</pl>
             <cn>模板所有者</cn>
             <fr>propriétaire du modèle</fr>
+            <bg>собственик на шаблона</bg>
         </string>
         <string id="139">
             <en>editing test</en>
             <pl>edycja testu</pl>
             <cn>编辑测试</cn>
             <fr>modification du test</fr>
+            <bg>редактиране на теста</bg>
         </string>
         <string id="140">
             <en>creating new test</en>
