@@ -47,24 +47,28 @@ Note: You can add new languages by inserting "<new_language>string translated in
             <pl>walidacja zmiennej</pl>
             <cn>变量验证</cn>	
             <fr>validation de la variable</fr>
+             <bg>валидизация на променливата</bg>
         </string>
         <string id="3" js="1">
             <en>changing description</en>
             <pl>zmiana opisu</pl>
             <cn>改变描述</cn>
              <fr>changement de description</fr>
+            <bg>промяна на описанието</bg>
         </string>
         <string id="4" js="1">
             <en>Concerto - confirmation</en>
             <pl>Concerto - potwierdzenie</pl>
             <cn>Concerto - 确认</cn>
              <fr>Concerto - confirmation</fr>
+            <bg>Concerto - потвърждение</bg>
         </string>
         <string id="5" js="1">
             <en>Concerto - alert</en>
             <pl>Concerto - alert</pl>
             <cn>Concerto - 警告</cn>
              <fr>Concerto - alerte</fr>
+             <bg>Concerto - внимание</bg>
         </string>
         <string id="6" js="1">
             <en>HTML controls `name` validation failed. Only alphanumeric, '_' and '.' characters allowed and the value can't begin with a numeric. Value has been changed.\r\n\r\nold value: {0}\r\nnew value: {1}</en>
