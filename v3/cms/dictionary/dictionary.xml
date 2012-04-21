@@ -327,18 +327,21 @@ Note: You can add new languages by inserting "<new_language>string translated in
             <pl>Ta sekcja pozwala przejść do innej wybranej sekcji.</pl>
             <cn>转入测试特定章节。</cn>
             <fr>Passer à une section spécifique du test.</fr>
+            <bg>Пропусни специфична част от теста</bg>
         </string>
         <string id="43" js="1">
             <en><![CDATA[Specify conditions and their consequences. Multiple conditions and consequences can be specified. IF statements can't be nested within each other.]]></en>
             <pl><![CDATA[Dzięki tej sekcji można tworzyć twierdzenia warunkowe. Dozwolone jest wiele warunków, oraz można zamieszczać wiele sekcji w bloku <b>WTEDY</b>. Nie można zagnieżdżać twierdzen JEŻELI.]]></pl>
             <cn><![CDATA[声明条件及其结果。允许多重条件及结果。IF语句不可嵌入。]]></cn>
             <fr><![CDATA[Spécifier les conditions et leurs conséquences. De multiples conditions et conséquences peuvent être spécifiées. Les expressions SI ne peuvent pas être nichées les unes dans les autres.]]></fr>
+              <bg><![CDATA[Определете условията и техните следствия. Множество услевия и следствия могат да бъдат определени. АКО твърденията не могат да се вмъкват едно в друго.]]></bg>
         </string>
         <string id="44" js="1">
             <en><![CDATA[Define variables (i.e. set variables) and variable type in R, HTML templates or both. Methods to set variable: <ul><li><b>from table</b>: select a previously defined table in Concerto and filter necessary rows and columns. Set the whole table by leaving the <b>WHERE</b> clause empty</li><li><b>by R code</b>: directly type in R code. E.g. function result, mathematical calculation</li></ul>]]></en>
             <pl><![CDATA[Ta sekcja daje mozliwość zadeklarowania zmiennej w logice testu. Można dodatkowo również zaznaczyć checkbox aby sprawić żeby zmienna była widoczna w szablonie HTML. Można ustawić zmienną jedną z trzech metod:<ul><li><b>z tabeli</b>: można wybrać wcześniej zdefiniowaną tabelę w Concerto, oraz jej konkretne rekordy i kolumny. Można również wybrać całą tabelę pozostawiając blok <b>GDZIE</b> pusty</li><li><b>przez kod R</b>: można ustawić zmienną używając kodu R. Może to być cokolwiek co da się wykonać w języku R. Np. rezultat funkcji, matematyczne obliczenie</li></ul>]]></pl>
             <cn><![CDATA[在R，HTML模板中定义变量及变量类型。方法如下： <ul><li><b>来自表格</b>：选择之前在Concerto中定义的表格并筛选特定的行列。若保留<b>当</b> 语句为空可选定全部表格</li><li><b>通过R代码</b>：直接输入R代码，例如函数结论，数学计算。</li><li><b>使用变量</b>：根据已定义变量设定新变量。使用自动填充功能方便从已声明变量中查找特定变量。</li></ul>]]></cn>
              <fr><![CDATA[Définir les variables (par ex. établir les variables) et les types de variables, les modèles HTML ou les deux dans R. Méthode afin de d'établir les variables: <ul><li><b>du tableau</b>: sélectionner un tableau préalablement défini dans concerto et filtrer les lignes et colonnes nécessaires. Établir un tableau complet en laissant la clause <b>OU</b> vide </li><li><b>avec le code R </b>: taper directement dans le code R. Par exemple: fonctiont résultat, calcul mathématique</li></ul>]]></fr>
+          <bg><![CDATA[Дефинирайте променливи (т.е. създайте променливи) и вида на променливите в R, HTML шаблоните или в двете. Методи за създаване на променлива: <ul><li><b>чрез таблица</b>: изберете предварително дефинирана таблица в Concerto и  and филтрирайте необходимите редове и колони. Може да вземете цяла таблица <b>КЪДЕ</b> условието е празно</li><li><b>чрез И код</b>: директно като напишете R кода. Т.е. резултат от функцията, математическо пресмятане</li></ul>]]> </bg>   
         </string>
         <string id="45" js="1">
             <en>The start section is the entry point to your test logic. It cannot be modified.</en>
