@@ -369,41 +369,48 @@ Note: You can add new languages by inserting "<new_language>string translated in
             <pl>To jest sekcja własna.</pl>
             <cn>这是自主章节。</cn>
             <fr> Ceci est une section personnalisée du test.</fr>
+            <bg>Това е персонализирана секция от теста</bg>
         </string>
         <string id="49" js="1">
             <en>R code</en>
             <pl>kod R</pl>
             <cn>R代码</cn>
             <fr>code R</fr>
+            <bg>R код</bg>
         </string>
         <string id="50" js="1">
             <en>load HTML template</en>
             <pl>wczytaj szablon HTML</pl>
             <cn>导入HTML模板</cn>
             <fr>charger un modèle HTML</fr>
+            <bg>Зареди HTML шаблон</bg>
         </string>
         <string id="51" js="1">
             <en>go to</en>
             <pl>idź do</pl>
             <cn>前往</cn>
             <fr>aller à</fr>
+            <bg>иди на</bg>
         </string>
         <string id="52" js="1">
             <en>IF statement</en>
             <pl>twierdzenie JEŚLI</pl>
             <cn>条件性语句</cn>
             <fr>expression SI</fr>
+            <bg>АКО твърдение</bg>
         </string>
         <string id="53" js="1">
             <en>set variable</en>
             <pl>ustaw zmienną</pl>
             <cn>设定变量</cn>
             <fr>définir une variable</fr>
+            <bg>създай променлива</bg>
         </string>
         <string id="54" js="1">
             <en>start</en>
             <pl>początek</pl>
             <cn>开始</cn>
+            <bg>начало</bg>
         </string>
         <string id="55" js="1">
             <en>end</en>
