@@ -692,78 +692,91 @@ Note: You can add new languages by inserting "<new_language>string translated in
             <pl>zapisz</pl>
             <cn>保存</cn>
             <fr>sauvegarder</fr>
+            <b>съхрани</bg>
         </string>
         <string id="96">
             <en>name of the custom section</en>
             <pl>nazwa własnej sekcji</pl>
             <cn>自主章节名称</cn>
             <fr>nom de la section personnalisée</fr>
+            <bg>име на персонализираната секция</bg>
         </string>
         <string id="97">
             <en>description</en>
             <pl>opis</pl>
             <cn>描述</cn>
             <fr>description</fr>
+            <bg>описание</bg>
         </string>
         <string id="98">
             <en>Brief description of the custom section that will be visible in the test logic when the section is used.</en>
             <pl>opis własnej sekcji, który będzie widoczny w logice tekstu po dodaniu sekcji</pl>
             <cn>使用此章节时在测试逻辑中显示的简介</cn>
             <fr>Brève description de la section personnalisée qui sera visible dans la logique du test lorsque la section est utilisée.</fr>
+            <bg>Кратко описание на персонализираната секция, което ще бъда видимо в тестовата логика, когато секцията се изпалзва.</bg>
         </string>
         <string id="99">
             <en>access rights to this custom section</en>
             <pl>prawa dostępu dla sekcji własnej</pl>
             <cn>此自主章节的访问权限</cn>
             <fr>droits d'accès à cette section personnalisée</fr>
+            <bg>права за достъп да този секция</bg>
         </string>
         <string id="100">
             <en>private</en>
             <pl>prywatne</pl>
             <cn>未公开</cn>
             <fr>privé</fr>
+            <bg>личен</bg>
         </string>
         <string id="101">
             <en>group</en>
             <pl>grupowe</pl>
             <cn>群</cn>
             <fr>groupe</fr>
+            <bg>частен</bg>
         </string>
         <string id="102">
             <en>public</en>
             <pl>publiczne</pl>
             <cn>公开</cn>
             <fr>publique</fr>
+            <bg>публичен</bg>
         </string>
         <string id="103">
             <en>owner of this custom section</en>
             <pl>własciciel własnej sekcji</pl>
             <cn>此自主章节所有者</cn>
             <fr>propriétaire de cette section personnalisée</fr>
+            <bg>собственик на персонализираната секция</bg>
         </string>
         <string id="104">
             <en>Edit description. Current description:</en>
             <pl>Edytuj opis. Obecny opis:</pl>
             <cn>编辑描述。当前描述：</cn>
             <fr>Modifier la description. Description actuelle:</fr>
+            <bg>Редактиране на описанието. Настоящо описание:</bg>
         </string>
         <string id="105">
             <en>Define section input parameters. Use variables thus declared in the R code section.</en>
             <pl>Tutaj możesz zdefiniować parametry wejściowe sekcji. Można używać zmiennych które tutaj zostały zdeklarowane w kodzie R sekcji.</pl>
             <cn>定义章节输入参数。使用在在章节R代码中声明的变量。</cn>
             <fr>Définir les paramètres d'entrée de la section. utiliser les variables ainsi définies dans le code R de la section.</fr>
+            <bg>Дефиниране на входните параметри. Използване на променливи, декларирани вече в секцията на R кода</bg>
         </string>
         <string id="106">
             <en>parameters</en>
             <pl>parametry</pl>
             <cn>参数</cn>
             <fr>paramètres</fr>
+            <bg>параметри</bg>
         </string>
         <string id="107">
             <en>edit description</en>
             <pl>edytuj opis</pl>
             <cn>编辑描述</cn>
             <fr>modifier la description</fr>
+            <bg>редактиране на описанието</bg>
         </string>
         <string id="108">
             <en>no parameters defined</en>
