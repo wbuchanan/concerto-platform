@@ -1350,91 +1350,109 @@ Note: You can add new languages by inserting "<new_language>string translated in
             <en>Create and edit HTML templates as they are visible to the test taker.</en>
             <pl>W tej zakładce można stworzyć szablony HTML elementów testu, które będzie widział użytkownik biorący udział w teście.</pl>
             <cn>创建并编辑向参与测试用户显示的HTML模板。</cn>
+            <bg>Създаване и редактиране на HTM, както те се видими за тествания</bg>
         </string>
         <string id="196">
             <en>Create tables for storing and managing test data, including item content, correct responses and response history etc.</en>
             <pl>W tej zakładce można stworzyć tabele z danymi, które można później używać w teście.</pl>
             <cn>创建表格以存储并管理测试数据，包括项目内容，正确答复以及答复历史等。</cn>
+            <bg>Създаване на таблици за сортиране и упрвление на данните от теста, включително съдържанието на айтемите, верните отговори, историята  на отговарянето и т.н.</bg>
         </string>
         <string id="197">
             <en>Create and manage admin and standard user accounts, user groups and access rights of users.</en>
             <pl>Ta zakładka służy do tworzenia kont administratorów, którzy będą mogli korzystać z tego panelu. Możesz tutaj ustalić prawa dostępu, oraz stworzyć grupy w obrębie których administratorzy będą dzielić wskazane obiekty.</pl>
             <cn>创建并维护管理员及标准用户帐户，用户群及用户访问权限。</cn>
+            <bg>Създаване и управление на администратори и стандартни потребители, потребителските групи и правата за достъп на потребителите.</bg>
         </string>
         <string id="198">
             <en>admins, admin groups and admin types</en>
             <pl>administratorzy, grupy administratorów, oraz typy administratorów</pl>
             <cn>管理员，管理群以及管理员类型</cn>
+            <bg>администратори, групи администратори и видове администратори</bg>
         </string>
         <string id="199">
             <en>available objects</en>
             <pl>dostępne obiekty</pl>
             <cn>可用对象</cn>
+            <bg>достъпни обекти</bg>
         </string>
         <string id="200">
             <en>no available objects</en>
             <pl>brak dostępnych obiektów</pl>
             <cn>不可用对象</cn>
+            <bg>няма достъпни обекти</bg>
         </string>
         <string id="201">
             <en>reset search filter</en>
             <pl>resetuj filtr wyszukiwania</pl>
             <cn>重设搜索选项</cn>
+            <bg>обнови филтъра за търсене</bg>
         </string>
         <string id="202">
             <en>actions</en>
             <pl>akcje</pl>
             <cn>操作</cn>
+            <bg>действия</bg>
         </string>
         <string id="203">
             <en>edit object</en>
             <pl>edytuj obiekt</pl>
             <cn>编辑对象</cn>
+            <bg>редактиране на обект</bg>
         </string>
         <string id="204" js="1">
             <en>delete object</en>
             <pl>usuń obiekt</pl>
             <cn>删除对象</cn>
+            <bg>изтриване на обект</bg>
         </string>
         <string id="205" js="1">
             <en>add new object</en>
             <pl>dodaj nowy obiekt</pl>
             <cn>添加对象</cn>
+            <bg>прибави нов обект</bg>
         </string>
         <string id="206">
             <en>first page</en>
             <pl>pierwsza strona</pl>
             <cn>首页</cn>
+            <bg>първа страница</bg>
         </string>
         <string id="207">
             <en>previous page</en>
             <pl>poprzednia strona</pl>
             <cn>前一页</cn>
+            <bg>предишна страница</bg>
         </string>
         <string id="208">
             <en>next page</en>
             <pl>następna strona</pl>
             <cn>下一页</cn>
+            <bg>следваща страница</bg>
         </string>
         <string id="209">
             <en>last page</en>
             <pl>ostatnia strona</pl>
             <cn>尾页</cn>
+            <bg>последна страница</bg>
         </string>
         <string id="210">
             <en>per page</en>
             <pl>na stronę</pl>
             <cn>每页</cn>
+            <bg>на страница</bg>
         </string>
         <string id="211">
             <en>login to platform</en>
             <pl>logowanie do platformy</pl>
             <cn>登入系统</cn>
+            <bg>вход в платформата</bg>
         </string>
         <string id="212">
             <en>Enter your login and password.</en>
             <pl>Podaj swój login i hasło.</pl>
             <cn>输入用户名和密码</cn>
+            <bg>Въведете Вашето потребителско име и парола. </bg>
         </string>
         <string id="213">
             <en>Select the HTML template to be loaded.</en>
