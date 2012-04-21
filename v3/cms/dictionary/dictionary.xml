@@ -299,25 +299,28 @@ Note: You can add new languages by inserting "<new_language>string translated in
             <pl>zmień</pl>
             <cn>修改</cn>
             <fr>changement</fr>
-            <bg></bg>
+            <bg>промени</bg>
         </string>
         <string id="39" js="1">
             <en>Edit HTML. Current HTML:</en>
             <pl>Edycja HTML. Obecny HTML:</pl>
             <cn>编辑HTML。当前HTML：</cn>
              <fr>Modifier HTML. HTML courant:</fr>
+             <bg>Редактирай HTML. Настоящ HTML</bg>
         </string>
         <string id="40" js="1">
             <en>Directly enter R code that is to be interpreted.</en>
             <pl>Używając tej sekcji można zinterpretować dowolny kod R.</pl>
             <cn>直接编译R代码。点击输入需编译的R代码。</cn>
             <fr>Entrez directement le code R qui doit être interprété.</fr>
+            <bg>Директно въведи R кода за интерпретация</bg>
         </string>
         <string id="41" js="1">
             <en>Stop R processes and load selected HTML template.</en>
             <pl>Ta sekcja przerywa wykonywanie kodu R i wyświetla użytkownikowi szablon HTML.</pl>
             <cn>停止R运行，导入所选HTML模板。</cn>
-            <fr>Arrêter le processus R et charger le modèle HTML sélectionné.</en>
+            <fr>Arrêter le processus R et charger le modèle HTML sélectionné.</fr>
+            <bg>Спри R процеса и зареди избрания HTML шаблон</bg>
         </string>
         <string id="42" js="1">
             <en>Skip to a specific section of the test.</en>
