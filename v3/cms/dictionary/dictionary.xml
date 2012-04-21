@@ -999,6 +999,7 @@ Note: You can add new languages by inserting "<new_language>string translated in
             <pl>tworzenie nowego testu</pl>
             <cn>创建测试</cn>
             <fr>créer un nouveau test</fr>
+            <bg>създаване на нов тест</bg>
         </string>
         <string id="141">
             <en>name of the test</en>
@@ -1011,84 +1012,98 @@ Note: You can add new languages by inserting "<new_language>string translated in
             <pl>prawa dostępu testu</pl>
             <cn>测试访问权限</cn>
             <fr>droits d'accès au test</fr>
+            <bg>права за достъп до теста</bg>
         </string>
         <string id="143">
             <en>owner of the test</en>
             <pl>wlaściciel testu</pl>
             <cn>测试所有者</cn>
             <fr>propriétaire du test</fr>
+            <bg>собственик на теста</bg>
         </string>
         <string id="144">
             <en>show test variables</en>
             <pl>pokaż zmienne testu</pl>
             <cn>显示测试变量</cn>
             <fr>voir les variables du test</fr>
+            <bg>показване на тестовите променливи</bg>
         </string>
         <string id="145">
             <en>test logic is empty</en>
             <pl>logika testu jest pusta</pl>
             <cn>测试逻辑空白</cn>
             <fr>la logique du test est vide</fr>
+            <bg>тестовата логика е празна</bg>
         </string>
         <string id="146">
             <en>choose section type</en>
             <pl>wybierz typ sekcji</pl>
             <cn>选择章节类型</cn>
              <fr>choisir un type de section</fr>
+             <bg>избери вида на секцията</bg>
         </string>
         <string id="147">
             <en>basic sections</en>
             <pl>podstawowe sekcje</pl>
             <cn>基础章节</cn>
             <fr>sections de base</fr>
+            <bg>основни секции</bg>
         </string>
         <string id="148">
             <en>custom sections</en>
             <pl>własne sekcje</pl>
             <cn>自主章节</cn>
             <fr>section personnalisée</fr>
+            <bg>персонализирани секции</bg>
         </string>
         <string id="149">
             <en>variable name</en>
             <pl>nazwa zmiennej</pl>
             <cn>变量名称</cn>
             <fr>nom de la variable</fr>
+            <bg>име на променливата</bg>
         </string>
         <string id="150">
             <en>section</en>
             <pl>sekcja</pl>
             <cn>章节</cn>
             <fr>section</fr>
+            <bg>секция</bg>
         </string>
         <string id="151">
             <en>parameter/return</en>
             <pl>parametr/zwrot</pl>
             <cn>参数/返回</cn>
             <fr>paramètre/retour</fr>
+          <bg>параметър/връщане</bg>
         </string>
         <string id="152">
             <en>editing admin group</en>
             <pl>edycja grupy aministratorów</pl>
             <cn>编辑管理群</cn>
             <fr>modifier les groupes d'administrateurs</fr>
+            <bg>редактиране на групата администратори</bg>
         </string>
         <string id="153">
             <en>creating admin group</en>
             <pl>tworzenie grupy aministratorów</pl>
             <cn>创建管理群</cn>
             <fr>créer un groupe d'administrateurs</fr>
+            <bg>създаване на групата администратори</bg>
         </string>
         <string id="154">
             <en>name of the admin group</en>
             <pl>nazwa grupy aministratorów</pl>
             <cn>管理群名称</cn>
             <fr>nom du groupe d'administrateurs</fr>
+            <bg>име на групата администратори</bg>
         </string>
         <string id="155">
             <en>admin group access rights</en>
             <pl>prawa dostepu grupy aministratorów</pl>
             <cn>管理群访问权限</cn>
             <fr>droits d'accès du groupe d'administrateurs</fr>
+            <bg>права за достъп на групата администратори</bg>
             </string>
         <string id="156">
             <en>owner of the admin group</en>
