@@ -1110,137 +1110,163 @@ Note: You can add new languages by inserting "<new_language>string translated in
             <pl>wlaściciel grupy administratorów</pl>
             <cn>管理群所有者</cn>
             <fr>propriétaire du groupe d'administrateurs</fr>
+            <bg>собственик на групата администратори</bg>
             <string>
         <string id="157">
             <en>editing admin type</en>
             <pl>edycja typu administratora</pl>
             <cn>编辑管理员类型</cn>
+            <bg>редактиране на вида на администратора</bg>
         </string>
         <string id="158">
             <en>creating new admin type</en>
             <pl>tworzenie nowego typu administratora</pl>
             <cn>创建管理员类型</cn>
             <fr>créer un nouveau type d'administrateur</fr>
+            <bg>създаване на нов вид администратор</bg>
         </string>
         <string id="159">
             <en>name of the admin type</en>
             <pl>nazwa typu administratora</pl>
             <cn>管理员类型名称</cn>
             <fr>nom du type d'administrateur</fr>
+            <bg>име на вида администратор</bg>
         </string>
         <string id="160">
             <en>access rights of the admin type</en>
             <pl>prawa dostępu typu administratora</pl>
             <cn>管理员类型访问权限</cn>
             <fr>droits d'accès du type d'administrateur</fr>
+            <bg>права за достъп на вида администратор</bg>
         </string>
         <string id="161">
             <en>admin type owner</en>
             <pl>wlaściciel typu administratora</pl>
             <cn>管理类型所有者</cn>
             <fr>propriétaire du type d'accès</fr>
+            <bg>собственик на вида администратор</bg>
         </string>
         <string id="162">
             <en>admin type rights</en>
             <pl>prawa typu administratora</pl>
             <cn>管理员类型权限</cn>
             <fr>droits d'accès d'administrateurs</fr>
+            <bg>права на вида администратор</bg>
         </string>
         <string id="163">
             <en>module</en>
             <pl>moduł</pl>
             <cn>模块</cn>
             <fr>module</fr>
+            <bg>модули</bg>
         </string>
         <string id="164">
             <en>read rights</en>
             <pl>prawa odczytu</pl>
             <cn>阅读权限</cn>
+            <bg>права за четене</bg>
         </string>
         <string id="165">
             <en>write rights</en>
             <pl>prawa zapisu</pl>
             <cn>书写权限</cn>
+            <bg>права за писане</bg>
         </string>
         <string id="166">
             <en>owner change</en>
             <pl>zmiana wlaściciela</pl>
             <cn>所有者变更</cn>
+            <bg>смяна на собственика</bg>
         </string>
         <string id="167">
             <en>HTML templates</en>
             <pl>szablony HTML</pl>
             <cn>HTML模板</cn>
+            <bg>HTML шаблони</bg>
         </string>
         <string id="168">
             <en>standard</en>
             <pl>standardowe</pl>
             <cn>标准</cn>
+            <bg>стандартни</bg>
         </string>
         <string id="169">
             <en>all</en>
             <pl>wszystko</pl>
             <cn>全部</cn>
+            <bg>всички</bg>
         </string>
         <string id="170">
             <en>editing admin</en>
             <pl>edycja administratora</pl>
             <cn>编辑管理者</cn>
+            <bg>редактиране на администратора</bg>
         </string>
         <string id="171">
             <en>creating new admin</en>
             <pl>tworzenie nowego administratora</pl>
             <cn>创建管理者</cn>
+            <bg>създаване на нов администратор</bg>
         </string>
         <string id="172">
             <en>creating new admin</en>
             <pl>tworzenie nowego administratora</pl>
             <cn>创建管理者</cn>
+            <bg>създаване на нов администратор</bg>
         </string>
         <string id="173">
             <en>login</en>
             <pl>login</pl>
             <cn>登入</cn>
+            <bg>вход/bg>
         </string>
         <string id="174">
             <en>email</en>
             <pl>email</pl>
             <cn>邮箱</cn>
+            <bg>имейл</bg>
         </string>
         <string id="175">
             <en>last login</en>
             <pl>ostatni login</pl>
             <cn>上次登入</cn>
+            <bg>последно влизане</bg>            
         </string>
         <string id="176">
             <en>admin group</en>
             <pl>grupa administratora</pl>
             <cn>管理群</cn>
+            <bg>група на администраторите</bg>
         </string>
         <string id="177">
             <en>admin type</en>
             <pl>typ administratora</pl>
             <cn>管理员类型</cn>
+            <bg>вид на администратора</bg>
         </string>
         <string id="178">
             <en>admin login</en>
             <pl>login administratora</pl>
             <cn>管理员登入</cn>
+            <bg>вход на администратора</bg>
         </string>
         <string id="179">
             <en>password</en>
             <pl>hasło</pl>
             <cn>密码</cn>
+            <bg>парола</bg>
         </string>
         <string id="180">
             <en>Select box to set the password</en>
             <pl>zaznacz jeśli chcesz ustawić hasło</pl>
             <cn>设置密码选项</cn>
+            <bg>Изберете полето за въвеждане на парола</bg>
         </string>
         <string id="181">
             <en>admin password</en>
             <pl>hasło administratora</pl>
             <cn>管理员密码</cn>
+            <bg>парола на администратора</bg>
         </string>
         <string id="182">
             <en>password confirmation</en>
