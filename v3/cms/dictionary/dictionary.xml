@@ -597,81 +597,95 @@ Note: You can add new languages by inserting "<new_language>string translated in
             <pl>Dostęp wzbroniony!</pl>
             <cn>拒绝访问！</cn>
             <fr>Accès refusé!</fr>
+            <bg>Достъп отказан</bg>
         </string>
         <string id="82">
             <en>logged user</en>
             <pl>zalogowany użytkownik</pl>
             <cn>已登入用户</cn>
             <fr>utilisateur connecté</fr>
+            <bg>влязъл потребител</bg>
         </string>
         <string id="83">
             <en>log out</en>
             <pl>wyloguj</pl>
             <cn>登出</cn>
             <fr>se déconnecter</fr>
+            <bg>изход</bg>
         </string>
         <string id="84">
             <en>custom test sections</en>
             <pl>własne sekcje testu</pl>
             <cn>自主测试章节</cn>
             <fr>section de test personnalisée</fr>
+            <bg>персонализирани тестове секции</bg>
             </string>
         <string id="85">
             <en>tables</en>
             <pl>tabele</pl>
             <cn>表格</cn>
             <fr>tableux</fr>
+            <bg>таблици</bg>
         </string>
         <string id="86">
             <en>file</en>
             <pl>plik</pl>
             <cn>文件</cn>
+            <bg>файл</bg>
         </string>
         <string id="87">
             <en>templates</en>
             <pl>szablony</pl>
             <cn>模板</cn>
             <fr>modèles</fr>
+            <bg>шаблони</bg>
         </string>
         <string id="88">
             <en>tests</en>
             <pl>testy</pl>
             <cn>测试</cn>
+            <b>тестове</bg>
         </string>
         <string id="89">
             <en>admins</en>
             <pl>administratorzy</pl>
             <cn>管理员</cn>
+            <bg>администратори</bg>
         </string>
         <string id="90">
             <en>admin types</en>
             <pl>typy administratorów</pl>
             <cn>管理员类型</cn>
              <fr>atypes d'administrateurs</fr>
+             <bg>видове администратори</bg>
         </string>
         <string id="91">
             <en>admin groups</en>
             <pl>grupy administratorów</pl>
             <cn>管理群</cn>
             <fr>groupes d'administrateurs</fr>
+            <b>административни групи</bg>
         </string>
         <string id="92">
             <en>editing custom test section</en>
             <pl>edycja własnej sekcji testu</pl>
             <cn>编辑自主测试章节</cn>
             <fr>modifier les sections de test personnalisées</fr>
+            <bg>редактиране на персонализирана секция на теста</bg>
         </string>
         <string id="93">
             <en>creating new custom test section</en>
             <pl>tworzenie nowej własnej sekcji testu</pl>
             <cn>创建自主测试章节</cn>
             <fr>créer une enouvelle section de test personnalisée</fr>
+            <bg>създаване на нова персонализирана секция на теста</bg>
         </string>
         <string id="94">
             <en>delete</en>
             <pl>usuń</pl>
             <cn>删除</cn>
             <fr>supprimer</fr>
+            <bg>изтрий</bg>
         </string>
         <string id="95" js="1">
             <en>save</en>
