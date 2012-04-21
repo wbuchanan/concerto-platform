@@ -75,198 +75,231 @@ Note: You can add new languages by inserting "<new_language>string translated in
             <pl>Walidacja pola `nazwa` kontrolki HTML nie powiodła się. Tylko wartości alfanumeryczne, '_' i '.' są dozwolone, oraz wartość nie może zaczynać się od liczby. Wartość została zmieniona.\r\n\r\npoprzednia wartość: {0}\r\nnowa wartość: {1}</pl>
             <cn>HTML控制`名称`验证失败。只允许使用字母、数字以及'_'和'.'，并且不可以数字开头。数值已更改。\r\n\r\n旧数值: {0}\r\n新数值: {1}</cn>
               <fr>HTML le contrôle de la variable `nom` a échoué. seuls les caractères alphanumériques, les  '_' et '.' sont acceptés et la valeur ne peut pas commencer per un chiffre. la valeur a été changée\n\r\nancienne valeur: {0}\r\nnouvelle valeur: {1}</en>
+            <bg>Валидизацията на името на HTML контролата неуспешна. Само букви и цифри, '_' и '.' за допустими и стойността не може да започва с цифра. Стойността беше променена.\r\n\r\nстара стойност: {0}\r\nнова стойност: {1}</bg                                      
         </string>
         <string id="7" js="1">
             <en>adding new object</en>
             <pl>dodawanie nowego obiektu</pl>
             <cn>添加新对象</cn>
              <fr>ajouter un nouvel objet</fr>
+            <bg>прибавяне на нов обект</bg> 
         </string>
         <string id="8" js="1">
             <en>Are you sure you want to delete this object #{0}?</en>
             <pl>Jesteś pewien, że chcesz usunąć obiekt #{0}?</pl>
             <cn>确认删除对象 #{0}?</cn>
             <fr> Êtes-vous certain de vouloir supprimer cet objet? #{0}?</fr>
+            <bg>Сигурни ли сте, че искате да изтриете този обект #{0}</bg>
         </string>
         <string id="9" js="1">
             <en>Object has been saved.</en>
             <pl>Obiekt został zapisany.</pl>
             <cn>对象已保存。</cn>
             <fr>L'objet a été sauvegardé.</fr>
+          <bg>Обектът е съхранен</bg>
         </string>
         <string id="10" js="1">
             <en>Object has NOT been saved.</en>
             <pl>Obiekt NIE został zapisany.</pl>
             <cn>对象未保存。</cn>
             <fr>L'objet N'A PAS été sauvegardé.</fr>
+            <bg>Обектът НЕ Е съхранен</bg>
         </string>
         <string id="11" js="1">
             <en>remove row</en>
             <pl>usuń rekord</pl>
             <cn>移除行</cn>
             <fr>supprimer la ligne</fr>
+            <bg>изтрий реда</bg>
         </string>
         <string id="12" js="1">
             <en>editing column</en>
             <pl>edytowanie kolumny</pl>
             <cn>编辑列</cn>
             <fr>modifier la colonne</fr>
+            <bg>редактирай колоната</bg>
         </string>
         <string id="13" js="1">
             <en>Column name is a mandatory field.</en>
             <pl>Nazwa kolumny nie może być pusta.</pl>
             <cn>列名称不可为空。</cn>
             <fr>Le nom de colonne est un champ obligatoire.</fr>
+            <bg>Името на колоната не е задължително</bg>
         </string>
         <string id="14" js="1">
             <en>change column name</en>
             <pl>zmiana nazwy kolumny</pl>
             <cn>修改列名称</cn>
             <fr>modifier le nom de la colonne</fr>
+            <bg>промени името на колоната</bg>
         </string>
         <string id="15" js="1">
             <en>A column with that name already exists.</en>
             <pl>Kolumna o tej nazwie już istnieje.</pl>
             <cn>列名称重复。</cn>
             <fr>Une colonne de ce nom existe déjà.</fr>
+            <bg>Колона с такова име вече съжествува</bg>
         </string>
         <string id="16" js="1">
             <en>string</en>
             <pl>tekst</pl>
             <cn>字符串</cn>
             <fr>libre</fr>
+            <bg>текст</bg>
         </string>
         <string id="17" js="1">
             <en>numeric</en>
             <pl>liczba</pl>
             <cn>数值</cn>
             <fr>numérique</fr>
+            <bg>цифров</bg>
         </string>
         <string id="18" js="1">
             <en>HTML</en>
             <pl>HTML</pl>
             <cn>HTML</cn>
             <fr>HTML</fr>
+            <bg>HTML</bg>
         </string>
         <string id="19" js="1">
             <en>edit column</en>
             <pl>edytuj kolumnę</pl>
             <cn>编辑列</cn>
             <fr>modifier la colonne</fr>
+            <bg>редактиране на колоната</bg>
         </string>
         <string id="20" js="1">
             <en>remove column</en>
             <pl>usuń kolumnę</pl>
             <cn>移除列</cn>
             <fr>supprimer la colonne</fr>
+            <bg>изтрий колоната</bg>
         </string>
         <string id="21" js="1">
             <en>importing table from MySQL table</en>
             <pl>importowanie tabeli z tabeli MySQL</pl>
             <cn>从MySQL表格中导入表格</cn>
             <fr>importation d'un tableau provenant de MySQL table</fr>
+            <bg>импортиране на таблицата от MySQL таблица</bg>
         </string>
         <string id="22" js="1">
             <en>import</en>
             <pl>importuj</pl>
             <cn>导入</cn>
             <fr>importer</fr>
+            <bg>импортиране</bg>
         </string>
         <string id="23" js="1">
             <en>cancel</en>
             <pl>anuluj</pl>
             <cn>取消</cn>
             <fr>annuler</fr>
+            <bg>отмяна</bg>
         </string>
         <string id="24" js="1">
             <en>No table selected.</en>
             <pl>Nie wybrano tabeli.</pl>
             <cn>未选择表格</cn>
             <fr>Aucun tableau sélectionnée.</fr>
+            <bg>Не е избрана таблица</bg>
         </string>
         <string id="25" js="1">
             <en>importing table</en>
             <pl>importowanie tabeli</pl>
             <cn>导入表格</cn>
             <fr>Importation d'un tableau</fr>
+            <bg>импортиране на таблица</bg>
         </string>
         <string id="26" js="1">
             <en>Table structure and data imported.</en>
             <pl>Struktura i dane tabeli zostały zaimportowane.</pl>
             <cn>已导入表格结构和数据。</cn>
             <fr>La structure et les données du tabeau ont été importées.</fr>
+            <bg>Структурата на таблицата и данните са импортирани</bg>
         </string>
         <string id="27" js="1">
             <en>Importing table from CSV file</en>
             <pl>importowanie tabeli z pliku CSV</pl>
             <cn>从CSV文件中导入表格</cn>
             <fr>Importation d'un tableau provenant d'un fichier CSV</fr>
+            <bg>Импортиране на таблицата от CSV файл</bg>
         </string>
         <string id="28" js="1">
             <en>Are you sure you want to replace the current table structure and data with that from the selected file?</en>
             <pl>Jesteś pewien że chcesz zastąpić obecną strukturę i dane tabeli tymi z pliku?</pl>
             <cn>确认使用所选文件表格结构数据替代当前表格？</cn>
              <fr>Êtes-vous certain de vouloir remplacer la structure et les données du présent tableau par celles du fichier sélectionné?</fr>
+             <bg>Сигурни ли сте, че искате да заместите настоящата структура и данни на таблицата с тези от избраната таблица</bg>
         </string>
         <string id="29" js="1">
             <en>file uploaded</en>
             <pl>plik wysłany</pl>
             <cn>已上传文件</cn>
             <fr>fichier téléchargé</fr>
+            <bg>Файлът е качен</bg>
         </string>
         <string id="30" js="1">
             <en>There was an error in importing table structure and data.</en>
             <pl>Wystąpił błąd podczas importowania struktury i danych tabeli.</pl>
             <cn>导入表格结构数据发生错误。</cn>
             <fr>Une erreur est survenue en important la structure et les données du tableau.</fr>
+            <bg>Има грешка при импортирането на стуктурата и данните на таблицата</bg>
         </string>
         <string id="31" js="1">
             <en>adding new column</en>
             <pl>dodawanie nowej kolumny</pl>
             <cn>添加列</cn>
             <fr>ajout d'une nouvelle colonne</fr>
+            <bg>прибавяне на нова колона</bg>
         </string>
         <string id="32" js="1">
             <en>Are you sure you want to delete this row?</en>
             <pl>Jesteś pewien, że chcesz usunąć ten rekord?</pl>
             <cn>确认删除此行？</cn>
             <fr>Êtes-vous certain de vouloir supprimer cette ligne?</fr>
+            <bg>Сигурни ли сте, че искате да изтриете този ред</bg>
         </string>
         <string id="33" js="1">
             <en>deleting table row</en>
             <pl>usuwanie rekordu tabeli</pl>
             <cn>删除行</cn>
             <fr>suppression de la ligne du tableau</fr>
+            <bg>изтриване на ред от таблицата</bg>
         </string>
         <string id="34" js="1">
             <en>Are you sure you want to delete this column</en>
             <pl>Jesteś pewien że chcesz usunąć tą kolumnę?</pl>
             <cn>确认删除此列？</cn>
             <fr>Êtes-vous certain de vouloir supprimer cette colonne?</fr>
+            <bg>Сигурни ли сте, че искате да изтриете тази колона</bg>
         </string>
         <string id="35" js="1">
             <en>deleting table column</en>
             <pl>usuwanie kolumny tabeli</pl>
             <cn>删除列</cn>
             <fr>suppression de la colonne du tableau</fr>
+            <bg>изтриване на колона от таблицата</bg>
         </string>
         <string id="36" js="1">
             <en>changing HTML</en>
             <pl>zmiana HTML</pl>
             <cn>修改HTML</cn>
             <fr>changement HTML</fr>
+            <bg>промяна на HTML</bg>
         </string>
         <string id="37" js="1">
             <en>add</en>
             <pl>dodaj</pl>
             <cn>添加</cn>
             <fr>ajouter</fr>
+            <bg>прибави</bg>
         </string>
         <string id="38" js="1">
             <en>change</en>
             <pl>zmień</pl>
             <cn>修改</cn>
             <fr>changement</fr>
+            <bg></bg>
         </string>
         <string id="39" js="1">
             <en>Edit HTML. Current HTML:</en>
