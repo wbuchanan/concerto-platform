@@ -1272,66 +1272,79 @@ Note: You can add new languages by inserting "<new_language>string translated in
             <en>password confirmation</en>
             <pl>potwierdzenie hasła</pl>
             <cn>确认密码</cn>
+            <bg>потвърждение на паролата</bg>
         </string>
         <string id="183">
             <en>password confirmation must match the password field above</en>
             <pl>potwierdzenie hasła musi sie zgadzać z polem hasła powyżej</pl>
             <cn>确认密码必须与上方密码栏一致</cn>
+            <bg>потвърждението на паролата трябва да съответства на паролата в полето по-горе</bg>
         </string>
         <string id="184">
             <en>first name</en>
             <pl>imię</pl>
             <cn>名</cn>
+            <bg>име</bg>
         </string>
         <string id="185">
             <en>last name</en>
             <pl>nazwisko</pl>
             <cn>姓</cn>
+            <bg>фамилия</bg>
         </string>
         <string id="186">
             <en>admin first name</en>
             <pl>imię administratora</pl>
             <cn>管理员名</cn>
+            <bg>име на администратора</bg>
         </string>
         <string id="187">
             <en>admin last name</en>
             <pl>nazwisko administratora</pl>
             <cn>管理员姓</cn>
+            <bg>фамилия на администратора</bg>
         </string>
         <string id="188">
             <en>admin email</en>
             <pl>email administratora</pl>
             <cn>管理员邮箱</cn>
+            <bg>имейл на администраторе</bg>
         </string>
         <string id="189">
             <en>phone no.</en>
             <pl>nr telefonu</pl>
             <cn>电话</cn>
+            <bg>телефон:</bg>
         </string>
         <string id="190">
             <en>admin phone no.</en>
             <pl>nr telefonu administratora</pl>
             <cn>管理员电话</cn>
+            <bg>телефон на администратора:</bg>
         </string>
         <string id="191">
             <en>admin group</en>
             <pl>grupa administratora</pl>
             <cn>管理群</cn>
+            <bg>група на администраторите</bg>
         </string>
         <string id="192">
             <en>admin type</en>
             <pl>typ administratora</pl>
             <cn>管理员类型</cn>
+            <bg>вид на администраторите</bg>
         </string>
         <string id="193">
             <en>Create and manage the entire structure of each test.</en>
             <pl>W tej zakładce można tworzyć testy.</pl>
             <cn>以整体创建并管理测试结果。</cn>
+            <bg>създаване и управление на цялата структура на всеки тест </bg>
         </string>
         <string id="194">
             <en>Create custom test logic sections to meet the requirements of specific tests.</en>
             <pl>W tej zakładce można stworzyć własne sekcje logiki testu i użyc ich w testach.</pl>
             <cn>创建满足特定测试需求的自主测试章节。</cn>
+            <bg>Създаване на персонализирани секции на логиката на теста, които покриват изискванията на всеки тест</bg>
         </string>
         <string id="195">
             <en>Create and edit HTML templates as they are visible to the test taker.</en>
