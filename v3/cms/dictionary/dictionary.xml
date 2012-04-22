@@ -1986,91 +1986,109 @@ Note: You can add new languages by inserting "<new_language>string translated in
             <en><![CDATA[R logic <font style='color:red;'><b>error</b></font>. Check R code output for additional info. Debug HALTED.]]></en>
             <pl><![CDATA[<font style='color:red;'><b>Błąd</b></font> w logice R. Prosze sprawdzić wynik kodu R dla dodatkowych informacji. Debug ZATRZYMANY.]]></pl>
             <cn><![CDATA[R逻辑 <font style='color:red;'><b>错误</b></font>。更多信息详见R代码输出。调试中止。]]></cn>
+            <bg><![CDATA[R logic <font style='color:red;'><b>error</b></font>. Check R code output for additional info. Debug HALTED.]]></bg>
         </string>
         <string id="304" js="1">
             <en><![CDATA[R logic validation <font style='color:green;'><b>PASSED</b></font>.]]></en>
             <pl><![CDATA[Walidacja logiki R <font style='color:green;'><b>POWIODŁA SIĘ</b></font>.]]></pl>
             <cn><![CDATA[R逻辑验证 <font style='color:green;'><b>通过</b></font>.]]></cn>
+            <bg><![CDATA[R Валидизацията на логиката <font style='color:green;'><b>УСПЕШНА</b></font>.]]></bg>
         </string>
         <string id="305" js="1">
             <en>current HTML variables</en>
             <pl>obecne zmienne HTML</pl>
             <cn>当前HTML变量</cn>
+            <bg>настоящи HTML променливи</bg>
         </string>
         <string id="306" js="1">
             <en>value</en>
             <pl>wartość</pl>
             <cn>数值</cn>
+            <bg>стойност</bg>
         </string>
         <string id="307" js="1">
             <en><![CDATA[Test #{0}, session #{1} - runtime debug <b><font style='color:green;'>PASSED</font></b>]]></en>
             <pl><![CDATA[Test #{0}, sesja #{1} - debug na żywo <b><font style='color:green;'>POWIODŁ SIĘ</font></b>]]></pl>
             <cn><![CDATA[测试 #{0}，章节 #{1} – 运行时间调试 <b><font style='color:green;'>通过</font></b>]]></cn>
+            <bg><![CDATA[Тестът #{0}, сесията #{1} - дебъгът в реално време <b><font style='color:green;'>УСПЕШНО</font></b>]]></bg>
         </string>
         <string id="308" js="1">
             <en>End section reached. The test has finished.</en>
             <pl>Osiągnieto końcową sekcję. Test został skończony.</pl>
             <cn>到达结束章节。测试已完成。</cn>
+            <bg>Крайната секция достигната. Тестът е завършен.</bg>
         </string>
         <string id="309" js="1">
             <en>Template #{0}</en>
             <pl>Szablon #{0}</pl>
             <cn>模板#{0}</cn>
+            <bg>Шаблон #{0}</bg>
         </string>
         <string id="310" js="1">
             <en>Template #{0} loaded ( time limit: {1} ).</en>
             <pl>Szablon #{0} wczytany ( limit czasu: {1} ).</pl>
             <cn> 载入模板 #{0} ( 时限： {1} )。</cn>
+            <bg>Шаблон #{0} зареден ( лимит от време: {1} ).</bg>
         </string>
         <string id="311" js="1">
             <en>unlimited</en>
             <pl>nieograniczony</pl>
             <cn>无限的</cn>
+            <bg>неограничен</bg>
         </string>
         <string id="312" js="1">
             <en>sec.</en>
             <pl>sek.</pl>
             <cn>秒</cn>
+            <bg>сек.</bg>
         </string>
         <string id="313" js="1">
             <en>Awaiting user input...</en>
             <pl>Oczekiwanie na ruch użytkownika...</pl>
             <cn>等待用户输入…</cn>
+            <bg>Очакване за въвеждане на данни...</bg>
         </string>
         <string id="314" js="1">
             <en><![CDATA[Test #{0}, session #{1}, template #{2} - runtime debug <b>(template loaded - awaiting user input...)</b>]]></en>
             <pl><![CDATA[Test #{0}, sesja #{1}, szablon #{2} - debug na żywo <b>(szablon wczytany - oczekiwanie na ruch użytkownika...)</b>]]></pl>
             <cn><![CDATA[测试 #{0}，章节 #{1}，模板 #{2} – 运行时间调试 <b>(载入模板 – 等待用户输入……)</b>]]></cn>
+            <bg><![CDATA[Тестът #{0}, сесията #{1}, шаблонът #{2} - дебъг в реално време <b>(шаблонът зареден - очакване за въвеждане на данни...)</b>]]></bg>
         </string>
         <string id="315" js="1">
             <en>Item submitted. Time limit reached.</en>
             <pl>Element wysłany. Limit czasowy został osiągnięty.</pl>
             <cn>提交项目。已到达时限。</cn>
+            <bg>Айтемът изпратен. Лимитът от време достигнат.</bg>
         </string>
         <string id="316" js="1">
             <en><![CDATA[Item submitted. Button with name <b>{0}</b> clicked.]]></en>
             <pl><![CDATA[Element wysłany. Przycisk o nazwie <b>{0}</b> został kliknięty.]]></pl>
             <cn><![CDATA[提交项目。按键名称 <b>{0}</b> 。]]></cn>
+            <en><![CDATA[Item submitted. Button with name <b>{0}</b> clicked.]]></en>
         </string>
         <string id="317" js="1">
             <en>variables send</en>
             <pl>wysłane zmienne</pl>
             <cn>发送变量</cn>
+            <bg>променлимите изпратени.</bg>
         </string>
         <string id="318" js="1">
             <en>range</en>
             <pl>zakres</pl>
             <cn>范围</cn>
+            <bg>Айтемът изпратен. Лимитът от време достигнат.</bg>
         </string>
         <string id="319" js="1">
             <en>please wait...</en>
             <pl>proszę czekać...</pl>
             <cn>请等待……</cn>
+            <bg>Моля изчакайте...</bg>
         </string>
         <string id="320" js="1">
             <en>Possible loss of unsaved data.</en>
             <pl>Możliwa utrata niezapisanych danych.</pl>
             <cn>可能丢失未保存数据。</cn>
+            <bg>Възможна загуба на несхранени данни.</bg>
         </string>
         <string id="321" js="1">
             <en>Are you sure you want to continue? This action will reset unsaved changes in the following modules:</en>
