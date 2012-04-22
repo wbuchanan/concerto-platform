@@ -2130,179 +2130,211 @@ Note: You can add new languages by inserting "<new_language>string translated in
             <en>field enclosure</en>
             <pl>objęcie pola</pl>
             <cn>区域边界</cn>
-          
-            
-            
+            <bg>завършване на полето</bg>
         </string>
         <string id="328">
             <en><![CDATA[Single character used to enclose string. Default character is '<b>"</b>'.]]></en>
             <pl><![CDATA[Pojedyńczy znak używany do objęcia zakresu pola. Domyślny znak to '<b>"</b>'.]]></pl>
             <cn><![CDATA[用于标记字符串的单一字符。默认字符为'<b>"</b>'。]]></cn>
+            <bg><![CDATA[Единичен знак, използван за завършване на реда от знаци. Знакът по подразбиране е '<b>"</b>'.]]></bg>
         </string>
         <string id="329" js="1">
             <en>Exporting table to CSV file</en>
             <pl>Eksportowanie tabeli do pliku CSV</pl>
             <cn>导出表格至CSV文件</cn>
+            <bg>Експортиране на таблицата към CSV файл.</bg>
         </string>
         <string id="330">
             <en>header row</en>
             <pl>rząd naglówka</pl>
             <cn>标题行</cn>
+            <bg>заглавен ред</bg>
         </string>
         <string id="331">
             <en>Check box to import CSV with a header row. Header row values will be used as column names.</en>
             <pl>Zaznacz jeśli chcesz zaimportować CSV z rzędem nagłówka. Wartości rzędu nagłówka zostaną użyte jako nazwy kolumn.</pl>
             <cn>包含标题行导入CSV。标题行数值将作为列名称。</cn>
+            <bg>Поле за потвърждаване на CSV със заглавен ред. Стойностите на заглавния ред ще бъдат използвани за име на колоната</bg>
         </string>
         <string id="332">
             <en>Check box to export CSV with a header row. Header row will be first row in CSV with table column names.</en>
             <pl>Zaznacz jeśli chcesz wyeksportować CSV z rzędem nagłówka. Rząd nagłówka będzie pierwszym rzędem w CSV z nazwami kolumn tabeli.</pl>
             <cn>包含标题行导出CSV。标题行将作为表格列名称出现在CSV的第一行。</cn>
+          <bg>Поле за потвърждаване на CSV със заглавен ред. Заглавния ред ще бъде първия ред в CSV с имена на колоните в таблицата.</bg>
         </string>
         <string id="333" js="1">
             <en>Error loading XML file. Cannot continue with import.</en>
             <pl>Błąd przy wczytywaniu pliku XML. Import nie może być kontynuowany.</pl>
             <cn>载入XML文件错误。无法继续导入。</cn>
+            <bg>Грешка при зареждането на XML файла. Не може да се продължи с импортирането.</bg>
         </string>
         <string id="334" js="1">
             <en>Column delimiter and enclosure fields are mandatory.</en>
             <pl>Pola separacji i objęcia kolumn nie mogą być puste.</pl>
             <cn>列分隔符与区域标记为必需。</cn>
+            <bg>Сепараторът за колони и за вършването на полета не е задължително</bg>
         </string>
         <string id="335">
             <en>session count</en>
             <pl>liczba sesji</pl>
             <cn>章节计数</cn>
+            <bg>броене на сисиите</bg>
         </string>
         <string id="336" js="1">
             <en>At least one of the fields that should be unique already exists in the system.</en>
             <pl>Przynajmniej jedno pole, które powinno być unikalne, już istnieje w systemie.</pl>
             <cn>系统内存在相同区域。</cn>
+            <bg>Поне едно поле, което трябва да е уникално, вече съществува в системата.</bg>
         </string>
         <string id="337">
             <en>list of available objects</en>
             <pl>lista dostępnych obiektów</pl>
             <cn>可用对象列表</cn>
+            <bg>списък на достъпните обекти</bg>
         </string>
         <string id="338" js="1">
             <en>currently selected object:</en>
             <pl>aktualnie wybrany obiekt:</pl>
             <cn>当前所选对象</cn>
+            <bg>актуални избрани обекти</bg>
         </string>
         <string id="339" js="1">
             <en>Drag a column header and drop it here to group by that column</en>
             <pl>Przeciągnij nagłówek kolumny i upuść go tutaj aby grupować według danej kolumny</pl>
             <cn>拖动列标题至此以按此列分类</cn>
+            <bg>Изтегли заглавието на колоната и го пусни за групиране по колона</bg>
         </string>
         <string id="340" js="1">
             <en>Show rows with value that:</en>
             <pl>Pokaż rzędy z wartością która:</pl>
             <cn>显示包含以下数值的行：</cn>
+            <bg>Покажи редовете със стойност:</bg>
         </string>
         <string id="341" js="1">
             <en>Filter</en>
             <pl>Filtruj</pl>
             <cn>筛选</cn>
+            <bg>Филтър</bg>
         </string>
         <string id="342" js="1">
             <en>Clear</en>
             <pl>Wyczyść</pl>
             <cn>清空</cn>
+            <bg>Изчисти</bg>
         </string>
         <string id="343" js="1">
             <en>starts with</en>
             <pl>zaczyna się od</pl>
             <cn>起始于</cn>
+            <bg>Започни с</bg>
         </string>
         <string id="344" js="1">
             <en>contains</en>
             <pl>zawiera</pl>
             <cn>包含</cn>
+            <bg>съдържа</bg>
         </string>
         <string id="345" js="1">
             <en>ends with</en>
             <pl>kończy się na</pl>
             <cn>结束于</cn>
+            <bg>завършва с</bg>
         </string>
         <string id="346" js="1">
             <en>after or equal</en>
             <pl>po lub równe</pl>
             <cn>迟于（包括</cn>
+            <bg>след или равно</bg>
         </string>
         <string id="347" js="1">
             <en>after</en>
             <pl>po</pl>
             <cn>迟于</cn>
+            <bg>след</bg>
         </string>
         <string id="348" js="1">
             <en>before or equal</en>
             <pl>przed lub równe</pl>
             <cn>早于（包括</cn>
+            <bg>пред или равно</bg>
         </string>
         <string id="349" js="1">
             <en>before</en>
             <pl>przed</pl>
             <cn>早于</cn>
+            <bg>пред</bg>
         </string>
         <string id="350">
             <en>table structure definition</en>
             <pl>definicja struktury tabeli</pl>
             <cn>表格结构定义</cn>
+            <bg>дефиниране на структурата на таблицата</bg>
         </string>
         <string id="351">
             <en>table data</en>
             <pl>dane tabeli</pl>
             <cn>表格数据</cn>
+            <bg>данни на таблицата</bg>
         </string>
         <string id="352">
             <en>table structure not defined</en>
             <pl>struktura tabeli jest niezdefiniowana</pl>
             <cn>未定义表格结构</cn>
+            <bg>структурата на таблицата не е дефинирана</bg>
         </string>
         <string id="353" js="1">
             <en>Cannot save table with undefined structure.</en>
             <pl>Nie można zapisać tabeli, gdyż posiada ona niezdefiniowaną strukturę.</pl>
             <cn>未定义表格结构，无法保存</cn>
+            <bg>Не може да се съхрани таблица с недефинирана структура.</bg>
         </string>
         <string id="354" js="1">
             <en>integer</en>
             <pl>liczba calkowita</pl>
             <cn>整数</cn>
+            <bg>цяло число</bg>
         </string>
         <string id="355" js="1">
             <en>float</en>
             <pl>liczba zmiennoprzecinkowa</pl>
             <cn>浮点数</cn>
+            <bg>число с плаваща запетая</bg>            
         </string>
         <string id="356">
             <en>choose the HTML template:</en>
             <pl>wybierz szablon HTML:</pl>
             <cn>选择HTML模板：</cn>
+            <bg>избери HTML шаблон</bg>
         </string>
         <string id="357">
             <en>IF</en>
             <pl>JESLI</pl>
             <cn>如果</cn>
+            <bg>АКО</bg>
         </string>
         <string id="358">
             <en>protected variables</en>
             <pl>chronione zmienne</pl>
             <cn></cn>
+            <bg>запазена променлива</bg>
         </string>
         <string id="359">
             <en>test logic</en>
             <pl>logika testu</pl>
             <cn></cn>
+            <bg>тестова логика</bg>
         </string>
         <string id="360" js="1">
             <en>Are you sure you want to delete this protected variable?</en>
             <pl>Jesteś pewien, że chcesz usunąć ta chroniona zmienna?</pl>
             <cn></cn>
+            <bg>Сигурни ли сте, че искате да изтриете тази запазена променлива?</bg>
         </string>
         <string id="361" js="1">
             <en>deleting protected variable</en>
             <pl>usuwanie chronionej zmiennej</pl>
             <cn></cn>
+            <bg>изтриване на запазена променлива</bg>
         </string>
     </strings>
 </root> 
