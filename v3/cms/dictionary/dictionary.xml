@@ -1458,16 +1458,19 @@ Note: You can add new languages by inserting "<new_language>string translated in
             <en>Select the HTML template to be loaded.</en>
             <pl>Wybierz szablon HTML, który chcesz wczytać.</pl>
             <cn>选择载入HTML模板</cn>
+            <bg>Изберете HTML шаблона, който да бъде зареден</bg>
         </string>
         <string id="214">
             <en>Preview of selected HTML template.</en>
             <pl>Podgląd obecnie wybranego szablonu HTML</pl>
             <cn>所选HTML模板预览</cn>
+          <bg>Преглед на избрания HTML шаблон</bg>
         </string>
         <string id="215">
             <en>value of this variable will be inserted into the HTML template</en>
             <pl>wartość tej zmiennej zostanie osadzona w szablonie HTML</pl>
             <cn>在HTML模板中插入此变量值</cn>
+             <bg>стойността на тази променлива, ще бъде вмъкната в HTML шаблона</bg>
         </string>
         <string id="216">
             <en><![CDATA[Time left (in seconds) to submit test item. A value of 0 implies unlimited time. Insert <b>{{TIME_LEFT}}</b> variable into HTML templates to make the timer visible.]]></en>
