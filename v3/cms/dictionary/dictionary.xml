@@ -1836,52 +1836,61 @@ Note: You can add new languages by inserting "<new_language>string translated in
             <en>Not logged in</en>
             <pl>Nie zalogowany</pl>
             <cn>未登入</cn>
-            <bg>Не е </bg>
+            <bg>Не сте влезли</bg>
         </string>
         <string id="279">
             <en>FROM</en>
             <pl>Z</pl>
             <cn>来自</cn>
+            <bg>ОТ</bg>
         </string>
         <string id="280" js="1">
             <en>default</en>
             <pl>domyślny</pl>
             <cn>默认</cn>
+            <bg>по подразбиране</bg>
         </string>
         <string id="281" js="1">
             <en>string</en>
             <pl>ciąg znaków</pl>
             <cn>字符串</cn>
+            <bg>редица от знаци</bg>
         </string>
         <string id="282" js="1">
             <en>numeric</en>
             <pl>numeryczny</pl>
             <cn>数值</cn>
+            <bg>цифров</bg>
         </string>
         <string id="283">
             <en>This is a system variable</en>
             <pl>Jest to zmienna systemowa</pl>
             <cn>这是系统变量</cn>
+            <bg>Това е системна променлива</bg>
         </string>
         <string id="284" js="1">
             <en>debug</en>
             <pl>debug</pl>
             <cn>调试</cn>
+            <bg>дебъг</bg>
         </string>
         <string id="285" js="1">
             <en><![CDATA[Test #{0} - debug <b>(idle)</b>]]></en>
             <pl><![CDATA[Test #{0} - debug <b>(bezczynny)</b>]]></pl>
             <cn><![CDATA[测试 #{0} – 调试 <b>(空转)</b>]]></cn>
+            <bg><![CDATA[Тест #{0} - дебъг <b>(празен ход)</b>]]></bg>
         </string>
         <string id="286" js="1">
             <en>Test #{0} - debug</en>
             <pl>Test #{0} - debug</pl>
             <cn> 测试 #{0} – 调试 </cn>
+            <bg>Тест #{0} - дебъг</bg>
         </string>
         <string id="287" js="1">
             <en>Please ensure that all changes to the test logic have been saved prior to debugging. Unsaved changes will not be considered in the debugging process.</en>
             <pl>Proszę pamiętać, że należy zachować bieżącą logikę testu zanim się uruchomi debug. Wszelkie niezapisane zmiany nie bedą brane pod uwagę podczas debuggowania.</pl>
             <cn>请确认在调试前保存当前测试逻辑的所有修改。未保存的修改将不会被调试。</cn>
+            <bg>Проверете дали всички промени в тестовата логика са съхранени преди дебъга. Несъхранените промени няма да повлияят на процес на дебъг</bg>
         </string>
         <string id="288" js="1">
             <en><![CDATA[Please press the <b>start</b> button.]]></en>
