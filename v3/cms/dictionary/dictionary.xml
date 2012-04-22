@@ -1470,152 +1470,181 @@ Note: You can add new languages by inserting "<new_language>string translated in
             <en>value of this variable will be inserted into the HTML template</en>
             <pl>wartość tej zmiennej zostanie osadzona w szablonie HTML</pl>
             <cn>在HTML模板中插入此变量值</cn>
-             <bg>стойността на тази променлива, ще бъде вмъкната в HTML шаблона</bg>
+            <bg>стойността на тази променлива, ще бъде вмъкната в HTML шаблона</bg>
         </string>
         <string id="216">
             <en><![CDATA[Time left (in seconds) to submit test item. A value of 0 implies unlimited time. Insert <b>{{TIME_LEFT}}</b> variable into HTML templates to make the timer visible.]]></en>
             <pl><![CDATA[Czas w sekundach jaki użytkownik posiada aby przesłać element. Jeśli wartość jest równa 0 - oznacza to, że czas jest nieograniczony. Można wstawić zmienną <b>{{TIME_LEFT}}</b> do HTML aby wyświetlić odliczanie.]]></pl>
             <cn><![CDATA[提交测试项目剩余时间（秒）。数值0表示无时间限制。在HTML模板中插入<b>{{剩余时间}}</b> 变量以显示倒计时。]]></cn>
+            <bg><![CDATA[Оставащо време (в секунди)), за да бъде попълнен тестовия айтем. Стойност 0 означава неограничено време. Вмъкни <b>{{TIME_LEFT}}</b> променлива в HTML шаблона, за да направите този таймер видим.]]></bg>
         </string>
         <string id="217">
             <en>this variable type is</en>
             <pl>typem tej zmiennej jest</pl>
             <cn>此变量类型为</cn>
+            <bg>видът на тази променлива е</bg>
         </string>
         <string id="218">
             <en>no output from this HTML template</en>
             <pl>brak zwrotu na tym szablonie HTML</pl>
             <cn>此HTML模板无输出</cn>
+            <bg>няма резултат от този HTMLшаблон</bg>
         </string>
         <string id="219">
             <en>GO TO SECTION</en>
             <pl>PRZEJDŹ DO SEKCJI</pl>
             <cn>前往章节</cn>
+            <bg>ИДИ В СЕКЦИЯТА</bg>
         </string>
         <string id="220">
             <en>sets which section should be run next</en>
             <pl>wskazuje która sekcja powinna być wykonana następna</pl>
             <cn>设置下一章节为</cn>
+            <bg>показва коя следваща секция ще бъде стартирана</bg>
         </string>
         <string id="221" js="1">
             <en>not equal</en>
             <pl>nie równe</pl>
             <cn>不等于</cn>
+            <bg>не е равно</bg>
         </string>
         <string id="222" js="1">
             <en>equal</en>
             <pl>równe</pl>
             <cn>等于</cn>
+            <bg>равно</bg>
         </string>
         <string id="223" js="1">
             <en>greater than</en>
             <pl>większe niż</pl>
             <cn>大于</cn>
+            <bg>повече от</bg>
         </string>
         <string id="224" js="1">
             <en>equal or greater than</en>
             <pl>równe lub większe niż</pl>
             <cn>大于或等于</cn>
+            <bg>повече или равно на</bg>
         </string>
         <string id="225" js="1">
             <en>lesser than</en>
             <pl>mniejsze niż</pl>
             <cn>小于</cn>
+            <bg>по-малко от</bg>
         </string>
         <string id="226" js="1">
             <en>equal or lesser than</en>
             <pl>równe lub mniejsze niż</pl>
             <cn>小于或等于</cn>
+            <bg>равно или по-малко от</bg>
         </string>
         <string id="227" js="1">
             <en>AND</en>
             <pl>I</pl>
             <cn>并且</cn>
+            <bg>И</bg>
         </string>
         <string id="228" js="1">
             <en>OR</en>
             <pl>LUB</pl>
             <cn>或者</cn>
+            <bg>ИЛИ</bg>
         </string>
         <string id="229">
             <en>add condition</en>
             <pl>dodaj warunek</pl>
             <cn>添加条件</cn>
+            <bg>условие прибави</bg>
         </string>
         <string id="230">
             <en>remove condition</en>
             <pl>usuń warunek</pl>
             <cn>移除条件</cn>
+            <bg>условие извади</bg>
         </string>
         <string id="231">
             <en>THEN</en>
             <pl>WTEDY</pl>
             <cn>则</cn>
+            <bg>ТОГАВА</bg>
         </string>
         <string id="232">
             <en>add test logic section to IF clause</en>
             <pl>dodaj sekcję logiki testu do bloku JEŚLI</pl>
             <cn>为条件语句添加测试逻辑章节</cn>
+            <bg>прибави секцията с тестовата логика към АКО условието</bg>
         </string>
         <string id="233">
             <en>SET VARIABLE</en>
             <pl>USTAW ZMIENNĄ</pl>
             <cn>设置变量</cn>
+            <bg>СЪЗДАЙ ПРОМНЛИВА</bg>
         </string>
         <string id="235">
             <en>from table</en>
             <pl>z tabeli</pl>
             <cn>来自于表格</cn>
+            <bg>от таблицата</bg>
         </string>
         <string id="236">
             <en>by R code</en>
             <pl>poprzez kod R</pl>
             <cn>通过R代码</cn>
+            <bg>чрез R кода</bg>
         </string>
         <string id="238">
             <en>SELECT FROM TABLE</en>
             <pl>WYBIERZ Z TABELI</pl>
             <cn>从表格中选择</cn>
+            <bg>ИЗБЕРИ ОТ ТАБЛИЦАТА</bg>
         </string>
         <string id="239">
             <en>no table selected</en>
             <pl>nie wybrano tabeli</pl>
             <cn>未选择表格</cn>
+            <bg>не е избрана таблица</bg>
         </string>
         <string id="240">
             <en>COLUMNS</en>
             <pl>KOLUMNY</pl>
             <cn>列</cn>
+            <bg>КОЛОНИ</bg>
         </string>
         <string id="241">
             <en>no column selected</en>
             <pl>nie wybrano kolumny</pl>
             <cn>未选择列</cn>
+            <bg>не са избрани колони</bg>
         </string>
         <string id="242">
             <en>WHERE</en>
             <pl>GDZIE</pl>
             <cn>当</cn>
+            <bg>КЪДЕ</bg>
         </string>
         <string id="243">
             <en>like</en>
             <pl>podobne</pl>
             <cn>类似于</cn>
+            <bg>подобно</bg>
         </string>
         <string id="244">
             <en>not like</en>
             <pl>niepodobne</pl>
             <cn>不类似于 </cn>
+            <bg>не е подобно</bg>
         </string>
         <string id="245">
             <en>Test id. Read only variable.</en>
             <pl>ID testu. Zmienna tylko do odczytu.</pl>
             <cn></cn>
+            <bg>ID на теста. Чети само променливите.</bg>
         </string>
         <string id="246">
             <en>Test session id. Read only variable.</en>
             <pl>ID sesji testu. Zmienna tylko do odczytu.</pl>
             <cn></cn>
+            <bg>ID на теста. Чети само променливите.</bg>
         </string>
         <string id="247">
             <en>IN TABLE</en>
