@@ -2094,11 +2094,13 @@ Note: You can add new languages by inserting "<new_language>string translated in
             <en>Are you sure you want to continue? This action will reset unsaved changes in the following modules:</en>
             <pl>Jesteś pewien, że chcesz kontynuować? Ta czynność może anulować wszystkie niezapisane zmiany w nastepujących modułach:</pl>
             <cn>确认继续？此操作将在以下模块中重置未保存修改：</cn>
+            <bg>Сигурни ли сте, че искате да продължите? Това действие ще анулира несрънението промени в следните модули:</bg>
         </string>
         <string id="322" js="1">
             <en>Are you sure you want to continue? This action will reset unsaved changes in all modules.</en>
             <pl>Jesteś pewien, że chcesz kontynuować? Ta czynność może anulować wszystkie niezapisane zmiany we wszystkich modułach.</pl>
             <cn>确认继续？此操作将在所有模块中重置未保存修改。</cn>
+            <bg>Сигурни ли сте, че искате да продължите? Това действие ще анулира несрънението промени във всички модули.</bg>
         </string>
         <string id="323" js="1">
             <en>begin</en>
