@@ -1897,7 +1897,6 @@ Note: You can add new languages by inserting "<new_language>string translated in
             <pl><![CDATA[Proszę nacisnąć przycisk <b>start</b>.]]></pl>
             <cn><![CDATA[请按 <b>开始</b> 键.]]></cn>
             <bg><![CDATA[Моля натиснете бутона <b>старт</b>]]></bg>
-
         </string>
         <string id="289" js="1">
             <en><![CDATA[Test #{0} - syntax validation <b>(in progress...)]]></en>
@@ -1915,61 +1914,73 @@ Note: You can add new languages by inserting "<new_language>string translated in
             <en><![CDATA[Test section with index #{0} syntax validation: <font style='color:green;'><b>PASSED</b></font>]]></en>
             <pl><![CDATA[Walidacja składni sekcji testu o indeksie #{0}: <font style='color:green;'><b>POWIODŁA SIĘ</b></font>]]></pl>
             <cn><![CDATA[测试章节索引 #{0} 句法验证： < font style='color:green;'><b>通过</b></font>]]></cn>
+            <bg><![CDATA[Валидизация на тестова секция с индекс #{0}: <font style='color:green;'><b>УСПЕШНА</b></font>]]></bg>
         </string>
         <string id="292" js="1">
             <en><![CDATA[Test section with index #{0} syntax validation: <font style='color:red;'><b>FAILED</b></font>]]></en>
             <pl><![CDATA[Walidacja składni sekcji testu o indeksie #{0}: <font style='color:red;'><b>NIE POWIODŁA SIĘ</b></font>]]></pl>
             <cn><![CDATA[测试章节索引 #{0} 句法验证： <font style='color:red;'><b>失败</b></font>]]></cn>
+             <bg><![CDATA[Валидизация на тестова секция с индекс #{0}: <font style='color:green;'><b>НЕУСПЕШНА</b></font>]]></bg>
         </string>
         <string id="293" js="1">
             <en><![CDATA[Test #{0} - syntax validation <b>(finished)</b>]]></en>
             <pl><![CDATA[Test #{0} - walidacja składni <b>(zakończona)</b>]]></pl>
             <cn><![CDATA[测试 #{0} – 句法验证 <b>(完成)</b>]]></cn>
+            <bg><![CDATA[Тест #{0} – валидизацията на синтаксиса <b>(завърши)</b>]]></bg>
         </string>
         <string id="294" js="1">
             <en><![CDATA[Syntax validation <font style='color:green;'>PASSED</font>.]]></en>
             <pl><![CDATA[Walidacja składni <font style='color:green;'>POMYŚLNA</font>.]]></pl>
             <cn><![CDATA[句法验证 <font style='color:green;'>通过</font>.]]></cn>
+            <bg><![CDATA[Валидизацията на синтаксиса <font style='color:green;'>ПРЕМИНАТА</font>.]]></bg>
         </string>
         <string id="295" js="1">
             <en><![CDATA[Test #{0} - syntax validation <b>(FAILED on section index #{1} - debug HALTED)</b>]]></en>
             <pl><![CDATA[Test #{0} - walidacja składni <b>(NIE POWIODŁA SIĘ przy sekcji o indeksie #{1} - debug ZATRZYMANY)</b>]]></pl>
             <cn><![CDATA[测试 #{0} – 句法验证 <b>(在章节索引 #{1} 处失败 – 调试中止)</b>]]></cn>
+            <bg><![CDATA[Тест #{0} – валидизацията на синтаксиса <b>(НЕУСПЕШНА в индекс на секция #{1} – дебъгът СПРЯН)</b>]]></bg>
         </string>
         <string id="296" js="1">
             <en><![CDATA[Syntax validation <font style='color:red;'><b>FAILED</b></font> on section index #{0} - debug <font style='color:red;'><b>HALTED</b></font>]]></en>
             <pl><![CDATA[Walidacja składni <font style='color:red;'><b>NIE POWIODŁA SIĘ</b></font> dla sekcji o indeksie #{0} - debug <font style='color:red;'><b>ZATRZYMANY</b></font>]]></pl>
             <cn><![CDATA[句法验证 <font style='color:red;'><b>F失败</b></font> 在章节索引 #{0} 处– 调试 <font style='color:red;'><b>中止</b></font>]]></cn>
+            <bg><![CDATA[Валидизацията на синтаксисаyntax validation <font style='color:red;'><b>НЕУСПЕШНА</b></font> за индекс на секция #{0} - дебъгът <font style='color:red;'><b>СПРЯН</b></font>]]></bg>
         </string>
         <string id="297" js="1">
             <en>Runtime debug</en>
             <pl>Debug na żywo</pl>
             <cn>运行时间调试</cn>
+            <bg>дебъг в реално време</bg>
         </string>
         <string id="298" js="1">
             <en>Running test #{0}...</en>
             <pl>Uruchomienie testu #{0}...</pl>
             <cn>运行测试#{0}……</cn>
+            <bg>Започване на тест #{0}...</bg>
         </string>
         <string id="299" js="1">
             <en><![CDATA[Test #{0} - runtime debug <b>(R code is being interpreted...)</b>]]></en>
             <pl><![CDATA[Test #{0} - debug na żywo <b>(kod R jest interpretowany..)</b>]]></pl>
             <cn><![CDATA[测试 #{0} – 运行时间调试 <b>(R代码正在被编译…)</b>]]></cn>
+            <bg><![CDATA[Тест #{0} - дебъг в реално време <b>(R кодът се интерпретира...)</b>]]></bg>
         </string>
         <string id="300" js="1">
             <en>R code is being interpreted...</en>
             <pl>Kod R jest interpretowany...</pl>
             <cn> R代码正在被编译…</cn>
+            <bg>R кодът е интерпретиран</bg>
         </string>
         <string id="301" js="1">
             <en>R code response receIved.</en>
             <pl>Otrzymano odpowiedź kodu R.</pl>
             <cn>收到R代码回复。</cn>
+            <bg>Резултатът от R кода получен</bg>
         </string>
         <string id="302" js="1">
             <en><![CDATA[Test #{0}, session #{1} - runtime debug <b>(R logic error - debug HALTED)</b>]]></en>
             <pl><![CDATA[Test #{0}, sesja #{1} - debug na żywo <b>(błąd w logice R - debug ZATRZYMANY</b>]]></pl>
             <cn><![CDATA[测试 #{0}，章节 #{1} – 运行时间调试 <b>(R逻辑错误 – 调试中止)</b>]]></cn>
+            <bg><![CDATA[Тестът #{0}, сесията #{1} - дебъг в реално време <b>(грешка в R логиката - дебъгът СПРЯН)</b>]]></bg>
         </string>
         <string id="303" js="1">
             <en><![CDATA[R logic <font style='color:red;'><b>error</b></font>. Check R code output for additional info. Debug HALTED.]]></en>
