@@ -2064,13 +2064,13 @@ Note: You can add new languages by inserting "<new_language>string translated in
             <en><![CDATA[Item submitted. Button with name <b>{0}</b> clicked.]]></en>
             <pl><![CDATA[Element wysłany. Przycisk o nazwie <b>{0}</b> został kliknięty.]]></pl>
             <cn><![CDATA[提交项目。按键名称 <b>{0}</b> 。]]></cn>
-            <en><![CDATA[Item submitted. Button with name <b>{0}</b> clicked.]]></en>
+            <bg><![CDATA[Айтемът е изпратен. Бутонът <b>{0}</b> е натиснат.]]></bg>
         </string>
         <string id="317" js="1">
             <en>variables send</en>
             <pl>wysłane zmienne</pl>
             <cn>发送变量</cn>
-            <bg>променлимите изпратени.</bg>
+            <bg>променливите изпратени.</bg>
         </string>
         <string id="318" js="1">
             <en>range</en>
@@ -2106,26 +2106,33 @@ Note: You can add new languages by inserting "<new_language>string translated in
             <en>begin</en>
             <pl>zacznij</pl>
             <cn>开始</cn>
+            <bg>започнете</bg>
         </string>
         <string id="324" js="1">
             <en>restart</en>
             <pl>zacznij od nowa</pl>
             <cn>重启</cn>
+            <bg>започни отново</bg>
         </string>
         <string id="325">
             <en>field delimiter</en>
             <pl>separator pól</pl>
             <cn>区域分割符</cn>
+            <bg>сепаратор на поле</bg>
         </string>
         <string id="326">
             <en><![CDATA[Single character used to separate fields in a row. Default character is '<b>,</b>'.]]></en>
             <pl><![CDATA[Pojedyńczy znak używany do oddzielenia pól w rzędzie. Domyślny znak to '<b>,</b>'.]]></pl>
             <cn><![CDATA[在行内用于划分区域的单一字符。默认字符为'<b>,</b>'。]]></cn>
+            <bg><![CDATA[Единичен знак за отделяне на полетата в реда. Знакът по подразбиране е<b>,</b>'.]]></bg>
         </string>
         <string id="327">
             <en>field enclosure</en>
             <pl>objęcie pola</pl>
             <cn>区域边界</cn>
+          
+            
+            
         </string>
         <string id="328">
             <en><![CDATA[Single character used to enclose string. Default character is '<b>"</b>'.]]></en>
