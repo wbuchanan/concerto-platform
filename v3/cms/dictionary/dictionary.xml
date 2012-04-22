@@ -1896,16 +1896,20 @@ Note: You can add new languages by inserting "<new_language>string translated in
             <en><![CDATA[Please press the <b>start</b> button.]]></en>
             <pl><![CDATA[Proszę nacisnąć przycisk <b>start</b>.]]></pl>
             <cn><![CDATA[请按 <b>开始</b> 键.]]></cn>
+            <bg><![CDATA[Моля натиснете бутона <b>старт</b>]]></bg>
+
         </string>
         <string id="289" js="1">
             <en><![CDATA[Test #{0} - syntax validation <b>(in progress...)]]></en>
             <pl><![CDATA[Test #{0} - walidacja składni <b>(w trakcie...)]]></pl>
             <cn><![CDATA[测试 #{0} – 句法验证 <b>(进行中……)]]></cn>
+            <bg><![CDATA[Тест #{0} - валидизирането на синтуксиса <b>(в действие...)]]></bg>
         </string>
         <string id="290" js="1">
             <en>Syntax validation</en>
             <pl>Walidacja składni</pl>
             <cn>句法验证</cn>
+            <bg>Валидизация на синтаксиса</bg>
         </string>
         <string id="291" js="1">
             <en><![CDATA[Test section with index #{0} syntax validation: <font style='color:green;'><b>PASSED</b></font>]]></en>
