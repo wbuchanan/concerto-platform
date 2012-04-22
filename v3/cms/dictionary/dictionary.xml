@@ -1650,86 +1650,103 @@ Note: You can add new languages by inserting "<new_language>string translated in
             <en>IN TABLE</en>
             <pl>W TABELI</pl>
             <cn>位于表格</cn>
+            <bg>в таблицата</bg>
         </string>
         <string id="248">
             <en>insert</en>
             <pl>dodaj</pl>
             <cn>插入</cn>
+            <bg>вмъкни</bg>
         </string>
         <string id="249">
             <en>update</en>
             <pl>zmień</pl>
             <cn>更新</cn>
+            <bg>обнови</bg>
         </string>
         <string id="250">
             <en>delete</en>
             <pl>usuń</pl>
             <cn>删除</cn>
+            <bg>изтрий</bg>
         </string>
         <string id="251">
             <en>SET</en>
             <pl>USTAW</pl>
             <cn>设置</cn>
+            <bg>СЪЗДАЙ</bg>
         </string>
         <string id="252">
             <en>search list</en>
             <pl>przeszukaj listę</pl>
             <cn>搜索列表</cn>
+            <bg>списък за търсене</bg>
         </string>
         <string id="253">
             <en>Select the type of section to be added to the test logic</en>
             <pl>wybierz typ sekcji jaką chciałbyś dodać do logiki testu</pl>
             <cn>选择加入测试逻辑的章节类型</cn>
+            <bg>Избери вида на секцията, която да бъде добавена към тестовата логика</bg>
         </string>
         <string id="254">
             <en>Enter variable description that will be visible to anyone using this section in their test.</en>
             <pl>Wprowadź opis zmiennej który będzie widoczny dla każdego kto użyje tej sekcji w swym teście.</pl>
             <cn>添加向使用此章节用户显示的变量描述</cn>
+            <bg>Въведи променливата, която ще бъде видима за всеки, който използва тази секция от теста</bg>
         </string>
         <string id="255">
             <en>Select the MySQL table whose structure and data are to be imported into this table.</en>
             <pl>Wybierz tabelę MySQL, której strukturę i dane chciałbyś zaimportować do tej tabeli.</pl>
              <cn>选择MySQL表格导入其结构和数据至此表格</cn>
+             <bg>Избери MySQL таблицата, чиято структура и данни ще бъдат ще бъдат импортирани в тази таблица</bg>
         </string>
         <string id="256">
             <en>Select the CSV file to be imported.</en>
             <pl>Wybierz plik CSV, który chciałbyś zaimportować.</pl>
             <cn>选择导入的CSV文件</cn>
+            <bg>Изберете CSV файл за импорт</bg>
         </string>
         <string id="257">
             <en>Select the name of the column</en>
             <pl>Wybierz nazwę kolumny</pl>
             <cn>选择列名称</cn>
+            <bg>Изберете име на колоната</bg>
         </string>
         <string id="258">
             <en>Select the column type</en>
             <pl>Wybierz typ kolumny</pl>
             <cn>选择列类型</cn>
+            <bg>Изберете вид на колоната</bg>
         </string>
         <string id="259">
             <en>enter HTML value of the cell</en>
             <pl>wprowadź wartość HTML komórki</pl>
             <cn>输入单元格的HTML数值</cn>
+            <bg>въведете HTML стойност на полето</bg>
         </string>
         <string id="260">
             <en>Enter your unique login id</en>
             <pl>Wprowadź swój login</pl>
             <cn>输入用户名</cn>
+            <bg>Въведете Вашето уникално потребителско име</bg>
         </string>
         <string id="261">
             <en>Enter your password</en>
             <pl>Wprowadź swoje hasło</pl>
             <cn>输入密码</cn>
+            <bg>Въведете парола</bg>
         </string>
         <string id="262">
             <en>Your version is OUTDATED.</en>
             <pl>Twoja wersja jest NIEAKTUALNA.</pl>
             <cn>您的版本已过期。</cn>
+            <bg>Вашата версия е остсия е стара</bg>
         </string>
         <string id="263">
             <en>CLICK HERE TO DOWNLOAD THE LATEST VERSION</en>
             <pl>KLIKNIJ TUTAJ ABY POBRAĆ NAJNOWSZĄ WERSJĘ</pl>
             <cn>点此下载最新版本</cn>
+            <bg>КЛИКНЕТЕ ТУК ЗА ДА СВАЛИТЕ НАЙ-НОВАТА ВЕРСИЯ</bg>
         </string>
         <string id="264">
             <en>Your version is up-to-date</en>
