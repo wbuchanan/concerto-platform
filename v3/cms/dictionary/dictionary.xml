@@ -1752,76 +1752,91 @@ Note: You can add new languages by inserting "<new_language>string translated in
             <en>Your version is up-to-date</en>
             <pl>Twoja wersja jest aktualna</pl>
             <cn>已更新至最新版本</cn>
+            <bg>Вашата версия е актуална</bg>
         </string>
         <string id="265" js="1">
             <en>Export</en>
             <pl>Eksport</pl>
              <cn>导出</cn>
+             <bg>Експорт</bg>
         </string>
         <string id="266">
             <en>Import new object</en>
             <pl>Zaimportuj nowy obiekt</pl>
             <cn>导入新对象</cn>
+            <bg>Импорт на нов обект</bg>
         </string>
         <string id="267">
             <en>Select file to be exported</en>
             <pl>Wybierz plik z wyeksportowanym obiektem</pl>
             <cn>选择导出文件</cn>
+            <bg>Изберете файл а експортиране</bg>
         </string>
         <string id="268" js="1">
             <en>Importing object</en>
             <pl>Importowanie obiektu</pl>
             <cn>导入对象</cn>
+            <bg>Импортиране на обект</bg>
         </string>
         <string id="269" js="1">
             <en>Are you sure you want to import the object from this file?</en>
             <pl>Jesteś pewien, że chcesz zaimportować obiekt z tego pliku?</pl>
             <cn>确认从此文件中导入对象？</cn>
+            <bg>Сигурни ли сте, че искате да импортирате този обект от файла?</bg>
         </string>
         <string id="270" js="1">
             <en>Object imported</en>
             <pl>Obiekt zaimportowany</pl>
              <cn>已导入对象</cn>
+             <bg>Обектът е импортиран</bg>
         </string>
         <string id="271" js="1">
             <en>There was an error while importing the object</en>
             <pl>Wystąpił błąd podczas importowania obiektu</pl>
             <cn>导入对象发生错误</cn>
+            <bg>Грешка при импортирането на обекта</bg>
         </string>
         <string id="272" js="1">
             <en>File does not exist.</en>
             <pl>Plik nie istnieje.</pl>
             <cn>文件不存在。</cn>
+            <bg>Файлът не съществува</bg>
         </string>
         <string id="273" js="1">
             <en>Deleting object</en>
             <pl>Usuwanie obiektu</pl>
             <cn>删除对象</cn>
+            <bg>Изтриване на обект</bg>
         </string>
         <string id="274" js="1">
             <en>Saving object</en>
             <pl>Zapisywanie obiektu</pl>
             <cn>保存对象</cn>
+            <bg>Съхранение на обект</bg>
         </string>
         <string id="275" js="1">
             <en>R</en>
             <pl>R</pl>
             <cn>R</cn>
+            <bg>R</bg>
         </string>
         <string id="276" js="1">
             <en><![CDATA[R & HTML]]></en>
             <pl>R i HTML</pl>
             <cn><![CDATA[R & HTML]]></cn>
+            <bg>><![CDATA[R и HTML]]></bg>
         </string>
         <string id="277">
             <en>IN</en>
             <pl>W</pl>
             <cn>位于</cn>
+            <bg>ID</bg>
         </string>
         <string id="278" js="1">
             <en>Not logged in</en>
             <pl>Nie zalogowany</pl>
             <cn>未登入</cn>
+            <bg>Не е </bg>
         </string>
         <string id="279">
             <en>FROM</en>
