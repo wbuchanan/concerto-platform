@@ -954,7 +954,7 @@ Test.startRunTimeDebug=function(){
     Test.setDebugStatus(dictionary["s299"].format(this.currentID));
     Test.appendDebugConsole(dictionary["s300"]);
     Test.stopRunTimeDebug();
-    test = new Concerto("#divTestDebugTest",null,this.currentID,"../query/",function(data){
+    test = new Concerto("#divTestDebugTest",null,null,this.currentID,"../query/",function(data){
         Test.runTimeResponseIndex++;
         Test.appendDebugConsole(dictionary["s301"]);
         
