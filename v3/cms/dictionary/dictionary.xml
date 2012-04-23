@@ -28,6 +28,7 @@ Note: You can add new languages by inserting "<new_language>string translated in
 <root>
     <languages>
         <language id="en">english</language>
+         <language id="de">Deutsch</language>
         <language id="pl">polski</language>
     	  <language id="cn">中文</language>
            <language id="fr">francais</language>
@@ -37,13 +38,15 @@ Note: You can add new languages by inserting "<new_language>string translated in
     <strings>
         <string id="1" js="1">
             <en><![CDATA[Variable name validation failed. Only alphanumeric, '_' and '.' characters allowed and the value can't begin with a numeric. Value has been changed.<br/><br/>old value: <b>{0}</b></br>new value: <b>{1}</b>]]></en>
+                        <de><![CDATA[Überprüfung des Variablennamens schlug fehl. Nur alphamumerische, sowie das '_' und '.' Zeichen sind erlaubt. Der Name darf nicht mit einer Zahl beginnen. Wert wurde geändert.<br/><br/>Alter Wert: <b>{0}</b></br>Neuer Wert: <b>{1}</b>]]></de>
             <pl><![CDATA[Walidacja zmiennej nie powiodla sie. Tylko znaki alfanumeryczne, '_' i '.' sa dozwolone, oraz zmienna nie moze zaczynac sie od numeru. Wartosc zostala zmieniona.<br/><br/>poprzednia wartosc: <b>{0}</b></br>nowa wartosc: <b>{1}</b>]]></pl>
             <cn><![CDATA[变量名称验证失败。只允许使用字母、数字以及'_'和'.'，并且不可以数字开头。数值已更改。<br/><br/>旧数值: <b>{0}</b></br>新数值: <b>{1}</b>]]></cn>  
-        <fr><![CDATA[La validation du nom de la variable a échoué. Seuls les caractères alphanumériques, les '_' et les '.' sont acceptés et la vaeur ne peut pas commencer par un chiffre. La valeur a été changée.<br/><br/>ancienne valeur: <b>{0}</b></br>nouvelle valeur: <b>{1}</b>]]></fr> 
+        <fr><![CDATA[La validation du nom de la variable a échoué. Seuls les caractères alphanumériques, les '_' et les '.' sont acceptés et la vaeur ne peut pas commencer par un chiffre. La valeur a été changée.<br/><br/>ancienne valeur: <b>{0}</b></br>nouvelle valeur: <b>{1}</b>]]></fr>
            <bg><![CDATA[Валидизацията на името на променливата е неуспешна. Само букви и цифри, '_' и '.' са допустими и стойността не може да започва с цифра. Стойността е променена.<br/><br/>стара стойност: <b>{0}</b></br>нова стойност: <b>{1}</b>]]></bg>    
         </string>
         <string id="2" js="1">
             <en>variable validation</en>
+             <de>Variablen Überprüfung</de>
             <pl>walidacja zmiennej</pl>
             <cn>变量验证</cn>	
             <fr>validation de la variable</fr>
@@ -51,6 +54,7 @@ Note: You can add new languages by inserting "<new_language>string translated in
         </string>
         <string id="3" js="1">
             <en>changing description</en>
+            <de>Ändern der Beschreibung</de>
             <pl>zmiana opisu</pl>
             <cn>改变描述</cn>
              <fr>changement de description</fr>
@@ -58,6 +62,7 @@ Note: You can add new languages by inserting "<new_language>string translated in
         </string>
         <string id="4" js="1">
             <en>Concerto - confirmation</en>
+            <de>Concerto - Bestätigung</de>
             <pl>Concerto - potwierdzenie</pl>
             <cn>Concerto - 确认</cn>
              <fr>Concerto - confirmation</fr>
@@ -65,6 +70,7 @@ Note: You can add new languages by inserting "<new_language>string translated in
         </string>
         <string id="5" js="1">
             <en>Concerto - alert</en>
+            <de>Concerto - Alarm</de>
             <pl>Concerto - alert</pl>
             <cn>Concerto - 警告</cn>
              <fr>Concerto - alerte</fr>
@@ -72,6 +78,7 @@ Note: You can add new languages by inserting "<new_language>string translated in
         </string>
         <string id="6" js="1">
             <en>HTML controls `name` validation failed. Only alphanumeric, '_' and '.' characters allowed and the value can't begin with a numeric. Value has been changed.\r\n\r\nold value: {0}\r\nnew value: {1}</en>
+            <de>HTML Kontrollüberprüfung von `Name` schlug fehl.  Nur alphamumerische, sowie das '_' und '.' Zeichen sind erlaubt. Der Name darf nicht mit einer Zahl beginnen. Wert wurde geändert.\r\n\r\nAlter Wert: {0}\r\nNeuer Wert: {1}</de>
             <pl>Walidacja pola `nazwa` kontrolki HTML nie powiodła się. Tylko wartości alfanumeryczne, '_' i '.' są dozwolone, oraz wartość nie może zaczynać się od liczby. Wartość została zmieniona.\r\n\r\npoprzednia wartość: {0}\r\nnowa wartość: {1}</pl>
             <cn>HTML控制`名称`验证失败。只允许使用字母、数字以及'_'和'.'，并且不可以数字开头。数值已更改。\r\n\r\n旧数值: {0}\r\n新数值: {1}</cn>
               <fr>HTML le contrôle de la variable `nom` a échoué. seuls les caractères alphanumériques, les  '_' et '.' sont acceptés et la valeur ne peut pas commencer per un chiffre. la valeur a été changée\n\r\nancienne valeur: {0}\r\nnouvelle valeur: {1}</en>
@@ -79,13 +86,15 @@ Note: You can add new languages by inserting "<new_language>string translated in
         </string>
         <string id="7" js="1">
             <en>adding new object</en>
+            <de>Füge neues Objekt hinzu</de>
             <pl>dodawanie nowego obiektu</pl>
             <cn>添加新对象</cn>
              <fr>ajouter un nouvel objet</fr>
-            <bg>прибавяне на нов обект</bg> 
+            <bg>прибавяне на нов обект</bg>
         </string>
         <string id="8" js="1">
             <en>Are you sure you want to delete this object #{0}?</en>
+            <de>Sind Sie sicher, dass Sie dieses Objekt löschen wollen #{0}?</de>
             <pl>Jesteś pewien, że chcesz usunąć obiekt #{0}?</pl>
             <cn>确认删除对象 #{0}?</cn>
             <fr> Êtes-vous certain de vouloir supprimer cet objet? #{0}?</fr>
@@ -93,6 +102,7 @@ Note: You can add new languages by inserting "<new_language>string translated in
         </string>
         <string id="9" js="1">
             <en>Object has been saved.</en>
+            <de>Objekt wurde gespeichert.</de>
             <pl>Obiekt został zapisany.</pl>
             <cn>对象已保存。</cn>
             <fr>L'objet a été sauvegardé.</fr>
@@ -100,6 +110,7 @@ Note: You can add new languages by inserting "<new_language>string translated in
         </string>
         <string id="10" js="1">
             <en>Object has NOT been saved.</en>
+            <de>Objekt wurde NICHT gespeichert.</de>
             <pl>Obiekt NIE został zapisany.</pl>
             <cn>对象未保存。</cn>
             <fr>L'objet N'A PAS été sauvegardé.</fr>
@@ -107,6 +118,7 @@ Note: You can add new languages by inserting "<new_language>string translated in
         </string>
         <string id="11" js="1">
             <en>remove row</en>
+            <de>jetzt entfernen</de>
             <pl>usuń rekord</pl>
             <cn>移除行</cn>
             <fr>supprimer la ligne</fr>
@@ -114,6 +126,7 @@ Note: You can add new languages by inserting "<new_language>string translated in
         </string>
         <string id="12" js="1">
             <en>editing column</en>
+            <de>bearbeite Spalte</de>
             <pl>edytowanie kolumny</pl>
             <cn>编辑列</cn>
             <fr>modifier la colonne</fr>
@@ -121,6 +134,7 @@ Note: You can add new languages by inserting "<new_language>string translated in
         </string>
         <string id="13" js="1">
             <en>Column name is a mandatory field.</en>
+            <de>Spaltenname ist ein Pflichtfeld.</de>
             <pl>Nazwa kolumny nie może być pusta.</pl>
             <cn>列名称不可为空。</cn>
             <fr>Le nom de colonne est un champ obligatoire.</fr>
@@ -128,6 +142,7 @@ Note: You can add new languages by inserting "<new_language>string translated in
         </string>
         <string id="14" js="1">
             <en>change column name</en>
+            <de>ändere Spaltenname</de>
             <pl>zmiana nazwy kolumny</pl>
             <cn>修改列名称</cn>
             <fr>modifier le nom de la colonne</fr>
@@ -135,6 +150,7 @@ Note: You can add new languages by inserting "<new_language>string translated in
         </string>
         <string id="15" js="1">
             <en>A column with that name already exists.</en>
+            <de>Eine Spalte mit diesem Namen existiert bereits.</de>
             <pl>Kolumna o tej nazwie już istnieje.</pl>
             <cn>列名称重复。</cn>
             <fr>Une colonne de ce nom existe déjà.</fr>
@@ -142,6 +158,7 @@ Note: You can add new languages by inserting "<new_language>string translated in
         </string>
         <string id="16" js="1">
             <en>string</en>
+            <de>Zeichenkette</de>
             <pl>tekst</pl>
             <cn>字符串</cn>
             <fr>libre</fr>
@@ -149,6 +166,7 @@ Note: You can add new languages by inserting "<new_language>string translated in
         </string>
         <string id="17" js="1">
             <en>numeric</en>
+            <de>numerisch</de>
             <pl>liczba</pl>
             <cn>数值</cn>
             <fr>numérique</fr>
@@ -156,6 +174,7 @@ Note: You can add new languages by inserting "<new_language>string translated in
         </string>
         <string id="18" js="1">
             <en>HTML</en>
+            <de>HTML</de>
             <pl>HTML</pl>
             <cn>HTML</cn>
             <fr>HTML</fr>
@@ -163,6 +182,7 @@ Note: You can add new languages by inserting "<new_language>string translated in
         </string>
         <string id="19" js="1">
             <en>edit column</en>
+            <de>bearbeite Spalte</de>
             <pl>edytuj kolumnę</pl>
             <cn>编辑列</cn>
             <fr>modifier la colonne</fr>
@@ -170,6 +190,7 @@ Note: You can add new languages by inserting "<new_language>string translated in
         </string>
         <string id="20" js="1">
             <en>remove column</en>
+            <de>entferne Spalte</de>
             <pl>usuń kolumnę</pl>
             <cn>移除列</cn>
             <fr>supprimer la colonne</fr>
@@ -177,6 +198,7 @@ Note: You can add new languages by inserting "<new_language>string translated in
         </string>
         <string id="21" js="1">
             <en>importing table from MySQL table</en>
+            <de>importiere Tabelle aus MySQL Tabelle</de>
             <pl>importowanie tabeli z tabeli MySQL</pl>
             <cn>从MySQL表格中导入表格</cn>
             <fr>importation d'un tableau provenant de MySQL table</fr>
@@ -184,6 +206,7 @@ Note: You can add new languages by inserting "<new_language>string translated in
         </string>
         <string id="22" js="1">
             <en>import</en>
+            <de>importieren</de>
             <pl>importuj</pl>
             <cn>导入</cn>
             <fr>importer</fr>
@@ -191,6 +214,7 @@ Note: You can add new languages by inserting "<new_language>string translated in
         </string>
         <string id="23" js="1">
             <en>cancel</en>
+            <de>abbrechen</de>
             <pl>anuluj</pl>
             <cn>取消</cn>
             <fr>annuler</fr>
@@ -198,6 +222,7 @@ Note: You can add new languages by inserting "<new_language>string translated in
         </string>
         <string id="24" js="1">
             <en>No table selected.</en>
+            <de>Keine Tabelle ausgewählt.</de>
             <pl>Nie wybrano tabeli.</pl>
             <cn>未选择表格</cn>
             <fr>Aucun tableau sélectionnée.</fr>
@@ -205,6 +230,7 @@ Note: You can add new languages by inserting "<new_language>string translated in
         </string>
         <string id="25" js="1">
             <en>importing table</en>
+            <de>importiere Tabelle</de>
             <pl>importowanie tabeli</pl>
             <cn>导入表格</cn>
             <fr>Importation d'un tableau</fr>
@@ -212,6 +238,7 @@ Note: You can add new languages by inserting "<new_language>string translated in
         </string>
         <string id="26" js="1">
             <en>Table structure and data imported.</en>
+            <de>Tabellenstruktur und Daten importiert.</de>
             <pl>Struktura i dane tabeli zostały zaimportowane.</pl>
             <cn>已导入表格结构和数据。</cn>
             <fr>La structure et les données du tabeau ont été importées.</fr>
@@ -219,6 +246,7 @@ Note: You can add new languages by inserting "<new_language>string translated in
         </string>
         <string id="27" js="1">
             <en>Importing table from CSV file</en>
+            <de>Importiere Tabelle aus CSV Datei</de>
             <pl>importowanie tabeli z pliku CSV</pl>
             <cn>从CSV文件中导入表格</cn>
             <fr>Importation d'un tableau provenant d'un fichier CSV</fr>
@@ -226,6 +254,7 @@ Note: You can add new languages by inserting "<new_language>string translated in
         </string>
         <string id="28" js="1">
             <en>Are you sure you want to replace the current table structure and data with that from the selected file?</en>
+            <de>Sind sie sicher, dass Sie die aktuelle Tabellenstruktur und Daten durch die aus der ausgewählten Datei ersetzen wollen?</de>
             <pl>Jesteś pewien że chcesz zastąpić obecną strukturę i dane tabeli tymi z pliku?</pl>
             <cn>确认使用所选文件表格结构数据替代当前表格？</cn>
              <fr>Êtes-vous certain de vouloir remplacer la structure et les données du présent tableau par celles du fichier sélectionné?</fr>
@@ -233,6 +262,7 @@ Note: You can add new languages by inserting "<new_language>string translated in
         </string>
         <string id="29" js="1">
             <en>file uploaded</en>
+            <de>Datei hochgeladen</de>
             <pl>plik wysłany</pl>
             <cn>已上传文件</cn>
             <fr>fichier téléchargé</fr>
@@ -240,6 +270,7 @@ Note: You can add new languages by inserting "<new_language>string translated in
         </string>
         <string id="30" js="1">
             <en>There was an error in importing table structure and data.</en>
+            <de>Es gab einen Fehler beim importieren der Tabellenstruktur und Daten.</de>
             <pl>Wystąpił błąd podczas importowania struktury i danych tabeli.</pl>
             <cn>导入表格结构数据发生错误。</cn>
             <fr>Une erreur est survenue en important la structure et les données du tableau.</fr>
@@ -247,6 +278,7 @@ Note: You can add new languages by inserting "<new_language>string translated in
         </string>
         <string id="31" js="1">
             <en>adding new column</en>
+            <de>füge neue Spalte hinzu</de>
             <pl>dodawanie nowej kolumny</pl>
             <cn>添加列</cn>
             <fr>ajout d'une nouvelle colonne</fr>
@@ -254,6 +286,7 @@ Note: You can add new languages by inserting "<new_language>string translated in
         </string>
         <string id="32" js="1">
             <en>Are you sure you want to delete this row?</en>
+            <de>Sind Sie sicher, dass Sie diese Zeile löschen wollen?</de>
             <pl>Jesteś pewien, że chcesz usunąć ten rekord?</pl>
             <cn>确认删除此行？</cn>
             <fr>Êtes-vous certain de vouloir supprimer cette ligne?</fr>
@@ -261,13 +294,15 @@ Note: You can add new languages by inserting "<new_language>string translated in
         </string>
         <string id="33" js="1">
             <en>deleting table row</en>
+            <de>lösche Tabelle</de>
             <pl>usuwanie rekordu tabeli</pl>
             <cn>删除行</cn>
             <fr>suppression de la ligne du tableau</fr>
             <bg>изтриване на ред от таблицата</bg>
         </string>
         <string id="34" js="1">
-            <en>Are you sure you want to delete this column</en>
+            <en>Are you sure you want to delete this column?</en>
+            <de>Sind Sie sicher, dass Sie diese Spalte löschen wollen?</de>
             <pl>Jesteś pewien że chcesz usunąć tą kolumnę?</pl>
             <cn>确认删除此列？</cn>
             <fr>Êtes-vous certain de vouloir supprimer cette colonne?</fr>
@@ -275,6 +310,7 @@ Note: You can add new languages by inserting "<new_language>string translated in
         </string>
         <string id="35" js="1">
             <en>deleting table column</en>
+            <de>lösche Tabellenspalte</de>
             <pl>usuwanie kolumny tabeli</pl>
             <cn>删除列</cn>
             <fr>suppression de la colonne du tableau</fr>
@@ -282,6 +318,7 @@ Note: You can add new languages by inserting "<new_language>string translated in
         </string>
         <string id="36" js="1">
             <en>changing HTML</en>
+            <de>HTML ändern</de>
             <pl>zmiana HTML</pl>
             <cn>修改HTML</cn>
             <fr>changement HTML</fr>
@@ -289,6 +326,7 @@ Note: You can add new languages by inserting "<new_language>string translated in
         </string>
         <string id="37" js="1">
             <en>add</en>
+            <de>hinzufügen</de>
             <pl>dodaj</pl>
             <cn>添加</cn>
             <fr>ajouter</fr>
@@ -296,6 +334,7 @@ Note: You can add new languages by inserting "<new_language>string translated in
         </string>
         <string id="38" js="1">
             <en>change</en>
+            <de>ändern</de>
             <pl>zmień</pl>
             <cn>修改</cn>
             <fr>changement</fr>
@@ -303,6 +342,7 @@ Note: You can add new languages by inserting "<new_language>string translated in
         </string>
         <string id="39" js="1">
             <en>Edit HTML. Current HTML:</en>
+            <de>Bearbeite HTML: Aktuelles HTML:</de>
             <pl>Edycja HTML. Obecny HTML:</pl>
             <cn>编辑HTML。当前HTML：</cn>
              <fr>Modifier HTML. HTML courant:</fr>
@@ -310,6 +350,7 @@ Note: You can add new languages by inserting "<new_language>string translated in
         </string>
         <string id="40" js="1">
             <en>Directly enter R code that is to be interpreted.</en>
+            <de>Zu interpretierenden R Code direkt eingeben.</de>
             <pl>Używając tej sekcji można zinterpretować dowolny kod R.</pl>
             <cn>直接编译R代码。点击输入需编译的R代码。</cn>
             <fr>Entrez directement le code R qui doit être interprété.</fr>
@@ -317,6 +358,7 @@ Note: You can add new languages by inserting "<new_language>string translated in
         </string>
         <string id="41" js="1">
             <en>Stop R processes and load selected HTML template.</en>
+            <de>Stoppe den R Prozess und lade ausgewähltes HTML template</de>
             <pl>Ta sekcja przerywa wykonywanie kodu R i wyświetla użytkownikowi szablon HTML.</pl>
             <cn>停止R运行，导入所选HTML模板。</cn>
             <fr>Arrêter le processus R et charger le modèle HTML sélectionné.</fr>
@@ -324,6 +366,7 @@ Note: You can add new languages by inserting "<new_language>string translated in
         </string>
         <string id="42" js="1">
             <en>Skip to a specific section of the test.</en>
+            <de>Gehe zu einer spezifischen Sektion des Tests.</de>
             <pl>Ta sekcja pozwala przejść do innej wybranej sekcji.</pl>
             <cn>转入测试特定章节。</cn>
             <fr>Passer à une section spécifique du test.</fr>
@@ -331,6 +374,7 @@ Note: You can add new languages by inserting "<new_language>string translated in
         </string>
         <string id="43" js="1">
             <en><![CDATA[Specify conditions and their consequences. Multiple conditions and consequences can be specified. IF statements can't be nested within each other.]]></en>
+            <de><![CDATA[Geben Sie Bedingungen und ihre Konsequenzen an. Mehrere Bedingungen und Konsequenzen können angegeben werden. WENN Aussagen können nicht verschachtelt werden.]]></de>
             <pl><![CDATA[Dzięki tej sekcji można tworzyć twierdzenia warunkowe. Dozwolone jest wiele warunków, oraz można zamieszczać wiele sekcji w bloku <b>WTEDY</b>. Nie można zagnieżdżać twierdzen JEŻELI.]]></pl>
             <cn><![CDATA[声明条件及其结果。允许多重条件及结果。IF语句不可嵌入。]]></cn>
             <fr><![CDATA[Spécifier les conditions et leurs conséquences. De multiples conditions et conséquences peuvent être spécifiées. Les expressions SI ne peuvent pas être nichées les unes dans les autres.]]></fr>
@@ -338,6 +382,7 @@ Note: You can add new languages by inserting "<new_language>string translated in
         </string>
         <string id="44" js="1">
             <en><![CDATA[Define variables (i.e. set variables) and variable type in R, HTML templates or both. Methods to set variable: <ul><li><b>from table</b>: select a previously defined table in Concerto and filter necessary rows and columns. Set the whole table by leaving the <b>WHERE</b> clause empty</li><li><b>by R code</b>: directly type in R code. E.g. function result, mathematical calculation</li></ul>]]></en>
+            <de><![CDATA[Definiere Variablen (d.h. setze Variablen) und Variablen Typen in R, HTML Templates oder beidem. Methoden um Vairabeln zu setzen: <ul><li><b>aus Tabelle</b>: wähle eine bereits definierte Tabelle in Concerto und filtere die notwendigen Zeilen und Spalten. Der ganzen Tabelle gleichsetzen in dem man die <b>WHERE</b> Aussage leer lässt</li><li><b>durch R Code</b>: R code direkt eingeben. Z.B. Resultat einer Funktion, mathematische Berechnung</li></ul>]]></de>
             <pl><![CDATA[Ta sekcja daje mozliwość zadeklarowania zmiennej w logice testu. Można dodatkowo również zaznaczyć checkbox aby sprawić żeby zmienna była widoczna w szablonie HTML. Można ustawić zmienną jedną z trzech metod:<ul><li><b>z tabeli</b>: można wybrać wcześniej zdefiniowaną tabelę w Concerto, oraz jej konkretne rekordy i kolumny. Można również wybrać całą tabelę pozostawiając blok <b>GDZIE</b> pusty</li><li><b>przez kod R</b>: można ustawić zmienną używając kodu R. Może to być cokolwiek co da się wykonać w języku R. Np. rezultat funkcji, matematyczne obliczenie</li></ul>]]></pl>
             <cn><![CDATA[在R，HTML模板中定义变量及变量类型。方法如下： <ul><li><b>来自表格</b>：选择之前在Concerto中定义的表格并筛选特定的行列。若保留<b>当</b> 语句为空可选定全部表格</li><li><b>通过R代码</b>：直接输入R代码，例如函数结论，数学计算。</li><li><b>使用变量</b>：根据已定义变量设定新变量。使用自动填充功能方便从已声明变量中查找特定变量。</li></ul>]]></cn>
              <fr><![CDATA[Définir les variables (par ex. établir les variables) et les types de variables, les modèles HTML ou les deux dans R. Méthode afin de d'établir les variables: <ul><li><b>du tableau</b>: sélectionner un tableau préalablement défini dans concerto et filtrer les lignes et colonnes nécessaires. Établir un tableau complet en laissant la clause <b>OU</b> vide </li><li><b>avec le code R </b>: taper directement dans le code R. Par exemple: fonctiont résultat, calcul mathématique</li></ul>]]></fr>
@@ -345,13 +390,15 @@ Note: You can add new languages by inserting "<new_language>string translated in
         </string>
         <string id="45" js="1">
             <en>The start section is the entry point to your test logic. It cannot be modified.</en>
+            <de>Die Anfangssektion ist der Einstiegspunkt in die Testlogik. Sie kann nicht verändert werden.</de>
             <pl>To jest sekcja początkowa. Nie można jej modyfikować. Stanowi punkt wejściowy do logiki testu.</pl>
             <cn>启动章节是测试逻辑的起点，不可修改。</cn>
             <fr>La section Début est le point d'entrée de la logique du test. Elle ne peut pas être modifiée.</fr>
             <bg>Началната секция е входната точка за логиката на теста. Тя не може да бъде променяна</bg>
         </string>
         <string id="46" js="1">
-            <en>The End section is the last section of your test logic.It cannot be modified.</en>
+            <en>The End section is the last section of your test logic. It cannot be modified.</en>
+            <de>Die Endsektion ist die letzte Sektion Ihrer Testlogik. Sie kann nicht verändert werden.</de>
             <pl>To jest sekcja końcowa. Nie można jej modyfikowac. To jest sekcja kończąca logikę testu.</pl>
             <cn>结束章节是测试逻辑的终点，不可修改。</cn>
             <fr>La section Fin est le point d'entrée de la logique du test. Elle ne peut pas être modifiée.</fr>
@@ -359,6 +406,7 @@ Note: You can add new languages by inserting "<new_language>string translated in
         </string>
         <string id="47" js="1">
             <en><![CDATA[Modify existing tables with the help of three basic database operations:<ul><li><b>INSERT</b>: insert a single row and values corresponding to each column</li><li><b>UPDATE</b>: modify table rows that meet criteria found in the <b>WHERE</b> clause. Specify which columns you want to modify and values for each.</li><li><b>DELETE</b>: delete table rows that meet criteria found in the <b>WHERE</b> clause.</li></ul>]]></en>
+            <de><![CDATA[Verändere existierende Tabelle mit der Hilfe von drei grundlegenden Datenbankoperationen:<ul><li><b>INSERT</b>: füge eine einzelne Zeile ein (mit Werten die zu jeder der Spalten korrespondieren)</li><li><b>UPDATE</b>: modifiziere alle Tabellenzeilen auf die die Kriterien in der <b>WHERE</b> Aussage zutreffen. Geben Sie die zu modifizierenden Spalten und die Werte dafür an.</li><li><b>DELETE</b>: lösche alle Tabellenzeilen auf die Kriterien in der <b>WHERE</b> Aussage zutreffen.</li></ul>]]></de>
             <pl><![CDATA[Używajac tej sekcji można zmodyfikować wcześniej zdefiniowane tabele. Można wykonać trzy podstawowoe operacje na bazie danych:<ul><li><b>DODANIE</b>: używajac tej komendy można dodać nowy pojedyńczy rekord z wybranymi wartościami</li><li><b>ZMIANA</b>: używając tej komendy można zmodyfikować rekordy tabeli które spełniaja podane kryteria w bloku <b>GDZIE</b>. Można ustawić które kolumny chce się zmodyfikować i jaką wartość chce się im dać.</li><li><b>USUŃ</b>: używając tej komendy możesz usunąć rekordy tabeli które spełniają kryteria podane w bloku <b>GDZIE</b>.</li></ul>]]></pl>
             <cn><![CDATA[借助以下三种基本数据库操作修改已有表格：<ul><li><b>插入</b>：插入一行及每列数值</li><li><b>更新</b>：修改表格行以满足 <b>当</b> 语句中的标准。可以指定修改的列及其数值。</li><li><b>删除</b>：删除表格中满足<b>当</b> 语句中标准的行。</li></ul>]]></cn>
              <fr><![CDATA[Modifier les tableaux existant avec l'aide de trois opérations de base:<ul><li><b>INSERTION</b>: insère une seule ligne et ses valeurs correspondantes dans chacune des colonnes.</li><li><b>Mettre à jour </b>: modifie les lignes du tableau qui rencontrent les critères inclus dans la clause <b>OU</b>. spécifiez quelle colonnes vous voulez modifier et les valeurs de chacune d'entre elles.</li><li><b>Supprimer</b>: supprime les lignes du tableau qui rencontrent les critères inclus dans la clause <b>OU</b>.</li></ul>]]></fr>
@@ -366,6 +414,7 @@ Note: You can add new languages by inserting "<new_language>string translated in
         </string>
         <string id="48" js="1">
             <en>This is the custom test section.</en>
+            <de>Das ist eine benutzerdefinierte Testsektion.</de>
             <pl>To jest sekcja własna.</pl>
             <cn>这是自主章节。</cn>
             <fr> Ceci est une section personnalisée du test.</fr>
@@ -373,6 +422,7 @@ Note: You can add new languages by inserting "<new_language>string translated in
         </string>
         <string id="49" js="1">
             <en>R code</en>
+            <de>R Code</de>
             <pl>kod R</pl>
             <cn>R代码</cn>
             <fr>code R</fr>
@@ -380,6 +430,7 @@ Note: You can add new languages by inserting "<new_language>string translated in
         </string>
         <string id="50" js="1">
             <en>load HTML template</en>
+            <de>lade HTML Template</de>
             <pl>wczytaj szablon HTML</pl>
             <cn>导入HTML模板</cn>
             <fr>charger un modèle HTML</fr>
@@ -387,6 +438,7 @@ Note: You can add new languages by inserting "<new_language>string translated in
         </string>
         <string id="51" js="1">
             <en>go to</en>
+            <de>Gehe zu</de>
             <pl>idź do</pl>
             <cn>前往</cn>
             <fr>aller à</fr>
@@ -394,6 +446,7 @@ Note: You can add new languages by inserting "<new_language>string translated in
         </string>
         <string id="52" js="1">
             <en>IF statement</en>
+            <de>IF Aussage</de>
             <pl>twierdzenie JEŚLI</pl>
             <cn>条件性语句</cn>
             <fr>expression SI</fr>
@@ -401,6 +454,7 @@ Note: You can add new languages by inserting "<new_language>string translated in
         </string>
         <string id="53" js="1">
             <en>set variable</en>
+            <de>Setze Variable</de>
             <pl>ustaw zmienną</pl>
             <cn>设定变量</cn>
             <fr>définir une variable</fr>
@@ -408,12 +462,14 @@ Note: You can add new languages by inserting "<new_language>string translated in
         </string>
         <string id="54" js="1">
             <en>start</en>
+            <de>Anfang</de>
             <pl>początek</pl>
             <cn>开始</cn>
             <bg>начало</bg>
         </string>
         <string id="55" js="1">
             <en>end</en>
+            <de>Ende</de>
             <pl>koniec</pl>
             <cn>结束</cn>
             <fr>fin</fr>
@@ -421,6 +477,7 @@ Note: You can add new languages by inserting "<new_language>string translated in
         </string>
         <string id="56" js="1">
             <en>table modification</en>
+            <de>Ändere Tabelle</de>
             <pl>modyfikacja tabeli</pl>
             <cn>修改表格</cn>
             <en>modification du tableau</en>
@@ -428,6 +485,7 @@ Note: You can add new languages by inserting "<new_language>string translated in
         </string>
         <string id="57" js="1">
             <en>custom section</en>
+            <de>Benutzerdefinierte Sektion</de>
             <pl>własna sekcja</pl>
             <cn>自主章节</cn>
             <fr>section personnalisée</fr>
@@ -435,6 +493,7 @@ Note: You can add new languages by inserting "<new_language>string translated in
         </string>
         <string id="58" js="1">
             <en>ignore</en>
+            <de>ignorieren</de>
             <pl>zignoruj</pl>
             <cn>忽略</cn>
             <fr>ignorer</fr>
@@ -442,6 +501,7 @@ Note: You can add new languages by inserting "<new_language>string translated in
         </string>
         <string id="59" js="1">
             <en>remove test logic section</en>
+            <de>entferne eine Sektion der Testlogik</de>
             <pl>usuń sekcję logiki testu</pl>
             <cn>移除测试逻辑章节</cn>
             <fr>enlever la section logique du test</fr>
@@ -449,6 +509,7 @@ Note: You can add new languages by inserting "<new_language>string translated in
         </string>
         <string id="60" js="1">
             <en>add test logic section</en>
+            <de>Füge Sektion zur Testlogik hinzu</de>
             <pl>dodaj sekcję logiki testu</pl>
             <cn>添加测试逻辑章节</cn>
             <fr>ajouter une section logique du test</fr>
@@ -456,6 +517,7 @@ Note: You can add new languages by inserting "<new_language>string translated in
         </string>
         <string id="61" js="1">
             <en>adding new section</en>
+            <de>neue Sektion hinzufügen</de>
             <pl>dodawanie nowej sekcji</pl>
             <cn>添加新章节</cn>
             <fr>ajouter une nouvelle section</fr>
@@ -463,6 +525,7 @@ Note: You can add new languages by inserting "<new_language>string translated in
         </string>
         <string id="62" js="1">
             <en>are you sure you want to remove this test section?</en>
+            <de>Sind Sie sicher, dass Sie diese Sektion des Tests entfernen wollen?</de>
             <pl>jesteś pewien, że chcesz usunąć sekcję testu?</pl>
             <cn>确认移除此测试章节？</cn>
             <fr>ête-vous certain de vouloir supprimer cette section du test?</fr>
@@ -470,6 +533,7 @@ Note: You can add new languages by inserting "<new_language>string translated in
         </string>
         <string id="63" js="1">
             <en>removing test section</en>
+            <de>entferne Testsektion</de>
             <pl>usuwanie sekcji testu</pl>
             <cn>移除测试章节</cn>
             <fr>suppression de lasection du test</fr>
@@ -477,6 +541,7 @@ Note: You can add new languages by inserting "<new_language>string translated in
         </string>
         <string id="64" js="1">
             <en>close</en>
+            <de>schließen</de>
             <pl>zamknij</pl>
             <cn>关闭</cn>
             <fr>fermer</fr>
@@ -484,6 +549,7 @@ Note: You can add new languages by inserting "<new_language>string translated in
         </string>
         <string id="65" js="1">
             <en>test logic variables</en>
+            <de>Variablen der Testlogik</de>
             <pl>zmienne logiki testu</pl>
             <cn>测试章节变量</cn>
             <fr>variables de la logique du test</fr>
@@ -491,6 +557,7 @@ Note: You can add new languages by inserting "<new_language>string translated in
         </string>
         <string id="66" js="1">
             <en>Password and password confirmation do not match!</en>
+            <de>Passwort und Passwortwiederhohlung stimmen nicht überein!</de>
             <pl>Hasło i jego potwierdzenie muszą się zgadzać!</pl>
             <cn>密码与密码确认不一致！</cn>
             <fr>Le mot de passe et la confirmation du mot de passe ne correspondent pas!</fr>
@@ -498,6 +565,7 @@ Note: You can add new languages by inserting "<new_language>string translated in
         </string>
         <string id="67" js="1">
             <en>login/password combination is incorrect!</en>
+            <de>Kombination von Benutzername und Passwort ungültig!</de>
             <pl>kombinacja login/hasło jest niepoprawna!</pl>
             <cn>用户名与密码不匹配！</cn>
           <fr>La combinaison nom d'utilisateur/mot de passe est incorrecte!</fr>
@@ -505,6 +573,7 @@ Note: You can add new languages by inserting "<new_language>string translated in
         </string>
         <string id="68">
             <en>unnamed custom section</en>
+            <de>unbenannte benutzerdefinierte Testsektion</de>
             <pl>nienazwana sekcja własna</pl>
             <cn>未命名的自主章节</cn>
             <fr>section personnalisée sans nom</fr>
@@ -512,6 +581,7 @@ Note: You can add new languages by inserting "<new_language>string translated in
         </string>
         <string id="69">
             <en>id</en>
+            <de>id</de>
             <pl>id</pl>
             <cn>id</cn>
             <fr>id</fr>
@@ -519,6 +589,7 @@ Note: You can add new languages by inserting "<new_language>string translated in
         </string>
         <string id="70" js="1">
             <en>name</en>
+            <de>Name</de>
             <pl>nazwa</pl>
             <cn>名称</cn>
             <fr>nom</fr>
@@ -526,6 +597,7 @@ Note: You can add new languages by inserting "<new_language>string translated in
         </string>
         <string id="71">
             <en>owner</en>
+            <de>Besitzer</de>
             <pl>właściciel</pl>
             <cn>所有者</cn>
             <fr>propriétaire</fr>
@@ -533,6 +605,7 @@ Note: You can add new languages by inserting "<new_language>string translated in
         </string>
         <string id="72">
             <en>access rights</en>
+            <de>Zugriffsrechte</de>
             <pl>prawa dostępu</pl>
             <cn>访问权限</cn>
             <fr>droits d'accès</fr>
@@ -540,6 +613,7 @@ Note: You can add new languages by inserting "<new_language>string translated in
         </string>
         <string id="73" js="1">
             <en>none</en>
+            <de>kein(e)</de>
             <pl>brak</pl>
             <cn>空缺</cn>
             <fr>aucun</fr>
@@ -547,6 +621,7 @@ Note: You can add new languages by inserting "<new_language>string translated in
         </string>
         <string id="74">
             <en>unamed variable</en>
+            <de>unbenannte Variable</de>
             <pl>nienazwana tabela</pl>
             <cn>未命名表格</cn>
              <en>veriable sans nom</en>
@@ -554,6 +629,7 @@ Note: You can add new languages by inserting "<new_language>string translated in
         </string>
         <string id="75">
             <en>unnamed template</en>
+            <de>unbenanntes Template</de>
             <pl>nienazwany szablon</pl>
             <cn>未命名模板</cn>
             <fr>modèle sans nom</fr>
@@ -561,6 +637,7 @@ Note: You can add new languages by inserting "<new_language>string translated in
         </string>
         <string id="76">
             <en>unnamed test</en>
+            <de>unbenannter Test</de>
             <pl>nienazwany test</pl>
             <cn>未命名测试</cn>
             <fr>test sans nom</fr>
@@ -568,6 +645,7 @@ Note: You can add new languages by inserting "<new_language>string translated in
         </string>
         <string id="77">
             <en>incognito</en>
+            <de>inkognito</de>
             <pl>inkognito</pl>
             <cn>匿名</cn>
             <fr>incognito</fr>
@@ -575,18 +653,21 @@ Note: You can add new languages by inserting "<new_language>string translated in
         </string>
         <string id="78">
             <en>unknown</en>
+            <de>unbekannt</de>
             <pl>nieznany</pl>
             <cn>未知</cn>
             <bg>непознат</bg>
         </string>
         <string id="79">
             <en>unnamed user group</en>
+            <de>unbenannte Benutzergruppe</de>
             <pl>nienazwana grupa użytkowników</pl>
             <cn>未命名用户群</cn>
             <bg>потребителска група без име</bg>
         </string>
         <string id="80">
             <en>unnamed user type</en>
+            <de>unbenannter Nutzertyp</de>
             <pl>nienazwany typ użytkowników</pl>
             <cn>未命名用户类型</cn>
             <fr>type d'utilisateur sans nom</fr>
@@ -594,6 +675,7 @@ Note: You can add new languages by inserting "<new_language>string translated in
         </string>
         <string id="81" js="1">
             <en>Access denied!</en>
+            <de>Zugriff verweigert!</de>
             <pl>Dostęp wzbroniony!</pl>
             <cn>拒绝访问！</cn>
             <fr>Accès refusé!</fr>
@@ -601,6 +683,7 @@ Note: You can add new languages by inserting "<new_language>string translated in
         </string>
         <string id="82">
             <en>logged user</en>
+            <de>eingeloggter Benutzer</de>
             <pl>zalogowany użytkownik</pl>
             <cn>已登入用户</cn>
             <fr>utilisateur connecté</fr>
@@ -608,6 +691,7 @@ Note: You can add new languages by inserting "<new_language>string translated in
         </string>
         <string id="83">
             <en>log out</en>
+            <de>ausloggen</de>
             <pl>wyloguj</pl>
             <cn>登出</cn>
             <fr>se déconnecter</fr>
@@ -615,6 +699,7 @@ Note: You can add new languages by inserting "<new_language>string translated in
         </string>
         <string id="84">
             <en>custom test sections</en>
+            <de>Benutzerdefinierte Testsektion</de>
             <pl>własne sekcje testu</pl>
             <cn>自主测试章节</cn>
             <fr>section de test personnalisée</fr>
@@ -622,6 +707,7 @@ Note: You can add new languages by inserting "<new_language>string translated in
             </string>
         <string id="85">
             <en>tables</en>
+            <de>Tabellen</de>
             <pl>tabele</pl>
             <cn>表格</cn>
             <fr>tableux</fr>
@@ -629,12 +715,14 @@ Note: You can add new languages by inserting "<new_language>string translated in
         </string>
         <string id="86">
             <en>file</en>
+            <de>Datei</de>
             <pl>plik</pl>
             <cn>文件</cn>
             <bg>файл</bg>
         </string>
         <string id="87">
             <en>templates</en>
+            <de>Templates</de>
             <pl>szablony</pl>
             <cn>模板</cn>
             <fr>modèles</fr>
@@ -642,18 +730,21 @@ Note: You can add new languages by inserting "<new_language>string translated in
         </string>
         <string id="88">
             <en>tests</en>
+            <de>Tests</de>
             <pl>testy</pl>
             <cn>测试</cn>
             <b>тестове</bg>
         </string>
         <string id="89">
             <en>admins</en>
+            <de>Administratoren</de>
             <pl>administratorzy</pl>
             <cn>管理员</cn>
             <bg>администратори</bg>
         </string>
         <string id="90">
             <en>admin types</en>
+            <de>Administratorentypen</de>
             <pl>typy administratorów</pl>
             <cn>管理员类型</cn>
              <fr>atypes d'administrateurs</fr>
@@ -661,6 +752,7 @@ Note: You can add new languages by inserting "<new_language>string translated in
         </string>
         <string id="91">
             <en>admin groups</en>
+            <de>Administratorengruppen</de>
             <pl>grupy administratorów</pl>
             <cn>管理群</cn>
             <fr>groupes d'administrateurs</fr>
@@ -668,6 +760,7 @@ Note: You can add new languages by inserting "<new_language>string translated in
         </string>
         <string id="92">
             <en>editing custom test section</en>
+            <de>bearbeite benutzerdefinierte Testsektion</de>
             <pl>edycja własnej sekcji testu</pl>
             <cn>编辑自主测试章节</cn>
             <fr>modifier les sections de test personnalisées</fr>
@@ -675,6 +768,7 @@ Note: You can add new languages by inserting "<new_language>string translated in
         </string>
         <string id="93">
             <en>creating new custom test section</en>
+            <de>erstelle neue benutzerdefinierte Testsektion</de>
             <pl>tworzenie nowej własnej sekcji testu</pl>
             <cn>创建自主测试章节</cn>
             <fr>créer une enouvelle section de test personnalisée</fr>
@@ -682,6 +776,7 @@ Note: You can add new languages by inserting "<new_language>string translated in
         </string>
         <string id="94">
             <en>delete</en>
+            <de>löschen</de>
             <pl>usuń</pl>
             <cn>删除</cn>
             <fr>supprimer</fr>
@@ -689,6 +784,7 @@ Note: You can add new languages by inserting "<new_language>string translated in
         </string>
         <string id="95" js="1">
             <en>save</en>
+            <de>speichern</de>
             <pl>zapisz</pl>
             <cn>保存</cn>
             <fr>sauvegarder</fr>
@@ -696,6 +792,7 @@ Note: You can add new languages by inserting "<new_language>string translated in
         </string>
         <string id="96">
             <en>name of the custom section</en>
+            <de>Name der benutzerdefinierten Sektion</de>
             <pl>nazwa własnej sekcji</pl>
             <cn>自主章节名称</cn>
             <fr>nom de la section personnalisée</fr>
@@ -703,6 +800,7 @@ Note: You can add new languages by inserting "<new_language>string translated in
         </string>
         <string id="97">
             <en>description</en>
+            <de>Beschreibung</de>
             <pl>opis</pl>
             <cn>描述</cn>
             <fr>description</fr>
@@ -710,6 +808,7 @@ Note: You can add new languages by inserting "<new_language>string translated in
         </string>
         <string id="98">
             <en>Brief description of the custom section that will be visible in the test logic when the section is used.</en>
+            <de>Kurze Beschreibung der benutzerdefinierten Sektion die bei Verwendung in der Testlogik angezeigt wird.</de>
             <pl>opis własnej sekcji, który będzie widoczny w logice tekstu po dodaniu sekcji</pl>
             <cn>使用此章节时在测试逻辑中显示的简介</cn>
             <fr>Brève description de la section personnalisée qui sera visible dans la logique du test lorsque la section est utilisée.</fr>
@@ -717,6 +816,7 @@ Note: You can add new languages by inserting "<new_language>string translated in
         </string>
         <string id="99">
             <en>access rights to this custom section</en>
+            <de>Zugriffsrechte auf diese benutzerdefinierte Testsektion</de>
             <pl>prawa dostępu dla sekcji własnej</pl>
             <cn>此自主章节的访问权限</cn>
             <fr>droits d'accès à cette section personnalisée</fr>
@@ -724,6 +824,7 @@ Note: You can add new languages by inserting "<new_language>string translated in
         </string>
         <string id="100">
             <en>private</en>
+            <de>privat</de>
             <pl>prywatne</pl>
             <cn>未公开</cn>
             <fr>privé</fr>
@@ -731,6 +832,7 @@ Note: You can add new languages by inserting "<new_language>string translated in
         </string>
         <string id="101">
             <en>group</en>
+            <de>Gruppe</de>
             <pl>grupowe</pl>
             <cn>群</cn>
             <fr>groupe</fr>
@@ -738,6 +840,7 @@ Note: You can add new languages by inserting "<new_language>string translated in
         </string>
         <string id="102">
             <en>public</en>
+            <de>öffentlich</de>
             <pl>publiczne</pl>
             <cn>公开</cn>
             <fr>publique</fr>
@@ -745,6 +848,7 @@ Note: You can add new languages by inserting "<new_language>string translated in
         </string>
         <string id="103">
             <en>owner of this custom section</en>
+            <de>Besitzer dieser benutzerdefinierten Sektion</de>
             <pl>własciciel własnej sekcji</pl>
             <cn>此自主章节所有者</cn>
             <fr>propriétaire de cette section personnalisée</fr>
@@ -752,6 +856,7 @@ Note: You can add new languages by inserting "<new_language>string translated in
         </string>
         <string id="104">
             <en>Edit description. Current description:</en>
+            <de>Bearbeite Beschreibung. Aktuelle Beschreibung:</de>
             <pl>Edytuj opis. Obecny opis:</pl>
             <cn>编辑描述。当前描述：</cn>
             <fr>Modifier la description. Description actuelle:</fr>
@@ -759,6 +864,7 @@ Note: You can add new languages by inserting "<new_language>string translated in
         </string>
         <string id="105">
             <en>Define section input parameters. Use variables thus declared in the R code section.</en>
+            <de>Definiere Eingabeparameter der Sektion. Benutze Variabeln die in der R code Sektion deklariert wurden.</de>
             <pl>Tutaj możesz zdefiniować parametry wejściowe sekcji. Można używać zmiennych które tutaj zostały zdeklarowane w kodzie R sekcji.</pl>
             <cn>定义章节输入参数。使用在在章节R代码中声明的变量。</cn>
             <fr>Définir les paramètres d'entrée de la section. utiliser les variables ainsi définies dans le code R de la section.</fr>
@@ -766,6 +872,7 @@ Note: You can add new languages by inserting "<new_language>string translated in
         </string>
         <string id="106">
             <en>parameters</en>
+            <de>Parameter</de>
             <pl>parametry</pl>
             <cn>参数</cn>
             <fr>paramètres</fr>
@@ -773,6 +880,7 @@ Note: You can add new languages by inserting "<new_language>string translated in
         </string>
         <string id="107">
             <en>edit description</en>
+            <de>bearbeite Beschreibung</de>
             <pl>edytuj opis</pl>
             <cn>编辑描述</cn>
             <fr>modifier la description</fr>
@@ -780,6 +888,7 @@ Note: You can add new languages by inserting "<new_language>string translated in
         </string>
         <string id="108">
             <en>no parameters defined</en>
+            <de>keine Parameter definiert</de>
             <pl>brak zdefiniowanych parametrów</pl>
             <cn>未定义参数</cn>
             <fr>aucun paramètres de définis</fr>
@@ -787,6 +896,7 @@ Note: You can add new languages by inserting "<new_language>string translated in
         </string>
         <string id="109">
             <en>add parameter variable</en>
+            <de>Parametervariable hinzufügen</de>
             <pl>dodaj parametr</pl>
             <cn>添加参数变量</cn>
             <fr>ajouter une variable paramètre</fr>
@@ -794,6 +904,7 @@ Note: You can add new languages by inserting "<new_language>string translated in
         </string>
         <string id="110">
             <en>remove parameter variable</en>
+            <de>entferne Parameter</de>
             <pl>usuń parametr</pl>
             <cn>移除参数变量</cn>
             <fr>enlever une variable paramètre</fr>
@@ -801,6 +912,7 @@ Note: You can add new languages by inserting "<new_language>string translated in
         </string>
         <string id="111">
             <en>R code relevant for this section. Parameters declared above can be used here.</en>
+            <de>Für diese Sektion relevanter R Code. Parameter die oben deklariert wurden, können hier benutzt werden.</de>
             <pl>To jest kod R sekcji. Możesz używać w nim parametrów które zdeklarowałeś powyżej.</pl>
             <cn>此章节相关R代码。已声明参数可在此使用。</cn>
             <fr>code R pertinent à cette section. Les paramètres déclarés ci-dessus peuvent être utilisés ici.</fr>
@@ -808,6 +920,7 @@ Note: You can add new languages by inserting "<new_language>string translated in
         </string>
         <string id="112">
             <en>Specify variables used in this section to be made available globally, for use in other test sections.</en>
+            <de>Variablen angeben aus dieser Sektion, die global verfügbar sein sollen für andere Testsektionen.</de>
             <pl>Tutaj możesz zdefiniować które zmienne użyte w sekcji chciałbyś przekazać poza sekcję. Zmienne te następnie mogą zostać użyte w innych sekcjach logiki.</pl>
             <cn>指定此章节内可在其他章节使用的总体变量。</cn>
             <fr>Spécifier que les variables utilisées dans cette section puissent être disponible globallement, afin qu'elles soient utilisées dans d'autres sections du test.</fr>
@@ -815,6 +928,7 @@ Note: You can add new languages by inserting "<new_language>string translated in
         </string>
         <string id="113">
             <en>returns</en>
+            <de>gibt aus</de>
             <pl>zwrot</pl>
             <cn>返回值</cn>
             <fr>retours</fr>
@@ -822,6 +936,7 @@ Note: You can add new languages by inserting "<new_language>string translated in
         </string>
         <string id="114">
             <en>no returns defined</en>
+            <de>keine Ausgabe definiert</de>
             <pl>brak zdefiniowanego zwrotu</pl>
             <cn>未定义返回值</cn>
             <fr>aucun retour défini</fr>
@@ -829,6 +944,7 @@ Note: You can add new languages by inserting "<new_language>string translated in
         </string>
         <string id="115">
             <en>add return variable</en>
+            <de>füge Ausgabevariable hinzu</de>
             <pl>dodaj zmienną zwrotu</pl>
             <cn>添加返回变量</cn>
             <fr>ajout d'une variable retour</fr>
@@ -836,6 +952,7 @@ Note: You can add new languages by inserting "<new_language>string translated in
         </string>
         <string id="116">
             <en>remove return variable</en>
+            <de>entferne Ausgabevariable</de>
             <pl>usuń zmienną zwrotu</pl>
             <cn>移除返回变量</cn>
             <fr>enlever une variable retour</fr>
@@ -843,6 +960,7 @@ Note: You can add new languages by inserting "<new_language>string translated in
         </string>
         <string id="117">
             <en>editing table</en>
+            <de>Bearbeite Tabelle</de>
             <pl>edycja tabeli</pl>
             <cn>编辑表格</cn>
             <fr>modifier un tableau</fr>
@@ -850,6 +968,7 @@ Note: You can add new languages by inserting "<new_language>string translated in
         </string>
         <string id="118">
             <en>creating new table</en>
+            <de>lege neue Tabelle an</de>
             <pl>tworzenie nowej tabeli</pl>
             <cn>创建表格</cn>
             <fr>créer un nouveau tableau</fr>
@@ -857,6 +976,7 @@ Note: You can add new languages by inserting "<new_language>string translated in
         </string>
         <string id="119">
             <en>name of the table</en>
+            <de>Name der Tabelle</de>
             <pl>nazwa tabeli</pl>
             <cn>表格名称</cn>
             <fr>nom du tableau</fr>
@@ -864,6 +984,7 @@ Note: You can add new languages by inserting "<new_language>string translated in
         </string>
         <string id="120">
             <en>table access rights</en>
+            <de>Zugriffsrechte auf Tabelle</de>
             <pl>prawa dostępu tabeli</pl>
             <cn>表格访问权限</cn>
             <fr>accès aux droits du tableau</fr>
@@ -871,6 +992,7 @@ Note: You can add new languages by inserting "<new_language>string translated in
         </string>
         <string id="121">
             <en>owner of the table</en>
+            <de>Besitzer der Tabelle</de>
             <pl>wlaściciel tabeli</pl>
             <cn>表格所有者</cn>
             <fr>propriétaire du tableau</fr>
@@ -878,6 +1000,7 @@ Note: You can add new languages by inserting "<new_language>string translated in
         </string>
         <string id="122" js="1">
             <en>type</en>
+            <de>Typ</de>
             <pl>typ</pl>
             <cn>类型</cn>
             <fr>type</fr>
@@ -885,6 +1008,7 @@ Note: You can add new languages by inserting "<new_language>string translated in
         </string>
         <string id="123">
             <en>no object selected</en>
+            <de>Kein Objekt ausgewählt</de>
             <pl>nie wybrano żadnego obiektu</pl>
             <cn>未选择对象</cn>
             <fr>aucun objet sélectionné</fr>
@@ -892,6 +1016,7 @@ Note: You can add new languages by inserting "<new_language>string translated in
         </string>
         <string id="124">
             <en>MySQL table</en>
+            <de>MySQL Tabelle</de>
             <pl>tabela MySQL</pl>
             <cn>MySQL表格</cn>
             <fr>Tableau MySQL</fr>
@@ -899,6 +1024,7 @@ Note: You can add new languages by inserting "<new_language>string translated in
         </string>
         <string id="125">
             <en>import table from MySQL table</en>
+            <de>importiere Tabelle aus MySQL Tabelle</de>
             <pl>import tabeli z tabeli MySQL</pl>
             <cn>从MySQL表格导入表格</cn>
             <fr>importer un tableau à partir d'un tableau MySQL</fr>
@@ -906,12 +1032,14 @@ Note: You can add new languages by inserting "<new_language>string translated in
         </string>
         <string id="126">
             <en>import table from CSV file</en>
+            <de>importiere Tabelle aus CSV Datei</de>
             <pl>import tabeli z pliku CSV</pl>
             <cn>从CSV文件导入表格</cn>
             <fr>importer un tableau à partir d'un fichier CSV</fr>
         </string>
         <string id="127">
             <en>export table to CSV file</en>
+            <de>exportiere Tabelle als CSV Datei</de>
             <pl>eksport tabeli do pliku CSV</pl>
             <cn>导出表格到CSV文件</cn>
             <fr>exporter un tableau à partir d'un fichier CSV</fr>
@@ -919,6 +1047,7 @@ Note: You can add new languages by inserting "<new_language>string translated in
         </string>
         <string id="129">
             <en>add column</en>
+            <de>füge Spalte hinzu</de>
             <pl>dodaj kolumnę</pl>
             <cn>添加列</cn>
             <fr>ajouter une colonne</fr>
@@ -926,6 +1055,7 @@ Note: You can add new languages by inserting "<new_language>string translated in
         </string>
         <string id="130" js="1">
             <en>edit HTML</en>
+            <de>bearbeite HTML</de>
             <pl>edycja HTML</pl>
             <cn>编辑HTML</cn>
             <fr>modifier HTML</fr>
@@ -933,6 +1063,7 @@ Note: You can add new languages by inserting "<new_language>string translated in
         </string>
         <string id="131">
             <en>add row</en>
+            <de>füge Spalte hinzu</de>
             <pl>dodaj rekord</pl>
             <cn>添加行</cn>
             <fr>ajouter une ligne</fr>
@@ -940,6 +1071,7 @@ Note: You can add new languages by inserting "<new_language>string translated in
         </string>
         <string id="132">
             <en>table is empty</en>
+            <de>Tabelle ist leer</de>
             <pl>tabela jest pusta</pl>
             <cn>表格空白</cn>
             <fr>le tableau est vide</fr>
@@ -947,6 +1079,7 @@ Note: You can add new languages by inserting "<new_language>string translated in
         </string>
         <string id="133">
             <en>editing HTML template</en>
+            <de>bearbeite HTML Template</de>
             <pl>edycja szablonu HTML</pl>
             <cn>编辑HTML模板</cn>
             <fr>modifier un modèle HTML</fr>
@@ -954,6 +1087,7 @@ Note: You can add new languages by inserting "<new_language>string translated in
         </string>
         <string id="134">
             <en>creating new HTML template</en>
+            <de>lege neues HTML Template an</de>
             <pl>tworzenie nowego szablonu HTML</pl>
             <cn>创建HTML模板</cn>
             <fr>créer un nouveau modèle HTML</fr>
@@ -961,6 +1095,7 @@ Note: You can add new languages by inserting "<new_language>string translated in
         </string>
         <string id="135">
             <en>name of HTML template</en>
+            <de>Name des HTML Templates</de>
             <pl>nazwa szablonu HTML</pl>
             <cn>HTML模板名称</cn>
             <fr>nom du modèle HTML</fr>
@@ -968,6 +1103,7 @@ Note: You can add new languages by inserting "<new_language>string translated in
         </string>
         <string id="136">
             <en>HTML content of the template</en>
+            <de>HTML Inhalt des Templates</de>
             <pl>zawartoćś HTML szablonu</pl>
             <cn>HTML模板内容</cn>
             <fr>contenu HTML du modèle</fr>
@@ -975,6 +1111,7 @@ Note: You can add new languages by inserting "<new_language>string translated in
         </string>
         <string id="137">
             <en>template access rights</en>
+            <de>Zugriffsrechte für Template</de>
             <pl>prawa dostępu szablonu</pl>
             <cn>模板访问权限</cn>
             <f>droits d'accès du modèle</fr>
@@ -982,6 +1119,7 @@ Note: You can add new languages by inserting "<new_language>string translated in
         </string>
         <string id="138">
             <en>owner of the template</en>
+            <de>Besitzer des Templates</de>
             <pl>wlaściciel szablonu</pl>
             <cn>模板所有者</cn>
             <fr>propriétaire du modèle</fr>
@@ -989,6 +1127,7 @@ Note: You can add new languages by inserting "<new_language>string translated in
         </string>
         <string id="139">
             <en>editing test</en>
+            <de>bearbeite Test</de>
             <pl>edycja testu</pl>
             <cn>编辑测试</cn>
             <fr>modification du test</fr>
@@ -996,6 +1135,7 @@ Note: You can add new languages by inserting "<new_language>string translated in
         </string>
         <string id="140">
             <en>creating new test</en>
+            <de>lege neuen Test an</de>
             <pl>tworzenie nowego testu</pl>
             <cn>创建测试</cn>
             <fr>créer un nouveau test</fr>
@@ -1003,12 +1143,14 @@ Note: You can add new languages by inserting "<new_language>string translated in
         </string>
         <string id="141">
             <en>name of the test</en>
+            <de>Name des Tests</de>
             <pl>nazwa testu</pl>
             <cn>测试名称</cn>
             <fr>nom du test</fr>
         </string>
         <string id="142">
             <en>test access rights</en>
+            <de>Zugriffsrechte für Test</de>
             <pl>prawa dostępu testu</pl>
             <cn>测试访问权限</cn>
             <fr>droits d'accès au test</fr>
@@ -1016,6 +1158,7 @@ Note: You can add new languages by inserting "<new_language>string translated in
         </string>
         <string id="143">
             <en>owner of the test</en>
+            <de>Besitzer des Tests</de>
             <pl>wlaściciel testu</pl>
             <cn>测试所有者</cn>
             <fr>propriétaire du test</fr>
@@ -1023,6 +1166,7 @@ Note: You can add new languages by inserting "<new_language>string translated in
         </string>
         <string id="144">
             <en>show test variables</en>
+            <de>zeige Test variablen an</de>
             <pl>pokaż zmienne testu</pl>
             <cn>显示测试变量</cn>
             <fr>voir les variables du test</fr>
@@ -1030,6 +1174,7 @@ Note: You can add new languages by inserting "<new_language>string translated in
         </string>
         <string id="145">
             <en>test logic is empty</en>
+            <de>die Testlogik ist leer</de>
             <pl>logika testu jest pusta</pl>
             <cn>测试逻辑空白</cn>
             <fr>la logique du test est vide</fr>
@@ -1037,6 +1182,7 @@ Note: You can add new languages by inserting "<new_language>string translated in
         </string>
         <string id="146">
             <en>choose section type</en>
+            <de>wähle Sektionstyp</de>
             <pl>wybierz typ sekcji</pl>
             <cn>选择章节类型</cn>
              <fr>choisir un type de section</fr>
@@ -1044,6 +1190,7 @@ Note: You can add new languages by inserting "<new_language>string translated in
         </string>
         <string id="147">
             <en>basic sections</en>
+            <de>Grundlegende Sektionen</de>
             <pl>podstawowe sekcje</pl>
             <cn>基础章节</cn>
             <fr>sections de base</fr>
@@ -1051,6 +1198,7 @@ Note: You can add new languages by inserting "<new_language>string translated in
         </string>
         <string id="148">
             <en>custom sections</en>
+            <de>Benutzerdefinierte Sektionen</de>
             <pl>własne sekcje</pl>
             <cn>自主章节</cn>
             <fr>section personnalisée</fr>
@@ -1058,6 +1206,7 @@ Note: You can add new languages by inserting "<new_language>string translated in
         </string>
         <string id="149">
             <en>variable name</en>
+            <de>Variablennamen</de>
             <pl>nazwa zmiennej</pl>
             <cn>变量名称</cn>
             <fr>nom de la variable</fr>
@@ -1065,6 +1214,7 @@ Note: You can add new languages by inserting "<new_language>string translated in
         </string>
         <string id="150">
             <en>section</en>
+            <de>Sektion</de>
             <pl>sekcja</pl>
             <cn>章节</cn>
             <fr>section</fr>
@@ -1072,6 +1222,7 @@ Note: You can add new languages by inserting "<new_language>string translated in
         </string>
         <string id="151">
             <en>parameter/return</en>
+            <de>Parameter/Ausgabe</de>
             <pl>parametr/zwrot</pl>
             <cn>参数/返回</cn>
             <fr>paramètre/retour</fr>
@@ -1079,6 +1230,7 @@ Note: You can add new languages by inserting "<new_language>string translated in
         </string>
         <string id="152">
             <en>editing admin group</en>
+            <de>Bearbeite Administratorengruppe</de>
             <pl>edycja grupy aministratorów</pl>
             <cn>编辑管理群</cn>
             <fr>modifier les groupes d'administrateurs</fr>
@@ -1086,6 +1238,7 @@ Note: You can add new languages by inserting "<new_language>string translated in
         </string>
         <string id="153">
             <en>creating admin group</en>
+            <de>lege Administratorengruppe an</de>
             <pl>tworzenie grupy aministratorów</pl>
             <cn>创建管理群</cn>
             <fr>créer un groupe d'administrateurs</fr>
@@ -1093,6 +1246,7 @@ Note: You can add new languages by inserting "<new_language>string translated in
         </string>
         <string id="154">
             <en>name of the admin group</en>
+            <de>Name der Administratorengruppe</de>
             <pl>nazwa grupy aministratorów</pl>
             <cn>管理群名称</cn>
             <fr>nom du groupe d'administrateurs</fr>
@@ -1100,6 +1254,7 @@ Note: You can add new languages by inserting "<new_language>string translated in
         </string>
         <string id="155">
             <en>admin group access rights</en>
+            <de>Zugriffsrechte für Administratorengruppe</de>
             <pl>prawa dostepu grupy aministratorów</pl>
             <cn>管理群访问权限</cn>
             <fr>droits d'accès du groupe d'administrateurs</fr>
@@ -1107,6 +1262,7 @@ Note: You can add new languages by inserting "<new_language>string translated in
             </string>
         <string id="156">
             <en>owner of the admin group</en>
+            <de>Zugriffsrechte auf Administratorengruppe</de>
             <pl>wlaściciel grupy administratorów</pl>
             <cn>管理群所有者</cn>
             <fr>propriétaire du groupe d'administrateurs</fr>
@@ -1114,12 +1270,14 @@ Note: You can add new languages by inserting "<new_language>string translated in
             <string>
         <string id="157">
             <en>editing admin type</en>
+            <de>Bearbeite Administratorentyp</de>
             <pl>edycja typu administratora</pl>
             <cn>编辑管理员类型</cn>
             <bg>редактиране на вида на администратора</bg>
         </string>
         <string id="158">
             <en>creating new admin type</en>
+            <de>lege neuen Administratorentyp an</de>
             <pl>tworzenie nowego typu administratora</pl>
             <cn>创建管理员类型</cn>
             <fr>créer un nouveau type d'administrateur</fr>
@@ -1127,6 +1285,7 @@ Note: You can add new languages by inserting "<new_language>string translated in
         </string>
         <string id="159">
             <en>name of the admin type</en>
+            <de>Name des Adminsitratorentyps</de>
             <pl>nazwa typu administratora</pl>
             <cn>管理员类型名称</cn>
             <fr>nom du type d'administrateur</fr>
@@ -1134,6 +1293,7 @@ Note: You can add new languages by inserting "<new_language>string translated in
         </string>
         <string id="160">
             <en>access rights of the admin type</en>
+            <de>Zugriffsrechte für den Administratorentyp</de>
             <pl>prawa dostępu typu administratora</pl>
             <cn>管理员类型访问权限</cn>
             <fr>droits d'accès du type d'administrateur</fr>
@@ -1141,6 +1301,7 @@ Note: You can add new languages by inserting "<new_language>string translated in
         </string>
         <string id="161">
             <en>admin type owner</en>
+            <de>Besitzer des Administratorentyps</de>
             <pl>wlaściciel typu administratora</pl>
             <cn>管理类型所有者</cn>
             <fr>propriétaire du type d'accès</fr>
@@ -1148,6 +1309,7 @@ Note: You can add new languages by inserting "<new_language>string translated in
         </string>
         <string id="162">
             <en>admin type rights</en>
+            <de>Administratorentyp Rechte</de>
             <pl>prawa typu administratora</pl>
             <cn>管理员类型权限</cn>
             <fr>droits d'accès d'administrateurs</fr>
@@ -1155,6 +1317,7 @@ Note: You can add new languages by inserting "<new_language>string translated in
         </string>
         <string id="163">
             <en>module</en>
+            <de>Modul</de>
             <pl>moduł</pl>
             <cn>模块</cn>
             <fr>module</fr>
@@ -1162,1008 +1325,1176 @@ Note: You can add new languages by inserting "<new_language>string translated in
         </string>
         <string id="164">
             <en>read rights</en>
+            <de>lese Rechte</de>
             <pl>prawa odczytu</pl>
             <cn>阅读权限</cn>
             <bg>права за четене</bg>
         </string>
         <string id="165">
             <en>write rights</en>
+            <de>schreibe Rechte</de>
             <pl>prawa zapisu</pl>
             <cn>书写权限</cn>
             <bg>права за писане</bg>
         </string>
         <string id="166">
             <en>owner change</en>
+            <de>ändere Besitzer</de>
             <pl>zmiana wlaściciela</pl>
             <cn>所有者变更</cn>
             <bg>смяна на собственика</bg>
         </string>
         <string id="167">
             <en>HTML templates</en>
+            <de>HTML Templates</de>
             <pl>szablony HTML</pl>
             <cn>HTML模板</cn>
             <bg>HTML шаблони</bg>
         </string>
         <string id="168">
             <en>standard</en>
+            <de>standard</de>
             <pl>standardowe</pl>
             <cn>标准</cn>
             <bg>стандартни</bg>
         </string>
         <string id="169">
             <en>all</en>
+            <de>alle</de>
             <pl>wszystko</pl>
             <cn>全部</cn>
             <bg>всички</bg>
         </string>
         <string id="170">
             <en>editing admin</en>
+            <de>bearbeite Administrator</de>
             <pl>edycja administratora</pl>
             <cn>编辑管理者</cn>
             <bg>редактиране на администратора</bg>
         </string>
         <string id="171">
             <en>creating new admin</en>
+            <de>lege neuen Administrator an</de>
             <pl>tworzenie nowego administratora</pl>
             <cn>创建管理者</cn>
             <bg>създаване на нов администратор</bg>
         </string>
         <string id="172">
             <en>creating new admin</en>
+            <de>lege neuen Administrator an</de>
             <pl>tworzenie nowego administratora</pl>
             <cn>创建管理者</cn>
             <bg>създаване на нов администратор</bg>
         </string>
         <string id="173">
             <en>login</en>
+            <de>Benutzername</de>
             <pl>login</pl>
             <cn>登入</cn>
             <bg>вход/bg>
         </string>
         <string id="174">
             <en>email</en>
+            <de>Email</de>
             <pl>email</pl>
             <cn>邮箱</cn>
             <bg>имейл</bg>
         </string>
         <string id="175">
             <en>last login</en>
+            <de>letzter login</de>
             <pl>ostatni login</pl>
             <cn>上次登入</cn>
             <bg>последно влизане</bg>            
         </string>
         <string id="176">
             <en>admin group</en>
+            <de>Administratorengruppe</de>
             <pl>grupa administratora</pl>
             <cn>管理群</cn>
             <bg>група на администраторите</bg>
         </string>
         <string id="177">
             <en>admin type</en>
+            <de>Administratorentyp</de>
             <pl>typ administratora</pl>
             <cn>管理员类型</cn>
             <bg>вид на администратора</bg>
         </string>
         <string id="178">
             <en>admin login</en>
+            <de>Benutzername des Administrators</de>
             <pl>login administratora</pl>
             <cn>管理员登入</cn>
             <bg>вход на администратора</bg>
         </string>
         <string id="179">
             <en>password</en>
+            <de>Passwort</de>
             <pl>hasło</pl>
             <cn>密码</cn>
             <bg>парола</bg>
         </string>
         <string id="180">
             <en>Select box to set the password</en>
+            <de>Wähle Box aus um das Passwort zu setzen</de>
             <pl>zaznacz jeśli chcesz ustawić hasło</pl>
             <cn>设置密码选项</cn>
             <bg>Изберете полето за въвеждане на парола</bg>
         </string>
         <string id="181">
             <en>admin password</en>
+            <de>Passwort des Administrators</de>
             <pl>hasło administratora</pl>
             <cn>管理员密码</cn>
             <bg>парола на администратора</bg>
         </string>
         <string id="182">
             <en>password confirmation</en>
+            <de>Passwortwiederhohlung</de>
             <pl>potwierdzenie hasła</pl>
             <cn>确认密码</cn>
             <bg>потвърждение на паролата</bg>
         </string>
         <string id="183">
             <en>password confirmation must match the password field above</en>
+            <de>Passwortwiederhohlung muss mit dem Passwort Feld darüber übereinstimmen</de>
             <pl>potwierdzenie hasła musi sie zgadzać z polem hasła powyżej</pl>
             <cn>确认密码必须与上方密码栏一致</cn>
             <bg>потвърждението на паролата трябва да съответства на паролата в полето по-горе</bg>
         </string>
         <string id="184">
             <en>first name</en>
+            <de>Vorname</de>
             <pl>imię</pl>
             <cn>名</cn>
             <bg>име</bg>
         </string>
         <string id="185">
             <en>last name</en>
+            <de>nachname</de>
             <pl>nazwisko</pl>
             <cn>姓</cn>
             <bg>фамилия</bg>
         </string>
         <string id="186">
             <en>admin first name</en>
+            <de>Vorname des Administrators</de>
             <pl>imię administratora</pl>
             <cn>管理员名</cn>
             <bg>име на администратора</bg>
         </string>
         <string id="187">
             <en>admin last name</en>
+            <de>Nachname des Administrators</de>
             <pl>nazwisko administratora</pl>
             <cn>管理员姓</cn>
             <bg>фамилия на администратора</bg>
         </string>
         <string id="188">
             <en>admin email</en>
+            <de>Email des Administrators</de>
             <pl>email administratora</pl>
             <cn>管理员邮箱</cn>
             <bg>имейл на администраторе</bg>
         </string>
         <string id="189">
             <en>phone no.</en>
+            <de>Telefon</de>
             <pl>nr telefonu</pl>
             <cn>电话</cn>
             <bg>телефон:</bg>
         </string>
         <string id="190">
             <en>admin phone no.</en>
+            <de>Telefonnummer des Administrators</de>
             <pl>nr telefonu administratora</pl>
             <cn>管理员电话</cn>
             <bg>телефон на администратора:</bg>
         </string>
         <string id="191">
             <en>admin group</en>
+            <de>Administratorengruppe</de>
             <pl>grupa administratora</pl>
             <cn>管理群</cn>
             <bg>група на администраторите</bg>
         </string>
         <string id="192">
             <en>admin type</en>
+            <de>Administratorentyp</de>
             <pl>typ administratora</pl>
             <cn>管理员类型</cn>
             <bg>вид на администраторите</bg>
         </string>
         <string id="193">
             <en>Create and manage the entire structure of each test.</en>
+            <de>Strukturen erstellen und verwalten für den jeweiligen Test.</de>
             <pl>W tej zakładce można tworzyć testy.</pl>
             <cn>以整体创建并管理测试结果。</cn>
             <bg>създаване и управление на цялата структура на всеки тест </bg>
         </string>
         <string id="194">
             <en>Create custom test logic sections to meet the requirements of specific tests.</en>
+            <de>Benutzerdefinierte Testlogiksektionen anlegen um den Anforderungen des spezifischen Tests zu genügen.</de>
             <pl>W tej zakładce można stworzyć własne sekcje logiki testu i użyc ich w testach.</pl>
             <cn>创建满足特定测试需求的自主测试章节。</cn>
             <bg>Създаване на персонализирани секции на логиката на теста, които покриват изискванията на всеки тест</bg>
         </string>
         <string id="195">
             <en>Create and edit HTML templates as they are visible to the test taker.</en>
+            <de>Neue HTML Templates anlegen und bestehende verändern (so wie der Testbenutzer Sie sieht).</de>
             <pl>W tej zakładce można stworzyć szablony HTML elementów testu, które będzie widział użytkownik biorący udział w teście.</pl>
             <cn>创建并编辑向参与测试用户显示的HTML模板。</cn>
             <bg>Създаване и редактиране на HTM, както те се видими за тествания</bg>
         </string>
         <string id="196">
             <en>Create tables for storing and managing test data, including item content, correct responses and response history etc.</en>
+            <de>Tabellen anlegen um Testdaten zu speichern und verwalten; auch Iteminhalte, richtige Antworten und Antworthistorie usw.</de>
             <pl>W tej zakładce można stworzyć tabele z danymi, które można później używać w teście.</pl>
             <cn>创建表格以存储并管理测试数据，包括项目内容，正确答复以及答复历史等。</cn>
             <bg>Създаване на таблици за сортиране и упрвление на данните от теста, включително съдържанието на айтемите, верните отговори, историята  на отговарянето и т.н.</bg>
         </string>
         <string id="197">
             <en>Create and manage admin and standard user accounts, user groups and access rights of users.</en>
+            <de>Administratoren- und Standardbenutzerkonten anlegen und verwalten, Benutzergruppen und Zugriffsrechte der Benutzer.</de>
             <pl>Ta zakładka służy do tworzenia kont administratorów, którzy będą mogli korzystać z tego panelu. Możesz tutaj ustalić prawa dostępu, oraz stworzyć grupy w obrębie których administratorzy będą dzielić wskazane obiekty.</pl>
             <cn>创建并维护管理员及标准用户帐户，用户群及用户访问权限。</cn>
             <bg>Създаване и управление на администратори и стандартни потребители, потребителските групи и правата за достъп на потребителите.</bg>
         </string>
         <string id="198">
             <en>admins, admin groups and admin types</en>
+            <de>Adminstratoren, Administratorengruppen und Administratorentypen </de>
             <pl>administratorzy, grupy administratorów, oraz typy administratorów</pl>
             <cn>管理员，管理群以及管理员类型</cn>
             <bg>администратори, групи администратори и видове администратори</bg>
         </string>
         <string id="199">
             <en>available objects</en>
+            <de>verfügbare Objekte</de>
             <pl>dostępne obiekty</pl>
             <cn>可用对象</cn>
             <bg>достъпни обекти</bg>
         </string>
         <string id="200">
             <en>no available objects</en>
+            <de>keine verfügbaren Objekte</de>
             <pl>brak dostępnych obiektów</pl>
             <cn>不可用对象</cn>
             <bg>няма достъпни обекти</bg>
         </string>
         <string id="201">
             <en>reset search filter</en>
+            <de>Suche zurücksetzen</de>
             <pl>resetuj filtr wyszukiwania</pl>
             <cn>重设搜索选项</cn>
             <bg>обнови филтъра за търсене</bg>
         </string>
         <string id="202">
             <en>actions</en>
+            <de>Aktionen</de>
             <pl>akcje</pl>
             <cn>操作</cn>
             <bg>действия</bg>
         </string>
         <string id="203">
             <en>edit object</en>
+            <de>bearbeite Objekt</de>
             <pl>edytuj obiekt</pl>
             <cn>编辑对象</cn>
             <bg>редактиране на обект</bg>
         </string>
         <string id="204" js="1">
             <en>delete object</en>
+            <de>lösche Objekt</de>
             <pl>usuń obiekt</pl>
             <cn>删除对象</cn>
             <bg>изтриване на обект</bg>
         </string>
         <string id="205" js="1">
             <en>add new object</en>
+            <de>füge neues Objekt hinzu</de>
             <pl>dodaj nowy obiekt</pl>
             <cn>添加对象</cn>
             <bg>прибави нов обект</bg>
         </string>
         <string id="206">
             <en>first page</en>
+            <de>erste Seite</de>
             <pl>pierwsza strona</pl>
             <cn>首页</cn>
             <bg>първа страница</bg>
         </string>
         <string id="207">
             <en>previous page</en>
+            <de>vorherige Seite</de>
             <pl>poprzednia strona</pl>
             <cn>前一页</cn>
             <bg>предишна страница</bg>
         </string>
         <string id="208">
             <en>next page</en>
+            <de>nächste Seite</de>
             <pl>następna strona</pl>
             <cn>下一页</cn>
             <bg>следваща страница</bg>
         </string>
         <string id="209">
             <en>last page</en>
+            <de>letzte Seite</de>
             <pl>ostatnia strona</pl>
             <cn>尾页</cn>
             <bg>последна страница</bg>
         </string>
         <string id="210">
             <en>per page</en>
+            <de>pro Seite</de>
             <pl>na stronę</pl>
             <cn>每页</cn>
             <bg>на страница</bg>
         </string>
         <string id="211">
             <en>login to platform</en>
+            <de>Login zur Platform</de>
             <pl>logowanie do platformy</pl>
             <cn>登入系统</cn>
             <bg>вход в платформата</bg>
         </string>
         <string id="212">
             <en>Enter your login and password.</en>
+            <de>Geben Sie Ihren Benutzernamen und Ihr Passwort ein.</de>
             <pl>Podaj swój login i hasło.</pl>
             <cn>输入用户名和密码</cn>
             <bg>Въведете Вашето потребителско име и парола. </bg>
         </string>
         <string id="213">
             <en>Select the HTML template to be loaded.</en>
+            <de>Zu ladendes HTML Template auswählen.</de>
             <pl>Wybierz szablon HTML, który chcesz wczytać.</pl>
             <cn>选择载入HTML模板</cn>
             <bg>Изберете HTML шаблона, който да бъде зареден</bg>
         </string>
         <string id="214">
             <en>Preview of selected HTML template.</en>
+            <de>Vorschau auf gewähltes HTML Template.</de>
             <pl>Podgląd obecnie wybranego szablonu HTML</pl>
             <cn>所选HTML模板预览</cn>
           <bg>Преглед на избрания HTML шаблон</bg>
         </string>
         <string id="215">
             <en>value of this variable will be inserted into the HTML template</en>
+            <de>Wert dieser Variable wird in das HTML Template eingefügt</de>
             <pl>wartość tej zmiennej zostanie osadzona w szablonie HTML</pl>
             <cn>在HTML模板中插入此变量值</cn>
             <bg>стойността на тази променлива, ще бъде вмъкната в HTML шаблона</bg>
         </string>
         <string id="216">
             <en><![CDATA[Time left (in seconds) to submit test item. A value of 0 implies unlimited time. Insert <b>{{TIME_LEFT}}</b> variable into HTML templates to make the timer visible.]]></en>
+            <de><![CDATA[Zeit (in Sekunden) die bleibt um das Item zu beantworten. Auf 0 setzen für unbeschränkte Zeit. Füge <b>{{TIME_LEFT}}</b> Variable in das HTML Template ein, um die verbleibende Zeit anzuzeigen.]]></de>
             <pl><![CDATA[Czas w sekundach jaki użytkownik posiada aby przesłać element. Jeśli wartość jest równa 0 - oznacza to, że czas jest nieograniczony. Można wstawić zmienną <b>{{TIME_LEFT}}</b> do HTML aby wyświetlić odliczanie.]]></pl>
             <cn><![CDATA[提交测试项目剩余时间（秒）。数值0表示无时间限制。在HTML模板中插入<b>{{剩余时间}}</b> 变量以显示倒计时。]]></cn>
             <bg><![CDATA[Оставащо време (в секунди)), за да бъде попълнен тестовия айтем. Стойност 0 означава неограничено време. Вмъкни <b>{{TIME_LEFT}}</b> променлива в HTML шаблона, за да направите този таймер видим.]]></bg>
         </string>
         <string id="217">
             <en>this variable type is</en>
+            <de>dieser Variablentyp ist</de>
             <pl>typem tej zmiennej jest</pl>
             <cn>此变量类型为</cn>
             <bg>видът на тази променлива е</bg>
         </string>
         <string id="218">
             <en>no output from this HTML template</en>
+            <de>keine Ausgabe von diesem HTML Template</de>
             <pl>brak zwrotu na tym szablonie HTML</pl>
             <cn>此HTML模板无输出</cn>
             <bg>няма резултат от този HTMLшаблон</bg>
         </string>
         <string id="219">
             <en>GO TO SECTION</en>
+            <de>GEHE ZU SEKTION</de>
             <pl>PRZEJDŹ DO SEKCJI</pl>
             <cn>前往章节</cn>
             <bg>ИДИ В СЕКЦИЯТА</bg>
         </string>
         <string id="220">
             <en>sets which section should be run next</en>
+            <de>legt die als nächstes auszuführende Sektion fest</de>
             <pl>wskazuje która sekcja powinna być wykonana następna</pl>
             <cn>设置下一章节为</cn>
             <bg>показва коя следваща секция ще бъде стартирана</bg>
         </string>
         <string id="221" js="1">
             <en>not equal</en>
+            <de>ungleich</de>
             <pl>nie równe</pl>
             <cn>不等于</cn>
             <bg>не е равно</bg>
         </string>
         <string id="222" js="1">
             <en>equal</en>
+            <de>gleich</de>
             <pl>równe</pl>
             <cn>等于</cn>
             <bg>равно</bg>
         </string>
         <string id="223" js="1">
             <en>greater than</en>
+            <de>größer als</de>
             <pl>większe niż</pl>
             <cn>大于</cn>
             <bg>повече от</bg>
         </string>
         <string id="224" js="1">
             <en>equal or greater than</en>
+            <de>größer oder gleich</de>
             <pl>równe lub większe niż</pl>
             <cn>大于或等于</cn>
             <bg>повече или равно на</bg>
         </string>
         <string id="225" js="1">
             <en>lesser than</en>
+            <de>kleiner als</de>
             <pl>mniejsze niż</pl>
             <cn>小于</cn>
             <bg>по-малко от</bg>
         </string>
         <string id="226" js="1">
             <en>equal or lesser than</en>
+            <de>kleiner oder gleich</de>
             <pl>równe lub mniejsze niż</pl>
             <cn>小于或等于</cn>
             <bg>равно или по-малко от</bg>
         </string>
         <string id="227" js="1">
             <en>AND</en>
+            <de>UND</de>
             <pl>I</pl>
             <cn>并且</cn>
             <bg>И</bg>
         </string>
         <string id="228" js="1">
             <en>OR</en>
+            <de>ODER</de>
             <pl>LUB</pl>
             <cn>或者</cn>
             <bg>ИЛИ</bg>
         </string>
         <string id="229">
             <en>add condition</en>
+            <de>Bedingung hinzufügen</de>
             <pl>dodaj warunek</pl>
             <cn>添加条件</cn>
             <bg>условие прибави</bg>
         </string>
         <string id="230">
             <en>remove condition</en>
+            <de>Bedingung entfernen</de>
             <pl>usuń warunek</pl>
             <cn>移除条件</cn>
             <bg>условие извади</bg>
         </string>
         <string id="231">
             <en>THEN</en>
+            <de>DANN</de>
             <pl>WTEDY</pl>
             <cn>则</cn>
             <bg>ТОГАВА</bg>
         </string>
         <string id="232">
             <en>add test logic section to IF clause</en>
+            <de>Füge Testlogiksektion zu WENN Aussage hinzu.</de>
             <pl>dodaj sekcję logiki testu do bloku JEŚLI</pl>
             <cn>为条件语句添加测试逻辑章节</cn>
             <bg>прибави секцията с тестовата логика към АКО условието</bg>
         </string>
         <string id="233">
             <en>SET VARIABLE</en>
+            <de>SET VARIABLE</de>
             <pl>USTAW ZMIENNĄ</pl>
             <cn>设置变量</cn>
             <bg>СЪЗДАЙ ПРОМНЛИВА</bg>
         </string>
         <string id="235">
             <en>from table</en>
+            <de>aus Tabelle</de>
             <pl>z tabeli</pl>
             <cn>来自于表格</cn>
             <bg>от таблицата</bg>
         </string>
         <string id="236">
             <en>by R code</en>
+            <de>durch R Code</de>
             <pl>poprzez kod R</pl>
             <cn>通过R代码</cn>
             <bg>чрез R кода</bg>
         </string>
         <string id="238">
             <en>SELECT FROM TABLE</en>
+            <de>SELECT FROM TABLE</de>
             <pl>WYBIERZ Z TABELI</pl>
             <cn>从表格中选择</cn>
             <bg>ИЗБЕРИ ОТ ТАБЛИЦАТА</bg>
         </string>
         <string id="239">
             <en>no table selected</en>
+            <de>keine Tabelle ausgewählt</de>
             <pl>nie wybrano tabeli</pl>
             <cn>未选择表格</cn>
             <bg>не е избрана таблица</bg>
         </string>
         <string id="240">
             <en>COLUMNS</en>
+            <de>COLUMNS</de>
             <pl>KOLUMNY</pl>
             <cn>列</cn>
             <bg>КОЛОНИ</bg>
         </string>
         <string id="241">
             <en>no column selected</en>
+            <de>keine Spalten ausgewählt</de>
             <pl>nie wybrano kolumny</pl>
             <cn>未选择列</cn>
             <bg>не са избрани колони</bg>
         </string>
         <string id="242">
             <en>WHERE</en>
+            <de>WHERE</de>
             <pl>GDZIE</pl>
             <cn>当</cn>
             <bg>КЪДЕ</bg>
         </string>
         <string id="243">
             <en>like</en>
+            <de>ähnlich</de>
             <pl>podobne</pl>
             <cn>类似于</cn>
             <bg>подобно</bg>
         </string>
         <string id="244">
             <en>not like</en>
+            <de>nicht ähnlich</de>
             <pl>niepodobne</pl>
             <cn>不类似于 </cn>
             <bg>не е подобно</bg>
         </string>
         <string id="245">
             <en>Test id. Read only variable.</en>
+            <de>Test id. Diese Variable kann nur gelesen werden.</de>
             <pl>ID testu. Zmienna tylko do odczytu.</pl>
             <cn></cn>
             <bg>ID на теста. Чети само променливите.</bg>
         </string>
         <string id="246">
             <en>Test session id. Read only variable.</en>
+            <de>Testsitzungs id. Diese Variable kann nur gelesen werden.</de>
             <pl>ID sesji testu. Zmienna tylko do odczytu.</pl>
             <cn></cn>
             <bg>ID на теста. Чети само променливите.</bg>
         </string>
         <string id="247">
             <en>IN TABLE</en>
+            <de>IN TABLE</de>
             <pl>W TABELI</pl>
             <cn>位于表格</cn>
             <bg>в таблицата</bg>
         </string>
         <string id="248">
             <en>insert</en>
+            <de>einfügen</de>
             <pl>dodaj</pl>
             <cn>插入</cn>
             <bg>вмъкни</bg>
         </string>
         <string id="249">
             <en>update</en>
+            <de>aktualisieren</de>
             <pl>zmień</pl>
             <cn>更新</cn>
             <bg>обнови</bg>
         </string>
         <string id="250">
             <en>delete</en>
+            <de>löschen</de>
             <pl>usuń</pl>
             <cn>删除</cn>
             <bg>изтрий</bg>
         </string>
         <string id="251">
             <en>SET</en>
+            <de>SET</de>
             <pl>USTAW</pl>
             <cn>设置</cn>
             <bg>СЪЗДАЙ</bg>
         </string>
         <string id="252">
             <en>search list</en>
+            <de>Suchliste</de>
             <pl>przeszukaj listę</pl>
             <cn>搜索列表</cn>
             <bg>списък за търсене</bg>
         </string>
         <string id="253">
             <en>Select the type of section to be added to the test logic</en>
+            <de>Typ der zu Testlogik hinzuzufügenden Sektion auswählen</de>
             <pl>wybierz typ sekcji jaką chciałbyś dodać do logiki testu</pl>
             <cn>选择加入测试逻辑的章节类型</cn>
             <bg>Избери вида на секцията, която да бъде добавена към тестовата логика</bg>
         </string>
         <string id="254">
             <en>Enter variable description that will be visible to anyone using this section in their test.</en>
+            <de>Variablenbeschreibung eingeben die alle Benutzer dieser Sektion in ihren Tests sehen.</de>
             <pl>Wprowadź opis zmiennej który będzie widoczny dla każdego kto użyje tej sekcji w swym teście.</pl>
             <cn>添加向使用此章节用户显示的变量描述</cn>
             <bg>Въведи променливата, която ще бъде видима за всеки, който използва тази секция от теста</bg>
         </string>
         <string id="255">
             <en>Select the MySQL table whose structure and data are to be imported into this table.</en>
+            <de>Wähle MySQL Tabelle aus deren Struktur und Daten in diese Tabelle importiert werden sollen.</de>
             <pl>Wybierz tabelę MySQL, której strukturę i dane chciałbyś zaimportować do tej tabeli.</pl>
              <cn>选择MySQL表格导入其结构和数据至此表格</cn>
              <bg>Избери MySQL таблицата, чиято структура и данни ще бъдат ще бъдат импортирани в тази таблица</bg>
         </string>
         <string id="256">
             <en>Select the CSV file to be imported.</en>
+            <de>Wählen Sie die zu importierende CSV Datei aus.</de>
             <pl>Wybierz plik CSV, który chciałbyś zaimportować.</pl>
             <cn>选择导入的CSV文件</cn>
             <bg>Изберете CSV файл за импорт</bg>
         </string>
         <string id="257">
             <en>Select the name of the column</en>
+            <de>Name der Spalte auswählen</de>
             <pl>Wybierz nazwę kolumny</pl>
             <cn>选择列名称</cn>
             <bg>Изберете име на колоната</bg>
         </string>
         <string id="258">
             <en>Select the column type</en>
+            <de>Typ der Spalte auswählen</de>
             <pl>Wybierz typ kolumny</pl>
             <cn>选择列类型</cn>
             <bg>Изберете вид на колоната</bg>
         </string>
         <string id="259">
             <en>enter HTML value of the cell</en>
+            <de>HTML Wert der Zelle eingeben</de>
             <pl>wprowadź wartość HTML komórki</pl>
             <cn>输入单元格的HTML数值</cn>
             <bg>въведете HTML стойност на полето</bg>
         </string>
         <string id="260">
             <en>Enter your unique login id</en>
+            <de>Geben sie Ihre eindeutige Login id ein</de>
             <pl>Wprowadź swój login</pl>
             <cn>输入用户名</cn>
             <bg>Въведете Вашето уникално потребителско име</bg>
         </string>
         <string id="261">
             <en>Enter your password</en>
+            <de>Geben Sie Ihr Passwort ein</de>
             <pl>Wprowadź swoje hasło</pl>
             <cn>输入密码</cn>
             <bg>Въведете парола</bg>
         </string>
         <string id="262">
             <en>Your version is OUTDATED.</en>
+            <de>Ihre Version ist VERALTET.</de>
             <pl>Twoja wersja jest NIEAKTUALNA.</pl>
             <cn>您的版本已过期。</cn>
             <bg>Вашата версия е остсия е стара</bg>
         </string>
         <string id="263">
             <en>CLICK HERE TO DOWNLOAD THE LATEST VERSION</en>
+            <de>KLICKEN SIE HIER UM DIE NEUESTE VERSION HERUNTERZULADEN</de>
             <pl>KLIKNIJ TUTAJ ABY POBRAĆ NAJNOWSZĄ WERSJĘ</pl>
             <cn>点此下载最新版本</cn>
             <bg>КЛИКНЕТЕ ТУК ЗА ДА СВАЛИТЕ НАЙ-НОВАТА ВЕРСИЯ</bg>
         </string>
         <string id="264">
             <en>Your version is up-to-date</en>
+            <de>Ihre version ist auf dem neuesten Stand</de>
             <pl>Twoja wersja jest aktualna</pl>
             <cn>已更新至最新版本</cn>
             <bg>Вашата версия е актуална</bg>
         </string>
         <string id="265" js="1">
             <en>Export</en>
+            <de>Export</de>
             <pl>Eksport</pl>
              <cn>导出</cn>
              <bg>Експорт</bg>
         </string>
         <string id="266">
             <en>Import new object</en>
+            <de>Importiere neues Objekt</de>
             <pl>Zaimportuj nowy obiekt</pl>
             <cn>导入新对象</cn>
             <bg>Импорт на нов обект</bg>
         </string>
         <string id="267">
             <en>Select file to be exported</en>
+            <de>Wähle zu exportierende Datei aus</de>
             <pl>Wybierz plik z wyeksportowanym obiektem</pl>
             <cn>选择导出文件</cn>
             <bg>Изберете файл а експортиране</bg>
         </string>
         <string id="268" js="1">
             <en>Importing object</en>
+            <de>Importiere Objekt</de>
             <pl>Importowanie obiektu</pl>
             <cn>导入对象</cn>
             <bg>Импортиране на обект</bg>
         </string>
         <string id="269" js="1">
             <en>Are you sure you want to import the object from this file?</en>
+            <de>Sind Sie sicher, dass Sie das Objekt aus dieser Datei importieren wollen?</de>
             <pl>Jesteś pewien, że chcesz zaimportować obiekt z tego pliku?</pl>
             <cn>确认从此文件中导入对象？</cn>
             <bg>Сигурни ли сте, че искате да импортирате този обект от файла?</bg>
         </string>
         <string id="270" js="1">
             <en>Object imported</en>
+            <de>Objekt importiert</de>
             <pl>Obiekt zaimportowany</pl>
              <cn>已导入对象</cn>
              <bg>Обектът е импортиран</bg>
         </string>
         <string id="271" js="1">
             <en>There was an error while importing the object</en>
+            <de>Es gab einen Fehler beim importieren des Objekts</de>
             <pl>Wystąpił błąd podczas importowania obiektu</pl>
             <cn>导入对象发生错误</cn>
             <bg>Грешка при импортирането на обекта</bg>
         </string>
         <string id="272" js="1">
             <en>File does not exist.</en>
+            <de>Datei existiert nicht.</de>
             <pl>Plik nie istnieje.</pl>
             <cn>文件不存在。</cn>
             <bg>Файлът не съществува</bg>
         </string>
         <string id="273" js="1">
             <en>Deleting object</en>
+            <de>Lösche Objekt</de>
             <pl>Usuwanie obiektu</pl>
             <cn>删除对象</cn>
             <bg>Изтриване на обект</bg>
         </string>
         <string id="274" js="1">
             <en>Saving object</en>
+            <de>Speichere Objekt</de>
             <pl>Zapisywanie obiektu</pl>
             <cn>保存对象</cn>
             <bg>Съхранение на обект</bg>
         </string>
         <string id="275" js="1">
             <en>R</en>
+            <de>R</de>
             <pl>R</pl>
             <cn>R</cn>
             <bg>R</bg>
         </string>
         <string id="276" js="1">
             <en><![CDATA[R & HTML]]></en>
+            <de><![CDATA[R & HTML]]></de>
             <pl>R i HTML</pl>
             <cn><![CDATA[R & HTML]]></cn>
             <bg>><![CDATA[R и HTML]]></bg>
         </string>
         <string id="277">
             <en>IN</en>
+            <de>IN</de>
             <pl>W</pl>
             <cn>位于</cn>
             <bg>ID</bg>
         </string>
         <string id="278" js="1">
             <en>Not logged in</en>
+            <de>Nicht eingeloggt</de>
             <pl>Nie zalogowany</pl>
             <cn>未登入</cn>
             <bg>Не сте влезли</bg>
         </string>
         <string id="279">
             <en>FROM</en>
+            <de>FROM</de>
             <pl>Z</pl>
             <cn>来自</cn>
             <bg>ОТ</bg>
         </string>
         <string id="280" js="1">
             <en>default</en>
+            <de>standard</de>
             <pl>domyślny</pl>
             <cn>默认</cn>
             <bg>по подразбиране</bg>
         </string>
         <string id="281" js="1">
             <en>string</en>
+            <de>Zeichenkette</de>
             <pl>ciąg znaków</pl>
             <cn>字符串</cn>
             <bg>редица от знаци</bg>
         </string>
         <string id="282" js="1">
             <en>numeric</en>
+            <de>numerisch</de>
             <pl>numeryczny</pl>
             <cn>数值</cn>
             <bg>цифров</bg>
         </string>
         <string id="283">
             <en>This is a system variable</en>
+            <de>Dies ist eine Systemvariable</de>
             <pl>Jest to zmienna systemowa</pl>
             <cn>这是系统变量</cn>
             <bg>Това е системна променлива</bg>
         </string>
         <string id="284" js="1">
             <en>debug</en>
+            <de>debuggen</de>
             <pl>debug</pl>
             <cn>调试</cn>
             <bg>дебъг</bg>
         </string>
         <string id="285" js="1">
             <en><![CDATA[Test #{0} - debug <b>(idle)</b>]]></en>
+            <de><![CDATA[Test #{0} - debug <b>(wartend)</b>]]></de>
             <pl><![CDATA[Test #{0} - debug <b>(bezczynny)</b>]]></pl>
             <cn><![CDATA[测试 #{0} – 调试 <b>(空转)</b>]]></cn>
             <bg><![CDATA[Тест #{0} - дебъг <b>(празен ход)</b>]]></bg>
         </string>
         <string id="286" js="1">
             <en>Test #{0} - debug</en>
+            <de>Test #{0} - debug</de>
             <pl>Test #{0} - debug</pl>
             <cn> 测试 #{0} – 调试 </cn>
             <bg>Тест #{0} - дебъг</bg>
         </string>
         <string id="287" js="1">
             <en>Please ensure that all changes to the test logic have been saved prior to debugging. Unsaved changes will not be considered in the debugging process.</en>
+            <de>Stellen Sie sicher, das alle Veränderungen an der Testlogik vor dem Debuggen gespeichert sind. Ungespeicherte Änderungen werden nicht im Debuggingprozess berücksichtigt.</de>
             <pl>Proszę pamiętać, że należy zachować bieżącą logikę testu zanim się uruchomi debug. Wszelkie niezapisane zmiany nie bedą brane pod uwagę podczas debuggowania.</pl>
             <cn>请确认在调试前保存当前测试逻辑的所有修改。未保存的修改将不会被调试。</cn>
             <bg>Проверете дали всички промени в тестовата логика са съхранени преди дебъга. Несъхранените промени няма да повлияят на процес на дебъг</bg>
         </string>
         <string id="288" js="1">
             <en><![CDATA[Please press the <b>start</b> button.]]></en>
+            <de><![CDATA[Bitt den <b>Start</b> Knopf drücken.]]></de>
             <pl><![CDATA[Proszę nacisnąć przycisk <b>start</b>.]]></pl>
             <cn><![CDATA[请按 <b>开始</b> 键.]]></cn>
             <bg><![CDATA[Моля натиснете бутона <b>старт</b>]]></bg>
         </string>
         <string id="289" js="1">
             <en><![CDATA[Test #{0} - syntax validation <b>(in progress...)]]></en>
+            <de><![CDATA[Test #{0} - Syntaxvalidierung <b>(läuft ...)]]></de>
             <pl><![CDATA[Test #{0} - walidacja składni <b>(w trakcie...)]]></pl>
             <cn><![CDATA[测试 #{0} – 句法验证 <b>(进行中……)]]></cn>
             <bg><![CDATA[Тест #{0} - валидизирането на синтуксиса <b>(в действие...)]]></bg>
         </string>
         <string id="290" js="1">
             <en>Syntax validation</en>
+            <de>Syntaxvalidierung</de>
             <pl>Walidacja składni</pl>
             <cn>句法验证</cn>
             <bg>Валидизация на синтаксиса</bg>
         </string>
         <string id="291" js="1">
             <en><![CDATA[Test section with index #{0} syntax validation: <font style='color:green;'><b>PASSED</b></font>]]></en>
+            <de><![CDATA[Testsektion  mit Index #{0} Syntaxvalidierung: <font style='color:green;'><b>OK</b></font>]]></de>
             <pl><![CDATA[Walidacja składni sekcji testu o indeksie #{0}: <font style='color:green;'><b>POWIODŁA SIĘ</b></font>]]></pl>
             <cn><![CDATA[测试章节索引 #{0} 句法验证： < font style='color:green;'><b>通过</b></font>]]></cn>
             <bg><![CDATA[Валидизация на тестова секция с индекс #{0}: <font style='color:green;'><b>УСПЕШНА</b></font>]]></bg>
         </string>
         <string id="292" js="1">
             <en><![CDATA[Test section with index #{0} syntax validation: <font style='color:red;'><b>FAILED</b></font>]]></en>
+            <de><![CDATA[Testsektion mit Index #{0} Syntaxvalidierung: <font style='color:red;'><b>FEHLGESCHLAGEN</b></font>]]></de>
             <pl><![CDATA[Walidacja składni sekcji testu o indeksie #{0}: <font style='color:red;'><b>NIE POWIODŁA SIĘ</b></font>]]></pl>
             <cn><![CDATA[测试章节索引 #{0} 句法验证： <font style='color:red;'><b>失败</b></font>]]></cn>
              <bg><![CDATA[Валидизация на тестова секция с индекс #{0}: <font style='color:green;'><b>НЕУСПЕШНА</b></font>]]></bg>
         </string>
         <string id="293" js="1">
             <en><![CDATA[Test #{0} - syntax validation <b>(finished)</b>]]></en>
+            <de><![CDATA[Test #{0} - Syntaxvalidierung <b>(abgeschlossen)</b>]]></de>
             <pl><![CDATA[Test #{0} - walidacja składni <b>(zakończona)</b>]]></pl>
             <cn><![CDATA[测试 #{0} – 句法验证 <b>(完成)</b>]]></cn>
             <bg><![CDATA[Тест #{0} – валидизацията на синтаксиса <b>(завърши)</b>]]></bg>
         </string>
         <string id="294" js="1">
             <en><![CDATA[Syntax validation <font style='color:green;'>PASSED</font>.]]></en>
+            <de><![CDATA[Syntaxvalidierung <font style='color:green;'>OK</font>.]]></de>            
             <pl><![CDATA[Walidacja składni <font style='color:green;'>POMYŚLNA</font>.]]></pl>
             <cn><![CDATA[句法验证 <font style='color:green;'>通过</font>.]]></cn>
             <bg><![CDATA[Валидизацията на синтаксиса <font style='color:green;'>ПРЕМИНАТА</font>.]]></bg>
         </string>
         <string id="295" js="1">
             <en><![CDATA[Test #{0} - syntax validation <b>(FAILED on section index #{1} - debug HALTED)</b>]]></en>
+            <de><![CDATA[Test #{0} - Syntaxvalidierung <b>(FEHLGESCHLAGEN bei Sektion mit Index #{1} - debug ANGEHALEN)</b>]]></de>
             <pl><![CDATA[Test #{0} - walidacja składni <b>(NIE POWIODŁA SIĘ przy sekcji o indeksie #{1} - debug ZATRZYMANY)</b>]]></pl>
             <cn><![CDATA[测试 #{0} – 句法验证 <b>(在章节索引 #{1} 处失败 – 调试中止)</b>]]></cn>
             <bg><![CDATA[Тест #{0} – валидизацията на синтаксиса <b>(НЕУСПЕШНА в индекс на секция #{1} – дебъгът СПРЯН)</b>]]></bg>
         </string>
         <string id="296" js="1">
             <en><![CDATA[Syntax validation <font style='color:red;'><b>FAILED</b></font> on section index #{0} - debug <font style='color:red;'><b>HALTED</b></font>]]></en>
+            <de><![CDATA[Syntaxvalidierung <font style='color:red;'><b>FEHLGESCHLAGEN</b></font> bei Sektion mit Index #{0} - debug <font style='color:red;'><b>ANGEHALTEN</b></font>]]></de>
             <pl><![CDATA[Walidacja składni <font style='color:red;'><b>NIE POWIODŁA SIĘ</b></font> dla sekcji o indeksie #{0} - debug <font style='color:red;'><b>ZATRZYMANY</b></font>]]></pl>
             <cn><![CDATA[句法验证 <font style='color:red;'><b>F失败</b></font> 在章节索引 #{0} 处– 调试 <font style='color:red;'><b>中止</b></font>]]></cn>
             <bg><![CDATA[Валидизацията на синтаксисаyntax validation <font style='color:red;'><b>НЕУСПЕШНА</b></font> за индекс на секция #{0} - дебъгът <font style='color:red;'><b>СПРЯН</b></font>]]></bg>
         </string>
         <string id="297" js="1">
             <en>Runtime debug</en>
+            <de>Laufzeit debug</de>
             <pl>Debug na żywo</pl>
             <cn>运行时间调试</cn>
             <bg>дебъг в реално време</bg>
         </string>
         <string id="298" js="1">
             <en>Running test #{0}...</en>
+            <de>Lasse Test mit der id #{0} laufen ...</de>
             <pl>Uruchomienie testu #{0}...</pl>
             <cn>运行测试#{0}……</cn>
             <bg>Започване на тест #{0}...</bg>
         </string>
         <string id="299" js="1">
             <en><![CDATA[Test #{0} - runtime debug <b>(R code is being interpreted...)</b>]]></en>
+            <de><![CDATA[Test #{0} - Laufzeit debug <b>(R Code wird interpretiert...)</b>]]></de>
             <pl><![CDATA[Test #{0} - debug na żywo <b>(kod R jest interpretowany..)</b>]]></pl>
             <cn><![CDATA[测试 #{0} – 运行时间调试 <b>(R代码正在被编译…)</b>]]></cn>
             <bg><![CDATA[Тест #{0} - дебъг в реално време <b>(R кодът се интерпретира...)</b>]]></bg>
         </string>
         <string id="300" js="1">
             <en>R code is being interpreted...</en>
+            <de>R Code wird interpretiert...</de>
             <pl>Kod R jest interpretowany...</pl>
             <cn> R代码正在被编译…</cn>
             <bg>R кодът е интерпретиран</bg>
         </string>
         <string id="301" js="1">
-            <en>R code response receIved.</en>
+            <en>R code response received.</en>
+            <de>R Code Ausgabe erhalten.</de>
             <pl>Otrzymano odpowiedź kodu R.</pl>
             <cn>收到R代码回复。</cn>
             <bg>Резултатът от R кода получен</bg>
         </string>
         <string id="302" js="1">
             <en><![CDATA[Test #{0}, session #{1} - runtime debug <b>(R logic error - debug HALTED)</b>]]></en>
+            <de><![CDATA[Test #{0}, session #{1} - Laufzeit debug <b>(R: logischer Fehler - debug ANGEHALTEN)</b>]]></de>
             <pl><![CDATA[Test #{0}, sesja #{1} - debug na żywo <b>(błąd w logice R - debug ZATRZYMANY</b>]]></pl>
             <cn><![CDATA[测试 #{0}，章节 #{1} – 运行时间调试 <b>(R逻辑错误 – 调试中止)</b>]]></cn>
             <bg><![CDATA[Тестът #{0}, сесията #{1} - дебъг в реално време <b>(грешка в R логиката - дебъгът СПРЯН)</b>]]></bg>
         </string>
         <string id="303" js="1">
             <en><![CDATA[R logic <font style='color:red;'><b>error</b></font>. Check R code output for additional info. Debug HALTED.]]></en>
+            <de><![CDATA[R: logischer <font style='color:red;'><b>Fehler</b></font>. Prüfe R Code Ausgabe für zusätzliche Information. Debug ANGEHALTEN.]]></de>
             <pl><![CDATA[<font style='color:red;'><b>Błąd</b></font> w logice R. Prosze sprawdzić wynik kodu R dla dodatkowych informacji. Debug ZATRZYMANY.]]></pl>
             <cn><![CDATA[R逻辑 <font style='color:red;'><b>错误</b></font>。更多信息详见R代码输出。调试中止。]]></cn>
             <bg><![CDATA[R logic <font style='color:red;'><b>error</b></font>. Check R code output for additional info. Debug HALTED.]]></bg>
         </string>
         <string id="304" js="1">
             <en><![CDATA[R logic validation <font style='color:green;'><b>PASSED</b></font>.]]></en>
+            <de><![CDATA[R logische validierung <font style='color:green;'><b>OK</b></font>.]]></de>
             <pl><![CDATA[Walidacja logiki R <font style='color:green;'><b>POWIODŁA SIĘ</b></font>.]]></pl>
             <cn><![CDATA[R逻辑验证 <font style='color:green;'><b>通过</b></font>.]]></cn>
             <bg><![CDATA[R Валидизацията на логиката <font style='color:green;'><b>УСПЕШНА</b></font>.]]></bg>
         </string>
         <string id="305" js="1">
             <en>current HTML variables</en>
+            <de>aktuelle HTML variablen</de>
             <pl>obecne zmienne HTML</pl>
             <cn>当前HTML变量</cn>
             <bg>настоящи HTML променливи</bg>
         </string>
         <string id="306" js="1">
             <en>value</en>
+            <de>Wert</de>
             <pl>wartość</pl>
             <cn>数值</cn>
             <bg>стойност</bg>
         </string>
         <string id="307" js="1">
             <en><![CDATA[Test #{0}, session #{1} - runtime debug <b><font style='color:green;'>PASSED</font></b>]]></en>
+            <de><![CDATA[Test #{0}, Sitzung #{1} - Laufzeit debug <b><font style='color:green;'>OK</font></b>]]></de>
             <pl><![CDATA[Test #{0}, sesja #{1} - debug na żywo <b><font style='color:green;'>POWIODŁ SIĘ</font></b>]]></pl>
             <cn><![CDATA[测试 #{0}，章节 #{1} – 运行时间调试 <b><font style='color:green;'>通过</font></b>]]></cn>
             <bg><![CDATA[Тестът #{0}, сесията #{1} - дебъгът в реално време <b><font style='color:green;'>УСПЕШНО</font></b>]]></bg>
         </string>
         <string id="308" js="1">
             <en>End section reached. The test has finished.</en>
+            <de>Endsektion erreicht. Der Test ist zu Ende.</de>
             <pl>Osiągnieto końcową sekcję. Test został skończony.</pl>
             <cn>到达结束章节。测试已完成。</cn>
             <bg>Крайната секция достигната. Тестът е завършен.</bg>
         </string>
         <string id="309" js="1">
             <en>Template #{0}</en>
+            <de>Template</de>
             <pl>Szablon #{0}</pl>
             <cn>模板#{0}</cn>
             <bg>Шаблон #{0}</bg>
         </string>
         <string id="310" js="1">
             <en>Template #{0} loaded ( time limit: {1} ).</en>
+            <de>Template #{0} geladen ( Zeitlimit: {1} ).</de>
             <pl>Szablon #{0} wczytany ( limit czasu: {1} ).</pl>
             <cn> 载入模板 #{0} ( 时限： {1} )。</cn>
             <bg>Шаблон #{0} зареден ( лимит от време: {1} ).</bg>
         </string>
         <string id="311" js="1">
             <en>unlimited</en>
+            <de>unbeschränkt</de>
             <pl>nieograniczony</pl>
             <cn>无限的</cn>
             <bg>неограничен</bg>
         </string>
         <string id="312" js="1">
             <en>sec.</en>
+            <de>Sek.</de>
             <pl>sek.</pl>
             <cn>秒</cn>
             <bg>сек.</bg>
         </string>
         <string id="313" js="1">
             <en>Awaiting user input...</en>
+            <de>Erwarte Benutzereingabe...</de>
             <pl>Oczekiwanie na ruch użytkownika...</pl>
             <cn>等待用户输入…</cn>
             <bg>Очакване за въвеждане на данни...</bg>
         </string>
         <string id="314" js="1">
             <en><![CDATA[Test #{0}, session #{1}, template #{2} - runtime debug <b>(template loaded - awaiting user input...)</b>]]></en>
+            <de><![CDATA[Test #{0}, Sitzung #{1}, Template #{2} - Laufzeit debug <b>(Template geladne - warte auf Benutzereingabe...)</b>]]></de>
             <pl><![CDATA[Test #{0}, sesja #{1}, szablon #{2} - debug na żywo <b>(szablon wczytany - oczekiwanie na ruch użytkownika...)</b>]]></pl>
             <cn><![CDATA[测试 #{0}，章节 #{1}，模板 #{2} – 运行时间调试 <b>(载入模板 – 等待用户输入……)</b>]]></cn>
             <bg><![CDATA[Тестът #{0}, сесията #{1}, шаблонът #{2} - дебъг в реално време <b>(шаблонът зареден - очакване за въвеждане на данни...)</b>]]></bg>
         </string>
         <string id="315" js="1">
             <en>Item submitted. Time limit reached.</en>
+            <de>Item abgeschickt. Zeitlimit erreicht.</de>
             <pl>Element wysłany. Limit czasowy został osiągnięty.</pl>
             <cn>提交项目。已到达时限。</cn>
             <bg>Айтемът изпратен. Лимитът от време достигнат.</bg>
         </string>
         <string id="316" js="1">
             <en><![CDATA[Item submitted. Button with name <b>{0}</b> clicked.]]></en>
+            <de><![CDATA[Item abgeschickt. Knopf mit mit Namen <b>{0}</b> geklickt.]]></de>
             <pl><![CDATA[Element wysłany. Przycisk o nazwie <b>{0}</b> został kliknięty.]]></pl>
             <cn><![CDATA[提交项目。按键名称 <b>{0}</b> 。]]></cn>
             <bg><![CDATA[Айтемът е изпратен. Бутонът <b>{0}</b> е натиснат.]]></bg>
         </string>
         <string id="317" js="1">
             <en>variables send</en>
+            <de>abgesandte Variablen</de>
             <pl>wysłane zmienne</pl>
             <cn>发送变量</cn>
             <bg>променливите изпратени.</bg>
         </string>
         <string id="318" js="1">
             <en>range</en>
+            <de>range</de>
             <pl>zakres</pl>
             <cn>范围</cn>
             <bg>Айтемът изпратен. Лимитът от време достигнат.</bg>
         </string>
         <string id="319" js="1">
             <en>please wait...</en>
+            <de>Bitte warten...</de>
             <pl>proszę czekać...</pl>
             <cn>请等待……</cn>
             <bg>Моля изчакайте...</bg>
         </string>
         <string id="320" js="1">
             <en>Possible loss of unsaved data.</en>
+            <de>Möglicher Verlust von ungespeicherten Daten.</de>
             <pl>Możliwa utrata niezapisanych danych.</pl>
             <cn>可能丢失未保存数据。</cn>
             <bg>Възможна загуба на несхранени данни.</bg>
         </string>
         <string id="321" js="1">
             <en>Are you sure you want to continue? This action will reset unsaved changes in the following modules:</en>
+            <de>Sind Sie sicher das Sie fortfahren wollen? Diese Aktion setzt ungespeicherte Veränderungen in den folgenden Modulen zurück:</de>
             <pl>Jesteś pewien, że chcesz kontynuować? Ta czynność może anulować wszystkie niezapisane zmiany w nastepujących modułach:</pl>
             <cn>确认继续？此操作将在以下模块中重置未保存修改：</cn>
             <bg>Сигурни ли сте, че искате да продължите? Това действие ще анулира несрънението промени в следните модули:</bg>
         </string>
         <string id="322" js="1">
             <en>Are you sure you want to continue? This action will reset unsaved changes in all modules.</en>
+            <de>Sind Sie sicher das Sie fortfahren wollen? Diese Aktion setzt ungespeicherte Veränderungen in allen Modulen zurück.</de>
             <pl>Jesteś pewien, że chcesz kontynuować? Ta czynność może anulować wszystkie niezapisane zmiany we wszystkich modułach.</pl>
             <cn>确认继续？此操作将在所有模块中重置未保存修改。</cn>
             <bg>Сигурни ли сте, че искате да продължите? Това действие ще анулира несрънението промени във всички модули.</bg>
         </string>
         <string id="323" js="1">
             <en>begin</en>
+            <de>Start</de>
             <pl>zacznij</pl>
             <cn>开始</cn>
             <bg>започнете</bg>
         </string>
         <string id="324" js="1">
             <en>restart</en>
+            <de>Neustart</de>
             <pl>zacznij od nowa</pl>
             <cn>重启</cn>
             <bg>започни отново</bg>
         </string>
         <string id="325">
             <en>field delimiter</en>
+            <de>Trennzeichen</de>
             <pl>separator pól</pl>
             <cn>区域分割符</cn>
             <bg>сепаратор на поле</bg>
         </string>
         <string id="326">
-            <en><![CDATA[Single character used to separate fields in a row. Default character is '<b>,</b>'.]]></en>
+        	<en><![CDATA[Single character used to separate fields in a row. Default character is '<b>,</b>'.]]></en>
+            <de><![CDATA[Einzelnes Zeichen welches benutzt wird um Felder in einer Zeile zu trennen. Standardzeichen ist '<b>,</b>'.]]></de>
             <pl><![CDATA[Pojedyńczy znak używany do oddzielenia pól w rzędzie. Domyślny znak to '<b>,</b>'.]]></pl>
             <cn><![CDATA[在行内用于划分区域的单一字符。默认字符为'<b>,</b>'。]]></cn>
             <bg><![CDATA[Единичен знак за отделяне на полетата в реда. Знакът по подразбиране е<b>,</b>'.]]></bg>
         </string>
         <string id="327">
             <en>field enclosure</en>
+            <de>field enclosure</de>
             <pl>objęcie pola</pl>
             <cn>区域边界</cn>
             <bg>завършване на полето</bg>
         </string>
         <string id="328">
             <en><![CDATA[Single character used to enclose string. Default character is '<b>"</b>'.]]></en>
+            <de><![CDATA[Einzelnes Zeichen das benutzt wird um Zeichenketten abzugrenzen. Standardzeichen ist '<b>"</b>'.]]></de>
             <pl><![CDATA[Pojedyńczy znak używany do objęcia zakresu pola. Domyślny znak to '<b>"</b>'.]]></pl>
             <cn><![CDATA[用于标记字符串的单一字符。默认字符为'<b>"</b>'。]]></cn>
             <bg><![CDATA[Единичен знак, използван за завършване на реда от знаци. Знакът по подразбиране е '<b>"</b>'.]]></bg>
         </string>
         <string id="329" js="1">
             <en>Exporting table to CSV file</en>
+            <de>Exportiere Tabelle als CSV Datei</de>
             <pl>Eksportowanie tabeli do pliku CSV</pl>
             <cn>导出表格至CSV文件</cn>
             <bg>Експортиране на таблицата към CSV файл.</bg>
         </string>
         <string id="330">
             <en>header row</en>
+            <de>Kopfzeile</de>
             <pl>rząd naglówka</pl>
             <cn>标题行</cn>
             <bg>заглавен ред</bg>
         </string>
         <string id="331">
             <en>Check box to import CSV with a header row. Header row values will be used as column names.</en>
+            <de>Box anklicken um CSV mit Kopfzeile zu importieren. Werte der Kopfzeile werden als Spaltennamen verwendet.</de>
             <pl>Zaznacz jeśli chcesz zaimportować CSV z rzędem nagłówka. Wartości rzędu nagłówka zostaną użyte jako nazwy kolumn.</pl>
             <cn>包含标题行导入CSV。标题行数值将作为列名称。</cn>
             <bg>Поле за потвърждаване на CSV със заглавен ред. Стойностите на заглавния ред ще бъдат използвани за име на колоната</bg>
         </string>
         <string id="332">
             <en>Check box to export CSV with a header row. Header row will be first row in CSV with table column names.</en>
+            <de>Box anklicken um CSV mit Kopfzeile zu exportieren. Kopfzeile wird die erste Zeile in der CSV Datei mit Spaltennamen.</de>
             <pl>Zaznacz jeśli chcesz wyeksportować CSV z rzędem nagłówka. Rząd nagłówka będzie pierwszym rzędem w CSV z nazwami kolumn tabeli.</pl>
             <cn>包含标题行导出CSV。标题行将作为表格列名称出现在CSV的第一行。</cn>
           <bg>Поле за потвърждаване на CSV със заглавен ред. Заглавния ред ще бъде първия ред в CSV с имена на колоните в таблицата.</bg>
         </string>
         <string id="333" js="1">
             <en>Error loading XML file. Cannot continue with import.</en>
+            <de>Fehler beim laden der XML Datei. Kann nicht mit Import fortfahren.</de>
             <pl>Błąd przy wczytywaniu pliku XML. Import nie może być kontynuowany.</pl>
             <cn>载入XML文件错误。无法继续导入。</cn>
             <bg>Грешка при зареждането на XML файла. Не може да се продължи с импортирането.</bg>
@@ -2176,162 +2507,189 @@ Note: You can add new languages by inserting "<new_language>string translated in
         </string>
         <string id="335">
             <en>session count</en>
+            <de>Sitzungszähler</de>
             <pl>liczba sesji</pl>
             <cn>章节计数</cn>
             <bg>броене на сисиите</bg>
         </string>
         <string id="336" js="1">
             <en>At least one of the fields that should be unique already exists in the system.</en>
+            <de>Mindestens eins der Felder das eindeutig sein muss existiert bereits im System.</de>
             <pl>Przynajmniej jedno pole, które powinno być unikalne, już istnieje w systemie.</pl>
             <cn>系统内存在相同区域。</cn>
             <bg>Поне едно поле, което трябва да е уникално, вече съществува в системата.</bg>
         </string>
         <string id="337">
             <en>list of available objects</en>
+            <de>Liste verfügbarer Objekte</de>
             <pl>lista dostępnych obiektów</pl>
             <cn>可用对象列表</cn>
             <bg>списък на достъпните обекти</bg>
         </string>
         <string id="338" js="1">
             <en>currently selected object:</en>
+            <de>Aktuell ausgewählte Objekte:</de>
             <pl>aktualnie wybrany obiekt:</pl>
             <cn>当前所选对象</cn>
             <bg>актуални избрани обекти</bg>
         </string>
         <string id="339" js="1">
             <en>Drag a column header and drop it here to group by that column</en>
+            <de>Spaltenname hierherziehen (drag and drop) um die Gruppe nach dieser Spalte zu sortieren</de>
             <pl>Przeciągnij nagłówek kolumny i upuść go tutaj aby grupować według danej kolumny</pl>
             <cn>拖动列标题至此以按此列分类</cn>
             <bg>Изтегли заглавието на колоната и го пусни за групиране по колона</bg>
         </string>
         <string id="340" js="1">
             <en>Show rows with value that:</en>
+            <de>Zeige Zeilen mit Wert welcher:</de>
             <pl>Pokaż rzędy z wartością która:</pl>
             <cn>显示包含以下数值的行：</cn>
             <bg>Покажи редовете със стойност:</bg>
         </string>
         <string id="341" js="1">
             <en>Filter</en>
+            <de>Filter</de>
             <pl>Filtruj</pl>
             <cn>筛选</cn>
             <bg>Филтър</bg>
         </string>
         <string id="342" js="1">
             <en>Clear</en>
+            <de>Löschen</de>
             <pl>Wyczyść</pl>
             <cn>清空</cn>
             <bg>Изчисти</bg>
         </string>
         <string id="343" js="1">
             <en>starts with</en>
+            <de>fängt an mit</de>
             <pl>zaczyna się od</pl>
             <cn>起始于</cn>
             <bg>Започни с</bg>
         </string>
         <string id="344" js="1">
             <en>contains</en>
+            <de>enthält</de>
             <pl>zawiera</pl>
             <cn>包含</cn>
             <bg>съдържа</bg>
         </string>
         <string id="345" js="1">
             <en>ends with</en>
+            <de>endet mit</de>
             <pl>kończy się na</pl>
             <cn>结束于</cn>
             <bg>завършва с</bg>
         </string>
         <string id="346" js="1">
             <en>after or equal</en>
+            <de>danach oder gleich</de>
             <pl>po lub równe</pl>
             <cn>迟于（包括</cn>
             <bg>след или равно</bg>
         </string>
         <string id="347" js="1">
             <en>after</en>
+            <de>danach</de>
             <pl>po</pl>
             <cn>迟于</cn>
             <bg>след</bg>
         </string>
         <string id="348" js="1">
             <en>before or equal</en>
+            <de>davor oder gleich</de>
             <pl>przed lub równe</pl>
             <cn>早于（包括</cn>
             <bg>пред или равно</bg>
         </string>
         <string id="349" js="1">
             <en>before</en>
+            <de>davor</de>
             <pl>przed</pl>
             <cn>早于</cn>
             <bg>пред</bg>
         </string>
         <string id="350">
             <en>table structure definition</en>
+            <de>Definition der Tabellenstruktur</de>
             <pl>definicja struktury tabeli</pl>
             <cn>表格结构定义</cn>
             <bg>дефиниране на структурата на таблицата</bg>
         </string>
         <string id="351">
             <en>table data</en>
+            <de>Tabellendaten</de>
             <pl>dane tabeli</pl>
             <cn>表格数据</cn>
             <bg>данни на таблицата</bg>
         </string>
         <string id="352">
             <en>table structure not defined</en>
+            <de>Tabellenstruktur ist nicht definiert</de>
             <pl>struktura tabeli jest niezdefiniowana</pl>
             <cn>未定义表格结构</cn>
             <bg>структурата на таблицата не е дефинирана</bg>
         </string>
         <string id="353" js="1">
             <en>Cannot save table with undefined structure.</en>
+            <de>Kann Tabelle mit undefinierter Struktur nicht speichern.</de>
             <pl>Nie można zapisać tabeli, gdyż posiada ona niezdefiniowaną strukturę.</pl>
             <cn>未定义表格结构，无法保存</cn>
             <bg>Не може да се съхрани таблица с недефинирана структура.</bg>
         </string>
         <string id="354" js="1">
             <en>integer</en>
+            <de>Ganzzahl</de>
             <pl>liczba calkowita</pl>
             <cn>整数</cn>
             <bg>цяло число</bg>
         </string>
         <string id="355" js="1">
             <en>float</en>
+            <de>Fließkomman</de>
             <pl>liczba zmiennoprzecinkowa</pl>
             <cn>浮点数</cn>
             <bg>число с плаваща запетая</bg>            
         </string>
         <string id="356">
             <en>choose the HTML template:</en>
+            <de>Wähle HMTL Template aus:</de>
             <pl>wybierz szablon HTML:</pl>
             <cn>选择HTML模板：</cn>
             <bg>избери HTML шаблон</bg>
         </string>
         <string id="357">
             <en>IF</en>
+            <de>WENN</de>
             <pl>JESLI</pl>
             <cn>如果</cn>
             <bg>АКО</bg>
         </string>
         <string id="358">
             <en>protected variables</en>
+            <de>geschützte Variablen</de>
             <pl>chronione zmienne</pl>
             <cn></cn>
             <bg>запазена променлива</bg>
         </string>
         <string id="359">
             <en>test logic</en>
+            <de>Testlogik</de>
             <pl>logika testu</pl>
             <cn></cn>
             <bg>тестова логика</bg>
         </string>
         <string id="360" js="1">
             <en>Are you sure you want to delete this protected variable?</en>
+            <de>Sind Sie sicher, dass Sie diese geschützte Variable löschen wollen?</de>
             <pl>Jesteś pewien, że chcesz usunąć ta chroniona zmienna?</pl>
             <cn></cn>
             <bg>Сигурни ли сте, че искате да изтриете тази запазена променлива?</bg>
         </string>
         <string id="361" js="1">
             <en>deleting protected variable</en>
+            <de>lösche geschützte Variable</de>
             <pl>usuwanie chronionej zmiennej</pl>
             <cn></cn>
             <bg>изтриване на запазена променлива</bg>
