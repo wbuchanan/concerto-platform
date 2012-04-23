@@ -22,6 +22,7 @@
 class Test extends OModule
 {
     public $name = "unnamed test";
+    public $session_count = 0;
     public static $exportable = true;
     public static $mysql_table_name = "Test";
 
@@ -284,12 +285,6 @@ class Test extends OModule
         return $element;
     }
 
-    public function get_session_count()
-    {
-        $sql = sprintf("SELECT * FROM `TestSession` WHERE `Test_id`='%s'", $this->id);
-        return mysql_num_rows(mysql_query($sql));
-    }
-
     public static function create_db($delete = false)
     {
         if ($delete)
@@ -302,6 +297,7 @@ class Test extends OModule
             `updated` timestamp NOT NULL default CURRENT_TIMESTAMP on update CURRENT_TIMESTAMP,
             `created` timestamp NOT NULL default '0000-00-00 00:00:00',
             `name` text NOT NULL,
+            `session_count` bigint(20) NOT NULL,
             `Sharing_id` int(11) NOT NULL,
             `Owner_id` bigint(20) NOT NULL,
             PRIMARY KEY  (`id`)
@@ -316,7 +312,7 @@ class Test extends OModule
 
         array_push($cols, array(
             "name" => Language::string(335),
-            "property" => "get_session_count",
+            "property" => "session_count",
             "searchable" => true,
             "sortable" => true,
             "type" => "number",
@@ -342,6 +338,15 @@ class Test extends OModule
         return $result;
     }
 
+    public static function update_db($previous_version)
+    {
+        if (Ini::does_patch_apply("3.4.0", $previous_version))
+        {
+            $sql = "ALTER TABLE `User` ADD `session_count` bigint(20) NOT NULL;";
+            if (!mysql_query($sql)) return false;
+        }
+        return true;
+    }
 }
 
 ?>

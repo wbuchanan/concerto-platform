@@ -294,9 +294,8 @@ class User extends OModule
     
     public function get_session_count()
     {
-        $sql = sprintf("SELECT `TestSession`.`id` 
-            FROM `TestSession` 
-            LEFT JOIN `Test` ON `TestSession`.`Test_id`=`Test`.`id`
+        $sql = sprintf("SELECT `Test`.`id` 
+            FROM `Test` 
             LEFT JOIN `User` ON `User`.`id`=`Test`.`Owner_id`
             WHERE `User`.`id`='%s'",  $this->id);
         return mysql_num_rows(mysql_query($sql));

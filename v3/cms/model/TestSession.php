@@ -49,6 +49,9 @@ class TestSession extends OTable
         $session->Test_id = $test_id;
         $lid = $session->mysql_save();
 
+        $sql = sprintf("UPDATE `%s` SET `session_count`=`session_count`+1 WHERE `%s`.`id`=%d", Test::get_mysql_table(), Test::get_mysql_table(), $test_id);
+        mysql_query($sql);
+
         $session = TestSession::from_mysql_id($lid);
         return $session;
     }
@@ -75,7 +78,7 @@ class TestSession extends OTable
         foreach ($values as $v)
         {
             $val = json_decode($v);
-            if(in_array(trim($val->name), $protected_vars)) continue;
+            if (in_array(trim($val->name), $protected_vars)) continue;
 
             if ($val->value == "NA")
             {
@@ -134,10 +137,10 @@ class TestSession extends OTable
 
         $command.=$code;
         if (!$debug_syntax) $command.=$this->get_post_RCode();
-        
+
         $output = array();
         $return = -999;
-        
+
         if (Ini::$r_instances_persistant)
         {
             $command_obj = json_encode(array(
@@ -155,14 +158,14 @@ class TestSession extends OTable
             $result = json_decode(trim($response));
             if (TestServer::$debug)
                     TestServer::log_debug("TestSession->RCall --- sent and recieved response");
-            
+
             $output = explode("\n", $result->output);
             $return = $result->return;
         }
         else
         {
             $this->write_RSource_file($command);
-            
+
             include Ini::$path_internal . 'SETTINGS.php';
             exec("\"" . Ini::$path_r_script . "\" --vanilla \"" . $this->get_RSource_file_path() . "\" " . $db_host . " " . ($db_port != "" ? $db_port : "3306") . " " . $db_user . " " . $db_password . " " . $db_name . " " . $this->id . " " . (Ini::$path_mysql_home != "" ? "'" . Ini::$path_mysql_home . "'" : ""), $output, $return);
         }
@@ -173,16 +176,17 @@ class TestSession extends OTable
         $this->time_limit = $thisSession->time_limit;
         $this->HTML = $thisSession->HTML;
         $this->Template_id = $thisSession->Template_id;
-        
-        if($return != 0){
+
+        if ($return != 0)
+        {
             $this->status = TestSession::TEST_SESSION_STATUS_ERROR;
             $thisSession->status = TestSession::TEST_SESSION_STATUS_ERROR;
             $thisSession->mysql_save();
         }
 
-        if ($this->status == TestSession::TEST_SESSION_STATUS_FINISHED || 
-                $this->status == TestSession::TEST_SESSION_STATUS_ERROR || 
-                $this->status == TestSession::TEST_SESSION_STATUS_STOPPED || 
+        if ($this->status == TestSession::TEST_SESSION_STATUS_FINISHED ||
+                $this->status == TestSession::TEST_SESSION_STATUS_ERROR ||
+                $this->status == TestSession::TEST_SESSION_STATUS_STOPPED ||
                 $this->status == TestSession::TEST_SESSION_STATUS_TAMPERED)
         {
             if (Ini::$r_instances_persistant)
@@ -190,16 +194,16 @@ class TestSession extends OTable
                 if (TestServer::is_running())
                         TestServer::send("close:" . $this->id);
             }
-            else 
+            else
             {
                 $this->mysql_delete();
             }
         }
-        
+
         $test = Test::from_mysql_id($this->Test_id);
         $logged_user = User::get_logged_user();
         $debug_mode = $logged_user->is_object_readable($test);
-        
+
         $response = array(
             "data" => array(
                 "TIME_LIMIT" => $this->time_limit,
@@ -210,24 +214,24 @@ class TestSession extends OTable
                 "TEMPLATE_ID" => $this->Template_id
             )
         );
-        
-        if($debug_mode)
+
+        if ($debug_mode)
         {
-            $command = htmlspecialchars($command,ENT_QUOTES);
-            for($i=0;$i<count($output);$i++)
+            $command = htmlspecialchars($command, ENT_QUOTES);
+            for ($i = 0; $i < count($output); $i++)
             {
-                $output[$i]=htmlspecialchars($output[$i],ENT_QUOTES);
+                $output[$i] = htmlspecialchars($output[$i], ENT_QUOTES);
             }
             $response["debug"] = array(
-                "code"=>$command,
-                "return"=>$return,
-                "output"=>  $output
+                "code" => $command,
+                "return" => $return,
+                "output" => $output
             );
         }
-        
-        if(Ini::$timer_tamper_prevention)
+
+        if (Ini::$timer_tamper_prevention)
         {
-            $sql = sprintf("UPDATE `%s` SET `time_tamper_prevention`=%d WHERE `id`=%d",  TestSession::get_mysql_table(),time(),$this->id);
+            $sql = sprintf("UPDATE `%s` SET `time_tamper_prevention`=%d WHERE `id`=%d", TestSession::get_mysql_table(), time(), $this->id);
             mysql_query($sql);
         }
 
@@ -365,21 +369,22 @@ class TestSession extends OTable
         {
             $sql = "ALTER TABLE `TestSession` ADD `status` tinyint(4) NOT NULL default '0';";
             if (!mysql_query($sql)) return false;
-            
+
             $sql = "ALTER TABLE `TestSession` ADD `time_limit` int(11) NOT NULL default '0';";
             if (!mysql_query($sql)) return false;
-            
+
             $sql = "ALTER TABLE `TestSession` ADD `HTML` text NOT NULL default '';";
             if (!mysql_query($sql)) return false;
-            
+
             $sql = "ALTER TABLE `TestSession` ADD `Template_id` bigint(20) NOT NULL default '0';";
             if (!mysql_query($sql)) return false;
-            
+
             $sql = "ALTER TABLE  `TestSession` ADD  `time_tamper_prevention` INT NOT NULL;";
             if (!mysql_query($sql)) return false;
         }
         return true;
     }
+
 }
 
 ?>
