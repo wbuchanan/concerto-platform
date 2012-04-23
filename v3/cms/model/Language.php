@@ -78,6 +78,14 @@ class Language
             {
                 return "zh-CHS";
             }
+            case "de":
+            {
+                return "de-DE";
+            }
+            case "fr":
+            {
+                return "fr-FR";
+            }
         }
         return "en-GB";
     }

@@ -28,36 +28,36 @@ Note: You can add new languages by inserting "<new_language>string translated in
 <root>
     <languages>
         <language id="en">english</language>
-         <language id="de">Deutsch</language>
+        <language id="de">deutsch</language>
         <language id="pl">polski</language>
-    	  <language id="cn">中文</language>
-           <language id="fr">francais</language>
+        <language id="cn">中文</language>
+           <!--<language id="fr">francais</language>-->
         <language id="bg">български</language>
-       </languages>
+    </languages>
     
     <strings>
         <string id="1" js="1">
             <en><![CDATA[Variable name validation failed. Only alphanumeric, '_' and '.' characters allowed and the value can't begin with a numeric. Value has been changed.<br/><br/>old value: <b>{0}</b></br>new value: <b>{1}</b>]]></en>
-                        <de><![CDATA[Überprüfung des Variablennamens schlug fehl. Nur alphamumerische, sowie das '_' und '.' Zeichen sind erlaubt. Der Name darf nicht mit einer Zahl beginnen. Wert wurde geändert.<br/><br/>Alter Wert: <b>{0}</b></br>Neuer Wert: <b>{1}</b>]]></de>
+            <de><![CDATA[Überprüfung des Variablennamens schlug fehl. Nur alphamumerische, sowie das '_' und '.' Zeichen sind erlaubt. Der Name darf nicht mit einer Zahl beginnen. Wert wurde geändert.<br/><br/>Alter Wert: <b>{0}</b></br>Neuer Wert: <b>{1}</b>]]></de>
             <pl><![CDATA[Walidacja zmiennej nie powiodla sie. Tylko znaki alfanumeryczne, '_' i '.' sa dozwolone, oraz zmienna nie moze zaczynac sie od numeru. Wartosc zostala zmieniona.<br/><br/>poprzednia wartosc: <b>{0}</b></br>nowa wartosc: <b>{1}</b>]]></pl>
             <cn><![CDATA[变量名称验证失败。只允许使用字母、数字以及'_'和'.'，并且不可以数字开头。数值已更改。<br/><br/>旧数值: <b>{0}</b></br>新数值: <b>{1}</b>]]></cn>  
-        <fr><![CDATA[La validation du nom de la variable a échoué. Seuls les caractères alphanumériques, les '_' et les '.' sont acceptés et la vaeur ne peut pas commencer par un chiffre. La valeur a été changée.<br/><br/>ancienne valeur: <b>{0}</b></br>nouvelle valeur: <b>{1}</b>]]></fr>
-           <bg><![CDATA[Валидизацията на името на променливата е неуспешна. Само букви и цифри, '_' и '.' са допустими и стойността не може да започва с цифра. Стойността е променена.<br/><br/>стара стойност: <b>{0}</b></br>нова стойност: <b>{1}</b>]]></bg>    
+            <fr><![CDATA[La validation du nom de la variable a échoué. Seuls les caractères alphanumériques, les '_' et les '.' sont acceptés et la vaeur ne peut pas commencer par un chiffre. La valeur a été changée.<br/><br/>ancienne valeur: <b>{0}</b></br>nouvelle valeur: <b>{1}</b>]]></fr>
+            <bg><![CDATA[Валидизацията на името на променливата е неуспешна. Само букви и цифри, '_' и '.' са допустими и стойността не може да започва с цифра. Стойността е променена.<br/><br/>стара стойност: <b>{0}</b></br>нова стойност: <b>{1}</b>]]></bg>    
         </string>
         <string id="2" js="1">
             <en>variable validation</en>
-             <de>Variablen Überprüfung</de>
+            <de>Variablen Überprüfung</de>
             <pl>walidacja zmiennej</pl>
             <cn>变量验证</cn>	
             <fr>validation de la variable</fr>
-             <bg>валидизация на променливата</bg>
+            <bg>валидизация на променливата</bg>
         </string>
         <string id="3" js="1">
             <en>changing description</en>
             <de>Ändern der Beschreibung</de>
             <pl>zmiana opisu</pl>
             <cn>改变描述</cn>
-             <fr>changement de description</fr>
+            <fr>changement de description</fr>
             <bg>промяна на описанието</bg>
         </string>
         <string id="4" js="1">
@@ -65,7 +65,7 @@ Note: You can add new languages by inserting "<new_language>string translated in
             <de>Concerto - Bestätigung</de>
             <pl>Concerto - potwierdzenie</pl>
             <cn>Concerto - 确认</cn>
-             <fr>Concerto - confirmation</fr>
+            <fr>Concerto - confirmation</fr>
             <bg>Concerto - потвърждение</bg>
         </string>
         <string id="5" js="1">
@@ -73,23 +73,23 @@ Note: You can add new languages by inserting "<new_language>string translated in
             <de>Concerto - Alarm</de>
             <pl>Concerto - alert</pl>
             <cn>Concerto - 警告</cn>
-             <fr>Concerto - alerte</fr>
-             <bg>Concerto - внимание</bg>
+            <fr>Concerto - alerte</fr>
+            <bg>Concerto - внимание</bg>
         </string>
         <string id="6" js="1">
             <en>HTML controls `name` validation failed. Only alphanumeric, '_' and '.' characters allowed and the value can't begin with a numeric. Value has been changed.\r\n\r\nold value: {0}\r\nnew value: {1}</en>
             <de>HTML Kontrollüberprüfung von `Name` schlug fehl.  Nur alphamumerische, sowie das '_' und '.' Zeichen sind erlaubt. Der Name darf nicht mit einer Zahl beginnen. Wert wurde geändert.\r\n\r\nAlter Wert: {0}\r\nNeuer Wert: {1}</de>
             <pl>Walidacja pola `nazwa` kontrolki HTML nie powiodła się. Tylko wartości alfanumeryczne, '_' i '.' są dozwolone, oraz wartość nie może zaczynać się od liczby. Wartość została zmieniona.\r\n\r\npoprzednia wartość: {0}\r\nnowa wartość: {1}</pl>
             <cn>HTML控制`名称`验证失败。只允许使用字母、数字以及'_'和'.'，并且不可以数字开头。数值已更改。\r\n\r\n旧数值: {0}\r\n新数值: {1}</cn>
-              <fr>HTML le contrôle de la variable `nom` a échoué. seuls les caractères alphanumériques, les  '_' et '.' sont acceptés et la valeur ne peut pas commencer per un chiffre. la valeur a été changée\n\r\nancienne valeur: {0}\r\nnouvelle valeur: {1}</en>
-            <bg>Валидизацията на името на HTML контролата неуспешна. Само букви и цифри, '_' и '.' за допустими и стойността не може да започва с цифра. Стойността беше променена.\r\n\r\nстара стойност: {0}\r\nнова стойност: {1}</bg                                      
+            <fr>HTML le contrôle de la variable `nom` a échoué. seuls les caractères alphanumériques, les  '_' et '.' sont acceptés et la valeur ne peut pas commencer per un chiffre. la valeur a été changée\n\r\nancienne valeur: {0}\r\nnouvelle valeur: {1}</fr>
+            <bg>Валидизацията на името на HTML контролата неуспешна. Само букви и цифри, '_' и '.' за допустими и стойността не може да започва с цифра. Стойността беше променена.\r\n\r\nстара стойност: {0}\r\nнова стойност: {1}</bg>                                      
         </string>
         <string id="7" js="1">
             <en>adding new object</en>
             <de>Füge neues Objekt hinzu</de>
             <pl>dodawanie nowego obiektu</pl>
             <cn>添加新对象</cn>
-             <fr>ajouter un nouvel objet</fr>
+            <fr>ajouter un nouvel objet</fr>
             <bg>прибавяне на нов обект</bg>
         </string>
         <string id="8" js="1">
@@ -257,8 +257,8 @@ Note: You can add new languages by inserting "<new_language>string translated in
             <de>Sind sie sicher, dass Sie die aktuelle Tabellenstruktur und Daten durch die aus der ausgewählten Datei ersetzen wollen?</de>
             <pl>Jesteś pewien że chcesz zastąpić obecną strukturę i dane tabeli tymi z pliku?</pl>
             <cn>确认使用所选文件表格结构数据替代当前表格？</cn>
-             <fr>Êtes-vous certain de vouloir remplacer la structure et les données du présent tableau par celles du fichier sélectionné?</fr>
-             <bg>Сигурни ли сте, че искате да заместите настоящата структура и данни на таблицата с тези от избраната таблица</bg>
+            <fr>Êtes-vous certain de vouloir remplacer la structure et les données du présent tableau par celles du fichier sélectionné?</fr>
+            <bg>Сигурни ли сте, че искате да заместите настоящата структура и данни на таблицата с тези от избраната таблица</bg>
         </string>
         <string id="29" js="1">
             <en>file uploaded</en>
@@ -345,8 +345,8 @@ Note: You can add new languages by inserting "<new_language>string translated in
             <de>Bearbeite HTML: Aktuelles HTML:</de>
             <pl>Edycja HTML. Obecny HTML:</pl>
             <cn>编辑HTML。当前HTML：</cn>
-             <fr>Modifier HTML. HTML courant:</fr>
-             <bg>Редактирай HTML. Настоящ HTML:</bg>
+            <fr>Modifier HTML. HTML courant:</fr>
+            <bg>Редактирай HTML. Настоящ HTML:</bg>
         </string>
         <string id="40" js="1">
             <en>Directly enter R code that is to be interpreted.</en>
@@ -385,8 +385,8 @@ Note: You can add new languages by inserting "<new_language>string translated in
             <de><![CDATA[Definiere Variablen (d.h. setze Variablen) und Variablen Typen in R, HTML Templates oder beidem. Methoden um Vairabeln zu setzen: <ul><li><b>aus Tabelle</b>: wähle eine bereits definierte Tabelle in Concerto und filtere die notwendigen Zeilen und Spalten. Der ganzen Tabelle gleichsetzen in dem man die <b>WHERE</b> Aussage leer lässt</li><li><b>durch R Code</b>: R code direkt eingeben. Z.B. Resultat einer Funktion, mathematische Berechnung</li></ul>]]></de>
             <pl><![CDATA[Ta sekcja daje mozliwość zadeklarowania zmiennej w logice testu. Można dodatkowo również zaznaczyć checkbox aby sprawić żeby zmienna była widoczna w szablonie HTML. Można ustawić zmienną jedną z trzech metod:<ul><li><b>z tabeli</b>: można wybrać wcześniej zdefiniowaną tabelę w Concerto, oraz jej konkretne rekordy i kolumny. Można również wybrać całą tabelę pozostawiając blok <b>GDZIE</b> pusty</li><li><b>przez kod R</b>: można ustawić zmienną używając kodu R. Może to być cokolwiek co da się wykonać w języku R. Np. rezultat funkcji, matematyczne obliczenie</li></ul>]]></pl>
             <cn><![CDATA[在R，HTML模板中定义变量及变量类型。方法如下： <ul><li><b>来自表格</b>：选择之前在Concerto中定义的表格并筛选特定的行列。若保留<b>当</b> 语句为空可选定全部表格</li><li><b>通过R代码</b>：直接输入R代码，例如函数结论，数学计算。</li><li><b>使用变量</b>：根据已定义变量设定新变量。使用自动填充功能方便从已声明变量中查找特定变量。</li></ul>]]></cn>
-             <fr><![CDATA[Définir les variables (par ex. établir les variables) et les types de variables, les modèles HTML ou les deux dans R. Méthode afin de d'établir les variables: <ul><li><b>du tableau</b>: sélectionner un tableau préalablement défini dans concerto et filtrer les lignes et colonnes nécessaires. Établir un tableau complet en laissant la clause <b>OU</b> vide </li><li><b>avec le code R </b>: taper directement dans le code R. Par exemple: fonctiont résultat, calcul mathématique</li></ul>]]></fr>
-           <bg><![CDATA[Дефинирайте променливи (т.е. създайте променливи) и вида на променливите в R, HTML шаблоните или в двете. Методи за създаване на променлива: <ul><li><b>чрез таблица</b>: изберете предварително дефинирана таблица в Concerto и филтрирайте необходимите редове и колони. Може да вземете цяла таблица <b>КЪДЕ</b> условието е празно</li><li><b>чрез R код</b>: директно като напишете R кода. Т.е. резултат от функция, математическо пресмятане</li></ul>]]> </bg>   
+            <fr><![CDATA[Définir les variables (par ex. établir les variables) et les types de variables, les modèles HTML ou les deux dans R. Méthode afin de d'établir les variables: <ul><li><b>du tableau</b>: sélectionner un tableau préalablement défini dans concerto et filtrer les lignes et colonnes nécessaires. Établir un tableau complet en laissant la clause <b>OU</b> vide </li><li><b>avec le code R </b>: taper directement dans le code R. Par exemple: fonctiont résultat, calcul mathématique</li></ul>]]></fr>
+            <bg><![CDATA[Дефинирайте променливи (т.е. създайте променливи) и вида на променливите в R, HTML шаблоните или в двете. Методи за създаване на променлива: <ul><li><b>чрез таблица</b>: изберете предварително дефинирана таблица в Concerto и филтрирайте необходимите редове и колони. Може да вземете цяла таблица <b>КЪДЕ</b> условието е празно</li><li><b>чрез R код</b>: директно като напишете R кода. Т.е. резултат от функция, математическо пресмятане</li></ul>]]> </bg>   
         </string>
         <string id="45" js="1">
             <en>The start section is the entry point to your test logic. It cannot be modified.</en>
@@ -409,8 +409,8 @@ Note: You can add new languages by inserting "<new_language>string translated in
             <de><![CDATA[Verändere existierende Tabelle mit der Hilfe von drei grundlegenden Datenbankoperationen:<ul><li><b>INSERT</b>: füge eine einzelne Zeile ein (mit Werten die zu jeder der Spalten korrespondieren)</li><li><b>UPDATE</b>: modifiziere alle Tabellenzeilen auf die die Kriterien in der <b>WHERE</b> Aussage zutreffen. Geben Sie die zu modifizierenden Spalten und die Werte dafür an.</li><li><b>DELETE</b>: lösche alle Tabellenzeilen auf die Kriterien in der <b>WHERE</b> Aussage zutreffen.</li></ul>]]></de>
             <pl><![CDATA[Używajac tej sekcji można zmodyfikować wcześniej zdefiniowane tabele. Można wykonać trzy podstawowoe operacje na bazie danych:<ul><li><b>DODANIE</b>: używajac tej komendy można dodać nowy pojedyńczy rekord z wybranymi wartościami</li><li><b>ZMIANA</b>: używając tej komendy można zmodyfikować rekordy tabeli które spełniaja podane kryteria w bloku <b>GDZIE</b>. Można ustawić które kolumny chce się zmodyfikować i jaką wartość chce się im dać.</li><li><b>USUŃ</b>: używając tej komendy możesz usunąć rekordy tabeli które spełniają kryteria podane w bloku <b>GDZIE</b>.</li></ul>]]></pl>
             <cn><![CDATA[借助以下三种基本数据库操作修改已有表格：<ul><li><b>插入</b>：插入一行及每列数值</li><li><b>更新</b>：修改表格行以满足 <b>当</b> 语句中的标准。可以指定修改的列及其数值。</li><li><b>删除</b>：删除表格中满足<b>当</b> 语句中标准的行。</li></ul>]]></cn>
-             <fr><![CDATA[Modifier les tableaux existant avec l'aide de trois opérations de base:<ul><li><b>INSERTION</b>: insère une seule ligne et ses valeurs correspondantes dans chacune des colonnes.</li><li><b>Mettre à jour </b>: modifie les lignes du tableau qui rencontrent les critères inclus dans la clause <b>OU</b>. spécifiez quelle colonnes vous voulez modifier et les valeurs de chacune d'entre elles.</li><li><b>Supprimer</b>: supprime les lignes du tableau qui rencontrent les critères inclus dans la clause <b>OU</b>.</li></ul>]]></fr>
-             <bg><![CDATA[Променете съществуващите таблици с помощта на три основни операции за бази данни: <ul><li><b>ВМЪКНИ</b>: вмъкни единичен ред и стойности отнасящи се за всяка колона </li><li><b>ОБНОВИ</b>: промени редовете на таблицата, които отговорят на критерия, който се намира <b>КЪДЕ</b> в условието. Посочете кои колони искате да модифицирате и стойностите за всяка.</li><li><b>ИЗТРИЙ</b>: изтрийте редове от таблицата, които се намират <b>КЪДЕ</b> в условието.</li></ul>]]></bg>
+            <fr><![CDATA[Modifier les tableaux existant avec l'aide de trois opérations de base:<ul><li><b>INSERTION</b>: insère une seule ligne et ses valeurs correspondantes dans chacune des colonnes.</li><li><b>Mettre à jour </b>: modifie les lignes du tableau qui rencontrent les critères inclus dans la clause <b>OU</b>. spécifiez quelle colonnes vous voulez modifier et les valeurs de chacune d'entre elles.</li><li><b>Supprimer</b>: supprime les lignes du tableau qui rencontrent les critères inclus dans la clause <b>OU</b>.</li></ul>]]></fr>
+            <bg><![CDATA[Променете съществуващите таблици с помощта на три основни операции за бази данни: <ul><li><b>ВМЪКНИ</b>: вмъкни единичен ред и стойности отнасящи се за всяка колона </li><li><b>ОБНОВИ</b>: промени редовете на таблицата, които отговорят на критерия, който се намира <b>КЪДЕ</b> в условието. Посочете кои колони искате да модифицирате и стойностите за всяка.</li><li><b>ИЗТРИЙ</b>: изтрийте редове от таблицата, които се намират <b>КЪДЕ</b> в условието.</li></ul>]]></bg>
         </string>
         <string id="48" js="1">
             <en>This is the custom test section.</en>
@@ -568,8 +568,8 @@ Note: You can add new languages by inserting "<new_language>string translated in
             <de>Kombination von Benutzername und Passwort ungültig!</de>
             <pl>kombinacja login/hasło jest niepoprawna!</pl>
             <cn>用户名与密码不匹配！</cn>
-          <fr>La combinaison nom d'utilisateur/mot de passe est incorrecte!</fr>
-          <bg>Комбинацията потребителско име/парола е грешна</bg>
+            <fr>La combinaison nom d'utilisateur/mot de passe est incorrecte!</fr>
+            <bg>Комбинацията потребителско име/парола е грешна</bg>
         </string>
         <string id="68">
             <en>unnamed custom section</en>
@@ -624,8 +624,8 @@ Note: You can add new languages by inserting "<new_language>string translated in
             <de>unbenannte Variable</de>
             <pl>nienazwana tabela</pl>
             <cn>未命名表格</cn>
-             <en>veriable sans nom</en>
-             <bg>променлива без име</bg>
+            <en>veriable sans nom</en>
+            <bg>променлива без име</bg>
         </string>
         <string id="75">
             <en>unnamed template</en>
@@ -704,7 +704,7 @@ Note: You can add new languages by inserting "<new_language>string translated in
             <cn>自主测试章节</cn>
             <fr>section de test personnalisée</fr>
             <bg>персонализирани тестови секции</bg>
-            </string>
+        </string>
         <string id="85">
             <en>tables</en>
             <de>Tabellen</de>
@@ -747,8 +747,8 @@ Note: You can add new languages by inserting "<new_language>string translated in
             <de>Administratorentypen</de>
             <pl>typy administratorów</pl>
             <cn>管理员类型</cn>
-             <fr>atypes d'administrateurs</fr>
-             <bg>видове администратори</bg>
+            <fr>atypes d'administrateurs</fr>
+            <bg>видове администратори</bg>
         </string>
         <string id="91">
             <en>admin groups</en>
@@ -1115,7 +1115,7 @@ Note: You can add new languages by inserting "<new_language>string translated in
             <de>Zugriffsrechte für Template</de>
             <pl>prawa dostępu szablonu</pl>
             <cn>模板访问权限</cn>
-            <f>droits d'accès du modèle</fr>
+            <fr>droits d'accès du modèle</fr>
             <bg>права за достъп до шаблона</bg>
         </string>
         <string id="138">
@@ -1187,8 +1187,8 @@ Note: You can add new languages by inserting "<new_language>string translated in
             <de>wähle Sektionstyp</de>
             <pl>wybierz typ sekcji</pl>
             <cn>选择章节类型</cn>
-             <fr>choisir un type de section</fr>
-             <bg>избери вида на секцията</bg>
+            <fr>choisir un type de section</fr>
+            <bg>избери вида на секцията</bg>
         </string>
         <string id="147">
             <en>basic sections</en>
@@ -1269,7 +1269,7 @@ Note: You can add new languages by inserting "<new_language>string translated in
             <cn>管理群所有者</cn>
             <fr>propriétaire du groupe d'administrateurs</fr>
             <bg>собственик на групата администратори</bg>
-            <string>
+        </string>
         <string id="157">
             <en>editing admin type</en>
             <de>Bearbeite Administratorentyp</de>
@@ -1952,8 +1952,8 @@ Note: You can add new languages by inserting "<new_language>string translated in
             <en>Select the MySQL table whose structure and data are to be imported into this table.</en>
             <de>Wähle MySQL Tabelle aus deren Struktur und Daten in diese Tabelle importiert werden sollen.</de>
             <pl>Wybierz tabelę MySQL, której strukturę i dane chciałbyś zaimportować do tej tabeli.</pl>
-             <cn>选择MySQL表格导入其结构和数据至此表格</cn>
-             <bg>Избери MySQL таблицата, чиято структура и данни ще бъдат ще бъдат импортирани в тази таблица</bg>
+            <cn>选择MySQL表格导入其结构和数据至此表格</cn>
+            <bg>Избери MySQL таблицата, чиято структура и данни ще бъдат ще бъдат импортирани в тази таблица</bg>
         </string>
         <string id="256">
             <en>Select the CSV file to be imported.</en>
@@ -2022,8 +2022,8 @@ Note: You can add new languages by inserting "<new_language>string translated in
             <en>Export</en>
             <de>Export</de>
             <pl>Eksport</pl>
-             <cn>导出</cn>
-             <bg>Експорт</bg>
+            <cn>导出</cn>
+            <bg>Експорт</bg>
         </string>
         <string id="266">
             <en>Import new object</en>
@@ -2057,8 +2057,8 @@ Note: You can add new languages by inserting "<new_language>string translated in
             <en>Object imported</en>
             <de>Objekt importiert</de>
             <pl>Obiekt zaimportowany</pl>
-             <cn>已导入对象</cn>
-             <bg>Обектът е импортиран</bg>
+            <cn>已导入对象</cn>
+            <bg>Обектът е импортиран</bg>
         </string>
         <string id="271" js="1">
             <en>There was an error while importing the object</en>
@@ -2100,7 +2100,7 @@ Note: You can add new languages by inserting "<new_language>string translated in
             <de><![CDATA[R & HTML]]></de>
             <pl>R i HTML</pl>
             <cn><![CDATA[R & HTML]]></cn>
-            <bg>><![CDATA[R и HTML]]></bg>
+            <bg><![CDATA[R и HTML]]></bg>
         </string>
         <string id="277">
             <en>IN</en>
@@ -2446,7 +2446,7 @@ Note: You can add new languages by inserting "<new_language>string translated in
             <bg>сепаратор на поле</bg>
         </string>
         <string id="326">
-        	<en><![CDATA[Single character used to separate fields in a row. Default character is '<b>,</b>'.]]></en>
+            <en><![CDATA[Single character used to separate fields in a row. Default character is '<b>,</b>'.]]></en>
             <de><![CDATA[Einzelnes Zeichen welches benutzt wird um Felder in einer Zeile zu trennen. Standardzeichen ist '<b>,</b>'.]]></de>
             <pl><![CDATA[Pojedyńczy znak używany do oddzielenia pól w rzędzie. Domyślny znak to '<b>,</b>'.]]></pl>
             <cn><![CDATA[在行内用于划分区域的单一字符。默认字符为'<b>,</b>'。]]></cn>
@@ -2492,7 +2492,7 @@ Note: You can add new languages by inserting "<new_language>string translated in
             <de>Box anklicken um CSV mit Kopfzeile zu exportieren. Kopfzeile wird die erste Zeile in der CSV Datei mit Spaltennamen.</de>
             <pl>Zaznacz jeśli chcesz wyeksportować CSV z rzędem nagłówka. Rząd nagłówka będzie pierwszym rzędem w CSV z nazwami kolumn tabeli.</pl>
             <cn>包含标题行导出CSV。标题行将作为表格列名称出现在CSV的第一行。</cn>
-            <bg>Поле за потвърждаване на CSV със заглавен ред. Заглавен ред ще бъде първият ред в CSV с имена на колоните в таблицата.</bg>
+            <bg>Поле за потвърждаване на CSV със заглавен ред. Заглавния ред ще бъде първия ред в CSV с имена на колоните в таблицата.</bg>
         </string>
         <string id="333" js="1">
             <en>Error loading XML file. Cannot continue with import.</en>
@@ -2505,7 +2505,8 @@ Note: You can add new languages by inserting "<new_language>string translated in
             <en>Column delimiter and enclosure fields are mandatory.</en>
             <pl>Pola separacji i objęcia kolumn nie mogą być puste.</pl>
             <cn>列分隔符与区域标记为必需。</cn>
-            <bg>Сепараторът за колони и за завършването на полета не е задължително</bg>
+            <de></de>
+            <bg>Сепараторът за колони и за вършването на полета не е задължително</bg>
         </string>
         <string id="335">
             <en>session count</en>
@@ -2695,6 +2696,13 @@ Note: You can add new languages by inserting "<new_language>string translated in
             <pl>usuwanie chronionej zmiennej</pl>
             <cn></cn>
             <bg>изтриване на запазена променлива</bg>
+        </string>
+        <string id="362">
+            <en>run test</en>
+            <de></de>
+            <pl>uruchom test</pl>
+            <cn></cn>
+            <bg></bg>
         </string>
     </strings>
 </root> 

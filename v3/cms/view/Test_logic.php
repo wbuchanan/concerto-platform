@@ -39,6 +39,7 @@ if (!$logged_user->is_object_editable($obj)) die(Language::string(81));
         Methods.iniIconButton("#btnDebugTest", "lightbulb");
         Methods.iniIconButton("#btnLogicVariables", "star");
         Methods.iniIconButton(".btnAddLogicSection", "plus");
+        Methods.iniIconButton("#btnRunTest", "play");
         $( "#divTestLogic" ).sortable({
             items: "div.sortable",
             handle: ".sortableHandle"
@@ -103,6 +104,9 @@ if ($oid != 0)
             </td>
             <td>
                 <button id="btnDebugTest" onclick="Test.uiIniDebug()"><?= Language::string(284) ?></button>
+            </td>
+            <td>
+                <button id="btnRunTest" onclick="window.open('<?=Ini::$external_path."?tid=".$obj->id?>','_blank')"><?= Language::string(362) ?></button>
             </td>
         </tr>
     </table>
