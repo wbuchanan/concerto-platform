@@ -57,6 +57,16 @@ class TestSession extends OTable
         return $session;
     }
 
+    public function remove()
+    {
+        if (Ini::$r_instances_persistant)
+        {
+            if (TestServer::is_running())
+                    TestServer::send("close:" . $session->id);
+        }
+        $this->mysql_delete();
+    }
+
     public function resume($values = array())
     {
         return $this->run_Test($this->counter, $values);
@@ -147,7 +157,7 @@ class TestSession extends OTable
             $command_obj = json_encode(array(
                 "session_id" => $this->id,
                 "code" => $command,
-                "close" => $close ? 1 : 0
+                "close" => 0
                     ));
 
             if (TestServer::$debug)
@@ -172,50 +182,38 @@ class TestSession extends OTable
         }
 
         $thisSession = TestSession::from_mysql_id($this->id);
-        $this->counter = $thisSession->counter;
-        $this->status = $thisSession->status;
-        $this->time_limit = $thisSession->time_limit;
-        $this->HTML = $thisSession->HTML;
-        $this->Template_id = $thisSession->Template_id;
 
         if ($return != 0)
         {
-            $this->status = TestSession::TEST_SESSION_STATUS_ERROR;
             $thisSession->status = TestSession::TEST_SESSION_STATUS_ERROR;
-            $thisSession->mysql_save();
         }
 
-        if ($this->status == TestSession::TEST_SESSION_STATUS_FINISHED ||
-                $this->status == TestSession::TEST_SESSION_STATUS_ERROR ||
-                $this->status == TestSession::TEST_SESSION_STATUS_STOPPED ||
-                $this->status == TestSession::TEST_SESSION_STATUS_TAMPERED)
+        $removed = false;
+        if ($thisSession->status == TestSession::TEST_SESSION_STATUS_FINISHED ||
+                $thisSession->status == TestSession::TEST_SESSION_STATUS_ERROR ||
+                $thisSession->status == TestSession::TEST_SESSION_STATUS_STOPPED ||
+                $thisSession->status == TestSession::TEST_SESSION_STATUS_TAMPERED || 
+                $close)
         {
-            if (Ini::$r_instances_persistant)
-            {
-                if (TestServer::is_running())
-                        TestServer::send("close:" . $this->id);
-            }
-            else
-            {
-                $this->mysql_delete();
-            }
+            $thisSession->remove();
+            $removed = true;
         }
 
         $test = Test::from_mysql_id($this->Test_id);
-        $debug = false;
+        $debug_mode = false;
         $logged_user = User::get_logged_user();
         if ($logged_user != null)
                 $debug_mode = $logged_user->is_object_readable($test);
 
         $response = array(
             "data" => array(
-                "HASH" => $this->hash,
-                "TIME_LIMIT" => $this->time_limit,
-                "HTML" => $this->HTML,
-                "TEST_ID" => $this->Test_id,
-                "TEST_SESSION_ID" => $this->id,
-                "STATUS" => $this->status,
-                "TEMPLATE_ID" => $this->Template_id
+                "HASH" => $thisSession->hash,
+                "TIME_LIMIT" => $thisSession->time_limit,
+                "HTML" => $thisSession->HTML,
+                "TEST_ID" => $thisSession->Test_id,
+                "TEST_SESSION_ID" => $thisSession->id,
+                "STATUS" => $thisSession->status,
+                "TEMPLATE_ID" => $thisSession->Template_id
             )
         );
 
@@ -233,9 +231,9 @@ class TestSession extends OTable
             );
         }
 
-        if (Ini::$timer_tamper_prevention)
+        if (Ini::$timer_tamper_prevention && !$removed)
         {
-            $sql = sprintf("UPDATE `%s` SET `time_tamper_prevention`=%d WHERE `id`=%d", TestSession::get_mysql_table(), time(), $this->id);
+            $sql = sprintf("UPDATE `%s` SET `time_tamper_prevention`=%d WHERE `id`=%d", TestSession::get_mysql_table(), time(), $thisSession->id);
             mysql_query($sql);
         }
 

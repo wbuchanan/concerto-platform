@@ -415,6 +415,8 @@ class TestServer
             socket_close($this->clients[$key]["sock"]);
             unset($this->clients[$key]);
         }
+        $session = TestSession::from_mysql_id(substr($key, 3));
+        if($session!=null) $session->mysql_delete();
         if (self::$debug)
         {
             self::log_debug("TestServer->close_instance() --- Client '$key' closed");
