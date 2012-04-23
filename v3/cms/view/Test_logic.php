@@ -106,7 +106,7 @@ if ($oid != 0)
                 <button id="btnDebugTest" onclick="Test.uiIniDebug()"><?= Language::string(284) ?></button>
             </td>
             <td>
-                <button id="btnRunTest" onclick="window.open('<?=Ini::$external_path."?tid=".$obj->id?>','_blank')"><?= Language::string(362) ?></button>
+                <button id="btnRunTest" onclick="window.open('<?=Ini::$path_external."?tid=".$obj->id?>','_blank')"><?= Language::string(362) ?></button>
             </td>
         </tr>
     </table>
