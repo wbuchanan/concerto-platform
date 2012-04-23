@@ -27,9 +27,9 @@ if (!isset($ini))
 
 $session = null;
 $result = array();
-if (array_key_exists('sid', $_POST))
+if (array_key_exists('sid', $_POST) && array_key_exists("hash", $_POST))
 {
-    $session = TestSession::from_mysql_id($_POST['sid']);
+    $session = TestSession::authorized_session($_POST['sid'], $_POST['hash']);
 
     if ($session != null)
     {
@@ -57,6 +57,7 @@ if (array_key_exists('sid', $_POST))
 
             $result = array(
                 "data" => array(
+                    "HASH" => "",
                     "TIME_LIMIT" => 0,
                     "HTML" => "",
                     "TEST_ID" => 0,
@@ -67,6 +68,20 @@ if (array_key_exists('sid', $_POST))
             );
         }
         else $result = $session->resume($_POST['values']);
+    }
+    else
+    {
+        $result = array(
+            "data" => array(
+                "HASH" => "",
+                "TIME_LIMIT" => 0,
+                "HTML" => "",
+                "TEST_ID" => 0,
+                "TEST_SESSION_ID" => 0,
+                "STATUS" => TestSession::TEST_SESSION_STATUS_TAMPERED,
+                "TEMPLATE_ID" => 0
+            )
+        );
     }
 }
 else

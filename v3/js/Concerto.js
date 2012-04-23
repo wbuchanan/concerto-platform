@@ -17,9 +17,10 @@ along with this program; if not, write to the Free Software
 Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA.
 */
 
-function Concerto(selector,sid,tid,queryPath,callbackGet,callbackSend){
+function Concerto(selector,hash,sid,tid,queryPath,callbackGet,callbackSend){
     this.selector = selector;
     this.sessionID = sid;
+    this.hash = hash;
     this.testID = tid;
     this.queryPath = queryPath==null?"query/":queryPath;
     this.callbackGet = callbackGet;
@@ -87,8 +88,9 @@ function Concerto(selector,sid,tid,queryPath,callbackGet,callbackSend){
         var thisClass = this;
         
         var params = {};
-        if(this.sessionID!=null) 
+        if(this.hash!=null && this.sessionID!=null) 
         {
+            params["hash"] = this.hash;
             params["sid"] = this.sessionID;
         }
         else
@@ -106,13 +108,14 @@ function Concerto(selector,sid,tid,queryPath,callbackGet,callbackSend){
                     thisClass.debug = data.debug;
                 }
                 
+                thisClass.hash = thisClass.data["HASH"];
                 thisClass.sessionID = thisClass.data["TEST_SESSION_ID"];
                 thisClass.testID = thisClass.data["TEST_ID"];
                 thisClass.status = thisClass.data["STATUS"];
                 
                 if(thisClass.data["STATUS"]==Concerto.statusTypes.template) thisClass.loadTemplate(thisClass.data["HTML"]);
                 if(thisClass.data["STATUS"]==Concerto.statusTypes.finished) $(thisClass.selector).html("");
-                if(thisClass.data["STATUS"]==Concerto.statusTypes.tampered) $(thisClass.selector).html("<h2>Timer tampering detected! Test session has been deleted!</h2>");
+                if(thisClass.data["STATUS"]==Concerto.statusTypes.tampered) $(thisClass.selector).html("<h2>Tampering detected! Test session has been deleted!</h2>");
                 
                 if(thisClass.data["STATUS"]==Concerto.statusTypes.error){
                     if(thisClass.debug==null){

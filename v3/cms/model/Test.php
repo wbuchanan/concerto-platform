@@ -327,7 +327,8 @@ class Test extends OModule
     {
         $result = array(
             "TEST_ID",
-            "TEST_SESSION_ID"
+            "TEST_SESSION_ID",
+            "HASH"
         );
         
         $tpv = TestProtectedVariable::from_property(array("Test_id"=>$this->id));

@@ -29,6 +29,7 @@ class TestSession extends OTable
     public $HTML = "";
     public $Template_id = 0;
     public $time_tamper_prevention = 0;
+    public $hash = "";
 
     const TEST_SESSION_STATUS_STARTED = 0;
     const TEST_SESSION_STATUS_LOADING = 1;
@@ -201,11 +202,14 @@ class TestSession extends OTable
         }
 
         $test = Test::from_mysql_id($this->Test_id);
+        $debug = false;
         $logged_user = User::get_logged_user();
-        $debug_mode = $logged_user->is_object_readable($test);
+        if ($logged_user != null)
+                $debug_mode = $logged_user->is_object_readable($test);
 
         $response = array(
             "data" => array(
+                "HASH" => $this->hash,
                 "TIME_LIMIT" => $this->time_limit,
                 "HTML" => $this->HTML,
                 "TEST_ID" => $this->Test_id,
@@ -338,6 +342,30 @@ class TestSession extends OTable
         return $code;
     }
 
+    public function mysql_save()
+    {
+        $new = false;
+        if ($this->id == 0) $new = true;
+        $lid = parent::mysql_save();
+        if ($new)
+        {
+            $ts = TestSession::from_mysql_id($lid);
+            $ts->hash = TestSession::generate_hash($lid);
+            $ts->mysql_save();
+        }
+        return $lid;
+    }
+
+    public static function generate_hash($id)
+    {
+        return md5("cts" . $id . "." . rand(0, 100) . "." . time());
+    }
+
+    public static function authorized_session($id, $hash)
+    {
+        return TestSession::from_property(array("id" => $id, "hash" => $hash), false);
+    }
+
     public static function create_db($delete = false)
     {
         if ($delete)
@@ -357,6 +385,7 @@ class TestSession extends OTable
             `HTML` text NOT NULL,
             `Template_id` bigint(20) NOT NULL,
             `time_tamper_prevention` INT NOT NULL,
+            `hash` text NOT NULL,
             PRIMARY KEY  (`id`)
             ) ENGINE=InnoDB  DEFAULT CHARSET=utf8;
             ";
@@ -380,6 +409,9 @@ class TestSession extends OTable
             if (!mysql_query($sql)) return false;
 
             $sql = "ALTER TABLE  `TestSession` ADD  `time_tamper_prevention` INT NOT NULL;";
+            if (!mysql_query($sql)) return false;
+
+            $sql = "ALTER TABLE `TestSession` ADD `hash` text NOT NULL default '';";
             if (!mysql_query($sql)) return false;
         }
         return true;
