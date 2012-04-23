@@ -21,7 +21,7 @@
 
 class TestServer
 {
-    private static $max_idle_time = 3600;
+    private static $max_idle_time = 2100;
     public static $debug = true;
     public static $debug_stream_data = false;
     private $last_action_time;

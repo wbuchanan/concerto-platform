@@ -115,7 +115,7 @@ function Concerto(selector,hash,sid,tid,queryPath,callbackGet,callbackSend){
                 
                 if(thisClass.data["STATUS"]==Concerto.statusTypes.template) thisClass.loadTemplate(thisClass.data["HTML"]);
                 if(thisClass.data["STATUS"]==Concerto.statusTypes.finished) $(thisClass.selector).html("");
-                if(thisClass.data["STATUS"]==Concerto.statusTypes.tampered) $(thisClass.selector).html("<h2>Tampering detected! Test session has been deleted!</h2>");
+                if(thisClass.data["STATUS"]==Concerto.statusTypes.tampered) $(thisClass.selector).html("<h2>Tampering detected or session timed out! Test session has been deleted!</h2>");
                 
                 if(thisClass.data["STATUS"]==Concerto.statusTypes.error){
                     if(thisClass.debug==null){
