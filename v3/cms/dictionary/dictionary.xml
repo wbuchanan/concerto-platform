@@ -812,7 +812,7 @@ Note: You can add new languages by inserting "<new_language>string translated in
             <pl>opis własnej sekcji, który będzie widoczny w logice tekstu po dodaniu sekcji</pl>
             <cn>使用此章节时在测试逻辑中显示的简介</cn>
             <fr>Brève description de la section personnalisée qui sera visible dans la logique du test lorsque la section est utilisée.</fr>
-            <bg>Кратко описание на персонализираната секция, което ще бъда видимо в тестовата логика, когато секцията се изпалзва.</bg>
+            <bg>Кратко описание на персонализираната секция, което ще бъде видимо в тестовата логика, когато секцията се използва.</bg>
         </string>
         <string id="99">
             <en>access rights to this custom section</en>
@@ -820,7 +820,7 @@ Note: You can add new languages by inserting "<new_language>string translated in
             <pl>prawa dostępu dla sekcji własnej</pl>
             <cn>此自主章节的访问权限</cn>
             <fr>droits d'accès à cette section personnalisée</fr>
-            <bg>права за достъп да този секция</bg>
+            <bg>права за достъп до този секция</bg>
         </string>
         <string id="100">
             <en>private</en>
@@ -916,7 +916,7 @@ Note: You can add new languages by inserting "<new_language>string translated in
             <pl>To jest kod R sekcji. Możesz używać w nim parametrów które zdeklarowałeś powyżej.</pl>
             <cn>此章节相关R代码。已声明参数可在此使用。</cn>
             <fr>code R pertinent à cette section. Les paramètres déclarés ci-dessus peuvent être utilisés ici.</fr>
-            <bg>R код, отнасящ се за тази секция. Рараметрите декларирани по-горе, може да бъдат използвани тук</bg>
+            <bg>R код, отнасящ се за тази секция. Параметрите декларирани по-горе, може да бъдат използвани тук</bg>
         </string>
         <string id="112">
             <en>Specify variables used in this section to be made available globally, for use in other test sections.</en>
@@ -980,7 +980,7 @@ Note: You can add new languages by inserting "<new_language>string translated in
             <pl>nazwa tabeli</pl>
             <cn>表格名称</cn>
             <fr>nom du tableau</fr>
-            <bg>има на таблицата</bg>
+            <bg>име на таблицата</bg>
         </string>
         <string id="120">
             <en>table access rights</en>
@@ -1036,6 +1036,7 @@ Note: You can add new languages by inserting "<new_language>string translated in
             <pl>import tabeli z pliku CSV</pl>
             <cn>从CSV文件导入表格</cn>
             <fr>importer un tableau à partir d'un fichier CSV</fr>
+            <bg>импортирай таблицана от CSV файла</bg>
         </string>
         <string id="127">
             <en>export table to CSV file</en>
@@ -1067,7 +1068,7 @@ Note: You can add new languages by inserting "<new_language>string translated in
             <pl>dodaj rekord</pl>
             <cn>添加行</cn>
             <fr>ajouter une ligne</fr>
-          <bg>прибави ред</bg>
+            <bg>прибави ред</bg>
         </string>
         <string id="132">
             <en>table is empty</en>
@@ -1147,6 +1148,7 @@ Note: You can add new languages by inserting "<new_language>string translated in
             <pl>nazwa testu</pl>
             <cn>测试名称</cn>
             <fr>nom du test</fr>
+            <bg>име на теста</bg>
         </string>
         <string id="142">
             <en>test access rights</en>
@@ -1226,7 +1228,7 @@ Note: You can add new languages by inserting "<new_language>string translated in
             <pl>parametr/zwrot</pl>
             <cn>参数/返回</cn>
             <fr>paramètre/retour</fr>
-          <bg>параметър/връщане</bg>
+            <bg>параметър/връщане</bg>
         </string>
         <string id="152">
             <en>editing admin group</en>
@@ -1259,7 +1261,7 @@ Note: You can add new languages by inserting "<new_language>string translated in
             <cn>管理群访问权限</cn>
             <fr>droits d'accès du groupe d'administrateurs</fr>
             <bg>права за достъп на групата администратори</bg>
-            </string>
+        </string>
         <string id="156">
             <en>owner of the admin group</en>
             <de>Zugriffsrechte auf Administratorengruppe</de>
@@ -1391,7 +1393,7 @@ Note: You can add new languages by inserting "<new_language>string translated in
             <de>Benutzername</de>
             <pl>login</pl>
             <cn>登入</cn>
-            <bg>вход/bg>
+            <bg>вход</bg>
         </string>
         <string id="174">
             <en>email</en>
@@ -1496,7 +1498,7 @@ Note: You can add new languages by inserting "<new_language>string translated in
             <de>Email des Administrators</de>
             <pl>email administratora</pl>
             <cn>管理员邮箱</cn>
-            <bg>имейл на администраторе</bg>
+            <bg>имейл на администратора</bg>
         </string>
         <string id="189">
             <en>phone no.</en>
@@ -1678,14 +1680,14 @@ Note: You can add new languages by inserting "<new_language>string translated in
             <de>Vorschau auf gewähltes HTML Template.</de>
             <pl>Podgląd obecnie wybranego szablonu HTML</pl>
             <cn>所选HTML模板预览</cn>
-          <bg>Преглед на избрания HTML шаблон</bg>
+            <bg>Преглед на избрания HTML шаблон</bg>
         </string>
         <string id="215">
             <en>value of this variable will be inserted into the HTML template</en>
             <de>Wert dieser Variable wird in das HTML Template eingefügt</de>
             <pl>wartość tej zmiennej zostanie osadzona w szablonie HTML</pl>
             <cn>在HTML模板中插入此变量值</cn>
-            <bg>стойността на тази променлива, ще бъде вмъкната в HTML шаблона</bg>
+            <bg>стойността на тази променлива ще бъде вмъкната в HTML шаблона</bg>
         </string>
         <string id="216">
             <en><![CDATA[Time left (in seconds) to submit test item. A value of 0 implies unlimited time. Insert <b>{{TIME_LEFT}}</b> variable into HTML templates to make the timer visible.]]></en>
@@ -1706,7 +1708,7 @@ Note: You can add new languages by inserting "<new_language>string translated in
             <de>keine Ausgabe von diesem HTML Template</de>
             <pl>brak zwrotu na tym szablonie HTML</pl>
             <cn>此HTML模板无输出</cn>
-            <bg>няма резултат от този HTMLшаблон</bg>
+            <bg>няма резултат от този HTML шаблон</bg>
         </string>
         <string id="219">
             <en>GO TO SECTION</en>
@@ -1811,7 +1813,7 @@ Note: You can add new languages by inserting "<new_language>string translated in
             <de>SET VARIABLE</de>
             <pl>USTAW ZMIENNĄ</pl>
             <cn>设置变量</cn>
-            <bg>СЪЗДАЙ ПРОМНЛИВА</bg>
+            <bg>СЪЗДАЙ ПРОМЕНЛИВА</bg>
         </string>
         <string id="235">
             <en>from table</en>
@@ -2000,7 +2002,7 @@ Note: You can add new languages by inserting "<new_language>string translated in
             <de>Ihre Version ist VERALTET.</de>
             <pl>Twoja wersja jest NIEAKTUALNA.</pl>
             <cn>您的版本已过期。</cn>
-            <bg>Вашата версия е остсия е стара</bg>
+            <bg>Вашата версия е стара</bg>
         </string>
         <string id="263">
             <en>CLICK HERE TO DOWNLOAD THE LATEST VERSION</en>
@@ -2035,7 +2037,7 @@ Note: You can add new languages by inserting "<new_language>string translated in
             <de>Wähle zu exportierende Datei aus</de>
             <pl>Wybierz plik z wyeksportowanym obiektem</pl>
             <cn>选择导出文件</cn>
-            <bg>Изберете файл а експортиране</bg>
+            <bg>Изберете файл за експортиране</bg>
         </string>
         <string id="268" js="1">
             <en>Importing object</en>
@@ -2175,7 +2177,7 @@ Note: You can add new languages by inserting "<new_language>string translated in
             <de>Stellen Sie sicher, das alle Veränderungen an der Testlogik vor dem Debuggen gespeichert sind. Ungespeicherte Änderungen werden nicht im Debuggingprozess berücksichtigt.</de>
             <pl>Proszę pamiętać, że należy zachować bieżącą logikę testu zanim się uruchomi debug. Wszelkie niezapisane zmiany nie bedą brane pod uwagę podczas debuggowania.</pl>
             <cn>请确认在调试前保存当前测试逻辑的所有修改。未保存的修改将不会被调试。</cn>
-            <bg>Проверете дали всички промени в тестовата логика са съхранени преди дебъга. Несъхранените промени няма да повлияят на процес на дебъг</bg>
+            <bg>Проверете дали всички промени в тестовата логика са съхранени преди дебъга. Несъхранените промени няма да повлияят на процеса на дебъг</bg>
         </string>
         <string id="288" js="1">
             <en><![CDATA[Please press the <b>start</b> button.]]></en>
@@ -2189,7 +2191,7 @@ Note: You can add new languages by inserting "<new_language>string translated in
             <de><![CDATA[Test #{0} - Syntaxvalidierung <b>(läuft ...)]]></de>
             <pl><![CDATA[Test #{0} - walidacja składni <b>(w trakcie...)]]></pl>
             <cn><![CDATA[测试 #{0} – 句法验证 <b>(进行中……)]]></cn>
-            <bg><![CDATA[Тест #{0} - валидизирането на синтуксиса <b>(в действие...)]]></bg>
+            <bg><![CDATA[Тест #{0} - валидизирането на синтаксиса <b>(в действие...)]]></bg>
         </string>
         <string id="290" js="1">
             <en>Syntax validation</en>
@@ -2210,7 +2212,7 @@ Note: You can add new languages by inserting "<new_language>string translated in
             <de><![CDATA[Testsektion mit Index #{0} Syntaxvalidierung: <font style='color:red;'><b>FEHLGESCHLAGEN</b></font>]]></de>
             <pl><![CDATA[Walidacja składni sekcji testu o indeksie #{0}: <font style='color:red;'><b>NIE POWIODŁA SIĘ</b></font>]]></pl>
             <cn><![CDATA[测试章节索引 #{0} 句法验证： <font style='color:red;'><b>失败</b></font>]]></cn>
-             <bg><![CDATA[Валидизация на тестова секция с индекс #{0}: <font style='color:green;'><b>НЕУСПЕШНА</b></font>]]></bg>
+            <bg><![CDATA[Валидизация на тестова секция с индекс #{0}: <font style='color:green;'><b>НЕУСПЕШНА</b></font>]]></bg>
         </string>
         <string id="293" js="1">
             <en><![CDATA[Test #{0} - syntax validation <b>(finished)</b>]]></en>
@@ -2238,7 +2240,7 @@ Note: You can add new languages by inserting "<new_language>string translated in
             <de><![CDATA[Syntaxvalidierung <font style='color:red;'><b>FEHLGESCHLAGEN</b></font> bei Sektion mit Index #{0} - debug <font style='color:red;'><b>ANGEHALTEN</b></font>]]></de>
             <pl><![CDATA[Walidacja składni <font style='color:red;'><b>NIE POWIODŁA SIĘ</b></font> dla sekcji o indeksie #{0} - debug <font style='color:red;'><b>ZATRZYMANY</b></font>]]></pl>
             <cn><![CDATA[句法验证 <font style='color:red;'><b>F失败</b></font> 在章节索引 #{0} 处– 调试 <font style='color:red;'><b>中止</b></font>]]></cn>
-            <bg><![CDATA[Валидизацията на синтаксисаyntax validation <font style='color:red;'><b>НЕУСПЕШНА</b></font> за индекс на секция #{0} - дебъгът <font style='color:red;'><b>СПРЯН</b></font>]]></bg>
+            <bg><![CDATA[Валидизацията на синтаксиса <font style='color:red;'><b>НЕУСПЕШНА</b></font> за индекс на секция #{0} - дебъгът <font style='color:red;'><b>СПРЯН</b></font>]]></bg>
         </string>
         <string id="297" js="1">
             <en>Runtime debug</en>
@@ -2287,7 +2289,7 @@ Note: You can add new languages by inserting "<new_language>string translated in
             <de><![CDATA[R: logischer <font style='color:red;'><b>Fehler</b></font>. Prüfe R Code Ausgabe für zusätzliche Information. Debug ANGEHALTEN.]]></de>
             <pl><![CDATA[<font style='color:red;'><b>Błąd</b></font> w logice R. Prosze sprawdzić wynik kodu R dla dodatkowych informacji. Debug ZATRZYMANY.]]></pl>
             <cn><![CDATA[R逻辑 <font style='color:red;'><b>错误</b></font>。更多信息详见R代码输出。调试中止。]]></cn>
-            <bg><![CDATA[R logic <font style='color:red;'><b>error</b></font>. Check R code output for additional info. Debug HALTED.]]></bg>
+            <bg><![CDATA[R логиката <font style='color:red;'><b>е грешна</b></font>. Проверете резултата от R кода за допълнителна информация. Дебъгът СПРЯН.]]></bg>
         </string>
         <string id="304" js="1">
             <en><![CDATA[R logic validation <font style='color:green;'><b>PASSED</b></font>.]]></en>
@@ -2315,7 +2317,7 @@ Note: You can add new languages by inserting "<new_language>string translated in
             <de><![CDATA[Test #{0}, Sitzung #{1} - Laufzeit debug <b><font style='color:green;'>OK</font></b>]]></de>
             <pl><![CDATA[Test #{0}, sesja #{1} - debug na żywo <b><font style='color:green;'>POWIODŁ SIĘ</font></b>]]></pl>
             <cn><![CDATA[测试 #{0}，章节 #{1} – 运行时间调试 <b><font style='color:green;'>通过</font></b>]]></cn>
-            <bg><![CDATA[Тестът #{0}, сесията #{1} - дебъгът в реално време <b><font style='color:green;'>УСПЕШНО</font></b>]]></bg>
+            <bg><![CDATA[Тестът #{0}, сесията #{1} - дебъгът в реално време <b><font style='color:green;'>УСПЕШЕН</font></b>]]></bg>
         </string>
         <string id="308" js="1">
             <en>End section reached. The test has finished.</en>
@@ -2406,21 +2408,21 @@ Note: You can add new languages by inserting "<new_language>string translated in
             <de>Möglicher Verlust von ungespeicherten Daten.</de>
             <pl>Możliwa utrata niezapisanych danych.</pl>
             <cn>可能丢失未保存数据。</cn>
-            <bg>Възможна загуба на несхранени данни.</bg>
+            <bg>Възможна загуба на несъхранени данни.</bg>
         </string>
         <string id="321" js="1">
             <en>Are you sure you want to continue? This action will reset unsaved changes in the following modules:</en>
             <de>Sind Sie sicher das Sie fortfahren wollen? Diese Aktion setzt ungespeicherte Veränderungen in den folgenden Modulen zurück:</de>
             <pl>Jesteś pewien, że chcesz kontynuować? Ta czynność może anulować wszystkie niezapisane zmiany w nastepujących modułach:</pl>
             <cn>确认继续？此操作将在以下模块中重置未保存修改：</cn>
-            <bg>Сигурни ли сте, че искате да продължите? Това действие ще анулира несрънението промени в следните модули:</bg>
+            <bg>Сигурни ли сте, че искате да продължите? Това действие ще анулира несъхранените промени в следните модули:</bg>
         </string>
         <string id="322" js="1">
             <en>Are you sure you want to continue? This action will reset unsaved changes in all modules.</en>
             <de>Sind Sie sicher das Sie fortfahren wollen? Diese Aktion setzt ungespeicherte Veränderungen in allen Modulen zurück.</de>
             <pl>Jesteś pewien, że chcesz kontynuować? Ta czynność może anulować wszystkie niezapisane zmiany we wszystkich modułach.</pl>
             <cn>确认继续？此操作将在所有模块中重置未保存修改。</cn>
-            <bg>Сигурни ли сте, че искате да продължите? Това действие ще анулира несрънението промени във всички модули.</bg>
+            <bg>Сигурни ли сте, че искате да продължите? Това действие ще анулира несъхранените промени във всички модули.</bg>
         </string>
         <string id="323" js="1">
             <en>begin</en>
@@ -2448,7 +2450,7 @@ Note: You can add new languages by inserting "<new_language>string translated in
             <de><![CDATA[Einzelnes Zeichen welches benutzt wird um Felder in einer Zeile zu trennen. Standardzeichen ist '<b>,</b>'.]]></de>
             <pl><![CDATA[Pojedyńczy znak używany do oddzielenia pól w rzędzie. Domyślny znak to '<b>,</b>'.]]></pl>
             <cn><![CDATA[在行内用于划分区域的单一字符。默认字符为'<b>,</b>'。]]></cn>
-            <bg><![CDATA[Единичен знак за отделяне на полетата в реда. Знакът по подразбиране е<b>,</b>'.]]></bg>
+            <bg><![CDATA[Единичен знак за отделяне на полетата в реда. Знакът по подразбиране е <b>,</b>'.]]></bg>
         </string>
         <string id="327">
             <en>field enclosure</en>
@@ -2490,7 +2492,7 @@ Note: You can add new languages by inserting "<new_language>string translated in
             <de>Box anklicken um CSV mit Kopfzeile zu exportieren. Kopfzeile wird die erste Zeile in der CSV Datei mit Spaltennamen.</de>
             <pl>Zaznacz jeśli chcesz wyeksportować CSV z rzędem nagłówka. Rząd nagłówka będzie pierwszym rzędem w CSV z nazwami kolumn tabeli.</pl>
             <cn>包含标题行导出CSV。标题行将作为表格列名称出现在CSV的第一行。</cn>
-          <bg>Поле за потвърждаване на CSV със заглавен ред. Заглавния ред ще бъде първия ред в CSV с имена на колоните в таблицата.</bg>
+            <bg>Поле за потвърждаване на CSV със заглавен ред. Заглавен ред ще бъде първият ред в CSV с имена на колоните в таблицата.</bg>
         </string>
         <string id="333" js="1">
             <en>Error loading XML file. Cannot continue with import.</en>
@@ -2503,14 +2505,14 @@ Note: You can add new languages by inserting "<new_language>string translated in
             <en>Column delimiter and enclosure fields are mandatory.</en>
             <pl>Pola separacji i objęcia kolumn nie mogą być puste.</pl>
             <cn>列分隔符与区域标记为必需。</cn>
-            <bg>Сепараторът за колони и за вършването на полета не е задължително</bg>
+            <bg>Сепараторът за колони и за завършването на полета не е задължително</bg>
         </string>
         <string id="335">
             <en>session count</en>
             <de>Sitzungszähler</de>
             <pl>liczba sesji</pl>
             <cn>章节计数</cn>
-            <bg>броене на сисиите</bg>
+            <bg>броене на сесиите</bg>
         </string>
         <string id="336" js="1">
             <en>At least one of the fields that should be unique already exists in the system.</en>
