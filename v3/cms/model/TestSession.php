@@ -30,6 +30,7 @@ class TestSession extends OTable
     public $Template_id = 0;
     public $time_tamper_prevention = 0;
     public $hash = "";
+    public $r_type = "";
 
     const TEST_SESSION_STATUS_STARTED = 0;
     const TEST_SESSION_STATUS_LOADING = 1;
@@ -38,16 +39,20 @@ class TestSession extends OTable
     const TEST_SESSION_STATUS_STOPPED = 4;
     const TEST_SESSION_STATUS_ERROR = 5;
     const TEST_SESSION_STATUS_TAMPERED = 6;
+    
+    const R_TYPE_RSCRIPT = 0;
+    const R_TYPE_SOCKET_SERVER = 1;
 
     public function get_Test()
     {
         return Test::from_mysql_id($this->Test_id);
     }
 
-    public static function start_new($test_id)
+    public static function start_new($test_id,$r_type)
     {
         $session = new TestSession();
         $session->Test_id = $test_id;
+        $session->r_type = $r_type;
         $lid = $session->mysql_save();
 
         $sql = sprintf("UPDATE `%s` SET `session_count`=`session_count`+1 WHERE `%s`.`id`=%d", Test::get_mysql_table(), Test::get_mysql_table(), $test_id);
@@ -59,7 +64,7 @@ class TestSession extends OTable
 
     public function remove()
     {
-        if (Ini::$r_instances_persistant)
+        if ($this->r_type == TestSession::R_TYPE_SOCKET_SERVER)
         {
             if (TestServer::is_running())
                     TestServer::send("close:" . $session->id);
@@ -139,7 +144,7 @@ class TestSession extends OTable
             if ($include_ini_code) $command = $this->get_ini_RCode();
             else $command.=$this->get_next_ini_RCode();
         }
-        else if (!Ini::$r_instances_persistant)
+        else if ($this->r_type == TestSession::R_TYPE_RSCRIPT)
         {
             $command.="
             sink(stdout(), type='message')
@@ -152,7 +157,7 @@ class TestSession extends OTable
         $output = array();
         $return = -999;
 
-        if (Ini::$r_instances_persistant)
+        if ($this->r_type == TestSession::R_TYPE_SOCKET_SERVER)
         {
             $command_obj = json_encode(array(
                 "session_id" => $this->id,
@@ -243,7 +248,7 @@ class TestSession extends OTable
     public function get_next_ini_RCode()
     {
         $code = "";
-        if (!Ini::$r_instances_persistant)
+        if ($this->r_type == TestSession::R_TYPE_RSCRIPT)
         {
             $code = "
             sink(stdout(), type='message')
@@ -274,7 +279,7 @@ class TestSession extends OTable
     public function get_post_RCode()
     {
         $code = "";
-        if (!Ini::$r_instances_persistant)
+        if ($this->r_type == TestSession::R_TYPE_RSCRIPT)
         {
             $code = "
             save.session('" . $this->get_RSession_file_path() . "')
@@ -314,7 +319,7 @@ class TestSession extends OTable
         $path = Ini::$path_temp . $this->get_Test()->Owner_id;
         if (!is_dir($path)) mkdir($path, 0777);
         $code = "";
-        if (!Ini::$r_instances_persistant)
+        if ($this->r_type == TestSession::R_TYPE_RSCRIPT)
         {
             $code.="
             sink(stdout(), type='message')
@@ -323,7 +328,7 @@ class TestSession extends OTable
         $code .= "
             options(encoding='UTF-8')
             ";
-        if (!Ini::$r_instances_persistant)
+        if ($this->r_type == TestSession::R_TYPE_RSCRIPT)
         {
             $code.="
             library(session)
@@ -410,6 +415,9 @@ class TestSession extends OTable
             if (!mysql_query($sql)) return false;
 
             $sql = "ALTER TABLE `TestSession` ADD `hash` text NOT NULL default '';";
+            if (!mysql_query($sql)) return false;
+            
+            $sql = "ALTER TABLE  `TestSession` ADD  `r_type` TINYINT( 1 ) NOT NULL;";
             if (!mysql_query($sql)) return false;
         }
         return true;

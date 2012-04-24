@@ -19,32 +19,28 @@
   Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA.
  */
 $time = time();
-if (!isset($ini))
-{
+if (!isset($ini)) {
     require_once'../Ini.php';
     $ini = new Ini();
 }
 
 $session = null;
 $result = array();
-if (array_key_exists('sid', $_POST) && array_key_exists("hash", $_POST))
-{
+if (array_key_exists('sid', $_POST) && array_key_exists("hash", $_POST)) {
     $session = TestSession::authorized_session($_POST['sid'], $_POST['hash']);
 
-    if ($session != null)
-    {
-        if (!array_key_exists('values', $_POST)) $_POST['values'] = array();
+    if ($session != null) {
+        if (!array_key_exists('values', $_POST))
+            $_POST['values'] = array();
 
-        if (array_key_exists('btn_name', $_POST))
-        {
+        if (array_key_exists('btn_name', $_POST)) {
             array_push($_POST['values'], json_encode(array(
                         "name" => "LAST_PRESSED_BUTTON_NAME",
                         "value" => $_POST['btn_name']
                     )));
         }
 
-        if (Ini::$timer_tamper_prevention && $session->time_limit > 0 && $time - $session->time_tamper_prevention - Ini::$timer_tamper_prevention_tolerance > $session->time_limit)
-        {
+        if (Ini::$timer_tamper_prevention && $session->time_limit > 0 && $time - $session->time_tamper_prevention - Ini::$timer_tamper_prevention_tolerance > $session->time_limit) {
             $session->remove();
 
             $result = array(
@@ -59,10 +55,10 @@ if (array_key_exists('sid', $_POST) && array_key_exists("hash", $_POST))
                 )
             );
         }
-        else $result = $session->resume($_POST['values']);
+        else
+            $result = $session->resume($_POST['values']);
     }
-    else
-    {
+    else {
         $result = array(
             "data" => array(
                 "HASH" => "",
@@ -75,14 +71,15 @@ if (array_key_exists('sid', $_POST) && array_key_exists("hash", $_POST))
             )
         );
     }
-}
-else
-{
-    if (array_key_exists('tid', $_POST))
-    {
-        $session = TestSession::start_new($_POST['tid']);
+} else {
+    if (array_key_exists('tid', $_POST)) {
+        $r_type = Ini::$r_instances_persistant ? TestSession::R_TYPE_SOCKET_SERVER : TestSession::R_TYPE_RSCRIPT;
+        if (array_key_exists("debug", $_POST) && $_POST['debug'] == 1)
+            $r_type = TestSession::R_TYPE_RSCRIPT;
+        $session = TestSession::start_new($_POST['tid'], $r_type);
 
-        if (!array_key_exists('values', $_POST)) $_POST['values'] = array();
+        if (!array_key_exists('values', $_POST))
+            $_POST['values'] = array();
 
         $result = $session->run_test(null, $_POST['values']);
     }

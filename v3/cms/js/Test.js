@@ -1043,7 +1043,7 @@ Test.startRunTimeDebug=function(){
         Test.appendDebugConsole(html);
         
         Test.setDebugStatus(dictionary["s299"].format(thisClass.currentID));
-    });
+    },true);
     test.run();
 }
 

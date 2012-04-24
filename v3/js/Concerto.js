@@ -17,7 +17,9 @@ along with this program; if not, write to the Free Software
 Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA.
 */
 
-function Concerto(selector,hash,sid,tid,queryPath,callbackGet,callbackSend){
+function Concerto(selector,hash,sid,tid,queryPath,callbackGet,callbackSend,debug){
+    this.isDebug = false;
+    if(debug!=null && debug==true) this.isDebug = true;
     this.selector = selector;
     this.sessionID = sid;
     this.hash = hash;
@@ -99,6 +101,8 @@ function Concerto(selector,hash,sid,tid,queryPath,callbackGet,callbackSend){
         }
         if(btnName!=null) params["btn_name"] = btnName;
         if(values!=null) params["values"] = values;
+        if(this.isDebug!=null && this.isDebug==true) params["debug"]=1;
+        else params["debug"]=0;
         
         $.post(this.queryPath+"r_call.php",
             params,
