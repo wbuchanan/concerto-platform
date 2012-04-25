@@ -1882,14 +1882,14 @@ Note: You can add new languages by inserting "<new_language>string translated in
             <en>Test id. Read only variable.</en>
             <de>Test id. Diese Variable kann nur gelesen werden.</de>
             <pl>ID testu. Zmienna tylko do odczytu.</pl>
-            <cn></cn>
+            <cn>测试id。只读变量。</cn>
             <bg>ID на теста. Чети само променливите.</bg>
         </string>
         <string id="246">
             <en>Test session id. Read only variable.</en>
             <de>Testsitzungs id. Diese Variable kann nur gelesen werden.</de>
             <pl>ID sesji testu. Zmienna tylko do odczytu.</pl>
-            <cn></cn>
+            <cn>测试章节id。只读变量。</cn>
             <bg>ID на теста. Чети само променливите.</bg>
         </string>
         <string id="247">
@@ -2673,35 +2673,35 @@ Note: You can add new languages by inserting "<new_language>string translated in
             <en>protected variables</en>
             <de>geschützte Variablen</de>
             <pl>chronione zmienne</pl>
-            <cn></cn>
+            <cn>保护变量</cn>
             <bg>запазена променлива</bg>
         </string>
         <string id="359">
             <en>test logic</en>
             <de>Testlogik</de>
             <pl>logika testu</pl>
-            <cn></cn>
+            <cn>测试逻辑</cn>
             <bg>тестова логика</bg>
         </string>
         <string id="360" js="1">
             <en>Are you sure you want to delete this protected variable?</en>
             <de>Sind Sie sicher, dass Sie diese geschützte Variable löschen wollen?</de>
             <pl>Jesteś pewien, że chcesz usunąć ta chroniona zmienna?</pl>
-            <cn></cn>
+            <cn>确认删除此保护变量？</cn>
             <bg>Сигурни ли сте, че искате да изтриете тази запазена променлива?</bg>
         </string>
         <string id="361" js="1">
             <en>deleting protected variable</en>
             <de>lösche geschützte Variable</de>
             <pl>usuwanie chronionej zmiennej</pl>
-            <cn></cn>
+            <cn>删除保护变量</cn>
             <bg>изтриване на запазена променлива</bg>
         </string>
         <string id="362">
             <en>run test</en>
             <de></de>
             <pl>uruchom test</pl>
-            <cn></cn>
+            <cn>运行测试</cn>
             <bg></bg>
         </string>
     </strings>
