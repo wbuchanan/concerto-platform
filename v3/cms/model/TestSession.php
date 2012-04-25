@@ -94,7 +94,7 @@ class TestSession extends OTable
         foreach ($values as $v)
         {
             $val = json_decode($v);
-            if (in_array(trim($val->name), $protected_vars)) continue;
+            if (!property_exists($val, "name") || trim($val->name)=="" || in_array(trim($val->name), $protected_vars)) continue;
 
             if ($val->value == "NA")
             {

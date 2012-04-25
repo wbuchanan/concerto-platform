@@ -196,7 +196,7 @@ class TestSection extends OTable
                         update.session.HTML(fill.session.HTML('%s'))
 
                         return(-1)
-                        ", $template_id, TestSession::TEST_SESSION_STATUS_TEMPLATE, $next_counter, $html
+                        ", $template_id, TestSession::TEST_SESSION_STATUS_TEMPLATE, $next_counter, addslashes($html)
                     );
                     
                     return $code;

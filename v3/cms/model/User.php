@@ -294,11 +294,17 @@ class User extends OModule
     
     public function get_session_count()
     {
-        $sql = sprintf("SELECT `Test`.`id` 
+        $sql = sprintf("SELECT SUM(`Test`.`session_count`) 
             FROM `Test` 
             LEFT JOIN `User` ON `User`.`id`=`Test`.`Owner_id`
-            WHERE `User`.`id`='%s'",  $this->id);
-        return mysql_num_rows(mysql_query($sql));
+            WHERE `User`.`id`='%s'
+            GROUP BY `User`.`id`",  $this->id);
+        $z = mysql_query($sql);
+        while($r=mysql_fetch_array($z))
+        {
+            return $r[0];
+        }
+        return 0;
     }
 
     public static function get_list_columns()

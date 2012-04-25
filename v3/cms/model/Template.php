@@ -69,7 +69,7 @@ class Template extends OModule {
             if ($ret["name"] == $name)
                 return $vals[$j];
 
-            $j = $j + 3;
+            $j++;
         }
         return $name;
     }
