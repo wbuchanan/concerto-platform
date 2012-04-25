@@ -435,14 +435,6 @@ class User extends OModule
             if (!mysql_query($sql)) return false;
         }
         ///COMPATIBILITY FIX FOR V3.0.0 END
-
-        if (Ini::does_patch_apply("3.1.0", $previous_version))
-        {
-            //UNREACHABLE CODE START
-            $sql = "ALTER TABLE `User` CHANGE `last_activity` `last_login` timestamp NOT NULL default '0000-00-00 00:00:00';";
-            if (!mysql_query($sql)) return false;
-            //UNREACHABLE CODE END
-        }
         return true;
     }
 

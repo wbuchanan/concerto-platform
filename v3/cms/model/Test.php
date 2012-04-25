@@ -343,7 +343,7 @@ class Test extends OModule
     {
         if (Ini::does_patch_apply("3.4.0", $previous_version))
         {
-            $sql = "ALTER TABLE `User` ADD `session_count` bigint(20) NOT NULL;";
+            $sql = "ALTER TABLE `Test` ADD `session_count` bigint(20) NOT NULL;";
             if (!mysql_query($sql)) return false;
         }
         return true;
