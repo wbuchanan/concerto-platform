@@ -193,8 +193,8 @@ class TestSection extends OTable
                         update.session.time_limit(TIME_LIMIT)
                         update.session.status(%d)
                         update.session.counter(%d)
-                        update.session.HTML(fill.session.HTML('%s'))
-
+                        CONCERTO_HTML <- fill.session.HTML('%s')
+                        update.session.HTML(CONCERTO_HTML)
                         return(-1)
                         ", $template_id, TestSession::TEST_SESSION_STATUS_TEMPLATE, $next_counter, addslashes($html)
                     );

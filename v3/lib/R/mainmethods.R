@@ -56,9 +56,7 @@ update.session.HTML <- function(CONCERTO_PARAM){
 }
 
 fill.session.HTML <- function(CONCERTO_PARAM){
-    print(CONCERTO_PARAM)
     CONCERTO_HTML_MATCHES <- unlist(regmatches(CONCERTO_PARAM,gregexpr("\\{\\{[^\\}\\}]*\\}\\}",CONCERTO_PARAM)))
-    print(CONCERTO_HTML_MATCHES)
     CONCERTO_HTML_MATCHES_INDEX <- 1
     while(CONCERTO_HTML_MATCHES_INDEX<=length(CONCERTO_HTML_MATCHES)){
         CONCERTO_HTML_MATCH_VALUE <- gsub("\\{\\{","",CONCERTO_HTML_MATCHES[CONCERTO_HTML_MATCHES_INDEX])
