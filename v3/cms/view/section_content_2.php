@@ -56,7 +56,7 @@ if ($vals[0] != 0 && $template != null) {
         <div>
             <table>
     <?php
-    $preview.=" " . Language::string(214) . ":<hr/>" . $template->HTML;
+    $preview.=" " . Language::string(214) . ":<hr/>" . $template->get_preview_HTML();
 
     $inserts = $template->get_inserts();
 
@@ -161,11 +161,6 @@ while ($r = mysql_fetch_array($z)) {
     ?>
                 <tr>
                     <td><span class="spanIcon ui-icon ui-icon-help tooltip" title="<?= Language::string(283) ?>"></span></td>
-                    <td>CURRENT_TEMPLATE_ID</td>
-                    <td>&nbsp;</td>
-                </tr>
-                <tr>
-                    <td><span class="spanIcon ui-icon ui-icon-help tooltip" title="<?= Language::string(283) ?>"></span></td>
                     <td>LAST_PRESSED_BUTTON_NAME</td>
                     <td>&nbsp;</td>
                 </tr>
@@ -184,7 +179,6 @@ while ($r = mysql_fetch_array($z)) {
         <?php
     }
     ?>
-            <input class="inputReturnVar" type="hidden" value="CURRENT_TEMPLATE_ID" />
             <input class="inputReturnVar" type="hidden" value="LAST_PRESSED_BUTTON_NAME" />
             <input class="inputReturnVar" type="hidden" value="TIME_TAKEN" />
         </div>

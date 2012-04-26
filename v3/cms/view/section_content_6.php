@@ -36,16 +36,16 @@ if ($logged_user == null)
         <table>
             <tr>
                 <td><span class="spanIcon ui-icon ui-icon-help tooltip" title="<?= Language::string(245) ?>"></span></td>
-                <td>TEST_ID</td>
+                <td>CONCERTO_TEST_ID</td>
             </tr>
             <tr>
                 <td><span class="spanIcon ui-icon ui-icon-help tooltip" title="<?= Language::string(246) ?>"></span></td>
-                <td>TEST_SESSION_ID</td>
+                <td>CONCERTO_TEST_SESSION_ID</td>
             </tr>
         </table>
     </div>
     <div class="notVisible">
-        <input class="inputReturnVar" type="hidden" value="TEST_ID" />
-        <input class="inputReturnVar" type="hidden" value="TEST_SESSION_ID" />
+        <input class="inputReturnVar" type="hidden" value="CONCERTO_TEST_ID" />
+        <input class="inputReturnVar" type="hidden" value="CONCERTO_TEST_SESSION_ID" />
     </div>
 </div>

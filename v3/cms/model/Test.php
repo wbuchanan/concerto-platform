@@ -325,11 +325,7 @@ class Test extends OModule
     
     public function get_TestProtectedVariables()
     {
-        $result = array(
-            "TEST_ID",
-            "TEST_SESSION_ID",
-            "HASH"
-        );
+        $result = array();
         
         $tpv = TestProtectedVariable::from_property(array("Test_id"=>$this->id));
         foreach($tpv as $v)

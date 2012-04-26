@@ -194,6 +194,27 @@ class Template extends OModule {
         return mysql_query($sql);
     }
 
+    public function get_preview_HTML()
+    {
+        $html = new simple_html_dom();
+        $html->load($this->HTML);
+        $elems = $html->find("style");
+        foreach($elems as $elem)
+        {
+            $elem->outertext = "";
+        }
+        $elems = $html->find("link");
+        foreach($elems as $elem)
+        {
+            $elem->outertext = "";
+        }
+        $elems = $html->find("script");
+        foreach($elems as $elem)
+        {
+            $elem->outertext = "";
+        }
+        return $html->save();
+    }
 }
 
 ?>

@@ -61,7 +61,7 @@ class TestSection extends OTable
 
     public function get_RFunctionName()
     {
-        return "Test" . $this->Test_id . "Section" . $this->counter;
+        return "CONCERTO_Test" . $this->Test_id . "Section" . $this->counter;
     }
 
     public function get_RFunction()
@@ -233,7 +233,7 @@ class TestSection extends OTable
                         if ($column == null)
                                 return sprintf("stop('Invalid table column index: %s of table id: %s in section #%s')", $vals[4 + $i * 2], $vals[3], $this->counter);
                         if ($i > 0) $set.=",";
-                        $set.=sprintf("`%s`='\",dbEscapeStrings(con,toString(%s)),\"'", $column->name, $vals[4 + $i * 2 + 1]);
+                        $set.=sprintf("`%s`='\",dbEscapeStrings(CONCERTO_DB_CONNECTION,toString(%s)),\"'", $column->name, $vals[4 + $i * 2 + 1]);
                     }
 
                     $where = "";
@@ -245,7 +245,7 @@ class TestSection extends OTable
                                 return sprintf("stop('Invalid table column index: %s of table id: %s in section #%s')", $vals[$j + 1], $vals[3], $this->counter);
 
                         if ($i > 0) $where .=sprintf("%s", $vals[$j]);
-                        $where.=sprintf("`%s` %s '\",dbEscapeStrings(con,toString(%s)),\"'", $column->name, $vals[$j + 2], $vals[$j + 3]);
+                        $where.=sprintf("`%s` %s '\",dbEscapeStrings(CONCERTO_DB_CONNECTION,toString(%s)),\"'", $column->name, $vals[$j + 2], $vals[$j + 3]);
                     }
 
                     $sql = "";
@@ -263,8 +263,8 @@ class TestSection extends OTable
                     }
 
                     $code = sprintf('
-                        sqlCommand <- paste("%s",sep="")
-                        sqlResult <- dbSendQuery(con,sqlCommand)
+                        CONCERTO_SQL <- paste("%s",sep="")
+                        CONCERTO_SQL_RESULT <- dbSendQuery(CONCERTO_DB_CONNECTION,CONCERTO_SQL)
                         return(%d)
                         ', $sql, $next_counter);
 
@@ -277,8 +277,8 @@ class TestSection extends OTable
                     $conds_count = $vals[1];
 
                     $set_rvar_code = sprintf('
-                                if(suppressWarnings(!is.na(as.numeric(%s)))) %s <<- as.numeric(%s)
-                                ', $vals[4], $vals[4], $vals[4]);
+                                if(suppressWarnings(!is.na(as.numeric(%s))) && length(%s)==1) %s <<- as.numeric(%s)
+                                ', $vals[4], $vals[4], $vals[4], $vals[4]);
 
                     if ($type == 0)
                     {
@@ -325,16 +325,16 @@ class TestSection extends OTable
                                 $j++;
 
                                 if ($i > 1)
-                                        $sql.=sprintf("%s `%s` %s '\",dbEscapeStrings(con,toString(%s)),\"' ", $link, $cond_col->name, $operator, $exp);
+                                        $sql.=sprintf("%s `%s` %s '\",dbEscapeStrings(CONCERTO_DB_CONNECTION,toString(%s)),\"' ", $link, $cond_col->name, $operator, $exp);
                                 else
-                                        $sql.=sprintf("`%s` %s '\",dbEscapeStrings(con,toString(%s)),\"' ", $cond_col->name, $operator, $exp);
+                                        $sql.=sprintf("`%s` %s '\",dbEscapeStrings(CONCERTO_DB_CONNECTION,toString(%s)),\"' ", $cond_col->name, $operator, $exp);
                             }
                         }
 
                         $code = sprintf('
-                        sqlCommand <- paste("%s",sep="")
-                        sqlResult <- dbSendQuery(con,sqlCommand)
-                        %s <<- fetch(sqlResult,n=-1)
+                        CONCERTO_SQL <- paste("%s",sep="")
+                        CONCERTO_SQL_RESULT <- dbSendQuery(CONCERTO_DB_CONNECTION,CONCERTO_SQL)
+                        %s <<- fetch(CONCERTO_SQL_RESULT,n=-1)
                         %s
                         return(%d)
                         ', $sql, $vals[4], $set_rvar_code, $next_counter);

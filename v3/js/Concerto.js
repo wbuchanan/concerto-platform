@@ -126,7 +126,7 @@ function Concerto(selector,hash,sid,tid,queryPath,callbackGet,callbackSend,debug
                         $(thisClass.selector).html("<h2>Fatal test exception encounterd. Test halted.</h2>");
                     }
                     else {
-                        $(thisClass.selector).html("<h2>RScript return code</h2>");
+                        $(thisClass.selector).html("<h2>R return code</h2>");
                         $(thisClass.selector).append(thisClass.debug["return"]);
                         $(thisClass.selector).append("<hr/>");
                         //$(thisClass.selector).append("<h2>HTML variables</h2>");
@@ -139,6 +139,7 @@ function Concerto(selector,hash,sid,tid,queryPath,callbackGet,callbackSend,debug
                         $(thisClass.selector).append("<hr/>");
                         $(thisClass.selector).append("<h2>R output</h2>");
                         for(var i=0; i<thisClass.debug["output"].length;i++){
+                            if(thisClass.debug["output"][i]==null) continue;
                             $(thisClass.selector).append(thisClass.debug["output"][i].replace(/\n/g,'<br />')+"<br/>");
                         }
                     }
