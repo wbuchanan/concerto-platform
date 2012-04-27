@@ -63,7 +63,8 @@ class Template extends OModule {
     }
 
     public function get_return_reference($name, $vals, $output = null) {
-        if($output == null) $output = $this->get_outputs();
+        if ($output == null)
+            $output = $this->get_outputs();
         $j = 3 + $vals[1];
         foreach ($output as $ret) {
             if ($ret["name"] == $name)
@@ -115,7 +116,7 @@ class Template extends OModule {
     }
 
     public function export() {
-        $xml = new DOMDocument('1.0',"UTF-8");
+        $xml = new DOMDocument('1.0', "UTF-8");
         $xml->preserveWhiteSpace = false;
         $xml->formatOutput = true;
 
@@ -162,13 +163,13 @@ class Template extends OModule {
         $element = $xml->createElement("Template");
         $xml->appendChild($element);
 
-        $id = $xml->createElement("id", htmlspecialchars($this->id, ENT_QUOTES,"UTF-8"));
+        $id = $xml->createElement("id", htmlspecialchars($this->id, ENT_QUOTES, "UTF-8"));
         $element->appendChild($id);
 
-        $name = $xml->createElement("name", htmlspecialchars($this->name, ENT_QUOTES,"UTF-8"));
+        $name = $xml->createElement("name", htmlspecialchars($this->name, ENT_QUOTES, "UTF-8"));
         $element->appendChild($name);
 
-        $HTML = $xml->createElement("HTML", htmlspecialchars($this->HTML, ENT_QUOTES,"UTF-8"));
+        $HTML = $xml->createElement("HTML", htmlspecialchars($this->HTML, ENT_QUOTES, "UTF-8"));
         $element->appendChild($HTML);
 
         return $element;
@@ -194,27 +195,32 @@ class Template extends OModule {
         return mysql_query($sql);
     }
 
-    public function get_preview_HTML()
-    {
+    public static function strip_html($html, $scripts = true, $styles = true) {
         $html = new simple_html_dom();
-        $html->load($this->HTML);
-        $elems = $html->find("style");
-        foreach($elems as $elem)
-        {
-            $elem->outertext = "";
+        $html->load($html);
+        if ($styles) {
+            $elems = $html->find("style");
+            foreach ($elems as $elem) {
+                $elem->outertext = "";
+            }
+            $elems = $html->find("link");
+            foreach ($elems as $elem) {
+                $elem->outertext = "";
+            }
         }
-        $elems = $html->find("link");
-        foreach($elems as $elem)
-        {
-            $elem->outertext = "";
-        }
-        $elems = $html->find("script");
-        foreach($elems as $elem)
-        {
-            $elem->outertext = "";
+        if ($scripts) {
+            $elems = $html->find("script");
+            foreach ($elems as $elem) {
+                $elem->outertext = "";
+            }
         }
         return $html->save();
     }
+
+    public function get_preview_HTML() {
+        return Template::strip_html($this->HTML);
+    }
+
 }
 
 ?>
