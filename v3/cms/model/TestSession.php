@@ -62,7 +62,7 @@ class TestSession extends OTable {
     public function remove() {
         if ($this->r_type == TestSession::R_TYPE_SOCKET_SERVER) {
             if (TestServer::is_running())
-                TestServer::send("close:" . $session->id);
+                TestServer::send("close:" . $this->id);
         }
         $this->mysql_delete();
     }

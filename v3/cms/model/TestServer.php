@@ -386,6 +386,7 @@ class TestServer
                             self::log_debug("TestServer->start() --- Close command recieved");
                     $vars = explode(":", $input);
                     $this->close_instance("sid" . $vars[1]);
+                    continue;
                 }
                 $this->last_action_time = time();
                 $client = $this->get_client($client_sock, $input);

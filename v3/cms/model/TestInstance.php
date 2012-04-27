@@ -121,9 +121,19 @@ class TestInstance
 
     public function send($code)
     {
+        if (TestServer::$debug)
+                TestServer::log_debug("TestInstance->send() --- Sending ".  strlen($code)." data to test instance");
         $this->last_action_time = time();
         $this->code = $code;
-        $bytes = fwrite($this->pipes[0], $code . "
+        
+        $bytes = 0;
+        $lines = explode("\n",$code);
+        foreach($lines as $line)
+        {
+            if(trim($line)=="") continue;
+            $bytes += fwrite($this->pipes[0], $line."\n");
+        }
+        $bytes += fwrite($this->pipes[0], "
         print('CODE EXECUTION FINISHED')
         ");
         if (TestServer::$debug)
