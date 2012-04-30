@@ -1330,6 +1330,7 @@ Note: You can add new languages by inserting "<new_language>string translated in
             <de>lese Rechte</de>
             <pl>prawa odczytu</pl>
             <cn>阅读权限</cn>
+             <fr>groitd de lecture</fr> 
             <bg>права за четене</bg>
         </string>
         <string id="165">
@@ -1344,6 +1345,7 @@ Note: You can add new languages by inserting "<new_language>string translated in
             <de>ändere Besitzer</de>
             <pl>zmiana wlaściciela</pl>
             <cn>所有者变更</cn>
+             <fr>changement de propriétaire</fr>
             <bg>смяна на собственика</bg>
         </string>
         <string id="167">
@@ -1351,6 +1353,7 @@ Note: You can add new languages by inserting "<new_language>string translated in
             <de>HTML Templates</de>
             <pl>szablony HTML</pl>
             <cn>HTML模板</cn>
+            <fr>modèle HTML</fr>
             <bg>HTML шаблони</bg>
         </string>
         <string id="168">
@@ -1358,6 +1361,7 @@ Note: You can add new languages by inserting "<new_language>string translated in
             <de>standard</de>
             <pl>standardowe</pl>
             <cn>标准</cn>
+            <fr>standard</fr>
             <bg>стандартни</bg>
         </string>
         <string id="169">
@@ -1365,6 +1369,7 @@ Note: You can add new languages by inserting "<new_language>string translated in
             <de>alle</de>
             <pl>wszystko</pl>
             <cn>全部</cn>
+            <fr>tout</fr>
             <bg>всички</bg>
         </string>
         <string id="170">
@@ -1372,6 +1377,7 @@ Note: You can add new languages by inserting "<new_language>string translated in
             <de>bearbeite Administrator</de>
             <pl>edycja administratora</pl>
             <cn>编辑管理者</cn>
+            <fr>modifier l'administrateur</fr>
             <bg>редактиране на администратора</bg>
         </string>
         <string id="171">
@@ -1379,6 +1385,7 @@ Note: You can add new languages by inserting "<new_language>string translated in
             <de>lege neuen Administrator an</de>
             <pl>tworzenie nowego administratora</pl>
             <cn>创建管理者</cn>
+             <fr>créer un nouvel administrateur</fr>
             <bg>създаване на нов администратор</bg>
         </string>
         <string id="172">
@@ -1386,6 +1393,7 @@ Note: You can add new languages by inserting "<new_language>string translated in
             <de>lege neuen Administrator an</de>
             <pl>tworzenie nowego administratora</pl>
             <cn>创建管理者</cn>
+            <fr>créer un nouvel administrateur</fr>
             <bg>създаване на нов администратор</bg>
         </string>
         <string id="173">
@@ -1393,6 +1401,7 @@ Note: You can add new languages by inserting "<new_language>string translated in
             <de>Benutzername</de>
             <pl>login</pl>
             <cn>登入</cn>
+             <fr>ouvrir une session</fr>
             <bg>вход</bg>
         </string>
         <string id="174">
@@ -1400,6 +1409,7 @@ Note: You can add new languages by inserting "<new_language>string translated in
             <de>Email</de>
             <pl>email</pl>
             <cn>邮箱</cn>
+            <fr>email</fr>
             <bg>имейл</bg>
         </string>
         <string id="175">
@@ -1407,6 +1417,7 @@ Note: You can add new languages by inserting "<new_language>string translated in
             <de>letzter login</de>
             <pl>ostatni login</pl>
             <cn>上次登入</cn>
+            <fr>dernière ouverture de session</fr>
             <bg>последно влизане</bg>            
         </string>
         <string id="176">
@@ -1414,6 +1425,7 @@ Note: You can add new languages by inserting "<new_language>string translated in
             <de>Administratorengruppe</de>
             <pl>grupa administratora</pl>
             <cn>管理群</cn>
+            <fr>groupe d'administrateurs</fr>
             <bg>група на администраторите</bg>
         </string>
         <string id="177">
@@ -1421,6 +1433,7 @@ Note: You can add new languages by inserting "<new_language>string translated in
             <de>Administratorentyp</de>
             <pl>typ administratora</pl>
             <cn>管理员类型</cn>
+            <fr>type d'administrateur</fr>
             <bg>вид на администратора</bg>
         </string>
         <string id="178">
@@ -1428,6 +1441,7 @@ Note: You can add new languages by inserting "<new_language>string translated in
             <de>Benutzername des Administrators</de>
             <pl>login administratora</pl>
             <cn>管理员登入</cn>
+            <fr>ouverture en tant qu'administrateur</fr>
             <bg>вход на администратора</bg>
         </string>
         <string id="179">
@@ -1449,6 +1463,7 @@ Note: You can add new languages by inserting "<new_language>string translated in
             <de>Passwort des Administrators</de>
             <pl>hasło administratora</pl>
             <cn>管理员密码</cn>
+            <fr>mot de passe d'administrateur</fr>
             <bg>парола на администратора</bg>
         </string>
         <string id="182">
@@ -1456,6 +1471,7 @@ Note: You can add new languages by inserting "<new_language>string translated in
             <de>Passwortwiederhohlung</de>
             <pl>potwierdzenie hasła</pl>
             <cn>确认密码</cn>
+            <fr>confirmation du mot de passe</fr>
             <bg>потвърждение на паролата</bg>
         </string>
         <string id="183">
@@ -1463,6 +1479,7 @@ Note: You can add new languages by inserting "<new_language>string translated in
             <de>Passwortwiederhohlung muss mit dem Passwort Feld darüber übereinstimmen</de>
             <pl>potwierdzenie hasła musi sie zgadzać z polem hasła powyżej</pl>
             <cn>确认密码必须与上方密码栏一致</cn>
+             <fr>la confirmation du mot de passe doit correspondre au mot de passe ci-dessus</fr>
             <bg>потвърждението на паролата трябва да съответства на паролата в полето по-горе</bg>
         </string>
         <string id="184">
@@ -1470,6 +1487,7 @@ Note: You can add new languages by inserting "<new_language>string translated in
             <de>Vorname</de>
             <pl>imię</pl>
             <cn>名</cn>
+             <fr>prénom</fr>
             <bg>име</bg>
         </string>
         <string id="185">
@@ -1477,6 +1495,7 @@ Note: You can add new languages by inserting "<new_language>string translated in
             <de>nachname</de>
             <pl>nazwisko</pl>
             <cn>姓</cn>
+            <fr>nom de famille</fr>
             <bg>фамилия</bg>
         </string>
         <string id="186">
@@ -1491,6 +1510,7 @@ Note: You can add new languages by inserting "<new_language>string translated in
             <de>Nachname des Administrators</de>
             <pl>nazwisko administratora</pl>
             <cn>管理员姓</cn>
+            <fr>nom de famille de l'administrateur</fr>
             <bg>фамилия на администратора</bg>
         </string>
         <string id="188">
@@ -1498,6 +1518,7 @@ Note: You can add new languages by inserting "<new_language>string translated in
             <de>Email des Administrators</de>
             <pl>email administratora</pl>
             <cn>管理员邮箱</cn>
+            <fr>email de l'administrateur</fr>
             <bg>имейл на администратора</bg>
         </string>
         <string id="189">
@@ -1505,6 +1526,7 @@ Note: You can add new languages by inserting "<new_language>string translated in
             <de>Telefon</de>
             <pl>nr telefonu</pl>
             <cn>电话</cn>
+            <fr>numéro de téléphone </fr>
             <bg>телефон:</bg>
         </string>
         <string id="190">
@@ -1512,6 +1534,7 @@ Note: You can add new languages by inserting "<new_language>string translated in
             <de>Telefonnummer des Administrators</de>
             <pl>nr telefonu administratora</pl>
             <cn>管理员电话</cn>
+            <fr>numéro de téléphone de l'administrateur</fr>
             <bg>телефон на администратора:</bg>
         </string>
         <string id="191">
@@ -1519,6 +1542,7 @@ Note: You can add new languages by inserting "<new_language>string translated in
             <de>Administratorengruppe</de>
             <pl>grupa administratora</pl>
             <cn>管理群</cn>
+            <fr>groupe d'administrateurs</fr>
             <bg>група на администраторите</bg>
         </string>
         <string id="192">
@@ -1526,6 +1550,7 @@ Note: You can add new languages by inserting "<new_language>string translated in
             <de>Administratorentyp</de>
             <pl>typ administratora</pl>
             <cn>管理员类型</cn>
+            <fr>type d'administrateur</fr>
             <bg>вид на администраторите</bg>
         </string>
         <string id="193">
@@ -1533,6 +1558,7 @@ Note: You can add new languages by inserting "<new_language>string translated in
             <de>Strukturen erstellen und verwalten für den jeweiligen Test.</de>
             <pl>W tej zakładce można tworzyć testy.</pl>
             <cn>以整体创建并管理测试结果。</cn>
+            <fr>créer et modifier la structure entière du test</fr>
             <bg>създаване и управление на цялата структура на всеки тест </bg>
         </string>
         <string id="194">
@@ -1540,6 +1566,7 @@ Note: You can add new languages by inserting "<new_language>string translated in
             <de>Benutzerdefinierte Testlogiksektionen anlegen um den Anforderungen des spezifischen Tests zu genügen.</de>
             <pl>W tej zakładce można stworzyć własne sekcje logiki testu i użyc ich w testach.</pl>
             <cn>创建满足特定测试需求的自主测试章节。</cn>
+            <fr>Créer une section logique personnalisée qui rencontre les prérequis du test</fr>
             <bg>Създаване на персонализирани секции на логиката на теста, които покриват изискванията на всеки тест</bg>
         </string>
         <string id="195">
@@ -1547,6 +1574,7 @@ Note: You can add new languages by inserting "<new_language>string translated in
             <de>Neue HTML Templates anlegen und bestehende verändern (so wie der Testbenutzer Sie sieht).</de>
             <pl>W tej zakładce można stworzyć szablony HTML elementów testu, które będzie widział użytkownik biorący udział w teście.</pl>
             <cn>创建并编辑向参与测试用户显示的HTML模板。</cn>
+            <fr>Créer et modifier des modèles HTML lorsqu'ils sont visibles au participant au test.</fr>
             <bg>Създаване и редактиране на HTM, както те се видими за тествания</bg>
         </string>
         <string id="196">
@@ -1554,6 +1582,7 @@ Note: You can add new languages by inserting "<new_language>string translated in
             <de>Tabellen anlegen um Testdaten zu speichern und verwalten; auch Iteminhalte, richtige Antworten und Antworthistorie usw.</de>
             <pl>W tej zakładce można stworzyć tabele z danymi, które można później używać w teście.</pl>
             <cn>创建表格以存储并管理测试数据，包括项目内容，正确答复以及答复历史等。</cn>
+            <fr>Créer des tableaux afin de stocker et de gérer les données du test, en incluant le contenu des énoncés, les réponses correctes et l'historique des réponses etc...</fr>
             <bg>Създаване на таблици за сортиране и упрвление на данните от теста, включително съдържанието на айтемите, верните отговори, историята  на отговарянето и т.н.</bg>
         </string>
         <string id="197">
@@ -1561,6 +1590,7 @@ Note: You can add new languages by inserting "<new_language>string translated in
             <de>Administratoren- und Standardbenutzerkonten anlegen und verwalten, Benutzergruppen und Zugriffsrechte der Benutzer.</de>
             <pl>Ta zakładka służy do tworzenia kont administratorów, którzy będą mogli korzystać z tego panelu. Możesz tutaj ustalić prawa dostępu, oraz stworzyć grupy w obrębie których administratorzy będą dzielić wskazane obiekty.</pl>
             <cn>创建并维护管理员及标准用户帐户，用户群及用户访问权限。</cn>
+            <fr>Créer et gérer les comptes d'administrateurs et d'utilisateurs standards, les groupes d'utilisateurs et les droits d'accès des utilisateurs.</fr>
             <bg>Създаване и управление на администратори и стандартни потребители, потребителските групи и правата за достъп на потребителите.</bg>
         </string>
         <string id="198">
@@ -1568,6 +1598,7 @@ Note: You can add new languages by inserting "<new_language>string translated in
             <de>Adminstratoren, Administratorengruppen und Administratorentypen </de>
             <pl>administratorzy, grupy administratorów, oraz typy administratorów</pl>
             <cn>管理员，管理群以及管理员类型</cn>
+            <fr>administrateurs, groupes d'administrateurs et droits d'administrateurs</fr>
             <bg>администратори, групи администратори и видове администратори</bg>
         </string>
         <string id="199">
@@ -1575,6 +1606,7 @@ Note: You can add new languages by inserting "<new_language>string translated in
             <de>verfügbare Objekte</de>
             <pl>dostępne obiekty</pl>
             <cn>可用对象</cn>
+            <fr>objets disponibles</fr>
             <bg>достъпни обекти</bg>
         </string>
         <string id="200">
@@ -1582,6 +1614,7 @@ Note: You can add new languages by inserting "<new_language>string translated in
             <de>keine verfügbaren Objekte</de>
             <pl>brak dostępnych obiektów</pl>
             <cn>不可用对象</cn>
+            <fr>objets non disponibles</fr>
             <bg>няма достъпни обекти</bg>
         </string>
         <string id="201">
@@ -1589,6 +1622,7 @@ Note: You can add new languages by inserting "<new_language>string translated in
             <de>Suche zurücksetzen</de>
             <pl>resetuj filtr wyszukiwania</pl>
             <cn>重设搜索选项</cn>
+            <fr>réinitialiser le filtre de recherche</fr>
             <bg>обнови филтъра за търсене</bg>
         </string>
         <string id="202">
@@ -1596,6 +1630,7 @@ Note: You can add new languages by inserting "<new_language>string translated in
             <de>Aktionen</de>
             <pl>akcje</pl>
             <cn>操作</cn>
+            fr>actions</fr>
             <bg>действия</bg>
         </string>
         <string id="203">
@@ -1603,6 +1638,7 @@ Note: You can add new languages by inserting "<new_language>string translated in
             <de>bearbeite Objekt</de>
             <pl>edytuj obiekt</pl>
             <cn>编辑对象</cn>
+            <fr>modifier l'objet</fr>
             <bg>редактиране на обект</bg>
         </string>
         <string id="204" js="1">
@@ -1610,6 +1646,7 @@ Note: You can add new languages by inserting "<new_language>string translated in
             <de>lösche Objekt</de>
             <pl>usuń obiekt</pl>
             <cn>删除对象</cn>
+            <fr>supprimer l'objet</fr>
             <bg>изтриване на обект</bg>
         </string>
         <string id="205" js="1">
@@ -1617,6 +1654,7 @@ Note: You can add new languages by inserting "<new_language>string translated in
             <de>füge neues Objekt hinzu</de>
             <pl>dodaj nowy obiekt</pl>
             <cn>添加对象</cn>
+            <fr>ajouter un nouvel objet</fr>
             <bg>прибави нов обект</bg>
         </string>
         <string id="206">
@@ -1624,6 +1662,7 @@ Note: You can add new languages by inserting "<new_language>string translated in
             <de>erste Seite</de>
             <pl>pierwsza strona</pl>
             <cn>首页</cn>
+            <fr>première page</fr>
             <bg>първа страница</bg>
         </string>
         <string id="207">
@@ -1631,6 +1670,7 @@ Note: You can add new languages by inserting "<new_language>string translated in
             <de>vorherige Seite</de>
             <pl>poprzednia strona</pl>
             <cn>前一页</cn>
+            <fr>page précédente</fr>
             <bg>предишна страница</bg>
         </string>
         <string id="208">
@@ -1638,6 +1678,7 @@ Note: You can add new languages by inserting "<new_language>string translated in
             <de>nächste Seite</de>
             <pl>następna strona</pl>
             <cn>下一页</cn>
+            <fr>page suivante</fr>
             <bg>следваща страница</bg>
         </string>
         <string id="209">
@@ -1645,6 +1686,7 @@ Note: You can add new languages by inserting "<new_language>string translated in
             <de>letzte Seite</de>
             <pl>ostatnia strona</pl>
             <cn>尾页</cn>
+            <fr>dernière page</fr>
             <bg>последна страница</bg>
         </string>
         <string id="210">
@@ -1652,6 +1694,7 @@ Note: You can add new languages by inserting "<new_language>string translated in
             <de>pro Seite</de>
             <pl>na stronę</pl>
             <cn>每页</cn>
+            <fr>par page</fr>
             <bg>на страница</bg>
         </string>
         <string id="211">
@@ -1659,6 +1702,7 @@ Note: You can add new languages by inserting "<new_language>string translated in
             <de>Login zur Platform</de>
             <pl>logowanie do platformy</pl>
             <cn>登入系统</cn>
+            <fr>se connecter à la plateforme</fr>
             <bg>вход в платформата</bg>
         </string>
         <string id="212">
@@ -1666,6 +1710,7 @@ Note: You can add new languages by inserting "<new_language>string translated in
             <de>Geben Sie Ihren Benutzernamen und Ihr Passwort ein.</de>
             <pl>Podaj swój login i hasło.</pl>
             <cn>输入用户名和密码</cn>
+            <fr>Entrez votre nom d'utilisateur et votre mot de passe</fr>
             <bg>Въведете Вашето потребителско име и парола. </bg>
         </string>
         <string id="213">
@@ -1673,6 +1718,7 @@ Note: You can add new languages by inserting "<new_language>string translated in
             <de>Zu ladendes HTML Template auswählen.</de>
             <pl>Wybierz szablon HTML, który chcesz wczytać.</pl>
             <cn>选择载入HTML模板</cn>
+            <fr>Sélectionner un modèle HTML à charger.</fr>
             <bg>Изберете HTML шаблона, който да бъде зареден</bg>
         </string>
         <string id="214">
@@ -1680,6 +1726,7 @@ Note: You can add new languages by inserting "<new_language>string translated in
             <de>Vorschau auf gewähltes HTML Template.</de>
             <pl>Podgląd obecnie wybranego szablonu HTML</pl>
             <cn>所选HTML模板预览</cn>
+            <fr>Prévisualiser le modèle HTML sélectionné.</fr>
             <bg>Преглед на избрания HTML шаблон</bg>
         </string>
         <string id="215">
@@ -1687,6 +1734,7 @@ Note: You can add new languages by inserting "<new_language>string translated in
             <de>Wert dieser Variable wird in das HTML Template eingefügt</de>
             <pl>wartość tej zmiennej zostanie osadzona w szablonie HTML</pl>
             <cn>在HTML模板中插入此变量值</cn>
+            <fr>La valeur de cette variable va être insérée dans le modèle HTML</fr>
             <bg>стойността на тази променлива ще бъде вмъкната в HTML шаблона</bg>
         </string>
         <string id="216">
@@ -1694,6 +1742,7 @@ Note: You can add new languages by inserting "<new_language>string translated in
             <de><![CDATA[Zeit (in Sekunden) die bleibt um das Item zu beantworten. Auf 0 setzen für unbeschränkte Zeit. Füge <b>{{TIME_LEFT}}</b> Variable in das HTML Template ein, um die verbleibende Zeit anzuzeigen.]]></de>
             <pl><![CDATA[Czas w sekundach jaki użytkownik posiada aby przesłać element. Jeśli wartość jest równa 0 - oznacza to, że czas jest nieograniczony. Można wstawić zmienną <b>{{TIME_LEFT}}</b> do HTML aby wyświetlić odliczanie.]]></pl>
             <cn><![CDATA[提交测试项目剩余时间（秒）。数值0表示无时间限制。在HTML模板中插入<b>{{剩余时间}}</b> 变量以显示倒计时。]]></cn>
+             <fr><![CDATA[Temps restant (en secondes) pour soumettre l'énoncé du test. Une valeur de 0 sous-tend un temps illimité. Insérer la variable <b>{{TIME_LEFT}}</b> dans le modèle HTML afin de rendre le chronomètre visible.]]</fr>
             <bg><![CDATA[Оставащо време (в секунди)), за да бъде попълнен тестовия айтем. Стойност 0 означава неограничено време. Вмъкни <b>{{TIME_LEFT}}</b> променлива в HTML шаблона, за да направите този таймер видим.]]></bg>
         </string>
         <string id="217">
@@ -1701,6 +1750,7 @@ Note: You can add new languages by inserting "<new_language>string translated in
             <de>dieser Variablentyp ist</de>
             <pl>typem tej zmiennej jest</pl>
             <cn>此变量类型为</cn>
+            <fr>cette variable est</fr>
             <bg>видът на тази променлива е</bg>
         </string>
         <string id="218">
@@ -1708,6 +1758,7 @@ Note: You can add new languages by inserting "<new_language>string translated in
             <de>keine Ausgabe von diesem HTML Template</de>
             <pl>brak zwrotu na tym szablonie HTML</pl>
             <cn>此HTML模板无输出</cn>
+            <fr>aucune entrée de  provenant de ce modèle HTML</fr>
             <bg>няма резултат от този HTML шаблон</bg>
         </string>
         <string id="219">
@@ -1715,10 +1766,12 @@ Note: You can add new languages by inserting "<new_language>string translated in
             <de>GEHE ZU SEKTION</de>
             <pl>PRZEJDŹ DO SEKCJI</pl>
             <cn>前往章节</cn>
+            <fr>ALLER À LA SECTION</fr>
             <bg>ИДИ В СЕКЦИЯТА</bg>
         </string>
         <string id="220">
             <en>sets which section should be run next</en>
+            <fr>indique quelle section doit être activée par la suite</fr>
             <de>legt die als nächstes auszuführende Sektion fest</de>
             <pl>wskazuje która sekcja powinna być wykonana następna</pl>
             <cn>设置下一章节为</cn>
@@ -1729,6 +1782,7 @@ Note: You can add new languages by inserting "<new_language>string translated in
             <de>ungleich</de>
             <pl>nie równe</pl>
             <cn>不等于</cn>
+            <fr>pas égal à</fr>
             <bg>не е равно</bg>
         </string>
         <string id="222" js="1">
@@ -1736,6 +1790,7 @@ Note: You can add new languages by inserting "<new_language>string translated in
             <de>gleich</de>
             <pl>równe</pl>
             <cn>等于</cn>
+            <fr>égal</fr>
             <bg>равно</bg>
         </string>
         <string id="223" js="1">
@@ -1743,6 +1798,7 @@ Note: You can add new languages by inserting "<new_language>string translated in
             <de>größer als</de>
             <pl>większe niż</pl>
             <cn>大于</cn>
+            <fr>égal à</fr>
             <bg>повече от</bg>
         </string>
         <string id="224" js="1">
@@ -1750,6 +1806,7 @@ Note: You can add new languages by inserting "<new_language>string translated in
             <de>größer oder gleich</de>
             <pl>równe lub większe niż</pl>
             <cn>大于或等于</cn>
+            <fr>plus grand ou égal à</fr>
             <bg>повече или равно на</bg>
         </string>
         <string id="225" js="1">
@@ -1757,6 +1814,7 @@ Note: You can add new languages by inserting "<new_language>string translated in
             <de>kleiner als</de>
             <pl>mniejsze niż</pl>
             <cn>小于</cn>
+            <fr>plus petit que</fr>
             <bg>по-малко от</bg>
         </string>
         <string id="226" js="1">
@@ -1764,6 +1822,7 @@ Note: You can add new languages by inserting "<new_language>string translated in
             <de>kleiner oder gleich</de>
             <pl>równe lub mniejsze niż</pl>
             <cn>小于或等于</cn>
+            <fr>plus petit ou égal à</fr>
             <bg>равно или по-малко от</bg>
         </string>
         <string id="227" js="1">
@@ -1771,6 +1830,7 @@ Note: You can add new languages by inserting "<new_language>string translated in
             <de>UND</de>
             <pl>I</pl>
             <cn>并且</cn>
+            <fr>ET</fr>
             <bg>И</bg>
         </string>
         <string id="228" js="1">
@@ -1778,6 +1838,7 @@ Note: You can add new languages by inserting "<new_language>string translated in
             <de>ODER</de>
             <pl>LUB</pl>
             <cn>或者</cn>
+            <fr>OU/fr>
             <bg>ИЛИ</bg>
         </string>
         <string id="229">
@@ -1785,6 +1846,7 @@ Note: You can add new languages by inserting "<new_language>string translated in
             <de>Bedingung hinzufügen</de>
             <pl>dodaj warunek</pl>
             <cn>添加条件</cn>
+            <fr>ajouter une condition</fr>
             <bg>условие прибави</bg>
         </string>
         <string id="230">
@@ -1792,6 +1854,7 @@ Note: You can add new languages by inserting "<new_language>string translated in
             <de>Bedingung entfernen</de>
             <pl>usuń warunek</pl>
             <cn>移除条件</cn>
+            <fr>enlever une condition</fr>
             <bg>условие извади</bg>
         </string>
         <string id="231">
@@ -1799,6 +1862,7 @@ Note: You can add new languages by inserting "<new_language>string translated in
             <de>DANN</de>
             <pl>WTEDY</pl>
             <cn>则</cn>
+            <fr>ALORS</fr>
             <bg>ТОГАВА</bg>
         </string>
         <string id="232">
@@ -1806,6 +1870,7 @@ Note: You can add new languages by inserting "<new_language>string translated in
             <de>Füge Testlogiksektion zu WENN Aussage hinzu.</de>
             <pl>dodaj sekcję logiki testu do bloku JEŚLI</pl>
             <cn>为条件语句添加测试逻辑章节</cn>
+            <fr>ajouter une section logique du test à une clause SI</fr>
             <bg>прибави секцията с тестовата логика към АКО условието</bg>
         </string>
         <string id="233">
@@ -1813,12 +1878,14 @@ Note: You can add new languages by inserting "<new_language>string translated in
             <de>SET VARIABLE</de>
             <pl>USTAW ZMIENNĄ</pl>
             <cn>设置变量</cn>
+            <fr>DÉFINIR UNE VARIABLE</fr>
             <bg>СЪЗДАЙ ПРОМЕНЛИВА</bg>
         </string>
         <string id="235">
             <en>from table</en>
             <de>aus Tabelle</de>
             <pl>z tabeli</pl>
+            <fr>à partir du tableau</fr>
             <cn>来自于表格</cn>
             <bg>от таблицата</bg>
         </string>
@@ -1827,6 +1894,7 @@ Note: You can add new languages by inserting "<new_language>string translated in
             <de>durch R Code</de>
             <pl>poprzez kod R</pl>
             <cn>通过R代码</cn>
+            <fr>avec un code R</fr>
             <bg>чрез R кода</bg>
         </string>
         <string id="238">
@@ -1834,6 +1902,7 @@ Note: You can add new languages by inserting "<new_language>string translated in
             <de>SELECT FROM TABLE</de>
             <pl>WYBIERZ Z TABELI</pl>
             <cn>从表格中选择</cn>
+            <fr>SÉLECTIONNER À PARTIR DU TABLEAU</fr>
             <bg>ИЗБЕРИ ОТ ТАБЛИЦАТА</bg>
         </string>
         <string id="239">
@@ -1841,6 +1910,7 @@ Note: You can add new languages by inserting "<new_language>string translated in
             <de>keine Tabelle ausgewählt</de>
             <pl>nie wybrano tabeli</pl>
             <cn>未选择表格</cn>
+            <fr>aucun tableau sélectionné</fr>
             <bg>не е избрана таблица</bg>
         </string>
         <string id="240">
@@ -1848,6 +1918,7 @@ Note: You can add new languages by inserting "<new_language>string translated in
             <de>COLUMNS</de>
             <pl>KOLUMNY</pl>
             <cn>列</cn>
+            <fr>COLONNE</fr>
             <bg>КОЛОНИ</bg>
         </string>
         <string id="241">
@@ -1855,6 +1926,7 @@ Note: You can add new languages by inserting "<new_language>string translated in
             <de>keine Spalten ausgewählt</de>
             <pl>nie wybrano kolumny</pl>
             <cn>未选择列</cn>
+            <fr>aucune colonne sélectionnée</fr>
             <bg>не са избрани колони</bg>
         </string>
         <string id="242">
@@ -1862,6 +1934,7 @@ Note: You can add new languages by inserting "<new_language>string translated in
             <de>WHERE</de>
             <pl>GDZIE</pl>
             <cn>当</cn>
+            <fr>où</fr>
             <bg>КЪДЕ</bg>
         </string>
         <string id="243">
@@ -1869,6 +1942,7 @@ Note: You can add new languages by inserting "<new_language>string translated in
             <de>ähnlich</de>
             <pl>podobne</pl>
             <cn>类似于</cn>
+            <fr>comme</fr>
             <bg>подобно</bg>
         </string>
         <string id="244">
@@ -1876,6 +1950,7 @@ Note: You can add new languages by inserting "<new_language>string translated in
             <de>nicht ähnlich</de>
             <pl>niepodobne</pl>
             <cn>不类似于 </cn>
+            <fr>pas comme</fr>
             <bg>не е подобно</bg>
         </string>
         <string id="245">
@@ -1883,6 +1958,7 @@ Note: You can add new languages by inserting "<new_language>string translated in
             <de>Test id. Diese Variable kann nur gelesen werden.</de>
             <pl>ID testu. Zmienna tylko do odczytu.</pl>
             <cn>测试id。只读变量。</cn>
+            <fr>ID de la session du test. Variable en lecture seulement.</fr>
             <bg>ID на теста. Чети само променливите.</bg>
         </string>
         <string id="246">
@@ -1890,6 +1966,7 @@ Note: You can add new languages by inserting "<new_language>string translated in
             <de>Testsitzungs id. Diese Variable kann nur gelesen werden.</de>
             <pl>ID sesji testu. Zmienna tylko do odczytu.</pl>
             <cn>测试章节id。只读变量。</cn>
+            <fr>DANS LE TABLEAU</fr>
             <bg>ID на теста. Чети само променливите.</bg>
         </string>
         <string id="247">
@@ -1897,6 +1974,7 @@ Note: You can add new languages by inserting "<new_language>string translated in
             <de>IN TABLE</de>
             <pl>W TABELI</pl>
             <cn>位于表格</cn>
+            <fr>DANS LE TABLEAU</fr>
             <bg>в таблицата</bg>
         </string>
         <string id="248">
@@ -1904,6 +1982,7 @@ Note: You can add new languages by inserting "<new_language>string translated in
             <de>einfügen</de>
             <pl>dodaj</pl>
             <cn>插入</cn>
+            <fr>Rafraîchir</fr>
             <bg>вмъкни</bg>
         </string>
         <string id="249">
@@ -1911,6 +1990,7 @@ Note: You can add new languages by inserting "<new_language>string translated in
             <de>aktualisieren</de>
             <pl>zmień</pl>
             <cn>更新</cn>
+            <fr>Actualiser</fr>
             <bg>обнови</bg>
         </string>
         <string id="250">
@@ -1918,6 +1998,7 @@ Note: You can add new languages by inserting "<new_language>string translated in
             <de>löschen</de>
             <pl>usuń</pl>
             <cn>删除</cn>
+            <fr>supprimer</fr>
             <bg>изтрий</bg>
         </string>
         <string id="251">
@@ -1925,6 +2006,7 @@ Note: You can add new languages by inserting "<new_language>string translated in
             <de>SET</de>
             <pl>USTAW</pl>
             <cn>设置</cn>
+            <fr>DÉFINIR</fr>
             <bg>СЪЗДАЙ</bg>
         </string>
         <string id="252">
