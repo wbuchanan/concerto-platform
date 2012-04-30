@@ -89,7 +89,7 @@ class TestSession extends OTable {
             if (!property_exists($val, "name") || trim($val->name) == "" || strpos(trim($val->name), "CONCERTO_") === 0 || in_array(trim($val->name), $protected_vars))
                 continue;
 
-            if ($val->value == "NA") {
+            if ($val->value === "NA") {
                 $code.=sprintf("
                         %s <- NA
                         ", $val->name);
