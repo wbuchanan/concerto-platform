@@ -26,7 +26,9 @@ class Language
 
     public static function string($id)
     {
-        return self::$dictionary[$id];
+        //return str_replace('"', "&quot;", str_replace("'", "&#039;", self::$dictionary[$id]));
+        return addcslashes(self::$dictionary[$id],'"');
+        //return addcslashes(self::$dictionary[$id],'"');
     }
 
     public static function languages()
@@ -103,7 +105,7 @@ class Language
         foreach ($ids as $id)
         {
             $id = $id->getAttribute("id");
-            echo"dictionary['s" . $id . "']='" . addcslashes(self::string($id), "'") . "';
+            echo"dictionary['s" . $id . "']=\"" . self::string($id) . "\";
                 ";
         }
         echo"</script>";

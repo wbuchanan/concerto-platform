@@ -50,8 +50,8 @@ foreach ($cols as $col) {
         $columns_def.=sprintf("format: %s,", $col["format"]);
     if (array_key_exists("template", $col))
         $columns_def.=sprintf("'template': %s,", $col["template"]);
-    $columns_def.=sprintf("title: '%s',", $col["name"]);
-    $columns_def.=sprintf("field: '%s',", $col["property"]);
+    $columns_def.=sprintf("title: \"%s\",", $col["name"]);
+    $columns_def.=sprintf("field: \"%s\",", $col["property"]);
     $columns_def.=sprintf("filterable: %s,", $col["searchable"] ? "true" : "false");
     $columns_def.=sprintf("sortable: %s,", $col["sortable"] ? "true" : "false");
     $columns_def.=sprintf("groupable: %s", $col["groupable"] ? "true" : "false");
@@ -59,12 +59,12 @@ foreach ($cols as $col) {
     $columns_def.=",";
 }
 
-$action_template = '#if(editable) {#<span style="display:inline-block;" class="spanIcon tooltip ui-icon ui-icon-pencil" onclick="' . $class_name . '.uiEdit(${ id })" title="' . Language::string(203) . '"></span>#}#';
-$action_template.='#if(editable) {#<span style="display:inline-block;" class="spanIcon tooltip ui-icon ui-icon-trash" onclick="' . $class_name . '.uiDelete(${ id })" title="' . Language::string(204) . '"></span>#}#';
+$action_template = "#if(editable) {#<span style='display:inline-block;' class='spanIcon tooltip ui-icon ui-icon-pencil' onclick='$class_name.uiEdit(".'${ id }'.")' title='" . Language::string(203) . "'></span>#}#";
+$action_template.="#if(editable) {#<span style='display:inline-block;' class='spanIcon tooltip ui-icon ui-icon-trash' onclick='$class_name.uiDelete(".'${ id }'.")' title='" . Language::string(204) . "'></span>#}#";
 if ($class_name::$exportable) {
-    $action_template.='<span style="display:inline-block;" class="spanIcon tooltip ui-icon ui-icon-arrowthickstop-1-n" onclick="' . $class_name . '.uiExport(${ id })" title="' . Language::string(265) . '"></span>';
+    $action_template.="<span style='display:inline-block;' class='spanIcon tooltip ui-icon ui-icon-arrowthickstop-1-n' onclick='$class_name.uiExport(".'${ id }'.")' title='" . Language::string(265) . "'></span>";
 }
-$columns_def.=sprintf("{ title:'', width:70, filterable: false, sortable: false, groupable: false, template: '%s'}", $action_template);
+$columns_def.=sprintf("{ title:'', width:70, filterable: false, sortable: false, groupable: false, template: \"%s\"}", $action_template);
 $columns_def.="]";
 ?>
 

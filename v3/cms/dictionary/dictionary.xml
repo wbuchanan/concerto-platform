@@ -466,6 +466,7 @@ Note: You can add new languages by inserting "<new_language>string translated in
             <pl>początek</pl>
             <cn>开始</cn>
             <bg>начало</bg>
+            <fr>commencer</fr>
         </string>
         <string id="55" js="1">
             <en>end</en>
@@ -480,7 +481,7 @@ Note: You can add new languages by inserting "<new_language>string translated in
             <de>Ändere Tabelle</de>
             <pl>modyfikacja tabeli</pl>
             <cn>修改表格</cn>
-            <en>modification du tableau</en>
+            <fr>modification du tableau</fr>
             <bg>промяна на таблицата</bg>
         </string>
         <string id="57" js="1">
@@ -626,6 +627,7 @@ Note: You can add new languages by inserting "<new_language>string translated in
             <cn>未命名表格</cn>
             <en>veriable sans nom</en>
             <bg>променлива без име</bg>
+            <fr></fr>
         </string>
         <string id="75">
             <en>unnamed template</en>
@@ -657,6 +659,7 @@ Note: You can add new languages by inserting "<new_language>string translated in
             <pl>nieznany</pl>
             <cn>未知</cn>
             <bg>непознат</bg>
+            <fr>inconnu</fr>
         </string>
         <string id="79">
             <en>unnamed user group</en>
@@ -719,6 +722,7 @@ Note: You can add new languages by inserting "<new_language>string translated in
             <pl>plik</pl>
             <cn>文件</cn>
             <bg>файл</bg>
+            <fr>fichier</fr>
         </string>
         <string id="87">
             <en>templates</en>
@@ -734,6 +738,7 @@ Note: You can add new languages by inserting "<new_language>string translated in
             <pl>testy</pl>
             <cn>测试</cn>
             <bg>тестове</bg>
+            <fr>tests</fr>
         </string>
         <string id="89">
             <en>admins</en>
@@ -741,6 +746,7 @@ Note: You can add new languages by inserting "<new_language>string translated in
             <pl>administratorzy</pl>
             <cn>管理员</cn>
             <bg>администратори</bg>
+            <fr>administrateurs</fr>
         </string>
         <string id="90">
             <en>admin types</en>
@@ -1450,6 +1456,7 @@ Note: You can add new languages by inserting "<new_language>string translated in
             <pl>hasło</pl>
             <cn>密码</cn>
             <bg>парола</bg>
+            <fr>mot de passe</fr>
         </string>
         <string id="180">
             <en>Select box to set the password</en>
