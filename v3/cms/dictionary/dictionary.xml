@@ -2014,6 +2014,7 @@ Note: You can add new languages by inserting "<new_language>string translated in
             <de>Suchliste</de>
             <pl>przeszukaj listę</pl>
             <cn>搜索列表</cn>
+            <fr>Chercher la liste</fr>
             <bg>списък за търсене</bg>
         </string>
         <string id="253">
@@ -2021,6 +2022,7 @@ Note: You can add new languages by inserting "<new_language>string translated in
             <de>Typ der zu Testlogik hinzuzufügenden Sektion auswählen</de>
             <pl>wybierz typ sekcji jaką chciałbyś dodać do logiki testu</pl>
             <cn>选择加入测试逻辑的章节类型</cn>
+            <fr>sélectionner le type de section à être ajouté à la logique du test</fr>
             <bg>Избери вида на секцията, която да бъде добавена към тестовата логика</bg>
         </string>
         <string id="254">
@@ -2028,6 +2030,7 @@ Note: You can add new languages by inserting "<new_language>string translated in
             <de>Variablenbeschreibung eingeben die alle Benutzer dieser Sektion in ihren Tests sehen.</de>
             <pl>Wprowadź opis zmiennej który będzie widoczny dla każdego kto użyje tej sekcji w swym teście.</pl>
             <cn>添加向使用此章节用户显示的变量描述</cn>
+            <fr>Entrer une définition de la variable qui sera visible à quiconque utilisant cette section dans leur test.</fr>
             <bg>Въведи променливата, която ще бъде видима за всеки, който използва тази секция от теста</bg>
         </string>
         <string id="255">
@@ -2035,6 +2038,7 @@ Note: You can add new languages by inserting "<new_language>string translated in
             <de>Wähle MySQL Tabelle aus deren Struktur und Daten in diese Tabelle importiert werden sollen.</de>
             <pl>Wybierz tabelę MySQL, której strukturę i dane chciałbyś zaimportować do tej tabeli.</pl>
             <cn>选择MySQL表格导入其结构和数据至此表格</cn>
+            <fr>Sélectionner le tableau MySQL dont la structure et les données doivent être importées dans ce tableau.</fr>
             <bg>Избери MySQL таблицата, чиято структура и данни ще бъдат ще бъдат импортирани в тази таблица</bg>
         </string>
         <string id="256">
@@ -2042,6 +2046,7 @@ Note: You can add new languages by inserting "<new_language>string translated in
             <de>Wählen Sie die zu importierende CSV Datei aus.</de>
             <pl>Wybierz plik CSV, który chciałbyś zaimportować.</pl>
             <cn>选择导入的CSV文件</cn>
+            <fr>Sélectionner le fichier CSV à être importé.</fr>
             <bg>Изберете CSV файл за импорт</bg>
         </string>
         <string id="257">
@@ -2049,6 +2054,7 @@ Note: You can add new languages by inserting "<new_language>string translated in
             <de>Name der Spalte auswählen</de>
             <pl>Wybierz nazwę kolumny</pl>
             <cn>选择列名称</cn>
+            <fr>Sélectionner le nom de la colonne</fr>
             <bg>Изберете име на колоната</bg>
         </string>
         <string id="258">
@@ -2056,6 +2062,7 @@ Note: You can add new languages by inserting "<new_language>string translated in
             <de>Typ der Spalte auswählen</de>
             <pl>Wybierz typ kolumny</pl>
             <cn>选择列类型</cn>
+            <fr>Sélectionner le type de colonne</fr>
             <bg>Изберете вид на колоната</bg>
         </string>
         <string id="259">
@@ -2063,6 +2070,7 @@ Note: You can add new languages by inserting "<new_language>string translated in
             <de>HTML Wert der Zelle eingeben</de>
             <pl>wprowadź wartość HTML komórki</pl>
             <cn>输入单元格的HTML数值</cn>
+            <fr>entrer la valeur HTML de la cellule</fr>
             <bg>въведете HTML стойност на полето</bg>
         </string>
         <string id="260">
@@ -2070,6 +2078,7 @@ Note: You can add new languages by inserting "<new_language>string translated in
             <de>Geben sie Ihre eindeutige Login id ein</de>
             <pl>Wprowadź swój login</pl>
             <cn>输入用户名</cn>
+            <fr>entrer votre identifiant unique</fr>
             <bg>Въведете Вашето уникално потребителско име</bg>
         </string>
         <string id="261">
@@ -2077,6 +2086,7 @@ Note: You can add new languages by inserting "<new_language>string translated in
             <de>Geben Sie Ihr Passwort ein</de>
             <pl>Wprowadź swoje hasło</pl>
             <cn>输入密码</cn>
+            <fr>Votre version est PÉRIMÉE</fr>
             <bg>Въведете парола</bg>
         </string>
         <string id="262">
@@ -2084,6 +2094,7 @@ Note: You can add new languages by inserting "<new_language>string translated in
             <de>Ihre Version ist VERALTET.</de>
             <pl>Twoja wersja jest NIEAKTUALNA.</pl>
             <cn>您的版本已过期。</cn>
+            <fr>CLIQUEZ ICI POUR TÉLÉCHERGER LA DERNIÈRE VERSION</fr>
             <bg>Вашата версия е стара</bg>
         </string>
         <string id="263">
@@ -2091,6 +2102,7 @@ Note: You can add new languages by inserting "<new_language>string translated in
             <de>KLICKEN SIE HIER UM DIE NEUESTE VERSION HERUNTERZULADEN</de>
             <pl>KLIKNIJ TUTAJ ABY POBRAĆ NAJNOWSZĄ WERSJĘ</pl>
             <cn>点此下载最新版本</cn>
+            <fr>CLIQUEZ ICI POUR TÉLÉCHERGER LA DERNIÈRE VERSION</fr>
             <bg>КЛИКНЕТЕ ТУК ЗА ДА СВАЛИТЕ НАЙ-НОВАТА ВЕРСИЯ</bg>
         </string>
         <string id="264">
@@ -2098,6 +2110,7 @@ Note: You can add new languages by inserting "<new_language>string translated in
             <de>Ihre version ist auf dem neuesten Stand</de>
             <pl>Twoja wersja jest aktualna</pl>
             <cn>已更新至最新版本</cn>
+            <fr>Exporter</fr>
             <bg>Вашата версия е актуална</bg>
         </string>
         <string id="265" js="1">
@@ -2105,6 +2118,7 @@ Note: You can add new languages by inserting "<new_language>string translated in
             <de>Export</de>
             <pl>Eksport</pl>
             <cn>导出</cn>
+            <fr>Importer un nouvel objet</fr>
             <bg>Експорт</bg>
         </string>
         <string id="266">
@@ -2112,6 +2126,7 @@ Note: You can add new languages by inserting "<new_language>string translated in
             <de>Importiere neues Objekt</de>
             <pl>Zaimportuj nowy obiekt</pl>
             <cn>导入新对象</cn>
+            <fr>Importer un nouvel objet</fr>
             <bg>Импорт на нов обект</bg>
         </string>
         <string id="267">
@@ -2119,6 +2134,7 @@ Note: You can add new languages by inserting "<new_language>string translated in
             <de>Wähle zu exportierende Datei aus</de>
             <pl>Wybierz plik z wyeksportowanym obiektem</pl>
             <cn>选择导出文件</cn>
+            <fr>Importer l'objet</fr>
             <bg>Изберете файл за експортиране</bg>
         </string>
         <string id="268" js="1">
@@ -2126,6 +2142,7 @@ Note: You can add new languages by inserting "<new_language>string translated in
             <de>Importiere Objekt</de>
             <pl>Importowanie obiektu</pl>
             <cn>导入对象</cn>
+            <fr>Importer l'objet</fr>
             <bg>Импортиране на обект</bg>
         </string>
         <string id="269" js="1">
@@ -2133,6 +2150,7 @@ Note: You can add new languages by inserting "<new_language>string translated in
             <de>Sind Sie sicher, dass Sie das Objekt aus dieser Datei importieren wollen?</de>
             <pl>Jesteś pewien, że chcesz zaimportować obiekt z tego pliku?</pl>
             <cn>确认从此文件中导入对象？</cn>
+            <fr>Êtes-vous certain de vouloir importer cet objet provenant de ce fichier?</fr>
             <bg>Сигурни ли сте, че искате да импортирате този обект от файла?</bg>
         </string>
         <string id="270" js="1">
@@ -2140,6 +2158,7 @@ Note: You can add new languages by inserting "<new_language>string translated in
             <de>Objekt importiert</de>
             <pl>Obiekt zaimportowany</pl>
             <cn>已导入对象</cn>
+            <fr>Une erreur est survenue lors de l'importation de l'objet</fr>
             <bg>Обектът е импортиран</bg>
         </string>
         <string id="271" js="1">
@@ -2147,6 +2166,7 @@ Note: You can add new languages by inserting "<new_language>string translated in
             <de>Es gab einen Fehler beim importieren des Objekts</de>
             <pl>Wystąpił błąd podczas importowania obiektu</pl>
             <cn>导入对象发生错误</cn>
+            <fr>Une erreur est survenue lors de l'importation de l'objet</fr>
             <bg>Грешка при импортирането на обекта</bg>
         </string>
         <string id="272" js="1">
@@ -2154,6 +2174,7 @@ Note: You can add new languages by inserting "<new_language>string translated in
             <de>Datei existiert nicht.</de>
             <pl>Plik nie istnieje.</pl>
             <cn>文件不存在。</cn>
+            <fr>Le fichier n'existe pas.</fr>
             <bg>Файлът не съществува</bg>
         </string>
         <string id="273" js="1">
@@ -2161,6 +2182,7 @@ Note: You can add new languages by inserting "<new_language>string translated in
             <de>Lösche Objekt</de>
             <pl>Usuwanie obiektu</pl>
             <cn>删除对象</cn>
+            <fr>Sauvegarder l'objet</fr>
             <bg>Изтриване на обект</bg>
         </string>
         <string id="274" js="1">
@@ -2168,6 +2190,7 @@ Note: You can add new languages by inserting "<new_language>string translated in
             <de>Speichere Objekt</de>
             <pl>Zapisywanie obiektu</pl>
             <cn>保存对象</cn>
+            <fr>Sauvegarder l'objet</fr>
             <bg>Съхранение на обект</bg>
         </string>
         <string id="275" js="1">
@@ -2175,6 +2198,7 @@ Note: You can add new languages by inserting "<new_language>string translated in
             <de>R</de>
             <pl>R</pl>
             <cn>R</cn>
+            <fr>R</fr>
             <bg>R</bg>
         </string>
         <string id="276" js="1">
@@ -2182,6 +2206,7 @@ Note: You can add new languages by inserting "<new_language>string translated in
             <de><![CDATA[R & HTML]]></de>
             <pl>R i HTML</pl>
             <cn><![CDATA[R & HTML]]></cn>
+            <fr><![CDATA[R & HTML]]></fr>
             <bg><![CDATA[R и HTML]]></bg>
         </string>
         <string id="277">
@@ -2189,6 +2214,7 @@ Note: You can add new languages by inserting "<new_language>string translated in
             <de>IN</de>
             <pl>W</pl>
             <cn>位于</cn>
+            <fr>non connecté</fr>
             <bg>ID</bg>
         </string>
         <string id="278" js="1">
@@ -2196,6 +2222,7 @@ Note: You can add new languages by inserting "<new_language>string translated in
             <de>Nicht eingeloggt</de>
             <pl>Nie zalogowany</pl>
             <cn>未登入</cn>
+            <fr>DE</fr>
             <bg>Не сте влезли</bg>
         </string>
         <string id="279">
@@ -2203,6 +2230,7 @@ Note: You can add new languages by inserting "<new_language>string translated in
             <de>FROM</de>
             <pl>Z</pl>
             <cn>来自</cn>
+            <fr>DE</fr>
             <bg>ОТ</bg>
         </string>
         <string id="280" js="1">
@@ -2210,6 +2238,7 @@ Note: You can add new languages by inserting "<new_language>string translated in
             <de>standard</de>
             <pl>domyślny</pl>
             <cn>默认</cn>
+            <fr>alphanumérique</fr>
             <bg>по подразбиране</bg>
         </string>
         <string id="281" js="1">
@@ -2217,6 +2246,7 @@ Note: You can add new languages by inserting "<new_language>string translated in
             <de>Zeichenkette</de>
             <pl>ciąg znaków</pl>
             <cn>字符串</cn>
+            <fr>alphanumérique</fr>
             <bg>редица от знаци</bg>
         </string>
         <string id="282" js="1">
@@ -2224,6 +2254,7 @@ Note: You can add new languages by inserting "<new_language>string translated in
             <de>numerisch</de>
             <pl>numeryczny</pl>
             <cn>数值</cn>
+            <fr>numérique</fr>
             <bg>цифров</bg>
         </string>
         <string id="283">
@@ -2231,6 +2262,7 @@ Note: You can add new languages by inserting "<new_language>string translated in
             <de>Dies ist eine Systemvariable</de>
             <pl>Jest to zmienna systemowa</pl>
             <cn>这是系统变量</cn>
+            <fr>Ceci est une variable système</fr>
             <bg>Това е системна променлива</bg>
         </string>
         <string id="284" js="1">
@@ -2238,6 +2270,7 @@ Note: You can add new languages by inserting "<new_language>string translated in
             <de>debuggen</de>
             <pl>debug</pl>
             <cn>调试</cn>
+            <fr>déboguer</fr>
             <bg>дебъг</bg>
         </string>
         <string id="285" js="1">
@@ -2245,6 +2278,7 @@ Note: You can add new languages by inserting "<new_language>string translated in
             <de><![CDATA[Test #{0} - debug <b>(wartend)</b>]]></de>
             <pl><![CDATA[Test #{0} - debug <b>(bezczynny)</b>]]></pl>
             <cn><![CDATA[测试 #{0} – 调试 <b>(空转)</b>]]></cn>
+            <fr><![CDATA[Test #{0} - déboguer <b>(temps mort)</b>]]></fr>
             <bg><![CDATA[Тест #{0} - дебъг <b>(празен ход)</b>]]></bg>
         </string>
         <string id="286" js="1">
@@ -2252,6 +2286,7 @@ Note: You can add new languages by inserting "<new_language>string translated in
             <de>Test #{0} - debug</de>
             <pl>Test #{0} - debug</pl>
             <cn> 测试 #{0} – 调试 </cn>
+            <fr><Test #{0} - déboguer </fr>
             <bg>Тест #{0} - дебъг</bg>
         </string>
         <string id="287" js="1">
@@ -2259,6 +2294,7 @@ Note: You can add new languages by inserting "<new_language>string translated in
             <de>Stellen Sie sicher, das alle Veränderungen an der Testlogik vor dem Debuggen gespeichert sind. Ungespeicherte Änderungen werden nicht im Debuggingprozess berücksichtigt.</de>
             <pl>Proszę pamiętać, że należy zachować bieżącą logikę testu zanim się uruchomi debug. Wszelkie niezapisane zmiany nie bedą brane pod uwagę podczas debuggowania.</pl>
             <cn>请确认在调试前保存当前测试逻辑的所有修改。未保存的修改将不会被调试。</cn>
+            <fr>assurez-vous que tous les changements à la logique du test ont été sauvegardés. Les changements qui n'ont pas été sauvegardés ne seront pas considérés lors du processus de déboguage</fr>
             <bg>Проверете дали всички промени в тестовата логика са съхранени преди дебъга. Несъхранените промени няма да повлияят на процеса на дебъг</bg>
         </string>
         <string id="288" js="1">
@@ -2266,6 +2302,7 @@ Note: You can add new languages by inserting "<new_language>string translated in
             <de><![CDATA[Bitt den <b>Start</b> Knopf drücken.]]></de>
             <pl><![CDATA[Proszę nacisnąć przycisk <b>start</b>.]]></pl>
             <cn><![CDATA[请按 <b>开始</b> 键.]]></cn>
+            <fr><![CDATA[appuyez sur le bouton <b>commencer</b>.]]></fr>
             <bg><![CDATA[Моля натиснете бутона <b>старт</b>]]></bg>
         </string>
         <string id="289" js="1">
@@ -2273,6 +2310,7 @@ Note: You can add new languages by inserting "<new_language>string translated in
             <de><![CDATA[Test #{0} - Syntaxvalidierung <b>(läuft ...)]]></de>
             <pl><![CDATA[Test #{0} - walidacja składni <b>(w trakcie...)]]></pl>
             <cn><![CDATA[测试 #{0} – 句法验证 <b>(进行中……)]]></cn>
+            <fr><![CDATA[Test #{0} - validation de la syntaxe <b>(en progrès...)]]></fr>
             <bg><![CDATA[Тест #{0} - валидизирането на синтаксиса <b>(в действие...)]]></bg>
         </string>
         <string id="290" js="1">
@@ -2280,6 +2318,7 @@ Note: You can add new languages by inserting "<new_language>string translated in
             <de>Syntaxvalidierung</de>
             <pl>Walidacja składni</pl>
             <cn>句法验证</cn>
+            <fr>Validation de la syntaxe</fr>
             <bg>Валидизация на синтаксиса</bg>
         </string>
         <string id="291" js="1">
@@ -2287,6 +2326,7 @@ Note: You can add new languages by inserting "<new_language>string translated in
             <de><![CDATA[Testsektion  mit Index #{0} Syntaxvalidierung: <font style='color:green;'><b>OK</b></font>]]></de>
             <pl><![CDATA[Walidacja składni sekcji testu o indeksie #{0}: <font style='color:green;'><b>POWIODŁA SIĘ</b></font>]]></pl>
             <cn><![CDATA[测试章节索引 #{0} 句法验证： < font style='color:green;'><b>通过</b></font>]]></cn>
+            <fr><![CDATA[Test section with index #{0} validation de la syntaxe: <font style='color:green;'><b>PASSÉE</b></font>]]></fr>
             <bg><![CDATA[Валидизация на тестова секция с индекс #{0}: <font style='color:green;'><b>УСПЕШНА</b></font>]]></bg>
         </string>
         <string id="292" js="1">
@@ -2294,6 +2334,7 @@ Note: You can add new languages by inserting "<new_language>string translated in
             <de><![CDATA[Testsektion mit Index #{0} Syntaxvalidierung: <font style='color:red;'><b>FEHLGESCHLAGEN</b></font>]]></de>
             <pl><![CDATA[Walidacja składni sekcji testu o indeksie #{0}: <font style='color:red;'><b>NIE POWIODŁA SIĘ</b></font>]]></pl>
             <cn><![CDATA[测试章节索引 #{0} 句法验证： <font style='color:red;'><b>失败</b></font>]]></cn>
+            <fr><![CDATA[Test section with index #{0} validation de la syntaxe: <font style='color:red;'><b>ÉCHOUÉE</b></font>]]></FR>
             <bg><![CDATA[Валидизация на тестова секция с индекс #{0}: <font style='color:green;'><b>НЕУСПЕШНА</b></font>]]></bg>
         </string>
         <string id="293" js="1">
@@ -2301,6 +2342,7 @@ Note: You can add new languages by inserting "<new_language>string translated in
             <de><![CDATA[Test #{0} - Syntaxvalidierung <b>(abgeschlossen)</b>]]></de>
             <pl><![CDATA[Test #{0} - walidacja składni <b>(zakończona)</b>]]></pl>
             <cn><![CDATA[测试 #{0} – 句法验证 <b>(完成)</b>]]></cn>
+            <fr><![CDATA[Test #{0} - validation de la syntaxe <b>(terminée)</b>]]></fr>
             <bg><![CDATA[Тест #{0} – валидизацията на синтаксиса <b>(завърши)</b>]]></bg>
         </string>
         <string id="294" js="1">
@@ -2308,6 +2350,7 @@ Note: You can add new languages by inserting "<new_language>string translated in
             <de><![CDATA[Syntaxvalidierung <font style='color:green;'>OK</font>.]]></de>            
             <pl><![CDATA[Walidacja składni <font style='color:green;'>POMYŚLNA</font>.]]></pl>
             <cn><![CDATA[句法验证 <font style='color:green;'>通过</font>.]]></cn>
+            <fr><![CDATA[Validation de la syntaxe<font style='color:green;'>PASSÉE</font>.]]></fr>
             <bg><![CDATA[Валидизацията на синтаксиса <font style='color:green;'>ПРЕМИНАТА</font>.]]></bg>
         </string>
         <string id="295" js="1">
@@ -2315,6 +2358,7 @@ Note: You can add new languages by inserting "<new_language>string translated in
             <de><![CDATA[Test #{0} - Syntaxvalidierung <b>(FEHLGESCHLAGEN bei Sektion mit Index #{1} - debug ANGEHALEN)</b>]]></de>
             <pl><![CDATA[Test #{0} - walidacja składni <b>(NIE POWIODŁA SIĘ przy sekcji o indeksie #{1} - debug ZATRZYMANY)</b>]]></pl>
             <cn><![CDATA[测试 #{0} – 句法验证 <b>(在章节索引 #{1} 处失败 – 调试中止)</b>]]></cn>
+            <fr><![CDATA[Test #{0} - Validation de la syntaxe <b>(ÉCHOUÉE pour l'index de la section #{1} - déboguage INTERROMPU)</b>]]></fr>
             <bg><![CDATA[Тест #{0} – валидизацията на синтаксиса <b>(НЕУСПЕШНА в индекс на секция #{1} – дебъгът СПРЯН)</b>]]></bg>
         </string>
         <string id="296" js="1">
@@ -2322,6 +2366,7 @@ Note: You can add new languages by inserting "<new_language>string translated in
             <de><![CDATA[Syntaxvalidierung <font style='color:red;'><b>FEHLGESCHLAGEN</b></font> bei Sektion mit Index #{0} - debug <font style='color:red;'><b>ANGEHALTEN</b></font>]]></de>
             <pl><![CDATA[Walidacja składni <font style='color:red;'><b>NIE POWIODŁA SIĘ</b></font> dla sekcji o indeksie #{0} - debug <font style='color:red;'><b>ZATRZYMANY</b></font>]]></pl>
             <cn><![CDATA[句法验证 <font style='color:red;'><b>F失败</b></font> 在章节索引 #{0} 处– 调试 <font style='color:red;'><b>中止</b></font>]]></cn>
+            <fr><![CDATA[Validation de la syntaxe <font style='color:red;'><b>ÉCHOUÉE</b></font> pour l'index de la section #{0} - déboguage <font style='color:red;'><b>HALTED</b></font>]]></fr>
             <bg><![CDATA[Валидизацията на синтаксиса <font style='color:red;'><b>НЕУСПЕШНА</b></font> за индекс на секция #{0} - дебъгът <font style='color:red;'><b>СПРЯН</b></font>]]></bg>
         </string>
         <string id="297" js="1">
@@ -2329,6 +2374,7 @@ Note: You can add new languages by inserting "<new_language>string translated in
             <de>Laufzeit debug</de>
             <pl>Debug na żywo</pl>
             <cn>运行时间调试</cn>
+            <fr>Test en cours d'exécution #{0}...</fr>
             <bg>дебъг в реално време</bg>
         </string>
         <string id="298" js="1">
@@ -2336,6 +2382,7 @@ Note: You can add new languages by inserting "<new_language>string translated in
             <de>Lasse Test mit der id #{0} laufen ...</de>
             <pl>Uruchomienie testu #{0}...</pl>
             <cn>运行测试#{0}……</cn>
+            <fr>Test en cours d'exécution #{0}...</fr>
             <bg>Започване на тест #{0}...</bg>
         </string>
         <string id="299" js="1">
@@ -2343,6 +2390,7 @@ Note: You can add new languages by inserting "<new_language>string translated in
             <de><![CDATA[Test #{0} - Laufzeit debug <b>(R Code wird interpretiert...)</b>]]></de>
             <pl><![CDATA[Test #{0} - debug na żywo <b>(kod R jest interpretowany..)</b>]]></pl>
             <cn><![CDATA[测试 #{0} – 运行时间调试 <b>(R代码正在被编译…)</b>]]></cn>
+            <fr><![CDATA[Test #{0} - Déboguade temps d'exécution <b>(le code R est en train d'être interprété...)</b>]]></fr>
             <bg><![CDATA[Тест #{0} - дебъг в реално време <b>(R кодът се интерпретира...)</b>]]></bg>
         </string>
         <string id="300" js="1">
@@ -2350,6 +2398,7 @@ Note: You can add new languages by inserting "<new_language>string translated in
             <de>R Code wird interpretiert...</de>
             <pl>Kod R jest interpretowany...</pl>
             <cn> R代码正在被编译…</cn>
+            <fr>La réponse du code R a été recue</fr>
             <bg>R кодът е интерпретиран</bg>
         </string>
         <string id="301" js="1">
@@ -2357,6 +2406,7 @@ Note: You can add new languages by inserting "<new_language>string translated in
             <de>R Code Ausgabe erhalten.</de>
             <pl>Otrzymano odpowiedź kodu R.</pl>
             <cn>收到R代码回复。</cn>
+            <fr>La réponse du code R a été recue</fr>
             <bg>Резултатът от R кода получен</bg>
         </string>
         <string id="302" js="1">
@@ -2364,6 +2414,7 @@ Note: You can add new languages by inserting "<new_language>string translated in
             <de><![CDATA[Test #{0}, session #{1} - Laufzeit debug <b>(R: logischer Fehler - debug ANGEHALTEN)</b>]]></de>
             <pl><![CDATA[Test #{0}, sesja #{1} - debug na żywo <b>(błąd w logice R - debug ZATRZYMANY</b>]]></pl>
             <cn><![CDATA[测试 #{0}，章节 #{1} – 运行时间调试 <b>(R逻辑错误 – 调试中止)</b>]]></cn>
+            <fr><![CDATA[Test #{0}, session #{1} - deboguage temps d'exécution <b>(erreur logique R- Déboguage INTERROMPU)</b>]]></fr>
             <bg><![CDATA[Тестът #{0}, сесията #{1} - дебъг в реално време <b>(грешка в R логиката - дебъгът СПРЯН)</b>]]></bg>
         </string>
         <string id="303" js="1">
@@ -2371,6 +2422,7 @@ Note: You can add new languages by inserting "<new_language>string translated in
             <de><![CDATA[R: logischer <font style='color:red;'><b>Fehler</b></font>. Prüfe R Code Ausgabe für zusätzliche Information. Debug ANGEHALTEN.]]></de>
             <pl><![CDATA[<font style='color:red;'><b>Błąd</b></font> w logice R. Prosze sprawdzić wynik kodu R dla dodatkowych informacji. Debug ZATRZYMANY.]]></pl>
             <cn><![CDATA[R逻辑 <font style='color:red;'><b>错误</b></font>。更多信息详见R代码输出。调试中止。]]></cn>
+            <fr><![CDATA[Logique R <font style='color:red;'><b>erreur</b></font>. Vérifier la sortie du code R pour de plus amples inforations. déboguage INTERROMPU.]]></fr>
             <bg><![CDATA[R логиката <font style='color:red;'><b>е грешна</b></font>. Проверете резултата от R кода за допълнителна информация. Дебъгът СПРЯН.]]></bg>
         </string>
         <string id="304" js="1">
@@ -2378,6 +2430,7 @@ Note: You can add new languages by inserting "<new_language>string translated in
             <de><![CDATA[R logische validierung <font style='color:green;'><b>OK</b></font>.]]></de>
             <pl><![CDATA[Walidacja logiki R <font style='color:green;'><b>POWIODŁA SIĘ</b></font>.]]></pl>
             <cn><![CDATA[R逻辑验证 <font style='color:green;'><b>通过</b></font>.]]></cn>
+            <fr><![CDATA[Validation de la logique R<font style='color:green;'><b>PASSÉE</b></font>.]]></fr>
             <bg><![CDATA[R Валидизацията на логиката <font style='color:green;'><b>УСПЕШНА</b></font>.]]></bg>
         </string>
         <string id="305" js="1">
@@ -2385,6 +2438,7 @@ Note: You can add new languages by inserting "<new_language>string translated in
             <de>aktuelle HTML variablen</de>
             <pl>obecne zmienne HTML</pl>
             <cn>当前HTML变量</cn>
+            <fr>valeur</fr>
             <bg>настоящи HTML променливи</bg>
         </string>
         <string id="306" js="1">
@@ -2392,13 +2446,15 @@ Note: You can add new languages by inserting "<new_language>string translated in
             <de>Wert</de>
             <pl>wartość</pl>
             <cn>数值</cn>
+            <fr>valeur</fr>
             <bg>стойност</bg>
         </string>
         <string id="307" js="1">
             <en><![CDATA[Test #{0}, session #{1} - runtime debug <b><font style='color:green;'>PASSED</font></b>]]></en>
             <de><![CDATA[Test #{0}, Sitzung #{1} - Laufzeit debug <b><font style='color:green;'>OK</font></b>]]></de>
             <pl><![CDATA[Test #{0}, sesja #{1} - debug na żywo <b><font style='color:green;'>POWIODŁ SIĘ</font></b>]]></pl>
-            <cn><![CDATA[测试 #{0}，章节 #{1} – 运行时间调试 <b><font style='color:green;'>通过</font></b>]]></cn>
+            <cn><![CDATA[测试 #{0}，章节 #{1} – 运行时间调试 <b><font style='color:green;'>通过</font></b>]]></cn> 
+            <fr><![CDATA[Test #{0}, session #{1} - déboguage temps d'exécution <b><font style='color:green;'>PASSÉE</font></b>]]></fr>  
             <bg><![CDATA[Тестът #{0}, сесията #{1} - дебъгът в реално време <b><font style='color:green;'>УСПЕШЕН</font></b>]]></bg>
         </string>
         <string id="308" js="1">
@@ -2406,6 +2462,7 @@ Note: You can add new languages by inserting "<new_language>string translated in
             <de>Endsektion erreicht. Der Test ist zu Ende.</de>
             <pl>Osiągnieto końcową sekcję. Test został skończony.</pl>
             <cn>到达结束章节。测试已完成。</cn>
+             <fr>La fin de la section a été atteinte. Le test est terminé.</fr>  
             <bg>Крайната секция достигната. Тестът е завършен.</bg>
         </string>
         <string id="309" js="1">
@@ -2413,6 +2470,7 @@ Note: You can add new languages by inserting "<new_language>string translated in
             <de>Template</de>
             <pl>Szablon #{0}</pl>
             <cn>模板#{0}</cn>
+            <fr>Modèle #</fr>  
             <bg>Шаблон #{0}</bg>
         </string>
         <string id="310" js="1">
@@ -2420,6 +2478,7 @@ Note: You can add new languages by inserting "<new_language>string translated in
             <de>Template #{0} geladen ( Zeitlimit: {1} ).</de>
             <pl>Szablon #{0} wczytany ( limit czasu: {1} ).</pl>
             <cn> 载入模板 #{0} ( 时限： {1} )。</cn>
+            <fr>Illimité #</fr> 
             <bg>Шаблон #{0} зареден ( лимит от време: {1} ).</bg>
         </string>
         <string id="311" js="1">
@@ -2427,6 +2486,7 @@ Note: You can add new languages by inserting "<new_language>string translated in
             <de>unbeschränkt</de>
             <pl>nieograniczony</pl>
             <cn>无限的</cn>
+            <fr>Illimité </fr> 
             <bg>неограничен</bg>
         </string>
         <string id="312" js="1">
@@ -2434,6 +2494,7 @@ Note: You can add new languages by inserting "<new_language>string translated in
             <de>Sek.</de>
             <pl>sek.</pl>
             <cn>秒</cn>
+            <fr>Sec.</fr>
             <bg>сек.</bg>
         </string>
         <string id="313" js="1">
@@ -2441,6 +2502,7 @@ Note: You can add new languages by inserting "<new_language>string translated in
             <de>Erwarte Benutzereingabe...</de>
             <pl>Oczekiwanie na ruch użytkownika...</pl>
             <cn>等待用户输入…</cn>
+            <fr>En attente d'une saisie par l'utilisateur.</fr>
             <bg>Очакване за въвеждане на данни...</bg>
         </string>
         <string id="314" js="1">
@@ -2448,6 +2510,7 @@ Note: You can add new languages by inserting "<new_language>string translated in
             <de><![CDATA[Test #{0}, Sitzung #{1}, Template #{2} - Laufzeit debug <b>(Template geladne - warte auf Benutzereingabe...)</b>]]></de>
             <pl><![CDATA[Test #{0}, sesja #{1}, szablon #{2} - debug na żywo <b>(szablon wczytany - oczekiwanie na ruch użytkownika...)</b>]]></pl>
             <cn><![CDATA[测试 #{0}，章节 #{1}，模板 #{2} – 运行时间调试 <b>(载入模板 – 等待用户输入……)</b>]]></cn>
+            <fr><![CDATA[Test #{0}, session #{1}, modèle #{2} - déboguage temps d'exécution <b>(modèle chargé - en attente d'une saisie par l'utilisateur...)</b>]]></fr>
             <bg><![CDATA[Тестът #{0}, сесията #{1}, шаблонът #{2} - дебъг в реално време <b>(шаблонът зареден - очакване за въвеждане на данни...)</b>]]></bg>
         </string>
         <string id="315" js="1">
@@ -2455,6 +2518,7 @@ Note: You can add new languages by inserting "<new_language>string translated in
             <de>Item abgeschickt. Zeitlimit erreicht.</de>
             <pl>Element wysłany. Limit czasowy został osiągnięty.</pl>
             <cn>提交项目。已到达时限。</cn>
+            <fr><![CDATA[Énoncé soumis. Le bouton au nom de <b>{0}</b> cliqué.]]></fr>
             <bg>Айтемът изпратен. Лимитът от време достигнат.</bg>
         </string>
         <string id="316" js="1">
@@ -2462,6 +2526,7 @@ Note: You can add new languages by inserting "<new_language>string translated in
             <de><![CDATA[Item abgeschickt. Knopf mit mit Namen <b>{0}</b> geklickt.]]></de>
             <pl><![CDATA[Element wysłany. Przycisk o nazwie <b>{0}</b> został kliknięty.]]></pl>
             <cn><![CDATA[提交项目。按键名称 <b>{0}</b> 。]]></cn>
+            <fr><![CDATA[Énoncé soumis. Le bouton au nom de <b>{0}</b> cliqué.]]></fr>
             <bg><![CDATA[Айтемът е изпратен. Бутонът <b>{0}</b> е натиснат.]]></bg>
         </string>
         <string id="317" js="1">
