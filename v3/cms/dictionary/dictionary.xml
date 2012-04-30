@@ -28,11 +28,11 @@ Note: You can add new languages by inserting "<new_language>string translated in
 <root>
     <languages>
         <language id="en">english</language>
-        <language id="de">deutsch</language>
-        <language id="pl">polski</language>
-        <language id="cn">中文</language>
-           <!--<language id="fr">francais</language>-->
         <language id="bg">български</language>
+        <language id="cn">中文</language>
+        <language id="de">deutsch</language>
+        <language id="fr">francais</language>
+        <language id="pl">polski</language>
     </languages>
     
     <strings>
@@ -1630,7 +1630,7 @@ Note: You can add new languages by inserting "<new_language>string translated in
             <de>Aktionen</de>
             <pl>akcje</pl>
             <cn>操作</cn>
-            fr>actions</fr>
+            <fr>actions</fr>
             <bg>действия</bg>
         </string>
         <string id="203">
@@ -1742,7 +1742,7 @@ Note: You can add new languages by inserting "<new_language>string translated in
             <de><![CDATA[Zeit (in Sekunden) die bleibt um das Item zu beantworten. Auf 0 setzen für unbeschränkte Zeit. Füge <b>{{TIME_LEFT}}</b> Variable in das HTML Template ein, um die verbleibende Zeit anzuzeigen.]]></de>
             <pl><![CDATA[Czas w sekundach jaki użytkownik posiada aby przesłać element. Jeśli wartość jest równa 0 - oznacza to, że czas jest nieograniczony. Można wstawić zmienną <b>{{TIME_LEFT}}</b> do HTML aby wyświetlić odliczanie.]]></pl>
             <cn><![CDATA[提交测试项目剩余时间（秒）。数值0表示无时间限制。在HTML模板中插入<b>{{剩余时间}}</b> 变量以显示倒计时。]]></cn>
-             <fr><![CDATA[Temps restant (en secondes) pour soumettre l'énoncé du test. Une valeur de 0 sous-tend un temps illimité. Insérer la variable <b>{{TIME_LEFT}}</b> dans le modèle HTML afin de rendre le chronomètre visible.]]</fr>
+             <fr><![CDATA[Temps restant (en secondes) pour soumettre l'énoncé du test. Une valeur de 0 sous-tend un temps illimité. Insérer la variable <b>{{TIME_LEFT}}</b> dans le modèle HTML afin de rendre le chronomètre visible.]]></fr>
             <bg><![CDATA[Оставащо време (в секунди)), за да бъде попълнен тестовия айтем. Стойност 0 означава неограничено време. Вмъкни <b>{{TIME_LEFT}}</b> променлива в HTML шаблона, за да направите този таймер видим.]]></bg>
         </string>
         <string id="217">
@@ -1838,7 +1838,7 @@ Note: You can add new languages by inserting "<new_language>string translated in
             <de>ODER</de>
             <pl>LUB</pl>
             <cn>或者</cn>
-            <fr>OU/fr>
+            <fr>OU</fr>
             <bg>ИЛИ</bg>
         </string>
         <string id="229">
@@ -2286,7 +2286,7 @@ Note: You can add new languages by inserting "<new_language>string translated in
             <de>Test #{0} - debug</de>
             <pl>Test #{0} - debug</pl>
             <cn> 测试 #{0} – 调试 </cn>
-            <fr><Test #{0} - déboguer </fr>
+            <fr>Test #{0} - déboguer </fr>
             <bg>Тест #{0} - дебъг</bg>
         </string>
         <string id="287" js="1">
@@ -2334,7 +2334,7 @@ Note: You can add new languages by inserting "<new_language>string translated in
             <de><![CDATA[Testsektion mit Index #{0} Syntaxvalidierung: <font style='color:red;'><b>FEHLGESCHLAGEN</b></font>]]></de>
             <pl><![CDATA[Walidacja składni sekcji testu o indeksie #{0}: <font style='color:red;'><b>NIE POWIODŁA SIĘ</b></font>]]></pl>
             <cn><![CDATA[测试章节索引 #{0} 句法验证： <font style='color:red;'><b>失败</b></font>]]></cn>
-            <fr><![CDATA[Test section with index #{0} validation de la syntaxe: <font style='color:red;'><b>ÉCHOUÉE</b></font>]]></FR>
+            <fr><![CDATA[Test section with index #{0} validation de la syntaxe: <font style='color:red;'><b>ÉCHOUÉE</b></font>]]></fr>
             <bg><![CDATA[Валидизация на тестова секция с индекс #{0}: <font style='color:green;'><b>НЕУСПЕШНА</b></font>]]></bg>
         </string>
         <string id="293" js="1">
@@ -2720,7 +2720,7 @@ Note: You can add new languages by inserting "<new_language>string translated in
             <pl>Pokaż rzędy z wartością która:</pl>
             <cn>显示包含以下数值的行：</cn>
             <bg>Покажи редовете със стой ност:</bg>
-            <fr>Montrer les lignes qui ont une valeur:</fr>ност:</bg>
+            <fr>Montrer les lignes qui ont une valeur:</fr>
         </string>
         <string id="341" js="1">
             <en>Filter</en>
