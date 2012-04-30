@@ -2534,6 +2534,7 @@ Note: You can add new languages by inserting "<new_language>string translated in
             <de>abgesandte Variablen</de>
             <pl>wysłane zmienne</pl>
             <cn>发送变量</cn>
+            <fr>gamme</fr>
             <bg>променливите изпратени.</bg>
         </string>
         <string id="318" js="1">
@@ -2541,6 +2542,7 @@ Note: You can add new languages by inserting "<new_language>string translated in
             <de>range</de>
             <pl>zakres</pl>
             <cn>范围</cn>
+            <fr>gamme</fr>
             <bg>Айтемът изпратен. Лимитът от време достигнат.</bg>
         </string>
         <string id="319" js="1">
@@ -2548,6 +2550,7 @@ Note: You can add new languages by inserting "<new_language>string translated in
             <de>Bitte warten...</de>
             <pl>proszę czekać...</pl>
             <cn>请等待……</cn>
+            <fr>Attendez s'il-vous plaît...</fr>
             <bg>Моля изчакайте...</bg>
         </string>
         <string id="320" js="1">
@@ -2555,6 +2558,7 @@ Note: You can add new languages by inserting "<new_language>string translated in
             <de>Möglicher Verlust von ungespeicherten Daten.</de>
             <pl>Możliwa utrata niezapisanych danych.</pl>
             <cn>可能丢失未保存数据。</cn>
+            <fr>Certaines données non sauvegardées peuvent avoir été perdues</fr>
             <bg>Възможна загуба на несъхранени данни.</bg>
         </string>
         <string id="321" js="1">
@@ -2562,6 +2566,7 @@ Note: You can add new languages by inserting "<new_language>string translated in
             <de>Sind Sie sicher das Sie fortfahren wollen? Diese Aktion setzt ungespeicherte Veränderungen in den folgenden Modulen zurück:</de>
             <pl>Jesteś pewien, że chcesz kontynuować? Ta czynność może anulować wszystkie niezapisane zmiany w nastepujących modułach:</pl>
             <cn>确认继续？此操作将在以下模块中重置未保存修改：</cn>
+            <fr>Êtes vous certain de vouloir continuer? Cette action va réinitialiser les changements non sauvegardés dans les modules suivants:</fr>
             <bg>Сигурни ли сте, че искате да продължите? Това действие ще анулира несъхранените промени в следните модули:</bg>
         </string>
         <string id="322" js="1">
@@ -2569,6 +2574,7 @@ Note: You can add new languages by inserting "<new_language>string translated in
             <de>Sind Sie sicher das Sie fortfahren wollen? Diese Aktion setzt ungespeicherte Veränderungen in allen Modulen zurück.</de>
             <pl>Jesteś pewien, że chcesz kontynuować? Ta czynność może anulować wszystkie niezapisane zmiany we wszystkich modułach.</pl>
             <cn>确认继续？此操作将在所有模块中重置未保存修改。</cn>
+            <fr>Êtes vous certain de vouloir continuer? Cette action va réinitialiser les changements non sauvegardés dans tous les modules.</fr>
             <bg>Сигурни ли сте, че искате да продължите? Това действие ще анулира несъхранените промени във всички модули.</bg>
         </string>
         <string id="323" js="1">
@@ -2576,6 +2582,7 @@ Note: You can add new languages by inserting "<new_language>string translated in
             <de>Start</de>
             <pl>zacznij</pl>
             <cn>开始</cn>
+            <fr>commencer</fr>
             <bg>започнете</bg>
         </string>
         <string id="324" js="1">
@@ -2583,6 +2590,7 @@ Note: You can add new languages by inserting "<new_language>string translated in
             <de>Neustart</de>
             <pl>zacznij od nowa</pl>
             <cn>重启</cn>
+            <fr>recommencer</fr>
             <bg>започни отново</bg>
         </string>
         <string id="325">
@@ -2590,6 +2598,7 @@ Note: You can add new languages by inserting "<new_language>string translated in
             <de>Trennzeichen</de>
             <pl>separator pól</pl>
             <cn>区域分割符</cn>
+            <fr>délimitation de champ</fr>
             <bg>сепаратор на поле</bg>
         </string>
         <string id="326">
@@ -2597,6 +2606,7 @@ Note: You can add new languages by inserting "<new_language>string translated in
             <de><![CDATA[Einzelnes Zeichen welches benutzt wird um Felder in einer Zeile zu trennen. Standardzeichen ist '<b>,</b>'.]]></de>
             <pl><![CDATA[Pojedyńczy znak używany do oddzielenia pól w rzędzie. Domyślny znak to '<b>,</b>'.]]></pl>
             <cn><![CDATA[在行内用于划分区域的单一字符。默认字符为'<b>,</b>'。]]></cn>
+            <fr><![CDATA[Un seul caractère peut être utilisé afin de séparer les champs dans une ligne. Le caractère par défaut est '<b>,</b>'.]]></fr>
             <bg><![CDATA[Единичен знак за отделяне на полетата в реда. Знакът по подразбиране е <b>,</b>'.]]></bg>
         </string>
         <string id="327">
@@ -2604,6 +2614,7 @@ Note: You can add new languages by inserting "<new_language>string translated in
             <de>field enclosure</de>
             <pl>objęcie pola</pl>
             <cn>区域边界</cn>
+            <fr>champ joint</fr>
             <bg>завършване на полето</bg>
         </string>
         <string id="328">
@@ -2611,6 +2622,7 @@ Note: You can add new languages by inserting "<new_language>string translated in
             <de><![CDATA[Einzelnes Zeichen das benutzt wird um Zeichenketten abzugrenzen. Standardzeichen ist '<b>"</b>'.]]></de>
             <pl><![CDATA[Pojedyńczy znak używany do objęcia zakresu pola. Domyślny znak to '<b>"</b>'.]]></pl>
             <cn><![CDATA[用于标记字符串的单一字符。默认字符为'<b>"</b>'。]]></cn>
+            <fr><![CDATA[Un seur caractère peut être utilisé pour joindre des champs alphanumériques. Le caractère par défaut est '<b>"</b>'.]]></fr>
             <bg><![CDATA[Единичен знак, използван за завършване на реда от знаци. Знакът по подразбиране е '<b>"</b>'.]]></bg>
         </string>
         <string id="329" js="1">
@@ -2618,6 +2630,7 @@ Note: You can add new languages by inserting "<new_language>string translated in
             <de>Exportiere Tabelle als CSV Datei</de>
             <pl>Eksportowanie tabeli do pliku CSV</pl>
             <cn>导出表格至CSV文件</cn>
+            <fr>Exporter un tableau dans un fichier CSV</fr>
             <bg>Експортиране на таблицата към CSV файл.</bg>
         </string>
         <string id="330">
@@ -2625,6 +2638,7 @@ Note: You can add new languages by inserting "<new_language>string translated in
             <de>Kopfzeile</de>
             <pl>rząd naglówka</pl>
             <cn>标题行</cn>
+            <fr>Ligne d'entête</fr>
             <bg>заглавен ред</bg>
         </string>
         <string id="331">
@@ -2632,13 +2646,16 @@ Note: You can add new languages by inserting "<new_language>string translated in
             <de>Box anklicken um CSV mit Kopfzeile zu importieren. Werte der Kopfzeile werden als Spaltennamen verwendet.</de>
             <pl>Zaznacz jeśli chcesz zaimportować CSV z rzędem nagłówka. Wartości rzędu nagłówka zostaną użyte jako nazwy kolumn.</pl>
             <cn>包含标题行导入CSV。标题行数值将作为列名称。</cn>
-            <bg>Поле за потвърждаване на CSV със заглавен ред. Стойностите на заглавния ред ще бъдат използвани за име на колоната</bg>
+            <fr>Cocher la case afin d'importer un fichier CSV avec une ligne d'entête.Les valeurs incluses dans la ligne d'entête seront utilisées comme nom de colonne.</fr>
+            <bg>Поле за потвърждаване на CSV със заглавен 
+            ред. Стойностите на заглавния ред ще бъдат използвани за име на колоната</bg>
         </string>
         <string id="332">
             <en>Check box to export CSV with a header row. Header row will be first row in CSV with table column names.</en>
             <de>Box anklicken um CSV mit Kopfzeile zu exportieren. Kopfzeile wird die erste Zeile in der CSV Datei mit Spaltennamen.</de>
             <pl>Zaznacz jeśli chcesz wyeksportować CSV z rzędem nagłówka. Rząd nagłówka będzie pierwszym rzędem w CSV z nazwami kolumn tabeli.</pl>
             <cn>包含标题行导出CSV。标题行将作为表格列名称出现在CSV的第一行。</cn>
+            <fr>Cocher la case afin d'importer un fichier CSV avec une ligne d'entête. La ligne d'entête sera inclu dans la première ligne avec le nom de colonnes du tableau.</fr>
             <bg>Поле за потвърждаване на CSV със заглавен ред. Заглавния ред ще бъде първия ред в CSV с имена на колоните в таблицата.</bg>
         </string>
         <string id="333" js="1">
@@ -2646,6 +2663,7 @@ Note: You can add new languages by inserting "<new_language>string translated in
             <de>Fehler beim laden der XML Datei. Kann nicht mit Import fortfahren.</de>
             <pl>Błąd przy wczytywaniu pliku XML. Import nie może być kontynuowany.</pl>
             <cn>载入XML文件错误。无法继续导入。</cn>
+            <fr>Une erreur est survenue lors du chargement d'un fichier XML. L'importation ne peut pas être continuée.</fr>
             <bg>Грешка при зареждането на XML файла. Не може да се продължи с импортирането.</bg>
         </string>
         <string id="334" js="1">
@@ -2653,6 +2671,7 @@ Note: You can add new languages by inserting "<new_language>string translated in
             <pl>Pola separacji i objęcia kolumn nie mogą być puste.</pl>
             <cn>列分隔符与区域标记为必需。</cn>
             <de></de>
+            <fr>Un séparateur de colonne et un champ joint sont obligatoires.</fr>
             <bg>Сепараторът за колони и за вършването на полета не е задължително</bg>
         </string>
         <string id="335">
@@ -2660,6 +2679,7 @@ Note: You can add new languages by inserting "<new_language>string translated in
             <de>Sitzungszähler</de>
             <pl>liczba sesji</pl>
             <cn>章节计数</cn>
+            <fr>Compteur de session</fr>
             <bg>броене на сесиите</bg>
         </string>
         <string id="336" js="1">
@@ -2667,6 +2687,7 @@ Note: You can add new languages by inserting "<new_language>string translated in
             <de>Mindestens eins der Felder das eindeutig sein muss existiert bereits im System.</de>
             <pl>Przynajmniej jedno pole, które powinno być unikalne, już istnieje w systemie.</pl>
             <cn>系统内存在相同区域。</cn>
+            <fr>Au moins un des champs qui doit être unique existe déjà dans le système. </fr>
             <bg>Поне едно поле, което трябва да е уникално, вече съществува в системата.</bg>
         </string>
         <string id="337">
@@ -2674,6 +2695,7 @@ Note: You can add new languages by inserting "<new_language>string translated in
             <de>Liste verfügbarer Objekte</de>
             <pl>lista dostępnych obiektów</pl>
             <cn>可用对象列表</cn>
+            <fr>Liste des objets disponibles.</fr>
             <bg>списък на достъпните обекти</bg>
         </string>
         <string id="338" js="1">
@@ -2681,6 +2703,7 @@ Note: You can add new languages by inserting "<new_language>string translated in
             <de>Aktuell ausgewählte Objekte:</de>
             <pl>aktualnie wybrany obiekt:</pl>
             <cn>当前所选对象</cn>
+            <fr>objet actuellement sélectionné</fr>
             <bg>актуални избрани обекти</bg>
         </string>
         <string id="339" js="1">
@@ -2688,6 +2711,7 @@ Note: You can add new languages by inserting "<new_language>string translated in
             <de>Spaltenname hierherziehen (drag and drop) um die Gruppe nach dieser Spalte zu sortieren</de>
             <pl>Przeciągnij nagłówek kolumny i upuść go tutaj aby grupować według danej kolumny</pl>
             <cn>拖动列标题至此以按此列分类</cn>
+            <fr>Glisser une entête de colonne et la déposer ici afin de grouper avec cette variable</fr>
             <bg>Изтегли заглавието на колоната и го пусни за групиране по колона</bg>
         </string>
         <string id="340" js="1">
@@ -2695,13 +2719,15 @@ Note: You can add new languages by inserting "<new_language>string translated in
             <de>Zeige Zeilen mit Wert welcher:</de>
             <pl>Pokaż rzędy z wartością która:</pl>
             <cn>显示包含以下数值的行：</cn>
-            <bg>Покажи редовете със стойност:</bg>
+            <bg>Покажи редовете със стой ност:</bg>
+            <fr>Montrer les lignes qui ont une valeur:</fr>ност:</bg>
         </string>
         <string id="341" js="1">
             <en>Filter</en>
             <de>Filter</de>
             <pl>Filtruj</pl>
             <cn>筛选</cn>
+            <fr>filtre</fr>
             <bg>Филтър</bg>
         </string>
         <string id="342" js="1">
@@ -2709,6 +2735,7 @@ Note: You can add new languages by inserting "<new_language>string translated in
             <de>Löschen</de>
             <pl>Wyczyść</pl>
             <cn>清空</cn>
+            <fr>Effacer</fr>
             <bg>Изчисти</bg>
         </string>
         <string id="343" js="1">
@@ -2716,6 +2743,7 @@ Note: You can add new languages by inserting "<new_language>string translated in
             <de>fängt an mit</de>
             <pl>zaczyna się od</pl>
             <cn>起始于</cn>
+            <fr>commencer avec</fr>
             <bg>Започни с</bg>
         </string>
         <string id="344" js="1">
@@ -2723,6 +2751,7 @@ Note: You can add new languages by inserting "<new_language>string translated in
             <de>enthält</de>
             <pl>zawiera</pl>
             <cn>包含</cn>
+            <fr>contient</fr>
             <bg>съдържа</bg>
         </string>
         <string id="345" js="1">
@@ -2730,6 +2759,7 @@ Note: You can add new languages by inserting "<new_language>string translated in
             <de>endet mit</de>
             <pl>kończy się na</pl>
             <cn>结束于</cn>
+            <fr>terminer avec</fr>
             <bg>завършва с</bg>
         </string>
         <string id="346" js="1">
@@ -2737,6 +2767,7 @@ Note: You can add new languages by inserting "<new_language>string translated in
             <de>danach oder gleich</de>
             <pl>po lub równe</pl>
             <cn>迟于（包括</cn>
+            <fr>après ou égal à</fr>
             <bg>след или равно</bg>
         </string>
         <string id="347" js="1">
@@ -2744,6 +2775,7 @@ Note: You can add new languages by inserting "<new_language>string translated in
             <de>danach</de>
             <pl>po</pl>
             <cn>迟于</cn>
+            <fr>après</fr>
             <bg>след</bg>
         </string>
         <string id="348" js="1">
@@ -2751,6 +2783,7 @@ Note: You can add new languages by inserting "<new_language>string translated in
             <de>davor oder gleich</de>
             <pl>przed lub równe</pl>
             <cn>早于（包括</cn>
+            <fr>avant ou égal à</fr>
             <bg>пред или равно</bg>
         </string>
         <string id="349" js="1">
@@ -2758,6 +2791,7 @@ Note: You can add new languages by inserting "<new_language>string translated in
             <de>davor</de>
             <pl>przed</pl>
             <cn>早于</cn>
+            <fr>avant</fr>
             <bg>пред</bg>
         </string>
         <string id="350">
@@ -2765,6 +2799,7 @@ Note: You can add new languages by inserting "<new_language>string translated in
             <de>Definition der Tabellenstruktur</de>
             <pl>definicja struktury tabeli</pl>
             <cn>表格结构定义</cn>
+            <fr>définition de la structure du tableau </fr>
             <bg>дефиниране на структурата на таблицата</bg>
         </string>
         <string id="351">
@@ -2772,6 +2807,7 @@ Note: You can add new languages by inserting "<new_language>string translated in
             <de>Tabellendaten</de>
             <pl>dane tabeli</pl>
             <cn>表格数据</cn>
+            <fr>données du tableau</fr>
             <bg>данни на таблицата</bg>
         </string>
         <string id="352">
@@ -2779,6 +2815,7 @@ Note: You can add new languages by inserting "<new_language>string translated in
             <de>Tabellenstruktur ist nicht definiert</de>
             <pl>struktura tabeli jest niezdefiniowana</pl>
             <cn>未定义表格结构</cn>
+            <fr>structure du tableau non défini</fr>
             <bg>структурата на таблицата не е дефинирана</bg>
         </string>
         <string id="353" js="1">
@@ -2786,6 +2823,7 @@ Note: You can add new languages by inserting "<new_language>string translated in
             <de>Kann Tabelle mit undefinierter Struktur nicht speichern.</de>
             <pl>Nie można zapisać tabeli, gdyż posiada ona niezdefiniowaną strukturę.</pl>
             <cn>未定义表格结构，无法保存</cn>
+            <fr>Un tableau dont la structure n'est pas définie ne peut pas être sauvegardé.</fr>
             <bg>Не може да се съхрани таблица с недефинирана структура.</bg>
         </string>
         <string id="354" js="1">
@@ -2793,6 +2831,7 @@ Note: You can add new languages by inserting "<new_language>string translated in
             <de>Ganzzahl</de>
             <pl>liczba calkowita</pl>
             <cn>整数</cn>
+            <fr>nombre entier</fr>
             <bg>цяло число</bg>
         </string>
         <string id="355" js="1">
@@ -2800,6 +2839,7 @@ Note: You can add new languages by inserting "<new_language>string translated in
             <de>Fließkomman</de>
             <pl>liczba zmiennoprzecinkowa</pl>
             <cn>浮点数</cn>
+            <fr>flotter</fr>
             <bg>число с плаваща запетая</bg>            
         </string>
         <string id="356">
@@ -2807,6 +2847,7 @@ Note: You can add new languages by inserting "<new_language>string translated in
             <de>Wähle HMTL Template aus:</de>
             <pl>wybierz szablon HTML:</pl>
             <cn>选择HTML模板：</cn>
+            <fr>choisir le modèle HTML</fr>
             <bg>избери HTML шаблон</bg>
         </string>
         <string id="357">
@@ -2814,6 +2855,7 @@ Note: You can add new languages by inserting "<new_language>string translated in
             <de>WENN</de>
             <pl>JESLI</pl>
             <cn>如果</cn>
+            <fr>SI</fr>
             <bg>АКО</bg>
         </string>
         <string id="358">
@@ -2821,6 +2863,7 @@ Note: You can add new languages by inserting "<new_language>string translated in
             <de>geschützte Variablen</de>
             <pl>chronione zmienne</pl>
             <cn>保护变量</cn>
+            <fr>Variables protégées</fr>
             <bg>запазена променлива</bg>
         </string>
         <string id="359">
@@ -2828,6 +2871,7 @@ Note: You can add new languages by inserting "<new_language>string translated in
             <de>Testlogik</de>
             <pl>logika testu</pl>
             <cn>测试逻辑</cn>
+            <fr>Logique du test</fr>
             <bg>тестова логика</bg>
         </string>
         <string id="360" js="1">
@@ -2835,6 +2879,7 @@ Note: You can add new languages by inserting "<new_language>string translated in
             <de>Sind Sie sicher, dass Sie diese geschützte Variable löschen wollen?</de>
             <pl>Jesteś pewien, że chcesz usunąć ta chroniona zmienna?</pl>
             <cn>确认删除此保护变量？</cn>
+            <fr>Êtes-vous certain de vouloir supprimer cette variable protégée?</fr>
             <bg>Сигурни ли сте, че искате да изтриете тази запазена променлива?</bg>
         </string>
         <string id="361" js="1">
@@ -2842,6 +2887,7 @@ Note: You can add new languages by inserting "<new_language>string translated in
             <de>lösche geschützte Variable</de>
             <pl>usuwanie chronionej zmiennej</pl>
             <cn>删除保护变量</cn>
+            <fr>suppression de la variable protégée</fr>
             <bg>изтриване на запазена променлива</bg>
         </string>
         <string id="362">
@@ -2849,6 +2895,7 @@ Note: You can add new languages by inserting "<new_language>string translated in
             <de></de>
             <pl>uruchom test</pl>
             <cn>运行测试</cn>
+            <fr>exécuter le test</fr>
             <bg></bg>
         </string>
     </strings>
