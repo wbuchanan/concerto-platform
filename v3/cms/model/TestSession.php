@@ -362,6 +362,7 @@ class TestSession extends OTable {
             `Template_id` bigint(20) NOT NULL,
             `time_tamper_prevention` INT NOT NULL,
             `hash` text NOT NULL,
+            `r_typ` tinyint( 1 ) NOT NULL,
             PRIMARY KEY  (`id`)
             ) ENGINE=InnoDB  DEFAULT CHARSET=utf8;
             ";
