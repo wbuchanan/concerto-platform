@@ -55,11 +55,10 @@ include Ini::$path_internal."cms/view/includes/tab.inc.php";
 </div>
 
 <div id="divTestDebugDialog" class="notVisible">
-    <p id="pTestDebugStatus" class="margin"></p>
     <div id="divTestDebugAccordion" class="margin">
-        <h3><a href="#">console</a></h3>
+        <h3><a href="#"><?=Language::string(365)?></a></h3>
         <div id="divTestDebugConsole"></div>
-        <h3><a href="#">test</a></h3>
+        <h3><a href="#"><?=Language::string(364)?> <?=Language::string(363)?></a></h3>
         <div id="divTestDebugTest"></div>
     </div>
 </div>

@@ -144,6 +144,10 @@ Table.uiReloadDataGrid=function(data,columns){
         {
             name: "create", 
             template: '<button class="btnAdd" onclick="Table.uiAddRow()">'+dictionary["s37"]+'</button>'
+        },
+        {
+            name: "clear", 
+            template: '<button class="btnRemove" onclick="Table.uiClearRows()">'+dictionary["s366"]+'</button>'
         }
         ],
         editable: {
@@ -152,6 +156,7 @@ Table.uiReloadDataGrid=function(data,columns){
         }
     });
     Methods.iniIconButton(".btnAdd", "plus");
+    Methods.iniIconButton(".btnRemove", "trash");
 }
 
 Table.uiIniDataGrid=function(){
@@ -261,6 +266,10 @@ Table.uiIniDataGrid=function(){
             {
                 name: "create", 
                 template: '<button class="btnAdd" onclick="Table.uiAddRow()">'+dictionary["s37"]+'</button>'
+            },
+            {
+                name: "clear", 
+                template: '<button class="btnRemove" onclick="Table.uiClearRows()">'+dictionary["s366"]+'</button>'
             }
             ],
             editable: {
@@ -269,6 +278,7 @@ Table.uiIniDataGrid=function(){
             }
         });
         Methods.iniIconButton(".btnAdd", "plus");
+        Methods.iniIconButton(".btnRemove", "trash");
         
     },"json");
 }
@@ -948,6 +958,18 @@ Table.uiRemoveRow=function(obj){
         var grid = $("#div"+thisClass.className+"GridData").data('kendoGrid');
         var index = obj.closest('tr')[0].sectionRowIndex;
         grid.removeRow(grid.tbody.find("tr:eq("+index+")"));
+    });
+}
+
+Table.uiClearRows=function(){
+    var thisClass=this;
+    Methods.confirm(dictionary["s368"], dictionary["s367"], function(){
+        var grid = $("#div"+thisClass.className+"GridData").data('kendoGrid');
+    
+        var columns = grid.columns;
+        var items = [];
+    
+        Table.uiReloadDataGrid(items, columns);
     });
 }
 

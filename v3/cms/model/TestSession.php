@@ -32,6 +32,7 @@ class TestSession extends OTable {
     public $hash = "";
     public $r_type = "";
     public $Template_TestSection_id = 0;
+    public $debug = 0;
 
     const TEST_SESSION_STATUS_STARTED = 0;
     const TEST_SESSION_STATUS_LOADING = 1;
@@ -47,10 +48,11 @@ class TestSession extends OTable {
         return Test::from_mysql_id($this->Test_id);
     }
 
-    public static function start_new($test_id, $r_type) {
+    public static function start_new($test_id, $r_type,$debug=false) {
         $session = new TestSession();
         $session->Test_id = $test_id;
         $session->r_type = $r_type;
+        $session->debug = ($debug?1:0);
         $lid = $session->mysql_save();
 
         $sql = sprintf("UPDATE `%s` SET `session_count`=`session_count`+1 WHERE `%s`.`id`=%d", Test::get_mysql_table(), Test::get_mysql_table(), $test_id);
@@ -195,10 +197,10 @@ class TestSession extends OTable {
         }
 
         $test = Test::from_mysql_id($this->Test_id);
-        $debug_mode = false;
+        $debug_data = false;
         $logged_user = User::get_logged_user();
         if ($logged_user != null)
-            $debug_mode = $logged_user->is_object_readable($test);
+            $debug_data = $logged_user->is_object_readable($test);
 
         if (!$debug_syntax) {
             $html = "";
@@ -207,6 +209,7 @@ class TestSession extends OTable {
                 $template = Template::from_mysql_id($thisSession->Template_id);
                 if ($section != null && $template!=null) {
                     $html = Template::convert_html_with_return_properties($thisSession->HTML,$section->get_values(),$template->get_outputs());
+                    if($thisSession->debug==1) $html = Template::strip_html ($html);
                 }
             }
             
@@ -223,7 +226,7 @@ class TestSession extends OTable {
             );
         }
 
-        if ($debug_mode) {
+        if ($debug_data) {
             $command = htmlspecialchars($command, ENT_QUOTES);
             for ($i = 0; $i < count($output); $i++) {
                 $output[$i] = htmlspecialchars($output[$i], ENT_QUOTES);
@@ -374,6 +377,7 @@ class TestSession extends OTable {
             `hash` text NOT NULL,
             `r_typ` tinyint( 1 ) NOT NULL,
             `Template_TestSection_id` bigint(20) NOT NULL,
+            `debug` tinyint(1) NOT NULL,
             PRIMARY KEY  (`id`)
             ) ENGINE=InnoDB  DEFAULT CHARSET=utf8;
             ";
@@ -412,6 +416,11 @@ class TestSession extends OTable {
         }
         if (Ini::does_patch_apply("3.4.1", $previous_version)) {
             $sql = "ALTER TABLE `TestSession` ADD `Template_TestSection_id` bigint(20) NOT NULL default '0';";
+            if (!mysql_query($sql))
+                return false;
+        }
+        if (Ini::does_patch_apply("3.4.2", $previous_version)) {
+            $sql = "ALTER TABLE `TestSession` ADD `debug` tinyint(1) NOT NULL default '0';";
             if (!mysql_query($sql))
                 return false;
         }

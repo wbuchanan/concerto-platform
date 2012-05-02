@@ -74,9 +74,12 @@ if (array_key_exists('sid', $_POST) && array_key_exists("hash", $_POST)) {
 } else {
     if (array_key_exists('tid', $_POST)) {
         $r_type = Ini::$r_instances_persistant ? TestSession::R_TYPE_SOCKET_SERVER : TestSession::R_TYPE_RSCRIPT;
-        if (array_key_exists("debug", $_POST) && $_POST['debug'] == 1)
+        $debug = false;
+        if (array_key_exists("debug", $_POST) && $_POST['debug'] == 1) {
             $r_type = TestSession::R_TYPE_RSCRIPT;
-        $session = TestSession::start_new($_POST['tid'], $r_type);
+            $debug = true;
+        }
+        $session = TestSession::start_new($_POST['tid'], $r_type, $debug);
 
         if (!array_key_exists('values', $_POST))
             $_POST['values'] = array();

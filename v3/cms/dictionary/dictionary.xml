@@ -2305,9 +2305,9 @@ Note: You can add new languages by inserting "<new_language>string translated in
             <bg>Проверете дали всички промени в тестовата логика са съхранени преди дебъга. Несъхранените промени няма да повлияят на процеса на дебъг</bg>
         </string>
         <string id="288" js="1">
-            <en><![CDATA[Please press the <b>start</b> button.]]></en>
+            <en><![CDATA[Please press the <b>begin</b> button.]]></en>
             <de><![CDATA[Bitt den <b>Start</b> Knopf drücken.]]></de>
-            <pl><![CDATA[Proszę nacisnąć przycisk <b>start</b>.]]></pl>
+            <pl><![CDATA[Proszę nacisnąć przycisk <b>zacznij</b>.]]></pl>
             <cn><![CDATA[请按 <b>开始</b> 键.]]></cn>
             <fr><![CDATA[appuyez sur le bouton <b>commencer</b>.]]></fr>
             <bg><![CDATA[Моля натиснете бутона <b>старт</b>]]></bg>
@@ -2903,6 +2903,54 @@ Note: You can add new languages by inserting "<new_language>string translated in
             <pl>uruchom test</pl>
             <cn>运行测试</cn>
             <fr>exécuter le test</fr>
+            <bg></bg>
+        </string>
+        <string id="363">
+            <en>( javascripts and CSS will be turned off )</en>
+            <pl>( javascript i CSS beda wylaczone )</pl>
+            <de></de>
+            <cn></cn>
+            <fr></fr>
+            <bg></bg>
+        </string>
+        <string id="364">
+            <en>test output</en>
+            <pl>widok testu</pl>
+            <de></de>
+            <cn></cn>
+            <fr></fr>
+            <bg></bg>
+        </string>
+        <string id="365">
+            <en>test console</en>
+            <pl>konsola testu</pl>
+            <de></de>
+            <cn></cn>
+            <fr></fr>
+            <bg></bg>
+        </string>
+        <string id="366" js="1">
+            <en>clear table</en>
+            <pl>wyczysc tabele</pl>
+            <de></de>
+            <cn></cn>
+            <fr></fr>
+            <bg></bg>
+        </string>
+        <string id="367" js="1">
+            <en>clearing table</en>
+            <pl>czyszczenie tabeli</pl>
+            <de></de>
+            <cn></cn>
+            <fr></fr>
+            <bg></bg>
+        </string>
+        <string id="368" js="1">
+            <en>Are you sure you want to clear the table? All rows will be deleted.</en>
+            <pl>Jestes pewien, ze chcesz wyczyscic tabele? Wszystkie rzedy zostana usuniete.</pl>
+            <de></de>
+            <cn></cn>
+            <fr></fr>
             <bg></bg>
         </string>
     </strings>

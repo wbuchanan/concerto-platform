@@ -537,7 +537,7 @@ Test.uiTablesChanged=function(){
     var sections = Test.getSections();
     sections.each(function(){
         var s = Test.sectionDivToObject($(this));
-        if(s.type==Test.sectionTypes.setVariable){
+        if(s.type==Test.sectionTypes.setVariable || s.type==Test.sectionTypes.tableModification){
             var value = Test.getSectionValues(Test.sectionDivToObject($('#divSection_'+s.counter)));
             Test.uiRefreshSectionContent(s.type, s.counter, value);
         }
@@ -851,6 +851,7 @@ Test.uiIniDebug=function(){
 };
 
 Test.setDebugStatus=function(data,error){
+    $("#divTestDebugDialog").dialog("option","title","<p style='margin:0px;' id='pTestDebugStatus'></p>");
     if(error!=null && error){
         $("#pTestDebugStatus").addClass("ui-state-error");
     } else {
