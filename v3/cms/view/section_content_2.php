@@ -80,7 +80,7 @@ if ($vals[0] != 0 && $template != null) {
                     <?php
                     if (!$is_special) {
                         ?>    
-            <?= Language::string(279) ?> <input type="text" class="controlValue<?= $_POST['counter'] ?>_params ui-widget-content ui-corner-all comboboxVars" value="<?= htmlspecialchars($val, ENT_QUOTES) ?>" />
+            <- <input type="text" class="controlValue<?= $_POST['counter'] ?>_params ui-widget-content ui-corner-all comboboxVars" value="<?= htmlspecialchars($val, ENT_QUOTES) ?>" />
             <?php
         }
         else
@@ -154,7 +154,7 @@ while ($r = mysql_fetch_array($z)) {
                     <tr>
                         <td><span class="spanIcon ui-icon ui-icon-help tooltip" title="<?= Language::string(217) ?>: <b><?= $outputs[$i]["type"] ?></b>"></span></td>
                         <td><?= $outputs[$i]["name"] ?></td>
-                        <td><?= Language::string(279) ?> <input onchange="Test.uiSetVarNameChanged($(this))" type="text" class="ui-state-focus comboboxSetVars comboboxVars controlValue<?= $_POST['counter'] ?>_rets ui-widget-content ui-corner-all" value="<?= htmlspecialchars($ret, ENT_QUOTES) ?>" /></td>
+                        <td>->> <input onchange="Test.uiSetVarNameChanged($(this))" type="text" class="ui-state-focus comboboxSetVars comboboxVars controlValue<?= $_POST['counter'] ?>_rets ui-widget-content ui-corner-all" value="<?= htmlspecialchars($ret, ENT_QUOTES) ?>" /></td>
                     </tr>
         <?php
     }

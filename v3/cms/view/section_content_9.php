@@ -71,7 +71,7 @@ if (count($parameters) > 0)
                     <tr>
                         <td><span class="spanIcon ui-icon ui-icon-help tooltip" title="<?= htmlspecialchars($parameters[$i]->description, ENT_QUOTES) ?>"></span></td>
                         <td><?= $parameters[$i]->name ?></td>
-                        <td><b><?= Language::string(279) ?></b> <input type="text" class="controlValue<?= $_POST['counter'] ?> ui-widget-content ui-corner-all comboboxVars" value="<?= htmlspecialchars(isset($vals[$j]) ? $vals[$j] : $parameters[$i]->name, ENT_QUOTES) ?>" /></td>
+                        <td><- <input type="text" class="controlValue<?= $_POST['counter'] ?> ui-widget-content ui-corner-all comboboxVars" value="<?= htmlspecialchars(isset($vals[$j]) ? $vals[$j] : $parameters[$i]->name, ENT_QUOTES) ?>" /></td>
                     </tr>
                     <?php
                     $j++;
@@ -98,7 +98,7 @@ if (count($returns) > 0)
                     <tr>
                         <td><span class="spanIcon ui-icon ui-icon-help tooltip" title="<?= htmlspecialchars($returns[$i]->description, ENT_QUOTES) ?>"></span></td>
                         <td><?= $returns[$i]->name ?></td>
-                        <td><?= Language::string(279) ?> <input onchange="Test.uiSetVarNameChanged($(this))" type="text" class="ui-state-focus comboboxSetVars comboboxVars controlValue<?= $_POST['counter'] ?> ui-widget-content ui-corner-all" value="<?= htmlspecialchars(isset($vals[$j]) ? $vals[$j] : $returns[$i]->name, ENT_QUOTES) ?>" /></td>
+                        <td>->> <input onchange="Test.uiSetVarNameChanged($(this))" type="text" class="ui-state-focus comboboxSetVars comboboxVars controlValue<?= $_POST['counter'] ?> ui-widget-content ui-corner-all" value="<?= htmlspecialchars(isset($vals[$j]) ? $vals[$j] : $returns[$i]->name, ENT_QUOTES) ?>" /></td>
                     </tr>
                     <?php
                     $j = $j + 3;
