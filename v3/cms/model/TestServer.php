@@ -50,7 +50,7 @@ class TestServer
         }
         //@socket_shutdown($this->main_sock);
         socket_close($this->main_sock);
-        if (file_exists(Ini::$unix_sock)) unlink(Ini::$unix_sock);
+        if (file_exists(Ini::$path_unix_sock)) unlink(Ini::$path_unix_sock);
         if (self::$debug)
                 self::log_debug("TestServer->stop() --- TestServer stopped");
         $this->is_alive = false;
@@ -79,7 +79,7 @@ class TestServer
         if (Ini::$sock_type_used == 1)
                 $result = socket_connect($socket, Ini::$sock_host, Ini::$sock_port);
         if (Ini::$sock_type_used == 0)
-                $result = socket_connect($socket, Ini::$unix_sock);
+                $result = socket_connect($socket, Ini::$path_unix_sock);
         if (!$result)
         {
             if (self::$debug)
@@ -151,7 +151,7 @@ class TestServer
         if (Ini::$sock_type_used == 1)
                 $result = @socket_connect($socket, Ini::$sock_host, Ini::$sock_port);
         if (Ini::$sock_type_used == 0)
-                $result = @socket_connect($socket, Ini::$unix_sock);
+                $result = @socket_connect($socket, Ini::$path_unix_sock);
         //@socket_shutdown($socket);
         socket_close($socket);
         if (!$result)
@@ -192,7 +192,7 @@ class TestServer
     public function start()
     {
         gc_enable();
-        if (file_exists(Ini::$unix_sock)) unlink(Ini::$unix_sock);
+        if (file_exists(Ini::$path_unix_sock)) unlink(Ini::$path_unix_sock);
         $this->last_action_time = time();
         if (self::$debug)
                 self::log_debug("TestServer->start() --- TestServer started");
@@ -225,7 +225,7 @@ class TestServer
         if (Ini::$sock_type_used == 1)
                 $bind = socket_bind($this->main_sock, Ini::$sock_host, Ini::$sock_port);
         if (Ini::$sock_type_used == 0)
-                $bind = socket_bind($this->main_sock, Ini::$unix_sock);
+                $bind = socket_bind($this->main_sock, Ini::$path_unix_sock);
         if (!$bind)
         {
             if (self::$debug)

@@ -66,7 +66,7 @@ class Setup
 
     public static function directory_writable_check($path)
     {
-        if (is_writable($path)) return true;
+        if (self::directory_paths_check($path) && is_writable($path)) return true;
         else return false;
     }
 
@@ -403,9 +403,9 @@ class Setup
                         <?php
                         $test = Setup::directory_writable_check(Ini::$path_temp);
                         ?>
-                        <td class="ui-widget-content"><b>/temp</b> directory path must be writable</td>
-                        <td class="<?= ($test ? "ui-state-highlight" : "ui-state-error") ?>">your <b>/temp</b> directory: <b><?= Ini::$path_temp ?></b> <b><?= ($test ? "IS WRITABLE" : "IS NOT WRITABLE") ?> - <b style="color:<?= ($test ? "green" : "red") ?>"><?= ($test ? "PASSED" : "FAILED") ?></b></td>
-                        <td class="ui-widget-content" align="center"><?= ($test ? "-" : "Set <b>/temp</b> directory rigths to 0777.") ?></td>
+                        <td class="ui-widget-content"><b>temp</b> directory path must be writable</td>
+                        <td class="<?= ($test ? "ui-state-highlight" : "ui-state-error") ?>">your <b>temp</b> directory: <b><?= Ini::$path_temp ?></b> <b><?= ($test ? "IS WRITABLE" : "IS NOT WRITABLE") ?> - <b style="color:<?= ($test ? "green" : "red") ?>"><?= ($test ? "PASSED" : "FAILED") ?></b></td>
+                        <td class="ui-widget-content" align="center"><?= ($test ? "-" : "Set <b>".Ini::$path_temp."</b> directory rigths to 0777.") ?></td>
                         <?php $ok = $ok && $test; ?>
                     </tr>
                 <?php } ?>
@@ -452,6 +452,21 @@ class Setup
                         <td class="ui-widget-content"><b>/cms/lib/ckeditor/plugins/pgrfilemanager/PGRThumb/cache</b> directory path must be writable</td>
                         <td class="<?= ($test ? "ui-state-highlight" : "ui-state-error") ?>">your <b>/cms/lib/ckeditor/plugins/pgrfilemanager/PGRThumb/cache</b> directory: <b><?= Ini::$path_internal . "cms/lib/ckeditor/plugins/pgrfilemanager/PGRThumb/cache" ?></b> <b><?= ($test ? "IS WRITABLE" : "IS NOT WRITABLE") ?> - <b style="color:<?= ($test ? "green" : "red") ?>"><?= ($test ? "PASSED" : "FAILED") ?></b></td>
                         <td class="ui-widget-content" align="center"><?= ($test ? "-" : "Set <b>/cms/lib/ckeditor/plugins/pgrfilemanager/PGRThumb/cache</b> directory rigths to 0777.") ?></td>
+                        <?php $ok = $ok && $test; ?>
+                    </tr>
+                <?php } ?>
+                    
+                <?php
+                if ($ok)
+                {
+                    ?>
+                    <tr>
+                        <?php
+                        $test = Setup::directory_writable_check(Ini::$path_unix_sock_dir);
+                        ?>
+                        <td class="ui-widget-content"><b>UNIX sock</b> directory path must be writable</td>
+                        <td class="<?= ($test ? "ui-state-highlight" : "ui-state-error") ?>">your <b>UNIX sock</b> directory: <b><?=Ini::$path_unix_sock_dir?></b> <b><?= ($test ? "IS WRITABLE" : "IS NOT WRITABLE") ?> - <b style="color:<?= ($test ? "green" : "red") ?>"><?= ($test ? "PASSED" : "FAILED") ?></b></td>
+                        <td class="ui-widget-content" align="center"><?= ($test ? "-" : "Set <b>".Ini::$path_unix_sock_dir."</b> directory rigths to 0777.") ?></td>
                         <?php $ok = $ok && $test; ?>
                     </tr>
                 <?php } ?>

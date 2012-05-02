@@ -61,7 +61,7 @@ update.session.HTML <- function(CONCERTO_PARAM){
 }
 
 get.template.HTML <- function(CONCERTO_PARAM) {
-    CONCERTO_SQL <- sprintf("SELECT `HTML` FROM `Template` WHERE `id`=%s",CONCERTO_PARAM)
+    CONCERTO_SQL <- sprintf("SELECT `HTML` FROM `Template` WHERE `id`=%s",dbEscapeStrings(CONCERTO_DB_CONNECTION,toString(CONCERTO_PARAM)))
     CONCERTO_SQL_RESULT <- dbSendQuery(CONCERTO_DB_CONNECTION,CONCERTO_SQL)
     CONCERTO_SQL_RESULT <- fetch(CONCERTO_SQL_RESULT,n=-1)
     return(CONCERTO_SQL_RESULT[1,1])

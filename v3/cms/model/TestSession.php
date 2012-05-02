@@ -206,7 +206,7 @@ class TestSession extends OTable {
                 $section = TestSection::from_mysql_id($thisSession->Template_TestSection_id);
                 $template = Template::from_mysql_id($thisSession->Template_id);
                 if ($section != null && $template!=null) {
-                    $html = Template::convert_html_with_return_properties($thisSession->HTML,$section->get_values(),$template->get_outputs);
+                    $html = Template::convert_html_with_return_properties($thisSession->HTML,$section->get_values(),$template->get_outputs());
                 }
             }
             

@@ -31,10 +31,11 @@ class Ini
     public static $path_r_script = "";
     public static $path_temp = "";
     public static $path_mysql_home = "";
-    public static $version = "3.4.1";
+    public static $version = "3.4.2";
     public static $sock_host = "127.0.0.1";
     public static $sock_port = "8888";
-    public static $unix_sock = "";
+    public static $path_unix_sock = "";
+    public static $path_unix_sock_dir = "";
     public static $sock_type_used = 0;
     public static $r_instances_persistant = false;
     public static $timer_tamper_prevention = true;
@@ -81,9 +82,13 @@ class Ini
         self::$path_r_script = $path_r_script;
         self::$path_r_exe = $path_r_exe;
         self::$path_php_exe = $path_php_exe;
-        self::$path_temp = self::$path_internal . "temp/";
+        if ($path_temp != "") self::$path_temp = $path_temp;
+        else self::$path_temp = self::$path_internal . "temp/";
         self::$path_mysql_home = $path_mysql_home;
-        self::$unix_sock = self::$path_internal."socks/RConcerto.sock";
+
+        if ($path_sock != "") self::$path_unix_sock_dir = $path_sock;
+        else self::$path_unix_sock_dir = self::$path_internal . "socks/";
+        self::$path_unix_sock = self::$path_unix_sock_dir . "RConcerto.sock";
         self::$r_instances_persistant = $r_instances_persistant;
     }
 
