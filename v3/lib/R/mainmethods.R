@@ -45,14 +45,26 @@ update.session.time_limit <- function(CONCERTO_PARAM){
    dbSendQuery(CONCERTO_DB_CONNECTION, statement = sprintf("UPDATE `%s`.`TestSession` SET `time_limit` = '%s' WHERE `id`=%s",dbEscapeStrings(CONCERTO_DB_CONNECTION,CONCERTO_DB_NAME),CONCERTO_PARAM,dbEscapeStrings(CONCERTO_DB_CONNECTION,CONCERTO_TEST_SESSION_ID)))
 }
 
+update.session.template_testsection_id <- function(CONCERTO_PARAM){
+   CONCERTO_PARAM <- dbEscapeStrings(CONCERTO_DB_CONNECTION,toString(CONCERTO_PARAM))
+   dbSendQuery(CONCERTO_DB_CONNECTION, statement = sprintf("UPDATE `%s`.`TestSession` SET `Template_TestSection_id` ='%s' WHERE `id`=%s",dbEscapeStrings(CONCERTO_DB_CONNECTION,CONCERTO_DB_NAME),CONCERTO_PARAM,dbEscapeStrings(CONCERTO_DB_CONNECTION,CONCERTO_TEST_SESSION_ID)))
+}
+
 update.session.template_id <- function(CONCERTO_PARAM){
    CONCERTO_PARAM <- dbEscapeStrings(CONCERTO_DB_CONNECTION,toString(CONCERTO_PARAM))
    dbSendQuery(CONCERTO_DB_CONNECTION, statement = sprintf("UPDATE `%s`.`TestSession` SET `Template_id` ='%s' WHERE `id`=%s",dbEscapeStrings(CONCERTO_DB_CONNECTION,CONCERTO_DB_NAME),CONCERTO_PARAM,dbEscapeStrings(CONCERTO_DB_CONNECTION,CONCERTO_TEST_SESSION_ID)))
 }
 
 update.session.HTML <- function(CONCERTO_PARAM){
-   CONCERTO_PARAM <- dbEscapeStrings(CONCERTO_DB_CONNECTION,toString(CONCERTO_PARAM))
+   CONCERTO_PARAM <- dbEscapeStrings(CONCERTO_DB_CONNECTION,toString(fill.session.HTML(get.template.HTML(CONCERTO_PARAM))))
    dbSendQuery(CONCERTO_DB_CONNECTION, statement = sprintf("UPDATE `%s`.`TestSession` SET `HTML` = '%s' WHERE `id`=%s",dbEscapeStrings(CONCERTO_DB_CONNECTION,CONCERTO_DB_NAME),CONCERTO_PARAM,dbEscapeStrings(CONCERTO_DB_CONNECTION,CONCERTO_TEST_SESSION_ID)))
+}
+
+get.template.HTML <- function(CONCERTO_PARAM) {
+    CONCERTO_SQL <- sprintf("SELECT `HTML` FROM `Template` WHERE `id`=%s",CONCERTO_PARAM)
+    CONCERTO_SQL_RESULT <- dbSendQuery(CONCERTO_DB_CONNECTION,CONCERTO_SQL)
+    CONCERTO_SQL_RESULT <- fetch(CONCERTO_SQL_RESULT,n=-1)
+    return(CONCERTO_SQL_RESULT[1,1])
 }
 
 fill.session.HTML <- function(CONCERTO_PARAM){

@@ -64,9 +64,8 @@ class Template extends OModule
         return $name;
     }
 
-    public function get_return_reference($name, $vals, $output = null)
+    public static function get_return_reference($name, $vals, $output)
     {
-        if ($output == null) $output = $this->get_outputs();
         $j = 3 + $vals[1];
         foreach ($output as $ret)
         {
@@ -76,12 +75,10 @@ class Template extends OModule
         }
         return $name;
     }
-
-    public function get_html_with_return_properties($vals)
+    
+    public static function convert_html_with_return_properties($html,$vals,$outputs)
     {
-        $html = str_get_html($this->HTML);
-        $outputs = $this->get_outputs();
-
+        $html = str_get_html($html);
         foreach ($outputs as $out)
         {
             $elems = $html->find("[name='" . $out["name"] . "']");
@@ -90,12 +87,18 @@ class Template extends OModule
             {
                 if ($reference == null)
                 {
-                    $reference = $this->get_return_reference($out["name"], $vals, $outputs);
+                    $reference = Template::get_return_reference($out["name"], $vals, $outputs);
                 }
                 $elem->setAttribute("name", $reference);
             }
         }
         return $html->save();
+    }
+
+    public function get_html_with_return_properties($vals)
+    {
+        $outputs = $this->get_outputs();
+        return Template::convert_html_with_return_properties($this->HTML, $vals, $outputs);
     }
 
     public function get_outputs()

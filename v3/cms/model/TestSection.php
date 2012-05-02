@@ -183,9 +183,6 @@ class TestSection extends OTable
                     $template = Template::from_mysql_id($template_id);
                     if ($template == null)
                             return sprintf("stop('Invalid template id: %s in section #%s')", $template_id, $this->counter);
-
-                    //replace HTML vars names with the refefence
-                    $html = $template->get_html_with_return_properties($this->get_values());
                     
                     $code = sprintf("
                         update.session.template_id(%d)
@@ -193,10 +190,10 @@ class TestSection extends OTable
                         update.session.time_limit(TIME_LIMIT)
                         update.session.status(%d)
                         update.session.counter(%d)
-                        CONCERTO_HTML <- fill.session.HTML('%s')
-                        update.session.HTML(CONCERTO_HTML)
+                        update.session.HTML(%d)
+                        update.session.template_testsection_id(%d)
                         return(-1)
-                        ", $template_id, TestSession::TEST_SESSION_STATUS_TEMPLATE, $next_counter, addslashes($html)
+                        ", $template_id, TestSession::TEST_SESSION_STATUS_TEMPLATE, $next_counter, $template_id, $this->id
                     );
                     
                     return $code;

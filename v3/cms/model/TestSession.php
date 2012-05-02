@@ -31,6 +31,7 @@ class TestSession extends OTable {
     public $time_tamper_prevention = 0;
     public $hash = "";
     public $r_type = "";
+    public $Template_TestSection_id = 0;
 
     const TEST_SESSION_STATUS_STARTED = 0;
     const TEST_SESSION_STATUS_LOADING = 1;
@@ -200,11 +201,20 @@ class TestSession extends OTable {
             $debug_mode = $logged_user->is_object_readable($test);
 
         if (!$debug_syntax) {
+            $html = "";
+            if ($thisSession->status == TestSession::TEST_SESSION_STATUS_TEMPLATE) {
+                $section = TestSection::from_mysql_id($thisSession->Template_TestSection_id);
+                $template = Template::from_mysql_id($thisSession->Template_id);
+                if ($section != null && $template!=null) {
+                    $html = Template::convert_html_with_return_properties($thisSession->HTML,$section->get_values(),$template->get_outputs);
+                }
+            }
+            
             $response = array(
                 "data" => array(
                     "HASH" => $thisSession->hash,
                     "TIME_LIMIT" => $thisSession->time_limit,
-                    "HTML" => $thisSession->HTML,
+                    "HTML" => $html,
                     "TEST_ID" => $thisSession->Test_id,
                     "TEST_SESSION_ID" => $thisSession->id,
                     "STATUS" => $thisSession->status,
@@ -363,6 +373,7 @@ class TestSession extends OTable {
             `time_tamper_prevention` INT NOT NULL,
             `hash` text NOT NULL,
             `r_typ` tinyint( 1 ) NOT NULL,
+            `Template_TestSection_id` bigint(20) NOT NULL,
             PRIMARY KEY  (`id`)
             ) ENGINE=InnoDB  DEFAULT CHARSET=utf8;
             ";
@@ -396,6 +407,11 @@ class TestSession extends OTable {
                 return false;
 
             $sql = "ALTER TABLE  `TestSession` ADD  `r_type` TINYINT( 1 ) NOT NULL;";
+            if (!mysql_query($sql))
+                return false;
+        }
+        if (Ini::does_patch_apply("3.4.1", $previous_version)) {
+            $sql = "ALTER TABLE `TestSession` ADD `Template_TestSection_id` bigint(20) NOT NULL default '0';";
             if (!mysql_query($sql))
                 return false;
         }
