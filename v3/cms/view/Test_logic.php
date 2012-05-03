@@ -69,7 +69,10 @@ if ($oid != 0)
                         null,
         <?= $section->id ?>,
                         false,
-        <?= $section->TestSectionType_id == 3 ? "false" : "true" ?>
+        <?= $section->TestSectionType_id == 3 ? "false" : "true" ?>,
+                        null,
+                        null,
+        <?= $section->end ?>
                     );
         <?php
         if ($section->TestSectionType_id == 3)

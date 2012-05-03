@@ -2953,5 +2953,13 @@ Note: You can add new languages by inserting "<new_language>string translated in
             <fr></fr>
             <bg></bg>
         </string>
+        <string id="369" js="1">
+            <en>Check this checkbox if you want to release all resources used by test session after executing this section. This will remove test session.</en>
+            <pl>Zaznacz ten checkbox jesli chcesz zwolnic wszystkie zasoby wykorzystywane przez sesje testu po uruchomieniu tej sekcji. Czynnosc ta usunie sesje testu.</pl>
+            <de></de>
+            <cn></cn>
+            <fr></fr>
+            <bg></bg>
+        </string>
     </strings>
 </root> 

@@ -59,6 +59,7 @@ class Test extends OModule
                 $s = new TestSection();
                 $s->counter = $section['counter'];
                 $s->TestSectionType_id = $section['type'];
+                $s->end = $section['end'];
                 $s->Test_id = $lid;
 
                 $s->parent_counter = $section['parent'];

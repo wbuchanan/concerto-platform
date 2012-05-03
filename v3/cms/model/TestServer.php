@@ -38,7 +38,7 @@ class TestServer
         $datetime = $d->format("Y-m-d H:i:s.u");
 
         $lfh = fopen(Ini::$path_temp . date('Y-m-d') . ".socket.log", "a");
-        fwrite($lfh, ($timestamp ? $datetime : "") . " {" .memory_get_peak_usage(true)."B} --- " . $message . "\r\n");
+        fwrite($lfh, ($timestamp ? $datetime : "") . " {" . memory_get_peak_usage(true) . "B} --- " . $message . "\r\n");
         fclose($lfh);
     }
 
@@ -417,7 +417,7 @@ class TestServer
             unset($this->clients[$key]);
         }
         $session = TestSession::from_mysql_id(substr($key, 3));
-        if($session!=null) $session->mysql_delete();
+        if ($session != null) $session->mysql_delete();
         if (self::$debug)
         {
             self::log_debug("TestServer->close_instance() --- Client '$key' closed");

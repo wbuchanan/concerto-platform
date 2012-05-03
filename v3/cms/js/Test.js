@@ -292,7 +292,8 @@ Test.uiRefreshSectionContent=function(type,counter,value,oid){
     });
 };
 
-Test.uiWriteSection=function(type,container,parent,counter,value,oid,prepend,refresh,csid,after){
+Test.uiWriteSection=function(type,container,parent,counter,value,oid,prepend,refresh,csid,after,end){
+    if(end==null) end = 0;
     if(refresh==null) refresh=true;
     if(parent==null) parent = 0;
     if(counter==null) counter = Test.getCounter();
@@ -318,12 +319,16 @@ Test.uiWriteSection=function(type,container,parent,counter,value,oid,prepend,ref
     var spanAddAfter = '';
     var divControl = '';
     var divSubSection = '';
+    var tdEnd = "";
     if(type==Test.sectionTypes.ifStatement) divSubSection = '<div id="divSectionSubContent_'+counter+'" class="divSubsection"></div>';
     if(type!=Test.sectionTypes.start && type!=Test.sectionTypes.end) spanDelete = '<span class="spanIcon tooltip ui-icon ui-icon-trash" onclick="Test.uiRemoveSection(\''+counter+'\')" title="'+dictionary["s59"]+'"></span>';
-    if(type!=Test.sectionTypes.end) spanAddAfter = '<span class="spanIcon tooltip ui-icon ui-icon-plus" onclick="Test.uiAddLogicSection(null,'+(parent!=0?"true":"null")+','+parent+',$(this).parent().parent().parent().parent().parent().parent())" title="'+dictionary["s60"]+'"></span>';
+    if(type!=Test.sectionTypes.end) {
+        if(type!=Test.sectionTypes.start && type!=Test.sectionTypes.ifStatement && type!=Test.sectionTypes.goTo) tdEnd = '<td style="border-left:1px solid;"><span class="spanIcon ui-icon ui-icon-help tooltip" title="'+dictionary["s369"]+'"></span></td><td>'+dictionary["s55"]+'</td><td><input type="checkbox" id="chkEndSection_'+counter+'" '+(end==1?"checked":"")+' class="chkEndSection" /></td>';
+        spanAddAfter = '<span class="spanIcon tooltip ui-icon ui-icon-plus" onclick="Test.uiAddLogicSection(null,'+(parent!=0?"true":"null")+','+parent+',$(this).parent().parent().parent().parent().parent().parent())" title="'+dictionary["s60"]+'"></span>';
+    }
     if(spanDelete!='' || spanAddAfter!='') divControl = '<div><table><tbody><tr><td>'+spanAddAfter+'</td><td>'+spanDelete+'</td></tbody></table></div>';
     
-    var html='<div class="ui-widget-header margin sortableHandle" '+(sortable?'style="cursor:move;"':'')+'><table><tr><td><span class="spanIcon ui-icon ui-icon-help tooltip" title="'+Test.getSectionTypeDescription(type)+'"></span></td><td>'+counter+'. '+Test.getSectionTypeName(type)+'</td></tr></table></div>';
+    var html='<div class="ui-widget-header margin sortableHandle" '+(sortable?'style="cursor:move;"':'')+' align="left"><table><tr><td><span class="spanIcon ui-icon ui-icon-help tooltip" title="'+Test.getSectionTypeDescription(type)+'"></span></td><td>'+counter+'. '+Test.getSectionTypeName(type)+'</td>'+tdEnd+'</tr></table></div>';
     html+='<div class="horizontalMargin" id="divSection_'+counter+'_content" align="left"></div>'+divSubSection;
     html+=divControl;
         
@@ -420,10 +425,13 @@ Test.sectionDivToObject=function(div){
     var counter = parseInt(div.attr("seccounter"));
     var type = parseInt(div.attr("sectype"));
     var parent = parseInt(div.attr("secparent"));
+    var end = 0;
+    if(div.find(".chkEndSection").length>0 && div.find(".chkEndSection").is(":checked")) end = 1;
     return {
         counter:counter,
         type:type,
-        parent:parent
+        parent:parent,
+        end:end
     };
 }
 
@@ -1073,7 +1081,7 @@ Test.getSerializedProtected=function(){
     for(var i=0;i<data.length;i++){
         prot.push($.toJSON({
             name:data[i].name
-        }))
+        }));
     }
     return prot;
 }

@@ -25,6 +25,7 @@ class TestSection extends OTable
     public $TestSectionType_id = 0;
     public $Test_id = 0;
     public $parent_counter = 0;
+    public $end = 0;
     public static $mysql_table_name = "TestSection";
 
     public function mysql_delete()
@@ -131,7 +132,7 @@ class TestSection extends OTable
                     update.session.status(%d)    
                     update.session.counter(%d)
                     return(%d)
-                    ", TestSession::TEST_SESSION_STATUS_FINISHED, $next_counter, $next_counter);
+                    ", TestSession::TEST_SESSION_STATUS_COMPLETED, $next_counter, $next_counter);
                     return $code;
                 }
             case DS_TestSectionType::CUSTOM:
@@ -165,7 +166,7 @@ class TestSection extends OTable
                     }
                     $code.=sprintf("
                         return(%d)
-                        ", $next_counter);
+                        ", ($this->end==0?$next_counter:-2));
                     return $code;
                 }
             case DS_TestSectionType::R_CODE:
@@ -173,7 +174,7 @@ class TestSection extends OTable
                     $code = sprintf("
                         %s
                         return(%d)
-                        ", $vals[0], $next_counter
+                        ", $vals[0], ($this->end==0?$next_counter:-2)
                     );
                     return $code;
                 }
@@ -192,8 +193,8 @@ class TestSection extends OTable
                         update.session.counter(%d)
                         update.session.HTML(%d)
                         update.session.template_testsection_id(%d)
-                        return(-1)
-                        ", $template_id, TestSession::TEST_SESSION_STATUS_TEMPLATE, $next_counter, $template_id, $this->id
+                        return(%d)
+                        ", $template_id, TestSession::TEST_SESSION_STATUS_TEMPLATE, $next_counter, $template_id, $this->id, ($this->end==0?-1:-2)
                     );
                     
                     return $code;
@@ -263,7 +264,7 @@ class TestSection extends OTable
                         CONCERTO_SQL <- paste("%s",sep="")
                         CONCERTO_SQL_RESULT <- dbSendQuery(CONCERTO_DB_CONNECTION,CONCERTO_SQL)
                         return(%d)
-                        ', $sql, $next_counter);
+                        ', $sql, ($this->end==0?$next_counter:-2));
 
                     return $code;
                 }
@@ -334,7 +335,7 @@ class TestSection extends OTable
                         %s <<- fetch(CONCERTO_SQL_RESULT,n=-1)
                         %s
                         return(%d)
-                        ', $sql, $vals[4], $set_rvar_code, $next_counter);
+                        ', $sql, $vals[4], $set_rvar_code, ($this->end==0?$next_counter:-2));
                         return $code;
                     }
                     if ($type == 1)
@@ -345,7 +346,7 @@ class TestSection extends OTable
                         }
                         %s
                         return(%d)
-                        ', $vals[4], $vals[3], $set_rvar_code, $next_counter
+                        ', $vals[4], $vals[3], $set_rvar_code, ($this->end==0?$next_counter:-2)
                         );
                         return $code;
                     }
@@ -412,12 +413,20 @@ class TestSection extends OTable
             `TestSectionType_id` int(11) NOT NULL,
             `Test_id` bigint(20) NOT NULL,
             `parent_counter` int(11) NOT NULL,
+            `end` tinyint(1) NOT NULL,
             PRIMARY KEY  (`id`)
             ) ENGINE=InnoDB  DEFAULT CHARSET=utf8;
             ";
         return mysql_query($sql);
     }
 
+    public static function update_db($previous_version) {
+        if (Ini::does_patch_apply("3.4.2", $previous_version)) {
+            $sql = "ALTER TABLE `TestSection` ADD `end` tinyint(1) NOT NULL default '0';";
+            if (!mysql_query($sql))
+                return false;
+        }
+    }
 }
 
 ?>
