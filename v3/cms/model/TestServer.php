@@ -21,7 +21,6 @@
 
 class TestServer
 {
-    private static $max_idle_time = 2100;
     public static $debug = true;
     public static $debug_stream_data = false;
     private $last_action_time;
@@ -266,7 +265,7 @@ class TestServer
         do
         {
             gc_collect_cycles();
-            if (time() - $this->last_action_time > self::$max_idle_time)
+            if (time() - $this->last_action_time > Ini::$r_server_timeout)
             {
                 if (self::$debug)
                         self::log_debug("TestServer->start() --- Reached max idle time");

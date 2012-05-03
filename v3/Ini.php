@@ -38,6 +38,8 @@ class Ini
     public static $path_unix_sock_dir = "";
     public static $sock_type_used = 0;
     public static $r_instances_persistant = false;
+    public static $r_instances_timeout = 1800;
+    public static $r_server_timeout = 2100;
     public static $timer_tamper_prevention = true;
     public static $timer_tamper_prevention_tolerance = 3;
 
@@ -85,11 +87,12 @@ class Ini
         if ($path_temp != "") self::$path_temp = $path_temp;
         else self::$path_temp = self::$path_internal . "temp/";
         self::$path_mysql_home = $path_mysql_home;
-
         if ($path_sock != "") self::$path_unix_sock_dir = $path_sock;
         else self::$path_unix_sock_dir = self::$path_internal . "socks/";
         self::$path_unix_sock = self::$path_unix_sock_dir . "RConcerto.sock";
         self::$r_instances_persistant = $r_instances_persistant;
+        self::$r_instances_timeout = $r_instances_persistant_instance_timeout;
+        self::$r_server_timeout = $r_instances_persistant_server_timeout;
     }
 
     public static function does_patch_apply($patch_version, $previous_version)

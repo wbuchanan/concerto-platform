@@ -17,6 +17,8 @@ $path_temp = ""; //leave blank for default - /[concerto_installation_path]/temp/
 
 //R connection
 $r_instances_persistant = false; //true  - R instances are persistant and open throughout the whole test ( faster, but consumes more system resources, EXPERIMENTAL ), false - R instances are closed and restored when needed ( slower, but consumes less system resources )                           
+$r_instances_persistant_instance_timeout = 1800; //after set period of instance inactivity in seconds the instance will be closed
+$r_instances_persistant_server_timeout = 2100; //after set period of server inactivity in seconds the server will be closed ( new instances can restart it anytime )
 
 //general
 $timezone = 'Europe/London';

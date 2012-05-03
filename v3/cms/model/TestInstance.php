@@ -24,7 +24,6 @@ class TestInstance
     private $r = null;
     private $pipes;
     public $code_execution_halted = false;
-    public static $max_idle_time = 1800;
     private $last_action_time;
     public $session_id = 0;
     public $is_working = false;
@@ -40,7 +39,7 @@ class TestInstance
 
     public function is_timedout()
     {
-        if (time() - $this->last_action_time > self::$max_idle_time)
+        if (time() - $this->last_action_time > Ini::$r_instances_timeout)
         {
             if (TestServer::$debug)
                     TestServer::log_debug("TestInstance->is_timedout() --- Test instance timedout");
