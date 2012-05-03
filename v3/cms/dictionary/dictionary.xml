@@ -1866,7 +1866,7 @@ Note: You can add new languages by inserting "<new_language>string translated in
         </string>
         <string id="231">
             <en>THEN</en>
-            <de>DANN</de>
+            <de>THEN</de>
             <pl>WTEDY</pl>
             <cn>则</cn>
             <fr>ALORS</fr>
@@ -2514,7 +2514,7 @@ Note: You can add new languages by inserting "<new_language>string translated in
         </string>
         <string id="314" js="1">
             <en><![CDATA[Test #{0}, session #{1}, template #{2} - runtime debug <b>(template loaded - awaiting user input...)</b>]]></en>
-            <de><![CDATA[Test #{0}, Sitzung #{1}, Template #{2} - Laufzeit debug <b>(Template geladne - warte auf Benutzereingabe...)</b>]]></de>
+            <de><![CDATA[Test #{0}, Sitzung #{1}, Template #{2} - Laufzeit debug <b>(Template geladen - warte auf Benutzereingabe...)</b>]]></de>
             <pl><![CDATA[Test #{0}, sesja #{1}, szablon #{2} - debug na żywo <b>(szablon wczytany - oczekiwanie na ruch użytkownika...)</b>]]></pl>
             <cn><![CDATA[测试 #{0}，章节 #{1}，模板 #{2} – 运行时间调试 <b>(载入模板 – 等待用户输入……)</b>]]></cn>
             <fr><![CDATA[Test #{0}, session #{1}, modèle #{2} - déboguage temps d'exécution <b>(modèle chargé - en attente d'une saisie par l'utilisateur...)</b>]]></fr>
