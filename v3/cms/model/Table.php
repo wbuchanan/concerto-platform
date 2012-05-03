@@ -256,7 +256,8 @@ class Table extends OModule
                     for ($i = 1; $i <= count($data); $i++)
                     {
                         $column_name = "c" . $i;
-                        if ($header) $column_name = Table::format_column_name ($data[$i - 1]);
+                        if ($header)
+                                $column_name = Table::format_column_name($data[$i - 1]);
                         if (trim($column_name) == "") continue;
                         array_push($column_names, $column_name);
                         if ($i > 1) $sql.=",";
@@ -287,7 +288,7 @@ class Table extends OModule
         }
         return 0;
     }
-    
+
     public static function format_column_name($name)
     {
         $name = preg_replace("/[^A-Z^a-z^0-9._]/i", "", $name);
@@ -303,17 +304,14 @@ class Table extends OModule
         $export->setAttribute("version", Ini::$version);
         $xml->appendChild($export);
 
-        $group = $xml->createElement("Tables");
-        $export->appendChild($group);
-
         $element = $this->to_XML();
         $obj = $xml->importNode($element, true);
-        $group->appendChild($obj);
+        $export->appendChild($obj);
 
         return $xml->saveXML();
     }
 
-    public function import($path)
+    public function import($path,$compare=false)
     {
         $xml = new DOMDocument('1.0', "UTF-8");
         if (!$xml->load($path)) return -4;
@@ -321,7 +319,14 @@ class Table extends OModule
         $this->Sharing_id = 1;
 
         $xpath = new DOMXPath($xml);
-        $elements = $xpath->query("/export/Tables/Table");
+
+        $elements = $xpath->query("/export");
+        foreach ($elements as $element)
+        {
+            if (Ini::$version != $element->getAttribute("version")) return -5;
+        }
+
+        $elements = $xpath->query("/export/Table");
         foreach ($elements as $element)
         {
             $children = $element->childNodes;
@@ -336,7 +341,7 @@ class Table extends OModule
         }
 
         $post['cols'] = array();
-        $elements = $xpath->query("/export/Tables/Table/TableColumns/TableColumn");
+        $elements = $xpath->query("/export/Table/TableColumns/TableColumn");
         foreach ($elements as $element)
         {
             $children = $element->childNodes;
@@ -355,7 +360,7 @@ class Table extends OModule
         }
 
         $post['rows'] = array();
-        $elements = $xpath->query("/export/Tables/Table/rows/row");
+        $elements = $xpath->query("/export/Table/rows/row");
         foreach ($elements as $element)
         {
             $children = $element->childNodes;
@@ -370,15 +375,14 @@ class Table extends OModule
         return $this->mysql_save_from_post($post);
     }
 
-    public function to_XML()
+    public function to_XML($hash=true)
     {
         $xml = new DOMDocument('1.0', "UTF-8");
 
         $element = $xml->createElement("Table");
+        $element->setAttribute("id", $this->id);
+        if ($hash) $element->setAttribute("hash", $this->xml_hash());
         $xml->appendChild($element);
-
-        $id = $xml->createElement("id", htmlspecialchars($this->id, ENT_QUOTES, "UTF-8"));
-        $element->appendChild($id);
 
         $name = $xml->createElement("name", htmlspecialchars($this->name, ENT_QUOTES, "UTF-8"));
         $element->appendChild($name);
@@ -416,7 +420,6 @@ class Table extends OModule
 
             $rows->appendChild($row);
         }
-
         return $element;
     }
 

@@ -421,11 +421,12 @@ class TestSection extends OTable
     }
 
     public static function update_db($previous_version) {
-        if (Ini::does_patch_apply("3.4.2", $previous_version)) {
+        if (Ini::does_patch_apply("3.4.3", $previous_version)) {
             $sql = "ALTER TABLE `TestSection` ADD `end` tinyint(1) NOT NULL default '0';";
             if (!mysql_query($sql))
                 return false;
         }
+        return true;
     }
 }
 

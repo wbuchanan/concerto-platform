@@ -2961,5 +2961,13 @@ Note: You can add new languages by inserting "<new_language>string translated in
             <fr></fr>
             <bg></bg>
         </string>
+        <string id="370" js="1">
+            <en>Version mismatch between imported object and Concerto platform. You can only import objects exported from the same version of Concerto.</en>
+            <pl>Wersje importowanego obiektu oraz platformy Concerto sie nie zgadzaja. Mozna tylko importowac obiekty wyeksportowane z tej samej wersji Concerto.</pl>
+            <de></de>
+            <cn></cn>
+            <fr></fr>
+            <bg></bg>
+        </string>
     </strings>
 </root> 
