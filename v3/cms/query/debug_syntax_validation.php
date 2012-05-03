@@ -49,7 +49,8 @@ for($i=0;$i<count($sections);$i++)
     $close = $i==(count($sections)-1);
     $result["counter" . $section->counter] = $session->debug_syntax($section->id, $close);
 }
-$session->remove();
+//$session->remove();
+TestSession::unregister($session->id);
 
 echo json_encode(array("result" => 0, "response" => $result));
 ?>

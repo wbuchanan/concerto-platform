@@ -49,7 +49,32 @@ class TestSession extends OTable
     {
         return Test::from_mysql_id($this->Test_id);
     }
+    
+    public function register()
+    {
+        if(array_key_exists("sids", $_SESSION))
+        {
+            if(array_key_exists(session_id(), $_SESSION['sids']))
+            {
+                TestSession::unregister($_SESSION['sids'][session_id()]);
+                $_SESSION['sids'][session_id()] = $this->id;
+            }
+            else $_SESSION['sids'][session_id()] = $this->id;
+        }
+        else 
+        {
+            $_SESSION['sids']=array();
+            $_SESSION['sids'][session_id()] = $this->id;
+        }
+    }
 
+    public static function unregister($id)
+    {
+        $obj = TestSession::from_mysql_id($id);
+        if($obj!=null) $obj->remove();
+        unset($_SESSION['sids'][session_id()]);
+    }
+    
     public static function start_new($test_id, $r_type, $debug=false)
     {
         $session = new TestSession();
@@ -62,6 +87,7 @@ class TestSession extends OTable
         mysql_query($sql);
 
         $session = TestSession::from_mysql_id($lid);
+        $session->register();
         return $session;
     }
 
@@ -211,7 +237,8 @@ class TestSession extends OTable
                     $close || 
                     $thisSession->release == 1)
             {
-                $thisSession->remove();
+                //$thisSession->remove();
+                TestSession::unregister($thisSession->id);
                 $removed = true;
             }
         }

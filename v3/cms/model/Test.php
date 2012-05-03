@@ -120,7 +120,7 @@ class Test extends OModule
         $sessions = TestSession::from_property(array("Test_id" => $this->id));
         foreach ($sessions as $session)
         {
-            $session->mysql_delete();
+            $session->remove();
         }
     }
 
