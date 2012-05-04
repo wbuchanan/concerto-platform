@@ -311,11 +311,8 @@ class Table extends OModule
         return $xml->saveXML();
     }
 
-    public function import($path,$compare=false)
+    public function import_XML($xml)
     {
-        $xml = new DOMDocument('1.0', "UTF-8");
-        if (!$xml->load($path)) return -4;
-
         $this->Sharing_id = 1;
 
         $xpath = new DOMXPath($xml);
@@ -406,19 +403,22 @@ class Table extends OModule
         $rows = $xml->createElement("rows");
         $element->appendChild($rows);
 
-        $sql = sprintf("SELECT * FROM `%s`", $this->get_table_name());
-        $z = mysql_query($sql);
-        while ($r = mysql_fetch_array($z))
+        if ($this->has_table())
         {
-            $row = $xml->createElement("row");
-
-            foreach ($cols as $col)
+            $sql = sprintf("SELECT * FROM `%s`", $this->get_table_name());
+            $z = mysql_query($sql);
+            while ($r = mysql_fetch_array($z))
             {
-                $cell = $xml->createElement($col->name, htmlspecialchars($r[$col->name],ENT_QUOTES,"UTF-8"));
-                $row->appendChild($cell);
-            }
+                $row = $xml->createElement("row");
 
-            $rows->appendChild($row);
+                foreach ($cols as $col)
+                {
+                    $cell = $xml->createElement($col->name, htmlspecialchars($r[$col->name], ENT_QUOTES, "UTF-8"));
+                    $row->appendChild($cell);
+                }
+
+                $rows->appendChild($row);
+            }
         }
         return $element;
     }

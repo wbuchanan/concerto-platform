@@ -97,7 +97,7 @@ class CustomSection extends OModule
 
     public function export()
     {
-        $xml = new DOMDocument('1.0',"UTF-8");
+        $xml = new DOMDocument('1.0', "UTF-8");
 
         $export = $xml->createElement("export");
         $export->setAttribute("version", Ini::$version);
@@ -110,13 +110,10 @@ class CustomSection extends OModule
         return $xml->saveXML();
     }
 
-    public function import($path)
+    public function import_XML($xml)
     {
-        $xml = new DOMDocument('1.0',"UTF-8");
-        if (!$xml->load($path)) return -4;
-
         $this->Sharing_id = 1;
-        
+
         $xpath = new DOMXPath($xml);
 
         $elements = $xpath->query("/export");
@@ -124,7 +121,7 @@ class CustomSection extends OModule
         {
             if (Ini::$version != $element->getAttribute("version")) return -5;
         }
-        
+
         $elements = $xpath->query("/export/CustomSection");
         foreach ($elements as $element)
         {
@@ -172,20 +169,20 @@ class CustomSection extends OModule
 
     public function to_XML($hash=true)
     {
-        $xml = new DOMDocument('1.0',"UTF-8");
+        $xml = new DOMDocument('1.0', "UTF-8");
 
         $element = $xml->createElement("CustomSection");
         $element->setAttribute("id", $this->id);
         if ($hash) $element->setAttribute("hash", $this->xml_hash());
         $xml->appendChild($element);
 
-        $name = $xml->createElement("name", htmlspecialchars($this->name, ENT_QUOTES,"UTF-8"));
+        $name = $xml->createElement("name", htmlspecialchars($this->name, ENT_QUOTES, "UTF-8"));
         $element->appendChild($name);
 
-        $description = $xml->createElement("description", htmlspecialchars($this->description, ENT_QUOTES,"UTF-8"));
+        $description = $xml->createElement("description", htmlspecialchars($this->description, ENT_QUOTES, "UTF-8"));
         $element->appendChild($description);
 
-        $code = $xml->createElement("code", htmlspecialchars($this->code, ENT_QUOTES,"UTF-8"));
+        $code = $xml->createElement("code", htmlspecialchars($this->code, ENT_QUOTES, "UTF-8"));
         $element->appendChild($code);
 
         $csv = $xml->createElement("CustomSectionVariables");

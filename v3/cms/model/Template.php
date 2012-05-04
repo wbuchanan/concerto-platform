@@ -75,8 +75,8 @@ class Template extends OModule
         }
         return $name;
     }
-    
-    public static function convert_html_with_return_properties($html,$vals,$outputs)
+
+    public static function convert_html_with_return_properties($html, $vals, $outputs)
     {
         $html = str_get_html($html);
         foreach ($outputs as $out)
@@ -145,21 +145,18 @@ class Template extends OModule
         return trim($xml->saveXML());
     }
 
-    public function import($path)
+    public function import_XML($xml)
     {
-        $xml = new DOMDocument('1.0', 'UTF-8');
-        if (!$xml->load($path)) return -4;
-
         $this->Sharing_id = 1;
 
         $xpath = new DOMXPath($xml);
-        
+
         $elements = $xpath->query("/export");
         foreach ($elements as $element)
         {
             if (Ini::$version != $element->getAttribute("version")) return -5;
         }
-        
+
         $elements = $xpath->query("/export/Template");
         foreach ($elements as $element)
         {
