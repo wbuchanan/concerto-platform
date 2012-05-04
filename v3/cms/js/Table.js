@@ -133,7 +133,7 @@ Table.uiReloadDataGrid=function(data,columns){
             Table.uiIniHTMLTooltips();
         },
         dataSource: dataSource,
-        scrollable:true,
+        scrollable:false,
         pageable:true,
         sortable:true,
         //scrollable: {
@@ -255,7 +255,7 @@ Table.uiIniDataGrid=function(){
                 Table.uiIniHTMLTooltips();
             },
             dataSource: dataSource,
-            scrollable:true,
+            scrollable:false,
             pageable:true,
             sortable:true,
             //scrollable: {
@@ -294,8 +294,7 @@ Table.uiReloadStructureGrid=function(data,columns){
             model:{
                 fields:Table.structureGridSchemaFields
             }
-        },
-        pageSize:10
+        }
     });
     
     $("#div"+thisClass.className+"GridStructure").kendoGrid({
@@ -313,7 +312,8 @@ Table.uiReloadStructureGrid=function(data,columns){
         ],
         editable: {
             confirmation:false
-        }
+        },
+        scrollable:false
     });
     Methods.iniIconButton(".btnAdd", "plus");
 }
@@ -348,8 +348,7 @@ Table.uiIniStructureGrid=function(){
                 id:"id",
                 fields:fields
             }
-        },
-        pageSize:10
+        }
     });
     
     Table.structureGridSchemaFields = fields;
@@ -382,7 +381,8 @@ Table.uiIniStructureGrid=function(){
         ],
         editable: {
             confirmation:false
-        }
+        },
+        scrollable:false
     });
     Methods.iniIconButton(".btnAdd", "plus");
 }

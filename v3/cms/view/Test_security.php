@@ -59,8 +59,7 @@ if (!$logged_user->is_object_editable($obj)) die(Language::string(81));
                     id:"id",
                     fields:fields
                 }
-            },
-            pageSize:10
+            }
         });
 
         $("#div<?= $class_name ?>GridProtectedVars").kendoGrid({
@@ -86,7 +85,8 @@ if (!$logged_user->is_object_editable($obj)) die(Language::string(81));
             editable: {
                 mode:"incell",
                 confirmation:false
-            }
+            },
+            scrollable:false
         });
         Methods.iniIconButton(".btnAdd", "plus");
     })

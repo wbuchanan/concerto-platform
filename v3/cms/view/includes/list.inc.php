@@ -133,6 +133,7 @@ $columns_def.="]";
             sortable:true,
             pageable:true,
             groupable:true,
+            scrollable:false,
             columns:<?= $columns_def ?>
         });
             
