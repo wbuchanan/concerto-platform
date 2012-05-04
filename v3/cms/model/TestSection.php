@@ -381,6 +381,9 @@ class TestSection extends OTable
 
         $tstid = $xml->createElement("TestSectionType_id", htmlspecialchars($this->TestSectionType_id, ENT_QUOTES, "UTF-8"));
         $element->appendChild($tstid);
+        
+        $end = $xml->createElement("end", htmlspecialchars($this->end, ENT_QUOTES, "UTF-8"));
+        $element->appendChild($end);
 
         $tsv = $xml->createElement("TestSectionValues");
         $element->appendChild($tsv);

@@ -138,12 +138,9 @@ class Template extends OModule
         $export->setAttribute("version", Ini::$version);
         $xml->appendChild($export);
 
-        $group = $xml->createElement("Templates");
-        $export->appendChild($group);
-
         $element = $this->to_XML();
         $obj = $xml->importNode($element, true);
-        $group->appendChild($obj);
+        $export->appendChild($obj);
 
         return trim($xml->saveXML());
     }
@@ -156,7 +153,14 @@ class Template extends OModule
         $this->Sharing_id = 1;
 
         $xpath = new DOMXPath($xml);
-        $elements = $xpath->query("/export/Templates/Template");
+        
+        $elements = $xpath->query("/export");
+        foreach ($elements as $element)
+        {
+            if (Ini::$version != $element->getAttribute("version")) return -5;
+        }
+        
+        $elements = $xpath->query("/export/Template");
         foreach ($elements as $element)
         {
             $children = $element->childNodes;
@@ -174,15 +178,14 @@ class Template extends OModule
         return $this->mysql_save();
     }
 
-    public function to_XML()
+    public function to_XML($hash=true)
     {
         $xml = new DOMDocument('1.0', 'UTF-8');
 
         $element = $xml->createElement("Template");
+        $element->setAttribute("id", $this->id);
+        if ($hash) $element->setAttribute("hash", $this->xml_hash());
         $xml->appendChild($element);
-
-        $id = $xml->createElement("id", htmlspecialchars($this->id, ENT_QUOTES, "UTF-8"));
-        $element->appendChild($id);
 
         $name = $xml->createElement("name", htmlspecialchars($this->name, ENT_QUOTES, "UTF-8"));
         $element->appendChild($name);

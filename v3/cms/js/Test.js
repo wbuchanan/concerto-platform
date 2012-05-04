@@ -41,6 +41,12 @@ Test.onAfterEdit=function()
     if(Test.currentID==0) Test.resetCounter();
 };
 
+Test.onAfterImport=function(){
+    CustomSection.uiList();
+    Template.uiList();
+    Table.uiList();
+}
+
 Test.onAfterSave=function()
 {
     };

@@ -103,12 +103,9 @@ class CustomSection extends OModule
         $export->setAttribute("version", Ini::$version);
         $xml->appendChild($export);
 
-        $group = $xml->createElement("CustomSections");
-        $export->appendChild($group);
-
         $element = $this->to_XML();
         $obj = $xml->importNode($element, true);
-        $group->appendChild($obj);
+        $export->appendChild($obj);
 
         return $xml->saveXML();
     }
@@ -119,9 +116,16 @@ class CustomSection extends OModule
         if (!$xml->load($path)) return -4;
 
         $this->Sharing_id = 1;
-
+        
         $xpath = new DOMXPath($xml);
-        $elements = $xpath->query("/export/CustomSections/CustomSection");
+
+        $elements = $xpath->query("/export");
+        foreach ($elements as $element)
+        {
+            if (Ini::$version != $element->getAttribute("version")) return -5;
+        }
+        
+        $elements = $xpath->query("/export/CustomSection");
         foreach ($elements as $element)
         {
             $children = $element->childNodes;
@@ -141,7 +145,7 @@ class CustomSection extends OModule
 
         $lid = $this->mysql_save();
 
-        $elements = $xpath->query("/export/CustomSections/CustomSection/CustomSectionVariables/CustomSectionVariable");
+        $elements = $xpath->query("/export/CustomSection/CustomSectionVariables/CustomSectionVariable");
         foreach ($elements as $element)
         {
             $obj = new CustomSectionVariable();
@@ -166,15 +170,14 @@ class CustomSection extends OModule
         return $lid;
     }
 
-    public function to_XML()
+    public function to_XML($hash=true)
     {
         $xml = new DOMDocument('1.0',"UTF-8");
 
         $element = $xml->createElement("CustomSection");
+        $element->setAttribute("id", $this->id);
+        if ($hash) $element->setAttribute("hash", $this->xml_hash());
         $xml->appendChild($element);
-
-        $id = $xml->createElement("id", htmlspecialchars($this->id, ENT_QUOTES,"UTF-8"));
-        $element->appendChild($id);
 
         $name = $xml->createElement("name", htmlspecialchars($this->name, ENT_QUOTES,"UTF-8"));
         $element->appendChild($name);

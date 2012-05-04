@@ -279,7 +279,7 @@ class Table extends OModule
                 for ($i = 1; $i <= count($column_names); $i++)
                 {
                     if ($i > 1) $sql.=", ";
-                    $sql.=sprintf("`%s`='%s'", $column_names[$i - 1], mysql_real_escape_string(Table::filterText($data[$i - 1])));
+                    $sql.=sprintf("`%s`='%s'", $column_names[$i - 1], mysql_real_escape_string(Table::filter_text($data[$i - 1])));
                 }
                 if (!mysql_query($sql)) return -4;
                 $row++;
@@ -414,7 +414,7 @@ class Table extends OModule
 
             foreach ($cols as $col)
             {
-                $cell = $xml->createElement($col->name, $r[$col->name]);
+                $cell = $xml->createElement($col->name, htmlspecialchars($r[$col->name],ENT_QUOTES,"UTF-8"));
                 $row->appendChild($cell);
             }
 
@@ -443,7 +443,7 @@ class Table extends OModule
         return mysql_query($sql);
     }
 
-    public static function filterText($text)
+    public static function filter_text($text)
     {
         $search = array(
             chr(212),

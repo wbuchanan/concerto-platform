@@ -954,9 +954,9 @@ Table.uiAddColumn=function(){
 
 Table.uiRemoveRow=function(obj){
     var thisClass=this;
+    var index = obj.closest('tr')[0].sectionRowIndex;
     Methods.confirm(dictionary["s32"], dictionary["s33"], function(){
         var grid = $("#div"+thisClass.className+"GridData").data('kendoGrid');
-        var index = obj.closest('tr')[0].sectionRowIndex;
         grid.removeRow(grid.tbody.find("tr:eq("+index+")"));
     });
 }

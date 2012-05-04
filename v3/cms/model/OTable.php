@@ -41,7 +41,7 @@ class OTable
         return md5($xml->ownerDocument->saveXML($xml));
     }
     
-    public function find_xml_hash($hash)
+    public static function find_xml_hash($hash)
     {
         $logged_user = User::get_logged_user();
         $sql = $logged_user->mysql_list_rights_filter(static::get_mysql_table(), "`" . static::get_mysql_table(). "`.`id` ASC");
@@ -53,7 +53,28 @@ class OTable
             $obj_hash = $obj->xml_hash();
             if($obj_hash==$hash) return $r[0];
         }
-        return false;
+        return 0;
+    }
+    
+    public function import($path)
+    {
+        $xml = new DOMDocument('1.0', 'UTF-8');
+        if (!@$xml->load($path)) return -4;
+        
+        return $this->import_XML($xml);
+    }
+    
+    public static function convert_to_XML_document($node)
+    {
+        $xml = new DOMDocument('1.0', 'UTF-8');
+
+        $export = $xml->createElement("export");
+        $export->setAttribute("version", Ini::$version);
+        $xml->appendChild($export);
+        
+        $obj = $xml->importNode($node, true);
+        $export->appendChild($obj);
+        return $xml;
     }
 
     public static function from_mysql_result($r)

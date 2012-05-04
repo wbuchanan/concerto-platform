@@ -238,6 +238,7 @@ OModule.inheritance=function(obj)
                                         case 0:{
                                             Methods.alert(dictionary["s270"], "info", dictionary["s268"]);
                                             thisClass.uiReload(data.oid);
+                                            if(thisClass.onAfterImport) thisClass.onAfterImport();
                                             break;
                                         }
                                         case -1:{

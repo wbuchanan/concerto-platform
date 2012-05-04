@@ -169,25 +169,170 @@ class Test extends OModule
         $export->setAttribute("version", Ini::$version);
         $xml->appendChild($export);
 
-        $group = $xml->createElement("Tests");
-        $export->appendChild($group);
+        //append subobjects of test
+        $templates_ids = array();
+        $custom_sections_ids = array();
+        $tables_ids = array();
+        $sql = sprintf("SELECT 
+            `TestSection`.`id`,`TestSectionValue`.`value`,`TestSection`.`TestSectionType_id` 
+            FROM `TestSection` 
+            LEFT JOIN `TestSectionValue` ON `TestSectionValue`.`TestSection_id`=`TestSection`.`id`
+            WHERE 
+            (`TestSection`.`TestSectionType_id`=2 AND `TestSectionValue`.`index`=0 OR
+            `TestSection`.`TestSectionType_id`=9 AND `TestSectionValue`.`index`=0 OR
+            `TestSection`.`TestSectionType_id`=8 AND `TestSectionValue`.`index`=0 OR
+            `TestSection`.`TestSectionType_id`=5 AND `TestSectionValue`.`index`=5) AND `TestSection`.`Test_id`=%d", $this->id);
+        $z = mysql_query($sql);
+        while ($r = mysql_fetch_array($z))
+        {
+            switch ($r[2])
+            {
+                //templates
+                case 2:
+                    {
+                        if (!in_array($r[1], $templates_ids))
+                        {
+                            $template = Template::from_mysql_id($r[1]);
+                            if ($template != null)
+                            {
+                                $element = $template->to_XML();
+                                $obj = $xml->importNode($element, true);
+                                $export->appendChild($obj);
+                                array_push($templates_ids, $r[1]);
+                            }
+                        }
+                        break;
+                    }
+                //custom sections
+                case 9:
+                    {
+                        if (!in_array($r[1], $custom_sections_ids))
+                        {
+                            $custom_section = CustomSection::from_mysql_id($r[1]);
+                            if ($custom_section != null)
+                            {
+                                $element = $custom_section->to_XML();
+                                $obj = $xml->importNode($element, true);
+                                $export->appendChild($obj);
+                                array_push($custom_sections_ids, $r[1]);
+                            }
+                        }
+                        break;
+                    }
+                //tables
+                case 8:
+                    {
+                        if (!in_array($r[1], $tables_ids))
+                        {
+                            $table = Table::from_mysql_id($r[1]);
+                            if ($table != null)
+                            {
+                                $element = $table->to_XML();
+                                $obj = $xml->importNode($element, true);
+                                $export->appendChild($obj);
+                                array_push($tables_ids, $r[1]);
+                            }
+                        }
+                        break;
+                    }
+                case 5:
+                    {
+                        $sql2 = sprintf("SELECT * FROM `TestSectionValue` WHERE `TestSection_id`=%d AND `index`=2 AND `value`=0", $r[0]);
+                        $z2 = mysql_query($sql2);
+                        while ($r2 = mysql_fetch_array($z2))
+                        {
+                            if (!in_array($r[1], $tables_ids))
+                            {
+                                $table = Table::from_mysql_id($r[1]);
+                                if ($table != null)
+                                {
+                                    $element = $table->to_XML();
+                                    $obj = $xml->importNode($element, true);
+                                    $export->appendChild($obj);
+                                    array_push($tables_ids, $r[1]);
+                                }
+                            }
+                        }
+                        break;
+                    }
+            }
+        }
 
         $element = $this->to_XML();
         $obj = $xml->importNode($element, true);
-        $group->appendChild($obj);
+        $export->appendChild($obj);
 
         return $xml->saveXML();
     }
 
-    public function import($path)
+    public function import_XML($xml)
     {
-        $xml = new DOMDocument('1.0', 'UTF-8');
-        if (!@$xml->load($path)) return -4;
-
         $this->Sharing_id = 1;
 
         $xpath = new DOMXPath($xml);
-        $elements = $xpath->query("/export/Tests/Test");
+
+        $elements = $xpath->query("/export");
+        foreach ($elements as $element)
+        {
+            if (Ini::$version != $element->getAttribute("version")) return -5;
+        }
+
+        $compare = array(
+            "Template" => array(),
+            "Table" => array(),
+            "CustomSection" => array()
+        );
+
+        //link templates
+        $logged_user = User::get_logged_user();
+        $elements = $xpath->query("/export/Template");
+        foreach ($elements as $element)
+        {
+            $id = $element->getAttribute("id");
+            $hash = $element->getAttribute("hash");
+            $compare["Template"][$id] = Template::find_xml_hash($hash);
+            if ($compare["Template"][$id] == 0)
+            {
+                $obj = new Template();
+                $obj->Owner_id = $logged_user->id;
+                $lid = $obj->import_XML(Template::convert_to_XML_document($element));
+                $compare["Template"][$id] = $lid;
+            }
+        }
+
+        //link tables
+        $elements = $xpath->query("/export/Table");
+        foreach ($elements as $element)
+        {
+            $id = $element->getAttribute("id");
+            $hash = $element->getAttribute("hash");
+            $compare["Table"][$id] = Table::find_xml_hash($hash);
+            if ($compare["Table"][$id] == 0)
+            {
+                $obj = new Table();
+                $obj->Owner_id = $logged_user->id;
+                $lid = $obj->import_XML(Table::convert_to_XML_document($element));
+                $compare["Table"][$id] = $lid;
+            }
+        }
+
+        //link custom sections
+        $elements = $xpath->query("/export/CustomSection");
+        foreach ($elements as $element)
+        {
+            $id = $element->getAttribute("id");
+            $hash = $element->getAttribute("hash");
+            $compare["CustomSection"][$id] = CustomSection::find_xml_hash($hash);
+            if ($compare["CustomSection"][$id] == 0)
+            {
+                $obj = new CustomSection();
+                $obj->Owner_id = $logged_user->id;
+                $lid = $obj->import_XML(CustomSection::convert_to_XML_document($element));
+                $compare["CustomSection"][$id] = $lid;
+            }
+        }
+
+        $elements = $xpath->query("/export/Test");
         foreach ($elements as $element)
         {
             $children = $element->childNodes;
@@ -206,7 +351,7 @@ class Test extends OModule
         $post = array();
         $post["sections"] = array();
 
-        $elements = $xpath->query("/export/Tests/Test/TestSections/TestSection");
+        $elements = $xpath->query("/export/Test/TestSections/TestSection");
         foreach ($elements as $element)
         {
             $test_section = array();
@@ -217,6 +362,8 @@ class Test extends OModule
             {
                 switch ($child->nodeName)
                 {
+                    case "end": $test_section["end"] = $child->nodeValue;
+                        break;
                     case "counter": $test_section["counter"] = $child->nodeValue;
                         break;
                     case "TestSectionType_id": $test_section["type"] = $child->nodeValue;
@@ -245,29 +392,58 @@ class Test extends OModule
                                 if ($index != -1)
                                         $test_section["value"]["v" . $index] = $value;
                             }
-                            if (count($test_section["value"]) == 0)
-                                    $test_section['value'] = "{}";
-                            else
-                                    $test_section['value'] = json_encode($test_section['value']);
                             break;
                         }
                 }
             }
+
+            switch ($test_section["type"])
+            {
+                case 2:
+                    {
+                        if ($test_section["value"]["v0"] == 0) break;
+                        $test_section["value"]["v0"] = $compare["Template"][$test_section["value"]["v0"]];
+                        break;
+                    }
+                case 9:
+                    {
+                        if ($test_section["value"]["v0"] == 0) break;
+                        $test_section["value"]["v0"] = $compare["CustomSection"][$test_section["value"]["v0"]];
+                        break;
+                    }
+                case 8:
+                    {
+                        if ($test_section["value"]["v0"] == 0) break;
+                        $test_section["value"]["v0"] = $compare["Table"][$test_section["value"]["v0"]];
+                        break;
+                    }
+                case 5:
+                    {
+                        if ($test_section["value"]["v5"] == 0) break;
+                        if ($test_section["value"]["v2"] == 0)
+                                $test_section["value"]["v5"] = $compare["Table"][$test_section["value"]["v5"]];
+                        break;
+                    }
+            }
+
+            if (count($test_section["value"]) == 0)
+                    $test_section['value'] = "{}";
+            else $test_section['value'] = json_encode($test_section['value']);
+
             array_push($post["sections"], $test_section);
         }
 
         return $this->mysql_save_from_post($post);
     }
 
-    public function to_XML()
+    public function to_XML($hash=true)
     {
         $xml = new DOMDocument();
 
         $element = $xml->createElement("Test");
+        $element->setAttribute("id", $this->id);
+        if ($hash) $element->setAttribute("hash", $this->xml_hash());
         $xml->appendChild($element);
-
-        $id = $xml->createElement("id", htmlspecialchars($this->id, ENT_QUOTES, "UTF-8"));
-        $element->appendChild($id);
 
         $name = $xml->createElement("name", htmlspecialchars($this->name, ENT_QUOTES, "UTF-8"));
         $element->appendChild($name);
@@ -323,13 +499,13 @@ class Test extends OModule
 
         return $cols;
     }
-    
+
     public function get_TestProtectedVariables()
     {
         $result = array();
-        
-        $tpv = TestProtectedVariable::from_property(array("Test_id"=>$this->id));
-        foreach($tpv as $v)
+
+        $tpv = TestProtectedVariable::from_property(array("Test_id" => $this->id));
+        foreach ($tpv as $v)
         {
             array_push($result, $v->name);
         }
@@ -345,6 +521,7 @@ class Test extends OModule
         }
         return true;
     }
+
 }
 
 ?>
