@@ -484,13 +484,12 @@ class TestSession extends OTable
             $sql = "ALTER TABLE `TestSession` ADD `Template_TestSection_id` bigint(20) NOT NULL default '0';";
             if (!mysql_query($sql)) return false;
         }
-        if (Ini::does_patch_apply("3.4.2", $previous_version))
+        
+        if (Ini::does_patch_apply("3.4.3", $previous_version))
         {
             $sql = "ALTER TABLE `TestSession` ADD `debug` tinyint(1) NOT NULL default '0';";
             if (!mysql_query($sql)) return false;
-        }
-        if (Ini::does_patch_apply("3.4.3", $previous_version))
-        {
+            
             $sql = "ALTER TABLE `TestSession` ADD `release` tinyint(1) NOT NULL default '0';";
             if (!mysql_query($sql)) return false;
         }
