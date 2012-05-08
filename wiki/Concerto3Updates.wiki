@@ -1,0 +1,27 @@
+#labels Featured,Tutorial
+.
+=Concerto v3.0 Tutorials: Updates=
+                        
+_This document is relevant to Concerto v3.0 and higher. If you have an older version installed, it is recommended that you upgrade to the latest version (or else refer to relevant manual)._
+
+Working with Concerto v3.0 can be easy as A-B-C if you are well oriented with the user interface. This tutorial makes note of a few recent updates in Concerto.
+
+We rely as much as possible on popular open source packages in order to maximize the safety and reliability of the system and to ensure that its elements are kept up-to-date. Therefore, some of the bugs that you may encounter are not in our hands. Nevertheless, drop us an email to help us improve the system as much as possible. 
+
+.
+==Filter/Search Options==
+
+http://ns39618.ovh.net/~vaishali/sections/filter.jpg
+
+
+The search function in the updated version is slightly different from that of the previous version. Rather than just filling in your search criteria, you can now filter the list of available objects by any/all column(s). Drag and drop the column name to filter accordingly. 
+
+Further, if you want to search for specific items, you can click the funnel icon for a number of options. i.e. You can have a search that 'contains', 'starts with', 'ends with', 'equal' or 'not equal' a term that you type in the text field.
+
+.
+==List of Available Objects/Currently Selected Objects==
+
+http://ns39618.ovh.net/~vaishali/sections/objects.jpg
+
+With the latest updates, the screen is no longer split in half to show the list of available objects and the selected object on either half. Rather, there is a button to switch from one to the other, giving the user a less cluttered workspace. The 'Currently selected object' button also shows the test id of the object that has been selected, for quick reference.
+
