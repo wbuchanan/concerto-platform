@@ -4,7 +4,7 @@
                         
 _This document is relevant to Concerto v3.0 and higher. If you have an older version installed, it is recommended that you upgrade to the latest version (or else refer to relevant manual)._
 
-Working with Concerto v3.0 can be easy as A-B-C if you are well oriented with the user interface. This tutorial makes note of a few recent updates in Concerto.
+Working with Concerto v3.0 can be easy as A-B-C if you are well oriented with the user interface. This tutorial highlights some of the features updated in Concerto since the release of v3.0.
 
 We rely as much as possible on popular open source packages in order to maximize the safety and reliability of the system and to ensure that its elements are kept up-to-date. Therefore, some of the bugs that you may encounter are not in our hands. Nevertheless, drop us an email to help us improve the system as much as possible. 
 
@@ -25,3 +25,11 @@ http://ns39618.ovh.net/~vaishali/sections/objects.jpg
 
 With the latest updates, the screen is no longer split in half to show the list of available objects and the selected object on either half. Rather, there is a button to switch from one to the other, giving the user a less cluttered workspace. The 'Currently selected object' button also shows the test id of the object that has been selected, for quick reference.
 
+.
+==Protected Variables==
+
+http://ns39618.ovh.net/~vaishali/sections/protected.jpg
+
+This new feature has been incorporated with security in mind. The idea is that variables that should not be tampered with can be 'protected' from hackers etc. E.g. total_score in the Simple Test. Time limits are also important variables that should be protected so that they may not tampered with by anybody. Please note that user input/generated variables cannot be protected. E.g. user responses cannot be protected. 
+
+Click the 'add' button and type in the name of the variable to be protected in the dialogue box. Make sure there are no errors in the variable names. 
