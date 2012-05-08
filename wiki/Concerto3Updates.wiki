@@ -33,3 +33,12 @@ http://ns39618.ovh.net/~vaishali/sections/protected.jpg
 This new feature has been incorporated with security in mind. The idea is that variables that should not be tampered with can be 'protected' from hackers etc. E.g. total_score in the Simple Test. Time limits are also important variables that should be protected so that they may not tampered with by anybody. Please note that user input/generated variables cannot be protected. E.g. user responses cannot be protected. 
 
 Click the 'add' button and type in the name of the variable to be protected in the dialogue box. Make sure there are no errors in the variable names. 
+
+.
+==Run Test Button==
+
+http://ns39618.ovh.net/~vaishali/sections/run.jpg
+
+The 'Run Test' button is back, making life a weeeee bit easier for all! Clicking the button will open your test in a separate tab, so you can see how it looks/works (the debug button  has a section where the test can be viewed, but javascript and css is disabled in this).
+
+.
