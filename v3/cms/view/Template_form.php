@@ -99,7 +99,7 @@ if ($oid != 0)
                 <td><span class="tooltip spanIcon ui-icon ui-icon-help" title="<?= Language::string(136) ?>"></span></td>
                 <td class="fullWidth">
                     <div class="horizontalMargin">
-                        <textarea id="form<?= $class_name ?>TextareaHTML" name="form<?= $class_name ?>TextareaHTML" class="fullWidth ui-widget-content ui-corner-all" style="width:500px; height:400px;"><?= htmlspecialchars(stripslashes($obj->HTML)) ?></textarea>
+                        <textarea id="form<?= $class_name ?>TextareaHTML" name="form<?= $class_name ?>TextareaHTML"><?= htmlspecialchars(stripslashes($obj->HTML)) ?></textarea>
                     </div>
                 </td>
             </tr>

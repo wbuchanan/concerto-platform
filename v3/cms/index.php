@@ -34,12 +34,12 @@ if (!isset($ini))
         <link rel="stylesheet" href="css/styles.css" />
 
         <link rel="stylesheet" href="js/lib/loadmask/jquery.loadmask.css" />
-        <link rel="stylesheet" href="lib/CodeMirror/lib/codemirror.css" />
-        <link rel="stylesheet" href="lib/CodeMirror/theme/night.css" />
         <link rel="stylesheet" href="js/lib/selectmenu/jquery.ui.selectmenu.css" />
         <link rel="stylesheet" href="js/lib/tooltip/jquery.ui.tooltip.min.css" />
         <link rel="stylesheet" href="js/lib/kendo-ui/styles/kendo.common.css" />
         <link rel="stylesheet" href="js/lib/kendo-ui/styles/kendo.default.css" />
+        <link rel="stylesheet" href="lib/CodeMirror/lib/codemirror.css" />
+        <link rel="stylesheet" href="lib/CodeMirror/theme/night.css" />
 
         <script type="text/javascript" src="js/lib/jquery-1.7.1.min.js"></script>
         <script type="text/javascript" src="js/lib/jquery-ui-1.8.18.custom.min.js"></script>
@@ -66,6 +66,9 @@ if (!isset($ini))
         <script src="lib/CodeMirror/lib/codemirror.js"></script>
         <script src="lib/CodeMirror/mode/htmlmixed/htmlmixed.js"></script>
         <script src="lib/CodeMirror/mode/r/r.js"></script>
+        <script src="lib/CodeMirror/mode/xml/xml.js"></script>
+        <script src="lib/CodeMirror/mode/javascript/javascript.js"></script>
+        <script src="lib/CodeMirror/mode/css/css.js"></script>
         <script src="js/lib/jquery-ui-dialog-ckeditor-patch.js"></script>
         <script src="js/lib/fileupload/jquery.iframe-transport.js"></script>
         <script src="js/lib/fileupload/jquery.fileupload.js"></script>

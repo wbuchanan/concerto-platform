@@ -183,5 +183,5 @@ if (array_key_exists('oid', $_POST) && $_POST['oid'] != 0)
 </div>
 
 <div class="divSetVarType_1_<?= $_POST['counter'] ?> <?= !isset($vals[2]) || $vals[2] != 1 ? "notVisible" : "" ?>">
-    <textarea id="textareaCodeMirror_<?= $_POST['counter'] ?>" class="fullWidth ui-widget-content ui-corner-all textareaCode"><?= (isset($vals[3]) ? $vals[3] : "") ?></textarea>
+    <textarea id="textareaCodeMirror_<?= $_POST['counter'] ?>"><?= (isset($vals[3]) ? $vals[3] : "") ?></textarea>
 </div>

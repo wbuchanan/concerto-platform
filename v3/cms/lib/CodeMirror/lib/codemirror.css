@@ -5,11 +5,10 @@
 }
 
 .CodeMirror-scroll {
-  max-height: 400px;
   height: auto;
-  overflow-y: scroll;
+  overflow-y: visible;
   overflow-x: auto;
-  width: 100%
+  max-width:800px;
 }
 
 .CodeMirror-gutter {

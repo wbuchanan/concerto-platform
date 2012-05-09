@@ -203,10 +203,20 @@ Methods.iniCKEditor=function(selector,callback)
     var editor = $(selector).ckeditor(function(){
         this.removeListener('dialogShow', Methods.CKEditorDialogShowListener);
         this.on( 'dialogShow', Methods.CKEditorDialogShowListener);
+        this.on("mode",function(e){
+            Methods.updateCKEditorMirrors();
+        })
         if(callback!=null) callback.call(this);
     });
     return editor;
 };
+
+Methods.updateCKEditorMirrors=function(){
+    for (var i in CKEDITOR.instances) {
+        CKEDITOR.instances[i].execCommand( 'mirrorSnapshot' );
+        CKEDITOR.instances[i].execCommand( 'mirrorRefresh' );
+    }
+}
 
 
 Methods.removeCKEditor=function(selector)
@@ -295,6 +305,8 @@ Methods.iniCodeMirror=function(id,mode,readOnly)
         lineNumbers:true,
         matchBrackets:true,
         lineWrapping:true, 
+        autoClearEmptyLines:true,
+        indentWithTabs:true,
         "readOnly":(readOnly!=null&readOnly?true:false),
         onChange:function(instance){
             instance.save();

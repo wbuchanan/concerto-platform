@@ -295,6 +295,7 @@ Test.uiRefreshSectionContent=function(type,counter,value,oid){
         Test.contentsToRefresh--;
         if(Test.contentsToRefresh==0) Test.uiSetVarNameChanged();
         Methods.iniTooltips();
+        Test.uiRefreshCodeMirrors();
     });
 };
 
@@ -412,6 +413,7 @@ Test.uiRemoveSection=function(counter){
         Test.uiSectionChanged();
         Test.uiCheckEmptyLogic();
         Test.uiSetVarNameChanged();
+        Test.uiRefreshCodeMirrors();
     })
 }
 
