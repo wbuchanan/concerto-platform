@@ -1,8 +1,7 @@
 #labels Featured,Tutorial
 .
 = Concerto v3.0 Tutorials: Create an adaptive test =
-                            == _(under revision)_ == 
-
+                            
 This tutorial will show you how to create a simple adaptive test on Concerto v3.0 that looks like this: 
 [http://dev.myiqtest.org/concerto3_demo/index.php?tid=80 Concerto v3.0 Adaptive test]
 
