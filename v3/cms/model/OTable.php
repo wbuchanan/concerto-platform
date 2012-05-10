@@ -198,15 +198,6 @@ class OTable
         }
     }
 
-    public static function mysql_delete_temporary($temp_id, $link_field="object_id")
-    {
-        $collection = static::from_property(array(
-                    "temp_id" => $temp_id,
-                    $link_field => 0
-                ));
-        foreach ($collection as $obj) $obj->mysql_delete();
-    }
-
     public function to_DOMElement($xml_document)
     {
         $element = $xml_document->createElement(static::get_mysql_table());
