@@ -67,12 +67,12 @@ _Your item bank is nearly done. Now you need to fill the table with the items in
 
 _Note: You can import your tables from CSV files (R, SPSS, Excel) and also manage tables using a professional MySQL tool._
 
-http://ns39618.ovh.net/~vaishali/simple/tables.jpg
+http://ns39618.ovh.net/~vaishali/v3.4/tables.jpg
 
 
 ==Step 3: Creating and adding sections to your test==
 
-Go to the ‘tests’ tab on the upper left side of the page. Create a new test logic by clicking the ‘+’ icon towards the bottom of the list of available tests (it is likely to be empty!), on the left side of the page. Assign a relevant name for the test and click ‘OK’. 
+Go to the ‘tests’ tab on the upper left side of the page. Create a new test by clicking the ‘+ add new object’ icon above the list of available objects (it is likely to be empty!). Assign a relevant name for the test and click ‘OK’. 
 
 To edit a test at any time, click on the pencil symbol towards the right of the specific test you want to edit. Be careful not to click the ‘bin’ icon (last symbol on the right) unless you wish to delete your test!
 
