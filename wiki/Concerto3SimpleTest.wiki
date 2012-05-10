@@ -2,7 +2,7 @@
 = Concerto v3.0 Tutorials: Create a simple test =
                             
 This tutorial will help you create a simple test on Concerto v3.0. 
-You can preview the test here: *[http://dev.myiqtest.org/concerto3_demo/index.php?tid=61 Concerto v3.0 Simple Test]*
+You can preview the test here: *[http://concerto.e-psychometrics.com/demo/?tid=61 Concerto v3.0 Simple Test]*
 
 Note:
  * This document is relevant to Concerto v3.0. If you use an older version, please upgrade it (or else refer to relevant tutorials).
@@ -22,12 +22,10 @@ The test you create will be composed of three HTML Templates:
  * *Test items* - with dichotomous (yes/no) response options.
  * *Feedback* - containing the user's score.
  
-_Adaptivity is not used in this tutorial, but you will see how and where a bit of adaptive code can be added._
-
 
 ==Step 1: Create HTML Templates==
 ===Introduction template===
- * _Create a template:_ Click the “HTML templates” tab on the upper left side of the page. Click the ‘+’ icon at the end of the list of templates to add a new item. Enter a unique name for the template (E.g. “introduction”) and click ‘save’ at the bottom of the page.  
+ * _Create a template:_ Click the “HTML templates” tab on the upper left side of the page. Click the ‘+ add new object’ icon above the list of available objects. Enter a unique name for the template (E.g. “introduction”) and click ‘save’ at the bottom of the page.  
  * _Add suitable text:_ Type in a welcome message and instructions for the participants. 
  * _Add a user input field:_ Click ‘Text Field’ and enter a name (E.g. user_name). Click ‘OK’. Ensure that your instructions indicate that participants should type their name here.
  * _Add a Start button:_ Click ‘Button’ and enter a name (e.g. btn_start), text (“Start”) and click ‘OK’.
