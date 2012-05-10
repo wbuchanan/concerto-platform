@@ -21,7 +21,7 @@
 
 class Setting extends OTable
 {
-    public static $mysql_table_name = "UserTypeRight";
+    public static $mysql_table_name = "Setting";
 
     public static function create_db($delete = false)
     {
