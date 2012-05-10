@@ -58,11 +58,10 @@ http://ns39618.ovh.net/~vaishali/simple/feedback.jpg
 ==Step 2: Creating an item bank==
 
 Go to the ‘tables’ tab (next to HTML templates). 
- * _Add a new table:_ Click the ‘+’ icon at the end of the list of available tables. Assign a name and save it.
- * _Add columns:_ Click the ‘+’ icon located just below table structure and data field. Enter the column name (“question”) and select string as the data type. Click ‘ok’. 
- * _Add additional columns:_ Click the ‘+’ icon on the right side of the column names. Add a second column (“answer”) consisting of numeric type data and a third column (“item_id”) consisting of numeric type data.
+ * _Add a new table:_ Click the ‘+ add new object’ icon above the list of available objects. Assign a name and save it.
+ * _Add columns:_ Click the ‘+ add’ icon located in the 'table structure definition'. Enter the column name (“question”) and select string as the data type. Click ‘add’. Add a second column (“answer”) consisting of 'integer' data and a third column (“item_id”), also consisting of 'integer' data.
 _Your item bank is nearly done. Now you need to fill the table with the items in your test. The items should be structured such that they can be answered with yes/no options, as in your “items” template._
- * _Add rows:_ Click the ‘+’ icon below the column names. Now, you can directly type in your items and corresponding answers. 
+ * _Add rows:_ Click the ‘+ add’ icon in the 'table data' section (located below the table structure definition). Now, you can directly type in your items and corresponding answers by clicking within the relevant data cell. 
  Note: In your Items template, you have assigned 0 to a radio button described as “No” and 1 to a radio button described as “Yes”. Thus, if “yes” is the correct answer to your question – put 1 in the Answer column. If “no” is the correct answer, put 0 in the Answer column. Fill item_id with consecutive numbers starting from 1.
  * Save your table!
 
