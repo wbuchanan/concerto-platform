@@ -34,7 +34,7 @@ CustomSection.onAfterSave=function()
 
 CustomSection.onAfterAdd=function(){
     Methods.iniCKEditor("#form"+this.className+"TextareaDescription",function(){
-        $("#divAddFormDialog").dialog("option","width",800);
+        $("#divAddFormDialog").dialog("option","width",975);
         $("#divAddFormDialog").dialog("option","position","center"); 
     });
 }

@@ -42,12 +42,14 @@ if ($readable)
         ?>
     </div>
 
-    <div align="center" id="div<?= $class_name ?>List" class="table">
-        <?php include Ini::$path_internal . 'cms/view/includes/list.inc.php'; ?>
-    </div>
+    <div align="center">
+        <div align="center" id="div<?= $class_name ?>List" class="table fullWidth">
+            <?php include Ini::$path_internal . 'cms/view/includes/list.inc.php'; ?>
+        </div>
 
-    <div align="center" id="div<?= $class_name ?>Form" class="table" style="display:none;">
-        <?php include Ini::$path_internal . 'cms/view/' . $class_name . '_form.php'; ?>
+        <div align="center" id="div<?= $class_name ?>Form" class="table" style="display:none;">
+            <?php include Ini::$path_internal . 'cms/view/' . $class_name . '_form.php'; ?>
+        </div>
     </div>
     <?php
 }

@@ -116,6 +116,7 @@ ul {
 
 .table {
     display:table;
+    text-align: left;
 }
 
 .grid {

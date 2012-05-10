@@ -621,11 +621,10 @@ Note: You can add new languages by inserting "<new_language>string translated in
             <bg>липса</bg>
         </string>
         <string id="74">
-            <en>unamed variable</en>
+            <en>unnamed table</en>
             <de>unbenannte Variable</de>
             <pl>nienazwana tabela</pl>
             <cn>未命名表格</cn>
-            <en>veriable sans nom</en>
             <bg>променлива без име</bg>
             <fr></fr>
         </string>

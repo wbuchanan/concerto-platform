@@ -36,7 +36,7 @@ Template.onAfterDelete=function(){
 }
 
 Template.onAfterAdd=function(){
-    $("#divAddFormDialog").dialog("option","width",800);
+    $("#divAddFormDialog").dialog("option","width",975);
     $("#divAddFormDialog").dialog("option","position","center"); 
 }
 

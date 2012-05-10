@@ -63,7 +63,7 @@ OModule.inheritance=function(obj)
                 modal:true,
                 resizable:false,
                 title:dictionary["s7"],
-                width:400,
+                width:500,
                 open:function(){
                     Methods.stopModalLoading();
                     if(thisClass.onAfterAdd) thisClass.onAfterAdd();
