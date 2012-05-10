@@ -27,15 +27,15 @@ The test you create will be composed of three HTML Templates:
 ===Introduction template===
  * _Create a template:_ Click the “HTML templates” tab on the upper left side of the page. Click the ‘+ add new object’ icon above the list of available objects. Enter a unique name for the template (E.g. “introduction”) and click ‘save’ at the bottom of the page.  
  * _Add suitable text:_ Type in a welcome message and instructions for the participants. 
- * _Add a user input field:_ Click ‘Text Field’ and enter a name (E.g. user_name). Click ‘OK’. Ensure that your instructions indicate that participants should type their name here.
- * _Add a Start button:_ Click ‘Button’ and enter a name (e.g. btn_start), text (“Start”) and click ‘OK’.
+ * _Add a user input field:_ Click the 'Text Field' button and enter a name (E.g. user_name). Click ‘OK’. Ensure that your instructions indicate that participants should type their name here.
+ * _Add a Start button:_ Click the ‘Button’ icon and enter a name (e.g. btn_start), text (“Start”) and click ‘OK’.
  * Save the template!
 
 http://ns39618.ovh.net/~vaishali/simple/intro.jpg
 
 
 === Test Items Template===
- * _Create a template:_ Click the “HTML templates” tab on the upper left side of the page. Click ‘+’ at the end of the list of templates to add a new item. Enter a name for the template (E.g. “items”) and click ‘save’ at the bottom of the page. 
+ * _Create a template:_ Click the “HTML templates” tab on the upper left side of the page. Click the ‘+ add new object’ icon above the list of available objects. Enter a unique name for the template (E.g. “items”) and click ‘save’ at the bottom of the page.  
  * _Add questions/text:_ Edit the template and add the following text:
     {{user_name}}, please answer the following question:
     {{question}}
@@ -47,7 +47,7 @@ http://ns39618.ovh.net/~vaishali/simple/items.jpg
 
 
 ===Feedback Template===
- * _Create a template:_ Click the “HTML templates” tab on the upper left side of the page. Click ‘+’ at the end of the list of templates to add a new item. Enter a name for the template (E.g.“feedback”) and click ‘save’ at the bottom of the page. 
+ * _Create a template:_ Click the “HTML templates” tab on the upper left side of the page. Click the ‘+ add new object’ icon above the list of available objects. Enter a unique name for the template (E.g. “feedback”) and click ‘save’ at the bottom of the page.  
  * _Add text:_ Add text suitable for the feedback page, including:
     {{user_name}}, your total score is {{total_score}}.
  * Save the template!
