@@ -2,13 +2,13 @@
 .
 = Concerto v3.0 Tutorials: Create an adaptive test =
                             
-This tutorial will show you how to create a simple adaptive test on Concerto v3.0 that looks like this: 
-[http://dev.myiqtest.org/concerto3_demo/index.php?tid=80 Concerto v3.0 Adaptive test]
+This tutorial will show you how to create a simple adaptive test on Concerto v3.4 that looks like this: 
+[http://concerto.e-psychometrics.com/demo/?tid=80 Concerto v3.4 Adaptive test]
 
-It is assumed that you’ve already taken the *[http://code.google.com/p/concerto-platform/wiki/Concerto3SimpleTest Concerto v3.0 Tutorials: Create a simple test]* section and are familiar with the basic functions of Concerto v3.0.
+It is assumed that you’ve already taken the *[http://code.google.com/p/concerto-platform/wiki/Concerto3SimpleTest Concerto v3.0 Tutorials: Create a simple test]* section and are familiar with the basic functions of Concerto v3.
 
 *Note:*
- * This document is relevant to Concerto v3.0. If you use an older version, please upgrade it (or else refer to relevant tutorials).
+ * If you use an older version, please upgrade it (or else refer to relevant tutorials).
  * You may experience some problems while using different browsers. Currently, it is best to use Google Chrome to run the administration panel.
 
 .
@@ -24,7 +24,7 @@ Demo installation: [http://concerto.e-psychometrics.com/demo/cms/index.php]
 
 Create a new template called _introduction_ and add some suitable text to describe the test and make testees feel comfortable. 
 
-http://ns39618.ovh.net/~vaishali/adaptive/intro.jpg
+http://ns39618.ovh.net/~vaishali/v3.4/adaptive/intro.jpg
 
 .
 ===Test item template===
@@ -37,7 +37,7 @@ Create a new template called _test item_ and add the following content:
  * A button called "*Submit*"
  * For presentation purposes, add the field *{{theta}}*.
 
-http://ns39618.ovh.net/~vaishali/adaptive/items.jpg
+http://ns39618.ovh.net/~vaishali/v3.4/adaptive/items.jpg
 
 .
 ===Feedback template===
@@ -46,7 +46,7 @@ Create another new template called _feedback_ that contains:
  * A few words of empathic feedback
  * Fields *{{theta}}*, *{{sem}}* 
 
-http://ns39618.ovh.net/~vaishali/adaptive/feedback.jpg
+http://ns39618.ovh.net/~vaishali/v3.4/adaptive/feedback.jpg
 
 .
 ==Step 2: Creating an Item Bank/Table from a CSV File==
