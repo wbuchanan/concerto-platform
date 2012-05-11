@@ -2992,5 +2992,21 @@ Note: You can add new languages by inserting "<new_language>string translated in
             <fr></fr>
             <bg></bg>
         </string>
+        <string id="374">
+            <en>download from online library</en>
+            <de></de>
+            <pl>sciagnij z biblioteki online</pl>
+            <cn></cn>
+            <fr></fr>
+            <bg></bg>
+        </string>
+        <string id="375">
+            <en>upload to online library</en>
+            <de></de>
+            <pl>wyslij do biblioteki online</pl>
+            <cn></cn>
+            <fr></fr>
+            <bg></bg>
+        </string>
     </strings>
 </root> 

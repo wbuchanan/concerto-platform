@@ -68,8 +68,9 @@ $action_template.="#if(editable) {#<span style='display:inline-block;' class='sp
 if ($class_name::$exportable)
 {
     $action_template.="<span style='display:inline-block;' class='spanIcon tooltip ui-icon ui-icon-arrowthickstop-1-n' onclick='$class_name.uiExport(" . '${ id }' . ")' title='" . Language::string(265) . "'></span>";
+    $action_template.="<span style='display:inline-block;' class='spanIcon tooltip ui-icon ui-icon-gear' onclick='$class_name.uiUpload(" . '${ id }' . ")' title='" . Language::string(375) . "'></span>";
 }
-$columns_def.=sprintf("{ title:'', width:70, filterable: false, sortable: false, groupable: false, template: \"%s\"}", $action_template);
+$columns_def.=sprintf("{ title:'', width:85, filterable: false, sortable: false, groupable: false, template: \"%s\"}", $action_template);
 $columns_def.="]";
 ?>
 
@@ -93,8 +94,11 @@ $columns_def.="]";
             },
             //toolbar: kendo.template($("#script<?= $class_name ?>ToolbarTemplate").html()),
             toolbar: [
-                { name: "add", template: '<button class="btnAdd" onclick="<?= $class_name ?>.uiAdd()"><?= Language::string(205) ?></button>'},
-                { name: "import", template: '<button class="btnImport" onclick="<?= $class_name ?>.uiImport()"><?= Language::string(266) ?></button>' }
+                { name: "add", template: '<button class="btnAdd" onclick="<?= $class_name ?>.uiAdd()"><?= Language::string(205) ?></button>'}
+                <?php if($class_name::$exportable) { echo ","; ?>
+                { name: "import", template: '<button class="btnImport" onclick="<?= $class_name ?>.uiImport()"><?= Language::string(266) ?></button>' },
+                { name: "download", template: '<button class="btnDownload" onclick="<?= $class_name ?>.uiDownload()"><?= Language::string(374) ?></button>' }
+                <?php } ?>
             ],
             dataSource: {
                 transport:{
@@ -144,6 +148,7 @@ $columns_def.="]";
             
         Methods.iniIconButton(".btnAdd", "plus");
         Methods.iniIconButton(".btnImport","arrowthickstop-1-s");
+        Methods.iniIconButton(".btnDownload","gear");
     });
 </script>
 

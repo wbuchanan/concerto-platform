@@ -44,6 +44,14 @@ OModule.inheritance=function(obj)
         $("#row"+this.className+this.currentID+" td").addClass("ui-state-highlight");
     };
     
+    obj.uiDownload=function(){
+        
+    }
+    
+    obj.uiUpload=function(oid){
+        
+    }
+    
     obj.uiAdd=function(ignoreOnBefore)
     {
         if(ignoreOnBefore==null) ignoreOnBefore=false;
