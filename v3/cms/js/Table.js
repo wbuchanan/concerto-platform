@@ -34,12 +34,18 @@ Table.onAfterDelete=function(){
     Test.uiTablesChanged();
 }
 
+Table.onAfterAdd=function(){
+    $("#divAddFormDialog").dialog("option","width",975);
+    $("#divAddFormDialog").dialog("option","position","center"); 
+}
+
 Table.getAddSaveObject=function()
 {
     return { 
         oid:this.currentID,
         class_name:this.className,
         name:$("#form"+this.className+"InputName").val(),
+        description:Methods.getCKEditorData("#form"+this.className+"TextareaDescription"),
         Sharing_id:$("#form"+this.className+"SelectSharing").val()
     };
 };

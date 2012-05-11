@@ -36,6 +36,7 @@ $cols = $class_name::get_list_columns();
 $fields_schema = "";
 foreach ($cols as $col)
 {
+    if(!$col["show"]) continue;
     if ($fields_schema != "") $fields_schema.=",";
     else $fields_schema.="{";
     $fields_schema.=sprintf("'%s': { type: '%s'}", $col["property"], $col["type"]);
@@ -45,13 +46,14 @@ $fields_schema.="}";
 $columns_def = "[";
 foreach ($cols as $col)
 {
+    if(!$col["show"]) continue;
     $columns_def.="{";
     if (array_key_exists("width", $col))
             $columns_def.=sprintf("width: %s,", $col["width"]);
     if (array_key_exists("format", $col))
-            $columns_def.=sprintf("format: %s,", $col["format"]);
+            $columns_def.=sprintf("format: \"%s\",", $col["format"]);
     if (array_key_exists("template", $col))
-            $columns_def.=sprintf("'template': %s,", $col["template"]);
+            $columns_def.=sprintf("'template': \"%s\",", $col["template"]);
     $columns_def.=sprintf("title: \"%s\",", $col["name"]);
     $columns_def.=sprintf("field: \"%s\",", $col["property"]);
     $columns_def.=sprintf("filterable: %s,", $col["searchable"] ? "true" : "false");

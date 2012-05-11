@@ -47,6 +47,11 @@ Test.onAfterImport=function(){
     Table.uiList();
 }
 
+Test.onAfterAdd=function(){
+    $("#divAddFormDialog").dialog("option","width",975);
+    $("#divAddFormDialog").dialog("option","position","center"); 
+}
+
 Test.onAfterSave=function()
 {
     };
@@ -57,6 +62,7 @@ Test.getAddSaveObject=function()
         oid:this.currentID,
         class_name:this.className,
         name:$("#form"+this.className+"InputName").val(),
+        description:Methods.getCKEditorData("#form"+this.className+"TextareaDescription"),
         Sharing_id:$("#form"+this.className+"SelectSharing").val()
     };
 };

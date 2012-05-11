@@ -47,6 +47,7 @@ Template.getAddSaveObject=function()
         class_name:this.className,
         name:$("#form"+this.className+"InputName").val(),
         HTML:Methods.getCKEditorData("#form"+this.className+"TextareaHTML"),
+        description:Methods.getCKEditorData("#form"+this.className+"TextareaDescription"),
         Sharing_id:$("#form"+this.className+"SelectSharing").val()
     };
 };

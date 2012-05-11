@@ -40,6 +40,13 @@ if (array_key_exists('oid', $_POST) && $_POST['oid'] != 0)
     $section = TestSection::from_mysql_id($_POST['oid']);
     $vals = $section->get_values();
 }
+
+$table = Table::from_mysql_id($vals[5]);
+$description = Language::string(372);
+if($table != null)
+{
+    $description.=" " . Language::string(373) . ":<hr/>" . $table->get_description();
+}
 ?>
 <b><?= Language::string(233) ?></b> <input onchange="Test.uiSetVarNameChanged($(this))" type="text" class="ui-state-focus comboboxSetVars comboboxVars controlValue<?= $_POST['counter'] ?> ui-widget-content ui-corner-all" value="<?= htmlspecialchars(isset($vals[4]) ? $vals[4] : "", ENT_QUOTES) ?>" /> 
 <br/>
@@ -49,19 +56,26 @@ if (array_key_exists('oid', $_POST) && $_POST['oid'] != 0)
 </div>
 
 <div class="divSetVarType_0_<?= $_POST['counter'] ?> <?= isset($vals[2]) && $vals[2] != 0 ? "notVisible" : "" ?>">
-    <?= Language::string(238) ?> 
-    <select class="controlValue<?= $_POST['counter'] ?> ui-widget-content ui-corner-all" onchange="Test.uiRefreshSectionContent(<?= $_POST['type'] ?>, <?= $_POST['counter'] ?>, Test.getSectionValues(Test.sectionDivToObject($('#divSection_<?= $_POST['counter'] ?>'))))">
-        <option value="0">&lt;<?= Language::string(239) ?>&gt;</option>
-        <?php
-        $sql = $logged_user->mysql_list_rights_filter("Table", "`name` ASC");
-        $z = mysql_query($sql);
-        while ($r = mysql_fetch_array($z))
-        {
-            $table = Table::from_mysql_id($r[0]);
-            ?>
-            <option value="<?= $table->id ?>" <?= isset($vals[5]) && $vals[5] == $table->id ? "selected" : "" ?> ><?= $table->name ?> ( <?= $table->get_system_data() ?> )</option>
-        <?php } ?>
-    </select> <br/>
+    <table>
+        <tr>
+            <td><?= Language::string(238) ?></td>
+            <td><span class="spanIcon ui-icon ui-icon-help tooltip" title="<?= htmlspecialchars($description, ENT_QUOTES) ?>"></span></td>
+            <td>
+                <select class="controlValue<?= $_POST['counter'] ?> ui-widget-content ui-corner-all" onchange="Test.uiRefreshSectionContent(<?= $_POST['type'] ?>, <?= $_POST['counter'] ?>, Test.getSectionValues(Test.sectionDivToObject($('#divSection_<?= $_POST['counter'] ?>'))))">
+                    <option value="0">&lt;<?= Language::string(239) ?>&gt;</option>
+                    <?php
+                    $sql = $logged_user->mysql_list_rights_filter("Table", "`name` ASC");
+                    $z = mysql_query($sql);
+                    while ($r = mysql_fetch_array($z))
+                    {
+                        $table = Table::from_mysql_id($r[0]);
+                        ?>
+                        <option value="<?= $table->id ?>" <?= isset($vals[5]) && $vals[5] == $table->id ? "selected" : "" ?> ><?= $table->name ?> ( <?= $table->get_system_data() ?> )</option>
+                    <?php } ?>
+                </select>
+            </td>
+        </tr>    
+    </table>
     <?= Language::string(240) ?> <br/>
     <select class="controlValue<?= $_POST['counter'] ?> controlValue<?= $_POST['counter'] ?>_column ui-widget-content ui-corner-all">
         <option value="0">&lt;<?= Language::string(241) ?>&gt;</option>

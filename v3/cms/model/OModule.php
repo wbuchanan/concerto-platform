@@ -99,6 +99,21 @@ class OModule extends OTable
     {
         $cols = array();
 
+        if (static::$exportable)
+        {
+            array_push($cols, array(
+                "name" => Language::string(371),
+                "property" => "get_description",
+                "searchable" => false,
+                "sortable" => false,
+                "type" => "string",
+                "groupable" => false,
+                "template" => "<span class='spanIcon ui-icon ui-icon-help tooltip' title='".'${get_description}'."'></span>",
+                "width" => 40,
+                "show" => true
+            ));
+        }
+
         array_push($cols, array(
             "name" => Language::string(69),
             "property" => "id",
@@ -106,7 +121,8 @@ class OModule extends OTable
             "sortable" => true,
             "type" => "number",
             "groupable" => false,
-            "width" => 40
+            "width" => 40,
+            "show" => true
         ));
         array_push($cols, array(
             "name" => Language::string(70),
@@ -114,7 +130,8 @@ class OModule extends OTable
             "searchable" => true,
             "sortable" => true,
             "type" => "string",
-            "groupable" => false
+            "groupable" => false,
+            "show" => true
         ));
         array_push($cols, array(
             "name" => Language::string(71),
@@ -122,7 +139,8 @@ class OModule extends OTable
             "searchable" => true,
             "sortable" => true,
             "type" => "string",
-            "groupable" => true
+            "groupable" => true,
+            "show" => true
         ));
         array_push($cols, array(
             "name" => Language::string(72),
@@ -131,7 +149,8 @@ class OModule extends OTable
             "sortable" => true,
             "type" => "string",
             "groupable" => true,
-            "width" => 100
+            "width" => 100,
+            "show" => true
         ));
 
         return $cols;

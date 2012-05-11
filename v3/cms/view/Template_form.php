@@ -78,6 +78,9 @@ if ($oid != 0)
                 } catch(err) {
                 }
             });
+            <?php if($oid!=-1) { ?>
+                    Methods.iniCKEditor("#form<?= $class_name ?>TextareaDescription");
+            <?php } ?>
             Methods.iniTooltips();
         });
     </script>
@@ -95,10 +98,19 @@ if ($oid != 0)
                 </td>
             </tr>
             <tr>
+                <td class="noWrap horizontalPadding ui-widget-header"><?= Language::string(97) ?>:</td>
+                <td><span class="tooltip spanIcon ui-icon ui-icon-help" title="<?= Language::string(98) ?>"></span></td>
+                <td class="fullWidth">
+                    <div class="horizontalMargin" align="center">
+                        <textarea id="form<?= $class_name ?>TextareaDescription" name="form<?= $class_name ?>TextareaDescription" class="fullWidth ui-widget-content ui-corner-all"><?= htmlspecialchars(stripslashes($obj->description)) ?></textarea>
+                    </div>
+                </td>
+            </tr>
+            <tr>
                 <td class="noWrap horizontalPadding ui-widget-header"><?= Language::string(18) ?>:</td>
                 <td><span class="tooltip spanIcon ui-icon ui-icon-help" title="<?= Language::string(136) ?>"></span></td>
                 <td class="fullWidth">
-                    <div class="horizontalMargin">
+                    <div class="horizontalMargin" align="center">
                         <textarea id="form<?= $class_name ?>TextareaHTML" name="form<?= $class_name ?>TextareaHTML"><?= htmlspecialchars(stripslashes($obj->HTML)) ?></textarea>
                     </div>
                 </td>

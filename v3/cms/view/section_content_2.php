@@ -30,8 +30,7 @@ if ($logged_user == null) {
 ?>
 <script>
     $(function(){
-        $(".tooltipHTMLPreview").tooltip({
-        });
+        Methods.iniTooltips();
     })
 </script>
 <?php
@@ -46,7 +45,7 @@ if (array_key_exists('oid', $_POST) && $_POST['oid'] != 0) {
 // 2 - returns_count
 // vars
 
-$preview = Language::string(213);
+$description = Language::string(213);
 
 $template = Template::from_mysql_id($vals[0]);
 if ($vals[0] != 0 && $template != null) {
@@ -56,7 +55,7 @@ if ($vals[0] != 0 && $template != null) {
         <div>
             <table>
     <?php
-    $preview.=" " . Language::string(214) . ":<hr/>" . $template->get_preview_HTML();
+    $description.=" " . Language::string(214) . ":<hr/>" . $template->get_description();
 
     $inserts = $template->get_inserts();
 
@@ -117,7 +116,7 @@ if ($vals[0] != 0 && $template != null) {
 <table>
     <tr>
         <td>
-            <span class="spanIcon ui-icon ui-icon-help tooltipHTMLPreview" title="<?= htmlspecialchars($preview, ENT_QUOTES) ?>"></span>
+            <span class="spanIcon ui-icon ui-icon-help tooltip" title="<?= htmlspecialchars($description, ENT_QUOTES) ?>"></span>
         </td>
         <td>
             <select id="selectTemplate_<?= $_POST['counter'] ?>" class="fullWidth ui-widget-content ui-corner-all" onchange="Test.uiTemplatesChanged()">

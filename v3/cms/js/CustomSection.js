@@ -167,7 +167,7 @@ CustomSection.uiEditVariableDescription=function(obj){
         title:dictionary["s3"],
         modal:true,
         resizable:false,
-        width:800,
+        width:975,
         create:function(){
             var thisDialog = $("#div"+CustomSection.className+"DialogDescription");
             Methods.iniCKEditor($(this).find("textarea"),function(){

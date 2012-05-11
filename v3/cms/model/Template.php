@@ -23,6 +23,7 @@ class Template extends OModule
 {
     public $name = "";
     public $HTML = "";
+    public $description = "";
     public static $exportable = true;
     public static $mysql_table_name = "Template";
 
@@ -167,6 +168,8 @@ class Template extends OModule
                 {
                     case "name": $this->name = $child->nodeValue;
                         break;
+                    case "description": $this->description = $child->nodeValue;
+                        break;
                     case "HTML": $this->HTML = $child->nodeValue;
                         break;
                 }
@@ -186,6 +189,9 @@ class Template extends OModule
 
         $name = $xml->createElement("name", htmlspecialchars($this->name, ENT_QUOTES, "UTF-8"));
         $element->appendChild($name);
+        
+        $description = $xml->createElement("description", htmlspecialchars($this->name, ENT_QUOTES, "UTF-8"));
+        $element->appendChild($description);
 
         $HTML = $xml->createElement("HTML", htmlspecialchars($this->HTML, ENT_QUOTES, "UTF-8"));
         $element->appendChild($HTML);
@@ -206,6 +212,7 @@ class Template extends OModule
             `created` timestamp NOT NULL default '0000-00-00 00:00:00',
             `name` text NOT NULL,
             `HTML` text NOT NULL,
+            `description` text NOT NULL,
             `Sharing_id` int(11) NOT NULL,
             `Owner_id` bigint(20) NOT NULL,
             PRIMARY KEY  (`id`)
@@ -245,6 +252,21 @@ class Template extends OModule
     public function get_preview_HTML()
     {
         return Template::strip_html($this->HTML);
+    }
+    
+    public function get_description()
+    {
+        return Template::strip_html($this->description);
+    }
+    
+    public static function update_db($previous_version)
+    {
+        if (Ini::does_patch_apply("3.5.0", $previous_version))
+        {
+            $sql = "ALTER TABLE `Template` ADD `description` text NOT NULL;";
+            if (!mysql_query($sql)) return false;
+        }
+        return true;
     }
 
 }

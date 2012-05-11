@@ -317,7 +317,8 @@ class User extends OModule
             "searchable" => true,
             "sortable" => true,
             "type" => "string",
-            "groupable" => false
+            "groupable" => false,
+            "show" => true
         ));
         array_push($cols, array(
             "name" => Language::string(174),
@@ -325,7 +326,8 @@ class User extends OModule
             "searchable" => true,
             "sortable" => true,
             "type" => "string",
-            "groupable" => true
+            "groupable" => true,
+            "show" => true
         ));
         array_push($cols, array(
             "name" => Language::string(175),
@@ -333,7 +335,8 @@ class User extends OModule
             "searchable" => true,
             "sortable" => true,
             "type" => "string",
-            "groupable" => false
+            "groupable" => false,
+            "show" => true
         ));
         array_push($cols, array(
             "name" => Language::string(176),
@@ -341,7 +344,8 @@ class User extends OModule
             "searchable" => true,
             "sortable" => true,
             "type" => "string",
-            "groupable" => true
+            "groupable" => true,
+            "show" => true
         ));
         array_push($cols, array(
             "name" => Language::string(177),
@@ -349,7 +353,8 @@ class User extends OModule
             "searchable" => true,
             "sortable" => true,
             "type" => "string",
-            "groupable" => true
+            "groupable" => true,
+            "show" => true
         ));
         array_push($cols, array(
             "name" => Language::string(335),
@@ -358,7 +363,8 @@ class User extends OModule
             "sortable" => true,
             "type" => "number",
             "groupable" => false,
-            "width" => 100
+            "width" => 100,
+            "show" => true
         ));
 
         for ($i = 0; $i < count($cols); $i++)

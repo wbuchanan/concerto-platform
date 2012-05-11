@@ -199,6 +199,11 @@ class CustomSection extends OModule
 
         return $element;
     }
+    
+    public function get_description()
+    {
+        return Template::strip_html($this->description);
+    }
 
     public static function create_db($delete = false)
     {

@@ -812,12 +812,12 @@ Note: You can add new languages by inserting "<new_language>string translated in
             <bg>описание</bg>
         </string>
         <string id="98">
-            <en>Brief description of the custom section that will be visible in the test logic when the section is used.</en>
-            <de>Kurze Beschreibung der benutzerdefinierten Sektion die bei Verwendung in der Testlogik angezeigt wird.</de>
-            <pl>opis własnej sekcji, który będzie widoczny w logice tekstu po dodaniu sekcji</pl>
-            <cn>使用此章节时在测试逻辑中显示的简介</cn>
-            <fr>Brève description de la section personnalisée qui sera visible dans la logique du test lorsque la section est utilisée.</fr>
-            <bg>Кратко описание на персонализираната секция, което ще бъде видимо в тестовата логика, когато секцията се използва.</bg>
+            <en>Brief description of the object.</en>
+            <de></de>
+            <pl>Krótki opis obiektu.</pl>
+            <cn></cn>
+            <fr></fr>
+            <bg></bg>
         </string>
         <string id="99">
             <en>access rights to this custom section</en>
@@ -1728,12 +1728,12 @@ Note: You can add new languages by inserting "<new_language>string translated in
             <bg>Изберете HTML шаблона, който да бъде зареден</bg>
         </string>
         <string id="214">
-            <en>Preview of selected HTML template ( javascripts and not inline CSS will be turned off )</en>
-            <de>Vorschau auf gewähltes HTML Template</de>
-            <pl>Podgląd obecnie wybranego szablonu HTML ( javascript i nie inline CSS beda wylaczone )</pl>
-            <cn>所选HTML模板预览</cn>
-            <fr>Prévisualiser le modèle HTML sélectionné</fr>
-            <bg>Преглед на избрания HTML шаблон</bg>
+            <en>Description of selected HTML template</en>
+            <de></de>
+            <pl>Opis obecnie wybranego szablonu HTML</pl>
+            <cn></cn>
+            <fr></fr>
+            <bg></bg>
         </string>
         <string id="215">
             <en>value of this variable will be inserted into the HTML template</en>
@@ -2964,6 +2964,30 @@ Note: You can add new languages by inserting "<new_language>string translated in
             <en>Version mismatch between imported object and Concerto platform. You can only import objects exported from the same version of Concerto.</en>
             <pl>Wersje importowanego obiektu oraz platformy Concerto sie nie zgadzaja. Mozna tylko importowac obiekty wyeksportowane z tej samej wersji Concerto.</pl>
             <de></de>
+            <cn></cn>
+            <fr></fr>
+            <bg></bg>
+        </string>
+        <string id="371">
+            <en>info</en>
+            <pl>info</pl>
+            <de></de>
+            <cn></cn>
+            <fr></fr>
+            <bg></bg>
+        </string>
+        <string id="372">
+            <en>Select the Table you want to use.</en>
+            <de></de>
+            <pl>Wybierz Tabele, która chcesz wczytać.</pl>
+            <cn></cn>
+            <fr></fr>
+            <bg></bg>
+        </string>
+        <string id="373">
+            <en>Description of selected Table</en>
+            <de></de>
+            <pl>Opis obecnie wybranej Tabeli</pl>
             <cn></cn>
             <fr></fr>
             <bg></bg>
