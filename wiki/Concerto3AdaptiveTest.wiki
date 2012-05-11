@@ -55,60 +55,61 @@ The next step is to create an item bank for the test. Usually, software like R a
 
 Download and unzip this CSV file: [http://ns39618.ovh.net/wiki2/_media/public/ibank.zip] and explore it using Excel or notepad. 
 
-Go to the *tables* tab and click the ‘+’ icon to add a new table. Assign a meaningful name (E.g. adaptive_test) and save it. 
-Click the _link_ icon above _table structure and data_ to import a table from a csv file that you have downloaded. Concerto will automatically read the data into table format. All you need to do is alter the column names and their format (E.g. see screenshot below).
+Go to the *tables* tab and click the ‘+ add new object’ icon to add a new table. Assign a meaningful name (E.g. adaptive_test) and save it. 
+Click the _import table from CSV file_ icon to import a table that you have downloaded. Concerto will automatically read the data into table format. All you need to do is alter the column names and the data types.
 
-http://ns39618.ovh.net/~vaishali/adaptive/table.jpg
+http://ns39618.ovh.net/~vaishali/v3.4/adaptive/table.jpg
 
 .
 ==Step 3: Creating a test and adding sections==
 
-In the 'tests' tab, create a new test by adding a new object (covered in the [http://code.google.com/p/concerto-platform/wiki/Concerto3Tabs General manual] and [http://code.google.com/p/concerto-platform/wiki/Concerto3SimpleTest Create a simple test] tutorials). Follow the images and corresponding text to create the structure of your test by adding new sections.
+In the 'tests' tab, create a new test by adding a new object. Follow the images and corresponding text to create the structure of your test by adding new sections.
 .
+
 || *SECTION TYPE* || *DETAILS* ||
 || Load HTML template || Select the _introduction_ template (or whatever you named it)||
-|| Set variable || SET VARIABLE *theta* IN *HTML* AS *default*; *by R code* - _"Score not available yet"_||
-|| Set variable || SET VARIABLE *difficulties* IN *R* AS *default*; *from table* _adaptive_test_table_ (or whatever you named it); COLUMNS *difficulty* ||
-|| Set variable || SET VARIABLE *current_item* IN *R & HTML* AS *numeric*; *by R code* - _50_||
-|| - || http://ns39618.ovh.net/~vaishali/adaptive/test1.jpg ||
+|| Set variable || SET VARIABLE *theta* by R code - _"Score not available yet"_||
+|| Set variable || SET VARIABLE *difficulties* from table _adaptive_test_table_ (or whatever you named it); COLUMNS *difficulty* ||
+|| Set variable || SET VARIABLE *current_item* by R code - _50_||
+|| - || http://ns39618.ovh.net/~vaishali/v3.4/adaptive/test1.jpg ||
 .
 
 || *SECTION TYPE* || *DETAILS* ||
-|| Set variable || SET VARIABLE *responses* IN *R & HTML* AS *default*; *by R code* - _NULL_||
-|| Set variable || SET VARIABLE *itempar* IN *R & HTML* AS *default*; *by R code* - _as.matrix(cbind(1,difficulties,0,1))_||
-|| Set variable || SET VARIABLE *catBank* IN *R & HTML* AS *default*; *by R code* - _createItemBank(itempar,model="1pl")_||
-|| Set variable || SET VARIABLE *items_administered* IN *R & HTML* AS *default*; *by R code* - _current_item_||
-|| Set variable || SET VARIABLE *question* IN *HTML* AS *default*; *from table* _adaptive_test_table_ (or whatever you named it); COLUMNS *content* WHERE *id* - *equal* - *current_item* ||
-|| - || http://ns39618.ovh.net/~vaishali/adaptive/test2.jpg ||
+|| Set variable || SET VARIABLE *responses* by R code - _NULL_||
+|| Set variable || SET VARIABLE *itempar* by R code - _as.matrix(cbind(1,difficulties,0,1))_||
+|| Set variable || SET VARIABLE *catBank* by R code - _createItemBank(itempar,model="1pl")_||
+|| Set variable || SET VARIABLE *items_administered* by R code - _current_item_||
+|| Set variable || SET VARIABLE *question* from table _adaptive_test_table_ (or whatever you named it); COLUMNS *content* WHERE *id* - *equal* - *current_item* ||
+|| - ||  http://ns39618.ovh.net/~vaishali/v3.4/adaptive/test2.jpg  ||
 .
 
 || *SECTION TYPE* || *DETAILS* ||
-|| Set variable || SET VARIABLE *difficulty* IN *R & HTML* AS *numeric*; *from table* _adaptive_test_table_ (or whatever you named it); COLUMNS *difficulty* WHERE *id* - *equal* - *current_item* ||
-|| Set variable || SET VARIABLE *correct_answer* IN *R* AS *numeric*; *from table* _adaptive_test_table_ (or whatever you named it); COLUMNS *correct_answer* WHERE *id* - *equal* - *current_item* ||
-|| Load HTML template || Select the _test_items_ template (or whatever you named it). Returns: Response AS *response* IN *R & HTML* AS *numeric*||
-|| - || http://ns39618.ovh.net/~vaishali/adaptive/test-3.jpg ||
+|| Set variable || SET VARIABLE *difficulty* from table* _adaptive_test_table_ (or whatever you named it); COLUMNS *difficulty* WHERE *id* - *equal* - *current_item* ||
+|| Set variable || SET VARIABLE *correct_answer* from table _adaptive_test_table_ (or whatever you named it); COLUMNS *correct_answer* WHERE *id* - *equal* - *current_item* ||
+|| Load HTML template || Select the _test_items_ template (or whatever you named it).||
+|| - ||  http://ns39618.ovh.net/~vaishali/v3.4/adaptive/test3.jpg  ||
 .
 
 || *SECTION TYPE* || *DETAILS* ||
 || IF statement || *is.na(response)* - *equal* - *1* THEN _GO TO_ *14.load HTML template* (this is the section where you load the items template). This step is to ensure that there are no missing responses or non-numeric type responses. ||
-|| Set variable || SET VARIABLE *responses* IN *R & HTML* AS *default*; *by R code* - _c(responses, correct_answer == response)_||
-|| Set variable || SET VARIABLE *theta* IN *R & HTML* AS *default*; *by R code* - _it<-matrix(itempar[items_administered,],nrow=length(items_administered)). thetaEst(it, responses)_||
-|| Set variable || SET VARIABLE *current_item* IN *R & HTML* AS *default*; *by R code* - _nextItem(catBank, theta, out=as.numeric(items_administered)){{{[[1]]}}}_||
-|| Set variable || SET VARIABLE *items_administered* IN *R* AS *default*; *by R code* - _c(items_administered, current_item)_||
-|| - || http://ns39618.ovh.net/~vaishali/adaptive/test_4.jpg ||
+|| Set variable || SET VARIABLE *responses* by R code - _c(responses, correct_answer == response)_||
+|| Set variable || SET VARIABLE *theta* by R code - _it<-matrix(itempar[items_administered,],nrow=length(items_administered)). thetaEst(it, responses)_||
+|| Set variable || SET VARIABLE *current_item* by R code - _nextItem(catBank, theta, out=as.numeric(items_administered)){{{[[1]]}}}_||
+|| - ||  http://ns39618.ovh.net/~vaishali/v3.4/adaptive/test4.jpg  ||
 .
 
 || *SECTION TYPE* || *DETAILS* ||
-|| Set variable || SET VARIABLE *nitems* IN *R & HTML* AS *default*; *by R code* - _length(items_administered)_||
+|| Set variable || SET VARIABLE *items_administered* by R code - _c(items_administered, current_item)_||
+|| Set variable || SET VARIABLE *nitems* by R code - _length(items_administered)_||
 || IF statement || *nitems* - *equal or lesser than* - *15* THEN _GO TO_ *11.set variable* (this is the section where you set the variable "question") ||
 || Load HTML template || Select _feedback_ template (or whatever else you named it) ||
-|| - || http://ns39618.ovh.net/~vaishali/adaptive/test-5.jpg ||
+|| - ||  http://ns39618.ovh.net/~vaishali/v3.4/adaptive/test5.jpg  ||
 || - || *_END_* ||
 .
 
-Don't forget to save the test at frequent intervals!
-.
+Don't forget to save the test at regular intervals!
 
+.
 ==Run your test==
 Use the following URL (with the correct *test id* to run your test: *[concerto_installation_path]/?tid=[TEST_ID]*
 
