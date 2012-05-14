@@ -175,7 +175,7 @@ class OTable
             $where.=sprintf("`%s`='%s'", $k, $v);
         }
 
-        $sql = sprintf("SELECT * FROM `%s` WHERE %s", static::get_mysql_table(), $where);
+        $sql = sprintf("SELECT * FROM `%s` WHERE %s ORDER BY `id` ASC", static::get_mysql_table(), $where);
 
         $z = mysql_query($sql);
         while ($r = mysql_fetch_array($z))
