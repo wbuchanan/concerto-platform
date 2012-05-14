@@ -36,8 +36,10 @@ Template.onAfterDelete=function(){
 }
 
 Template.onAfterAdd=function(){
-    $("#divAddFormDialog").dialog("option","width",975);
-    $("#divAddFormDialog").dialog("option","position","center"); 
+    Methods.iniCKEditor("#form"+this.className+"TextareaDescription",function(){
+        $("#divAddFormDialog").dialog("option","width",975);
+        $("#divAddFormDialog").dialog("option","position","center"); 
+    });
 }
 
 Template.getAddSaveObject=function()

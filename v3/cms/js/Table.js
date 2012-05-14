@@ -35,8 +35,10 @@ Table.onAfterDelete=function(){
 }
 
 Table.onAfterAdd=function(){
-    $("#divAddFormDialog").dialog("option","width",975);
-    $("#divAddFormDialog").dialog("option","position","center"); 
+    Methods.iniCKEditor("#form"+this.className+"TextareaDescription",function(){
+        $("#divAddFormDialog").dialog("option","width",975);
+        $("#divAddFormDialog").dialog("option","position","center"); 
+    });
 }
 
 Table.getAddSaveObject=function()

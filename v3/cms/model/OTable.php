@@ -33,37 +33,37 @@ class OTable
             if (isset($params[$k])) $this->$k = $params[$k];
         }
     }
-    
+
     public function xml_hash()
     {
         $xml = $this->to_XML(false);
         $xml->removeAttribute("id");
         return md5($xml->ownerDocument->saveXML($xml));
     }
-    
+
     public static function find_xml_hash($hash)
     {
         $logged_user = User::get_logged_user();
-        $sql = $logged_user->mysql_list_rights_filter(static::get_mysql_table(), "`" . static::get_mysql_table(). "`.`id` ASC");
-        $z=mysql_query($sql);
-        while($r=mysql_fetch_array($z))
+        $sql = $logged_user->mysql_list_rights_filter(static::get_mysql_table(), "`" . static::get_mysql_table() . "`.`id` ASC");
+        $z = mysql_query($sql);
+        while ($r = mysql_fetch_array($z))
         {
             $obj = static::from_mysql_id($r[0]);
-            if(!$logged_user->is_object_editable($obj)) continue;
+            if (!$logged_user->is_object_editable($obj)) continue;
             $obj_hash = $obj->xml_hash();
-            if($obj_hash==$hash) return $r[0];
+            if ($obj_hash == $hash) return $r[0];
         }
         return 0;
     }
-    
+
     public function import($path)
     {
         $xml = new DOMDocument('1.0', 'UTF-8');
         if (!@$xml->load($path)) return -4;
-        
+
         return $this->import_XML($xml);
     }
-    
+
     public static function convert_to_XML_document($node)
     {
         $xml = new DOMDocument('1.0', 'UTF-8');
@@ -71,7 +71,7 @@ class OTable
         $export = $xml->createElement("export");
         $export->setAttribute("version", Ini::$version);
         $xml->appendChild($export);
-        
+
         $obj = $xml->importNode($node, true);
         $export->appendChild($obj);
         return $xml;

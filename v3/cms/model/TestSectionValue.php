@@ -57,8 +57,8 @@ class TestSectionValue extends OTable
         $sql = "
             CREATE TABLE IF NOT EXISTS `TestSectionValue` (
             `id` bigint(20) NOT NULL auto_increment,
-            `created` timestamp NOT NULL default CURRENT_TIMESTAMP on update CURRENT_TIMESTAMP,
-            `updated` timestamp NOT NULL default '0000-00-00 00:00:00',
+            `updated` timestamp NOT NULL default CURRENT_TIMESTAMP on update CURRENT_TIMESTAMP,
+            `created` timestamp NOT NULL default '0000-00-00 00:00:00',
             `TestSection_id` bigint(20) NOT NULL,
             `index` int(11) NOT NULL,
             `value` text NOT NULL,
@@ -147,6 +147,24 @@ class TestSectionValue extends OTable
                             break;
                         }
                 }
+            }
+        }
+        if (Ini::does_patch_apply("3.5.0", $previous_version))
+        {
+            $sql = sprintf("ALTER TABLE `%s` CHANGE `created` `updated_temp` TIMESTAMP ON UPDATE CURRENT_TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP;", self::get_mysql_table());
+            if (!mysql_query($sql))
+            {
+                return false;
+            }
+            $sql = sprintf("ALTER TABLE `%s` CHANGE `updated` `created` TIMESTAMP NOT NULL DEFAULT  '0000-00-00 00:00:00';", self::get_mysql_table());
+            if (!mysql_query($sql))
+            {
+                return false;
+            }
+            $sql = sprintf("ALTER TABLE `%s` CHANGE `updated_temp` `updated` TIMESTAMP ON UPDATE CURRENT_TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP;", self::get_mysql_table());
+            if (!mysql_query($sql))
+            {
+                return false;
             }
         }
         return true;

@@ -43,13 +43,17 @@ if ($readable)
     </div>
 
     <div align="center">
+        <?php if ($logged_user->is_module_accesible($class_name)) { ?>
         <div align="center" id="div<?= $class_name ?>List" class="table fullWidth">
             <?php include Ini::$path_internal . 'cms/view/includes/list.inc.php'; ?>
         </div>
+        <?php } ?>
 
+        <?php if ($logged_user->is_module_writeable($class_name)) { ?>
         <div align="center" id="div<?= $class_name ?>Form" class="table" style="display:none;">
             <?php include Ini::$path_internal . 'cms/view/' . $class_name . '_form.php'; ?>
         </div>
+        <?php } ?>
     </div>
     <?php
 }

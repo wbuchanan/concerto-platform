@@ -42,6 +42,7 @@ class Ini
     public static $r_server_timeout = 2100;
     public static $timer_tamper_prevention = true;
     public static $timer_tamper_prevention_tolerance = 3;
+    public static $path_online_library_ws = "";
 
     function __construct($connect = true, $session = true)
     {
@@ -93,6 +94,7 @@ class Ini
         self::$r_instances_persistant = $r_instances_persistant;
         self::$r_instances_timeout = $r_instances_persistant_instance_timeout;
         self::$r_server_timeout = $r_instances_persistant_server_timeout;
+        self::$path_online_library_ws = "http://concerto.e-psychometrics.com/demo/online_library/ws.php";
     }
 
     public static function does_patch_apply($patch_version, $previous_version)
@@ -192,6 +194,7 @@ class Ini
     private function load_classes()
     {
         require_once self::$path_internal . "cms/lib/simplehtmldom/simple_html_dom.php";
+        require_once self::$path_internal . "cms/lib/nusoap/nusoap.php";
         require_once self::$path_internal . "cms/model/Language.php";
         require_once self::$path_internal . "cms/model/OTable.php";
         require_once self::$path_internal . "cms/model/Setting.php";

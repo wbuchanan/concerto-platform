@@ -46,11 +46,72 @@ OModule.inheritance=function(obj)
     
     obj.uiDownload=function(){
         
+    };
+    
+    obj.upload=function(oid){
+        $.post("query/upload_object.php",{
+            class_name:this.className,
+            oid:oid,
+            name:$("#inputDialogUploadName").val(),
+            description:Methods.getCKEditorData("#textareaDialogUploadDescription"),
+            author:$("#inputDialogUploadAuthor").val(),
+            revision:$("#inputDialogUploadRevision").val()
+        },function(data){
+            switch(data.result){
+                case 0:{
+                    $("#divDialogUpload").dialog("close");
+                    Methods.alert(dictionary["s384"], "info", dictionary["s382"]);
+                    break;
+                }
+                case -1:{
+                    Methods.alert(dictionary["s278"], "alert", dictionary["s382"]);
+                    location.reload();
+                    break;
+                }
+                case -2:{
+                    Methods.alert(dictionary["s81"], "alert", dictionary["s382"]);
+                    break;
+                }
+            }
+        },"json");
     }
     
     obj.uiUpload=function(oid){
-        
-    }
+        var thisClass = this;
+        Methods.modalLoading();
+        $.post("view/upload_form.php",{
+            class_name:thisClass.className,
+            oid:oid
+        },function(data){
+            $("#divDialogUpload").html(data);
+            $("#divDialogUpload").dialog({
+                modal:true,
+                resizable:false,
+                title:dictionary["s382"],
+                width:950,
+                open:function(){
+                    Methods.stopModalLoading();
+                    Methods.iniCKEditor("#textareaDialogUploadDescription", function(){
+                        $("#divDialogUpload").dialog("option","position","center"); 
+                    })
+                },
+                buttons:[
+                {
+                    text:dictionary["s383"],
+                    click:function(){
+                        thisClass.upload(oid);
+                    }
+                },
+                {
+                    text:dictionary["s23"],
+                    click:function(){
+                        $(this).dialog("close");
+                    }
+                }
+                ]
+            })
+        })
+    };
     
     obj.uiAdd=function(ignoreOnBefore)
     {

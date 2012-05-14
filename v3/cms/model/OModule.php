@@ -95,6 +95,21 @@ class OModule extends OTable
         return Language::string(69) . ": " . $this->id . ($this->has_Owner() ? ", " . Language::string(71) . ": " . $this->get_owner_full_name() : "");
     }
 
+    public function upload($name, $author, $revision, $description)
+    {
+        $client = new nusoap_client(Ini::$path_online_library_ws . "?wsdl", true);
+        $result = $client->call("upload", array(
+            "Module_id" => DS_Module::from_property(array("value" => static::get_mysql_table()), false)->id,
+            "name" => $name,
+            "author" => $author,
+            "revision" => $revision,
+            "description" => $description,
+            "xml" => $this->export(),
+            "version" => Ini::$version
+                ));
+        return json_encode(array("result" => $result));
+    }
+
     public static function get_list_columns()
     {
         $cols = array();
@@ -108,7 +123,7 @@ class OModule extends OTable
                 "sortable" => false,
                 "type" => "string",
                 "groupable" => false,
-                "template" => "<span class='spanIcon ui-icon ui-icon-help tooltip' title='".'${get_description}'."'></span>",
+                "template" => "<span class='spanIcon ui-icon ui-icon-help tooltip' title='" . '${get_description}' . "'></span>",
                 "width" => 40,
                 "show" => true
             ));

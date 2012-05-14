@@ -159,14 +159,14 @@ class TestSection extends OTable
                             ", $vals[$j], $ret->name);
 
                         $code.=sprintf("
-                            if(suppressWarnings(!is.na(as.numeric(%s)))) %s <- as.numeric(%s)
-                            ", $vals[$j], $vals[$j], $vals[$j]);
+                            if(!is.null(%s) && !is.na(%s) && is.character(%s) && suppressWarnings(!is.na(as.numeric(%s)))) %s <<- as.numeric(%s)
+                            ", $vals[$j], $vals[$j], $vals[$j], $vals[$j], $vals[$j], $vals[$j]);
 
                         $j++;
                     }
                     $code.=sprintf("
                         return(%d)
-                        ", ($this->end==0?$next_counter:-2));
+                        ", ($this->end == 0 ? $next_counter : -2));
                     return $code;
                 }
             case DS_TestSectionType::R_CODE:
@@ -174,7 +174,7 @@ class TestSection extends OTable
                     $code = sprintf("
                         %s
                         return(%d)
-                        ", $vals[0], ($this->end==0?$next_counter:-2)
+                        ", $vals[0], ($this->end == 0 ? $next_counter : -2)
                     );
                     return $code;
                 }
@@ -184,7 +184,7 @@ class TestSection extends OTable
                     $template = Template::from_mysql_id($template_id);
                     if ($template == null)
                             return sprintf("stop('Invalid template id: %s in section #%s')", $template_id, $this->counter);
-                    
+
                     $code = sprintf("
                         update.session.template_id(%d)
                         if(!exists('TIME_LIMIT')) TIME_LIMIT <<- 0
@@ -194,9 +194,9 @@ class TestSection extends OTable
                         update.session.HTML(%d)
                         update.session.template_testsection_id(%d)
                         return(%d)
-                        ", $template_id, TestSession::TEST_SESSION_STATUS_TEMPLATE, $next_counter, $template_id, $this->id, ($this->end==0?-1:-2)
+                        ", $template_id, TestSession::TEST_SESSION_STATUS_TEMPLATE, $next_counter, $template_id, $this->id, ($this->end == 0 ? -1 : -2)
                     );
-                    
+
                     return $code;
                 }
             case DS_TestSectionType::GO_TO:
@@ -264,7 +264,7 @@ class TestSection extends OTable
                         CONCERTO_SQL <- paste("%s",sep="")
                         CONCERTO_SQL_RESULT <- dbSendQuery(CONCERTO_DB_CONNECTION,CONCERTO_SQL)
                         return(%d)
-                        ', $sql, ($this->end==0?$next_counter:-2));
+                        ', $sql, ($this->end == 0 ? $next_counter : -2));
 
                     return $code;
                 }
@@ -275,8 +275,8 @@ class TestSection extends OTable
                     $conds_count = $vals[1];
 
                     $set_rvar_code = sprintf('
-                                if(suppressWarnings(!is.na(as.numeric(%s))) && length(%s)==1) %s <<- as.numeric(%s)
-                                ', $vals[4], $vals[4], $vals[4], $vals[4]);
+                                if(!is.null(%s) && !is.na(%s) && is.character(%s) && suppressWarnings(!is.na(as.numeric(%s)))) %s <<- as.numeric(%s)
+                                ', $vals[4], $vals[4], $vals[4], $vals[4], $vals[4], $vals[4]);
 
                     if ($type == 0)
                     {
@@ -335,7 +335,7 @@ class TestSection extends OTable
                         %s <<- fetch(CONCERTO_SQL_RESULT,n=-1)
                         %s
                         return(%d)
-                        ', $sql, $vals[4], $set_rvar_code, ($this->end==0?$next_counter:-2));
+                        ', $sql, $vals[4], $set_rvar_code, ($this->end == 0 ? $next_counter : -2));
                         return $code;
                     }
                     if ($type == 1)
@@ -346,7 +346,7 @@ class TestSection extends OTable
                         }
                         %s
                         return(%d)
-                        ', $vals[4], $vals[3], $set_rvar_code, ($this->end==0?$next_counter:-2)
+                        ', $vals[4], $vals[3], $set_rvar_code, ($this->end == 0 ? $next_counter : -2)
                         );
                         return $code;
                     }
@@ -381,7 +381,7 @@ class TestSection extends OTable
 
         $tstid = $xml->createElement("TestSectionType_id", htmlspecialchars($this->TestSectionType_id, ENT_QUOTES, "UTF-8"));
         $element->appendChild($tstid);
-        
+
         $end = $xml->createElement("end", htmlspecialchars($this->end, ENT_QUOTES, "UTF-8"));
         $element->appendChild($end);
 
@@ -410,8 +410,8 @@ class TestSection extends OTable
         $sql = "
             CREATE TABLE IF NOT EXISTS `TestSection` (
             `id` bigint(20) NOT NULL auto_increment,
-            `created` timestamp NOT NULL default CURRENT_TIMESTAMP on update CURRENT_TIMESTAMP,
-            `updated` timestamp NOT NULL default '0000-00-00 00:00:00',
+            `updated` timestamp NOT NULL default CURRENT_TIMESTAMP on update CURRENT_TIMESTAMP,
+            `created` timestamp NOT NULL default '0000-00-00 00:00:00',
             `counter` int(11) NOT NULL,
             `TestSectionType_id` int(11) NOT NULL,
             `Test_id` bigint(20) NOT NULL,
@@ -423,14 +423,34 @@ class TestSection extends OTable
         return mysql_query($sql);
     }
 
-    public static function update_db($previous_version) {
-        if (Ini::does_patch_apply("3.4.3", $previous_version)) {
+    public static function update_db($previous_version)
+    {
+        if (Ini::does_patch_apply("3.4.3", $previous_version))
+        {
             $sql = "ALTER TABLE `TestSection` ADD `end` tinyint(1) NOT NULL default '0';";
+            if (!mysql_query($sql)) return false;
+        }
+        if (Ini::does_patch_apply("3.5.0", $previous_version))
+        {
+            $sql = sprintf("ALTER TABLE `%s` CHANGE `created` `updated_temp` TIMESTAMP ON UPDATE CURRENT_TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP;", self::get_mysql_table());
             if (!mysql_query($sql))
+            {
                 return false;
+            }
+            $sql = sprintf("ALTER TABLE `%s` CHANGE `updated` `created` TIMESTAMP NOT NULL DEFAULT  '0000-00-00 00:00:00';", self::get_mysql_table());
+            if (!mysql_query($sql))
+            {
+                return false;
+            }
+            $sql = sprintf("ALTER TABLE `%s` CHANGE `updated_temp` `updated` TIMESTAMP ON UPDATE CURRENT_TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP;", self::get_mysql_table());
+            if (!mysql_query($sql))
+            {
+                return false;
+            }
         }
         return true;
     }
+
 }
 
 ?>

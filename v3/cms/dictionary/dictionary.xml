@@ -3008,5 +3008,77 @@ Note: You can add new languages by inserting "<new_language>string translated in
             <fr></fr>
             <bg></bg>
         </string>
+        <string id="376">
+            <en>name of an object</en>
+            <de></de>
+            <pl>nazwa obiektu</pl>
+            <cn></cn>
+            <fr></fr>
+            <bg></bg>
+        </string>
+        <string id="377">
+            <en>description of an object</en>
+            <de></de>
+            <pl>opis obiektu</pl>
+            <cn></cn>
+            <fr></fr>
+            <bg></bg>
+        </string>
+        <string id="378">
+            <en>author</en>
+            <de></de>
+            <pl>autor</pl>
+            <cn></cn>
+            <fr></fr>
+            <bg></bg>
+        </string>
+        <string id="379">
+            <en>revision</en>
+            <de></de>
+            <pl>wersja</pl>
+            <cn></cn>
+            <fr></fr>
+            <bg></bg>
+        </string>
+        <string id="380">
+            <en>author of an object</en>
+            <de></de>
+            <pl>autor obiektu</pl>
+            <cn></cn>
+            <fr></fr>
+            <bg></bg>
+        </string>
+        <string id="381">
+            <en>revision of an object</en>
+            <de></de>
+            <pl>wersja obiektu</pl>
+            <cn></cn>
+            <fr></fr>
+            <bg></bg>
+        </string>
+        <string id="382" js="1">
+            <en>uploading to online library</en>
+            <de></de>
+            <pl>wysylanie do biblioteki online</pl>
+            <cn></cn>
+            <fr></fr>
+            <bg></bg>
+        </string>
+        <string id="383" js="1">
+            <en>upload</en>
+            <de></de>
+            <pl>wysylij</pl>
+            <cn></cn>
+            <fr></fr>
+            <bg></bg>
+        </string>
+        <string id="384" js="1">
+            <en>object uploaded</en>
+            <de></de>
+            <pl>obiekt wyslany</pl>
+            <cn></cn>
+            <fr></fr>
+            <bg></bg>
+        </string>
     </strings>
 </root> 

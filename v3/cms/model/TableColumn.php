@@ -69,8 +69,8 @@ class TableColumn extends OTable
         $sql = "
             CREATE TABLE IF NOT EXISTS `TableColumn` (
             `id` bigint(20) NOT NULL auto_increment,
-            `created` timestamp NOT NULL default CURRENT_TIMESTAMP on update CURRENT_TIMESTAMP,
-            `udpated` timestamp NOT NULL default '0000-00-00 00:00:00',
+            `updated` timestamp NOT NULL default CURRENT_TIMESTAMP on update CURRENT_TIMESTAMP,
+            `created` timestamp NOT NULL default '0000-00-00 00:00:00',
             `index` int(11) NOT NULL,
             `name` text NOT NULL,
             `Table_id` bigint(20) NOT NULL,
@@ -90,10 +90,10 @@ class TableColumn extends OTable
             while ($r = mysql_fetch_array($z))
             {
                 $table = Table::from_mysql_id($r['Table_id']);
-                if($table==null) continue;
-                if(!$table->has_table())
+                if ($table == null) continue;
+                if (!$table->has_table())
                 {
-                    $sql2 = sprintf("DELETE FROM `Table` WHERE `id`=%d; DELETE FROM `TableColumn` WHERE `Table_id`=%d;",$r['Table_id'],$r['Table_id']);
+                    $sql2 = sprintf("DELETE FROM `Table` WHERE `id`=%d; DELETE FROM `TableColumn` WHERE `Table_id`=%d;", $r['Table_id'], $r['Table_id']);
                     mysql_query($sql2);
                     continue;
                 }
@@ -114,30 +114,51 @@ class TableColumn extends OTable
                 }
                 $old_name = $r['name'];
                 $new_name = Table::format_column_name($old_name);
-                
-                if($r['TableColumnType_id']==3)
+
+                if ($r['TableColumnType_id'] == 3)
                 {
                     $sql2 = sprintf("UPDATE `TableColumn` SET `TableColumnType_id`='%d' WHERE `id`='%d'", 4, $r['id']);
-                    if (!mysql_query($sql2)) {
+                    if (!mysql_query($sql2))
+                    {
                         return false;
                     }
                 }
-                
+
                 if ($old_name != $new_name)
                 {
                     $sql2 = sprintf("ALTER TABLE `%s` CHANGE `%s` `%s` %s;", $table_name, $old_name, $new_name, $type);
-                    $i=1;
-                    while(!mysql_query($sql2)) {
-                        $new_name = "col".$i;
+                    $i = 1;
+                    while (!mysql_query($sql2))
+                    {
+                        $new_name = "col" . $i;
                         $sql2 = sprintf("ALTER TABLE `%s` CHANGE `%s` `%s` %s;", $table_name, $old_name, $new_name, $type);
                         $i++;
                     }
 
                     $sql2 = sprintf("UPDATE `TableColumn` SET `name`='%s' WHERE `id`='%d'", $new_name, $r['id']);
-                    if (!mysql_query($sql2)) {
+                    if (!mysql_query($sql2))
+                    {
                         return false;
                     }
                 }
+            }
+        }
+        if (Ini::does_patch_apply("3.5.0", $previous_version))
+        {
+            $sql = sprintf("ALTER TABLE `%s` CHANGE `created` `updated_temp` TIMESTAMP ON UPDATE CURRENT_TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP;", self::get_mysql_table());
+            if (!mysql_query($sql))
+            {
+                return false;
+            }
+            $sql = sprintf("ALTER TABLE `%s` CHANGE `updated` `created` TIMESTAMP NOT NULL DEFAULT  '0000-00-00 00:00:00';", self::get_mysql_table());
+            if (!mysql_query($sql))
+            {
+                return false;
+            }
+            $sql = sprintf("ALTER TABLE `%s` CHANGE `updated_temp` `updated` TIMESTAMP ON UPDATE CURRENT_TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP;", self::get_mysql_table());
+            if (!mysql_query($sql))
+            {
+                return false;
             }
         }
         return true;
