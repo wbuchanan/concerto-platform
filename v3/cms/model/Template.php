@@ -50,9 +50,8 @@ class Template extends OModule
         return $inserts;
     }
 
-    public function get_insert_reference($name, $vals)
+    public static function get_insert_reference($name, $vals, $inserts)
     {
-        $inserts = $this->get_inserts();
         $j = 3;
         foreach ($inserts as $ins)
         {
@@ -77,8 +76,19 @@ class Template extends OModule
         return $name;
     }
 
-    public static function convert_html_with_return_properties($html, $vals, $outputs)
+    public static function output_html($html, $vals, $outputs, $inserts=null)
     {
+        if ($inserts != null)
+        {
+            foreach ($inserts as $insert)
+            {
+                $ref = Template::get_insert_reference($insert, $vals, $inserts);
+                if ($ref != $insert)
+                {
+                    $html = str_replace("{{" . $insert . "}}", "{{" . $ref . "}}", $html);
+                }
+            }
+        }
         $html = str_get_html($html);
         foreach ($outputs as $out)
         {
@@ -94,12 +104,6 @@ class Template extends OModule
             }
         }
         return $html->save();
-    }
-
-    public function get_html_with_return_properties($vals)
-    {
-        $outputs = $this->get_outputs();
-        return Template::convert_html_with_return_properties($this->HTML, $vals, $outputs);
     }
 
     public function get_outputs()
@@ -189,7 +193,7 @@ class Template extends OModule
 
         $name = $xml->createElement("name", htmlspecialchars($this->name, ENT_QUOTES, "UTF-8"));
         $element->appendChild($name);
-        
+
         $description = $xml->createElement("description", htmlspecialchars($this->name, ENT_QUOTES, "UTF-8"));
         $element->appendChild($description);
 
@@ -253,12 +257,12 @@ class Template extends OModule
     {
         return Template::strip_html($this->HTML);
     }
-    
+
     public function get_description()
     {
         return Template::strip_html($this->description);
     }
-    
+
     public static function update_db($previous_version)
     {
         if (Ini::does_patch_apply("3.5.0", $previous_version))

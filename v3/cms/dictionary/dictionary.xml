@@ -580,7 +580,7 @@ Note: You can add new languages by inserting "<new_language>string translated in
             <fr>section personnalisée sans nom</fr>
             <bg>неименувана персонализирана секция</bg>
         </string>
-        <string id="69">
+        <string id="69" js="1">
             <en>id</en>
             <de>id</de>
             <pl>id</pl>
@@ -2968,7 +2968,7 @@ Note: You can add new languages by inserting "<new_language>string translated in
             <fr></fr>
             <bg></bg>
         </string>
-        <string id="371">
+        <string id="371" js="1">
             <en>info</en>
             <pl>info</pl>
             <de></de>
@@ -2992,7 +2992,7 @@ Note: You can add new languages by inserting "<new_language>string translated in
             <fr></fr>
             <bg></bg>
         </string>
-        <string id="374">
+        <string id="374" js="1">
             <en>download from online library</en>
             <de></de>
             <pl>sciagnij z biblioteki online</pl>
@@ -3024,7 +3024,7 @@ Note: You can add new languages by inserting "<new_language>string translated in
             <fr></fr>
             <bg></bg>
         </string>
-        <string id="378">
+        <string id="378" js="1">
             <en>author</en>
             <de></de>
             <pl>autor</pl>
@@ -3032,7 +3032,7 @@ Note: You can add new languages by inserting "<new_language>string translated in
             <fr></fr>
             <bg></bg>
         </string>
-        <string id="379">
+        <string id="379" js="1">
             <en>revision</en>
             <de></de>
             <pl>wersja</pl>
@@ -3076,6 +3076,38 @@ Note: You can add new languages by inserting "<new_language>string translated in
             <en>object uploaded</en>
             <de></de>
             <pl>obiekt wyslany</pl>
+            <cn></cn>
+            <fr></fr>
+            <bg></bg>
+        </string>
+        <string id="385" js="1">
+            <en>upload date</en>
+            <de></de>
+            <pl>data wyslania</pl>
+            <cn></cn>
+            <fr></fr>
+            <bg></bg>
+        </string>
+        <string id="386" js="1">
+            <en>download count</en>
+            <de></de>
+            <pl>ilosc pobran</pl>
+            <cn></cn>
+            <fr></fr>
+            <bg></bg>
+        </string>
+        <string id="387" js="1">
+            <en>downloading object from online library</en>
+            <de></de>
+            <pl>pobieranie obiektu z biblioteki online</pl>
+            <cn></cn>
+            <fr></fr>
+            <bg></bg>
+        </string>
+        <string id="388" js="1">
+            <en>object downloaded</en>
+            <de></de>
+            <pl>obiekt sciagniety</pl>
             <cn></cn>
             <fr></fr>
             <bg></bg>

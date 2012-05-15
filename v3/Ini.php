@@ -149,6 +149,7 @@ class Ini
         TestSection::create_db(true);
         TestSectionValue::create_db(true);
         TestSession::create_db(true);
+        TestTemplate::create_db(true);
         User::create_db(true);
         UserGroup::create_db(true);
         UserType::create_db(true);
@@ -174,6 +175,7 @@ class Ini
             "TestSection",
             "TestSectionValue",
             "TestSession",
+            "TestTemplate",
             "User",
             "UserGroup",
             "UserType",
@@ -213,6 +215,7 @@ class Ini
         require_once self::$path_internal . "cms/model/TestSection.php";
         require_once self::$path_internal . "cms/model/TestSectionValue.php";
         require_once self::$path_internal . "cms/model/TestSession.php";
+        require_once self::$path_internal . "cms/model/TestTemplate.php";
         require_once self::$path_internal . "cms/model/CustomSection.php";
         require_once self::$path_internal . "cms/model/CustomSectionVariable.php";
         require_once self::$path_internal . "cms/model/ODataSet.php";

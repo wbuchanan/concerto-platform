@@ -15,7 +15,7 @@ GNU General Public License for more details.
 You should have received a copy of the GNU General Public License
 along with this program; if not, write to the Free Software
 Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA.
-*/
+ */
 
 function OModule() {};
 
@@ -44,8 +44,199 @@ OModule.inheritance=function(obj)
         $("#row"+this.className+this.currentID+" td").addClass("ui-state-highlight");
     };
     
+    obj.download=function(oid){
+        $.post("query/download_object.php",{
+            class_name:this.className,
+            oid:oid
+        },function(data){
+            switch(data.result){
+                case 0:{
+                    $("#divDialogDownload").dialog("close");
+                    Methods.alert(dictionary["s388"], "info", dictionary["s387"]);
+                    break;
+                }
+                case -1:{
+                    Methods.alert(dictionary["s278"], "alert", dictionary["s387"]);
+                    location.reload();
+                    break;
+                }
+                case -2:{
+                    Methods.alert(dictionary["s81"], "alert", dictionary["s387"]);
+                    break;
+                }
+            }
+        },"json");
+    }
+    
     obj.uiDownload=function(){
+        var thisClass = this;
+        $("#divDialogDownload").html("<div id='divDialogDownloadGrid' class='notVisible'></div>");
         
+        $("#divDialogDownload").dialog({
+            modal:true,
+            resizable:false,
+            title:dictionary["s387"],
+            width:950,
+            open:function(){
+                Methods.stopModalLoading();
+                
+                $("#divDialogDownloadGrid").kendoGrid({
+                    dataBound:function(e){
+                        Methods.iniTooltips();
+                        if(this.dataSource.group().length == 0) {
+                            setTimeout( function() {
+                                $(".k-grouping-header").html(dictionary["s339"]);
+                                $("select[name='logic']").each(function() {
+                                    $(this).data("kendoDropDownList").dataSource.data([
+                                    {
+                                        text: dictionary["s227"], 
+                                        value: "and"
+                                    },
+
+                                    {
+                                        text: dictionary["s228"], 
+                                        value: "or"
+                                    }
+                                    ]);
+                                    $(this).data("kendoDropDownList").select(0);
+                                });
+                            });
+                        }
+                    },
+                    dataSource: {
+                        transport:{
+                            read: {
+                                url:"query/get_library_list.php?class_name="+thisClass.className,
+                                dataType:"json"
+                            }
+                        },
+                        schema:{
+                            model:{
+                                fields:{
+                                    id: {
+                                        type: "number"
+                                    },
+                                    description: {
+                                        type: "string"
+                                    },
+                                    name: {
+                                        type:"string"
+                                    },
+                                    author: {
+                                        type:"string"
+                                    },
+                                    revision: {
+                                        type:"string"
+                                    },
+                                    uploaded: {
+                                        type:"string"
+                                    },
+                                    count: {
+                                        type:"number"
+                                    }
+                                }
+                            }
+                        },
+                        pageSize:15
+                    },
+                    filterable:{
+                        messages: {
+                            info: dictionary["s340"],
+                            filter: dictionary["s341"],
+                            clear: dictionary["s342"]
+                        },
+                        operators: {
+                            string: {
+                                eq: dictionary["s222"],
+                                neq: dictionary["s221"],
+                                startswith: dictionary["s343"],
+                                contains: dictionary["s344"],
+                                endswith: dictionary["s345"]
+                            },
+                            number: {
+                                eq: dictionary["s222"],
+                                neq: dictionary["s221"],
+                                gte: dictionary["s224"],
+                                gt: dictionary["s223"],
+                                lte: dictionary["s226"],
+                                lt: dictionary["s225"]
+                            }
+                        }
+                    },
+                    sortable:true,
+                    pageable:true,
+                    groupable:true,
+                    scrollable:false,
+                    columns:[
+                    {
+                        title: dictionary["s371"],
+                        width: 40,
+                        template: "<span class='spanIcon ui-icon ui-icon-help tooltip' title='${description}'></span>",
+                        field: "description",
+                        filterable: false,
+                        sortable: false,
+                        groupable: false
+                    },
+                    {
+                        title: dictionary["s69"],
+                        width: 40,
+                        field: "id",
+                        filterable: true,
+                        sortable: true,
+                        groupable: false
+                    },
+                    {
+                        title: dictionary["s378"],
+                        field: "author",
+                        filterable: true,
+                        sortable: true,
+                        groupable: true
+                    },
+                    {
+                        title: dictionary["s39"],
+                        field: "revision",
+                        filterable: true,
+                        sortable: true,
+                        groupable: true
+                    },
+                    {
+                        title: dictionary["s385"],
+                        field: "uploaded",
+                        filterable: true,
+                        sortable: true,
+                        groupable: true
+                    },
+                    {
+                        title: dictionary["s386"],
+                        field: "count",
+                        filterable: true,
+                        sortable: true,
+                        groupable: true
+                    },
+                    {
+                        title:'', 
+                        width:30, 
+                        filterable: false, 
+                        sortable: false, 
+                        groupable: false, 
+                        template: "<span style='display:inline-block;' class='spanIcon tooltip ui-icon ui-icon-gear' onclick='"+thisClass.className+".download(${ id })' title='"+dictionary["s374"]+"'></span>"
+                    }
+                    ]
+                });
+            
+                Methods.iniIconButton(".btnDownload","gear");
+                
+                $("#divDialogDownload").dialog("option","position","center"); 
+            },
+            buttons:[
+            {
+                text:dictionary["s23"],
+                click:function(){
+                    $(this).dialog("close");
+                }
+            }
+            ]
+        })
     };
     
     obj.upload=function(oid){

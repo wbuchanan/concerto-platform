@@ -88,7 +88,7 @@ class Table extends OModule
                 }
                 $i++;
             }
-            $sql.=") ENGINE = INNODB;";
+            $sql.=") ENGINE = INNODB DEFAULT CHARSET=utf8;";
             mysql_query($sql);
 
             $pers_cols = TableColumn::from_property(array("Table_id" => $lid));
@@ -217,7 +217,7 @@ class Table extends OModule
 
                     $j++;
                 }
-                $sql.=") ENGINE = INNODB;";
+                $sql.=") ENGINE = INNODB DEFAULT CHARSET=utf8;";
                 mysql_query($sql);
             }
             $cols = "";
@@ -267,7 +267,7 @@ class Table extends OModule
                         $sql2 = sprintf("INSERT INTO `%s` (`index`,`name`,`Table_id`,`TableColumnType_id`) VALUES (%d,'%s',%d,%d)", TableColumn::get_mysql_table(), $i, $column_name, $this->id, 1);
                         if (!mysql_query($sql2)) return -4;
                     }
-                    $sql.=") ENGINE = INNODB;";
+                    $sql.=") ENGINE = INNODB DEFAULT CHARSET=utf8;";
                     if (!mysql_query($sql)) return -4;
                     if ($header)
                     {

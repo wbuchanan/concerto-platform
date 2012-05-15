@@ -60,13 +60,13 @@ update.session.template_id <- function(CONCERTO_PARAM){
    dbSendQuery(CONCERTO_DB_CONNECTION, statement = sprintf("UPDATE `%s`.`TestSession` SET `Template_id` ='%s' WHERE `id`=%s",dbEscapeStrings(CONCERTO_DB_CONNECTION,CONCERTO_DB_NAME),CONCERTO_PARAM,dbEscapeStrings(CONCERTO_DB_CONNECTION,CONCERTO_TEST_SESSION_ID)))
 }
 
-update.session.HTML <- function(CONCERTO_PARAM){
-   CONCERTO_PARAM <- dbEscapeStrings(CONCERTO_DB_CONNECTION,toString(fill.session.HTML(get.template.HTML(CONCERTO_PARAM))))
+update.session.HTML <- function(CONCERTO_PARAM1, CONCERTO_PARAM2, CONCERTO_PARAM3){
+   CONCERTO_PARAM <- dbEscapeStrings(CONCERTO_DB_CONNECTION,toString(fill.session.HTML(get.template.HTML(CONCERTO_PARAM1,CONCERTO_PARAM2,CONCERTO_PARAM3))))
    dbSendQuery(CONCERTO_DB_CONNECTION, statement = sprintf("UPDATE `%s`.`TestSession` SET `HTML` = '%s' WHERE `id`=%s",dbEscapeStrings(CONCERTO_DB_CONNECTION,CONCERTO_DB_NAME),CONCERTO_PARAM,dbEscapeStrings(CONCERTO_DB_CONNECTION,CONCERTO_TEST_SESSION_ID)))
 }
 
-get.template.HTML <- function(CONCERTO_PARAM) {
-    CONCERTO_SQL <- sprintf("SELECT `HTML` FROM `Template` WHERE `id`=%s",dbEscapeStrings(CONCERTO_DB_CONNECTION,toString(CONCERTO_PARAM)))
+get.template.HTML <- function(CONCERTO_PARAM1,CONCERTO_PARAM2,CONCERTO_PARAM3) {
+    CONCERTO_SQL <- sprintf("SELECT `HTML` FROM `TestTemplate` WHERE `Test_id`=%s AND `TestSection_id`=%s AND `Template_id`=%s",dbEscapeStrings(CONCERTO_DB_CONNECTION,toString(CONCERTO_PARAM1)),dbEscapeStrings(CONCERTO_DB_CONNECTION,toString(CONCERTO_PARAM2)),dbEscapeStrings(CONCERTO_DB_CONNECTION,toString(CONCERTO_PARAM3)))
     CONCERTO_SQL_RESULT <- dbSendQuery(CONCERTO_DB_CONNECTION,CONCERTO_SQL)
     CONCERTO_SQL_RESULT <- fetch(CONCERTO_SQL_RESULT,n=-1)
     return(CONCERTO_SQL_RESULT[1,1])

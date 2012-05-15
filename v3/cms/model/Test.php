@@ -37,7 +37,10 @@ class Test extends OModule
     {
         $lid = parent::mysql_save_from_post($post);
 
-        if ($this->id != 0) $this->delete_sections();
+        if ($this->id != 0) {
+            $this->delete_sections();
+            $this->delete_templates();
+        }
         else
         {
             $start_section = new TestSection();
@@ -81,6 +84,21 @@ class Test extends OModule
                     $sv->value = $value;
                     $sv->mysql_save();
                 }
+
+                if ($s->TestSectionType_id == DS_TestSectionType::LOAD_HTML_TEMPLATE)
+                {
+                    $ts = TestSection::from_mysql_id($slid);                    
+                    $vals = $ts->get_values();
+                    $template = Template::from_mysql_id($vals[0]);
+                    $html = Template::output_html($template->HTML, $vals, $template->get_outputs(), $template->get_inserts());
+                    
+                    $test_template = new TestTemplate();
+                    $test_template->Test_id = $lid;
+                    $test_template->TestSection_id = $slid;
+                    $test_template->Template_id = $vals[0];
+                    $test_template->HTML = $html;
+                    $test_template->mysql_save();
+                }
             }
         }
 
@@ -104,6 +122,7 @@ class Test extends OModule
     {
         $this->delete_sections();
         $this->delete_sessions();
+        $this->delete_templates();
         parent::mysql_delete();
     }
 
@@ -113,6 +132,15 @@ class Test extends OModule
         foreach ($sections as $section)
         {
             $section->mysql_delete();
+        }
+    }
+    
+    public function delete_templates()
+    {
+        $templates = TestTemplate::from_property(array("Test_id" => $this->id));
+        foreach ($templates as $template)
+        {
+            $template->mysql_delete();
         }
     }
 
@@ -450,7 +478,7 @@ class Test extends OModule
 
         $name = $xml->createElement("name", htmlspecialchars($this->name, ENT_QUOTES, "UTF-8"));
         $element->appendChild($name);
-        
+
         $description = $xml->createElement("description", htmlspecialchars($this->name, ENT_QUOTES, "UTF-8"));
         $element->appendChild($description);
 
@@ -519,7 +547,7 @@ class Test extends OModule
         }
         return $result;
     }
-    
+
     public function get_description()
     {
         return Template::strip_html($this->description);

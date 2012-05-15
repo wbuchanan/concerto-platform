@@ -161,4 +161,7 @@ if ($logged_user == null)
 <div id="divDialogUpload" class="notVisible">
 </div>
 
+<div id="divDialogDownload" class="notVisible">
+</div>
+
 <div class="margin padding ui-widget-content ui-corner-all table" align="center"><?php include Ini::$path_internal . 'cms/view/includes/footer.inc.php'; ?></div>

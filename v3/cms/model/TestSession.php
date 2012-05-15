@@ -49,21 +49,21 @@ class TestSession extends OTable
     {
         return Test::from_mysql_id($this->Test_id);
     }
-    
+
     public function register()
     {
-        if(array_key_exists("sids", $_SESSION))
+        if (array_key_exists("sids", $_SESSION))
         {
-            if(array_key_exists(session_id(), $_SESSION['sids']))
+            if (array_key_exists(session_id(), $_SESSION['sids']))
             {
                 TestSession::unregister($_SESSION['sids'][session_id()]);
                 $_SESSION['sids'][session_id()] = $this->id;
             }
             else $_SESSION['sids'][session_id()] = $this->id;
         }
-        else 
+        else
         {
-            $_SESSION['sids']=array();
+            $_SESSION['sids'] = array();
             $_SESSION['sids'][session_id()] = $this->id;
         }
     }
@@ -71,10 +71,10 @@ class TestSession extends OTable
     public static function unregister($id)
     {
         $obj = TestSession::from_mysql_id($id);
-        if($obj!=null) $obj->remove();
+        if ($obj != null) $obj->remove();
         unset($_SESSION['sids'][session_id()]);
     }
-    
+
     public static function start_new($test_id, $r_type, $debug=false)
     {
         $session = new TestSession();
@@ -234,7 +234,7 @@ class TestSession extends OTable
                     $thisSession->status == TestSession::TEST_SESSION_STATUS_ERROR ||
                     $thisSession->status == TestSession::TEST_SESSION_STATUS_STOPPED ||
                     $thisSession->status == TestSession::TEST_SESSION_STATUS_TAMPERED ||
-                    $close || 
+                    $close ||
                     $thisSession->release == 1)
             {
                 //$thisSession->remove();
@@ -254,14 +254,9 @@ class TestSession extends OTable
             $html = "";
             if ($thisSession->status == TestSession::TEST_SESSION_STATUS_TEMPLATE)
             {
-                $section = TestSection::from_mysql_id($thisSession->Template_TestSection_id);
-                $template = Template::from_mysql_id($thisSession->Template_id);
-                if ($section != null && $template != null)
-                {
-                    $html = Template::convert_html_with_return_properties($thisSession->HTML, $section->get_values(), $template->get_outputs());
-                    if ($thisSession->debug == 1)
-                            $html = Template::strip_html($html);
-                }
+                $html = $thisSession->HTML;
+                if ($thisSession->debug == 1)
+                        $html = Template::strip_html($html);
             }
 
             $response = array(
@@ -484,12 +479,12 @@ class TestSession extends OTable
             $sql = "ALTER TABLE `TestSession` ADD `Template_TestSection_id` bigint(20) NOT NULL default '0';";
             if (!mysql_query($sql)) return false;
         }
-        
+
         if (Ini::does_patch_apply("3.4.3", $previous_version))
         {
             $sql = "ALTER TABLE `TestSession` ADD `debug` tinyint(1) NOT NULL default '0';";
             if (!mysql_query($sql)) return false;
-            
+
             $sql = "ALTER TABLE `TestSession` ADD `release` tinyint(1) NOT NULL default '0';";
             if (!mysql_query($sql)) return false;
         }

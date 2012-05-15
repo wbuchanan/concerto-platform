@@ -191,10 +191,10 @@ class TestSection extends OTable
                         update.session.time_limit(TIME_LIMIT)
                         update.session.status(%d)
                         update.session.counter(%d)
-                        update.session.HTML(%d)
                         update.session.template_testsection_id(%d)
+                        update.session.HTML(%d,%d,%d)
                         return(%d)
-                        ", $template_id, TestSession::TEST_SESSION_STATUS_TEMPLATE, $next_counter, $template_id, $this->id, ($this->end == 0 ? -1 : -2)
+                        ", $template_id, TestSession::TEST_SESSION_STATUS_TEMPLATE, $next_counter, $this->id, $this->Test_id, $this->id, $template_id, ($this->end == 0 ? -1 : -2)
                     );
 
                     return $code;
