@@ -45,6 +45,7 @@ OModule.inheritance=function(obj)
     };
     
     obj.download=function(oid){
+        var thisClass = this;
         $.post("query/download_object.php",{
             class_name:this.className,
             oid:oid
