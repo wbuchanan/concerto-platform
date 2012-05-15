@@ -3112,5 +3112,13 @@ Note: You can add new languages by inserting "<new_language>string translated in
             <fr></fr>
             <bg></bg>
         </string>
+        <string id="389" js="1">
+            <en>Object download failed</en>
+            <de></de>
+            <pl>Nie powiodlo sie sciagniecie obiektu.</pl>
+            <cn></cn>
+            <fr></fr>
+            <bg></bg>
+        </string>
     </strings>
 </root> 

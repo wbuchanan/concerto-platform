@@ -43,5 +43,5 @@ $result = $client->call("get_list", array(
     "version" => Ini::$version
         ));
 
-echo json_encode($result);
+echo $result; 
 ?>

@@ -53,6 +53,7 @@ OModule.inheritance=function(obj)
                 case 0:{
                     $("#divDialogDownload").dialog("close");
                     Methods.alert(dictionary["s388"], "info", dictionary["s387"]);
+                    thisClass.uiReload(data.oid);
                     break;
                 }
                 case -1:{
@@ -64,13 +65,16 @@ OModule.inheritance=function(obj)
                     Methods.alert(dictionary["s81"], "alert", dictionary["s387"]);
                     break;
                 }
+                case -3:{
+                    Methods.alert(dictionary["s389"], "alert", dictionary["s387"]);
+                    break;
+                }
             }
         },"json");
     }
     
     obj.uiDownload=function(){
         var thisClass = this;
-        $("#divDialogDownload").html("<div id='divDialogDownloadGrid' class='notVisible'></div>");
         
         $("#divDialogDownload").dialog({
             modal:true,
@@ -79,7 +83,7 @@ OModule.inheritance=function(obj)
             width:950,
             open:function(){
                 Methods.stopModalLoading();
-                
+                $("#divDialogDownload").html("<div id='divDialogDownloadGrid'></div>");
                 $("#divDialogDownloadGrid").kendoGrid({
                     dataBound:function(e){
                         Methods.iniTooltips();
@@ -112,6 +116,7 @@ OModule.inheritance=function(obj)
                         },
                         schema:{
                             model:{
+                                id: "id",
                                 fields:{
                                     id: {
                                         type: "number"
@@ -186,6 +191,13 @@ OModule.inheritance=function(obj)
                         groupable: false
                     },
                     {
+                        title: dictionary["s70"],
+                        field: "name",
+                        filterable: true,
+                        sortable: true,
+                        groupable: false
+                    },
+                    {
                         title: dictionary["s378"],
                         field: "author",
                         filterable: true,
@@ -193,7 +205,7 @@ OModule.inheritance=function(obj)
                         groupable: true
                     },
                     {
-                        title: dictionary["s39"],
+                        title: dictionary["s379"],
                         field: "revision",
                         filterable: true,
                         sortable: true,

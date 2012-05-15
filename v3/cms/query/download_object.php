@@ -42,4 +42,14 @@ $result = $client->call("download", array(
     "id" => $_POST['oid']
         ));
 
-echo json_encode(array("result" => 0));
+if ($result != false)
+{
+    $obj = new $_POST['class_name']();
+    $obj->Owner_id = $logged_user->id;
+
+    $xml = new DOMDocument('1.0', 'UTF-8');
+    @$xml->loadXML($result);
+
+    $oid = $obj->import_XML($xml);
+    echo json_encode(array("result" => 0, "oid" => $oid));
+} else echo json_encode(array("result" => -3));
