@@ -24,6 +24,12 @@ root {
 body{
     font-size: 10px;
     background: url(img/stripe.png) repeat;
+    -webkit-touch-callout: none;
+    -webkit-user-select: none;
+    -khtml-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
 }
 
 .padding {
