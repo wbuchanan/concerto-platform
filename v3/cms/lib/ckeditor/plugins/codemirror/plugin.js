@@ -28,7 +28,7 @@ CKEDITOR.plugins.add( 'codemirror', {
                     fixedGutter:true,
                     lineNumbers:true,
                     matchBrackets:true,
-                    lineWrapping:true,
+                    lineWrapping:false,
                     autoClearEmptyLines:true,
                     indentWithTabs:true,
                     onChange:function(instance){

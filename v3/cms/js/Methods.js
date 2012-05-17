@@ -304,7 +304,7 @@ Methods.iniCodeMirror=function(id,mode,readOnly)
         theme:"night",
         lineNumbers:true,
         matchBrackets:true,
-        lineWrapping:true, 
+        lineWrapping:false, 
         autoClearEmptyLines:true,
         indentWithTabs:true,
         "readOnly":(readOnly!=null&readOnly?true:false),
