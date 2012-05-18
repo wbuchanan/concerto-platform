@@ -41,7 +41,8 @@ if (array_key_exists('oid', $_POST) && $_POST['oid'] != 0)
     $vals = $section->get_values();
 }
 
-$table = Table::from_mysql_id($vals[3]);
+$table = null;
+if(isset($vals[3])) $table = Table::from_mysql_id($vals[3]);
 $description = Language::string(372);
 if ($table != null)
 {
