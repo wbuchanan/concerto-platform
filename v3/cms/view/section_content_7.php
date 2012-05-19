@@ -30,3 +30,26 @@ if ($logged_user == null)
     die(Language::string(278));
 }
 ?>
+
+<div class="divSectionContent">
+    <div class="divSectionSummary">
+        <table class="fullWidth tableSectionHeader">
+            <tr>
+                <td class="tdSectionColumnIcon"></td>
+                <td class="ui-widget-header tdSectionColumnCounter"><?= $_POST['counter'] ?></td>
+                <td class="tdSectionColumnIcon"><span class="spanIcon ui-icon ui-icon-help tooltip" title="<?= DS_TestSectionType::get_description_by_id(7) ?>"></span></td>
+                <td class="tdSectionColumnIcon"><span class="spanIcon ui-icon ui-icon-folder-collapsed tooltip" title="<?= Language::string(390) ?>"></span></td>
+                <td class="tdSectionColumnType"><?= DS_TestSectionType::get_name_by_id(7) ?></td>
+                <td class="tdSectionColumnAction"></td>
+                <td class="tdSectionColumnEnd"><table><tr><td></td></tr></table></td>
+                <td class="tdSectionColumnIcon"></td>
+                <td class="tdSectionColumnIcon"></td>
+            </tr>
+        </table>
+    </div>
+    <div class="divSectionDetail notVisible">
+    </div>
+</div>
+<div class="divSectionContainer">
+
+</div>

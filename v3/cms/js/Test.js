@@ -172,38 +172,6 @@ Test.getSerializedSections=function(){
     return result;
 }
 
-Test.getSectionTypeDescription=function(type){
-    switch(type){
-        case Test.sectionTypes.RCode:{
-            return dictionary["s40"];
-        }
-        case Test.sectionTypes.loadTemplate:{
-            return dictionary["s41"];
-        }
-        case Test.sectionTypes.goTo:{
-            return dictionary["s42"];
-        }
-        case Test.sectionTypes.ifStatement:{
-            return dictionary["s43"];
-        }
-        case Test.sectionTypes.setVariable:{
-            return dictionary["s44"];
-        }
-        case Test.sectionTypes.start:{
-            return dictionary["s45"];
-        }
-        case Test.sectionTypes.end:{
-            return dictionary["s46"];
-        }
-        case Test.sectionTypes.tableModification:{
-            return dictionary["s47"];
-        }
-        case Test.sectionTypes.custom:{
-            return dictionary["s48"];
-        }
-    }
-}
-
 Test.getSectionTypeName=function(type){
     switch(type){
         case Test.sectionTypes.RCode:{
@@ -276,7 +244,7 @@ Test.uiRefreshSectionContent=function(type,counter,value,oid){
         oid:oid
     },function(data){
         $("#divSection_"+counter).unmask();
-        $("#divSection_"+counter+"_content").html(data);
+        $("#divSection_"+counter).html(data);
         switch(type){
             case Test.sectionTypes.RCode:{
                 var cm = Methods.iniCodeMirror("textareaCodeMirror_"+counter, "r", false);
@@ -307,57 +275,50 @@ Test.uiRefreshSectionContent=function(type,counter,value,oid){
     });
 };
 
-Test.uiWriteSection=function(type,container,parent,counter,value,oid,prepend,refresh,csid,after,end){
-    if(end==null) end = 0;
+Test.uiToggleDetails=function(counter,show){
+    var details = $(".divSection[seccounter='"+counter+"']").find(".divSectionDetail");
+    if(show){
+        $(".divSectionDetail").hide(1000);
+    }
+    details.show(1000);
+}
+
+//Test.uiWriteSection=function(type,container,parent,counter,value,oid,prepend,refresh,csid,after,end){
+Test.uiWriteSection=function(type,parent,counter,value,oid,refresh,csid,after){
     if(refresh==null) refresh=true;
-    if(parent==null) parent = 0;
     if(counter==null) counter = Test.getCounter();
     if(csid==null) csid = 0;
-    if(prepend==null) prepend = false;
     if(csid!=0 && value==null) value=[csid];
     var sortable = true;
     if(type==Test.sectionTypes.start||type==Test.sectionTypes.end || parent!=0) sortable = false;
-    if(container==null) container = $("#divTestLogic");
+    
+    var container = null;
+    if(parent==null || parent ==0){
+        container = $("#divTestLogic");
+    } else container = $(".divSection[seccounter='"+parent+"']").find(".divSectionContainer");
+    
     var section = $("<div />",{
-        "class": ""+(type==Test.sectionTypes.ifStatement?"ui-corner-all":"")+" margin divSection divSectionType"+type+" ui-state-default "+(!sortable?"notSortable":"sortable"),
+        "class": "divSection smallMargin divSectionType"+type+" "+(!sortable?"notSortable":"sortable"),
         id:"divSection_"+counter,
         csid:csid,
+        align:"left",
         sectype:type,
         seccounter:counter,
         secparent:parent,
-        onmouseover:"Methods.uiToggleHover($(this),true)",
-        onmouseout:"Methods.uiToggleHover($(this),false)",
-        style:"border:"+(type==Test.sectionTypes.ifStatement?"dotted":"double")+"; z-index:20;"
+        onmouseover:"Methods.uiToggleHover($(this),true); Test.uiToggleDetails("+counter+",true);",
+        onmouseout:"Methods.uiToggleHover($(this),false); Test.uiToggleDetails("+counter+",false);",
+        style:"z-index:20; border:solid 1px transparent;"
     });
-    
-    var spanDelete = '';
-    var spanAddAfter = '';
-    var divControl = '';
-    var divSubSection = '';
-    var tdEnd = "";
-    if(type==Test.sectionTypes.ifStatement) divSubSection = '<div id="divSectionSubContent_'+counter+'" class="divSubsection"></div>';
-    if(type!=Test.sectionTypes.start && type!=Test.sectionTypes.end) spanDelete = '<span class="spanIcon tooltip ui-icon ui-icon-trash" onclick="Test.uiRemoveSection(\''+counter+'\')" title="'+dictionary["s59"]+'"></span>';
-    if(type!=Test.sectionTypes.end) {
-        if(type!=Test.sectionTypes.start && type!=Test.sectionTypes.ifStatement && type!=Test.sectionTypes.goTo) tdEnd = '<td style="border-left:1px solid;"><span class="spanIcon ui-icon ui-icon-help tooltip" title="'+dictionary["s369"]+'"></span></td><td>'+dictionary["s55"]+'</td><td><input type="checkbox" id="chkEndSection_'+counter+'" '+(end==1?"checked":"")+' class="chkEndSection" /></td>';
-        spanAddAfter = '<span class="spanIcon tooltip ui-icon ui-icon-plus" onclick="Test.uiAddLogicSection(null,'+(parent!=0?"true":"null")+','+parent+',$(this).parent().parent().parent().parent().parent().parent())" title="'+dictionary["s60"]+'"></span>';
-    }
-    if(spanDelete!='' || spanAddAfter!='') divControl = '<div><table><tbody><tr><td>'+spanAddAfter+'</td><td>'+spanDelete+'</td></tbody></table></div>';
-    
-    var html='<div class="ui-widget-header margin sortableHandle" '+(sortable?'style="cursor:move;"':'')+' align="left"><table><tr><td><span class="spanIcon ui-icon ui-icon-help tooltip" title="'+Test.getSectionTypeDescription(type)+'"></span></td><td>'+counter+'. '+Test.getSectionTypeName(type)+'</td>'+tdEnd+'</tr></table></div>';
-    html+='<div class="horizontalMargin" id="divSection_'+counter+'_content" align="left"></div>'+divSubSection;
-    html+=divControl;
         
-    section.html(html);
-        
-    if(after!=null){
-        after.after(section);
+    if(after!=null && after != 0){
+        $(".divSection[seccounter='"+after+"']").after(section);
     }
     else {
-        if(prepend){
-            container.prepend(section);
-        }
-        else{
+        if(after==null) {
             container.append(section);
+        }
+        if(after==0){
+            container.prepend(section);
         }
     }
     
@@ -367,22 +328,10 @@ Test.uiWriteSection=function(type,container,parent,counter,value,oid,prepend,ref
         
     Test.uiSectionChanged();
     Methods.iniTooltips();
-    
 };
 
-Test.uiAddLogicSection=function(container,ifstatement,parent,after,prepend){
+Test.uiAddLogicSection=function(parent,after){
     var type = $("#formTestSelectSectionType");
-    
-    if(ifstatement==null) ifstatement=false;
-    
-    if(ifstatement){
-        if(parseInt(type.val())==Test.sectionTypes.ifStatement) type.val(1);
-        $("#optionSectionType"+Test.sectionTypes.ifStatement).attr("disabled","disabled");
-    }
-    else 
-    {
-        $("#optionSectionType"+Test.sectionTypes.ifStatement).removeAttr("disabled");
-    }
     
     $("#divTestDialog").dialog( {
         modal:true,
@@ -407,7 +356,7 @@ Test.uiAddLogicSection=function(container,ifstatement,parent,after,prepend){
                 }
                 else t = parseInt(vls);
                 
-                Test.uiWriteSection(t,container,parent,null,null,null,prepend,null,csid,after);
+                Test.uiWriteSection(t,parent,null,null,null,null,csid,after);
                 $(this).dialog("close");
             }
         }

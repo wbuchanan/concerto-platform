@@ -44,69 +44,91 @@ $parameters = $section->get_parameter_CustomSectionVariables();
 $returns = $section->get_return_CustomSectionVariables();
 ?>
 
-<div class="ui-widget-header" align="center">
-    <table>
-        <tr>
-            <td><span class="spanIcon ui-icon ui-icon-help tooltip" title="<?= htmlspecialchars(Template::strip_html($section->description), ENT_QUOTES) ?>"></span></td>
-            <td><?= $section->name . " ( " . $section->get_system_data() . " )" ?></td>
-        </tr>
-    </table>
+<div class="divSectionContent">
+    <div class="divSectionSummary sortableHandle">
+        <table class="fullWidth tableSectionHeader">
+            <tr>
+                <td class="tdSectionColumnIcon"></td>
+                <td class="ui-widget-header tdSectionColumnCounter"><?= $_POST['counter'] ?></td>
+                <td class="tdSectionColumnIcon"><span class="spanIcon ui-icon ui-icon-help tooltip" title="<?= DS_TestSectionType::get_description_by_id(9) ?>"></span></td>
+                <td class="tdSectionColumnIcon"><span class="spanIcon ui-icon ui-icon-folder-collapsed tooltip" title="<?= Language::string(390) ?>"></span></td>
+                <td class="tdSectionColumnType"><?= DS_TestSectionType::get_name_by_id(9) ?></td>
+                <td class="tdSectionColumnAction"></td>
+                <td class="tdSectionColumnEnd"><table><tr><td><span class="spanIcon ui-icon ui-icon-help tooltip" title="<?= Language::string(369) ?>"></span></td><td><?= Language::string(55) ?></td><td><input type="checkbox" id="chkEndSection_<?= $_POST['counter'] ?>" class="chkEndSection" /></td></tr></table></td>
+                <td class="tdSectionColumnIcon"><span class="spanIcon tooltip ui-icon ui-icon-trash" onclick="Test.uiRemoveSection(<?= $_POST['counter'] ?>)" title="<?= Language::string(59) ?>"></span></td>
+                <td class="tdSectionColumnIcon"><span class="spanIcon tooltip ui-icon ui-icon-plus" onclick="Test.uiAddLogicSection(0)" title="<?= Language::string(60) ?>"></span></td>
+            </tr>
+        </table>
+    </div>
+    <div class="divSectionDetail notVisible">
+        <div class="ui-widget-header" align="center">
+            <table>
+                <tr>
+                    <td><span class="spanIcon ui-icon ui-icon-help tooltip" title="<?= htmlspecialchars(Template::strip_html($section->description), ENT_QUOTES) ?>"></span></td>
+                    <td><?= $section->name . " ( " . $section->get_system_data() . " )" ?></td>
+                </tr>
+            </table>
+        </div>
+        <br/>
+
+        <input type="hidden" class="controlValue<?= $_POST['counter'] ?>" value="<?= $vals[0] ?>" />
+        <?php
+        $j = 1;
+        if (count($parameters) > 0)
+        {
+            ?>
+            <b><?= Language::string(106) ?>:</b>
+            <div class="ui-widget-content ui-state-focus">
+                <div>
+                    <table>
+                        <?php
+                        for ($i = 0; $i < count($parameters); $i++)
+                        {
+                            ?>
+                            <tr>
+                                <td><span class="spanIcon ui-icon ui-icon-help tooltip" title="<?= htmlspecialchars(Template::strip_html($parameters[$i]->description), ENT_QUOTES) ?>"></span></td>
+                                <td><?= $parameters[$i]->name ?></td>
+                                <td><- <input type="text" class="controlValue<?= $_POST['counter'] ?> ui-widget-content ui-corner-all comboboxVars" value="<?= htmlspecialchars(isset($vals[$j]) ? $vals[$j] : $parameters[$i]->name, ENT_QUOTES) ?>" /></td>
+                            </tr>
+                            <?php
+                            $j++;
+                        }
+                        ?>
+                    </table>
+                </div>
+            </div>
+            <br/>
+            <?php
+        }
+
+        if (count($returns) > 0)
+        {
+            ?>
+            <b><?= Language::string(113) ?>:</b>
+            <div class="ui-widget-content ui-state-focus">
+                <div>
+                    <table>
+                        <?php
+                        for ($i = 0; $i < count($returns); $i++)
+                        {
+                            ?>
+                            <tr>
+                                <td><span class="spanIcon ui-icon ui-icon-help tooltip" title="<?= htmlspecialchars(Template::strip_html($returns[$i]->description), ENT_QUOTES) ?>"></span></td>
+                                <td><?= $returns[$i]->name ?></td>
+                                <td>->> <input onchange="Test.uiSetVarNameChanged($(this))" type="text" class="ui-state-focus comboboxSetVars comboboxVars controlValue<?= $_POST['counter'] ?> ui-widget-content ui-corner-all" value="<?= htmlspecialchars(isset($vals[$j]) ? $vals[$j] : $returns[$i]->name, ENT_QUOTES) ?>" /></td>
+                            </tr>
+                            <?php
+                            $j = $j + 3;
+                        }
+                        ?>
+                    </table>
+                </div>
+            </div>
+            <?php
+        }
+        ?>
+    </div>
 </div>
-<br/>
+<div class="divSectionContainer">
 
-<input type="hidden" class="controlValue<?= $_POST['counter'] ?>" value="<?= $vals[0] ?>" />
-<?php
-$j = 1;
-if (count($parameters) > 0)
-{
-    ?>
-    <b><?= Language::string(106) ?>:</b>
-    <div class="ui-widget-content ui-state-focus">
-        <div>
-            <table>
-                <?php
-                for ($i = 0; $i < count($parameters); $i++)
-                {
-                    ?>
-                    <tr>
-                        <td><span class="spanIcon ui-icon ui-icon-help tooltip" title="<?= htmlspecialchars(Template::strip_html($parameters[$i]->description), ENT_QUOTES) ?>"></span></td>
-                        <td><?= $parameters[$i]->name ?></td>
-                        <td><- <input type="text" class="controlValue<?= $_POST['counter'] ?> ui-widget-content ui-corner-all comboboxVars" value="<?= htmlspecialchars(isset($vals[$j]) ? $vals[$j] : $parameters[$i]->name, ENT_QUOTES) ?>" /></td>
-                    </tr>
-                    <?php
-                    $j++;
-                }
-                ?>
-            </table>
-        </div>
-    </div>
-    <br/>
-    <?php
-}
-
-if (count($returns) > 0)
-{
-    ?>
-    <b><?= Language::string(113) ?>:</b>
-    <div class="ui-widget-content ui-state-focus">
-        <div>
-            <table>
-                <?php
-                for ($i = 0; $i < count($returns); $i++)
-                {
-                    ?>
-                    <tr>
-                        <td><span class="spanIcon ui-icon ui-icon-help tooltip" title="<?= htmlspecialchars(Template::strip_html($returns[$i]->description), ENT_QUOTES) ?>"></span></td>
-                        <td><?= $returns[$i]->name ?></td>
-                        <td>->> <input onchange="Test.uiSetVarNameChanged($(this))" type="text" class="ui-state-focus comboboxSetVars comboboxVars controlValue<?= $_POST['counter'] ?> ui-widget-content ui-corner-all" value="<?= htmlspecialchars(isset($vals[$j]) ? $vals[$j] : $returns[$i]->name, ENT_QUOTES) ?>" /></td>
-                    </tr>
-                    <?php
-                    $j = $j + 3;
-                }
-                ?>
-            </table>
-        </div>
-    </div>
-    <?php
-}
-?>
+</div>

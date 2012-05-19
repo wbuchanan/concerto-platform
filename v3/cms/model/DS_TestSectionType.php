@@ -45,10 +45,10 @@ class DS_TestSectionType extends ODataSet
         }
         return $result;
     }
-
-    public function get_name()
+    
+    public static function get_name_by_id($id)
     {
-        switch ($this->id)
+        switch ($id)
         {
             case self::CUSTOM: return Language::string(57);
             case self::END: return Language::string(55);
@@ -60,6 +60,32 @@ class DS_TestSectionType extends ODataSet
             case self::START: return Language::string(54);
             case self::TABLE_MOD: return Language::string(56);
         }
+    }
+
+    public function get_name()
+    {
+        return self::get_name_by_id($this->id);
+    }
+
+    public static function get_description_by_id($id)
+    {
+        switch ($id)
+        {
+            case self::CUSTOM: return Language::string(48);
+            case self::END: return Language::string(46);
+            case self::GO_TO: return Language::string(42);
+            case self::IF_STATEMENT: return Language::string(43);
+            case self::LOAD_HTML_TEMPLATE: return Language::string(41);
+            case self::R_CODE: return Language::string(40);
+            case self::SET_VARIABLE: return Language::string(44);
+            case self::START: return Language::string(45);
+            case self::TABLE_MOD: return Language::string(47);
+        }
+    }
+
+    public function get_description()
+    {
+        return self::get_description_by_id($this->id);
     }
 
     public static function create_db($delete = false)

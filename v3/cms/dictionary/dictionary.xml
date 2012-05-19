@@ -348,7 +348,7 @@ Note: You can add new languages by inserting "<new_language>string translated in
             <fr>Modifier HTML. HTML courant:</fr>
             <bg>Редактирай HTML. Настоящ HTML:</bg>
         </string>
-        <string id="40" js="1">
+        <string id="40">
             <en>Directly enter R code that is to be interpreted.</en>
             <de>Zu interpretierenden R Code direkt eingeben.</de>
             <pl>Używając tej sekcji można zinterpretować dowolny kod R.</pl>
@@ -356,7 +356,7 @@ Note: You can add new languages by inserting "<new_language>string translated in
             <fr>Entrez directement le code R qui doit être interprété.</fr>
             <bg>Директно въведи R кода за интерпретация</bg>
         </string>
-        <string id="41" js="1">
+        <string id="41">
             <en>Stop R processes and load selected HTML template.</en>
             <de>Stoppe den R Prozess und lade ausgewähltes HTML template</de>
             <pl>Ta sekcja przerywa wykonywanie kodu R i wyświetla użytkownikowi szablon HTML.</pl>
@@ -364,7 +364,7 @@ Note: You can add new languages by inserting "<new_language>string translated in
             <fr>Arrêter le processus R et charger le modèle HTML sélectionné.</fr>
             <bg>Спри R процеса и зареди избрания HTML шаблон</bg>
         </string>
-        <string id="42" js="1">
+        <string id="42">
             <en>Skip to a specific section of the test.</en>
             <de>Gehe zu einer spezifischen Sektion des Tests.</de>
             <pl>Ta sekcja pozwala przejść do innej wybranej sekcji.</pl>
@@ -372,7 +372,7 @@ Note: You can add new languages by inserting "<new_language>string translated in
             <fr>Passer à une section spécifique du test.</fr>
             <bg>Пропусни специфична част от теста</bg>
         </string>
-        <string id="43" js="1">
+        <string id="43">
             <en><![CDATA[Specify conditions and their consequences. Multiple conditions and consequences can be specified. IF statements can't be nested within each other.]]></en>
             <de><![CDATA[Geben Sie Bedingungen und ihre Konsequenzen an. Mehrere Bedingungen und Konsequenzen können angegeben werden. WENN Aussagen können nicht verschachtelt werden.]]></de>
             <pl><![CDATA[Dzięki tej sekcji można tworzyć twierdzenia warunkowe. Dozwolone jest wiele warunków, oraz można zamieszczać wiele sekcji w bloku <b>WTEDY</b>. Nie można zagnieżdżać twierdzen JEŻELI.]]></pl>
@@ -380,7 +380,7 @@ Note: You can add new languages by inserting "<new_language>string translated in
             <fr><![CDATA[Spécifier les conditions et leurs conséquences. De multiples conditions et conséquences peuvent être spécifiées. Les expressions SI ne peuvent pas être nichées les unes dans les autres.]]></fr>
             <bg><![CDATA[Определете условията и техните следствия. Множество условия и следствия могат да бъдат определени. АКО твърденията не могат да се вмъкват едно в друго.]]></bg>
         </string>
-        <string id="44" js="1">
+        <string id="44">
             <en><![CDATA[Define variables (i.e. set variables) and variable type in R, HTML templates or both. Methods to set variable: <ul><li><b>from table</b>: select a previously defined table in Concerto and filter necessary rows and columns. Set the whole table by leaving the <b>WHERE</b> clause empty</li><li><b>by R code</b>: directly type in R code. E.g. function result, mathematical calculation</li></ul>]]></en>
             <de><![CDATA[Definiere Variablen (d.h. setze Variablen) und Variablen Typen in R, HTML Templates oder beidem. Methoden um Vairabeln zu setzen: <ul><li><b>aus Tabelle</b>: wähle eine bereits definierte Tabelle in Concerto und filtere die notwendigen Zeilen und Spalten. Der ganzen Tabelle gleichsetzen in dem man die <b>WHERE</b> Aussage leer lässt</li><li><b>durch R Code</b>: R code direkt eingeben. Z.B. Resultat einer Funktion, mathematische Berechnung</li></ul>]]></de>
             <pl><![CDATA[Ta sekcja daje mozliwość zadeklarowania zmiennej w logice testu. Można dodatkowo również zaznaczyć checkbox aby sprawić żeby zmienna była widoczna w szablonie HTML. Można ustawić zmienną jedną z trzech metod:<ul><li><b>z tabeli</b>: można wybrać wcześniej zdefiniowaną tabelę w Concerto, oraz jej konkretne rekordy i kolumny. Można również wybrać całą tabelę pozostawiając blok <b>GDZIE</b> pusty</li><li><b>przez kod R</b>: można ustawić zmienną używając kodu R. Może to być cokolwiek co da się wykonać w języku R. Np. rezultat funkcji, matematyczne obliczenie</li></ul>]]></pl>
@@ -388,7 +388,7 @@ Note: You can add new languages by inserting "<new_language>string translated in
             <fr><![CDATA[Définir les variables (par ex. établir les variables) et les types de variables, les modèles HTML ou les deux dans R. Méthode afin de d'établir les variables: <ul><li><b>du tableau</b>: sélectionner un tableau préalablement défini dans concerto et filtrer les lignes et colonnes nécessaires. Établir un tableau complet en laissant la clause <b>OU</b> vide </li><li><b>avec le code R </b>: taper directement dans le code R. Par exemple: fonctiont résultat, calcul mathématique</li></ul>]]></fr>
             <bg><![CDATA[Дефинирайте променливи (т.е. създайте променливи) и вида на променливите в R, HTML шаблоните или в двете. Методи за създаване на променлива: <ul><li><b>чрез таблица</b>: изберете предварително дефинирана таблица в Concerto и филтрирайте необходимите редове и колони. Може да вземете цяла таблица <b>КЪДЕ</b> условието е празно</li><li><b>чрез R код</b>: директно като напишете R кода. Т.е. резултат от функция, математическо пресмятане</li></ul>]]> </bg>   
         </string>
-        <string id="45" js="1">
+        <string id="45">
             <en>The start section is the entry point to your test logic. It cannot be modified.</en>
             <de>Die Anfangssektion ist der Einstiegspunkt in die Testlogik. Sie kann nicht verändert werden.</de>
             <pl>To jest sekcja początkowa. Nie można jej modyfikować. Stanowi punkt wejściowy do logiki testu.</pl>
@@ -396,7 +396,7 @@ Note: You can add new languages by inserting "<new_language>string translated in
             <fr>La section Début est le point d'entrée de la logique du test. Elle ne peut pas être modifiée.</fr>
             <bg>Началната секция е входната точка за логиката на теста. Тя не може да бъде променяна</bg>
         </string>
-        <string id="46" js="1">
+        <string id="46">
             <en>The End section is the last section of your test logic. It cannot be modified.</en>
             <de>Die Endsektion ist die letzte Sektion Ihrer Testlogik. Sie kann nicht verändert werden.</de>
             <pl>To jest sekcja końcowa. Nie można jej modyfikowac. To jest sekcja kończąca logikę testu.</pl>
@@ -404,7 +404,7 @@ Note: You can add new languages by inserting "<new_language>string translated in
             <fr>La section Fin est le point d'entrée de la logique du test. Elle ne peut pas être modifiée.</fr>
             <bg>Крайната секция е последната секция в логиката на теста. Тя не може да бъде променяна</bg>
         </string>
-        <string id="47" js="1">
+        <string id="47">
             <en><![CDATA[Modify existing tables with the help of three basic database operations:<ul><li><b>INSERT</b>: insert a single row and values corresponding to each column</li><li><b>UPDATE</b>: modify table rows that meet criteria found in the <b>WHERE</b> clause. Specify which columns you want to modify and values for each.</li><li><b>DELETE</b>: delete table rows that meet criteria found in the <b>WHERE</b> clause.</li></ul>]]></en>
             <de><![CDATA[Verändere existierende Tabelle mit der Hilfe von drei grundlegenden Datenbankoperationen:<ul><li><b>INSERT</b>: füge eine einzelne Zeile ein (mit Werten die zu jeder der Spalten korrespondieren)</li><li><b>UPDATE</b>: modifiziere alle Tabellenzeilen auf die die Kriterien in der <b>WHERE</b> Aussage zutreffen. Geben Sie die zu modifizierenden Spalten und die Werte dafür an.</li><li><b>DELETE</b>: lösche alle Tabellenzeilen auf die Kriterien in der <b>WHERE</b> Aussage zutreffen.</li></ul>]]></de>
             <pl><![CDATA[Używajac tej sekcji można zmodyfikować wcześniej zdefiniowane tabele. Można wykonać trzy podstawowoe operacje na bazie danych:<ul><li><b>DODANIE</b>: używajac tej komendy można dodać nowy pojedyńczy rekord z wybranymi wartościami</li><li><b>ZMIANA</b>: używając tej komendy można zmodyfikować rekordy tabeli które spełniaja podane kryteria w bloku <b>GDZIE</b>. Można ustawić które kolumny chce się zmodyfikować i jaką wartość chce się im dać.</li><li><b>USUŃ</b>: używając tej komendy możesz usunąć rekordy tabeli które spełniają kryteria podane w bloku <b>GDZIE</b>.</li></ul>]]></pl>
@@ -412,7 +412,7 @@ Note: You can add new languages by inserting "<new_language>string translated in
             <fr><![CDATA[Modifier les tableaux existant avec l'aide de trois opérations de base:<ul><li><b>INSERTION</b>: insère une seule ligne et ses valeurs correspondantes dans chacune des colonnes.</li><li><b>Mettre à jour </b>: modifie les lignes du tableau qui rencontrent les critères inclus dans la clause <b>OU</b>. spécifiez quelle colonnes vous voulez modifier et les valeurs de chacune d'entre elles.</li><li><b>Supprimer</b>: supprime les lignes du tableau qui rencontrent les critères inclus dans la clause <b>OU</b>.</li></ul>]]></fr>
             <bg><![CDATA[Променете съществуващите таблици с помощта на три основни операции за бази данни: <ul><li><b>ВМЪКНИ</b>: вмъкни единичен ред и стойности отнасящи се за всяка колона </li><li><b>ОБНОВИ</b>: промени редовете на таблицата, които отговорят на критерия, който се намира <b>КЪДЕ</b> в условието. Посочете кои колони искате да модифицирате и стойностите за всяка.</li><li><b>ИЗТРИЙ</b>: изтрийте редове от таблицата, които се намират <b>КЪДЕ</b> в условието.</li></ul>]]></bg>
         </string>
-        <string id="48" js="1">
+        <string id="48">
             <en>This is the custom test section.</en>
             <de>Das ist eine benutzerdefinierte Testsektion.</de>
             <pl>To jest sekcja własna.</pl>
@@ -500,7 +500,7 @@ Note: You can add new languages by inserting "<new_language>string translated in
             <fr>ignorer</fr>
             <bg>игнорирай</bg>
         </string>
-        <string id="59" js="1">
+        <string id="59">
             <en>remove test logic section</en>
             <de>entferne eine Sektion der Testlogik</de>
             <pl>usuń sekcję logiki testu</pl>
@@ -508,7 +508,7 @@ Note: You can add new languages by inserting "<new_language>string translated in
             <fr>enlever la section logique du test</fr>
             <bg>премахни секцията за логиката на теста</bg>
         </string>
-        <string id="60" js="1">
+        <string id="60">
             <en>add test logic section</en>
             <de>Füge Sektion zur Testlogik hinzu</de>
             <pl>dodaj sekcję logiki testu</pl>
@@ -2952,7 +2952,7 @@ Note: You can add new languages by inserting "<new_language>string translated in
             <fr></fr>
             <bg></bg>
         </string>
-        <string id="369" js="1">
+        <string id="369">
             <en>Check this checkbox if you want to release all resources used by test session after executing this section. This will remove test session.</en>
             <pl>Zaznacz ten checkbox jesli chcesz zwolnic wszystkie zasoby wykorzystywane przez sesje testu po uruchomieniu tej sekcji. Czynnosc ta usunie sesje testu.</pl>
             <de></de>
@@ -3116,6 +3116,14 @@ Note: You can add new languages by inserting "<new_language>string translated in
             <en>Object download failed</en>
             <de></de>
             <pl>Nie powiodlo sie sciagniecie obiektu.</pl>
+            <cn></cn>
+            <fr></fr>
+            <bg></bg>
+        </string>
+        <string id="390">
+            <en>show section details</en>
+            <de></de>
+            <pl>pokaz detale sekcji</pl>
             <cn></cn>
             <fr></fr>
             <bg></bg>

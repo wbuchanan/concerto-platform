@@ -63,16 +63,13 @@ if ($oid != 0)
         ?>
                         Test.uiWriteSection(
         <?= $section->TestSectionType_id ?>, 
-        <?= $section->parent_counter == 0 ? "null" : '$("#divSectionSubContent_' . $section->parent_counter . '")' ?>, 
         <?= $section->parent_counter ?>, 
         <?= $section->counter ?>,
                         null,
         <?= $section->id ?>,
-                        false,
         <?= $section->TestSectionType_id == 3 ? "false" : "true" ?>,
                         null,
-                        null,
-        <?= $section->end ?>
+                        null
                     );
         <?php
         if ($section->TestSectionType_id == 3)

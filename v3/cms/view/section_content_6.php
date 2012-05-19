@@ -30,22 +30,45 @@ if ($logged_user == null)
     die(Language::string(278));
 }
 ?>
-<b><?= Language::string(113) ?>:</b><br/>
-<div class="ui-widget-content ui-state-focus">
-    <div>
-        <table>
+
+<div class="divSectionContent">
+    <div class="divSectionSummary">
+        <table class="fullWidth tableSectionHeader">
             <tr>
-                <td><span class="spanIcon ui-icon ui-icon-help tooltip" title="<?= Language::string(245) ?>"></span></td>
-                <td>CONCERTO_TEST_ID</td>
-            </tr>
-            <tr>
-                <td><span class="spanIcon ui-icon ui-icon-help tooltip" title="<?= Language::string(246) ?>"></span></td>
-                <td>CONCERTO_TEST_SESSION_ID</td>
+                <td class="tdSectionColumnIcon"></td>
+                <td class="ui-widget-header tdSectionColumnCounter"><?= $_POST['counter'] ?></td>
+                <td class="tdSectionColumnIcon"><span class="spanIcon ui-icon ui-icon-help tooltip" title="<?= DS_TestSectionType::get_description_by_id(6) ?>"></span></td>
+                <td class="tdSectionColumnIcon"><span class="spanIcon ui-icon ui-icon-folder-collapsed tooltip" title="<?= Language::string(390) ?>"></span></td>
+                <td class="tdSectionColumnType"><?= DS_TestSectionType::get_name_by_id(6) ?></td>
+                <td class="tdSectionColumnAction"></td>
+                <td class="tdSectionColumnEnd"><table><tr><td></td></tr></table></td>
+                <td class="tdSectionColumnIcon"></td>
+                <td class="tdSectionColumnIcon"><span class="spanIcon tooltip ui-icon ui-icon-plus" onclick="Test.uiAddLogicSection(0)" title="<?= Language::string(60) ?>"></span></td>
             </tr>
         </table>
     </div>
-    <div class="notVisible">
-        <input class="inputReturnVar" type="hidden" value="CONCERTO_TEST_ID" />
-        <input class="inputReturnVar" type="hidden" value="CONCERTO_TEST_SESSION_ID" />
+    <div class="divSectionDetail notVisible">
+        <b><?= Language::string(113) ?>:</b><br/>
+        <div class="ui-widget-content ui-state-focus">
+            <div>
+                <table>
+                    <tr>
+                        <td><span class="spanIcon ui-icon ui-icon-help tooltip" title="<?= Language::string(245) ?>"></span></td>
+                        <td>CONCERTO_TEST_ID</td>
+                    </tr>
+                    <tr>
+                        <td><span class="spanIcon ui-icon ui-icon-help tooltip" title="<?= Language::string(246) ?>"></span></td>
+                        <td>CONCERTO_TEST_SESSION_ID</td>
+                    </tr>
+                </table>
+            </div>
+            <div class="notVisible">
+                <input class="inputReturnVar" type="hidden" value="CONCERTO_TEST_ID" />
+                <input class="inputReturnVar" type="hidden" value="CONCERTO_TEST_SESSION_ID" />
+            </div>
+        </div>
     </div>
+</div>
+<div class="divSectionContainer">
+
 </div>
