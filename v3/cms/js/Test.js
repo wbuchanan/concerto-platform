@@ -275,12 +275,22 @@ Test.uiRefreshSectionContent=function(type,counter,value,oid){
     });
 };
 
-Test.uiToggleDetails=function(counter,show){
-    var details = $(".divSection[seccounter='"+counter+"']").find(".divSectionDetail");
+Test.uiToggleHover=function(counter,show){
+    var details = $(".divSection[seccounter='"+counter+"']");
+    var obj = $("#divSection_"+counter);
+    
     if(show){
-        $(".divSectionDetail").hide(1000);
+        $(".divSection").each(function(){
+            if($(this).attr("id")!=details.attr("id")) {
+                $(this).find(".divSectionDetail").hide(200);
+                $(this).removeClass("ui-state-highlight");
+            }
+        })
+        obj.addClass("ui-state-highlight");
+        details.find(".divSectionDetail").show(200,function(){
+            Test.uiRefreshCodeMirrors();
+        });
     }
-    details.show(1000);
 }
 
 //Test.uiWriteSection=function(type,container,parent,counter,value,oid,prepend,refresh,csid,after,end){
@@ -305,8 +315,8 @@ Test.uiWriteSection=function(type,parent,counter,value,oid,refresh,csid,after){
         sectype:type,
         seccounter:counter,
         secparent:parent,
-        onmouseover:"Methods.uiToggleHover($(this),true); Test.uiToggleDetails("+counter+",true);",
-        onmouseout:"Methods.uiToggleHover($(this),false); Test.uiToggleDetails("+counter+",false);",
+        onmouseover:"Test.uiToggleHover("+counter+",true);",
+        onmouseout:"Test.uiToggleHover("+counter+",false);",
         style:"z-index:20; border:solid 1px transparent;"
     });
         
