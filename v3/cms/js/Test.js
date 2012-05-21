@@ -15,7 +15,7 @@ GNU General Public License for more details.
 You should have received a copy of the GNU General Public License
 along with this program; if not, write to the Free Software
 Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA.
-*/
+ */
 
 test = null;
 
@@ -236,15 +236,20 @@ Test.uiRefreshSectionContent=function(type,counter,value,oid){
             break;
         }
     }
+    
+    var detail = 0;
+    if($("#divSection_"+counter).find(".divSectionDetail").is(":visible")) detail = 1;
+    
     $("#divSection_"+counter).mask(dictionary["s319"]);
     $.post("view/section_content_"+type+".php",{
         type:type,
         counter:counter,
         value:value,
-        oid:oid
+        oid:oid,
+        detail:detail
     },function(data){
         $("#divSection_"+counter).unmask();
-        $("#divSection_"+counter).html(data);
+        $("#divSection_"+counter).find(".divSectionContent").html(data);
         switch(type){
             case Test.sectionTypes.RCode:{
                 var cm = Methods.iniCodeMirror("textareaCodeMirror_"+counter, "r", false);
@@ -282,14 +287,27 @@ Test.uiToggleHover=function(counter,show){
     if(show){
         $(".divSection").each(function(){
             if($(this).attr("id")!=details.attr("id")) {
-                $(this).find(".divSectionDetail").hide(200);
+                //$(this).find(".divSectionDetail").hide(200);
                 $(this).removeClass("ui-state-highlight");
             }
         })
         obj.addClass("ui-state-highlight");
-        details.find(".divSectionDetail").show(200,function(){
-            Test.uiRefreshCodeMirrors();
-        });
+    //details.find(".divSectionDetail").show(200,function(){
+    //    Test.uiRefreshCodeMirrors();
+    //});
+    }
+}
+
+Test.uiToggleDetails=function(counter){
+    if(!$("#divSection_"+counter).children(".divSectionContent").children(".divSectionDetail").is(":visible")){
+        $("#divSection_"+counter).children(".divSectionContent").children(".divSectionDetail").show(0);
+        $("#spanExpandDetail_"+counter).removeClass("ui-icon-folder-collapsed");
+        $("#spanExpandDetail_"+counter).addClass("ui-icon-folder-open");
+        Test.uiRefreshCodeMirrors();
+    } else {
+        $("#divSection_"+counter).children(".divSectionContent").children(".divSectionDetail").hide(0);
+        $("#spanExpandDetail_"+counter).addClass("ui-icon-folder-collapsed");
+        $("#spanExpandDetail_"+counter).removeClass("ui-icon-folder-open");
     }
 }
 
@@ -305,7 +323,10 @@ Test.uiWriteSection=function(type,parent,counter,value,oid,refresh,csid,after){
     var container = null;
     if(parent==null || parent ==0){
         container = $("#divTestLogic");
-    } else container = $(".divSection[seccounter='"+parent+"']").find(".divSectionContainer");
+    } else 
+{
+        container = $("#divSection_"+parent).find(".divSectionContainer");
+    }
     
     var section = $("<div />",{
         "class": "divSection smallMargin divSectionType"+type+" "+(!sortable?"notSortable":"sortable"),
@@ -317,9 +338,13 @@ Test.uiWriteSection=function(type,parent,counter,value,oid,refresh,csid,after){
         secparent:parent,
         onmouseover:"Test.uiToggleHover("+counter+",true);",
         onmouseout:"Test.uiToggleHover("+counter+",false);",
-        style:"z-index:20; border:solid 1px transparent;"
+        style:"z-index:20; border:solid 1px transparent; border-top:1px dotted grey;"
     });
-        
+    
+    var sectionContainer = '<div class="divSectionBracket">{</div><div class="divSectionContainer"></div><div class="divSectionBracket">}</div>';
+    
+    section.html('<div class="divSectionContent"></div>'+(type==Test.sectionTypes.ifStatement?sectionContainer:""));
+    
     if(after!=null && after != 0){
         $(".divSection[seccounter='"+after+"']").after(section);
     }
@@ -385,7 +410,7 @@ Test.uiRemoveSection=function(counter){
 }
 
 Test.getSections=function(){
-    return $("#divTestLogic .divSection");
+    return $("#divTestLogic").find(".divSection");
 }
 
 Test.uiCheckEmptyLogic=function(){
@@ -968,7 +993,7 @@ Test.startRunTimeDebug=function(){
         }
         html+="</tbody></table>";
         Test.appendDebugConsole(html);
-        */
+         */
        
         //template
         if(data.data.STATUS==Concerto.statusTypes.completed) {

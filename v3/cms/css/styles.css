@@ -159,3 +159,11 @@ ul {
 .sortableHandle{
     cursor: move;
 }
+
+.divSectionBracket{
+    font-size: larger;
+    font-weight: bold;
+}
+.divSectionContainer{
+    margin-left: 25px;
+}
