@@ -31,6 +31,8 @@ class DS_TestSectionType extends ODataSet
     const END = 7;
     const TABLE_MOD = 8;
     const CUSTOM = 9;
+    const LOOP = 10;
+    const TEST = 11;
 
     public static function get_all_selectable()
     {
@@ -45,7 +47,7 @@ class DS_TestSectionType extends ODataSet
         }
         return $result;
     }
-    
+
     public static function get_name_by_id($id)
     {
         switch ($id)
@@ -59,6 +61,8 @@ class DS_TestSectionType extends ODataSet
             case self::SET_VARIABLE: return Language::string(53);
             case self::START: return Language::string(54);
             case self::TABLE_MOD: return Language::string(56);
+            case self::LOOP: return Language::string(391);
+            case self::TEST: return Language::string(392);
         }
     }
 
@@ -80,6 +84,8 @@ class DS_TestSectionType extends ODataSet
             case self::SET_VARIABLE: return Language::string(44);
             case self::START: return Language::string(45);
             case self::TABLE_MOD: return Language::string(47);
+            case self::TEST: return Language::string(393);
+            case self::LOOP: return Language::string(394);
         }
     }
 
@@ -116,11 +122,25 @@ class DS_TestSectionType extends ODataSet
             (6, 'start', '6', 6),
             (7, 'end', '7', 7),
             (8, 'table modification', '8', 8),
-            (9, 'custom section', '9', 9);
+            (9, 'custom section', '9', 9),
+            (10, 'loop', '10', 10),
+            (11, 'test inclusion', '11', 11);
             ";
         return mysql_query($sql);
     }
-
+    
+    public static function update_db($previous_version)
+    {
+        if (Ini::does_patch_apply("3.6.0", $previous_version))
+        {
+            $sql = "INSERT INTO `DS_TestSectionType` SET `id`=10, `name`='loop', `value`='10', `position`=10;";
+            if (!mysql_query($sql)) return false;
+            
+            $sql = "INSERT INTO `DS_TestSectionType` SET `id`=11, `name`='test inclusion', `value`='11', `position`=11;";
+            if (!mysql_query($sql)) return false;
+        }
+        return true;
+    }
 }
 
 ?>

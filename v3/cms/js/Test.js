@@ -31,7 +31,9 @@ Test.sectionTypes={
     start:6,
     end:7,
     tableModification:8,
-    custom:9
+    custom:9,
+    loop:10,
+    test:11
 };
 
 Test.className="Test";
@@ -144,7 +146,14 @@ Test.getSectionValues=function(section){
             return values;
         }
         case Test.sectionTypes.custom:{
-            values=new Array();
+            var values=new Array();
+            $(".divSection[seccounter="+section.counter+"] .controlValue"+section.counter).each(function(){
+                values.push($(this).val());
+            });
+            return values;
+        }
+        case Test.sectionTypes.loop:{
+            var values = new Array();
             $(".divSection[seccounter="+section.counter+"] .controlValue"+section.counter).each(function(){
                 values.push($(this).val());
             });
@@ -202,6 +211,9 @@ Test.getSectionTypeName=function(type){
         case Test.sectionTypes.custom:{
             return dictionary["s57"];
         }
+        case Test.sectionTypes.loop:{
+            return dictionary["s391"];
+        }
     }
 }
 
@@ -237,6 +249,10 @@ Test.uiRefreshSectionContent=function(type,counter,value,oid,end){
         }
         case Test.sectionTypes.custom:{
             if(value==null) value = [0];
+            break;
+        }
+        case Test.sectionTypes.loop:{
+            if(value==null) value=[0,"","==","",0,1];
             break;
         }
     }
@@ -297,6 +313,10 @@ Test.uiToggleHover=function(counter,show){
             }
         })
         obj.addClass("ui-state-highlight");
+        
+        if(obj.attr("sectype")==Test.sectionTypes.goTo){
+            $("#divSection_"+obj.find("select").val()).addClass("ui-state-highlight");
+        }
     //details.find(".divSectionDetail").show(200,function(){
     //    Test.uiRefreshCodeMirrors();
     //});
@@ -305,12 +325,12 @@ Test.uiToggleHover=function(counter,show){
 
 Test.uiToggleDetails=function(counter){
     if(!$("#divSection_"+counter).children(".divSectionContent").children(".divSectionDetail").is(":visible")){
-        $("#divSection_"+counter).children(".divSectionContent").children(".divSectionDetail").show(0);
+        $("#divSection_"+counter).children(".divSectionContent").children(".divSectionDetail").show(500);
         $("#spanExpandDetail_"+counter).removeClass("ui-icon-folder-collapsed");
         $("#spanExpandDetail_"+counter).addClass("ui-icon-folder-open");
         Test.uiRefreshCodeMirrors();
     } else {
-        $("#divSection_"+counter).children(".divSectionContent").children(".divSectionDetail").hide(0);
+        $("#divSection_"+counter).children(".divSectionContent").children(".divSectionDetail").hide(500);
         $("#spanExpandDetail_"+counter).addClass("ui-icon-folder-collapsed");
         $("#spanExpandDetail_"+counter).removeClass("ui-icon-folder-open");
     }
@@ -342,14 +362,12 @@ Test.uiWriteSection=function(type,parent,counter,value,oid,refresh,csid,after,en
         sectype:type,
         seccounter:counter,
         secparent:parent,
-        onmouseover:"Test.uiToggleHover("+counter+",true);",
-        onmouseout:"Test.uiToggleHover("+counter+",false);",
         style:"z-index:20; border:1px dotted grey; border-right:1px dotted transparent; margin:5px; margin-right:0px;"
     });
     
     var sectionContainer = '<div class="divSectionBracket"><table class="noSpace"><tr><td class="noSpace">{</td><td class="noSpace"><span class="spanIcon tooltip ui-icon ui-icon-plus" onclick="Test.uiAddLogicSection('+counter+',0)"  title="'+dictionary["s232"]+'"></span></td></tr></table></div><div class="divSectionContainer"></div><div class="divSectionBracket"><table class="noSpace"><tr><td class="noSpace">}</td></tr></table></div>';
     
-    section.html('<div class="divSectionContent"></div>'+(type==Test.sectionTypes.ifStatement?sectionContainer:""));
+    section.html('<div class="divSectionContent"></div>'+(type==Test.sectionTypes.ifStatement|| type==Test.sectionTypes.loop?sectionContainer:""));
     
     if(after!=null && after != 0){
         $(".divSection[seccounter='"+after+"']").after(section);

@@ -3128,5 +3128,85 @@ Note: You can add new languages by inserting "<new_language>string translated in
             <fr></fr>
             <bg></bg>
         </string>
+        <string id="391" js="1">
+            <en>loop</en>
+            <de></de>
+            <pl>petla</pl>
+            <cn></cn>
+            <fr></fr>
+            <bg></bg>
+        </string>
+        <string id="392" js="1">
+            <en>test inclusion</en>
+            <de></de>
+            <pl>wlaczenie testu</pl>
+            <cn></cn>
+            <fr></fr>
+            <bg></bg>
+        </string>
+        <string id="393">
+            <en>TEST_INCLUSION_DESC</en>
+            <de></de>
+            <pl>TEST_INCLUSION_DESC</pl>
+            <cn></cn>
+            <fr></fr>
+            <bg></bg>
+        </string>
+        <string id="394">
+            <en>LOOP_INCLUSION_DESC</en>
+            <de></de>
+            <pl>LOOP_INCLUSION_DESC</pl>
+            <cn></cn>
+            <fr></fr>
+            <bg></bg>
+        </string>
+        <string id="395">
+            <en>FOR</en>
+            <de></de>
+            <pl>FOR</pl>
+            <cn></cn>
+            <fr></fr>
+            <bg></bg>
+        </string>
+        <string id="396">
+            <en>WHILE</en>
+            <de></de>
+            <pl>WHILE</pl>
+            <cn></cn>
+            <fr></fr>
+            <bg></bg>
+        </string>
+        <string id="397">
+            <en>variable</en>
+            <de></de>
+            <pl>zmienna</pl>
+            <cn></cn>
+            <fr></fr>
+            <bg></bg>
+        </string>
+        <string id="398">
+            <en>condition</en>
+            <de></de>
+            <pl>warunek</pl>
+            <cn></cn>
+            <fr></fr>
+            <bg></bg>
+        </string>
+        <string id="399">
+            <en>change by</en>
+            <de></de>
+            <pl>zmien o</pl>
+            <cn></cn>
+            <fr></fr>
+            <bg></bg>
+        </string>
+        <string id="400">
+            <en>initial value</en>
+            <de></de>
+            <pl>poczatkowa wartosc</pl>
+            <cn></cn>
+            <fr></fr>
+            <bg></bg>
+        </string>
     </strings>
 </root> 

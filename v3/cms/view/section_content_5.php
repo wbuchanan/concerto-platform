@@ -49,7 +49,7 @@ if ($table != null)
 }
 ?>
 
-<div class="divSectionSummary sortableHandle">
+<div class="divSectionSummary sortableHandle" onmouseover="Test.uiToggleHover(<?=$_POST['counter']?>,true);" onmouseout="Test.uiToggleHover(<?=$_POST['counter']?>,false);">
     <table class="fullWidth tableSectionHeader">
         <tr>
             <!--<td class="tdSectionColumnIcon"></td>-->

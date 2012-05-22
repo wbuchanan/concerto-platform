@@ -67,35 +67,7 @@ class TestSection extends OTable
 
     public function get_RFunction()
     {
-        $code = "";
-
-        if ($this->parent_counter != 0)
-        {
-            $next = $this->get_next_TestSection();
-            $next_counter = ($next != null ? $next->counter : 0);
-
-            $parent = TestSection::from_property(array("Test_id" => $this->Test_id, "counter" => $this->parent_counter), false);
-
-            $parent_vals = $parent->get_values();
-
-            $additional_conds = "";
-            $i = 3;
-            while (isset($parent_vals[$i]))
-            {
-                $additional_conds.=sprintf("%s %s %s %s", $parent_vals[$i], $parent_vals[$i + 1], $parent_vals[$i + 2], $parent_vals[$i + 3]);
-                $i+=4;
-            }
-
-            $code = sprintf("
-                if(%s %s %s %s) {
-                    %s
-                    }
-                    else {
-                    return(%d)
-                    }
-                    ", $parent_vals[0], $parent_vals[1], $parent_vals[2], $additional_conds, $this->get_RCode(), $next_counter);
-        }
-        else $code = $this->get_RCode();
+        $code = $this->get_RCode();
 
         if (substr($this->get_RCode(), 0, 5) == "stop(")
                 return sprintf("print('Start of section with index: <b>%s</b>')
@@ -209,10 +181,33 @@ class TestSection extends OTable
                 }
             case DS_TestSectionType::IF_STATEMENT:
                 {
+                    $next = $this->get_next_TestSection();
+                    $next_counter = ($next != null ? $next->counter : 0);
+
+                    $next_not_child = $this->get_next_not_child_TestSection();
+
+                    $additional_conds = "";
+                    $i = 3;
+                    while (isset($vals[$i]))
+                    {
+                        $additional_conds.=sprintf("%s %s %s %s", $vals[$i], $vals[$i + 1], $vals[$i + 2], $vals[$i + 3]);
+                        $i+=4;
+                    }
+
                     $code = sprintf("
-                        return(%d)
-                        ", $next_counter);
+                if(%s %s %s %s) {
+                    return(%d)
+                    }
+                    else {
+                    return(%d)
+                    }
+                    ", $vals[0], $vals[1], $vals[2], $additional_conds, $next_counter, $next_not_child->counter);
+
                     return $code;
+                }
+            case DS_TestSectionType::LOOP:
+                {
+                    
                 }
             case DS_TestSectionType::TABLE_MOD:
                 {
@@ -357,7 +352,18 @@ class TestSection extends OTable
 
     public function get_next_TestSection()
     {
-        $sql = sprintf("SELECT * FROM `%s` WHERE `Test_id`=%d AND `id`>%d LIMIT 0,1", TestSection::get_mysql_table(), $this->Test_id, $this->id);
+        $sql = sprintf("SELECT * FROM `%s` WHERE `Test_id`=%d AND `id`>%d ORDER BY `id` ASC LIMIT 0,1", TestSection::get_mysql_table(), $this->Test_id, $this->id);
+        $z = mysql_query($sql);
+        while ($r = mysql_fetch_array($z))
+        {
+            return TestSection::from_mysql_result($r);
+        }
+        return null;
+    }
+
+    public function get_next_not_child_TestSection()
+    {
+        $sql = sprintf("SELECT * FROM `%s` WHERE `Test_id`=%d AND `id`>%d AND `parent_counter`=%d ORDER BY `id` ASC LIMIT 0,1", TestSection::get_mysql_table(), $this->Test_id, $this->id, $this->parent_counter);
         $z = mysql_query($sql);
         while ($r = mysql_fetch_array($z))
         {
