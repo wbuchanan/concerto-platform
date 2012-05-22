@@ -207,7 +207,28 @@ class TestSection extends OTable
                 }
             case DS_TestSectionType::LOOP:
                 {
-                    
+                    $next = $this->get_next_TestSection();
+                    $next_counter = ($next != null ? $next->counter : 0);
+
+                    $next_not_child = $this->get_next_not_child_TestSection();
+
+                    $code = "";
+                    if ($vals[0] == 0)
+                    {
+                        $code = sprintf("
+                if(%s %s %s) {
+                    return(%d)
+                    }
+                    else {
+                    return(%d)
+                    }
+                    ", $vals[1], $vals[2], $vals[3], $next_counter, $next_not_child->counter);
+                    }
+                    else 
+                    {
+                        
+                    }
+                    return $code;
                 }
             case DS_TestSectionType::TABLE_MOD:
                 {
@@ -348,6 +369,14 @@ class TestSection extends OTable
                 }
         }
         return $code;
+    }
+    
+    public function is_last_in_loop()
+    {
+        if($this->parent_counter==0) return false;
+        $parent = TestSection::from_property(array("id"=>$this->parent_counter,"TestSectionType_id"=>  DS_TestSectionType::LOOP),false);
+        if($parent==null) return false;
+        
     }
 
     public function get_next_TestSection()
