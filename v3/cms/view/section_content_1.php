@@ -50,9 +50,9 @@ if (array_key_exists('oid', $_POST) && $_POST['oid'] != 0)
             <td class="tdSectionColumnIcon"><span id="spanExpandDetail_<?=$_POST['counter']?>" class="spanIcon ui-icon ui-icon-folder-<?=$_POST['detail']==1?"open":"collapsed"?> tooltip" title="<?= Language::string(390) ?>" onclick="Test.uiToggleDetails(<?=$_POST['counter']?>)"></span></td>
             <td class="tdSectionColumnType"><?= DS_TestSectionType::get_name_by_id(1) ?></td>
             <td class="tdSectionColumnAction"></td>
-            <td class="tdSectionColumnEnd"><table><tr><td><span class="spanIcon ui-icon ui-icon-help tooltip" title="<?= Language::string(369) ?>"></span></td><td><?= Language::string(55) ?></td><td><input type="checkbox" id="chkEndSection_<?= $_POST['counter'] ?>" class="chkEndSection" /></td></tr></table></td>
+            <td class="tdSectionColumnEnd"><table><tr><td><span class="spanIcon ui-icon ui-icon-help tooltip" title="<?= Language::string(369) ?>"></span></td><td><?= Language::string(55) ?></td><td><input type="checkbox" id="chkEndSection_<?= $_POST['counter'] ?>" class="chkEndSection" <?=$_POST['end']==1?"checked":""?> /></td></tr></table></td>
             <td class="tdSectionColumnIcon"><span class="spanIcon tooltip ui-icon ui-icon-trash" onclick="Test.uiRemoveSection(<?= $_POST['counter'] ?>)" title="<?= Language::string(59) ?>"></span></td>
-            <td class="tdSectionColumnIcon"><span class="spanIcon tooltip ui-icon ui-icon-plus" onclick="Test.uiAddLogicSection(0)" title="<?= Language::string(60) ?>"></span></td>
+            <td class="tdSectionColumnIcon"><span class="spanIcon tooltip ui-icon ui-icon-plus" onclick="Test.uiAddLogicSection(0,<?=$_POST['counter']?>)" title="<?= Language::string(60) ?>"></span></td>
         </tr>
     </table>
 </div>

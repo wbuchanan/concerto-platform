@@ -69,8 +69,9 @@ if ($oid != 0)
         <?= $section->id ?>,
         <?= $section->TestSectionType_id == 3 ? "false" : "true" ?>,
                         null,
-                        null
-                    );
+                        null,
+        <?= $section->end == 1 ? "true" : "false" ?>
+                                    );
         <?php
         if ($section->TestSectionType_id == 3)
                 array_push($late_refresh_sections, $section);
@@ -84,8 +85,9 @@ if ($oid != 0)
         <?= $section->TestSectionType_id ?>,
         <?= $section->counter ?>, 
                         [<?= $vals[0] ?>], 
-        <?= $section->id ?>
-                    );
+        <?= $section->id ?>,
+        <?= $section->end == 1 ? "true" : "false" ?>
+                        );
         <?php
     }
     ?>
@@ -106,13 +108,13 @@ if ($oid != 0)
                 <button id="btnDebugTest" onclick="Test.uiIniDebug()"><?= Language::string(284) ?></button>
             </td>
             <td>
-                <button id="btnRunTest" onclick="window.open('<?=Ini::$path_external."?tid=".$obj->id?>','_blank')"><?= Language::string(362) ?></button>
+                <button id="btnRunTest" onclick="window.open('<?= Ini::$path_external . "?tid=" . $obj->id ?>','_blank')"><?= Language::string(362) ?></button>
             </td>
         </tr>
     </table>
 </div>
 
-<?php include Ini::$path_internal."cms/view/Test_security.php"; ?>
+<?php include Ini::$path_internal . "cms/view/Test_security.php"; ?>
 <br/>
 <div class="ui-widget-header margin"><?= Language::string(359) ?></div>
 <div id="divTestLogic" class="">

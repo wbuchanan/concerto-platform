@@ -1871,7 +1871,7 @@ Note: You can add new languages by inserting "<new_language>string translated in
             <fr>ALORS</fr>
             <bg>ТОГАВА</bg>
         </string>
-        <string id="232">
+        <string id="232" js="1">
             <en>add test logic section to IF clause</en>
             <de>Füge Testlogiksektion zu WENN Aussage hinzu.</de>
             <pl>dodaj sekcję logiki testu do bloku JEŚLI</pl>

@@ -206,7 +206,11 @@ Test.getSectionTypeName=function(type){
 }
 
 Test.contentsToRefresh=0;
-Test.uiRefreshSectionContent=function(type,counter,value,oid){
+Test.uiRefreshSectionContent=function(type,counter,value,oid,end){
+    if(end==null) {
+        if($("#chkEndSection_"+counter).is(":checked")) end = 1;
+        else end = 0;
+    }
     Test.contentsToRefresh++;
     if(oid==null) oid=0;
     switch(type){
@@ -246,7 +250,8 @@ Test.uiRefreshSectionContent=function(type,counter,value,oid){
         counter:counter,
         value:value,
         oid:oid,
-        detail:detail
+        detail:detail,
+        end:end?1:0
     },function(data){
         $("#divSection_"+counter).unmask();
         $("#divSection_"+counter).find(".divSectionContent").html(data);
@@ -312,7 +317,8 @@ Test.uiToggleDetails=function(counter){
 }
 
 //Test.uiWriteSection=function(type,container,parent,counter,value,oid,prepend,refresh,csid,after,end){
-Test.uiWriteSection=function(type,parent,counter,value,oid,refresh,csid,after){
+Test.uiWriteSection=function(type,parent,counter,value,oid,refresh,csid,after,end){
+    if(end==null) end = false;
     if(refresh==null) refresh=true;
     if(counter==null) counter = Test.getCounter();
     if(csid==null) csid = 0;
@@ -338,10 +344,10 @@ Test.uiWriteSection=function(type,parent,counter,value,oid,refresh,csid,after){
         secparent:parent,
         onmouseover:"Test.uiToggleHover("+counter+",true);",
         onmouseout:"Test.uiToggleHover("+counter+",false);",
-        style:"z-index:20; border:solid 1px transparent; border-top:1px dotted grey;"
+        style:"z-index:20; border:1px dotted grey; border-right:1px dotted transparent; margin:5px; margin-right:0px;"
     });
     
-    var sectionContainer = '<div class="divSectionBracket">{</div><div class="divSectionContainer"></div><div class="divSectionBracket">}</div>';
+    var sectionContainer = '<div class="divSectionBracket"><table class="noSpace"><tr><td class="noSpace">{</td><td class="noSpace"><span class="spanIcon tooltip ui-icon ui-icon-plus" onclick="Test.uiAddLogicSection('+counter+',0)"  title="'+dictionary["s232"]+'"></span></td></tr></table></div><div class="divSectionContainer"></div><div class="divSectionBracket"><table class="noSpace"><tr><td class="noSpace">}</td></tr></table></div>';
     
     section.html('<div class="divSectionContent"></div>'+(type==Test.sectionTypes.ifStatement?sectionContainer:""));
     
@@ -357,7 +363,7 @@ Test.uiWriteSection=function(type,parent,counter,value,oid,refresh,csid,after){
         }
     }
     
-    if(refresh) Test.uiRefreshSectionContent(type,counter,value,oid);
+    if(refresh) Test.uiRefreshSectionContent(type,counter,value,oid,end);
     
     Test.uiCheckEmptyLogic();
         
@@ -657,7 +663,7 @@ Test.getReturnVars=function(){
     $(".inputReturnVar").each(function(){
         var v = {
             name:$(this).val(),
-            section:[Test.sectionDivToObject($(this).parent().parent().parent().parent())],
+            section:[Test.sectionDivToObject($(this).parents(".divSection"))],
             type:["return"]
         };
         var exists = false;
@@ -681,7 +687,7 @@ Test.getParameterVars=function(){
     $(".inputParameterVar").each(function(){
         var v = {
             name:$(this).val(),
-            section:[Test.sectionDivToObject($(this).parent().parent().parent().parent())],
+            section:[Test.sectionDivToObject($(this).parents(".divSection"))],
             type:["parameter"]
         };
         var exists = false;
