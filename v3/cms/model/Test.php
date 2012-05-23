@@ -227,7 +227,7 @@ class Test extends OModule
         return $code;
     }
 
-    public function export($xml=null, $sub_test=false)
+    public function export($xml=null, $sub_test=false, $main_test=null)
     {
         if ($xml == null)
         {
@@ -390,8 +390,8 @@ class Test extends OModule
                             $test = Test::from_mysql_id($r[1]);
                             if ($test != null)
                             {
-                                $xml = $test->export($xml, true);
-                                $element = $test->to_XML();
+                                if($main_test!=null && $main_test->id==$test->id) break;
+                                $xml = $test->export($xml, true, ($main_test!=null?$main_test:$this));
                                 $present_tests = $xpath->query("/export/Test");
                                 $exists = false;
                                 foreach ($present_tests as $obj)
@@ -403,6 +403,8 @@ class Test extends OModule
                                     }
                                 }
                                 if ($exists) break;
+                                
+                                $element = $test->to_XML();
 
                                 $obj = $xml->importNode($element, true);
                                 $export->appendChild($obj);

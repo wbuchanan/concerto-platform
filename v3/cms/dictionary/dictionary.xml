@@ -3240,5 +3240,21 @@ Note: You can add new languages by inserting "<new_language>string translated in
             <fr></fr>
             <bg></bg>
         </string>
+        <string id="405">
+            <en>Define test input parameters.</en>
+            <de></de>
+            <pl>Zadeklaruj parametry wejsciowe testu.</pl>
+            <cn></cn>
+            <fr></fr>
+            <bg></bg>
+        </string>
+        <string id="406">
+            <en>Define test return variables.</en>
+            <de></de>
+            <pl>Zadeklaruj zmienne zwrotu testu.</pl>
+            <cn></cn>
+            <fr></fr>
+            <bg></bg>
+        </string>
     </strings>
 </root> 

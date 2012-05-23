@@ -83,7 +83,7 @@ else
 
 <table>
     <tr>
-        <td><span class="spanIcon ui-icon ui-icon-help tooltip" title="<?= Language::string(105) ?>"></span></td>
+        <td><span class="spanIcon ui-icon ui-icon-help tooltip" title="<?= Language::string(405) ?>"></span></td>
         <td><b><?= Language::string(106) ?>:</b></td>
     </tr>
 </table>
@@ -139,7 +139,7 @@ else
 <br/>
 <table>
     <tr>
-        <td><span class="spanIcon ui-icon ui-icon-help tooltip" title="<?= Language::string(112) ?>"></span></td>
+        <td><span class="spanIcon ui-icon ui-icon-help tooltip" title="<?= Language::string(406) ?>"></span></td>
         <td><b><?= Language::string(113) ?>:</b></td>
     </tr>
 </table>
