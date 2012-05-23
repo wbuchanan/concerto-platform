@@ -74,7 +74,7 @@ class TestSection extends OTable
                     %s", $this->counter, $this->get_RCode());
 
         return sprintf("
-            %s <- function(){
+            %s <<- function(){
             print('Start of section with index: <b>%s</b>')
                             %s
                  }
@@ -87,13 +87,13 @@ class TestSection extends OTable
 
         $next = $this->get_next_TestSection();
         $next_counter = ($next != null ? $next->counter : 0);
-        
+
         $end_of_loop = $this->is_end_of_loop();
         $loop = null;
         $loop_vals = null;
-        if($end_of_loop) 
+        if ($end_of_loop)
         {
-            $loop = TestSection::from_property(array("Test_id"=>$this->Test_id,"counter"=>$this->parent_counter),false);
+            $loop = TestSection::from_property(array("Test_id" => $this->Test_id, "counter" => $this->parent_counter), false);
             $loop_vals = $loop->get_values();
             $next_counter = $loop->counter;
         }
@@ -193,7 +193,7 @@ class TestSection extends OTable
                 {
                     $next_not_child = $this->get_next_not_child_TestSection();
                     $next_not_child_counter = $next_not_child->counter;
-                    if($end_of_loop) $next_not_child_counter = $next_counter;
+                    if ($end_of_loop) $next_not_child_counter = $next_counter;
 
                     $additional_conds = "";
                     $i = 3;
@@ -214,11 +214,78 @@ class TestSection extends OTable
 
                     break;
                 }
+            case DS_TestSectionType::TEST:
+                {
+                    $test = Test::from_mysql_id($vals[0]);
+                    if ($test == null)
+                    {
+                        return sprintf("stop('Invalid test id: %s in section #%s')", $vals[0], $this->counter);
+                    }
+                    else
+                    {
+                        $parameters = $test->get_parameter_TestVariables();
+                        $returns = $test->get_return_TestVariables();
+                        $params_code = "";
+                        $returns_code = "";
+
+                        $j = 1;
+                        foreach ($parameters as $param)
+                        {
+                            $params_code.=sprintf("
+                            %s <- %s
+                            ", $param->name, $vals[$j]);
+                            $j++;
+                        }
+                        foreach ($returns as $ret)
+                        {
+                            $returns_code.=sprintf("
+                            %s <<- %s
+                            ", $vals[$j], $ret->name);
+
+                            $returns_code.=sprintf("
+                            if(!is.null(%s) && !is.na(%s) && is.character(%s) && suppressWarnings(!is.na(as.numeric(%s)))) %s <<- as.numeric(%s)
+                            ", $vals[$j], $vals[$j], $vals[$j], $vals[$j], $vals[$j], $vals[$j]);
+
+                            $j++;
+                        }
+
+                        $code = sprintf("
+                            CONCERTO_TEST_ID <<- %s
+                            %s
+                            ", $test->id, $params_code);
+                        $sections = TestSection::from_property(array("Test_id" => $test->id));
+                        foreach ($sections as $section)
+                        {
+                            if ($section->TestSectionType_id != DS_TestSectionType::END)
+                            {
+                                $code.=$section->get_RFunction();
+                            }
+                            else
+                            {
+                                $end_code = sprintf("
+                                    CONCERTO_TEST_ID <<- %s
+                                    %s
+                                    return(%d)
+                                    ", $this->Test_id, $returns_code, $next_counter);
+                                $code.=sprintf("
+                                    %s <<- function(){
+                                    print('Start of section with index: <b>%s</b>')
+                                    %s
+                                    }
+                                    ", 'CONCERTO_Test' . $vals[0] . 'Section2', 2, $end_code);
+                            }
+                        }
+                        $code.="
+                            return(1)
+                            ";
+                    }
+                    break;
+                }
             case DS_TestSectionType::LOOP:
                 {
                     $next_not_child = $this->get_next_not_child_TestSection();
                     $next_not_child_counter = $next_not_child->counter;
-                    if($end_of_loop) $next_not_child_counter = $next_counter;
+                    if ($end_of_loop) $next_not_child_counter = $next_counter;
 
                     $code = "";
                     if ($vals[0] == 1)
@@ -232,7 +299,7 @@ class TestSection extends OTable
                     }
                     ", $vals[1], $vals[2], $vals[3], $next->counter, $next_not_child_counter);
                     }
-                    else 
+                    else
                     {
                         $code = sprintf("
                 if(exists('%s') && %s) {
@@ -247,7 +314,7 @@ class TestSection extends OTable
                     }
                     else {
                     %s <<- FALSE
-                    print(".$this->get_for_initialization_variable().")
+                    print(" . $this->get_for_initialization_variable() . ")
                     return(%d)
                     }
                     ", $this->get_for_initialization_variable(), $this->get_for_initialization_variable(), $vals[1], $vals[1], $vals[5], $this->get_for_initialization_variable(), $vals[1], $vals[4], $vals[1], $vals[2], $vals[3], $next->counter, $this->get_for_initialization_variable(), $next_not_child_counter);
@@ -394,21 +461,20 @@ class TestSection extends OTable
         }
         return $code;
     }
-    
+
     public function get_for_initialization_variable()
     {
-        return "CONCERTO_FOR_Test" . $this->Test_id . "Section" . $this->counter."_INIT";
+        return "CONCERTO_FOR_Test" . $this->Test_id . "Section" . $this->counter . "_INIT";
     }
-    
+
     public function is_end_of_loop()
     {
-        if($this->parent_counter==0) return false;
-        $parent = TestSection::from_property(array("Test_id"=>$this->Test_id,"counter"=>$this->parent_counter,"TestSectionType_id"=>  DS_TestSectionType::LOOP),false);
-        if($parent==null) return false;
+        if ($this->parent_counter == 0) return false;
+        $parent = TestSection::from_property(array("Test_id" => $this->Test_id, "counter" => $this->parent_counter, "TestSectionType_id" => DS_TestSectionType::LOOP), false);
+        if ($parent == null) return false;
         $next = $this->get_next_TestSection();
-        if($next->parent_counter!=$this->parent_counter) return true;
+        if ($next->parent_counter != $this->parent_counter) return true;
         else return false;
-        
     }
 
     public function get_next_TestSection()

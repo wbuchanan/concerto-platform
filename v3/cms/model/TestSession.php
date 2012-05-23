@@ -150,7 +150,7 @@ class TestSession extends OTable
                 CONCERTO_TEST_FLOW <- do.call(paste('CONCERTO_Test',CONCERTO_TEST_ID,'Section',CONCERTO_TEST_FLOW,sep=''),list())
             }
             if(CONCERTO_TEST_FLOW==-2) update.session.release(1)
-            ", $counter, $section->get_RFunctionName());
+            ", $counter);
 
         return $this->RCall($code, $ini_code_required);
     }

@@ -3145,9 +3145,9 @@ Note: You can add new languages by inserting "<new_language>string translated in
             <bg></bg>
         </string>
         <string id="393">
-            <en>TEST_INCLUSION_DESC</en>
+            <en>Includes selected test. Tests cross-dependancies are not recommended.</en>
             <de></de>
-            <pl>TEST_INCLUSION_DESC</pl>
+            <pl>Dolacza wybrany test. Krzyzowe zaleznosci miedzy testami nie sa zalecane.</pl>
             <cn></cn>
             <fr></fr>
             <bg></bg>
