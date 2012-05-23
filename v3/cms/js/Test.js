@@ -270,7 +270,7 @@ Test.uiRefreshSectionContent=function(type,counter,value,oid,end){
         end:end?1:0
     },function(data){
         $("#divSection_"+counter).unmask();
-        $("#divSection_"+counter).find(".divSectionContent").html(data);
+        $("#divSection_"+counter).children(".divSectionContent").html(data);
         switch(type){
             case Test.sectionTypes.RCode:{
                 var cm = Methods.iniCodeMirror("textareaCodeMirror_"+counter, "r", false);

@@ -87,6 +87,16 @@ class TestSection extends OTable
 
         $next = $this->get_next_TestSection();
         $next_counter = ($next != null ? $next->counter : 0);
+        
+        $end_of_loop = $this->is_end_of_loop();
+        $loop = null;
+        $loop_vals = null;
+        if($end_of_loop) 
+        {
+            $loop = TestSection::from_property(array("Test_id"=>$this->Test_id,"counter"=>$this->parent_counter),false);
+            $loop_vals = $loop->get_values();
+            $next_counter = $loop->counter;
+        }
 
         $vals = $this->get_values();
         switch ($this->TestSectionType_id)
@@ -96,7 +106,7 @@ class TestSection extends OTable
                     $code = sprintf("
                     return(%d)
                     ", $next_counter);
-                    return $code;
+                    break;
                 }
             case DS_TestSectionType::END:
                 {
@@ -105,7 +115,7 @@ class TestSection extends OTable
                     update.session.counter(%d)
                     return(%d)
                     ", TestSession::TEST_SESSION_STATUS_COMPLETED, $next_counter, $next_counter);
-                    return $code;
+                    break;
                 }
             case DS_TestSectionType::CUSTOM:
                 {
@@ -139,7 +149,7 @@ class TestSection extends OTable
                     $code.=sprintf("
                         return(%d)
                         ", ($this->end == 0 ? $next_counter : -2));
-                    return $code;
+                    break;
                 }
             case DS_TestSectionType::R_CODE:
                 {
@@ -148,7 +158,7 @@ class TestSection extends OTable
                         return(%d)
                         ", $vals[0], ($this->end == 0 ? $next_counter : -2)
                     );
-                    return $code;
+                    break;
                 }
             case DS_TestSectionType::LOAD_HTML_TEMPLATE:
                 {
@@ -169,7 +179,7 @@ class TestSection extends OTable
                         ", $template_id, TestSession::TEST_SESSION_STATUS_TEMPLATE, $next_counter, $this->id, $this->Test_id, $this->id, $template_id, ($this->end == 0 ? -1 : -2)
                     );
 
-                    return $code;
+                    break;
                 }
             case DS_TestSectionType::GO_TO:
                 {
@@ -177,14 +187,13 @@ class TestSection extends OTable
                         return(%d)
                         ", $vals[0]
                     );
-                    return $code;
+                    break;
                 }
             case DS_TestSectionType::IF_STATEMENT:
                 {
-                    $next = $this->get_next_TestSection();
-                    $next_counter = ($next != null ? $next->counter : 0);
-
                     $next_not_child = $this->get_next_not_child_TestSection();
+                    $next_not_child_counter = $next_not_child->counter;
+                    if($end_of_loop) $next_not_child_counter = $next_counter;
 
                     $additional_conds = "";
                     $i = 3;
@@ -201,19 +210,18 @@ class TestSection extends OTable
                     else {
                     return(%d)
                     }
-                    ", $vals[0], $vals[1], $vals[2], $additional_conds, $next_counter, $next_not_child->counter);
+                    ", $vals[0], $vals[1], $vals[2], $additional_conds, $next->counter, $next_not_child_counter);
 
-                    return $code;
+                    break;
                 }
             case DS_TestSectionType::LOOP:
                 {
-                    $next = $this->get_next_TestSection();
-                    $next_counter = ($next != null ? $next->counter : 0);
-
                     $next_not_child = $this->get_next_not_child_TestSection();
+                    $next_not_child_counter = $next_not_child->counter;
+                    if($end_of_loop) $next_not_child_counter = $next_counter;
 
                     $code = "";
-                    if ($vals[0] == 0)
+                    if ($vals[0] == 1)
                     {
                         $code = sprintf("
                 if(%s %s %s) {
@@ -222,13 +230,29 @@ class TestSection extends OTable
                     else {
                     return(%d)
                     }
-                    ", $vals[1], $vals[2], $vals[3], $next_counter, $next_not_child->counter);
+                    ", $vals[1], $vals[2], $vals[3], $next->counter, $next_not_child_counter);
                     }
                     else 
                     {
-                        
+                        $code = sprintf("
+                if(exists('%s') && %s) {
+                    %s <<- %s + as.numeric(%s)
+                }
+                else {
+                    %s <<- TRUE
+                    %s <<- as.numeric(%s)
+                }
+                if(%s %s %s) {
+                    return(%d)
                     }
-                    return $code;
+                    else {
+                    %s <<- FALSE
+                    print(".$this->get_for_initialization_variable().")
+                    return(%d)
+                    }
+                    ", $this->get_for_initialization_variable(), $this->get_for_initialization_variable(), $vals[1], $vals[1], $vals[5], $this->get_for_initialization_variable(), $vals[1], $vals[4], $vals[1], $vals[2], $vals[3], $next->counter, $this->get_for_initialization_variable(), $next_not_child_counter);
+                    }
+                    break;
                 }
             case DS_TestSectionType::TABLE_MOD:
                 {
@@ -282,7 +306,7 @@ class TestSection extends OTable
                         return(%d)
                         ', $sql, ($this->end == 0 ? $next_counter : -2));
 
-                    return $code;
+                    break;
                 }
             case DS_TestSectionType::SET_VARIABLE:
                 {
@@ -352,7 +376,7 @@ class TestSection extends OTable
                         %s
                         return(%d)
                         ', $sql, $vals[4], $set_rvar_code, ($this->end == 0 ? $next_counter : -2));
-                        return $code;
+                        break;
                     }
                     if ($type == 1)
                     {
@@ -364,18 +388,26 @@ class TestSection extends OTable
                         return(%d)
                         ', $vals[4], $vals[3], $set_rvar_code, ($this->end == 0 ? $next_counter : -2)
                         );
-                        return $code;
+                        break;
                     }
                 }
         }
         return $code;
     }
     
-    public function is_last_in_loop()
+    public function get_for_initialization_variable()
+    {
+        return "CONCERTO_FOR_Test" . $this->Test_id . "Section" . $this->counter."_INIT";
+    }
+    
+    public function is_end_of_loop()
     {
         if($this->parent_counter==0) return false;
-        $parent = TestSection::from_property(array("id"=>$this->parent_counter,"TestSectionType_id"=>  DS_TestSectionType::LOOP),false);
+        $parent = TestSection::from_property(array("Test_id"=>$this->Test_id,"counter"=>$this->parent_counter,"TestSectionType_id"=>  DS_TestSectionType::LOOP),false);
         if($parent==null) return false;
+        $next = $this->get_next_TestSection();
+        if($next->parent_counter!=$this->parent_counter) return true;
+        else return false;
         
     }
 
