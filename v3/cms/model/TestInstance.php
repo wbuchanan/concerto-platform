@@ -146,7 +146,6 @@ class TestInstance
 
     public function read()
     {
-        $this->last_action_time = time();
         $this->code_execution_halted = false;
 
         $result = "";
@@ -174,6 +173,7 @@ class TestInstance
         $this->response.=$result;
         if ($this->is_data_ready)
         {
+            $this->last_action_time = time();
             return $this->response;
         }
 

@@ -3208,5 +3208,21 @@ Note: You can add new languages by inserting "<new_language>string translated in
             <fr></fr>
             <bg></bg>
         </string>
+        <string id="401" js="1">
+            <en>expand all sections</en>
+            <de></de>
+            <pl>rozwin wszystkie sekcje</pl>
+            <cn></cn>
+            <fr></fr>
+            <bg></bg>
+        </string>
+        <string id="402" js="1">
+            <en>collapse all sections</en>
+            <de></de>
+            <pl>zwin wszystkie sekcje</pl>
+            <cn></cn>
+            <fr></fr>
+            <bg></bg>
+        </string>
     </strings>
 </root> 

@@ -40,6 +40,7 @@ if (!$logged_user->is_object_editable($obj)) die(Language::string(81));
         Methods.iniIconButton("#btnLogicVariables", "star");
         Methods.iniIconButton(".btnAddLogicSection", "plus");
         Methods.iniIconButton("#btnRunTest", "play");
+        Methods.iniIconButton("#btnLogicToggleAll", "folder-collapsed");
         $( "#divTestLogic" ).sortable({
             items: "div.sortable",
             handle: ".sortableHandle"
@@ -117,6 +118,9 @@ if ($oid != 0)
 <?php include Ini::$path_internal . "cms/view/Test_security.php"; ?>
 <br/>
 <div class="ui-widget-header margin"><?= Language::string(359) ?></div>
+<div align="center">
+    <button id="btnLogicToggleAll" onclick="Test.uiToggleAll()"><?= Language::string(401) ?></button>
+</div>
 <div id="divTestLogic" class="">
     <div id="divTestEmptyLogic" class="margin padding ui-state-error" align="center">
         <?= Language::string(145) ?>

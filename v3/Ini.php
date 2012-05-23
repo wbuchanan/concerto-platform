@@ -38,8 +38,8 @@ class Ini
     public static $path_unix_sock_dir = "";
     public static $sock_type_used = 0;
     public static $r_instances_persistant = false;
-    public static $r_instances_timeout = 1800;
-    public static $r_server_timeout = 2100;
+    public static $r_instances_timeout = 900;
+    public static $r_server_timeout = 1080;
     public static $timer_tamper_prevention = true;
     public static $timer_tamper_prevention_tolerance = 3;
     public static $path_online_library_ws = "";

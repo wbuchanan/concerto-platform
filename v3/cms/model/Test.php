@@ -437,26 +437,40 @@ class Test extends OModule
                 case 2:
                     {
                         if ($test_section["value"]["v0"] == 0) break;
-                        $test_section["value"]["v0"] = $compare["Template"][$test_section["value"]["v0"]];
+                        $value = 0;
+                        if (isset($compare["Template"][$test_section["value"]["v0"]]))
+                                $value = $compare["Template"][$test_section["value"]["v0"]];
+                        $test_section["value"]["v0"] = $value;
                         break;
                     }
                 case 9:
                     {
                         if ($test_section["value"]["v0"] == 0) break;
-                        $test_section["value"]["v0"] = $compare["CustomSection"][$test_section["value"]["v0"]];
+                        $value = 0;
+                        if (isset($compare["CustomSection"][$test_section["value"]["v0"]]))
+                                $value = $compare["CustomSection"][$test_section["value"]["v0"]];
+                        $test_section["value"]["v0"] = $value;
                         break;
                     }
                 case 8:
                     {
                         if ($test_section["value"]["v0"] == 0) break;
-                        $test_section["value"]["v0"] = $compare["Table"][$test_section["value"]["v0"]];
+                        $value = 0;
+                        if (isset($compare["Table"][$test_section["value"]["v0"]]))
+                                $value = $compare["Table"][$test_section["value"]["v0"]];
+                        $test_section["value"]["v0"] = $value;
                         break;
                     }
                 case 5:
                     {
                         if ($test_section["value"]["v5"] == 0) break;
                         if ($test_section["value"]["v2"] == 0)
-                                $test_section["value"]["v5"] = $compare["Table"][$test_section["value"]["v5"]];
+                        {
+                            $value = 0;
+                            if (isset($compare["Table"][$test_section["value"]["v5"]]))
+                                    $value = $compare["Table"][$test_section["value"]["v5"]];
+                            $test_section["value"]["v5"] = $value;
+                        }
                         break;
                     }
             }

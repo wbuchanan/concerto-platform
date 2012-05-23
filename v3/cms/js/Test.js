@@ -336,6 +336,35 @@ Test.uiToggleDetails=function(counter){
     }
 }
 
+Test.allExpanded = false;
+Test.uiToggleAll=function(){
+    $(".divSection").each(function(){
+        var counter = $(this).attr("seccounter");
+        if(Test.allExpanded){
+            if($("#divSection_"+counter).children(".divSectionContent").children(".divSectionDetail").is(":visible")){
+                $("#divSection_"+counter).children(".divSectionContent").children(".divSectionDetail").hide(500);
+                $("#spanExpandDetail_"+counter).addClass("ui-icon-folder-collapsed");
+                $("#spanExpandDetail_"+counter).removeClass("ui-icon-folder-open");
+            }
+        } else {
+            if(!$("#divSection_"+counter).children(".divSectionContent").children(".divSectionDetail").is(":visible")){
+                $("#divSection_"+counter).children(".divSectionContent").children(".divSectionDetail").show(500);
+                $("#spanExpandDetail_"+counter).removeClass("ui-icon-folder-collapsed");
+                $("#spanExpandDetail_"+counter).addClass("ui-icon-folder-open");
+            }
+        }
+    });
+    Test.allExpanded = !Test.allExpanded;
+    if(Test.allExpanded) {
+        Test.uiRefreshCodeMirrors();
+        Methods.iniIconButton("#btnLogicToggleAll", "folder-open");
+        $("#btnLogicToggleAll").button("option","label",dictionary["s402"]);
+    } else {
+        Methods.iniIconButton("#btnLogicToggleAll", "folder-collapsed");
+        $("#btnLogicToggleAll").button("option","label",dictionary["s401"]);
+    }
+}
+
 //Test.uiWriteSection=function(type,container,parent,counter,value,oid,prepend,refresh,csid,after,end){
 Test.uiWriteSection=function(type,parent,counter,value,oid,refresh,csid,after,end){
     if(end==null) end = false;
