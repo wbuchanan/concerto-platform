@@ -250,9 +250,10 @@ class TestSection extends OTable
                         }
 
                         $code = sprintf("
+                            print('Starting test with id: <b>%s</b>')
                             CONCERTO_TEST_ID <<- %s
                             %s
-                            ", $test->id, $params_code);
+                            ", $test->id, $test->id, $params_code);
                         $sections = TestSection::from_property(array("Test_id" => $test->id));
                         foreach ($sections as $section)
                         {
