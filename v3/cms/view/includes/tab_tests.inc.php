@@ -62,3 +62,21 @@ include Ini::$path_internal."cms/view/includes/tab.inc.php";
         <div id="divTestDebugTest"></div>
     </div>
 </div>
+
+<div id="divTestDialogDescription" class="notVisible">
+    <div class="padding ui-widget-content ui-corner-all margin">
+        <table>
+            <tr>
+                <td class="noWrap horizontalPadding ui-widget-header"><?= Language::string(97) ?>:</td>
+                <td><span class="tooltip spanIcon ui-icon ui-icon-help" title="<?= Language::string(254) ?>"></span></td>
+                <td class="fullWidth">
+                    <div class="horizontalMargin">
+                        <textarea id="dialogTestTextareaDescription" name="dialogTestTextareaDescription" class="fullWidth ui-widget-content ui-corner-all">
+                                                                                                
+                        </textarea>
+                    </div>
+                </td>
+            </tr>
+        </table>
+    </div>
+</div>

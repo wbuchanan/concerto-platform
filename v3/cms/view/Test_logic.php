@@ -32,6 +32,7 @@ if ($logged_user == null)
 
 if (!$logged_user->is_module_writeable($class_name)) die(Language::string(81));
 if (!$logged_user->is_object_editable($obj)) die(Language::string(81));
+
 ?>
 
 <script>
@@ -72,7 +73,7 @@ if ($oid != 0)
                         null,
                         null,
         <?= $section->end == 1 ? "true" : "false" ?>
-                                    );
+                    );
         <?php
         if ($section->TestSectionType_id == 3)
                 array_push($late_refresh_sections, $section);
@@ -88,7 +89,7 @@ if ($oid != 0)
                         [<?= $vals[0] ?>], 
         <?= $section->id ?>,
         <?= $section->end == 1 ? "true" : "false" ?>
-                        );
+                    );
         <?php
     }
     ?>
@@ -117,10 +118,16 @@ if ($oid != 0)
 
 <?php include Ini::$path_internal . "cms/view/Test_security.php"; ?>
 <br/>
+<div class="ui-widget-header margin"><?= Language::string(403) ?></div>
+<div align="left" class="margin" id="divTestVariables">
+    <?php include Ini::$path_internal."cms/view/Test_variables.php";?>
+</div>
+<br/>
 <div class="ui-widget-header margin"><?= Language::string(359) ?></div>
 <div align="center">
     <button id="btnLogicToggleAll" onclick="Test.uiToggleAll()"><?= Language::string(401) ?></button>
 </div>
+
 <div id="divTestLogic" class="">
     <div id="divTestEmptyLogic" class="margin padding ui-state-error" align="center">
         <?= Language::string(145) ?>

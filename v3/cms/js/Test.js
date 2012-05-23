@@ -75,6 +75,8 @@ Test.getFullSaveObject = function() {
     var obj = this.getAddSaveObject();
     obj["protected"] = Test.getSerializedProtected();
     obj["sections"] = Test.getSerializedSections();
+    obj["parameters"]=Test.getSerializedParameterVariables();
+    obj["returns"]=Test.getSerializedReturnVariables();
     if($("#form"+this.className+"SelectOwner").length==1) obj["Owner_id"]=$("#form"+this.className+"SelectOwner").val();
     return obj;
 }
@@ -159,6 +161,13 @@ Test.getSectionValues=function(section){
             });
             return values;
         }
+        case Test.sectionTypes.test:{
+            var values=new Array();
+            $(".divSection[seccounter="+section.counter+"] .controlValue"+section.counter).each(function(){
+                values.push($(this).val());
+            });
+            return values;
+        }
         default:{
             return [];
         }
@@ -214,6 +223,9 @@ Test.getSectionTypeName=function(type){
         case Test.sectionTypes.loop:{
             return dictionary["s391"];
         }
+        case Test.sectionTypes.loop:{
+            return dictionary["s392"];
+        }
     }
 }
 
@@ -253,6 +265,10 @@ Test.uiRefreshSectionContent=function(type,counter,value,oid,end){
         }
         case Test.sectionTypes.loop:{
             if(value==null) value=[0,"","==","",0,1];
+            break;
+        }
+        case Test.sectionTypes.test:{
+            if(value==null) value = [0];
             break;
         }
     }
@@ -512,7 +528,9 @@ Test.uiCustomSectionsChanged=function(){
 }
 
 Test.uiRefreshAddSectionDialog=function(){
-    $.post("view/Test_section_dialog.php",{},function(data){
+    $.post("view/Test_section_dialog.php",{
+        oid:this.currentID
+    },function(data){
         $("#divTestDialog").html(data);
     })
 }
@@ -1138,4 +1156,118 @@ Test.getSerializedProtected=function(){
         }));
     }
     return prot;
+}
+
+Test.uiVarNameChanged=function(obj){
+    if(obj!=null){
+        var oldValue = obj.val();
+        if(!Test.variableValidation(oldValue)){
+            var newValue = Test.convertVariable(oldValue);
+            obj.val(newValue);
+            Methods.alert(dictionary["s1"].format(oldValue,newValue), "info", dictionary["s2"]);
+        }
+    }
+    
+    Test.uiRefreshComboBoxes();
+};
+
+Test.uiEditVariableDescription=function(obj){
+    $("#dialog"+Test.className+"TextareaDescription").val(obj.val());
+    $("#div"+Test.className+"DialogDescription").dialog({
+        title:dictionary["s3"],
+        modal:true,
+        resizable:false,
+        width:975,
+        create:function(){
+            var thisDialog = $("#div"+Test.className+"DialogDescription");
+            Methods.iniCKEditor($(this).find("textarea"),function(){
+                thisDialog.dialog("option","position","center");
+            });
+        },
+        buttons:[
+        {
+            text:dictionary["s38"],
+            click:function(){
+                obj.val(Methods.getCKEditorData($(this).find('textarea')));
+                $(this).dialog("close");
+            }
+        },
+        {
+            text:dictionary["s23"],
+            click:function(){
+                $(this).dialog("close");
+            }
+        }
+        ]
+    }); 
+}
+
+Test.uiAddParameter=function(){
+    var vars = this.getSerializedParameterVariables();
+    var v = {
+        name:"",
+        description:""
+    };
+    vars.push($.toJSON(v));
+    this.uiRefreshVariables(vars,null);
+};
+
+Test.uiRemoveParameter=function(){
+    var vars = this.getSerializedParameterVariables();
+    vars.pop();
+    this.uiRefreshVariables(vars,null);
+};
+
+Test.uiAddReturn=function(){
+    var vars = this.getSerializedReturnVariables();
+    var v = {
+        name:"",
+        description:""
+    };
+    vars.push($.toJSON(v));
+    this.uiRefreshVariables(null,vars);
+};
+
+Test.uiRemoveReturn=function(){
+    var vars = this.getSerializedReturnVariables();
+    vars.pop();
+    this.uiRefreshVariables(null,vars);
+};
+
+Test.getSerializedParameterVariables=function(){
+    var vars = new Array();
+    $(".div"+this.className+"Parameters table").each(function(){
+        var v = {};
+        v["name"]=$(this).find("input").val();
+        v["description"]=$(this).find("textarea").val();
+        vars.push($.toJSON(v));
+    });
+    return vars;
+}
+
+Test.getSerializedReturnVariables=function(){
+    var vars = new Array();
+    $(".div"+this.className+"Returns table").each(function(){
+        var v = {};
+        v["name"]=$(this).find("input").val();
+        v["description"]=$(this).find("textarea").val();
+        vars.push($.toJSON(v));
+    });
+    return vars;
+}
+
+Test.uiRefreshVariables=function(parameters,returns){
+    if(parameters==null) parameters=this.getSerializedParameterVariables();
+    if(returns==null) returns = this.getSerializedReturnVariables();
+    
+    $("#div"+Test.className+"Variables").mask(dictionary["s319"]);
+    $.post("view/Test_variables.php",{
+        oid:this.currentID,
+        class_name:this.className,
+        parameters:parameters,
+        returns:returns
+    },function(data){
+        $("#div"+Test.className+"Variables").unmask();
+        $("#div"+Test.className+"Variables").html(data);
+    })
 }

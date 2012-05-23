@@ -38,8 +38,8 @@ class DS_TestSectionType extends ODataSet
     {
         $result = array();
         $sql = sprintf("SELECT * FROM `%s` WHERE 
-            `id`!=%d AND `id`!=%d AND `id`!='%d'
-            ORDER BY `name` ASC", self::get_mysql_table(), self::START, self::END, self::CUSTOM);
+            `id`!=%d AND `id`!=%d AND `id`!='%d' AND `id`!='%d'
+            ORDER BY `name` ASC", self::get_mysql_table(), self::START, self::END, self::CUSTOM, self::TEST);
         $z = mysql_query($sql);
         while ($r = mysql_fetch_array($z))
         {

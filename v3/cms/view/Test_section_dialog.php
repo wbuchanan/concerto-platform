@@ -29,6 +29,10 @@ if ($logged_user == null)
     echo "<script>location.reload();</script>";
     die(Language::string(278));
 }
+
+if(!isset($obj)){
+    $obj = Test::from_mysql_id($_POST['oid']);
+}
 ?>
 
 <span><?= Language::string(146) ?>:</span>
@@ -60,6 +64,27 @@ if ($logged_user == null)
                                 $cs = CustomSection::from_mysql_id($r[0]);
                                 ?>
                                 <option id="optionSectionType<?= DS_TestSectionType::CUSTOM ?>" value="<?= DS_TestSectionType::CUSTOM ?>:<?= $cs->id ?>" ><?= $cs->name ?> ( <?= $cs->get_system_data() ?> )</option>
+                                <?php
+                            }
+                            ?>
+                        </optgroup>
+                        <?php
+                    }
+                    ?>
+                    <?php
+                    $sql = $logged_user->mysql_list_rights_filter("Test", "`name` ASC");
+                    $z = mysql_query($sql);
+                    if (mysql_num_rows($z) > 0)
+                    {
+                        ?>
+                        <optgroup label="<?= Language::string(404) ?>">
+                            <?php
+                            while ($r = mysql_fetch_array($z))
+                            {
+                                if($r[0]==$obj->id) continue;
+                                $cs = Test::from_mysql_id($r[0]);
+                                ?>
+                                <option id="optionSectionType<?= DS_TestSectionType::TEST ?>" value="<?= DS_TestSectionType::TEST ?>:<?= $cs->id ?>" ><?= $cs->name ?> ( <?= $cs->get_system_data() ?> )</option>
                                 <?php
                             }
                             ?>

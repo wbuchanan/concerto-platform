@@ -3224,5 +3224,21 @@ Note: You can add new languages by inserting "<new_language>string translated in
             <fr></fr>
             <bg></bg>
         </string>
+        <string id="403">
+            <en>test input/output</en>
+            <de></de>
+            <pl>wejscie/wyjscie testu</pl>
+            <cn></cn>
+            <fr></fr>
+            <bg></bg>
+        </string>
+        <string id="404">
+            <en>test sections</en>
+            <de></de>
+            <pl>sekcje z testem</pl>
+            <cn></cn>
+            <fr></fr>
+            <bg></bg>
+        </string>
     </strings>
 </root> 

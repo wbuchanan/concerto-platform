@@ -41,6 +41,39 @@ class Test extends OModule
         {
             $this->delete_sections();
             $this->delete_templates();
+
+            $this->delete_object_links(TestVariable::get_mysql_table());
+            $i = 0;
+            if (array_key_exists("parameters", $post))
+            {
+                foreach ($post["parameters"] as $param)
+                {
+                    $p = json_decode($param);
+                    $var = new TestVariable();
+                    $var->description = $p->description;
+                    $var->name = $p->name;
+                    $var->index = $i;
+                    $var->type = 0;
+                    $var->Test_id = $lid;
+                    $var->mysql_save();
+                    $i++;
+                }
+            }
+            if (array_key_exists("returns", $post))
+            {
+                foreach ($post["returns"] as $ret)
+                {
+                    $r = json_decode($ret);
+                    $var = new TestVariable();
+                    $var->description = $r->description;
+                    $var->name = $r->name;
+                    $var->index = $i;
+                    $var->type = 1;
+                    $var->Test_id = $lid;
+                    $var->mysql_save();
+                    $i++;
+                }
+            }
         }
         else
         {
@@ -194,15 +227,27 @@ class Test extends OModule
         return $code;
     }
 
-    public function export()
+    public function export($xml=null, $sub_test=false)
     {
-        $xml = new DOMDocument('1.0', 'UTF-8');
+        if ($xml == null)
+        {
+            $xml = new DOMDocument('1.0', 'UTF-8');
 
-        $export = $xml->createElement("export");
-        $export->setAttribute("version", Ini::$version);
-        $xml->appendChild($export);
+            $export = $xml->createElement("export");
+            $export->setAttribute("version", Ini::$version);
+            $xml->appendChild($export);
+            $xpath = new DOMXPath($xml);
+        }
+        else
+        {
+            $xpath = new DOMXPath($xml);
+            $export = $xpath->query("/export");
+            $export = $export->item(0);
+        }
 
         //append subobjects of test
+        $tests_ids = array();
+        array_push($tests_ids, $this->id);
         $templates_ids = array();
         $custom_sections_ids = array();
         $tables_ids = array();
@@ -213,8 +258,9 @@ class Test extends OModule
             WHERE 
             (`TestSection`.`TestSectionType_id`=2 AND `TestSectionValue`.`index`=0 OR
             `TestSection`.`TestSectionType_id`=9 AND `TestSectionValue`.`index`=0 OR
+            `TestSection`.`TestSectionType_id`=11 AND `TestSectionValue`.`index`=0 OR
             `TestSection`.`TestSectionType_id`=8 AND `TestSectionValue`.`index`=0 OR
-            `TestSection`.`TestSectionType_id`=5 AND `TestSectionValue`.`index`=5) AND `TestSection`.`Test_id`=%d", $this->id);
+            `TestSection`.`TestSectionType_id`=5 AND `TestSectionValue`.`index`=5) AND `TestSection`.`Test_id`=%d ORDER BY `TestSection`.`TestSectionType_id` ASC", $this->id);
         $z = mysql_query($sql);
         while ($r = mysql_fetch_array($z))
         {
@@ -229,6 +275,18 @@ class Test extends OModule
                             if ($template != null)
                             {
                                 $element = $template->to_XML();
+                                $present_templates = $xpath->query("/export/Template");
+                                $exists = false;
+                                foreach ($present_templates as $obj)
+                                {
+                                    if ($template->xml_hash() == $obj->getAttribute("hash"))
+                                    {
+                                        $exists = true;
+                                        break;
+                                    }
+                                }
+                                if ($exists) break;
+
                                 $obj = $xml->importNode($element, true);
                                 $export->appendChild($obj);
                                 array_push($templates_ids, $r[1]);
@@ -245,6 +303,18 @@ class Test extends OModule
                             if ($custom_section != null)
                             {
                                 $element = $custom_section->to_XML();
+                                $present_custom_sections = $xpath->query("/export/CustomSection");
+                                $exists = false;
+                                foreach ($present_custom_sections as $obj)
+                                {
+                                    if ($custom_section->xml_hash() == $obj->getAttribute("hash"))
+                                    {
+                                        $exists = true;
+                                        break;
+                                    }
+                                }
+                                if ($exists) break;
+
                                 $obj = $xml->importNode($element, true);
                                 $export->appendChild($obj);
                                 array_push($custom_sections_ids, $r[1]);
@@ -261,6 +331,18 @@ class Test extends OModule
                             if ($table != null)
                             {
                                 $element = $table->to_XML();
+                                $present_tables = $xpath->query("/export/Table");
+                                $exists = false;
+                                foreach ($present_table as $obj)
+                                {
+                                    if ($table->xml_hash() == $obj->getAttribute("hash"))
+                                    {
+                                        $exists = true;
+                                        break;
+                                    }
+                                }
+                                if ($exists) break;
+
                                 $obj = $xml->importNode($element, true);
                                 $export->appendChild($obj);
                                 array_push($tables_ids, $r[1]);
@@ -280,6 +362,18 @@ class Test extends OModule
                                 if ($table != null)
                                 {
                                     $element = $table->to_XML();
+                                    $present_tables = $xpath->query("/export/Table");
+                                    $exists = false;
+                                    foreach ($present_tables as $obj)
+                                    {
+                                        if ($table->xml_hash() == $obj->getAttribute("hash"))
+                                        {
+                                            $exists = true;
+                                            break;
+                                        }
+                                    }
+                                    if ($exists) break;
+
                                     $obj = $xml->importNode($element, true);
                                     $export->appendChild($obj);
                                     array_push($tables_ids, $r[1]);
@@ -288,14 +382,46 @@ class Test extends OModule
                         }
                         break;
                     }
+                //tests
+                case 11:
+                    {
+                        if (!in_array($r[1], $tests_ids))
+                        {
+                            $test = Test::from_mysql_id($r[1]);
+                            if ($test != null)
+                            {
+                                $xml = $test->export($xml, true);
+                                $element = $test->to_XML();
+                                $present_tests = $xpath->query("/export/Test");
+                                $exists = false;
+                                foreach ($present_tests as $obj)
+                                {
+                                    if ($test->xml_hash() == $obj->getAttribute("hash"))
+                                    {
+                                        $exists = true;
+                                        break;
+                                    }
+                                }
+                                if ($exists) break;
+
+                                $obj = $xml->importNode($element, true);
+                                $export->appendChild($obj);
+                                array_push($tests_ids, $r[1]);
+                            }
+                        }
+                        break;
+                    }
             }
         }
 
-        $element = $this->to_XML();
-        $obj = $xml->importNode($element, true);
-        $export->appendChild($obj);
+        if (!$sub_test)
+        {
+            $element = $this->to_XML();
+            $obj = $xml->importNode($element, true);
+            $export->appendChild($obj);
+        }
 
-        return $xml->saveXML();
+        return ($sub_test ? $xml : $xml->saveXML());
     }
 
     public function import_XML($xml)
@@ -313,7 +439,8 @@ class Test extends OModule
         $compare = array(
             "Template" => array(),
             "Table" => array(),
-            "CustomSection" => array()
+            "CustomSection" => array(),
+            "Test" => array()
         );
 
         //link templates
@@ -365,19 +492,35 @@ class Test extends OModule
             }
         }
 
+        //link tests
         $elements = $xpath->query("/export/Test");
-        foreach ($elements as $element)
+        for($i=0;$i<$elements->length-1;$i++)
         {
-            $children = $element->childNodes;
-            foreach ($children as $child)
+            $element = $elements->item($i);
+            $id = $element->getAttribute("id");
+            $hash = $element->getAttribute("hash");
+            $compare["Test"][$id] = Test::find_xml_hash($hash);
+            if ($compare["Test"][$id] == 0)
             {
-                switch ($child->nodeName)
-                {
-                    case "name": $this->name = $child->nodeValue;
-                        break;
-                    case "description": $this->description = $child->nodeValue;
-                        break;
-                }
+                $obj = new Test();
+                $obj->Owner_id = $logged_user->id;
+                $lid = $obj->import_XML(CustomSection::convert_to_XML_document($element));
+                $compare["Test"][$id] = $lid;
+            }
+        }
+
+        $elements = $xpath->query("/export/Test");
+        $element = $elements->item($elements->length - 1);
+        $element_id = $element->getAttribute("id");
+        $children = $element->childNodes;
+        foreach ($children as $child)
+        {
+            switch ($child->nodeName)
+            {
+                case "name": $this->name = $child->nodeValue;
+                    break;
+                case "description": $this->description = $child->nodeValue;
+                    break;
             }
         }
 
@@ -386,7 +529,7 @@ class Test extends OModule
         $post = array();
         $post["sections"] = array();
 
-        $elements = $xpath->query("/export/Test/TestSections/TestSection");
+        $elements = $xpath->query("/export/Test[@id='".$element_id."']/TestSections/TestSection");
         foreach ($elements as $element)
         {
             $test_section = array();
@@ -440,6 +583,15 @@ class Test extends OModule
                         $value = 0;
                         if (isset($compare["Template"][$test_section["value"]["v0"]]))
                                 $value = $compare["Template"][$test_section["value"]["v0"]];
+                        $test_section["value"]["v0"] = $value;
+                        break;
+                    }
+                case 11:
+                    {
+                        if ($test_section["value"]["v0"] == 0) break;
+                        $value = 0;
+                        if (isset($compare["Test"][$test_section["value"]["v0"]]))
+                                $value = $compare["Test"][$test_section["value"]["v0"]];
                         $test_section["value"]["v0"] = $value;
                         break;
                     }
@@ -584,6 +736,21 @@ class Test extends OModule
             if (!mysql_query($sql)) return false;
         }
         return true;
+    }
+
+    public function get_TestVariables()
+    {
+        return TestVariable::from_property(array("Test_id" => $this->id));
+    }
+
+    public function get_parameter_TestVariables()
+    {
+        return TestVariable::from_property(array("Test_id" => $this->id, "type" => 0));
+    }
+
+    public function get_return_TestVariables()
+    {
+        return TestVariable::from_property(array("Test_id" => $this->id, "type" => 1));
     }
 
 }
