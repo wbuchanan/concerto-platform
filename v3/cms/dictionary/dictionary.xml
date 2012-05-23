@@ -373,12 +373,12 @@ Note: You can add new languages by inserting "<new_language>string translated in
             <bg>Пропусни специфична част от теста</bg>
         </string>
         <string id="43">
-            <en><![CDATA[Specify conditions and their consequences. Multiple conditions and consequences can be specified. IF statements can't be nested within each other.]]></en>
-            <de><![CDATA[Geben Sie Bedingungen und ihre Konsequenzen an. Mehrere Bedingungen und Konsequenzen können angegeben werden. WENN Aussagen können nicht verschachtelt werden.]]></de>
-            <pl><![CDATA[Dzięki tej sekcji można tworzyć twierdzenia warunkowe. Dozwolone jest wiele warunków, oraz można zamieszczać wiele sekcji w bloku <b>WTEDY</b>. Nie można zagnieżdżać twierdzen JEŻELI.]]></pl>
-            <cn><![CDATA[声明条件及其结果。允许多重条件及结果。IF语句不可嵌入。]]></cn>
-            <fr><![CDATA[Spécifier les conditions et leurs conséquences. De multiples conditions et conséquences peuvent être spécifiées. Les expressions SI ne peuvent pas être nichées les unes dans les autres.]]></fr>
-            <bg><![CDATA[Определете условията и техните следствия. Множество условия и следствия могат да бъдат определени. АКО твърденията не могат да се вмъкват едно в друго.]]></bg>
+            <en><![CDATA[Specify conditions and their consequences. Multiple conditions and consequences can be specified.]]></en>
+            <de><![CDATA[Geben Sie Bedingungen und ihre Konsequenzen an. Mehrere Bedingungen und Konsequenzen können angegeben werden.]]></de>
+            <pl><![CDATA[Dzięki tej sekcji można tworzyć twierdzenia warunkowe. Dozwolone jest wiele warunków, oraz można zamieszczać wiele sekcji w bloku <b>WTEDY</b>.]]></pl>
+            <cn><![CDATA[声明条件及其结果。允许多重条件及结果。]]></cn>
+            <fr><![CDATA[Spécifier les conditions et leurs conséquences. De multiples conditions et conséquences peuvent être spécifiées.]]></fr>
+            <bg><![CDATA[Определете условията и техните следствия. Множество условия и следствия могат да бъдат определени.]]></bg>
         </string>
         <string id="44">
             <en><![CDATA[Define variables (i.e. set variables) and variable type in R, HTML templates or both. Methods to set variable: <ul><li><b>from table</b>: select a previously defined table in Concerto and filter necessary rows and columns. Set the whole table by leaving the <b>WHERE</b> clause empty</li><li><b>by R code</b>: directly type in R code. E.g. function result, mathematical calculation</li></ul>]]></en>
@@ -3153,9 +3153,9 @@ Note: You can add new languages by inserting "<new_language>string translated in
             <bg></bg>
         </string>
         <string id="394">
-            <en>LOOP_INCLUSION_DESC</en>
+            <en><![CDATA[Loops executes specific block as long as conditon is met. You can choose from one of the two loops:<ul><li><b>FOR</b>: at the beggining of the loop index variable is declared and value is assigned. Each iteration changes index variable by some value and checks if condition is still met.</li><li><b>WHILE</b>: every iteration checks if condition is met</li>]]></en>
             <de></de>
-            <pl>LOOP_INCLUSION_DESC</pl>
+            <pl><![CDATA[Petle wykonuja okreslony blok dotad az warunek jest spelniony. Mozna wybrac jedna z dwoch petli:<ul><li><b>FOR</b>: na poczatku petli zmienna indeksu jest zadeklarowana i przypisana jest jej wartosc. Kazda iteracja zmienia zmienna indeksu o okreslona wartosc i sprawdza czy warunek dalej jest spelniony.</li><li><b>WHILE</b>: kazda iteracja sprawdza czy warunek jest dalej spelniony</li>]]></pl>
             <cn></cn>
             <fr></fr>
             <bg></bg>
