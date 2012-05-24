@@ -133,11 +133,16 @@ class TestSession extends OTable {
 
         $code.=sprintf("
             CONCERTO_TEST_FLOW<-%d
+            CONCERTO_FLOW_LOOP_FINISHED <- FALSE
+            evalWithTimeout({
             while(CONCERTO_TEST_FLOW > 0){
                 CONCERTO_TEST_FLOW <- do.call(paste('CONCERTO_Test',CONCERTO_TEST_ID,'Section',CONCERTO_TEST_FLOW,sep=''),list())
             }
+            CONCERTO_FLOW_LOOP_FINISHED <- TRUE
+            },timeout=%s,onTimeout='warning')
             if(CONCERTO_TEST_FLOW==-2) update.session.release(1)
-            ", $counter);
+            if(!CONCERTO_FLOW_LOOP_FINISHED) stop('Instance max execution time reached')
+            ", $counter,Ini::$r_max_execution_time);
 
         return $this->RCall($code, $ini_code_required);
     }
@@ -220,7 +225,6 @@ class TestSession extends OTable {
                     $thisSession->status == TestSession::TEST_SESSION_STATUS_TAMPERED ||
                     $close ||
                     $thisSession->release == 1) {
-                //$thisSession->remove();
                 TestSession::unregister($thisSession->id);
                 $removed = true;
             }

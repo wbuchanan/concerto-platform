@@ -470,6 +470,21 @@ class Setup
                         <?php $ok = $ok && $test; ?>
                     </tr>
                 <?php } ?>
+                    
+                <?php
+                if ($ok)
+                {
+                    ?>
+                    <tr>
+                        <?php
+                        $test = Setup::r_package_check("R.utils");
+                        ?>
+                        <td class="ui-widget-content"><b>R.utils</b> R package must be installed.</td>
+                        <td class="<?= ($test ? "ui-state-highlight" : "ui-state-error") ?>"><b>R.utils</b> package <b><?= ($test ? "IS INSTALLED" : "IS NOT INSTALLED") ?> - <b style="color:<?= ($test ? "green" : "red") ?>"><?= ($test ? "PASSED" : "FAILED") ?></b></td>
+                        <td class="ui-widget-content" align="center"><?= ($test ? "-" : "Install <b>R.utils</b> package to main R library directory.") ?></td>
+                        <?php $ok = $ok && $test; ?>
+                    </tr>
+                <?php } ?>    
 
                 <?php
                 if ($ok)

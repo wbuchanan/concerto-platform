@@ -27,6 +27,7 @@ CONCERTO_TEST_SESSION_ID <- CONCERTO_ARGS[6]
  
 setwd(CONCERTO_TEMP_PATH)
 library(catR)
+library(R.utils)
 options(digits=3)
 if(!is.na(CONCERTO_ARGS[7])) Sys.setenv("MYSQL_HOME"=CONCERTO_ARGS[7])
 

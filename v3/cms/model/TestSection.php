@@ -19,8 +19,8 @@
   Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA.
  */
 
-class TestSection extends OTable {
-
+class TestSection extends OTable
+{
     public $counter = 0;
     public $TestSectionType_id = 0;
     public $Test_id = 0;
@@ -28,41 +28,49 @@ class TestSection extends OTable {
     public $end = 0;
     public static $mysql_table_name = "TestSection";
 
-    public function mysql_delete() {
+    public function mysql_delete()
+    {
         $this->delete_object_links(TestSectionValue::get_mysql_table());
         parent::mysql_delete();
     }
 
-    public function get_Test() {
+    public function get_Test()
+    {
         return Test::from_mysql_id($this->Test_id);
     }
 
-    public function get_TestSectionType() {
+    public function get_TestSectionType()
+    {
         return DS_TestSectionType::from_mysql_id($this->TestSectionType_id);
     }
 
-    public function get_parent_TestSection() {
+    public function get_parent_TestSection()
+    {
         return TestSection::from_property(array("Test_id" => $this->Test_id, "counter" => $this->parent_counter), false);
     }
 
-    public function get_values() {
+    public function get_values()
+    {
         $result = array();
         $vals = TestSectionValue::from_property(array("TestSection_id" => $this->id));
-        foreach ($vals as $v) {
+        foreach ($vals as $v)
+        {
             $result[$v->index] = $v->value;
         }
         return $result;
     }
 
-    public function get_RFunctionName() {
+    public function get_RFunctionName()
+    {
         return "CONCERTO_Test" . $this->Test_id . "Section" . $this->counter;
     }
 
-    public function get_RFunction() {
+    public function get_RFunction()
+    {
         $code = $this->get_RCode();
 
         if (substr($this->get_RCode(), 0, 5) == "stop(")
-            return sprintf("print('Start of section with index: <b>%s</b>')
+                return sprintf("print('Start of section with index: <b>%s</b>')
                     %s", $this->counter, $this->get_RCode());
 
         return sprintf("
@@ -73,7 +81,8 @@ class TestSection extends OTable {
                  ", $this->get_RFunctionName(), $this->counter, $code);
     }
 
-    public function get_RCode() {
+    public function get_RCode()
+    {
         $code = "";
 
         $next = $this->get_next_TestSection();
@@ -82,39 +91,32 @@ class TestSection extends OTable {
         $end_of_loop = $this->is_end_of_loop();
         $loop = null;
         $loop_vals = null;
-        if ($end_of_loop) {
+        if ($end_of_loop)
+        {
             $loop = TestSection::from_property(array("Test_id" => $this->Test_id, "counter" => $this->parent_counter), false);
             $loop_vals = $loop->get_values();
             $next_counter = $loop->counter;
         }
 
         $vals = $this->get_values();
-        switch ($this->TestSectionType_id) {
-            case DS_TestSectionType::START: {
+        switch ($this->TestSectionType_id)
+        {
+            case DS_TestSectionType::START:
+                {
                     $test = Test::from_mysql_id($this->Test_id);
-                    if ($test == null) {
+                    if ($test == null)
+                    {
                         return sprintf("stop('Invalid test id: %s in section #%s')", $this->Test_id, $this->counter);
-                    } else {
-                        $parameters = $test->get_parameter_TestVariables();
-                        $params_code = "";
-
-                        $j = 1;
-                        foreach ($parameters as $param) {
-                            $params_code.=sprintf("
-                            %s <<- %s
-                            ", $param->name, $vals[$j]);
-                            $j++;
-                        }
                     }
                     $code = sprintf("
                             print('Starting test with id: <b>%s</b>')
                             CONCERTO_TEST_ID <<- %s
-                            %s
                             return(%d)
-                            ", $this->Test_id, $this->Test_id, $params_code, $next_counter);
+                            ", $this->Test_id, $this->Test_id, $next_counter);
                     break;
                 }
-            case DS_TestSectionType::END: {
+            case DS_TestSectionType::END:
+                {
                     $code = sprintf("
                     update.session.status(%d)    
                     update.session.counter(%d)
@@ -122,22 +124,25 @@ class TestSection extends OTable {
                     ", TestSession::TEST_SESSION_STATUS_COMPLETED, $next_counter, $next_counter);
                     break;
                 }
-            case DS_TestSectionType::CUSTOM: {
+            case DS_TestSectionType::CUSTOM:
+                {
                     $cs = CustomSection::from_mysql_id($vals[0]);
                     if ($cs == null)
-                        return sprintf("stop('Invalid custom section #%s')", $this->counter);
+                            return sprintf("stop('Invalid custom section #%s')", $this->counter);
                     $parameters = $cs->get_parameter_CustomSectionVariables();
                     $returns = $cs->get_return_CustomSectionVariables();
                     $code = "";
                     $j = 1;
-                    foreach ($parameters as $param) {
+                    foreach ($parameters as $param)
+                    {
                         $code.=sprintf("
                             %s <- %s
                             ", $param->name, $vals[$j]);
                         $j++;
                     }
                     $code.=$cs->code;
-                    foreach ($returns as $ret) {
+                    foreach ($returns as $ret)
+                    {
                         $code.=sprintf("
                             %s <<- %s
                             ", $vals[$j], $ret->name);
@@ -153,7 +158,8 @@ class TestSection extends OTable {
                         ", ($this->end == 0 ? $next_counter : -2));
                     break;
                 }
-            case DS_TestSectionType::R_CODE: {
+            case DS_TestSectionType::R_CODE:
+                {
                     $code = sprintf("
                         %s
                         return(%d)
@@ -161,11 +167,12 @@ class TestSection extends OTable {
                     );
                     break;
                 }
-            case DS_TestSectionType::LOAD_HTML_TEMPLATE: {
+            case DS_TestSectionType::LOAD_HTML_TEMPLATE:
+                {
                     $template_id = $vals[0];
                     $template = Template::from_mysql_id($template_id);
                     if ($template == null)
-                        return sprintf("stop('Invalid template id: %s in section #%s')", $template_id, $this->counter);
+                            return sprintf("stop('Invalid template id: %s in section #%s')", $template_id, $this->counter);
 
                     $code = sprintf("
                         update.session.template_id(%d)
@@ -181,22 +188,24 @@ class TestSection extends OTable {
 
                     break;
                 }
-            case DS_TestSectionType::GO_TO: {
+            case DS_TestSectionType::GO_TO:
+                {
                     $code = sprintf("
                         return(%d)
                         ", $vals[0]
                     );
                     break;
                 }
-            case DS_TestSectionType::IF_STATEMENT: {
+            case DS_TestSectionType::IF_STATEMENT:
+                {
                     $next_not_child = $this->get_next_not_child_TestSection();
                     $next_not_child_counter = $next_not_child->counter;
-                    if ($end_of_loop)
-                        $next_not_child_counter = $next_counter;
+                    if ($end_of_loop) $next_not_child_counter = $next_counter;
 
                     $additional_conds = "";
                     $i = 3;
-                    while (isset($vals[$i])) {
+                    while (isset($vals[$i]))
+                    {
                         $additional_conds.=sprintf("%s %s %s %s", $vals[$i], $vals[$i + 1], $vals[$i + 2], $vals[$i + 3]);
                         $i+=4;
                     }
@@ -212,20 +221,33 @@ class TestSection extends OTable {
 
                     break;
                 }
-            case DS_TestSectionType::TEST: {
+            case DS_TestSectionType::TEST:
+                {
                     $test = Test::from_mysql_id($vals[0]);
-                    if ($test == null) {
+                    if ($test == null)
+                    {
                         return sprintf("stop('Invalid test id: %s in section #%s')", $vals[0], $this->counter);
-                    } else {
+                    }
+                    else
+                    {
                         $code = sprintf("
                         CONCERTO_TEST_ID <<- %s
                         ", $test->id);
                         $parameters = $test->get_parameter_TestVariables();
+                        $params_code = "";
                         $returns = $test->get_return_TestVariables();
                         $returns_code = "";
 
-                        $j = 1 + count($parameters);
-                        foreach ($returns as $ret) {
+                        $j = 1;
+                        foreach ($parameters as $param)
+                        {
+                            $params_code.=sprintf("
+                            %s <<- %s
+                            ", $param->name, $vals[$j]);
+                            $j++;
+                        }
+                        foreach ($returns as $ret)
+                        {
                             $returns_code.=sprintf("
                             %s <<- %s
                             ", $vals[$j], $ret->name);
@@ -237,11 +259,19 @@ class TestSection extends OTable {
                             $j++;
                         }
 
+                        $code.=sprintf("
+                            %s
+                            ", $params_code);
+
                         $sections = TestSection::from_property(array("Test_id" => $test->id));
-                        foreach ($sections as $section) {
-                            if ($section->TestSectionType_id != DS_TestSectionType::END) {
+                        foreach ($sections as $section)
+                        {
+                            if ($section->TestSectionType_id != DS_TestSectionType::END)
+                            {
                                 $code.=$section->get_RFunction();
-                            } else {
+                            }
+                            else
+                            {
                                 $end_code = sprintf("
                                     CONCERTO_TEST_ID <<- %s
                                     %s
@@ -261,14 +291,15 @@ class TestSection extends OTable {
                     }
                     break;
                 }
-            case DS_TestSectionType::LOOP: {
+            case DS_TestSectionType::LOOP:
+                {
                     $next_not_child = $this->get_next_not_child_TestSection();
                     $next_not_child_counter = $next_not_child->counter;
-                    if ($end_of_loop)
-                        $next_not_child_counter = $next_counter;
+                    if ($end_of_loop) $next_not_child_counter = $next_counter;
 
                     $code = "";
-                    if ($vals[0] == 1) {
+                    if ($vals[0] == 1)
+                    {
                         $code = sprintf("
                 if(%s %s %s) {
                     return(%d)
@@ -277,7 +308,9 @@ class TestSection extends OTable {
                     return(%d)
                     }
                     ", $vals[1], $vals[2], $vals[3], $next->counter, $next_not_child_counter);
-                    } else {
+                    }
+                    else
+                    {
                         $code = sprintf("
                 if(exists('%s') && %s) {
                     %s <<- %s + as.numeric(%s)
@@ -298,45 +331,49 @@ class TestSection extends OTable {
                     }
                     break;
                 }
-            case DS_TestSectionType::TABLE_MOD: {
+            case DS_TestSectionType::TABLE_MOD:
+                {
                     $type = $vals[0];
                     $set_count = $vals[2];
                     $where_count = $vals[1];
 
                     $table = Table::from_mysql_id($vals[3]);
                     if ($table == null)
-                        return sprintf("stop('Invalid table id: %s in section #%s')", $vals[3], $this->counter);
+                            return sprintf("stop('Invalid table id: %s in section #%s')", $vals[3], $this->counter);
 
                     $set = "";
-                    for ($i = 0; $i < $vals[2]; $i++) {
+                    for ($i = 0; $i < $vals[2]; $i++)
+                    {
                         $column = TableColumn::from_property(array("Table_id" => $vals[3], "index" => $vals[4 + $i * 2]), false);
                         if ($column == null)
-                            return sprintf("stop('Invalid table column index: %s of table id: %s in section #%s')", $vals[4 + $i * 2], $vals[3], $this->counter);
-                        if ($i > 0)
-                            $set.=",";
+                                return sprintf("stop('Invalid table column index: %s of table id: %s in section #%s')", $vals[4 + $i * 2], $vals[3], $this->counter);
+                        if ($i > 0) $set.=",";
                         $set.=sprintf("`%s`='\",dbEscapeStrings(CONCERTO_DB_CONNECTION,toString(%s)),\"'", $column->name, $vals[4 + $i * 2 + 1]);
                     }
 
                     $where = "";
-                    for ($i = 0; $i < $vals[1]; $i++) {
+                    for ($i = 0; $i < $vals[1]; $i++)
+                    {
                         $j = 4 + $vals[2] * 2 + $i * 4;
                         $column = TableColumn::from_property(array("Table_id" => $vals[3], "index" => $vals[$j + 1]), false);
                         if ($column == null)
-                            return sprintf("stop('Invalid table column index: %s of table id: %s in section #%s')", $vals[$j + 1], $vals[3], $this->counter);
+                                return sprintf("stop('Invalid table column index: %s of table id: %s in section #%s')", $vals[$j + 1], $vals[3], $this->counter);
 
-                        if ($i > 0)
-                            $where .=sprintf("%s", $vals[$j]);
+                        if ($i > 0) $where .=sprintf("%s", $vals[$j]);
                         $where.=sprintf("`%s` %s '\",dbEscapeStrings(CONCERTO_DB_CONNECTION,toString(%s)),\"'", $column->name, $vals[$j + 2], $vals[$j + 3]);
                     }
 
                     $sql = "";
-                    if ($type == 0) {
+                    if ($type == 0)
+                    {
                         $sql.=sprintf("INSERT INTO `%s` SET %s", $table->get_table_name(), $set);
                     }
-                    if ($type == 1) {
+                    if ($type == 1)
+                    {
                         $sql.=sprintf("UPDATE `%s` SET %s WHERE %s", $table->get_table_name(), $set, $where);
                     }
-                    if ($type == 2) {
+                    if ($type == 2)
+                    {
                         $sql.=sprintf("DELETE FROM `%s` WHERE %s", $table->get_table_name(), $where);
                     }
 
@@ -348,7 +385,8 @@ class TestSection extends OTable {
 
                     break;
                 }
-            case DS_TestSectionType::SET_VARIABLE: {
+            case DS_TestSectionType::SET_VARIABLE:
+                {
                     $type = $vals[2];
                     $columns_count = $vals[0];
                     $conds_count = $vals[1];
@@ -357,39 +395,43 @@ class TestSection extends OTable {
                                 if(!is.null(%s) && !is.na(%s) && is.character(%s) && suppressWarnings(!is.na(as.numeric(%s)))) %s <<- as.numeric(%s)
                                 ', $vals[4], $vals[4], $vals[4], $vals[4], $vals[4], $vals[4]);
 
-                    if ($type == 0) {
+                    if ($type == 0)
+                    {
                         $table = Table::from_mysql_id($vals[5]);
                         if ($table == null)
-                            return sprintf("stop('Invalid table id: %s in section #%s')", $vals[5], $this->counter);
+                                return sprintf("stop('Invalid table id: %s in section #%s')", $vals[5], $this->counter);
 
                         $column = TableColumn::from_property(array("Table_id" => $table->id, "index" => $vals[6]), false);
                         if ($column == null)
-                            return sprintf("stop('Invalid table column index: %s of table id: %s in section #%s')", $vals[6], $table->id, $this->counter);
+                                return sprintf("stop('Invalid table column index: %s of table id: %s in section #%s')", $vals[6], $table->id, $this->counter);
 
                         $sql = sprintf("SELECT `%s`", $column->name);
-                        for ($i = 1; $i <= $columns_count; $i++) {
+                        for ($i = 1; $i <= $columns_count; $i++)
+                        {
                             $column = TableColumn::from_property(array("Table_id" => $table->id, "index" => $vals[6 + $i]), false);
                             if ($column == null)
-                                return sprintf("stop('Invalid table column index: %s of table id: %s in section #%s')", $vals[6 + $i], $table->id, $this->counter);
+                                    return sprintf("stop('Invalid table column index: %s of table id: %s in section #%s')", $vals[6 + $i], $table->id, $this->counter);
 
                             $sql.=sprintf(",`%s`", $column->name);
                         }
                         $sql.=sprintf(" FROM `%s` ", $table->get_table_name());
 
-                        if ($conds_count > 0) {
+                        if ($conds_count > 0)
+                        {
                             $sql.=sprintf("WHERE ");
 
                             $j = 7 + $columns_count;
-                            for ($i = 1; $i <= $conds_count; $i++) {
-                                if ($i > 1) {
+                            for ($i = 1; $i <= $conds_count; $i++)
+                            {
+                                if ($i > 1)
+                                {
                                     $link = $vals[$j];
                                     $j++;
                                 }
-                                else
-                                    $j++;
+                                else $j++;
                                 $cond_col = TableColumn::from_property(array("Table_id" => $table->id, "index" => $vals[$j]), false);
                                 if ($cond_col == null)
-                                    return sprintf("stop('Invalid table column index: %s of table id: %s in section #%s')", $vals[$j], $table->id, $this->counter);
+                                        return sprintf("stop('Invalid table column index: %s of table id: %s in section #%s')", $vals[$j], $table->id, $this->counter);
 
                                 $j++;
                                 $operator = $vals[$j];
@@ -398,9 +440,9 @@ class TestSection extends OTable {
                                 $j++;
 
                                 if ($i > 1)
-                                    $sql.=sprintf("%s `%s` %s '\",dbEscapeStrings(CONCERTO_DB_CONNECTION,toString(%s)),\"' ", $link, $cond_col->name, $operator, $exp);
+                                        $sql.=sprintf("%s `%s` %s '\",dbEscapeStrings(CONCERTO_DB_CONNECTION,toString(%s)),\"' ", $link, $cond_col->name, $operator, $exp);
                                 else
-                                    $sql.=sprintf("`%s` %s '\",dbEscapeStrings(CONCERTO_DB_CONNECTION,toString(%s)),\"' ", $cond_col->name, $operator, $exp);
+                                        $sql.=sprintf("`%s` %s '\",dbEscapeStrings(CONCERTO_DB_CONNECTION,toString(%s)),\"' ", $cond_col->name, $operator, $exp);
                             }
                         }
 
@@ -413,7 +455,8 @@ class TestSection extends OTable {
                         ', $sql, $vals[4], $set_rvar_code, ($this->end == 0 ? $next_counter : -2));
                         break;
                     }
-                    if ($type == 1) {
+                    if ($type == 1)
+                    {
                         $code = sprintf('
                         %s <<- {
                         %s
@@ -429,42 +472,45 @@ class TestSection extends OTable {
         return $code;
     }
 
-    public function get_for_initialization_variable() {
+    public function get_for_initialization_variable()
+    {
         return "CONCERTO_FOR_Test" . $this->Test_id . "Section" . $this->counter . "_INIT";
     }
 
-    public function is_end_of_loop() {
-        if ($this->parent_counter == 0)
-            return false;
+    public function is_end_of_loop()
+    {
+        if ($this->parent_counter == 0) return false;
         $parent = TestSection::from_property(array("Test_id" => $this->Test_id, "counter" => $this->parent_counter, "TestSectionType_id" => DS_TestSectionType::LOOP), false);
-        if ($parent == null)
-            return false;
+        if ($parent == null) return false;
         $next = $this->get_next_TestSection();
-        if ($next->parent_counter != $this->parent_counter)
-            return true;
-        else
-            return false;
+        if ($next->parent_counter != $this->parent_counter) return true;
+        else return false;
     }
 
-    public function get_next_TestSection() {
+    public function get_next_TestSection()
+    {
         $sql = sprintf("SELECT * FROM `%s` WHERE `Test_id`=%d AND `id`>%d ORDER BY `id` ASC LIMIT 0,1", TestSection::get_mysql_table(), $this->Test_id, $this->id);
         $z = mysql_query($sql);
-        while ($r = mysql_fetch_array($z)) {
+        while ($r = mysql_fetch_array($z))
+        {
             return TestSection::from_mysql_result($r);
         }
         return null;
     }
 
-    public function get_next_not_child_TestSection() {
+    public function get_next_not_child_TestSection()
+    {
         $sql = sprintf("SELECT * FROM `%s` WHERE `Test_id`=%d AND `id`>%d AND `parent_counter`=%d ORDER BY `id` ASC LIMIT 0,1", TestSection::get_mysql_table(), $this->Test_id, $this->id, $this->parent_counter);
         $z = mysql_query($sql);
-        while ($r = mysql_fetch_array($z)) {
+        while ($r = mysql_fetch_array($z))
+        {
             return TestSection::from_mysql_result($r);
         }
         return null;
     }
 
-    public function to_XML() {
+    public function to_XML()
+    {
         $xml = new DOMDocument('1.0', "UTF-8");
 
         $element = $xml->createElement("TestSection");
@@ -486,7 +532,8 @@ class TestSection extends OTable {
         $element->appendChild($tsv);
 
         $sv = TestSectionValue::from_property(array("TestSection_id" => $this->id));
-        foreach ($sv as $v) {
+        foreach ($sv as $v)
+        {
             $elem = $v->to_XML();
             $elem = $xml->importNode($elem, true);
 
@@ -496,10 +543,12 @@ class TestSection extends OTable {
         return $element;
     }
 
-    public static function create_db($delete = false) {
-        if ($delete) {
+    public static function create_db($delete = false)
+    {
+        if ($delete)
+        {
             if (!mysql_query("DROP TABLE IF EXISTS `TestSection`;"))
-                return false;
+                    return false;
         }
         $sql = "
             CREATE TABLE IF NOT EXISTS `TestSection` (
@@ -517,23 +566,28 @@ class TestSection extends OTable {
         return mysql_query($sql);
     }
 
-    public static function update_db($previous_version) {
-        if (Ini::does_patch_apply("3.4.3", $previous_version)) {
+    public static function update_db($previous_version)
+    {
+        if (Ini::does_patch_apply("3.4.3", $previous_version))
+        {
             $sql = "ALTER TABLE `TestSection` ADD `end` tinyint(1) NOT NULL default '0';";
-            if (!mysql_query($sql))
-                return false;
+            if (!mysql_query($sql)) return false;
         }
-        if (Ini::does_patch_apply("3.5.0", $previous_version)) {
+        if (Ini::does_patch_apply("3.5.0", $previous_version))
+        {
             $sql = sprintf("ALTER TABLE `%s` CHANGE `created` `updated_temp` TIMESTAMP ON UPDATE CURRENT_TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP;", self::get_mysql_table());
-            if (!mysql_query($sql)) {
+            if (!mysql_query($sql))
+            {
                 return false;
             }
             $sql = sprintf("ALTER TABLE `%s` CHANGE `updated` `created` TIMESTAMP NOT NULL DEFAULT  '0000-00-00 00:00:00';", self::get_mysql_table());
-            if (!mysql_query($sql)) {
+            if (!mysql_query($sql))
+            {
                 return false;
             }
             $sql = sprintf("ALTER TABLE `%s` CHANGE `updated_temp` `updated` TIMESTAMP ON UPDATE CURRENT_TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP;", self::get_mysql_table());
-            if (!mysql_query($sql)) {
+            if (!mysql_query($sql))
+            {
                 return false;
             }
         }

@@ -39,6 +39,7 @@ class Ini
     public static $sock_type_used = 0;
     public static $r_instances_persistant = false;
     public static $r_instances_timeout = 900;
+    public static $r_max_execution_time = 180;
     public static $r_server_timeout = 1080;
     public static $timer_tamper_prevention = true;
     public static $timer_tamper_prevention_tolerance = 3;
@@ -94,6 +95,7 @@ class Ini
         self::$r_instances_persistant = $r_instances_persistant;
         self::$r_instances_timeout = $r_instances_persistant_instance_timeout;
         self::$r_server_timeout = $r_instances_persistant_server_timeout;
+        self::$r_max_execution_time = $r_max_execution_time;
         self::$path_online_library_ws = "http://concerto.e-psychometrics.com/demo/online_library/ws.php";
     }
 
