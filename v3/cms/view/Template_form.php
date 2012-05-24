@@ -72,6 +72,7 @@ if ($oid != 0)
             Methods.iniIconButton(".btnCancel", "cancel");
             Methods.iniIconButton(".btnSave", "disk");
             Methods.iniIconButton(".btnDelete", "trash");
+            Template.formCodeMirror = Methods.iniCodeMirror("form<?= $class_name ?>TextareaHead", "htmlmixed", false);
             Methods.iniCKEditor("#form<?= $class_name ?>TextareaHTML",function(){
                 try{
                     $("#divAddFormDialog").dialog("option","position","center"); 
@@ -103,6 +104,15 @@ if ($oid != 0)
                 <td class="fullWidth">
                     <div class="horizontalMargin" align="center">
                         <textarea id="form<?= $class_name ?>TextareaDescription" name="form<?= $class_name ?>TextareaDescription" class="fullWidth ui-widget-content ui-corner-all"><?= htmlspecialchars(stripslashes($obj->description)) ?></textarea>
+                    </div>
+                </td>
+            </tr>
+            <tr>
+                <td class="noWrap horizontalPadding ui-widget-header"><?= Language::string(407) ?>:</td>
+                <td><span class="tooltip spanIcon ui-icon ui-icon-help" title="<?= Language::string(408) ?>"></span></td>
+                <td class="fullWidth">
+                    <div class="horizontalMargin" align="left">
+                        <textarea id="form<?= $class_name ?>TextareaHead" name="form<?= $class_name ?>TextareaHead" class="fullWidth ui-widget-content ui-corner-all"><?= htmlspecialchars(stripslashes($obj->head)) ?></textarea>
                     </div>
                 </td>
             </tr>

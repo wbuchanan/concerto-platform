@@ -37,11 +37,13 @@ Template.onAfterDelete=function(){
 
 Template.onAfterAdd=function(){
     Methods.iniCKEditor("#form"+this.className+"TextareaDescription",function(){
-        $("#divAddFormDialog").dialog("option","width",975);
+        $("#divAddFormDialog").dialog("option","width",990);
         $("#divAddFormDialog").dialog("option","position","center"); 
     });
+    if(Template.formCodeMirror!=null) Template.formCodeMirror.refresh();
 }
 
+Template.formCodeMirror=null;
 Template.getAddSaveObject=function()
 {
     return { 
@@ -49,6 +51,7 @@ Template.getAddSaveObject=function()
         class_name:this.className,
         name:$("#form"+this.className+"InputName").val(),
         HTML:Methods.getCKEditorData("#form"+this.className+"TextareaHTML"),
+        head:$("#form"+this.className+"TextareaHead").val(),
         description:Methods.getCKEditorData("#form"+this.className+"TextareaDescription"),
         Sharing_id:$("#form"+this.className+"SelectSharing").val()
     };

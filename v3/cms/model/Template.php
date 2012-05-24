@@ -23,6 +23,7 @@ class Template extends OModule
 {
     public $name = "";
     public $HTML = "";
+    public $head = "";
     public $description = "";
     public static $exportable = true;
     public static $mysql_table_name = "Template";
@@ -268,6 +269,11 @@ class Template extends OModule
         if (Ini::does_patch_apply("3.5.0", $previous_version))
         {
             $sql = "ALTER TABLE `Template` ADD `description` text NOT NULL;";
+            if (!mysql_query($sql)) return false;
+        }
+        if (Ini::does_patch_apply("3.6.0", $previous_version))
+        {
+            $sql = "ALTER TABLE `Template` ADD `head` text NOT NULL;";
             if (!mysql_query($sql)) return false;
         }
         return true;
