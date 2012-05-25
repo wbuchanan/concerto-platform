@@ -71,7 +71,7 @@ foreach (Language::languages() as $lng_node)
             <button class="btnLogout" onclick="User.uiLogOut()"><?= Language::string(83) ?></button>
         </td>
         <td style="width:33%;" align="center" valign="middle">
-            <h2>CONCERTO v<?= Ini::$version ?></h2>
+            <table><tr><td align="center" valign="middle"><img src="css/img/logo.png" width="150" height="53" /></td><td align="center" valign="middle">v<?= Ini::$version ?></td></tr></table>
             <div id="divVersionCheck"></div>
         </td>
         <td style="width:33%;" align="center" valign="middle">
