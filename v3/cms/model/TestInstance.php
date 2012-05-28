@@ -61,6 +61,11 @@ class TestInstance
 
     public function start()
     {
+        $encoding = "en_US.UTF-8";
+        $env = array(
+            'LANG' => $encoding
+        );
+
         if (TestServer::$debug)
                 TestServer::log_debug("TestInstance->start() --- Test instance starting");
         $this->last_action_time = time();
@@ -71,7 +76,7 @@ class TestInstance
         );
 
         include Ini::$path_internal . 'SETTINGS.php';
-        $this->r = proc_open(Ini::$path_r_exe . " --vanilla --args " . $db_host . " " . ($db_port != "" ? $db_port : "3306") . " " . $db_user . " " . $db_password . " " . $db_name . " " . $this->session_id . " " . (Ini::$path_mysql_home != "" ? "'" . Ini::$path_mysql_home . "'" : ""), $descriptorspec, $this->pipes, Ini::$path_temp);
+        $this->r = proc_open(Ini::$path_r_exe . " --vanilla --args " . $db_host . " " . ($db_port != "" ? $db_port : "3306") . " " . $db_user . " " . $db_password . " " . $db_name . " " . $this->session_id . " " . (Ini::$path_mysql_home != "" ? "'" . Ini::$path_mysql_home . "'" : ""), $descriptorspec, $this->pipes, Ini::$path_temp, $env);
         if (is_resource($this->r))
         {
             if (TestServer::$debug)
@@ -121,19 +126,19 @@ class TestInstance
     public function send($code)
     {
         if (TestServer::$debug)
-                TestServer::log_debug("TestInstance->send() --- Sending ".  strlen($code)." data to test instance");
+                TestServer::log_debug("TestInstance->send() --- Sending " . strlen($code) . " data to test instance");
         $this->last_action_time = time();
-        
-        $lines = explode("\n",$code);
+
+        $lines = explode("\n", $code);
         $code = "";
-        foreach($lines as $line)
+        foreach ($lines as $line)
         {
-            if(trim($line)=="") continue;
-            $code .= trim($line)."
+            if (trim($line) == "") continue;
+            $code .= trim($line) . "
                 ";
         }
         $this->code = $code;
-        $bytes = fwrite($this->pipes[0], $code."
+        $bytes = fwrite($this->pipes[0], $code . "
         print('CODE EXECUTION FINISHED')
         ");
         if (TestServer::$debug)
