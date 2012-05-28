@@ -41,6 +41,7 @@ Test.className="Test";
 Test.onAfterEdit=function()
 {
     if(Test.currentID==0) Test.resetCounter();
+    Test.allExpanded = false;
 };
 
 Test.onAfterImport=function(){
