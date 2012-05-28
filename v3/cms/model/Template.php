@@ -79,6 +79,7 @@ class Template extends OModule
 
     public static function output_html($html, $vals, $outputs, $inserts=null)
     {
+        if(trim($html)=="") return "";
         if ($inserts != null)
         {
             foreach ($inserts as $insert)
