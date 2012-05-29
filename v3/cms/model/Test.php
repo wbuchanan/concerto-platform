@@ -154,6 +154,22 @@ class Test extends OModule
         }
         return $lid;
     }
+    
+    public function verified_input_values($values)
+    {
+        $result = array();
+        $params = $this->get_parameter_TestVariables();
+        foreach($values as $val)
+        {
+            $v = json_decode($val);
+            foreach($params as $param)
+            {
+                if($param->name == $v->name) array_push ($result, $val);
+                break;
+            }
+        }
+        return $result;
+    }
 
     public function mysql_delete()
     {

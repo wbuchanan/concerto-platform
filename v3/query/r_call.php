@@ -32,6 +32,12 @@ if (array_key_exists('sid', $_POST) && array_key_exists("hash", $_POST)) {
     if ($session != null) {
         if (!array_key_exists('values', $_POST))
             $_POST['values'] = array();
+        
+        $test = $session->get_Test();
+        if($test!=null)
+        {
+            $_POST["values"] = $test->verified_input_values($_POST['values']);
+        }
 
         if (array_key_exists('btn_name', $_POST)) {
             array_push($_POST['values'], json_encode(array(
@@ -84,6 +90,12 @@ if (array_key_exists('sid', $_POST) && array_key_exists("hash", $_POST)) {
 
         if (!array_key_exists('values', $_POST))
             $_POST['values'] = array();
+        
+        $test = $session->get_Test();
+        if($test!=null)
+        {
+            $_POST["values"] = $test->verified_input_values($_POST['values']);
+        }
 
         $result = $session->run_test(null, $_POST['values']);
     }

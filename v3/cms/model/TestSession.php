@@ -463,7 +463,7 @@ class TestSession extends OTable
             `Template_id` bigint(20) NOT NULL,
             `time_tamper_prevention` INT NOT NULL,
             `hash` text NOT NULL,
-            `r_typ` tinyint( 1 ) NOT NULL,
+            `r_type` tinyint( 1 ) NOT NULL,
             `Template_TestSection_id` bigint(20) NOT NULL,
             `debug` tinyint(1) NOT NULL,
             `release` tinyint(1) NOT NULL,
