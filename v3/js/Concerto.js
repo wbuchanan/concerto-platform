@@ -31,7 +31,7 @@ function Concerto(selector,hash,sid,tid,queryPath,callbackGet,callbackSend,debug
     
     this.data = null;
     this.debug = null;
-    this.status = Concerto.statusTypes.started;
+    this.status = Concerto.statusTypes.created;
     
     this.timer = 0;
     this.timeObj = null;
@@ -85,7 +85,7 @@ function Concerto(selector,hash,sid,tid,queryPath,callbackGet,callbackSend,debug
     
     this.run=function(btnName,values){
         if(this.isStopped) return;
-        this.status = Concerto.statusTypes.loading;
+        this.status = Concerto.statusTypes.working;
         ConcertoMethods.loading(this.selector);
         var thisClass = this;
         
@@ -265,11 +265,10 @@ function Concerto(selector,hash,sid,tid,queryPath,callbackGet,callbackSend,debug
 };
 
 Concerto.statusTypes={
-    started:0,
-    loading:1,
+    created:0,
+    working:1,
     template:2,
     completed:3,
-    stopped:4,
-    error:5,
-    tampered:6
+    error:4,
+    tampered:5
 };

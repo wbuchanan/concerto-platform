@@ -35,13 +35,12 @@ class TestSession extends OTable
     public $debug = 0;
     public $release = 0;
 
-    const TEST_SESSION_STATUS_STARTED = 0;
-    const TEST_SESSION_STATUS_LOADING = 1;
+    const TEST_SESSION_STATUS_CREATED = 0;
+    const TEST_SESSION_STATUS_WORKING = 1;
     const TEST_SESSION_STATUS_TEMPLATE = 2;
     const TEST_SESSION_STATUS_COMPLETED = 3;
-    const TEST_SESSION_STATUS_STOPPED = 4;
-    const TEST_SESSION_STATUS_ERROR = 5;
-    const TEST_SESSION_STATUS_TAMPERED = 6;
+    const TEST_SESSION_STATUS_ERROR = 4;
+    const TEST_SESSION_STATUS_TAMPERED = 5;
     const R_TYPE_RSCRIPT = 0;
     const R_TYPE_SOCKET_SERVER = 1;
 
@@ -116,7 +115,7 @@ class TestSession extends OTable
             $counter = $test->get_starting_counter();
         }
         $this->counter = $counter;
-        $this->status = TestSession::TEST_SESSION_STATUS_LOADING;
+        $this->status = TestSession::TEST_SESSION_STATUS_WORKING;
         $this->mysql_save();
 
         $code = "";
@@ -250,11 +249,10 @@ class TestSession extends OTable
                     $status = TestSession::TEST_SESSION_STATUS_ERROR;
                 }
 
-                if ($status == TestSession::TEST_SESSION_STATUS_LOADING && $release == 1)
+                if ($status == TestSession::TEST_SESSION_STATUS_WORKING && $release == 1)
                         $status = TestSession::TEST_SESSION_STATUS_COMPLETED;
                 if ($status == TestSession::TEST_SESSION_STATUS_COMPLETED ||
                         $status == TestSession::TEST_SESSION_STATUS_ERROR ||
-                        $status == TestSession::TEST_SESSION_STATUS_STOPPED ||
                         $status == TestSession::TEST_SESSION_STATUS_TAMPERED ||
                         $close ||
                         $release == 1)
@@ -276,10 +274,8 @@ class TestSession extends OTable
         {
             if ($status == TestSession::TEST_SESSION_STATUS_TEMPLATE)
             {
-                if ($debug == 1)
-                        $html = Template::strip_html($html);
-                else
-                        $head = Template::from_mysql_id($Template_id)->head;
+                if ($debug == 1) $html = Template::strip_html($html);
+                else $head = Template::from_mysql_id($Template_id)->head;
             }
 
             $response = array(
@@ -440,7 +436,13 @@ class TestSession extends OTable
 
     public static function authorized_session($id, $hash)
     {
-        return TestSession::from_property(array("id" => $id, "hash" => $hash), false);
+        $session = TestSession::from_property(array("id" => $id, "hash" => $hash), false);
+        switch ($session->status)
+        {
+            case TestSession::TEST_SESSION_STATUS_ERROR: return null;
+            case TestSession::TEST_SESSION_STATUS_TAMPERED: return null;
+        }
+        return $session;
     }
 
     public static function create_db($delete = false)
