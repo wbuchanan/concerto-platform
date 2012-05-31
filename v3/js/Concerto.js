@@ -117,7 +117,7 @@ function Concerto(selector,hash,sid,tid,queryPath,callbackGet,callbackSend,debug
                 thisClass.testID = thisClass.data["TEST_ID"];
                 thisClass.status = thisClass.data["STATUS"];
                 
-                if(thisClass.data["STATUS"]==Concerto.statusTypes.template) thisClass.loadTemplate(thisClass.data["HTML"]);
+                if(thisClass.data["STATUS"]==Concerto.statusTypes.template) thisClass.loadTemplate(thisClass.data["HTML"],thisClass.data["HEAD"]);
                 if(thisClass.data["STATUS"]==Concerto.statusTypes.completed) $(thisClass.selector).html("");
                 if(thisClass.data["STATUS"]==Concerto.statusTypes.tampered) $(thisClass.selector).html("<h2>Session unavailable.</h2><p>possible reasons:</p><ul><li>session timed out</li><li>exceeded limit of one test per session</li><li>session tampering detected</li></ul>");
                 
@@ -155,8 +155,9 @@ function Concerto(selector,hash,sid,tid,queryPath,callbackGet,callbackSend,debug
         return html;
     };
     
-    this.loadTemplate=function(html){
+    this.loadTemplate=function(html,head){
         var thisClass = this;
+        $("head").append(head);
         $(thisClass.selector).html(thisClass.insertSpecialVariables(html));
         thisClass.addSubmitEvents();
         thisClass.iniTimer();
