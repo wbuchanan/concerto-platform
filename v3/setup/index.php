@@ -306,6 +306,29 @@ class Setup
                     ?>
                     <tr>
                         <?php
+                        $test = Setup::r_version_check(Setup::get_r_version());
+                        ?>
+                        <td class="ui-widget-content">R version installed must be at least <b>v2.15</b> .</td>
+                        <td class="<?= ($test ? "ui-state-highlight" : "ui-state-error") ?>">your <b>R</b> version is: <b>v<?= Setup::get_r_version() ?></b> <b><?= ($test ? "CORRECT" : "INCORRECT") ?> - <b style="color:<?= ($test ? "green" : "red") ?>"><?= ($test ? "PASSED" : "FAILED") ?></b></td>
+                        <td class="ui-widget-content" align="center">
+                            <?php
+                            if ($test) echo"-";
+                            else
+                            {
+                                ?>
+                                Please update your R installation to version <b>v2.15</b> at least.
+                            <?php } ?>
+                        </td>
+                        <?php $ok = $ok && $test; ?>
+                    </tr>
+                <?php } ?>
+                    
+                <?php
+                if ($ok)
+                {
+                    ?>
+                    <tr>
+                        <?php
                         $test = Setup::file_paths_check(Ini::$path_php_exe);
                         ?>
                         <td class="ui-widget-content"><b>PHP</b> executable file path must be set.</td>
@@ -316,7 +339,7 @@ class Setup
                             else
                             {
                                 ?>
-                                PHP executable file path not set or set incorrectly.<br/>
+                                PHP executable file path not set, set incorrectly or unaccesible to PHP.<br/>
                                 Usually the PHP executable file path is <b>/usr/bin/php</b>. Set your PHP executable path in <b>/SETTINGS.php</b> file.
                             <?php } ?>
                         </td>
@@ -340,7 +363,7 @@ class Setup
                             else
                             {
                                 ?>
-                                R executable file path not set or set incorrectly.<br/>
+                                R executable file path not set, set incorrectly or unaccesible to PHP.<br/>
                                 Usually the R executable file path is <b>/usr/bin/R</b>. Set your R executable path in <b>/SETTINGS.php</b> file.
                             <?php } ?>
                         </td>
@@ -364,31 +387,8 @@ class Setup
                             else
                             {
                                 ?>
-                                Rscript file path not set or set incorrectly. If you don't have this file on your system it could mean that your <b>R</b> installation is of version lower than <b>v2.12</b>. If that's the case you should update your R to higher version and set your Rscript path then.<br/>
+                                Rscript file path not set, set incorrectly or unaccesible to PHP.<br/>
                                 Usually the Rscript file path is <b>/usr/bin/Rscript</b>. Set your Rscript path in <b>/SETTINGS.php</b> file.
-                            <?php } ?>
-                        </td>
-                        <?php $ok = $ok && $test; ?>
-                    </tr>
-                <?php } ?>
-                    
-                <?php
-                if ($ok)
-                {
-                    ?>
-                    <tr>
-                        <?php
-                        $test = Setup::r_version_check(Setup::get_r_version());
-                        ?>
-                        <td class="ui-widget-content">R version installed must be at least <b>v2.15</b> .</td>
-                        <td class="<?= ($test ? "ui-state-highlight" : "ui-state-error") ?>">your <b>R</b> version is: <b>v<?= Setup::get_r_version() ?></b> <b><?= ($test ? "CORRECT" : "INCORRECT") ?> - <b style="color:<?= ($test ? "green" : "red") ?>"><?= ($test ? "PASSED" : "FAILED") ?></b></td>
-                        <td class="ui-widget-content" align="center">
-                            <?php
-                            if ($test) echo"-";
-                            else
-                            {
-                                ?>
-                                Please update your R installation to version <b>v2.15</b> at least.
                             <?php } ?>
                         </td>
                         <?php $ok = $ok && $test; ?>

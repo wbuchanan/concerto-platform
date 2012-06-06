@@ -666,6 +666,7 @@ Note: You can add new languages by inserting "<new_language>string translated in
             <pl>nienazwana grupa użytkowników</pl>
             <cn>未命名用户群</cn>
             <bg>потребителска група без име</bg>
+            <fr></fr>
         </string>
         <string id="80">
             <en>unnamed user type</en>

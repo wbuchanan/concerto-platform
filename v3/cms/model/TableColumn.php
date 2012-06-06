@@ -150,7 +150,7 @@ class TableColumn extends OTable
             {
                 return false;
             }
-            $sql = sprintf("ALTER TABLE `%s` CHANGE `updated` `created` TIMESTAMP NOT NULL DEFAULT  '0000-00-00 00:00:00';", self::get_mysql_table());
+            $sql = sprintf("ALTER TABLE `%s` CHANGE `udpated` `created` TIMESTAMP NOT NULL DEFAULT  '0000-00-00 00:00:00';", self::get_mysql_table());
             if (!mysql_query($sql))
             {
                 return false;

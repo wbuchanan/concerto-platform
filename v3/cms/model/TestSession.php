@@ -514,6 +514,16 @@ class TestSession extends OTable
             $sql = "ALTER TABLE `TestSession` ADD `release` tinyint(1) NOT NULL default '0';";
             if (!mysql_query($sql)) return false;
         }
+        
+        if (Ini::does_patch_apply("3.5.2", $previous_version)) {
+            $sql = "SHOW COLUMNS FROM `TestSession` WHERE `Field`='r_typ'";
+            $z = mysql_query($sql);
+            if (mysql_num_rows($z) > 0) {
+                $sql = "ALTER TABLE `TestSession` CHANGE `r_typ` `r_type` tinyint(1) NOT NULL default '0';";
+                if (!mysql_query($sql))
+                    return false;
+            }
+        }
         return true;
     }
 

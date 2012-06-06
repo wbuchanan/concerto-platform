@@ -441,7 +441,7 @@ Table.getRows=function(){
         for(var j=0;j<cols.length;j++){
             row[cols[j].name]=rows[i][cols[j].name];
         }
-        result.push(row);
+        result.push($.toJSON(row));
     }
     return result;
 }
