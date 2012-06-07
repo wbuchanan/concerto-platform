@@ -555,6 +555,9 @@ OModule.inheritance=function(obj)
         location.href="query/export_object.php?class_name="+this.className+"&oid="+oid;
     };
     
+    obj.GetMessageSuccessfulSave = function(){
+        return dictionary["s9"];
+    }
     obj.uiSaveValidated=function(ignoreOnBefore){
         var thisClass = this;
             
@@ -584,16 +587,18 @@ OModule.inheritance=function(obj)
                     case 0:{
                         if(data.oid!=0)
                         {
+                            var isNewObject = false;
+                            if(thisClass.currentID==0) isNewObject = true;
                             if(!thisClass.reloadOnModification) { 
                                 if(thisClass.currentID!=0) thisClass.uiList();
                                 else thisClass.uiReload(data.oid);
-                                if(thisClass.onAfterSave) thisClass.onAfterSave();
                             }
-                            Methods.alert(dictionary["s9"],"info", dictionary["s274"],function(){
+                            Methods.alert(thisClass.getMessageSuccessfulSave(isNewObject),"info", dictionary["s274"],function(){
                                 if(thisClass.reloadOnModification) {
                                     Methods.modalLoading();
                                     Methods.reload(thisClass.reloadHash);
                                 }
+                                if(thisClass.onAfterSave) thisClass.onAfterSave(isNewObject);
                             });
                         }
                         else {
