@@ -87,14 +87,14 @@ class TestSession extends OTable {
         return $session;
     }
 
-    public function remove() {
-        $this->close();
+    public function remove($sockets=true) {
+        $this->close($sockets);
         $this->mysql_delete();
     }
 
-    public function close() {
+    public function close($sockets=true) {
         if ($this->r_type == TestSession::R_TYPE_SOCKET_SERVER) {
-            if (TestServer::is_running())
+            if ($sockets && TestServer::is_running())
                 TestServer::send("close:" . $this->id);
         }
         $this->remove_files();
@@ -433,6 +433,7 @@ class TestSession extends OTable {
 
     public static function authorized_session($id, $hash) {
         $session = TestSession::from_property(array("id" => $id, "hash" => $hash), false);
+        if($session==null) return null;
         switch ($session->status) {
             case TestSession::TEST_SESSION_STATUS_ERROR: return null;
             case TestSession::TEST_SESSION_STATUS_TAMPERED: return null;

@@ -372,8 +372,14 @@ class TestServer {
         }
         if ($serialized) {
             $session = TestSession::from_mysql_id($session_id);
-            $session->serialized = 1;
-            $session->mysql_save();
+            if ($session != null) {
+                if ($session->debug == 1)
+                    $session->remove(false);
+                else {
+                    $session->serialized = 1;
+                    $session->mysql_save();
+                }
+            }
         }
         if (self::$debug) {
             self::log_debug("TestServer->close_instance() --- Client '$key' closed");
@@ -421,8 +427,8 @@ class TestServer {
                 ";
                 $session->serialized = 0;
                 $session->mysql_save();
-                
-                $data->code = $code.$data->code;
+
+                $data->code = $code . $data->code;
                 $input = json_encode($data);
             }
             $this->clients[$key] = array();

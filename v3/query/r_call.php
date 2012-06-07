@@ -41,8 +41,10 @@ if (array_key_exists('sid', $_POST) && array_key_exists("hash", $_POST)) {
         }
 
         if (Ini::$timer_tamper_prevention && $session->time_limit > 0 && $time - $session->time_tamper_prevention - Ini::$timer_tamper_prevention_tolerance > $session->time_limit) {
-            if($session->debug==1) TestSession::unregister ($session->id);
-            else $session->close();
+            if ($session->debug == 1)
+                TestSession::unregister($session->id);
+            else
+                $session->close();
 
             $result = array(
                 "data" => array(
@@ -55,6 +57,13 @@ if (array_key_exists('sid', $_POST) && array_key_exists("hash", $_POST)) {
                     "TEMPLATE_ID" => 0
                 )
             );
+            if ($session->debug == 1) {
+                $result["debug"] = array(
+                    "code" => 0,
+                    "return" => "",
+                    "output" => ""
+                );
+            }
         }
         else
             $result = $session->resume($_POST['values']);
@@ -69,6 +78,11 @@ if (array_key_exists('sid', $_POST) && array_key_exists("hash", $_POST)) {
                 "TEST_SESSION_ID" => 0,
                 "STATUS" => TestSession::TEST_SESSION_STATUS_TAMPERED,
                 "TEMPLATE_ID" => 0
+            ),
+            "debug" => array(
+                "code" => 0,
+                "return" => "",
+                "output" => ""
             )
         );
     }
@@ -83,10 +97,9 @@ if (array_key_exists('sid', $_POST) && array_key_exists("hash", $_POST)) {
 
         if (!array_key_exists('values', $_POST))
             $_POST['values'] = array();
-        
+
         $test = $session->get_Test();
-        if($test!=null)
-        {
+        if ($test != null) {
             $_POST["values"] = $test->verified_input_values($_POST['values']);
         }
 

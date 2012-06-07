@@ -1049,7 +1049,8 @@ Test.startRunTimeDebug=function(){
         Test.debugCodeMirrors.push(Methods.iniCodeMirror("textareaDebugRun_"+Test.runTimeResponseIndex, "r", true));
         
         //output
-        var output = data.debug.output.join("<br/>");
+        var output = "";
+        if(data.debug.output!="") output = data.debug.output.join("<br/>");
         Test.appendDebugConsole(output,"ui-state-highlight");
         
         //validation

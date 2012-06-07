@@ -119,7 +119,7 @@ function Concerto(selector,hash,sid,tid,queryPath,callbackGet,callbackSend,debug
                 
                 if(thisClass.data["STATUS"]==Concerto.statusTypes.template) thisClass.loadTemplate(thisClass.data["HTML"],thisClass.data["HEAD"]);
                 if(thisClass.data["STATUS"]==Concerto.statusTypes.completed) $(thisClass.selector).html("");
-                if(thisClass.data["STATUS"]==Concerto.statusTypes.tampered) $(thisClass.selector).html("<h2>Session unavailable.</h2><p>possible reasons:</p><ul><li>session timed out</li><li>exceeded limit of one test per session</li><li>session tampering detected</li></ul>");
+                if(thisClass.data["STATUS"]==Concerto.statusTypes.tampered) $(thisClass.selector).html("<h2>Session unavailable.</h2>");
                 
                 if(thisClass.data["STATUS"]==Concerto.statusTypes.error){
                     if(thisClass.debug==null){
