@@ -26,8 +26,8 @@ CONCERTO_DB_NAME <- CONCERTO_ARGS[5]
 CONCERTO_TEST_SESSION_ID <- CONCERTO_ARGS[6]
  
 setwd(CONCERTO_TEMP_PATH)
+library(session)
 library(catR)
-library(R.utils)
 options(digits=3)
 if(!is.na(CONCERTO_ARGS[7])) Sys.setenv("MYSQL_HOME"=CONCERTO_ARGS[7])
 
@@ -86,6 +86,34 @@ fill.session.HTML <- function(CONCERTO_PARAM){
     }
     return(CONCERTO_PARAM)
 }
+
+evalWithTimeout <- function (..., envir = parent.frame(), timeout, cpu = timeout, elapsed = timeout, onTimeout = c("error", "warning", "silent"))
+{
+    onTimeout <- match.arg(onTimeout)
+    res <- invisible()
+    setTimeLimit(cpu = cpu, elapsed = elapsed, transient = TRUE)
+    tryCatch({
+        res <- eval(..., envir = envir)
+    }, error = function(ex) {
+        msg <- ex$message
+        pattern <- gettext("reached elapsed time limit")
+        if (regexpr(pattern, msg) != -1) {
+            if (onTimeout == "error") {
+                stop("Timeout!")
+            }
+            else if (onTimeout == "warning") {
+                warning("Timeout!")
+            }
+            else if (onTimeout == "silent") {
+            }
+        }
+        else {
+            stop("Timeout!")
+        }
+    })
+    res
+}
+
 
 library(RMySQL)
 CONCERTO_DB_DRIVER <- dbDriver('MySQL')

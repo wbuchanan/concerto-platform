@@ -84,7 +84,7 @@ class Setup
         if($elems[0]>2) return true;
         if($elems[0]==2)
         {
-            if($elems[1]>=15) return true;
+            if($elems[1]>=12) return true;
         }
         return false;
     }
@@ -308,7 +308,7 @@ class Setup
                         <?php
                         $test = Setup::r_version_check(Setup::get_r_version());
                         ?>
-                        <td class="ui-widget-content">R version installed must be at least <b>v2.15</b> .</td>
+                        <td class="ui-widget-content">R version installed must be at least <b>v2.12</b> .</td>
                         <td class="<?= ($test ? "ui-state-highlight" : "ui-state-error") ?>">your <b>R</b> version is: <b>v<?= Setup::get_r_version() ?></b> <b><?= ($test ? "CORRECT" : "INCORRECT") ?> - <b style="color:<?= ($test ? "green" : "red") ?>"><?= ($test ? "PASSED" : "FAILED") ?></b></td>
                         <td class="ui-widget-content" align="center">
                             <?php
@@ -316,7 +316,7 @@ class Setup
                             else
                             {
                                 ?>
-                                Please update your R installation to version <b>v2.15</b> at least.
+                                Please update your R installation to version <b>v2.12</b> at least.
                             <?php } ?>
                         </td>
                         <?php $ok = $ok && $test; ?>
@@ -467,21 +467,6 @@ class Setup
                         <td class="ui-widget-content"><b>UNIX sock</b> directory path must be writable</td>
                         <td class="<?= ($test ? "ui-state-highlight" : "ui-state-error") ?>">your <b>UNIX sock</b> directory: <b><?=Ini::$path_unix_sock_dir?></b> <b><?= ($test ? "IS WRITABLE" : "IS NOT WRITABLE") ?> - <b style="color:<?= ($test ? "green" : "red") ?>"><?= ($test ? "PASSED" : "FAILED") ?></b></td>
                         <td class="ui-widget-content" align="center"><?= ($test ? "-" : "Set <b>".Ini::$path_unix_sock_dir."</b> directory rigths to 0777.") ?></td>
-                        <?php $ok = $ok && $test; ?>
-                    </tr>
-                <?php } ?>
-                    
-                <?php
-                if ($ok)
-                {
-                    ?>
-                    <tr>
-                        <?php
-                        $test = Setup::r_package_check("R.utils");
-                        ?>
-                        <td class="ui-widget-content"><b>R.utils</b> R package must be installed.</td>
-                        <td class="<?= ($test ? "ui-state-highlight" : "ui-state-error") ?>"><b>R.utils</b> package <b><?= ($test ? "IS INSTALLED" : "IS NOT INSTALLED") ?> - <b style="color:<?= ($test ? "green" : "red") ?>"><?= ($test ? "PASSED" : "FAILED") ?></b></td>
-                        <td class="ui-widget-content" align="center"><?= ($test ? "-" : "Install <b>R.utils</b> package to main R library directory.") ?></td>
                         <?php $ok = $ok && $test; ?>
                     </tr>
                 <?php } ?>    

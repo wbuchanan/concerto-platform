@@ -50,8 +50,7 @@ if($next_section!=null) $next_counter = $next_section->counter;
 
 $result = $session->debug_syntax($section->id, $close);
 
-//$session->remove();
-TestSession::unregister($session->id);
+$session->remove();
 
 echo json_encode(array("result" => 0, "response" => $result, "next_counter"=>$next_counter));
 ?>

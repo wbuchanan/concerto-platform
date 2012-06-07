@@ -438,6 +438,10 @@ Test.uiWriteSection=function(type,parent,counter,value,oid,refresh,csid,after,en
 Test.uiAddLogicSection=function(parent,after){
     var type = $("#formTestSelectSectionType");
     
+    if(after!=null && after != 0) {
+        parent = $("#divSection_"+after).attr("secparent");
+    }
+    
     $("#divTestDialog").dialog( {
         modal:true,
         title:dictionary["s61"],

@@ -70,12 +70,12 @@ class TestSection extends OTable
         $code = $this->get_RCode();
 
         if (substr($this->get_RCode(), 0, 5) == "stop(")
-                return sprintf("print('Start of section with index: <b>%s</b>')
+                return sprintf("print('Start of section with index: %s')
                     %s", $this->counter, $this->get_RCode());
 
         return sprintf("
             %s <<- function(){
-            print('Start of section with index: <b>%s</b>')
+            print('Start of section with index: %s')
                             %s
                  }
                  ", $this->get_RFunctionName(), $this->counter, $code);
@@ -109,7 +109,7 @@ class TestSection extends OTable
                         return sprintf("stop('Invalid test id: %s in section #%s')", $this->Test_id, $this->counter);
                     }
                     $code = sprintf("
-                            print('Starting test with id: <b>%s</b>')
+                            print('Starting test with id: %s')
                             CONCERTO_TEST_ID <<- %s
                             return(%d)
                             ", $this->Test_id, $this->Test_id, $next_counter);
@@ -279,7 +279,7 @@ class TestSection extends OTable
                                     ", $this->Test_id, $returns_code, $next_counter);
                                 $code.=sprintf("
                                     %s <<- function(){
-                                    print('Start of section with index: <b>%s</b>')
+                                    print('Start of section with index: %s')
                                     %s
                                     }
                                     ", 'CONCERTO_Test' . $vals[0] . 'Section2', 2, $end_code);

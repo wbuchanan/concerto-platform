@@ -32,12 +32,6 @@ if (array_key_exists('sid', $_POST) && array_key_exists("hash", $_POST)) {
     if ($session != null) {
         if (!array_key_exists('values', $_POST))
             $_POST['values'] = array();
-        
-        $test = $session->get_Test();
-        if($test!=null)
-        {
-            $_POST["values"] = $test->verified_input_values($_POST['values']);
-        }
 
         if (array_key_exists('btn_name', $_POST)) {
             array_push($_POST['values'], json_encode(array(
@@ -47,8 +41,8 @@ if (array_key_exists('sid', $_POST) && array_key_exists("hash", $_POST)) {
         }
 
         if (Ini::$timer_tamper_prevention && $session->time_limit > 0 && $time - $session->time_tamper_prevention - Ini::$timer_tamper_prevention_tolerance > $session->time_limit) {
-            //$session->remove();
-            TestSession::unregister($session->id);
+            if($session->debug==1) TestSession::unregister ($session->id);
+            else $session->close();
 
             $result = array(
                 "data" => array(
@@ -83,7 +77,6 @@ if (array_key_exists('sid', $_POST) && array_key_exists("hash", $_POST)) {
         $r_type = Ini::$r_instances_persistant ? TestSession::R_TYPE_SOCKET_SERVER : TestSession::R_TYPE_RSCRIPT;
         $debug = false;
         if (array_key_exists("debug", $_POST) && $_POST['debug'] == 1) {
-            $r_type = TestSession::R_TYPE_RSCRIPT;
             $debug = true;
         }
         $session = TestSession::start_new($_POST['tid'], $r_type, $debug);
