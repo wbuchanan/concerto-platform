@@ -24,88 +24,26 @@ if (!isset($ini)) {
     $ini = new Ini();
 }
 
-$session = null;
-$result = array();
-if (array_key_exists('sid', $_POST) && array_key_exists("hash", $_POST)) {
-    $session = TestSession::authorized_session($_POST['sid'], $_POST['hash']);
+$tid = null;
+if (array_key_exists("tid", $_POST))
+    $tid = $_POST['tid'];
+$sid = null;
+if (array_key_exists("sid", $_POST))
+    $sid = $_POST['sid'];
+$hash = null;
+if (array_key_exists("hash", $_POST))
+    $hash = $_POST['hash'];
+$values = null;
+if (array_key_exists("values", $_POST))
+    $values = $_POST['values'];
+$btn_name = null;
+if (array_key_exists("btn_name", $_POST))
+    $btn_name = $_POST['btn_name'];
+$debug = null;
+if (array_key_exists("debug", $_POST))
+    $debug = $_POST['debug'];
 
-    if ($session != null) {
-        if (!array_key_exists('values', $_POST))
-            $_POST['values'] = array();
-
-        if (array_key_exists('btn_name', $_POST)) {
-            array_push($_POST['values'], json_encode(array(
-                        "name" => "LAST_PRESSED_BUTTON_NAME",
-                        "value" => $_POST['btn_name']
-                    )));
-        }
-
-        if (Ini::$timer_tamper_prevention && $session->time_limit > 0 && $time - $session->time_tamper_prevention - Ini::$timer_tamper_prevention_tolerance > $session->time_limit) {
-            if ($session->debug == 1)
-                TestSession::unregister($session->id);
-            else
-                $session->close();
-
-            $result = array(
-                "data" => array(
-                    "HASH" => "",
-                    "TIME_LIMIT" => 0,
-                    "HTML" => "",
-                    "TEST_ID" => 0,
-                    "TEST_SESSION_ID" => 0,
-                    "STATUS" => TestSession::TEST_SESSION_STATUS_TAMPERED,
-                    "TEMPLATE_ID" => 0
-                )
-            );
-            if ($session->debug == 1) {
-                $result["debug"] = array(
-                    "code" => 0,
-                    "return" => "",
-                    "output" => ""
-                );
-            }
-        }
-        else
-            $result = $session->resume($_POST['values']);
-    }
-    else {
-        $result = array(
-            "data" => array(
-                "HASH" => "",
-                "TIME_LIMIT" => 0,
-                "HTML" => "",
-                "TEST_ID" => 0,
-                "TEST_SESSION_ID" => 0,
-                "STATUS" => TestSession::TEST_SESSION_STATUS_TAMPERED,
-                "TEMPLATE_ID" => 0
-            ),
-            "debug" => array(
-                "code" => 0,
-                "return" => "",
-                "output" => ""
-            )
-        );
-    }
-} else {
-    if (array_key_exists('tid', $_POST)) {
-        $r_type = Ini::$r_instances_persistant ? TestSession::R_TYPE_SOCKET_SERVER : TestSession::R_TYPE_RSCRIPT;
-        $debug = false;
-        if (array_key_exists("debug", $_POST) && $_POST['debug'] == 1) {
-            $debug = true;
-        }
-        $session = TestSession::start_new($_POST['tid'], $r_type, $debug);
-
-        if (!array_key_exists('values', $_POST))
-            $_POST['values'] = array();
-
-        $test = $session->get_Test();
-        if ($test != null) {
-            $_POST["values"] = $test->verified_input_values($_POST['values']);
-        }
-
-        $result = $session->run_test(null, $_POST['values']);
-    }
-}
+$result = TestSession::forward($tid, $sid, $hash, $values, $btn_name, $debug, $time);
 
 echo json_encode($result);
 ?>

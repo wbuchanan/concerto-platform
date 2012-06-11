@@ -24,5 +24,8 @@ $r_max_execution_time = 60; //maximum R execution time ( prevents infinite loops
 //general
 $timezone = 'Europe/London';
 
+//remote client
+$remote_client_password = "pass";
+
 //ALWAYS RUN /setup AFTER CHANGING SETTINGS IN THIS FILE!
 ?>

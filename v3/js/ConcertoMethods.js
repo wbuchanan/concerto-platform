@@ -19,6 +19,6 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA.
 
 function ConcertoMethods(){};
 
-ConcertoMethods.loading=function(selector){
-    $(selector).html("<div align='center' style='width:100%;height:100%;'><table style='width:100%;height:100%;'><tr><td valign='middle' align='center'><img src='css/img/ajax-loader.gif' /></td></tr></table></div>")  
+ConcertoMethods.loading=function(selector,imgSource){
+    $(selector).html("<div align='center' style='width:100%;height:100%;'><table style='width:100%;height:100%;'><tr><td valign='middle' align='center'><img src='"+imgSource+"' /></td></tr></table></div>")  
 };

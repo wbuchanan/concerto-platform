@@ -87,22 +87,22 @@ class TestSession extends OTable {
         return $session;
     }
 
-    public function remove($sockets=true) {
+    public function remove($sockets = true) {
         $this->close($sockets);
         $this->mysql_delete();
     }
-    
+
     public function mysql_delete() {
         parent::mysql_delete();
         $this->remove_returns();
     }
-    
-    public function remove_returns(){
-        $sql = sprintf("DELETE FROM `%s` WHERE `TestSession_id`=%d",  TestSessionReturn::get_mysql_table(), $this->id);
+
+    public function remove_returns() {
+        $sql = sprintf("DELETE FROM `%s` WHERE `TestSession_id`=%d", TestSessionReturn::get_mysql_table(), $this->id);
         mysql_query($sql);
     }
 
-    public function close($sockets=true) {
+    public function close($sockets = true) {
         if ($this->r_type == TestSession::R_TYPE_SOCKET_SERVER) {
             if ($sockets && TestServer::is_running())
                 TestServer::send("close:" . $this->id);
@@ -380,15 +380,15 @@ class TestSession extends OTable {
 
     public function get_post_RCode() {
         $code = "";
-        
+
         $test = $this->get_Test();
         $returns = $test->get_return_TestVariables();
-        
-        foreach($returns as $ret){
+
+        foreach ($returns as $ret) {
             $code.=sprintf("update.session.return('%s')
-                ",$ret->name);
+                ", $ret->name);
         }
-        
+
         if ($this->r_type == TestSession::R_TYPE_RSCRIPT) {
             $code .= "
             save.session('" . $this->get_RSession_file_path() . "')
@@ -452,13 +452,98 @@ class TestSession extends OTable {
 
     public static function authorized_session($id, $hash) {
         $session = TestSession::from_property(array("id" => $id, "hash" => $hash), false);
-        if($session==null) return null;
+        if ($session == null)
+            return null;
         switch ($session->status) {
             case TestSession::TEST_SESSION_STATUS_ERROR: return null;
             case TestSession::TEST_SESSION_STATUS_TAMPERED: return null;
             case TestSession::TEST_SESSION_STATUS_COMPLETED: return null;
         }
         return $session;
+    }
+
+    public static function forward($tid, $sid, $hash, $values, $btn_name, $debug, $time) {
+        $session = null;
+        $result = array();
+        if ($sid != null && $hash != null) {
+            $session = TestSession::authorized_session($sid, $hash);
+
+            if ($session != null) {
+                if ($values == null)
+                    $values = array();
+
+                if ($btn_name!=null) {
+                    array_push($values, json_encode(array(
+                                "name" => "LAST_PRESSED_BUTTON_NAME",
+                                "value" => $btn_name
+                            )));
+                }
+
+                if (Ini::$timer_tamper_prevention && $session->time_limit > 0 && $time - $session->time_tamper_prevention - Ini::$timer_tamper_prevention_tolerance > $session->time_limit) {
+                    if ($session->debug == 1)
+                        TestSession::unregister($session->id);
+                    else
+                        $session->close();
+
+                    $result = array(
+                        "data" => array(
+                            "HASH" => "",
+                            "TIME_LIMIT" => 0,
+                            "HTML" => "",
+                            "TEST_ID" => 0,
+                            "TEST_SESSION_ID" => 0,
+                            "STATUS" => TestSession::TEST_SESSION_STATUS_TAMPERED,
+                            "TEMPLATE_ID" => 0
+                        )
+                    );
+                    if ($session->debug == 1) {
+                        $result["debug"] = array(
+                            "code" => 0,
+                            "return" => "",
+                            "output" => ""
+                        );
+                    }
+                }
+                else
+                    $result = $session->resume($values);
+            }
+            else {
+                $result = array(
+                    "data" => array(
+                        "HASH" => "",
+                        "TIME_LIMIT" => 0,
+                        "HTML" => "",
+                        "TEST_ID" => 0,
+                        "TEST_SESSION_ID" => 0,
+                        "STATUS" => TestSession::TEST_SESSION_STATUS_TAMPERED,
+                        "TEMPLATE_ID" => 0
+                    ),
+                    "debug" => array(
+                        "code" => 0,
+                        "return" => "",
+                        "output" => ""
+                    )
+                );
+            }
+        } else {
+            if ($tid!=null) {
+                $r_type = Ini::$r_instances_persistant ? TestSession::R_TYPE_SOCKET_SERVER : TestSession::R_TYPE_RSCRIPT;
+                if ($debug == 1) $debug = true;
+                else $debug = false;
+                $session = TestSession::start_new($tid, $r_type, $debug);
+
+                if ($values==null)
+                    $values = array();
+
+                $test = $session->get_Test();
+                if ($test != null) {
+                    $values = $test->verified_input_values($values);
+                }
+
+                $result = $session->run_test(null, $values);
+            }
+        }
+        return $result;
     }
 
     public static function create_db($delete = false) {

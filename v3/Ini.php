@@ -44,6 +44,7 @@ class Ini
     public static $timer_tamper_prevention = true;
     public static $timer_tamper_prevention_tolerance = 3;
     public static $path_online_library_ws = "";
+    public static $remote_client_password = "";
 
     function __construct($connect = true, $session = true)
     {
@@ -97,6 +98,7 @@ class Ini
         self::$r_server_timeout = $r_instances_persistant_server_timeout;
         self::$r_max_execution_time = $r_max_execution_time;
         self::$path_online_library_ws = "http://concerto.e-psychometrics.com/demo/online_library/ws.php";
+        self::$remote_client_password = $remote_client_password;
     }
 
     public static function does_patch_apply($patch_version, $previous_version)

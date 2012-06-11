@@ -17,10 +17,14 @@ along with this program; if not, write to the Free Software
 Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA.
 */
 
-function Concerto(selector,hash,sid,tid,queryPath,callbackGet,callbackSend,debug){
+function Concerto(container,hash,sid,tid,queryPath,callbackGet,callbackSend,debug,remote,loadingImageSource){
+    this.loadingImageSource = 'css/img/ajax-loader.gif';
+    if(loadingImageSource!=null) this.loadingImageSource = loadingImageSource;
+    this.remote = false;
+    if(remote!=null) this.remote = remote;
     this.isDebug = false;
     if(debug!=null && debug==true) this.isDebug = true;
-    this.selector = selector;
+    this.container = container;
     this.sessionID = sid;
     this.hash = hash;
     this.testID = tid;
@@ -86,7 +90,7 @@ function Concerto(selector,hash,sid,tid,queryPath,callbackGet,callbackSend,debug
     this.run=function(btnName,values){
         if(this.isStopped) return;
         this.status = Concerto.statusTypes.working;
-        ConcertoMethods.loading(this.selector);
+        ConcertoMethods.loading(this.container,this.loadingImageSource);
         var thisClass = this;
         
         var params = {};
@@ -104,7 +108,7 @@ function Concerto(selector,hash,sid,tid,queryPath,callbackGet,callbackSend,debug
         if(this.isDebug!=null && this.isDebug==true) params["debug"]=1;
         else params["debug"]=0;
         
-        $.post(this.queryPath+"r_call.php",
+        $.post(this.remote?this.queryPath:this.queryPath+"r_call.php",
             params,
             function(data){
                 thisClass.data = data.data;
@@ -118,29 +122,24 @@ function Concerto(selector,hash,sid,tid,queryPath,callbackGet,callbackSend,debug
                 thisClass.status = thisClass.data["STATUS"];
                 
                 if(thisClass.data["STATUS"]==Concerto.statusTypes.template) thisClass.loadTemplate(thisClass.data["HTML"],thisClass.data["HEAD"]);
-                if(thisClass.data["STATUS"]==Concerto.statusTypes.completed) $(thisClass.selector).html("");
-                if(thisClass.data["STATUS"]==Concerto.statusTypes.tampered) $(thisClass.selector).html("<h2>Session unavailable.</h2>");
+                if(thisClass.data["STATUS"]==Concerto.statusTypes.completed) $(thisClass.container).html("");
+                if(thisClass.data["STATUS"]==Concerto.statusTypes.tampered) $(thisClass.container).html("<h2>Session unavailable.</h2>");
                 
                 if(thisClass.data["STATUS"]==Concerto.statusTypes.error){
                     if(thisClass.debug==null){
-                        $(thisClass.selector).html("<h2>Fatal test exception encounterd. Test halted.</h2>");
+                        $(thisClass.container).html("<h2>Fatal test exception encounterd. Test halted.</h2>");
                     }
                     else {
-                        $(thisClass.selector).html("<h2>R return code</h2>");
-                        $(thisClass.selector).append(thisClass.debug["return"]);
-                        $(thisClass.selector).append("<hr/>");
-                        //$(thisClass.selector).append("<h2>HTML variables</h2>");
-                        //for(var k in data.values){
-                        //    $(thisClass.selector).append("<b>"+k+"</b> = "+data.values[k].replace(/\n/g,'<br />')+"<br/>") ;
-                        //}
-                        //$(thisClass.selector).append("<hr/>");
-                        $(thisClass.selector).append("<h2>R code</h2>");
-                        $(thisClass.selector).append(thisClass.debug["code"].replace(/\n/g,'<br />'));
-                        $(thisClass.selector).append("<hr/>");
-                        $(thisClass.selector).append("<h2>R output</h2>");
+                        $(thisClass.container).html("<h2>R return code</h2>");
+                        $(thisClass.container).append(thisClass.debug["return"]);
+                        $(thisClass.container).append("<hr/>");
+                        $(thisClass.container).append("<h2>R code</h2>");
+                        $(thisClass.container).append(thisClass.debug["code"].replace(/\n/g,'<br />'));
+                        $(thisClass.container).append("<hr/>");
+                        $(thisClass.container).append("<h2>R output</h2>");
                         for(var i=0; i<thisClass.debug["output"].length;i++){
                             if(thisClass.debug["output"][i]==null) continue;
-                            $(thisClass.selector).append(thisClass.debug["output"][i].replace(/\n/g,'<br />')+"<br/>");
+                            $(thisClass.container).append(thisClass.debug["output"][i].replace(/\n/g,'<br />')+"<br/>");
                         }
                     }
                 }
@@ -158,7 +157,7 @@ function Concerto(selector,hash,sid,tid,queryPath,callbackGet,callbackSend,debug
     this.loadTemplate=function(html,head){
         var thisClass = this;
         $("head").append(head);
-        $(thisClass.selector).html(thisClass.insertSpecialVariables(html));
+        $(thisClass.container).html(thisClass.insertSpecialVariables(html));
         thisClass.addSubmitEvents();
         thisClass.iniTimer();
     };
@@ -166,7 +165,7 @@ function Concerto(selector,hash,sid,tid,queryPath,callbackGet,callbackSend,debug
     this.getControlsValues=function(){
         var values = new Array();
         
-        $(this.selector+" input:text").each(function(){
+        $(this.container).find("input:text").each(function(){
             var obj = {
                 name:$(this).attr("name"),
                 value:$(this).val()
@@ -174,7 +173,7 @@ function Concerto(selector,hash,sid,tid,queryPath,callbackGet,callbackSend,debug
             values.push($.toJSON(obj));
         });
         
-        $(this.selector+" input:password").each(function(){
+        $(this.container).find("input:password").each(function(){
             var obj = {
                 name:$(this).attr("name"),
                 value:$(this).val()
@@ -182,7 +181,7 @@ function Concerto(selector,hash,sid,tid,queryPath,callbackGet,callbackSend,debug
             values.push($.toJSON(obj));
         });
         
-        $(this.selector+" textarea").each(function(){
+        $(this.container).find("textarea").each(function(){
             var obj = {
                 name:$(this).attr("name"),
                 value:$(this).val()
@@ -190,7 +189,7 @@ function Concerto(selector,hash,sid,tid,queryPath,callbackGet,callbackSend,debug
             values.push($.toJSON(obj));
         });
         
-        $(this.selector+" select").each(function(){
+        $(this.container).find("select").each(function(){
             var obj = {
                 name:$(this).attr("name"),
                 value:$(this).val()
@@ -198,7 +197,7 @@ function Concerto(selector,hash,sid,tid,queryPath,callbackGet,callbackSend,debug
             values.push($.toJSON(obj));
         });
         
-        $(this.selector+" input:checkbox").each(function(){
+        $(this.container).find("input:checkbox").each(function(){
             var obj = {
                 name:$(this).attr("name"),
                 value:$(this).is(":checked")?1:0
@@ -207,7 +206,7 @@ function Concerto(selector,hash,sid,tid,queryPath,callbackGet,callbackSend,debug
         });
         
         var radios = {};
-        $(this.selector+" input:radio").each(function(){
+        $(this.container).find("input:radio").each(function(){
             var checked = $(this).is(":checked");
             var name = $(this).attr("name");
             
@@ -253,13 +252,13 @@ function Concerto(selector,hash,sid,tid,queryPath,callbackGet,callbackSend,debug
     this.addSubmitEvents=function(){
         var thisClass = this;
         
-        $(selector+" :button:not(.notInteractive)").click(function(){
+        $(container).find(":button:not(.notInteractive)").click(function(){
             thisClass.submit($(this).attr("name"));
         });
-        $(selector+" :image:not(.notInteractive)").click(function(){
+        $(container).find(":image:not(.notInteractive)").click(function(){
             thisClass.submit($(this).attr("name"));
         });
-        $(selector+" :submit:not(.notInteractive)").click(function(){
+        $(container).find(":submit:not(.notInteractive)").click(function(){
             thisClass.submit($(this).attr("name"));
         });
     }
