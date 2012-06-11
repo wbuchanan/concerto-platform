@@ -555,7 +555,7 @@ OModule.inheritance=function(obj)
         location.href="query/export_object.php?class_name="+this.className+"&oid="+oid;
     };
     
-    obj.GetMessageSuccessfulSave = function(){
+    obj.getMessageSuccessfulSave = function(){
         return dictionary["s9"];
     }
     obj.uiSaveValidated=function(ignoreOnBefore){
