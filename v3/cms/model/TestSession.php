@@ -91,6 +91,16 @@ class TestSession extends OTable {
         $this->close($sockets);
         $this->mysql_delete();
     }
+    
+    public function mysql_delete() {
+        parent::mysql_delete();
+        $this->remove_returns();
+    }
+    
+    public function remove_returns(){
+        $sql = sprintf("DELETE FROM `%s` WHERE `TestSession_id`=%d",  TestSessionReturn::get_mysql_table(), $this->id);
+        mysql_query($sql);
+    }
 
     public function close($sockets=true) {
         if ($this->r_type == TestSession::R_TYPE_SOCKET_SERVER) {
@@ -370,8 +380,17 @@ class TestSession extends OTable {
 
     public function get_post_RCode() {
         $code = "";
+        
+        $test = $this->get_Test();
+        $returns = $test->get_return_TestVariables();
+        
+        foreach($returns as $ret){
+            $code.=sprintf("update.session.return('%s')
+                ",$ret->name);
+        }
+        
         if ($this->r_type == TestSession::R_TYPE_RSCRIPT) {
-            $code = "
+            $code .= "
             save.session('" . $this->get_RSession_file_path() . "')
             ";
         }

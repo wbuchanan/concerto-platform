@@ -73,6 +73,15 @@ get.template.HTML <- function(CONCERTO_PARAM1,CONCERTO_PARAM2,CONCERTO_PARAM3) {
     return(CONCERTO_SQL_RESULT[1,1])
 }
 
+update.session.return <- function(CONCERTO_PARAM) {
+    if(exists(CONCERTO_PARAM)) {
+        CONCERTO_VALUE <- toString(get(CONCERTO_PARAM))
+        CONCERTO_PARAM <- dbEscapeStrings(CONCERTO_DB_CONNECTION,toString(CONCERTO_PARAM))
+        CONCERTO_VALUE <- dbEscapeStrings(CONCERTO_DB_CONNECTION,toString(CONCERTO_VALUE))
+        dbSendQuery(CONCERTO_DB_CONNECTION, statement = sprintf("REPLACE INTO `%s`.`TestSessionReturn` SET `TestSession_id` ='%s', `name`='%s', `value`='%s'",dbEscapeStrings(CONCERTO_DB_CONNECTION,CONCERTO_DB_NAME),dbEscapeStrings(CONCERTO_DB_CONNECTION,CONCERTO_TEST_SESSION_ID),CONCERTO_PARAM, CONCERTO_VALUE))
+    }
+}
+
 fill.session.HTML <- function(CONCERTO_PARAM){
     CONCERTO_HTML_MATCHES <- unlist(regmatches(CONCERTO_PARAM,gregexpr("\\{\\{[^\\}\\}]*\\}\\}",CONCERTO_PARAM)))
     CONCERTO_HTML_MATCHES_INDEX <- 1

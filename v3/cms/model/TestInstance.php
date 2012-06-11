@@ -117,10 +117,11 @@ class TestInstance {
         if (TestServer::$debug)
             TestServer::log_debug("TestInstance->serialize() --- Serializing #" . $this->session_id);
         $session = TestSession::from_mysql_id($this->session_id);
+        
         $this->is_serializing = true;
-        $this->send("
-            save.session('" . $session->get_RSession_file_path() . "')
-            ");
+        $this->send(sprintf("
+            save.session('%s')
+            ",$session->get_RSession_file_path()));
     }
 
     public function send($code) {
