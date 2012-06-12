@@ -1,0 +1,8 @@
+this is our test sidebar
+
+menu
+a\
+b
+c
+d
+g
