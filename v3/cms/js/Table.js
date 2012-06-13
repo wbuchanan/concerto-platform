@@ -739,10 +739,14 @@ Table.uiImportCSV=function(){
                     }]  
                 },
                 send: function(e,data){
-                    $("#div"+Table.className+"DialogImportCSV").parent().mask(dictionary["s319"]);
+                    Methods.modalProgress();
+                    $("#div"+Table.className+"DialogImportCSV").dialog("close");
+                },
+                progress: function(e,data) {
+                    var progress = parseInt(data.loaded / data.total * 100, 10);
+                    Methods.changeProgress(progress);
                 },
                 done: function (e, data) {
-                    $("#div"+Table.className+"DialogImportCSV").parent().unmask();
                     $.each(data.result, function (index, file) {
                         Table.isFileUploaded = true;
                         var delimeter = $("#inputTableCSVImportDelimeter").val();
@@ -1020,6 +1024,11 @@ Table.uiIniHTMLTooltips=function(){
     $(".tooltipTableStructure").tooltip({
         content:function(){
             return dictionary["s39"]+"<hr/>"+$(this).next().val();
+        },
+        position:{
+            my: "left top", 
+            at: "left bottom", 
+            offset: "15 0"
         }
     }); 
 }

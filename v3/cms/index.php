@@ -30,6 +30,8 @@ if (!isset($ini))
         <meta charset="utf-8" />
         <meta name="description" content="" />
         <meta name="author" content="Przemyslaw Lis" />
+        <meta http-equiv="Cache-Control" content="no-cache"/>
+        <meta http-equiv="Expires" content="-1"/>
         <title>Concerto Platform</title>
         <link rel="stylesheet" href="css/styles.css" />
 
@@ -98,6 +100,9 @@ if (!isset($ini))
         </div>
 
         <div id="divLoadingDialog" class="notVisible"></div>
+        <div id="divProgressDialog" class="notVisible">
+            <div id="divProgressBar" class="fullWidth"></div>
+        </div>
         <div id="divGeneralDialog" class="notVisible"></div>
         <div id="divAddFormDialog" class="notVisible"></div>
     </body>

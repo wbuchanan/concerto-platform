@@ -315,6 +315,7 @@ Test.uiRefreshSectionContent=function(type,counter,value,oid,end){
         if(Test.contentsToRefresh==0) Test.uiSetVarNameChanged();
         Methods.iniTooltips();
         Test.uiRefreshCodeMirrors();
+        Methods.incrementProgress();
     });
 };
 
@@ -637,10 +638,13 @@ Test.variableValidation=function(value){
 
 Test.convertVariable=function(value,dots){
     if(dots == null) dots = true;
-    if(dots) value = value.replace(/[^A-Z^a-z^0-9\._]/gi,"");
-    else value = value.replace(/[^A-Z^a-z^0-9_]/gi,"");
-    value = value.replace(/^[^A-Z^a-z]*/gi,"");
-    value = value.replace(/[^A-Z^a-z]$/gi,"");
+    if(dots) {
+       value = value.replace(/[^A-Z^a-z^0-9^\.^_]/gi,"");
+       value = value.replace(/\.{2,}/gi,".");
+    }
+    else value = value.replace(/[^A-Z^a-z^0-9^_]/gi,"");
+    value = value.replace(/^([^A-Z^a-z]{1,})*/gi,"");
+    value = value.replace(/([^A-Z^a-z^0-9]{1,})$/gi,"");
     return value;
 }
 

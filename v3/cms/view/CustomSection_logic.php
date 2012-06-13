@@ -79,7 +79,8 @@ else
         $(".tooltipCustomSectionLogic").tooltip({
             content:function(){
                 return "<?= Language::string(104) ?><hr/>"+$(this).next().val();
-            }
+            },
+            position:{ my: "left top", at: "left bottom", offset: "15 0" }
         });
     });
 </script>

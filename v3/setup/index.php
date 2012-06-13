@@ -287,7 +287,7 @@ class Setup
                 <?php
                 if ($ok)
                 {
-                    $ini = new Ini();
+                    $ini = new Ini(true,true,false);
                     ?>
                     <tr>
                         <?php

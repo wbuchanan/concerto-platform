@@ -277,8 +277,9 @@ class Table extends OModule {
     }
 
     public static function format_column_name($name) {
-        $name = preg_replace("/[^A-Z^a-z^0-9._]/i", "", $name);
-        $name = preg_replace("/^[0-9]*/", "", $name);
+        $name = preg_replace("/[^A-Z^a-z^0-9^_]/i", "", $name);
+        $name = preg_replace("/^([^A-Z^a-z]{1,})*/i", "", $name);
+        $name = preg_replace("/([^A-Z^a-z^0-9]{1,})$/i", "", $name);
         return $name;
     }
 

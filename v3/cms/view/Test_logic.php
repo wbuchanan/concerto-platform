@@ -18,21 +18,20 @@
   Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA.
  */
 
-if (!isset($ini))
-{
+if (!isset($ini)) {
     require_once'../../Ini.php';
     $ini = new Ini();
 }
 $logged_user = User::get_logged_user();
-if ($logged_user == null)
-{
+if ($logged_user == null) {
     echo "<script>location.reload();</script>";
     die(Language::string(278));
 }
 
-if (!$logged_user->is_module_writeable($class_name)) die(Language::string(81));
-if (!$logged_user->is_object_editable($obj)) die(Language::string(81));
-
+if (!$logged_user->is_module_writeable($class_name))
+    die(Language::string(81));
+if (!$logged_user->is_object_editable($obj))
+    die(Language::string(81));
 ?>
 
 <script>
@@ -49,18 +48,17 @@ if (!$logged_user->is_object_editable($obj)) die(Language::string(81));
         
         Test.contentsToRefresh=0;
 <?php
-if ($oid != 0)
-{
+if ($oid != 0) {
     $sections = TestSection::from_property(array("Test_id" => $obj->id));
     ?>
+                Methods.modalProgress(null, <?= count($sections) ?>);
                 Test.listenToSectionChanged=false;
                 Test.setCounter(<?= $obj->get_max_counter() ?>);
     <?php
     $late_refresh_sections = array();
     $nested_refresh_sections = array();
 
-    foreach ($sections as $section)
-    {
+    foreach ($sections as $section) {
         $vals = $section->get_values();
         ?>
                         Test.uiWriteSection(
@@ -76,11 +74,10 @@ if ($oid != 0)
                     );
         <?php
         if ($section->TestSectionType_id == 3)
-                array_push($late_refresh_sections, $section);
+            array_push($late_refresh_sections, $section);
     }
 
-    foreach ($late_refresh_sections as $section)
-    {
+    foreach ($late_refresh_sections as $section) {
         $vals = $section->get_values();
         ?>
                         Test.uiRefreshSectionContent(
@@ -120,7 +117,7 @@ if ($oid != 0)
 <br/>
 <div class="ui-widget-header margin"><?= Language::string(403) ?></div>
 <div align="left" class="margin" id="divTestVariables">
-    <?php include Ini::$path_internal."cms/view/Test_variables.php";?>
+    <?php include Ini::$path_internal . "cms/view/Test_variables.php"; ?>
 </div>
 <br/>
 <div class="ui-widget-header margin"><?= Language::string(359) ?></div>

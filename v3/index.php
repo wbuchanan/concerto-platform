@@ -30,6 +30,8 @@ if (!isset($ini))
         <meta charset="utf-8" />
         <meta name="description" content="" />
         <meta name="author" content="Przemyslaw Lis" />
+        <meta http-equiv="Cache-Control" content="no-cache"/>
+        <meta http-equiv="Expires" content="-1"/>
         <title>Concerto</title>
 
         <script type="text/javascript" src="cms/js/lib/jquery-1.7.1.min.js"></script>

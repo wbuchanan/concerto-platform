@@ -55,6 +55,59 @@ Methods.modalLoading=function(title){
     });
 }
 
+Methods.incrementProgress=function(value,max){
+    if(Methods.modalProgressMaxValue == 0) return;
+    if(value==null) value = 1;
+    if(max==null) max = Methods.modalProgressMaxValue;
+    Methods.modalProgressValue+=value;
+    $("#divProgressBar").progressbar("value",Math.floor(Methods.modalProgressValue/Methods.modalProgressMaxValue*100));
+    if(Methods.modalProgressValue==max) Methods.stopModalProgress();
+}
+
+Methods.changeProgress=function(value,max){
+    if(Methods.modalProgressMaxValue == 0) return;
+    if(value==null) value = 0;
+    if(max==null) max = Methods.modalProgressMaxValue;
+    Methods.modalProgressValue=value;
+    $("#divProgressBar").progressbar("value",Math.floor(Methods.modalProgressValue/Methods.modalProgressMaxValue*100));
+    if(Methods.modalProgressValue==max) Methods.stopModalProgress();
+}
+
+Methods.modalProgressMaxValue = 0;
+Methods.modalProgressValue = 0;
+Methods.modalProgress=function(title,max){
+    if(max==null) max = 100;
+    Methods.modalProgressMaxValue += max;
+    if(Methods.modalProgressMaxValue==max){
+        if(title==null) title=dictionary["s319"];
+        $("#divProgressDialog").dialog({
+            title:title,
+            minHeight:50,
+            resizable:false,
+            modal:true,
+            closeOnEscape:false,
+            dialogClass:"no-close",
+            open:function(){
+                $('.ui-widget-overlay').css('position', 'fixed');
+                $("#divProgressBar").progressbar();
+            },
+            close:function(){
+                $('.ui-widget-overlay').css('position', 'absolute');  
+                $("#divProgressBar").progressbar("destroy");
+                Methods.modalProgressMaxValue = 0;
+                Methods.modalProgressValue = 0;
+            },
+            buttons:
+            {
+        }
+        });
+    }
+}
+
+Methods.stopModalProgress=function(){
+    $("#divProgressDialog").dialog("close");
+}
+
 Methods.stopModalLoading=function(){
     $("#divLoadingDialog").dialog("close");
 }
@@ -323,7 +376,12 @@ Methods.uiToggleHover=function(obj,highlight){
 
 Methods.iniTooltips=function(){
     $(".tooltip").tooltip({
-        tooltipClass:"tooltipWindow"
+        tooltipClass:"tooltipWindow",
+        position:{
+            my: "left top", 
+            at: "left bottom", 
+            offset: "15 0"
+        }
     });
 };
 

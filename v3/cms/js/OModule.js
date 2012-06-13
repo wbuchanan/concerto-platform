@@ -497,6 +497,14 @@ OModule.inheritance=function(obj)
                             value:thisClass.className
                         }]  
                     },
+                    send: function (e, data) {
+                        Methods.modalProgress();
+                        $("#div"+thisClass.className+"DialogImport").dialog("close");
+                    },
+                    progress: function(e,data) {
+                         var progress = parseInt(data.loaded / data.total * 100, 10);
+                         Methods.changeProgress(progress);
+                    },
                     done: function (e, data) {
                         $.each(data.result, function (index, file) {
                             Table.isFileUploaded = true;
