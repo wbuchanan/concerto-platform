@@ -1,4 +1,4 @@
-#labels Tutorial
+#labels Tutorial,Featured
 .
 = Concerto v3.0 Tutorials: Create an adaptive test =
                             
