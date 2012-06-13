@@ -34,7 +34,7 @@ class OTable
         }
     }
 
-    public function xml_hash()
+    public function calculate_xml_hash()
     {
         $xml = $this->to_XML(false);
         $xml->removeAttribute("id");
@@ -50,8 +50,7 @@ class OTable
         {
             $obj = static::from_mysql_id($r[0]);
             if (!$logged_user->is_object_editable($obj)) continue;
-            $obj_hash = $obj->xml_hash();
-            if ($obj_hash == $hash) return $r[0];
+            if ($obj->xml_hash == $hash) return $r[0];
         }
         return 0;
     }

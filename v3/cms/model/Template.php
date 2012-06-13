@@ -25,6 +25,7 @@ class Template extends OModule
     public $HTML = "";
     public $head = "";
     public $description = "";
+    public $xml_hash = "";
     public static $exportable = true;
     public static $mysql_table_name = "Template";
 
@@ -167,6 +168,7 @@ class Template extends OModule
         $elements = $xpath->query("/export/Template");
         foreach ($elements as $element)
         {
+            $this->xml_hash = $element->getAttribute("xml_hash");
             $children = $element->childNodes;
             foreach ($children as $child)
             {
@@ -176,6 +178,8 @@ class Template extends OModule
                         break;
                     case "description": $this->description = $child->nodeValue;
                         break;
+                    case "head": $this->head = $child->nodeValue;
+                        break;
                     case "HTML": $this->HTML = $child->nodeValue;
                         break;
                 }
@@ -183,14 +187,26 @@ class Template extends OModule
         }
         return $this->mysql_save();
     }
+    
+    public function mysql_save_from_post($post) {
+        $lid = parent::mysql_save_from_post($post);
+        
+        $obj = static::from_mysql_id($lid);
+        if($obj!=null){
+            $xml_hash = $obj->calculate_xml_hash();
+            $obj->xml_hash = $xml_hash;
+            $obj->mysql_save();
+        }
+        return $lid;
+    }
 
-    public function to_XML($hash=true)
+    public function to_XML()
     {
         $xml = new DOMDocument('1.0', 'UTF-8');
 
         $element = $xml->createElement("Template");
         $element->setAttribute("id", $this->id);
-        if ($hash) $element->setAttribute("hash", $this->xml_hash());
+        $element->setAttribute("xml_hash", $this->xml_hash);
         $xml->appendChild($element);
 
         $name = $xml->createElement("name", htmlspecialchars($this->name, ENT_QUOTES, "UTF-8"));
@@ -201,6 +217,9 @@ class Template extends OModule
 
         $HTML = $xml->createElement("HTML", htmlspecialchars($this->HTML, ENT_QUOTES, "UTF-8"));
         $element->appendChild($HTML);
+        
+        $head = $xml->createElement("head", htmlspecialchars($this->head, ENT_QUOTES, "UTF-8"));
+        $element->appendChild($head);
 
         return $element;
     }
@@ -217,8 +236,10 @@ class Template extends OModule
             `updated` timestamp NOT NULL default CURRENT_TIMESTAMP on update CURRENT_TIMESTAMP,
             `created` timestamp NOT NULL default '0000-00-00 00:00:00',
             `name` text NOT NULL,
+            `head` text NOT NULL,
             `HTML` text NOT NULL,
             `description` text NOT NULL,
+            `xml_hash` text NOT NULL,
             `Sharing_id` int(11) NOT NULL,
             `Owner_id` bigint(20) NOT NULL,
             PRIMARY KEY  (`id`)
@@ -276,6 +297,20 @@ class Template extends OModule
         {
             $sql = "ALTER TABLE `Template` ADD `head` text NOT NULL;";
             if (!mysql_query($sql)) return false;
+        }
+        if (Ini::does_patch_apply("3.6.2", $previous_version)) {
+            $sql = "ALTER TABLE `Template` ADD `xml_hash` text NOT NULL;";
+            if (!mysql_query($sql))
+                return false;
+        }
+        if (Ini::does_patch_apply("3.6.3", $previous_version)) {
+            $sql = sprintf("SELECT `id` FROM `%s`", self::get_mysql_table());
+            $z = mysql_query($sql);
+            while ($r = mysql_fetch_array($z)) {
+                $obj = self::from_mysql_id($r[0]);
+                $obj->xml_hash = $obj->calculate_xml_hash();
+                $obj->mysql_save();
+            }
         }
         return true;
     }

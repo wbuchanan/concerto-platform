@@ -489,6 +489,7 @@ OModule.inheritance=function(obj)
             open:function(){
                 $('#file'+thisClass.className+'Import').fileupload({
                     dataType: 'json',
+                    //maxChunkSize: 1000000,
                     url: 'js/lib/fileupload/php/index.php',
                     formData:function(form){
                         return [{

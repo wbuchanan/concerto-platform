@@ -117,7 +117,7 @@ evalWithTimeout <- function (..., envir = parent.frame(), timeout, cpu = timeout
             }
         }
         else {
-            stop("Timeout!")
+            stop(msg)
         }
     })
     res

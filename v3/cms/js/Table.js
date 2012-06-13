@@ -841,18 +841,18 @@ Table.uiAddColumn=function(){
                     return;
                 }
                 
-                if(Table.doesColumnExists(name.val())) 
-                {
-                    Methods.alert(dictionary["s15"], "alert", dictionary["s14"]);
-                    return;
-                }
-                
                 if ( !Test.variableValidation(name.val()))
                 {
                     var oldValue = name.val();
                     var newValue = Test.convertVariable(name.val(),false);
                     name.val(newValue);
                     Methods.alert(dictionary["s1"].format(oldValue,newValue), "info", dictionary["s2"]);
+                    return;
+                }
+                
+                if(Table.doesColumnExists(name.val())) 
+                {
+                    Methods.alert(dictionary["s15"], "alert", dictionary["s14"]);
                     return;
                 }
                 

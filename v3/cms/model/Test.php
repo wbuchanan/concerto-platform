@@ -24,6 +24,7 @@ class Test extends OModule
     public $name = "unnamed test";
     public $description = "";
     public $session_count = 0;
+    public $xml_hash="";
     public static $exportable = true;
     public static $mysql_table_name = "Test";
 
@@ -152,6 +153,14 @@ class Test extends OModule
                 $slid = $s->mysql_save();
             }
         }
+        
+        $obj = static::from_mysql_id($lid);
+        if($obj!=null){
+            $xml_hash = $obj->calculate_xml_hash();
+            $obj->xml_hash = $xml_hash;
+            $obj->mysql_save();
+        }
+        
         return $lid;
     }
     
@@ -275,7 +284,7 @@ class Test extends OModule
             (`TestSection`.`TestSectionType_id`=2 AND `TestSectionValue`.`index`=0 OR
             `TestSection`.`TestSectionType_id`=9 AND `TestSectionValue`.`index`=0 OR
             `TestSection`.`TestSectionType_id`=11 AND `TestSectionValue`.`index`=0 OR
-            `TestSection`.`TestSectionType_id`=8 AND `TestSectionValue`.`index`=0 OR
+            `TestSection`.`TestSectionType_id`=8 AND `TestSectionValue`.`index`=3 OR
             `TestSection`.`TestSectionType_id`=5 AND `TestSectionValue`.`index`=5) AND `TestSection`.`Test_id`=%d ORDER BY `TestSection`.`TestSectionType_id` ASC", $this->id);
         $z = mysql_query($sql);
         while ($r = mysql_fetch_array($z))
@@ -290,12 +299,11 @@ class Test extends OModule
                             $template = Template::from_mysql_id($r[1]);
                             if ($template != null)
                             {
-                                $element = $template->to_XML();
                                 $present_templates = $xpath->query("/export/Template");
                                 $exists = false;
                                 foreach ($present_templates as $obj)
                                 {
-                                    if ($template->xml_hash() == $obj->getAttribute("hash"))
+                                    if ($template->xml_hash == $obj->getAttribute("xml_hash"))
                                     {
                                         $exists = true;
                                         break;
@@ -303,6 +311,7 @@ class Test extends OModule
                                 }
                                 if ($exists) break;
 
+                                $element = $template->to_XML();
                                 $obj = $xml->importNode($element, true);
                                 $export->appendChild($obj);
                                 array_push($templates_ids, $r[1]);
@@ -318,12 +327,11 @@ class Test extends OModule
                             $custom_section = CustomSection::from_mysql_id($r[1]);
                             if ($custom_section != null)
                             {
-                                $element = $custom_section->to_XML();
                                 $present_custom_sections = $xpath->query("/export/CustomSection");
                                 $exists = false;
                                 foreach ($present_custom_sections as $obj)
                                 {
-                                    if ($custom_section->xml_hash() == $obj->getAttribute("hash"))
+                                    if ($custom_section->xml_hash == $obj->getAttribute("xml_hash"))
                                     {
                                         $exists = true;
                                         break;
@@ -331,6 +339,7 @@ class Test extends OModule
                                 }
                                 if ($exists) break;
 
+                                $element = $custom_section->to_XML();
                                 $obj = $xml->importNode($element, true);
                                 $export->appendChild($obj);
                                 array_push($custom_sections_ids, $r[1]);
@@ -346,12 +355,11 @@ class Test extends OModule
                             $table = Table::from_mysql_id($r[1]);
                             if ($table != null)
                             {
-                                $element = $table->to_XML();
                                 $present_tables = $xpath->query("/export/Table");
                                 $exists = false;
-                                foreach ($present_table as $obj)
+                                foreach ($present_tables as $obj)
                                 {
-                                    if ($table->xml_hash() == $obj->getAttribute("hash"))
+                                    if ($table->xml_hash == $obj->getAttribute("xml_hash"))
                                     {
                                         $exists = true;
                                         break;
@@ -359,6 +367,7 @@ class Test extends OModule
                                 }
                                 if ($exists) break;
 
+                                $element = $table->to_XML();
                                 $obj = $xml->importNode($element, true);
                                 $export->appendChild($obj);
                                 array_push($tables_ids, $r[1]);
@@ -377,12 +386,11 @@ class Test extends OModule
                                 $table = Table::from_mysql_id($r[1]);
                                 if ($table != null)
                                 {
-                                    $element = $table->to_XML();
                                     $present_tables = $xpath->query("/export/Table");
                                     $exists = false;
                                     foreach ($present_tables as $obj)
                                     {
-                                        if ($table->xml_hash() == $obj->getAttribute("hash"))
+                                        if ($table->xml_hash == $obj->getAttribute("xml_hash"))
                                         {
                                             $exists = true;
                                             break;
@@ -390,6 +398,7 @@ class Test extends OModule
                                     }
                                     if ($exists) break;
 
+                                    $element = $table->to_XML();
                                     $obj = $xml->importNode($element, true);
                                     $export->appendChild($obj);
                                     array_push($tables_ids, $r[1]);
@@ -407,12 +416,11 @@ class Test extends OModule
                             if ($test != null)
                             {
                                 if($main_test!=null && $main_test->id==$test->id) break;
-                                $xml = $test->export($xml, true, ($main_test!=null?$main_test:$this));
                                 $present_tests = $xpath->query("/export/Test");
                                 $exists = false;
                                 foreach ($present_tests as $obj)
                                 {
-                                    if ($test->xml_hash() == $obj->getAttribute("hash"))
+                                    if ($test->xml_hash == $obj->getAttribute("xml_hash"))
                                     {
                                         $exists = true;
                                         break;
@@ -420,8 +428,8 @@ class Test extends OModule
                                 }
                                 if ($exists) break;
                                 
+                                $xml = $test->export($xml, true, ($main_test!=null?$main_test:$this));
                                 $element = $test->to_XML();
-
                                 $obj = $xml->importNode($element, true);
                                 $export->appendChild($obj);
                                 array_push($tests_ids, $r[1]);
@@ -467,7 +475,7 @@ class Test extends OModule
         foreach ($elements as $element)
         {
             $id = $element->getAttribute("id");
-            $hash = $element->getAttribute("hash");
+            $hash = $element->getAttribute("xml_hash");
             $compare["Template"][$id] = Template::find_xml_hash($hash);
             if ($compare["Template"][$id] == 0)
             {
@@ -483,7 +491,7 @@ class Test extends OModule
         foreach ($elements as $element)
         {
             $id = $element->getAttribute("id");
-            $hash = $element->getAttribute("hash");
+            $hash = $element->getAttribute("xml_hash");
             $compare["Table"][$id] = Table::find_xml_hash($hash);
             if ($compare["Table"][$id] == 0)
             {
@@ -499,7 +507,7 @@ class Test extends OModule
         foreach ($elements as $element)
         {
             $id = $element->getAttribute("id");
-            $hash = $element->getAttribute("hash");
+            $hash = $element->getAttribute("xml_hash");
             $compare["CustomSection"][$id] = CustomSection::find_xml_hash($hash);
             if ($compare["CustomSection"][$id] == 0)
             {
@@ -516,7 +524,7 @@ class Test extends OModule
         {
             $element = $elements->item($i);
             $id = $element->getAttribute("id");
-            $hash = $element->getAttribute("hash");
+            $hash = $element->getAttribute("xml_hash");
             $compare["Test"][$id] = Test::find_xml_hash($hash);
             if ($compare["Test"][$id] == 0)
             {
@@ -529,6 +537,7 @@ class Test extends OModule
 
         $elements = $xpath->query("/export/Test");
         $element = $elements->item($elements->length - 1);
+        $this->xml_hash = $element->getAttribute("xml_hash");
         $element_id = $element->getAttribute("id");
         $children = $element->childNodes;
         foreach ($children as $child)
@@ -624,11 +633,11 @@ class Test extends OModule
                     }
                 case 8:
                     {
-                        if ($test_section["value"]["v0"] == 0) break;
+                        if ($test_section["value"]["v3"] == 0) break;
                         $value = 0;
-                        if (isset($compare["Table"][$test_section["value"]["v0"]]))
-                                $value = $compare["Table"][$test_section["value"]["v0"]];
-                        $test_section["value"]["v0"] = $value;
+                        if (isset($compare["Table"][$test_section["value"]["v3"]]))
+                                $value = $compare["Table"][$test_section["value"]["v3"]];
+                        $test_section["value"]["v3"] = $value;
                         break;
                     }
                 case 5:
@@ -655,13 +664,13 @@ class Test extends OModule
         return $this->mysql_save_from_post($post);
     }
 
-    public function to_XML($hash=true)
+    public function to_XML()
     {
         $xml = new DOMDocument();
 
         $element = $xml->createElement("Test");
         $element->setAttribute("id", $this->id);
-        if ($hash) $element->setAttribute("hash", $this->xml_hash());
+        $element->setAttribute("xml_hash", $this->xml_hash);
         $xml->appendChild($element);
 
         $name = $xml->createElement("name", htmlspecialchars($this->name, ENT_QUOTES, "UTF-8"));
@@ -698,6 +707,7 @@ class Test extends OModule
             `name` text NOT NULL,
             `session_count` bigint(20) NOT NULL,
             `description` text NOT NULL,
+            `xml_hash` text NOT NULL,
             `Sharing_id` int(11) NOT NULL,
             `Owner_id` bigint(20) NOT NULL,
             PRIMARY KEY  (`id`)
@@ -752,6 +762,20 @@ class Test extends OModule
         {
             $sql = "ALTER TABLE `Test` ADD `description` text NOT NULL;";
             if (!mysql_query($sql)) return false;
+        }
+        if (Ini::does_patch_apply("3.6.2", $previous_version)) {
+            $sql = "ALTER TABLE `Test` ADD `xml_hash` text NOT NULL;";
+            if (!mysql_query($sql))
+                return false;
+        }
+        if (Ini::does_patch_apply("3.6.3", $previous_version)) {
+            $sql = sprintf("SELECT `id` FROM `%s`", self::get_mysql_table());
+            $z = mysql_query($sql);
+            while ($r = mysql_fetch_array($z)) {
+                $obj = self::from_mysql_id($r[0]);
+                $obj->xml_hash = $obj->calculate_xml_hash();
+                $obj->mysql_save();
+            }
         }
         return true;
     }

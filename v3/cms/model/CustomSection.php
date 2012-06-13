@@ -19,53 +19,45 @@
   Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA.
  */
 
-class CustomSection extends OModule
-{
+class CustomSection extends OModule {
+
     public $name = "";
     public $description = "";
     public $code = "";
+    public $xml_hash = "";
     public static $exportable = true;
     public static $mysql_table_name = "CustomSection";
 
-    public function __construct($params = array())
-    {
+    public function __construct($params = array()) {
         $this->name = Language::string(68);
         parent::__construct($params);
     }
 
-    public function mysql_delete()
-    {
+    public function mysql_delete() {
         $this->delete_object_links(CustomSectionVariable::get_mysql_table());
         $this->mysql_delete_object();
     }
 
-    public function get_CustomSectionVariables()
-    {
+    public function get_CustomSectionVariables() {
         return CustomSectionVariable::from_property(array("CustomSection_id" => $this->id));
     }
 
-    public function get_parameter_CustomSectionVariables()
-    {
+    public function get_parameter_CustomSectionVariables() {
         return CustomSectionVariable::from_property(array("CustomSection_id" => $this->id, "type" => 0));
     }
 
-    public function get_return_CustomSectionVariables()
-    {
+    public function get_return_CustomSectionVariables() {
         return CustomSectionVariable::from_property(array("CustomSection_id" => $this->id, "type" => 1));
     }
 
-    public function mysql_save_from_post($post)
-    {
+    public function mysql_save_from_post($post) {
         $lid = parent::mysql_save_from_post($post);
 
-        if ($this->id != 0)
-        {
+        if ($this->id != 0) {
             $this->delete_object_links(CustomSectionVariable::get_mysql_table());
             $i = 0;
-            if (array_key_exists("parameters", $post))
-            {
-                foreach ($post["parameters"] as $param)
-                {
+            if (array_key_exists("parameters", $post)) {
+                foreach ($post["parameters"] as $param) {
                     $p = json_decode($param);
                     $var = new CustomSectionVariable();
                     $var->description = $p->description;
@@ -77,10 +69,8 @@ class CustomSection extends OModule
                     $i++;
                 }
             }
-            if (array_key_exists("returns", $post))
-            {
-                foreach ($post["returns"] as $ret)
-                {
+            if (array_key_exists("returns", $post)) {
+                foreach ($post["returns"] as $ret) {
                     $r = json_decode($ret);
                     $var = new CustomSectionVariable();
                     $var->description = $r->description;
@@ -93,10 +83,18 @@ class CustomSection extends OModule
                 }
             }
         }
+
+        $obj = static::from_mysql_id($lid);
+        if ($obj != null) {
+            $xml_hash = $obj->calculate_xml_hash();
+            $obj->xml_hash = $xml_hash;
+            $obj->mysql_save();
+        }
+
+        return $lid;
     }
 
-    public function export()
-    {
+    public function export() {
         $xml = new DOMDocument('1.0', "UTF-8");
 
         $export = $xml->createElement("export");
@@ -110,26 +108,23 @@ class CustomSection extends OModule
         return $xml->saveXML();
     }
 
-    public function import_XML($xml)
-    {
+    public function import_XML($xml) {
         $this->Sharing_id = 1;
 
         $xpath = new DOMXPath($xml);
 
         $elements = $xpath->query("/export");
-        foreach ($elements as $element)
-        {
-            if (Ini::$version != $element->getAttribute("version")) return -5;
+        foreach ($elements as $element) {
+            if (Ini::$version != $element->getAttribute("version"))
+                return -5;
         }
 
         $elements = $xpath->query("/export/CustomSection");
-        foreach ($elements as $element)
-        {
+        foreach ($elements as $element) {
+            $this->xml_hash = $element->getAttribute("xml_hash");
             $children = $element->childNodes;
-            foreach ($children as $child)
-            {
-                switch ($child->nodeName)
-                {
+            foreach ($children as $child) {
+                switch ($child->nodeName) {
                     case "name": $this->name = $child->nodeValue;
                         break;
                     case "description": $this->description = $child->nodeValue;
@@ -143,15 +138,12 @@ class CustomSection extends OModule
         $lid = $this->mysql_save();
 
         $elements = $xpath->query("/export/CustomSection/CustomSectionVariables/CustomSectionVariable");
-        foreach ($elements as $element)
-        {
+        foreach ($elements as $element) {
             $obj = new CustomSectionVariable();
             $obj->CustomSection_id = $lid;
             $children = $element->childNodes;
-            foreach ($children as $child)
-            {
-                switch ($child->nodeName)
-                {
+            foreach ($children as $child) {
+                switch ($child->nodeName) {
                     case "name": $obj->name = $child->nodeValue;
                         break;
                     case "description": $obj->description = $child->nodeValue;
@@ -167,13 +159,12 @@ class CustomSection extends OModule
         return $lid;
     }
 
-    public function to_XML($hash=true)
-    {
+    public function to_XML() {
         $xml = new DOMDocument('1.0', "UTF-8");
 
         $element = $xml->createElement("CustomSection");
         $element->setAttribute("id", $this->id);
-        if ($hash) $element->setAttribute("hash", $this->xml_hash());
+        $element->setAttribute("xml_hash", $this->xml_hash);
         $xml->appendChild($element);
 
         $name = $xml->createElement("name", htmlspecialchars($this->name, ENT_QUOTES, "UTF-8"));
@@ -189,8 +180,7 @@ class CustomSection extends OModule
         $element->appendChild($csv);
 
         $elems = $this->get_CustomSectionVariables();
-        foreach ($elems as $elem)
-        {
+        foreach ($elems as $elem) {
             $e = $elem->to_XML();
             $e = $xml->importNode($e, true);
 
@@ -199,18 +189,15 @@ class CustomSection extends OModule
 
         return $element;
     }
-    
-    public function get_description()
-    {
+
+    public function get_description() {
         return Template::strip_html($this->description);
     }
 
-    public static function create_db($delete = false)
-    {
-        if ($delete)
-        {
+    public static function create_db($delete = false) {
+        if ($delete) {
             if (!mysql_query("DROP TABLE IF EXISTS `CustomSection`;"))
-                    return false;
+                return false;
         }
         $sql = "
             CREATE TABLE `CustomSection` (
@@ -220,12 +207,31 @@ class CustomSection extends OModule
             `name` text NOT NULL,
             `description` text NOT NULL,
             `code` text NOT NULL,
+            `xml_hash` text NOT NULL,
             `Owner_id` bigint(20) NOT NULL,
             `Sharing_id` int(11) NOT NULL,
             PRIMARY KEY  (`id`)
             ) ENGINE=InnoDB  DEFAULT CHARSET=utf8;
             ";
         return mysql_query($sql);
+    }
+
+    public static function update_db($previous_version) {
+        if (Ini::does_patch_apply("3.6.2", $previous_version)) {
+            $sql = "ALTER TABLE `CustomSection` ADD `xml_hash` text NOT NULL;";
+            if (!mysql_query($sql))
+                return false;
+        }
+        if (Ini::does_patch_apply("3.6.3", $previous_version)) {
+            $sql = sprintf("SELECT `id` FROM `%s`", self::get_mysql_table());
+            $z = mysql_query($sql);
+            while ($r = mysql_fetch_array($z)) {
+                $obj = self::from_mysql_id($r[0]);
+                $obj->xml_hash = $obj->calculate_xml_hash();
+                $obj->mysql_save();
+            }
+        }
+        return true;
     }
 
 }

@@ -23,6 +23,7 @@ class Table extends OModule {
 
     public $name = "";
     public $description = "";
+    public $xml_hash = "";
     public static $exportable = true;
     public static $mysql_table_name = "Table";
 
@@ -141,6 +142,13 @@ class Table extends OModule {
                 }
                 mysql_query($sql);
             }
+        }
+        
+        $obj = static::from_mysql_id($lid);
+        if($obj!=null){
+            $xml_hash = $obj->calculate_xml_hash();
+            $obj->xml_hash = $xml_hash;
+            $obj->mysql_save();
         }
 
         return $lid;
@@ -301,6 +309,7 @@ class Table extends OModule {
 
         $elements = $xpath->query("/export/Table");
         foreach ($elements as $element) {
+            $this->xml_hash = $element->getAttribute("xml_hash");
             $children = $element->childNodes;
             foreach ($children as $child) {
                 switch ($child->nodeName) {
@@ -342,13 +351,12 @@ class Table extends OModule {
         return $this->mysql_save_from_post($post);
     }
 
-    public function to_XML($hash = true) {
+    public function to_XML() {
         $xml = new DOMDocument('1.0', "UTF-8");
 
         $element = $xml->createElement("Table");
         $element->setAttribute("id", $this->id);
-        if ($hash)
-            $element->setAttribute("hash", $this->xml_hash());
+        $element->setAttribute("xml_hash", $this->xml_hash);
         $xml->appendChild($element);
 
         $name = $xml->createElement("name", htmlspecialchars($this->name, ENT_QUOTES, "UTF-8"));
@@ -408,6 +416,7 @@ class Table extends OModule {
             `created` timestamp NOT NULL default '0000-00-00 00:00:00',
             `name` text NOT NULL,
             `description` text NOT NULL,
+            `xml_hash` text NOT NULL,
             `Sharing_id` int(11) NOT NULL,
             `Owner_id` bigint(20) NOT NULL,
             PRIMARY KEY  (`id`)
@@ -421,6 +430,20 @@ class Table extends OModule {
             $sql = "ALTER TABLE `Table` ADD `description` text NOT NULL;";
             if (!mysql_query($sql))
                 return false;
+        }
+        if (Ini::does_patch_apply("3.6.2", $previous_version)) {
+            $sql = "ALTER TABLE `Table` ADD `xml_hash` text NOT NULL;";
+            if (!mysql_query($sql))
+                return false;
+        }
+        if (Ini::does_patch_apply("3.6.3", $previous_version)) {
+            $sql = sprintf("SELECT `id` FROM `%s`", self::get_mysql_table());
+            $z = mysql_query($sql);
+            while ($r = mysql_fetch_array($z)) {
+                $obj = self::from_mysql_id($r[0]);
+                $obj->xml_hash = $obj->calculate_xml_hash();
+                $obj->mysql_save();
+            }
         }
         return true;
     }
