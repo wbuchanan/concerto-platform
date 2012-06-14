@@ -516,7 +516,7 @@ Test.uiTemplatesChanged=function(){
         var s = Test.sectionDivToObject($(this));
         if(s.type==Test.sectionTypes.loadTemplate){
             var vals = Test.getSectionValues(s);
-            Test.uiRefreshSectionContent(s.type, s.counter, [vals[0],vals[1],vals[2]]);
+            Test.uiRefreshSectionContent(s.type, s.counter, vals);
         }
     });
 }

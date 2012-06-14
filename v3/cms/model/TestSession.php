@@ -141,7 +141,7 @@ class TestSession extends OTable {
         $this->mysql_save();
 
         $code = "";
-        $protected_vars = $test->get_TestProtectedVariables();
+        $protected_vars = $test->get_TestProtectedVariables_name();
         foreach ($values as $v) {
             $val = json_decode($v);
             if (!property_exists($val, "name") || trim($val->name) == "" || strpos(trim($val->name), "CONCERTO_") === 0 || in_array(trim($val->name), $protected_vars))

@@ -29,6 +29,19 @@ class TestProtectedVariable extends OTable
     {
         return Test::from_mysql_id($this->Test_id);
     }
+    
+    public function to_XML()
+    {
+        $xml = new DOMDocument('1.0',"UTF-8");
+
+        $element = $xml->createElement("TestProtectedVariable");
+        $xml->appendChild($element);
+
+        $name = $xml->createElement("name", htmlspecialchars($this->name, ENT_QUOTES,"UTF-8"));
+        $element->appendChild($name);
+
+        return $element;
+    }
 
     public static function create_db($delete = false)
     {

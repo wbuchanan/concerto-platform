@@ -72,7 +72,7 @@ if ($template != null)
                             <span class="spanIcon ui-icon ui-icon-help tooltip" title="<?= htmlspecialchars($description, ENT_QUOTES) ?>"></span>
                         </td>
                         <td>
-                            <select id="selectTemplate_<?= $_POST['counter'] ?>" class="fullWidth ui-widget-content ui-corner-all" onchange="Test.uiTemplatesChanged()">
+                            <select id="selectTemplate_<?= $_POST['counter'] ?>" class="fullWidth ui-widget-content ui-corner-all" onchange="Test.uiRefreshSectionContent(<?= $_POST['type'] ?>, <?= $_POST['counter'] ?>, Test.getSectionValues(Test.sectionDivToObject($('#divSection_<?= $_POST['counter'] ?>'))))">
                                 <option value="0">&lt;<?= Language::string(73) ?>&gt;</option>
                                 <?php
                                 $sql = $logged_user->mysql_list_rights_filter("Template", "`name` ASC");

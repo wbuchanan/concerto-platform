@@ -19,36 +19,31 @@
   Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA.
  */
 
-class Test extends OModule
-{
+class Test extends OModule {
+
     public $name = "unnamed test";
     public $description = "";
     public $session_count = 0;
-    public $xml_hash="";
+    public $xml_hash = "";
     public static $exportable = true;
     public static $mysql_table_name = "Test";
 
-    public function __construct($params = array())
-    {
+    public function __construct($params = array()) {
         $this->name = Language::string(76);
         parent::__construct($params);
     }
 
-    public function mysql_save_from_post($post)
-    {
+    public function mysql_save_from_post($post) {
         $lid = parent::mysql_save_from_post($post);
 
-        if ($this->id != 0)
-        {
+        if ($this->id != 0) {
             $this->delete_sections();
             $this->delete_templates();
 
             $this->delete_object_links(TestVariable::get_mysql_table());
             $i = 0;
-            if (array_key_exists("parameters", $post))
-            {
-                foreach ($post["parameters"] as $param)
-                {
+            if (array_key_exists("parameters", $post)) {
+                foreach ($post["parameters"] as $param) {
                     $p = json_decode($param);
                     $var = new TestVariable();
                     $var->description = $p->description;
@@ -60,10 +55,8 @@ class Test extends OModule
                     $i++;
                 }
             }
-            if (array_key_exists("returns", $post))
-            {
-                foreach ($post["returns"] as $ret)
-                {
+            if (array_key_exists("returns", $post)) {
+                foreach ($post["returns"] as $ret) {
                     $r = json_decode($ret);
                     $var = new TestVariable();
                     $var->description = $r->description;
@@ -75,9 +68,7 @@ class Test extends OModule
                     $i++;
                 }
             }
-        }
-        else
-        {
+        } else {
             $start_section = new TestSection();
             $start_section->TestSectionType_id = DS_TestSectionType::START;
             $start_section->Test_id = $lid;
@@ -91,10 +82,8 @@ class Test extends OModule
             $end_section->mysql_save();
         }
 
-        if (isset($post['sections']))
-        {
-            foreach ($post['sections'] as $section)
-            {
+        if (isset($post['sections'])) {
+            foreach ($post['sections'] as $section) {
                 $s = new TestSection();
                 $s->counter = $section['counter'];
                 $s->TestSectionType_id = $section['type'];
@@ -108,8 +97,7 @@ class Test extends OModule
                 $vals = $section['value'];
                 $vals = json_decode($vals);
 
-                foreach (get_object_vars($vals) as $k => $v)
-                {
+                foreach (get_object_vars($vals) as $k => $v) {
                     $index = substr($k, 1);
                     $value = $v;
 
@@ -120,13 +108,11 @@ class Test extends OModule
                     $sv->mysql_save();
                 }
 
-                if ($s->TestSectionType_id == DS_TestSectionType::LOAD_HTML_TEMPLATE)
-                {
+                if ($s->TestSectionType_id == DS_TestSectionType::LOAD_HTML_TEMPLATE) {
                     $ts = TestSection::from_mysql_id($slid);
                     $vals = $ts->get_values();
                     $template = Template::from_mysql_id($vals[0]);
-                    if ($template != null)
-                    {
+                    if ($template != null) {
                         $html = Template::output_html($template->HTML, $vals, $template->get_outputs(), $template->get_inserts());
 
                         $test_template = new TestTemplate();
@@ -142,10 +128,8 @@ class Test extends OModule
 
         $sql = sprintf("DELETE FROM `%s` WHERE `Test_id`=%d", TestProtectedVariable::get_mysql_table(), $lid);
         mysql_query($sql);
-        if (array_key_exists("protected", $post))
-        {
-            foreach ($post['protected'] as $var)
-            {
+        if (array_key_exists("protected", $post)) {
+            foreach ($post['protected'] as $var) {
                 $var = json_decode($var);
                 $s = new TestProtectedVariable();
                 $s->name = $var->name;
@@ -153,118 +137,99 @@ class Test extends OModule
                 $slid = $s->mysql_save();
             }
         }
-        
+
         $obj = static::from_mysql_id($lid);
-        if($obj!=null){
+        if ($obj != null) {
             $xml_hash = $obj->calculate_xml_hash();
             $obj->xml_hash = $xml_hash;
             $obj->mysql_save();
         }
-        
+
         return $lid;
     }
-    
-    public function verified_input_values($values)
-    {
+
+    public function verified_input_values($values) {
         $result = array();
         $params = $this->get_parameter_TestVariables();
-        foreach($values as $val)
-        {
+        foreach ($values as $val) {
             $v = json_decode($val);
-            foreach($params as $param)
-            {
-                if($param->name == $v->name) array_push ($result, $val);
+            foreach ($params as $param) {
+                if ($param->name == $v->name)
+                    array_push($result, $val);
                 break;
             }
         }
         return $result;
     }
 
-    public function mysql_delete()
-    {
+    public function mysql_delete() {
         $this->delete_sections();
         $this->delete_sessions();
         $this->delete_templates();
         parent::mysql_delete();
     }
 
-    public function delete_sections()
-    {
+    public function delete_sections() {
         $sections = TestSection::from_property(array("Test_id" => $this->id));
-        foreach ($sections as $section)
-        {
+        foreach ($sections as $section) {
             $section->mysql_delete();
         }
     }
 
-    public function delete_templates()
-    {
+    public function delete_templates() {
         $templates = TestTemplate::from_property(array("Test_id" => $this->id));
-        foreach ($templates as $template)
-        {
+        foreach ($templates as $template) {
             $template->mysql_delete();
         }
     }
 
-    public function delete_sessions()
-    {
+    public function delete_sessions() {
         $sessions = TestSession::from_property(array("Test_id" => $this->id));
-        foreach ($sessions as $session)
-        {
+        foreach ($sessions as $session) {
             $session->remove();
         }
     }
 
-    public function get_max_counter()
-    {
+    public function get_max_counter() {
         $max = 0;
         $sections = TestSection::from_property(array("Test_id" => $this->id));
-        foreach ($sections as $section)
-        {
+        foreach ($sections as $section) {
             $max = max(array($max, $section->counter));
         }
         return $max;
     }
 
-    public function get_starting_counter()
-    {
+    public function get_starting_counter() {
         return $this->get_TestSection()->counter;
     }
 
-    public function get_TestSection($counter = null)
-    {
+    public function get_TestSection($counter = null) {
         $section = null;
         if ($counter == null)
-                $section = TestSection::from_property(array("Test_id" => $this->id), false);
+            $section = TestSection::from_property(array("Test_id" => $this->id), false);
         else
-                $section = TestSection::from_property(array("Test_id" => $this->id, "counter" => $counter), false);
+            $section = TestSection::from_property(array("Test_id" => $this->id, "counter" => $counter), false);
         return $section;
     }
 
-    public function get_TestSections_RFunction_declaration()
-    {
+    public function get_TestSections_RFunction_declaration() {
         $code = "";
         $sections = TestSection::from_property(array("Test_id" => $this->id));
-        foreach ($sections as $s)
-        {
+        foreach ($sections as $s) {
             $code.=$s->get_RFunction();
         }
         return $code;
     }
 
-    public function export($xml=null, $sub_test=false, $main_test=null)
-    {
-        if ($xml == null)
-        {
+    public function export($xml = null, $sub_test = false, $main_test = null) {
+        if ($xml == null) {
             $xml = new DOMDocument('1.0', 'UTF-8');
 
             $export = $xml->createElement("export");
             $export->setAttribute("version", Ini::$version);
             $xml->appendChild($export);
             $xpath = new DOMXPath($xml);
-        }
-        else
-        {
+        } else {
             $xpath = new DOMXPath($xml);
             $export = $xpath->query("/export");
             $export = $export->item(0);
@@ -287,29 +252,23 @@ class Test extends OModule
             `TestSection`.`TestSectionType_id`=8 AND `TestSectionValue`.`index`=3 OR
             `TestSection`.`TestSectionType_id`=5 AND `TestSectionValue`.`index`=5) AND `TestSection`.`Test_id`=%d ORDER BY `TestSection`.`TestSectionType_id` ASC", $this->id);
         $z = mysql_query($sql);
-        while ($r = mysql_fetch_array($z))
-        {
-            switch ($r[2])
-            {
+        while ($r = mysql_fetch_array($z)) {
+            switch ($r[2]) {
                 //templates
-                case 2:
-                    {
-                        if (!in_array($r[1], $templates_ids))
-                        {
+                case 2: {
+                        if (!in_array($r[1], $templates_ids)) {
                             $template = Template::from_mysql_id($r[1]);
-                            if ($template != null)
-                            {
+                            if ($template != null) {
                                 $present_templates = $xpath->query("/export/Template");
                                 $exists = false;
-                                foreach ($present_templates as $obj)
-                                {
-                                    if ($template->xml_hash == $obj->getAttribute("xml_hash"))
-                                    {
+                                foreach ($present_templates as $obj) {
+                                    if ($template->xml_hash == $obj->getAttribute("xml_hash")) {
                                         $exists = true;
                                         break;
                                     }
                                 }
-                                if ($exists) break;
+                                if ($exists)
+                                    break;
 
                                 $element = $template->to_XML();
                                 $obj = $xml->importNode($element, true);
@@ -320,24 +279,20 @@ class Test extends OModule
                         break;
                     }
                 //custom sections
-                case 9:
-                    {
-                        if (!in_array($r[1], $custom_sections_ids))
-                        {
+                case 9: {
+                        if (!in_array($r[1], $custom_sections_ids)) {
                             $custom_section = CustomSection::from_mysql_id($r[1]);
-                            if ($custom_section != null)
-                            {
+                            if ($custom_section != null) {
                                 $present_custom_sections = $xpath->query("/export/CustomSection");
                                 $exists = false;
-                                foreach ($present_custom_sections as $obj)
-                                {
-                                    if ($custom_section->xml_hash == $obj->getAttribute("xml_hash"))
-                                    {
+                                foreach ($present_custom_sections as $obj) {
+                                    if ($custom_section->xml_hash == $obj->getAttribute("xml_hash")) {
                                         $exists = true;
                                         break;
                                     }
                                 }
-                                if ($exists) break;
+                                if ($exists)
+                                    break;
 
                                 $element = $custom_section->to_XML();
                                 $obj = $xml->importNode($element, true);
@@ -348,24 +303,20 @@ class Test extends OModule
                         break;
                     }
                 //tables
-                case 8:
-                    {
-                        if (!in_array($r[1], $tables_ids))
-                        {
+                case 8: {
+                        if (!in_array($r[1], $tables_ids)) {
                             $table = Table::from_mysql_id($r[1]);
-                            if ($table != null)
-                            {
+                            if ($table != null) {
                                 $present_tables = $xpath->query("/export/Table");
                                 $exists = false;
-                                foreach ($present_tables as $obj)
-                                {
-                                    if ($table->xml_hash == $obj->getAttribute("xml_hash"))
-                                    {
+                                foreach ($present_tables as $obj) {
+                                    if ($table->xml_hash == $obj->getAttribute("xml_hash")) {
                                         $exists = true;
                                         break;
                                     }
                                 }
-                                if ($exists) break;
+                                if ($exists)
+                                    break;
 
                                 $element = $table->to_XML();
                                 $obj = $xml->importNode($element, true);
@@ -375,28 +326,23 @@ class Test extends OModule
                         }
                         break;
                     }
-                case 5:
-                    {
+                case 5: {
                         $sql2 = sprintf("SELECT * FROM `TestSectionValue` WHERE `TestSection_id`=%d AND `index`=2 AND `value`=0", $r[0]);
                         $z2 = mysql_query($sql2);
-                        while ($r2 = mysql_fetch_array($z2))
-                        {
-                            if (!in_array($r[1], $tables_ids))
-                            {
+                        while ($r2 = mysql_fetch_array($z2)) {
+                            if (!in_array($r[1], $tables_ids)) {
                                 $table = Table::from_mysql_id($r[1]);
-                                if ($table != null)
-                                {
+                                if ($table != null) {
                                     $present_tables = $xpath->query("/export/Table");
                                     $exists = false;
-                                    foreach ($present_tables as $obj)
-                                    {
-                                        if ($table->xml_hash == $obj->getAttribute("xml_hash"))
-                                        {
+                                    foreach ($present_tables as $obj) {
+                                        if ($table->xml_hash == $obj->getAttribute("xml_hash")) {
                                             $exists = true;
                                             break;
                                         }
                                     }
-                                    if ($exists) break;
+                                    if ($exists)
+                                        break;
 
                                     $element = $table->to_XML();
                                     $obj = $xml->importNode($element, true);
@@ -408,27 +354,24 @@ class Test extends OModule
                         break;
                     }
                 //tests
-                case 11:
-                    {
-                        if (!in_array($r[1], $tests_ids))
-                        {
+                case 11: {
+                        if (!in_array($r[1], $tests_ids)) {
                             $test = Test::from_mysql_id($r[1]);
-                            if ($test != null)
-                            {
-                                if($main_test!=null && $main_test->id==$test->id) break;
+                            if ($test != null) {
+                                if ($main_test != null && $main_test->id == $test->id)
+                                    break;
                                 $present_tests = $xpath->query("/export/Test");
                                 $exists = false;
-                                foreach ($present_tests as $obj)
-                                {
-                                    if ($test->xml_hash == $obj->getAttribute("xml_hash"))
-                                    {
+                                foreach ($present_tests as $obj) {
+                                    if ($test->xml_hash == $obj->getAttribute("xml_hash")) {
                                         $exists = true;
                                         break;
                                     }
                                 }
-                                if ($exists) break;
-                                
-                                $xml = $test->export($xml, true, ($main_test!=null?$main_test:$this));
+                                if ($exists)
+                                    break;
+
+                                $xml = $test->export($xml, true, ($main_test != null ? $main_test : $this));
                                 $element = $test->to_XML();
                                 $obj = $xml->importNode($element, true);
                                 $export->appendChild($obj);
@@ -440,8 +383,7 @@ class Test extends OModule
             }
         }
 
-        if (!$sub_test)
-        {
+        if (!$sub_test) {
             $element = $this->to_XML();
             $obj = $xml->importNode($element, true);
             $export->appendChild($obj);
@@ -450,16 +392,15 @@ class Test extends OModule
         return ($sub_test ? $xml : $xml->saveXML());
     }
 
-    public function import_XML($xml)
-    {
+    public function import_XML($xml) {
         $this->Sharing_id = 1;
 
         $xpath = new DOMXPath($xml);
 
         $elements = $xpath->query("/export");
-        foreach ($elements as $element)
-        {
-            if (Ini::$version != $element->getAttribute("version")) return -5;
+        foreach ($elements as $element) {
+            if (Ini::$version != $element->getAttribute("version"))
+                return -5;
         }
 
         $compare = array(
@@ -472,13 +413,11 @@ class Test extends OModule
         //link templates
         $logged_user = User::get_logged_user();
         $elements = $xpath->query("/export/Template");
-        foreach ($elements as $element)
-        {
+        foreach ($elements as $element) {
             $id = $element->getAttribute("id");
             $hash = $element->getAttribute("xml_hash");
             $compare["Template"][$id] = Template::find_xml_hash($hash);
-            if ($compare["Template"][$id] == 0)
-            {
+            if ($compare["Template"][$id] == 0) {
                 $obj = new Template();
                 $obj->Owner_id = $logged_user->id;
                 $lid = $obj->import_XML(Template::convert_to_XML_document($element));
@@ -488,13 +427,11 @@ class Test extends OModule
 
         //link tables
         $elements = $xpath->query("/export/Table");
-        foreach ($elements as $element)
-        {
+        foreach ($elements as $element) {
             $id = $element->getAttribute("id");
             $hash = $element->getAttribute("xml_hash");
             $compare["Table"][$id] = Table::find_xml_hash($hash);
-            if ($compare["Table"][$id] == 0)
-            {
+            if ($compare["Table"][$id] == 0) {
                 $obj = new Table();
                 $obj->Owner_id = $logged_user->id;
                 $lid = $obj->import_XML(Table::convert_to_XML_document($element));
@@ -504,13 +441,11 @@ class Test extends OModule
 
         //link custom sections
         $elements = $xpath->query("/export/CustomSection");
-        foreach ($elements as $element)
-        {
+        foreach ($elements as $element) {
             $id = $element->getAttribute("id");
             $hash = $element->getAttribute("xml_hash");
             $compare["CustomSection"][$id] = CustomSection::find_xml_hash($hash);
-            if ($compare["CustomSection"][$id] == 0)
-            {
+            if ($compare["CustomSection"][$id] == 0) {
                 $obj = new CustomSection();
                 $obj->Owner_id = $logged_user->id;
                 $lid = $obj->import_XML(CustomSection::convert_to_XML_document($element));
@@ -520,14 +455,12 @@ class Test extends OModule
 
         //link tests
         $elements = $xpath->query("/export/Test");
-        for($i=0;$i<$elements->length-1;$i++)
-        {
+        for ($i = 0; $i < $elements->length - 1; $i++) {
             $element = $elements->item($i);
             $id = $element->getAttribute("id");
             $hash = $element->getAttribute("xml_hash");
             $compare["Test"][$id] = Test::find_xml_hash($hash);
-            if ($compare["Test"][$id] == 0)
-            {
+            if ($compare["Test"][$id] == 0) {
                 $obj = new Test();
                 $obj->Owner_id = $logged_user->id;
                 $lid = $obj->import_XML(CustomSection::convert_to_XML_document($element));
@@ -540,10 +473,8 @@ class Test extends OModule
         $this->xml_hash = $element->getAttribute("xml_hash");
         $element_id = $element->getAttribute("id");
         $children = $element->childNodes;
-        foreach ($children as $child)
-        {
-            switch ($child->nodeName)
-            {
+        foreach ($children as $child) {
+            switch ($child->nodeName) {
                 case "name": $this->name = $child->nodeValue;
                     break;
                 case "description": $this->description = $child->nodeValue;
@@ -556,17 +487,14 @@ class Test extends OModule
         $post = array();
         $post["sections"] = array();
 
-        $elements = $xpath->query("/export/Test[@id='".$element_id."']/TestSections/TestSection");
-        foreach ($elements as $element)
-        {
+        $elements = $xpath->query("/export/Test[@id='" . $element_id . "']/TestSections/TestSection");
+        foreach ($elements as $element) {
             $test_section = array();
             $test_section["value"] = array();
 
             $children = $element->childNodes;
-            foreach ($children as $child)
-            {
-                switch ($child->nodeName)
-                {
+            foreach ($children as $child) {
+                switch ($child->nodeName) {
                     case "end": $test_section["end"] = $child->nodeValue;
                         break;
                     case "counter": $test_section["counter"] = $child->nodeValue;
@@ -575,19 +503,15 @@ class Test extends OModule
                         break;
                     case "parent_counter": $test_section["parent"] = $child->nodeValue;
                         break;
-                    case "TestSectionValues":
-                        {
+                    case "TestSectionValues": {
                             $ts_child_list = $child->childNodes;
-                            foreach ($ts_child_list as $ts_child)
-                            {
+                            foreach ($ts_child_list as $ts_child) {
                                 $index = -1;
                                 $value = "";
 
                                 $tsv_vars = $ts_child->childNodes;
-                                foreach ($tsv_vars as $tsv_child)
-                                {
-                                    switch ($tsv_child->nodeName)
-                                    {
+                                foreach ($tsv_vars as $tsv_child) {
+                                    switch ($tsv_child->nodeName) {
                                         case "index": $index = $tsv_child->nodeValue;
                                             break;
                                         case "value": $value = $tsv_child->nodeValue;
@@ -595,59 +519,57 @@ class Test extends OModule
                                     }
                                 }
                                 if ($index != -1)
-                                        $test_section["value"]["v" . $index] = $value;
+                                    $test_section["value"]["v" . $index] = $value;
                             }
                             break;
                         }
                 }
             }
 
-            switch ($test_section["type"])
-            {
-                case 2:
-                    {
-                        if ($test_section["value"]["v0"] == 0) break;
+            switch ($test_section["type"]) {
+                case 2: {
+                        if ($test_section["value"]["v0"] == 0)
+                            break;
                         $value = 0;
                         if (isset($compare["Template"][$test_section["value"]["v0"]]))
-                                $value = $compare["Template"][$test_section["value"]["v0"]];
+                            $value = $compare["Template"][$test_section["value"]["v0"]];
                         $test_section["value"]["v0"] = $value;
                         break;
                     }
-                case 11:
-                    {
-                        if ($test_section["value"]["v0"] == 0) break;
+                case 11: {
+                        if ($test_section["value"]["v0"] == 0)
+                            break;
                         $value = 0;
                         if (isset($compare["Test"][$test_section["value"]["v0"]]))
-                                $value = $compare["Test"][$test_section["value"]["v0"]];
+                            $value = $compare["Test"][$test_section["value"]["v0"]];
                         $test_section["value"]["v0"] = $value;
                         break;
                     }
-                case 9:
-                    {
-                        if ($test_section["value"]["v0"] == 0) break;
+                case 9: {
+                        if ($test_section["value"]["v0"] == 0)
+                            break;
                         $value = 0;
                         if (isset($compare["CustomSection"][$test_section["value"]["v0"]]))
-                                $value = $compare["CustomSection"][$test_section["value"]["v0"]];
+                            $value = $compare["CustomSection"][$test_section["value"]["v0"]];
                         $test_section["value"]["v0"] = $value;
                         break;
                     }
-                case 8:
-                    {
-                        if ($test_section["value"]["v3"] == 0) break;
+                case 8: {
+                        if ($test_section["value"]["v3"] == 0)
+                            break;
                         $value = 0;
                         if (isset($compare["Table"][$test_section["value"]["v3"]]))
-                                $value = $compare["Table"][$test_section["value"]["v3"]];
+                            $value = $compare["Table"][$test_section["value"]["v3"]];
                         $test_section["value"]["v3"] = $value;
                         break;
                     }
-                case 5:
-                    {
-                        if ($test_section["value"]["v5"] == 0) break;
-                        if ($test_section["value"]["v2"] == 0)
-                        {
+                case 5: {
+                        if ($test_section["value"]["v5"] == 0)
+                            break;
+                        if ($test_section["value"]["v2"] == 0) {
                             $value = 0;
                             if (isset($compare["Table"][$test_section["value"]["v5"]]))
-                                    $value = $compare["Table"][$test_section["value"]["v5"]];
+                                $value = $compare["Table"][$test_section["value"]["v5"]];
                             $test_section["value"]["v5"] = $value;
                         }
                         break;
@@ -655,17 +577,92 @@ class Test extends OModule
             }
 
             if (count($test_section["value"]) == 0)
-                    $test_section['value'] = "{}";
-            else $test_section['value'] = json_encode($test_section['value']);
+                $test_section['value'] = "{}";
+            else
+                $test_section['value'] = json_encode($test_section['value']);
 
             array_push($post["sections"], $test_section);
+        }
+
+        $post["parameters"] = array();
+        $elements = $xpath->query("/export/Test[@id='" . $element_id . "']/TestVariables/TestVariable");
+        foreach ($elements as $element) {
+            $tv = array();
+            $tv["Test_id"] = $element_id;
+            $children = $element->childNodes;
+            $correct = true;
+            foreach ($children as $child) {
+                switch ($child->nodeName) {
+                    case "index": $tv["index"] = $child->nodeValue;
+                        break;
+                    case "name": $tv["name"] = $child->nodeValue;
+                        break;
+                    case "description": $tv["description"] = $child->nodeValue;
+                        break;
+                    case "type": {
+                            $tv["type"] = $child->nodeValue;
+                            if ($tv["type"] != 0)
+                                $correct = false;
+                            break;
+                        }
+                }
+            }
+            if ($correct) {
+                $tv = json_encode($tv);
+                array_push($post['parameters'], $tv);
+            }
+        }
+
+        $post["returns"] = array();
+        $elements = $xpath->query("/export/Test[@id='" . $element_id . "']/TestVariables/TestVariable");
+        foreach ($elements as $element) {
+            $tv = array();
+            $tv["Test_id"] = $element_id;
+            $children = $element->childNodes;
+            $correct = true;
+            foreach ($children as $child) {
+                switch ($child->nodeName) {
+                    case "index": $tv["index"] = $child->nodeValue;
+                        break;
+                    case "name": $tv["name"] = $child->nodeValue;
+                        break;
+                    case "description": $tv["description"] = $child->nodeValue;
+                        break;
+                    case "type": {
+                            $tv["type"] = $child->nodeValue;
+                            if ($tv["type"] != 1)
+                                $correct = false;
+                            break;
+                        }
+                }
+            }
+            if ($correct) {
+                $tv = json_encode($tv);
+                array_push($post['returns'], $tv);
+            }
+        }
+
+        $post["protected"] = array();
+        $elements = $xpath->query("/export/Test[@id='" . $element_id . "']/TestProtectedVariables/TestProtectedVariable");
+        foreach ($elements as $element) {
+            $tpv = array();
+            $tpv["Test_id"] = $element_id;
+            $children = $element->childNodes;
+            $correct = true;
+            foreach ($children as $child) {
+                switch ($child->nodeName) {
+                    case "name": $tpv["name"] = $child->nodeValue;
+                        break;
+                }
+            }
+            $tpv = json_encode($tpv);
+            array_push($post['protected'], $tpv);
         }
 
         return $this->mysql_save_from_post($post);
     }
 
-    public function to_XML()
-    {
+    public function to_XML() {
         $xml = new DOMDocument();
 
         $element = $xml->createElement("Test");
@@ -683,21 +680,39 @@ class Test extends OModule
         $element->appendChild($sections);
 
         $ts = TestSection::from_property(array("Test_id" => $this->id));
-        foreach ($ts as $s)
-        {
+        foreach ($ts as $s) {
             $elem = $s->to_XML();
             $elem = $xml->importNode($elem, true);
             $sections->appendChild($elem);
         }
 
+        $test_protected_variables = $xml->createElement("TestProtectedVariables");
+        $element->appendChild($test_protected_variables);
+
+        $tpv = $this->get_TestProtectedVariables();
+        foreach ($tpv as $var) {
+            $elem = $var->to_XML();
+            $elem = $xml->importNode($elem, true);
+            $test_protected_variables->appendChild($elem);
+        }
+
+        $test_variables = $xml->createElement("TestVariables");
+        $element->appendChild($test_variables);
+
+        $tv = $this->get_TestVariables();
+        foreach ($tv as $var) {
+            $elem = $var->to_XML();
+            $elem = $xml->importNode($elem, true);
+            $test_variables->appendChild($elem);
+        }
+
         return $element;
     }
 
-    public static function create_db($delete = false)
-    {
-        if ($delete)
-        {
-            if (!mysql_query("DROP TABLE IF EXISTS `Test`;")) return false;
+    public static function create_db($delete = false) {
+        if ($delete) {
+            if (!mysql_query("DROP TABLE IF EXISTS `Test`;"))
+                return false;
         }
         $sql = "
             CREATE TABLE IF NOT EXISTS `Test` (
@@ -716,8 +731,7 @@ class Test extends OModule
         return mysql_query($sql);
     }
 
-    public static function get_list_columns()
-    {
+    public static function get_list_columns() {
         $cols = parent::get_list_columns();
 
         array_push($cols, array(
@@ -734,34 +748,35 @@ class Test extends OModule
         return $cols;
     }
 
-    public function get_TestProtectedVariables()
-    {
+    public function get_TestProtectedVariables_name() {
         $result = array();
 
         $tpv = TestProtectedVariable::from_property(array("Test_id" => $this->id));
-        foreach ($tpv as $v)
-        {
+        foreach ($tpv as $v) {
             array_push($result, $v->name);
         }
         return $result;
     }
 
-    public function get_description()
-    {
+    public function get_TestProtectedVariables() {
+        $tpv = TestProtectedVariable::from_property(array("Test_id" => $this->id));
+        return $tpv;
+    }
+
+    public function get_description() {
         return Template::strip_html($this->description);
     }
 
-    public static function update_db($previous_version)
-    {
-        if (Ini::does_patch_apply("3.4.0", $previous_version))
-        {
+    public static function update_db($previous_version) {
+        if (Ini::does_patch_apply("3.4.0", $previous_version)) {
             $sql = "ALTER TABLE `Test` ADD `session_count` bigint(20) NOT NULL;";
-            if (!mysql_query($sql)) return false;
+            if (!mysql_query($sql))
+                return false;
         }
-        if (Ini::does_patch_apply("3.5.0", $previous_version))
-        {
+        if (Ini::does_patch_apply("3.5.0", $previous_version)) {
             $sql = "ALTER TABLE `Test` ADD `description` text NOT NULL;";
-            if (!mysql_query($sql)) return false;
+            if (!mysql_query($sql))
+                return false;
         }
         if (Ini::does_patch_apply("3.6.2", $previous_version)) {
             $sql = "ALTER TABLE `Test` ADD `xml_hash` text NOT NULL;";
@@ -780,18 +795,15 @@ class Test extends OModule
         return true;
     }
 
-    public function get_TestVariables()
-    {
+    public function get_TestVariables() {
         return TestVariable::from_property(array("Test_id" => $this->id));
     }
 
-    public function get_parameter_TestVariables()
-    {
+    public function get_parameter_TestVariables() {
         return TestVariable::from_property(array("Test_id" => $this->id, "type" => 0));
     }
 
-    public function get_return_TestVariables()
-    {
+    public function get_return_TestVariables() {
         return TestVariable::from_property(array("Test_id" => $this->id, "type" => 1));
     }
 
