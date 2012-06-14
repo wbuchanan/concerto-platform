@@ -1,6 +1,8 @@
 #labels Featured
 === Resources ===
 
+[http://code.google.com/p/concerto-platform/wiki/changelog *Change Log of Concerto*]
+
 *Concerto v3 Tutorials*
 
  * [installation3 Installing Concerto v3]
