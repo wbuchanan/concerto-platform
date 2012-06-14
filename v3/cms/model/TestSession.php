@@ -354,6 +354,7 @@ class TestSession extends OTable {
         if ($this->r_type == TestSession::R_TYPE_RSCRIPT) {
             $code = "
             sink(stdout(), type='message')
+            options(encoding='UTF-8')
             library(session)
             restore.session('" . $this->get_RSession_file_path() . "')
                 
@@ -367,6 +368,7 @@ class TestSession extends OTable {
             CONCERTO_DRIVER <- dbDriver('MySQL')
             for(CONCERTO_DB_CONNECTION in dbListConnections(CONCERTO_DRIVER)) { dbDisconnect(CONCERTO_DB_CONNECTION) }
             CONCERTO_DB_CONNECTION <- dbConnect(CONCERTO_DRIVER, user = CONCERTO_DB_LOGIN, password = CONCERTO_DB_PASSWORD, dbname = CONCERTO_DB_NAME, host = CONCERTO_DB_HOST, port = CONCERTO_DB_PORT)
+            dbSendQuery(CONCERTO_DB_CONNECTION,statement = \"SET NAMES 'utf8';\")
             
             rm(CONCERTO_DB_HOST)
             rm(CONCERTO_DB_PORT)
