@@ -1,0 +1,23 @@
+#labels Featured
+=== Resources ===
+
+*Concerto v3 Tutorials*
+
+ * [installation3 Installing Concerto v3]
+ * [Concerto3Tabs General manual]
+ * [Concerto3SimpleTest Create a simple test]
+ * [Concerto3AdaptiveTest Create an adaptive test]
+ * Mini tutorials
+  * [Concerto3NoResponse Preventing 'no response' situations]
+  * [Concerto3Pictures Inserting pictures, audio & video clips into a test]
+  * [Concerto3Language Multilingual tests]
+  * [Concerto3Randomisation Randomising test items]
+  * [Concerto3ItemTime Timed presentation of items]
+ * [FAQ Frequently Asked Questions]
+ * [Concerto3Updates Updates]
+
+=== Demos ===
+
+ * [http://dev.myiqtest.org/concerto3_demo/index.php?tid=80 Adaptive test]
+ * [http://ns39618.ovh.net/~promedia/SlickTester/?hash=7a1fbe89a820fbf36e71aafb161516bc&dev=1 Intelligence test]
+ * [http://ns39618.ovh.net/~promedia/SlickTester/?hash=b698d56cfdcfc772ac42e2a6b095cbdd Student assignment]
