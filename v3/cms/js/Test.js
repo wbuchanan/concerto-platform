@@ -82,6 +82,16 @@ Test.getFullSaveObject = function() {
     return obj;
 }
 
+Test.uiSaveValidate=function(ignoreOnBefore){
+    if(!this.checkRequiredFields([
+        $("#form"+this.className+"InputName").val()
+    ])) {
+        Methods.alert(dictionary["s415"],"alert");
+        return false;
+    }
+    Test.uiSaveValidated(ignoreOnBefore);
+}
+
 Test.sectionCounter = 0;
 Test.getCounter=function(){
     Test.sectionCounter++;

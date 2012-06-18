@@ -80,7 +80,7 @@ if ($oid != 0)
         <table>
             <caption class="ui-widget-header"><?= $caption ?></caption>
             <tr>
-                <td class="noWrap horizontalPadding ui-widget-header"><?= Language::string(70) ?>:</td>
+                <td class="noWrap horizontalPadding ui-widget-header">* <?= Language::string(70) ?>:</td>
                 <td><span class="tooltip spanIcon ui-icon ui-icon-help" title="<?= Language::string(159) ?>"></span></td>
                 <td class="fullWidth">
                     <div class="horizontalMargin">

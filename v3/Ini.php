@@ -45,6 +45,8 @@ class Ini {
     public static $timer_tamper_prevention_tolerance = 3;
     public static $path_online_library_ws = "";
     public static $remote_client_password = "";
+    public static $public_registration = false;
+    public static $public_registration_default_UserType_id = 1;
 
     function __construct($connect = true, $session = true, $headers = true) {
         //if (substr_count($_SERVER['HTTP_ACCEPT_ENCODING'], 'gzip')) ob_start("ob_gzhandler"); 
@@ -111,6 +113,8 @@ class Ini {
         self::$r_max_execution_time = $r_max_execution_time;
         self::$path_online_library_ws = "http://concerto.e-psychometrics.com/demo/online_library/ws.php";
         self::$remote_client_password = $remote_client_password;
+        self::$public_registration = $public_registration;
+        self::$public_registration_default_UserType_id = $public_registration_default_UserType_id;
     }
 
     public static function does_patch_apply($patch_version, $previous_version) {

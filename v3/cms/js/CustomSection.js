@@ -50,6 +50,16 @@ CustomSection.getAddSaveObject=function()
     };
 };
 
+CustomSection.uiSaveValidate=function(ignoreOnBefore){
+    if(!this.checkRequiredFields([
+        $("#form"+this.className+"InputName").val()
+    ])) {
+        Methods.alert(dictionary["s415"],"alert");
+        return false;
+    }
+    CustomSection.uiSaveValidated(ignoreOnBefore);
+}
+
 CustomSection.onAfterDelete=function(){
     Test.uiCustomSectionsChanged();
 }

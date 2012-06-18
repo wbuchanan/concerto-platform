@@ -18,8 +18,7 @@
   Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA.
  */
 
-if (!isset($ini))
-{
+if (!isset($ini)) {
     require_once'../../Ini.php';
     $ini = new Ini();
 }
@@ -42,10 +41,32 @@ if (!isset($ini))
             open:function(){
                 Methods.iniTooltips();
             },
-            buttons:{
-                "login":function(){ User.uiLogIn(); }
-            }
+            buttons:[
+                {
+                    text:'<?= Language::string(411) ?>',
+                    click:function(){
+                        User.uiLogIn();
+                    }
+                }
+            ]
         });
+<?php
+if (Ini::$public_registration) {
+    ?>
+                $("#dd_login").dialog("option","buttons",[{
+                        text:'<?= Language::string(411) ?>',
+                        click:function(){
+                            User.uiLogIn();
+                        }
+                    },{
+                        text:'<?= Language::string(412) ?>',
+                        click:function(){
+                            User.uiRegister();
+                        }
+                    }]);
+    <?php
+}
+?>
     });
 </script>
 <div id="dd_login">
@@ -74,5 +95,81 @@ if (!isset($ini))
     </div>	 
 </div>
 
-<div id="divHiddenThemer" style="display:none;">
+<?php
+if (Ini::$public_registration) {
+    ?>
+    <div id="dd_register" class="notVisible">
+        <span><?= Language::string(413) ?></span>
+        <div class="padding ui-widget-content ui-corner-all margin">
+            <table>
+                <tr>
+                    <td class="noWrap horizontalPadding ui-widget-header">* <?= Language::string(173) ?>:</td>
+                    <td><span class="tooltip spanIcon ui-icon ui-icon-help" title="<?= Language::string(260) ?>"></span></td>
+                    <td class="fullWidth">
+                        <div class="horizontalMargin">
+                            <input type="text" id="dd_register_inp_login" class="fullWidth ui-widget-content ui-corner-all" />
+                        </div>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="noWrap horizontalPadding ui-widget-header"><?= Language::string(179) ?>:</td>
+                    <td><span class="tooltip spanIcon ui-icon ui-icon-help" title="<?= Language::string(261) ?>"></span></td>
+                    <td class="fullWidth">
+                        <div class="horizontalMargin">
+                            <input type="password" id="dd_register_inp_password" class="fullWidth ui-widget-content ui-corner-all" />
+                        </div>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="noWrap horizontalPadding ui-widget-header"><?= Language::string(182) ?>:</td>
+                    <td><span class="tooltip spanIcon ui-icon ui-icon-help" title="<?= Language::string(183) ?>"></span></td>
+                    <td class="fullWidth">
+                        <div class="horizontalMargin">
+                            <input type="password" id="dd_register_inp_password_conf" class="fullWidth ui-widget-content ui-corner-all" />
+                        </div>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="noWrap horizontalPadding ui-widget-header">* <?= Language::string(184) ?>:</td>
+                    <td><span class="tooltip spanIcon ui-icon ui-icon-help" title="<?= Language::string(186) ?>"></span></td>
+                    <td class="fullWidth">
+                        <div class="horizontalMargin">
+                            <input type="text" id="dd_register_inp_first_name" class="fullWidth ui-widget-content ui-corner-all" />
+                        </div>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="noWrap horizontalPadding ui-widget-header">* <?= Language::string(185) ?>:</td>
+                    <td><span class="tooltip spanIcon ui-icon ui-icon-help" title="<?= Language::string(187) ?>"></span></td>
+                    <td class="fullWidth">
+                        <div class="horizontalMargin">
+                            <input type="text" id="dd_register_inp_last_name" class="fullWidth ui-widget-content ui-corner-all" />
+                        </div>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="noWrap horizontalPadding ui-widget-header">* <?= Language::string(174) ?>:</td>
+                    <td><span class="tooltip spanIcon ui-icon ui-icon-help" title="<?= Language::string(188) ?>"></span></td>
+                    <td class="fullWidth">
+                        <div class="horizontalMargin">
+                            <input type="text" id="dd_register_inp_email" class="fullWidth ui-widget-content ui-corner-all" />
+                        </div>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="noWrap horizontalPadding ui-widget-header"><?= Language::string(189) ?>:</td>
+                    <td><span class="tooltip spanIcon ui-icon ui-icon-help" title="<?= Language::string(190) ?>"></span></td>
+                    <td class="fullWidth">
+                        <div class="horizontalMargin">
+                            <input type="text" id="dd_register_inp_phone" class="fullWidth ui-widget-content ui-corner-all" />
+                        </div>
+                    </td>
+                </tr>
+            </table>
+        </div>	 
+    </div>
+    <?php
+}
+?>
+<div id="divHiddenThemer" class="notVisible">
 </div>

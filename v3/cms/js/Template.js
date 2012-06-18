@@ -66,3 +66,13 @@ Template.getFullSaveObject = function(){
     if($("#form"+this.className+"SelectOwner").length==1) obj["Owner_id"]=$("#form"+this.className+"SelectOwner").val();
     return obj;
 }
+
+Template.uiSaveValidate=function(ignoreOnBefore){
+    if(!this.checkRequiredFields([
+        $("#form"+this.className+"InputName").val()
+    ])) {
+        Methods.alert(dictionary["s415"],"alert");
+        return false;
+    }
+    Template.uiSaveValidated(ignoreOnBefore);
+}

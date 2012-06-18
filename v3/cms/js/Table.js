@@ -61,6 +61,16 @@ Table.getFullSaveObject=function(){
     return obj;
 }
 
+Table.uiSaveValidate=function(ignoreOnBefore){
+    if(!this.checkRequiredFields([
+        $("#form"+this.className+"InputName").val()
+    ])) {
+        Methods.alert(dictionary["s415"],"alert");
+        return false;
+    }
+    Table.uiSaveValidated(ignoreOnBefore);
+}
+
 Table.uiRemoveColumn=function(obj){
     var thisClass = this;
     Methods.confirm(dictionary["s34"], dictionary["s35"], function(){

@@ -2690,12 +2690,12 @@ Note: You can add new languages by inserting "<new_language>string translated in
             <bg>броене на сесиите</bg>
         </string>
         <string id="336" js="1">
-            <en>At least one of the fields that should be unique already exists in the system.</en>
-            <de>Mindestens eins der Felder das eindeutig sein muss existiert bereits im System.</de>
-            <pl>Przynajmniej jedno pole, które powinno być unikalne, już istnieje w systemie.</pl>
-            <cn>系统内存在相同区域。</cn>
-            <fr>Au moins un des champs qui doit être unique existe déjà dans le système. </fr>
-            <bg>Поне едно поле, което трябва да е уникално, вече съществува в системата.</bg>
+            <en>At least one of the fields that should be unique already exists in the system or is empty.</en>
+            <de></de>
+            <pl>Przynajmniej jedno pole, które powinno być unikalne, już istnieje w systemie lub jest puste.</pl>
+            <cn></cn>
+            <fr></fr>
+            <bg></bg>
         </string>
         <string id="337">
             <en>list of available objects</en>
@@ -3277,6 +3277,54 @@ Note: You can add new languages by inserting "<new_language>string translated in
             <en>Please resave manually every test where this template is used and where you want to apply those changes.</en>
             <de></de>
             <pl>Proszę ręcznie zapisać ponownie każdy test gdzie używany jest ten szablon i gdzie chcesz zastosować te zmiany.</pl>
+            <cn></cn>
+            <fr></fr>
+            <bg></bg>
+        </string>
+        <string id="410" js="1">
+            <en>Register new account</en>
+            <de></de>
+            <pl>Rejestracja nowego konta</pl>
+            <cn></cn>
+            <fr></fr>
+            <bg></bg>
+        </string>
+        <string id="411">
+            <en>log in</en>
+            <de></de>
+            <pl>zaloguj</pl>
+            <cn></cn>
+            <fr></fr>
+            <bg></bg>
+        </string>
+        <string id="412" js="1">
+            <en>register</en>
+            <de></de>
+            <pl>zarejestruj się</pl>
+            <cn></cn>
+            <fr></fr>
+            <bg></bg>
+        </string>
+        <string id="413">
+            <en>Fill the form below to register new user.</en>
+            <de></de>
+            <pl>Wypełnij formularz poniżej aby zarejestrować nowego użytkownika.</pl>
+            <cn></cn>
+            <fr></fr>
+            <bg></bg>
+        </string>
+        <string id="414" js="1">
+            <en>Account registered. You will now be redirected to the login page.</en>
+            <de></de>
+            <pl>Konto zarejestrowane. Zostaniesz teraz przekierowany do strony logowania.</pl>
+            <cn></cn>
+            <fr></fr>
+            <bg></bg>
+        </string>
+        <string id="415" js="1">
+            <en>Fields marked with * are required and can not be empty.</en>
+            <de></de>
+            <pl>Pola oznaczone * są wymagane i nie mogą być puste.</pl>
             <cn></cn>
             <fr></fr>
             <bg></bg>

@@ -19,39 +19,44 @@
   Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA.
  */
 
-if (!isset($ini))
-{
+if (!isset($ini)) {
     require_once '../../Ini.php';
     $ini = new Ini();
 }
-$logged_user = User::get_logged_user();
-if ($logged_user == null)
-{
-    echo json_encode(array("oid" => -1));
-    exit();
+if (!Ini::$public_registration) {
+    $logged_user = User::get_logged_user();
+    if ($logged_user == null) {
+        echo json_encode(array("result" => -1));
+        exit();
+    }
 }
 
 $obj = $_POST['class_name']::from_mysql_id($_POST['oid']);
 
-$sql = sprintf("SELECT * FROM `%s` WHERE ( ",$_POST['class_name']);
-$i=0;
-foreach($_POST['fields'] as $field)
-{
-    if($i>0) $sql.="OR ";
+$sql = sprintf("SELECT * FROM `%s` WHERE ( ", $_POST['class_name']);
+$i = 0;
+foreach ($_POST['fields'] as $field) {
+    if ($i > 0)
+        $sql.="OR ";
     $f = json_decode($field);
-    $sql.=sprintf("`%s`='%s' ", $f->name, mysql_real_escape_string(trim($f->value)));
+    $sql.=sprintf("`%s`='%s' ", mysql_real_escape_string($f->name), mysql_real_escape_string(trim($f->value)));
     $i++;
+    if(trim($f->value)==""){
+        echo json_encode(array("result" => 1));
+        exit();
+    }
 }
-if($i>0) $sql.=") ";
-else $sql.="TRUE) ";
+if ($i > 0)
+    $sql.=") ";
+else
+    $sql.="TRUE) ";
 
-if($obj!=null)
-{
-    $sql.=sprintf("AND `id`!='%d'",$obj->id);
+if ($obj != null) {
+    $sql.=sprintf("AND `id`!='%d'", $obj->id);
 }
 
-$z=mysql_query($sql);
+$z = mysql_query($sql);
 $count = mysql_num_rows($z);
 
-echo json_encode(array("result" => $count==0?0:1));
+echo json_encode(array("result" => $count == 0 ? 0 : 1));
 ?>

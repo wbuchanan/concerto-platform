@@ -22,9 +22,9 @@
 class User extends OModule
 {
     public $login = "incognito";
-    public $firstname = "";
+    public $firstname = "unknown";
     public $lastname = "unknown";
-    public $email = "";
+    public $email = "unknown";
     public $phone = "";
     public $md5_password = "";
     public $UserType_id = 0;
@@ -35,7 +35,9 @@ class User extends OModule
     public function __construct($params = array())
     {
         $this->login = Language::string(77);
+        $this->firstname = Language::string(78);
         $this->lastname = Language::string(78);
+        $this->email = Language::string(78);
         parent::__construct($params);
     }
 

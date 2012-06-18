@@ -37,6 +37,13 @@ OModule.inheritance=function(obj)
         this.uiEdit(oid);
         this.uiList();
     };
+    
+    obj.checkRequiredFields=function(fields){
+        for(var i=0;i<fields.length;i++){
+            if(fields[i]=="") return false;
+        }
+        return true;
+    }
         
     obj.highlightCurrentElement=function()
     {

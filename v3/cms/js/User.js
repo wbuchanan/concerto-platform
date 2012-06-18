@@ -73,6 +73,16 @@ User.getFullSaveObject=function()
 }
 
 User.uiSaveValidate=function(ignoreOnBefore){
+    if(!this.checkRequiredFields([
+        $("#form"+this.className+"InputLogin").val(),
+        $("#form"+this.className+"InputFirstname").val(),
+        $("#form"+this.className+"InputLastname").val(),
+        $("#form"+this.className+"InputEmail").val()
+    ])) {
+        Methods.alert(dictionary["s415"],"alert");
+        return false;
+    }
+    
     if($("#form"+this.className+"CheckboxPassword").is(":checked")&&$("#form"+this.className+"InputPassword").val()!=$("#form"+this.className+"InputPasswordConf").val())
     {
         Methods.alert(dictionary["s66"],"alert");
@@ -102,6 +112,104 @@ User.uiSaveValidate=function(ignoreOnBefore){
             }
         }
     },"json");
+}
+
+User.register = function(){
+    var login = $("#dd_register_inp_login").val();
+    var firstname = $("#dd_register_inp_first_name").val();
+    var lastname = $("#dd_register_inp_last_name").val();
+    var email = $("#dd_register_inp_last_email").val();
+    var phone = $("#dd_register_inp_last_phone").val();
+    var password = $("#dd_register_inp_password").val();
+    var password_conf = $("#dd_register_inp_password_conf").val();
+    
+    if(!this.checkRequiredFields([
+        login,firstname,lastname,email
+    ])) {
+        Methods.alert(dictionary["s415"],"alert");
+        return;
+    }
+    
+    if(password!=password_conf)
+    {
+        Methods.alert(dictionary["s66"],"alert",dictionary["s410"]);
+        return false;
+    }
+    
+    $.post("query/check_module_unique_fields.php", {
+        "class_name":this.className,
+        "oid":0,
+        "fields[]":[$.toJSON({
+            name:"login",
+            value:login
+        })]
+    },function(data){
+        switch(data.result){
+            case 0: {
+                
+                $.post("query/register.php",{
+                    login:login,
+                    password:password,
+                    firstname:firstname,
+                    lastname:lastname,
+                    email:email,
+                    phone:phone
+                },function(data){
+                    switch(data.result){
+                        case 0:{
+                            Methods.alert(dictionary["s414"], "alert", dictionary["s410"],function(){
+                                location.href='index.php';
+                            });
+                            break;
+                        }
+                        case -1:{
+                            Methods.alert(dictionary["s81"], "alert", dictionary["s410"]);
+                            break;
+                        }
+                    }
+                },"json");
+                
+                break;
+            }
+            case 1:{
+                Methods.alert(dictionary["s336"],"alert",dictionary["s410"]);
+                return;    
+            }
+            case -1:{
+                Methods.alert(dictionary["s278"], "alert", dictionary["s410"]);
+                return;
+            }
+        }
+    },"json");
+}
+
+User.uiRegister=function(){
+    $("#dd_login").dialog("close");
+    $("#dd_register").dialog({
+        modal:true,
+        width:400,
+        title:dictionary["s410"],
+        resizeable:false,
+        closeOnEscape:false,
+        dialogClass:"no-close",
+        open:function(){
+            Methods.iniTooltips();
+        },
+        buttons:[
+        {
+            text:dictionary["s412"],
+            click:function(){
+                User.register();
+            }
+        },
+        {
+            text:dictionary["s23"],
+            click:function(){
+                location.href = "index.php";
+            }
+        }
+        ]
+    });
 }
 
 User.uiLogIn=function()
