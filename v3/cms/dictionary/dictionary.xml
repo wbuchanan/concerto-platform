@@ -37,12 +37,12 @@ Note: You can add new languages by inserting "<new_language>string translated in
     
     <strings>
         <string id="1" js="1">
-            <en><![CDATA[Variable name validation failed. Only alphanumeric, '_' and '.' characters allowed and the value can't begin with a numeric. Value has been changed.<br/><br/>old value: <b>{0}</b></br>new value: <b>{1}</b>]]></en>
-            <de><![CDATA[Überprüfung des Variablennamens schlug fehl. Nur alphamumerische, sowie das '_' und '.' Zeichen sind erlaubt. Der Name darf nicht mit einer Zahl beginnen. Wert wurde geändert.<br/><br/>Alter Wert: <b>{0}</b></br>Neuer Wert: <b>{1}</b>]]></de>
-            <pl><![CDATA[Walidacja zmiennej nie powiodla sie. Tylko znaki alfanumeryczne, '_' i '.' sa dozwolone, oraz zmienna nie moze zaczynac sie od numeru. Wartosc zostala zmieniona.<br/><br/>poprzednia wartosc: <b>{0}</b></br>nowa wartosc: <b>{1}</b>]]></pl>
-            <cn><![CDATA[变量名称验证失败。只允许使用字母、数字以及'_'和'.'，并且不可以数字开头。数值已更改。<br/><br/>旧数值: <b>{0}</b></br>新数值: <b>{1}</b>]]></cn>  
-            <fr><![CDATA[La validation du nom de la variable a échoué. Seuls les caractères alphanumériques, les '_' et les '.' sont acceptés et la vaeur ne peut pas commencer par un chiffre. La valeur a été changée.<br/><br/>ancienne valeur: <b>{0}</b></br>nouvelle valeur: <b>{1}</b>]]></fr>
-            <bg><![CDATA[Валидизацията на името на променливата е неуспешна. Само букви и цифри, '_' и '.' са допустими и стойността не може да започва с цифра. Стойността е променена.<br/><br/>стара стойност: <b>{0}</b></br>нова стойност: <b>{1}</b>]]></bg>    
+            <en><![CDATA[Variable name validation failed. Value has been changed.<br/><br/>old value: <b>{0}</b></br>new value: <b>{1}</b>]]></en>
+            <de><![CDATA[Überprüfung des Variablennamens schlug fehl. Wert wurde geändert.<br/><br/>Alter Wert: <b>{0}</b></br>Neuer Wert: <b>{1}</b>]]></de>
+            <pl><![CDATA[Walidacja zmiennej nie powiodła się. Wartość została zmieniona.<br/><br/>poprzednia wartość: <b>{0}</b></br>nowa wartość: <b>{1}</b>]]></pl>
+            <cn><![CDATA[变量名称验证失败。数值已更改。<br/><br/>旧数值: <b>{0}</b></br>新数值: <b>{1}</b>]]></cn>  
+            <fr><![CDATA[La validation du nom de la variable a échoué. La valeur a été changée.<br/><br/>ancienne valeur: <b>{0}</b></br>nouvelle valeur: <b>{1}</b>]]></fr>
+            <bg><![CDATA[Валидизацията на името на променливата е неуспешна. Стойността е променена.<br/><br/>стара стойност: <b>{0}</b></br>нова стойност: <b>{1}</b>]]></bg>    
         </string>
         <string id="2" js="1">
             <en>variable validation</en>
@@ -77,12 +77,12 @@ Note: You can add new languages by inserting "<new_language>string translated in
             <bg>Concerto - внимание</bg>
         </string>
         <string id="6" js="1">
-            <en>HTML controls `name` validation failed. Only alphanumeric, '_' and '.' characters allowed and the value can't begin with a numeric. Value has been changed.\r\n\r\nold value: {0}\r\nnew value: {1}</en>
-            <de>HTML Kontrollüberprüfung von `Name` schlug fehl.  Nur alphamumerische, sowie das '_' und '.' Zeichen sind erlaubt. Der Name darf nicht mit einer Zahl beginnen. Wert wurde geändert.\r\n\r\nAlter Wert: {0}\r\nNeuer Wert: {1}</de>
-            <pl>Walidacja pola `nazwa` kontrolki HTML nie powiodła się. Tylko wartości alfanumeryczne, '_' i '.' są dozwolone, oraz wartość nie może zaczynać się od liczby. Wartość została zmieniona.\r\n\r\npoprzednia wartość: {0}\r\nnowa wartość: {1}</pl>
-            <cn>HTML控制`名称`验证失败。只允许使用字母、数字以及'_'和'.'，并且不可以数字开头。数值已更改。\r\n\r\n旧数值: {0}\r\n新数值: {1}</cn>
-            <fr>HTML le contrôle de la variable `nom` a échoué. seuls les caractères alphanumériques, les  '_' et '.' sont acceptés et la valeur ne peut pas commencer per un chiffre. la valeur a été changée\n\r\nancienne valeur: {0}\r\nnouvelle valeur: {1}</fr>
-            <bg>Валидизацията на името на HTML контролата неуспешна. Само букви и цифри, '_' и '.' за допустими и стойността не може да започва с цифра. Стойността беше променена.\r\n\r\nстара стойност: {0}\r\nнова стойност: {1}</bg>                                      
+            <en>HTML controls `name` validation failed. Value has been changed.\r\n\r\nold value: {0}\r\nnew value: {1}</en>
+            <de>HTML Kontrollüberprüfung von `Name` schlug fehl. Wert wurde geändert.\r\n\r\nAlter Wert: {0}\r\nNeuer Wert: {1}</de>
+            <pl>Walidacja pola `nazwa` kontrolki HTML nie powiodła się. Wartość została zmieniona.\r\n\r\npoprzednia wartość: {0}\r\nnowa wartość: {1}</pl>
+            <cn>HTML控制`名称`验证失败。数值已更改。\r\n\r\n旧数值: {0}\r\n新数值: {1}</cn>
+            <fr>HTML le contrôle de la variable `nom` a échoué. la valeur a été changée\n\r\nancienne valeur: {0}\r\nnouvelle valeur: {1}</fr>
+            <bg>Валидизацията на името на HTML контролата неуспешна. Стойността беше променена.\r\n\r\nстара стойност: {0}\r\nнова стойност: {1}</bg>                                      
         </string>
         <string id="7" js="1">
             <en>adding new object</en>
@@ -164,14 +164,6 @@ Note: You can add new languages by inserting "<new_language>string translated in
             <fr>libre</fr>
             <bg>текст</bg>
         </string>
-        <string id="17" js="1">
-            <en>numeric</en>
-            <de>numerisch</de>
-            <pl>liczba</pl>
-            <cn>数值</cn>
-            <fr>numérique</fr>
-            <bg>цифров</bg>
-        </string>
         <string id="18" js="1">
             <en>HTML</en>
             <de>HTML</de>
@@ -188,7 +180,7 @@ Note: You can add new languages by inserting "<new_language>string translated in
             <fr>modifier la colonne</fr>
             <bg>редактиране на колоната</bg>
         </string>
-        <string id="20" js="1">
+        <string id="20">
             <en>remove column</en>
             <de>entferne Spalte</de>
             <pl>usuń kolumnę</pl>
@@ -381,12 +373,12 @@ Note: You can add new languages by inserting "<new_language>string translated in
             <bg><![CDATA[Определете условията и техните следствия. Множество условия и следствия могат да бъдат определени.]]></bg>
         </string>
         <string id="44">
-            <en><![CDATA[Define variables (i.e. set variables) and variable type in R, HTML templates or both. Methods to set variable: <ul><li><b>from table</b>: select a previously defined table in Concerto and filter necessary rows and columns. Set the whole table by leaving the <b>WHERE</b> clause empty</li><li><b>by R code</b>: directly type in R code. E.g. function result, mathematical calculation</li></ul>]]></en>
-            <de><![CDATA[Definiere Variablen (d.h. setze Variablen) und Variablen Typen in R, HTML Templates oder beidem. Methoden um Vairabeln zu setzen: <ul><li><b>aus Tabelle</b>: wähle eine bereits definierte Tabelle in Concerto und filtere die notwendigen Zeilen und Spalten. Der ganzen Tabelle gleichsetzen in dem man die <b>WHERE</b> Aussage leer lässt</li><li><b>durch R Code</b>: R code direkt eingeben. Z.B. Resultat einer Funktion, mathematische Berechnung</li></ul>]]></de>
-            <pl><![CDATA[Ta sekcja daje mozliwość zadeklarowania zmiennej w logice testu. Można dodatkowo również zaznaczyć checkbox aby sprawić żeby zmienna była widoczna w szablonie HTML. Można ustawić zmienną jedną z trzech metod:<ul><li><b>z tabeli</b>: można wybrać wcześniej zdefiniowaną tabelę w Concerto, oraz jej konkretne rekordy i kolumny. Można również wybrać całą tabelę pozostawiając blok <b>GDZIE</b> pusty</li><li><b>przez kod R</b>: można ustawić zmienną używając kodu R. Może to być cokolwiek co da się wykonać w języku R. Np. rezultat funkcji, matematyczne obliczenie</li></ul>]]></pl>
-            <cn><![CDATA[在R，HTML模板中定义变量及变量类型。方法如下： <ul><li><b>来自表格</b>：选择之前在Concerto中定义的表格并筛选特定的行列。若保留<b>当</b> 语句为空可选定全部表格</li><li><b>通过R代码</b>：直接输入R代码，例如函数结论，数学计算。</li><li><b>使用变量</b>：根据已定义变量设定新变量。使用自动填充功能方便从已声明变量中查找特定变量。</li></ul>]]></cn>
-            <fr><![CDATA[Définir les variables (par ex. établir les variables) et les types de variables, les modèles HTML ou les deux dans R. Méthode afin de d'établir les variables: <ul><li><b>du tableau</b>: sélectionner un tableau préalablement défini dans concerto et filtrer les lignes et colonnes nécessaires. Établir un tableau complet en laissant la clause <b>OU</b> vide </li><li><b>avec le code R </b>: taper directement dans le code R. Par exemple: fonctiont résultat, calcul mathématique</li></ul>]]></fr>
-            <bg><![CDATA[Дефинирайте променливи (т.е. създайте променливи) и вида на променливите в R, HTML шаблоните или в двете. Методи за създаване на променлива: <ul><li><b>чрез таблица</b>: изберете предварително дефинирана таблица в Concerto и филтрирайте необходимите редове и колони. Може да вземете цяла таблица <b>КЪДЕ</b> условието е празно</li><li><b>чрез R код</b>: директно като напишете R кода. Т.е. резултат от функция, математическо пресмятане</li></ul>]]> </bg>   
+            <en><![CDATA[Define variables (i.e. set variables). Methods to set variable: <ul><li><b>from table</b>: select a previously defined table in Concerto and filter necessary rows and columns. Set the whole table by leaving the <b>WHERE</b> clause empty</li><li><b>by R code</b>: directly type in R code. E.g. function result, mathematical calculation</li></ul>]]></en>
+            <de><![CDATA[Definiere Variablen (d.h. setze Variablen). Methoden um Vairabeln zu setzen: <ul><li><b>aus Tabelle</b>: wähle eine bereits definierte Tabelle in Concerto und filtere die notwendigen Zeilen und Spalten. Der ganzen Tabelle gleichsetzen in dem man die <b>WHERE</b> Aussage leer lässt</li><li><b>durch R Code</b>: R code direkt eingeben. Z.B. Resultat einer Funktion, mathematische Berechnung</li></ul>]]></de>
+            <pl><![CDATA[Ta sekcja daje mozliwość zadeklarowania zmiennej w logice testu. Można ustawić zmienną jedną z trzech metod:<ul><li><b>z tabeli</b>: można wybrać wcześniej zdefiniowaną tabelę w Concerto, oraz jej konkretne rekordy i kolumny. Można również wybrać całą tabelę pozostawiając blok <b>GDZIE</b> pusty</li><li><b>przez kod R</b>: można ustawić zmienną używając kodu R. Może to być cokolwiek co da się wykonać w języku R. Np. rezultat funkcji, matematyczne obliczenie</li></ul>]]></pl>
+            <cn></cn>
+            <fr><![CDATA[Définir les variables (par ex. établir les variables).. Méthode afin de d'établir les variables: <ul><li><b>du tableau</b>: sélectionner un tableau préalablement défini dans concerto et filtrer les lignes et colonnes nécessaires. Établir un tableau complet en laissant la clause <b>OU</b> vide </li><li><b>avec le code R </b>: taper directement dans le code R. Par exemple: fonctiont résultat, calcul mathématique</li></ul>]]></fr>
+            <bg><![CDATA[Дефинирайте променливи (т.е. създайте променливи). Методи за създаване на променлива: <ul><li><b>чрез таблица</b>: изберете предварително дефинирана таблица в Concerto и филтрирайте необходимите редове и колони. Може да вземете цяла таблица <b>КЪДЕ</b> условието е празно</li><li><b>чрез R код</b>: директно като напишете R кода. Т.е. резултат от функция, математическо пресмятане</li></ul>]]> </bg>   
         </string>
         <string id="45">
             <en>The start section is the entry point to your test logic. It cannot be modified.</en>
@@ -1068,22 +1060,6 @@ Note: You can add new languages by inserting "<new_language>string translated in
             <fr>modifier HTML</fr>
             <bg>редактирай HTML</bg>
         </string>
-        <string id="131">
-            <en>add row</en>
-            <de>füge Spalte hinzu</de>
-            <pl>dodaj rekord</pl>
-            <cn>添加行</cn>
-            <fr>ajouter une ligne</fr>
-            <bg>прибави ред</bg>
-        </string>
-        <string id="132">
-            <en>table is empty</en>
-            <de>Tabelle ist leer</de>
-            <pl>tabela jest pusta</pl>
-            <cn>表格空白</cn>
-            <fr>le tableau est vide</fr>
-            <bg>таблицата е празна</bg>
-        </string>
         <string id="133">
             <en>editing HTML template</en>
             <de>bearbeite HTML Template</de>
@@ -1394,14 +1370,6 @@ Note: You can add new languages by inserting "<new_language>string translated in
              <fr>créer un nouvel administrateur</fr>
             <bg>създаване на нов администратор</bg>
         </string>
-        <string id="172">
-            <en>creating new admin</en>
-            <de>lege neuen Administrator an</de>
-            <pl>tworzenie nowego administratora</pl>
-            <cn>创建管理者</cn>
-            <fr>créer un nouvel administrateur</fr>
-            <bg>създаване на нов администратор</bg>
-        </string>
         <string id="173">
             <en>login</en>
             <de>Benutzername</de>
@@ -1616,30 +1584,6 @@ Note: You can add new languages by inserting "<new_language>string translated in
             <fr>objets disponibles</fr>
             <bg>достъпни обекти</bg>
         </string>
-        <string id="200">
-            <en>no available objects</en>
-            <de>keine verfügbaren Objekte</de>
-            <pl>brak dostępnych obiektów</pl>
-            <cn>不可用对象</cn>
-            <fr>objets non disponibles</fr>
-            <bg>няма достъпни обекти</bg>
-        </string>
-        <string id="201">
-            <en>reset search filter</en>
-            <de>Suche zurücksetzen</de>
-            <pl>resetuj filtr wyszukiwania</pl>
-            <cn>重设搜索选项</cn>
-            <fr>réinitialiser le filtre de recherche</fr>
-            <bg>обнови филтъра за търсене</bg>
-        </string>
-        <string id="202">
-            <en>actions</en>
-            <de>Aktionen</de>
-            <pl>akcje</pl>
-            <cn>操作</cn>
-            <fr>actions</fr>
-            <bg>действия</bg>
-        </string>
         <string id="203">
             <en>edit object</en>
             <de>bearbeite Objekt</de>
@@ -1656,53 +1600,13 @@ Note: You can add new languages by inserting "<new_language>string translated in
             <fr>supprimer l'objet</fr>
             <bg>изтриване на обект</bg>
         </string>
-        <string id="205" js="1">
+        <string id="205">
             <en>add new object</en>
             <de>füge neues Objekt hinzu</de>
             <pl>dodaj nowy obiekt</pl>
             <cn>添加对象</cn>
             <fr>ajouter un nouvel objet</fr>
             <bg>прибави нов обект</bg>
-        </string>
-        <string id="206">
-            <en>first page</en>
-            <de>erste Seite</de>
-            <pl>pierwsza strona</pl>
-            <cn>首页</cn>
-            <fr>première page</fr>
-            <bg>първа страница</bg>
-        </string>
-        <string id="207">
-            <en>previous page</en>
-            <de>vorherige Seite</de>
-            <pl>poprzednia strona</pl>
-            <cn>前一页</cn>
-            <fr>page précédente</fr>
-            <bg>предишна страница</bg>
-        </string>
-        <string id="208">
-            <en>next page</en>
-            <de>nächste Seite</de>
-            <pl>następna strona</pl>
-            <cn>下一页</cn>
-            <fr>page suivante</fr>
-            <bg>следваща страница</bg>
-        </string>
-        <string id="209">
-            <en>last page</en>
-            <de>letzte Seite</de>
-            <pl>ostatnia strona</pl>
-            <cn>尾页</cn>
-            <fr>dernière page</fr>
-            <bg>последна страница</bg>
-        </string>
-        <string id="210">
-            <en>per page</en>
-            <de>pro Seite</de>
-            <pl>na stronę</pl>
-            <cn>每页</cn>
-            <fr>par page</fr>
-            <bg>на страница</bg>
         </string>
         <string id="211">
             <en>login to platform</en>
@@ -1759,30 +1663,6 @@ Note: You can add new languages by inserting "<new_language>string translated in
             <cn>此变量类型为</cn>
             <fr>cette variable est</fr>
             <bg>видът на тази променлива е</bg>
-        </string>
-        <string id="218">
-            <en>no output from this HTML template</en>
-            <de>keine Ausgabe von diesem HTML Template</de>
-            <pl>brak zwrotu na tym szablonie HTML</pl>
-            <cn>此HTML模板无输出</cn>
-            <fr>aucune entrée de  provenant de ce modèle HTML</fr>
-            <bg>няма резултат от този HTML шаблон</bg>
-        </string>
-        <string id="219">
-            <en>GO TO SECTION</en>
-            <de>GEHE ZU SEKTION</de>
-            <pl>PRZEJDŹ DO SEKCJI</pl>
-            <cn>前往章节</cn>
-            <fr>ALLER À LA SECTION</fr>
-            <bg>ИДИ В СЕКЦИЯТА</bg>
-        </string>
-        <string id="220">
-            <en>sets which section should be run next</en>
-            <fr>indique quelle section doit être activée par la suite</fr>
-            <de>legt die als nächstes auszuführende Sektion fest</de>
-            <pl>wskazuje która sekcja powinna być wykonana następna</pl>
-            <cn>设置下一章节为</cn>
-            <bg>показва коя следваща секция ще бъде стартирана</bg>
         </string>
         <string id="221" js="1">
             <en>not equal</en>
@@ -1880,14 +1760,6 @@ Note: You can add new languages by inserting "<new_language>string translated in
             <fr>ajouter une section logique du test à une clause SI</fr>
             <bg>прибави секцията с тестовата логика към АКО условието</bg>
         </string>
-        <string id="233">
-            <en>SET VARIABLE</en>
-            <de>SET VARIABLE</de>
-            <pl>USTAW ZMIENNĄ</pl>
-            <cn>设置变量</cn>
-            <fr>DÉFINIR UNE VARIABLE</fr>
-            <bg>СЪЗДАЙ ПРОМЕНЛИВА</bg>
-        </string>
         <string id="235">
             <en>from table</en>
             <de>aus Tabelle</de>
@@ -1976,14 +1848,6 @@ Note: You can add new languages by inserting "<new_language>string translated in
             <fr>DANS LE TABLEAU</fr>
             <bg>ID на теста. Чети само променливите.</bg>
         </string>
-        <string id="247">
-            <en>IN TABLE</en>
-            <de>IN TABLE</de>
-            <pl>W TABELI</pl>
-            <cn>位于表格</cn>
-            <fr>DANS LE TABLEAU</fr>
-            <bg>в таблицата</bg>
-        </string>
         <string id="248">
             <en>insert</en>
             <de>einfügen</de>
@@ -2015,14 +1879,6 @@ Note: You can add new languages by inserting "<new_language>string translated in
             <cn>设置</cn>
             <fr>DÉFINIR</fr>
             <bg>СЪЗДАЙ</bg>
-        </string>
-        <string id="252">
-            <en>search list</en>
-            <de>Suchliste</de>
-            <pl>przeszukaj listę</pl>
-            <cn>搜索列表</cn>
-            <fr>Chercher la liste</fr>
-            <bg>списък за търсене</bg>
         </string>
         <string id="253">
             <en>Select the type of section to be added to the test logic</en>
@@ -2200,69 +2056,13 @@ Note: You can add new languages by inserting "<new_language>string translated in
             <fr>Sauvegarder l'objet</fr>
             <bg>Съхранение на обект</bg>
         </string>
-        <string id="275" js="1">
-            <en>R</en>
-            <de>R</de>
-            <pl>R</pl>
-            <cn>R</cn>
-            <fr>R</fr>
-            <bg>R</bg>
-        </string>
-        <string id="276" js="1">
-            <en><![CDATA[R & HTML]]></en>
-            <de><![CDATA[R & HTML]]></de>
-            <pl>R i HTML</pl>
-            <cn><![CDATA[R & HTML]]></cn>
-            <fr><![CDATA[R & HTML]]></fr>
-            <bg><![CDATA[R и HTML]]></bg>
-        </string>
-        <string id="277">
-            <en>IN</en>
-            <de>IN</de>
-            <pl>W</pl>
-            <cn>位于</cn>
-            <fr>non connecté</fr>
-            <bg>ID</bg>
-        </string>
         <string id="278" js="1">
             <en>Not logged in</en>
             <de>Nicht eingeloggt</de>
             <pl>Nie zalogowany</pl>
             <cn>未登入</cn>
-            <fr>DE</fr>
+            <fr></fr>
             <bg>Не сте влезли</bg>
-        </string>
-        <string id="279">
-            <en>FROM</en>
-            <de>FROM</de>
-            <pl>Z</pl>
-            <cn>来自</cn>
-            <fr>DE</fr>
-            <bg>ОТ</bg>
-        </string>
-        <string id="280" js="1">
-            <en>default</en>
-            <de>standard</de>
-            <pl>domyślny</pl>
-            <cn>默认</cn>
-            <fr>alphanumérique</fr>
-            <bg>по подразбиране</bg>
-        </string>
-        <string id="281" js="1">
-            <en>string</en>
-            <de>Zeichenkette</de>
-            <pl>ciąg znaków</pl>
-            <cn>字符串</cn>
-            <fr>alphanumérique</fr>
-            <bg>редица от знаци</bg>
-        </string>
-        <string id="282" js="1">
-            <en>numeric</en>
-            <de>numerisch</de>
-            <pl>numeryczny</pl>
-            <cn>数值</cn>
-            <fr>numérique</fr>
-            <bg>цифров</bg>
         </string>
         <string id="283">
             <en>This is a system variable</en>
@@ -2528,14 +2328,6 @@ Note: You can add new languages by inserting "<new_language>string translated in
             <fr><![CDATA[Énoncé soumis. Le bouton au nom de <b>{0}</b> cliqué.]]></fr>
             <bg>Айтемът изпратен. Лимитът от време достигнат.</bg>
         </string>
-        <string id="316" js="1">
-            <en><![CDATA[Item submitted. Button with name <b>{0}</b> clicked.]]></en>
-            <de><![CDATA[Item abgeschickt. Knopf mit mit Namen <b>{0}</b> geklickt.]]></de>
-            <pl><![CDATA[Element wysłany. Przycisk o nazwie <b>{0}</b> został kliknięty.]]></pl>
-            <cn><![CDATA[提交项目。按键名称 <b>{0}</b> 。]]></cn>
-            <fr><![CDATA[Énoncé soumis. Le bouton au nom de <b>{0}</b> cliqué.]]></fr>
-            <bg><![CDATA[Айтемът е изпратен. Бутонът <b>{0}</b> е натиснат.]]></bg>
-        </string>
         <string id="317" js="1">
             <en>variables send</en>
             <de>abgesandte Variablen</de>
@@ -2543,14 +2335,6 @@ Note: You can add new languages by inserting "<new_language>string translated in
             <cn>发送变量</cn>
             <fr>gamme</fr>
             <bg>променливите изпратени.</bg>
-        </string>
-        <string id="318" js="1">
-            <en>range</en>
-            <de>range</de>
-            <pl>zakres</pl>
-            <cn>范围</cn>
-            <fr>gamme</fr>
-            <bg>Айтемът изпратен. Лимитът от време достигнат.</bg>
         </string>
         <string id="319" js="1">
             <en>please wait...</en>
@@ -2836,7 +2620,7 @@ Note: You can add new languages by inserting "<new_language>string translated in
         <string id="354" js="1">
             <en>integer</en>
             <de>Ganzzahl</de>
-            <pl>liczba calkowita</pl>
+            <pl>liczba całkowita</pl>
             <cn>整数</cn>
             <fr>nombre entier</fr>
             <bg>цяло число</bg>
@@ -2849,18 +2633,10 @@ Note: You can add new languages by inserting "<new_language>string translated in
             <fr>flotter</fr>
             <bg>число с плаваща запетая</bg>            
         </string>
-        <string id="356">
-            <en>choose the HTML template:</en>
-            <de>Wähle HMTL Template aus:</de>
-            <pl>wybierz szablon HTML:</pl>
-            <cn>选择HTML模板：</cn>
-            <fr>choisir le modèle HTML</fr>
-            <bg>избери HTML шаблон</bg>
-        </string>
         <string id="357">
             <en>IF</en>
             <de>WENN</de>
-            <pl>JESLI</pl>
+            <pl>JEŚLI</pl>
             <cn>如果</cn>
             <fr>SI</fr>
             <bg>АКО</bg>
@@ -2907,7 +2683,7 @@ Note: You can add new languages by inserting "<new_language>string translated in
         </string>
         <string id="363">
             <en>( javascripts and not inline CSS will be turned off )</en>
-            <pl>( javascript i CSS nie inline beda wylaczone )</pl>
+            <pl>( javascript i CSS nie inline będa wyłączone )</pl>
             <de></de>
             <cn></cn>
             <fr></fr>
@@ -2931,7 +2707,7 @@ Note: You can add new languages by inserting "<new_language>string translated in
         </string>
         <string id="366" js="1">
             <en>clear table</en>
-            <pl>wyczysc tabele</pl>
+            <pl>wyczyść tabelę</pl>
             <de></de>
             <cn></cn>
             <fr></fr>
@@ -2947,15 +2723,15 @@ Note: You can add new languages by inserting "<new_language>string translated in
         </string>
         <string id="368" js="1">
             <en>Are you sure you want to clear the table? All rows will be deleted.</en>
-            <pl>Jestes pewien, ze chcesz wyczyscic tabele? Wszystkie rzedy zostana usuniete.</pl>
+            <pl>Jesteś pewien, że chcesz wyczyścić tabelę? Wszystkie rzędy zostaną usunięte.</pl>
             <de></de>
             <cn></cn>
             <fr></fr>
             <bg></bg>
         </string>
         <string id="369">
-            <en>Check this checkbox if you want to release all resources used by test session after executing this section. This will remove test session.</en>
-            <pl>Zaznacz ten checkbox jesli chcesz zwolnic wszystkie zasoby wykorzystywane przez sesje testu po uruchomieniu tej sekcji. Czynnosc ta usunie sesje testu.</pl>
+            <en>Check this checkbox if you want to release all resources used by test session after executing this section.</en>
+            <pl>Zaznacz ten checkbox jeśli chcesz zwolnić wszystkie zasoby wykorzystywane przez sesję testu po uruchomieniu tej sekcji.</pl>
             <de></de>
             <cn></cn>
             <fr></fr>
@@ -2963,7 +2739,7 @@ Note: You can add new languages by inserting "<new_language>string translated in
         </string>
         <string id="370" js="1">
             <en>Version mismatch between imported object and Concerto platform. You can only import objects exported from the same version of Concerto.</en>
-            <pl>Wersje importowanego obiektu oraz platformy Concerto sie nie zgadzaja. Mozna tylko importowac obiekty wyeksportowane z tej samej wersji Concerto.</pl>
+            <pl>Wersje importowanego obiektu oraz platformy Concerto się nie zgadzają. Można tylko importować obiekty wyeksportowane z tej samej wersji Concerto.</pl>
             <de></de>
             <cn></cn>
             <fr></fr>
@@ -2996,7 +2772,7 @@ Note: You can add new languages by inserting "<new_language>string translated in
         <string id="374" js="1">
             <en>download from online library</en>
             <de></de>
-            <pl>sciagnij z biblioteki online</pl>
+            <pl>ściągnij z biblioteki online</pl>
             <cn></cn>
             <fr></fr>
             <bg></bg>
@@ -3004,7 +2780,7 @@ Note: You can add new languages by inserting "<new_language>string translated in
         <string id="375">
             <en>upload to online library</en>
             <de></de>
-            <pl>wyslij do biblioteki online</pl>
+            <pl>wyślij do biblioteki online</pl>
             <cn></cn>
             <fr></fr>
             <bg></bg>
@@ -3060,7 +2836,7 @@ Note: You can add new languages by inserting "<new_language>string translated in
         <string id="382" js="1">
             <en>uploading to online library</en>
             <de></de>
-            <pl>wysylanie do biblioteki online</pl>
+            <pl>wysyłanie do biblioteki online</pl>
             <cn></cn>
             <fr></fr>
             <bg></bg>
@@ -3068,7 +2844,7 @@ Note: You can add new languages by inserting "<new_language>string translated in
         <string id="383" js="1">
             <en>upload</en>
             <de></de>
-            <pl>wysylij</pl>
+            <pl>wyślij</pl>
             <cn></cn>
             <fr></fr>
             <bg></bg>
@@ -3076,7 +2852,7 @@ Note: You can add new languages by inserting "<new_language>string translated in
         <string id="384" js="1">
             <en>object uploaded</en>
             <de></de>
-            <pl>obiekt wyslany</pl>
+            <pl>obiekt wysłany</pl>
             <cn></cn>
             <fr></fr>
             <bg></bg>
@@ -3084,7 +2860,7 @@ Note: You can add new languages by inserting "<new_language>string translated in
         <string id="385" js="1">
             <en>upload date</en>
             <de></de>
-            <pl>data wyslania</pl>
+            <pl>data wysłania</pl>
             <cn></cn>
             <fr></fr>
             <bg></bg>
@@ -3092,7 +2868,7 @@ Note: You can add new languages by inserting "<new_language>string translated in
         <string id="386" js="1">
             <en>download count</en>
             <de></de>
-            <pl>ilosc pobran</pl>
+            <pl>ilość pobrań</pl>
             <cn></cn>
             <fr></fr>
             <bg></bg>
@@ -3108,7 +2884,7 @@ Note: You can add new languages by inserting "<new_language>string translated in
         <string id="388" js="1">
             <en>object downloaded</en>
             <de></de>
-            <pl>obiekt sciagniety</pl>
+            <pl>obiekt ściągnięty</pl>
             <cn></cn>
             <fr></fr>
             <bg></bg>
@@ -3116,7 +2892,7 @@ Note: You can add new languages by inserting "<new_language>string translated in
         <string id="389" js="1">
             <en>Object download failed</en>
             <de></de>
-            <pl>Nie powiodlo sie sciagniecie obiektu.</pl>
+            <pl>Nie powiodło się ściągnięcie obiektu.</pl>
             <cn></cn>
             <fr></fr>
             <bg></bg>
@@ -3124,7 +2900,7 @@ Note: You can add new languages by inserting "<new_language>string translated in
         <string id="390">
             <en>show section details</en>
             <de></de>
-            <pl>pokaz detale sekcji</pl>
+            <pl>pokaż detale sekcji</pl>
             <cn></cn>
             <fr></fr>
             <bg></bg>
@@ -3132,7 +2908,7 @@ Note: You can add new languages by inserting "<new_language>string translated in
         <string id="391" js="1">
             <en>loop</en>
             <de></de>
-            <pl>petla</pl>
+            <pl>pętla</pl>
             <cn></cn>
             <fr></fr>
             <bg></bg>
@@ -3140,7 +2916,7 @@ Note: You can add new languages by inserting "<new_language>string translated in
         <string id="392" js="1">
             <en>test inclusion</en>
             <de></de>
-            <pl>wlaczenie testu</pl>
+            <pl>włączenie testu</pl>
             <cn></cn>
             <fr></fr>
             <bg></bg>
@@ -3148,15 +2924,15 @@ Note: You can add new languages by inserting "<new_language>string translated in
         <string id="393">
             <en>Includes selected test. Tests cross-dependancies are not recommended.</en>
             <de></de>
-            <pl>Dolacza wybrany test. Krzyzowe zaleznosci miedzy testami nie sa zalecane.</pl>
+            <pl>Dołącza wybrany test. Krzyżowe zależności między testami nie są zalecane.</pl>
             <cn></cn>
             <fr></fr>
             <bg></bg>
         </string>
         <string id="394">
-            <en><![CDATA[Loops executes specific block as long as conditon is met. You can choose from one of the two loops:<ul><li><b>FOR</b>: at the beggining of the loop index variable is declared and value is assigned. Each iteration changes index variable by some value and checks if condition is still met.</li><li><b>WHILE</b>: every iteration checks if condition is met</li>]]></en>
+            <en><![CDATA[Loops executes specific instruction block as long as conditon is met. You can choose from one of the two loops:<ul><li><b>FOR</b>: at the beggining of the loop index variable is declared and value is assigned. Each iteration changes index variable by some value and checks if condition is still met.</li><li><b>WHILE</b>: every iteration checks if condition is still met</li>]]></en>
             <de></de>
-            <pl><![CDATA[Petle wykonuja okreslony blok dotad az warunek jest spelniony. Mozna wybrac jedna z dwoch petli:<ul><li><b>FOR</b>: na poczatku petli zmienna indeksu jest zadeklarowana i przypisana jest jej wartosc. Kazda iteracja zmienia zmienna indeksu o okreslona wartosc i sprawdza czy warunek dalej jest spelniony.</li><li><b>WHILE</b>: kazda iteracja sprawdza czy warunek jest dalej spelniony</li>]]></pl>
+            <pl><![CDATA[Pętle wykonują określony blok instrukcji dotąd aż warunek jest spełniony. Można wybrać jedną z dwóch pętli:<ul><li><b>FOR</b>: na początku pętli zadeklarowana jest zmienna indeksu i przypisana jest do niej wartość. Każda iteracja zmienia zmienną indeksu o określoną wartość i sprawdza czy warunek dalej jest spełniony.</li><li><b>WHILE</b>: każda iteracja sprawdza czy warunek jest dalej spełniony</li>]]></pl>
             <cn></cn>
             <fr></fr>
             <bg></bg>
@@ -3196,7 +2972,7 @@ Note: You can add new languages by inserting "<new_language>string translated in
         <string id="399">
             <en>change by</en>
             <de></de>
-            <pl>zmien o</pl>
+            <pl>zmień o</pl>
             <cn></cn>
             <fr></fr>
             <bg></bg>
@@ -3204,7 +2980,7 @@ Note: You can add new languages by inserting "<new_language>string translated in
         <string id="400">
             <en>initial value</en>
             <de></de>
-            <pl>poczatkowa wartosc</pl>
+            <pl>początkowa wartość</pl>
             <cn></cn>
             <fr></fr>
             <bg></bg>
@@ -3212,7 +2988,7 @@ Note: You can add new languages by inserting "<new_language>string translated in
         <string id="401" js="1">
             <en>expand all sections</en>
             <de></de>
-            <pl>rozwin wszystkie sekcje</pl>
+            <pl>rozwiń wszystkie sekcje</pl>
             <cn></cn>
             <fr></fr>
             <bg></bg>
@@ -3220,7 +2996,7 @@ Note: You can add new languages by inserting "<new_language>string translated in
         <string id="402" js="1">
             <en>collapse all sections</en>
             <de></de>
-            <pl>zwin wszystkie sekcje</pl>
+            <pl>zwiń wszystkie sekcje</pl>
             <cn></cn>
             <fr></fr>
             <bg></bg>
@@ -3228,7 +3004,7 @@ Note: You can add new languages by inserting "<new_language>string translated in
         <string id="403">
             <en>test input/output</en>
             <de></de>
-            <pl>wejscie/wyjscie testu</pl>
+            <pl>wejście/wyjście testu</pl>
             <cn></cn>
             <fr></fr>
             <bg></bg>
@@ -3244,7 +3020,7 @@ Note: You can add new languages by inserting "<new_language>string translated in
         <string id="405">
             <en>Define test input parameters.</en>
             <de></de>
-            <pl>Zadeklaruj parametry wejsciowe testu.</pl>
+            <pl>Zadeklaruj parametry wejściowe testu.</pl>
             <cn></cn>
             <fr></fr>
             <bg></bg>
@@ -3268,7 +3044,7 @@ Note: You can add new languages by inserting "<new_language>string translated in
         <string id="408">
             <en>HTML template head tag. Everything declared here will be available in every templates in the session. Session variables can't be inserted here.</en>
             <de></de>
-            <pl>Tag head szablonu HTML. Wszystko co zostanie tutaj zadeklarowane bedzie dostepne we wszystkich szablonach w calej sesji. Zmienne sesyjne nie moga byc tutaj uzywane.</pl>
+            <pl>Tag head szablonu HTML. Wszystko co zostanie tutaj zadeklarowane będzie dostępne we wszystkich szablonach w całej sesji. Zmienne sesyjne nie mogą być tutaj używane.</pl>
             <cn></cn>
             <fr></fr>
             <bg></bg>

@@ -639,9 +639,10 @@ Test.uiTablesChanged=function(){
     });
 }
 
-Test.variableValidation=function(value){
+Test.variableValidation=function(value,dots){
+    if(dots == null) dots = true;
     var oldValue = value;
-    var newValue = Test.convertVariable(oldValue);
+    var newValue = Test.convertVariable(oldValue,dots);
     if(oldValue!=newValue) return false;
     else return true;
 }
@@ -1099,37 +1100,10 @@ Test.startRunTimeDebug=function(){
         }
         
         //values send
-        var html = "<table><caption class='ui-widget-header'>"+dictionary["s317"]+"</caption><thead><tr><th class='ui-widget-header'>"+dictionary["s70"]+"</th><th class='ui-widget-header'>"+dictionary["s306"]+"</th><th class='ui-widget-header'>"+dictionary["s318"]+"</th><th class='ui-widget-header'>"+dictionary["s122"]+"</th></tr></thead><tbody>";
+        var html = "<table><caption class='ui-widget-header'>"+dictionary["s317"]+"</caption><thead><tr><th class='ui-widget-header'>"+dictionary["s70"]+"</th><th class='ui-widget-header'>"+dictionary["s306"]+"</th></tr></thead><tbody>";
         for(var i=0;i<vals.length;i++){
             var val = jQuery.parseJSON(vals[i]);
-            var visibility = "";
-            var type = "";
-            switch(parseInt(val.visibility)){
-                case 0:
-                    visibility = dictionary["s275"];
-                    break;
-                case 1:
-                    visibility = dictionary["s18"];
-                    break;
-                case 2:
-                    visibility = dictionary["s276"];
-                    break;
-            }
-            switch(parseInt(val.type)){
-                case 0:
-                    type = dictionary["s280"];
-                    break;
-                case 1:
-                    type = dictionary["s281"];
-                    break;
-                case 2:
-                    type = dictionary["s282"];
-                    break;
-                case 3:
-                    type="NA";
-                    break;
-            }
-            html+="<tr><td class='ui-widget-content'>"+val.name+"</td><td class='ui-widget-content'>"+val.value+"</td><td class='ui-widget-content'>"+visibility+"</td><td class='ui-widget-content'>"+type+"</td></tr>";
+            html+="<tr><td class='ui-widget-content'>"+val.name+"</td><td class='ui-widget-content'>"+val.value+"</td></tr>";
         }
         html+="</tbody></table>";
         Test.appendDebugConsole(html);
