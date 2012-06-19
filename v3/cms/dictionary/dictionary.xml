@@ -56,7 +56,7 @@ Note: You can add new languages by inserting "<new_language>string translated in
             <en>changing description</en>
             <de>Ändern der Beschreibung</de>
             <pl>zmiana opisu</pl>
-            <cn>改变描述</cn>
+            <cn>修改描述</cn>
             <fr>changement de description</fr>
             <bg>промяна на описанието</bg>
         </string>
@@ -80,7 +80,7 @@ Note: You can add new languages by inserting "<new_language>string translated in
             <en>HTML controls `name` validation failed. Value has been changed.\r\n\r\nold value: {0}\r\nnew value: {1}</en>
             <de>HTML Kontrollüberprüfung von `Name` schlug fehl. Wert wurde geändert.\r\n\r\nAlter Wert: {0}\r\nNeuer Wert: {1}</de>
             <pl>Walidacja pola `nazwa` kontrolki HTML nie powiodła się. Wartość została zmieniona.\r\n\r\npoprzednia wartość: {0}\r\nnowa wartość: {1}</pl>
-            <cn>HTML控制`名称`验证失败。数值已更改。\r\n\r\n旧数值: {0}\r\n新数值: {1}</cn>
+            <cn>HTML控制变量`名称`验证失败。数值已更改。\r\n\r\n旧数值: {0}\r\n新数值: {1}</cn>
             <fr>HTML le contrôle de la variable `nom` a échoué. la valeur a été changée\n\r\nancienne valeur: {0}\r\nnouvelle valeur: {1}</fr>
             <bg>Валидизацията на името на HTML контролата неуспешна. Стойността беше променена.\r\n\r\nстара стойност: {0}\r\nнова стойност: {1}</bg>                                      
         </string>
@@ -248,7 +248,7 @@ Note: You can add new languages by inserting "<new_language>string translated in
             <en>Are you sure you want to replace the current table structure and data with that from the selected file?</en>
             <de>Sind sie sicher, dass Sie die aktuelle Tabellenstruktur und Daten durch die aus der ausgewählten Datei ersetzen wollen?</de>
             <pl>Jesteś pewien że chcesz zastąpić obecną strukturę i dane tabeli tymi z pliku?</pl>
-            <cn>确认使用所选文件表格结构数据替代当前表格？</cn>
+            <cn>确认使用所选文件表格结构与数据替代当前表格？</cn>
             <fr>Êtes-vous certain de vouloir remplacer la structure et les données du présent tableau par celles du fichier sélectionné?</fr>
             <bg>Сигурни ли сте, че искате да заместите настоящата структура и данни на таблицата с тези от избраната таблица</bg>
         </string>
@@ -264,7 +264,7 @@ Note: You can add new languages by inserting "<new_language>string translated in
             <en>There was an error in importing table structure and data.</en>
             <de>Es gab einen Fehler beim importieren der Tabellenstruktur und Daten.</de>
             <pl>Wystąpił błąd podczas importowania struktury i danych tabeli.</pl>
-            <cn>导入表格结构数据发生错误。</cn>
+            <cn>导入表格结构与数据发生错误。</cn>
             <fr>Une erreur est survenue en important la structure et les données du tableau.</fr>
             <bg>Има грешка при импортирането на стуктурата и данните на таблицата</bg>
         </string>
@@ -344,7 +344,7 @@ Note: You can add new languages by inserting "<new_language>string translated in
             <en>Directly enter R code that is to be interpreted.</en>
             <de>Zu interpretierenden R Code direkt eingeben.</de>
             <pl>Używając tej sekcji można zinterpretować dowolny kod R.</pl>
-            <cn>直接编译R代码。点击输入需编译的R代码。</cn>
+            <cn>直接输入需编译的R代码。</cn>
             <fr>Entrez directement le code R qui doit être interprété.</fr>
             <bg>Директно въведи R кода за интерпретация</bg>
         </string>
@@ -408,7 +408,7 @@ Note: You can add new languages by inserting "<new_language>string translated in
             <en>This is the custom test section.</en>
             <de>Das ist eine benutzerdefinierte Testsektion.</de>
             <pl>To jest sekcja własna.</pl>
-            <cn>这是自主章节。</cn>
+            <cn>这是自主测试章节。</cn>
             <fr> Ceci est une section personnalisée du test.</fr>
             <bg>Това е персонализирана секция от теста</bg>
         </string>
@@ -552,7 +552,7 @@ Note: You can add new languages by inserting "<new_language>string translated in
             <en>Password and password confirmation do not match!</en>
             <de>Passwort und Passwortwiederhohlung stimmen nicht überein!</de>
             <pl>Hasło i jego potwierdzenie muszą się zgadzać!</pl>
-            <cn>密码与密码确认不一致！</cn>
+            <cn>两次输入的密码不一致！</cn>
             <fr>Le mot de passe et la confirmation du mot de passe ne correspondent pas!</fr>
             <bg>Паролата и потвърждението на паролата не съответстват</bg>
         </string>
@@ -808,7 +808,7 @@ Note: You can add new languages by inserting "<new_language>string translated in
             <en>Brief description of the object.</en>
             <de></de>
             <pl>Krótki opis obiektu.</pl>
-            <cn></cn>
+            <cn>对象的简要描述</cn>
             <fr></fr>
             <bg></bg>
         </string>
@@ -864,7 +864,7 @@ Note: You can add new languages by inserting "<new_language>string translated in
             <en>Define section input parameters. Use variables thus declared in the R code section.</en>
             <de>Definiere Eingabeparameter der Sektion. Benutze Variabeln die in der R code Sektion deklariert wurden.</de>
             <pl>Tutaj możesz zdefiniować parametry wejściowe sekcji. Można używać zmiennych które tutaj zostały zdeklarowane w kodzie R sekcji.</pl>
-            <cn>定义章节输入参数。使用在在章节R代码中声明的变量。</cn>
+            <cn>定义章节输入参数。使用在R代码章节中声明的变量。</cn>
             <fr>Définir les paramètres d'entrée de la section. utiliser les variables ainsi définies dans le code R de la section.</fr>
             <bg>Дефиниране на входните параметри. Използване на променливи, декларирани вече в секцията на R кода</bg>
         </string>
