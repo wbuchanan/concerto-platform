@@ -440,7 +440,7 @@ Note: You can add new languages by inserting "<new_language>string translated in
             <en>IF statement</en>
             <de>IF Aussage</de>
             <pl>twierdzenie JEŚLI</pl>
-            <cn>条件性语句</cn>
+            <cn>IF语句</cn>
             <fr>expression SI</fr>
             <bg>АКО твърдение</bg>
         </string>
@@ -1748,7 +1748,7 @@ Note: You can add new languages by inserting "<new_language>string translated in
             <en>THEN</en>
             <de>THEN</de>
             <pl>WTEDY</pl>
-            <cn>则</cn>
+            <cn>THEN</cn>
             <fr>ALORS</fr>
             <bg>ТОГАВА</bg>
         </string>
@@ -1756,7 +1756,7 @@ Note: You can add new languages by inserting "<new_language>string translated in
             <en>add test logic section to IF clause</en>
             <de>Füge Testlogiksektion zu WENN Aussage hinzu.</de>
             <pl>dodaj sekcję logiki testu do bloku JEŚLI</pl>
-            <cn>为条件语句添加测试逻辑章节</cn>
+            <cn>为IF语句添加测试逻辑章节</cn>
             <fr>ajouter une section logique du test à une clause SI</fr>
             <bg>прибави секцията с тестовата логика към АКО условието</bg>
         </string>
@@ -2637,7 +2637,7 @@ Note: You can add new languages by inserting "<new_language>string translated in
             <en>IF</en>
             <de>WENN</de>
             <pl>JEŚLI</pl>
-            <cn>如果</cn>
+            <cn>IF</cn>
             <fr>SI</fr>
             <bg>АКО</bg>
         </string>
@@ -2941,7 +2941,7 @@ Note: You can add new languages by inserting "<new_language>string translated in
             <en>FOR</en>
             <de></de>
             <pl>FOR</pl>
-            <cn>当</cn>
+            <cn>FOR</cn>
             <fr></fr>
             <bg></bg>
         </string>
@@ -2949,7 +2949,7 @@ Note: You can add new languages by inserting "<new_language>string translated in
             <en>WHILE</en>
             <de></de>
             <pl>WHILE</pl>
-            <cn>当</cn>
+            <cn>WHILE</cn>
             <fr></fr>
             <bg></bg>
         </string>
@@ -2973,7 +2973,7 @@ Note: You can add new languages by inserting "<new_language>string translated in
             <en>change by</en>
             <de></de>
             <pl>zmień o</pl>
-            <cn>改变</cn>
+            <cn>递增</cn>
             <fr></fr>
             <bg></bg>
         </string>
