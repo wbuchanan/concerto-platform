@@ -79,7 +79,7 @@ if (Ini::$public_registration) {
     <div class="padding ui-widget-content ui-corner-all margin">
         <table>
             <tr>
-                <td class="noWrap horizontalPadding ui-widget-header"><?= Language::string(173) ?>:</td>
+                <td class="noWrap horizontalPadding tdFormLabel"><?= Language::string(173) ?>:</td>
                 <td><span class="tooltip spanIcon ui-icon ui-icon-help" title="<?= Language::string(260) ?>"></span></td>
                 <td class="fullWidth">
                     <div class="horizontalMargin">
@@ -88,7 +88,7 @@ if (Ini::$public_registration) {
                 </td>
             </tr>
             <tr>
-                <td class="noWrap horizontalPadding ui-widget-header"><?= Language::string(179) ?>:</td>
+                <td class="noWrap horizontalPadding tdFormLabel"><?= Language::string(179) ?>:</td>
                 <td><span class="tooltip spanIcon ui-icon ui-icon-help" title="<?= Language::string(261) ?>"></span></td>
                 <td class="fullWidth">
                     <div class="horizontalMargin">
@@ -108,7 +108,7 @@ if (Ini::$public_registration) {
         <div class="padding ui-widget-content ui-corner-all margin">
             <table>
                 <tr>
-                    <td class="noWrap horizontalPadding ui-widget-header">* <?= Language::string(173) ?>:</td>
+                    <td class="noWrap horizontalPadding tdFormLabel">* <?= Language::string(173) ?>:</td>
                     <td><span class="tooltip spanIcon ui-icon ui-icon-help" title="<?= Language::string(260) ?>"></span></td>
                     <td class="fullWidth">
                         <div class="horizontalMargin">
@@ -117,7 +117,7 @@ if (Ini::$public_registration) {
                     </td>
                 </tr>
                 <tr>
-                    <td class="noWrap horizontalPadding ui-widget-header"><?= Language::string(179) ?>:</td>
+                    <td class="noWrap horizontalPadding tdFormLabel"><?= Language::string(179) ?>:</td>
                     <td><span class="tooltip spanIcon ui-icon ui-icon-help" title="<?= Language::string(261) ?>"></span></td>
                     <td class="fullWidth">
                         <div class="horizontalMargin">
@@ -126,7 +126,7 @@ if (Ini::$public_registration) {
                     </td>
                 </tr>
                 <tr>
-                    <td class="noWrap horizontalPadding ui-widget-header"><?= Language::string(182) ?>:</td>
+                    <td class="noWrap horizontalPadding tdFormLabel"><?= Language::string(182) ?>:</td>
                     <td><span class="tooltip spanIcon ui-icon ui-icon-help" title="<?= Language::string(183) ?>"></span></td>
                     <td class="fullWidth">
                         <div class="horizontalMargin">
@@ -135,7 +135,7 @@ if (Ini::$public_registration) {
                     </td>
                 </tr>
                 <tr>
-                    <td class="noWrap horizontalPadding ui-widget-header">* <?= Language::string(184) ?>:</td>
+                    <td class="noWrap horizontalPadding tdFormLabel">* <?= Language::string(184) ?>:</td>
                     <td><span class="tooltip spanIcon ui-icon ui-icon-help" title="<?= Language::string(186) ?>"></span></td>
                     <td class="fullWidth">
                         <div class="horizontalMargin">
@@ -144,7 +144,7 @@ if (Ini::$public_registration) {
                     </td>
                 </tr>
                 <tr>
-                    <td class="noWrap horizontalPadding ui-widget-header">* <?= Language::string(185) ?>:</td>
+                    <td class="noWrap horizontalPadding tdFormLabel">* <?= Language::string(185) ?>:</td>
                     <td><span class="tooltip spanIcon ui-icon ui-icon-help" title="<?= Language::string(187) ?>"></span></td>
                     <td class="fullWidth">
                         <div class="horizontalMargin">
@@ -153,7 +153,7 @@ if (Ini::$public_registration) {
                     </td>
                 </tr>
                 <tr>
-                    <td class="noWrap horizontalPadding ui-widget-header">* <?= Language::string(174) ?>:</td>
+                    <td class="noWrap horizontalPadding tdFormLabel">* <?= Language::string(174) ?>:</td>
                     <td><span class="tooltip spanIcon ui-icon ui-icon-help" title="<?= Language::string(188) ?>"></span></td>
                     <td class="fullWidth">
                         <div class="horizontalMargin">
@@ -162,7 +162,7 @@ if (Ini::$public_registration) {
                     </td>
                 </tr>
                 <tr>
-                    <td class="noWrap horizontalPadding ui-widget-header"><?= Language::string(189) ?>:</td>
+                    <td class="noWrap horizontalPadding tdFormLabel"><?= Language::string(189) ?>:</td>
                     <td><span class="tooltip spanIcon ui-icon ui-icon-help" title="<?= Language::string(190) ?>"></span></td>
                     <td class="fullWidth">
                         <div class="horizontalMargin">

@@ -39,7 +39,7 @@ if(!isset($obj)){
 <div class="padding ui-widget-content ui-corner-all margin">
     <table>
         <tr>
-            <td class="noWrap horizontalPadding ui-widget-header"><?= Language::string(122) ?></td>
+            <td class="noWrap horizontalPadding tdFormLabel"><?= Language::string(122) ?></td>
             <td><span class="tooltip spanIcon ui-icon ui-icon-help" title="<?= Language::string(253) ?>"></span></td>
             <td class="fullWidth">
                 <select id="formTestSelectSectionType" class="fullWidth ui-widget-content ui-corner-all">

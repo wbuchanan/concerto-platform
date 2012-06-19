@@ -90,7 +90,7 @@ if ($oid != 0)
         <table>
             <caption class="ui-widget-header"><?= $caption ?></caption>
             <tr>
-                <td class="noWrap horizontalPadding ui-widget-header">* <?= Language::string(70) ?>:</td>
+                <td class="noWrap horizontalPadding tdFormLabel">* <?= Language::string(70) ?>:</td>
                 <td><span class="tooltip spanIcon ui-icon ui-icon-help" title="<?= Language::string(135) ?>"></span></td>
                 <td class="fullWidth">
                     <div class="horizontalMargin">
@@ -99,7 +99,7 @@ if ($oid != 0)
                 </td>
             </tr>
             <tr>
-                <td class="noWrap horizontalPadding ui-widget-header"><?= Language::string(97) ?>:</td>
+                <td class="noWrap horizontalPadding tdFormLabel"><?= Language::string(97) ?>:</td>
                 <td><span class="tooltip spanIcon ui-icon ui-icon-help" title="<?= Language::string(98) ?>"></span></td>
                 <td class="fullWidth">
                     <div class="horizontalMargin" align="center">
@@ -108,7 +108,7 @@ if ($oid != 0)
                 </td>
             </tr>
             <tr>
-                <td class="noWrap horizontalPadding ui-widget-header"><?= Language::string(407) ?>:</td>
+                <td class="noWrap horizontalPadding tdFormLabel"><?= Language::string(407) ?>:</td>
                 <td><span class="tooltip spanIcon ui-icon ui-icon-help" title="<?= Language::string(408) ?>"></span></td>
                 <td class="fullWidth">
                     <div class="horizontalMargin" align="left">
@@ -117,7 +117,7 @@ if ($oid != 0)
                 </td>
             </tr>
             <tr>
-                <td class="noWrap horizontalPadding ui-widget-header"><?= Language::string(18) ?>:</td>
+                <td class="noWrap horizontalPadding tdFormLabel"><?= Language::string(18) ?>:</td>
                 <td><span class="tooltip spanIcon ui-icon ui-icon-help" title="<?= Language::string(136) ?>"></span></td>
                 <td class="fullWidth">
                     <div class="horizontalMargin" align="center">
@@ -126,7 +126,7 @@ if ($oid != 0)
                 </td>
             </tr>
             <tr>
-                <td class="noWrap horizontalPadding ui-widget-header"><?= Language::string(72) ?>:</td>
+                <td class="noWrap horizontalPadding tdFormLabel"><?= Language::string(72) ?>:</td>
                 <td><span class="tooltip spanIcon ui-icon ui-icon-help" title="<?= Language::string(137) ?>"></span></td>
                 <td class="fullWidth">
                     <div class="horizontalMargin">
@@ -143,7 +143,7 @@ if ($oid != 0)
     <?php if ($oid > 0 && $logged_user->is_ownerhsip_changeable($obj))
     { ?>
                 <tr>
-                    <td class="noWrap horizontalPadding ui-widget-header"><?= Language::string(71) ?>:</td>
+                    <td class="noWrap horizontalPadding tdFormLabel"><?= Language::string(71) ?>:</td>
                     <td><span class="tooltip spanIcon ui-icon ui-icon-help" title="<?= Language::string(138) ?>"></span></td>
                     <td class="fullWidth">
                         <div class="horizontalMargin">

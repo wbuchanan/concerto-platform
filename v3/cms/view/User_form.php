@@ -81,7 +81,7 @@ if ($oid != 0)
         <table>
             <caption class="ui-widget-header"><?= $caption ?></caption>
             <tr>
-                <td class="noWrap horizontalPadding ui-widget-header">* <?= Language::string(173) ?>:</td>
+                <td class="noWrap horizontalPadding tdFormLabel">* <?= Language::string(173) ?>:</td>
                 <td><span class="tooltip spanIcon ui-icon ui-icon-help" title="<?= Language::string(178) ?>"></span></td>
                 <td class="fullWidth">
                     <div class="horizontalMargin">
@@ -90,7 +90,7 @@ if ($oid != 0)
                 </td>
             </tr>
             <tr>
-                <td class="noWrap horizontalPadding ui-widget-header"><input class="tooltip" type="checkbox" id="form<?= $class_name ?>CheckboxPassword" title="<?= Language::string(180) ?>" <?=$oid==-1?"checked style='display:none;'":""?> /><?= Language::string(179) ?>:</td>
+                <td class="noWrap horizontalPadding tdFormLabel"><input class="tooltip" type="checkbox" id="form<?= $class_name ?>CheckboxPassword" title="<?= Language::string(180) ?>" <?=$oid==-1?"checked style='display:none;'":""?> /><?= Language::string(179) ?>:</td>
                 <td><span class="tooltip spanIcon ui-icon ui-icon-help" title="<?= Language::string(181) ?>"></span></td>
                 <td class="fullWidth">
                     <div class="horizontalMargin">
@@ -100,7 +100,7 @@ if ($oid != 0)
 
             </tr>
             <tr>
-                <td class="noWrap horizontalPadding ui-widget-header"><?= Language::string(182) ?>:</td>
+                <td class="noWrap horizontalPadding tdFormLabel"><?= Language::string(182) ?>:</td>
                 <td><span class="tooltip spanIcon ui-icon ui-icon-help" title="<?= Language::string(183) ?>"></span></td>
                 <td class="fullWidth">
                     <div class="horizontalMargin">
@@ -109,7 +109,7 @@ if ($oid != 0)
                 </td>
             </tr>
             <tr>
-                <td class="noWrap horizontalPadding ui-widget-header">* <?= Language::string(184) ?>:</td>
+                <td class="noWrap horizontalPadding tdFormLabel">* <?= Language::string(184) ?>:</td>
                 <td><span class="tooltip spanIcon ui-icon ui-icon-help" title="<?= Language::string(186) ?>"></span></td>
                 <td class="fullWidth">
                     <div class="horizontalMargin">
@@ -118,7 +118,7 @@ if ($oid != 0)
                 </td>
             </tr>
             <tr>
-                <td class="noWrap horizontalPadding ui-widget-header">* <?= Language::string(185) ?>:</td>
+                <td class="noWrap horizontalPadding tdFormLabel">* <?= Language::string(185) ?>:</td>
                 <td><span class="tooltip spanIcon ui-icon ui-icon-help" title="<?= Language::string(187) ?>"></span></td>
                 <td class="fullWidth">
                     <div class="horizontalMargin">
@@ -127,7 +127,7 @@ if ($oid != 0)
                 </td>
             </tr>
             <tr>
-                <td class="noWrap horizontalPadding ui-widget-header">* <?= Language::string(174) ?>:</td>
+                <td class="noWrap horizontalPadding tdFormLabel">* <?= Language::string(174) ?>:</td>
                 <td><span class="tooltip spanIcon ui-icon ui-icon-help" title="<?= Language::string(188) ?>"></span></td>
                 <td class="fullWidth">
                     <div class="horizontalMargin">
@@ -136,7 +136,7 @@ if ($oid != 0)
                 </td>
             </tr>
             <tr>
-                <td class="noWrap horizontalPadding ui-widget-header"><?= Language::string(189) ?>:</td>
+                <td class="noWrap horizontalPadding tdFormLabel"><?= Language::string(189) ?>:</td>
                 <td><span class="tooltip spanIcon ui-icon ui-icon-help" title="<?= Language::string(190) ?>"></span></td>
                 <td class="fullWidth">
                     <div class="horizontalMargin">
@@ -145,7 +145,7 @@ if ($oid != 0)
                 </td>
             </tr>
             <tr>
-                <td class="noWrap horizontalPadding ui-widget-header"><?= Language::string(176) ?>:</td>
+                <td class="noWrap horizontalPadding tdFormLabel"><?= Language::string(176) ?>:</td>
                 <td><span class="tooltip spanIcon ui-icon ui-icon-help" title="<?= Language::string(191) ?>"></span></td>
                 <td class="fullWidth">
                     <div class="horizontalMargin">
@@ -165,7 +165,7 @@ if ($oid != 0)
                 </td>
             </tr>
             <tr>
-                <td class="noWrap horizontalPadding ui-widget-header"><?= Language::string(177) ?>:</td>
+                <td class="noWrap horizontalPadding tdFormLabel"><?= Language::string(177) ?>:</td>
                 <td><span class="tooltip spanIcon ui-icon ui-icon-help" title="<?= Language::string(192) ?>"></span></td>
                 <td class="fullWidth">
                     <div class="horizontalMargin">

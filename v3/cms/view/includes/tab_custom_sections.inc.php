@@ -39,7 +39,7 @@ include Ini::$path_internal."cms/view/includes/tab.inc.php";
     <div class="padding ui-widget-content ui-corner-all margin">
         <table>
             <tr>
-                <td class="noWrap horizontalPadding ui-widget-header"><?= Language::string(86) ?>:</td>
+                <td class="noWrap horizontalPadding tdFormLabel"><?= Language::string(86) ?>:</td>
                 <td><span class="tooltip spanIcon ui-icon ui-icon-help" title="<?= Language::string(267) ?>"></span></td>
                 <td class="fullWidth">
                     <div class="horizontalMargin" align="center">
@@ -55,7 +55,7 @@ include Ini::$path_internal."cms/view/includes/tab.inc.php";
     <div class="padding ui-widget-content ui-corner-all margin">
         <table>
             <tr>
-                <td class="noWrap horizontalPadding ui-widget-header"><?= Language::string(97) ?>:</td>
+                <td class="noWrap horizontalPadding tdFormLabel"><?= Language::string(97) ?>:</td>
                 <td><span class="tooltip spanIcon ui-icon ui-icon-help" title="<?= Language::string(254) ?>"></span></td>
                 <td class="fullWidth">
                     <div class="horizontalMargin">

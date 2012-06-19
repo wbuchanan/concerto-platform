@@ -40,7 +40,7 @@ if ($logged_user == null)
 <div class="padding ui-widget-content ui-corner-all margin">
     <table>
         <tr>
-            <td class="noWrap horizontalPadding ui-widget-header"><?= Language::string(124) ?>:</td>
+            <td class="noWrap horizontalPadding tdFormLabel"><?= Language::string(124) ?>:</td>
             <td><span class="tooltip spanIcon ui-icon ui-icon-help" title="<?= Language::string(255) ?>"></span></td>
             <td class="fullWidth">
                 <div class="horizontalMargin">

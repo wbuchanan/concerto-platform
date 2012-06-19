@@ -83,7 +83,7 @@ if ($oid != 0)
         <table>
             <caption class="ui-widget-header"><?= $caption ?></caption>
             <tr>
-                <td class="noWrap horizontalPadding ui-widget-header">* <?= Language::string(70) ?>:</td>
+                <td class="noWrap horizontalPadding tdFormLabel">* <?= Language::string(70) ?>:</td>
                 <td><span class="tooltip spanIcon ui-icon ui-icon-help" title="<?= Language::string(141) ?>"></span></td>
                 <td class="fullWidth">
                     <div class="horizontalMargin">
@@ -92,7 +92,7 @@ if ($oid != 0)
                 </td>
             </tr>
             <tr>
-                <td class="noWrap horizontalPadding ui-widget-header"><?= Language::string(97) ?>:</td>
+                <td class="noWrap horizontalPadding tdFormLabel"><?= Language::string(97) ?>:</td>
                 <td><span class="tooltip spanIcon ui-icon ui-icon-help" title="<?= Language::string(98) ?>"></span></td>
                 <td class="fullWidth">
                     <div class="horizontalMargin" align="center">
@@ -101,7 +101,7 @@ if ($oid != 0)
                 </td>
             </tr>
             <tr>
-                <td class="noWrap horizontalPadding ui-widget-header"><?= Language::string(72) ?>:</td>
+                <td class="noWrap horizontalPadding tdFormLabel"><?= Language::string(72) ?>:</td>
                 <td><span class="tooltip spanIcon ui-icon ui-icon-help" title="<?= Language::string(142) ?>"></span></td>
                 <td class="fullWidth">
                     <div class="horizontalMargin">
@@ -118,7 +118,7 @@ if ($oid != 0)
             <?php if ($oid > 0 && $logged_user->is_ownerhsip_changeable($obj))
             { ?>
                 <tr>
-                    <td class="noWrap horizontalPadding ui-widget-header"><?= Language::string(71) ?>:</td>
+                    <td class="noWrap horizontalPadding tdFormLabel"><?= Language::string(71) ?>:</td>
                     <td><span class="tooltip spanIcon ui-icon ui-icon-help" title="<?= Language::string(143) ?>"></span></td>
                     <td class="fullWidth">
                         <div class="horizontalMargin">

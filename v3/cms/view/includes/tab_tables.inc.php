@@ -39,7 +39,7 @@ include Ini::$path_internal."cms/view/includes/tab.inc.php";
     <div class="padding ui-widget-content ui-corner-all margin">
         <table>
             <tr>
-                <td class="noWrap horizontalPadding ui-widget-header"><?= Language::string(330) ?>:</td>
+                <td class="noWrap horizontalPadding tdFormLabel"><?= Language::string(330) ?>:</td>
                 <td><span class="tooltip spanIcon ui-icon ui-icon-help" title="<?= Language::string(332) ?>"></span></td>
                 <td class="fullWidth">
                     <div class="horizontalMargin" align="center">
@@ -48,7 +48,7 @@ include Ini::$path_internal."cms/view/includes/tab.inc.php";
                 </td>
             </tr>
             <tr>
-                <td class="noWrap horizontalPadding ui-widget-header"><?= Language::string(325) ?>:</td>
+                <td class="noWrap horizontalPadding tdFormLabel"><?= Language::string(325) ?>:</td>
                 <td><span class="tooltip spanIcon ui-icon ui-icon-help" title="<?= Language::string(326) ?>"></span></td>
                 <td class="fullWidth">
                     <div class="horizontalMargin" align="center">
@@ -57,7 +57,7 @@ include Ini::$path_internal."cms/view/includes/tab.inc.php";
                 </td>
             </tr>
             <tr>
-                <td class="noWrap horizontalPadding ui-widget-header"><?= Language::string(327) ?>:</td>
+                <td class="noWrap horizontalPadding tdFormLabel"><?= Language::string(327) ?>:</td>
                 <td><span class="tooltip spanIcon ui-icon ui-icon-help" title="<?= htmlspecialchars(Language::string(328)) ?>"></span></td>
                 <td class="fullWidth">
                     <div class="horizontalMargin" align="center">
@@ -73,7 +73,7 @@ include Ini::$path_internal."cms/view/includes/tab.inc.php";
     <div class="padding ui-widget-content ui-corner-all margin">
         <table>
             <tr>
-                <td class="noWrap horizontalPadding ui-widget-header"><?= Language::string(330) ?>:</td>
+                <td class="noWrap horizontalPadding tdFormLabel"><?= Language::string(330) ?>:</td>
                 <td><span class="tooltip spanIcon ui-icon ui-icon-help" title="<?= Language::string(331) ?>"></span></td>
                 <td class="fullWidth">
                     <div class="horizontalMargin" align="center">
@@ -82,7 +82,7 @@ include Ini::$path_internal."cms/view/includes/tab.inc.php";
                 </td>
             </tr>
             <tr>
-                <td class="noWrap horizontalPadding ui-widget-header"><?= Language::string(325) ?>:</td>
+                <td class="noWrap horizontalPadding tdFormLabel"><?= Language::string(325) ?>:</td>
                 <td><span class="tooltip spanIcon ui-icon ui-icon-help" title="<?= Language::string(326) ?>"></span></td>
                 <td class="fullWidth">
                     <div class="horizontalMargin" align="center">
@@ -91,7 +91,7 @@ include Ini::$path_internal."cms/view/includes/tab.inc.php";
                 </td>
             </tr>
             <tr>
-                <td class="noWrap horizontalPadding ui-widget-header"><?= Language::string(327) ?>:</td>
+                <td class="noWrap horizontalPadding tdFormLabel"><?= Language::string(327) ?>:</td>
                 <td><span class="tooltip spanIcon ui-icon ui-icon-help" title="<?= htmlspecialchars(Language::string(328)) ?>"></span></td>
                 <td class="fullWidth">
                     <div class="horizontalMargin" align="center">
@@ -100,7 +100,7 @@ include Ini::$path_internal."cms/view/includes/tab.inc.php";
                 </td>
             </tr>
             <tr>
-                <td class="noWrap horizontalPadding ui-widget-header"><?= Language::string(86) ?>:</td>
+                <td class="noWrap horizontalPadding tdFormLabel"><?= Language::string(86) ?>:</td>
                 <td><span class="tooltip spanIcon ui-icon ui-icon-help" title="<?= Language::string(256) ?>"></span></td>
                 <td class="fullWidth">
                     <div class="horizontalMargin" align="center">
@@ -116,7 +116,7 @@ include Ini::$path_internal."cms/view/includes/tab.inc.php";
     <div class="padding ui-widget-content ui-corner-all margin">
         <table>
             <tr>
-                <td class="noWrap horizontalPadding ui-widget-header"><?= Language::string(86) ?>:</td>
+                <td class="noWrap horizontalPadding tdFormLabel"><?= Language::string(86) ?>:</td>
                 <td><span class="tooltip spanIcon ui-icon ui-icon-help" title="<?= Language::string(267) ?>"></span></td>
                 <td class="fullWidth">
                     <div class="horizontalMargin" align="center">
@@ -135,7 +135,7 @@ include Ini::$path_internal."cms/view/includes/tab.inc.php";
     <div class="padding ui-widget-content ui-corner-all margin">
         <table>
             <tr>
-                <td class="noWrap horizontalPadding ui-widget-header"><?= Language::string(18) ?>:</td>
+                <td class="noWrap horizontalPadding tdFormLabel"><?= Language::string(18) ?>:</td>
                 <td><span class="tooltip spanIcon ui-icon ui-icon-help" title="<?= Language::string(259) ?>"></span></td>
                 <td class="fullWidth">
                     <div class="horizontalMargin">
