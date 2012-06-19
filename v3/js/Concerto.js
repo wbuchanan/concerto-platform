@@ -36,6 +36,7 @@ function Concerto(container,hash,sid,tid,queryPath,callbackGet,callbackSend,debu
     this.data = null;
     this.debug = null;
     this.status = Concerto.statusTypes.created;
+    this.finished = false;
     
     this.timer = 0;
     this.timeObj = null;
@@ -120,6 +121,7 @@ function Concerto(container,hash,sid,tid,queryPath,callbackGet,callbackSend,debu
                 thisClass.sessionID = thisClass.data["TEST_SESSION_ID"];
                 thisClass.testID = thisClass.data["TEST_ID"];
                 thisClass.status = thisClass.data["STATUS"];
+                thisClass.finished = thisClass.data["FINISHED"]==1;
                 
                 if(thisClass.data["STATUS"]==Concerto.statusTypes.template) thisClass.loadTemplate(thisClass.data["HTML"],thisClass.data["HEAD"]);
                 if(thisClass.data["STATUS"]==Concerto.statusTypes.completed) $(thisClass.container).html("");

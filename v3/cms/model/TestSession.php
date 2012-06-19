@@ -248,6 +248,7 @@ class TestSession extends OTable {
         $hash = "";
         $time_limit = 0;
         $Test_id = 0;
+        $finished = 0;
         if (!$debug_syntax) {
             $thisSession = TestSession::from_mysql_id($this->id);
             if ($thisSession != null) {
@@ -313,6 +314,11 @@ class TestSession extends OTable {
         $logged_user = User::get_logged_user();
         if ($logged_user != null)
             $debug_data = $logged_user->is_object_readable($test);
+        
+        if($release==1 || $status == TestSession::TEST_SESSION_STATUS_COMPLETED || $status == TestSession::TEST_SESSION_STATUS_ERROR || $status == TestSession::TEST_SESSION_STATUS_TAMPERED)
+        {
+            $finished = 1;
+        }
 
         if (!$debug_syntax) {
             $response = array(
@@ -324,7 +330,8 @@ class TestSession extends OTable {
                     "TEST_ID" => $Test_id,
                     "TEST_SESSION_ID" => $this->id,
                     "STATUS" => $status,
-                    "TEMPLATE_ID" => $Template_id
+                    "TEMPLATE_ID" => $Template_id,
+                    "FINISHED" => $finished
                 )
             );
         }

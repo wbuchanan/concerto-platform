@@ -28,7 +28,7 @@ test = null;
             'sessionHash': null,
             'params':{},
             'loadingImageSource':null,
-            'callback':function(sessionID,sessionHash, status){}
+            'callback':function(sessionID,sessionHash, status, finished){}
         }, options);
 
         this.each(function() {    
@@ -39,7 +39,7 @@ test = null;
                 settings.testID,
                 settings.WSPath, 
                 function(data) { 
-                    settings.callback.call(this, test.sessionID, test.hash, test.status); 
+                    settings.callback.call(this, test.sessionID, test.hash, test.status, test.finished); 
                 }, 
                 null, 
                 null, 
