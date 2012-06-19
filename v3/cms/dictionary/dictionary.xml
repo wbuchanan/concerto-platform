@@ -864,7 +864,7 @@ Note: You can add new languages by inserting "<new_language>string translated in
             <en>Define section input parameters.</en>
             <de>Definiere Eingabeparameter der Sektion. Benutze Variabeln die in der R code Sektion deklariert wurden.</de>
             <pl>Tutaj możesz zdefiniować parametry wejściowe sekcji. Można używać zmiennych które tutaj zostały zdeklarowane w kodzie R sekcji.</pl>
-            <cn>定义章节输入参数。可在R代码章节中使用已声明的变量。</cn>
+            <cn>定义章节输入参数。</cn>
             <fr>Définir les paramètres d'entrée de la section. utiliser les variables ainsi définies dans le code R de la section.</fr>
             <bg>Дефиниране на входните параметри. Използване на променливи, декларирани вече в секцията на R кода</bg>
         </string>
@@ -896,7 +896,7 @@ Note: You can add new languages by inserting "<new_language>string translated in
             <en>add parameter</en>
             <de>Parametervariable hinzufügen</de>
             <pl>dodaj parametr</pl>
-            <cn>添加参数变量</cn>
+            <cn>添加参数</cn>
             <fr>ajouter une variable paramètre</fr>
             <bg>добави параметър</bg>
         </string>
@@ -904,7 +904,7 @@ Note: You can add new languages by inserting "<new_language>string translated in
             <en>remove parameter</en>
             <de>entferne Parameter</de>
             <pl>usuń parametr</pl>
-            <cn>移除参数变量</cn>
+            <cn>移除参数</cn>
             <fr>enlever une variable paramètre</fr>
             <bg>премахни параметър</bg>
         </string>
@@ -912,7 +912,7 @@ Note: You can add new languages by inserting "<new_language>string translated in
             <en>R code relevant for this custom section. Parameters declared above can be used here.</en>
             <de>Für diese Sektion relevanter R Code. Parameter die oben deklariert wurden, können hier benutzt werden.</de>
             <pl>To jest kod R sekcji. Możesz używać w nim parametrów które zdeklarowałeś powyżej.</pl>
-            <cn>此章节相关R代码。已声明参数可在此使用。</cn>
+            <cn>此自主章节相关R代码。已声明参数可在此使用。</cn>
             <fr>code R pertinent à cette section. Les paramètres déclarés ci-dessus peuvent être utilisés ici.</fr>
             <bg>R код, отнасящ се за тази секция. Параметрите декларирани по-горе, може да бъдат използвани тук</bg>
         </string>
@@ -920,7 +920,7 @@ Note: You can add new languages by inserting "<new_language>string translated in
             <en>Specify variables in this section to be available for use in other test sections.</en>
             <de>Variablen angeben aus dieser Sektion, die global verfügbar sein sollen für andere Testsektionen.</de>
             <pl>Tutaj możesz zdefiniować które zmienne użyte w sekcji chciałbyś przekazać poza sekcję. Zmienne te następnie mogą zostać użyte w innych sekcjach logiki.</pl>
-            <cn>指定此章节内可在其他章节使用的总体变量。</cn>
+            <cn>指定此章节内可用于其他章节的变量。</cn>
             <fr>Spécifier que les variables utilisées dans cette section puissent être disponible globallement, afin qu'elles soient utilisées dans d'autres sections du test.</fr>
             <bg>Дефинирайте променливите в тази секция, за да могат да бъдат достъпни глобално и да бъдат използвани в другите секции</bg>
         </string>
@@ -1208,7 +1208,7 @@ Note: You can add new languages by inserting "<new_language>string translated in
             <en>parameter/return</en>
             <de>Parameter/Ausgabe</de>
             <pl>parametr/zwrot</pl>
-            <cn>参数/返回</cn>
+            <cn>参数/返回值</cn>
             <fr>paramètre/retour</fr>
             <bg>параметър/връщане</bg>
         </string>
@@ -1287,7 +1287,7 @@ Note: You can add new languages by inserting "<new_language>string translated in
             <en>admin type owner</en>
             <de>Besitzer des Administratorentyps</de>
             <pl>wlaściciel typu administratora</pl>
-            <cn>管理类型所有者</cn>
+            <cn>管理员类型所有者</cn>
             <fr>propriétaire du type d'accès</fr>
             <bg>собственик на вида администратор</bg>
         </string>
@@ -1312,7 +1312,7 @@ Note: You can add new languages by inserting "<new_language>string translated in
             <de>lese Rechte</de>
             <pl>prawa odczytu</pl>
             <cn>阅读权限</cn>
-             <fr>groitd de lecture</fr> 
+             <fr>groitd de lecture</fr>
             <bg>права за четене</bg>
         </string>
         <string id="165">
@@ -1390,7 +1390,7 @@ Note: You can add new languages by inserting "<new_language>string translated in
             <en>last login</en>
             <de>letzter login</de>
             <pl>ostatni login</pl>
-            <cn>上次登入</cn>
+            <cn>最近登入</cn>
             <fr>dernière ouverture de session</fr>
             <bg>последно влизане</bg>            
         </string>
@@ -1430,7 +1430,7 @@ Note: You can add new languages by inserting "<new_language>string translated in
             <en>Select box to set the password</en>
             <de>Wähle Box aus um das Passwort zu setzen</de>
             <pl>zaznacz jeśli chcesz ustawić hasło</pl>
-            <cn>设置密码选项</cn>
+            <cn>设置密码</cn>
             <bg>Изберете полето за въвеждане на парола</bg>
         </string>
         <string id="181">
@@ -1532,7 +1532,7 @@ Note: You can add new languages by inserting "<new_language>string translated in
             <en>Create and manage the entire structure of each test.</en>
             <de>Strukturen erstellen und verwalten für den jeweiligen Test.</de>
             <pl>W tej zakładce można tworzyć testy.</pl>
-            <cn>以整体创建并管理测试结果。</cn>
+            <cn>创建并管理测试的测试结构。</cn>
             <fr>créer et modifier la structure entière du test</fr>
             <bg>създаване и управление на цялата структура на всеки тест </bg>
         </string>
@@ -1564,7 +1564,7 @@ Note: You can add new languages by inserting "<new_language>string translated in
             <en>Create and manage admin and standard user accounts, user groups and access rights of users.</en>
             <de>Administratoren- und Standardbenutzerkonten anlegen und verwalten, Benutzergruppen und Zugriffsrechte der Benutzer.</de>
             <pl>Ta zakładka służy do tworzenia kont administratorów, którzy będą mogli korzystać z tego panelu. Możesz tutaj ustalić prawa dostępu, oraz stworzyć grupy w obrębie których administratorzy będą dzielić wskazane obiekty.</pl>
-            <cn>创建并维护管理员及标准用户帐户，用户群及用户访问权限。</cn>
+            <cn>创建并维护管理员及普通用户帐户、用户群及用户访问权限。</cn>
             <fr>Créer et gérer les comptes d'administrateurs et d'utilisateurs standards, les groupes d'utilisateurs et les droits d'accès des utilisateurs.</fr>
             <bg>Създаване и управление на администратори и стандартни потребители, потребителските групи и правата за достъп на потребителите.</bg>
         </string>
@@ -1572,7 +1572,7 @@ Note: You can add new languages by inserting "<new_language>string translated in
             <en>admins, admin groups and admin types</en>
             <de>Adminstratoren, Administratorengruppen und Administratorentypen </de>
             <pl>administratorzy, grupy administratorów, oraz typy administratorów</pl>
-            <cn>管理员，管理群以及管理员类型</cn>
+            <cn>管理员、管理群以及管理员类型</cn>
             <fr>administrateurs, groupes d'administrateurs et droits d'administrateurs</fr>
             <bg>администратори, групи администратори и видове администратори</bg>
         </string>
@@ -1636,7 +1636,7 @@ Note: You can add new languages by inserting "<new_language>string translated in
             <en>Description of selected HTML template</en>
             <de></de>
             <pl>Opis obecnie wybranego szablonu HTML</pl>
-            <cn></cn>
+            <cn>所选HTML模板描述</cn>
             <fr></fr>
             <bg></bg>
         </string>
@@ -1828,7 +1828,7 @@ Note: You can add new languages by inserting "<new_language>string translated in
             <en>not like</en>
             <de>nicht ähnlich</de>
             <pl>niepodobne</pl>
-            <cn>不类似于 </cn>
+            <cn>不类似于</cn>
             <fr>pas comme</fr>
             <bg>не е подобно</bg>
         </string>
@@ -1932,7 +1932,7 @@ Note: You can add new languages by inserting "<new_language>string translated in
             <en>enter HTML value of the cell</en>
             <de>HTML Wert der Zelle eingeben</de>
             <pl>wprowadź wartość HTML komórki</pl>
-            <cn>输入单元格的HTML数值</cn>
+            <cn>输入单元格的HTML值</cn>
             <fr>entrer la valeur HTML de la cellule</fr>
             <bg>въведете HTML стойност на полето</bg>
         </string>
@@ -2260,7 +2260,7 @@ Note: You can add new languages by inserting "<new_language>string translated in
             <en><![CDATA[Test #{0}, session #{1} - runtime debug <b><font style='color:green;'>PASSED</font></b>]]></en>
             <de><![CDATA[Test #{0}, Sitzung #{1} - Laufzeit debug <b><font style='color:green;'>OK</font></b>]]></de>
             <pl><![CDATA[Test #{0}, sesja #{1} - debug na żywo <b><font style='color:green;'>POWIODŁ SIĘ</font></b>]]></pl>
-            <cn><![CDATA[测试 #{0}，章节 #{1} – 运行时间调试 <b><font style='color:green;'>通过</font></b>]]></cn> 
+            <cn><![CDATA[测试 #{0}，章节 #{1} – 运行时间调试 <b><font style='color:green;'>通过</font></b>]]></cn>
             <fr><![CDATA[Test #{0}, session #{1} - déboguage temps d'exécution <b><font style='color:green;'>PASSÉE</font></b>]]></fr>  
             <bg><![CDATA[Тестът #{0}, сесията #{1} - дебъгът в реално време <b><font style='color:green;'>УСПЕШЕН</font></b>]]></bg>
         </string>
@@ -2285,7 +2285,7 @@ Note: You can add new languages by inserting "<new_language>string translated in
             <de>Template #{0} geladen ( Zeitlimit: {1} ).</de>
             <pl>Szablon #{0} wczytany ( limit czasu: {1} ).</pl>
             <cn> 载入模板 #{0} ( 时限： {1} )。</cn>
-            <fr>Illimité #</fr> 
+            <fr>Illimité #</fr>
             <bg>Шаблон #{0} зареден ( лимит от време: {1} ).</bg>
         </string>
         <string id="311" js="1">
@@ -2293,7 +2293,7 @@ Note: You can add new languages by inserting "<new_language>string translated in
             <de>unbeschränkt</de>
             <pl>nieograniczony</pl>
             <cn>无限的</cn>
-            <fr>Illimité </fr> 
+            <fr>Illimité </fr>
             <bg>неограничен</bg>
         </string>
         <string id="312" js="1">
@@ -2438,7 +2438,7 @@ Note: You can add new languages by inserting "<new_language>string translated in
             <pl>Zaznacz jeśli chcesz zaimportować CSV z rzędem nagłówka. Wartości rzędu nagłówka zostaną użyte jako nazwy kolumn.</pl>
             <cn>包含标题行导入CSV。标题行数值将作为列名称。</cn>
             <fr>Cocher la case afin d'importer un fichier CSV avec une ligne d'entête.Les valeurs incluses dans la ligne d'entête seront utilisées comme nom de colonne.</fr>
-            <bg>Поле за потвърждаване на CSV със заглавен 
+            <bg>Поле за потвърждаване на CSV със заглавен
             ред. Стойностите на заглавния ред ще бъдат използвани за име на колоната</bg>
         </string>
         <string id="332">
@@ -2469,7 +2469,7 @@ Note: You can add new languages by inserting "<new_language>string translated in
             <en>session count</en>
             <de>Sitzungszähler</de>
             <pl>liczba sesji</pl>
-            <cn>章节计数</cn>
+            <cn>场次计数</cn>
             <fr>Compteur de session</fr>
             <bg>броене на сесиите</bg>
         </string>
@@ -2477,7 +2477,7 @@ Note: You can add new languages by inserting "<new_language>string translated in
             <en>At least one of the fields that should be unique already exists in the system or is empty.</en>
             <de></de>
             <pl>Przynajmniej jedno pole, które powinno być unikalne, już istnieje w systemie lub jest puste.</pl>
-            <cn></cn>
+            <cn>某独特区域与现有系统重复，或者为空白。</cn>
             <fr></fr>
             <bg></bg>
         </string>
@@ -2557,7 +2557,7 @@ Note: You can add new languages by inserting "<new_language>string translated in
             <en>after or equal</en>
             <de>danach oder gleich</de>
             <pl>po lub równe</pl>
-            <cn>迟于（包括</cn>
+            <cn>迟于（包括）</cn>
             <fr>après ou égal à</fr>
             <bg>след или равно</bg>
         </string>
@@ -2573,7 +2573,7 @@ Note: You can add new languages by inserting "<new_language>string translated in
             <en>before or equal</en>
             <de>davor oder gleich</de>
             <pl>przed lub równe</pl>
-            <cn>早于（包括</cn>
+            <cn>早于（包括）</cn>
             <fr>avant ou égal à</fr>
             <bg>пред или равно</bg>
         </string>
@@ -2685,7 +2685,7 @@ Note: You can add new languages by inserting "<new_language>string translated in
             <en>( javascripts and not inline CSS will be turned off )</en>
             <pl>( javascript i CSS nie inline będa wyłączone )</pl>
             <de></de>
-            <cn></cn>
+            <cn>（未运行JAVA脚本和非直列CSS）</cn>
             <fr></fr>
             <bg></bg>
         </string>
@@ -2693,7 +2693,7 @@ Note: You can add new languages by inserting "<new_language>string translated in
             <en>test output</en>
             <pl>widok testu</pl>
             <de></de>
-            <cn></cn>
+            <cn>测试输出</cn>
             <fr></fr>
             <bg></bg>
         </string>
@@ -2701,7 +2701,7 @@ Note: You can add new languages by inserting "<new_language>string translated in
             <en>test console</en>
             <pl>konsola testu</pl>
             <de></de>
-            <cn></cn>
+            <cn>测试操作平台</cn>
             <fr></fr>
             <bg></bg>
         </string>
@@ -2709,7 +2709,7 @@ Note: You can add new languages by inserting "<new_language>string translated in
             <en>clear table</en>
             <pl>wyczyść tabelę</pl>
             <de></de>
-            <cn></cn>
+            <cn>清空表格</cn>
             <fr></fr>
             <bg></bg>
         </string>
@@ -2717,7 +2717,7 @@ Note: You can add new languages by inserting "<new_language>string translated in
             <en>clearing table</en>
             <pl>czyszczenie tabeli</pl>
             <de></de>
-            <cn></cn>
+            <cn>清空表格</cn>
             <fr></fr>
             <bg></bg>
         </string>
@@ -2725,7 +2725,7 @@ Note: You can add new languages by inserting "<new_language>string translated in
             <en>Are you sure you want to clear the table? All rows will be deleted.</en>
             <pl>Jesteś pewien, że chcesz wyczyścić tabelę? Wszystkie rzędy zostaną usunięte.</pl>
             <de></de>
-            <cn></cn>
+            <cn>确认清空表格？所有行将被删除。</cn>
             <fr></fr>
             <bg></bg>
         </string>
@@ -2733,7 +2733,7 @@ Note: You can add new languages by inserting "<new_language>string translated in
             <en>Check this checkbox if you want to release all resources used by test session after executing this section.</en>
             <pl>Zaznacz ten checkbox jeśli chcesz zwolnić wszystkie zasoby wykorzystywane przez sesję testu po uruchomieniu tej sekcji.</pl>
             <de></de>
-            <cn></cn>
+            <cn>执行此章节后释放本测试场次使用的所有资源。</cn>
             <fr></fr>
             <bg></bg>
         </string>
@@ -2741,7 +2741,7 @@ Note: You can add new languages by inserting "<new_language>string translated in
             <en>Version mismatch between imported object and Concerto platform. You can only import objects exported from the same version of Concerto.</en>
             <pl>Wersje importowanego obiektu oraz platformy Concerto się nie zgadzają. Można tylko importować obiekty wyeksportowane z tej samej wersji Concerto.</pl>
             <de></de>
-            <cn></cn>
+            <cn>导入对象与康测通平台版本不匹配。您只可导入与当前康测通版本对应的对象。</cn>
             <fr></fr>
             <bg></bg>
         </string>
@@ -2749,7 +2749,7 @@ Note: You can add new languages by inserting "<new_language>string translated in
             <en>info</en>
             <pl>info</pl>
             <de></de>
-            <cn></cn>
+            <cn>信息</cn>
             <fr></fr>
             <bg></bg>
         </string>
@@ -2757,7 +2757,7 @@ Note: You can add new languages by inserting "<new_language>string translated in
             <en>Select the Table you want to use.</en>
             <de></de>
             <pl>Wybierz Tabele, która chcesz wczytać.</pl>
-            <cn></cn>
+            <cn>选择使用的表格</cn>
             <fr></fr>
             <bg></bg>
         </string>
@@ -2765,7 +2765,7 @@ Note: You can add new languages by inserting "<new_language>string translated in
             <en>Description of selected Table</en>
             <de></de>
             <pl>Opis obecnie wybranej Tabeli</pl>
-            <cn></cn>
+            <cn>所选表格描述</cn>
             <fr></fr>
             <bg></bg>
         </string>
@@ -2773,7 +2773,7 @@ Note: You can add new languages by inserting "<new_language>string translated in
             <en>download from online library</en>
             <de></de>
             <pl>ściągnij z biblioteki online</pl>
-            <cn></cn>
+            <cn>从在线图书馆下载</cn>
             <fr></fr>
             <bg></bg>
         </string>
@@ -2781,7 +2781,7 @@ Note: You can add new languages by inserting "<new_language>string translated in
             <en>upload to online library</en>
             <de></de>
             <pl>wyślij do biblioteki online</pl>
-            <cn></cn>
+            <cn>上传至在线图书馆</cn>
             <fr></fr>
             <bg></bg>
         </string>
@@ -2789,7 +2789,7 @@ Note: You can add new languages by inserting "<new_language>string translated in
             <en>name of an object</en>
             <de></de>
             <pl>nazwa obiektu</pl>
-            <cn></cn>
+            <cn>对象名称</cn>
             <fr></fr>
             <bg></bg>
         </string>
@@ -2797,7 +2797,7 @@ Note: You can add new languages by inserting "<new_language>string translated in
             <en>description of an object</en>
             <de></de>
             <pl>opis obiektu</pl>
-            <cn></cn>
+            <cn>对象描述</cn>
             <fr></fr>
             <bg></bg>
         </string>
@@ -2805,7 +2805,7 @@ Note: You can add new languages by inserting "<new_language>string translated in
             <en>author</en>
             <de></de>
             <pl>autor</pl>
-            <cn></cn>
+            <cn>作者</cn>
             <fr></fr>
             <bg></bg>
         </string>
@@ -2813,7 +2813,7 @@ Note: You can add new languages by inserting "<new_language>string translated in
             <en>revision</en>
             <de></de>
             <pl>wersja</pl>
-            <cn></cn>
+            <cn>修正</cn>
             <fr></fr>
             <bg></bg>
         </string>
@@ -2821,7 +2821,7 @@ Note: You can add new languages by inserting "<new_language>string translated in
             <en>author of an object</en>
             <de></de>
             <pl>autor obiektu</pl>
-            <cn></cn>
+            <cn>对象作者</cn>
             <fr></fr>
             <bg></bg>
         </string>
@@ -2829,7 +2829,7 @@ Note: You can add new languages by inserting "<new_language>string translated in
             <en>revision of an object</en>
             <de></de>
             <pl>wersja obiektu</pl>
-            <cn></cn>
+            <cn>对象修正</cn>
             <fr></fr>
             <bg></bg>
         </string>
@@ -2837,7 +2837,7 @@ Note: You can add new languages by inserting "<new_language>string translated in
             <en>uploading to online library</en>
             <de></de>
             <pl>wysyłanie do biblioteki online</pl>
-            <cn></cn>
+            <cn>上传至在线图书馆</cn>
             <fr></fr>
             <bg></bg>
         </string>
@@ -2845,7 +2845,7 @@ Note: You can add new languages by inserting "<new_language>string translated in
             <en>upload</en>
             <de></de>
             <pl>wyślij</pl>
-            <cn></cn>
+            <cn>上传</cn>
             <fr></fr>
             <bg></bg>
         </string>
@@ -2853,7 +2853,7 @@ Note: You can add new languages by inserting "<new_language>string translated in
             <en>object uploaded</en>
             <de></de>
             <pl>obiekt wysłany</pl>
-            <cn></cn>
+            <cn>客体已上传</cn>
             <fr></fr>
             <bg></bg>
         </string>
@@ -2861,7 +2861,7 @@ Note: You can add new languages by inserting "<new_language>string translated in
             <en>upload date</en>
             <de></de>
             <pl>data wysłania</pl>
-            <cn></cn>
+            <cn>上传日期</cn>
             <fr></fr>
             <bg></bg>
         </string>
@@ -2869,7 +2869,7 @@ Note: You can add new languages by inserting "<new_language>string translated in
             <en>download count</en>
             <de></de>
             <pl>ilość pobrań</pl>
-            <cn></cn>
+            <cn>下载计数</cn>
             <fr></fr>
             <bg></bg>
         </string>
@@ -2877,7 +2877,7 @@ Note: You can add new languages by inserting "<new_language>string translated in
             <en>downloading object from online library</en>
             <de></de>
             <pl>pobieranie obiektu z biblioteki online</pl>
-            <cn></cn>
+            <cn>从在线图书馆下载对象</cn>
             <fr></fr>
             <bg></bg>
         </string>
@@ -2885,7 +2885,7 @@ Note: You can add new languages by inserting "<new_language>string translated in
             <en>object downloaded</en>
             <de></de>
             <pl>obiekt ściągnięty</pl>
-            <cn></cn>
+            <cn>对象已下载</cn>
             <fr></fr>
             <bg></bg>
         </string>
@@ -2893,7 +2893,7 @@ Note: You can add new languages by inserting "<new_language>string translated in
             <en>Object download failed</en>
             <de></de>
             <pl>Nie powiodło się ściągnięcie obiektu.</pl>
-            <cn></cn>
+            <cn>下载对象失败</cn>
             <fr></fr>
             <bg></bg>
         </string>
@@ -2901,7 +2901,7 @@ Note: You can add new languages by inserting "<new_language>string translated in
             <en>show section details</en>
             <de></de>
             <pl>pokaż detale sekcji</pl>
-            <cn></cn>
+            <cn>显示章节细节</cn>
             <fr></fr>
             <bg></bg>
         </string>
@@ -2909,7 +2909,7 @@ Note: You can add new languages by inserting "<new_language>string translated in
             <en>loop</en>
             <de></de>
             <pl>pętla</pl>
-            <cn></cn>
+            <cn>循环</cn>
             <fr></fr>
             <bg></bg>
         </string>
@@ -2917,7 +2917,7 @@ Note: You can add new languages by inserting "<new_language>string translated in
             <en>test inclusion</en>
             <de></de>
             <pl>włączenie testu</pl>
-            <cn></cn>
+            <cn>测试范围</cn>
             <fr></fr>
             <bg></bg>
         </string>
@@ -2925,7 +2925,7 @@ Note: You can add new languages by inserting "<new_language>string translated in
             <en>Includes selected test. Tests cross-dependancies are not recommended.</en>
             <de></de>
             <pl>Dołącza wybrany test. Krzyżowe zależności między testami nie są zalecane.</pl>
-            <cn></cn>
+            <cn>包括已选测试。不推荐测试交互依赖。</cn>
             <fr></fr>
             <bg></bg>
         </string>
@@ -2941,7 +2941,7 @@ Note: You can add new languages by inserting "<new_language>string translated in
             <en>FOR</en>
             <de></de>
             <pl>FOR</pl>
-            <cn></cn>
+            <cn>当</cn>
             <fr></fr>
             <bg></bg>
         </string>
@@ -2949,7 +2949,7 @@ Note: You can add new languages by inserting "<new_language>string translated in
             <en>WHILE</en>
             <de></de>
             <pl>WHILE</pl>
-            <cn></cn>
+            <cn>当</cn>
             <fr></fr>
             <bg></bg>
         </string>
@@ -2957,7 +2957,7 @@ Note: You can add new languages by inserting "<new_language>string translated in
             <en>variable</en>
             <de></de>
             <pl>zmienna</pl>
-            <cn></cn>
+            <cn>变量</cn>
             <fr></fr>
             <bg></bg>
         </string>
@@ -2965,7 +2965,7 @@ Note: You can add new languages by inserting "<new_language>string translated in
             <en>condition</en>
             <de></de>
             <pl>warunek</pl>
-            <cn></cn>
+            <cn>条件</cn>
             <fr></fr>
             <bg></bg>
         </string>
@@ -2973,7 +2973,7 @@ Note: You can add new languages by inserting "<new_language>string translated in
             <en>change by</en>
             <de></de>
             <pl>zmień o</pl>
-            <cn></cn>
+            <cn>改变</cn>
             <fr></fr>
             <bg></bg>
         </string>
@@ -2981,7 +2981,7 @@ Note: You can add new languages by inserting "<new_language>string translated in
             <en>initial value</en>
             <de></de>
             <pl>początkowa wartość</pl>
-            <cn></cn>
+            <cn>起始数值</cn>
             <fr></fr>
             <bg></bg>
         </string>
@@ -2989,7 +2989,7 @@ Note: You can add new languages by inserting "<new_language>string translated in
             <en>expand all sections</en>
             <de></de>
             <pl>rozwiń wszystkie sekcje</pl>
-            <cn></cn>
+            <cn>展开所有章节</cn>
             <fr></fr>
             <bg></bg>
         </string>
@@ -2997,7 +2997,7 @@ Note: You can add new languages by inserting "<new_language>string translated in
             <en>collapse all sections</en>
             <de></de>
             <pl>zwiń wszystkie sekcje</pl>
-            <cn></cn>
+            <cn>隐藏所有章节</cn>
             <fr></fr>
             <bg></bg>
         </string>
@@ -3005,7 +3005,7 @@ Note: You can add new languages by inserting "<new_language>string translated in
             <en>test input/output</en>
             <de></de>
             <pl>wejście/wyjście testu</pl>
-            <cn></cn>
+            <cn>测试输入/输出</cn>
             <fr></fr>
             <bg></bg>
         </string>
@@ -3013,7 +3013,7 @@ Note: You can add new languages by inserting "<new_language>string translated in
             <en>test sections</en>
             <de></de>
             <pl>sekcje z testem</pl>
-            <cn></cn>
+            <cn>测试章节</cn>
             <fr></fr>
             <bg></bg>
         </string>
@@ -3021,7 +3021,7 @@ Note: You can add new languages by inserting "<new_language>string translated in
             <en>Define test input parameters.</en>
             <de></de>
             <pl>Zadeklaruj parametry wejściowe testu.</pl>
-            <cn></cn>
+            <cn>定义测试输入数值。</cn>
             <fr></fr>
             <bg></bg>
         </string>
@@ -3029,7 +3029,7 @@ Note: You can add new languages by inserting "<new_language>string translated in
             <en>Define test return variables.</en>
             <de></de>
             <pl>Zadeklaruj zmienne zwrotu testu.</pl>
-            <cn></cn>
+            <cn>定义测试返回变量。</cn>
             <fr></fr>
             <bg></bg>
         </string>
@@ -3037,23 +3037,23 @@ Note: You can add new languages by inserting "<new_language>string translated in
             <en>HTML head tag</en>
             <de></de>
             <pl>tag HTML head</pl>
-            <cn></cn>
+            <cn>HTML标题栏</cn>
             <fr></fr>
             <bg></bg>
         </string>
         <string id="408">
-            <en>HTML template head tag. Everything declared here will be available in all templates in the session. Session variables can't be inserted here.</en>
+            <en>HTML template head tag. Everything declared here will be available in every templates in the session. Session variables can't be inserted here.</en>
             <de></de>
             <pl>Tag head szablonu HTML. Wszystko co zostanie tutaj zadeklarowane będzie dostępne we wszystkich szablonach w całej sesji. Zmienne sesyjne nie mogą być tutaj używane.</pl>
-            <cn></cn>
+            <cn>HTML模板标题栏。场次内所有模板均可使用。不可插入场次变量。</cn>
             <fr></fr>
             <bg></bg>
         </string>
         <string id="409" js="1">
-            <en>Please manually resave every test in which this template is used, in order for the changes to be applied.</en>
+            <en>Please resave manually every test where this template is used and where you want to apply those changes.</en>
             <de></de>
             <pl>Proszę ręcznie zapisać ponownie każdy test gdzie używany jest ten szablon i gdzie chcesz zastosować te zmiany.</pl>
-            <cn></cn>
+            <cn>请手动保存所有使用此模板并应用修改的测试。</cn>
             <fr></fr>
             <bg></bg>
         </string>
@@ -3061,7 +3061,7 @@ Note: You can add new languages by inserting "<new_language>string translated in
             <en>Register new account</en>
             <de></de>
             <pl>Rejestracja nowego konta</pl>
-            <cn></cn>
+            <cn>注册新账户</cn>
             <fr></fr>
             <bg></bg>
         </string>
@@ -3069,7 +3069,7 @@ Note: You can add new languages by inserting "<new_language>string translated in
             <en>log in</en>
             <de></de>
             <pl>zaloguj</pl>
-            <cn></cn>
+            <cn>登入</cn>
             <fr></fr>
             <bg></bg>
         </string>
@@ -3077,7 +3077,7 @@ Note: You can add new languages by inserting "<new_language>string translated in
             <en>register</en>
             <de></de>
             <pl>zarejestruj się</pl>
-            <cn></cn>
+            <cn>注册</cn>
             <fr></fr>
             <bg></bg>
         </string>
@@ -3085,7 +3085,7 @@ Note: You can add new languages by inserting "<new_language>string translated in
             <en>Fill the form below to register new user.</en>
             <de></de>
             <pl>Wypełnij formularz poniżej aby zarejestrować nowego użytkownika.</pl>
-            <cn></cn>
+            <cn>填表注册新用户</cn>
             <fr></fr>
             <bg></bg>
         </string>
@@ -3093,7 +3093,7 @@ Note: You can add new languages by inserting "<new_language>string translated in
             <en>Account registered. You will now be redirected to the login page.</en>
             <de></de>
             <pl>Konto zarejestrowane. Zostaniesz teraz przekierowany do strony logowania.</pl>
-            <cn></cn>
+            <cn>已注册账户。将转入登录页面。</cn>
             <fr></fr>
             <bg></bg>
         </string>
@@ -3101,7 +3101,7 @@ Note: You can add new languages by inserting "<new_language>string translated in
             <en>Fields marked with * are required and can not be empty.</en>
             <de></de>
             <pl>Pola oznaczone * są wymagane i nie mogą być puste.</pl>
-            <cn></cn>
+            <cn>标记*处为必填项，不可为空。</cn>
             <fr></fr>
             <bg></bg>
         </string>
