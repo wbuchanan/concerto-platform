@@ -40,6 +40,11 @@ if (!isset($ini)) {
             dialogClass:"no-close",
             open:function(){
                 Methods.iniTooltips();
+                $(this).live("keyup", function(e) {
+                    if (e.keyCode === 13) {
+                        $("button").first().click();
+                    }
+                });
             },
             buttons:[
                 {
