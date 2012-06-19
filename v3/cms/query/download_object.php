@@ -48,7 +48,7 @@ if ($result != false)
     $obj->Owner_id = $logged_user->id;
 
     $xml = new DOMDocument('1.0', 'UTF-8');
-    @$xml->loadXML(htmlspecialchars_decode($result));
+    $xml->loadXML($result);
 
     $oid = $obj->import_XML($xml);
     echo json_encode(array("result" => 0, "oid" => $oid));
