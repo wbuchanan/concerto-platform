@@ -893,7 +893,7 @@ Note: You can add new languages by inserting "<new_language>string translated in
             <bg>не са дефинирани параметри</bg>
         </string>
         <string id="109">
-            <en>add parameter variable</en>
+            <en>add parameter</en>
             <de>Parametervariable hinzufügen</de>
             <pl>dodaj parametr</pl>
             <cn>添加参数变量</cn>
@@ -901,7 +901,7 @@ Note: You can add new languages by inserting "<new_language>string translated in
             <bg>добави параметър</bg>
         </string>
         <string id="110">
-            <en>remove parameter variable</en>
+            <en>remove parameter</en>
             <de>entferne Parameter</de>
             <pl>usuń parametr</pl>
             <cn>移除参数变量</cn>
@@ -909,7 +909,7 @@ Note: You can add new languages by inserting "<new_language>string translated in
             <bg>премахни параметър</bg>
         </string>
         <string id="111">
-            <en>R code relevant for this section. Parameters declared above can be used here.</en>
+            <en>R code relevant for this custom section. Parameters declared above can be used here.</en>
             <de>Für diese Sektion relevanter R Code. Parameter die oben deklariert wurden, können hier benutzt werden.</de>
             <pl>To jest kod R sekcji. Możesz używać w nim parametrów które zdeklarowałeś powyżej.</pl>
             <cn>此章节相关R代码。已声明参数可在此使用。</cn>
@@ -917,7 +917,7 @@ Note: You can add new languages by inserting "<new_language>string translated in
             <bg>R код, отнасящ се за тази секция. Параметрите декларирани по-горе, може да бъдат използвани тук</bg>
         </string>
         <string id="112">
-            <en>Specify variables used in this section to be made available globally, for use in other test sections.</en>
+            <en>Specify variables in this section to be available for use in other test sections.</en>
             <de>Variablen angeben aus dieser Sektion, die global verfügbar sein sollen für andere Testsektionen.</de>
             <pl>Tutaj możesz zdefiniować które zmienne użyte w sekcji chciałbyś przekazać poza sekcję. Zmienne te następnie mogą zostać użyte w innych sekcjach logiki.</pl>
             <cn>指定此章节内可在其他章节使用的总体变量。</cn>
