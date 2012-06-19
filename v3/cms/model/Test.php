@@ -166,6 +166,8 @@ class Test extends OModule {
         $this->delete_sections();
         $this->delete_sessions();
         $this->delete_templates();
+        $this->delete_object_links(TestProtectedVariable::get_mysql_table());
+        $this->delete_object_links(TestVariable::get_mysql_table());
         parent::mysql_delete();
     }
 

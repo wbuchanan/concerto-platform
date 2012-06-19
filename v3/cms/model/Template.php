@@ -285,6 +285,11 @@ class Template extends OModule
     {
         return Template::strip_html($this->description);
     }
+    
+    public function mysql_delete() {
+        $this->delete_object_links(TestTemplate::get_mysql_table());
+        parent::mysql_delete();
+    }
 
     public static function update_db($previous_version)
     {

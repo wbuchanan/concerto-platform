@@ -24,7 +24,7 @@ if (!isset($ini))
     $ini = new Ini();
 }
 $logged_user = User::get_logged_user();
-if ($logged_user == null) die(Language::string(81));
+if ($logged_user == null) header("Location: ".Ini::$path_external."cms/index.php");
 
 $obj = $_GET['class_name']::from_mysql_id($_GET['oid']);
 if (!$logged_user->is_object_readable($obj)) die(Language::string(81));

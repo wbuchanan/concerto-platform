@@ -25,7 +25,7 @@ CKEDITOR.plugins.add( 'codemirror', {
                 CodeMirror.fromTextArea(editor.textarea.$,{
                     mode:"htmlmixed",
                     theme:"night",
-                    fixedGutter:true,
+                    fixedGutter:false,
                     lineNumbers:true,
                     matchBrackets:true,
                     lineWrapping:false,

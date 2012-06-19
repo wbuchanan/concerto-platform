@@ -353,7 +353,7 @@ Methods.iniCodeMirror=function(id,mode,readOnly)
     var obj = document.getElementById(id);
     var myCodeMirror = CodeMirror.fromTextArea(obj,{
         mode:mode,
-        fixedGutter:true,
+        fixedGutter:false,
         theme:"night",
         lineNumbers:true,
         matchBrackets:true,

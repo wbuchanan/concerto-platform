@@ -31,6 +31,7 @@ class TestSection extends OTable
     public function mysql_delete()
     {
         $this->delete_object_links(TestSectionValue::get_mysql_table());
+        $this->delete_object_links(TestTemplate::get_mysql_table());
         parent::mysql_delete();
     }
 
