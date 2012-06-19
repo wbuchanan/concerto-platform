@@ -49,6 +49,12 @@ Methods.modalLoading=function(title){
         modal:true,
         closeOnEscape:false,
         dialogClass:"no-close",
+        open:function(){
+            $('.ui-widget-overlay').css('position', 'fixed');
+        },
+        close:function(){
+            //$('.ui-widget-overlay').css('position', 'absolute');
+        },
         buttons:
         {
     }
@@ -92,7 +98,7 @@ Methods.modalProgress=function(title,max){
                 $("#divProgressBar").progressbar();
             },
             close:function(){
-                $('.ui-widget-overlay').css('position', 'absolute');  
+                //$('.ui-widget-overlay').css('position', 'absolute');  
                 $("#divProgressBar").progressbar("destroy");
                 Methods.modalProgressMaxValue = 0;
                 Methods.modalProgressValue = 0;
@@ -159,6 +165,12 @@ Methods.confirm=function(message,title,callback)
         modal:true,
         closeOnEscape:false,
         dialogClass:"no-close",
+        open:function(){
+            $('.ui-widget-overlay').css('position', 'fixed');
+        },
+        close:function(){
+            //$('.ui-widget-overlay').css('position', 'absolute');
+        },
         buttons:
         {
             no:function(){
@@ -181,7 +193,11 @@ Methods.alert=function(message,icon,title,callback)
         minHeight:50,
         resizable:false,
         modal:true,
+        open:function(){
+            $('.ui-widget-overlay').css('position', 'fixed');
+        },
         close:function(){
+            //$('.ui-widget-overlay').css('position', 'absolute');
             if(callback!=null) callback.call(this);
         },
         buttons:

@@ -178,6 +178,12 @@ CustomSection.uiEditVariableDescription=function(obj){
         modal:true,
         resizable:false,
         width:975,
+        open:function(){
+            $('.ui-widget-overlay').css('position', 'fixed');
+        },
+        close:function(){
+            //$('.ui-widget-overlay').css('position', 'absolute');
+        },
         create:function(){
             var thisDialog = $("#div"+CustomSection.className+"DialogDescription");
             Methods.iniCKEditor($(this).find("textarea"),function(){

@@ -495,9 +495,13 @@ Table.uiEditColumn=function(obj){
         title:dictionary["s12"],
         modal:true,
         resizable:false,
+        open:function(){
+            $('.ui-widget-overlay').css('position', 'fixed');
+        },
         close:function(){
             name.val("");
             type.val(1);
+            //$('.ui-widget-overlay').css('position', 'absolute');
             $(this).dialog("destroy");
         },
         buttons:[
@@ -643,6 +647,12 @@ Table.uiExportCSV=function(){
         title:dictionary["s329"],
         modal:true,
         resizable:false,
+        open:function(){
+            $('.ui-widget-overlay').css('position', 'fixed');
+        },
+        close:function(){
+            //$('.ui-widget-overlay').css('position', 'absolute');
+        },
         buttons:[{
             text:dictionary["s265"],
             click:function(){
@@ -680,6 +690,12 @@ Table.uiImportTable=function(){
             title:dictionary["s21"],
             modal:true,
             resizable:false,
+            open:function(){
+              $('.ui-widget-overlay').css('position', 'fixed');  
+            },
+            close:function(){
+              //$('.ui-widget-overlay').css('position', 'absolute');  
+            },
             buttons:[{
                 text:dictionary["s22"],
                 click:function(){
@@ -734,11 +750,13 @@ Table.uiImportCSV=function(){
         modal:true,
         width:400,
         close:function(){
+            //$('.ui-widget-overlay').css('position', 'absolute');
         },
         beforeClose:function(){
             
         },
         open:function(){
+            $('.ui-widget-overlay').css('position', 'fixed');
             $('#file'+Table.className+'CSVImport').fileupload({
                 dataType: 'json',
                 url: 'js/lib/fileupload/php/index.php',
@@ -838,9 +856,13 @@ Table.uiAddColumn=function(){
         title:dictionary["s31"],
         resizable:false,
         modal:true,
+        open:function(){
+          $('.ui-widget-overlay').css('position', 'fixed');  
+        },
         close:function(){
             name.val("");
             type.val(1);
+            //$('.ui-widget-overlay').css('position', 'absolute');
             $(this).dialog("destroy");
         },
         buttons:[
@@ -1005,6 +1027,12 @@ Table.uiChangeHTML=function(obj,field){
         resizable:false,
         modal:true,
         width:800,
+        open:function(){
+            $('.ui-widget-overlay').css('position', 'fixed');
+        },
+        close:function(){
+          //$('.ui-widget-overlay').css('position', 'absolute');  
+        },
         create:function(){
             var thisDialog = $("#div"+Table.className+"DialogHTML");
             Methods.iniCKEditor($(this).find("textarea"),function(){

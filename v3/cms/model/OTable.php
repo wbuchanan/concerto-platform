@@ -36,8 +36,9 @@ class OTable
 
     public function calculate_xml_hash()
     {
-        $xml = $this->to_XML(false);
+        $xml = $this->to_XML();
         $xml->removeAttribute("id");
+        $xml->removeAttribute("xml_hash");
         return md5($xml->ownerDocument->saveXML($xml));
     }
 

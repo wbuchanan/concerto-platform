@@ -39,12 +39,16 @@ if (!isset($ini)) {
             closeOnEscape:false,
             dialogClass:"no-close",
             open:function(){
+                $('.ui-widget-overlay').css('position', 'fixed');
                 Methods.iniTooltips();
                 $(this).live("keyup", function(e) {
                     if (e.keyCode === 13) {
                         $("button").first().click();
                     }
                 });
+            },
+            close:function(){
+                //$('.ui-widget-overlay').css('position', 'absolute');
             },
             buttons:[
                 {

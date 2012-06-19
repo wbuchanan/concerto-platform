@@ -193,7 +193,11 @@ User.uiRegister=function(){
         closeOnEscape:false,
         dialogClass:"no-close",
         open:function(){
+            $('.ui-widget-overlay').css('position', 'fixed');
             Methods.iniTooltips();
+        },
+        close:function(){
+            //$('.ui-widget-overlay').css('position', 'absolute');
         },
         buttons:[
         {

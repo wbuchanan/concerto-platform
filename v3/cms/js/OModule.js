@@ -61,6 +61,7 @@ OModule.inheritance=function(obj)
                 case 0:{
                     $("#divDialogDownload").dialog("close");
                     Methods.alert(dictionary["s388"], "info", dictionary["s387"]);
+                    if(thisClass.onAfterImport) thisClass.onAfterImport();
                     thisClass.uiReload(data.oid);
                     break;
                 }
@@ -90,6 +91,7 @@ OModule.inheritance=function(obj)
             title:dictionary["s387"],
             width:950,
             open:function(){
+                $('.ui-widget-overlay').css('position', 'fixed');
                 Methods.stopModalLoading();
                 $("#divDialogDownload").html("<div id='divDialogDownloadGrid'></div>");
                 $("#divDialogDownloadGrid").kendoGrid({
@@ -248,6 +250,9 @@ OModule.inheritance=function(obj)
                 
                 $("#divDialogDownload").dialog("option","position","center"); 
             },
+            close:function(){
+                //$('.ui-widget-overlay').css('position', 'absolute');
+            },
             buttons:[
             {
                 text:dictionary["s23"],
@@ -301,10 +306,14 @@ OModule.inheritance=function(obj)
                 title:dictionary["s382"],
                 width:950,
                 open:function(){
+                    $('.ui-widget-overlay').css('position', 'fixed');
                     Methods.stopModalLoading();
                     Methods.iniCKEditor("#textareaDialogUploadDescription", function(){
                         $("#divDialogUpload").dialog("option","position","center"); 
                     })
+                },
+                close:function(){
+                    //$('.ui-widget-overlay').css('position', 'absolute');
                 },
                 buttons:[
                 {
@@ -345,8 +354,12 @@ OModule.inheritance=function(obj)
                 title:dictionary["s7"],
                 width:500,
                 open:function(){
+                    $('.ui-widget-overlay').css('position', 'fixed');
                     Methods.stopModalLoading();
                     if(thisClass.onAfterAdd) thisClass.onAfterAdd();
+                },
+                close:function(){
+                    //$('.ui-widget-overlay').css('position', 'absolute');
                 },
                 buttons:[
                 {
@@ -489,11 +502,13 @@ OModule.inheritance=function(obj)
             resizable:false,
             minHeight: 50,
             close:function(){
+                //$('.ui-widget-overlay').css('position', 'absolute');
             },
             beforeClose:function(){
             
             },
             open:function(){
+                $('.ui-widget-overlay').css('position', 'fixed');
                 $('#file'+thisClass.className+'Import').fileupload({
                     dataType: 'json',
                     //maxChunkSize: 1000000,

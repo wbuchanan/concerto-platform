@@ -457,6 +457,12 @@ Test.uiAddLogicSection=function(parent,after){
         modal:true,
         title:dictionary["s61"],
         resizable:false,
+        open:function(){
+            $('.ui-widget-overlay').css('position', 'fixed');
+        },
+        close:function(){
+            //$('.ui-widget-overlay').css('position', 'absolute');
+        },
         buttons:[
         {
             text:dictionary["s23"],
@@ -1168,6 +1174,12 @@ Test.uiEditVariableDescription=function(obj){
             Methods.iniCKEditor($(this).find("textarea"),function(){
                 thisDialog.dialog("option","position","center");
             });
+        },
+        open:function(){
+            $('.ui-widget-overlay').css('position', 'fixed');
+        },
+        close:function(){
+            //$('.ui-widget-overlay').css('position', 'absolute');
         },
         buttons:[
         {
