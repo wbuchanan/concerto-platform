@@ -864,7 +864,7 @@ Note: You can add new languages by inserting "<new_language>string translated in
             <en>Define section input parameters. Use variables thus declared in the R code section.</en>
             <de>Definiere Eingabeparameter der Sektion. Benutze Variabeln die in der R code Sektion deklariert wurden.</de>
             <pl>Tutaj możesz zdefiniować parametry wejściowe sekcji. Można używać zmiennych które tutaj zostały zdeklarowane w kodzie R sekcji.</pl>
-            <cn>定义章节输入参数。使用在R代码章节中声明的变量。</cn>
+            <cn>定义章节输入参数。可在R代码章节中使用已声明的变量。</cn>
             <fr>Définir les paramètres d'entrée de la section. utiliser les variables ainsi définies dans le code R de la section.</fr>
             <bg>Дефиниране на входните параметри. Използване на променливи, декларирани вече в секцията на R кода</bg>
         </string>
