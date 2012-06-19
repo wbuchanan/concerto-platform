@@ -3042,7 +3042,7 @@ Note: You can add new languages by inserting "<new_language>string translated in
             <bg></bg>
         </string>
         <string id="408">
-            <en>HTML template head tag. Everything declared here will be available in every templates in the session. Session variables can't be inserted here.</en>
+            <en>HTML template head tag. Everything declared here will be available in all templates in the session. Session variables can't be inserted here.</en>
             <de></de>
             <pl>Tag head szablonu HTML. Wszystko co zostanie tutaj zadeklarowane będzie dostępne we wszystkich szablonach w całej sesji. Zmienne sesyjne nie mogą być tutaj używane.</pl>
             <cn></cn>
@@ -3050,7 +3050,7 @@ Note: You can add new languages by inserting "<new_language>string translated in
             <bg></bg>
         </string>
         <string id="409" js="1">
-            <en>Please resave manually every test where this template is used and where you want to apply those changes.</en>
+            <en>Please manually resave every test in which this template is used, in order for the changes to be applied.</en>
             <de></de>
             <pl>Proszę ręcznie zapisać ponownie każdy test gdzie używany jest ten szablon i gdzie chcesz zastosować te zmiany.</pl>
             <cn></cn>
