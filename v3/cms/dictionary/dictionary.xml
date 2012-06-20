@@ -3105,5 +3105,141 @@ Note: You can add new languages by inserting "<new_language>string translated in
             <fr></fr>
             <bg></bg>
         </string>
+        <string id="416">
+            <en>academic</en>
+            <de></de>
+            <pl>naukowy</pl>
+            <cn></cn>
+            <fr></fr>
+            <bg></bg>
+        </string>
+        <string id="417">
+            <en>commercial</en>
+            <de></de>
+            <pl>komercyjny</pl>
+            <cn></cn>
+            <fr></fr>
+            <bg></bg>
+        </string>
+        <string id="418">
+            <en>other ( please specify )</en>
+            <de></de>
+            <pl>inny ( proszę określić )</pl>
+            <cn></cn>
+            <fr></fr>
+            <bg></bg>
+        </string>
+        <string id="419">
+            <en>institution type</en>
+            <de></de>
+            <pl>typ instytucji</pl>
+            <cn></cn>
+            <fr></fr>
+            <bg></bg>
+        </string>
+        <string id="420">
+            <en>user institution type</en>
+            <de></de>
+            <pl>typ instytucji użytkownika</pl>
+            <cn></cn>
+            <fr></fr>
+            <bg></bg>
+        </string>
+        <string id="421">
+            <en>institution name</en>
+            <de></de>
+            <pl>nazwa instytucji</pl>
+            <cn></cn>
+            <fr></fr>
+            <bg></bg>
+        </string>
+        <string id="422">
+            <en>user institution name</en>
+            <de></de>
+            <pl>nazwa instytucji użytkownika</pl>
+            <cn></cn>
+            <fr></fr>
+            <bg></bg>
+        </string>
+        <string id="423">
+            <en>New to Concerto?</en>
+            <de></de>
+            <pl>Pierwszy raz z Concerto?</pl>
+            <cn></cn>
+            <fr></fr>
+            <bg></bg>
+        </string>
+        <string id="424">
+            <en>create an account</en>
+            <de></de>
+            <pl>stwórz konto</pl>
+            <cn></cn>
+            <fr></fr>
+            <bg></bg>
+        </string>
+        <string id="425">
+            <en>forgot your password?</en>
+            <de></de>
+            <pl>zapomniałeś hasła?</pl>
+            <cn></cn>
+            <fr></fr>
+            <bg></bg>
+        </string>
+        <string id="426" js="1">
+            <en>There is no user with the selected login.</en>
+            <de></de>
+            <pl>Nie ma użytkownika o wybranym loginie.</pl>
+            <cn></cn>
+            <fr></fr>
+            <bg></bg>
+        </string>
+        <string id="427" js="1">
+            <en>recovering password</en>
+            <de></de>
+            <pl>odzyskiwanie hasła</pl>
+            <cn></cn>
+            <fr></fr>
+            <bg></bg>
+        </string>
+        <string id="428">
+            <en>Concerto password recovery</en>
+            <de></de>
+            <pl>odzyskiwanie hasła Concerto</pl>
+            <cn></cn>
+            <fr></fr>
+            <bg></bg>
+        </string>
+        <string id="429">
+            <en><![CDATA[To recover password please follow this link: <a href='%s'>LINK TO RECOVER PASSWORD</a>.]]></en>
+            <de></de>
+            <pl><![CDATA[Aby odzyskać hasło proszę podążyć za tym linkiem: <a href='%s'>LINK DO ODZYSKANIA HASŁA</a>.]]></pl>
+            <cn></cn>
+            <fr></fr>
+            <bg></bg>
+        </string>
+        <string id="430">
+            <en><![CDATA[Your new password is: <b>%s</b>]]></en>
+            <de></de>
+            <pl><![CDATA[Twoje nowe hasło to: <b>%s</b>]]></pl>
+            <cn></cn>
+            <fr></fr>
+            <bg></bg>
+        </string>
+        <string id="431" js="1">
+            <en>Your new password has been sent to your email address.</en>
+            <de></de>
+            <pl>Twoje nowe hasło zostało wysłane na twój adres email.</pl>
+            <cn></cn>
+            <fr></fr>
+            <bg></bg>
+        </string>
+        <string id="432" js="1">
+            <en>Mail has been sent to your user email account for verification. Please follow the link in verification email to continue password recovery process.</en>
+            <de></de>
+            <pl>List weryfikacyjny został wysłany na skrzynkę pocztową twojego użytkownika. Proszę podążyć za linkiem w liście weryfikacyjnym aby kontynuować process odzyskiwania hasła.</pl>
+            <cn></cn>
+            <fr></fr>
+            <bg></bg>
+        </string>
     </strings>
 </root> 

@@ -59,6 +59,8 @@ User.getAddSaveObject=function()
         email:$("#form"+this.className+"InputEmail").val(),
         phone:$("#form"+this.className+"InputPhone").val(),
         UserGroup_id:$("#form"+this.className+"SelectUserGroup").val(),
+        UserInstitutionType_id:$("#form"+this.className+"SelectInstitutionType").val(),
+        institution_name:$("#form"+this.className+"InputInstitutionName").val(),
         modify_password:$("#form"+this.className+"CheckboxPassword").is(":checked")?1:0,
         password:$("#form"+this.className+"InputPassword").val(),
         UserType_id:$("#form"+this.className+"SelectUserType").val()
@@ -77,8 +79,10 @@ User.uiSaveValidate=function(ignoreOnBefore){
         $("#form"+this.className+"InputLogin").val(),
         $("#form"+this.className+"InputFirstname").val(),
         $("#form"+this.className+"InputLastname").val(),
-        $("#form"+this.className+"InputEmail").val()
-    ])) {
+        $("#form"+this.className+"InputEmail").val(),
+        $("#form"+this.className+"SelectInstitutionType").val(),
+        $("#form"+this.className+"InputInstitutionName").val()
+        ])) {
         Methods.alert(dictionary["s415"],"alert");
         return false;
     }
@@ -122,10 +126,12 @@ User.register = function(){
     var phone = $("#dd_register_inp_last_phone").val();
     var password = $("#dd_register_inp_password").val();
     var password_conf = $("#dd_register_inp_password_conf").val();
+    var institution_type = $("#dd_register_select_institution_type").val();
+    var institution_name = $("#dd_register_inp_institution_name").val();
     
     if(!this.checkRequiredFields([
-        login,firstname,lastname,email
-    ])) {
+        login,firstname,lastname,email,institution_type,institution_name
+        ])) {
         Methods.alert(dictionary["s415"],"alert");
         return;
     }
@@ -153,7 +159,9 @@ User.register = function(){
                     firstname:firstname,
                     lastname:lastname,
                     email:email,
-                    phone:phone
+                    phone:phone,
+                    UserInstitutionType_id:institution_type,
+                    institution_name:institution_name
                 },function(data){
                     switch(data.result){
                         case 0:{
@@ -183,6 +191,31 @@ User.register = function(){
     },"json");
 }
 
+User.uiPasswordRecovery=function(){
+    var login = $("#dd_login_inp_login").val();
+    if(!this.checkRequiredFields([
+        login
+        ])) {
+        Methods.alert(dictionary["s415"],"alert");
+        return;
+    }
+    
+    $.post("query/recover_password.php",{
+        login:login
+    },function(data){
+        switch(data.result){
+            case 0:{
+                Methods.alert(dictionary["s432"],"info",dictionary["s427"]);
+                break;
+            }
+            case -1:{
+                Methods.alert(dictionary["s426"],"alert",dictionary["s427"]);
+                break;
+            }
+        }
+    },"json");
+}
+
 User.uiRegister=function(){
     $("#dd_login").dialog("close");
     $("#dd_register").dialog({
@@ -197,7 +230,7 @@ User.uiRegister=function(){
             Methods.iniTooltips();
         },
         close:function(){
-            //$('.ui-widget-overlay').css('position', 'absolute');
+        //$('.ui-widget-overlay').css('position', 'absolute');
         },
         buttons:[
         {
@@ -219,6 +252,14 @@ User.uiRegister=function(){
 User.uiLogIn=function()
 {
     var thisClass=this;
+    
+    if(!this.checkRequiredFields([
+        $("#dd_login_inp_login").val()
+        ])) {
+        Methods.alert(dictionary["s415"],"alert");
+        return;
+    }
+    
     $("#dd_login").parent().mask(dictionary["s319"]);
     $.post("query/log_in.php",
     {

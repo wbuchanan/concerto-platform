@@ -129,9 +129,19 @@ class UserType extends OModule
         $sql = "
             INSERT INTO `UserType` (`id`, `updated`, `created`, `name`, `Sharing_id`, `Owner_id`) VALUES
             (1, '2012-01-13 20:07:27', '2011-12-05 13:46:52', 'super admin', 1, 1),
-            (4, '2012-01-11 14:24:56', '2012-01-11 14:24:56', 'standard', 1, 1);
+            (4, '2012-01-11 14:24:56', '2012-01-11 14:24:56', 'standard', 3, 1);
             ";
         return mysql_query($sql);
+    }
+    
+    public static function update_db($previous_version)
+    {
+        if (Ini::does_patch_apply("3.6.7", $previous_version))
+        {
+            $sql = "UPDATE `UserType` SET `Sharing_id`=3 WHERE `id`=4;";
+            if (!mysql_query($sql)) return false;
+        }
+        return true;
     }
 
 }

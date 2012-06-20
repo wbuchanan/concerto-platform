@@ -126,6 +126,31 @@ if ($oid != 0)
                     </div>
                 </td>
             </tr>
+            
+            <tr>
+                <td class="noWrap horizontalPadding tdFormLabel">* <?= Language::string(419) ?>:</td>
+                <td><span class="tooltip spanIcon ui-icon ui-icon-help" title="<?= Language::string(420) ?>"></span></td>
+                <td class="fullWidth">
+                    <div class="horizontalMargin">
+                        <select id="form<?= $class_name ?>SelectInstitutionType" class="fullWidth ui-widget-content ui-corner-all">
+                            <?php foreach (DS_UserInstitutionType::get_all() as $it)
+                            { ?>
+                                <option value="<?= $it->id ?>" <?= ($it->id == $obj->UserInstitutionType_id ? "selected" : "") ?>><?= $it->get_name() ?></option>
+                            <?php } ?>
+                        </select>
+                    </div>
+                </td>
+            </tr>
+            <tr>
+                <td class="noWrap horizontalPadding tdFormLabel">* <?= Language::string(421) ?>:</td>
+                <td><span class="tooltip spanIcon ui-icon ui-icon-help" title="<?= Language::string(422) ?>"></span></td>
+                <td class="fullWidth">
+                    <div class="horizontalMargin">
+                        <input type="text" id="form<?= $class_name ?>InputInstitutionName" value="<?= $obj->institution_name ?>" class="fullWidth ui-widget-content ui-corner-all" />
+                    </div>
+                </td>
+            </tr>
+            
             <tr>
                 <td class="noWrap horizontalPadding tdFormLabel">* <?= Language::string(174) ?>:</td>
                 <td><span class="tooltip spanIcon ui-icon ui-icon-help" title="<?= Language::string(188) ?>"></span></td>

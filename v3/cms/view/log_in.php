@@ -26,6 +26,7 @@ if (!isset($ini)) {
 
 <script>
     $(function(){
+        Methods.iniIconButton(".btnCreateNewAccount", "document");
         $('#divHiddenThemer').themeswitcher({
             loadTheme:"Cupertino",
             imgpath: "js/lib/themeswitcher/images/",
@@ -38,12 +39,13 @@ if (!isset($ini)) {
             resizeable:false,
             closeOnEscape:false,
             dialogClass:"no-close",
+            width:400,
             open:function(){
                 $('.ui-widget-overlay').css('position', 'fixed');
                 Methods.iniTooltips();
                 $(this).live("keyup", function(e) {
                     if (e.keyCode === 13) {
-                        $("button").first().click();
+                        $("button").last().click();
                     }
                 });
             },
@@ -59,23 +61,6 @@ if (!isset($ini)) {
                 }
             ]
         });
-<?php
-if (Ini::$public_registration) {
-    ?>
-                $("#dd_login").dialog("option","buttons",[{
-                        text:'<?= Language::string(411) ?>',
-                        click:function(){
-                            User.uiLogIn();
-                        }
-                    },{
-                        text:'<?= Language::string(412) ?>',
-                        click:function(){
-                            User.uiRegister();
-                        }
-                    }]);
-    <?php
-}
-?>
     });
 </script>
 <div id="dd_login">
@@ -83,7 +68,7 @@ if (Ini::$public_registration) {
     <div class="padding ui-widget-content ui-corner-all margin">
         <table>
             <tr>
-                <td class="noWrap horizontalPadding tdFormLabel"><?= Language::string(173) ?>:</td>
+                <td class="noWrap horizontalPadding tdFormLabel">* <?= Language::string(173) ?>:</td>
                 <td><span class="tooltip spanIcon ui-icon ui-icon-help" title="<?= Language::string(260) ?>"></span></td>
                 <td class="fullWidth">
                     <div class="horizontalMargin">
@@ -102,6 +87,25 @@ if (Ini::$public_registration) {
             </tr>
         </table>
     </div>	 
+    <div class="margin padding">
+        <table class="fullWidth">
+            <tr>
+                <?php
+                if (Ini::$public_registration) {
+                ?>
+                <td valign="middle" align="center">
+                    <?=Language::string(423)?><br/>
+                    <button class="btnCreateNewAccount ui-state-highlight" onclick="User.uiRegister()"><?=Language::string(424)?></button>
+                </td>
+                <?php
+                }
+                ?>
+                <td valign="middle" align="right">
+                    <div style="cursor:pointer; text-decoration: underline;" onclick="User.uiPasswordRecovery()"><?=Language::string(425)?></div>
+                </td>
+            </tr>
+        </table>
+    </div>
 </div>
 
 <?php
@@ -156,6 +160,31 @@ if (Ini::$public_registration) {
                         </div>
                     </td>
                 </tr>
+
+                <tr>
+                    <td class="noWrap horizontalPadding tdFormLabel">* <?= Language::string(419) ?>:</td>
+                    <td><span class="tooltip spanIcon ui-icon ui-icon-help" title="<?= Language::string(420) ?>"></span></td>
+                    <td class="fullWidth">
+                        <div class="horizontalMargin">
+                            <select id="dd_register_select_intitution_type" class="fullWidth ui-widget-content ui-corner-all">
+                                <?php foreach (DS_UserInstitutionType::get_all() as $it) {
+                                    ?>
+                                    <option value="<?= $it->id ?>" <?= ($it->id == $obj->UserInstitutionType_id ? "selected" : "") ?>><?= $it->get_name() ?></option>
+                                <?php } ?>
+                            </select>
+                        </div>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="noWrap horizontalPadding tdFormLabel">* <?= Language::string(421) ?>:</td>
+                    <td><span class="tooltip spanIcon ui-icon ui-icon-help" title="<?= Language::string(422) ?>"></span></td>
+                    <td class="fullWidth">
+                        <div class="horizontalMargin">
+                            <input type="text" id="dd_register_inp_institution_name" value="" class="fullWidth ui-widget-content ui-corner-all" />
+                        </div>
+                    </td>
+                </tr>
+
                 <tr>
                     <td class="noWrap horizontalPadding tdFormLabel">* <?= Language::string(174) ?>:</td>
                     <td><span class="tooltip spanIcon ui-icon ui-icon-help" title="<?= Language::string(188) ?>"></span></td>

@@ -31,7 +31,7 @@ class Ini {
     public static $path_r_script = "";
     public static $path_temp = "";
     public static $path_mysql_home = "";
-    public static $version = "3.6.6";
+    public static $version = "3.6.7";
     public static $sock_host = "127.0.0.1";
     public static $sock_port = "8888";
     public static $path_unix_sock = "";
@@ -159,6 +159,7 @@ class Ini {
         DS_Sharing::create_db(true);
         DS_TableColumnType::create_db(true);
         DS_TestSectionType::create_db(true);
+        DS_UserInstitutionType::create_db(true);
         Setting::create_db(true);
         Table::create_db(true);
         TableColumn::create_db(true);
@@ -185,6 +186,7 @@ class Ini {
             "DS_Sharing",
             "DS_TableColumnType",
             "DS_TestSectionType",
+            "DS_UserInstitutionType",
             "Setting",
             "Table",
             "TableColumn",
@@ -247,6 +249,7 @@ class Ini {
         require_once self::$path_internal . "cms/model/DS_Sharing.php";
         require_once self::$path_internal . "cms/model/DS_TableColumnType.php";
         require_once self::$path_internal . "cms/model/DS_TestSectionType.php";
+        require_once self::$path_internal . "cms/model/DS_UserInstitutionType.php";
         require_once self::$path_internal . "cms/model/DS_Module.php";
     }
 

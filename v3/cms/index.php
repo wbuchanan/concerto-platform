@@ -18,8 +18,7 @@
   Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA.
  */
 
-if (!isset($ini))
-{
+if (!isset($ini)) {
     require_once'../Ini.php';
     $ini = new Ini();
 }
@@ -80,20 +79,17 @@ if (!isset($ini))
         <script>User.sessionID='<?= session_id(); ?>';</script>
         <?= Language::load_js_dictionary() ?>
         <script type="text/javascript" src="js/lib/kendo-ui/kendo.all.min.js"></script>
-        <script type="text/javascript" src="js/lib/kendo-ui/cultures/kendo.culture.<?=Language::get_kendo_culture()?>.min.js"></script>
+        <script type="text/javascript" src="js/lib/kendo-ui/cultures/kendo.culture.<?= Language::get_kendo_culture() ?>.min.js"></script>
         <script type="text/javascript">
-            kendo.culture("<?=Language::get_kendo_culture()?>");
+            kendo.culture("<?= Language::get_kendo_culture() ?>");
         </script>
     </head>
     <body>
         <div id="content" align="center">
             <?php
-            if (User::get_logged_user() == null)
-            {
+            if (User::get_logged_user() == null) {
                 include 'view/log_in.php';
-            }
-            else
-            {
+            } else {
                 include 'view/layout.php';
             }
             ?>
@@ -105,5 +101,22 @@ if (!isset($ini))
         </div>
         <div id="divGeneralDialog" class="notVisible"></div>
         <div id="divAddFormDialog" class="notVisible"></div>
+
+        <script>
+            //password recovery
+<?php
+if (array_key_exists("pruid", $_GET) && array_key_exists("pruh", $_GET)) {
+    if (User::recover_password($_GET['pruid'], $_GET['pruh'])) {
+        ?>
+                    $(function(){
+                        Methods.alert(dictionary["s431"], "info", dictionary["s427"]);
+                    });
+        <?php
+    } else {
+        
+    }
+}
+?>
+        </script>
     </body>
 </html>

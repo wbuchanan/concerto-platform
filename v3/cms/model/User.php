@@ -19,8 +19,8 @@
   Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA.
  */
 
-class User extends OModule
-{
+class User extends OModule {
+
     public $login = "incognito";
     public $firstname = "unknown";
     public $lastname = "unknown";
@@ -30,10 +30,11 @@ class User extends OModule
     public $UserType_id = 0;
     public $UserGroup_id = 0;
     public $last_login = "";
+    public $UserInstitutionType_id = 0;
+    public $institution_name = "";
     public static $mysql_table_name = "User";
 
-    public function __construct($params = array())
-    {
+    public function __construct($params = array()) {
         $this->login = Language::string(77);
         $this->firstname = Language::string(78);
         $this->lastname = Language::string(78);
@@ -41,49 +42,81 @@ class User extends OModule
         parent::__construct($params);
     }
 
-    public function has_UserGroup()
-    {
-        if ($this->UserGroup_id != 0) return true;
-        else return false;
+    public static function recover_password($id, $hash) {
+        $user = User::from_mysql_id($id);
+        if ($user == null)
+            return false;
+        if ($hash != $user->calculate_password_recovery_hash())
+            return false;
+        $pass = $user->get_new_password();
+        $user->md5_password = md5($pass);
+        $user->mysql_save();
+        User::mail_utf8($user->email, "no-reply@concerto.e-psychometrics.com", Language::string(428), sprintf(Language::string(430), $pass));
+        return true;
     }
 
-    public function has_UserType()
-    {
-        if ($this->UserType_id != 0) return true;
-        else return false;
+    public function calculate_password_recovery_hash() {
+        return md5($this->id . "-" . $this->login . "-" . $this->email . "-" . $this->last_login . "-" . $this->md5_password);
     }
 
-    public function get_UserGroup()
-    {
+    public static function mail_utf8($to, $from_email, $subject = '(No subject)', $message = '') {
+        $subject = "=?UTF-8?B?" . base64_encode($subject) . "?=";
+
+        $headers = "From: $from_email\r\n" .
+                "MIME-Version: 1.0" . "\r\n" .
+                "Content-type: text/html; charset=UTF-8" . "\r\n";
+
+        return mail($to, $subject, $message, $headers);
+    }
+
+    public function get_new_password() {
+        return rand(1000, 9999);
+    }
+
+    public function has_UserGroup() {
+        if ($this->UserGroup_id != 0)
+            return true;
+        else
+            return false;
+    }
+
+    public function has_UserType() {
+        if ($this->UserType_id != 0)
+            return true;
+        else
+            return false;
+    }
+
+    public function get_UserGroup() {
         return UserGroup::from_mysql_id($this->UserGroup_id);
     }
 
-    public function get_UserType()
-    {
+    public function get_UserType() {
         return UserType::from_mysql_id($this->UserType_id);
     }
 
-    public static function get_logged_user()
-    {
-        if (isset($_SESSION['ptap_logged_login']) && isset($_SESSION['ptap_logged_md5_password']))
-        {
+    public function get_UserInstitutionType() {
+        return DS_UserInstitutionType::from_mysql_id($this->UserInstitutionType_id);
+    }
+
+    public static function get_logged_user() {
+        if (isset($_SESSION['ptap_logged_login']) && isset($_SESSION['ptap_logged_md5_password'])) {
             $user = self::from_property(array(
                         "login" => $_SESSION['ptap_logged_login'],
                         "md5_password" => $_SESSION['ptap_logged_md5_password']
                             ), false);
-            if ($user != null) return $user;
+            if ($user != null)
+                return $user;
         }
         return null;
     }
 
-    public static function log_in($login, $password)
-    {
+    public static function log_in($login, $password) {
         $user = self::from_property(array(
                     "login" => $login,
                     "md5_password" => md5($password)
                         ), false);
-        if ($user != null)
-        {
+        if ($user != null) {
             $user->last_login = date("Y-m-d H:i:s");
             $user->mysql_save();
 
@@ -93,28 +126,26 @@ class User extends OModule
         return $user;
     }
 
-    public static function log_out()
-    {
+    public static function log_out() {
         unset($_SESSION['ptap_logged_login']);
         unset($_SESSION['ptap_logged_md5_password']);
     }
-    
-    public function get_last_login()
-    {
-        $datetime = explode(" ",$this->last_login);
-        if($datetime[0]=="0000-00-00") $datetime[0] = "&lt;".Language::string (73)."&gt;";
+
+    public function get_last_login() {
+        $datetime = explode(" ", $this->last_login);
+        if ($datetime[0] == "0000-00-00")
+            $datetime[0] = "&lt;" . Language::string(73) . "&gt;";
         return $datetime[0];
     }
 
-    public function get_full_name()
-    {
+    public function get_full_name() {
         $name = $this->firstname . " " . $this->lastname;
-        if (trim($name) == "") $name = "&lt;" . $this->email . "&gt;";
+        if (trim($name) == "")
+            $name = "&lt;" . $this->email . "&gt;";
         return $name;
     }
 
-    public function mysql_delete()
-    {
+    public function mysql_delete() {
         $this->clear_object_links(UserType::get_mysql_table(), "Owner_id");
         $this->clear_object_links(UserGroup::get_mysql_table(), "Owner_id");
         $this->clear_object_links(Template::get_mysql_table(), "Owner_id");
@@ -124,14 +155,12 @@ class User extends OModule
         $this->mysql_delete_object();
     }
 
-    public function mysql_save_from_post($post)
-    {   
+    public function mysql_save_from_post($post) {
         if ($post['modify_password'] == 1)
-                $post['md5_password'] = md5($post['password']);
+            $post['md5_password'] = md5($post['password']);
         $post['oid'] = parent::mysql_save_from_post($post);
 
-        if ($this->id == 0)
-        {
+        if ($this->id == 0) {
             $obj = self::from_mysql_id($post['oid']);
             $obj->Owner_id = $post['oid'];
             $obj->mysql_save();
@@ -139,105 +168,99 @@ class User extends OModule
         return $post['oid'];
     }
 
-    public function is_module_accesible($table_name)
-    {
+    public function is_module_accesible($table_name) {
         return $this->is_module_permission_level_accesible($table_name, "r", 2);
     }
 
-    public function is_module_writeable($table_name)
-    {
+    public function is_module_writeable($table_name) {
         return $this->is_module_permission_level_accesible($table_name, "w", 2);
     }
 
-    public function is_module_permission_level_accesible($table_name, $rw, $value)
-    {
-        if (!$this->has_UserType()) return false;
+    public function is_module_permission_level_accesible($table_name, $rw, $value) {
+        if (!$this->has_UserType())
+            return false;
         $right = $this->get_UserType()->get_rights_by_module_table($table_name);
-        if ($rw == "r" && $right->read >= $value) return true;
-        if ($rw == "w" && $right->write >= $value) return true;
+        if ($rw == "r" && $right->read >= $value)
+            return true;
+        if ($rw == "w" && $right->write >= $value)
+            return true;
         return false;
     }
 
-    public function get_module_permission_value($table_name, $rw)
-    {
-        if (!$this->has_UserType()) return 0;
+    public function get_module_permission_value($table_name, $rw) {
+        if (!$this->has_UserType())
+            return 0;
         $right = $this->get_UserType()->get_rights_by_module_table($table_name);
-        if ($rw == "r") return $right->read;
-        if ($rw == "w") return $right->write;
-        if ($rw == "o") return $right->ownership;
+        if ($rw == "r")
+            return $right->read;
+        if ($rw == "w")
+            return $right->write;
+        if ($rw == "o")
+            return $right->ownership;
         return 0;
     }
 
-    public function is_ownerhsip_changeable($obj)
-    {
+    public function is_ownerhsip_changeable($obj) {
         $val = $this->get_module_permission_value($obj->get_mysql_table(), "o");
-        if ($val == 1) return true;
-        else return false;
+        if ($val == 1)
+            return true;
+        else
+            return false;
     }
 
-    public function is_object_accessible($obj, $rw)
-    {
+    public function is_object_accessible($obj, $rw) {
         $val = $this->get_module_permission_value($obj::get_mysql_table(), $rw);
-        switch ($val)
-        {
-            case 1:
-                {
+        switch ($val) {
+            case 1: {
                     return false;
                     break;
                 }
-            case 2:
-                {
-                    if ($obj->has_Owner())
-                    {
-                        if ($obj->get_Owner()->id == $this->id) return true;
+            case 2: {
+                    if ($obj->has_Owner()) {
+                        if ($obj->get_Owner()->id == $this->id)
+                            return true;
                     }
                     return false;
                     break;
                 }
-            case 3:
-                {
-                    if ($obj->has_Owner())
-                    {
-                        if ($obj->get_Owner()->id == $this->id) return true;
+            case 3: {
+                    if ($obj->has_Owner()) {
+                        if ($obj->get_Owner()->id == $this->id)
+                            return true;
                     }
 
-                    if ($obj->Sharing_id >= 2)
-                    {
-                        if ($obj->has_Owner())
-                        {
-                            if ($obj->get_Owner()->has_UserGroup())
-                            {
+                    if ($obj->Sharing_id >= 2) {
+                        if ($obj->has_Owner()) {
+                            if ($obj->get_Owner()->has_UserGroup()) {
                                 if ($obj->get_Owner()->get_UserGroup()->id == $this->UserGroup_id)
-                                        return true;
+                                    return true;
                             }
                         }
                     }
 
-                    if ($obj->Sharing_id == 3) return true;
+                    if ($obj->Sharing_id == 3)
+                        return true;
                     return false;
                     break;
                 }
-            case 4:
-                {
-                    if ($obj->has_Owner())
-                    {
-                        if ($obj->get_Owner()->id == $this->id) return true;
+            case 4: {
+                    if ($obj->has_Owner()) {
+                        if ($obj->get_Owner()->id == $this->id)
+                            return true;
                     }
 
-                    if ($obj->has_Owner())
-                    {
-                        if ($obj->get_Owner()->has_UserGroup())
-                        {
+                    if ($obj->has_Owner()) {
+                        if ($obj->get_Owner()->has_UserGroup()) {
                             if ($obj->get_Owner()->get_UserGroup()->id == $this->UserGroup_id)
-                                    return true;
+                                return true;
                         }
                     }
 
-                    if ($obj->Sharing_id == 3) return true;
+                    if ($obj->Sharing_id == 3)
+                        return true;
                     break;
                 }
-            case 5:
-                {
+            case 5: {
                     return true;
                     break;
                 }
@@ -245,44 +268,35 @@ class User extends OModule
         return false;
     }
 
-    public function is_object_editable($obj)
-    {
+    public function is_object_editable($obj) {
         return $this->is_object_accessible($obj, "w");
     }
 
-    public function is_object_readable($obj)
-    {
+    public function is_object_readable($obj) {
         return $this->is_object_accessible($obj, "r");
     }
 
-    public function mysql_list_rights_filter($table_name, $sort)
-    {
+    public function mysql_list_rights_filter($table_name, $sort) {
         $val = $this->get_module_permission_value($table_name, "r");
         $where = "";
-        switch ($val)
-        {
-            case 1:
-                {
+        switch ($val) {
+            case 1: {
                     $where = "1=0";
                     break;
                 }
-            case 2:
-                {
+            case 2: {
                     $where = "`$table_name`.`Owner_id`='" . $this->id . "'";
                     break;
                 }
-            case 3:
-                {
+            case 3: {
                     $where = "(`$table_name`.`Owner_id`='" . $this->id . "' OR owner.`UserGroup_id`='" . $this->UserGroup_id . "' AND `$table_name`.`Sharing_id`>=2 OR `$table_name`.`Sharing_id`=3)";
                     break;
                 }
-            case 4:
-                {
+            case 4: {
                     $where = "(`$table_name`.`Owner_id`='" . $this->id . "' OR owner.`UserGroup_id`='" . $this->UserGroup_id . "' OR `$table_name`.`Sharing_id`>=3)";
                     break;
                 }
-            case 5:
-                {
+            case 5: {
                     $where = "1=1";
                 }
         }
@@ -293,24 +307,21 @@ class User extends OModule
 		ORDER BY %s", self::get_mysql_table(), $where, $sort);
         return $sql;
     }
-    
-    public function get_session_count()
-    {
+
+    public function get_session_count() {
         $sql = sprintf("SELECT SUM(`Test`.`session_count`) 
             FROM `Test` 
             LEFT JOIN `User` ON `User`.`id`=`Test`.`Owner_id`
             WHERE `User`.`id`='%s'
-            GROUP BY `User`.`id`",  $this->id);
+            GROUP BY `User`.`id`", $this->id);
         $z = mysql_query($sql);
-        while($r=mysql_fetch_array($z))
-        {
+        while ($r = mysql_fetch_array($z)) {
             return $r[0];
         }
         return 0;
     }
 
-    public static function get_list_columns()
-    {
+    public static function get_list_columns() {
         $cols = parent::get_list_columns();
 
         array_push($cols, array(
@@ -369,20 +380,16 @@ class User extends OModule
             "show" => true
         ));
 
-        for ($i = 0; $i < count($cols); $i++)
-        {
-            if ($cols[$i]["property"] == "name")
-            {
+        for ($i = 0; $i < count($cols); $i++) {
+            if ($cols[$i]["property"] == "name") {
                 array_splice($cols, $i, 1);
                 $i--;
             }
-            if ($cols[$i]["property"] == "get_owner_full_name")
-            {
+            if ($cols[$i]["property"] == "get_owner_full_name") {
                 array_splice($cols, $i, 1);
                 $i--;
             }
-            if ($cols[$i]["property"] == "get_sharing_name")
-            {
+            if ($cols[$i]["property"] == "get_sharing_name") {
                 array_splice($cols, $i, 1);
                 $i--;
             }
@@ -391,25 +398,24 @@ class User extends OModule
         return $cols;
     }
 
-    public function get_UserGroup_name()
-    {
+    public function get_UserGroup_name() {
         $group = $this->get_UserGroup();
-        if ($group == null) return null;
+        if ($group == null)
+            return null;
         return $group->name;
     }
 
-    public function get_UserType_name()
-    {
+    public function get_UserType_name() {
         $type = $this->get_UserType();
-        if ($type == null) return null;
+        if ($type == null)
+            return null;
         return $type->name;
     }
 
-    public static function create_db($delete = false)
-    {
-        if ($delete)
-        {
-            if (!mysql_query("DROP TABLE IF EXISTS `User`;")) return false;
+    public static function create_db($delete = false) {
+        if ($delete) {
+            if (!mysql_query("DROP TABLE IF EXISTS `User`;"))
+                return false;
         }
         $sql = "
             CREATE TABLE IF NOT EXISTS `User` (
@@ -425,12 +431,15 @@ class User extends OModule
             `UserType_id` bigint(20) NOT NULL,
             `UserGroup_id` bigint(20) NOT NULL,
             `last_login` timestamp NOT NULL default '0000-00-00 00:00:00',
+            `UserInstitutionType_id` int(11) NOT NULL,
+            `institution_name` text NOT NULL,
             `Sharing_id` int(11) NOT NULL,
             `Owner_id` bigint(20) NOT NULL,
             PRIMARY KEY  (`id`)
             ) ENGINE=InnoDB  DEFAULT CHARSET=utf8;
             ";
-        if (!mysql_query($sql)) return false;
+        if (!mysql_query($sql))
+            return false;
 
         $sql = "
             INSERT INTO `User` (`id`, `updated`, `created`, `login`, `firstname`, `lastname`, `email`, `phone`, `md5_password`, `UserType_id`, `UserGroup_id`, `last_login`, `Sharing_id`, `Owner_id`) VALUES (NULL, CURRENT_TIMESTAMP, NOW(), 'admin', 'unknown', '', '', '', MD5('admin'), '1', '', '0000-00-00 00:00:00', '1', '1');
@@ -438,17 +447,26 @@ class User extends OModule
         return mysql_query($sql);
     }
 
-    public static function update_db($previous_version)
-    {
+    public static function update_db($previous_version) {
         ///COMPATIBILITY FIX FOR V3.0.0 START
         $sql = "SHOW COLUMNS FROM `User` WHERE `Field`='last_activity'";
         $z = mysql_query($sql);
-        if (mysql_num_rows($z) > 0)
-        {
+        if (mysql_num_rows($z) > 0) {
             $sql = "ALTER TABLE `User` CHANGE `last_activity` `last_login` timestamp NOT NULL default '0000-00-00 00:00:00';";
-            if (!mysql_query($sql)) return false;
+            if (!mysql_query($sql))
+                return false;
         }
         ///COMPATIBILITY FIX FOR V3.0.0 END
+
+        if (Ini::does_patch_apply("3.6.7", $previous_version)) {
+            $sql = "ALTER TABLE `User` ADD `UserInstitutionType_id` int(11) NOT NULL;";
+            if (!mysql_query($sql))
+                return false;
+
+            $sql = "ALTER TABLE `User` ADD `institution_name` text NOT NULL;";
+            if (!mysql_query($sql))
+                return false;
+        }
         return true;
     }
 
