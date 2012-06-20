@@ -21,5 +21,6 @@
 === Demos ===
 
  * [http://dev.myiqtest.org/concerto3_demo/index.php?tid=80 Adaptive test]
+ * [http://dev.myiqtest.org/concerto/index.php?hash=004d269f4604dbc8058ae8384e6a239c Adaptive test with a fancy graph]
  * [http://ns39618.ovh.net/~promedia/SlickTester/?hash=7a1fbe89a820fbf36e71aafb161516bc&dev=1 Intelligence test]
  * [http://ns39618.ovh.net/~promedia/SlickTester/?hash=b698d56cfdcfc772ac42e2a6b095cbdd Student assignment]
