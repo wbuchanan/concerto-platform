@@ -36,6 +36,7 @@ if (!$logged_user->is_object_editable($obj)) die(Language::string(81));
 
 <script>
     $(function(){
+        Methods.iniIconButton("#btnExpand<?=$class_name?>GridProtectedVariables","arrowthick-1-s");
         var fields = {
             id:{
                 type:"number",
@@ -92,5 +93,5 @@ if (!$logged_user->is_object_editable($obj)) die(Language::string(81));
     })
 </script>
 
-<div class="ui-widget-header margin"><?= Language::string(358) ?></div>
-<div id="div<?= $class_name ?>GridProtectedVars" class="grid margin" align="left"></div>
+<div class="margin" align="center"><button id="btnExpand<?=$class_name?>GridProtectedVariables" class="btnExpand fullWidth" onclick="Methods.toggleExpand('#div<?= $class_name ?>GridProtectedVars', this)"><?= Language::string(358) ?></button></div>
+<div id="div<?= $class_name ?>GridProtectedVars" class="grid margin" align="left" style="display:none;"></div>

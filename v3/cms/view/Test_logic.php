@@ -36,6 +36,7 @@ if (!$logged_user->is_object_editable($obj))
 
 <script>
     $(function(){
+        Methods.iniIconButton("#btnExpand<?=$class_name?>Variables","arrowthick-1-s");
         Methods.iniIconButton("#btnDebugTest", "lightbulb");
         Methods.iniIconButton("#btnLogicVariables", "star");
         Methods.iniIconButton(".btnAddLogicSection", "plus");
@@ -115,8 +116,8 @@ if ($oid != 0) {
 
 <?php include Ini::$path_internal . "cms/view/Test_security.php"; ?>
 <br/>
-<div class="ui-widget-header margin"><?= Language::string(403) ?></div>
-<div align="left" class="margin" id="divTestVariables">
+<div class="margin" align="center"><button id="btnExpand<?=$class_name?>Variables" class="btnExpand fullWidth" onclick="Methods.toggleExpand('#divTestVariables', this)"><?= Language::string(403) ?></button></div>
+<div align="left" class="margin" id="divTestVariables" style="display:none;">
     <?php include Ini::$path_internal . "cms/view/Test_variables.php"; ?>
 </div>
 <br/>

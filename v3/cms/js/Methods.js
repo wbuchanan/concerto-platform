@@ -39,6 +39,14 @@ Methods.loading=function(selector){
     $(selector).html("<div align='center' style='width:100%;height:100%;'><table style='width:100%;height:100%;'><tr><td valign='middle' align='center'><img src='css/img/ajax-loader.gif' /></td></tr></table></div>")  
 };
 
+Methods.toggleExpand=function(selector,btnSelector){
+    var icon = $(selector).is(":visible")?"arrowthick-1-s":"arrowthick-1-n";
+    $(selector).toggle(200);
+    $(btnSelector).button("option","icons", {
+        primary:"ui-icon-"+icon
+    });
+}
+
 Methods.modalLoading=function(title){
     if(title==null) title=dictionary["s319"];
     Methods.loading("#divLoadingDialog");
@@ -53,7 +61,7 @@ Methods.modalLoading=function(title){
             $('.ui-widget-overlay').css('position', 'fixed');
         },
         close:function(){
-            //$('.ui-widget-overlay').css('position', 'absolute');
+        //$('.ui-widget-overlay').css('position', 'absolute');
         },
         buttons:
         {
@@ -169,7 +177,7 @@ Methods.confirm=function(message,title,callback)
             $('.ui-widget-overlay').css('position', 'fixed');
         },
         close:function(){
-            //$('.ui-widget-overlay').css('position', 'absolute');
+        //$('.ui-widget-overlay').css('position', 'absolute');
         },
         buttons:
         {

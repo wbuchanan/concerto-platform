@@ -68,6 +68,7 @@ if ($oid != 0)
     ?>
     <script>
         $(function(){
+            Methods.iniIconButton("#btnExpand<?=$class_name?>Description","arrowthick-1-s");
             Methods.iniIconButton(".btnCancel", "cancel");
             Methods.iniIconButton(".btnSave", "disk");
             Methods.iniIconButton(".btnDelete", "trash");
@@ -98,7 +99,8 @@ if ($oid != 0)
                 <td class="noWrap horizontalPadding tdFormLabel"><?= Language::string(97) ?>:</td>
                 <td><span class="tooltip spanIcon ui-icon ui-icon-help" title="<?= Language::string(98) ?>"></span></td>
                 <td class="fullWidth">
-                    <div class="horizontalMargin">
+                    <div class="horizontalMargin" align="center"><button id="btnExpand<?=$class_name?>Description" class="btnExpand fullWidth" onclick="Methods.toggleExpand('#form<?=$class_name?>DivDescription', this)"><?= Language::string(97) ?></button></div>
+                    <div class="horizontalMargin" align="center" id="form<?=$class_name?>DivDescription" style="display:none;">
                         <textarea id="form<?= $class_name ?>TextareaDescription" name="form<?= $class_name ?>TextareaDescription" class="fullWidth ui-widget-content ui-corner-all"><?= htmlspecialchars(stripslashes($obj->description)) ?></textarea>
                     </div>
                 </td>
