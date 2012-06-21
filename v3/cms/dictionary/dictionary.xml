@@ -1411,12 +1411,12 @@ Note: You can add new languages by inserting "<new_language>string translated in
             <bg>вид на администратора</bg>
         </string>
         <string id="178">
-            <en>admin login</en>
-            <de>Benutzername des Administrators</de>
-            <pl>login administratora</pl>
-            <cn>管理员登入</cn>
-            <fr>ouverture en tant qu'administrateur</fr>
-            <bg>вход на администратора</bg>
+            <en>Please enter a unique login id</en>
+            <de></de>
+            <pl>Proszę podać unikatowy identyfikator login</pl>
+            <cn></cn>
+            <fr></fr>
+            <bg></bg>
         </string>
         <string id="179">
             <en>password</en>
@@ -1434,12 +1434,12 @@ Note: You can add new languages by inserting "<new_language>string translated in
             <bg>Изберете полето за въвеждане на парола</bg>
         </string>
         <string id="181">
-            <en>admin password</en>
-            <de>Passwort des Administrators</de>
-            <pl>hasło administratora</pl>
-            <cn>管理员密码</cn>
-            <fr>mot de passe d'administrateur</fr>
-            <bg>парола на администратора</bg>
+            <en>Please enter a memorable password</en>
+            <de></de>
+            <pl>Proszę podać łatwe do zapamiętania hasło</pl>
+            <cn></cn>
+            <fr></fr>
+            <bg></bg>
         </string>
         <string id="182">
             <en>password confirmation</en>
@@ -1450,12 +1450,12 @@ Note: You can add new languages by inserting "<new_language>string translated in
             <bg>потвърждение на паролата</bg>
         </string>
         <string id="183">
-            <en>password confirmation must match the password field above</en>
-            <de>Passwortwiederhohlung muss mit dem Passwort Feld darüber übereinstimmen</de>
-            <pl>potwierdzenie hasła musi sie zgadzać z polem hasła powyżej</pl>
-            <cn>确认密码必须与上方密码栏一致</cn>
-             <fr>la confirmation du mot de passe doit correspondre au mot de passe ci-dessus</fr>
-            <bg>потвърждението на паролата трябва да съответства на паролата в полето по-горе</bg>
+            <en>Please retype the password as above</en>
+            <de></de>
+            <pl>Proszę podać ponownie hasło takie jak powyżej</pl>
+            <cn></cn>
+            <fr></fr>
+            <bg></bg>
         </string>
         <string id="184">
             <en>first name</en>
@@ -1474,27 +1474,27 @@ Note: You can add new languages by inserting "<new_language>string translated in
             <bg>фамилия</bg>
         </string>
         <string id="186">
-            <en>admin first name</en>
-            <de>Vorname des Administrators</de>
-            <pl>imię administratora</pl>
-            <cn>管理员名</cn>
-            <bg>име на администратора</bg>
+            <en>Please provide your first name</en>
+            <de></de>
+            <pl>Proszę podać swoje imię</pl>
+            <cn></cn>
+            <bg></bg>
         </string>
         <string id="187">
-            <en>admin last name</en>
-            <de>Nachname des Administrators</de>
-            <pl>nazwisko administratora</pl>
-            <cn>管理员姓</cn>
-            <fr>nom de famille de l'administrateur</fr>
-            <bg>фамилия на администратора</bg>
+            <en>Please provide your last name</en>
+            <de></de>
+            <pl>Proszę podać swoje nazwisko</pl>
+            <cn></cn>
+            <fr></fr>
+            <bg></bg>
         </string>
         <string id="188">
-            <en>admin email</en>
-            <de>Email des Administrators</de>
-            <pl>email administratora</pl>
-            <cn>管理员邮箱</cn>
-            <fr>email de l'administrateur</fr>
-            <bg>имейл на администратора</bg>
+            <en>We will contact you via this email if you run into any problems with your account etc.</en>
+            <de></de>
+            <pl>Skontaktujemy się z tym adresem email w razie jakichkolwiek problemów z twoim kontem, itp.</pl>
+            <cn></cn>
+            <fr></fr>
+            <bg></bg>
         </string>
         <string id="189">
             <en>phone no.</en>
@@ -1505,12 +1505,12 @@ Note: You can add new languages by inserting "<new_language>string translated in
             <bg>телефон:</bg>
         </string>
         <string id="190">
-            <en>admin phone no.</en>
-            <de>Telefonnummer des Administrators</de>
-            <pl>nr telefonu administratora</pl>
-            <cn>管理员电话</cn>
-            <fr>numéro de téléphone de l'administrateur</fr>
-            <bg>телефон на администратора:</bg>
+            <en>This is optional contact information.</en>
+            <de></de>
+            <pl>To jest opcjonalna informacja kontaktowa.</pl>
+            <cn></cn>
+            <fr></fr>
+            <bg></bg>
         </string>
         <string id="191">
             <en>admin group</en>
@@ -3082,10 +3082,10 @@ Note: You can add new languages by inserting "<new_language>string translated in
             <bg></bg>
         </string>
         <string id="413">
-            <en>Fill the form below to register new user.</en>
+            <en>Please fill the form below to create a new account.</en>
             <de></de>
-            <pl>Wypełnij formularz poniżej aby zarejestrować nowego użytkownika.</pl>
-            <cn>填表注册新用户</cn>
+            <pl>Wypełnij formularz poniżej aby stworzyć nowe konto.</pl>
+            <cn></cn>
             <fr></fr>
             <bg></bg>
         </string>
@@ -3122,9 +3122,9 @@ Note: You can add new languages by inserting "<new_language>string translated in
             <bg></bg>
         </string>
         <string id="418">
-            <en>other ( please specify )</en>
+            <en>other ( please specify below )</en>
             <de></de>
-            <pl>inny ( proszę określić )</pl>
+            <pl>inny ( proszę określić poniżej )</pl>
             <cn></cn>
             <fr></fr>
             <bg></bg>
@@ -3138,9 +3138,9 @@ Note: You can add new languages by inserting "<new_language>string translated in
             <bg></bg>
         </string>
         <string id="420">
-            <en>user institution type</en>
+            <en>Please indicate the nature of your work</en>
             <de></de>
-            <pl>typ instytucji użytkownika</pl>
+            <pl>Proszę wskazać typ wykonywanej pracy</pl>
             <cn></cn>
             <fr></fr>
             <bg></bg>
@@ -3154,17 +3154,9 @@ Note: You can add new languages by inserting "<new_language>string translated in
             <bg></bg>
         </string>
         <string id="422">
-            <en>user institution name</en>
+            <en>Please provide the name of your institution</en>
             <de></de>
-            <pl>nazwa instytucji użytkownika</pl>
-            <cn></cn>
-            <fr></fr>
-            <bg></bg>
-        </string>
-        <string id="423">
-            <en>New to Concerto?</en>
-            <de></de>
-            <pl>Pierwszy raz z Concerto?</pl>
+            <pl>Proszę podać nazwę swojej instytucji</pl>
             <cn></cn>
             <fr></fr>
             <bg></bg>
@@ -3237,6 +3229,22 @@ Note: You can add new languages by inserting "<new_language>string translated in
             <en>Mail has been sent to your user email account for verification. Please follow the link in verification email to continue password recovery process.</en>
             <de></de>
             <pl>List weryfikacyjny został wysłany na skrzynkę pocztową twojego użytkownika. Proszę podążyć za linkiem w liście weryfikacyjnym aby kontynuować process odzyskiwania hasła.</pl>
+            <cn></cn>
+            <fr></fr>
+            <bg></bg>
+        </string>
+        <string id="433">
+            <en>Please enter your login id</en>
+            <de></de>
+            <pl>Proszę wpisać swój identyfikator login</pl>
+            <cn></cn>
+            <fr></fr>
+            <bg></bg>
+        </string>
+        <string id="434">
+            <en>Please enter your password</en>
+            <de></de>
+            <pl>Proszę wpisać swoje hasło</pl>
             <cn></cn>
             <fr></fr>
             <bg></bg>

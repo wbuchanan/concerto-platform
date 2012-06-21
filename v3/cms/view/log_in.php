@@ -39,7 +39,6 @@ if (!isset($ini)) {
             resizeable:false,
             closeOnEscape:false,
             dialogClass:"no-close",
-            width:400,
             open:function(){
                 $('.ui-widget-overlay').css('position', 'fixed');
                 Methods.iniTooltips();
@@ -61,6 +60,25 @@ if (!isset($ini)) {
                 }
             ]
         });
+    
+<?php
+if (Ini::$public_registration) {
+    ?>
+                $("#dd_login").dialog("option","buttons",[{
+                        text:'<?= Language::string(424) ?>',
+                        click:function(){
+                            User.uiRegister();
+                        }
+                    },{
+                        text:'<?= Language::string(411) ?>',
+                        click:function(){
+                            User.uiLogIn();
+                        }
+                    }]);
+                    $("button").first().addClass("ui-state-highlight");
+    <?php
+}
+?>
     });
 </script>
 <div id="dd_login">
@@ -69,7 +87,7 @@ if (!isset($ini)) {
         <table>
             <tr>
                 <td class="noWrap horizontalPadding tdFormLabel">* <?= Language::string(173) ?>:</td>
-                <td><span class="tooltip spanIcon ui-icon ui-icon-help" title="<?= Language::string(260) ?>"></span></td>
+                <td><span class="tooltip spanIcon ui-icon ui-icon-help" title="<?= Language::string(433) ?>"></span></td>
                 <td class="fullWidth">
                     <div class="horizontalMargin">
                         <input type="text" id="dd_login_inp_login" class="fullWidth margin ui-widget-content ui-corner-all" />
@@ -78,7 +96,7 @@ if (!isset($ini)) {
             </tr>
             <tr>
                 <td class="noWrap horizontalPadding tdFormLabel"><?= Language::string(179) ?>:</td>
-                <td><span class="tooltip spanIcon ui-icon ui-icon-help" title="<?= Language::string(261) ?>"></span></td>
+                <td><span class="tooltip spanIcon ui-icon ui-icon-help" title="<?= Language::string(434) ?>"></span></td>
                 <td class="fullWidth">
                     <div class="horizontalMargin">
                         <input type="password" id="dd_login_inp_password" class="fullWidth margin ui-widget-content ui-corner-all" />
@@ -87,24 +105,8 @@ if (!isset($ini)) {
             </tr>
         </table>
     </div>	 
-    <div class="margin padding">
-        <table class="fullWidth">
-            <tr>
-                <?php
-                if (Ini::$public_registration) {
-                ?>
-                <td valign="middle" align="center">
-                    <?=Language::string(423)?><br/>
-                    <button class="btnCreateNewAccount ui-state-highlight" onclick="User.uiRegister()"><?=Language::string(424)?></button>
-                </td>
-                <?php
-                }
-                ?>
-                <td valign="middle" align="right">
-                    <div style="cursor:pointer; text-decoration: underline;" onclick="User.uiPasswordRecovery()"><?=Language::string(425)?></div>
-                </td>
-            </tr>
-        </table>
+    <div class="padding fullWidth" align="right">
+        <div style="cursor:pointer; text-decoration: underline;" onclick="User.uiPasswordRecovery()"><?= Language::string(425) ?></div>
     </div>
 </div>
 
