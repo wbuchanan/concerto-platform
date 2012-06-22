@@ -72,7 +72,7 @@ else
 
 <script>
     $(function(){
-        Methods.iniCodeMirror("form<?= $class_name ?>TextareaCode", "r", false);
+        Methods.iniCodeMirror("form<?= $class_name ?>TextareaCode", "r", false,"910px");
         Methods.iniTooltips();
         CustomSection.uiRefreshComboboxes();
     

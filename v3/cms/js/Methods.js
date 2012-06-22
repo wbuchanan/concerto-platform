@@ -41,7 +41,7 @@ Methods.loading=function(selector){
 
 Methods.toggleExpand=function(selector,btnSelector){
     var icon = $(selector).is(":visible")?"arrowthick-1-s":"arrowthick-1-n";
-    $(selector).toggle(200);
+    $(selector).toggle(0);
     $(btnSelector).button("option","icons", {
         primary:"ui-icon-"+icon
     });
@@ -372,9 +372,10 @@ Methods.getTempID=function()
     return User.sessionID+"_"+time;
 };
 
-Methods.iniCodeMirror=function(id,mode,readOnly)
+Methods.iniCodeMirror=function(id,mode,readOnly,maxWidth)
 {
     var obj = document.getElementById(id);
+    
     var myCodeMirror = CodeMirror.fromTextArea(obj,{
         mode:mode,
         fixedGutter:false,
@@ -390,6 +391,7 @@ Methods.iniCodeMirror=function(id,mode,readOnly)
             instance.refresh();
         }
     });
+    if(maxWidth!=null) $(obj).next().find(".CodeMirror-scroll").css("max-width",maxWidth);
     return myCodeMirror;
 };
 

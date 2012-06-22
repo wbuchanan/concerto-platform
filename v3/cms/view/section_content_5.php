@@ -55,7 +55,7 @@ if ($table != null)
             <!--<td class="tdSectionColumnIcon"></td>-->
             <td class="ui-widget-header tdSectionColumnCounter" id="tooltipSectionDetail_<?= $_POST['counter'] ?>" title=""><?= $_POST['counter'] ?></td>
             <td class="tdSectionColumnIcon"><span class="spanIcon ui-icon ui-icon-help tooltip" title="<?= DS_TestSectionType::get_description_by_id(5) ?>"></span></td>
-            <td class="tdSectionColumnIcon"><span id="spanExpandDetail_<?=$_POST['counter']?>" class="spanIcon ui-icon ui-icon-folder-<?=$_POST['detail']==1?"open":"collapsed"?> tooltip" title="<?= Language::string(390) ?>" onclick="Test.uiToggleDetails(<?=$_POST['counter']?>)"></span></td>
+            <td class="tdSectionColumnIcon"><span id="spanExpandDetail_<?=$_POST['counter']?>" class="spanExpandDetail spanIcon ui-icon ui-icon-folder-<?=$_POST['detail']==1?"open":"collapsed"?> tooltip" title="<?= Language::string(390) ?>" onclick="Test.uiToggleDetails(<?=$_POST['counter']?>)"></span></td>
             <td class="tdSectionColumnType"><?= DS_TestSectionType::get_name_by_id(5) ?></td>
             <td class="tdSectionColumnAction"><input onchange="Test.uiSetVarNameChanged($(this))" type="text" class="ui-state-focus comboboxSetVars comboboxVars controlValue<?= $_POST['counter'] ?> ui-widget-content ui-corner-all" value="<?= htmlspecialchars(isset($vals[4]) ? $vals[4] : "", ENT_QUOTES) ?>" /></td>
             <td class="tdSectionColumnEnd"><table><tr><td><span class="spanIcon ui-icon ui-icon-help tooltip" title="<?= Language::string(369) ?>"></span></td><td><?= Language::string(55) ?></td><td><input type="checkbox" id="chkEndSection_<?= $_POST['counter'] ?>" class="chkEndSection" <?=$_POST['end']==1?"checked":""?> /></td></tr></table></td>

@@ -171,5 +171,8 @@ ul {
 
 .tdFormLabel {
     font-style: italic;
-    
+}
+
+.divCodeMirrorContainer {
+    max-width: 815px;
 }

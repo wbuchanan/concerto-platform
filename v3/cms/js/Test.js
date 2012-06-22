@@ -85,7 +85,7 @@ Test.getFullSaveObject = function() {
 Test.uiSaveValidate=function(ignoreOnBefore){
     if(!this.checkRequiredFields([
         $("#form"+this.className+"InputName").val()
-    ])) {
+        ])) {
         Methods.alert(dictionary["s415"],"alert");
         return false;
     }
@@ -300,12 +300,12 @@ Test.uiRefreshSectionContent=function(type,counter,value,oid,end){
         $("#divSection_"+counter).children(".divSectionContent").html(data);
         switch(type){
             case Test.sectionTypes.RCode:{
-                var cm = Methods.iniCodeMirror("textareaCodeMirror_"+counter, "r", false);
+                var cm = Methods.iniCodeMirror("textareaCodeMirror_"+counter, "r", false,"905px");
                 Test.codeMirrors.push(cm);
                 break;
             }
             case Test.sectionTypes.setVariable:{
-                var cm = Methods.iniCodeMirror("textareaCodeMirror_"+counter, "r", false);
+                var cm = Methods.iniCodeMirror("textareaCodeMirror_"+counter, "r", false,"905px");
                 Test.codeMirrors.push(cm);
                 break;
             }
@@ -353,12 +353,12 @@ Test.uiToggleHover=function(counter,show){
 
 Test.uiToggleDetails=function(counter){
     if(!$("#divSection_"+counter).children(".divSectionContent").children(".divSectionDetail").is(":visible")){
-        $("#divSection_"+counter).children(".divSectionContent").children(".divSectionDetail").show(500);
+        $("#divSection_"+counter).children(".divSectionContent").children(".divSectionDetail").show(0);
         $("#spanExpandDetail_"+counter).removeClass("ui-icon-folder-collapsed");
         $("#spanExpandDetail_"+counter).addClass("ui-icon-folder-open");
         Test.uiRefreshCodeMirrors();
     } else {
-        $("#divSection_"+counter).children(".divSectionContent").children(".divSectionDetail").hide(500);
+        $("#divSection_"+counter).children(".divSectionContent").children(".divSectionDetail").hide(0);
         $("#spanExpandDetail_"+counter).addClass("ui-icon-folder-collapsed");
         $("#spanExpandDetail_"+counter).removeClass("ui-icon-folder-open");
     }
@@ -366,22 +366,15 @@ Test.uiToggleDetails=function(counter){
 
 Test.allExpanded = false;
 Test.uiToggleAll=function(){
-    $(".divSection").each(function(){
-        var counter = $(this).attr("seccounter");
-        if(Test.allExpanded){
-            if($("#divSection_"+counter).children(".divSectionContent").children(".divSectionDetail").is(":visible")){
-                $("#divSection_"+counter).children(".divSectionContent").children(".divSectionDetail").hide(500);
-                $("#spanExpandDetail_"+counter).addClass("ui-icon-folder-collapsed");
-                $("#spanExpandDetail_"+counter).removeClass("ui-icon-folder-open");
-            }
-        } else {
-            if(!$("#divSection_"+counter).children(".divSectionContent").children(".divSectionDetail").is(":visible")){
-                $("#divSection_"+counter).children(".divSectionContent").children(".divSectionDetail").show(500);
-                $("#spanExpandDetail_"+counter).removeClass("ui-icon-folder-collapsed");
-                $("#spanExpandDetail_"+counter).addClass("ui-icon-folder-open");
-            }
-        }
-    });
+    if(Test.allExpanded){
+        $(".divSectionDetail").hide(0);
+        $(".spanExpandDetail").addClass("ui-icon-folder-collapsed");
+        $(".spanExpandDetail").removeClass("ui-icon-folder-open");
+    } else {
+        $(".divSectionDetail").show(0);
+        $(".spanExpandDetail").removeClass("ui-icon-folder-collapsed");
+        $(".spanExpandDetail").addClass("ui-icon-folder-open");
+    }
     Test.allExpanded = !Test.allExpanded;
     if(Test.allExpanded) {
         Test.uiRefreshCodeMirrors();
@@ -461,7 +454,7 @@ Test.uiAddLogicSection=function(parent,after){
             $('.ui-widget-overlay').css('position', 'fixed');
         },
         close:function(){
-            //$('.ui-widget-overlay').css('position', 'absolute');
+        //$('.ui-widget-overlay').css('position', 'absolute');
         },
         buttons:[
         {
@@ -656,8 +649,8 @@ Test.variableValidation=function(value,dots){
 Test.convertVariable=function(value,dots){
     if(dots == null) dots = true;
     if(dots) {
-       value = value.replace(/[^A-Z^a-z^0-9^\.^_]/gi,"");
-       value = value.replace(/\.{2,}/gi,".");
+        value = value.replace(/[^A-Z^a-z^0-9^\.^_]/gi,"");
+        value = value.replace(/\.{2,}/gi,".");
     }
     else value = value.replace(/[^A-Z^a-z^0-9^_]/gi,"");
     value = value.replace(/^([^A-Z^a-z]{1,})*/gi,"");
@@ -1179,7 +1172,7 @@ Test.uiEditVariableDescription=function(obj){
             $('.ui-widget-overlay').css('position', 'fixed');
         },
         close:function(){
-            //$('.ui-widget-overlay').css('position', 'absolute');
+        //$('.ui-widget-overlay').css('position', 'absolute');
         },
         buttons:[
         {

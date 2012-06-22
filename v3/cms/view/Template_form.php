@@ -73,7 +73,7 @@ if ($oid != 0)
             Methods.iniIconButton(".btnCancel", "cancel");
             Methods.iniIconButton(".btnSave", "disk");
             Methods.iniIconButton(".btnDelete", "trash");
-            Template.formCodeMirror = Methods.iniCodeMirror("form<?= $class_name ?>TextareaHead", "htmlmixed", false);
+            Template.formCodeMirror = Methods.iniCodeMirror("form<?= $class_name ?>TextareaHead", "htmlmixed", false,"845px");
             Methods.iniCKEditor("#form<?= $class_name ?>TextareaHTML",function(){
                 try{
                     $("#divAddFormDialog").dialog("option","position","center"); 
@@ -93,7 +93,7 @@ if ($oid != 0)
             <tr>
                 <td class="noWrap horizontalPadding tdFormLabel">* <?= Language::string(70) ?>:</td>
                 <td><span class="tooltip spanIcon ui-icon ui-icon-help" title="<?= Language::string(135) ?>"></span></td>
-                <td class="fullWidth">
+                <td>
                     <div class="horizontalMargin">
                         <input type="text" id="form<?= $class_name ?>InputName" value="<?= $obj->name ?>" class="fullWidth ui-widget-content ui-corner-all" />
                     </div>
@@ -102,7 +102,7 @@ if ($oid != 0)
             <tr>
                 <td class="noWrap horizontalPadding tdFormLabel"><?= Language::string(97) ?>:</td>
                 <td><span class="tooltip spanIcon ui-icon ui-icon-help" title="<?= Language::string(98) ?>"></span></td>
-                <td class="fullWidth">
+                <td>
                     <div class="horizontalMargin" align="center"><button id="btnExpand<?=$class_name?>Description" class="btnExpand fullWidth" onclick="Methods.toggleExpand('#form<?=$class_name?>DivDescription', this)"><?= Language::string(97) ?></button></div>
                     <div class="horizontalMargin" align="center" id="form<?=$class_name?>DivDescription" style="display:none;">
                         <textarea id="form<?= $class_name ?>TextareaDescription" name="form<?= $class_name ?>TextareaDescription" class="fullWidth ui-widget-content ui-corner-all"><?= htmlspecialchars(stripslashes($obj->description)) ?></textarea>
@@ -112,16 +112,16 @@ if ($oid != 0)
             <tr>
                 <td class="noWrap horizontalPadding tdFormLabel"><?= Language::string(407) ?>:</td>
                 <td><span class="tooltip spanIcon ui-icon ui-icon-help" title="<?= Language::string(408) ?>"></span></td>
-                <td class="fullWidth">
-                    <div class="horizontalMargin" align="left">
-                        <textarea id="form<?= $class_name ?>TextareaHead" name="form<?= $class_name ?>TextareaHead" class="fullWidth ui-widget-content ui-corner-all"><?= htmlspecialchars(stripslashes($obj->head)) ?></textarea>
+                <td>
+                    <div class="horizontalMargin">
+                        <textarea id="form<?= $class_name ?>TextareaHead" name="form<?= $class_name ?>TextareaHead"><?= htmlspecialchars(stripslashes($obj->head)) ?></textarea>
                     </div>
                 </td>
             </tr>
             <tr>
                 <td class="noWrap horizontalPadding tdFormLabel"><?= Language::string(18) ?>:</td>
                 <td><span class="tooltip spanIcon ui-icon ui-icon-help" title="<?= Language::string(136) ?>"></span></td>
-                <td class="fullWidth">
+                <td>
                     <div class="horizontalMargin" align="center">
                         <textarea id="form<?= $class_name ?>TextareaHTML" name="form<?= $class_name ?>TextareaHTML"><?= htmlspecialchars(stripslashes($obj->HTML)) ?></textarea>
                     </div>
@@ -130,7 +130,7 @@ if ($oid != 0)
             <tr>
                 <td class="noWrap horizontalPadding tdFormLabel"><?= Language::string(72) ?>:</td>
                 <td><span class="tooltip spanIcon ui-icon ui-icon-help" title="<?= Language::string(137) ?>"></span></td>
-                <td class="fullWidth">
+                <td>
                     <div class="horizontalMargin">
                         <select id="form<?= $class_name ?>SelectSharing" class="fullWidth ui-widget-content ui-corner-all">
                             <?php foreach (DS_Sharing::get_all() as $share)
@@ -147,7 +147,7 @@ if ($oid != 0)
                 <tr>
                     <td class="noWrap horizontalPadding tdFormLabel"><?= Language::string(71) ?>:</td>
                     <td><span class="tooltip spanIcon ui-icon ui-icon-help" title="<?= Language::string(138) ?>"></span></td>
-                    <td class="fullWidth">
+                    <td>
                         <div class="horizontalMargin">
                             <select id="form<?= $class_name ?>SelectOwner" class="fullWidth ui-widget-content ui-corner-all">
                                 <option value="0" <?= (!$obj->has_Owner() ? "selected" : "") ?>>&lt;<?= Language::string(73) ?>&gt;</option>
