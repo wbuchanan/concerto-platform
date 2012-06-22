@@ -123,10 +123,10 @@ $columns_def.="]";
                 },
                 operators: {
                     string: {
+                        contains: dictionary["s344"],
                         eq: dictionary["s222"],
                         neq: dictionary["s221"],
                         startswith: dictionary["s343"],
-                        contains: dictionary["s344"],
                         endswith: dictionary["s345"]
                     },
                     number: {
