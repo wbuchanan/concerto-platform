@@ -26,10 +26,6 @@ Template.onAfterEdit=function()
 {
     };
 
-Template.getMessageSuccessfulSave = function(isNewObject){
-    if(!isNewObject) return dictionary["s9"]+"<br/>"+dictionary["s409"];
-    else return dictionary["s9"];
-}
 Template.onAfterSave=function(isNewObject)
 {
     Test.uiTemplatesChanged();

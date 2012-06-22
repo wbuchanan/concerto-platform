@@ -19,8 +19,8 @@
   Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA.
  */
 
-class Template extends OModule
-{
+class Template extends OModule {
+
     public $name = "";
     public $HTML = "";
     public $head = "";
@@ -29,78 +29,71 @@ class Template extends OModule
     public static $exportable = true;
     public static $mysql_table_name = "Template";
 
-    public function __construct($params = array())
-    {
+    public function __construct($params = array()) {
         $this->name = Language::string(75);
         parent::__construct($params);
     }
 
-    public function get_inserts()
-    {
+    public function get_inserts() {
         $inserts = array();
         $html = $this->HTML;
-        while (strpos($html, "{{") !== false)
-        {
+        while (strpos($html, "{{") !== false) {
             $html = substr($html, strpos($html, "{{") + 2);
-            if (strpos($html, "}}") !== false)
-            {
+            if (strpos($html, "}}") !== false) {
                 $name = substr($html, 0, strpos($html, "}}"));
-                if ($name == "TIME_LEFT") continue;
-                if (!in_array($name, $inserts)) array_push($inserts, $name);
+                if ($name == "TIME_LEFT")
+                    continue;
+                if (!in_array($name, $inserts))
+                    array_push($inserts, $name);
             }
         }
         return $inserts;
     }
 
-    public static function get_insert_reference($name, $vals, $inserts)
-    {
+    public static function get_insert_reference($name, $vals, $inserts) {
         $j = 3;
-        foreach ($inserts as $ins)
-        {
-            if ($ins == "TIME_LEFT") continue;
+        foreach ($inserts as $ins) {
+            if ($ins == "TIME_LEFT")
+                continue;
 
-            if ($ins == $name) return $vals[$j];
-
+            if ($ins == $name) {
+                if(isset($vals[$j])) return $vals[$j];
+                else break;
+            }
             $j++;
         }
         return $name;
     }
 
-    public static function get_return_reference($name, $vals, $output)
-    {
+    public static function get_return_reference($name, $vals, $output) {
         $j = 3 + $vals[1];
-        foreach ($output as $ret)
-        {
-            if ($ret["name"] == $name) return $vals[$j];
-
+        foreach ($output as $ret) {
+            if ($ret["name"] == $name) {
+                if(isset($vals[$j])) return $vals[$j];
+                else break;
+            }
             $j++;
         }
         return $name;
     }
 
-    public static function output_html($html, $vals, $outputs, $inserts=null)
-    {
-        if(trim($html)=="") return "";
-        if ($inserts != null)
-        {
-            foreach ($inserts as $insert)
-            {
+    public static function output_html($html, $vals, $outputs, $inserts = null) {
+        if (trim($html) == "")
+            return "";
+        if ($inserts != null) {
+            foreach ($inserts as $insert) {
                 $ref = Template::get_insert_reference($insert, $vals, $inserts);
-                if ($ref != $insert)
-                {
+                if ($ref != $insert) {
                     $html = str_replace("{{" . $insert . "}}", "{{" . $ref . "}}", $html);
                 }
             }
         }
         $html = str_get_html($html);
-        foreach ($outputs as $out)
-        {
+        foreach ($outputs as $out) {
             $elems = $html->find("[name='" . $out["name"] . "']");
             $reference = null;
-            foreach ($elems as $elem)
-            {
-                if ($reference == null)
-                {
+            foreach ($elems as $elem) {
+                if ($reference == null) {
                     $reference = Template::get_return_reference($out["name"], $vals, $outputs);
                 }
                 $elem->setAttribute("name", $reference);
@@ -109,26 +102,22 @@ class Template extends OModule
         return $html->save();
     }
 
-    public function get_outputs()
-    {
+    public function get_outputs() {
         $names = array();
         $outputs = array();
         $html_string = $this->HTML;
-        if (empty($html_string)) $html_string = "<p></p>";
+        if (empty($html_string))
+            $html_string = "<p></p>";
         $html = str_get_html($html_string);
-        foreach ($html->find('input[type="text"], input[type="password"], input[type="checkbox"], input[type="radio"]') as $element)
-        {
-            if (!in_array($element->name, $names))
-            {
+        foreach ($html->find('input[type="text"], input[type="password"], input[type="checkbox"], input[type="radio"]') as $element) {
+            if (!in_array($element->name, $names)) {
                 array_push($outputs, array("name" => $element->name, "type" => $element->type));
                 array_push($names, $element->name);
             }
         }
 
-        foreach ($html->find('textarea, select') as $element)
-        {
-            if (!in_array($element->name, $names))
-            {
+        foreach ($html->find('textarea, select') as $element) {
+            if (!in_array($element->name, $names)) {
                 array_push($outputs, array("name" => $element->name, "type" => $element->tag));
                 array_push($names, $element->name);
             }
@@ -136,8 +125,7 @@ class Template extends OModule
         return $outputs;
     }
 
-    public function export()
-    {
+    public function export() {
         $xml = new DOMDocument('1.0', "UTF-8");
         $xml->preserveWhiteSpace = false;
         $xml->formatOutput = true;
@@ -153,27 +141,23 @@ class Template extends OModule
         return trim($xml->saveXML());
     }
 
-    public function import_XML($xml)
-    {
+    public function import_XML($xml) {
         $this->Sharing_id = 1;
 
         $xpath = new DOMXPath($xml);
 
         $elements = $xpath->query("/export");
-        foreach ($elements as $element)
-        {
-            if (Ini::$version != $element->getAttribute("version")) return -5;
+        foreach ($elements as $element) {
+            if (Ini::$version != $element->getAttribute("version"))
+                return -5;
         }
 
         $elements = $xpath->query("/export/Template");
-        foreach ($elements as $element)
-        {
+        foreach ($elements as $element) {
             $this->xml_hash = $element->getAttribute("xml_hash");
             $children = $element->childNodes;
-            foreach ($children as $child)
-            {
-                switch ($child->nodeName)
-                {
+            foreach ($children as $child) {
+                switch ($child->nodeName) {
                     case "name": $this->name = $child->nodeValue;
                         break;
                     case "description": $this->description = $child->nodeValue;
@@ -187,21 +171,29 @@ class Template extends OModule
         }
         return $this->mysql_save();
     }
-    
+
     public function mysql_save_from_post($post) {
         $lid = parent::mysql_save_from_post($post);
-        
+
         $obj = static::from_mysql_id($lid);
-        if($obj!=null){
+        if ($obj != null) {
             $xml_hash = $obj->calculate_xml_hash();
             $obj->xml_hash = $xml_hash;
             $obj->mysql_save();
+
+            $tt = TestTemplate::from_property(array("Template_id" => $lid));
+            foreach ($tt as $elem) {
+                $ts = TestSection::from_mysql_id($elem->TestSection_id);
+                $vals = $ts->get_values();
+                $html = Template::output_html($obj->HTML, $vals, $obj->get_outputs(), $obj->get_inserts());
+                $elem->HTML = $html;
+                $elem->mysql_save();
+            }
         }
         return $lid;
     }
 
-    public function to_XML()
-    {
+    public function to_XML() {
         $xml = new DOMDocument('1.0', 'UTF-8');
 
         $element = $xml->createElement("Template");
@@ -217,18 +209,17 @@ class Template extends OModule
 
         $HTML = $xml->createElement("HTML", htmlspecialchars($this->HTML, ENT_QUOTES, "UTF-8"));
         $element->appendChild($HTML);
-        
+
         $head = $xml->createElement("head", htmlspecialchars($this->head, ENT_QUOTES, "UTF-8"));
         $element->appendChild($head);
 
         return $element;
     }
 
-    public static function create_db($delete = false)
-    {
-        if ($delete)
-        {
-            if (!mysql_query("DROP TABLE IF EXISTS `Template`;")) return false;
+    public static function create_db($delete = false) {
+        if ($delete) {
+            if (!mysql_query("DROP TABLE IF EXISTS `Template`;"))
+                return false;
         }
         $sql = "
             CREATE TABLE IF NOT EXISTS `Template` (
@@ -248,60 +239,51 @@ class Template extends OModule
         return mysql_query($sql);
     }
 
-    public static function strip_html($html, $scripts = true, $styles = true)
-    {
+    public static function strip_html($html, $scripts = true, $styles = true) {
         $obj = new simple_html_dom();
         $obj->load($html);
-        if ($styles)
-        {
+        if ($styles) {
             $elems = $obj->find("style");
-            foreach ($elems as $elem)
-            {
+            foreach ($elems as $elem) {
                 $elem->outertext = "";
             }
             $elems = $obj->find("link");
-            foreach ($elems as $elem)
-            {
+            foreach ($elems as $elem) {
                 $elem->outertext = "";
             }
         }
-        if ($scripts)
-        {
+        if ($scripts) {
             $elems = $obj->find("script");
-            foreach ($elems as $elem)
-            {
+            foreach ($elems as $elem) {
                 $elem->outertext = "";
             }
         }
         return $obj->save();
     }
 
-    public function get_preview_HTML()
-    {
+    public function get_preview_HTML() {
         return Template::strip_html($this->HTML);
     }
 
-    public function get_description()
-    {
+    public function get_description() {
         return Template::strip_html($this->description);
     }
-    
+
     public function mysql_delete() {
         $this->delete_object_links(TestTemplate::get_mysql_table());
         parent::mysql_delete();
     }
 
-    public static function update_db($previous_version)
-    {
-        if (Ini::does_patch_apply("3.5.0", $previous_version))
-        {
+    public static function update_db($previous_version) {
+        if (Ini::does_patch_apply("3.5.0", $previous_version)) {
             $sql = "ALTER TABLE `Template` ADD `description` text NOT NULL;";
-            if (!mysql_query($sql)) return false;
+            if (!mysql_query($sql))
+                return false;
         }
-        if (Ini::does_patch_apply("3.6.0", $previous_version))
-        {
+        if (Ini::does_patch_apply("3.6.0", $previous_version)) {
             $sql = "ALTER TABLE `Template` ADD `head` text NOT NULL;";
-            if (!mysql_query($sql)) return false;
+            if (!mysql_query($sql))
+                return false;
         }
         if (Ini::does_patch_apply("3.6.2", $previous_version)) {
             $sql = "ALTER TABLE `Template` ADD `xml_hash` text NOT NULL;";
