@@ -3049,14 +3049,6 @@ Note: You can add new languages by inserting "<new_language>string translated in
             <fr></fr>
             <bg></bg>
         </string>
-        <string id="409" js="1">
-            <en>Please resave manually every test where this template is used and where you want to apply those changes.</en>
-            <de></de>
-            <pl>Proszę ręcznie zapisać ponownie każdy test gdzie używany jest ten szablon i gdzie chcesz zastosować te zmiany.</pl>
-            <cn>请手动保存所有使用此模板并应用修改的测试。</cn>
-            <fr></fr>
-            <bg></bg>
-        </string>
         <string id="410" js="1">
             <en>Register new account</en>
             <de></de>

@@ -36,7 +36,8 @@ if (!$logged_user->is_object_editable($obj))
 
 <script>
     $(function(){
-        Methods.iniIconButton("#btnExpand<?=$class_name?>Variables","arrowthick-1-s");
+        Methods.iniIconButton("#btnExpand<?= $class_name ?>divTestLogicExpandable","arrowthick-1-n");
+        Methods.iniIconButton("#btnExpand<?= $class_name ?>Variables","arrowthick-1-s");
         Methods.iniIconButton("#btnDebugTest", "lightbulb");
         Methods.iniIconButton("#btnLogicVariables", "star");
         Methods.iniIconButton(".btnAddLogicSection", "plus");
@@ -116,21 +117,23 @@ if ($oid != 0) {
 
 <?php include Ini::$path_internal . "cms/view/Test_security.php"; ?>
 <br/>
-<div class="margin" align="center"><button id="btnExpand<?=$class_name?>Variables" class="btnExpand fullWidth" onclick="Methods.toggleExpand('#divTestVariables', this)"><?= Language::string(403) ?></button></div>
+<div class="margin" align="center"><button id="btnExpand<?= $class_name ?>Variables" class="btnExpand fullWidth" onclick="Methods.toggleExpand('#divTestVariables', this)"><?= Language::string(403) ?></button></div>
 <div align="left" class="margin" id="divTestVariables" style="display:none;">
     <?php include Ini::$path_internal . "cms/view/Test_variables.php"; ?>
 </div>
 <br/>
-<div class="ui-widget-header margin"><?= Language::string(359) ?></div>
-<div align="center">
-    <button id="btnLogicToggleAll" onclick="Test.uiToggleAll()"><?= Language::string(401) ?></button>
-</div>
 
-<div id="divTestLogic" class="">
-    <div id="divTestEmptyLogic" class="margin padding ui-state-error" align="center">
-        <?= Language::string(145) ?>
+<div class="margin" align="center"><button id="btnExpand<?= $class_name ?>divTestLogicExpandable" class="btnExpand fullWidth" onclick="Methods.toggleExpand('#divTestLogicExpandable', this)"><?= Language::string(359) ?></button></div>
+<div id="divTestLogicExpandable">
+    <div align="center">
+        <button id="btnLogicToggleAll" onclick="Test.uiToggleAll()"><?= Language::string(401) ?></button>
     </div>
 
+    <div id="divTestLogic" class="">
+        <div id="divTestEmptyLogic" class="margin padding ui-state-error" align="center">
+            <?= Language::string(145) ?>
+        </div>
+    </div>
 </div>
 
 <div id="divTestDialog" class="notVisible">

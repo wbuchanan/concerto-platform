@@ -98,12 +98,12 @@ Table.structureEmptyCheck=function(){
     var grid = $("#div"+this.className+"GridStructure").data('kendoGrid');
     if(grid.dataSource.data().length>0){
         $("#div"+this.className+"GridDataContainer").show();
-        $("#div"+this.className+"DataGridCaption").show();
+        $("#btn"+this.className+"DataGridCaption").show();
         $("#div"+this.className+"DataStructureEmptyCaption").hide();
     } 
     else {
         $("#div"+this.className+"GridDataContainer").hide();
-        $("#div"+this.className+"DataGridCaption").hide();
+        $("#btn"+this.className+"DataGridCaption").hide();
         $("#div"+this.className+"DataStructureEmptyCaption").show();
     }
 }

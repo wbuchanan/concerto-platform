@@ -69,6 +69,7 @@ if ($oid != 0)
     ?>
     <script>
         $(function(){
+            Methods.iniIconButton("#btnExpand<?= $class_name ?>RightsListExpandable","arrowthick-1-n");
             Methods.iniIconButton(".btnSave", "disk");
             Methods.iniIconButton(".btnDelete", "trash");
             Methods.iniIconButton(".btnCancel", "cancel");
@@ -131,8 +132,9 @@ if ($oid != 0)
             </tr>
             <tr>
                 <td colspan="3" id="form<?= $class_name ?>RightsList" align="center">
+                    <div class="margin" align="center"><button id="btnExpand<?= $class_name ?>RightsListExpandable" class="btnExpand fullWidth" onclick="Methods.toggleExpand('#div<?= $class_name ?>RightsListExpandable', this)"><?= Language::string(162) ?></button></div>
+                    <div id="div<?=$class_name?>RightsListExpandable">
                     <table>
-                        <caption class="ui-widget-header"><?= Language::string(162) ?></caption>
                         <thead>
                             <tr>
                                 <th class="noWrap ui-widget-header"><?= Language::string(163) ?></th>
@@ -172,6 +174,7 @@ if ($oid != 0)
                             <?php } ?>
                         </tbody>
                     </table>
+                    </div>
                 </td>
             </tr>
             <tr>
