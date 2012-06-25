@@ -19,16 +19,15 @@
   Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA.
  */
 
-class TestTemplate extends OTable
-{
+class TestTemplate extends OTable {
+
     public $Test_id = 0;
     public $TestSection_id = 0;
     public $Template_id = 0;
     public $HTML = "";
     public static $mysql_table_name = "TestTemplate";
-    
-    public function to_XML()
-    {
+
+    public function to_XML() {
         $xml = new DOMDocument('1.0', 'UTF-8');
 
         $element = $xml->createElement("TestTemplate");
@@ -45,18 +44,17 @@ class TestTemplate extends OTable
 
         $Template_id = $xml->createElement("Template_id", htmlspecialchars($this->Template_id, ENT_QUOTES, "UTF-8"));
         $element->appendChild($Template_id);
-        
+
         $html = $xml->createElement("HTML", htmlspecialchars($this->HTML, ENT_QUOTES, "UTF-8"));
         $element->appendChild($html);
 
         return $element;
     }
 
-    public static function create_db($delete = false)
-    {
-        if ($delete)
-        {
-            if (!mysql_query("DROP TABLE IF EXISTS `TestTemplate`;")) return false;
+    public static function create_db($delete = false) {
+        if ($delete) {
+            if (!mysql_query("DROP TABLE IF EXISTS `TestTemplate`;"))
+                return false;
         }
         $sql = "
             CREATE TABLE IF NOT EXISTS `TestTemplate` (
@@ -72,6 +70,24 @@ class TestTemplate extends OTable
             ";
         return mysql_query($sql);
     }
+
+    public static function update_db($previous_version) {
+        if (Ini::does_patch_apply("3.6.8", $previous_version)) {
+            $sql = sprintf("SELECT * FROM `%s`", TestTemplate::get_mysql_table());
+            $z=mysql_query($sql);
+            while($r=mysql_fetch_array($z)){
+                $tt = TestTemplate::from_mysql_id($r['id']);
+                $ts = TestSection::from_mysql_id($tt->TestSection_id);
+                $vals = $ts->get_values();
+                $template = Template::from_mysql_id($vals[0]);
+                $html = Template::output_html($template->HTML, $vals, $template->get_outputs(), $template->get_inserts());
+                $tt->HTML = $html;
+                $tt->mysql_save();
+            }
+        }
+        return true;
+    }
+
 }
 
 ?>

@@ -50,29 +50,25 @@ class Template extends OModule {
         return $inserts;
     }
 
-    public static function get_insert_reference($name, $vals, $inserts) {
-        $j = 3;
-        foreach ($inserts as $ins) {
-            if ($ins == "TIME_LEFT")
-                continue;
-
-            if ($ins == $name) {
-                if(isset($vals[$j])) return $vals[$j];
-                else break;
+    public static function get_insert_reference($name, $vals) {
+        for ($i = 3; $i < 3 + $vals[1] * 2; $i = $i + 2)
+            if ($vals[$i] == $name) {
+                if (isset($vals[$i + 1]))
+                    return $vals[$i + 1];
+                else
+                    break;
             }
-            $j++;
-        }
         return $name;
     }
 
-    public static function get_return_reference($name, $vals, $output) {
-        $j = 3 + $vals[1];
-        foreach ($output as $ret) {
-            if ($ret["name"] == $name) {
-                if(isset($vals[$j])) return $vals[$j];
-                else break;
+    public static function get_return_reference($name, $vals) {
+        for ($i = 3 + $vals[1] * 2; $i < 3 + $vals[1] * 2 + $vals[2] * 2; $i = $i + 2) {
+            if ($vals[$i] == $name) {
+                if (isset($vals[$i + 1]))
+                    return $vals[$i + 1];
+                else
+                    break;
             }
-            $j++;
         }
         return $name;
     }
@@ -82,7 +78,7 @@ class Template extends OModule {
             return "";
         if ($inserts != null) {
             foreach ($inserts as $insert) {
-                $ref = Template::get_insert_reference($insert, $vals, $inserts);
+                $ref = Template::get_insert_reference($insert, $vals);
                 if ($ref != $insert) {
                     $html = str_replace("{{" . $insert . "}}", "{{" . $ref . "}}", $html);
                 }
@@ -94,7 +90,7 @@ class Template extends OModule {
             $reference = null;
             foreach ($elems as $elem) {
                 if ($reference == null) {
-                    $reference = Template::get_return_reference($out["name"], $vals, $outputs);
+                    $reference = Template::get_return_reference($out["name"], $vals);
                 }
                 $elem->setAttribute("name", $reference);
             }

@@ -19,20 +19,18 @@
   Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA.
  */
 
-class TestSectionValue extends OTable
-{
+class TestSectionValue extends OTable {
+
     public $TestSection_id = 0;
     public $index = 0;
     public $value = "";
     public static $mysql_table_name = "TestSectionValue";
 
-    public function get_TestSection()
-    {
+    public function get_TestSection() {
         return TestSection::from_mysql_id($this->TestSection_id);
     }
 
-    public function to_XML()
-    {
+    public function to_XML() {
         $xml = new DOMDocument('1.0', "UTF-8");
 
         $tsv = $xml->createElement("TestSectionValue");
@@ -47,12 +45,10 @@ class TestSectionValue extends OTable
         return $tsv;
     }
 
-    public static function create_db($delete = false)
-    {
-        if ($delete)
-        {
+    public static function create_db($delete = false) {
+        if ($delete) {
             if (!mysql_query("DROP TABLE IF EXISTS `TestSectionValue`;"))
-                    return false;
+                return false;
         }
         $sql = "
             CREATE TABLE IF NOT EXISTS `TestSectionValue` (
@@ -68,55 +64,50 @@ class TestSectionValue extends OTable
         return mysql_query($sql);
     }
 
-    public static function update_db($previous_version)
-    {
-        if (Ini::does_patch_apply("3.4.0", $previous_version))
-        {
+    public static function update_db($previous_version) {
+        if (Ini::does_patch_apply("3.4.0", $previous_version)) {
             $sql = sprintf("SELECT `TestSection`.`id`, `TestSection`.`TestSectionType_id` FROM `TestSection` WHERE `TestSectionType_id` IN (%d,%d,%d)", DS_TestSectionType::LOAD_HTML_TEMPLATE, DS_TestSectionType::SET_VARIABLE, DS_TestSectionType::CUSTOM);
             $z = mysql_query($sql);
-            while ($r = mysql_fetch_array($z))
-            {
-                switch ($r[1])
-                {
-                    case DS_TestSectionType::LOAD_HTML_TEMPLATE:
-                        {
+            while ($r = mysql_fetch_array($z)) {
+                switch ($r[1]) {
+                    case DS_TestSectionType::LOAD_HTML_TEMPLATE: {
                             $params_count = 0;
                             $returns_count = 0;
                             $sql2 = sprintf("SELECT `index`,`value` FROM `%s` WHERE `TestSection_id`=%d AND (`index`=1 OR `index`=2) ", TestSectionValue::get_mysql_table(), $r[0]);
                             $z2 = mysql_query($sql2);
-                            while ($r2 = mysql_fetch_array($z2))
-                            {
+                            while ($r2 = mysql_fetch_array($z2)) {
                                 if ($r2['index'] == 1)
-                                        $params_count = $r2['value'];
+                                    $params_count = $r2['value'];
                                 if ($r2['index'] == 2)
-                                        $returns_count = $r2['value'];
+                                    $returns_count = $r2['value'];
                             }
 
                             $delete_index = 3 + $params_count + 1;
 
-                            for ($i = 0; $i < $returns_count; $i++)
-                            {
+                            for ($i = 0; $i < $returns_count; $i++) {
                                 $sql2 = sprintf("DELETE FROM `%s` WHERE `TestSection_id`=%d AND `index` IN (%d,%d)", TestSectionValue::get_mysql_table(), $r[0], $delete_index, $delete_index + 1);
-                                if (!mysql_query($sql2)) return false;
+                                if (!mysql_query($sql2))
+                                    return false;
 
                                 $sql2 = sprintf("UPDATE `%s` SET `index`=`index`-2 WHERE `TestSection_id`=%d AND `index`>%d", TestSectionValue::get_mysql_table(), $r[0], $delete_index);
-                                if (!mysql_query($sql2)) return false;
+                                if (!mysql_query($sql2))
+                                    return false;
 
                                 $delete_index++;
                             }
                             break;
                         }
-                    case DS_TestSectionType::SET_VARIABLE:
-                        {
+                    case DS_TestSectionType::SET_VARIABLE: {
                             $sql2 = sprintf("DELETE FROM `%s` WHERE `TestSection_id`=%d AND `index` IN (4,5)", TestSectionValue::get_mysql_table(), $r[0]);
-                            if (!mysql_query($sql2)) return false;
+                            if (!mysql_query($sql2))
+                                return false;
 
                             $sql2 = sprintf("UPDATE `%s` SET `index`=`index`-2 WHERE `TestSection_id`=%d AND `index`>%d", TestSectionValue::get_mysql_table(), $r[0], 5);
-                            if (!mysql_query($sql2)) return false;
+                            if (!mysql_query($sql2))
+                                return false;
                             break;
                         }
-                    case DS_TestSectionType::CUSTOM:
-                        {
+                    case DS_TestSectionType::CUSTOM: {
                             $params_count = 0;
                             $returns_count = 0;
                             $csid = 0;
@@ -134,13 +125,14 @@ class TestSectionValue extends OTable
 
                             $delete_index = 1 + $params_count + 1;
 
-                            for ($i = 0; $i < $returns_count; $i++)
-                            {
+                            for ($i = 0; $i < $returns_count; $i++) {
                                 $sql2 = sprintf("DELETE FROM `%s` WHERE `TestSection_id`=%d AND `index` IN (%d,%d)", TestSectionValue::get_mysql_table(), $r[0], $delete_index, $delete_index + 1);
-                                if (!mysql_query($sql2)) return false;
+                                if (!mysql_query($sql2))
+                                    return false;
 
                                 $sql2 = sprintf("UPDATE `%s` SET `index`=`index`-2 WHERE `TestSection_id`=%d AND `index`>%d", TestSectionValue::get_mysql_table(), $r[0], $delete_index);
-                                if (!mysql_query($sql2)) return false;
+                                if (!mysql_query($sql2))
+                                    return false;
 
                                 $delete_index++;
                             }
@@ -149,22 +141,64 @@ class TestSectionValue extends OTable
                 }
             }
         }
-        if (Ini::does_patch_apply("3.5.0", $previous_version))
-        {
+        if (Ini::does_patch_apply("3.5.0", $previous_version)) {
             $sql = sprintf("ALTER TABLE `%s` CHANGE `created` `updated_temp` TIMESTAMP ON UPDATE CURRENT_TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP;", self::get_mysql_table());
-            if (!mysql_query($sql))
-            {
+            if (!mysql_query($sql)) {
                 return false;
             }
             $sql = sprintf("ALTER TABLE `%s` CHANGE `updated` `created` TIMESTAMP NOT NULL DEFAULT  '0000-00-00 00:00:00';", self::get_mysql_table());
-            if (!mysql_query($sql))
-            {
+            if (!mysql_query($sql)) {
                 return false;
             }
             $sql = sprintf("ALTER TABLE `%s` CHANGE `updated_temp` `updated` TIMESTAMP ON UPDATE CURRENT_TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP;", self::get_mysql_table());
-            if (!mysql_query($sql))
-            {
+            if (!mysql_query($sql)) {
                 return false;
+            }
+        }
+        if (Ini::does_patch_apply("3.6.8", $previous_version)) {
+            $sections = TestSection::from_property(array("TestSectionType_id" => DS_TestSectionType::LOAD_HTML_TEMPLATE));
+            foreach ($sections as $section) {
+                $sql = sprintf("DELETE FROM `%s` WHERE `TestSection_id`=%d AND `index`>=3", TestSectionValue::get_mysql_table(), $section->id);
+                $vals = $section->get_values();
+                $template = Template::from_mysql_id($vals[0]);
+                if($template==null) continue;
+                $inserts = $template->get_inserts();
+                $returns = $template->get_outputs();
+                $j = 3;
+                $i = 3;
+                foreach ($inserts as $ins) {
+                    $tsv = new TestSectionValue();
+                    $tsv->TestSection_id = $section->id;
+                    $tsv->index = $j;
+                    $tsv->value = $ins;
+                    $tsv->mysql_save();
+
+                    $tsv = new TestSectionValue();
+                    $tsv->TestSection_id = $section->id;
+                    $tsv->index = $j + 1;
+                    $tsv->value = (isset($vals[$i]) ? $vals[$i] : $ins);
+                    $tsv->mysql_save();
+
+                    $j = $j + 2;
+                    $i++;
+                }
+
+                foreach ($returns as $ret) {
+                    $tsv = new TestSectionValue();
+                    $tsv->TestSection_id = $section->id;
+                    $tsv->index = $j;
+                    $tsv->value = $ret['name'];
+                    $tsv->mysql_save();
+
+                    $tsv = new TestSectionValue();
+                    $tsv->TestSection_id = $section->id;
+                    $tsv->index = $j + 1;
+                    $tsv->value = (isset($vals[$i]) ? $vals[$i] : $ret['name']);
+                    $tsv->mysql_save();
+
+                    $j = $j + 2;
+                    $i++;
+                }
             }
         }
         return true;

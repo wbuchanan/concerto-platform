@@ -128,9 +128,11 @@ Test.getSectionValues=function(section){
             $(".divSection[seccounter="+section.counter+"] .controlValue"+section.counter+"_rets").length,
             ];
             $(".divSection[seccounter="+section.counter+"] .controlValue"+section.counter+"_params").each(function(){
+                values.push($(this).attr("referenced"));
                 values.push($(this).val());
             });
             $(".divSection[seccounter="+section.counter+"] .controlValue"+section.counter+"_rets").each(function(){
+                values.push($(this).attr("referenced"));
                 values.push($(this).val());
             });
             return values;
