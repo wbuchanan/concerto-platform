@@ -290,3 +290,11 @@ User.uiLogOut=function()
             location.href="index.php";
         });
 };
+
+User.sessionKeepAlive=function(interval){
+    setTimeout(function(){
+        $.post("query/session_keep_alive.php",{},function(data){
+            User.sessionKeepAlive(interval);
+        });
+    },interval);
+}

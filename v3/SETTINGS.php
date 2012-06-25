@@ -25,6 +25,8 @@ $r_max_execution_time = 60; //maximum R execution time ( prevents infinite loops
 $timezone = 'Europe/London';
 $public_registration = false;
 $public_registration_default_UserType_id = 4;
+$cms_session_keep_alive = true;
+$cms_session_keep_alive_interval = 900000; //miliseconds
 
 //remote client
 $remote_client_password = "pass";

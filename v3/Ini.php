@@ -47,6 +47,8 @@ class Ini {
     public static $remote_client_password = "";
     public static $public_registration = false;
     public static $public_registration_default_UserType_id = 1;
+    public static $cms_session_keep_alive = true;
+    public static $cms_session_keep_alive_interval = 600;
 
     function __construct($connect = true, $session = true, $headers = true) {
         //if (substr_count($_SERVER['HTTP_ACCEPT_ENCODING'], 'gzip')) ob_start("ob_gzhandler"); 
@@ -115,6 +117,8 @@ class Ini {
         self::$remote_client_password = $remote_client_password;
         self::$public_registration = $public_registration;
         self::$public_registration_default_UserType_id = $public_registration_default_UserType_id;
+        self::$cms_session_keep_alive = $cms_session_keep_alive;
+        self::$cms_session_keep_alive_interval = $cms_session_keep_alive_interval;
     }
 
     public static function does_patch_apply($patch_version, $previous_version) {
