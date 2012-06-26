@@ -2,7 +2,7 @@
 .
 =Concerto v3 Tutorials: General manual=
                         
-_This document is relevant to Concerto v3.0 and higher. If you have an older version installed, it is recommended that you upgrade to the latest version (or else refer to relevant manual)._
+This document is relevant to Concerto v3.0. If you have a more recent version, please note that not all points noted here will be the same. Nevertheless, a quick run through of the document can still give you an idea of the way Concerto works. If you have an older version installed, it is recommended that you upgrade to the latest version.
 
 Working with Concerto v3 can be easy as A-B-C if you are well oriented with the user interface. This tutorial is a guide to the administration panel and sections (i.e. tabs) that you can use when working with Concerto v3. 
 
