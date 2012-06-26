@@ -1,34 +1,29 @@
 #labels Tutorial,Featured
-.
-= Concerto v3.0 Tutorials: Create an adaptive test =
+
+= Concerto v3 Tutorials: Create an adaptive test =
                             
-This tutorial will show you how to create a simple adaptive test on Concerto v3.4 that looks like this: 
-[http://concerto.e-psychometrics.com/demo/?tid=80 Concerto v3.4 Adaptive test]
+This tutorial will show you how to create a simple adaptive test on Concerto v3.6 that looks like this: 
+[http://concerto.e-psychometrics.com/demo/?tid=80 Concerto v3 Adaptive test]
 
-It is assumed that you’ve already taken the *[http://code.google.com/p/concerto-platform/wiki/Concerto3SimpleTest Concerto v3.0 Tutorials: Create a simple test]* section and are familiar with the basic functions of Concerto v3.
+It is assumed that you’ve already taken the *[http://code.google.com/p/concerto-platform/wiki/Concerto3SimpleTest Concerto v3 Tutorials: Create a simple test]* section and are familiar with the basic functions of Concerto v3.
 
-*Note:*
- * If you use an older version, please upgrade it (or else refer to relevant tutorials).
- * You may experience some problems while using different browsers. Currently, it is best to use Google Chrome to run the administration panel.
+Obviously, this is a very basic test, but it easily shows the idea behind Concerto. Don't forget to add formatting of your choice to make the test professional/pretty! The tests that you develop can be run as a separate website or embedded in the other websites or applications.
 
-.
 ==Login to Concerto==
-It is best to use Google Chrome to run the Concerto administration panel. Please ensure that you have Concerto v3.0, the latest version. Go to *concerto_installation_path/cms/* and login using your credentials. If you haven't installed Concerto on your server, you can use our demo installation. Email [mailto:vm298@cam.ac.uk?cc=mk583@cam.ac.uk&subject=Concerto%20demo%20account Ms. Vaishali Mahalingam] to get a demo account. 
+It is best to use Google Chrome to run the Concerto administration panel. Please ensure that you have Concerto v3.0 or higher, preferably the latest version v3.6. Go to *concerto_installation_path/cms/* and login using your credentials. If you haven't installed Concerto on your server, you can use our demo installation. [http://concerto.e-psychometrics.com/demo/cms/ CLICK HERE] to get a _free basic account_ or _login to an existing account_ hosted on our server.
 
-Demo installation: [http://concerto.e-psychometrics.com/demo/cms/index.php]
 
-.
 ==Step 1: Create HTML Templates==
 
 ===Introduction template===
 
 Create a new template called _introduction_ and add some suitable text to describe the test and make testees feel comfortable. 
 
-http://ns39618.ovh.net/~vaishali/v3.4/adaptive/intro.jpg
+http://ns39618.ovh.net/~vaishali/v3.6/adaptive/intro.JPG
 
-.
+
 ===Test item template===
-Create a new template called _test item_ and add the following content:
+Create a new template called "test item" and add the following content:
  * *{{question}}* insert  that will be filled by concerto
  * "*=*" sign
  * An input *text field* called "*response*" 
@@ -37,18 +32,18 @@ Create a new template called _test item_ and add the following content:
  * A button called "*Submit*"
  * For presentation purposes, add the field *{{theta}}*.
 
-http://ns39618.ovh.net/~vaishali/v3.4/adaptive/items.jpg
+http://ns39618.ovh.net/~vaishali/v3.6/adaptive/items.JPG
 
-.
+
 ===Feedback template===
 Create another new template called _feedback_ that contains:
  * A suitable title
  * A few words of empathic feedback
- * Fields *{{theta}}*, *{{sem}}* 
+ * A field *{{theta}}* 
 
-http://ns39618.ovh.net/~vaishali/v3.4/adaptive/feedback.jpg
+http://ns39618.ovh.net/~vaishali/v3.6/adaptive/feedback.JPG
 
-.
+
 ==Step 2: Creating an Item Bank/Table from a CSV File==
 
 The next step is to create an item bank for the test. Usually, software like R and LTM package are used to generate item parameters. Here, let’s use a mock-up item bank with only one item parameter (difficulty) which can be generated using the Rasch model.
@@ -58,62 +53,72 @@ Download and unzip this CSV file: [http://ns39618.ovh.net/wiki2/_media/public/ib
 Go to the *tables* tab and click the ‘+ add new object’ icon to add a new table. Assign a meaningful name (E.g. adaptive_test) and save it. 
 Click the _import table from CSV file_ icon to import a table that you have downloaded. Concerto will automatically read the data into table format. All you need to do is alter the column names and the data types.
 
-http://ns39618.ovh.net/~vaishali/v3.4/adaptive/table.jpg
+http://ns39618.ovh.net/~vaishali/v3.6/adaptive/table.JPG
 
-.
+
 ==Step 3: Creating a test and adding sections==
 
-In the 'tests' tab, create a new test by adding a new object. Follow the images and corresponding text to create the structure of your test by adding new sections.
-.
+Go to the ‘tests’ tab on the upper left side of the page. Create a new test by clicking the ‘+ add new object’ icon above the list of available objects (it is likely to be empty!). Assign a relevant name for the test and click ‘OK’.
+
+To edit a test at any time, click on the pencil symbol towards the right of the specific test you want to edit. Be careful not to click the ‘bin’ icon (last symbol on the right) unless you wish to delete your test!
+
+This step involves editing your test overall. Click the ‘tests’ tab on the upper left side of the page and click the pencil icon on your specific test to edit it. To add a new section, click the ‘+’ at the right side of the last section. At this point, the last section is ‘1. start’.
+
+Follow the table below to add new sections to your test, using the editor. Please _double-check your test logic sections_ using the _text_ and _screen shots_ provided to avoid any errors that may prevent your test from running currently!
+
 
 || *SECTION TYPE* || *DETAILS* ||
-|| Load HTML template || Select the _introduction_ template (or whatever you named it)||
-|| Set variable || SET VARIABLE *theta* by R code - _"Score not available yet"_||
-|| Set variable || SET VARIABLE *difficulties* from table _adaptive_test_table_ (or whatever you named it); COLUMNS *difficulty* ||
-|| Set variable || SET VARIABLE *current_item* by R code - _50_||
-|| - || http://ns39618.ovh.net/~vaishali/v3.4/adaptive/test1.jpg ||
-.
+|| Load HTML template || Select the *introduction* template (or whatever you named it)||
+|| Set variable || SET VARIABLE *theta* by R code: *"Score not available yet"*||
+|| Set variable || SET VARIABLE *difficulties* from table: *adaptive_test_table* (or whatever you named it); COLUMNS *difficulty* ||
+|| - || http://ns39618.ovh.net/~vaishali/v3.6/adaptive/1.JPG ||
+
 
 || *SECTION TYPE* || *DETAILS* ||
-|| Set variable || SET VARIABLE *responses* by R code - _NULL_||
-|| Set variable || SET VARIABLE *itempar* by R code - _as.matrix(cbind(1,difficulties,0,1))_||
-|| Set variable || SET VARIABLE *catBank* by R code - _createItemBank(itempar,model="1pl")_||
-|| Set variable || SET VARIABLE *items_administered* by R code - _current_item_||
-|| Set variable || SET VARIABLE *question* from table _adaptive_test_table_ (or whatever you named it); COLUMNS *content* WHERE *id* - *equal* - *current_item* ||
-|| - ||  http://ns39618.ovh.net/~vaishali/v3.4/adaptive/test2.jpg  ||
-.
+|| Set variable || SET VARIABLE *current_item* by R code: *50*||
+|| Set variable || SET VARIABLE *responses* by R code: *NULL*||
+|| Set variable || SET VARIABLE *itempar* by R code: *as.matrix(cbind(1,difficulties,0,1))*||
+|| Set variable || SET VARIABLE *catBank* by R code: *createItemBank(itempar,model="1pl")*||
+|| - ||  http://ns39618.ovh.net/~vaishali/v3.6/adaptive/2.JPG  ||
+
 
 || *SECTION TYPE* || *DETAILS* ||
-|| Set variable || SET VARIABLE *difficulty* from table* _adaptive_test_table_ (or whatever you named it); COLUMNS *difficulty* WHERE *id* - *equal* - *current_item* ||
-|| Set variable || SET VARIABLE *correct_answer* from table _adaptive_test_table_ (or whatever you named it); COLUMNS *correct_answer* WHERE *id* - *equal* - *current_item* ||
-|| Load HTML template || Select the _test_items_ template (or whatever you named it).||
-|| - ||  http://ns39618.ovh.net/~vaishali/v3.4/adaptive/test3.jpg  ||
-.
+|| Set variable || SET VARIABLE *items_administered* by R code: *current_item*||
+|| Set variable || SET VARIABLE *question* from table: *adaptive_test_table* (or whatever you named it); COLUMNS *content* WHERE *id*  _equal_  *current_item* ||
+|| Set variable || SET VARIABLE *difficulty* from table: *adaptive_test_table (or whatever you named it); COLUMNS *difficulty* WHERE *id*  _equal_  *current_item* ||
+|| - ||  http://ns39618.ovh.net/~vaishali/v3.6/adaptive/3.JPG  ||
+
 
 || *SECTION TYPE* || *DETAILS* ||
-|| IF statement || *is.na(response)* - *equal* - *1* THEN _GO TO_ *14.load HTML template* (this is the section where you load the items template). This step is to ensure that there are no missing responses or non-numeric type responses. ||
-|| Set variable || SET VARIABLE *responses* by R code - _c(responses, correct_answer == response)_||
-|| Set variable || SET VARIABLE *theta* by the following TWO lines of R code: _it<-itempar[items_administered,1:4, drop=F]_; and in the new line: _thetaEst(it, responses)_||
-|| Set variable || SET VARIABLE *current_item* by R code - _nextItem(catBank, theta, out=as.numeric(items_administered)){{{[[1]]}}}_||
-|| - ||  http://ns39618.ovh.net/~vaishali/v3.4/adaptive/test4.jpg  ||
-.
+|| Set variable || SET VARIABLE *correct_answer* from table: *adaptive_test_table* (or whatever you named it); COLUMNS *correct_answer* WHERE *id*  _equal_  *current_item* ||
+|| Load HTML template || Select the *test_items* template (or whatever you named it).||
+|| IF statement || IF *is.na(response)*  _equal_  *1* THEN _GO TO:_ *(select the section where you load the _items_ template)*. This step is to ensure that there are no missing responses or non-numeric type responses. ||
+|| - ||  http://ns39618.ovh.net/~vaishali/v3.6/adaptive/4.JPG  ||
+
 
 || *SECTION TYPE* || *DETAILS* ||
-|| Set variable || SET VARIABLE *items_administered* by R code - _c(items_administered, current_item)_||
-|| Set variable || SET VARIABLE *nitems* by R code - _length(items_administered)_||
-|| IF statement || *nitems* - *equal or lesser than* - *15* THEN _GO TO_ *11.set variable* (this is the section where you set the variable "question") ||
-|| Load HTML template || Select _feedback_ template (or whatever else you named it) ||
-|| - ||  http://ns39618.ovh.net/~vaishali/v3.4/adaptive/test5.jpg  ||
+|| Set variable || SET VARIABLE *responses* by R code:  *c(responses, correct_answer == response)*||
+|| Set variable || SET VARIABLE *theta* by R code: *it<-itempar[items_administered,1:4, drop=F]* and in the next line *thetaEst(it, responses)*  _(Note: the above two lines of code should be in separate lines; do not enter them continuously as one sentence!)_||
+|| Set variable || SET VARIABLE *current_item* by R code:  *nextItem(catBank, theta, out=as.numeric(items_administered)){{{[[1]]}}}*||
+|| Set variable || SET VARIABLE *items_administered* by R code:  *c(items_administered, current_item)*||
+|| - ||  http://ns39618.ovh.net/~vaishali/v3.6/adaptive/5.JPG  ||
+
+
+|| *SECTION TYPE* || *DETAILS* ||
+|| Set variable || SET VARIABLE *nitems* by R code:  *length(items_administered)*||
+|| IF statement || IF *nitems*  _equal or lesser than_  *15* THEN _GO TO_ *(select the section where you set the variable "question")* ||
+|| Load HTML template || Select *feedback* template (or whatever else you named it) ||
+|| - ||  http://ns39618.ovh.net/~vaishali/v3.6/adaptive/6.JPG  ||
 || - || *_END_* ||
-.
 
-Don't forget to save the test at regular intervals!
 
-.
-==Run your test==
-Use the following URL (with the correct *test id* to run your test: *[concerto_installation_path]/?tid=[TEST_ID]*
+==To run your test==
 
-In case of the demo installation, the link looks like this: [http://concerto.e-psychometrics.com/demo/?tid=69] 
+Click the *Run Test* button at the start of the tests section. 
 
-  _Note: Substitute the last 2 digits in the URL with the test id of your choice._
-.
+Alternatively, use the following URL:  *(concerto_installation_path)/?tid=(TEST_ID)* 
+
+Or if using a free account on our server:  *[http://concerto.e-psychometrics.com/demo/?tid=69]*
+ 
+_Note: Substitute the last 2 digits in the URL with the _test id_ of your specific test._
+ 
