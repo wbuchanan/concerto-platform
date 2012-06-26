@@ -1,6 +1,6 @@
 #labels Featured,Tutorial
 .
-=Concerto v3.0 Tutorials: Updates=
+=Concerto v3 Tutorials: Updates=
                         
 _This document is relevant to Concerto v3.0 and higher. If you have an older version installed, it is recommended that you upgrade to the latest version (or else refer to relevant manual)._
 
