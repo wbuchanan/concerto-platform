@@ -16,7 +16,7 @@
   * [Concerto3Randomisation Randomising test items]
   * [Concerto3ItemTime Timed presentation of items]
  * [FAQ Frequently Asked Questions]
- * [Concerto3Updates Updates]
+ * [Concerto3Updates Important feature updates since Concerto v3.0]
 
 === Demos ===
 
