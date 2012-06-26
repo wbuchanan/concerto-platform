@@ -42,3 +42,9 @@ http://ns39618.ovh.net/~vaishali/sections/run.jpg
 The 'Run Test' button is back, making life a weeeee bit easier for all! Clicking the button will open your test in a separate tab, so you can see how it looks/works (the debug button  has a section where the test can be viewed, but javascript and css is disabled in this).
 
 .
+==Online Object Library==
+
+http://ns39618.ovh.net/~vaishali/v3.6/general/online_lib.jpg
+
+The Online Object Library is a support system for Concerto users. The idea is that any object (test, custom section, HTML template or table) that you construct can be shared with the Concerto community and vice-versa. In turn, if you need some help creating a test/template etc, why not take a look at the Online Object Library to see what is available? Do not be shy about uploading your work, even if you are a beginner! On the other hand, please ensure your object is working and/or meaningful before uploading. 
+
