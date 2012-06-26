@@ -26,7 +26,7 @@ The test you create will be composed of three HTML Templates:
  * _Add a Start button:_ Click the ‘Button’ icon and enter a name (e.g. btn_start), text (“Start”) and click ‘OK’.
  * Save the template!
 
-http://ns39618.ovh.net/~vaishali/
+http://ns39618.ovh.net/~vaishali/v3.6/simple/introduction.JPG
 
 
 === Test Items Template===
@@ -38,7 +38,7 @@ http://ns39618.ovh.net/~vaishali/
  * _Add a Submit button:_ Click ‘Button’ and assign a name ("btn_submit") and text value ("Submit"). Click ‘OK’.
  * Save the template!
 
-http://ns39618.ovh.net/~vaishali/
+http://ns39618.ovh.net/~vaishali/v3.6/simple/items.JPG
 
 
 ===Feedback Template===
@@ -47,7 +47,7 @@ http://ns39618.ovh.net/~vaishali/
     {{user_name}}, your total score is {{total_score}}.
  * Save the template!
 
-http://ns39618.ovh.net/~vaishali/
+http://ns39618.ovh.net/~vaishali/v3.6/simple/feedback.JPG
 
 
 ==Step 2: Creating an item bank==
@@ -62,7 +62,7 @@ _Your item bank is nearly done. Now you need to fill the table with the items in
 
 _Note: You can import your tables from CSV files (R, SPSS, Excel) and also manage tables using a professional MySQL tool._
 
-http://ns39618.ovh.net/~vaishali/
+http://ns39618.ovh.net/~vaishali/v3.6/simple/table.JPG
 
 
 ==Step 3: Creating and adding sections to your test==
@@ -73,35 +73,41 @@ To edit a test at any time, click on the pencil symbol towards the right of the 
 
 This step involves editing your test overall. Click the ‘tests’ tab on the upper left side of the page and click the pencil icon on your specific test to edit it. To add a new section, click the ‘+’ at the right side of the last section. At this point, the last section is ‘1. start’.
 
-Follow the table below to add new sections to your test, using the editor. Be careful not to make spelling errors!
+Follow the table below to add new sections to your test, using the editor. Please _double-check your test logic sections_ using the _text_ and _screen shots_ provided to avoid any errors that may prevent your test from running currently!
 
 
 || *SECTION TYPE* || *DETAILS* ||
 || Load HTML template || Choose the HTML template: *introduction* (or whatever name you gave to this HTML template).||
 || Set variable || SET VARIABLE:  *current_question*  by R code:  *1*  (We will use this variable to control which question to shown!)||
-|| - || http://ns39618.ovh.net/~vaishali/ ||
+|| Set variable || SET VARIABLE:  *total_score*  by R code:  *0*.  (This variable will be used to count the total score of the individual.)||
+|| - || http://ns39618.ovh.net/~vaishali/v3.6/simple/1.JPG ||
 
 || *SECTION TYPE* || *DETAILS* ||
-|| Set variable || SET VARIABLE:  *total_score*  by R code:  *0*.  (This variable will be used to count the total score of the individual.)||
 || Set variable || SET VARIABLE: *question*  from table: *simple_test_table*  COLUMN: *question*  WHERE: *item_id* _equal_ *current_question*  (Note what happens - we simply select one cell from the table you’ve created earlier. Concerto will take the content of the cell in the “question” column and a row where item_id equals 1 (you have set current_question to 1, previously))||
 || Set variable || SET VARIABLE: *answer*  from table: *simple_test_table*  COLUMN: *answer*  WHERE: *item_id* _equal_ *current_question*.  (Now we set variable “answer” to the appropriate value from the table.)||
-|| - ||http://ns39618.ovh.net/~vaishali/ ||
+|| Load HTML template || Choose the HTML template: *items* (or whatever name you gave to this HTML template). ||
+|| - ||http://ns39618.ovh.net/~vaishali/v3.6/simple/2.JPG ||
 
 || *SECTION TYPE* || *DETAILS* ||
-|| Load HTML template || Choose the HTML template: *items* (or whatever name you gave to this HTML template). ||
 || IF statement || IF *is.na(radio1)* _equal_ *T*  THEN click '+' icon below 'THEN'. GO TO SECTION: *load items template* (i.e. go to the previous section in your test. This step presents the testee with the same item if no radio button is selected.) ||
 || IF statement || IF *answer* _equal_ *radio1*  THEN click '+' icon below 'THEN'. SET VARIABLE: *total_score*  by R code  *total_score+1* (Simple! IF answer is equal to the value of the radio button selected by the user THEN increase total score by 1. _Note: to add the next section “outside of the if clause” use the ‘+’ icon at the very bottom of the entire IF statement box._)||
-|| - || http://ns39618.ovh.net/~vaishali/||
+|| - || http://ns39618.ovh.net/~vaishali/v3.6/simple/3.JPG||
 
 || *SECTION TYPE* || *DETAILS* ||
-|| Set variable || SET VARIABLE:  *current_question*  by R code:  *current_question + 1*  (Add one to the current_question value to select the 2nd question from the table next time!)||
-|| IF statement || IF *current_question*  _equal or lesser than_  *4* THEN click '+' icon below 'THEN'. GO TO - SET SECTION: *(from the drop-down list select the section of the test where you were setting the value of the “question” variable)* Ok, this one looks difficult but it is not! First you check IF you haven’t reached the maximum number of questions you wanted to show. If you haven’t THEN you go back in the test structure –not to the very beginning but to the place where you were getting some values from the table. Lastly, click the ‘+’ at the bottom of the IF statement box to add a new section.||
+|| Set variable || SET VARIABLE:  *current_question*  by R code:  *current_question+1*  (Add one to the current_question value to select the 2nd question from the table next time!)||
+|| IF statement || IF *current_question*  _equal or lesser than_  *4* THEN click '+' icon below 'THEN'. GO TO: *(from the drop-down list select the section of the test where you were setting the value of the “question” variable)* Ok, this one looks difficult but it is not! First you check IF you haven’t reached the maximum number of questions you wanted to show. If you haven’t THEN you go back in the test structure –not to the very beginning but to the place where you were getting some values from the table. Lastly, click the ‘+’ at the bottom of the IF statement box to add a new section.||
 || Load HTML template || Choose the HTML template: *feedback* (or whatever else you named this template)||
-|| - || http://ns39618.ovh.net/~vaishali/||
+|| - || http://ns39618.ovh.net/~vaishali/v3.6/simple/4.JPG||
 || || _END_ ||
 
 
-To run your test, click the *Run Test* at the start of the tests section. Alternatively, use the following URL: 
-*(concerto_installation_path)/?tid=(TEST_ID)* or [http://concerto.e-psychometrics.com/demo/?tid=69] for a free basic account on our server.
-  _Note: Substitute the last 2 digits in the URL with the _test id_ of your specific test._
+==To run your test==
+
+Click the *Run Test* button at the start of the tests section. 
+
+Alternatively, use the following URL:  *(concerto_installation_path)/?tid=(TEST_ID)* 
+
+Or if using a free account on our server:  *[http://concerto.e-psychometrics.com/demo/?tid=69]*
+ 
+_Note: Substitute the last 2 digits in the URL with the _test id_ of your specific test._
  
