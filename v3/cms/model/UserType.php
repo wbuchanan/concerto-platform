@@ -133,17 +133,6 @@ class UserType extends OModule
             ";
         return mysql_query($sql);
     }
-    
-    public static function update_db($previous_version)
-    {
-        if (Ini::does_patch_apply("3.6.7", $previous_version))
-        {
-            $sql = "UPDATE `UserType` SET `Sharing_id`=3 WHERE `id`=4;";
-            if (!mysql_query($sql)) return false;
-        }
-        return true;
-    }
-
 }
 
 ?>

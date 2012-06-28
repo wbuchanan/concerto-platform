@@ -51,6 +51,30 @@ class TestTemplate extends OTable {
         return $element;
     }
 
+    public static function repopulate_table() {
+        $sql = "DELETE FROM `TestTemplate`";
+        mysql_query($sql);
+        $sql = "SELECT * FROM `TestSection`";
+        $z = mysql_query($sql);
+        while ($r = mysql_fetch_array($z)) {
+            if ($r['TestSectionType_id'] == DS_TestSectionType::LOAD_HTML_TEMPLATE) {
+                $ts = TestSection::from_mysql_id($r['id']);
+                $vals = $ts->get_values();
+                $template = Template::from_mysql_id($vals[0]);
+                if ($template != null) {
+                    $html = Template::output_html($template->HTML, $vals, $template->get_outputs(), $template->get_inserts());
+
+                    $test_template = new TestTemplate();
+                    $test_template->Test_id = $r['Test_id'];
+                    $test_template->TestSection_id = $r['id'];
+                    $test_template->Template_id = $vals[0];
+                    $test_template->HTML = $html;
+                    $test_template->mysql_save();
+                }
+            }
+        }
+    }
+
     public static function create_db($delete = false) {
         if ($delete) {
             if (!mysql_query("DROP TABLE IF EXISTS `TestTemplate`;"))
@@ -69,23 +93,6 @@ class TestTemplate extends OTable {
             ) ENGINE=InnoDB  DEFAULT CHARSET=utf8;
             ";
         return mysql_query($sql);
-    }
-
-    public static function update_db($previous_version) {
-        if (Ini::does_patch_apply("3.6.8", $previous_version)) {
-            $sql = sprintf("SELECT * FROM `%s`", TestTemplate::get_mysql_table());
-            $z=mysql_query($sql);
-            while($r=mysql_fetch_array($z)){
-                $tt = TestTemplate::from_mysql_id($r['id']);
-                $ts = TestSection::from_mysql_id($tt->TestSection_id);
-                $vals = $ts->get_values();
-                $template = Template::from_mysql_id($vals[0]);
-                $html = Template::output_html($template->HTML, $vals, $template->get_outputs(), $template->get_inserts());
-                $tt->HTML = $html;
-                $tt->mysql_save();
-            }
-        }
-        return true;
     }
 
 }

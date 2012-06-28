@@ -146,11 +146,9 @@ class Ini {
                 if (!$table::create_db())
                     return false;
             }
-            else {
-                if (!$table::update_db($version))
-                    return false;
-            }
         }
+        if (!self::update_db())
+            return false;
         Setting::set_setting("version", Ini::$version);
         return true;
     }
@@ -286,6 +284,598 @@ class Ini {
             else
                 $_SESSION[$k] = mysql_real_escape_string($_SESSION[$k]);
         }
+    }
+
+    public static function calculate_xml_hash() {
+        //CustomSection - calculate xml_hash
+        $sql = "SELECT `id` FROM `CustomSection`";
+        $z = mysql_query($sql);
+        while ($r = mysql_fetch_array($z)) {
+            $obj = CustomSection::from_mysql_id($r[0]);
+            $obj->xml_hash = $obj->calculate_xml_hash();
+            $obj->mysql_save();
+        }
+
+        //Table - calculate xml_hash
+        $sql = "SELECT `id` FROM `Table`";
+        $z = mysql_query($sql);
+        while ($r = mysql_fetch_array($z)) {
+            $obj = Table::from_mysql_id($r[0]);
+            $obj->xml_hash = $obj->calculate_xml_hash();
+            $obj->mysql_save();
+        }
+
+        //Template - calculate xml_hash
+        $sql = "SELECT `id` FROM `Template`";
+        $z = mysql_query($sql);
+        while ($r = mysql_fetch_array($z)) {
+            $obj = Template::from_mysql_id($r[0]);
+            $obj->xml_hash = $obj->calculate_xml_hash();
+            $obj->mysql_save();
+        }
+
+        //Test - calculate xml_hash
+        $sql = "SELECT `id` FROM `Test`";
+        $z = mysql_query($sql);
+        while ($r = mysql_fetch_array($z)) {
+            $obj = Test::from_mysql_id($r[0]);
+            $obj->xml_hash = $obj->calculate_xml_hash();
+            $obj->mysql_save();
+        }
+    }
+
+    public static function update_db() {
+        $previous_version = Setting::get_setting("version");
+
+        $recalculate_hash = false;
+        $repopulate_TestTemplate = false;
+        $validate_column_names = false;
+
+        ///COMPATIBILITY FIX FOR V3.0.0 START
+        $sql = "SHOW COLUMNS FROM `User` WHERE `Field`='last_activity'";
+        $z = mysql_query($sql);
+        if (mysql_num_rows($z) > 0) {
+            $sql = "ALTER TABLE `User` CHANGE `last_activity` `last_login` timestamp NOT NULL default '0000-00-00 00:00:00';";
+            if (!mysql_query($sql))
+                return false;
+        }
+        ///COMPATIBILITY FIX FOR V3.0.0 END
+
+        if (Ini::does_patch_apply("3.3.0", $previous_version)) {
+            //DS_TableColumnType - numeric split to integer and float
+            $id_4_found = false;
+            $sql = "SELECT * FROM `DS_TableColumnType`";
+            $z = mysql_query($sql);
+            while ($r = mysql_fetch_array($z)) {
+                switch ($r['id']) {
+                    case 2: {
+                            if ($r['name'] != "integer") {
+                                $sql2 = "UPDATE `DS_TableColumnType` SET `name`='integer', value='integer' WHERE `id`=2";
+                                if (!mysql_query($sql2))
+                                    return false;
+                            }
+                            break;
+                        }
+                    case 3: {
+                            if ($r['name'] != "float") {
+                                $sql2 = "UPDATE `DS_TableColumnType` SET `name`='float', value='float' WHERE `id`=3";
+                                if (!mysql_query($sql2))
+                                    return false;
+                            }
+                            break;
+                        }
+                    case 4: {
+                            $id_4_found = true;
+                            if ($r['name'] != "HTML") {
+                                $sql2 = "UPDATE `DS_TableColumnType` SET `name`='HTML', value='HTML' WHERE `id`=4";
+                                if (!mysql_query($sql2))
+                                    return false;
+                            }
+                            break;
+                        }
+                }
+            }
+            if (!$id_4_found) {
+                $sql2 = "INSERT INTO `DS_TableColumnType` SET `id`=4, `name`='HTML', value='HTML', `position`=4";
+                if (!mysql_query($sql2))
+                    return false;
+            }
+
+            //TableColumn - change numeric and float MySQL type
+            $sql = sprintf("SELECT * FROM `TableColumn`");
+            $z = mysql_query($sql);
+            while ($r = mysql_fetch_array($z)) {
+                $table = Table::from_mysql_id($r['Table_id']);
+                if ($table == null)
+                    continue;
+                if (!$table->has_table()) {
+                    $table->mysql_delete();
+                    continue;
+                }
+                $table_name = $table->get_table_name();
+                $type = "TEXT NOT NULL";
+                switch ($r['TableColumnType_id']) {
+                    case 2: {
+                            $type = "BIGINT NOT NULL";
+                            break;
+                        }
+                    case 3: {
+                            $type = "DOUBLE NOT NULL";
+                            break;
+                        }
+                }
+                $old_name = $r['name'];
+                $new_name = Table::format_column_name($old_name);
+
+                if ($r['TableColumnType_id'] == 3) {
+                    $sql2 = sprintf("UPDATE `TableColumn` SET `TableColumnType_id`='%d' WHERE `id`='%d'", 4, $r['id']);
+                    if (!mysql_query($sql2)) {
+                        return false;
+                    }
+                }
+
+                if ($old_name != $new_name) {
+                    $sql2 = sprintf("ALTER TABLE `%s` CHANGE `%s` `%s` %s;", $table_name, $old_name, $new_name, $type);
+                    $i = 1;
+                    while (!mysql_query($sql2)) {
+                        $new_name = "col" . $i;
+                        $sql2 = sprintf("ALTER TABLE `%s` CHANGE `%s` `%s` %s;", $table_name, $old_name, $new_name, $type);
+                        $i++;
+                    }
+
+                    $sql2 = sprintf("UPDATE `TableColumn` SET `name`='%s' WHERE `id`='%d'", $new_name, $r['id']);
+                    if (!mysql_query($sql2)) {
+                        return false;
+                    }
+                }
+            }
+            Setting::set_setting("version", "3.3.0");
+        }
+
+        if (Ini::does_patch_apply("3.4.0", $previous_version)) {
+            //Test - add session_count field
+            $sql = "SHOW COLUMNS FROM `Test` WHERE `Field`='session_count'";
+            $z = mysql_query($sql);
+            if (mysql_num_rows($z) == 0) {
+                $sql = "ALTER TABLE `Test` ADD `session_count` bigint(20) NOT NULL;";
+                if (!mysql_query($sql))
+                    return false;
+            }
+
+            //TestSectionValue - indexes changes
+            $sql = sprintf("SELECT `TestSection`.`id`, `TestSection`.`TestSectionType_id` FROM `TestSection` WHERE `TestSectionType_id` IN (%d,%d,%d)", DS_TestSectionType::LOAD_HTML_TEMPLATE, DS_TestSectionType::SET_VARIABLE, DS_TestSectionType::CUSTOM);
+            $z = mysql_query($sql);
+            while ($r = mysql_fetch_array($z)) {
+                switch ($r[1]) {
+                    case DS_TestSectionType::LOAD_HTML_TEMPLATE: {
+                            $params_count = 0;
+                            $returns_count = 0;
+                            $sql2 = sprintf("SELECT `index`,`value` FROM `%s` WHERE `TestSection_id`=%d AND (`index`=1 OR `index`=2) ", TestSectionValue::get_mysql_table(), $r[0]);
+                            $z2 = mysql_query($sql2);
+                            while ($r2 = mysql_fetch_array($z2)) {
+                                if ($r2['index'] == 1)
+                                    $params_count = $r2['value'];
+                                if ($r2['index'] == 2)
+                                    $returns_count = $r2['value'];
+                            }
+
+                            $delete_index = 3 + $params_count + 1;
+
+                            for ($i = 0; $i < $returns_count; $i++) {
+                                $sql2 = sprintf("DELETE FROM `%s` WHERE `TestSection_id`=%d AND `index` IN (%d,%d)", TestSectionValue::get_mysql_table(), $r[0], $delete_index, $delete_index + 1);
+                                if (!mysql_query($sql2))
+                                    return false;
+
+                                $sql2 = sprintf("UPDATE `%s` SET `index`=`index`-2 WHERE `TestSection_id`=%d AND `index`>%d", TestSectionValue::get_mysql_table(), $r[0], $delete_index);
+                                if (!mysql_query($sql2))
+                                    return false;
+
+                                $delete_index++;
+                            }
+                            break;
+                        }
+                    case DS_TestSectionType::SET_VARIABLE: {
+                            $sql2 = sprintf("DELETE FROM `%s` WHERE `TestSection_id`=%d AND `index` IN (4,5)", TestSectionValue::get_mysql_table(), $r[0]);
+                            if (!mysql_query($sql2))
+                                return false;
+
+                            $sql2 = sprintf("UPDATE `%s` SET `index`=`index`-2 WHERE `TestSection_id`=%d AND `index`>%d", TestSectionValue::get_mysql_table(), $r[0], 5);
+                            if (!mysql_query($sql2))
+                                return false;
+                            break;
+                        }
+                    case DS_TestSectionType::CUSTOM: {
+                            $params_count = 0;
+                            $returns_count = 0;
+                            $csid = 0;
+
+                            $sql2 = sprintf("SELECT `value` FROM `%s` WHERE `TestSection_id`=%d AND `index`=0 ", TestSectionValue::get_mysql_table(), $r[0]);
+                            $z2 = mysql_query($sql2);
+                            $r2 = mysql_fetch_array($z2);
+                            $csid = $r2['value'];
+
+                            $sql2 = sprintf("SELECT * FROM `%s` WHERE `CustomSection_id`=%d AND `type`=0", CustomSectionVariable::get_mysql_table(), $csid);
+                            $params_count = mysql_num_rows(mysql_query($sql2));
+
+                            $sql2 = sprintf("SELECT * FROM `%s` WHERE `CustomSection_id`=%d AND `type`=1", CustomSectionVariable::get_mysql_table(), $csid);
+                            $returns_count = mysql_num_rows(mysql_query($sql2));
+
+                            $delete_index = 1 + $params_count + 1;
+
+                            for ($i = 0; $i < $returns_count; $i++) {
+                                $sql2 = sprintf("DELETE FROM `%s` WHERE `TestSection_id`=%d AND `index` IN (%d,%d)", TestSectionValue::get_mysql_table(), $r[0], $delete_index, $delete_index + 1);
+                                if (!mysql_query($sql2))
+                                    return false;
+
+                                $sql2 = sprintf("UPDATE `%s` SET `index`=`index`-2 WHERE `TestSection_id`=%d AND `index`>%d", TestSectionValue::get_mysql_table(), $r[0], $delete_index);
+                                if (!mysql_query($sql2))
+                                    return false;
+
+                                $delete_index++;
+                            }
+                            break;
+                        }
+                }
+            }
+
+            //TestSession - added new fields
+            $sql = "SHOW COLUMNS FROM `TestSession` WHERE `Field`='status'";
+            $z = mysql_query($sql);
+            if (mysql_num_rows($z) == 0) {
+                $sql = "ALTER TABLE `TestSession` ADD `status` tinyint(4) NOT NULL default '0';";
+                if (!mysql_query($sql))
+                    return false;
+            }
+
+            $sql = "SHOW COLUMNS FROM `TestSession` WHERE `Field`='time_limit'";
+            $z = mysql_query($sql);
+            if (mysql_num_rows($z) == 0) {
+                $sql = "ALTER TABLE `TestSession` ADD `time_limit` int(11) NOT NULL default '0';";
+                if (!mysql_query($sql))
+                    return false;
+            }
+
+            $sql = "SHOW COLUMNS FROM `TestSession` WHERE `Field`='HTML'";
+            $z = mysql_query($sql);
+            if (mysql_num_rows($z) == 0) {
+                $sql = "ALTER TABLE `TestSession` ADD `HTML` text NOT NULL default '';";
+                if (!mysql_query($sql))
+                    return false;
+            }
+
+            $sql = "SHOW COLUMNS FROM `TestSession` WHERE `Field`='Template_id'";
+            $z = mysql_query($sql);
+            if (mysql_num_rows($z) == 0) {
+                $sql = "ALTER TABLE `TestSession` ADD `Template_id` bigint(20) NOT NULL default '0';";
+                if (!mysql_query($sql))
+                    return false;
+            }
+
+            $sql = "SHOW COLUMNS FROM `TestSession` WHERE `Field`='time_tamper_prevention'";
+            $z = mysql_query($sql);
+            if (mysql_num_rows($z) == 0) {
+                $sql = "ALTER TABLE  `TestSession` ADD  `time_tamper_prevention` INT NOT NULL;";
+                if (!mysql_query($sql))
+                    return false;
+            }
+
+            $sql = "SHOW COLUMNS FROM `TestSession` WHERE `Field`='hash'";
+            $z = mysql_query($sql);
+            if (mysql_num_rows($z) == 0) {
+                $sql = "ALTER TABLE `TestSession` ADD `hash` text NOT NULL default '';";
+                if (!mysql_query($sql))
+                    return false;
+            }
+
+            $sql = "SHOW COLUMNS FROM `TestSession` WHERE `Field`='r_type'";
+            $z = mysql_query($sql);
+            if (mysql_num_rows($z) == 0) {
+                $sql = "ALTER TABLE  `TestSession` ADD  `r_type` TINYINT( 1 ) NOT NULL;";
+                if (!mysql_query($sql))
+                    return false;
+            }
+
+            Setting::set_setting("version", "3.4.0");
+        }
+
+        if (Ini::does_patch_apply("3.4.1", $previous_version)) {
+            //TestSession - added Template_TestSection_id field
+            $sql = "SHOW COLUMNS FROM `TestSession` WHERE `Field`='Template_TestSection_id'";
+            $z = mysql_query($sql);
+            if (mysql_num_rows($z) == 0) {
+                $sql = "ALTER TABLE `TestSession` ADD `Template_TestSection_id` bigint(20) NOT NULL default '0';";
+                if (!mysql_query($sql))
+                    return false;
+            }
+
+            Setting::set_setting("version", "3.4.1");
+        }
+
+        if (Ini::does_patch_apply("3.4.3", $previous_version)) {
+            //TestSection - added end field
+            $sql = "SHOW COLUMNS FROM `TestSection` WHERE `Field`='end'";
+            $z = mysql_query($sql);
+            if (mysql_num_rows($z) == 0) {
+                $sql = "ALTER TABLE `TestSection` ADD `end` tinyint(1) NOT NULL default '0';";
+                if (!mysql_query($sql))
+                    return false;
+            }
+
+            //TestSession - added new fields
+            $sql = "SHOW COLUMNS FROM `TestSession` WHERE `Field`='debug'";
+            $z = mysql_query($sql);
+            if (mysql_num_rows($z) == 0) {
+                $sql = "ALTER TABLE `TestSession` ADD `debug` tinyint(1) NOT NULL default '0';";
+                if (!mysql_query($sql))
+                    return false;
+            }
+
+            $sql = "SHOW COLUMNS FROM `TestSession` WHERE `Field`='release'";
+            $z = mysql_query($sql);
+            if (mysql_num_rows($z) == 0) {
+                $sql = "ALTER TABLE `TestSession` ADD `release` tinyint(1) NOT NULL default '0';";
+                if (!mysql_query($sql))
+                    return false;
+            }
+            
+            $sql = "SHOW COLUMNS FROM `TestSession` WHERE `Field`='serialized'";
+            $z = mysql_query($sql);
+            if (mysql_num_rows($z) == 0) {
+                $sql = "ALTER TABLE `TestSession` ADD `serialized` tinyint(1) NOT NULL default '0';";
+                if (!mysql_query($sql))
+                    return false;
+            }
+
+            Setting::set_setting("version", "3.4.3");
+        }
+
+        if (Ini::does_patch_apply("3.5.0", $previous_version)) {
+            //Table - added description field
+            $sql = "SHOW COLUMNS FROM `Table` WHERE `Field`='description'";
+            $z = mysql_query($sql);
+            if (mysql_num_rows($z) == 0) {
+                $sql = "ALTER TABLE `Table` ADD `description` text NOT NULL;";
+                if (!mysql_query($sql))
+                    return false;
+            }
+
+            //TableColumn - fix Timestamp fields names
+            $sql = "SHOW COLUMNS FROM `TableColumn` WHERE `Field`='created' OR `Field`='udpated'";
+            $z = mysql_query($sql);
+            if (mysql_num_rows($z) == 2) {
+                $sql = "ALTER TABLE `TableColumn` CHANGE `created` `updated_temp` TIMESTAMP ON UPDATE CURRENT_TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP;";
+                if (!mysql_query($sql)) {
+                    return false;
+                }
+                $sql = "ALTER TABLE `TableColumn` CHANGE `udpated` `created` TIMESTAMP NOT NULL DEFAULT  '0000-00-00 00:00:00';";
+                if (!mysql_query($sql)) {
+                    return false;
+                }
+                $sql = "ALTER TABLE `TableColumn` CHANGE `updated_temp` `updated` TIMESTAMP ON UPDATE CURRENT_TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP;";
+                if (!mysql_query($sql)) {
+                    return false;
+                }
+            }
+
+            //Template - added description field
+            $sql = "SHOW COLUMNS FROM `Template` WHERE `Field`='description'";
+            $z = mysql_query($sql);
+            if (mysql_num_rows($z) == 0) {
+                $sql = "ALTER TABLE `Template` ADD `description` text NOT NULL;";
+                if (!mysql_query($sql))
+                    return false;
+            }
+
+            //Test - added description field
+            $sql = "SHOW COLUMNS FROM `Test` WHERE `Field`='description'";
+            $z = mysql_query($sql);
+            if (mysql_num_rows($z) == 0) {
+                $sql = "ALTER TABLE `Test` ADD `description` text NOT NULL;";
+                if (!mysql_query($sql))
+                    return false;
+            }
+
+            //TestSection - fix Timestamp fields
+            $sql = "SHOW COLUMNS FROM `TestSection` WHERE `Field`='created' OR `Field`='updated'";
+            $z = mysql_query($sql);
+            if (mysql_num_rows($z) == 2) {
+                $sql = "ALTER TABLE `TestSection` CHANGE `created` `updated_temp` TIMESTAMP ON UPDATE CURRENT_TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP;";
+                if (!mysql_query($sql)) {
+                    return false;
+                }
+                $sql = "ALTER TABLE `TestSection` CHANGE `updated` `created` TIMESTAMP NOT NULL DEFAULT  '0000-00-00 00:00:00';";
+                if (!mysql_query($sql)) {
+                    return false;
+                }
+                $sql = "ALTER TABLE `TestSection` CHANGE `updated_temp` `updated` TIMESTAMP ON UPDATE CURRENT_TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP;";
+                if (!mysql_query($sql)) {
+                    return false;
+                }
+            }
+
+            //TestSectionValue - fix Timestamp fields
+            $sql = "SHOW COLUMNS FROM `TestSectionValue` WHERE `Field`='created' OR `Field`='updated'";
+            $z = mysql_query($sql);
+            if (mysql_num_rows($z) == 2) {
+                $sql = "ALTER TABLE `TestSectionValue` CHANGE `created` `updated_temp` TIMESTAMP ON UPDATE CURRENT_TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP;";
+                if (!mysql_query($sql)) {
+                    return false;
+                }
+                $sql = "ALTER TABLE `TestSectionValue` CHANGE `updated` `created` TIMESTAMP NOT NULL DEFAULT  '0000-00-00 00:00:00';";
+                if (!mysql_query($sql)) {
+                    return false;
+                }
+                $sql = "ALTER TABLE `TestSectionValue` CHANGE `updated_temp` `updated` TIMESTAMP ON UPDATE CURRENT_TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP;";
+                if (!mysql_query($sql)) {
+                    return false;
+                }
+            }
+
+            Setting::set_setting("version", "3.5.0");
+        }
+
+        if (Ini::does_patch_apply("3.5.2", $previous_version)) {
+            //TestSection - fixed name of r_type field
+            $sql = "SHOW COLUMNS FROM `TestSession` WHERE `Field`='r_typ'";
+            $z = mysql_query($sql);
+            if (mysql_num_rows($z) > 0) {
+                $sql = "ALTER TABLE `TestSession` CHANGE `r_typ` `r_type` tinyint(1) NOT NULL default '0';";
+                if (!mysql_query($sql))
+                    return false;
+            }
+
+            Setting::set_setting("version", "3.5.2");
+        }
+
+        if (Ini::does_patch_apply("3.6.0", $previous_version)) {
+            //DS_TestSectionType - added loop and test inclusion section
+            $sql = "INSERT INTO `DS_TestSectionType` SET `id`=10, `name`='loop', `value`='10', `position`=10;";
+            if (!mysql_query($sql))
+                return false;
+            $sql = "INSERT INTO `DS_TestSectionType` SET `id`=11, `name`='test inclusion', `value`='11', `position`=11;";
+            if (!mysql_query($sql))
+                return false;
+
+            //Template - added head field
+            $sql = "SHOW COLUMNS FROM `Template` WHERE `Field`='head'";
+            $z = mysql_query($sql);
+            if (mysql_num_rows($z) == 0) {
+                $sql = "ALTER TABLE `Template` ADD `head` text NOT NULL;";
+                if (!mysql_query($sql))
+                    return false;
+            }
+
+            Setting::set_setting("version", "3.6.0");
+        }
+
+        if (Ini::does_patch_apply("3.6.2", $previous_version)) {
+            //CustomSection - added xml_hash
+            $sql = "SHOW COLUMNS FROM `CustomSection` WHERE `Field`='xml_hash'";
+            $z = mysql_query($sql);
+            if (mysql_num_rows($z) == 0) {
+                $sql = "ALTER TABLE `CustomSection` ADD `xml_hash` text NOT NULL;";
+                if (!mysql_query($sql))
+                    return false;
+            }
+
+            //Table - added xml_hash
+            $sql = "SHOW COLUMNS FROM `Table` WHERE `Field`='xml_hash'";
+            $z = mysql_query($sql);
+            if (mysql_num_rows($z) == 0) {
+                $sql = "ALTER TABLE `Table` ADD `xml_hash` text NOT NULL;";
+                if (!mysql_query($sql))
+                    return false;
+            }
+
+            //Template - added xml_hash
+            $sql = "SHOW COLUMNS FROM `Template` WHERE `Field`='xml_hash'";
+            $z = mysql_query($sql);
+            if (mysql_num_rows($z) == 0) {
+                $sql = "ALTER TABLE `Template` ADD `xml_hash` text NOT NULL;";
+                if (!mysql_query($sql))
+                    return false;
+            }
+
+            //Test - added xml_hash
+            $sql = "SHOW COLUMNS FROM `Test` WHERE `Field`='xml_hash'";
+            $z = mysql_query($sql);
+            if (mysql_num_rows($z) == 0) {
+                $sql = "ALTER TABLE `Test` ADD `xml_hash` text NOT NULL;";
+                if (!mysql_query($sql))
+                    return false;
+            }
+
+            Setting::set_setting("version", "3.6.2");
+        }
+
+        if (Ini::does_patch_apply("3.6.7", $previous_version)) {
+            //User - added new fields
+            $sql = "SHOW COLUMNS FROM `User` WHERE `Field`='UserInstitutionType_id'";
+            $z = mysql_query($sql);
+            if (mysql_num_rows($z) == 0) {
+                $sql = "ALTER TABLE `User` ADD `UserInstitutionType_id` int(11) NOT NULL;";
+                if (!mysql_query($sql))
+                    return false;
+            }
+
+            $sql = "SHOW COLUMNS FROM `User` WHERE `Field`='institution_name'";
+            $z = mysql_query($sql);
+            if (mysql_num_rows($z) == 0) {
+                $sql = "ALTER TABLE `User` ADD `institution_name` text NOT NULL;";
+                if (!mysql_query($sql))
+                    return false;
+            }
+
+            //UserType - changed Sharing_id of standard user type to public
+            $sql = "UPDATE `UserType` SET `Sharing_id`=3 WHERE `id`=4;";
+            if (!mysql_query($sql))
+                return false;
+
+            Setting::set_setting("version", "3.6.7");
+        }
+
+        if (Ini::does_patch_apply("3.6.8", $previous_version)) {
+            //TestSectionValue - indexes changes
+            $sections = TestSection::from_property(array("TestSectionType_id" => DS_TestSectionType::LOAD_HTML_TEMPLATE));
+            foreach ($sections as $section) {
+                $sql = sprintf("DELETE FROM `%s` WHERE `TestSection_id`=%d AND `index`>=3", TestSectionValue::get_mysql_table(), $section->id);
+                $vals = $section->get_values();
+                $template = Template::from_mysql_id($vals[0]);
+                if ($template == null)
+                    continue;
+                $inserts = $template->get_inserts();
+                $returns = $template->get_outputs();
+                $j = 3;
+                $i = 3;
+                foreach ($inserts as $ins) {
+                    $tsv = new TestSectionValue();
+                    $tsv->TestSection_id = $section->id;
+                    $tsv->index = $j;
+                    $tsv->value = $ins;
+                    $tsv->mysql_save();
+
+                    $tsv = new TestSectionValue();
+                    $tsv->TestSection_id = $section->id;
+                    $tsv->index = $j + 1;
+                    $tsv->value = (isset($vals[$i]) ? $vals[$i] : $ins);
+                    $tsv->mysql_save();
+
+                    $j = $j + 2;
+                    $i++;
+                }
+
+                foreach ($returns as $ret) {
+                    $tsv = new TestSectionValue();
+                    $tsv->TestSection_id = $section->id;
+                    $tsv->index = $j;
+                    $tsv->value = $ret['name'];
+                    $tsv->mysql_save();
+
+                    $tsv = new TestSectionValue();
+                    $tsv->TestSection_id = $section->id;
+                    $tsv->index = $j + 1;
+                    $tsv->value = (isset($vals[$i]) ? $vals[$i] : $ret['name']);
+                    $tsv->mysql_save();
+
+                    $j = $j + 2;
+                    $i++;
+                }
+            }
+
+            $validate_column_names = true;
+            $recalculate_hash = true;
+            $repopulate_TestTemplate = true;
+            Setting::set_setting("version", "3.6.8");
+        }
+        
+        if ($validate_column_names) {
+            if(!TableColumn::validate_columns_name()) return false;
+        }
+        if ($repopulate_TestTemplate)
+            TestTemplate::repopulate_table();
+        if ($recalculate_hash)
+            self::calculate_xml_hash();
+        return true;
     }
 
 }

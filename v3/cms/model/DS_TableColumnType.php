@@ -61,57 +61,6 @@ class DS_TableColumnType extends ODataSet
             ";
         return mysql_query($sql);
     }
-
-    public static function update_db($previous_version)
-    {
-        if (Ini::does_patch_apply("3.3.0", $previous_version))
-        {
-            $id_4_found = false;
-            $sql = sprintf("SELECT * FROM `%s`", self::get_mysql_table());
-            $z = mysql_query($sql);
-            while ($r = mysql_fetch_array($z))
-            {
-                switch ($r['id'])
-                {
-                    case 2:
-                        {
-                            if ($r['name'] != "integer")
-                            {
-                                $sql2 = sprintf("UPDATE `%s` SET `name`='%s', value='%s' WHERE `id`='%d'", self::get_mysql_table(), "integer", "integer", 2);
-                                if(!mysql_query($sql2)) return false;
-                            }
-                            break;
-                        }
-                    case 3:
-                        {
-                            if ($r['name'] != "float")
-                            {
-                                $sql2 = sprintf("UPDATE `%s` SET `name`='%s', value='%s' WHERE `id`='%d'", self::get_mysql_table(), "float", "float", 3);
-                                if(!mysql_query($sql2)) return false;
-                            }
-                            break;
-                        }
-                    case 4:
-                        {
-                            $id_4_found = true;
-                            if ($r['name'] != "HTML")
-                            {
-                                $sql2 = sprintf("UPDATE `%s` SET `name`='%s', value='%s' WHERE `id`='%d'", self::get_mysql_table(), "HTML", "HTML", 4);
-                                if(!mysql_query($sql2)) return false;
-                            }
-                            break;
-                        }
-                }
-            }
-            if (!$id_4_found)
-            {
-                $sql2 = sprintf("INSERT INTO `%s` SET `id`=4, `name`='%s', value='%s', `position`=4", self::get_mysql_table(), "HTML", "HTML");
-                if(!mysql_query($sql2)) return false;
-            }
-        }
-        return true;
-    }
-
 }
 
 ?>

@@ -566,35 +566,6 @@ class TestSection extends OTable
             ";
         return mysql_query($sql);
     }
-
-    public static function update_db($previous_version)
-    {
-        if (Ini::does_patch_apply("3.4.3", $previous_version))
-        {
-            $sql = "ALTER TABLE `TestSection` ADD `end` tinyint(1) NOT NULL default '0';";
-            if (!mysql_query($sql)) return false;
-        }
-        if (Ini::does_patch_apply("3.5.0", $previous_version))
-        {
-            $sql = sprintf("ALTER TABLE `%s` CHANGE `created` `updated_temp` TIMESTAMP ON UPDATE CURRENT_TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP;", self::get_mysql_table());
-            if (!mysql_query($sql))
-            {
-                return false;
-            }
-            $sql = sprintf("ALTER TABLE `%s` CHANGE `updated` `created` TIMESTAMP NOT NULL DEFAULT  '0000-00-00 00:00:00';", self::get_mysql_table());
-            if (!mysql_query($sql))
-            {
-                return false;
-            }
-            $sql = sprintf("ALTER TABLE `%s` CHANGE `updated_temp` `updated` TIMESTAMP ON UPDATE CURRENT_TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP;", self::get_mysql_table());
-            if (!mysql_query($sql))
-            {
-                return false;
-            }
-        }
-        return true;
-    }
-
 }
 
 ?>

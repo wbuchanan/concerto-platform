@@ -446,30 +446,6 @@ class User extends OModule {
             ";
         return mysql_query($sql);
     }
-
-    public static function update_db($previous_version) {
-        ///COMPATIBILITY FIX FOR V3.0.0 START
-        $sql = "SHOW COLUMNS FROM `User` WHERE `Field`='last_activity'";
-        $z = mysql_query($sql);
-        if (mysql_num_rows($z) > 0) {
-            $sql = "ALTER TABLE `User` CHANGE `last_activity` `last_login` timestamp NOT NULL default '0000-00-00 00:00:00';";
-            if (!mysql_query($sql))
-                return false;
-        }
-        ///COMPATIBILITY FIX FOR V3.0.0 END
-
-        if (Ini::does_patch_apply("3.6.7", $previous_version)) {
-            $sql = "ALTER TABLE `User` ADD `UserInstitutionType_id` int(11) NOT NULL;";
-            if (!mysql_query($sql))
-                return false;
-
-            $sql = "ALTER TABLE `User` ADD `institution_name` text NOT NULL;";
-            if (!mysql_query($sql))
-                return false;
-        }
-        return true;
-    }
-
 }
 
 ?>

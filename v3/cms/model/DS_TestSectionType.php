@@ -128,19 +128,6 @@ class DS_TestSectionType extends ODataSet
             ";
         return mysql_query($sql);
     }
-    
-    public static function update_db($previous_version)
-    {
-        if (Ini::does_patch_apply("3.6.0", $previous_version))
-        {
-            $sql = "INSERT INTO `DS_TestSectionType` SET `id`=10, `name`='loop', `value`='10', `position`=10;";
-            if (!mysql_query($sql)) return false;
-            
-            $sql = "INSERT INTO `DS_TestSectionType` SET `id`=11, `name`='test inclusion', `value`='11', `position`=11;";
-            if (!mysql_query($sql)) return false;
-        }
-        return true;
-    }
 }
 
 ?>

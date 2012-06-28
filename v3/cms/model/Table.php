@@ -426,29 +426,6 @@ class Table extends OModule {
         return mysql_query($sql);
     }
 
-    public static function update_db($previous_version) {
-        if (Ini::does_patch_apply("3.5.0", $previous_version)) {
-            $sql = "ALTER TABLE `Table` ADD `description` text NOT NULL;";
-            if (!mysql_query($sql))
-                return false;
-        }
-        if (Ini::does_patch_apply("3.6.2", $previous_version)) {
-            $sql = "ALTER TABLE `Table` ADD `xml_hash` text NOT NULL;";
-            if (!mysql_query($sql))
-                return false;
-        }
-        if (Ini::does_patch_apply("3.6.3", $previous_version)) {
-            $sql = sprintf("SELECT `id` FROM `%s`", self::get_mysql_table());
-            $z = mysql_query($sql);
-            while ($r = mysql_fetch_array($z)) {
-                $obj = self::from_mysql_id($r[0]);
-                $obj->xml_hash = $obj->calculate_xml_hash();
-                $obj->mysql_save();
-            }
-        }
-        return true;
-    }
-
     public static function filter_text($text) {
         $search = array(
             chr(212),

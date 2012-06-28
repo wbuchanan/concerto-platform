@@ -51,24 +51,31 @@ class Template extends OModule {
     }
 
     public static function get_insert_reference($name, $vals) {
-        for ($i = 3; $i < 3 + $vals[1] * 2; $i = $i + 2)
-            if ($vals[$i] == $name) {
-                if (isset($vals[$i + 1]))
-                    return $vals[$i + 1];
-                else
-                    break;
-            }
+        for ($i = 3; $i < 3 + $vals[1] * 2; $i = $i + 2) {
+            if (isset($vals[$i])) {
+                if ($vals[$i] == $name) {
+                    if (isset($vals[$i + 1]))
+                        return $vals[$i + 1];
+                    else
+                        break;
+                }
+            } else
+                break;
+        }
         return $name;
     }
 
     public static function get_return_reference($name, $vals) {
         for ($i = 3 + $vals[1] * 2; $i < 3 + $vals[1] * 2 + $vals[2] * 2; $i = $i + 2) {
-            if ($vals[$i] == $name) {
-                if (isset($vals[$i + 1]))
-                    return $vals[$i + 1];
-                else
-                    break;
-            }
+            if (isset($vals[$i])) {
+                if ($vals[$i] == $name) {
+                    if (isset($vals[$i + 1]))
+                        return $vals[$i + 1];
+                    else
+                        break;
+                }
+            } else
+                break;
         }
         return $name;
     }
@@ -268,34 +275,6 @@ class Template extends OModule {
     public function mysql_delete() {
         $this->delete_object_links(TestTemplate::get_mysql_table());
         parent::mysql_delete();
-    }
-
-    public static function update_db($previous_version) {
-        if (Ini::does_patch_apply("3.5.0", $previous_version)) {
-            $sql = "ALTER TABLE `Template` ADD `description` text NOT NULL;";
-            if (!mysql_query($sql))
-                return false;
-        }
-        if (Ini::does_patch_apply("3.6.0", $previous_version)) {
-            $sql = "ALTER TABLE `Template` ADD `head` text NOT NULL;";
-            if (!mysql_query($sql))
-                return false;
-        }
-        if (Ini::does_patch_apply("3.6.2", $previous_version)) {
-            $sql = "ALTER TABLE `Template` ADD `xml_hash` text NOT NULL;";
-            if (!mysql_query($sql))
-                return false;
-        }
-        if (Ini::does_patch_apply("3.6.3", $previous_version)) {
-            $sql = sprintf("SELECT `id` FROM `%s`", self::get_mysql_table());
-            $z = mysql_query($sql);
-            while ($r = mysql_fetch_array($z)) {
-                $obj = self::from_mysql_id($r[0]);
-                $obj->xml_hash = $obj->calculate_xml_hash();
-                $obj->mysql_save();
-            }
-        }
-        return true;
     }
 
 }
