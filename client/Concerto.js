@@ -175,6 +175,14 @@ function Concerto(container,hash,sid,tid,queryPath,callbackGet,callbackSend,debu
             values.push($.toJSON(obj));
         });
         
+        $(this.container).find("input:hidden").each(function(){
+            var obj = {
+                name:$(this).attr("name"),
+                value:$(this).val()
+            };
+            values.push($.toJSON(obj));
+        });
+        
         $(this.container).find("input:password").each(function(){
             var obj = {
                 name:$(this).attr("name"),
