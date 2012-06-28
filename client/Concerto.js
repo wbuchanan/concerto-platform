@@ -41,7 +41,7 @@ function Concerto(container,hash,sid,tid,queryPath,callbackGet,callbackSend,debu
     this.timer = 0;
     this.timeObj = null;
     
-    this.timePassed = 0;
+    this.timeTemplateLoaded = null;
     
     this.clearTimer=function(){
         if(this.timeObj!=null) {
@@ -51,25 +51,15 @@ function Concerto(container,hash,sid,tid,queryPath,callbackGet,callbackSend,debu
     this.iniTimer = function(){
         var thisClass=this;
         var limit = this.data["TIME_LIMIT"];
-        
-        this.timePassed=0;
+        this.timeTemplateLoaded = new Date();
         
         if(limit>0){
             this.timer = limit;
             $(".fontTimeLeft").html(this.timer);
             this.timeObj = setInterval(function(){
-                thisClass.timePassedTick();
                 thisClass.timeTick();
             },1000);
         }
-        else {
-            thisClass.timePassedTick();
-        }
-    }
-    
-    this.timePassedTick = function(){
-        if(this.isStopped) return;
-        this.timePassed++;
     }
     
     this.timeTick = function(){
@@ -247,13 +237,14 @@ function Concerto(container,hash,sid,tid,queryPath,callbackGet,callbackSend,debu
     }
     
     this.submit=function(btnName){
+        var currentTime = new Date();
         var thisClass=this;
         this.clearTimer();
         if(this.isStopped) return;
         var vals = this.getControlsValues();
         vals.push($.toJSON({
             name:"TIME_TAKEN",
-            value:thisClass.timePassed
+            value:(currentTime.getTime()-thisClass.timeTemplateLoaded.getTime())/1000
         }));
         this.run(btnName,vals);
         if(this.callbackSend!=null) this.callbackSend.call(this,btnName,vals);
