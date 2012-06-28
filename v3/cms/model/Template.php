@@ -105,7 +105,7 @@ class Template extends OModule {
         if (empty($html_string))
             $html_string = "<p></p>";
         $html = str_get_html($html_string);
-        foreach ($html->find('input[type="text"], input[type="password"], input[type="checkbox"], input[type="radio"]') as $element) {
+        foreach ($html->find('input[type="text"], input[type="hidden"], input[type="password"], input[type="checkbox"], input[type="radio"]') as $element) {
             if (!in_array($element->name, $names)) {
                 array_push($outputs, array("name" => $element->name, "type" => $element->type));
                 array_push($names, $element->name);
