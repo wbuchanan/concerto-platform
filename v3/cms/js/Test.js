@@ -300,6 +300,7 @@ Test.uiRefreshSectionContent=function(type,counter,value,oid,end){
     },function(data){
         $("#divSection_"+counter).unmask();
         $("#divSection_"+counter).children(".divSectionContent").html(data);
+        $("#divSection_"+counter).find(".divSectionSummary").attr("onmouseover","Test.uiToggleHover("+counter+",true);").attr("onmouseout","Test.uiToggleHover("+counter+",false);");
         switch(type){
             case Test.sectionTypes.RCode:{
                 var cm = Methods.iniCodeMirror("textareaCodeMirror_"+counter, "r", false,"905px");
@@ -332,13 +333,11 @@ Test.uiRefreshSectionContent=function(type,counter,value,oid,end){
 };
 
 Test.uiToggleHover=function(counter,show){
-    var details = $(".divSection[seccounter='"+counter+"']");
     var obj = $("#divSection_"+counter);
     
     if(show){
         $(".divSection").each(function(){
-            if($(this).attr("id")!=details.attr("id")) {
-                //$(this).find(".divSectionDetail").hide(200);
+            if($(this).attr("id")!=obj.attr("id")) {
                 $(this).removeClass("ui-state-highlight");
             }
         })
@@ -347,9 +346,6 @@ Test.uiToggleHover=function(counter,show){
         if(obj.attr("sectype")==Test.sectionTypes.goTo){
             $("#divSection_"+obj.find("select").val()).addClass("ui-state-highlight");
         }
-    //details.find(".divSectionDetail").show(200,function(){
-    //    Test.uiRefreshCodeMirrors();
-    //});
     }
 }
 
@@ -1228,7 +1224,7 @@ Test.uiRemoveReturn=function(){
 
 Test.getSerializedParameterVariables=function(){
     var vars = new Array();
-    $(".div"+this.className+"Parameters table").each(function(){
+    $(".table"+this.className+"Parameters tr").each(function(){
         var v = {};
         v["name"]=$(this).find("input").val();
         v["description"]=$(this).find("textarea").val();
@@ -1239,7 +1235,7 @@ Test.getSerializedParameterVariables=function(){
 
 Test.getSerializedReturnVariables=function(){
     var vars = new Array();
-    $(".div"+this.className+"Returns table").each(function(){
+    $(".table"+this.className+"Returns tr").each(function(){
         var v = {};
         v["name"]=$(this).find("input").val();
         v["description"]=$(this).find("textarea").val();

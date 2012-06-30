@@ -32,7 +32,7 @@ if ($logged_user == null)
 ?>
 
 <div class="divSectionSummary">
-    <table class="fullWidth tableSectionHeader" onmouseover="Test.uiToggleHover(<?=$_POST['counter']?>,true);" onmouseout="Test.uiToggleHover(<?=$_POST['counter']?>,false);">
+    <table class="fullWidth tableSectionHeader">
         <tr>
             <!--<td class="tdSectionColumnIcon"></td>-->
             <td class="ui-widget-header tdSectionColumnCounter" id="tooltipSectionDetail_<?= $_POST['counter'] ?>" title=""><?= $_POST['counter'] ?></td>
@@ -46,6 +46,6 @@ if ($logged_user == null)
         </tr>
     </table>
 </div>
-<div class="divSectionDetail <?=$_POST['detail']==1?"":"notVisible"?>">
+<div class="divSectionDetail <?=$_POST['detail']==1 || $_POST['oid'] == 0 ?"":"notVisible"?>">
 
 </div>

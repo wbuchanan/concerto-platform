@@ -1744,14 +1744,6 @@ Note: You can add new languages by inserting "<new_language>string translated in
             <fr>enlever une condition</fr>
             <bg>условие извади</bg>
         </string>
-        <string id="231">
-            <en>THEN</en>
-            <de>THEN</de>
-            <pl>WTEDY</pl>
-            <cn>THEN</cn>
-            <fr>ALORS</fr>
-            <bg>ТОГАВА</bg>
-        </string>
         <string id="232" js="1">
             <en>add test logic section to IF clause</en>
             <de>Füge Testlogiksektion zu WENN Aussage hinzu.</de>
@@ -1776,14 +1768,6 @@ Note: You can add new languages by inserting "<new_language>string translated in
             <fr>avec un code R</fr>
             <bg>чрез R кода</bg>
         </string>
-        <string id="238">
-            <en>SELECT FROM TABLE</en>
-            <de>SELECT FROM TABLE</de>
-            <pl>WYBIERZ Z TABELI</pl>
-            <cn>从表格中选择</cn>
-            <fr>SÉLECTIONNER À PARTIR DU TABLEAU</fr>
-            <bg>ИЗБЕРИ ОТ ТАБЛИЦАТА</bg>
-        </string>
         <string id="239">
             <en>no table selected</en>
             <de>keine Tabelle ausgewählt</de>
@@ -1791,14 +1775,6 @@ Note: You can add new languages by inserting "<new_language>string translated in
             <cn>未选择表格</cn>
             <fr>aucun tableau sélectionné</fr>
             <bg>не е избрана таблица</bg>
-        </string>
-        <string id="240">
-            <en>COLUMNS</en>
-            <de>COLUMNS</de>
-            <pl>KOLUMNY</pl>
-            <cn>列</cn>
-            <fr>COLONNE</fr>
-            <bg>КОЛОНИ</bg>
         </string>
         <string id="241">
             <en>no column selected</en>
@@ -1871,14 +1847,6 @@ Note: You can add new languages by inserting "<new_language>string translated in
             <cn>删除</cn>
             <fr>supprimer</fr>
             <bg>изтрий</bg>
-        </string>
-        <string id="251">
-            <en>SET</en>
-            <de>SET</de>
-            <pl>USTAW</pl>
-            <cn>设置</cn>
-            <fr>DÉFINIR</fr>
-            <bg>СЪЗДАЙ</bg>
         </string>
         <string id="253">
             <en>Select the type of section to be added to the test logic</en>
@@ -2633,14 +2601,6 @@ Note: You can add new languages by inserting "<new_language>string translated in
             <fr>flotter</fr>
             <bg>число с плаваща запетая</bg>            
         </string>
-        <string id="357">
-            <en>IF</en>
-            <de>WENN</de>
-            <pl>JEŚLI</pl>
-            <cn>IF</cn>
-            <fr>SI</fr>
-            <bg>АКО</bg>
-        </string>
         <string id="358">
             <en>protected variables</en>
             <de>geschützte Variablen</de>
@@ -3237,6 +3197,62 @@ Note: You can add new languages by inserting "<new_language>string translated in
             <en>Please enter your password</en>
             <de></de>
             <pl>Proszę wpisać swoje hasło</pl>
+            <cn></cn>
+            <fr></fr>
+            <bg></bg>
+        </string>
+        <string id="435">
+            <en>select table</en>
+            <de></de>
+            <pl>wybierz tabelę</pl>
+            <cn></cn>
+            <fr></fr>
+            <bg></bg>
+        </string>
+        <string id="436">
+            <en>select columns</en>
+            <de></de>
+            <pl>wybierz kolumny</pl>
+            <cn></cn>
+            <fr></fr>
+            <bg></bg>
+        </string>
+        <string id="437">
+            <en>where</en>
+            <de></de>
+            <pl>gdzie</pl>
+            <cn></cn>
+            <fr></fr>
+            <bg></bg>
+        </string>
+        <string id="438">
+            <en>additional conditions</en>
+            <de></de>
+            <pl>dodatkowe warunki</pl>
+            <cn></cn>
+            <fr></fr>
+            <bg></bg>
+        </string>
+        <string id="439">
+            <en>then</en>
+            <de></de>
+            <pl>wtedy</pl>
+            <cn></cn>
+            <fr></fr>
+            <bg></bg>
+        </string>
+        <string id="440">
+            <en>set</en>
+            <de></de>
+            <pl>ustaw</pl>
+            <cn></cn>
+            <fr></fr>
+            <bg></bg>
+        </string>
+        <string id="441">
+            <en>if</en>
+            <de></de>
+            <pl>jeśli</pl>
             <cn></cn>
             <fr></fr>
             <bg></bg>

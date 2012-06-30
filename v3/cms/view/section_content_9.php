@@ -18,14 +18,12 @@
   Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA.
  */
 
-if (!isset($ini))
-{
+if (!isset($ini)) {
     require_once'../../Ini.php';
     $ini = new Ini();
 }
 $logged_user = User::get_logged_user();
-if ($logged_user == null)
-{
+if ($logged_user == null) {
     echo "<script>location.reload();</script>";
     die(Language::string(278));
 }
@@ -34,8 +32,7 @@ if ($logged_user == null)
 
 $vals = $_POST['value'];
 $section = null;
-if (array_key_exists('oid', $_POST) && $_POST['oid'] != 0)
-{
+if (array_key_exists('oid', $_POST) && $_POST['oid'] != 0) {
     $section = TestSection::from_mysql_id($_POST['oid']);
     $vals = $section->get_values();
 }
@@ -44,7 +41,7 @@ $parameters = $section->get_parameter_CustomSectionVariables();
 $returns = $section->get_return_CustomSectionVariables();
 ?>
 
-<div class="divSectionSummary sortableHandle" onmouseover="Test.uiToggleHover(<?= $_POST['counter'] ?>,true);" onmouseout="Test.uiToggleHover(<?= $_POST['counter'] ?>,false);">
+<div class="divSectionSummary sortableHandle">
     <table class="fullWidth tableSectionHeader">
         <tr>
             <!--<td class="tdSectionColumnIcon"></td>-->
@@ -66,60 +63,71 @@ $returns = $section->get_return_CustomSectionVariables();
         </tr>
     </table>
 </div>
-<div class="divSectionDetail <?= $_POST['detail'] == 1 ? "" : "notVisible" ?>">
+<div class="divSectionDetail <?= $_POST['detail'] == 1 || $_POST['oid'] == 0  ? "" : "notVisible" ?>">
     <input type="hidden" class="controlValue<?= $_POST['counter'] ?>" value="<?= $vals[0] ?>" />
     <?php
-    $j = 1;
-    if (count($parameters) > 0)
-    {
+    if (count($parameters) > 0 || count($returns) > 0) {
+        $j = 1;
         ?>
-        <b><?= Language::string(106) ?>:</b>
-        <div class="ui-widget-content ui-state-focus">
-            <div>
-                <table>
-                    <?php
-                    for ($i = 0; $i < count($parameters); $i++)
-                    {
-                        ?>
-                        <tr>
-                            <td><span class="spanIcon ui-icon ui-icon-help tooltip" title="<?= htmlspecialchars(Template::strip_html($parameters[$i]->description), ENT_QUOTES) ?>"></span></td>
-                            <td><?= $parameters[$i]->name ?></td>
-                            <td><- <input type="text" class="controlValue<?= $_POST['counter'] ?> ui-widget-content ui-corner-all comboboxVars" value="<?= htmlspecialchars(isset($vals[$j]) ? $vals[$j] : $parameters[$i]->name, ENT_QUOTES) ?>" /></td>
-                        </tr>
-                        <?php
-                        $j++;
-                    }
+        <table class="fullWidth">
+            <tr>
+                <?php
+                if (count($parameters) > 0) {
                     ?>
-                </table>
-            </div>
-        </div>
-        <br/>
-        <?php
-    }
+                    <td style="width:50%;" valign="top" align="center">
+                        <div class="ui-widget-content">
+                            <div class="ui-widget-header" align="center"><?= Language::string(106) ?>:</div>
+                            <div>
+                                <table class="fullWidth">
+                                    <?php
+                                    for ($i = 0; $i < count($parameters); $i++) {
+                                        ?>
+                                        <tr>
+                                            <td><span class="spanIcon ui-icon ui-icon-help tooltip" title="<?= htmlspecialchars(Template::strip_html($parameters[$i]->description), ENT_QUOTES) ?>"></span></td>
+                                            <td><?= $parameters[$i]->name ?></td>
+                                            <td><b><-</b></td>
+                                            <td><input type="text" class="controlValue<?= $_POST['counter'] ?> ui-widget-content ui-corner-all comboboxVars fullWidth" value="<?= htmlspecialchars(isset($vals[$j]) ? $vals[$j] : $parameters[$i]->name, ENT_QUOTES) ?>" /></td>
+                                        </tr>
+                                        <?php
+                                        $j++;
+                                    }
+                                    ?>
+                                </table>
+                            </div>
+                        </div>
+                    </td>
+                    <?php
+                }
 
-    if (count($returns) > 0)
-    {
-        ?>
-        <b><?= Language::string(113) ?>:</b>
-        <div class="ui-widget-content ui-state-focus">
-            <div>
-                <table>
-                    <?php
-                    for ($i = 0; $i < count($returns); $i++)
-                    {
-                        ?>
-                        <tr>
-                            <td><span class="spanIcon ui-icon ui-icon-help tooltip" title="<?= htmlspecialchars(Template::strip_html($returns[$i]->description), ENT_QUOTES) ?>"></span></td>
-                            <td><?= $returns[$i]->name ?></td>
-                            <td>->> <input onchange="Test.uiSetVarNameChanged($(this))" type="text" class="ui-state-focus comboboxSetVars comboboxVars controlValue<?= $_POST['counter'] ?> ui-widget-content ui-corner-all" value="<?= htmlspecialchars(isset($vals[$j]) ? $vals[$j] : $returns[$i]->name, ENT_QUOTES) ?>" /></td>
-                        </tr>
-                        <?php
-                        $j = $j + 3;
-                    }
+                if (count($returns) > 0) {
                     ?>
-                </table>
-            </div>
-        </div>
+                    <td style="width:50%;" valign="top" align="center">
+                        <div class="ui-widget-content">
+                            <div class="ui-widget-header" align="center"><?= Language::string(113) ?>:</div>
+                            <div>
+                                <table class="fullWidth">
+                                    <?php
+                                    for ($i = 0; $i < count($returns); $i++) {
+                                        ?>
+                                        <tr>
+                                            <td><span class="spanIcon ui-icon ui-icon-help tooltip" title="<?= htmlspecialchars(Template::strip_html($returns[$i]->description), ENT_QUOTES) ?>"></span></td>
+                                            <td><?= $returns[$i]->name ?></td>
+                                            <td><b>->></b></td>
+                                            <td><input onchange="Test.uiSetVarNameChanged($(this))" type="text" class="ui-state-focus comboboxSetVars comboboxVars controlValue<?= $_POST['counter'] ?> ui-widget-content ui-corner-all fullWidth" value="<?= htmlspecialchars(isset($vals[$j]) ? $vals[$j] : $returns[$i]->name, ENT_QUOTES) ?>" /></td>
+                                        </tr>
+                                        <?php
+                                        $j = $j + 3;
+                                    }
+                                    ?>
+                                </table>
+                            </div>
+                        </div>
+                    </td>
+                    <?php
+                }
+                ?>
+            </tr>
+        </table>
         <?php
     }
     ?>

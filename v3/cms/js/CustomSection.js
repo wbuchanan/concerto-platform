@@ -102,7 +102,7 @@ CustomSection.uiRefreshComboboxes=function(){
 
 CustomSection.getSerializedParameterVariables=function(){
     var vars = new Array();
-    $(".div"+this.className+"Parameters table").each(function(){
+    $(".table"+this.className+"Parameters tr").each(function(){
         var v = {};
         v["name"]=$(this).find("input").val();
         v["description"]=$(this).find("textarea").val();
@@ -113,7 +113,7 @@ CustomSection.getSerializedParameterVariables=function(){
 
 CustomSection.getSerializedReturnVariables=function(){
     var vars = new Array();
-    $(".div"+this.className+"Returns table").each(function(){
+    $(".table"+this.className+"Returns tr").each(function(){
         var v = {};
         v["name"]=$(this).find("input").val();
         v["description"]=$(this).find("textarea").val();

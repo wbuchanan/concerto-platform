@@ -6,9 +6,8 @@ For licensing, see LICENSE.html or http://ckeditor.com/license
 CKEDITOR.editorConfig = function( config )
 {
     config.width = 800;
-    config.extraPlugins = 'codemirror,autogrow';
+    config.extraPlugins = 'codemirror,autogrow,audio';
     config.removePlugins = 'resize,maximize';
-    config.extraPlugins='audio'; 
     
     config.toolbar = 'Full';
  

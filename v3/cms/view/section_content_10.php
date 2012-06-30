@@ -18,31 +18,27 @@
   Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA.
  */
 
-if (!isset($ini))
-{
+if (!isset($ini)) {
     require_once'../../Ini.php';
     $ini = new Ini();
 }
 $logged_user = User::get_logged_user();
-if ($logged_user == null)
-{
+if ($logged_user == null) {
     echo "<script>location.reload();</script>";
     die(Language::string(278));
 }
 
 $vals = array();
-if (array_key_exists('value', $_POST))
-{
+if (array_key_exists('value', $_POST)) {
     $vals = $_POST['value'];
 }
-if (array_key_exists('oid', $_POST) && $_POST['oid'] != 0)
-{
+if (array_key_exists('oid', $_POST) && $_POST['oid'] != 0) {
     $section = TestSection::from_mysql_id($_POST['oid']);
     $vals = $section->get_values();
 }
 ?>  
 
-<div class="divSectionSummary sortableHandle" onmouseover="Test.uiToggleHover(<?= $_POST['counter'] ?>,true);" onmouseout="Test.uiToggleHover(<?= $_POST['counter'] ?>,false);">
+<div class="divSectionSummary sortableHandle">
     <table class="fullWidth tableSectionHeader">
         <tr>
             <!--<td class="tdSectionColumnIcon"></td>-->
@@ -61,22 +57,8 @@ if (array_key_exists('oid', $_POST) && $_POST['oid'] != 0)
                             </select>
                         </td>
                         <td>,<?= Language::string(397) ?>:</td>
-                        <td>
-                            <input type="text" class="ui-widget-content ui-corner-all comboboxVars controlValue<?= $_POST['counter'] ?>" value="<?= htmlspecialchars($vals[1], ENT_QUOTES) ?>" />
-                        </td>
-                        <td>,<?= Language::string(398) ?>:</td>
-                        <td>  
-                            <select class="ui-widget-content ui-corner-all controlValue<?= $_POST['counter'] ?>">
-                                <option value="!=" <?= $vals[2] == "!=" ? "selected" : "" ?>><?= Language::string(221) ?></option>
-                                <option value="==" <?= $vals[2] == "==" ? "selected" : "" ?>><?= Language::string(222) ?></option>
-                                <option value=">" <?= $vals[2] == ">" ? "selected" : "" ?>><?= Language::string(223) ?></option>
-                                <option value=">=" <?= $vals[2] == ">=" ? "selected" : "" ?>><?= Language::string(224) ?></option>
-                                <option value="<" <?= $vals[2] == "<" ? "selected" : "" ?>><?= Language::string(225) ?></option>
-                                <option value="<=" <?= $vals[2] == "<=" ? "selected" : "" ?>><?= Language::string(226) ?></option>
-                            </select> 
-                        </td>
-                        <td>
-                            <input type="text" class="ui-widget-content ui-corner-all comboboxVars controlValue<?= $_POST['counter'] ?>" value="<?= htmlspecialchars($vals[3], ENT_QUOTES) ?>" />
+                        <td class="fullWidth">
+                            <input type="text" class="ui-widget-content ui-corner-all comboboxVars controlValue<?= $_POST['counter'] ?> fullWidth ui-state-focus" value="<?= htmlspecialchars($vals[1], ENT_QUOTES) ?>" onchange="Test.uiSetVarNameChanged($(this))" />
                         </td>
                     </tr>
                 </table>
@@ -87,9 +69,23 @@ if (array_key_exists('oid', $_POST) && $_POST['oid'] != 0)
         </tr>
     </table>
 </div>
-<div class="divSectionDetail <?= $_POST['detail'] == 1 ? "" : "notVisible" ?>">
-    <div class="<?= $vals[0] == 1 ? "notVisible" : "" ?>">
-        <?= Language::string(400) ?>: <input type="text" class="ui-widget-content ui-corner-all comboboxVars controlValue<?= $_POST['counter'] ?>" value="<?= htmlspecialchars($vals[4], ENT_QUOTES) ?>" />, <?= Language::string(399) ?>: <input type="text" class="ui-widget-content ui-corner-all comboboxVars controlValue<?= $_POST['counter'] ?>" value="<?= htmlspecialchars($vals[5], ENT_QUOTES) ?>" />
+<div class="divSectionDetail <?= $_POST['detail'] == 1 || $_POST['oid'] == 0  ? "" : "notVisible" ?>">
+    <div align="center">
+        <b><?= Language::string(398) ?></b>:
+        <select class="ui-widget-content ui-corner-all controlValue<?= $_POST['counter'] ?>">
+            <option value="!=" <?= $vals[2] == "!=" ? "selected" : "" ?>><?= Language::string(221) ?></option>
+            <option value="==" <?= $vals[2] == "==" ? "selected" : "" ?>><?= Language::string(222) ?></option>
+            <option value=">" <?= $vals[2] == ">" ? "selected" : "" ?>><?= Language::string(223) ?></option>
+            <option value=">=" <?= $vals[2] == ">=" ? "selected" : "" ?>><?= Language::string(224) ?></option>
+            <option value="<" <?= $vals[2] == "<" ? "selected" : "" ?>><?= Language::string(225) ?></option>
+            <option value="<=" <?= $vals[2] == "<=" ? "selected" : "" ?>><?= Language::string(226) ?></option>
+        </select> 
+        <input type="text" class="ui-widget-content ui-corner-all comboboxVars controlValue<?= $_POST['counter'] ?>" value="<?= htmlspecialchars($vals[3], ENT_QUOTES) ?>" />
     </div>
-    <?= Language::string(231) ?>
+    <div class="<?= $vals[0] == 1 ? "notVisible" : "" ?>" align="center">
+        <b><?= Language::string(400) ?></b>: <input type="text" class="ui-widget-content ui-corner-all comboboxVars controlValue<?= $_POST['counter'] ?>" value="<?= htmlspecialchars($vals[4], ENT_QUOTES) ?>" />, <b><?= Language::string(399) ?></b>: <input type="text" class="ui-widget-content ui-corner-all comboboxVars controlValue<?= $_POST['counter'] ?>" value="<?= htmlspecialchars($vals[5], ENT_QUOTES) ?>" />
+    </div>
+    <div class="ui-widget-content" align="center">
+        <div class="ui-widget-header" align="center"><?= Language::string(439) ?>:</div>
+    </div>
 </div>

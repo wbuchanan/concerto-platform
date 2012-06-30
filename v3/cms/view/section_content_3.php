@@ -31,7 +31,7 @@ if ($logged_user == null)
 }
 ?>
 
-<div class="divSectionSummary sortableHandle" onmouseover="Test.uiToggleHover(<?=$_POST['counter']?>,true);" onmouseout="Test.uiToggleHover(<?=$_POST['counter']?>,false);">
+<div class="divSectionSummary sortableHandle">
     <table class="fullWidth tableSectionHeader">
         <tr>
             <!--<td class="tdSectionColumnIcon"></td>-->
@@ -40,7 +40,7 @@ if ($logged_user == null)
             <td class="tdSectionColumnIcon"></td>
             <td class="tdSectionColumnType"><?= DS_TestSectionType::get_name_by_id(3) ?></td>
             <td class="tdSectionColumnAction">
-                <select id="selectGoTo_<?= $_POST['counter'] ?>" class="ui-widget-content ui-corner-all">
+                <select id="selectGoTo_<?= $_POST['counter'] ?>" class="ui-widget-content ui-corner-all fullWidth">
                 </select>
             </td>
             <td class="tdSectionColumnEnd"><table><tr><td></td></tr></table></td>
@@ -49,5 +49,5 @@ if ($logged_user == null)
         </tr>
     </table>
 </div>
-<div class="divSectionDetail <?=$_POST['detail']==1?"":"notVisible"?>">
+<div class="divSectionDetail <?=$_POST['detail']==1 || $_POST['oid'] == 0 ?"":"notVisible"?>">
 </div>
