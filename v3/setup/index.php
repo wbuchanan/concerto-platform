@@ -18,104 +18,103 @@
   Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA.
  */
 
-if (!isset($ini))
-{
+if (!isset($ini)) {
     require_once'../Ini.php';
     $ini = new Ini(false);
 }
 
-class Setup
-{
+class Setup {
 
-    public static function php_version_check()
-    {
+    public static function php_version_check() {
         $v = phpversion();
         $nums = explode(".", $v);
-        if ($nums[0] < 5) return false;
-        if ($nums[0] == 5 && $nums[1] < 3) return false;
-        if ($nums[0] == 5 && $nums[1] >= 3) return true;
-        if ($nums[0] > 5) return true;
+        if ($nums[0] < 5)
+            return false;
+        if ($nums[0] == 5 && $nums[1] < 3)
+            return false;
+        if ($nums[0] == 5 && $nums[1] >= 3)
+            return true;
+        if ($nums[0] > 5)
+            return true;
     }
 
-    public static function php_safe_mode_check()
-    {
-        return!ini_get("safe_mode");
-    }
-    
-    public static function php_magic_quotes_check()
-    {
-        return !ini_get( 'magic_quotes_gpc' );
+    public static function php_safe_mode_check() {
+        return !ini_get("safe_mode");
     }
 
-    public static function php_short_open_tag_check()
-    {
+    public static function php_magic_quotes_check() {
+        return !ini_get('magic_quotes_gpc');
+    }
+
+    public static function php_short_open_tag_check() {
         return ini_get("short_open_tag");
     }
 
-    public static function file_paths_check($path)
-    {
-        if (file_exists($path) && is_file($path)) return true;
-        else return false;
+    public static function file_paths_check($path) {
+        if (file_exists($path) && is_file($path))
+            return true;
+        else
+            return false;
     }
 
-    public static function directory_paths_check($path)
-    {
-        if (file_exists($path) && is_dir($path)) return true;
-        else return false;
+    public static function directory_paths_check($path) {
+        if (file_exists($path) && is_dir($path))
+            return true;
+        else
+            return false;
     }
 
-    public static function directory_writable_check($path)
-    {
-        if (self::directory_paths_check($path) && is_writable($path)) return true;
-        else return false;
+    public static function directory_writable_check($path) {
+        if (self::directory_paths_check($path) && is_writable($path))
+            return true;
+        else
+            return false;
     }
 
-    public static function rscript_check()
-    {
+    public static function rscript_check() {
         $array = array();
         $return = 0;
-        exec("'" . Ini::$path_r_script . "' -e 1+1", $array, $return);
+        exec('"' . Ini::$path_r_script . '" -e 1+1', $array, $return);
         return ($return == 0);
     }
-    
-    public static function r_version_check($version)
-    {
+
+    public static function r_version_check($version) {
         $elems = explode(".", $version);
-        if($elems[0]>2) return true;
-        if($elems[0]==2)
-        {
-            if($elems[1]>=12) return true;
+        if ($elems[0] > 2)
+            return true;
+        if ($elems[0] == 2) {
+            if ($elems[1] >= 12)
+                return true;
         }
         return false;
     }
-    
-    public static function get_r_version()
-    {
+
+    public static function get_r_version() {
         $output = array();
         $return = 0;
-        exec("'" . Ini::$path_r_script . "' --version -e 1+1", $output, $return);
-        $version = substr($output[0],10);
-        $version = substr($version,0,  strpos($version, " "));
+        exec('"' . Ini::$path_r_script . '" -e version', $output, $return);
+        $version = str_replace(" ", "", str_replace("major", "", $output[6])) .".". str_replace(" ", "", str_replace("minor", "", $output[7]));
         return $version;
     }
 
-    public static function mysql_connection_check($host, $port, $login, $password)
-    {
-        if (@mysql_connect($host . ":" . $port, $login, $password)) return true;
-        else return false;
+    public static function mysql_connection_check($host, $port, $login, $password) {
+        if (@mysql_connect($host . ":" . $port, $login, $password))
+            return true;
+        else
+            return false;
     }
 
-    public static function mysql_select_db_check($db_name)
-    {
-        if (@mysql_select_db($db_name)) return true;
-        else return false;
+    public static function mysql_select_db_check($db_name) {
+        if (@mysql_select_db($db_name))
+            return true;
+        else
+            return false;
     }
 
-    public static function r_package_check($package)
-    {
+    public static function r_package_check($package) {
         $array = array();
         $return = 0;
-        exec("'" . Ini::$path_r_script . "' -e 'library(" . $package . ")'", $array, $return);
+        exec('"' . Ini::$path_r_script . '" -e "library(' . $package . ')"', $array, $return);
         return ($return == 0);
     }
 
@@ -166,8 +165,7 @@ class Setup
                     <?php
                     $ok = true;
 
-                    if ($ok)
-                    {
+                    if ($ok) {
                         ?>
                     <script>
                         $(function(){
@@ -194,8 +192,7 @@ class Setup
                 <?php } ?>
 
                 <?php
-                if ($ok)
-                {
+                if ($ok) {
                     ?>
                     <tr>
                         <?php
@@ -209,8 +206,7 @@ class Setup
                 <?php } ?>
 
                 <?php
-                if ($ok)
-                {
+                if ($ok) {
                     ?>
                     <tr>
                         <?php
@@ -222,10 +218,9 @@ class Setup
                         <?php $ok = $ok && $test; ?>
                     </tr>
                 <?php } ?>
-                    
+
                 <?php
-                if ($ok)
-                {
+                if ($ok) {
                     ?>
                     <tr>
                         <?php
@@ -239,8 +234,7 @@ class Setup
                 <?php } ?>
 
                 <?php
-                if ($ok)
-                {
+                if ($ok) {
                     ?>
                     <tr>
                         <?php
@@ -254,8 +248,7 @@ class Setup
                 <?php } ?>
 
                 <?php
-                if ($ok)
-                {
+                if ($ok) {
                     ?>
                     <tr>
                         <?php
@@ -270,8 +263,7 @@ class Setup
                 <?php } ?>
 
                 <?php
-                if ($ok)
-                {
+                if ($ok) {
                     ?>
                     <tr>
                         <?php
@@ -285,9 +277,8 @@ class Setup
                 <?php } ?>
 
                 <?php
-                if ($ok)
-                {
-                    $ini = new Ini(true,true,false);
+                if ($ok) {
+                    $ini = new Ini(true, true, false);
                     ?>
                     <tr>
                         <?php
@@ -299,81 +290,9 @@ class Setup
                         <?php $ok = $ok && $test; ?>
                     </tr>
                 <?php } ?>
-                    
-                <?php
-                if ($ok)
-                {
-                    ?>
-                    <tr>
-                        <?php
-                        $test = Setup::r_version_check(Setup::get_r_version());
-                        ?>
-                        <td class="ui-widget-content">R version installed must be at least <b>v2.12</b> .</td>
-                        <td class="<?= ($test ? "ui-state-highlight" : "ui-state-error") ?>">your <b>R</b> version is: <b>v<?= Setup::get_r_version() ?></b> <b><?= ($test ? "CORRECT" : "INCORRECT") ?> - <b style="color:<?= ($test ? "green" : "red") ?>"><?= ($test ? "PASSED" : "FAILED") ?></b></td>
-                        <td class="ui-widget-content" align="center">
-                            <?php
-                            if ($test) echo"-";
-                            else
-                            {
-                                ?>
-                                Please update your R installation to version <b>v2.12</b> at least.
-                            <?php } ?>
-                        </td>
-                        <?php $ok = $ok && $test; ?>
-                    </tr>
-                <?php } ?>
-                    
-                <?php
-                if ($ok)
-                {
-                    ?>
-                    <tr>
-                        <?php
-                        $test = Setup::file_paths_check(Ini::$path_php_exe);
-                        ?>
-                        <td class="ui-widget-content"><b>PHP</b> executable file path must be set.</td>
-                        <td class="<?= ($test ? "ui-state-highlight" : "ui-state-error") ?>">your <b>PHP</b> executable file path: <b><?= Ini::$path_php_exe ?></b> <b><?= ($test ? "EXISTS" : "DOESN'T EXISTS") ?> - <b style="color:<?= ($test ? "green" : "red") ?>"><?= ($test ? "PASSED" : "FAILED") ?></b></td>
-                        <td class="ui-widget-content" align="center">
-                            <?php
-                            if ($test) echo"-";
-                            else
-                            {
-                                ?>
-                                PHP executable file path not set, set incorrectly or unaccesible to PHP.<br/>
-                                Usually the PHP executable file path is <b>/usr/bin/php</b>. Set your PHP executable path in <b>/SETTINGS.php</b> file.
-                            <?php } ?>
-                        </td>
-                        <?php $ok = $ok && $test; ?>
-                    </tr>
-                <?php } ?>
-                    
-                <?php
-                if ($ok)
-                {
-                    ?>
-                    <tr>
-                        <?php
-                        $test = Setup::file_paths_check(Ini::$path_r_exe);
-                        ?>
-                        <td class="ui-widget-content"><b>R</b> executable file path must be set.</td>
-                        <td class="<?= ($test ? "ui-state-highlight" : "ui-state-error") ?>">your <b>R</b> executable file path: <b><?= Ini::$path_r_exe ?></b> <b><?= ($test ? "EXISTS" : "DOESN'T EXISTS") ?> - <b style="color:<?= ($test ? "green" : "red") ?>"><?= ($test ? "PASSED" : "FAILED") ?></b></td>
-                        <td class="ui-widget-content" align="center">
-                            <?php
-                            if ($test) echo"-";
-                            else
-                            {
-                                ?>
-                                R executable file path not set, set incorrectly or unaccesible to PHP.<br/>
-                                Usually the R executable file path is <b>/usr/bin/R</b>. Set your R executable path in <b>/SETTINGS.php</b> file.
-                            <?php } ?>
-                        </td>
-                        <?php $ok = $ok && $test; ?>
-                    </tr>
-                <?php } ?>
 
                 <?php
-                if ($ok)
-                {
+                if ($ok) {
                     ?>
                     <tr>
                         <?php
@@ -383,9 +302,9 @@ class Setup
                         <td class="<?= ($test ? "ui-state-highlight" : "ui-state-error") ?>">your <b>Rscript</b> file path: <b><?= Ini::$path_r_script ?></b> <b><?= ($test ? "EXISTS" : "DOESN'T EXISTS") ?> - <b style="color:<?= ($test ? "green" : "red") ?>"><?= ($test ? "PASSED" : "FAILED") ?></b></td>
                         <td class="ui-widget-content" align="center">
                             <?php
-                            if ($test) echo"-";
-                            else
-                            {
+                            if ($test)
+                                echo"-";
+                            else {
                                 ?>
                                 Rscript file path not set, set incorrectly or unaccesible to PHP.<br/>
                                 Usually the Rscript file path is <b>/usr/bin/Rscript</b>. Set your Rscript path in <b>/SETTINGS.php</b> file.
@@ -396,8 +315,75 @@ class Setup
                 <?php } ?>
 
                 <?php
-                if ($ok)
-                {
+                if ($ok) {
+                    ?>
+                    <tr>
+                        <?php
+                        $test = Setup::r_version_check(Setup::get_r_version());
+                        ?>
+                        <td class="ui-widget-content">R version installed must be at least <b>v2.12</b> .</td>
+                        <td class="<?= ($test ? "ui-state-highlight" : "ui-state-error") ?>">your <b>R</b> version is: <b>v<?= Setup::get_r_version() ?></b> <b><?= ($test ? "CORRECT" : "INCORRECT") ?> - <b style="color:<?= ($test ? "green" : "red") ?>"><?= ($test ? "PASSED" : "FAILED") ?></b></td>
+                        <td class="ui-widget-content" align="center">
+                            <?php
+                            if ($test)
+                                echo"-";
+                            else {
+                                ?>
+                                Please update your R installation to version <b>v2.12</b> at least.
+                            <?php } ?>
+                        </td>
+                        <?php $ok = $ok && $test; ?>
+                    </tr>
+                <?php } ?>
+
+                <?php
+                if ($ok) {
+                    ?>
+                    <tr>
+                        <?php
+                        $test = Setup::file_paths_check(Ini::$path_php_exe);
+                        ?>
+                        <td class="ui-widget-content"><b>PHP</b> executable file path must be set.</td>
+                        <td class="<?= ($test ? "ui-state-highlight" : "ui-state-error") ?>">your <b>PHP</b> executable file path: <b><?= Ini::$path_php_exe ?></b> <b><?= ($test ? "EXISTS" : "DOESN'T EXISTS") ?> - <b style="color:<?= ($test ? "green" : "red") ?>"><?= ($test ? "PASSED" : "FAILED") ?></b></td>
+                        <td class="ui-widget-content" align="center">
+                            <?php
+                            if ($test)
+                                echo"-";
+                            else {
+                                ?>
+                                PHP executable file path not set, set incorrectly or unaccesible to PHP.<br/>
+                                Usually the PHP executable file path is <b>/usr/bin/php</b>. Set your PHP executable path in <b>/SETTINGS.php</b> file.
+                            <?php } ?>
+                        </td>
+                        <?php $ok = $ok && $test; ?>
+                    </tr>
+                <?php } ?>
+
+                <?php
+                if ($ok) {
+                    ?>
+                    <tr>
+                        <?php
+                        $test = Setup::file_paths_check(Ini::$path_r_exe);
+                        ?>
+                        <td class="ui-widget-content"><b>R</b> executable file path must be set.</td>
+                        <td class="<?= ($test ? "ui-state-highlight" : "ui-state-error") ?>">your <b>R</b> executable file path: <b><?= Ini::$path_r_exe ?></b> <b><?= ($test ? "EXISTS" : "DOESN'T EXISTS") ?> - <b style="color:<?= ($test ? "green" : "red") ?>"><?= ($test ? "PASSED" : "FAILED") ?></b></td>
+                        <td class="ui-widget-content" align="center">
+                            <?php
+                            if ($test)
+                                echo"-";
+                            else {
+                                ?>
+                                R executable file path not set, set incorrectly or unaccesible to PHP.<br/>
+                                Usually the R executable file path is <b>/usr/bin/R</b>. Set your R executable path in <b>/SETTINGS.php</b> file.
+                            <?php } ?>
+                        </td>
+                        <?php $ok = $ok && $test; ?>
+                    </tr>
+                <?php } ?>
+
+                <?php
+                if ($ok) {
                     ?>
                     <tr>
                         <?php
@@ -405,14 +391,13 @@ class Setup
                         ?>
                         <td class="ui-widget-content"><b>temp</b> directory path must be writable</td>
                         <td class="<?= ($test ? "ui-state-highlight" : "ui-state-error") ?>">your <b>temp</b> directory: <b><?= Ini::$path_temp ?></b> <b><?= ($test ? "IS WRITABLE" : "IS NOT WRITABLE") ?> - <b style="color:<?= ($test ? "green" : "red") ?>"><?= ($test ? "PASSED" : "FAILED") ?></b></td>
-                        <td class="ui-widget-content" align="center"><?= ($test ? "-" : "Set <b>".Ini::$path_temp."</b> directory rigths to 0777.") ?></td>
+                        <td class="ui-widget-content" align="center"><?= ($test ? "-" : "Set <b>" . Ini::$path_temp . "</b> directory rigths to 0777.") ?></td>
                         <?php $ok = $ok && $test; ?>
                     </tr>
                 <?php } ?>
 
                 <?php
-                if ($ok)
-                {
+                if ($ok) {
                     ?>
                     <tr>
                         <?php
@@ -427,8 +412,7 @@ class Setup
                 <?php } ?>
 
                 <?php
-                if ($ok)
-                {
+                if ($ok) {
                     ?>
                     <tr>
                         <?php
@@ -442,8 +426,7 @@ class Setup
                 <?php } ?>
 
                 <?php
-                if ($ok)
-                {
+                if ($ok) {
                     ?>
                     <tr>
                         <?php
@@ -455,25 +438,23 @@ class Setup
                         <?php $ok = $ok && $test; ?>
                     </tr>
                 <?php } ?>
-                    
+
                 <?php
-                if ($ok)
-                {
+                if ($ok) {
                     ?>
                     <tr>
                         <?php
                         $test = Setup::directory_writable_check(Ini::$path_unix_sock_dir);
                         ?>
                         <td class="ui-widget-content"><b>UNIX sock</b> directory path must be writable</td>
-                        <td class="<?= ($test ? "ui-state-highlight" : "ui-state-error") ?>">your <b>UNIX sock</b> directory: <b><?=Ini::$path_unix_sock_dir?></b> <b><?= ($test ? "IS WRITABLE" : "IS NOT WRITABLE") ?> - <b style="color:<?= ($test ? "green" : "red") ?>"><?= ($test ? "PASSED" : "FAILED") ?></b></td>
-                        <td class="ui-widget-content" align="center"><?= ($test ? "-" : "Set <b>".Ini::$path_unix_sock_dir."</b> directory rigths to 0777.") ?></td>
+                        <td class="<?= ($test ? "ui-state-highlight" : "ui-state-error") ?>">your <b>UNIX sock</b> directory: <b><?= Ini::$path_unix_sock_dir ?></b> <b><?= ($test ? "IS WRITABLE" : "IS NOT WRITABLE") ?> - <b style="color:<?= ($test ? "green" : "red") ?>"><?= ($test ? "PASSED" : "FAILED") ?></b></td>
+                        <td class="ui-widget-content" align="center"><?= ($test ? "-" : "Set <b>" . Ini::$path_unix_sock_dir . "</b> directory rigths to 0777.") ?></td>
                         <?php $ok = $ok && $test; ?>
                     </tr>
                 <?php } ?>    
 
                 <?php
-                if ($ok)
-                {
+                if ($ok) {
                     ?>
                     <tr>
                         <?php
@@ -487,8 +468,7 @@ class Setup
                 <?php } ?>
 
                 <?php
-                if ($ok)
-                {
+                if ($ok) {
                     ?>
                     <tr>
                         <?php
@@ -500,10 +480,9 @@ class Setup
                         <?php $ok = $ok && $test; ?>
                     </tr>
                 <?php } ?>
-                    
+
                 <?php
-                if ($ok)
-                {
+                if ($ok) {
                     ?>
                     <tr>
                         <?php
@@ -515,20 +494,17 @@ class Setup
                         <?php $ok = $ok && $test; ?>
                     </tr>
                 <?php } ?>    
-                    
+
                 </tbody>
             </table>
         </div>
         <br/>
         <?php
-        if (!$ok)
-        {
+        if (!$ok) {
             ?>
             <h1 class="ui-state-error" align="center">Please correct your problems using recommendations and run the test again.</h1>
             <?php
-        }
-        else
-        {
+        } else {
             ?>
             <h1 class="" align="center" style="color:green;">Test completed. Every item passed correctly.</h1>
             <h1 class="ui-state-highlight" align="center" style="color:blue;">IT IS STRONGLY RECOMMENDED TO DELETE THIS <b>/setup</b> DIRECTORY NOW ALONG WITH ALL IT'S CONTENTS FOR SECURITY REASONS!</h1>
