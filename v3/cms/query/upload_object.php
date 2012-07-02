@@ -38,6 +38,6 @@ if (!$logged_user->is_module_accesible($_POST['class_name']))
 }
 
 $obj = $_POST['class_name']::from_mysql_id($_POST['oid']);
-$obj->upload($_POST['name'], $_POST['author'], $_POST['revision'], $_POST['description']);
+$result = $obj->upload($_POST['name'], $_POST['author'], $_POST['revision'], $_POST['description']);
 
-echo json_encode(array("result" => 0));
+echo json_encode(array("result" => $result));

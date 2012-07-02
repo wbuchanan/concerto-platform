@@ -29,8 +29,8 @@ if ($logged_user == null) header("Location: ".Ini::$path_external."cms/index.php
 $obj = $_GET['class_name']::from_mysql_id($_GET['oid']);
 if (!$logged_user->is_object_readable($obj)) die(Language::string(81));
 
-header('Content-Disposition: attachment; filename="export_' . $_GET['class_name'] . '_' . $_GET['oid'] . '.xml"');
-header("Content-Type:text/xml; charset=utf-8");
+header('Content-Disposition: attachment; filename="export_' . $_GET['class_name'] . '_' . $_GET['oid'] . '.concerto"');
+header('Content-Type: application/x-download');
 
-echo $obj->export();
+echo gzcompress($obj->export(),1);
 ?>

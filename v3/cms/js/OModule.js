@@ -251,7 +251,7 @@ OModule.inheritance=function(obj)
                 $("#divDialogDownload").dialog("option","position","center"); 
             },
             close:function(){
-                //$('.ui-widget-overlay').css('position', 'absolute');
+            //$('.ui-widget-overlay').css('position', 'absolute');
             },
             buttons:[
             {
@@ -273,7 +273,7 @@ OModule.inheritance=function(obj)
             author:$("#inputDialogUploadAuthor").val(),
             revision:$("#inputDialogUploadRevision").val()
         },function(data){
-            switch(data.result){
+            switch(parseInt(data.result)){
                 case 0:{
                     $("#divDialogUpload").dialog("close");
                     Methods.alert(dictionary["s384"], "info", dictionary["s382"]);
@@ -287,6 +287,10 @@ OModule.inheritance=function(obj)
                 case -2:{
                     Methods.alert(dictionary["s81"], "alert", dictionary["s382"]);
                     break;
+                }
+                default: {
+                    Methods.alert(dictionary["s444"], "alert", dictionary["s382"]);
+                    break; 
                 }
             }
         },"json");
@@ -313,7 +317,7 @@ OModule.inheritance=function(obj)
                     })
                 },
                 close:function(){
-                    //$('.ui-widget-overlay').css('position', 'absolute');
+                //$('.ui-widget-overlay').css('position', 'absolute');
                 },
                 buttons:[
                 {
@@ -359,7 +363,7 @@ OModule.inheritance=function(obj)
                     if(thisClass.onAfterAdd) thisClass.onAfterAdd();
                 },
                 close:function(){
-                    //$('.ui-widget-overlay').css('position', 'absolute');
+                //$('.ui-widget-overlay').css('position', 'absolute');
                 },
                 buttons:[
                 {
@@ -502,7 +506,7 @@ OModule.inheritance=function(obj)
             resizable:false,
             minHeight: 50,
             close:function(){
-                //$('.ui-widget-overlay').css('position', 'absolute');
+            //$('.ui-widget-overlay').css('position', 'absolute');
             },
             beforeClose:function(){
             
@@ -524,8 +528,8 @@ OModule.inheritance=function(obj)
                         $("#div"+thisClass.className+"DialogImport").dialog("close");
                     },
                     progress: function(e,data) {
-                         var progress = parseInt(data.loaded / data.total * 100, 10);
-                         Methods.changeProgress(progress);
+                        var progress = parseInt(data.loaded / data.total * 100, 10);
+                        Methods.changeProgress(progress);
                     },
                     done: function (e, data) {
                         $.each(data.result, function (index, file) {

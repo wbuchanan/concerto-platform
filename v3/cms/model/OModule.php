@@ -104,10 +104,10 @@ class OModule extends OTable
             "author" => $author,
             "revision" => $revision,
             "description" => $description,
-            "xml" => $this->export(),
+            "xml" => base64_encode(gzcompress($this->export(),1)),
             "version" => Ini::$version
                 ));
-        return json_encode(array("result" => $result));
+        return $result;
     }
 
     public static function get_list_columns()

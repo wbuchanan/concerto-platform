@@ -3273,5 +3273,13 @@ Note: You can add new languages by inserting "<new_language>string translated in
             <fr></fr>
             <bg></bg>
         </string>
+        <string id="444" js="1">
+            <en>Uploading file failed.</en>
+            <de></de>
+            <pl>Wysyłanie pliku nie powiodło się.</pl>
+            <cn></cn>
+            <fr></fr>
+            <bg></bg>
+        </string>
     </strings>
 </root> 
