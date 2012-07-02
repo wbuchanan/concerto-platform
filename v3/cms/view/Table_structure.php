@@ -39,9 +39,6 @@ if (!$logged_user->is_object_editable($obj))
         Methods.iniIconButton("#btnExpand<?= $class_name ?>GridStructureContainer","arrowthick-1-n");
         Methods.iniIconButton("#btnExpand<?= $class_name ?>GridDataContainerExpandable","arrowthick-1-n");
         Table.uiIniHTMLTooltips();
-        Methods.iniIconButton("#btnTableStructureImportTable", "arrowthickstop-1-s");
-        Methods.iniIconButton("#btnTableStructureImportCSV", "arrowthickstop-1-s");
-        Methods.iniIconButton("#btnTableStructureExportCSV", "arrowthickstop-1-n");
         
         //table structure
         Table.uiIniStructureGrid();
@@ -50,9 +47,9 @@ if (!$logged_user->is_object_editable($obj))
 </script>
 <table>
     <tr>
-        <td><button id="btnTableStructureImportTable" onclick="Table.uiImportTable()"><?= Language::string(125) ?></button></td>
-        <td><button id="btnTableStructureImportCSV" onclick="Table.uiImportCSV()"><?= Language::string(126) ?></button></td>
-        <td><button id="btnTableStructureExportCSV" onclick="Table.uiExportCSV()"><?= Language::string(127) ?></button></td>
+        <td><button class="btnTableStructureImportTable" onclick="Table.uiImportTable()"><?= Language::string(125) ?></button></td>
+        <td><button class="btnTableStructureImportCSV" onclick="Table.uiImportCSV()"><?= Language::string(126) ?></button></td>
+        <td><button class="btnTableStructureExportCSV" onclick="Table.uiExportCSV()"><?= Language::string(127) ?></button></td>
     </tr>
 </table>
 <br/>

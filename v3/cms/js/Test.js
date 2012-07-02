@@ -376,11 +376,11 @@ Test.uiToggleAll=function(){
     Test.allExpanded = !Test.allExpanded;
     if(Test.allExpanded) {
         Test.uiRefreshCodeMirrors();
-        Methods.iniIconButton("#btnLogicToggleAll", "folder-open");
-        $("#btnLogicToggleAll").button("option","label",dictionary["s402"]);
+        Methods.iniIconButton(".btnLogicToggleAll", "folder-open");
+        $(".btnLogicToggleAll").button("option","label",dictionary["s402"]);
     } else {
-        Methods.iniIconButton("#btnLogicToggleAll", "folder-collapsed");
-        $("#btnLogicToggleAll").button("option","label",dictionary["s401"]);
+        Methods.iniIconButton(".btnLogicToggleAll", "folder-collapsed");
+        $(".btnLogicToggleAll").button("option","label",dictionary["s401"]);
     }
 }
 

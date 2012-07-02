@@ -176,3 +176,11 @@ ul {
 .divCodeMirrorContainer {
     max-width: 815px;
 }
+
+.divFormFloatingBar {
+    position:fixed;
+    bottom: 0px;
+    left:0%;
+    right:0%;
+    opacity: 0.75;
+}

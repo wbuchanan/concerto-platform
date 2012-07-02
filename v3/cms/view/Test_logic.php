@@ -37,12 +37,8 @@ if (!$logged_user->is_object_editable($obj))
 <script>
     $(function(){
         Methods.iniIconButton("#btnExpand<?= $class_name ?>divTestLogicExpandable","arrowthick-1-n");
-        Methods.iniIconButton("#btnExpand<?= $class_name ?>Variables","arrowthick-1-s");
-        Methods.iniIconButton("#btnDebugTest", "lightbulb");
-        Methods.iniIconButton("#btnLogicVariables", "star");
         Methods.iniIconButton(".btnAddLogicSection", "plus");
-        Methods.iniIconButton("#btnRunTest", "play");
-        Methods.iniIconButton("#btnLogicToggleAll", "folder-collapsed");
+        Methods.iniIconButton("#btnExpand<?= $class_name ?>Variables","arrowthick-1-s");
         $( "#divTestLogic" ).sortable({
             items: "div.sortable",
             handle: ".sortableHandle"
@@ -103,13 +99,13 @@ if ($oid != 0) {
     <table>
         <tr>
             <td>
-                <button id="btnLogicVariables" onclick="Test.uiShowVarsDialog()"><?= Language::string(144) ?></button>
+                <button class="btnLogicVariables" onclick="Test.uiShowVarsDialog()"><?= Language::string(144) ?></button>
             </td>
             <td>
-                <button id="btnDebugTest" onclick="Test.uiIniDebug()"><?= Language::string(284) ?></button>
+                <button class="btnDebugTest" onclick="Test.uiIniDebug()"><?= Language::string(284) ?></button>
             </td>
             <td>
-                <button id="btnRunTest" onclick="window.open('<?= Ini::$path_external . "?tid=" . $obj->id ?>','_blank')"><?= Language::string(362) ?></button>
+                <button class="btnRunTest" onclick="window.open('<?= Ini::$path_external . "?tid=" . $obj->id ?>','_blank')"><?= Language::string(362) ?></button>
             </td>
         </tr>
     </table>
@@ -126,7 +122,7 @@ if ($oid != 0) {
 <div class="margin" align="center"><button id="btnExpand<?= $class_name ?>divTestLogicExpandable" class="btnExpand fullWidth" onclick="Methods.toggleExpand('#divTestLogicExpandable', this)"><?= Language::string(359) ?></button></div>
 <div id="divTestLogicExpandable">
     <div align="center">
-        <button id="btnLogicToggleAll" onclick="Test.uiToggleAll()"><?= Language::string(401) ?></button>
+        <button class="btnLogicToggleAll" onclick="Test.uiToggleAll()"><?= Language::string(401) ?></button>
     </div>
 
     <div id="divTestLogic" class="">

@@ -18,15 +18,13 @@
   Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA.
  */
 
-if (!isset($ini))
-{
+if (!isset($ini)) {
     require_once'../../Ini.php';
     $ini = new Ini();
 }
 
 $logged_user = User::get_logged_user();
-if ($logged_user == null)
-{
+if ($logged_user == null) {
     echo "<script>location.reload();</script>";
     die(Language::string(278));
 }
@@ -37,10 +35,12 @@ $edit_caption = Language::string(170);
 $new_caption = Language::string(171);
 //////////
 
-if (!$logged_user->is_module_writeable($class_name)) die(Language::string(81));
+if (!$logged_user->is_module_writeable($class_name))
+    die(Language::string(81));
 
 $oid = 0;
-if (isset($_POST['oid']) && $_POST['oid'] != 0) $oid = $_POST['oid'];
+if (isset($_POST['oid']) && $_POST['oid'] != 0)
+    $oid = $_POST['oid'];
 
 $btn_cancel = "<button class='btnCancel' onclick='" . $class_name . ".uiEdit(0)'>" . Language::string(23) . "</button>";
 $btn_delete = "<button class='btnDelete' onclick='" . $class_name . ".uiDelete($oid)'>" . Language::string(94) . "</button>";
@@ -48,31 +48,38 @@ $btn_save = "<button class='btnSave' onclick='" . $class_name . ".uiSave()'>" . 
 
 $caption = "";
 $buttons = "";
-if ($oid > 0)
-{
+if ($oid > 0) {
     $oid = $_POST['oid'];
     $obj = $class_name::from_mysql_id($oid);
 
-    if (!$logged_user->is_object_editable($obj)) die(Language::string(81));
+    if (!$logged_user->is_object_editable($obj))
+        die(Language::string(81));
 
     $caption = $edit_caption . " #" . $oid;
     $buttons = $btn_cancel . $btn_save . $btn_delete;
 }
-else
-{
+else {
     $obj = new $class_name();
     $caption = $new_caption;
     $buttons = "";
 }
 
-if ($oid != 0)
-{
+if ($oid != 0) {
     ?>
     <script>
         $(function(){
+            Methods.iniIconButton(".btnGoToTop","arrow-1-n");
+            Methods.iniIconButton(".btnCancel", "cancel");
             Methods.iniIconButton(".btnSave", "disk");
             Methods.iniIconButton(".btnDelete", "trash");
-            Methods.iniIconButton(".btnCancel", "cancel");
+    <?php
+    if ($class_name::$exportable && $oid > 0) {
+        ?>
+                    Methods.iniIconButton(".btnExport", "arrowthickstop-1-n");
+                    Methods.iniIconButton(".btnUpload", "gear");        
+        <?php
+    }
+    ?>
             Methods.iniTooltips();
         });
     </script>
@@ -90,7 +97,7 @@ if ($oid != 0)
                 </td>
             </tr>
             <tr>
-                <td class="noWrap horizontalPadding tdFormLabel"><input class="tooltip" type="checkbox" id="form<?= $class_name ?>CheckboxPassword" title="<?= Language::string(180) ?>" <?=$oid==-1?"checked style='display:none;'":""?> /><?= Language::string(179) ?>:</td>
+                <td class="noWrap horizontalPadding tdFormLabel"><input class="tooltip" type="checkbox" id="form<?= $class_name ?>CheckboxPassword" title="<?= Language::string(180) ?>" <?= $oid == -1 ? "checked style='display:none;'" : "" ?> /><?= Language::string(179) ?>:</td>
                 <td><span class="tooltip spanIcon ui-icon ui-icon-help" title="<?= Language::string(181) ?>"></span></td>
                 <td class="fullWidth">
                     <div class="horizontalMargin">
@@ -126,15 +133,15 @@ if ($oid != 0)
                     </div>
                 </td>
             </tr>
-            
+
             <tr>
                 <td class="noWrap horizontalPadding tdFormLabel">* <?= Language::string(419) ?>:</td>
                 <td><span class="tooltip spanIcon ui-icon ui-icon-help" title="<?= Language::string(420) ?>"></span></td>
                 <td class="fullWidth">
                     <div class="horizontalMargin">
                         <select id="form<?= $class_name ?>SelectInstitutionType" class="fullWidth ui-widget-content ui-corner-all">
-                            <?php foreach (DS_UserInstitutionType::get_all() as $it)
-                            { ?>
+                            <?php foreach (DS_UserInstitutionType::get_all() as $it) {
+                                ?>
                                 <option value="<?= $it->id ?>" <?= ($it->id == $obj->UserInstitutionType_id ? "selected" : "") ?>><?= $it->get_name() ?></option>
                             <?php } ?>
                         </select>
@@ -150,7 +157,7 @@ if ($oid != 0)
                     </div>
                 </td>
             </tr>
-            
+
             <tr>
                 <td class="noWrap horizontalPadding tdFormLabel">* <?= Language::string(174) ?>:</td>
                 <td><span class="tooltip spanIcon ui-icon ui-icon-help" title="<?= Language::string(188) ?>"></span></td>
@@ -179,8 +186,7 @@ if ($oid != 0)
                             <?php
                             $sql = $logged_user->mysql_list_rights_filter("UserGroup", "`name` ASC");
                             $z = mysql_query($sql);
-                            while ($r = mysql_fetch_array($z))
-                            {
+                            while ($r = mysql_fetch_array($z)) {
                                 $group = UserGroup::from_mysql_id($r[0]);
                                 ?>
                                 <option value="<?= $group->id ?>" <?= ($obj->UserGroup_id == $group->id ? "selected" : "") ?>><?= $group->name ?> ( <?= $group->get_system_data() ?> )</option>
@@ -199,8 +205,7 @@ if ($oid != 0)
                             <?php
                             $sql = $logged_user->mysql_list_rights_filter("UserType", "`name` ASC");
                             $z = mysql_query($sql);
-                            while ($r = mysql_fetch_array($z))
-                            {
+                            while ($r = mysql_fetch_array($z)) {
                                 $type = UserType::from_mysql_id($r[0]);
                                 ?>
                                 <option value="<?= $type->id ?>" <?= ($obj->UserType_id == $type->id ? "selected" : "") ?>><?= $type->name ?> ( <?= $type->get_system_data() ?> )</option>
@@ -217,9 +222,27 @@ if ($oid != 0)
         </table>
     </div>
     <?php
-}
-else
-{
+    if ($oid != -1) {
+        ?>
+        <div class="divFormFloatingBar" align="right">
+            <div class="ui-widget-content ui-corner-tl table">
+                <button class="btnGoToTop" onclick="location.href='#'"><?= Language::string(442) ?></button>
+                <?= $btn_cancel ?>
+                <?= $btn_delete ?>
+                <?= $btn_save ?>
+                <?php
+                if ($class_name::$exportable && $oid > 0) {
+                    ?>
+                    <button class="btnExport" onclick="<?= $class_name ?>.uiExport(<?= $oid ?>)"><?= Language::string(443) ?></button>
+                    <button class="btnUpload" onclick="<?= $class_name ?>.uiUpload(<?= $oid ?>)"><?= Language::string(383) ?></button>
+                    <?php
+                }
+                ?>
+            </div>
+        </div>
+        <?php
+    }
+} else {
     ?>
     <div class="padding margin ui-state-error " align="center"><?= Language::string(123) ?></div>
     <?php

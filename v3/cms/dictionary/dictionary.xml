@@ -3257,5 +3257,21 @@ Note: You can add new languages by inserting "<new_language>string translated in
             <fr></fr>
             <bg></bg>
         </string>
+        <string id="442">
+            <en>go to top</en>
+            <de></de>
+            <pl>przejdź do góry</pl>
+            <cn></cn>
+            <fr></fr>
+            <bg></bg>
+        </string>
+        <string id="443">
+            <en>export</en>
+            <de></de>
+            <pl>eksport</pl>
+            <cn></cn>
+            <fr></fr>
+            <bg></bg>
+        </string>
     </strings>
 </root> 
