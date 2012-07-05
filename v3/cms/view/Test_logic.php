@@ -39,9 +39,14 @@ if (!$logged_user->is_object_editable($obj))
         Methods.iniIconButton("#btnExpand<?= $class_name ?>divTestLogicExpandable","arrowthick-1-n");
         Methods.iniIconButton(".btnAddLogicSection", "plus");
         Methods.iniIconButton("#btnExpand<?= $class_name ?>Variables","arrowthick-1-s");
+        
         $( "#divTestLogic" ).sortable({
-            items: "div.sortable",
-            handle: ".sortableHandle"
+            items: "> div.sortable",
+            handle: ".sortableHandle",
+            opacity:0.5,
+            axis:"y",
+            forcePlaceholderSize:true,
+            placeholder:"ui-state-highlight"
         });
         
         Test.contentsToRefresh=0;
@@ -54,7 +59,6 @@ if ($oid != 0) {
                 Test.setCounter(<?= $obj->get_max_counter() ?>);
     <?php
     $late_refresh_sections = array();
-    $nested_refresh_sections = array();
 
     foreach ($sections as $section) {
         $vals = $section->get_values();

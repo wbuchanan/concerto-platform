@@ -392,7 +392,7 @@ Test.uiWriteSection=function(type,parent,counter,value,oid,refresh,csid,after,en
     if(csid==null) csid = 0;
     if(csid!=0 && value==null) value=[csid];
     var sortable = true;
-    if(type==Test.sectionTypes.start||type==Test.sectionTypes.end || parent!=0) sortable = false;
+    if(type==Test.sectionTypes.start||type==Test.sectionTypes.end) sortable = false;
     
     var container = null;
     if(parent==null || parent ==0){
@@ -435,6 +435,18 @@ Test.uiWriteSection=function(type,parent,counter,value,oid,refresh,csid,after,en
         
     Test.uiSectionChanged();
     Methods.iniTooltips();
+    
+    if(type==Test.sectionTypes.ifStatement|| type==Test.sectionTypes.loop){
+        $( "#divSection_"+counter+" .divSectionContainer").sortable({
+            items: "> div.sortable",
+            handle: ".sortableHandle",
+            //tolerance:"pointer",
+            opacity:0.5,
+            axis:"y",
+            forcePlaceholderSize:true,
+            placeholder:"ui-state-highlight"
+        });
+    }
 };
 
 Test.uiAddLogicSection=function(parent,after){
