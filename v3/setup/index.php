@@ -169,6 +169,7 @@ class Setup {
                         ?>
                     <script>
                         $(function(){
+                            Methods.currentVersion = "<?= Ini::$version ?>";
                             Methods.checkLatestVersion(function(isNewerVersion,version){
                                 if(isNewerVersion==1) 
                                 {
