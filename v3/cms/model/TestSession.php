@@ -234,7 +234,10 @@ class TestSession extends OTable {
             $this->write_RSource_file($command);
 
             include Ini::$path_internal . 'SETTINGS.php';
-            exec("LANG=\"en_US.UTF8\" \"" . Ini::$path_r_script . "\" --vanilla \"" . $this->get_RSource_file_path() . "\" " . $db_host . " " . ($db_port != "" ? $db_port : "3306") . " " . $db_user . " " . $db_password . " " . $db_name . " " . $this->id . " " . (Ini::$path_mysql_home != "" ? "'" . Ini::$path_mysql_home . "'" : ""), $output, $return);
+            $lang = "";
+            if (Ini::$unix_locale != "")
+                $lang = "LANG=\"" . Ini::$unix_locale . "\" \"";
+            exec($lang . Ini::$path_r_script . "\" --vanilla \"" . $this->get_RSource_file_path() . "\" " . $db_host . " " . ($db_port != "" ? $db_port : "3306") . " " . $db_user . " " . $db_password . " " . $db_name . " " . $this->id . " " . (Ini::$path_mysql_home != "" ? "'" . Ini::$path_mysql_home . "'" : ""), $output, $return);
         }
 
         $thisSession = null;
@@ -314,9 +317,8 @@ class TestSession extends OTable {
         $logged_user = User::get_logged_user();
         if ($logged_user != null)
             $debug_data = $logged_user->is_object_readable($test);
-        
-        if($release==1 || $status == TestSession::TEST_SESSION_STATUS_COMPLETED || $status == TestSession::TEST_SESSION_STATUS_ERROR || $status == TestSession::TEST_SESSION_STATUS_TAMPERED)
-        {
+
+        if ($release == 1 || $status == TestSession::TEST_SESSION_STATUS_COMPLETED || $status == TestSession::TEST_SESSION_STATUS_ERROR || $status == TestSession::TEST_SESSION_STATUS_TAMPERED) {
             $finished = 1;
         }
 
@@ -481,7 +483,7 @@ class TestSession extends OTable {
                 if ($values == null)
                     $values = array();
 
-                if ($btn_name!=null) {
+                if ($btn_name != null) {
                     array_push($values, json_encode(array(
                                 "name" => "LAST_PRESSED_BUTTON_NAME",
                                 "value" => $btn_name
@@ -535,13 +537,15 @@ class TestSession extends OTable {
                 );
             }
         } else {
-            if ($tid!=null) {
+            if ($tid != null) {
                 $r_type = Ini::$r_instances_persistant ? TestSession::R_TYPE_SOCKET_SERVER : TestSession::R_TYPE_RSCRIPT;
-                if ($debug == 1) $debug = true;
-                else $debug = false;
+                if ($debug == 1)
+                    $debug = true;
+                else
+                    $debug = false;
                 $session = TestSession::start_new($tid, $r_type, $debug);
 
-                if ($values==null)
+                if ($values == null)
                     $values = array();
 
                 $test = $session->get_Test();
@@ -583,6 +587,7 @@ class TestSession extends OTable {
             ";
         return mysql_query($sql);
     }
+
 }
 
 ?>

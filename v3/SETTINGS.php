@@ -20,6 +20,7 @@ $r_instances_persistant = false; //true  - R instances are persistant and open t
 $r_instances_persistant_instance_timeout = 300; //after set period of instance inactivity in seconds the instance will be closed
 $r_instances_persistant_server_timeout = 420; //after set period of server inactivity in seconds the server will be closed ( new instances can restart it anytime )
 $r_max_execution_time = 60; //maximum R execution time ( prevents infinite loops in R on server )
+$unix_locale = ""; //Unix locale LANG variable. Must be installed on the system. Leave blank for none/default.
 
 //general
 $timezone = 'Europe/London';

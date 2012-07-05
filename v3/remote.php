@@ -93,7 +93,7 @@ function get_last_html($sid, $hash, $pass) {
     if (!authorize_WS($pass))
         return false;
 
-    $session = TestSession::from_property(array("id" => $id, "hash" => $hash), false);
+    $session = TestSession::from_property(array("id" => $sid, "hash" => $hash), false);
     if ($session == null)
         return false;
     return json_encode(array("HTML" => $session->HTML));
@@ -103,7 +103,7 @@ function get_returns($sid, $hash, $pass) {
     if (!authorize_WS($pass))
         return false;
 
-    $session = TestSession::from_property(array("id" => $id, "hash" => $hash), false);
+    $session = TestSession::from_property(array("id" => $sid, "hash" => $hash), false);
     if ($session == null)
         return false;
 

@@ -49,6 +49,7 @@ class Ini {
     public static $public_registration_default_UserType_id = 1;
     public static $cms_session_keep_alive = true;
     public static $cms_session_keep_alive_interval = 600;
+    public static $unix_locale = "";
 
     function __construct($connect = true, $session = true, $headers = true) {
         //if (substr_count($_SERVER['HTTP_ACCEPT_ENCODING'], 'gzip')) ob_start("ob_gzhandler"); 
@@ -119,6 +120,7 @@ class Ini {
         self::$public_registration_default_UserType_id = $public_registration_default_UserType_id;
         self::$cms_session_keep_alive = $cms_session_keep_alive;
         self::$cms_session_keep_alive_interval = $cms_session_keep_alive_interval;
+        self::$unix_locale = $unix_locale;
     }
 
     public static function does_patch_apply($patch_version, $previous_version) {

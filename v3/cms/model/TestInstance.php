@@ -60,10 +60,13 @@ class TestInstance {
     }
 
     public function start() {
-        $encoding = "en_US.UTF-8";
-        $env = array(
-            'LANG' => $encoding
-        );
+        $env = array();
+        if (Ini::$unix_locale != "") {
+            $encoding = Ini::$unix_locale;
+            $env = array(
+                'LANG' => $encoding
+            );
+        }
 
         if (TestServer::$debug)
             TestServer::log_debug("TestInstance->start() --- Test instance starting");
@@ -117,11 +120,11 @@ class TestInstance {
         if (TestServer::$debug)
             TestServer::log_debug("TestInstance->serialize() --- Serializing #" . $this->session_id);
         $session = TestSession::from_mysql_id($this->session_id);
-        
+
         $this->is_serializing = true;
         $this->send(sprintf("
             save.session('%s')
-            ",$session->get_RSession_file_path()));
+            ", $session->get_RSession_file_path()));
     }
 
     public function send($code) {
