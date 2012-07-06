@@ -50,10 +50,18 @@ User.onAfterList=function(){
 
 User.getAddSaveObject=function()
 {
+    var login = $("#form"+this.className+"InputLogin").val();
+    var password = $("#form"+this.className+"InputPassword").val();
+    var hash = password;
+    for(var i=0;i<5000;i++){
+        var shaObj = new jsSHA(login+"-"+hash, "ASCII");
+        hash = shaObj.getHash("SHA-512", "HEX");
+    }
+    
     return { 
         oid:this.currentID,
         class_name:this.className,
-        login:$("#form"+this.className+"InputLogin").val(),
+        login:login,
         firstname:$("#form"+this.className+"InputFirstname").val(),
         lastname:$("#form"+this.className+"InputLastname").val(),
         email:$("#form"+this.className+"InputEmail").val(),
@@ -62,7 +70,7 @@ User.getAddSaveObject=function()
         UserInstitutionType_id:$("#form"+this.className+"SelectInstitutionType").val(),
         institution_name:$("#form"+this.className+"InputInstitutionName").val(),
         modify_password:$("#form"+this.className+"CheckboxPassword").is(":checked")?1:0,
-        password:$("#form"+this.className+"InputPassword").val(),
+        password_hash:hash,
         UserType_id:$("#form"+this.className+"SelectUserType").val()
     };
 };
@@ -260,11 +268,19 @@ User.uiLogIn=function()
         return;
     }
     
+    var login = $("#dd_login_inp_login").val();
+    var password = $("#dd_login_inp_password").val();
+    var hash = password;
+    for(var i=0;i<5000;i++){
+        var shaObj = new jsSHA(login+"-"+hash, "ASCII");
+        hash = shaObj.getHash("SHA-512", "HEX");
+    }
+    
     $("#dd_login").parent().mask(dictionary["s319"]);
     $.post("query/log_in.php",
     {
-        login:$("#dd_login_inp_login").val(),
-        password:$("#dd_login_inp_password").val()
+        login:login,
+        password:hash
     },
     function(data){
         $("#dd_login").parent().unmask();

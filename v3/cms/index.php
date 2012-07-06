@@ -49,6 +49,7 @@ if (!isset($ini)) {
         <script type="text/javascript" src="js/lib/selectmenu/jquery.ui.selectmenu.js"></script>
         <script type="text/javascript" src="js/lib/jquery.json-2.3.min.js"></script>
         <script type="text/javascript" src="js/lib/loadmask/jquery.loadmask.min.js"></script>
+        <script type="text/javascript" src="js/lib/jsSHA/src/sha512.js"></script>
 
         <script src="../js/ConcertoMethods.js"></script>
         <script src="../js/Concerto.js"></script>

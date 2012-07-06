@@ -26,7 +26,7 @@ class User extends OModule {
     public $lastname = "unknown";
     public $email = "unknown";
     public $phone = "";
-    public $md5_password = "";
+    public $password = "";
     public $UserType_id = 0;
     public $UserGroup_id = 0;
     public $last_login = "";
@@ -49,14 +49,32 @@ class User extends OModule {
         if ($hash != $user->calculate_password_recovery_hash())
             return false;
         $pass = $user->get_new_password();
-        $user->md5_password = md5($pass);
+        $user->password = $user->calculate_raw_password_hash($pass);
         $user->mysql_save();
         User::mail_utf8($user->email, "no-reply@concerto.e-psychometrics.com", Language::string(428), sprintf(Language::string(430), $pass));
         return true;
     }
 
+    public function calculate_raw_password_hash($password) {
+        $hash = $password;
+        for ($i = 0; $i < 5000; $i++) {
+            $hash = hash("sha512", $this->login . "-" . $hash);
+        }
+        return $this->calculate_password_hash($hash);
+    }
+
+    public function calculate_password_hash($hash) {
+        for ($i = 0; $i < 5000; $i++) {
+            $hash = hash("sha512", $hash . "-" . $this->id . "-" . $this->login . "-" . $this->last_login);
+        }
+        return $hash;
+    }
+
     public function calculate_password_recovery_hash() {
-        return md5($this->id . "-" . $this->login . "-" . $this->email . "-" . $this->last_login . "-" . $this->md5_password);
+        for ($i = 0; $i < 5000; $i++) {
+            $hash = hash("sha512", $this->id . "-" . $this->login . "-" . $this->email . "-" . $this->last_login . "-" . $this->password);
+        }
+        return $hash;
     }
 
     public static function mail_utf8($to, $from_email, $subject = '(No subject)', $message = '') {
@@ -100,10 +118,10 @@ class User extends OModule {
     }
 
     public static function get_logged_user() {
-        if (isset($_SESSION['ptap_logged_login']) && isset($_SESSION['ptap_logged_md5_password'])) {
+        if (isset($_SESSION['ptap_logged_login']) && isset($_SESSION['ptap_logged_password'])) {
             $user = self::from_property(array(
                         "login" => $_SESSION['ptap_logged_login'],
-                        "md5_password" => $_SESSION['ptap_logged_md5_password']
+                        "password" => $_SESSION['ptap_logged_password']
                             ), false);
             if ($user != null)
                 return $user;
@@ -113,22 +131,26 @@ class User extends OModule {
 
     public static function log_in($login, $password) {
         $user = self::from_property(array(
-                    "login" => $login,
-                    "md5_password" => md5($password)
+                    "login" => $login
                         ), false);
         if ($user != null) {
+            if ($user->calculate_password_hash($password) != $user->password)
+                return null;
+
             $user->last_login = date("Y-m-d H:i:s");
+            $hash = $user->calculate_password_hash($password);
+            $user->password = $hash;
             $user->mysql_save();
 
             $_SESSION['ptap_logged_login'] = $login;
-            $_SESSION['ptap_logged_md5_password'] = md5($password);
+            $_SESSION['ptap_logged_password'] = $hash;
         }
         return $user;
     }
 
     public static function log_out() {
         unset($_SESSION['ptap_logged_login']);
-        unset($_SESSION['ptap_logged_md5_password']);
+        unset($_SESSION['ptap_logged_password']);
     }
 
     public function get_last_login() {
@@ -157,7 +179,7 @@ class User extends OModule {
 
     public function mysql_save_from_post($post) {
         if ($post['modify_password'] == 1)
-            $post['md5_password'] = md5($post['password']);
+            $post['password'] = $this->calculate_password_hash($post['password_hash']);
         $post['oid'] = parent::mysql_save_from_post($post);
 
         if ($this->id == 0) {
@@ -427,7 +449,7 @@ class User extends OModule {
             `lastname` text NOT NULL,
             `email` text NOT NULL,
             `phone` text NOT NULL,
-            `md5_password` text NOT NULL,
+            `password` text NOT NULL,
             `UserType_id` bigint(20) NOT NULL,
             `UserGroup_id` bigint(20) NOT NULL,
             `last_login` timestamp NOT NULL default '0000-00-00 00:00:00',
@@ -442,10 +464,14 @@ class User extends OModule {
             return false;
 
         $sql = "
-            INSERT INTO `User` (`id`, `updated`, `created`, `login`, `firstname`, `lastname`, `email`, `phone`, `md5_password`, `UserType_id`, `UserGroup_id`, `last_login`, `Sharing_id`, `Owner_id`) VALUES (NULL, CURRENT_TIMESTAMP, NOW(), 'admin', 'unknown', '', '', '', MD5('admin'), '1', '', '0000-00-00 00:00:00', '1', '1');
+            INSERT INTO `User` (`id`, `updated`, `created`, `login`, `firstname`, `lastname`, `email`, `phone`, `password`, `UserType_id`, `UserGroup_id`, `last_login`, `Sharing_id`, `Owner_id`) VALUES (NULL, CURRENT_TIMESTAMP, NOW(), 'admin', 'unknown', '', '', '', '', '1', '', '0000-00-00 00:00:00', '1', '1');
             ";
-        return mysql_query($sql);
+        if(!mysql_query($sql)) return false;
+        $user = User::from_mysql_id(1);
+        $user->password = $user->calculate_raw_password_hash("admin");
+        $user->mysql_save();
     }
+
 }
 
 ?>

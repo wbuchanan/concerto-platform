@@ -31,7 +31,7 @@ class Ini {
     public static $path_r_script = "";
     public static $path_temp = "";
     public static $path_mysql_home = "";
-    public static $version = "3.6.9";
+    public static $version = "3.6.10";
     public static $sock_host = "127.0.0.1";
     public static $sock_port = "8888";
     public static $path_unix_sock = "";
@@ -619,7 +619,7 @@ class Ini {
                 if (!mysql_query($sql))
                     return false;
             }
-            
+
             $sql = "SHOW COLUMNS FROM `TestSession` WHERE `Field`='serialized'";
             $z = mysql_query($sql);
             if (mysql_num_rows($z) == 0) {
@@ -869,9 +869,23 @@ class Ini {
             $repopulate_TestTemplate = true;
             Setting::set_setting("version", "3.6.8");
         }
-        
+
+        if (Ini::does_patch_apply("3.6.10", $previous_version)) {
+            //User - change of password field
+            $sql = "SHOW COLUMNS FROM `User` WHERE `Field`='md5_password'";
+            $z = mysql_query($sql);
+            if (mysql_num_rows($z) > 0) {
+                $sql = "ALTER TABLE `User` CHANGE `md5_password` `password` text NOT NULL default '';";
+                if (!mysql_query($sql))
+                    return false;
+            }
+
+            Setting::set_setting("version", "3.6.10");
+        }
+
         if ($validate_column_names) {
-            if(!TableColumn::validate_columns_name()) return false;
+            if (!TableColumn::validate_columns_name())
+                return false;
         }
         if ($repopulate_TestTemplate)
             TestTemplate::repopulate_table();
