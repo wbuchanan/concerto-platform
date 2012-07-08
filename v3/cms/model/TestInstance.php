@@ -78,7 +78,7 @@ class TestInstance {
         );
 
         include Ini::$path_internal . 'SETTINGS.php';
-        $this->r = proc_open(Ini::$path_r_exe . " --vanilla --args " . $db_host . " " . ($db_port != "" ? $db_port : "3306") . " " . $db_user . " " . $db_password . " " . $db_name . " " . $this->session_id . " " . (Ini::$path_mysql_home != "" ? "'" . Ini::$path_mysql_home . "'" : ""), $descriptorspec, $this->pipes, Ini::$path_temp, $env);
+        $this->r = proc_open("\"".Ini::$path_r_exe . "\" --vanilla", $descriptorspec, $this->pipes, Ini::$path_temp, $env);
         if (is_resource($this->r)) {
             if (TestServer::$debug)
                 TestServer::log_debug("TestInstance->start() --- Test instance started");

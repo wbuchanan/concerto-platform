@@ -236,8 +236,8 @@ class TestSession extends OTable {
             include Ini::$path_internal . 'SETTINGS.php';
             $lang = "";
             if (Ini::$unix_locale != "")
-                $lang = "LANG=\"" . Ini::$unix_locale . "\" \"";
-            exec($lang . Ini::$path_r_script . "\" --vanilla \"" . $this->get_RSource_file_path() . "\" " . $db_host . " " . ($db_port != "" ? $db_port : "3306") . " " . $db_user . " " . $db_password . " " . $db_name . " " . $this->id . " " . (Ini::$path_mysql_home != "" ? "'" . Ini::$path_mysql_home . "'" : ""), $output, $return);
+                $lang = "LANG=\"" . Ini::$unix_locale . "\" ";
+            exec($lang . "\"" . Ini::$path_r_script . "\" --vanilla \"" . $this->get_RSource_file_path() . "\"", $output, $return);
         }
 
         $thisSession = null;
@@ -339,10 +339,20 @@ class TestSession extends OTable {
         }
 
         if ($debug_data) {
-            $command = htmlspecialchars($command, ENT_QUOTES);
             for ($i = 0; $i < count($output); $i++) {
+                if (strpos($output[$i], "CONCERTO_DB_PASSWORD <-") !== false)
+                    $output[$i] = "[hidden]";
                 $output[$i] = htmlspecialchars($output[$i], ENT_QUOTES);
             }
+
+            $command_lines = explode("\n", $command);
+            for ($i = 0; $i < count($command_lines); $i++) {
+                if (strpos($command_lines[$i], "CONCERTO_DB_PASSWORD <-") !== false)
+                    $command_lines[$i] = "[hidden]";
+            }
+            $command = implode("\n", $command_lines);
+            $command = htmlspecialchars($command, ENT_QUOTES);
+
             $response["debug"] = array(
                 "code" => $command,
                 "return" => $return,
@@ -361,18 +371,17 @@ class TestSession extends OTable {
     public function get_next_ini_RCode() {
         $code = "";
         if ($this->r_type == TestSession::R_TYPE_RSCRIPT) {
+            include Ini::$path_internal . 'SETTINGS.php';
             $code = "
             sink(stdout(), type='message')
             options(encoding='UTF-8')
             library(session)
             restore.session('" . $this->get_RSession_file_path() . "')
                 
-            CONCERTO_ARGS <- commandArgs(T)
-            CONCERTO_DB_HOST <- CONCERTO_ARGS[1]
-            CONCERTO_DB_PORT <- as.numeric(CONCERTO_ARGS[2])
-            CONCERTO_DB_LOGIN <- CONCERTO_ARGS[3]
-            CONCERTO_DB_PASSWORD <- CONCERTO_ARGS[4]
-            CONCERTO_DB_NAME <- CONCERTO_ARGS[5]
+            CONCERTO_DB_HOST <- '" . $db_host . "'
+            CONCERTO_DB_PORT <- as.numeric(" . ($db_port != "" ? $db_port : "3306") . ")
+            CONCERTO_DB_LOGIN <- '" . $db_user . "'
+            CONCERTO_DB_PASSWORD <- '" . $db_password . "'
 
             CONCERTO_DRIVER <- dbDriver('MySQL')
             for(CONCERTO_DB_CONNECTION in dbListConnections(CONCERTO_DRIVER)) { dbDisconnect(CONCERTO_DB_CONNECTION) }
@@ -383,7 +392,6 @@ class TestSession extends OTable {
             rm(CONCERTO_DB_PORT)
             rm(CONCERTO_DB_LOGIN)
             rm(CONCERTO_DB_PASSWORD)
-            rm(CONCERTO_ARGS)
             ";
         }
         return $code;
@@ -423,6 +431,7 @@ class TestSession extends OTable {
     }
 
     public function get_ini_RCode() {
+        include Ini::$path_internal . 'SETTINGS.php';
         $path = Ini::$path_temp . $this->get_Test()->Owner_id;
         if (!is_dir($path))
             mkdir($path, 0777);
@@ -436,7 +445,14 @@ class TestSession extends OTable {
             options(encoding='UTF-8')
             CONCERTO_TEST_ID <- %d
             CONCERTO_TEST_SESSION_ID <- %d
-            ", $this->Test_id, $this->id);
+            
+            CONCERTO_DB_HOST <- '%s'
+            CONCERTO_DB_PORT <- as.numeric(%d)
+            CONCERTO_DB_LOGIN <- '%s'
+            CONCERTO_DB_PASSWORD <- '%s'
+            CONCERTO_DB_NAME <- '%s'
+            %s
+            ", $this->Test_id, $this->id, $db_host, ($db_port != "" ? $db_port : "3306"), $db_user, $db_password, $db_name, ($path_mysql_home != "" ? "Sys.setenv('MYSQL_HOME'='" . $path_mysql_home . "')" : ""));
         $code .= "CONCERTO_TEMP_PATH <- '" . $path . "'
             source('" . Ini::$path_internal . "lib/R/mainmethods.R" . "')
             ";

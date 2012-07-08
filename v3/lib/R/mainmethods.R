@@ -16,54 +16,45 @@
 ## along with this program; if not, write to the Free Software
 ## Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA.
 ##
-
-CONCERTO_ARGS <- commandArgs(T)
-CONCERTO_DB_HOST <- CONCERTO_ARGS[1]
-CONCERTO_DB_PORT <- as.numeric(CONCERTO_ARGS[2])
-CONCERTO_DB_LOGIN <- CONCERTO_ARGS[3]
-CONCERTO_DB_PASSWORD <- CONCERTO_ARGS[4]
-CONCERTO_DB_NAME <- CONCERTO_ARGS[5]
-CONCERTO_TEST_SESSION_ID <- CONCERTO_ARGS[6]
  
 setwd(CONCERTO_TEMP_PATH)
 library(session)
 library(catR)
 options(digits=3)
-if(!is.na(CONCERTO_ARGS[7])) Sys.setenv("MYSQL_HOME"=CONCERTO_ARGS[7])
 
 update.session.counter <- function(CONCERTO_PARAM){
    CONCERTO_PARAM <- dbEscapeStrings(CONCERTO_DB_CONNECTION,toString(CONCERTO_PARAM))
-   dbSendQuery(CONCERTO_DB_CONNECTION, statement = sprintf("UPDATE `%s`.`TestSession` SET `counter` = '%s' WHERE `id`=%s",dbEscapeStrings(CONCERTO_DB_CONNECTION,CONCERTO_DB_NAME),CONCERTO_PARAM,dbEscapeStrings(CONCERTO_DB_CONNECTION,CONCERTO_TEST_SESSION_ID)))
+   dbSendQuery(CONCERTO_DB_CONNECTION, statement = sprintf("UPDATE `%s`.`TestSession` SET `counter` = '%s' WHERE `id`=%s",dbEscapeStrings(CONCERTO_DB_CONNECTION,CONCERTO_DB_NAME),CONCERTO_PARAM,dbEscapeStrings(CONCERTO_DB_CONNECTION,toString(CONCERTO_TEST_SESSION_ID))))
 }
 
 update.session.status <- function(CONCERTO_PARAM){
    CONCERTO_PARAM <- dbEscapeStrings(CONCERTO_DB_CONNECTION,toString(CONCERTO_PARAM))
-   dbSendQuery(CONCERTO_DB_CONNECTION, statement = sprintf("UPDATE `%s`.`TestSession` SET `status` = '%s' WHERE `id`=%s",dbEscapeStrings(CONCERTO_DB_CONNECTION,CONCERTO_DB_NAME),CONCERTO_PARAM,dbEscapeStrings(CONCERTO_DB_CONNECTION,CONCERTO_TEST_SESSION_ID)))
+   dbSendQuery(CONCERTO_DB_CONNECTION, statement = sprintf("UPDATE `%s`.`TestSession` SET `status` = '%s' WHERE `id`=%s",dbEscapeStrings(CONCERTO_DB_CONNECTION,CONCERTO_DB_NAME),CONCERTO_PARAM,dbEscapeStrings(CONCERTO_DB_CONNECTION,toString(CONCERTO_TEST_SESSION_ID))))
 }
 
 update.session.release <- function(CONCERTO_PARAM){
    CONCERTO_PARAM <- dbEscapeStrings(CONCERTO_DB_CONNECTION,toString(CONCERTO_PARAM))
-   dbSendQuery(CONCERTO_DB_CONNECTION, statement = sprintf("UPDATE `%s`.`TestSession` SET `release` = '%s' WHERE `id`=%s",dbEscapeStrings(CONCERTO_DB_CONNECTION,CONCERTO_DB_NAME),CONCERTO_PARAM,dbEscapeStrings(CONCERTO_DB_CONNECTION,CONCERTO_TEST_SESSION_ID)))
+   dbSendQuery(CONCERTO_DB_CONNECTION, statement = sprintf("UPDATE `%s`.`TestSession` SET `release` = '%s' WHERE `id`=%s",dbEscapeStrings(CONCERTO_DB_CONNECTION,CONCERTO_DB_NAME),CONCERTO_PARAM,dbEscapeStrings(CONCERTO_DB_CONNECTION,toString(CONCERTO_TEST_SESSION_ID))))
 }
 
 update.session.time_limit <- function(CONCERTO_PARAM){
    CONCERTO_PARAM <- dbEscapeStrings(CONCERTO_DB_CONNECTION,toString(CONCERTO_PARAM))
-   dbSendQuery(CONCERTO_DB_CONNECTION, statement = sprintf("UPDATE `%s`.`TestSession` SET `time_limit` = '%s' WHERE `id`=%s",dbEscapeStrings(CONCERTO_DB_CONNECTION,CONCERTO_DB_NAME),CONCERTO_PARAM,dbEscapeStrings(CONCERTO_DB_CONNECTION,CONCERTO_TEST_SESSION_ID)))
+   dbSendQuery(CONCERTO_DB_CONNECTION, statement = sprintf("UPDATE `%s`.`TestSession` SET `time_limit` = '%s' WHERE `id`=%s",dbEscapeStrings(CONCERTO_DB_CONNECTION,CONCERTO_DB_NAME),CONCERTO_PARAM,dbEscapeStrings(CONCERTO_DB_CONNECTION,toString(CONCERTO_TEST_SESSION_ID))))
 }
 
 update.session.template_testsection_id <- function(CONCERTO_PARAM){
    CONCERTO_PARAM <- dbEscapeStrings(CONCERTO_DB_CONNECTION,toString(CONCERTO_PARAM))
-   dbSendQuery(CONCERTO_DB_CONNECTION, statement = sprintf("UPDATE `%s`.`TestSession` SET `Template_TestSection_id` ='%s' WHERE `id`=%s",dbEscapeStrings(CONCERTO_DB_CONNECTION,CONCERTO_DB_NAME),CONCERTO_PARAM,dbEscapeStrings(CONCERTO_DB_CONNECTION,CONCERTO_TEST_SESSION_ID)))
+   dbSendQuery(CONCERTO_DB_CONNECTION, statement = sprintf("UPDATE `%s`.`TestSession` SET `Template_TestSection_id` ='%s' WHERE `id`=%s",dbEscapeStrings(CONCERTO_DB_CONNECTION,CONCERTO_DB_NAME),CONCERTO_PARAM,dbEscapeStrings(CONCERTO_DB_CONNECTION,toString(CONCERTO_TEST_SESSION_ID))))
 }
 
 update.session.template_id <- function(CONCERTO_PARAM){
    CONCERTO_PARAM <- dbEscapeStrings(CONCERTO_DB_CONNECTION,toString(CONCERTO_PARAM))
-   dbSendQuery(CONCERTO_DB_CONNECTION, statement = sprintf("UPDATE `%s`.`TestSession` SET `Template_id` ='%s' WHERE `id`=%s",dbEscapeStrings(CONCERTO_DB_CONNECTION,CONCERTO_DB_NAME),CONCERTO_PARAM,dbEscapeStrings(CONCERTO_DB_CONNECTION,CONCERTO_TEST_SESSION_ID)))
+   dbSendQuery(CONCERTO_DB_CONNECTION, statement = sprintf("UPDATE `%s`.`TestSession` SET `Template_id` ='%s' WHERE `id`=%s",dbEscapeStrings(CONCERTO_DB_CONNECTION,CONCERTO_DB_NAME),CONCERTO_PARAM,dbEscapeStrings(CONCERTO_DB_CONNECTION,toString(CONCERTO_TEST_SESSION_ID))))
 }
 
 update.session.HTML <- function(CONCERTO_PARAM1, CONCERTO_PARAM2, CONCERTO_PARAM3){
    CONCERTO_PARAM <- dbEscapeStrings(CONCERTO_DB_CONNECTION,toString(fill.session.HTML(get.template.HTML(CONCERTO_PARAM1,CONCERTO_PARAM2,CONCERTO_PARAM3))))
-   dbSendQuery(CONCERTO_DB_CONNECTION, statement = sprintf("UPDATE `%s`.`TestSession` SET `HTML` = '%s' WHERE `id`=%s",dbEscapeStrings(CONCERTO_DB_CONNECTION,CONCERTO_DB_NAME),CONCERTO_PARAM,dbEscapeStrings(CONCERTO_DB_CONNECTION,CONCERTO_TEST_SESSION_ID)))
+   dbSendQuery(CONCERTO_DB_CONNECTION, statement = sprintf("UPDATE `%s`.`TestSession` SET `HTML` = '%s' WHERE `id`=%s",dbEscapeStrings(CONCERTO_DB_CONNECTION,CONCERTO_DB_NAME),CONCERTO_PARAM,dbEscapeStrings(CONCERTO_DB_CONNECTION,toString(CONCERTO_TEST_SESSION_ID))))
 }
 
 get.template.HTML <- function(CONCERTO_PARAM1,CONCERTO_PARAM2,CONCERTO_PARAM3) {
@@ -78,7 +69,7 @@ update.session.return <- function(CONCERTO_PARAM) {
         CONCERTO_VALUE <- toString(get(CONCERTO_PARAM))
         CONCERTO_PARAM <- dbEscapeStrings(CONCERTO_DB_CONNECTION,toString(CONCERTO_PARAM))
         CONCERTO_VALUE <- dbEscapeStrings(CONCERTO_DB_CONNECTION,toString(CONCERTO_VALUE))
-        dbSendQuery(CONCERTO_DB_CONNECTION, statement = sprintf("REPLACE INTO `%s`.`TestSessionReturn` SET `TestSession_id` ='%s', `name`='%s', `value`='%s'",dbEscapeStrings(CONCERTO_DB_CONNECTION,CONCERTO_DB_NAME),dbEscapeStrings(CONCERTO_DB_CONNECTION,CONCERTO_TEST_SESSION_ID),CONCERTO_PARAM, CONCERTO_VALUE))
+        dbSendQuery(CONCERTO_DB_CONNECTION, statement = sprintf("REPLACE INTO `%s`.`TestSessionReturn` SET `TestSession_id` ='%s', `name`='%s', `value`='%s'",dbEscapeStrings(CONCERTO_DB_CONNECTION,CONCERTO_DB_NAME),dbEscapeStrings(CONCERTO_DB_CONNECTION,toString(CONCERTO_TEST_SESSION_ID)),CONCERTO_PARAM, CONCERTO_VALUE))
     }
 }
 
@@ -133,4 +124,3 @@ rm(CONCERTO_DB_HOST)
 rm(CONCERTO_DB_PORT)
 rm(CONCERTO_DB_LOGIN)
 rm(CONCERTO_DB_PASSWORD)
-rm(CONCERTO_ARGS)
