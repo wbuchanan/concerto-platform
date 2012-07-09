@@ -28,6 +28,9 @@ $public_registration = false;
 $public_registration_default_UserType_id = 4;
 $cms_session_keep_alive = true;
 $cms_session_keep_alive_interval = 900000; //miliseconds
+$contact_emails = "pl362@cam.ac.uk,mk583@cam.ac.uk,vm298@cam.ac.uk"; 
+$forum_url = "http://concerto.e-psychometrics.com/forum/";
+$project_homepage_url = "http://code.google.com/p/concerto-platform/";
 
 //remote client
 $remote_client_password = "pass";
