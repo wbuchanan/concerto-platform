@@ -31,7 +31,7 @@ class Ini {
     public static $path_r_script = "";
     public static $path_temp = "";
     public static $path_mysql_home = "";
-    public static $version = "3.6.10";
+    public static $version = "3.6.11";
     public static $sock_host = "127.0.0.1";
     public static $sock_port = "8888";
     public static $path_unix_sock = "";
@@ -881,6 +881,17 @@ class Ini {
             }
 
             Setting::set_setting("version", "3.6.10");
+        }
+        
+        if (Ini::does_patch_apply("3.6.11", $previous_version)) {
+            //DS_TestSectionType - add new section type
+            $sql = "
+            INSERT INTO `DS_TestSectionType` (`id`, `name`, `value`, `position`) VALUES
+            (12, 'lower level R code', '12', 12);
+            ";
+            if(!mysql_query($sql)) return false;
+
+            Setting::set_setting("version", "3.6.11");
         }
 
         if ($validate_column_names) {

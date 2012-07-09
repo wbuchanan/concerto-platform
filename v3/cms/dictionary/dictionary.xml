@@ -3281,5 +3281,53 @@ Note: You can add new languages by inserting "<new_language>string translated in
             <fr></fr>
             <bg></bg>
         </string>
+        <string id="445" js="1">
+            <en>lower level R code</en>
+            <de></de>
+            <pl>kod R niższego poziomu</pl>
+            <cn></cn>
+            <fr></fr>
+            <bg></bg>
+        </string>
+        <string id="446">
+            <en>This section represents exact R code that will be passed to R session.</en>
+            <de></de>
+            <pl>Ta sekcja przedstawia dokładny kod R jaki zostanie przekazany do sesji R.</pl>
+            <cn></cn>
+            <fr></fr>
+            <bg></bg>
+        </string>
+        <string id="447" js="1">
+            <en>Convert section to lower level R code section.</en>
+            <de></de>
+            <pl>Konwersja sekcji na sekcję kodu R niższego poziomu.</pl>
+            <cn></cn>
+            <fr></fr>
+            <bg></bg>
+        </string>
+        <string id="448" js="1">
+            <en>You need to save the changes that has been made in the test logic to convert any section to lower level R code.</en>
+            <de></de>
+            <pl>Należy najpierw zapisać zamiany jakie zostały wprowadzone do logiki testu zanim będzie można skonwertować jakąkolwiek sekcję do sekcji R niższego poziomu.</pl>
+            <cn></cn>
+            <fr></fr>
+            <bg></bg>
+        </string>
+        <string id="449" js="1">
+            <en>converting to lower level R code</en>
+            <de></de>
+            <pl>konwersja do kodu R niższego poziomu</pl>
+            <cn></cn>
+            <fr></fr>
+            <bg></bg>
+        </string>
+        <string id="450" js="1">
+            <en>Are you sure you want to convert this section type to lower level R code section? After doing so you won't be able to revert back. Only saved changes will be converted to lower level R code.</en>
+            <de></de>
+            <pl>Jesteś pewien, że chcesz zmienić typ sekcji do kodu R niższego poziomu? Po tej zmianie nie będzie możliwości powrotu do poprzedniego typu. Tylko zapisane zmiany zostaną przekonwertowane do kodu R niższego poziomu.</pl>
+            <cn></cn>
+            <fr></fr>
+            <bg></bg>
+        </string>
     </strings>
 </root> 

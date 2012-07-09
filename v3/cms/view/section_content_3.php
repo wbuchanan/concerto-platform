@@ -43,7 +43,8 @@ if ($logged_user == null)
                 <select id="selectGoTo_<?= $_POST['counter'] ?>" class="ui-widget-content ui-corner-all fullWidth">
                 </select>
             </td>
-            <td class="tdSectionColumnEnd"><table><tr><td></td></tr></table></td>
+            <td class="tdSectionColumnIcon"><span class="spanIcon ui-icon ui-icon-script tooltip" title="<?=Language::string(447)?>" onclick="Test.convertToLowerLevel(<?=$_POST['counter']?>)"></span></td>
+            <td class="tdSectionColumnEnd"></td>
             <td class="tdSectionColumnIcon"><span class="spanIcon tooltip ui-icon ui-icon-trash" onclick="Test.uiRemoveSection(<?= $_POST['counter'] ?>)" title="<?= Language::string(59) ?>"></span></td>
             <td class="tdSectionColumnIcon"><span class="spanIcon tooltip ui-icon ui-icon-plus" onclick="Test.uiAddLogicSection(0,<?=$_POST['counter']?>)" title="<?= Language::string(60) ?>"></span></td>
         </tr>

@@ -372,7 +372,7 @@ Methods.getTempID=function()
     return User.sessionID+"_"+time;
 };
 
-Methods.iniCodeMirror=function(id,mode,readOnly,maxWidth)
+Methods.iniCodeMirror=function(id,mode,readOnly,maxWidth,onChangeCallback)
 {
     var obj = document.getElementById(id);
     
@@ -389,6 +389,7 @@ Methods.iniCodeMirror=function(id,mode,readOnly,maxWidth)
         onChange:function(instance){
             instance.save();
             instance.refresh();
+            if(onChangeCallback!=null) onChangeCallback.call(this);
         }
     });
     if(maxWidth!=null) $(obj).next().find(".CodeMirror-scroll").css("max-width",maxWidth);

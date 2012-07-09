@@ -33,7 +33,8 @@ Test.sectionTypes={
     tableModification:8,
     custom:9,
     loop:10,
-    test:11
+    test:11,
+    lowerLevelRCode:12
 };
 
 Test.className="Test";
@@ -92,6 +93,39 @@ Test.uiSaveValidate=function(ignoreOnBefore){
     Test.uiSaveValidated(ignoreOnBefore);
 }
 
+Test.isTestDirty = false;
+Test.convertToLowerLevel=function(counter){
+    if(Test.isTestDirty) {
+        Methods.alert(dictionary["s448"], "alert", dictionary["s449"]);
+        return;
+    }
+    
+    $.post("query/get_section_code.php",{
+        oid:Test.currentID,
+        counter:counter
+    },function(data){
+        switch(data.result){
+            case 0:{
+                Methods.confirm(dictionary["s450"], dictionary["s449"], function(){
+                    $("#divSection_"+counter).attr("sectype",Test.sectionTypes.lowerLevelRCode);
+                    $("#divSection_"+counter).attr("csid",0);
+                    Test.uiRefreshSectionContent(Test.sectionTypes.lowerLevelRCode,counter,[data.code]); 
+                });
+                break;
+            }
+            case -1:{
+                Methods.alert(dictionary["s278"], "alert", dictionary["s449"]);
+                location.reload();
+                break;
+            }
+            case -2:{
+                Methods.alert(dictionary["s81"], "alert", dictionary["s449"]);
+                break;
+            }
+        }
+    },"json");
+}
+
 Test.sectionCounter = 0;
 Test.getCounter=function(){
     Test.sectionCounter++;
@@ -109,6 +143,9 @@ Test.setCounter=function(value){
 Test.getSectionValues=function(section){
     switch(section.type){
         case Test.sectionTypes.RCode:{
+            return [$(".divSection[seccounter="+section.counter+"] #textareaCodeMirror_"+section.counter).val()];
+        }
+        case Test.sectionTypes.lowerLevelRCode:{
             return [$(".divSection[seccounter="+section.counter+"] #textareaCodeMirror_"+section.counter).val()];
         }
         case Test.sectionTypes.goTo:{
@@ -208,6 +245,9 @@ Test.getSectionTypeName=function(type){
         case Test.sectionTypes.RCode:{
             return dictionary["s49"];
         }
+        case Test.sectionTypes.lowerLevelRCode:{
+            return dictionary["s445"];
+        }
         case Test.sectionTypes.loadTemplate:{
             return dictionary["s50"];
         }
@@ -236,7 +276,7 @@ Test.getSectionTypeName=function(type){
         case Test.sectionTypes.loop:{
             return dictionary["s391"];
         }
-        case Test.sectionTypes.loop:{
+        case Test.sectionTypes.test:{
             return dictionary["s392"];
         }
     }
@@ -252,6 +292,10 @@ Test.uiRefreshSectionContent=function(type,counter,value,oid,end){
     if(oid==null) oid=0;
     switch(type){
         case Test.sectionTypes.RCode:{
+            if(value==null) value =[""];
+            break;
+        }
+        case Test.sectionTypes.lowerLevelRCode:{
             if(value==null) value =[""];
             break;
         }
@@ -303,12 +347,19 @@ Test.uiRefreshSectionContent=function(type,counter,value,oid,end){
         $("#divSection_"+counter).find(".divSectionSummary").attr("onmouseover","Test.uiToggleHover("+counter+",true);").attr("onmouseout","Test.uiToggleHover("+counter+",false);");
         switch(type){
             case Test.sectionTypes.RCode:{
+                var cm = Methods.iniCodeMirror("textareaCodeMirror_"+counter, "r", false,"905px",function(){
+                });
+                Test.codeMirrors.push(cm);
+                break;
+            }
+            case Test.sectionTypes.lowerLevelRCode:{
                 var cm = Methods.iniCodeMirror("textareaCodeMirror_"+counter, "r", false,"905px");
                 Test.codeMirrors.push(cm);
                 break;
             }
             case Test.sectionTypes.setVariable:{
-                var cm = Methods.iniCodeMirror("textareaCodeMirror_"+counter, "r", false,"905px");
+                var cm = Methods.iniCodeMirror("textareaCodeMirror_"+counter, "r", false,"905px",function(){
+                });
                 Test.codeMirrors.push(cm);
                 break;
             }

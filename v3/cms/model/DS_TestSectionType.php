@@ -19,9 +19,10 @@
   Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA.
  */
 
-class DS_TestSectionType extends ODataSet
-{
+class DS_TestSectionType extends ODataSet {
+
     public static $mysql_table_name = "DS_TestSectionType";
+
     const R_CODE = 1;
     const LOAD_HTML_TEMPLATE = 2;
     const GO_TO = 3;
@@ -33,25 +34,22 @@ class DS_TestSectionType extends ODataSet
     const CUSTOM = 9;
     const LOOP = 10;
     const TEST = 11;
+    const LOWER_LEVEL_R_CODE = 12;
 
-    public static function get_all_selectable()
-    {
+    public static function get_all_selectable() {
         $result = array();
         $sql = sprintf("SELECT * FROM `%s` WHERE 
             `id`!=%d AND `id`!=%d AND `id`!='%d' AND `id`!='%d'
             ORDER BY `name` ASC", self::get_mysql_table(), self::START, self::END, self::CUSTOM, self::TEST);
         $z = mysql_query($sql);
-        while ($r = mysql_fetch_array($z))
-        {
+        while ($r = mysql_fetch_array($z)) {
             array_push($result, DS_TestSectionType::from_mysql_result($r));
         }
         return $result;
     }
 
-    public static function get_name_by_id($id)
-    {
-        switch ($id)
-        {
+    public static function get_name_by_id($id) {
+        switch ($id) {
             case self::CUSTOM: return Language::string(57);
             case self::END: return Language::string(55);
             case self::GO_TO: return Language::string(51);
@@ -63,18 +61,16 @@ class DS_TestSectionType extends ODataSet
             case self::TABLE_MOD: return Language::string(56);
             case self::LOOP: return Language::string(391);
             case self::TEST: return Language::string(392);
+            case self::LOWER_LEVEL_R_CODE: return Language::string(445);
         }
     }
 
-    public function get_name()
-    {
+    public function get_name() {
         return self::get_name_by_id($this->id);
     }
 
-    public static function get_description_by_id($id)
-    {
-        switch ($id)
-        {
+    public static function get_description_by_id($id) {
+        switch ($id) {
             case self::CUSTOM: return Language::string(48);
             case self::END: return Language::string(46);
             case self::GO_TO: return Language::string(42);
@@ -86,20 +82,18 @@ class DS_TestSectionType extends ODataSet
             case self::TABLE_MOD: return Language::string(47);
             case self::TEST: return Language::string(393);
             case self::LOOP: return Language::string(394);
+            case self::LOWER_LEVEL_R_CODE: return Language::string(446);
         }
     }
 
-    public function get_description()
-    {
+    public function get_description() {
         return self::get_description_by_id($this->id);
     }
 
-    public static function create_db($delete = false)
-    {
-        if ($delete)
-        {
+    public static function create_db($delete = false) {
+        if ($delete) {
             if (!mysql_query("DROP TABLE IF EXISTS `DS_TestSectionType`;"))
-                    return false;
+                return false;
         }
         $sql = "
             CREATE TABLE IF NOT EXISTS `DS_TestSectionType` (
@@ -110,7 +104,8 @@ class DS_TestSectionType extends ODataSet
             PRIMARY KEY  (`id`)
             ) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=10 ;
             ";
-        if (!mysql_query($sql)) return false;
+        if (!mysql_query($sql))
+            return false;
 
         $sql = "
             INSERT INTO `DS_TestSectionType` (`id`, `name`, `value`, `position`) VALUES
@@ -124,10 +119,12 @@ class DS_TestSectionType extends ODataSet
             (8, 'table modification', '8', 8),
             (9, 'custom section', '9', 9),
             (10, 'loop', '10', 10),
-            (11, 'test inclusion', '11', 11);
+            (11, 'test inclusion', '11', 11),
+            (12, 'lower level R code', '12', 12);
             ";
         return mysql_query($sql);
     }
+
 }
 
 ?>
