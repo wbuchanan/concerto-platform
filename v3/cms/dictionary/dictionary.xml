@@ -215,6 +215,7 @@ Note: You can add new languages by inserting "<new_language>string translated in
             <cn>从MySQL表格中导入表格</cn>
             <fr>importation d'un tableau provenant de MySQL table</fr>
             <bg>импортиране на таблицата от MySQL таблица</bg>
+            <nl>tabel importeren vanuit MySQL tabel</nl>
         </string>
         <string id="22" js="1">
             <en>import</en>
@@ -223,6 +224,7 @@ Note: You can add new languages by inserting "<new_language>string translated in
             <cn>导入</cn>
             <fr>importer</fr>
             <bg>импортиране</bg>
+            <nl>importeren</nl>
         </string>
         <string id="23" js="1">
             <en>cancel</en>
@@ -231,6 +233,7 @@ Note: You can add new languages by inserting "<new_language>string translated in
             <cn>取消</cn>
             <fr>annuler</fr>
             <bg>отмяна</bg>
+            <nl>annuleren</nl>
         </string>
         <string id="24" js="1">
             <en>No table selected.</en>
@@ -239,6 +242,7 @@ Note: You can add new languages by inserting "<new_language>string translated in
             <cn>未选择表格</cn>
             <fr>Aucun tableau sélectionnée.</fr>
             <bg>Не е избрана таблица</bg>
+            <nl>Geen tabel geslecteerd</nl>
         </string>
         <string id="25" js="1">
             <en>importing table</en>
@@ -247,6 +251,7 @@ Note: You can add new languages by inserting "<new_language>string translated in
             <cn>导入表格</cn>
             <fr>Importation d'un tableau</fr>
             <bg>импортиране на таблица</bg>
+            <nl>tabel importeren</nl>
         </string>
         <string id="26" js="1">
             <en>Table structure and data imported.</en>
@@ -255,6 +260,7 @@ Note: You can add new languages by inserting "<new_language>string translated in
             <cn>已导入表格结构和数据。</cn>
             <fr>La structure et les données du tabeau ont été importées.</fr>
             <bg>Структурата на таблицата и данните са импортирани</bg>
+            <nl>Structuur en data van de tabel geimporteerd</nl>
         </string>
         <string id="27" js="1">
             <en>Importing table from CSV file</en>
@@ -263,6 +269,7 @@ Note: You can add new languages by inserting "<new_language>string translated in
             <cn>从CSV文件中导入表格</cn>
             <fr>Importation d'un tableau provenant d'un fichier CSV</fr>
             <bg>Импортиране на таблицата от CSV файл</bg>
+            <nl>Tabel importeren vanuit een CSV-bestand</nl>
         </string>
         <string id="28" js="1">
             <en>Are you sure you want to replace the current table structure and data with that from the selected file?</en>
@@ -271,6 +278,7 @@ Note: You can add new languages by inserting "<new_language>string translated in
             <cn>确认使用所选文件表格结构与数据替代当前表格？</cn>
             <fr>Êtes-vous certain de vouloir remplacer la structure et les données du présent tableau par celles du fichier sélectionné?</fr>
             <bg>Сигурни ли сте, че искате да заместите настоящата структура и данни на таблицата с тези от избраната таблица</bg>
+            <nl> Bent u zeker dat u de huidige tabelstructuur en data wilt vervangen door deze uit het geselecteerde bestand?</nl>
         </string>
         <string id="29" js="1">
             <en>file uploaded</en>
@@ -279,6 +287,7 @@ Note: You can add new languages by inserting "<new_language>string translated in
             <cn>已上传文件</cn>
             <fr>fichier téléchargé</fr>
             <bg>Файлът е качен</bg>
+            <nl>bestand geupload</nl>
         </string>
         <string id="30" js="1">
             <en>There was an error in importing table structure and data.</en>
@@ -287,6 +296,7 @@ Note: You can add new languages by inserting "<new_language>string translated in
             <cn>导入表格结构与数据发生错误。</cn>
             <fr>Une erreur est survenue en important la structure et les données du tableau.</fr>
             <bg>Има грешка при импортирането на стуктурата и данните на таблицата</bg>
+            <nl>Er is een fout opgetreden bij het importeren van de tabelstructuur en data.</nl>
         </string>
         <string id="31" js="1">
             <en>adding new column</en>
