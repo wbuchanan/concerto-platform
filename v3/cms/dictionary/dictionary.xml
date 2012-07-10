@@ -33,6 +33,7 @@ Note: You can add new languages by inserting "<new_language>string translated in
         <language id="de">deutsch</language>
         <language id="fr">francais</language>
         <language id="pl">polski</language>
+        <language id="nl">nederlands</language>
     </languages>
     
     <strings>
@@ -42,7 +43,8 @@ Note: You can add new languages by inserting "<new_language>string translated in
             <pl><![CDATA[Walidacja zmiennej nie powiodła się. Wartość została zmieniona.<br/><br/>poprzednia wartość: <b>{0}</b></br>nowa wartość: <b>{1}</b>]]></pl>
             <cn><![CDATA[变量名称验证失败。数值已更改。<br/><br/>旧数值: <b>{0}</b></br>新数值: <b>{1}</b>]]></cn>  
             <fr><![CDATA[La validation du nom de la variable a échoué. La valeur a été changée.<br/><br/>ancienne valeur: <b>{0}</b></br>nouvelle valeur: <b>{1}</b>]]></fr>
-            <bg><![CDATA[Валидизацията на името на променливата е неуспешна. Стойността е променена.<br/><br/>стара стойност: <b>{0}</b></br>нова стойност: <b>{1}</b>]]></bg>    
+            <bg><![CDATA[Валидизацията на името на променливата е неуспешна. Стойността е променена.<br/><br/>стара стойност: <b>{0}</b></br>нова стойност: <b>{1}</b>]]></bg>
+            <nl><![CDATA[Naamvalidatie van de variabele gefaald. De waarde werd gewijzigd.<br/><br/>oude waarde:  <b>{0}</b></br>nieuwe waarde: <b>{1}</b>]]></nl>
         </string>
         <string id="2" js="1">
             <en>variable validation</en>
