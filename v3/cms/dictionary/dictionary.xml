@@ -53,6 +53,7 @@ Note: You can add new languages by inserting "<new_language>string translated in
             <cn>变量验证</cn>	
             <fr>validation de la variable</fr>
             <bg>валидизация на променливата</bg>
+            <nl>variabele valdiatie</nl>
         </string>
         <string id="3" js="1">
             <en>changing description</en>
@@ -61,6 +62,7 @@ Note: You can add new languages by inserting "<new_language>string translated in
             <cn>修改描述</cn>
             <fr>changement de description</fr>
             <bg>промяна на описанието</bg>
+            <en>beschrijving wijzigen</en>
         </string>
         <string id="4" js="1">
             <en>Concerto - confirmation</en>
@@ -69,6 +71,7 @@ Note: You can add new languages by inserting "<new_language>string translated in
             <cn>Concerto - 确认</cn>
             <fr>Concerto - confirmation</fr>
             <bg>Concerto - потвърждение</bg>
+            <nl>Concerto - bevestiging</nl>
         </string>
         <string id="5" js="1">
             <en>Concerto - alert</en>
@@ -77,6 +80,7 @@ Note: You can add new languages by inserting "<new_language>string translated in
             <cn>Concerto - 警告</cn>
             <fr>Concerto - alerte</fr>
             <bg>Concerto - внимание</bg>
+            <nl>Concerto - waarschuwing</nl>
         </string>
         <string id="6" js="1">
             <en>HTML controls `name` validation failed. Value has been changed.\r\n\r\nold value: {0}\r\nnew value: {1}</en>
@@ -84,7 +88,8 @@ Note: You can add new languages by inserting "<new_language>string translated in
             <pl>Walidacja pola `nazwa` kontrolki HTML nie powiodła się. Wartość została zmieniona.\r\n\r\npoprzednia wartość: {0}\r\nnowa wartość: {1}</pl>
             <cn>HTML控制变量`名称`验证失败。数值已更改。\r\n\r\n旧数值: {0}\r\n新数值: {1}</cn>
             <fr>HTML le contrôle de la variable `nom` a échoué. la valeur a été changée\n\r\nancienne valeur: {0}\r\nnouvelle valeur: {1}</fr>
-            <bg>Валидизацията на името на HTML контролата неуспешна. Стойността беше променена.\r\n\r\nстара стойност: {0}\r\nнова стойност: {1}</bg>                                      
+            <bg>Валидизацията на името на HTML контролата неуспешна. Стойността беше променена.\r\n\r\nстара стойност: {0}\r\nнова стойност: {1}</bg>
+            <nl>HTML de controle variabele `naam` is mislukt. De waarde werd gewijzigd.\r\n\r\noude waarde: {0}\r\nnieuw waarde: {1}</nl>
         </string>
         <string id="7" js="1">
             <en>adding new object</en>
@@ -93,6 +98,7 @@ Note: You can add new languages by inserting "<new_language>string translated in
             <cn>添加新对象</cn>
             <fr>ajouter un nouvel objet</fr>
             <bg>прибавяне на нов обект</bg>
+            <nl>nieuw object toevoegen</nl>
         </string>
         <string id="8" js="1">
             <en>Are you sure you want to delete this object #{0}?</en>
@@ -101,6 +107,7 @@ Note: You can add new languages by inserting "<new_language>string translated in
             <cn>确认删除对象 #{0}?</cn>
             <fr> Êtes-vous certain de vouloir supprimer cet objet? #{0}?</fr>
             <bg>Сигурни ли сте, че искате да изтриете този обект #{0}</bg>
+            <nl>Bent u zeker dat u dit object wil verwijderen #{0}?</nl>
         </string>
         <string id="9" js="1">
             <en>Object has been saved.</en>
@@ -109,6 +116,7 @@ Note: You can add new languages by inserting "<new_language>string translated in
             <cn>对象已保存。</cn>
             <fr>L'objet a été sauvegardé.</fr>
             <bg>Обектът е съхранен</bg>
+            <nl>Object opgeslagen.</nl>
         </string>
         <string id="10" js="1">
             <en>Object has NOT been saved.</en>
@@ -117,6 +125,7 @@ Note: You can add new languages by inserting "<new_language>string translated in
             <cn>对象未保存。</cn>
             <fr>L'objet N'A PAS été sauvegardé.</fr>
             <bg>Обектът НЕ Е съхранен</bg>
+            <nl>Object werd NIET opgeslagen.</nl>
         </string>
         <string id="11" js="1">
             <en>remove row</en>
@@ -125,6 +134,7 @@ Note: You can add new languages by inserting "<new_language>string translated in
             <cn>移除行</cn>
             <fr>supprimer la ligne</fr>
             <bg>изтрий реда</bg>
+            <nl>rij verwijderen</nl>
         </string>
         <string id="12" js="1">
             <en>editing column</en>
@@ -133,6 +143,7 @@ Note: You can add new languages by inserting "<new_language>string translated in
             <cn>编辑列</cn>
             <fr>modifier la colonne</fr>
             <bg>редактирай колоната</bg>
+            <nl>kolom bewerken</nl>
         </string>
         <string id="13" js="1">
             <en>Column name is a mandatory field.</en>
@@ -141,6 +152,7 @@ Note: You can add new languages by inserting "<new_language>string translated in
             <cn>列名称不可为空。</cn>
             <fr>Le nom de colonne est un champ obligatoire.</fr>
             <bg>Името на колоната не е задължително</bg>
+            <nl>Naam van de kolom is een verplicht veld.</nl>
         </string>
         <string id="14" js="1">
             <en>change column name</en>
@@ -149,6 +161,7 @@ Note: You can add new languages by inserting "<new_language>string translated in
             <cn>修改列名称</cn>
             <fr>modifier le nom de la colonne</fr>
             <bg>промени името на колоната</bg>
+            <nl>kolomnaam wijzigen</nl>
         </string>
         <string id="15" js="1">
             <en>A column with that name already exists.</en>
@@ -157,6 +170,7 @@ Note: You can add new languages by inserting "<new_language>string translated in
             <cn>列名称重复。</cn>
             <fr>Une colonne de ce nom existe déjà.</fr>
             <bg>Колона с такова име вече съществува</bg>
+            <nl>Een kolom met die naam bestaat al</nl>
         </string>
         <string id="16" js="1">
             <en>string</en>
@@ -165,6 +179,7 @@ Note: You can add new languages by inserting "<new_language>string translated in
             <cn>字符串</cn>
             <fr>libre</fr>
             <bg>текст</bg>
+            <nl>string</nl>
         </string>
         <string id="18" js="1">
             <en>HTML</en>
@@ -173,6 +188,7 @@ Note: You can add new languages by inserting "<new_language>string translated in
             <cn>HTML</cn>
             <fr>HTML</fr>
             <bg>HTML</bg>
+            <nl>HTML</nl>
         </string>
         <string id="19" js="1">
             <en>edit column</en>
@@ -181,6 +197,7 @@ Note: You can add new languages by inserting "<new_language>string translated in
             <cn>编辑列</cn>
             <fr>modifier la colonne</fr>
             <bg>редактиране на колоната</bg>
+            <nl>kolom bewerken</nl>
         </string>
         <string id="20">
             <en>remove column</en>
@@ -189,6 +206,7 @@ Note: You can add new languages by inserting "<new_language>string translated in
             <cn>移除列</cn>
             <fr>supprimer la colonne</fr>
             <bg>изтрий колоната</bg>
+            <nl>kolom verwijderen</nl>
         </string>
         <string id="21" js="1">
             <en>importing table from MySQL table</en>
