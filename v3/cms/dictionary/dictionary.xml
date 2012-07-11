@@ -1786,6 +1786,7 @@ Note: You can add new languages by inserting "<new_language>string translated in
             <cn>编辑对象</cn>
             <fr>modifier l'objet</fr>
             <bg>редактиране на обект</bg>
+            <nl></nl>
         </string>
         <string id="204" js="1">
             <en>delete object</en>
@@ -1794,6 +1795,7 @@ Note: You can add new languages by inserting "<new_language>string translated in
             <cn>删除对象</cn>
             <fr>supprimer l'objet</fr>
             <bg>изтриване на обект</bg>
+            <nl></nl>
         </string>
         <string id="205">
             <en>add new object</en>
@@ -1802,6 +1804,7 @@ Note: You can add new languages by inserting "<new_language>string translated in
             <cn>添加对象</cn>
             <fr>ajouter un nouvel objet</fr>
             <bg>прибави нов обект</bg>
+            <nl></nl>
         </string>
         <string id="211">
             <en>login to platform</en>
@@ -1810,6 +1813,7 @@ Note: You can add new languages by inserting "<new_language>string translated in
             <cn>登入系统</cn>
             <fr>se connecter à la plateforme</fr>
             <bg>вход в платформата</bg>
+            <nl></nl>
         </string>
         <string id="212">
             <en>Enter your login and password.</en>
@@ -1818,6 +1822,7 @@ Note: You can add new languages by inserting "<new_language>string translated in
             <cn>输入用户名和密码</cn>
             <fr>Entrez votre nom d'utilisateur et votre mot de passe</fr>
             <bg>Въведете Вашето потребителско име и парола. </bg>
+            <nl></nl>
         </string>
         <string id="213">
             <en>Select the HTML template to be loaded.</en>
@@ -1826,6 +1831,7 @@ Note: You can add new languages by inserting "<new_language>string translated in
             <cn>选择载入HTML模板</cn>
             <fr>Sélectionner un modèle HTML à charger.</fr>
             <bg>Изберете HTML шаблона, който да бъде зареден</bg>
+            <nl></nl>
         </string>
         <string id="214">
             <en>Description of selected HTML template</en>
@@ -1834,6 +1840,7 @@ Note: You can add new languages by inserting "<new_language>string translated in
             <cn>所选HTML模板描述</cn>
             <fr></fr>
             <bg></bg>
+            <nl></nl>
         </string>
         <string id="215">
             <en>value of this variable will be inserted into the HTML template</en>
@@ -1842,6 +1849,7 @@ Note: You can add new languages by inserting "<new_language>string translated in
             <cn>在HTML模板中插入此变量值</cn>
             <fr>La valeur de cette variable va être insérée dans le modèle HTML</fr>
             <bg>стойността на тази променлива ще бъде вмъкната в HTML шаблона</bg>
+            <nl></nl>
         </string>
         <string id="216">
             <en><![CDATA[Time left (in seconds) to submit test item. A value of 0 implies unlimited time. Insert <b>{{TIME_LEFT}}</b> variable into HTML templates to make the timer visible.]]></en>
@@ -1850,6 +1858,7 @@ Note: You can add new languages by inserting "<new_language>string translated in
             <cn><![CDATA[提交测试项目剩余时间（秒）。数值0表示无时间限制。在HTML模板中插入<b>{{剩余时间}}</b> 变量以显示倒计时。]]></cn>
              <fr><![CDATA[Temps restant (en secondes) pour soumettre l'énoncé du test. Une valeur de 0 sous-tend un temps illimité. Insérer la variable <b>{{TIME_LEFT}}</b> dans le modèle HTML afin de rendre le chronomètre visible.]]></fr>
             <bg><![CDATA[Оставащо време (в секунди)), за да бъде попълнен тестовия айтем. Стойност 0 означава неограничено време. Вмъкни <b>{{TIME_LEFT}}</b> променлива в HTML шаблона, за да направите този таймер видим.]]></bg>
+            <nl></nl>
         </string>
         <string id="217">
             <en>this variable type is</en>
@@ -1858,6 +1867,7 @@ Note: You can add new languages by inserting "<new_language>string translated in
             <cn>此变量类型为</cn>
             <fr>cette variable est</fr>
             <bg>видът на тази променлива е</bg>
+            <nl></nl>
         </string>
         <string id="221" js="1">
             <en>not equal</en>
@@ -1866,6 +1876,7 @@ Note: You can add new languages by inserting "<new_language>string translated in
             <cn>不等于</cn>
             <fr>pas égal à</fr>
             <bg>не е равно</bg>
+            <nl></nl>
         </string>
         <string id="222" js="1">
             <en>equal</en>
@@ -1874,6 +1885,7 @@ Note: You can add new languages by inserting "<new_language>string translated in
             <cn>等于</cn>
             <fr>égal</fr>
             <bg>равно</bg>
+            <nl></nl>
         </string>
         <string id="223" js="1">
             <en>greater than</en>
@@ -1882,6 +1894,7 @@ Note: You can add new languages by inserting "<new_language>string translated in
             <cn>大于</cn>
             <fr>égal à</fr>
             <bg>повече от</bg>
+            <nl></nl>
         </string>
         <string id="224" js="1">
             <en>equal or greater than</en>
@@ -1890,6 +1903,7 @@ Note: You can add new languages by inserting "<new_language>string translated in
             <cn>大于或等于</cn>
             <fr>plus grand ou égal à</fr>
             <bg>повече или равно на</bg>
+            <nl></nl>
         </string>
         <string id="225" js="1">
             <en>lesser than</en>
@@ -1898,6 +1912,7 @@ Note: You can add new languages by inserting "<new_language>string translated in
             <cn>小于</cn>
             <fr>plus petit que</fr>
             <bg>по-малко от</bg>
+            <nl></nl>
         </string>
         <string id="226" js="1">
             <en>equal or lesser than</en>
@@ -1906,6 +1921,7 @@ Note: You can add new languages by inserting "<new_language>string translated in
             <cn>小于或等于</cn>
             <fr>plus petit ou égal à</fr>
             <bg>равно или по-малко от</bg>
+            <nl>kleiner dan of gelijk aan</nl>
         </string>
         <string id="227" js="1">
             <en>AND</en>
@@ -1914,6 +1930,7 @@ Note: You can add new languages by inserting "<new_language>string translated in
             <cn>并且</cn>
             <fr>ET</fr>
             <bg>И</bg>
+            <nl></nl>
         </string>
         <string id="228" js="1">
             <en>OR</en>
@@ -1922,6 +1939,7 @@ Note: You can add new languages by inserting "<new_language>string translated in
             <cn>或者</cn>
             <fr>OU</fr>
             <bg>ИЛИ</bg>
+            <nl></nl>
         </string>
         <string id="229">
             <en>add condition</en>
@@ -1930,6 +1948,7 @@ Note: You can add new languages by inserting "<new_language>string translated in
             <cn>添加条件</cn>
             <fr>ajouter une condition</fr>
             <bg>условие прибави</bg>
+            <nl></nl>
         </string>
         <string id="230">
             <en>remove condition</en>
@@ -1938,6 +1957,7 @@ Note: You can add new languages by inserting "<new_language>string translated in
             <cn>移除条件</cn>
             <fr>enlever une condition</fr>
             <bg>условие извади</bg>
+            <nl></nl>
         </string>
         <string id="232" js="1">
             <en>add test logic section to IF clause</en>
@@ -1946,6 +1966,7 @@ Note: You can add new languages by inserting "<new_language>string translated in
             <cn>为IF语句添加测试逻辑章节</cn>
             <fr>ajouter une section logique du test à une clause SI</fr>
             <bg>прибави секцията с тестовата логика към АКО условието</bg>
+            <nl></nl>
         </string>
         <string id="235">
             <en>from table</en>
@@ -1953,7 +1974,8 @@ Note: You can add new languages by inserting "<new_language>string translated in
             <pl>z tabeli</pl>
             <fr>à partir du tableau</fr>
             <cn>来自于表格</cn>
-            <bg>от таблицата</bg>
+            <bg>от тaблицата</bg>
+            <nl></nl>
         </string>
         <string id="236">
             <en>by R code</en>
@@ -1962,6 +1984,7 @@ Note: You can add new languages by inserting "<new_language>string translated in
             <cn>通过R代码</cn>
             <fr>avec un code R</fr>
             <bg>чрез R кода</bg>
+            <nl></nl>
         </string>
         <string id="239">
             <en>no table selected</en>
@@ -1970,6 +1993,7 @@ Note: You can add new languages by inserting "<new_language>string translated in
             <cn>未选择表格</cn>
             <fr>aucun tableau sélectionné</fr>
             <bg>не е избрана таблица</bg>
+            <nl></nl>
         </string>
         <string id="241">
             <en>no column selected</en>
@@ -1978,6 +2002,7 @@ Note: You can add new languages by inserting "<new_language>string translated in
             <cn>未选择列</cn>
             <fr>aucune colonne sélectionnée</fr>
             <bg>не са избрани колони</bg>
+            <nl></nl>
         </string>
         <string id="242">
             <en>WHERE</en>
@@ -1986,6 +2011,7 @@ Note: You can add new languages by inserting "<new_language>string translated in
             <cn>当</cn>
             <fr>où</fr>
             <bg>КЪДЕ</bg>
+            <nl></nl>
         </string>
         <string id="243">
             <en>like</en>
@@ -1994,6 +2020,7 @@ Note: You can add new languages by inserting "<new_language>string translated in
             <cn>类似于</cn>
             <fr>comme</fr>
             <bg>подобно</bg>
+            <nl></nl>
         </string>
         <string id="244">
             <en>not like</en>
@@ -2002,6 +2029,7 @@ Note: You can add new languages by inserting "<new_language>string translated in
             <cn>不类似于</cn>
             <fr>pas comme</fr>
             <bg>не е подобно</bg>
+            <nl></nl>
         </string>
         <string id="245">
             <en>Test id. Read only variable.</en>
@@ -2010,6 +2038,7 @@ Note: You can add new languages by inserting "<new_language>string translated in
             <cn>测试id。只读变量。</cn>
             <fr>ID de la session du test. Variable en lecture seulement.</fr>
             <bg>ID на теста. Чети само променливите.</bg>
+            <nl></nl>
         </string>
         <string id="246">
             <en>Test session id. Read only variable.</en>
@@ -2018,6 +2047,7 @@ Note: You can add new languages by inserting "<new_language>string translated in
             <cn>测试章节id。只读变量。</cn>
             <fr>DANS LE TABLEAU</fr>
             <bg>ID на теста. Чети само променливите.</bg>
+            <nl></nl>
         </string>
         <string id="248">
             <en>insert</en>
@@ -2026,6 +2056,7 @@ Note: You can add new languages by inserting "<new_language>string translated in
             <cn>插入</cn>
             <fr>Rafraîchir</fr>
             <bg>вмъкни</bg>
+            <nl></nl>
         </string>
         <string id="249">
             <en>update</en>
