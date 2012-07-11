@@ -27,7 +27,7 @@ class Language
     public static function string($id)
     {
         //return str_replace('"', "&quot;", str_replace("'", "&#039;", self::$dictionary[$id]));
-        return addcslashes(self::$dictionary[$id],'"');
+        return (isset(self::$dictionary[$id])?addcslashes(self::$dictionary[$id],'"'):"[string:$id]");
         //return addcslashes(self::$dictionary[$id],'"');
     }
 

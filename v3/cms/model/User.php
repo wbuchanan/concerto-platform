@@ -469,7 +469,7 @@ class User extends OModule {
         if(!mysql_query($sql)) return false;
         $user = User::from_mysql_id(1);
         $user->password = $user->calculate_raw_password_hash("admin");
-        $user->mysql_save();
+        return $user->mysql_save();
     }
 
 }
