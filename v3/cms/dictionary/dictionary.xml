@@ -3730,6 +3730,7 @@ Note: You can add new languages by inserting "<new_language>string translated in
             <cn></cn>
             <fr></fr>
             <bg></bg>
+            <nl></nl>
         </string>
         <string id="450" js="1">
             <en>Are you sure you want to convert this section type to lower level R code section? After doing so you won't be able to revert back. Only saved changes will be converted to lower level R code.</en>
@@ -3738,6 +3739,7 @@ Note: You can add new languages by inserting "<new_language>string translated in
             <cn></cn>
             <fr></fr>
             <bg></bg>
+            <nl></nl>
         </string>
         <string id="451">
             <en>forum</en>
@@ -3746,6 +3748,7 @@ Note: You can add new languages by inserting "<new_language>string translated in
             <cn></cn>
             <fr></fr>
             <bg></bg>
+            <nl></nl>
         </string>
         <string id="452">
             <en>contact us</en>
@@ -3754,6 +3757,7 @@ Note: You can add new languages by inserting "<new_language>string translated in
             <cn></cn>
             <fr></fr>
             <bg></bg>
+            <nl></nl>
         </string>
         <string id="453">
             <en>project homepage</en>
@@ -3762,6 +3766,7 @@ Note: You can add new languages by inserting "<new_language>string translated in
             <cn></cn>
             <fr></fr>
             <bg></bg>
+            <nl></nl>
         </string>
     </strings>
 </root> 
