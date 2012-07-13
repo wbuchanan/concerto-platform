@@ -31,29 +31,6 @@ Setup.currentDBStep = -1;
 Setup.maxDBStep = 0;
     
 Setup.initialize=function(){
-    Setup.steps = [
-    Setup.checkConcertoVersion,
-    Setup.checkPHPVersion,
-    Setup.checkPHPSafeModeVersion,
-    Setup.checkPHPMagicQuotes,
-    Setup.checkPHPShortOpenTags,
-    Setup.checkMySQLConnection,
-    Setup.checkMySQLDBConnection,
-    Setup.checkDBStructure,
-    Setup.checkRscript,
-    Setup.checkRVersion,
-    Setup.checkPHPPath,
-    Setup.checkRPath,
-    Setup.checkMediaDirWritable,
-    Setup.checkSocksDirWritable,
-    Setup.checkTempDirWritable,
-    Setup.checkFilesDirWritable,
-    Setup.checkCacheDirWritable,
-    Setup.checkCatRRPackage,
-    Setup.checkSessionRPackage,
-    Setup.checkRMySQLRPackage
-    ];
-    Setup.maxStep = Setup.steps.length;
     $("#divSetupProgressBar").progressbar();
     $("#divSetupDBProgressBar").progressbar();
 }
@@ -68,7 +45,7 @@ Setup.run=function(){
         Setup.success();
         return;
     }
-    Setup.steps[Setup.currentStep].call(this);
+    Setup.steps[Setup.currentStep].check();
 }
 
 Setup.updateProgressBar=function(title,db){
@@ -109,502 +86,34 @@ Setup.insertCheckRow=function(title,db){
     }
 }
 
-Setup.check=function(check,success,failure){
+Setup.check=function(obj,check,success,failure){
+    if(check=="concerto_version"){
+        Methods.checkLatestVersion(function(isNewerVersion,version){
+            if(isNewerVersion==1) failure.call(obj,version);
+            else success.call(obj,version);
+        },"../cms/lib/jfeed/proxy.php");
+        return;
+    }
+    
+    if(check=="getDBSteps"){
+        Setup.getDBSteps(obj,success,failure);
+        return;
+    }
+    
     $.post("Setup.php",{
         check:check
     },function(data){
         switch(data.result){
             case 0:{
-                success.call(this,data.param);
+                success.call(obj,data.param);
                 break;
             }
             default:{
-                failure.call(this,data.param);
+                failure.call(obj,data.param);
                 break;
             }
         }
     },"json");
-}
-
-//Concerto version
-Setup.checkConcertoVersion=function(){
-    var title = "Check for the latest <b>Concerto Platform</b> version";
-    Setup.insertCheckRow(title);
-    Setup.updateProgressBar(title);
-    
-    Methods.checkLatestVersion(function(isNewerVersion,version){
-        if(isNewerVersion==1) Setup.checkConcertoVersionFailure.call(this);
-        else Setup.checkConcertoVersionSuccess.call(this,version);
-    },"../cms/lib/jfeed/proxy.php");
-}
-Setup.checkConcertoVersionFailure=function(version){
-    $("#col-"+Setup.currentStep+"-1").removeClass("ui-state-highlight");
-    $("#col-"+Setup.currentStep+"-1").addClass("ui-state-error");
-    
-    $("#col-"+Setup.currentStep+"-1").html("newer version is available: <b>v"+version+"</b>. Your current version <b>v"+Methods.currentVersion+"</b> <b style='color:red;'>IS OUTDATED</b>");
-    $("#col-"+Setup.currentStep+"-2").html("You can find the latest version at the link below:<br/><a href='http://code.google.com/p/concerto-platform'>http://code.google.com/p/concerto-platform</a>");
-    Setup.run();
-    
-}
-Setup.checkConcertoVersionSuccess=function(){
-    $("#col-"+Setup.currentStep+"-1").html("your current version: <b>v"+Methods.currentVersion+"</b> <b style='color:green;'>IS UP TO DATE</b>");
-    Setup.run();
-}
-
-//PHP version
-Setup.checkPHPVersion=function(){
-    var title = "PHP version at least <b>v5.3</b>";
-    Setup.insertCheckRow(title);
-    Setup.updateProgressBar(title);
-    
-    Setup.check("php_version_check",Setup.checkPHPVersionSuccess,Setup.checkPHPVersionFailure);
-}
-Setup.checkPHPVersionFailure=function(version){
-    $("#col-"+Setup.currentStep+"-1").removeClass("ui-state-highlight");
-    $("#col-"+Setup.currentStep+"-1").addClass("ui-state-error");
-    
-    $("#col-"+Setup.currentStep+"-1").html("your PHP version: <b>"+version+" - <b style='color:red;'>FAILED</b>");
-    $("#col-"+Setup.currentStep+"-2").html("Update your PHP to v5.3 or higher.");
-    
-    Setup.continueSteps = false;
-    Setup.run();
-    
-}
-Setup.checkPHPVersionSuccess=function(version){
-    $("#col-"+Setup.currentStep+"-1").html("your PHP version: <b>"+version+" - <b style='color:green;'>PASSED</b>");
-    Setup.run();
-}
-
-//PHP safe mode
-Setup.checkPHPSafeModeVersion=function(){
-    var title = "PHP <b>'safe mode'</b> must be turned <b>OFF</b>";
-    Setup.insertCheckRow(title);
-    Setup.updateProgressBar(title);
-    
-    Setup.check("php_safe_mode_check",Setup.checkPHPSafeModeVersionSuccess,Setup.checkPHPSafeModeVersionFailure);
-}
-Setup.checkPHPSafeModeVersionFailure=function(value){
-    $("#col-"+Setup.currentStep+"-1").removeClass("ui-state-highlight");
-    $("#col-"+Setup.currentStep+"-1").addClass("ui-state-error");
-    
-    $("#col-"+Setup.currentStep+"-1").html("your PHP <b>'safe mode'</b> is turned <b>ON</b> - <b style='color:red;'>FAILED</b>");
-    $("#col-"+Setup.currentStep+"-2").html("Ask your server administrator to turn PHP 'safe mode' OFF.");
-    
-    Setup.continueSteps = false;
-    Setup.run();
-    
-}
-Setup.checkPHPSafeModeVersionSuccess=function(value){
-    $("#col-"+Setup.currentStep+"-1").html("your PHP <b>'safe mode'</b> is turned <b>OFF</b> - <b style='color:green;'>PASSED</b>");
-    Setup.run();
-}
-
-//PHP magic quotes
-Setup.checkPHPMagicQuotes=function(){
-    var title = "PHP <b>'magic quotes'</b> must be turned <b>OFF</b>";
-    Setup.insertCheckRow(title);
-    Setup.updateProgressBar(title);
-    
-    Setup.check("php_magic_quotes_check",Setup.checkPHPMagicQuotesSuccess,Setup.checkPHPMagicQuotesFailure);
-}
-Setup.checkPHPMagicQuotesFailure=function(value){
-    $("#col-"+Setup.currentStep+"-1").removeClass("ui-state-highlight");
-    $("#col-"+Setup.currentStep+"-1").addClass("ui-state-error");
-    
-    $("#col-"+Setup.currentStep+"-1").html("your PHP <b>'magic quotes'</b> is turned <b>ON</b> - <b style='color:red;'>FAILED</b>");
-    $("#col-"+Setup.currentStep+"-2").html("Ask your server administrator to turn PHP 'magic quotes' OFF.");
-    
-    Setup.continueSteps = false;
-    Setup.run();
-    
-}
-Setup.checkPHPMagicQuotesSuccess=function(value){
-    $("#col-"+Setup.currentStep+"-1").html("your PHP <b>'magic quotes'</b> is turned <b>OFF</b> - <b style='color:green;'>PASSED</b>");
-    Setup.run();
-}
-
-//PHP short open tags
-Setup.checkPHPShortOpenTags=function(){
-    var title = "PHP <b>'short open tag'</b> must be turned <b>ON</b>";
-    Setup.insertCheckRow(title);
-    Setup.updateProgressBar(title);
-    
-    Setup.check("php_short_open_tag_check",Setup.checkPHPShortOpenTagsSuccess,Setup.checkPHPShortOpenTagsFailure);
-}
-Setup.checkPHPShortOpenTagsFailure=function(value){
-    $("#col-"+Setup.currentStep+"-1").removeClass("ui-state-highlight");
-    $("#col-"+Setup.currentStep+"-1").addClass("ui-state-error");
-    
-    $("#col-"+Setup.currentStep+"-1").html("your PHP <b>'short open tag'</b> is turned <b>OFF</b> - <b style='color:red;'>FAILED</b>");
-    $("#col-"+Setup.currentStep+"-2").html("Ask your server administrator to turn PHP 'short open tag' ON.");
-    
-    Setup.continueSteps = false;
-    Setup.run();
-    
-}
-Setup.checkPHPShortOpenTagsSuccess=function(value){
-    $("#col-"+Setup.currentStep+"-1").html("your PHP <b>'short open tag'</b> is turned <b>ON</b> - <b style='color:green;'>PASSED</b>");
-    Setup.run();
-}
-
-//mysql connection
-Setup.checkMySQLConnection=function(){
-    var title = "<b>MySQL</b> connection test";
-    Setup.insertCheckRow(title);
-    Setup.updateProgressBar(title);
-    
-    Setup.check("mysql_connection_check",Setup.checkMySQLConnectionSuccess,Setup.checkMySQLConnectionFailure);
-}
-Setup.checkMySQLConnectionFailure=function(value){
-    $("#col-"+Setup.currentStep+"-1").removeClass("ui-state-highlight");
-    $("#col-"+Setup.currentStep+"-1").addClass("ui-state-error");
-    
-    $("#col-"+Setup.currentStep+"-1").html(value+" <b>CAN'T CONNECT</b> - <b style='color:red;'>FAILED</b>");
-    $("#col-"+Setup.currentStep+"-2").html("Set <b>db_host, db_port, db_user, db_password</b> in /SETTINGS.php file.");
-    
-    Setup.continueSteps = false;
-    Setup.run();
-    
-}
-Setup.checkMySQLConnectionSuccess=function(value){
-    $("#col-"+Setup.currentStep+"-1").html(value+" <b>CONNECTED</b> - <b style='color:green;'>PASSED</b>");
-    Setup.run();
-}
-
-//mysql database
-Setup.checkMySQLDBConnection=function(){
-    var title = "<b>MySQL</b> database connection test";
-    Setup.insertCheckRow(title);
-    Setup.updateProgressBar(title);
-    
-    Setup.check("mysql_select_db_check",Setup.checkMySQLDBConnectionSuccess,Setup.checkMySQLDBConnectionFailure);
-}
-Setup.checkMySQLDBConnectionFailure=function(value){
-    $("#col-"+Setup.currentStep+"-1").removeClass("ui-state-highlight");
-    $("#col-"+Setup.currentStep+"-1").addClass("ui-state-error");
-    
-    $("#col-"+Setup.currentStep+"-1").html("<b>MySQL</b> database <b>"+value+"</b> <b>IS NOT CONNECTABLE</b> - <b style='color:red;'>FAILED</b>");
-    $("#col-"+Setup.currentStep+"-2").html("Set <b>db_name</b> in <b>/SETTINGS.php</b> file. Check if database name is correct and if it is - check if MySQL user has required permissions to access this database.");
-    
-    Setup.continueSteps = false;
-    Setup.run();
-    
-}
-Setup.checkMySQLDBConnectionSuccess=function(value){
-    $("#col-"+Setup.currentStep+"-1").html("<b>MySQL</b> database <b>"+value+"</b> <b>IS CONNECTABLE</b> - <b style='color:green;'>PASSED</b>");
-    Setup.run();
-}
-
-//Rscript check
-Setup.checkRscript=function(){
-    var title = "<b>Rscript</b> file path must be set.";
-    Setup.insertCheckRow(title);
-    Setup.updateProgressBar(title);
-    
-    Setup.check("rscript_check",Setup.checkRscriptSuccess,Setup.checkRscriptFailure);
-}
-Setup.checkRscriptFailure=function(value){
-    $("#col-"+Setup.currentStep+"-1").removeClass("ui-state-highlight");
-    $("#col-"+Setup.currentStep+"-1").addClass("ui-state-error");
-    
-    $("#col-"+Setup.currentStep+"-1").html("your <b>Rscript</b> file path: <b>"+value+"</b> <b>DOESN'T EXISTS</b> - <b style='color:red;'>FAILED</b>");
-    $("#col-"+Setup.currentStep+"-2").html("Rscript file path not set, set incorrectly or unaccesible to PHP.<br/>Usually the Rscript file path is <b>/usr/bin/Rscript</b>. Set your Rscript path in <b>/SETTINGS.php</b> file.");
-    
-    Setup.continueSteps = false;
-    Setup.run();
-    
-}
-Setup.checkRscriptSuccess=function(value){
-    $("#col-"+Setup.currentStep+"-1").html("your <b>Rscript</b> file path: <b>"+value+"</b> <b>EXISTS</b> - <b style='color:green;'>PASSED</b>");
-    Setup.run();
-}
-
-//R version check
-Setup.checkRVersion=function(){
-    var title = "R version installed must be at least <b>v2.12</b> .";
-    Setup.insertCheckRow(title);
-    Setup.updateProgressBar(title);
-    
-    Setup.check("r_version_check",Setup.checkRVersionSuccess,Setup.checkRVersionFailure);
-}
-Setup.checkRVersionFailure=function(value){
-    $("#col-"+Setup.currentStep+"-1").removeClass("ui-state-highlight");
-    $("#col-"+Setup.currentStep+"-1").addClass("ui-state-error");
-    
-    $("#col-"+Setup.currentStep+"-1").html("your <b>R</b> version is: <b>v"+value+"</b> <b>INCORRECT</b> - <b style='color:red;'>FAILED</b>");
-    $("#col-"+Setup.currentStep+"-2").html("Please update your R installation to version <b>v2.12</b> at least.");
-    
-    Setup.continueSteps = false;
-    Setup.run();
-    
-}
-Setup.checkRVersionSuccess=function(value){
-    $("#col-"+Setup.currentStep+"-1").html("your <b>R</b> version is: <b>v"+value+"</b> <b>CORRECT</b> - <b style='color:green;'>PASSED</b>");
-    Setup.run();
-}
-
-//php.exe check
-Setup.checkPHPPath=function(){
-    var title = "<b>PHP</b> executable file path must be set.";
-    Setup.insertCheckRow(title);
-    Setup.updateProgressBar(title);
-    
-    Setup.check("php_exe_path_check",Setup.checkPHPPathSuccess,Setup.checkPHPPathFailure);
-}
-Setup.checkPHPPathFailure=function(value){
-    $("#col-"+Setup.currentStep+"-1").removeClass("ui-state-highlight");
-    $("#col-"+Setup.currentStep+"-1").addClass("ui-state-error");
-    
-    $("#col-"+Setup.currentStep+"-1").html("your <b>PHP</b> executable file path: <b>"+value+"</b> <b>DOESN'T EXIST</b> - <b style='color:red;'>FAILED</b>");
-    $("#col-"+Setup.currentStep+"-2").html("PHP executable file path not set, set incorrectly or unaccesible to PHP.<br/>Usually the PHP executable file path is <b>/usr/bin/php</b>. Set your PHP executable path in <b>/SETTINGS.php</b> file.");
-    
-    Setup.continueSteps = false;
-    Setup.run();
-    
-}
-Setup.checkPHPPathSuccess=function(value){
-    $("#col-"+Setup.currentStep+"-1").html("your <b>PHP</b> executable file path: <b>"+value+"</b> <b>EXIST</b> - <b style='color:green;'>PASSED</b>");
-    Setup.run();
-}
-
-//R.exe check
-Setup.checkRPath=function(){
-    var title = "<b>R</b> executable file path must be set.";
-    Setup.insertCheckRow(title);
-    Setup.updateProgressBar(title);
-    
-    Setup.check("R_exe_path_check",Setup.checkRPathSuccess,Setup.checkRPathFailure);
-}
-Setup.checkRPathFailure=function(value){
-    $("#col-"+Setup.currentStep+"-1").removeClass("ui-state-highlight");
-    $("#col-"+Setup.currentStep+"-1").addClass("ui-state-error");
-    
-    $("#col-"+Setup.currentStep+"-1").html("your <b>R</b> executable file path: <b>"+value+"</b> <b>DOESN'T EXIST</b> - <b style='color:red;'>FAILED</b>");
-    $("#col-"+Setup.currentStep+"-2").html("R executable file path not set, set incorrectly or unaccesible to PHP.<br/>Usually the R executable file path is <b>/usr/bin/R</b>. Set your R executable path in <b>/SETTINGS.php</b> file.");
-    
-    Setup.continueSteps = false;
-    Setup.run();
-    
-}
-Setup.checkRPathSuccess=function(value){
-    $("#col-"+Setup.currentStep+"-1").html("your <b>R</b> executable file path: <b>"+value+"</b> <b>EXIST</b> - <b style='color:green;'>PASSED</b>");
-    Setup.run();
-}
-
-//media dir writable
-Setup.checkMediaDirWritable=function(){
-    var title = "<b>media</b> directory path must be writable";
-    Setup.insertCheckRow(title);
-    Setup.updateProgressBar(title);
-    
-    Setup.check("media_directory_writable_check",Setup.checkMediaDirWritableSuccess,Setup.checkMediaDirWritableFailure);
-}
-Setup.checkMediaDirWritableFailure=function(value){
-    $("#col-"+Setup.currentStep+"-1").removeClass("ui-state-highlight");
-    $("#col-"+Setup.currentStep+"-1").addClass("ui-state-error");
-    
-    $("#col-"+Setup.currentStep+"-1").html("your <b>media</b> directory: <b>"+value+"</b> <b>IS NOT WRITABLE</b> - <b style='color:red;'>FAILED</b>");
-    $("#col-"+Setup.currentStep+"-2").html("Set <b>media</b> directory rigths to 0777.");
-    
-    Setup.continueSteps = false;
-    Setup.run();
-    
-}
-Setup.checkMediaDirWritableSuccess=function(value){
-    $("#col-"+Setup.currentStep+"-1").html("your <b>media</b> directory: <b>"+value+"</b> <b>IS WRITABLE</b> - <b style='color:green;'>PASSED</b>");
-    Setup.run();
-}
-
-//socks dir writable
-Setup.checkSocksDirWritable=function(){
-    var title = "<b>socks</b> directory path must be writable";
-    Setup.insertCheckRow(title);
-    Setup.updateProgressBar(title);
-    
-    Setup.check("socks_directory_writable_check",Setup.checkSocksDirWritableSuccess,Setup.checkSocksDirWritableFailure);
-}
-Setup.checkSocksDirWritableFailure=function(value){
-    $("#col-"+Setup.currentStep+"-1").removeClass("ui-state-highlight");
-    $("#col-"+Setup.currentStep+"-1").addClass("ui-state-error");
-    
-    $("#col-"+Setup.currentStep+"-1").html("your <b>socks</b> directory: <b>"+value+"</b> <b>IS NOT WRITABLE</b> - <b style='color:red;'>FAILED</b>");
-    $("#col-"+Setup.currentStep+"-2").html("Set <b>socks</b> directory rigths to 0777.");
-    
-    Setup.continueSteps = false;
-    Setup.run();
-    
-}
-Setup.checkSocksDirWritableSuccess=function(value){
-    $("#col-"+Setup.currentStep+"-1").html("your <b>socks</b> directory: <b>"+value+"</b> <b>IS WRITABLE</b> - <b style='color:green;'>PASSED</b>");
-    Setup.run();
-}
-
-//temp dir writable
-Setup.checkTempDirWritable=function(){
-    var title = "<b>temp</b> directory path must be writable";
-    Setup.insertCheckRow(title);
-    Setup.updateProgressBar(title);
-    
-    Setup.check("temp_directory_writable_check",Setup.checkTempDirWritableSuccess,Setup.checkTempDirWritableFailure);
-}
-Setup.checkTempDirWritableFailure=function(value){
-    $("#col-"+Setup.currentStep+"-1").removeClass("ui-state-highlight");
-    $("#col-"+Setup.currentStep+"-1").addClass("ui-state-error");
-    
-    $("#col-"+Setup.currentStep+"-1").html("your <b>temp</b> directory: <b>"+value+"</b> <b>IS NOT WRITABLE</b> - <b style='color:red;'>FAILED</b>");
-    $("#col-"+Setup.currentStep+"-2").html("Set <b>temp</b> directory rigths to 0777.");
-    
-    Setup.continueSteps = false;
-    Setup.run();
-    
-}
-Setup.checkTempDirWritableSuccess=function(value){
-    $("#col-"+Setup.currentStep+"-1").html("your <b>temp</b> directory: <b>"+value+"</b> <b>IS WRITABLE</b> - <b style='color:green;'>PASSED</b>");
-    Setup.run();
-}
-
-//files dir writable
-Setup.checkFilesDirWritable=function(){
-    var title = "<b>files</b> directory path must be writable";
-    Setup.insertCheckRow(title);
-    Setup.updateProgressBar(title);
-    
-    Setup.check("files_directory_writable_check",Setup.checkFilesDirWritableSuccess,Setup.checkFilesDirWritableFailure);
-}
-Setup.checkFilesDirWritableFailure=function(value){
-    $("#col-"+Setup.currentStep+"-1").removeClass("ui-state-highlight");
-    $("#col-"+Setup.currentStep+"-1").addClass("ui-state-error");
-    
-    $("#col-"+Setup.currentStep+"-1").html("your <b>files</b> directory: <b>"+value+"</b> <b>IS NOT WRITABLE</b> - <b style='color:red;'>FAILED</b>");
-    $("#col-"+Setup.currentStep+"-2").html("Set <b>files</b> directory rigths to 0777.");
-    
-    Setup.continueSteps = false;
-    Setup.run();
-    
-}
-Setup.checkFilesDirWritableSuccess=function(value){
-    $("#col-"+Setup.currentStep+"-1").html("your <b>files</b> directory: <b>"+value+"</b> <b>IS WRITABLE</b> - <b style='color:green;'>PASSED</b>");
-    Setup.run();
-}
-
-//cache dir writable
-Setup.checkCacheDirWritable=function(){
-    var title = "<b>media cache</b> directory path must be writable";
-    Setup.insertCheckRow(title);
-    Setup.updateProgressBar(title);
-    
-    Setup.check("cache_directory_writable_check",Setup.checkCacheDirWritableSuccess,Setup.checkCacheDirWritableFailure);
-}
-Setup.checkCacheDirWritableFailure=function(value){
-    $("#col-"+Setup.currentStep+"-1").removeClass("ui-state-highlight");
-    $("#col-"+Setup.currentStep+"-1").addClass("ui-state-error");
-    
-    $("#col-"+Setup.currentStep+"-1").html("your <b>media cache</b> directory: <b>"+value+"</b> <b>IS NOT WRITABLE</b> - <b style='color:red;'>FAILED</b>");
-    $("#col-"+Setup.currentStep+"-2").html("Set <b>media cache</b> directory rigths to 0777.");
-    
-    Setup.continueSteps = false;
-    Setup.run();
-    
-}
-Setup.checkCacheDirWritableSuccess=function(value){
-    $("#col-"+Setup.currentStep+"-1").html("your <b>media cache</b> directory: <b>"+value+"</b> <b>IS WRITABLE</b> - <b style='color:green;'>PASSED</b>");
-    Setup.run();
-}
-
-//catR R package
-Setup.checkCatRRPackage=function(){
-    var title = "<b>catR</b> R package must be installed.";
-    Setup.insertCheckRow(title);
-    Setup.updateProgressBar(title);
-    
-    Setup.check("catR_r_package_check",Setup.checkCatRRPackageSuccess,Setup.checkCatRRPackageFailure);
-}
-Setup.checkCatRRPackageFailure=function(value){
-    $("#col-"+Setup.currentStep+"-1").removeClass("ui-state-highlight");
-    $("#col-"+Setup.currentStep+"-1").addClass("ui-state-error");
-    
-    $("#col-"+Setup.currentStep+"-1").html("<b>catR</b> package <b>IS NOT INSTALLED</b> - <b style='color:red;'>FAILED</b>");
-    $("#col-"+Setup.currentStep+"-2").html("Install <b>catR</b> package to main R library directory.");
-    
-    Setup.continueSteps = false;
-    Setup.run();
-    
-}
-Setup.checkCatRRPackageSuccess=function(value){
-    $("#col-"+Setup.currentStep+"-1").html("<b>catR</b> package <b>IS INSTALLED</b> - <b style='color:green;'>PASSED</b>");
-    Setup.run();
-}
-
-//session R package
-Setup.checkSessionRPackage=function(){
-    var title = "<b>session</b> R package must be installed.";
-    Setup.insertCheckRow(title);
-    Setup.updateProgressBar(title);
-    
-    Setup.check("session_r_package_check",Setup.checkSessionRPackageSuccess,Setup.checkSessionRPackageFailure);
-}
-Setup.checkSessionRPackageFailure=function(value){
-    $("#col-"+Setup.currentStep+"-1").removeClass("ui-state-highlight");
-    $("#col-"+Setup.currentStep+"-1").addClass("ui-state-error");
-    
-    $("#col-"+Setup.currentStep+"-1").html("<b>session</b> package <b>IS NOT INSTALLED</b> - <b style='color:red;'>FAILED</b>");
-    $("#col-"+Setup.currentStep+"-2").html("Install <b>session</b> package to main R library directory.");
-    
-    Setup.continueSteps = false;
-    Setup.run();
-    
-}
-Setup.checkSessionRPackageSuccess=function(value){
-    $("#col-"+Setup.currentStep+"-1").html("<b>session</b> package <b>IS INSTALLED</b> - <b style='color:green;'>PASSED</b>");
-    Setup.run();
-}
-
-//RMySQL R package
-Setup.checkRMySQLRPackage=function(){
-    var title = "<b>RMySQL</b> R package must be installed.";
-    Setup.insertCheckRow(title);
-    Setup.updateProgressBar(title);
-    
-    Setup.check("RMySQL_r_package_check",Setup.checkRMySQLRPackageSuccess,Setup.checkRMySQLRPackageFailure);
-}
-Setup.checkRMySQLRPackageFailure=function(value){
-    $("#col-"+Setup.currentStep+"-1").removeClass("ui-state-highlight");
-    $("#col-"+Setup.currentStep+"-1").addClass("ui-state-error");
-    
-    $("#col-"+Setup.currentStep+"-1").html("<b>RMySQL</b> package <b>IS NOT INSTALLED</b> - <b style='color:red;'>FAILED</b>");
-    $("#col-"+Setup.currentStep+"-2").html("Install <b>RMySQL</b> package to main R library directory.");
-    
-    Setup.continueSteps = false;
-    Setup.run();
-    
-}
-Setup.checkRMySQLRPackageSuccess=function(value){
-    $("#col-"+Setup.currentStep+"-1").html("<b>RMySQL</b> package <b>IS INSTALLED</b> - <b style='color:green;'>PASSED</b>");
-    Setup.run();
-}
-
-//mysql database structure
-Setup.checkDBStructure=function(){
-    var title = "<b>MySQL</b> database tables structure test";
-    Setup.insertCheckRow(title);
-    Setup.updateProgressBar(title);
-    
-    Setup.getDBSteps();
-}
-Setup.checkDBStructureFailure=function(){
-    $("#col-"+Setup.currentStep+"-1").removeClass("ui-state-highlight");
-    $("#col-"+Setup.currentStep+"-1").addClass("ui-state-error");
-    
-    $("#col-"+Setup.currentStep+"-1").html("<b>MySQL</b> database tables structure <b>IS NOT CORRECT</b> - <b style='color:red;'>FAILED</b>");
-    $("#col-"+Setup.currentStep+"-2").html("Setup application was unable to create valid database structure. Please restore database from the backup and revert Concerto to previous version.");
-    
-    Setup.continueSteps = false;
-    Setup.run();
-    
-}
-Setup.checkDBStructureSuccess=function(){
-    $("#col-"+Setup.currentStep+"-1").html("<b>MySQL</b> database tables structure <b>IS CORRECT</b> - <b style='color:green;'>PASSED</b>");
-    Setup.run();
 }
 
 Setup.versions = [];
@@ -612,7 +121,7 @@ Setup.create_db = false;
 Setup.validate_column_names = false;
 Setup.repopulate_TestTemplate = false;
 Setup.recalculate_hash = false;
-Setup.getDBSteps=function(){
+Setup.getDBSteps=function(obj,success,failure){
     $.post("Setup.php",{
         check:"get_db_update_steps_count"
     },function(data){
@@ -629,18 +138,18 @@ Setup.getDBSteps=function(){
         Setup.repopulate_TestTemplate = data.repopulate_TestTemplate;
         Setup.recalculate_hash = data.recalculate_hash;
         
-        Setup.runDB();
+        Setup.runDB(obj,success,failure);
     },"json");
 }
 
-Setup.runDB=function(){
+Setup.runDB=function(obj,success,failure){
     if(!Setup.continueDBSteps) {
-        Setup.failureDB();
+        Setup.failureDB(obj,failure);
         return;
     }
     Setup.currentDBStep++;
     if(Setup.currentDBStep==Setup.maxDBStep) {
-        Setup.successDB();
+        Setup.successDB(obj,success);
         return;
     }
     
@@ -674,18 +183,18 @@ Setup.runDB=function(){
     };
 }
 
-Setup.failureDB=function(){
+Setup.failureDB=function(obj,failure){
     $("#tdLoadingDBStep").css("visibility","hidden");
     $("#tdCurrentDBStep").html("<font style='color:red'><b>failed to finish</b></font>");
     
-    Setup.checkDBStructureFailure();
+    failure.call(obj);
 }
 
-Setup.successDB=function(){
+Setup.successDB=function(obj,success){
     $("#tdLoadingDBStep").css("visibility","hidden");
     $("#tdCurrentDBStep").html("<font style='color:green'><b>finished successfuly</b></font>");
     
-    Setup.checkDBStructureSuccess();
+    success.call(obj);
 }
 
 //version update
@@ -892,3 +401,233 @@ Setup.checkCreateDBFailure=function(){
     Setup.continueDBSteps = false;
     Setup.runDB();
 }
+
+function SetupStep(db,title,method,successCaption,failureCaption,failureReccomendation,required,successCallback,failureCallback){
+    this.db = false;
+    if(db!=null) this.db = db;
+    this.title = "";
+    if(title!=null) this.title = title;
+    this.method = "";
+    if(method!=null) this.method = method;
+    this.successCaption = "";
+    if(successCaption!=null) this.successCaption = successCaption;
+    this.failureCaption = "";
+    if(failureCaption!=null) this.failureCaption = failureCaption;
+    this.failureReccomendation = "";
+    if(failureReccomendation!=null) this.failureReccomendation = failureReccomendation;
+    this.required = true;
+    if(required!=null) this.required = required;
+    this.successCallback = function(){};
+    if(successCallback!=null) this.successCallback = successCallback;
+    this.failureCallback = function(){}
+    if(failureCallback!=null) this.failureCallback = failureCallback;
+    
+    this.check=function(){
+        Setup.insertCheckRow(this.title,this.db);
+        Setup.updateProgressBar(this.title,this.db);
+        
+        Setup.check(this,this.method, this.success, this.failure)
+    }
+    
+    this.success=function(param){
+        $("#col"+(this.db?"DB":"")+"-"+(this.db?Setup.currentDBStep:Setup.currentStep)+"-1").html(this.successCaption.format(param));
+        if(this.db){
+            Setup.runDB();
+        } else {
+            Setup.run();
+        }
+        this.successCallback();
+    }
+    
+    this.failure=function(param){
+        $("#col"+(this.db?"DB":"")+"-"+(this.db?Setup.currentDBStep:Setup.currentStep)+"-1").removeClass("ui-state-highlight");
+        $("#col"+(this.db?"DB":"")+"-"+(this.db?Setup.currentDBStep:Setup.currentStep)+"-1").addClass("ui-state-error");
+    
+        $("#col"+(this.db?"DB":"")+"-"+(this.db?Setup.currentDBStep:Setup.currentStep)+"-1").html(this.failureCaption.format(param));
+        $("#col"+(this.db?"DB":"")+"-"+(this.db?Setup.currentDBStep:Setup.currentStep)+"-2").html(this.failureReccomendation.format(param));
+    
+        if(this.db){
+            Setup.continueDBSteps = !this.required;
+            Setup.runDB();
+        } else {
+            Setup.continueSteps = !this.required;
+            Setup.run();
+        }
+        this.failureCallback();
+    }
+}
+
+Setup.steps = [
+    new SetupStep(
+        false,
+        "Check for the latest <b>Concerto Platform</b> version",
+        "concerto_version",
+        "your current version: <b>v{0}</b> <b style='color:green;'>IS UP TO DATE</b>",
+        "newer version is available: <b>v{0}</b>. Your current version <b style='color:red;'>IS OUTDATED</b>",
+        "You can find the latest version at the link below:<br/><a href='http://code.google.com/p/concerto-platform'>http://code.google.com/p/concerto-platform</a>",
+        false
+        ),
+    new SetupStep(
+        false,
+        "PHP version at least <b>v5.3</b>",
+        "php_version_check",
+        "your PHP version: <b>{0}</b> - <b style='color:green;'>PASSED</b>",
+        "your PHP version: <b>{0}</b> - <b style='color:red;'>FAILED</b>",
+        "Update your PHP to v5.3 or higher.",
+        true     
+        ),
+    new SetupStep(
+        false,
+        "PHP <b>'safe mode'</b> must be turned <b>OFF</b>",
+        "php_safe_mode_check",
+        "your PHP <b>'safe mode'</b> is turned <b>OFF</b> - <b style='color:green;'>PASSED</b>",
+        "your PHP <b>'safe mode'</b> is turned <b>ON</b> - <b style='color:red;'>FAILED</b>",
+        "Ask your server administrator to turn PHP 'safe mode' OFF.",
+        true     
+        ),
+    new SetupStep(
+        false,
+        "PHP <b>'magic quotes'</b> must be turned <b>OFF</b>",
+        "php_magic_quotes_check",
+        "your PHP <b>'magic quotes'</b> is turned <b>OFF</b> - <b style='color:green;'>PASSED</b>",
+        "your PHP <b>'magic quotes'</b> is turned <b>ON</b> - <b style='color:red;'>FAILED</b>",
+        "Ask your server administrator to turn PHP 'magic quotes' OFF.",
+        true     
+        ),
+    new SetupStep(
+        false,
+        "PHP <b>'short open tags'</b> must be turned <b>ON</b>",
+        "php_short_open_tag_check",
+        "your PHP <b>'short open tags'</b> is turned <b>ON</b> - <b style='color:green;'>PASSED</b>",
+        "your PHP <b>'short open tags'</b> is turned <b>OFF</b> - <b style='color:red;'>FAILED</b>",
+        "Ask your server administrator to turn PHP 'short open tags' ON.",
+        true     
+        ),
+    new SetupStep(
+        false,
+        "<b>MySQL</b> connection test",
+        "mysql_connection_check",
+        "{0} <b>CONNECTED</b> - <b style='color:green;'>PASSED</b>",
+        "{0} <b>CAN'T CONNECT</b> - <b style='color:red;'>FAILED</b>",
+        "Set <b>db_host, db_port, db_user, db_password</b> in /SETTINGS.php file.",
+        true     
+        ),
+    new SetupStep(
+        false,
+        "<b>MySQL</b> database connection test",
+        "mysql_select_db_check",
+        "<b>MySQL</b> database <b>{0}</b> <b>IS CONNECTABLE</b> - <b style='color:green;'>PASSED</b>",
+        "<b>MySQL</b> database <b>{0}</b> <b>IS NOT CONNECTABLE</b> - <b style='color:red;'>FAILED</b>",
+        "Set <b>db_name</b> in <b>/SETTINGS.php</b> file. Check if database name is correct and if it is - check if MySQL user has required permissions to access this database.",
+        true     
+        ),
+    new SetupStep(
+        false,
+        "<b>MySQL</b> database tables structure test",
+        "getDBSteps",
+        "<b>MySQL</b> database tables structure <b>IS CORRECT</b> - <b style='color:green;'>PASSED</b>",
+        "<b>MySQL</b> database tables structure <b>IS NOT CORRECT</b> - <b style='color:red;'>FAILED</b>",
+        "Setup application was unable to create valid database structure. Please restore database from the backup and revert Concerto to previous version.",
+        true     
+        ),
+    new SetupStep(
+        false,
+        "<b>Rscript</b> file path must be set.",
+        "rscript_check",
+        "your <b>Rscript</b> file path: <b>{0}</b> <b>EXISTS</b> - <b style='color:green;'>PASSED</b>",
+        "your <b>Rscript</b> file path: <b>{0}</b> <b>DOESN'T EXISTS</b> - <b style='color:red;'>FAILED</b>",
+        "Rscript file path not set, set incorrectly or unaccesible to PHP.<br/>Usually the Rscript file path is <b>/usr/bin/Rscript</b>. Set your Rscript path in <b>/SETTINGS.php</b> file.",
+        true     
+        ),
+    new SetupStep(
+        false,
+        "<b>PHP</b> executable file path must be set.",
+        "php_exe_path_check",
+        "your <b>PHP</b> executable file path: <b>{0}</b> <b>EXIST</b> - <b style='color:green;'>PASSED</b>",
+        "your <b>PHP</b> executable file path: <b>{0}</b> <b>DOESN'T EXIST</b> - <b style='color:red;'>FAILED</b>",
+        "PHP executable file path not set, set incorrectly or unaccesible to PHP.<br/>Usually the PHP executable file path is <b>/usr/bin/php</b>. Set your PHP executable path in <b>/SETTINGS.php</b> file.",
+        true     
+        ),
+    new SetupStep(
+        false,
+        "<b>R</b> executable file path must be set.",
+        "R_exe_path_check",
+        "your <b>R</b> executable file path: <b>{0}</b> <b>EXIST</b> - <b style='color:green;'>PASSED</b>",
+        "your <b>R</b> executable file path: <b>{0}</b> <b>DOESN'T EXIST</b> - <b style='color:red;'>FAILED</b>",
+        "R executable file path not set, set incorrectly or unaccesible to PHP.<br/>Usually the R executable file path is <b>/usr/bin/R</b>. Set your R executable path in <b>/SETTINGS.php</b> file.",
+        true     
+        ),
+    new SetupStep(
+        false,
+        "<b>media</b> directory path must be writable",
+        "media_directory_writable_check",
+        "your <b>media</b> directory: <b>{0}</b> <b>IS WRITABLE</b> - <b style='color:green;'>PASSED</b>",
+        "your <b>media</b> directory: <b>{0}</b> <b>IS NOT WRITABLE</b> - <b style='color:red;'>FAILED</b>",
+        "Set <b>media</b> directory rigths to 0777.",
+        true     
+        ),
+    new SetupStep(
+        false,
+        "<b>socks</b> directory path must be writable",
+        "socks_directory_writable_check",
+        "your <b>socks</b> directory: <b>{0}</b> <b>IS WRITABLE</b> - <b style='color:green;'>PASSED</b>",
+        "your <b>socks</b> directory: <b>{0}</b> <b>IS NOT WRITABLE</b> - <b style='color:red;'>FAILED</b>",
+        "Set <b>socks</b> directory rigths to 0777.",
+        true     
+        ),
+    new SetupStep(
+        false,
+        "<b>temp</b> directory path must be writable",
+        "temp_directory_writable_check",
+        "your <b>temp</b> directory: <b>{0}</b> <b>IS WRITABLE</b> - <b style='color:green;'>PASSED</b>",
+        "your <b>temp</b> directory: <b>{0}</b> <b>IS NOT WRITABLE</b> - <b style='color:red;'>FAILED</b>",
+        "Set <b>temp</b> directory rigths to 0777.",
+        true     
+        ),
+    new SetupStep(
+        false,
+        "<b>files</b> directory path must be writable",
+        "files_directory_writable_check",
+        "your <b>files</b> directory: <b>{0}</b> <b>IS WRITABLE</b> - <b style='color:green;'>PASSED</b>",
+        "your <b>files</b> directory: <b>{0}</b> <b>IS NOT WRITABLE</b> - <b style='color:red;'>FAILED</b>",
+        "Set <b>files</b> directory rigths to 0777.",
+        true     
+        ),
+    new SetupStep(
+        false,
+        "<b>cache</b> directory path must be writable",
+        "cache_directory_writable_check",
+        "your <b>cache</b> directory: <b>{0}</b> <b>IS WRITABLE</b> - <b style='color:green;'>PASSED</b>",
+        "your <b>cache</b> directory: <b>{0}</b> <b>IS NOT WRITABLE</b> - <b style='color:red;'>FAILED</b>",
+        "Set <b>cache</b> directory rigths to 0777.",
+        true     
+        ),
+    new SetupStep(
+        false,
+        "<b>catR</b> R package must be installed.",
+        "catR_r_package_check",
+        "<b>catR</b> package <b>IS INSTALLED</b> - <b style='color:green;'>PASSED</b>",
+        "<b>catR</b> package <b>IS NOT INSTALLED</b> - <b style='color:red;'>FAILED</b>",
+        "Install <b>catR</b> package to main R library directory.",
+        true     
+        ),
+    new SetupStep(
+        false,
+        "<b>session</b> R package must be installed.",
+        "session_r_package_check",
+        "<b>session</b> package <b>IS INSTALLED</b> - <b style='color:green;'>PASSED</b>",
+        "<b>session</b> package <b>IS NOT INSTALLED</b> - <b style='color:red;'>FAILED</b>",
+        "Install <b>session</b> package to main R library directory.",
+        true     
+        ),
+    new SetupStep(
+        false,
+        "<b>RMySQL</b> R package must be installed.",
+        "RMySQL_r_package_check",
+        "<b>RMySQL</b> package <b>IS INSTALLED</b> - <b style='color:green;'>PASSED</b>",
+        "<b>RMySQL</b> package <b>IS NOT INSTALLED</b> - <b style='color:red;'>FAILED</b>",
+        "Install <b>RMySQL</b> package to main R library directory.",
+        true     
+        )
+    ];
+Setup.maxStep = Setup.steps.length;
