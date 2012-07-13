@@ -60,6 +60,7 @@ class TableColumn extends OTable {
         $sql = sprintf("SELECT * FROM `TableColumn`");
         $z = mysql_query($sql);
         while ($r = mysql_fetch_array($z)) {
+            set_time_limit(0);
             $table = Table::from_mysql_id($r['Table_id']);
             if ($table == null)
                 continue;

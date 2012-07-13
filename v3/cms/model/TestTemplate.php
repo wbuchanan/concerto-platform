@@ -57,6 +57,7 @@ class TestTemplate extends OTable {
         $sql = "SELECT * FROM `TestSection`";
         $z = mysql_query($sql);
         while ($r = mysql_fetch_array($z)) {
+            set_time_limit(0);
             if ($r['TestSectionType_id'] == DS_TestSectionType::LOAD_HTML_TEMPLATE) {
                 $ts = TestSection::from_mysql_id($r['id']);
                 $vals = $ts->get_values();

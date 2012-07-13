@@ -428,6 +428,7 @@ class Setup {
                 $sql = sprintf("SELECT `TestSection`.`id`, `TestSection`.`TestSectionType_id` FROM `TestSection` WHERE `TestSectionType_id` IN (%d,%d,%d)", DS_TestSectionType::LOAD_HTML_TEMPLATE, DS_TestSectionType::SET_VARIABLE, DS_TestSectionType::CUSTOM);
                 $z = mysql_query($sql);
                 while ($r = mysql_fetch_array($z)) {
+                    set_time_limit(0);
                     switch ($r[1]) {
                         case DS_TestSectionType::LOAD_HTML_TEMPLATE: {
                                 $params_count = 0;

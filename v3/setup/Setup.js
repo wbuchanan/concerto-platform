@@ -100,9 +100,13 @@ Setup.check=function(obj,check,success,failure){
         return;
     }
     
-    $.post("Setup.php",{
+    var jqXHR = $.post("Setup.php",{
         check:check
     },function(data){
+        if(data.result==undefined){
+            obj.error(jqXHR.responseText);
+            return;
+        }
         switch(data.result){
             case 0:{
                 success.call(obj,data.param);
@@ -113,7 +117,9 @@ Setup.check=function(obj,check,success,failure){
                 break;
             }
         }
-    },"json");
+    },"json").error(function(data){
+        obj.error(jqXHR.responseText);
+    });
 }
 
 Setup.versions = [];
@@ -238,6 +244,23 @@ function SetupStep(db,title,method,successCaption,failureCaption,failureReccomen
             Setup.run();
         }
         this.successCallback();
+    }
+    
+    this.error=function(param){
+        $("#col"+(this.db?"DB":"")+"-"+(this.db?Setup.currentDBStep:Setup.currentStep)+"-1").removeClass("ui-state-highlight");
+        $("#col"+(this.db?"DB":"")+"-"+(this.db?Setup.currentDBStep:Setup.currentStep)+"-1").addClass("ui-state-error");
+    
+        $("#col"+(this.db?"DB":"")+"-"+(this.db?Setup.currentDBStep:Setup.currentStep)+"-1").html("Error encountered: {0}".format(param));
+        $("#col"+(this.db?"DB":"")+"-"+(this.db?Setup.currentDBStep:Setup.currentStep)+"-2").html("Please contact us about this problem.");
+    
+        if(this.db){
+            Setup.continueDBSteps = !this.required;
+            Setup.runDB();
+        } else {
+            Setup.continueSteps = !this.required;
+            Setup.run();
+        }
+        this.failureCallback();
     }
     
     this.failure=function(param){

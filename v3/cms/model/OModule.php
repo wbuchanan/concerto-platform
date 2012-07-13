@@ -165,6 +165,7 @@ class OModule extends OTable {
         $sql = "SELECT `id` FROM `CustomSection`";
         $z = mysql_query($sql);
         while ($r = mysql_fetch_array($z)) {
+            set_time_limit(0);
             $obj = CustomSection::from_mysql_id($r[0]);
             $obj->xml_hash = $obj->calculate_xml_hash();
             $obj->mysql_save();
@@ -174,6 +175,7 @@ class OModule extends OTable {
         $sql = "SELECT `id` FROM `Table`";
         $z = mysql_query($sql);
         while ($r = mysql_fetch_array($z)) {
+            set_time_limit(0);
             $obj = Table::from_mysql_id($r[0]);
             $obj->xml_hash = $obj->calculate_xml_hash();
             $obj->mysql_save();
@@ -183,6 +185,7 @@ class OModule extends OTable {
         $sql = "SELECT `id` FROM `Template`";
         $z = mysql_query($sql);
         while ($r = mysql_fetch_array($z)) {
+            set_time_limit(0);
             $obj = Template::from_mysql_id($r[0]);
             $obj->xml_hash = $obj->calculate_xml_hash();
             $obj->mysql_save();
@@ -192,6 +195,7 @@ class OModule extends OTable {
         $sql = "SELECT `id` FROM `Test`";
         $z = mysql_query($sql);
         while ($r = mysql_fetch_array($z)) {
+            set_time_limit(0);
             $obj = Test::from_mysql_id($r[0]);
             $obj->xml_hash = $obj->calculate_xml_hash();
             $obj->mysql_save();
