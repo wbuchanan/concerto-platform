@@ -63,6 +63,11 @@ class TableColumn extends OTable {
             $table = Table::from_mysql_id($r['Table_id']);
             if ($table == null)
                 continue;
+            if (!$table->has_table()) {
+                $table->mysql_delete();
+                continue;
+            }
+
             $table_name = $table->get_table_name();
 
             $type = "TEXT NOT NULL";
