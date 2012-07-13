@@ -122,6 +122,10 @@ Setup.validate_column_names = false;
 Setup.repopulate_TestTemplate = false;
 Setup.recalculate_hash = false;
 Setup.getDBSteps=function(obj,success,failure){
+    if(obj!=null) SetupStep.parentDBObj = obj;
+    if(success!=null) SetupStep.parentDBSuccess = success;
+    if(failure!=null) SetupStep.parentDBFailure = failure;
+    
     $.post("Setup.php",{
         check:"get_db_update_steps_count"
     },function(data){
@@ -138,18 +142,19 @@ Setup.getDBSteps=function(obj,success,failure){
         Setup.repopulate_TestTemplate = data.repopulate_TestTemplate;
         Setup.recalculate_hash = data.recalculate_hash;
         
-        Setup.runDB(obj,success,failure);
+        Setup.runDB();
     },"json");
 }
 
-Setup.runDB=function(obj,success,failure){
+Setup.runDB=function(){
+
     if(!Setup.continueDBSteps) {
-        Setup.failureDB(obj,failure);
+        Setup.failureDB();
         return;
     }
     Setup.currentDBStep++;
     if(Setup.currentDBStep==Setup.maxDBStep) {
-        Setup.successDB(obj,success);
+        Setup.successDB();
         return;
     }
     
@@ -157,249 +162,44 @@ Setup.runDB=function(obj,success,failure){
     if(Setup.create_db){
         offset = 1;
         if(Setup.currentDBStep==0) {
-            Setup.checkCreateDB();
+            Setup.createDBStep.check();
             return;
         }
     }
     
     if(Setup.currentDBStep<Setup.versions.length+offset) {
-        Setup.checkDatabaseUpdate(Setup.versions[Setup.currentDBStep-offset]);
+        Setup.updateDBStep.check(Setup.versions[Setup.currentDBStep-offset]);
     } else {
         if(Setup.validate_column_names){
             Setup.validate_column_names=false;
-            Setup.checkDatabaseValidateColumnNames();
+            Setup.validateColumnsDBStep.check();
             return;
         }
         if(Setup.repopulate_TestTemplate){
             Setup.repopulate_TestTemplate=false;
-            Setup.checkDatabaseRepopulateTestTemplate();
+            Setup.repopulateTestTemplateDBStep.check();
             return;
         }
         if(Setup.recalculate_hash){
             Setup.recalculate_hash=false;
-            Setup.checkDatabaseRecalculateHash();
+            Setup.recalculateHashDBStep.check();
             return;
         }
     };
 }
 
-Setup.failureDB=function(obj,failure){
+Setup.failureDB=function(){
     $("#tdLoadingDBStep").css("visibility","hidden");
     $("#tdCurrentDBStep").html("<font style='color:red'><b>failed to finish</b></font>");
     
-    failure.call(obj);
+    SetupStep.parentDBFailure.call(SetupStep.parentDBObj);
 }
 
-Setup.successDB=function(obj,success){
+Setup.successDB=function(){
     $("#tdLoadingDBStep").css("visibility","hidden");
     $("#tdCurrentDBStep").html("<font style='color:green'><b>finished successfuly</b></font>");
     
-    success.call(obj);
-}
-
-//version update
-Setup.checkDatabaseUpdate=function(version){
-    var title = "<b>MySQL</b> database update to version <b>"+version+"</b>";
-    Setup.insertCheckRow(title,true);
-    Setup.updateProgressBar(title,true);
-    
-    $.post("Setup.php",{
-        check:"update_db"
-    },function(data){
-        switch(data.result){
-            case 0:{
-                Setup.checkDatabaseUpdateSuccess(Setup.versions[Setup.currentDBStep+(Setup.create_db?1:0)]);
-                break;
-            }
-            case 1:{
-                Setup.checkDatabaseUpdateFailure(version,data.msg);
-                break;
-            }
-            default:{
-                Setup.checkDatabaseUpdateFailure(version,data.msg);
-                break;
-            }
-        }
-    },"json");
-}
-Setup.checkDatabaseUpdateSuccess=function(version){
-    $("#colDB-"+Setup.currentDBStep+"-1").html("<b>MySQL</b> database update to <b>v"+version+"</b> - <b style='color:green;'>PASSED</b>");
-    Setup.runDB();
-}
-    
-Setup.checkDatabaseUpdateFailure=function(version,msg){
-    $("#colDB-"+Setup.currentDBStep+"-1").removeClass("ui-state-highlight");
-    $("#colDB-"+Setup.currentDBStep+"-1").addClass("ui-state-error");
-    
-    $("#colDB-"+Setup.currentDBStep+"-1").html("<b>MySQL</b> database update to <b>v"+version+"</b> failed with '<b>"+msg+"</b>' - <b style='color:red;'>FAILED</b>");
-    $("#colDB-"+Setup.currentDBStep+"-2").html("Setup application was unable to create valid database structure.");
-    
-    Setup.continueDBSteps = false;
-    Setup.runDB();
-}
-
-//validate_column_names
-Setup.checkDatabaseValidateColumnNames=function(){
-    var title = "<b>MySQL</b> database - validate column names";
-    Setup.insertCheckRow(title,true);
-    Setup.updateProgressBar(title,true);
-    
-    $.post("Setup.php",{
-        check:"update_db_validate_column_names"
-    },function(data){
-        switch(data.result){
-            case 0:{
-                Setup.checkDatabaseValidateColumnNamesSuccess();
-                break;
-            }
-            case 1:{
-                Setup.checkDatabaseValidateColumnNamesFailure();
-                break;
-            }
-            default:{
-                Setup.checkDatabaseValidateColumnNamesFailure();
-                break;
-            }
-        }
-    },"json");
-}
-Setup.checkDatabaseValidateColumnNamesSuccess=function(){
-    $("#colDB-"+Setup.currentDBStep+"-1").html("<b>MySQL</b> database update - validate column names - <b style='color:green;'>PASSED</b>");
-    Setup.runDB();
-}
-    
-Setup.checkDatabaseValidateColumnNamesFailure=function(){
-    $("#colDB-"+Setup.currentDBStep+"-1").removeClass("ui-state-highlight");
-    $("#colDB-"+Setup.currentDBStep+"-1").addClass("ui-state-error");
-    
-    $("#colDB-"+Setup.currentDBStep+"-1").html("<b>MySQL</b> database - validate column names - <b style='color:red;'>FAILED</b>");
-    $("#colDB-"+Setup.currentDBStep+"-2").html("Setup application was unable to validate column names.");
-    
-    Setup.continueDBSteps = false;
-    Setup.runDB();
-}
-
-//repopulate_TestTemplate
-Setup.checkDatabaseRepopulateTestTemplate=function(){
-    var title = "<b>MySQL</b> database - repopulate TestTemplate";
-    Setup.insertCheckRow(title,true);
-    Setup.updateProgressBar(title,true);
-    
-    $.post("Setup.php",{
-        check:"update_db_repopulate_TestTemplate"
-    },function(data){
-        switch(data.result){
-            case 0:{
-                Setup.checkDatabaseRepopulateTestTemplateSuccess();
-                break;
-            }
-            case 1:{
-                Setup.checkDatabaseRepopulateTestTemplateFailure();
-                break;
-            }
-            default:{
-                Setup.checkDatabaseRepopulateTestTemplateFailure();
-                break;
-            }
-        }
-    },"json");
-}
-Setup.checkDatabaseRepopulateTestTemplateSuccess=function(){
-    $("#colDB-"+Setup.currentDBStep+"-1").html("<b>MySQL</b> database update - repopulate TestTemplate - <b style='color:green;'>PASSED</b>");
-    Setup.runDB();
-}
-    
-Setup.checkDatabaseRepopulateTestTemplateFailure=function(){
-    $("#colDB-"+Setup.currentDBStep+"-1").removeClass("ui-state-highlight");
-    $("#colDB-"+Setup.currentDBStep+"-1").addClass("ui-state-error");
-    
-    $("#colDB-"+Setup.currentDBStep+"-1").html("<b>MySQL</b> database - repopulate TestTemplate - <b style='color:red;'>FAILED</b>");
-    $("#colDB-"+Setup.currentDBStep+"-2").html("Setup application was unable to repopulate TestTemplate.");
-    
-    Setup.continueDBSteps = false;
-    Setup.runDB();
-}
-
-//recalculate_hash
-Setup.checkDatabaseRecalculateHash=function(){
-    var title = "<b>MySQL</b> database - recalculate hash";
-    Setup.insertCheckRow(title,true);
-    Setup.updateProgressBar(title,true);
-    
-    $.post("Setup.php",{
-        check:"update_db_recalculate_hash"
-    },function(data){
-        switch(data.result){
-            case 0:{
-                Setup.checkDatabaseRecalculateHashSuccess();
-                break;
-            }
-            case 1:{
-                Setup.checkDatabaseRecalculateHashFailure();
-                break;
-            }
-            default:{
-                Setup.checkDatabaseRecalculateHashFailure();
-                break;
-            }
-        }
-    },"json");
-}
-Setup.checkDatabaseRecalculateHashSuccess=function(){
-    $("#colDB-"+Setup.currentDBStep+"-1").html("<b>MySQL</b> database update - recalculate hash - <b style='color:green;'>PASSED</b>");
-    Setup.runDB();
-}
-    
-Setup.checkDatabaseRecalculateHashFailure=function(){
-    $("#colDB-"+Setup.currentDBStep+"-1").removeClass("ui-state-highlight");
-    $("#colDB-"+Setup.currentDBStep+"-1").addClass("ui-state-error");
-    
-    $("#colDB-"+Setup.currentDBStep+"-1").html("<b>MySQL</b> database - recalculate hash - <b style='color:red;'>FAILED</b>");
-    $("#colDB-"+Setup.currentDBStep+"-2").html("Setup application was unable to recalculate hash.");
-    
-    Setup.continueDBSteps = false;
-    Setup.runDB();
-}
-
-//create db
-Setup.checkCreateDB=function(){
-    var title = "<b>MySQL</b> database update - create missing tables";
-    Setup.insertCheckRow(title,true);
-    Setup.updateProgressBar(title,true);
-    
-    $.post("Setup.php",{
-        check:"create_db"
-    },function(data){
-        switch(data.result){
-            case 0:{
-                Setup.checkCreateDBSuccess();
-                break;
-            }
-            case 1:{
-                Setup.checkCreateDBFailure();
-                break;
-            }
-            default:{
-                Setup.checkCreateDBFailure();
-                break;
-            }
-        }
-    },"json");
-}
-Setup.checkCreateDBSuccess=function(){
-    $("#colDB-"+Setup.currentDBStep+"-1").html("<b>MySQL</b> database update - create  missing tables - <b style='color:green;'>PASSED</b>");
-    Setup.runDB();
-}
-    
-Setup.checkCreateDBFailure=function(){
-    $("#colDB-"+Setup.currentDBStep+"-1").removeClass("ui-state-highlight");
-    $("#colDB-"+Setup.currentDBStep+"-1").addClass("ui-state-error");
-    
-    $("#colDB-"+Setup.currentDBStep+"-1").html("<b>MySQL</b> database update - create missing tables - <b style='color:red;'>FAILED</b>");
-    $("#colDB-"+Setup.currentDBStep+"-2").html("Setup application was unable to create missing database tables.");
-    
-    Setup.continueDBSteps = false;
-    Setup.runDB();
+    SetupStep.parentDBSuccess.call(SetupStep.parentDBObj);
 }
 
 function SetupStep(db,title,method,successCaption,failureCaption,failureReccomendation,required,successCallback,failureCallback){
@@ -422,9 +222,10 @@ function SetupStep(db,title,method,successCaption,failureCaption,failureReccomen
     this.failureCallback = function(){}
     if(failureCallback!=null) this.failureCallback = failureCallback;
     
-    this.check=function(){
-        Setup.insertCheckRow(this.title,this.db);
-        Setup.updateProgressBar(this.title,this.db);
+    this.check=function(param){
+        if(param==null) param="";
+        Setup.insertCheckRow(this.title.format(param),this.db);
+        Setup.updateProgressBar(this.title.format(param),this.db);
         
         Setup.check(this,this.method, this.success, this.failure)
     }
@@ -456,6 +257,9 @@ function SetupStep(db,title,method,successCaption,failureCaption,failureReccomen
         this.failureCallback();
     }
 }
+SetupStep.parentDBObj=null;
+SetupStep.parentDBSuccess=null;
+SetupStep.parentDBFailure=null;
 
 Setup.steps = [
     new SetupStep(
@@ -631,3 +435,53 @@ Setup.steps = [
         )
     ];
 Setup.maxStep = Setup.steps.length;
+
+Setup.createDBStep = new SetupStep(
+    true,
+    "<b>MySQL</b> database update - create missing tables",
+    "create_db",
+    "<b>MySQL</b> database update - create  missing tables - <b style='color:green;'>PASSED</b>",
+    "<b>MySQL</b> database update - create missing tables - <b style='color:red;'>FAILED</b>",
+    "Setup application was unable to create missing database tables.",
+    true
+    );
+
+Setup.updateDBStep = new SetupStep(
+    true,
+    "<b>MySQL</b> database update to <b>v{0}</b>",
+    "update_db",
+    "<b>MySQL</b> database update to <b>v{0}</b> - <b style='color:green;'>PASSED</b>",
+    "<b>MySQL</b> database update failed with '<b>{0}</b>' - <b style='color:red;'>FAILED</b>",
+    "Setup application was unable to create valid database structure.",
+    true
+    );
+
+Setup.validateColumnsDBStep = new SetupStep(
+    true,
+    "<b>MySQL</b> database - validate column names",
+    "update_db_validate_column_names",
+    "<b>MySQL</b> database update - validate column names - <b style='color:green;'>PASSED</b>",
+    "<b>MySQL</b> database - validate column names - <b style='color:red;'>FAILED</b>",
+    "Setup application was unable to validate column names.",
+    true
+    );
+
+Setup.repopulateTestTemplateDBStep = new SetupStep(
+    true,
+    "<b>MySQL</b> database - repopulate TestTemplate",
+    "update_db_repopulate_TestTemplate",
+    "<b>MySQL</b> database update - repopulate TestTemplate - <b style='color:green;'>PASSED</b>",
+    "<b>MySQL</b> database - repopulate TestTemplate - <b style='color:red;'>FAILED</b>",
+    "Setup application was unable to repopulate TestTemplate.",
+    true
+    );
+
+Setup.recalculateHashDBStep = new SetupStep(
+    true,
+    "<b>MySQL</b> database - recalculate hash",
+    "update_db_recalculate_hash",
+    "<b>MySQL</b> database update - recalculate hash - <b style='color:green;'>PASSED</b>",
+    "<b>MySQL</b> database update - recalculate hash - <b style='color:red;'>FAILED</b>",
+    "Setup application was unable to recalculate hash.",
+    true
+    );

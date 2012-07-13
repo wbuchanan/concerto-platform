@@ -227,7 +227,7 @@ class Setup {
         exec('"' . Ini::$path_r_script . '" -e "library(session)"', $array, $return);
         return json_encode(array("result" => $return, "param" => "session"));
     }
-    
+
     public static function create_db_structure($simulate = false) {
         foreach (Ini::get_system_tables() as $table) {
             $sql = sprintf("SHOW TABLES LIKE '%s'", $table);
@@ -276,7 +276,7 @@ class Setup {
     public static function update_db($simulate = false, $only_recalculate_hash = false, $only_repopulate_TestTemplate = false, $only_validate_column_names = false, $only_create_db = false) {
         require '../Ini.php';
         $ini = new Ini();
-        
+
         if ($only_create_db) {
             return self::create_db_structure();
         }
@@ -315,7 +315,7 @@ class Setup {
                 if (mysql_num_rows($z) > 0) {
                     $sql = "ALTER TABLE `User` CHANGE `last_activity` `last_login` timestamp NOT NULL default '0000-00-00 00:00:00';";
                     if (!mysql_query($sql))
-                        return json_encode(array("result" => 1, "msg" => $sql));
+                        return json_encode(array("result" => 1, "param" => $sql));
                 }
 
                 //DS_TableColumnType - numeric split to integer and float
@@ -328,7 +328,7 @@ class Setup {
                                 if ($r['name'] != "integer") {
                                     $sql2 = "UPDATE `DS_TableColumnType` SET `name`='integer', value='integer' WHERE `id`=2";
                                     if (!mysql_query($sql2))
-                                        return json_encode(array("result" => 1, "msg" => $sql2));
+                                        return json_encode(array("result" => 1, "param" => $sql2));
                                 }
                                 break;
                             }
@@ -336,7 +336,7 @@ class Setup {
                                 if ($r['name'] != "float") {
                                     $sql2 = "UPDATE `DS_TableColumnType` SET `name`='float', value='float' WHERE `id`=3";
                                     if (!mysql_query($sql2))
-                                        return json_encode(array("result" => 1, "msg" => $sql2));
+                                        return json_encode(array("result" => 1, "param" => $sql2));
                                 }
                                 break;
                             }
@@ -345,7 +345,7 @@ class Setup {
                                 if ($r['name'] != "HTML") {
                                     $sql2 = "UPDATE `DS_TableColumnType` SET `name`='HTML', value='HTML' WHERE `id`=4";
                                     if (!mysql_query($sql2))
-                                        return json_encode(array("result" => 1, "msg" => $sql2));
+                                        return json_encode(array("result" => 1, "param" => $sql2));
                                 }
                                 break;
                             }
@@ -354,7 +354,7 @@ class Setup {
                 if (!$id_4_found) {
                     $sql2 = "INSERT INTO `DS_TableColumnType` SET `id`=4, `name`='HTML', value='HTML', `position`=4";
                     if (!mysql_query($sql2))
-                        return json_encode(array("result" => 1, "msg" => $sql2));
+                        return json_encode(array("result" => 1, "param" => $sql2));
                 }
 
                 //TableColumn - change numeric and float MySQL type
@@ -386,7 +386,7 @@ class Setup {
                     if ($r['TableColumnType_id'] == 3) {
                         $sql2 = sprintf("UPDATE `TableColumn` SET `TableColumnType_id`='%d' WHERE `id`='%d'", 4, $r['id']);
                         if (!mysql_query($sql2)) {
-                            return json_encode(array("result" => 1, "msg" => $sql2));
+                            return json_encode(array("result" => 1, "param" => $sql2));
                         }
                     }
 
@@ -401,12 +401,12 @@ class Setup {
 
                         $sql2 = sprintf("UPDATE `TableColumn` SET `name`='%s' WHERE `id`='%d'", $new_name, $r['id']);
                         if (!mysql_query($sql2)) {
-                            return json_encode(array("result" => 1, "msg" => $sql2));
+                            return json_encode(array("result" => 1, "param" => $sql2));
                         }
                     }
                 }
                 Setting::set_setting("version", "3.3.0");
-                return json_encode(array("result" => 0));
+                return json_encode(array("result" => 0, "param" => "3.3.0"));
             }
         }
 
@@ -421,7 +421,7 @@ class Setup {
                 if (mysql_num_rows($z) == 0) {
                     $sql = "ALTER TABLE `Test` ADD `session_count` bigint(20) NOT NULL;";
                     if (!mysql_query($sql))
-                        return json_encode(array("result" => 1, "msg" => $sql));
+                        return json_encode(array("result" => 1, "param" => $sql));
                 }
 
                 //TestSectionValue - indexes changes
@@ -446,11 +446,11 @@ class Setup {
                                 for ($i = 0; $i < $returns_count; $i++) {
                                     $sql2 = sprintf("DELETE FROM `%s` WHERE `TestSection_id`=%d AND `index` IN (%d,%d)", TestSectionValue::get_mysql_table(), $r[0], $delete_index, $delete_index + 1);
                                     if (!mysql_query($sql2))
-                                        return json_encode(array("result" => 1, "msg" => $sql2));
+                                        return json_encode(array("result" => 1, "param" => $sql2));
 
                                     $sql2 = sprintf("UPDATE `%s` SET `index`=`index`-2 WHERE `TestSection_id`=%d AND `index`>%d", TestSectionValue::get_mysql_table(), $r[0], $delete_index);
                                     if (!mysql_query($sql2))
-                                        return json_encode(array("result" => 1, "msg" => $sql2));
+                                        return json_encode(array("result" => 1, "param" => $sql2));
 
                                     $delete_index++;
                                 }
@@ -459,11 +459,11 @@ class Setup {
                         case DS_TestSectionType::SET_VARIABLE: {
                                 $sql2 = sprintf("DELETE FROM `%s` WHERE `TestSection_id`=%d AND `index` IN (4,5)", TestSectionValue::get_mysql_table(), $r[0]);
                                 if (!mysql_query($sql2))
-                                    return json_encode(array("result" => 1, "msg" => $sql2));
+                                    return json_encode(array("result" => 1, "param" => $sql2));
 
                                 $sql2 = sprintf("UPDATE `%s` SET `index`=`index`-2 WHERE `TestSection_id`=%d AND `index`>%d", TestSectionValue::get_mysql_table(), $r[0], 5);
                                 if (!mysql_query($sql2))
-                                    return json_encode(array("result" => 1, "msg" => $sql2));
+                                    return json_encode(array("result" => 1, "param" => $sql2));
                                 break;
                             }
                         case DS_TestSectionType::CUSTOM: {
@@ -487,11 +487,11 @@ class Setup {
                                 for ($i = 0; $i < $returns_count; $i++) {
                                     $sql2 = sprintf("DELETE FROM `%s` WHERE `TestSection_id`=%d AND `index` IN (%d,%d)", TestSectionValue::get_mysql_table(), $r[0], $delete_index, $delete_index + 1);
                                     if (!mysql_query($sql2))
-                                        return json_encode(array("result" => 1, "msg" => $sql2));
+                                        return json_encode(array("result" => 1, "param" => $sql2));
 
                                     $sql2 = sprintf("UPDATE `%s` SET `index`=`index`-2 WHERE `TestSection_id`=%d AND `index`>%d", TestSectionValue::get_mysql_table(), $r[0], $delete_index);
                                     if (!mysql_query($sql2))
-                                        return json_encode(array("result" => 1, "msg" => $sql2));
+                                        return json_encode(array("result" => 1, "param" => $sql2));
 
                                     $delete_index++;
                                 }
@@ -506,7 +506,7 @@ class Setup {
                 if (mysql_num_rows($z) == 0) {
                     $sql = "ALTER TABLE `TestSession` ADD `status` tinyint(4) NOT NULL default '0';";
                     if (!mysql_query($sql))
-                        return json_encode(array("result" => 1, "msg" => $sql));
+                        return json_encode(array("result" => 1, "param" => $sql));
                 }
 
                 $sql = "SHOW COLUMNS FROM `TestSession` WHERE `Field`='time_limit'";
@@ -514,7 +514,7 @@ class Setup {
                 if (mysql_num_rows($z) == 0) {
                     $sql = "ALTER TABLE `TestSession` ADD `time_limit` int(11) NOT NULL default '0';";
                     if (!mysql_query($sql))
-                        return json_encode(array("result" => 1, "msg" => $sql));
+                        return json_encode(array("result" => 1, "param" => $sql));
                 }
 
                 $sql = "SHOW COLUMNS FROM `TestSession` WHERE `Field`='HTML'";
@@ -522,7 +522,7 @@ class Setup {
                 if (mysql_num_rows($z) == 0) {
                     $sql = "ALTER TABLE `TestSession` ADD `HTML` text NOT NULL default '';";
                     if (!mysql_query($sql))
-                        return json_encode(array("result" => 1, "msg" => $sql));
+                        return json_encode(array("result" => 1, "param" => $sql));
                 }
 
                 $sql = "SHOW COLUMNS FROM `TestSession` WHERE `Field`='Template_id'";
@@ -530,7 +530,7 @@ class Setup {
                 if (mysql_num_rows($z) == 0) {
                     $sql = "ALTER TABLE `TestSession` ADD `Template_id` bigint(20) NOT NULL default '0';";
                     if (!mysql_query($sql))
-                        return json_encode(array("result" => 1, "msg" => $sql));
+                        return json_encode(array("result" => 1, "param" => $sql));
                 }
 
                 $sql = "SHOW COLUMNS FROM `TestSession` WHERE `Field`='time_tamper_prevention'";
@@ -538,7 +538,7 @@ class Setup {
                 if (mysql_num_rows($z) == 0) {
                     $sql = "ALTER TABLE  `TestSession` ADD  `time_tamper_prevention` INT NOT NULL;";
                     if (!mysql_query($sql))
-                        return json_encode(array("result" => 1, "msg" => $sql));
+                        return json_encode(array("result" => 1, "param" => $sql));
                 }
 
                 $sql = "SHOW COLUMNS FROM `TestSession` WHERE `Field`='hash'";
@@ -546,7 +546,7 @@ class Setup {
                 if (mysql_num_rows($z) == 0) {
                     $sql = "ALTER TABLE `TestSession` ADD `hash` text NOT NULL default '';";
                     if (!mysql_query($sql))
-                        return json_encode(array("result" => 1, "msg" => $sql));
+                        return json_encode(array("result" => 1, "param" => $sql));
                 }
 
                 $sql = "SHOW COLUMNS FROM `TestSession` WHERE `Field`='r_type'";
@@ -554,11 +554,11 @@ class Setup {
                 if (mysql_num_rows($z) == 0) {
                     $sql = "ALTER TABLE  `TestSession` ADD  `r_type` TINYINT( 1 ) NOT NULL;";
                     if (!mysql_query($sql))
-                        return json_encode(array("result" => 1, "msg" => $sql));
+                        return json_encode(array("result" => 1, "param" => $sql));
                 }
 
                 Setting::set_setting("version", "3.4.0");
-                return json_encode(array("result" => 0));
+                return json_encode(array("result" => 0, "param" => "3.4.0"));
             }
         }
 
@@ -573,11 +573,11 @@ class Setup {
                 if (mysql_num_rows($z) == 0) {
                     $sql = "ALTER TABLE `TestSession` ADD `Template_TestSection_id` bigint(20) NOT NULL default '0';";
                     if (!mysql_query($sql))
-                        return json_encode(array("result" => 1, "msg" => $sql));
+                        return json_encode(array("result" => 1, "param" => $sql));
                 }
 
                 Setting::set_setting("version", "3.4.1");
-                return json_encode(array("result" => 0));
+                return json_encode(array("result" => 0, "param" => "3.4.1"));
             }
         }
 
@@ -592,7 +592,7 @@ class Setup {
                 if (mysql_num_rows($z) == 0) {
                     $sql = "ALTER TABLE `TestSection` ADD `end` tinyint(1) NOT NULL default '0';";
                     if (!mysql_query($sql))
-                        return json_encode(array("result" => 1, "msg" => $sql));
+                        return json_encode(array("result" => 1, "param" => $sql));
                 }
 
                 //TestSession - added new fields
@@ -601,7 +601,7 @@ class Setup {
                 if (mysql_num_rows($z) == 0) {
                     $sql = "ALTER TABLE `TestSession` ADD `debug` tinyint(1) NOT NULL default '0';";
                     if (!mysql_query($sql))
-                        return json_encode(array("result" => 1, "msg" => $sql));
+                        return json_encode(array("result" => 1, "param" => $sql));
                 }
 
                 $sql = "SHOW COLUMNS FROM `TestSession` WHERE `Field`='release'";
@@ -609,7 +609,7 @@ class Setup {
                 if (mysql_num_rows($z) == 0) {
                     $sql = "ALTER TABLE `TestSession` ADD `release` tinyint(1) NOT NULL default '0';";
                     if (!mysql_query($sql))
-                        return json_encode(array("result" => 1, "msg" => $sql));
+                        return json_encode(array("result" => 1, "param" => $sql));
                 }
 
                 $sql = "SHOW COLUMNS FROM `TestSession` WHERE `Field`='serialized'";
@@ -617,11 +617,11 @@ class Setup {
                 if (mysql_num_rows($z) == 0) {
                     $sql = "ALTER TABLE `TestSession` ADD `serialized` tinyint(1) NOT NULL default '0';";
                     if (!mysql_query($sql))
-                        return json_encode(array("result" => 1, "msg" => $sql));
+                        return json_encode(array("result" => 1, "param" => $sql));
                 }
 
                 Setting::set_setting("version", "3.4.3");
-                return json_encode(array("result" => 0));
+                return json_encode(array("result" => 0, "param" => "3.4.3"));
             }
         }
 
@@ -636,7 +636,7 @@ class Setup {
                 if (mysql_num_rows($z) == 0) {
                     $sql = "ALTER TABLE `Table` ADD `description` text NOT NULL;";
                     if (!mysql_query($sql))
-                        return json_encode(array("result" => 1, "msg" => $sql));
+                        return json_encode(array("result" => 1, "param" => $sql));
                 }
 
                 //TableColumn - fix Timestamp fields names
@@ -645,15 +645,15 @@ class Setup {
                 if (mysql_num_rows($z) == 2) {
                     $sql = "ALTER TABLE `TableColumn` CHANGE `created` `updated_temp` TIMESTAMP ON UPDATE CURRENT_TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP;";
                     if (!mysql_query($sql)) {
-                        return json_encode(array("result" => 1, "msg" => $sql));
+                        return json_encode(array("result" => 1, "param" => $sql));
                     }
                     $sql = "ALTER TABLE `TableColumn` CHANGE `udpated` `created` TIMESTAMP NOT NULL DEFAULT  '0000-00-00 00:00:00';";
                     if (!mysql_query($sql)) {
-                        return json_encode(array("result" => 1, "msg" => $sql));
+                        return json_encode(array("result" => 1, "param" => $sql));
                     }
                     $sql = "ALTER TABLE `TableColumn` CHANGE `updated_temp` `updated` TIMESTAMP ON UPDATE CURRENT_TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP;";
                     if (!mysql_query($sql)) {
-                        return json_encode(array("result" => 1, "msg" => $sql));
+                        return json_encode(array("result" => 1, "param" => $sql));
                     }
                 }
 
@@ -663,7 +663,7 @@ class Setup {
                 if (mysql_num_rows($z) == 0) {
                     $sql = "ALTER TABLE `Template` ADD `description` text NOT NULL;";
                     if (!mysql_query($sql))
-                        return json_encode(array("result" => 1, "msg" => $sql));
+                        return json_encode(array("result" => 1, "param" => $sql));
                 }
 
                 //Test - added description field
@@ -672,7 +672,7 @@ class Setup {
                 if (mysql_num_rows($z) == 0) {
                     $sql = "ALTER TABLE `Test` ADD `description` text NOT NULL;";
                     if (!mysql_query($sql))
-                        return json_encode(array("result" => 1, "msg" => $sql));
+                        return json_encode(array("result" => 1, "param" => $sql));
                 }
 
                 //TestSection - fix Timestamp fields
@@ -681,15 +681,15 @@ class Setup {
                 if (mysql_num_rows($z) == 2) {
                     $sql = "ALTER TABLE `TestSection` CHANGE `created` `updated_temp` TIMESTAMP ON UPDATE CURRENT_TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP;";
                     if (!mysql_query($sql)) {
-                        return json_encode(array("result" => 1, "msg" => $sql));
+                        return json_encode(array("result" => 1, "param" => $sql));
                     }
                     $sql = "ALTER TABLE `TestSection` CHANGE `updated` `created` TIMESTAMP NOT NULL DEFAULT  '0000-00-00 00:00:00';";
                     if (!mysql_query($sql)) {
-                        return json_encode(array("result" => 1, "msg" => $sql));
+                        return json_encode(array("result" => 1, "param" => $sql));
                     }
                     $sql = "ALTER TABLE `TestSection` CHANGE `updated_temp` `updated` TIMESTAMP ON UPDATE CURRENT_TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP;";
                     if (!mysql_query($sql)) {
-                        return json_encode(array("result" => 1, "msg" => $sql));
+                        return json_encode(array("result" => 1, "param" => $sql));
                     }
                 }
 
@@ -699,20 +699,20 @@ class Setup {
                 if (mysql_num_rows($z) == 2) {
                     $sql = "ALTER TABLE `TestSectionValue` CHANGE `created` `updated_temp` TIMESTAMP ON UPDATE CURRENT_TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP;";
                     if (!mysql_query($sql)) {
-                        return json_encode(array("result" => 1, "msg" => $sql));
+                        return json_encode(array("result" => 1, "param" => $sql));
                     }
                     $sql = "ALTER TABLE `TestSectionValue` CHANGE `updated` `created` TIMESTAMP NOT NULL DEFAULT  '0000-00-00 00:00:00';";
                     if (!mysql_query($sql)) {
-                        return json_encode(array("result" => 1, "msg" => $sql));
+                        return json_encode(array("result" => 1, "param" => $sql));
                     }
                     $sql = "ALTER TABLE `TestSectionValue` CHANGE `updated_temp` `updated` TIMESTAMP ON UPDATE CURRENT_TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP;";
                     if (!mysql_query($sql)) {
-                        return json_encode(array("result" => 1, "msg" => $sql));
+                        return json_encode(array("result" => 1, "param" => $sql));
                     }
                 }
 
                 Setting::set_setting("version", "3.5.0");
-                return json_encode(array("result" => 0));
+                return json_encode(array("result" => 0, "param" => "3.5.0"));
             }
         }
 
@@ -727,11 +727,11 @@ class Setup {
                 if (mysql_num_rows($z) > 0) {
                     $sql = "ALTER TABLE `TestSession` CHANGE `r_typ` `r_type` tinyint(1) NOT NULL default '0';";
                     if (!mysql_query($sql))
-                        return json_encode(array("result" => 1, "msg" => $sql));
+                        return json_encode(array("result" => 1, "param" => $sql));
                 }
 
                 Setting::set_setting("version", "3.5.2");
-                return json_encode(array("result" => 0));
+                return json_encode(array("result" => 0, "param" => "3.5.2"));
             }
         }
 
@@ -746,7 +746,7 @@ class Setup {
                     return json_encode(array("result" => 1, "msg" => $sql));
                 $sql = "INSERT INTO `DS_TestSectionType` SET `id`=11, `name`='test inclusion', `value`='11', `position`=11;";
                 if (!mysql_query($sql))
-                    return json_encode(array("result" => 1, "msg" => $sql));
+                    return json_encode(array("result" => 1, "param" => $sql));
 
                 //Template - added head field
                 $sql = "SHOW COLUMNS FROM `Template` WHERE `Field`='head'";
@@ -754,11 +754,11 @@ class Setup {
                 if (mysql_num_rows($z) == 0) {
                     $sql = "ALTER TABLE `Template` ADD `head` text NOT NULL;";
                     if (!mysql_query($sql))
-                        return json_encode(array("result" => 1, "msg" => $sql));
+                        return json_encode(array("result" => 1, "param" => $sql));
                 }
 
                 Setting::set_setting("version", "3.6.0");
-                return json_encode(array("result" => 0));
+                return json_encode(array("result" => 0, "param" => "3.6.0"));
             }
         }
 
@@ -773,7 +773,7 @@ class Setup {
                 if (mysql_num_rows($z) == 0) {
                     $sql = "ALTER TABLE `CustomSection` ADD `xml_hash` text NOT NULL;";
                     if (!mysql_query($sql))
-                        return json_encode(array("result" => 1, "msg" => $sql));
+                        return json_encode(array("result" => 1, "param" => $sql));
                 }
 
                 //Table - added xml_hash
@@ -782,7 +782,7 @@ class Setup {
                 if (mysql_num_rows($z) == 0) {
                     $sql = "ALTER TABLE `Table` ADD `xml_hash` text NOT NULL;";
                     if (!mysql_query($sql))
-                        return json_encode(array("result" => 1, "msg" => $sql));
+                        return json_encode(array("result" => 1, "param" => $sql));
                 }
 
                 //Template - added xml_hash
@@ -791,7 +791,7 @@ class Setup {
                 if (mysql_num_rows($z) == 0) {
                     $sql = "ALTER TABLE `Template` ADD `xml_hash` text NOT NULL;";
                     if (!mysql_query($sql))
-                        return json_encode(array("result" => 1, "msg" => $sql));
+                        return json_encode(array("result" => 1, "param" => $sql));
                 }
 
                 //Test - added xml_hash
@@ -800,11 +800,11 @@ class Setup {
                 if (mysql_num_rows($z) == 0) {
                     $sql = "ALTER TABLE `Test` ADD `xml_hash` text NOT NULL;";
                     if (!mysql_query($sql))
-                        return json_encode(array("result" => 1, "msg" => $sql));
+                        return json_encode(array("result" => 1, "param" => $sql));
                 }
 
                 Setting::set_setting("version", "3.6.2");
-                return json_encode(array("result" => 0));
+                return json_encode(array("result" => 0, "param" => "3.6.2"));
             }
         }
 
@@ -819,7 +819,7 @@ class Setup {
                 if (mysql_num_rows($z) == 0) {
                     $sql = "ALTER TABLE `User` ADD `UserInstitutionType_id` int(11) NOT NULL;";
                     if (!mysql_query($sql))
-                        return json_encode(array("result" => 1, "msg" => $sql));
+                        return json_encode(array("result" => 1, "param" => $sql));
                 }
 
                 $sql = "SHOW COLUMNS FROM `User` WHERE `Field`='institution_name'";
@@ -827,16 +827,16 @@ class Setup {
                 if (mysql_num_rows($z) == 0) {
                     $sql = "ALTER TABLE `User` ADD `institution_name` text NOT NULL;";
                     if (!mysql_query($sql))
-                        return json_encode(array("result" => 1, "msg" => $sql));
+                        return json_encode(array("result" => 1, "param" => $sql));
                 }
 
                 //UserType - changed Sharing_id of standard user type to public
                 $sql = "UPDATE `UserType` SET `Sharing_id`=3 WHERE `id`=4;";
                 if (!mysql_query($sql))
-                    return json_encode(array("result" => 1, "msg" => $sql));
+                    return json_encode(array("result" => 1, "param" => $sql));
 
                 Setting::set_setting("version", "3.6.7");
-                return json_encode(array("result" => 0));
+                return json_encode(array("result" => 0, "param" => "3.6.7"));
             }
         }
 
@@ -892,7 +892,7 @@ class Setup {
                     }
                 }
                 Setting::set_setting("version", "3.6.8");
-                return json_encode(array("result" => 0));
+                return json_encode(array("result" => 0, "param" => "3.6.8"));
             }
 
             $validate_column_names = true;
@@ -911,11 +911,11 @@ class Setup {
                 if (mysql_num_rows($z) > 0) {
                     $sql = "ALTER TABLE `User` CHANGE `md5_password` `password` text NOT NULL default '';";
                     if (!mysql_query($sql))
-                        return json_encode(array("result" => 1, "msg" => $sql));
+                        return json_encode(array("result" => 1, "param" => $sql));
                 }
 
                 Setting::set_setting("version", "3.6.10");
-                return json_encode(array("result" => 0));
+                return json_encode(array("result" => 0, "param" => "3.6.10"));
             }
         }
 
@@ -930,10 +930,10 @@ class Setup {
                 (12, 'lower level R code', '12', 12);
                 ";
                 if (!mysql_query($sql))
-                    return json_encode(array("result" => 1, "msg" => $sql));
+                    return json_encode(array("result" => 1, "param" => $sql));
 
                 Setting::set_setting("version", "3.6.11");
-                return json_encode(array("result" => 0));
+                return json_encode(array("result" => 0, "param" => "3.6.11"));
             }
         }
 
