@@ -102,5 +102,6 @@ if (!isset($ini)) {
             </div>
         </div>
         <br/>
+        <div id="divGeneralDialog" class="notVisible"></div>
     </body>
 </html>

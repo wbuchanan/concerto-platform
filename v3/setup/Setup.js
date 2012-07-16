@@ -26,6 +26,8 @@ Setup.continueSteps = true;
 Setup.currentStep=-1;
 Setup.maxStep = 0;
 
+Setup.dbBackupReminderShown = false;
+Setup.dbPhaseReached = false;
 Setup.continueDBSteps = true;
 Setup.currentDBStep = -1;
 Setup.maxDBStep = 0;
@@ -61,6 +63,11 @@ Setup.failure=function(){
     
     $("#tdLoadingStep").css("visibility","hidden");
     $("#tdCurrentStep").html("<font style='color:red'><b>failed to finish</b></font>");
+    
+    if(!Setup.dbPhaseReached) {
+        $("#tdLoadingDBStep").css("visibility","hidden");
+        $("#tdCurrentDBStep").html("<font style='color:red'><b>not started</b></font>");
+    }
 }
 
 Setup.success=function(){
@@ -96,6 +103,7 @@ Setup.check=function(obj,check,success,failure){
     }
     
     if(check=="getDBSteps"){
+        Setup.dbPhaseReached = true;
         Setup.getDBSteps(obj,success,failure);
         return;
     }
@@ -174,8 +182,14 @@ Setup.runDB=function(){
     }
     
     if(Setup.currentDBStep<Setup.versions.length+offset) {
-        Setup.updateDBStep.check(Setup.versions[Setup.currentDBStep-offset]);
-    } else {
+        if(!Setup.dbBackupReminderShown){
+            Methods.alert("Database update will start shortly. Please backup your database before continuing.", "alert","database update", function(){
+                Setup.dbBackupReminderShown = true;
+                Setup.updateDBStep.check(Setup.versions[Setup.currentDBStep-offset]);
+            });
+        } else Setup.updateDBStep.check(Setup.versions[Setup.currentDBStep-offset]);
+    }
+    else {
         if(Setup.validate_column_names){
             Setup.validate_column_names=false;
             Setup.validateColumnsDBStep.check();

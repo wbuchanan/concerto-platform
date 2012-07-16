@@ -212,7 +212,7 @@ Methods.alert=function(message,icon,title,callback)
         {
             ok:function(){
                 $(this).dialog("close");
-                if(callback!=null) callback.call(this);
+                //if(callback!=null) callback.call(this);
             }
         }
     });
