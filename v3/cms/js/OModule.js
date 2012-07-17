@@ -345,7 +345,14 @@ OModule.inheritance=function(obj)
             if(!thisClass.onBeforeAdd()) return;
         }
         
-        if(this.currentID!=0) this.uiEdit(0);
+        if(this.currentID!=0) this.uiEdit(0,null,function(){
+            obj.uiShowAddDialog();
+        });
+        else obj.uiShowAddDialog();
+    }
+    
+    obj.uiShowAddDialog=function(){
+        var thisClass = this;
         
         Methods.modalLoading();
         $.post("view/"+this.className+"_form.php",{
@@ -403,7 +410,7 @@ OModule.inheritance=function(obj)
         this.currentPanel="list";
     }
 	
-    obj.uiEdit=function(oid,ignoreOnBefore)
+    obj.uiEdit=function(oid,ignoreOnBefore,callback)
     {
         if(ignoreOnBefore==null) ignoreOnBefore=false;
         var thisClass = this;
@@ -434,6 +441,7 @@ OModule.inheritance=function(obj)
             $("#div"+thisClass.className+"Form").html(data);
             thisClass.highlightCurrentElement();
             if(thisClass.onAfterEdit) thisClass.onAfterEdit();
+            if(callback!=null) callback.call(thisClass);
         });
     };
 	
