@@ -233,45 +233,45 @@ class Table extends OModule {
 
         $row = 1;
         $column_names = array();
-        if (($handle = fopen($path, "r")) !== FALSE) {
-            while (($data = fgetcsv($handle, 0, $delimeter, $enclosure)) !== FALSE) {
-                if ($row == 1) {
-                    $sql = "CREATE TABLE  " . $this->get_table_name() . " (";
-                    for ($i = 1; $i <= count($data); $i++) {
-                        $column_name = "c" . $i;
-                        if ($header)
-                            $column_name = Table::format_column_name($data[$i - 1]);
-                        if (trim($column_name) == "")
-                            continue;
-                        array_push($column_names, $column_name);
-                        if ($i > 1)
-                            $sql.=",";
-                        $sql.="`" . $column_name . "`  TEXT NOT NULL";
 
-                        $sql2 = sprintf("INSERT INTO `%s` (`index`,`name`,`Table_id`,`TableColumnType_id`) VALUES (%d,'%s',%d,%d)", TableColumn::get_mysql_table(), $i, $column_name, $this->id, 1);
-                        if (!mysql_query($sql2))
-                            return -4;
-                    }
-                    $sql.=") ENGINE = INNODB DEFAULT CHARSET=utf8;";
-                    if (!mysql_query($sql))
-                        return -4;
-                    if ($header) {
-                        $row++;
+        $lines = file($path);
+        foreach ($lines as $line) {
+            $data = str_getcsv(trim($line), $delimeter, $enclosure);
+            if ($row == 1) {
+                $sql = "CREATE TABLE  " . $this->get_table_name() . " (";
+                for ($i = 1; $i <= count($data); $i++) {
+                    $column_name = "c" . $i;
+                    if ($header)
+                        $column_name = Table::format_column_name($data[$i - 1]);
+                    if (trim($column_name) == "")
                         continue;
-                    }
-                }
-
-                $sql = sprintf("INSERT INTO `%s` SET ", $this->get_table_name());
-                for ($i = 1; $i <= count($column_names); $i++) {
+                    array_push($column_names, $column_name);
                     if ($i > 1)
-                        $sql.=", ";
-                    $sql.=sprintf("`%s`='%s'", $column_names[$i - 1], mysql_real_escape_string(Table::filter_text($data[$i - 1])));
+                        $sql.=",";
+                    $sql.="`" . $column_name . "`  TEXT NOT NULL";
+
+                    $sql2 = sprintf("INSERT INTO `%s` (`index`,`name`,`Table_id`,`TableColumnType_id`) VALUES (%d,'%s',%d,%d)", TableColumn::get_mysql_table(), $i, $column_name, $this->id, 1);
+                    if (!mysql_query($sql2))
+                        return -4;
                 }
+                $sql.=") ENGINE = INNODB DEFAULT CHARSET=utf8;";
                 if (!mysql_query($sql))
                     return -4;
-                $row++;
+                if ($header) {
+                    $row++;
+                    continue;
+                }
             }
-            fclose($handle);
+
+            $sql = sprintf("INSERT INTO `%s` SET ", $this->get_table_name());
+            for ($i = 1; $i <= count($column_names); $i++) {
+                if ($i > 1)
+                    $sql.=", ";
+                $sql.=sprintf("`%s`='%s'", $column_names[$i - 1], mysql_real_escape_string($data[$i - 1]));
+            }
+            if (!mysql_query($sql))
+                return -4;
+            $row++;
         }
         return 0;
     }
@@ -424,43 +424,6 @@ class Table extends OModule {
             ) ENGINE=InnoDB  DEFAULT CHARSET=utf8;
             ";
         return mysql_query($sql);
-    }
-
-    public static function filter_text($text) {
-        $search = array(
-            chr(212),
-            chr(213),
-            chr(210),
-            chr(211),
-            chr(209),
-            chr(208),
-            chr(201),
-            chr(145),
-            chr(146),
-            chr(147),
-            chr(148),
-            chr(151),
-            chr(150),
-            chr(133)
-        );
-        $replace = array(
-            '"',
-            "'",
-            '&#8217;',
-            '&#8220;',
-            '&#8221;',
-            '&#8211;',
-            '&#8212;',
-            "'",
-            "'",
-            '&#8217;',
-            '&#8220;',
-            '&#8221;',
-            '&#8211;',
-            '&#8212;',
-            "'"
-        );
-        return str_replace($search, $replace, $text);
     }
 
 }

@@ -76,6 +76,9 @@ class Ini {
 
         $this->load_settings();
 
+        if (Ini::$unix_locale != "")
+            setlocale(LC_ALL, Ini::$unix_locale);
+
         if ($connect) {
             if (!$this->initialize_db_connection())
                 die("Error initializing DB connection!");
