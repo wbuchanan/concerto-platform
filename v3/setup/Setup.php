@@ -299,6 +299,7 @@ class Setup {
         $versions_to_update = array();
 
         $previous_version = Setting::get_setting("version");
+        if($previous_version==null) $previous_version = Ini::$version;
 
         $recalculate_hash = false;
         $repopulate_TestTemplate = false;
