@@ -143,9 +143,9 @@ class Table extends OModule {
                 mysql_query($sql);
             }
         }
-        
+
         $obj = static::from_mysql_id($lid);
-        if($obj!=null){
+        if ($obj != null) {
             $xml_hash = $obj->calculate_xml_hash();
             $obj->xml_hash = $xml_hash;
             $obj->mysql_save();
@@ -199,9 +199,9 @@ class Table extends OModule {
                 foreach ($columns as $col) {
                     if ($j > 0)
                         $sql.=",";
-                    $sql.="`" . $col . "`  TEXT NOT NULL";
+                    $sql.="`" . Table::format_column_name($col) . "`  TEXT NOT NULL";
 
-                    $sql2 = sprintf("INSERT INTO `%s` (`index`,`name`,`Table_id`,`TableColumnType_id`) VALUES (%d,'%s',%d,%d)", TableColumn::get_mysql_table(), ($j + 1), $col, $this->id, 1);
+                    $sql2 = sprintf("INSERT INTO `%s` (`index`,`name`,`Table_id`,`TableColumnType_id`) VALUES (%d,'%s',%d,%d)", TableColumn::get_mysql_table(), ($j + 1), Table::format_column_name($col), $this->id, 1);
                     mysql_query($sql2);
 
                     $j++;
@@ -217,7 +217,7 @@ class Table extends OModule {
                     $cols.=",";
                     $vals.=",";
                 }
-                $cols.="`" . $col . "`";
+                $cols.="`" . Table::format_column_name($col) . "`";
                 $vals.="'" . $r[$col] . "'";
                 $j++;
             }
