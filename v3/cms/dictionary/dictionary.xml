@@ -89,7 +89,7 @@ Note: You can add new languages by inserting "<new_language>string translated in
             <cn>HTML控制变量`名称`验证失败。数值已更改。\r\n\r\n旧数值: {0}\r\n新数值: {1}</cn>
             <fr>HTML le contrôle de la variable `nom` a échoué. la valeur a été changée\n\r\nancienne valeur: {0}\r\nnouvelle valeur: {1}</fr>
             <bg>Валидизацията на името на HTML контролата неуспешна. Стойността беше променена.\r\n\r\nстара стойност: {0}\r\nнова стойност: {1}</bg>
-            <nl>HTML de controle variabele `naam` is mislukt. De waarde werd gewijzigd.\r\n\r\noude waarde: {0}\r\nnieuw waarde: {1}</nl>
+            <nl>HTML de controle van de variabele `naam` is mislukt. De waarde werd gewijzigd.\r\n\r\noude waarde: {0}\r\nnieuw waarde: {1}</nl>
         </string>
         <string id="7" js="1">
             <en>adding new object</en>
@@ -395,7 +395,7 @@ Note: You can add new languages by inserting "<new_language>string translated in
             <cn>停止R运行，导入所选HTML模板。</cn>
             <fr>Arrêter le processus R et charger le modèle HTML sélectionné.</fr>
             <bg>Спри R процеса и зареди избрания HTML шаблон</bg>
-            <nl>Stop de R processen en laad de geselecteerde HTML template.</nl>
+            <nl>Stop de R processen en laad de geselecteerde HTML-sjabloon.</nl>
         </string>
         <string id="42">
             <en>Skip to a specific section of the test.</en>
@@ -422,7 +422,7 @@ Note: You can add new languages by inserting "<new_language>string translated in
             <cn></cn>
             <fr><![CDATA[Définir les variables (par ex. établir les variables).. Méthode afin de d'établir les variables: <ul><li><b>du tableau</b>: sélectionner un tableau préalablement défini dans concerto et filtrer les lignes et colonnes nécessaires. Établir un tableau complet en laissant la clause <b>OU</b> vide </li><li><b>avec le code R </b>: taper directement dans le code R. Par exemple: fonctiont résultat, calcul mathématique</li></ul>]]></fr>
             <bg><![CDATA[Дефинирайте променливи (т.е. създайте променливи). Методи за създаване на променлива: <ul><li><b>чрез таблица</b>: изберете предварително дефинирана таблица в Concerto и филтрирайте необходимите редове и колони. Може да вземете цяла таблица <b>КЪДЕ</b> условието е празно</li><li><b>чрез R код</b>: директно като напишете R кода. Т.е. резултат от функция, математическо пресмятане</li></ul>]]> </bg>
-            <nl></nl>
+            <nl><![CDATA[Definieer variabelen (i.e. kies variabelen). Methoden om variable te kiezen: <ul><li><b>uit tabel</b>: een voordien gedefinieerde tabel in Concerto selecteren en de nodige rijen en kolommen filteren. Selecteer de volledige tabel door de <b>WAAR</b> clause leeg te laten</li><li><b>via R code</b>: rechtstreeks R code typen. Bv. functie resultaat, wiskundige berekening</li></ul>]]></nl>
         </string>
         <string id="45">
             <en>The start section is the entry point to your test logic. It cannot be modified.</en>
@@ -431,7 +431,7 @@ Note: You can add new languages by inserting "<new_language>string translated in
             <cn>启动章节是测试逻辑的起点，不可修改。</cn>
             <fr>La section Début est le point d'entrée de la logique du test. Elle ne peut pas être modifiée.</fr>
             <bg>Началната секция е входната точка за логиката на теста. Тя не може да бъде променяна</bg>
-            <nl></nl>
+            <nl>De beginsectie is de start van de teststructuur. Deze kan niet aangepast worden.</nl>
         </string>
         <string id="46">
             <en>The End section is the last section of your test logic. It cannot be modified.</en>
@@ -440,7 +440,7 @@ Note: You can add new languages by inserting "<new_language>string translated in
             <cn>结束章节是测试逻辑的终点，不可修改。</cn>
             <fr>La section Fin est le point d'entrée de la logique du test. Elle ne peut pas être modifiée.</fr>
             <bg>Крайната секция е последната секция в логиката на теста. Тя не може да бъде променяна</bg>
-            <nl></nl>
+            <nl>De einde-sectie is de laatste sectie van de teststructuur. Deze kan niet aangepast worden.</nl>
         </string>
         <string id="47">
             <en><![CDATA[Modify existing tables with the help of three basic database operations:<ul><li><b>INSERT</b>: insert a single row and values corresponding to each column</li><li><b>UPDATE</b>: modify table rows that meet criteria found in the <b>WHERE</b> clause. Specify which columns you want to modify and values for each.</li><li><b>DELETE</b>: delete table rows that meet criteria found in the <b>WHERE</b> clause.</li></ul>]]></en>
@@ -449,7 +449,7 @@ Note: You can add new languages by inserting "<new_language>string translated in
             <cn><![CDATA[借助以下三种基本数据库操作修改已有表格：<ul><li><b>插入</b>：插入一行及每列数值</li><li><b>更新</b>：修改表格行以满足 <b>当</b> 语句中的标准。可以指定修改的列及其数值。</li><li><b>删除</b>：删除表格中满足<b>当</b> 语句中标准的行。</li></ul>]]></cn>
             <fr><![CDATA[Modifier les tableaux existant avec l'aide de trois opérations de base:<ul><li><b>INSERTION</b>: insère une seule ligne et ses valeurs correspondantes dans chacune des colonnes.</li><li><b>Mettre à jour </b>: modifie les lignes du tableau qui rencontrent les critères inclus dans la clause <b>OU</b>. spécifiez quelle colonnes vous voulez modifier et les valeurs de chacune d'entre elles.</li><li><b>Supprimer</b>: supprime les lignes du tableau qui rencontrent les critères inclus dans la clause <b>OU</b>.</li></ul>]]></fr>
             <bg><![CDATA[Променете съществуващите таблици с помощта на три основни операции за бази данни: <ul><li><b>ВМЪКНИ</b>: вмъкни единичен ред и стойности отнасящи се за всяка колона </li><li><b>ОБНОВИ</b>: промени редовете на таблицата, които отговорят на критерия, който се намира <b>КЪДЕ</b> в условието. Посочете кои колони искате да модифицирате и стойностите за всяка.</li><li><b>ИЗТРИЙ</b>: изтрийте редове от таблицата, които се намират <b>КЪДЕ</b> в условието.</li></ul>]]></bg>
-            <nl></nl>
+            <nl><![CDATA[Bestaande tabellen aanpassen met de hulp van drie database basisoperaties:<ul><li><b>INSERT</b>: een enkele rij invoegen met de corresponderende waarden van elke kolom</li><li><b>UPDATE</b>: tabelrijen aanpassen die voldoen aan de criteria uit de <b>WAAR</b> clause. Specifieren van welke kolommen u wil aanpassen en hun corresponderende waarden.</li><li><b>VERWIJDEREN</b>: verwijderen van tabelrijen die voldoen aan de criteria uit de <b>WAAR</b> clause.</li></ul>]]></nl>
         </string>
         <string id="48">
             <en>This is the custom test section.</en>
@@ -458,7 +458,7 @@ Note: You can add new languages by inserting "<new_language>string translated in
             <cn>这是自主测试章节。</cn>
             <fr> Ceci est une section personnalisée du test.</fr>
             <bg>Това е персонализирана секция от теста</bg>
-            <nl></nl>
+            <nl>Dit is een aangepaste testsectie</nl>
         </string>
         <string id="49" js="1">
             <en>R code</en>
@@ -467,7 +467,7 @@ Note: You can add new languages by inserting "<new_language>string translated in
             <cn>R代码</cn>
             <fr>code R</fr>
             <bg>R код</bg>
-            <nl></nl>
+            <nl>R code</nl>
         </string>
         <string id="50" js="1">
             <en>load HTML template</en>
@@ -476,7 +476,7 @@ Note: You can add new languages by inserting "<new_language>string translated in
             <cn>导入HTML模板</cn>
             <fr>charger un modèle HTML</fr>
             <bg>Зареди HTML шаблон</bg>
-            <nl></nl>
+            <nl>HTML-sjabloon openen</nl>
         </string>
         <string id="51" js="1">
             <en>go to</en>
@@ -485,7 +485,7 @@ Note: You can add new languages by inserting "<new_language>string translated in
             <cn>前往</cn>
             <fr>aller à</fr>
             <bg>иди на</bg>
-            <nl></nl>
+            <nl>ga naar</nl>
         </string>
         <string id="52" js="1">
             <en>IF statement</en>
@@ -494,7 +494,7 @@ Note: You can add new languages by inserting "<new_language>string translated in
             <cn>IF语句</cn>
             <fr>expression SI</fr>
             <bg>АКО твърдение</bg>
-            <nl></nl>
+            <nl>ALS functie</nl>
         </string>
         <string id="53" js="1">
             <en>set variable</en>
@@ -503,7 +503,7 @@ Note: You can add new languages by inserting "<new_language>string translated in
             <cn>设定变量</cn>
             <fr>définir une variable</fr>
             <bg>създай променлива</bg>
-            <nl></nl>
+            <nl>Defineer variabele</nl>
         </string>
         <string id="54" js="1">
             <en>start</en>
@@ -512,7 +512,7 @@ Note: You can add new languages by inserting "<new_language>string translated in
             <cn>开始</cn>
             <bg>начало</bg>
             <fr>commencer</fr>
-            <nl></nl>
+            <nl>start</nl>
         </string>
         <string id="55" js="1">
             <en>end</en>
@@ -521,7 +521,7 @@ Note: You can add new languages by inserting "<new_language>string translated in
             <cn>结束</cn>
             <fr>fin</fr>
             <bg>край</bg>
-            <nl></nl>
+            <nl>einde</nl>
         </string>
         <string id="56" js="1">
             <en>table modification</en>
@@ -530,7 +530,7 @@ Note: You can add new languages by inserting "<new_language>string translated in
             <cn>修改表格</cn>
             <fr>modification du tableau</fr>
             <bg>промяна на таблицата</bg>
-            <nl></nl>
+            <nl>tabel aanpassen</nl>
         </string>
         <string id="57" js="1">
             <en>custom section</en>
@@ -539,7 +539,7 @@ Note: You can add new languages by inserting "<new_language>string translated in
             <cn>自主章节</cn>
             <fr>section personnalisée</fr>
             <bg>персонализирана секция</bg>
-            <nl></nl>
+            <nl>aangepaste sectie</nl>
         </string>
         <string id="58" js="1">
             <en>ignore</en>
@@ -548,7 +548,7 @@ Note: You can add new languages by inserting "<new_language>string translated in
             <cn>忽略</cn>
             <fr>ignorer</fr>
             <bg>игнорирай</bg>
-            <nl></nl>
+            <nl>negeren</nl>
         </string>
         <string id="59">
             <en>remove test logic section</en>
@@ -557,7 +557,7 @@ Note: You can add new languages by inserting "<new_language>string translated in
             <cn>移除测试逻辑章节</cn>
             <fr>enlever la section logique du test</fr>
             <bg>премахни секцията за логиката на теста</bg>
-            <nl></nl>
+            <nl>logische testsectie verwijderen</nl>
         </string>
         <string id="60">
             <en>add test logic section</en>
@@ -566,7 +566,7 @@ Note: You can add new languages by inserting "<new_language>string translated in
             <cn>添加测试逻辑章节</cn>
             <fr>ajouter une section logique du test</fr>
             <bg>прибави секция с логиката на теста</bg>
-            <nl></nl>
+            <nl>logische testsectie toevoegen</nl>
         </string>
         <string id="61" js="1">
             <en>adding new section</en>
@@ -575,7 +575,7 @@ Note: You can add new languages by inserting "<new_language>string translated in
             <cn>添加新章节</cn>
             <fr>ajouter une nouvelle section</fr>
             <bg>прибавете нова секция</bg>
-            <nl></nl>
+            <nl>nieuwe sectie toevoegen</nl>
         </string>
         <string id="62" js="1">
             <en>are you sure you want to remove this test section?</en>
@@ -584,7 +584,7 @@ Note: You can add new languages by inserting "<new_language>string translated in
             <cn>确认移除此测试章节？</cn>
             <fr>ête-vous certain de vouloir supprimer cette section du test?</fr>
             <bg>сигурни ли сте, че искате да премахнете този секция на теста?</bg>
-            <nl></nl>
+            <nl>Bent u zeker dat u deze testsectie wil verwijderen?</nl>
         </string>
         <string id="63" js="1">
             <en>removing test section</en>
@@ -593,7 +593,7 @@ Note: You can add new languages by inserting "<new_language>string translated in
             <cn>移除测试章节</cn>
             <fr>suppression de lasection du test</fr>
             <bg>премахване на секция от теста</bg>
-            <nl></nl>
+            <nl>testsectie verwijderen</nl>
         </string>
         <string id="64" js="1">
             <en>close</en>
@@ -602,7 +602,7 @@ Note: You can add new languages by inserting "<new_language>string translated in
             <cn>关闭</cn>
             <fr>fermer</fr>
             <bg>затваряне</bg>
-            <nl></nl>
+            <nl>sluiten</nl>
         </string>
         <string id="65" js="1">
             <en>test logic variables</en>
@@ -611,7 +611,7 @@ Note: You can add new languages by inserting "<new_language>string translated in
             <cn>测试章节变量</cn>
             <fr>variables de la logique du test</fr>
             <bg>променливи на тестовата логика</bg>
-            <nl></nl>
+            <nl>logische variabelen van de test </nl>
         </string>
         <string id="66" js="1">
             <en>Password and password confirmation do not match!</en>
@@ -620,7 +620,7 @@ Note: You can add new languages by inserting "<new_language>string translated in
             <cn>两次输入的密码不一致！</cn>
             <fr>Le mot de passe et la confirmation du mot de passe ne correspondent pas!</fr>
             <bg>Паролата и потвърждението на паролата не съответстват</bg>
-            <nl></nl>
+            <nl>wachtwoord en wachtwoordbevestiging zijn niet gelijk!</nl>
         </string>
         <string id="67" js="1">
             <en>login/password combination is incorrect!</en>
@@ -629,7 +629,7 @@ Note: You can add new languages by inserting "<new_language>string translated in
             <cn>用户名与密码不匹配！</cn>
             <fr>La combinaison nom d'utilisateur/mot de passe est incorrecte!</fr>
             <bg>Комбинацията потребителско име/парола е грешна</bg>
-            <nl></nl>
+            <nl>login/wachtwoord combinatie is ongeldig!</nl>
         </string>
         <string id="68">
             <en>unnamed custom section</en>
@@ -638,7 +638,7 @@ Note: You can add new languages by inserting "<new_language>string translated in
             <cn>未命名的自主章节</cn>
             <fr>section personnalisée sans nom</fr>
             <bg>неименувана персонализирана секция</bg>
-            <nl></nl>
+            <nl>naamloze aangepaste sectie</nl>
         </string>
         <string id="69" js="1">
             <en>id</en>
@@ -647,7 +647,7 @@ Note: You can add new languages by inserting "<new_language>string translated in
             <cn>id</cn>
             <fr>id</fr>
             <bg>id</bg>
-            <nl></nl>
+            <nl>id</nl>
         </string>
         <string id="70" js="1">
             <en>name</en>
@@ -656,7 +656,7 @@ Note: You can add new languages by inserting "<new_language>string translated in
             <cn>名称</cn>
             <fr>nom</fr>
             <bg>име</bg>
-            <nl></nl>
+            <nl>naam</nl>
         </string>
         <string id="71">
             <en>owner</en>
@@ -665,7 +665,7 @@ Note: You can add new languages by inserting "<new_language>string translated in
             <cn>所有者</cn>
             <fr>propriétaire</fr>
             <bg>собственик</bg>
-            <nl></nl>
+            <nl>eigenaar</nl>
         </string>
         <string id="72">
             <en>access rights</en>
@@ -674,7 +674,7 @@ Note: You can add new languages by inserting "<new_language>string translated in
             <cn>访问权限</cn>
             <fr>droits d'accès</fr>
             <bg>права за достъп</bg>
-            <nl></nl>
+            <nl>toegangsrechten</nl>
         </string>
         <string id="73" js="1">
             <en>none</en>
@@ -683,7 +683,7 @@ Note: You can add new languages by inserting "<new_language>string translated in
             <cn>空缺</cn>
             <fr>aucun</fr>
             <bg>липса</bg>
-            <nl></nl>
+            <nl>geen</nl>
         </string>
         <string id="74">
             <en>unnamed table</en>
@@ -691,8 +691,8 @@ Note: You can add new languages by inserting "<new_language>string translated in
             <pl>nienazwana tabela</pl>
             <cn>未命名表格</cn>
             <bg>променлива без име</bg>
-            <fr></fr>
-            <nl></nl>
+            <fr>tableau sans nom</fr>
+            <nl>naamloze tabel</nl>
         </string>
         <string id="75">
             <en>unnamed template</en>
@@ -701,7 +701,7 @@ Note: You can add new languages by inserting "<new_language>string translated in
             <cn>未命名模板</cn>
             <fr>modèle sans nom</fr>
             <bg>шаблон без име</bg>
-            <nl></nl>
+            <nl>naamloze template</nl>
         </string>
         <string id="76">
             <en>unnamed test</en>
@@ -710,7 +710,7 @@ Note: You can add new languages by inserting "<new_language>string translated in
             <cn>未命名测试</cn>
             <fr>test sans nom</fr>
             <bg>тест без име</bg>
-            <nl></nl>
+            <nl>naamloze test</nl>
         </string>
         <string id="77">
             <en>incognito</en>
@@ -719,7 +719,7 @@ Note: You can add new languages by inserting "<new_language>string translated in
             <cn>匿名</cn>
             <fr>incognito</fr>
             <bg>инкогнито</bg>
-            <nl></nl>
+            <nl>incognito</nl>
         </string>
         <string id="78">
             <en>unknown</en>
@@ -728,7 +728,7 @@ Note: You can add new languages by inserting "<new_language>string translated in
             <cn>未知</cn>
             <bg>непознат</bg>
             <fr>inconnu</fr>
-            <nl></nl>
+            <nl>onbekend</nl>
         </string>
         <string id="79">
             <en>unnamed user group</en>
@@ -737,7 +737,7 @@ Note: You can add new languages by inserting "<new_language>string translated in
             <cn>未命名用户群</cn>
             <bg>потребителска група без име</bg>
             <fr></fr>
-            <nl></nl>
+            <nl>naamloze gebruikersgroep</nl>
         </string>
         <string id="80">
             <en>unnamed user type</en>
@@ -746,7 +746,7 @@ Note: You can add new languages by inserting "<new_language>string translated in
             <cn>未命名用户类型</cn>
             <fr>type d'utilisateur sans nom</fr>
             <bg>Тип на потребител без име</bg>
-            <nl></nl>
+            <nl>naamloos gebruikerstype</nl>
         </string>
         <string id="81" js="1">
             <en>Access denied!</en>
@@ -755,7 +755,7 @@ Note: You can add new languages by inserting "<new_language>string translated in
             <cn>拒绝访问！</cn>
             <fr>Accès refusé!</fr>
             <bg>Достъп отказан</bg>
-            <nl></nl>
+            <nl>Toegang geweigerd!</nl>
         </string>
         <string id="82">
             <en>logged user</en>
@@ -764,7 +764,7 @@ Note: You can add new languages by inserting "<new_language>string translated in
             <cn>已登入用户</cn>
             <fr>utilisateur connecté</fr>
             <bg>влязъл потребител</bg>
-            <nl></nl>
+            <nl>aangemelde gebruiker</nl>
         </string>
         <string id="83">
             <en>log out</en>
@@ -773,7 +773,7 @@ Note: You can add new languages by inserting "<new_language>string translated in
             <cn>登出</cn>
             <fr>se déconnecter</fr>
             <bg>изход</bg>
-            <nl></nl>
+            <nl>afmelden</nl>
         </string>
         <string id="84">
             <en>custom test sections</en>
@@ -782,7 +782,7 @@ Note: You can add new languages by inserting "<new_language>string translated in
             <cn>自主测试章节</cn>
             <fr>section de test personnalisée</fr>
             <bg>персонализирани тестови секции</bg>
-            <nl></nl>
+            <nl>aangepaste testsectie</nl>
         </string>
         <string id="85">
             <en>tables</en>
@@ -791,7 +791,7 @@ Note: You can add new languages by inserting "<new_language>string translated in
             <cn>表格</cn>
             <fr>tableux</fr>
             <bg>таблици</bg>
-            <nl></nl>
+            <nl>tabellen</nl>
         </string>
         <string id="86">
             <en>file</en>
@@ -800,7 +800,7 @@ Note: You can add new languages by inserting "<new_language>string translated in
             <cn>文件</cn>
             <bg>файл</bg>
             <fr>fichier</fr>
-            <nl></nl>
+            <nl>bestand</nl>
         </string>
         <string id="87">
             <en>templates</en>
@@ -809,7 +809,7 @@ Note: You can add new languages by inserting "<new_language>string translated in
             <cn>模板</cn>
             <fr>modèles</fr>
             <bg>шаблони</bg>
-            <nl></nl>
+            <nl>sjablonen</nl>
         </string>
         <string id="88">
             <en>tests</en>
@@ -818,7 +818,7 @@ Note: You can add new languages by inserting "<new_language>string translated in
             <cn>测试</cn>
             <bg>тестове</bg>
             <fr>tests</fr>
-            <nl></nl>
+            <nl>tests</nl>
         </string>
         <string id="89">
             <en>admins</en>
@@ -827,7 +827,7 @@ Note: You can add new languages by inserting "<new_language>string translated in
             <cn>管理员</cn>
             <bg>администратори</bg>
             <fr>administrateurs</fr>
-            <nl></nl>
+            <nl>beheerders</nl>
         </string>
         <string id="90">
             <en>admin types</en>
@@ -836,7 +836,7 @@ Note: You can add new languages by inserting "<new_language>string translated in
             <cn>管理员类型</cn>
             <fr>atypes d'administrateurs</fr>
             <bg>видове администратори</bg>
-            <nl></nl>
+            <nl>beheerder types</nl>
         </string>
         <string id="91">
             <en>admin groups</en>
@@ -845,7 +845,7 @@ Note: You can add new languages by inserting "<new_language>string translated in
             <cn>管理群</cn>
             <fr>groupes d'administrateurs</fr>
             <bg>административни групи</bg>
-            <nl></nl>
+            <nl>beheerder groepen</nl>
         </string>
         <string id="92">
             <en>editing custom test section</en>
@@ -854,7 +854,7 @@ Note: You can add new languages by inserting "<new_language>string translated in
             <cn>编辑自主测试章节</cn>
             <fr>modifier les sections de test personnalisées</fr>
             <bg>редактиране на персонализирана секция на теста</bg>
-            <nl></nl>
+            <nl>bewerken van aanpasbare testsectie</nl>
         </string>
         <string id="93">
             <en>creating new custom test section</en>
@@ -863,7 +863,7 @@ Note: You can add new languages by inserting "<new_language>string translated in
             <cn>创建自主测试章节</cn>
             <fr>créer une enouvelle section de test personnalisée</fr>
             <bg>създаване на нова персонализирана секция на теста</bg>
-            <nl></nl>
+            <nl>nieuwe aanpasbare testsectie</nl>
         </string>
         <string id="94">
             <en>delete</en>
@@ -872,7 +872,7 @@ Note: You can add new languages by inserting "<new_language>string translated in
             <cn>删除</cn>
             <fr>supprimer</fr>
             <bg>изтрий</bg>
-            <nl></nl>
+            <nl>verwijderen</nl>
         </string>
         <string id="95" js="1">
             <en>save</en>
@@ -881,7 +881,7 @@ Note: You can add new languages by inserting "<new_language>string translated in
             <cn>保存</cn>
             <fr>sauvegarder</fr>
             <bg>съхрани</bg>
-            <nl></nl>
+            <nl>opslaan</nl>
         </string>
         <string id="96">
             <en>name of the custom section</en>
@@ -890,7 +890,7 @@ Note: You can add new languages by inserting "<new_language>string translated in
             <cn>自主章节名称</cn>
             <fr>nom de la section personnalisée</fr>
             <bg>име на персонализираната секция</bg>
-            <nl></nl>
+            <nl>naam van de aanpasbare testsectie</nl>
         </string>
         <string id="97">
             <en>description</en>
@@ -899,7 +899,7 @@ Note: You can add new languages by inserting "<new_language>string translated in
             <cn>描述</cn>
             <fr>description</fr>
             <bg>описание</bg>
-            <nl></nl>
+            <nl>beschrijving</nl>
         </string>
         <string id="98">
             <en>Brief description of the object.</en>
@@ -908,7 +908,7 @@ Note: You can add new languages by inserting "<new_language>string translated in
             <cn>对象的简要描述</cn>
             <fr></fr>
             <bg></bg>
-            <nl></nl>
+            <nl>Korte beschrijving van het object</nl>
         </string>
         <string id="99">
             <en>access rights to this custom section</en>
@@ -917,7 +917,7 @@ Note: You can add new languages by inserting "<new_language>string translated in
             <cn>此自主章节的访问权限</cn>
             <fr>droits d'accès à cette section personnalisée</fr>
             <bg>права за достъп до този секция</bg>
-            <nl></nl>
+            <nl>toegangsrechten tot deze aanpasbare testsectie</nl>
         </string>
         <string id="100">
             <en>private</en>
@@ -926,7 +926,7 @@ Note: You can add new languages by inserting "<new_language>string translated in
             <cn>未公开</cn>
             <fr>privé</fr>
             <bg>личен</bg>
-            <nl></nl>
+            <nl>privaat</nl>
         </string>
         <string id="101">
             <en>group</en>
@@ -935,7 +935,7 @@ Note: You can add new languages by inserting "<new_language>string translated in
             <cn>群</cn>
             <fr>groupe</fr>
             <bg>частен</bg>
-            <nl></nl>
+            <nl>groep</nl>
         </string>
         <string id="102">
             <en>public</en>
@@ -944,7 +944,7 @@ Note: You can add new languages by inserting "<new_language>string translated in
             <cn>公开</cn>
             <fr>publique</fr>
             <bg>публичен</bg>
-            <nl></nl>
+            <nl>publiek</nl>
         </string>
         <string id="103">
             <en>owner of this custom section</en>
@@ -953,7 +953,7 @@ Note: You can add new languages by inserting "<new_language>string translated in
             <cn>此自主章节所有者</cn>
             <fr>propriétaire de cette section personnalisée</fr>
             <bg>собственик на персонализираната секция</bg>
-            <nl></nl>
+            <nl>eigenaar van deze aanpasbare testsectie</nl>
         </string>
         <string id="104">
             <en>Edit description. Current description:</en>
@@ -962,7 +962,7 @@ Note: You can add new languages by inserting "<new_language>string translated in
             <cn>编辑描述。当前描述：</cn>
             <fr>Modifier la description. Description actuelle:</fr>
             <bg>Редактиране на описанието. Настоящо описание:</bg>
-            <nl></nl>
+            <nl>Bewerken van beschrijving. Huidige beschrijving:</nl>
         </string>
         <string id="105">
             <en>Define section input parameters.</en>
@@ -971,7 +971,7 @@ Note: You can add new languages by inserting "<new_language>string translated in
             <cn>定义章节输入参数。</cn>
             <fr>Définir les paramètres d'entrée de la section. utiliser les variables ainsi définies dans le code R de la section.</fr>
             <bg>Дефиниране на входните параметри. Използване на променливи, декларирани вече в секцията на R кода</bg>
-            <nl></nl>
+            <nl>Definieren van sectie input parameters. Gebruik de gedefinieerde variabelen uit de R code van de sectie.</nl>
         </string>
         <string id="106">
             <en>parameters</en>
@@ -980,7 +980,7 @@ Note: You can add new languages by inserting "<new_language>string translated in
             <cn>参数</cn>
             <fr>paramètres</fr>
             <bg>параметри</bg>
-            <nl></nl>
+            <nl>parameters</nl>
         </string>
         <string id="107">
             <en>edit description</en>
@@ -989,7 +989,7 @@ Note: You can add new languages by inserting "<new_language>string translated in
             <cn>编辑描述</cn>
             <fr>modifier la description</fr>
             <bg>редактиране на описанието</bg>
-            <nl></nl>
+            <nl>bewerken van beschrijving</nl>
         </string>
         <string id="108">
             <en>no parameters defined</en>
@@ -998,7 +998,7 @@ Note: You can add new languages by inserting "<new_language>string translated in
             <cn>未定义参数</cn>
             <fr>aucun paramètres de définis</fr>
             <bg>не са дефинирани параметри</bg>
-            <nl></nl>
+            <nl>geen parameters gedefinieerd</nl>
         </string>
         <string id="109">
             <en>add parameter</en>
@@ -1007,7 +1007,7 @@ Note: You can add new languages by inserting "<new_language>string translated in
             <cn>添加参数</cn>
             <fr>ajouter une variable paramètre</fr>
             <bg>добави параметър</bg>
-            <nl></nl>
+            <nl>parameter toevoegen</nl>
         </string>
         <string id="110">
             <en>remove parameter</en>
@@ -1016,7 +1016,7 @@ Note: You can add new languages by inserting "<new_language>string translated in
             <cn>移除参数</cn>
             <fr>enlever une variable paramètre</fr>
             <bg>премахни параметър</bg>
-            <nl></nl>
+            <nl>parameter verwijderen</nl>
         </string>
         <string id="111">
             <en>R code relevant for this custom section. Parameters declared above can be used here.</en>
@@ -1025,7 +1025,7 @@ Note: You can add new languages by inserting "<new_language>string translated in
             <cn>此自主章节相关R代码。已声明参数可在此使用。</cn>
             <fr>code R pertinent à cette section. Les paramètres déclarés ci-dessus peuvent être utilisés ici.</fr>
             <bg>R код, отнасящ се за тази секция. Параметрите декларирани по-горе, може да бъдат използвани тук</bg>
-            <nl></nl>
+            <nl>Relevante R code voor deze aanpasbare sectie. Eerder gedeclareerde parameters kunnen hier gebruikt worden.</nl>
         </string>
         <string id="112">
             <en>Specify variables in this section to be available for use in other test sections.</en>
@@ -1034,7 +1034,7 @@ Note: You can add new languages by inserting "<new_language>string translated in
             <cn>指定此章节内可用于其他章节的变量。</cn>
             <fr>Spécifier que les variables utilisées dans cette section puissent être disponible globallement, afin qu'elles soient utilisées dans d'autres sections du test.</fr>
             <bg>Дефинирайте променливите в тази секция, за да могат да бъдат достъпни глобално и да бъдат използвани в другите секции</bg>
-            <nl></nl>
+            <nl>Specifieer in deze sectie variabelen die globaal beschikbaar moeten zijn in andere testsecties.</nl>
         </string>
         <string id="113">
             <en>returns</en>
@@ -1043,7 +1043,7 @@ Note: You can add new languages by inserting "<new_language>string translated in
             <cn>返回值</cn>
             <fr>retours</fr>
             <bg>връща</bg>
-            <nl></nl>
+            <nl>returns</nl>
         </string>
         <string id="114">
             <en>no returns defined</en>
@@ -1052,7 +1052,7 @@ Note: You can add new languages by inserting "<new_language>string translated in
             <cn>未定义返回值</cn>
             <fr>aucun retour défini</fr>
             <bg>не е дефинирано връщане</bg>
-            <nl></nl>
+            <nl>geen returns gedefinieerd</nl>
         </string>
         <string id="115">
             <en>add return variable</en>
@@ -1061,7 +1061,7 @@ Note: You can add new languages by inserting "<new_language>string translated in
             <cn>添加返回变量</cn>
             <fr>ajout d'une variable retour</fr>
             <bg>прибави променлива за връщане</bg>
-            <nl></nl>
+            <nl>return variabele toevoegen</nl>
         </string>
         <string id="116">
             <en>remove return variable</en>
@@ -1070,7 +1070,7 @@ Note: You can add new languages by inserting "<new_language>string translated in
             <cn>移除返回变量</cn>
             <fr>enlever une variable retour</fr>
             <bg>премахни променлива за връщане</bg>
-            <nl></nl>
+            <nl>return variabele verwijderen</nl>
         </string>
         <string id="117">
             <en>editing table</en>
@@ -1079,7 +1079,7 @@ Note: You can add new languages by inserting "<new_language>string translated in
             <cn>编辑表格</cn>
             <fr>modifier un tableau</fr>
             <bg>редактиране на таблица</bg>
-            <nl></nl>
+            <nl>tabel bewerken</nl>
         </string>
         <string id="118">
             <en>creating new table</en>
@@ -1088,7 +1088,7 @@ Note: You can add new languages by inserting "<new_language>string translated in
             <cn>创建表格</cn>
             <fr>créer un nouveau tableau</fr>
             <bg>създаване на нова таблица</bg>
-            <nl></nl>
+            <nl>nieuwe tabel aanmaken</nl>
         </string>
         <string id="119">
             <en>name of the table</en>
@@ -1097,7 +1097,7 @@ Note: You can add new languages by inserting "<new_language>string translated in
             <cn>表格名称</cn>
             <fr>nom du tableau</fr>
             <bg>име на таблицата</bg>
-            <nl></nl>
+            <nl>naam van de tabel</nl>
         </string>
         <string id="120">
             <en>table access rights</en>
@@ -1106,7 +1106,7 @@ Note: You can add new languages by inserting "<new_language>string translated in
             <cn>表格访问权限</cn>
             <fr>accès aux droits du tableau</fr>
             <bg>права за достъп до таблицата</bg>
-            <nl></nl>
+            <nl>tabel toegangsrechten</nl>
         </string>
         <string id="121">
             <en>owner of the table</en>
@@ -1115,7 +1115,7 @@ Note: You can add new languages by inserting "<new_language>string translated in
             <cn>表格所有者</cn>
             <fr>propriétaire du tableau</fr>
             <bg>собственик на таблицата</bg>
-            <nl></nl>
+            <nl>eigenaar van de tabel</nl>
         </string>
         <string id="122" js="1">
             <en>type</en>
@@ -1124,7 +1124,7 @@ Note: You can add new languages by inserting "<new_language>string translated in
             <cn>类型</cn>
             <fr>type</fr>
             <bg>вид</bg>
-            <nl></nl>
+            <nl>type</nl>
         </string>
         <string id="123">
             <en>no object selected</en>
@@ -1133,7 +1133,7 @@ Note: You can add new languages by inserting "<new_language>string translated in
             <cn>未选择对象</cn>
             <fr>aucun objet sélectionné</fr>
             <bg>не е избран обект</bg>
-            <nl></nl>
+            <nl>geen object geselecteerd</nl>
         </string>
         <string id="124">
             <en>MySQL table</en>
@@ -1142,7 +1142,7 @@ Note: You can add new languages by inserting "<new_language>string translated in
             <cn>MySQL表格</cn>
             <fr>Tableau MySQL</fr>
             <bg>MySQL таблица</bg>
-            <nl></nl>
+            <nl>MySQL tabel</nl>
         </string>
         <string id="125">
             <en>import table from MySQL table</en>
@@ -1151,7 +1151,7 @@ Note: You can add new languages by inserting "<new_language>string translated in
             <cn>从MySQL表格导入表格</cn>
             <fr>importer un tableau à partir d'un tableau MySQL</fr>
             <bg>Импортирай таблицата от MySQL таблицата</bg>
-            <nl></nl>
+            <nl>tabel importeren uit MySQL tabel</nl>
         </string>
         <string id="126">
             <en>import table from CSV file</en>
@@ -1160,7 +1160,7 @@ Note: You can add new languages by inserting "<new_language>string translated in
             <cn>从CSV文件导入表格</cn>
             <fr>importer un tableau à partir d'un fichier CSV</fr>
             <bg>импортирай таблицана от CSV файла</bg>
-            <nl></nl>
+            <nl>tabel importeren uit CSV-bestand</nl>
         </string>
         <string id="127">
             <en>export table to CSV file</en>
@@ -1169,7 +1169,7 @@ Note: You can add new languages by inserting "<new_language>string translated in
             <cn>导出表格到CSV文件</cn>
             <fr>exporter un tableau à partir d'un fichier CSV</fr>
             <bg>експортирай таблицата към CSV файл</bg>
-            <nl></nl>
+            <nl>tabel exporteren naar CSV-bestand</nl>
         </string>
         <string id="129">
             <en>add column</en>
@@ -1178,7 +1178,7 @@ Note: You can add new languages by inserting "<new_language>string translated in
             <cn>添加列</cn>
             <fr>ajouter une colonne</fr>
             <bg>прибави колона</bg>
-            <nl></nl>
+            <nl>kolom toevoegen</nl>
         </string>
         <string id="130" js="1">
             <en>edit HTML</en>
@@ -1187,7 +1187,7 @@ Note: You can add new languages by inserting "<new_language>string translated in
             <cn>编辑HTML</cn>
             <fr>modifier HTML</fr>
             <bg>редактирай HTML</bg>
-            <nl></nl>
+            <nl>HTML bewerken</nl>
         </string>
         <string id="133">
             <en>editing HTML template</en>
@@ -1196,7 +1196,7 @@ Note: You can add new languages by inserting "<new_language>string translated in
             <cn>编辑HTML模板</cn>
             <fr>modifier un modèle HTML</fr>
             <bg>редактиране на HTML шаблона</bg>
-            <nl></nl>
+            <nl>HTML-sjabloon bewerken</nl>
         </string>
         <string id="134">
             <en>creating new HTML template</en>
@@ -1205,7 +1205,7 @@ Note: You can add new languages by inserting "<new_language>string translated in
             <cn>创建HTML模板</cn>
             <fr>créer un nouveau modèle HTML</fr>
             <bg>създаване на нов HTML шаблон</bg>
-            <nl></nl>
+            <nl>nieuw HTML-sjabloon aanmaken</nl>
         </string>
         <string id="135">
             <en>name of HTML template</en>
@@ -1214,7 +1214,7 @@ Note: You can add new languages by inserting "<new_language>string translated in
             <cn>HTML模板名称</cn>
             <fr>nom du modèle HTML</fr>
             <bg>име на HTML шаблона</bg>
-            <nl></nl>
+            <nl>naam van HTML-sjabloon</nl>
         </string>
         <string id="136">
             <en>HTML content of the template</en>
@@ -1223,7 +1223,7 @@ Note: You can add new languages by inserting "<new_language>string translated in
             <cn>HTML模板内容</cn>
             <fr>contenu HTML du modèle</fr>
             <bg>HTML съдържание на шаблона</bg>
-            <nl></nl>
+            <nl>HTML-inhoud van de sjabloon</nl>
         </string>
         <string id="137">
             <en>template access rights</en>
@@ -1232,7 +1232,7 @@ Note: You can add new languages by inserting "<new_language>string translated in
             <cn>模板访问权限</cn>
             <fr>droits d'accès du modèle</fr>
             <bg>права за достъп до шаблона</bg>
-            <nl></nl>
+            <nl>sjabloon toegangsrechten</nl>
         </string>
         <string id="138">
             <en>owner of the template</en>
@@ -1241,7 +1241,7 @@ Note: You can add new languages by inserting "<new_language>string translated in
             <cn>模板所有者</cn>
             <fr>propriétaire du modèle</fr>
             <bg>собственик на шаблона</bg>
-            <nl></nl>
+            <nl>eigenaar van de sjabloon</nl>
         </string>
         <string id="139">
             <en>editing test</en>
@@ -1250,7 +1250,7 @@ Note: You can add new languages by inserting "<new_language>string translated in
             <cn>编辑测试</cn>
             <fr>modification du test</fr>
             <bg>редактиране на теста</bg>
-            <nl></nl>
+            <nl>test bewerken</nl>
         </string>
         <string id="140">
             <en>creating new test</en>
@@ -1259,7 +1259,7 @@ Note: You can add new languages by inserting "<new_language>string translated in
             <cn>创建测试</cn>
             <fr>créer un nouveau test</fr>
             <bg>създаване на нов тест</bg>
-            <nl></nl>
+            <nl>nieuwe test aanmaken</nl>
         </string>
         <string id="141">
             <en>name of the test</en>
@@ -1268,7 +1268,7 @@ Note: You can add new languages by inserting "<new_language>string translated in
             <cn>测试名称</cn>
             <fr>nom du test</fr>
             <bg>име на теста</bg>
-            <nl></nl>
+            <nl>naam van de test</nl>
         </string>
         <string id="142">
             <en>test access rights</en>
@@ -1277,7 +1277,7 @@ Note: You can add new languages by inserting "<new_language>string translated in
             <cn>测试访问权限</cn>
             <fr>droits d'accès au test</fr>
             <bg>права за достъп до теста</bg>
-            <nl></nl>
+            <nl>toegangsrechten van de test</nl>
         </string>
         <string id="143">
             <en>owner of the test</en>
@@ -1286,7 +1286,7 @@ Note: You can add new languages by inserting "<new_language>string translated in
             <cn>测试所有者</cn>
             <fr>propriétaire du test</fr>
             <bg>собственик на теста</bg>
-            <nl></nl>
+            <nl>eigenaar van de test</nl>
         </string>
         <string id="144">
             <en>show test variables</en>
@@ -1295,7 +1295,7 @@ Note: You can add new languages by inserting "<new_language>string translated in
             <cn>显示测试变量</cn>
             <fr>voir les variables du test</fr>
             <bg>показване на тестовите променливи</bg>
-            <nl></nl>
+            <nl>toon test variabelen</nl>
         </string>
         <string id="145">
             <en>test logic is empty</en>
@@ -1304,7 +1304,7 @@ Note: You can add new languages by inserting "<new_language>string translated in
             <cn>测试逻辑空白</cn>
             <fr>la logique du test est vide</fr>
             <bg>тестовата логика е празна</bg>
-            <nl></nl>
+            <nl>de testlogica is leeg</nl>
         </string>
         <string id="146">
             <en>choose section type</en>
@@ -1313,7 +1313,7 @@ Note: You can add new languages by inserting "<new_language>string translated in
             <cn>选择章节类型</cn>
             <fr>choisir un type de section</fr>
             <bg>избери вида на секцията</bg>
-            <nl></nl>
+            <nl>kies sectietype</nl>
         </string>
         <string id="147">
             <en>basic sections</en>
@@ -1322,7 +1322,7 @@ Note: You can add new languages by inserting "<new_language>string translated in
             <cn>基础章节</cn>
             <fr>sections de base</fr>
             <bg>основни секции</bg>
-            <nl></nl>
+            <nl>basissecties</nl>
         </string>
         <string id="148">
             <en>custom sections</en>
@@ -1331,7 +1331,7 @@ Note: You can add new languages by inserting "<new_language>string translated in
             <cn>自主章节</cn>
             <fr>section personnalisée</fr>
             <bg>персонализирани секции</bg>
-            <nl></nl>
+            <nl>aanpasbare secties</nl>
         </string>
         <string id="149">
             <en>variable name</en>
@@ -1340,7 +1340,7 @@ Note: You can add new languages by inserting "<new_language>string translated in
             <cn>变量名称</cn>
             <fr>nom de la variable</fr>
             <bg>име на променливата</bg>
-            <nl></nl>
+            <nl>naam van de variabele</nl>
         </string>
         <string id="150">
             <en>section</en>
@@ -1349,7 +1349,7 @@ Note: You can add new languages by inserting "<new_language>string translated in
             <cn>章节</cn>
             <fr>section</fr>
             <bg>секция</bg>
-            <nl></nl>
+            <nl>sectie</nl>
         </string>
         <string id="151">
             <en>parameter/return</en>
@@ -1358,7 +1358,7 @@ Note: You can add new languages by inserting "<new_language>string translated in
             <cn>参数/返回值</cn>
             <fr>paramètre/retour</fr>
             <bg>параметър/връщане</bg>
-            <nl></nl>
+          <nl>parameter/return</nl>
         </string>
         <string id="152">
             <en>editing admin group</en>
@@ -1367,7 +1367,7 @@ Note: You can add new languages by inserting "<new_language>string translated in
             <cn>编辑管理群</cn>
             <fr>modifier les groupes d'administrateurs</fr>
             <bg>редактиране на групата администратори</bg>
-            <nl></nl>
+            <nl>beheerdersgroep bewerken</nl>
         </string>
         <string id="153">
             <en>creating admin group</en>
@@ -1376,7 +1376,7 @@ Note: You can add new languages by inserting "<new_language>string translated in
             <cn>创建管理群</cn>
             <fr>créer un groupe d'administrateurs</fr>
             <bg>създаване на групата администратори</bg>
-            <nl></nl>
+            <nl>beheerdersgroep aanmaken</nl>
         </string>
         <string id="154">
             <en>name of the admin group</en>
@@ -1385,7 +1385,7 @@ Note: You can add new languages by inserting "<new_language>string translated in
             <cn>管理群名称</cn>
             <fr>nom du groupe d'administrateurs</fr>
             <bg>име на групата администратори</bg>
-            <nl></nl>
+            <nl>naam van de beheerdersgroep</nl>
         </string>
         <string id="155">
             <en>admin group access rights</en>
@@ -1394,7 +1394,7 @@ Note: You can add new languages by inserting "<new_language>string translated in
             <cn>管理群访问权限</cn>
             <fr>droits d'accès du groupe d'administrateurs</fr>
             <bg>права за достъп на групата администратори</bg>
-            <nl></nl>
+            <nl>beheerdersgroep toegangsrechten</nl>
         </string>
         <string id="156">
             <en>owner of the admin group</en>
@@ -1403,7 +1403,7 @@ Note: You can add new languages by inserting "<new_language>string translated in
             <cn>管理群所有者</cn>
             <fr>propriétaire du groupe d'administrateurs</fr>
             <bg>собственик на групата администратори</bg>
-            <nl></nl>
+            <nl>eigenaar van de beheerdersgroep</nl>
         </string>
         <string id="157">
             <en>editing admin type</en>
