@@ -53,7 +53,7 @@ Note: You can add new languages by inserting "<new_language>string translated in
             <cn>变量验证</cn>	
             <fr>validation de la variable</fr>
             <bg>валидизация на променливата</bg>
-            <nl>variabele valdiatie</nl>
+            <nl>variabele validatie</nl>
         </string>
         <string id="3" js="1">
             <en>changing description</en>
@@ -1411,7 +1411,7 @@ Note: You can add new languages by inserting "<new_language>string translated in
             <pl>edycja typu administratora</pl>
             <cn>编辑管理员类型</cn>
             <bg>редактиране на вида на администратора</bg>
-            <nl></nl>
+            <nl>beheerderstype bewerken</nl>
         </string>
         <string id="158">
             <en>creating new admin type</en>
