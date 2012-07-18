@@ -3768,5 +3768,23 @@ Note: You can add new languages by inserting "<new_language>string translated in
             <bg></bg>
             <nl></nl>
         </string>
+        <string id="454" js="1">
+            <en>show variables assignment</en>
+            <de></de>
+            <pl>pokaż przypisanie wartości</pl>
+            <cn></cn>
+            <fr></fr>
+            <bg></bg>
+            <nl></nl>
+        </string>
+        <string id="455" js="1">
+            <en>hide variables assignment</en>
+            <de></de>
+            <pl>ukryj przypisanie wartości</pl>
+            <cn></cn>
+            <fr></fr>
+            <bg></bg>
+            <nl></nl>
+        </string>
     </strings>
 </root> 

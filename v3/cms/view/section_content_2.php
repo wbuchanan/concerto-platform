@@ -100,7 +100,7 @@ if ($template != null) {
                     <div class="ui-widget-content">
                     <div class="ui-widget-header" align="center"><?= Language::string(106) ?>:</div>
                         <div>
-                            <table class="fullWidth">
+                            <table>
                                 <?php
                                 $inserts = $template->get_inserts();
 
@@ -120,10 +120,10 @@ if ($template != null) {
                                     }
                                     ?>
                                     <tr>
-                                        <td><span class="spanIcon ui-icon ui-icon-help tooltip" title="<?= Language::string(215) ?>"></span></td>
+                                        <td class="tdSectionColumnIcon"><span class="spanIcon ui-icon ui-icon-help tooltip" title="<?= Language::string(215) ?>"></span></td>
                                         <td><?= $inserts[$i] ?></td>
-                                        <td><b><-</b></td>
-                                        <td>
+                                        <td class="noWrap tdVarPointer"><b><-</b></td>
+                                        <td class="tdVarPointer">
                                             <?php
                                             if (!$is_special) {
                                                 ?>    
@@ -139,7 +139,7 @@ if ($template != null) {
                                 }
                                 ?>
                                 <tr>
-                                    <td><span class="spanIcon ui-icon ui-icon-help tooltip" title="<?= Language::string(216) ?>"></span></td>
+                                    <td class="tdSectionColumnIcon"><span class="spanIcon ui-icon ui-icon-help tooltip" title="<?= Language::string(216) ?>"></span></td>
                                     <td>TIME_LIMIT</td>
                                     <td>&nbsp;</td>
                                 </tr>
@@ -161,7 +161,7 @@ if ($template != null) {
                     <div class="ui-widget-content">
                     <div class="ui-widget-header" align="center"><?= Language::string(113) ?>:</div>
                         <div>
-                            <table class="fullWidth">
+                            <table>
                                 <?php
                                 $outputs = $template->get_outputs();
 
@@ -176,21 +176,21 @@ if ($template != null) {
                                     }
                                     ?>
                                     <tr>
-                                        <td><span class="spanIcon ui-icon ui-icon-help tooltip" title="<?= Language::string(217) ?>: <b><?= $outputs[$i]["type"] ?></b>"></span></td>
+                                        <td class="tdSectionColumnIcon"><span class="spanIcon ui-icon ui-icon-help tooltip" title="<?= Language::string(217) ?>: <b><?= $outputs[$i]["type"] ?></b>"></span></td>
                                         <td><?= $outputs[$i]["name"] ?></td>
-                                        <td><b>->></b></td>
-                                        <td><input referenced="<?= $outputs[$i]["name"] ?>" onchange="Test.uiSetVarNameChanged($(this))" type="text" class="ui-state-focus comboboxSetVars comboboxVars controlValue<?= $_POST['counter'] ?>_rets ui-widget-content ui-corner-all fullWidth" value="<?= htmlspecialchars($ret, ENT_QUOTES) ?>" /></td>
+                                        <td class="noWrap tdVarPointer"><b>->></b></td>
+                                        <td class="tdVarPointer"><input referenced="<?= $outputs[$i]["name"] ?>" onchange="Test.uiSetVarNameChanged($(this))" type="text" class="ui-state-focus comboboxSetVars comboboxVars controlValue<?= $_POST['counter'] ?>_rets ui-widget-content ui-corner-all fullWidth" value="<?= htmlspecialchars($ret, ENT_QUOTES) ?>" /></td>
                                     </tr>
                                     <?php
                                 }
                                 ?>
                                 <tr>
-                                    <td><span class="spanIcon ui-icon ui-icon-help tooltip" title="<?= Language::string(283) ?>"></span></td>
+                                    <td class="tdSectionColumnIcon"><span class="spanIcon ui-icon ui-icon-help tooltip" title="<?= Language::string(283) ?>"></span></td>
                                     <td>LAST_PRESSED_BUTTON_NAME</td>
                                     <td>&nbsp;</td>
                                 </tr>
                                 <tr>
-                                    <td><span class="spanIcon ui-icon ui-icon-help tooltip" title="<?= Language::string(283) ?>"></span></td>
+                                    <td class="tdSectionColumnIcon"><span class="spanIcon ui-icon ui-icon-help tooltip" title="<?= Language::string(283) ?>"></span></td>
                                     <td>TIME_TAKEN</td>
                                     <td>&nbsp;</td>
                                 </tr>

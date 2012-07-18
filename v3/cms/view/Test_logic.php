@@ -127,6 +127,7 @@ if ($oid != 0) {
 <div id="divTestLogicExpandable">
     <div align="center">
         <button class="btnLogicToggleAll" onclick="Test.uiToggleAll()"><?= Language::string(401) ?></button>
+        <button class="btnLogicToggleVarAssignment" onclick="Test.uiToggleVarAssignments()"><?= Language::string(454) ?></button>
     </div>
 
     <div id="divTestLogic" class="">

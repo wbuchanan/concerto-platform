@@ -43,6 +43,7 @@ Test.onAfterEdit=function()
 {
     if(Test.currentID==0) Test.resetCounter();
     Test.allExpanded = false;
+    Test.assignmentsShown = false;
 };
 
 Test.onAfterImport=function(){
@@ -432,6 +433,23 @@ Test.uiToggleAll=function(){
     } else {
         Methods.iniIconButton(".btnLogicToggleAll", "folder-collapsed");
         $(".btnLogicToggleAll").button("option","label",dictionary["s401"]);
+    }
+}
+
+Test.assignmentsShown = false;
+Test.uiToggleVarAssignments = function(){
+    if(Test.assignmentsShown){
+        $(".tdVarPointer").hide(0);
+    } else {
+        $(".tdVarPointer").show(0);
+    }
+    Test.assignmentsShown = !Test.assignmentsShown;
+    if(Test.assignmentsShown) {
+        Methods.iniIconButton(".btnLogicToggleVarAssignment", "folder-open");
+        $(".btnLogicToggleVarAssignment").button("option","label",dictionary["s455"]);
+    } else {
+        Methods.iniIconButton(".btnLogicToggleVarAssignment", "folder-collapsed");
+        $(".btnLogicToggleVarAssignment").button("option","label",dictionary["s454"]);
     }
 }
 

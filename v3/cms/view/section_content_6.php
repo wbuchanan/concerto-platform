@@ -54,11 +54,11 @@ if ($logged_user == null) {
                     <div>
                         <table>
                             <tr>
-                                <td><span class="spanIcon ui-icon ui-icon-help tooltip" title="<?= Language::string(245) ?>"></span></td>
+                                <td class="tdSectionColumnIcon"><span class="spanIcon ui-icon ui-icon-help tooltip" title="<?= Language::string(245) ?>"></span></td>
                                 <td>CONCERTO_TEST_ID</td>
                             </tr>
                             <tr>
-                                <td><span class="spanIcon ui-icon ui-icon-help tooltip" title="<?= Language::string(246) ?>"></span></td>
+                                <td class="tdSectionColumnIcon"><span class="spanIcon ui-icon ui-icon-help tooltip" title="<?= Language::string(246) ?>"></span></td>
                                 <td>CONCERTO_TEST_SESSION_ID</td>
                             </tr>
                         </table>

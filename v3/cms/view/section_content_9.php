@@ -79,15 +79,15 @@ $returns = $section->get_return_CustomSectionVariables();
                         <div class="ui-widget-content">
                             <div class="ui-widget-header" align="center"><?= Language::string(106) ?>:</div>
                             <div>
-                                <table class="fullWidth">
+                                <table>
                                     <?php
                                     for ($i = 0; $i < count($parameters); $i++) {
                                         ?>
                                         <tr>
-                                            <td><span class="spanIcon ui-icon ui-icon-help tooltip" title="<?= htmlspecialchars(Template::strip_html($parameters[$i]->description), ENT_QUOTES) ?>"></span></td>
+                                            <td class="tdSectionColumnIcon"><span class="spanIcon ui-icon ui-icon-help tooltip" title="<?= htmlspecialchars(Template::strip_html($parameters[$i]->description), ENT_QUOTES) ?>"></span></td>
                                             <td><?= $parameters[$i]->name ?></td>
-                                            <td><b><-</b></td>
-                                            <td><input type="text" class="controlValue<?= $_POST['counter'] ?> ui-widget-content ui-corner-all comboboxVars fullWidth" value="<?= htmlspecialchars(isset($vals[$j]) ? $vals[$j] : $parameters[$i]->name, ENT_QUOTES) ?>" /></td>
+                                            <td class="noWrap tdVarPointer"><b><-</b></td>
+                                            <td class="tdVarPointer"><input type="text" class="controlValue<?= $_POST['counter'] ?> ui-widget-content ui-corner-all comboboxVars fullWidth" value="<?= htmlspecialchars(isset($vals[$j]) ? $vals[$j] : $parameters[$i]->name, ENT_QUOTES) ?>" /></td>
                                         </tr>
                                         <?php
                                         $j++;
@@ -106,15 +106,15 @@ $returns = $section->get_return_CustomSectionVariables();
                         <div class="ui-widget-content">
                             <div class="ui-widget-header" align="center"><?= Language::string(113) ?>:</div>
                             <div>
-                                <table class="fullWidth">
+                                <table>
                                     <?php
                                     for ($i = 0; $i < count($returns); $i++) {
                                         ?>
                                         <tr>
-                                            <td><span class="spanIcon ui-icon ui-icon-help tooltip" title="<?= htmlspecialchars(Template::strip_html($returns[$i]->description), ENT_QUOTES) ?>"></span></td>
+                                            <td class="tdSectionColumnIcon"><span class="spanIcon ui-icon ui-icon-help tooltip" title="<?= htmlspecialchars(Template::strip_html($returns[$i]->description), ENT_QUOTES) ?>"></span></td>
                                             <td><?= $returns[$i]->name ?></td>
-                                            <td><b>->></b></td>
-                                            <td><input onchange="Test.uiSetVarNameChanged($(this))" type="text" class="ui-state-focus comboboxSetVars comboboxVars controlValue<?= $_POST['counter'] ?> ui-widget-content ui-corner-all fullWidth" value="<?= htmlspecialchars(isset($vals[$j]) ? $vals[$j] : $returns[$i]->name, ENT_QUOTES) ?>" /></td>
+                                            <td class="noWrap tdVarPointer"><b>->></b></td>
+                                            <td class="tdVarPointer"><input onchange="Test.uiSetVarNameChanged($(this))" type="text" class="ui-state-focus comboboxSetVars comboboxVars controlValue<?= $_POST['counter'] ?> ui-widget-content ui-corner-all fullWidth" value="<?= htmlspecialchars(isset($vals[$j]) ? $vals[$j] : $returns[$i]->name, ENT_QUOTES) ?>" /></td>
                                         </tr>
                                         <?php
                                         $j = $j + 3;
