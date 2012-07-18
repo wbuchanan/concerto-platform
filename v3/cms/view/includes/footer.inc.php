@@ -27,4 +27,4 @@ $logged_user = User::get_logged_user();
 if ($logged_user == null) die(Language::string(81));
 ?>
 
-CONCERTO v<?= Ini::$version ?> &REG; 2011-2012 | <a href="<?=Ini::$project_homepage_url?>" target="_blank"><?=Language::string(453)?></a> | <a href="<?=Ini::$forum_url?>" target="_blank"><?=Language::string(451)?></a> | <a href="mailto:<?=Ini::$contact_emails?>" target="_blank"><?=Language::string(452)?></a>
+CONCERTO v<?= Ini::$version ?> | <a href="<?=Ini::$project_homepage_url?>" target="_blank"><?=Language::string(453)?></a> | <a href="<?=Ini::$forum_url?>" target="_blank"><?=Language::string(451)?></a> | <a href="mailto:<?=Ini::$contact_emails?>" target="_blank"><?=Language::string(452)?></a>
