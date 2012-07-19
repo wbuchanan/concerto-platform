@@ -114,6 +114,19 @@ evalWithTimeout <- function (..., envir = parent.frame(), timeout, cpu = timeout
     res
 }
 
+convertVariable <- function(var){
+    result <- tryCatch({
+        var <- as.numeric(var)
+        return(var)
+    }, warning = function(w) {
+        return(var)
+    }, error = function(e) {
+        return(var)
+    }, finally = function(){
+        return(var)
+    })
+    return(result)
+}
 
 library(RMySQL)
 CONCERTO_DB_DRIVER <- dbDriver('MySQL')

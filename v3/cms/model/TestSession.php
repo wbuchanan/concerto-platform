@@ -154,8 +154,8 @@ class TestSession extends OTable {
             } else {
                 $code.=sprintf("
                     %s <- '%s'
-                    if(!is.null(%s) && !is.na(%s) && is.character(%s) && suppressWarnings(!is.na(as.numeric(%s)))) %s <<- as.numeric(%s)
-                    ", $val->name, addslashes($val->value), $val->name, $val->name, $val->name, $val->name, $val->name, $val->name);
+                    %s <<- convertVariable(%s)
+                    ", $val->name, addslashes($val->value), $val->name, $val->name);
             }
         }
 

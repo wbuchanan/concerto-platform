@@ -132,8 +132,8 @@ class TestSection extends OTable {
                             ", $vals[$j], $ret->name);
 
                         $code.=sprintf("
-                            if(!is.null(%s) && !is.na(%s) && is.character(%s) && suppressWarnings(!is.na(as.numeric(%s)))) %s <<- as.numeric(%s)
-                            ", $vals[$j], $vals[$j], $vals[$j], $vals[$j], $vals[$j], $vals[$j]);
+                            %s <<- convertVariable(%s)
+                            ", $vals[$j], $vals[$j]);
 
                         $j++;
                     }
@@ -180,7 +180,7 @@ class TestSection extends OTable {
             case DS_TestSectionType::GO_TO: {
                     $code = sprintf("
                         return(%d)
-                        ", $vals[0]
+                        ", ($vals[0] == 0 ? $next_counter : $vals[0])
                     );
                     break;
                 }
@@ -234,8 +234,8 @@ class TestSection extends OTable {
                             ", $vals[$j], $ret->name);
 
                             $returns_code.=sprintf("
-                            if(!is.null(%s) && !is.na(%s) && is.character(%s) && suppressWarnings(!is.na(as.numeric(%s)))) %s <<- as.numeric(%s)
-                            ", $vals[$j], $vals[$j], $vals[$j], $vals[$j], $vals[$j], $vals[$j]);
+                            %s <<- convertVariable(%s)
+                            ", $vals[$j], $vals[$j]);
 
                             $j++;
                         }
@@ -361,8 +361,8 @@ class TestSection extends OTable {
                     $conds_count = $vals[1];
 
                     $set_rvar_code = sprintf('
-                                if(!is.null(%s) && !is.na(%s) && is.character(%s) && suppressWarnings(!is.na(as.numeric(%s)))) %s <<- as.numeric(%s)
-                                ', $vals[4], $vals[4], $vals[4], $vals[4], $vals[4], $vals[4]);
+                                %s <<- convertVariable(%s)
+                                ', $vals[4], $vals[4]);
 
                     if ($type == 0) {
                         $table = Table::from_mysql_id($vals[5]);
