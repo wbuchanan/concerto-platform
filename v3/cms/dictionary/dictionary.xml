@@ -3563,18 +3563,18 @@ Note: You can add new languages by inserting "<new_language>string translated in
             <nl></nl>
         </string>
         <string id="431" js="1">
-            <en>Your new password has been sent to your email address.</en>
+            <en><![CDATA[Your new password has been sent to your email address. <b>Delivery of email can take up to several minutes.</b>]]></en>
             <de></de>
-            <pl>Twoje nowe hasło zostało wysłane na twój adres email.</pl>
+            <pl><![CDATA[Twoje nowe hasło zostało wysłane na twój adres email. <b>Dostarczenie maila może zająć nawet kilkanaście minut.</b>]]></pl>
             <cn></cn>
             <fr></fr>
             <bg></bg>
             <nl></nl>
         </string>
         <string id="432" js="1">
-            <en>Mail has been sent to your user email account for verification. Please follow the link in verification email to continue password recovery process.</en>
+            <en><![CDATA[Mail has been sent to your user email account for verification. <b>Delivery of email can take up to several minutes.</b> Please follow the link in verification email to continue password recovery process.]]></en>
             <de></de>
-            <pl>List weryfikacyjny został wysłany na skrzynkę pocztową twojego użytkownika. Proszę podążyć za linkiem w liście weryfikacyjnym aby kontynuować process odzyskiwania hasła.</pl>
+            <pl><![CDATA[List weryfikacyjny został wysłany na skrzynkę pocztową twojego użytkownika. <b>Dostarczenie maila może zająć nawet kilkanaście minut.</b> Proszę podążyć za linkiem w liście weryfikacyjnym aby kontynuować process odzyskiwania hasła.]]></pl>
             <cn></cn>
             <fr></fr>
             <bg></bg>
