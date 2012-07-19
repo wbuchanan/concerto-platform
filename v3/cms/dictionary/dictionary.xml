@@ -3786,5 +3786,14 @@ Note: You can add new languages by inserting "<new_language>string translated in
             <bg></bg>
             <nl></nl>
         </string>
+        <string id="456">
+            <en>Users from pre v3.6.10 version need to recover their password using 'forgot your password?' link below. If you didn't enter your email at registration phase, then please contact system administrator first.</en>
+            <de></de>
+            <pl>Użytkownicy z przed wersji v3.6.10 przywrócić swoje hasło używając link 'zapomniałeś hasła?' poniżej. Jeżeli nie podało się adresu email w czasie rejestracji, należy skontaktować się z administratorem systemu.</pl>
+            <cn></cn>
+            <fr></fr>
+            <bg></bg>
+            <nl></nl>
+        </string>
     </strings>
 </root> 

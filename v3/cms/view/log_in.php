@@ -104,7 +104,8 @@ if (Ini::$public_registration) {
                 </td>
             </tr>
         </table>
-    </div>	 
+    </div>	
+    <div class="padding margin ui-state-highlight" align="center"><b><?=Language::string(456)?></b></div>
     <div class="padding fullWidth" align="right">
         <div style="cursor:pointer; text-decoration: underline;" onclick="User.uiPasswordRecovery()"><?= Language::string(425) ?></div>
     </div>
