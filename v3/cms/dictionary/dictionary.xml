@@ -2335,7 +2335,7 @@ Note: You can add new languages by inserting "<new_language>string translated in
             <cn><![CDATA[请按 <b>开始</b> 键.]]></cn>
             <fr><![CDATA[appuyez sur le bouton <b>commencer</b>.]]></fr>
             <bg><![CDATA[Моля натиснете бутона <b>старт</b>]]></bg>
-            <nl></nl>
+            <nl><![CDATA[Klik op de <b>begin</b> knop.]]></nl>
         </string>
         <string id="289" js="1">
             <en><![CDATA[Test #{0} - syntax validation <b>(in progress...)]]></en>
