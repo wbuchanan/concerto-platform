@@ -172,7 +172,7 @@ if (Ini::$public_registration) {
                             <select id="dd_register_select_intitution_type" class="fullWidth ui-widget-content ui-corner-all">
                                 <?php foreach (DS_UserInstitutionType::get_all() as $it) {
                                     ?>
-                                    <option value="<?= $it->id ?>" <?= ($it->id == $obj->UserInstitutionType_id ? "selected" : "") ?>><?= $it->get_name() ?></option>
+                                    <option value="<?= $it->id ?>"><?= $it->get_name() ?></option>
                                 <?php } ?>
                             </select>
                         </div>

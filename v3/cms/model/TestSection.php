@@ -74,6 +74,11 @@ class TestSection extends OTable {
                  ", $this->get_RFunctionName(), $this->counter, $code);
     }
 
+    public static function replace_invalid_code($code) {
+        $code = preg_replace('/([^A-Z^a-z^_^\.^0-9]|^)(q\((.*)\))/', '${1}stop("invalid function call")', $code);
+        return $code;
+    }
+
     public function get_RCode() {
         $code = "";
 
@@ -433,7 +438,7 @@ class TestSection extends OTable {
                     }
                 }
         }
-        return $code;
+        return TestSection::replace_invalid_code($code);
     }
 
     public function get_for_initialization_variable() {

@@ -436,6 +436,15 @@ Setup.steps = [
         ),
     new SetupStep(
         false,
+        "<b>thumbnails</b> directory path must be writable",
+        "thumbnails_directory_writable_check",
+        "your <b>thumbnails</b> directory: <b>{0}</b> <b>IS WRITABLE</b> - <b style='color:green;'>PASSED</b>",
+        "your <b>thumbnails</b> directory: <b>{0}</b> <b>IS NOT WRITABLE</b> - <b style='color:red;'>FAILED</b>",
+        "Set <b>thumbnails</b> directory rigths to 0777.",
+        true     
+        ),
+    new SetupStep(
+        false,
         "<b>cache</b> directory path must be writable",
         "cache_directory_writable_check",
         "your <b>cache</b> directory: <b>{0}</b> <b>IS WRITABLE</b> - <b style='color:green;'>PASSED</b>",

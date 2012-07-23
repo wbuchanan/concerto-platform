@@ -83,6 +83,12 @@ class TestInstance {
             if (TestServer::$debug)
                 TestServer::log_debug("TestInstance->start() --- Test instance started");
 
+            if (!stream_set_blocking($this->pipes[0], 0)) {
+                if (TestServer::$debug) {
+                    TestServer::log_debug("TestInstance->read() --- Error: (stream_set_blocking) #0");
+                    break;
+                }
+            }
             if (!stream_set_blocking($this->pipes[1], 0)) {
                 if (TestServer::$debug) {
                     TestServer::log_debug("TestInstance->read() --- Error: (stream_set_blocking) #1");
@@ -135,9 +141,10 @@ class TestInstance {
         $lines = explode("\n", $code);
         $code = "";
         foreach ($lines as $line) {
-            if (trim($line) == "")
+            $line = trim($line);
+            if ($line == "")
                 continue;
-            $code .= trim($line) . "
+            $code .= $line . "
                 ";
         }
         $this->code = $code;

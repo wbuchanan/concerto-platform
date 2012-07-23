@@ -32,8 +32,8 @@ Note: You can add new languages by inserting "<new_language>string translated in
         <language id="cn">中文</language>
         <language id="de">deutsch</language>
         <language id="fr">francais</language>
-        <language id="pl">polski</language>
         <language id="nl">nederlands</language>
+        <language id="pl">polski</language>
     </languages>
     
     <strings>

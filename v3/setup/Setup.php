@@ -135,6 +135,16 @@ class Setup {
         else
             return json_encode(array("result" => 1, "param" => $path));
     }
+    
+    public static function thumbnails_directory_writable_check() {
+        require '../Ini.php';
+        $ini = new Ini();
+        $path = Ini::$path_internal . "cms/js/lib/fileupload/php/thumbnails";
+        if (self::directory_writable_check($path))
+            return json_encode(array("result" => 0, "param" => $path));
+        else
+            return json_encode(array("result" => 1, "param" => $path));
+    }
 
     public static function cache_directory_writable_check() {
         require '../Ini.php';
