@@ -116,7 +116,7 @@ evalWithTimeout <- function (..., envir = parent.frame(), timeout, cpu = timeout
 
 convertVariable <- function(var){
     result <- tryCatch({
-        var <- as.numeric(var)
+        if(is.character(var)) var <- as.numeric(var)
         return(var)
     }, warning = function(w) {
         return(var)
