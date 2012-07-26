@@ -31,7 +31,7 @@ class Ini {
     public static $path_r_script = "";
     public static $path_temp = "";
     public static $path_mysql_home = "";
-    public static $version = "3.7.1";
+    public static $version = "3.7.2";
     public static $sock_host = "127.0.0.1";
     public static $sock_port = "8888";
     public static $path_unix_sock = "";
@@ -155,6 +155,7 @@ class Ini {
             "DS_TableColumnType",
             "DS_TestSectionType",
             "DS_UserInstitutionType",
+            "QTIAssessmentItem",
             "Setting",
             "Table",
             "TableColumn",
@@ -212,6 +213,7 @@ class Ini {
         require_once self::$path_internal . "cms/model/TestVariable.php";
         require_once self::$path_internal . "cms/model/CustomSection.php";
         require_once self::$path_internal . "cms/model/CustomSectionVariable.php";
+        require_once self::$path_internal . "cms/model/QTI/QTIAssessmentItem.php";
         require_once self::$path_internal . "cms/model/ODataSet.php";
         require_once self::$path_internal . "cms/model/DS_Right.php";
         require_once self::$path_internal . "cms/model/DS_Sharing.php";

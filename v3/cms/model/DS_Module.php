@@ -19,24 +19,22 @@
   Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA.
  */
 
-class DS_Module extends ODataSet
-{
+class DS_Module extends ODataSet {
+
     public static $mysql_table_name = "DS_Module";
 
-    public function mysql_delete()
-    {
+    public function mysql_delete() {
         $utr = UserTypeRight::from_property(array(
                     "Module_id" => $this->id
                 ));
-        foreach ($utr as $obj) $obj->mysql_delete();
+        foreach ($utr as $obj)
+            $obj->mysql_delete();
 
         $this->mysql_delete_object();
     }
 
-    public function get_name()
-    {
-        switch ($this->id)
-        {
+    public function get_name() {
+        switch ($this->id) {
             case 1: return Language::string(167);
             case 2: return Language::string(85);
             case 3: return Language::string(89);
@@ -44,14 +42,14 @@ class DS_Module extends ODataSet
             case 5: return Language::string(90);
             case 6: return Language::string(88);
             case 7: return Language::string(84);
+            case 8: return Language::string(458);
         }
     }
 
-    public static function create_db($delete = false)
-    {
-        if ($delete)
-        {
-            if (!mysql_query("DROP TABLE IF EXISTS `DS_Module`;")) return false;
+    public static function create_db($delete = false) {
+        if ($delete) {
+            if (!mysql_query("DROP TABLE IF EXISTS `DS_Module`;"))
+                return false;
         }
         $sql = "
             CREATE TABLE IF NOT EXISTS `DS_Module` (
@@ -62,7 +60,8 @@ class DS_Module extends ODataSet
             PRIMARY KEY  (`id`)
             ) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=8 ;
             ";
-        if (!mysql_query($sql)) return false;
+        if (!mysql_query($sql))
+            return false;
 
         $sql = "
             INSERT INTO `DS_Module` (`id`, `name`, `value`, `position`) VALUES
@@ -72,7 +71,8 @@ class DS_Module extends ODataSet
             (4, 'user groups', 'UserGroup', 4),
             (5, 'user types', 'UserType', 5),
             (6, 'tests', 'Test', 6),
-            (7, 'custom test section', 'CustomSection', 7);
+            (7, 'custom test section', 'CustomSection', 7),
+            (8, 'QTI assessment item', 'QTIAssessmentItem', 8);
             ";
         return mysql_query($sql);
     }

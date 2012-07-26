@@ -178,13 +178,15 @@ class User extends OModule {
     }
 
     public function mysql_save_from_post($post) {
-        if ($post['modify_password'] == 1)
-            $post['password'] = $this->calculate_password_hash($post['password_hash']);
         $post['oid'] = parent::mysql_save_from_post($post);
-
+        $obj = $this;
         if ($this->id == 0) {
             $obj = self::from_mysql_id($post['oid']);
             $obj->Owner_id = $post['oid'];
+            $obj->mysql_save();
+        }
+        if ($post['modify_password'] == 1) {
+            $obj->password = $obj->calculate_password_hash($post['password_hash']);
             $obj->mysql_save();
         }
         return $post['oid'];

@@ -63,6 +63,7 @@ if (!isset($ini)) {
         <script src="js/Table.js"></script>
         <script src="js/Test.js"></script>
         <script src="js/CustomSection.js"></script>
+        <script src="js/QTIAssessmentItem.js"></script>
         <script src="lib/ckeditor/ckeditor.js"></script>
         <script src="lib/ckeditor/adapters/jquery.js"></script>
         <script src="lib/CodeMirror/lib/codemirror.js"></script>

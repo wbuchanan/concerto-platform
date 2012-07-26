@@ -3795,5 +3795,113 @@ Note: You can add new languages by inserting "<new_language>string translated in
             <bg></bg>
             <nl>Gebruikers van de pre v3.6.10 versie dienen hun wachtwoord op te halen via de 'wachtwoord vergeten?' link hieronder. Indien u geen e-mailadres opgaf tijdens de registratiefase, gelieve contact op te nemen met de systeembeheerder.</nl>
         </string>
+        <string id="457">
+            <en>unnamed QTI assessment item</en>
+            <de></de>
+            <pl>nienazwany element oceny QTI</pl>
+            <cn></cn>
+            <bg></bg>
+            <fr></fr>
+            <nl></nl>
+        </string>
+        <string id="458">
+            <en>QTI assessment item</en>
+            <de></de>
+            <pl>element oceny QTI</pl>
+            <cn></cn>
+            <bg></bg>
+            <fr></fr>
+            <nl></nl>
+        </string>
+        <string id="459">
+            <en>QTI</en>
+            <de></de>
+            <pl>QTI</pl>
+            <cn></cn>
+            <bg></bg>
+            <fr></fr>
+            <nl></nl>
+        </string>
+        <string id="460" final="no">
+            <en>You can implement QTI assessment items into your test here.</en>
+            <de></de>
+            <pl>Dzięki tej zakładce można zaimplementować elementy oceny QTI.</pl>
+            <cn></cn>
+            <bg></bg>
+            <fr></fr>
+            <nl></nl>
+        </string>
+        <string id="461">
+            <en>QTI assessment items</en>
+            <de></de>
+            <pl>elementy oceny QTI</pl>
+            <cn></cn>
+            <bg></bg>
+            <fr></fr>
+            <nl></nl>
+        </string>
+        <string id="462">
+            <en>editing QTI assessment item</en>
+            <de></de>
+            <pl>edycja elementu oceny QTI</pl>
+            <cn></cn>
+            <fr></fr>
+            <bg></bg>
+            <nl></nl>
+        </string>
+        <string id="463">
+            <en>creating new QTI assessment item</en>
+            <de></de>
+            <pl>tworzenie nowego elementu oceny QTI</pl>
+            <cn></cn>
+            <fr></fr>
+            <bg></bg>
+            <nl></nl>
+        </string>
+        <string id="464">
+            <en>name of QTI assessment item</en>
+            <de></de>
+            <pl>nazwa elementu oceny QTI</pl>
+            <cn></cn>
+            <fr></fr>
+            <bg></bg>
+            <nl></nl>
+        </string>
+        <string id="465">
+            <en>XML</en>
+            <de></de>
+            <pl>XML</pl>
+            <cn></cn>
+            <fr></fr>
+            <bg></bg>
+            <nl></nl>
+        </string>
+        <string id="466">
+            <en>QTI assessment item XML code.</en>
+            <de></de>
+            <pl>Kod XML elementu oceny QTI.</pl>
+            <cn></cn>
+            <fr></fr>
+            <bg></bg>
+            <nl></nl>
+        </string>
+        <string id="467">
+            <en>QTI assessment item access rights</en>
+            <de></de>
+            <pl>prawa dostępu elementu oceny QTI</pl>
+            <cn></cn>
+            <fr></fr>
+            <bg></bg>
+            <nl></nl>
+        </string>
+        <string id="468">
+            <en>owner of the QTI assessment item</en>
+            <de></de>
+            <pl>wlaściciel elementu oceny QTI</pl>
+            <cn></cn>
+            <fr></fr>
+            <bg></bg>
+            <nl></nl>
+        </string>
     </strings>
 </root> 

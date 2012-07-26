@@ -66,13 +66,13 @@ if ($logged_user == null) {
             }
         });
         
-        <?php
-        if(Ini::$cms_session_keep_alive){
-        ?>
-        User.sessionKeepAlive(<?=Ini::$cms_session_keep_alive_interval?>);
-        <?php
-        }
-        ?>
+<?php
+if (Ini::$cms_session_keep_alive) {
+    ?>
+                User.sessionKeepAlive(<?= Ini::$cms_session_keep_alive_interval ?>);
+    <?php
+}
+?>
     });
 </script>
 <div class="padding ui-widget-content ui-corner-all margin table" align="center"><?php include Ini::$path_internal . 'cms/view/includes/header.inc.php'; ?></div>
@@ -80,10 +80,16 @@ if ($logged_user == null) {
 <div align="center" class="margin table" style="min-width: 970px;" >
     <div id="tnd_mainMenu">
         <ul>
-<?php
-if ($logged_user->is_module_accesible("Test")) {
-    ?>
+            <?php
+            if ($logged_user->is_module_accesible("Test")) {
+                ?>
                 <li><a href="#tnd_mainMenu-tests" class="tooltipTabs" title="<?= Language::string(193) ?>"><?= Language::string(88) ?></a></li>
+            <?php } ?>
+                
+            <?php
+            if ($logged_user->is_module_accesible("QTIAssessmentItem")) {
+                ?>
+                <li><a href="#tnd_mainMenu-QTI" class="tooltipTabs" title="<?= Language::string(460) ?>"><?= Language::string(459) ?></a></li>
             <?php } ?>
 
             <?php
@@ -111,11 +117,19 @@ if ($logged_user->is_module_accesible("Test")) {
             <?php } ?>
         </ul>
 
-            <?php
-            if ($logged_user->is_module_accesible("Test")) {
-                ?>
+        <?php
+        if ($logged_user->is_module_accesible("Test")) {
+            ?>
             <div id="tnd_mainMenu-tests">
                 <?php include Ini::$path_internal . 'cms/view/includes/tab_tests.inc.php'; ?>
+            </div>
+        <?php } ?>
+        
+        <?php
+        if ($logged_user->is_module_accesible("QTIAssessmentItem")) {
+            ?>
+            <div id="tnd_mainMenu-QTI">
+                <?php include Ini::$path_internal . 'cms/view/includes/tab_QTI.inc.php'; ?>
             </div>
         <?php } ?>
 
@@ -139,17 +153,17 @@ if ($logged_user->is_module_accesible("Test")) {
         if ($logged_user->is_module_accesible("Table")) {
             ?>
             <div id="tnd_mainMenu-tables">
-            <?php include Ini::$path_internal . 'cms/view/includes/tab_tables.inc.php'; ?>
+                <?php include Ini::$path_internal . 'cms/view/includes/tab_tables.inc.php'; ?>
             </div>
-            <?php } ?>
+        <?php } ?>
 
         <?php
         if ($logged_user->is_module_accesible("User") || $logged_user->is_module_accesible("UserType") || $logged_user->is_module_accesible("UserGroup")) {
             ?>
             <div id="tnd_mainMenu-users">
-            <?php include Ini::$path_internal . 'cms/view/includes/tab_users.inc.php'; ?>
+                <?php include Ini::$path_internal . 'cms/view/includes/tab_users.inc.php'; ?>
             </div>
-            <?php } ?>
+        <?php } ?>
 
     </div>
 </div>

@@ -52,11 +52,7 @@ User.getAddSaveObject=function()
 {
     var login = $("#form"+this.className+"InputLogin").val();
     var password = $("#form"+this.className+"InputPassword").val();
-    var hash = password;
-    for(var i=0;i<5000;i++){
-        var shaObj = new jsSHA(login+"-"+hash, "ASCII");
-        hash = shaObj.getHash("SHA-512", "HEX");
-    }
+    var hash = User.getClientHash(login, password);
     
     return { 
         oid:this.currentID,
@@ -160,10 +156,10 @@ User.register = function(){
     },function(data){
         switch(data.result){
             case 0: {
-                
+                var hash = User.getClientHash(login,password);
                 $.post("query/register.php",{
                     login:login,
-                    password:password,
+                    password_hash:hash,
                     firstname:firstname,
                     lastname:lastname,
                     email:email,
@@ -257,6 +253,15 @@ User.uiRegister=function(){
     });
 }
 
+User.getClientHash = function(login,password){
+    var hash = password;
+    for(var i=0;i<5000;i++){
+        var shaObj = new jsSHA(login+"-"+hash, "ASCII");
+        hash = shaObj.getHash("SHA-512", "HEX");
+    }
+    return hash;
+}
+
 User.uiLogIn=function()
 {
     var thisClass=this;
@@ -270,11 +275,7 @@ User.uiLogIn=function()
     
     var login = $("#dd_login_inp_login").val();
     var password = $("#dd_login_inp_password").val();
-    var hash = password;
-    for(var i=0;i<5000;i++){
-        var shaObj = new jsSHA(login+"-"+hash, "ASCII");
-        hash = shaObj.getHash("SHA-512", "HEX");
-    }
+    var hash = User.getClientHash(login,password);
     
     $("#dd_login").parent().mask(dictionary["s319"]);
     $.post("query/log_in.php",

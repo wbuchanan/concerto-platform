@@ -948,6 +948,33 @@ class Setup {
                 return json_encode(array("result" => 0, "param" => "3.6.11"));
             }
         }
+        
+        if (Ini::does_patch_apply("3.7.2", $previous_version)) {
+            if ($simulate) {
+                array_push($versions_to_update, "3.7.2");
+            } else {
+
+                //DS_Module - add new module type
+                $sql = "
+                INSERT INTO `DS_Module` (`id`, `name`, `value`, `position`) VALUES
+                (8, 'QTI assessment item', 'QTIAssessmentItem', 8);
+                ";
+                if (!mysql_query($sql))
+                    return json_encode(array("result" => 1, "param" => $sql));
+                
+                //UserTypeRight - add default user type rights for new module
+                $sql = "
+                INSERT INTO `UserTypeRight` (`id`, `updated`, `created`, `Module_id`, `UserType_id`, `read`, `write`, `ownership`) VALUES
+                (21, '2012-01-18 18:59:34', '2012-01-18 18:59:34', 8, 1, 5, 5, 1),
+                (22, '2012-02-03 18:29:48', '2012-02-03 18:29:48', 8, 4, 3, 3, 0);
+                ";
+                if (!mysql_query($sql))
+                    return json_encode(array("result" => 1, "param" => $sql));
+
+                Setting::set_setting("version", "3.7.2");
+                return json_encode(array("result" => 0, "param" => "3.7.2"));
+            }
+        }
 
         if ($simulate)
             return json_encode(array("versions" => $versions_to_update, "validate_column_names" => $validate_column_names, "repopulate_TestTemplate" => $repopulate_TestTemplate, "recalculate_hash" => $recalculate_hash, "create_db" => self::create_db_structure(true)));
