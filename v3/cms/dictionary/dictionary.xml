@@ -98,7 +98,7 @@ Note: You can add new languages by inserting "<new_language>string translated in
             <cn>添加新对象</cn>
             <fr>ajouter un nouvel objet</fr>
             <bg>прибавяне на нов обект</bg>
-            <nl>nieuw object toevoegen</nl>
+            <nl>Nieuw object toevoegen</nl>
         </string>
         <string id="8" js="1">
             <en>Are you sure you want to delete this object #{0}?</en>
@@ -1804,7 +1804,7 @@ Note: You can add new languages by inserting "<new_language>string translated in
             <cn>添加对象</cn>
             <fr>ajouter un nouvel objet</fr>
             <bg>прибави нов обект</bg>
-            <nl>nieuw object toevoegen</nl>
+            <nl>Nieuw object toevoegen</nl>
         </string>
         <string id="211">
             <en>login to platform</en>
@@ -2777,7 +2777,7 @@ Note: You can add new languages by inserting "<new_language>string translated in
             <cn>拖动列标题至此以按此列分类</cn>
             <fr>Glisser une entête de colonne et la déposer ici afin de grouper avec cette variable</fr>
             <bg>Изтегли заглавието на колоната и го пусни за групиране по колона</bg>
-            <nl>Sleep een kolom header naar deze plaats om volgens die variabele te groeperen</nl>
+            <nl>Sleep een kolom header naar deze plaats om volgens die kolomwaarden te groeperen</nl>
         </string>
         <string id="340" js="1">
             <en>Show rows with value that:</en>
@@ -3074,7 +3074,7 @@ Note: You can add new languages by inserting "<new_language>string translated in
             <cn>从在线图书馆下载</cn>
             <fr></fr>
             <bg></bg>
-            <nl>download uit online bibliotheek</nl>
+            <nl>Download uit online bibliotheek</nl>
         </string>
         <string id="375">
             <en>upload to online library</en>
