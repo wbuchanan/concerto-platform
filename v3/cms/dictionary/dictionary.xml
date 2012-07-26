@@ -3703,7 +3703,7 @@ Note: You can add new languages by inserting "<new_language>string translated in
             <cn></cn>
             <fr></fr>
             <bg></bg>
-            <nl></nl>
+            <nl>Deze sectie toont de exacte R-code die doorgestuurd wordt naar de R-sessie.</nl>
         </string>
         <string id="447" js="1">
             <en>Convert section to lower level R code section.</en>
@@ -3712,7 +3712,7 @@ Note: You can add new languages by inserting "<new_language>string translated in
             <cn></cn>
             <fr></fr>
             <bg></bg>
-            <nl></nl>
+            <nl>Converteer sectie naar lager niveau R-code sectie.</nl>
         </string>
         <string id="448" js="1">
             <en>You need to save the changes that has been made in the test logic to convert any section to lower level R code.</en>
@@ -3721,7 +3721,7 @@ Note: You can add new languages by inserting "<new_language>string translated in
             <cn></cn>
             <fr></fr>
             <bg></bg>
-            <nl></nl>
+            <nl>Wijzigingen aan de testlogica dienen opgeslagen te worden, vooraleer een sectie naar lager niveau R-code geconverteerd kan worden.</nl>
         </string>
         <string id="449" js="1">
             <en>converting to lower level R code</en>
@@ -3730,7 +3730,7 @@ Note: You can add new languages by inserting "<new_language>string translated in
             <cn></cn>
             <fr></fr>
             <bg></bg>
-            <nl></nl>
+            <nl>converteren naar lager niveau R-code</nl>
         </string>
         <string id="450" js="1">
             <en>Are you sure you want to convert this section type to lower level R code section? After doing so you won't be able to revert back. Only saved changes will be converted to lower level R code.</en>
@@ -3739,7 +3739,7 @@ Note: You can add new languages by inserting "<new_language>string translated in
             <cn></cn>
             <fr></fr>
             <bg></bg>
-            <nl></nl>
+            <nl>Bent u zeker dat u deze sectietype wil converteren naar lager niveau R-code? Deze actie kan niet ongedaan gemaakt geworden. Alleen opgeslagen wijzingen zullen geconverteerd worden naar lager niveau R-code.</nl>
         </string>
         <string id="451">
             <en>forum</en>
@@ -3748,7 +3748,7 @@ Note: You can add new languages by inserting "<new_language>string translated in
             <cn></cn>
             <fr></fr>
             <bg></bg>
-            <nl></nl>
+            <nl>forum</nl>
         </string>
         <string id="452">
             <en>contact us</en>
@@ -3757,7 +3757,7 @@ Note: You can add new languages by inserting "<new_language>string translated in
             <cn></cn>
             <fr></fr>
             <bg></bg>
-            <nl></nl>
+            <nl>contact</nl>
         </string>
         <string id="453">
             <en>project homepage</en>
@@ -3766,7 +3766,7 @@ Note: You can add new languages by inserting "<new_language>string translated in
             <cn></cn>
             <fr></fr>
             <bg></bg>
-            <nl></nl>
+            <nl>project homepage</nl>
         </string>
         <string id="454" js="1">
             <en>show variables assignment</en>
@@ -3775,7 +3775,7 @@ Note: You can add new languages by inserting "<new_language>string translated in
             <cn></cn>
             <fr></fr>
             <bg></bg>
-            <nl></nl>
+            <nl>toewijzing variabelen weergeven</nl>
         </string>
         <string id="455" js="1">
             <en>hide variables assignment</en>
@@ -3784,7 +3784,7 @@ Note: You can add new languages by inserting "<new_language>string translated in
             <cn></cn>
             <fr></fr>
             <bg></bg>
-            <nl></nl>
+            <nl>toewijzing variabelen verbergen</nl>
         </string>
         <string id="456">
             <en>Users from pre v3.6.10 version need to recover their password using 'forgot your password?' link below. If you didn't enter your email at registration phase, then please contact system administrator first.</en>
@@ -3793,7 +3793,7 @@ Note: You can add new languages by inserting "<new_language>string translated in
             <cn></cn>
             <fr></fr>
             <bg></bg>
-            <nl></nl>
+            <nl>Gebruikers van de pre v3.6.10 versie dienen hun wachtwoord op te halen via de 'wachtwoord vergeten?' link hieronder. Indien u geen e-mailadres opgaf tijdens de registratiefase, gelieve contact op te nemen met de systeembeheerder.</nl>
         </string>
     </strings>
 </root> 
