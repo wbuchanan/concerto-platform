@@ -100,7 +100,7 @@ if ($oid != 0) {
             <tr>
                 <td class="noWrap horizontalPadding tdFormLabel">* <?= Language::string(70) ?>:</td>
                 <td><span class="tooltip spanIcon ui-icon ui-icon-help" title="<?= Language::string(135) ?>"></span></td>
-                <td>
+                <td class="fullWidth">
                     <div class="horizontalMargin">
                         <input type="text" id="form<?= $class_name ?>InputName" value="<?= $obj->name ?>" class="fullWidth ui-widget-content ui-corner-all" />
                     </div>
