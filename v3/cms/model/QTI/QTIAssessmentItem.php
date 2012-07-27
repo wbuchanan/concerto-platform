@@ -19,39 +19,38 @@
   Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA.
  */
 
-class QTIAssessmentItem extends OModule
-{
+class QTIAssessmentItem extends OModule {
+
     public $name = "";
     public $XML = "";
     public $description = "";
     public $xml_hash = "";
-    
     public static $exportable = true;
     public static $mysql_table_name = "QTIAssessmentItem";
 
-    public function __construct($params = array())
-    {
+    public function __construct($params = array()) {
         $this->name = Language::string(457);
         parent::__construct($params);
     }
-    
-    public function get_pre_HTML_R_code(){
-        
-    }
-    
-    public function get_HTML(){
-        
-    }
-    
-    public function get_post_HTML_R_code(){
-        
+
+    public function validate() {
+        $document = new DOMDocument();
+        $document->loadXML($this->XML);
+        if (!$document) {
+            return json_encode(array("result" => OQTIElement::VALIDATION_ERROR_TYPES_XML, "section" => "XML", "target" => "XML"));
+        }
+        $root = $document->getElementsByTagName("assessmentItem");
+        if ($root->length == 0) {
+            return json_encode(array("result" => OQTIElement::VALIDATION_ERROR_TYPES_CHILD_REQUIRED, "section" => "XML", "target" => "assessmentItem"));
+        }
+        $assessmentItem = new QTIAssessmentItemElement($root->item(0));
+        return $assessmentItem->validate();
     }
 
-    public static function create_db($delete = false)
-    {
-        if ($delete)
-        {
-            if (!mysql_query("DROP TABLE IF EXISTS `QTIAssessmentItem`;")) return false;
+    public static function create_db($delete = false) {
+        if ($delete) {
+            if (!mysql_query("DROP TABLE IF EXISTS `QTIAssessmentItem`;"))
+                return false;
         }
         $sql = "
             CREATE TABLE IF NOT EXISTS `QTIAssessmentItem` (

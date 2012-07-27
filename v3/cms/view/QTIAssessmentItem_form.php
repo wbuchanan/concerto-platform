@@ -117,6 +117,33 @@ if ($oid != 0) {
                     <div class="horizontalMargin">
                         <textarea id="form<?= $class_name ?>TextareaXML" name="form<?= $class_name ?>TextareaXML"><?= htmlspecialchars(stripslashes($obj->XML)) ?></textarea>
                     </div>
+                    <?php
+                    $validation = json_decode($obj->validate());
+                    ?>
+                    <div class="horizontalMargin <?= $validation->result == 0 ? "ui-state-highlight" : "ui-state-error" ?>" id="div<?= $class_name ?>Validation" align="center">
+                        <?php
+                        if ($validation->result == 0) {
+                            echo "<b>" . Language::string(470) . "</b>";
+                        } else {
+                            echo "<b>" . Language::string(471) . "</b>" . "</br>";
+                            echo Language::string(472);
+                            echo "<b>";
+                            switch ($validation->result) {
+                                case OQTIElement::VALIDATION_ERROR_TYPES_XML: echo Language::string(475);
+                                    break;
+                                case OQTIElement::VALIDATION_ERROR_TYPES_CHILD_REQUIRED: echo Language::string(479);
+                                    break;
+                                case OQTIElement::VALIDATION_ERROR_TYPES_CHILD_NOT_AVAILABLE: echo Language::string(478);
+                                    break;
+                                case OQTIElement::VALIDATION_ERROR_TYPES_ATTRIBUTE_REQUIRED: echo Language::string(477);
+                                    break;
+                                case OQTIElement::VALIDATION_ERROR_TYPES_ATTRIBUTE_NOT_AVAILABLE: echo Language::string(476);
+                                    break;
+                            }
+                            echo "</b>, " . Language::string(473) . "<b>" . $validation->section . "</b>, " . Language::string(474) . "<b>" . $validation->target . "</b>";
+                        }
+                        ?>
+                    </div>
                 </td>
             </tr>
             <tr>

@@ -3903,5 +3903,104 @@ Note: You can add new languages by inserting "<new_language>string translated in
             <bg></bg>
             <nl></nl>
         </string>
+        <string id="469">
+            <en>QTI XML is not yet validated. Press revalidate button.</en>
+            <de></de>
+            <pl>XML QTI nie jest jeszcze zwalidowany. Proszę nacisnąć przycisk rewaliduj.</pl>
+            <cn></cn>
+            <fr></fr>
+            <bg></bg>
+            <nl></nl>
+        </string>
+        <string id="470">
+            <en>QTI XML has been successfuly validated.</en>
+            <de></de>
+            <pl>XML QTI został pomyślnie zwalidowany.</pl>
+            <cn></cn>
+            <fr></fr>
+            <bg></bg>
+            <nl></nl>
+        </string>
+        <string id="471">
+            <en>QTI XML is incorrect. Correct XML and press revalidate button.</en>
+            <de></de>
+            <pl>XML QTI nie jest poprawny. Popraw go a następnie naciśnij przycisk rewaliduj.</pl>
+            <cn></cn>
+            <fr></fr>
+            <bg></bg>
+            <nl></nl>
+        </string>
+        <string id="472">
+            <en>Error type: </en>
+            <de></de>
+            <pl>Typ błędu: </pl>
+            <cn></cn>
+            <fr></fr>
+            <bg></bg>
+            <nl></nl>
+        </string>
+        <string id="473">
+            <en>element: </en>
+            <de></de>
+            <pl>element: </pl>
+            <cn></cn>
+            <fr></fr>
+            <bg></bg>
+            <nl></nl>
+        </string>
+        <string id="474">
+            <en>target: </en>
+            <de></de>
+            <pl>cel: </pl>
+            <cn></cn>
+            <fr></fr>
+            <bg></bg>
+            <nl></nl>
+        </string>
+        <string id="475">
+            <en>XML root</en>
+            <de></de>
+            <pl>korzeń XML:</pl>
+            <cn></cn>
+            <fr></fr>
+            <bg></bg>
+            <nl></nl>
+        </string>
+        <string id="476">
+            <en>attribute not allowed</en>
+            <de></de>
+            <pl>atrybut niedostępny</pl>
+            <cn></cn>
+            <fr></fr>
+            <bg></bg>
+            <nl></nl>
+        </string>
+        <string id="477">
+            <en>attribute required</en>
+            <de></de>
+            <pl>atrybut wymagany</pl>
+            <cn></cn>
+            <fr></fr>
+            <bg></bg>
+            <nl></nl>
+        </string>
+        <string id="478">
+            <en>child not allowed</en>
+            <de></de>
+            <pl>potomek niedostępny</pl>
+            <cn></cn>
+            <fr></fr>
+            <bg></bg>
+            <nl></nl>
+        </string>
+        <string id="479">
+            <en>child required</en>
+            <de></de>
+            <pl>potomek wymagany</pl>
+            <cn></cn>
+            <fr></fr>
+            <bg></bg>
+            <nl></nl>
+        </string>
     </strings>
 </root> 
