@@ -43,7 +43,7 @@ class QTIAssessmentItem extends OModule {
         if ($root->length == 0) {
             return json_encode(array("result" => OQTIElement::VALIDATION_ERROR_TYPES_CHILD_REQUIRED, "section" => "XML", "target" => "assessmentItem"));
         }
-        $assessmentItem = new QTIAssessmentItemElement($root->item(0));
+        $assessmentItem = new AssessmentItem($root->item(0));
         return $assessmentItem->validate();
     }
 

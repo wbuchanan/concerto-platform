@@ -19,16 +19,18 @@
   Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA.
  */
 
-class QTIAssessmentItemElement extends OQTIElement {
+class AssessmentItem extends OQTIElement {
+
+    //atributes
     public $identifier = "";
     public $title = "";
-    public $label = "";
-    public $lang = "";
+    public $label = null;
+    public $lang = null;
     public $adaptive = "";
     public $timeDependent = "";
-    public $toolName = "";
-    public $toolVersion = "";
-    
+    public $toolName = null;
+    public $toolVersion = null;
+    //children
     public $responseDeclaration = array();
     public $outcomeDeclaration = array();
     public $templateDeclaration = array();
@@ -37,7 +39,6 @@ class QTIAssessmentItemElement extends OQTIElement {
     public $itemBody = null;
     public $responseProcessing = null;
     public $modalFeedback = array();
-    
     public static $name = "assessmentItem";
     public static $possible_children = array(
         "responseDeclaration",
@@ -49,8 +50,7 @@ class QTIAssessmentItemElement extends OQTIElement {
         "responseProcessing",
         "modalFeedback"
     );
-    public static $required_children = array(
-    );
+    public static $required_children = array();
     public static $possible_attributes = array(
         "identifier",
         "title",
@@ -68,6 +68,15 @@ class QTIAssessmentItemElement extends OQTIElement {
         "adaptive",
         "timeDependent"
     );
+
+    public function __construct($node) {
+        parent::__construct($node);
+        self::$possible_attributes = array_merge(parent::$possible_attributes, self::$possible_attributes);
+        self::$required_attributes = array_merge(parent::$required_attributes, self::$required_attributes);
+        self::$possible_children = array_merge(parent::$possible_children, self::$possible_children);
+        self::$required_children = array_merge(parent::$required_children, self::$required_children);
+    }
+
 }
 
 ?>

@@ -30,8 +30,12 @@ class OQTIElement {
     const VALIDATION_ERROR_TYPES_CHILD_REQUIRED = 5;
 
     public static $class_mapping = array(
-        "assessmentitem" => "QTIAssessmentItemElement"
+        "assessmentitem" => "AssessmentItem"
     );
+    public static $possible_attributes = array();
+    public static $required_attributes = array();
+    public static $possible_children = array();
+    public static $required_children = array();
 
     public function __construct($node) {
         $this->node = $node;
@@ -61,6 +65,7 @@ class OQTIElement {
     }
 
     private function validate_possible_attributes() {
+        if(in_array("*", static::$possible_attributes)) return json_encode(array("result" => 0));
         $attributes = $this->node->attributes;
         foreach ($attributes as $attr) {
             if (!in_array($attr->nodeName, static::$possible_attributes))
@@ -78,6 +83,7 @@ class OQTIElement {
     }
 
     private function validate_possible_children() {
+        if(in_array("*", static::$possible_children)) return json_encode(array("result" => 0));
         foreach ($this->node->childNodes as $node) {
             if ($node->nodeType != XML_ELEMENT_NODE)
                 continue;
