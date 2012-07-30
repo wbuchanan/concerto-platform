@@ -36,7 +36,8 @@ class OQTIElement {
     public static $required_children = array();
     public static $class_map = array(
         "default" => "DefaultExp",
-        "null" => "NullExp"
+        "null" => "NullExp",
+        "and" => "AndExp"
     );
 
     public function __construct($node) {
