@@ -216,6 +216,16 @@ class Ini {
         require_once self::$path_internal . "cms/model/CustomSection.php";
         require_once self::$path_internal . "cms/model/CustomSectionVariable.php";
         require_once self::$path_internal . "cms/model/QTI/OQTIElement.php";
+        require_once self::$path_internal . "cms/model/QTI/expressions/AExpression.php";
+        require_once self::$path_internal . "cms/model/QTI/expressions/BaseValue.php";
+        require_once self::$path_internal . "cms/model/QTI/expressions/Variable.php";
+        require_once self::$path_internal . "cms/model/QTI/expressions/DefaultExp.php";
+        require_once self::$path_internal . "cms/model/QTI/expressions/Correct.php";
+        require_once self::$path_internal . "cms/model/QTI/expressions/MapResponse.php";
+        require_once self::$path_internal . "cms/model/QTI/expressions/MapResponsePoint.php";
+        require_once self::$path_internal . "cms/model/QTI/expressions/NullExp.php";
+        require_once self::$path_internal . "cms/model/QTI/expressions/RandomInteger.php";
+        require_once self::$path_internal . "cms/model/QTI/expressions/RandomFloat.php";
         require_once self::$path_internal . "cms/model/QTI/presentation/ABodyElement.php";
         require_once self::$path_internal . "cms/model/QTI/presentation/AChoice.php";
         require_once self::$path_internal . "cms/model/QTI/presentation/AAssociableChoice.php";

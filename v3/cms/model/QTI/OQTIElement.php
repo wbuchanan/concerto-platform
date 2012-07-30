@@ -34,6 +34,10 @@ class OQTIElement {
     public static $required_attributes = array();
     public static $possible_children = array();
     public static $required_children = array();
+    public static $class_map = array(
+        "default" => "DefaultExp",
+        "null" => "NullExp"
+    );
 
     public function __construct($node) {
         $this->node = $node;
@@ -87,12 +91,13 @@ class OQTIElement {
         foreach ($this->node->childNodes as $node) {
             if ($node->nodeType != XML_ELEMENT_NODE)
                 continue;
-            if (!class_exists(ucfirst($node->nodeName))) {
-                return json_encode(array("result" => self::VALIDATION_ERROR_TYPES_CLASS_NOT_EXISTS, "section" => static::$name, "target" => $node->nodeName));
+            $class_name = self::get_mapped_class_name($node->nodeName);
+            if (!class_exists($class_name)) {
+                return json_encode(array("result" => self::VALIDATION_ERROR_TYPES_CLASS_NOT_EXISTS, "section" => static::$name, "target" => $class_name));
             }
             $match = false;
             foreach (static::$possible_children as $children) {
-                if ($node->nodeName == $children || is_subclass_of(ucfirst($node->nodeName), ucfirst($children)) || is_subclass_of(ucfirst($node->nodeName), "A" . ucfirst($children))) {
+                if ($node->nodeName == $children || is_subclass_of($class_name, ucfirst($children)) || is_subclass_of($class_name, "A" . ucfirst($children))) {
                     $match = true;
                     break;
                 }
@@ -105,14 +110,16 @@ class OQTIElement {
 
     private function validate_required_children() {
         foreach (static::$required_children as $child) {
-            if (!class_exists(ucfirst($child))) {
-                return json_encode(array("result" => self::VALIDATION_ERROR_TYPES_CLASS_NOT_EXISTS, "section" => static::$name, "target" => $child));
+            $class_name_child = self::get_mapped_class_name($child);
+            if (!class_exists($class_name_child)) {
+                return json_encode(array("result" => self::VALIDATION_ERROR_TYPES_CLASS_NOT_EXISTS, "section" => static::$name, "target" => $class_name_child));
             }
             $found = false;
             foreach ($this->node->childNodes as $node) {
                 if ($node->nodeType != XML_ELEMENT_NODE)
                     continue;
-                if ($node->nodeName == $child || is_subclass_of(ucfirst($node->nodeName), ucfirst($child)) || is_subclass_of(ucfirst($node->nodeName), "A" . ucfirst($child))) {
+                $class_name_node = self::get_mapped_class_name($node->nodeName);
+                if ($node->nodeName == $child || is_subclass_of($class_name_node, $class_name_child) || is_subclass_of($class_name_node, "A" . $class_name_child)) {
                     $found = true;
                     break;
                 }
@@ -129,7 +136,7 @@ class OQTIElement {
         foreach ($this->node->childNodes as $node) {
             if ($node->nodeType != XML_ELEMENT_NODE)
                 continue;
-            $class_name = ucfirst($node->nodeName);
+            $class_name = self::get_mapped_class_name($node->nodeName);
             if (!class_exists($class_name)) {
                 return json_encode(array("result" => self::VALIDATION_ERROR_TYPES_CLASS_NOT_EXISTS, "section" => static::$name, "target" => $class_name));
             }
@@ -142,13 +149,21 @@ class OQTIElement {
         return json_encode(array("result" => 0));
     }
 
+    public static function get_mapped_class_name($class_name) {
+        if (array_key_exists($class_name, self::$class_map))
+            $class_name = self::$class_map[$class_name];
+        $class_name = ucfirst($class_name);
+        return $class_name;
+    }
+
     private function set_children($child) {
-        if (!property_exists(ucfirst(static::$name), ucfirst($child::$name)))
+        $name = $child::$name;
+        if (!property_exists(ucfirst(static::$name), $name))
             return;
-        if (is_array($this->$child->name))
-            array_push($this->$child->name, $child);
+        if (is_array($this->$name))
+            array_push($this->$name, $child);
         else
-            $this->$child->name = $child;
+            $this->$name = $child;
     }
 
     private function set_attributes() {
