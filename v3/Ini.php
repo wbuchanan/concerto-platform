@@ -330,6 +330,7 @@ class Ini {
         require_once self::$path_internal . "cms/model/QTI/CorrectResponse.php";
         require_once self::$path_internal . "cms/model/QTI/DefaultValue.php";
         require_once self::$path_internal . "cms/model/QTI/ExitResponse.php";
+        require_once self::$path_internal . "cms/model/QTI/ExitTemplate.php";
         require_once self::$path_internal . "cms/model/QTI/MapEntry.php";
         require_once self::$path_internal . "cms/model/QTI/Mapping.php";
         require_once self::$path_internal . "cms/model/QTI/ModalFeedback.php";
@@ -340,10 +341,14 @@ class Ini {
         require_once self::$path_internal . "cms/model/QTI/ResponseElseIf.php";
         require_once self::$path_internal . "cms/model/QTI/ResponseIf.php";
         require_once self::$path_internal . "cms/model/QTI/ResponseProcessing.php";
+        require_once self::$path_internal . "cms/model/QTI/SetCorrectResponse.php";
+        require_once self::$path_internal . "cms/model/QTI/SetDefaultValue.php";
         require_once self::$path_internal . "cms/model/QTI/SetOutcomeValue.php";
+        require_once self::$path_internal . "cms/model/QTI/SetTemplateValue.php";
         require_once self::$path_internal . "cms/model/QTI/Stylesheet.php";
         require_once self::$path_internal . "cms/model/QTI/TemplateBlock.php";
         require_once self::$path_internal . "cms/model/QTI/TemplateCondition.php";
+        require_once self::$path_internal . "cms/model/QTI/TemplateElse.php";
         require_once self::$path_internal . "cms/model/QTI/TemplateElseIf.php";
         require_once self::$path_internal . "cms/model/QTI/TemplateIf.php";
         require_once self::$path_internal . "cms/model/QTI/TemplateInline.php";
