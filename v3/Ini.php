@@ -271,6 +271,7 @@ class Ini {
         require_once self::$path_internal . "cms/model/QTI/presentation/UploadInteraction.php";
         require_once self::$path_internal . "cms/model/QTI/AItemVariable.php";
         require_once self::$path_internal . "cms/model/QTI/AOutcomeVariable.php";
+        require_once self::$path_internal . "cms/model/QTI/AResponseRule.php";
         require_once self::$path_internal . "cms/model/QTI/AResponseVariable.php";
         require_once self::$path_internal . "cms/model/QTI/AVariableDeclaration.php";
         require_once self::$path_internal . "cms/model/QTI/AreaMapEntry.php";
@@ -278,10 +279,18 @@ class Ini {
         require_once self::$path_internal . "cms/model/QTI/AssessmentItem.php";
         require_once self::$path_internal . "cms/model/QTI/CorrectResponse.php";
         require_once self::$path_internal . "cms/model/QTI/DefaultValue.php";
+        require_once self::$path_internal . "cms/model/QTI/ExitResponse.php";
         require_once self::$path_internal . "cms/model/QTI/MapEntry.php";
         require_once self::$path_internal . "cms/model/QTI/Mapping.php";
+        require_once self::$path_internal . "cms/model/QTI/ModalFeedback.php";
         require_once self::$path_internal . "cms/model/QTI/OutcomeDeclaration.php";
+        require_once self::$path_internal . "cms/model/QTI/ResponseCondition.php";
         require_once self::$path_internal . "cms/model/QTI/ResponseDeclaration.php";
+        require_once self::$path_internal . "cms/model/QTI/ResponseElse.php";
+        require_once self::$path_internal . "cms/model/QTI/ResponseElseIf.php";
+        require_once self::$path_internal . "cms/model/QTI/ResponseIf.php";
+        require_once self::$path_internal . "cms/model/QTI/ResponseProcessing.php";
+        require_once self::$path_internal . "cms/model/QTI/SetOutcomeValue.php";
         require_once self::$path_internal . "cms/model/QTI/Stylesheet.php";
         require_once self::$path_internal . "cms/model/QTI/Value.php";
         require_once self::$path_internal . "cms/model/QTI/QTIAssessmentItem.php";

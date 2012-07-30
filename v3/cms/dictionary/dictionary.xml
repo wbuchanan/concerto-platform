@@ -4002,5 +4002,14 @@ Note: You can add new languages by inserting "<new_language>string translated in
             <bg></bg>
             <nl></nl>
         </string>
+        <string id="480">
+            <en>class does not exist</en>
+            <de></de>
+            <pl>klasa nie istnieje</pl>
+            <cn></cn>
+            <fr></fr>
+            <bg></bg>
+            <nl></nl>
+        </string>
     </strings>
 </root> 

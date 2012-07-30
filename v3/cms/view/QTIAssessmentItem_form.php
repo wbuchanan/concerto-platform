@@ -139,6 +139,8 @@ if ($oid != 0) {
                                     break;
                                 case OQTIElement::VALIDATION_ERROR_TYPES_ATTRIBUTE_NOT_AVAILABLE: echo Language::string(476);
                                     break;
+                                case OQTIElement::VALIDATION_ERROR_TYPES_CLASS_NOT_EXISTS: echo Language::string(480);
+                                    break;
                             }
                             echo "</b>, " . Language::string(473) . "<b>" . $validation->section . "</b>, " . Language::string(474) . "<b>" . $validation->target . "</b>";
                         }

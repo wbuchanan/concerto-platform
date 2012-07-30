@@ -28,10 +28,8 @@ class OQTIElement {
     const VALIDATION_ERROR_TYPES_ATTRIBUTE_REQUIRED = 3;
     const VALIDATION_ERROR_TYPES_CHILD_NOT_AVAILABLE = 4;
     const VALIDATION_ERROR_TYPES_CHILD_REQUIRED = 5;
+    const VALIDATION_ERROR_TYPES_CLASS_NOT_EXISTS = 6;
 
-    public static $class_mapping = array(
-        "assessmentitem" => "AssessmentItem"
-    );
     public static $possible_attributes = array();
     public static $required_attributes = array();
     public static $possible_children = array();
@@ -65,7 +63,8 @@ class OQTIElement {
     }
 
     private function validate_possible_attributes() {
-        if(in_array("*", static::$possible_attributes)) return json_encode(array("result" => 0));
+        if (in_array("*", static::$possible_attributes))
+            return json_encode(array("result" => 0));
         $attributes = $this->node->attributes;
         foreach ($attributes as $attr) {
             if (!in_array($attr->nodeName, static::$possible_attributes))
@@ -83,11 +82,22 @@ class OQTIElement {
     }
 
     private function validate_possible_children() {
-        if(in_array("*", static::$possible_children)) return json_encode(array("result" => 0));
+        if (in_array("*", static::$possible_children))
+            return json_encode(array("result" => 0));
         foreach ($this->node->childNodes as $node) {
             if ($node->nodeType != XML_ELEMENT_NODE)
                 continue;
-            if (!in_array($node->nodeName, static::$possible_children))
+            if (!class_exists(ucfirst($node->nodeName))) {
+                return json_encode(array("result" => self::VALIDATION_ERROR_TYPES_CLASS_NOT_EXISTS, "section" => static::$name, "target" => $node->nodeName));
+            }
+            $match = false;
+            foreach (static::$possible_children as $children) {
+                if ($node->nodeName == $children || is_subclass_of(ucfirst($node->nodeName), ucfirst($children)) || is_subclass_of(ucfirst($node->nodeName), "A" . ucfirst($children))) {
+                    $match = true;
+                    break;
+                }
+            }
+            if (!$match)
                 return json_encode(array("result" => self::VALIDATION_ERROR_TYPES_CHILD_NOT_AVAILABLE, "section" => static::$name, "target" => $node->nodeName));
         }
         return json_encode(array("result" => 0));
@@ -95,11 +105,14 @@ class OQTIElement {
 
     private function validate_required_children() {
         foreach (static::$required_children as $child) {
+            if (!class_exists(ucfirst($child))) {
+                return json_encode(array("result" => self::VALIDATION_ERROR_TYPES_CLASS_NOT_EXISTS, "section" => static::$name, "target" => $child));
+            }
             $found = false;
             foreach ($this->node->childNodes as $node) {
                 if ($node->nodeType != XML_ELEMENT_NODE)
                     continue;
-                if ($node->nodeName == $child) {
+                if ($node->nodeName == $child || is_subclass_of(ucfirst($node->nodeName), ucfirst($child)) || is_subclass_of(ucfirst($node->nodeName), "A" . ucfirst($child))) {
                     $found = true;
                     break;
                 }
@@ -111,10 +124,15 @@ class OQTIElement {
     }
 
     private function validate_children() {
+        if (in_array("*", static::$possible_children))
+            return json_encode(array("result" => 0));
         foreach ($this->node->childNodes as $node) {
             if ($node->nodeType != XML_ELEMENT_NODE)
                 continue;
-            $class_name = self::$class_mapping[strtolower($node->nodeName)];
+            $class_name = ucfirst($node->nodeName);
+            if (!class_exists($class_name)) {
+                return json_encode(array("result" => self::VALIDATION_ERROR_TYPES_CLASS_NOT_EXISTS, "section" => static::$name, "target" => $class_name));
+            }
             $child = new $class_name($node);
             $result = $child->validate();
             if (json_decode($result)->result != 0)
@@ -125,7 +143,7 @@ class OQTIElement {
     }
 
     private function set_children($child) {
-        if (!property_exists(self::$class_mapping[strtolower($child->name)], $child->name))
+        if (!property_exists(ucfirst(static::$name), ucfirst($child::$name)))
             return;
         if (is_array($this->$child->name))
             array_push($this->$child->name, $child);
