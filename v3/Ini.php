@@ -320,6 +320,9 @@ class Ini {
         require_once self::$path_internal . "cms/model/QTI/AOutcomeVariable.php";
         require_once self::$path_internal . "cms/model/QTI/AResponseRule.php";
         require_once self::$path_internal . "cms/model/QTI/AResponseVariable.php";
+        require_once self::$path_internal . "cms/model/QTI/ATemplateElement.php";
+        require_once self::$path_internal . "cms/model/QTI/ATemplateRule.php";
+        require_once self::$path_internal . "cms/model/QTI/ATemplateVariable.php";
         require_once self::$path_internal . "cms/model/QTI/AVariableDeclaration.php";
         require_once self::$path_internal . "cms/model/QTI/AreaMapEntry.php";
         require_once self::$path_internal . "cms/model/QTI/AreaMapping.php";
@@ -339,6 +342,13 @@ class Ini {
         require_once self::$path_internal . "cms/model/QTI/ResponseProcessing.php";
         require_once self::$path_internal . "cms/model/QTI/SetOutcomeValue.php";
         require_once self::$path_internal . "cms/model/QTI/Stylesheet.php";
+        require_once self::$path_internal . "cms/model/QTI/TemplateBlock.php";
+        require_once self::$path_internal . "cms/model/QTI/TemplateCondition.php";
+        require_once self::$path_internal . "cms/model/QTI/TemplateElseIf.php";
+        require_once self::$path_internal . "cms/model/QTI/TemplateIf.php";
+        require_once self::$path_internal . "cms/model/QTI/TemplateInline.php";
+        require_once self::$path_internal . "cms/model/QTI/TemplateDeclaration.php";
+        require_once self::$path_internal . "cms/model/QTI/TemplateProcessing.php";
         require_once self::$path_internal . "cms/model/QTI/Value.php";
         require_once self::$path_internal . "cms/model/QTI/QTIAssessmentItem.php";
         require_once self::$path_internal . "cms/model/ODataSet.php";
