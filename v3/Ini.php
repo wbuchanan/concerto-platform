@@ -222,8 +222,10 @@ class Ini {
         require_once self::$path_internal . "cms/model/QTI/expressions/BaseValue.php";
         require_once self::$path_internal . "cms/model/QTI/expressions/Contains.php";
         require_once self::$path_internal . "cms/model/QTI/expressions/Correct.php";
+        require_once self::$path_internal . "cms/model/QTI/expressions/CustomOperator.php";
         require_once self::$path_internal . "cms/model/QTI/expressions/DefaultExp.php";
         require_once self::$path_internal . "cms/model/QTI/expressions/Delete.php";
+        require_once self::$path_internal . "cms/model/QTI/expressions/Divide.php";
         require_once self::$path_internal . "cms/model/QTI/expressions/DurationGTE.php";
         require_once self::$path_internal . "cms/model/QTI/expressions/DurationLT.php";
         require_once self::$path_internal . "cms/model/QTI/expressions/Equal.php";
@@ -233,6 +235,9 @@ class Ini {
         require_once self::$path_internal . "cms/model/QTI/expressions/Gte.php";
         require_once self::$path_internal . "cms/model/QTI/expressions/Index.php";
         require_once self::$path_internal . "cms/model/QTI/expressions/Inside.php";
+        require_once self::$path_internal . "cms/model/QTI/expressions/IntegerDivide.php";
+        require_once self::$path_internal . "cms/model/QTI/expressions/IntegerModulus.php";
+        require_once self::$path_internal . "cms/model/QTI/expressions/IntegerToFloat.php";
         require_once self::$path_internal . "cms/model/QTI/expressions/IsNull.php";
         require_once self::$path_internal . "cms/model/QTI/expressions/Lt.php";
         require_once self::$path_internal . "cms/model/QTI/expressions/Lte.php";
@@ -246,13 +251,17 @@ class Ini {
         require_once self::$path_internal . "cms/model/QTI/expressions/Ordered.php";
         require_once self::$path_internal . "cms/model/QTI/expressions/OrExp.php";
         require_once self::$path_internal . "cms/model/QTI/expressions/PatternMatch.php";
+        require_once self::$path_internal . "cms/model/QTI/expressions/Power.php";
         require_once self::$path_internal . "cms/model/QTI/expressions/Product.php";
         require_once self::$path_internal . "cms/model/QTI/expressions/Random.php";
         require_once self::$path_internal . "cms/model/QTI/expressions/RandomInteger.php";
         require_once self::$path_internal . "cms/model/QTI/expressions/RandomFloat.php";
+        require_once self::$path_internal . "cms/model/QTI/expressions/Round.php";
         require_once self::$path_internal . "cms/model/QTI/expressions/StringMatch.php";
         require_once self::$path_internal . "cms/model/QTI/expressions/Substring.php";
+        require_once self::$path_internal . "cms/model/QTI/expressions/Subtract.php";
         require_once self::$path_internal . "cms/model/QTI/expressions/Sum.php";
+        require_once self::$path_internal . "cms/model/QTI/expressions/Truncate.php";
         require_once self::$path_internal . "cms/model/QTI/expressions/Variable.php";
         require_once self::$path_internal . "cms/model/QTI/presentation/ABodyElement.php";
         require_once self::$path_internal . "cms/model/QTI/presentation/AChoice.php";

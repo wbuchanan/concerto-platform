@@ -37,7 +37,8 @@ class OQTIElement {
     public static $class_map = array(
         "default" => "DefaultExp",
         "null" => "NullExp",
-        "and" => "AndExp"
+        "and" => "AndExp",
+        "or" => "OrExp"
     );
 
     public function __construct($node) {
@@ -112,7 +113,7 @@ class OQTIElement {
     private function validate_required_children() {
         foreach (static::$required_children as $child) {
             $class_name_child = self::get_mapped_class_name($child);
-            if (!class_exists($class_name_child)) {
+            if (!class_exists($class_name_child) && !class_exists("A".$class_name_child)) {
                 return json_encode(array("result" => self::VALIDATION_ERROR_TYPES_CLASS_NOT_EXISTS, "section" => static::$name, "target" => $class_name_child));
             }
             $found = false;
