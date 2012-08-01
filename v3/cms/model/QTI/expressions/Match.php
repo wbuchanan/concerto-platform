@@ -33,12 +33,22 @@ class Match extends AExpression {
         "expression"
     );
 
-    public function __construct($node,$parent) {
-        parent::__construct($node,$parent);
+    public function __construct($node, $parent) {
+        parent::__construct($node, $parent);
         self::$possible_attributes = array_merge(parent::$possible_attributes, self::$possible_attributes);
         self::$required_attributes = array_merge(parent::$required_attributes, self::$required_attributes);
         self::$possible_children = array_merge(parent::$possible_children, self::$possible_children);
         self::$required_children = array_merge(parent::$required_children, self::$required_children);
+    }
+
+    public function get_R_code() {
+        if (count($this->expression) != 2)
+            return "NULL";
+        $ex1 = $this->expression[0]->get_R_code();
+        $ex2 = $this->expression[1]->get_R_code();
+        if ($ex1 == "NULL" || $ex2 == "NULL")
+            return "NULL";
+        return $ex1 . "==" . $ex2;
     }
 
 }

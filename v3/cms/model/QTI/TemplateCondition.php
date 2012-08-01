@@ -45,6 +45,18 @@ class TemplateCondition extends ATemplateRule {
         self::$required_children = array_merge(parent::$required_children, self::$required_children);
     }
 
+    public function get_R_code() {
+        $code = "";
+        if ($this->templateIf != null)
+            $code.=$this->templateIf->get_R_code();
+        foreach ($this->templateElseIf as $tei) {
+            $code.=$tei->get_R_code();
+        }
+        if ($this->templateElse != null)
+            $code.= $this->templateElse->get_R_code();
+        return $code;
+    }
+
 }
 
 ?>

@@ -165,7 +165,6 @@ class Ini {
             "TestSection",
             "TestSectionValue",
             "TestSession",
-            "TestSessionQTIAssessmentItem",
             "TestSessionReturn",
             "TestTemplate",
             "TestVariable",
@@ -209,7 +208,6 @@ class Ini {
         require_once self::$path_internal . "cms/model/TestSection.php";
         require_once self::$path_internal . "cms/model/TestSectionValue.php";
         require_once self::$path_internal . "cms/model/TestSession.php";
-        require_once self::$path_internal . "cms/model/TestSessionQTIAssessmentItem.php";
         require_once self::$path_internal . "cms/model/TestSessionReturn.php";
         require_once self::$path_internal . "cms/model/TestTemplate.php";
         require_once self::$path_internal . "cms/model/TestVariable.php";

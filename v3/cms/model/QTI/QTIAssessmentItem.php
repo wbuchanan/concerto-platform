@@ -89,12 +89,13 @@ class QTIAssessmentItem extends OModule {
 
     public function get_template_processing_R_code() {
         //declare template variables
+        //declare correct responses
         //modify default response
         //modify correct response
         //moidfy default outcome
         //HTML
         //save to MySQL ( correct, HTML )
-        
+
         $code = "";
         //default value of template variables
         foreach ($this->root->templateDeclaration as $template) {
@@ -112,11 +113,30 @@ class QTIAssessmentItem extends OModule {
                     ", $template->identifier, $template->identifier);
             }
         }
-        
+
+        //declaration of correct responses
+        foreach ($this->root->responseDeclaration as $response) {
+            if ($response->correctResponse != null) {
+                $code.=sprintf("
+                    %s.correct <<- c()
+                    ", $response->identifier);
+                foreach ($response->correctResponse->value as $val) {
+                    $code.=sprintf("
+                        %s.correct <<- c(%s,'%s')
+                        ", $response->identifier, $response->identifier, $val->get_text());
+                }
+                $code.=sprintf("
+                    %s.correct <<- convertVariable(%s.correct)
+                    ", $response->identifier, $response->identifier);
+            }
+        }
+
         //template processing
-        if($this->object->templateProcessing!=null){
-            foreach($this->object->templateProcessing->templateRule as $rule){
-                
+        if ($this->root->templateProcessing != null) {
+            foreach ($this->root->templateProcessing->templateRule as $rule) {
+                $code.=sprintf("
+                    %s
+                    ", $rule->get_R_code());
             }
         }
         return $code;

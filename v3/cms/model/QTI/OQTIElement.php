@@ -42,7 +42,7 @@ class OQTIElement {
         "or" => "OrExp"
     );
 
-    public function __construct($node,$parent=null) {
+    public function __construct($node, $parent = null) {
         $this->node = $node;
         $this->parent = $parent;
     }
@@ -115,7 +115,7 @@ class OQTIElement {
     private function validate_required_children() {
         foreach (static::$required_children as $child) {
             $class_name_child = self::get_mapped_class_name($child);
-            if (!class_exists($class_name_child) && !class_exists("A".$class_name_child)) {
+            if (!class_exists($class_name_child) && !class_exists("A" . $class_name_child)) {
                 return json_encode(array("result" => self::VALIDATION_ERROR_TYPES_CLASS_NOT_EXISTS, "section" => static::$name, "target" => $class_name_child));
             }
             $found = false;
@@ -144,7 +144,7 @@ class OQTIElement {
             if (!class_exists($class_name)) {
                 return json_encode(array("result" => self::VALIDATION_ERROR_TYPES_CLASS_NOT_EXISTS, "section" => static::$name, "target" => $class_name));
             }
-            $child = new $class_name($node,$this);
+            $child = new $class_name($node, $this);
             $result = $child->validate();
             if (json_decode($result)->result != 0)
                 return $result;
@@ -162,12 +162,22 @@ class OQTIElement {
 
     private function set_children($child) {
         $name = $child::$name;
-        if (!property_exists(ucfirst(static::$name), $name))
+        if (property_exists(ucfirst(static::$name), $name)) {
+            if (is_array($this->$name))
+                array_push($this->$name, $child);
+            else
+                $this->$name = $child;
             return;
-        if (is_array($this->$name))
-            array_push($this->$name, $child);
-        else
-            $this->$name = $child;
+        }
+        $props = get_object_vars($this);
+        foreach ($props as $k => $v) {
+            if (is_subclass_of(ucfirst($name), "A" . ucfirst($k))) {
+                if (is_array($this->$k))
+                    array_push($this->$k, $child);
+                else
+                    $this->$k = $child;
+            }
+        }
     }
 
     private function set_attributes() {
@@ -178,9 +188,10 @@ class OQTIElement {
         }
     }
 
-    public function get_text(){
-        return addcslashes($this->node->textContent,"'\"");
+    public function get_text() {
+        return addcslashes($this->node->textContent, "'\"");
     }
+
 }
 
 ?>

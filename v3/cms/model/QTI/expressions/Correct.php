@@ -41,6 +41,47 @@ class Correct extends AExpression {
         self::$required_children = array_merge(parent::$required_children, self::$required_children);
     }
 
+    public function get_R_code() {
+        $root = $this->parent;
+        while ($root->parent != null) {
+            $root = $root->parent;
+        }
+
+        $correct = array();
+        $found = false;
+        foreach ($root->responseDeclaration as $var) {
+            if ($var->identifier == $this->identifier) {
+                $found = true;
+                if ($var->correctResponse != null) {
+                    foreach ($var->correctResponse->value as $val) {
+                        array_push($correct, $val->get_text());
+                    }
+                    break;
+                }
+            }
+        }
+
+        if ($found) {
+            if (count($correct) == 0)
+                return "NULL";
+            if (count($correct == 1))
+                return "convertVariable('" . $correct[0] . "')";
+            if (count($correct) > 0) {
+                $code = "convertVariable(c(";
+                $i = 0;
+                foreach ($correct as $d) {
+                    if ($i > 0)
+                        $code.=",";
+                    $code.="'" . $d . "'";
+                    $i++;
+                }
+                $code.="))";
+            }
+        }
+        else
+            return "NULL";
+    }
+
 }
 
 ?>
