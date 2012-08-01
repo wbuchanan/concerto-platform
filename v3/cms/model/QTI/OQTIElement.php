@@ -21,6 +21,7 @@
 
 class OQTIElement {
 
+    public $parent = null;
     public $node = null;
 
     const VALIDATION_ERROR_TYPES_XML = 1;
@@ -41,8 +42,9 @@ class OQTIElement {
         "or" => "OrExp"
     );
 
-    public function __construct($node) {
+    public function __construct($node,$parent=null) {
         $this->node = $node;
+        $this->parent = $parent;
     }
 
     public function validate() {
@@ -142,7 +144,7 @@ class OQTIElement {
             if (!class_exists($class_name)) {
                 return json_encode(array("result" => self::VALIDATION_ERROR_TYPES_CLASS_NOT_EXISTS, "section" => static::$name, "target" => $class_name));
             }
-            $child = new $class_name($node);
+            $child = new $class_name($node,$this);
             $result = $child->validate();
             if (json_decode($result)->result != 0)
                 return $result;
@@ -176,6 +178,9 @@ class OQTIElement {
         }
     }
 
+    public function get_text(){
+        return addcslashes($this->node->textContent,"'\"");
+    }
 }
 
 ?>

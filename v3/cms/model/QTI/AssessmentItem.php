@@ -69,8 +69,8 @@ class AssessmentItem extends OQTIElement {
         "timeDependent"
     );
 
-    public function __construct($node) {
-        parent::__construct($node);
+    public function __construct($node,$parent=null) {
+        parent::__construct($node,$parent);
         self::$possible_attributes = array_merge(parent::$possible_attributes, self::$possible_attributes);
         self::$required_attributes = array_merge(parent::$required_attributes, self::$required_attributes);
         self::$possible_children = array_merge(parent::$possible_children, self::$possible_children);

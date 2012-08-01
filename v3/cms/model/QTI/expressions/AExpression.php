@@ -26,12 +26,16 @@ abstract class AExpression extends OQTIElement {
     public static $possible_children = array();
     public static $required_children = array();
 
-    public function __construct($node) {
-        parent::__construct($node);
+    public function __construct($node, $parent) {
+        parent::__construct($node, $parent);
         self::$possible_attributes = array_merge(parent::$possible_attributes, self::$possible_attributes);
         self::$required_attributes = array_merge(parent::$required_attributes, self::$required_attributes);
         self::$possible_children = array_merge(parent::$possible_children, self::$possible_children);
         self::$required_children = array_merge(parent::$required_children, self::$required_children);
+    }
+
+    public function get_R_code() {
+        return "stop('" . static::$name . "::" . __FUNCTION__ . " - not implemented')";
     }
 
 }

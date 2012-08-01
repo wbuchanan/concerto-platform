@@ -21,6 +21,7 @@
 
 class QTIAssessmentItem extends OModule {
 
+    public $root = null;
     public $name = "";
     public $XML = "";
     public $description = "";
@@ -44,7 +45,91 @@ class QTIAssessmentItem extends OModule {
             return json_encode(array("result" => OQTIElement::VALIDATION_ERROR_TYPES_CHILD_REQUIRED, "section" => "XML", "target" => "assessmentItem"));
         }
         $assessmentItem = new AssessmentItem($root->item(0));
-        return $assessmentItem->validate();
+        $this->root = $assessmentItem;
+        return $this->root->validate();
+    }
+
+    public function get_variable_declaration_R_code() {
+        //default outcome
+        //default response
+
+        $code = "";
+        foreach ($this->root->responseDeclaration as $response) {
+            if ($response->defaultValue != null) {
+                $code.=sprintf("
+                    %s <<- c()
+                    ", $response->identifier);
+                foreach ($response->defaultValue->value as $val) {
+                    $code.=sprintf("
+                        %s <<- c(%s,'%s')
+                        ", $response->identifier, $response->identifier, $val->get_text());
+                }
+                $code.=sprintf("
+                    %s <<- convertVariable(%s)
+                    ", $response->identifier, $response->identifier);
+            }
+        }
+        foreach ($this->root->outcomeDeclaration as $response) {
+            if ($response->defaultValue != null) {
+                $code.=sprintf("
+                    %s <<- c()
+                    ", $response->identifier);
+                foreach ($response->defaultValue->value as $val) {
+                    $code.=sprintf("
+                        %s <<- c(%s,'%s')
+                        ", $response->identifier, $response->identifier, $val->get_text());
+                }
+                $code.=sprintf("
+                    %s <<- convertVariable(%s)
+                    ", $response->identifier, $response->identifier);
+            }
+        }
+        return $code;
+    }
+
+    public function get_template_processing_R_code() {
+        //declare template variables
+        //modify default response
+        //modify correct response
+        //moidfy default outcome
+        //HTML
+        //save to MySQL ( correct, HTML )
+        
+        $code = "";
+        //default value of template variables
+        foreach ($this->root->templateDeclaration as $template) {
+            if ($template->defaultValue != null) {
+                $code.=sprintf("
+                    %s <<- c()
+                    ", $template->identifier);
+                foreach ($template->defaultValue->value as $val) {
+                    $code.=sprintf("
+                        %s <<- c(%s,'%s')
+                        ", $template->identifier, $template->identifier, $val->get_text());
+                }
+                $code.=sprintf("
+                    %s <<- convertVariable(%s)
+                    ", $template->identifier, $template->identifier);
+            }
+        }
+        
+        //template processing
+        if($this->object->templateProcessing!=null){
+            foreach($this->object->templateProcessing->templateRule as $rule){
+                
+            }
+        }
+        return $code;
+    }
+
+    public function get_QTI_ini_R_code() {
+        $code = $this->get_variable_declaration_R_code();
+        $code.= $this->get_template_processing_R_code();
+        return $code;
+    }
+
+    public function get_response_processing_R_code() {
+        //outcome value
     }
 
     public static function create_db($delete = false) {
