@@ -34,6 +34,10 @@ abstract class AResponseRule extends OQTIElement {
         self::$required_children = array_merge(parent::$required_children, self::$required_children);
     }
 
+    public function get_R_code() {
+        return "stop('" . static::$name . "::" . __FUNCTION__ . " - not implemented')";
+    }
+
 }
 
 ?>

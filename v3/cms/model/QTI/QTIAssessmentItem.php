@@ -35,7 +35,7 @@ class QTIAssessmentItem extends OModule {
     }
 
     public function validate() {
-        $document = new DOMDocument();
+        $document = new DOMDocument('1.0', 'UTF-8');
         $document->loadXML($this->XML);
         if (!$document) {
             return json_encode(array("result" => OQTIElement::VALIDATION_ERROR_TYPES_XML, "section" => "XML", "target" => "XML"));
@@ -94,7 +94,6 @@ class QTIAssessmentItem extends OModule {
         //modify correct response
         //moidfy default outcome
         //HTML
-        //save to MySQL ( correct, HTML )
 
         $code = "";
         //default value of template variables
@@ -139,6 +138,26 @@ class QTIAssessmentItem extends OModule {
                     ", $rule->get_R_code());
             }
         }
+
+        //set HTML
+        $html_result = $this->root->node->ownerDocument->saveXML($this->root->itemBody->node);
+        if ($this->root->itemBody != null) {
+            $xpath = new DOMXPath($this->root->node->ownerDocument);
+            $xpath->registerNamespace("qti", "http://www.imsglobal.org/xsd/imsqti_v2p0");
+            foreach (OQTIElement::$implemented_presentation_elements as $name) {
+                $search = $xpath->query(".//qti:" . $name, $this->root->itemBody->node);
+                foreach ($search as $elem) {
+                    $name = ucfirst($name);
+                    $obj = new $name($elem, $this->root->itemBody);
+                    $obj->validate();
+                    $html_result = str_ireplace($this->root->node->ownerDocument->saveXML($elem), $obj->get_HTML_code(), $html_result);
+                }
+            }
+        }
+        $code.=sprintf("
+            QTI_HTML <<- '%s'
+            ", addcslashes($html_result, "'"));
+
         return $code;
     }
 
@@ -149,7 +168,16 @@ class QTIAssessmentItem extends OModule {
     }
 
     public function get_response_processing_R_code() {
-        //outcome value
+        $code = "";
+        //response processing
+        if ($this->root->responseProcessing != null) {
+            foreach ($this->root->responseProcessing->responseRule as $rule) {
+                $code.=sprintf("
+                    %s
+                    ", $rule->get_R_code());
+            }
+        }
+        return $code;
     }
 
     public static function create_db($delete = false) {

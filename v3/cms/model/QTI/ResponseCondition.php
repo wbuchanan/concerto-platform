@@ -45,6 +45,17 @@ class ResponseCondition extends AResponseRule {
         self::$required_children = array_merge(parent::$required_children, self::$required_children);
     }
 
+    public function get_R_code() {
+        $code = "";
+        if ($this->responseIf != null)
+            $code.=$this->responseIf->get_R_code();
+        foreach ($this->responseElseIf as $rei) {
+            $code.=$rei->get_R_code();
+        }
+        if ($this->responseElse != null)
+            $code.= $this->responseElse->get_R_code();
+        return $code;
+    }
 }
 
 ?>

@@ -45,6 +45,10 @@ class PrintedVariable extends ABodyElement {
         self::$required_children = array_merge(parent::$required_children, self::$required_children);
     }
 
+    public function get_HTML_code() {
+        return "{{" . $this->identifier . "}}";
+    }
+
 }
 
 ?>

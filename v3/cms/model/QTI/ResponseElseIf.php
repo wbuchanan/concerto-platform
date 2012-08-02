@@ -43,6 +43,17 @@ class ResponseElseIf extends OQTIElement {
         self::$required_children = array_merge(parent::$required_children, self::$required_children);
     }
 
+    public function get_R_code() {
+        $code = "else if(" . $this->expression->get_R_code() . "){
+            ";
+        foreach ($this->responseRule as $rule) {
+            $code.=$rule->get_R_code() . "
+                ";
+        }
+        $code.="} ";
+        return $code;
+    }
+
 }
 
 ?>

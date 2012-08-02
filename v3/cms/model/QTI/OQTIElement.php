@@ -41,6 +41,11 @@ class OQTIElement {
         "and" => "AndExp",
         "or" => "OrExp"
     );
+    
+    public static $implemented_presentation_elements = array(
+        "printedVariable",
+        "textEntryInteraction"
+    );
 
     public function __construct($node, $parent = null) {
         $this->node = $node;

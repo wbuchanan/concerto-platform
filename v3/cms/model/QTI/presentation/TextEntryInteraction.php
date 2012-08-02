@@ -19,7 +19,8 @@
   Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA.
  */
 
-class TextEntryInteraction extends AInlineStringInteraction { 
+class TextEntryInteraction extends AInlineStringInteraction {
+
     public static $name = "textEntryInteraction";
     public static $possible_attributes = array();
     public static $required_attributes = array();
@@ -32,6 +33,12 @@ class TextEntryInteraction extends AInlineStringInteraction {
         self::$required_attributes = array_merge(parent::$required_attributes, self::$required_attributes);
         self::$possible_children = array_merge(parent::$possible_children, self::$possible_children);
         self::$required_children = array_merge(parent::$required_children, self::$required_children);
+    }
+
+    public function get_HTML_code() {
+        $max_length = ($this->expectedLength != null ? sprintf("maxlength='%s' size='%s'", $this->expectedLength, $this->expectedLength) : "");
+        $value = ($this->placeholderText != null ? sprintf("value='%s'", $this->placeholderText) : "");
+        return sprintf("<input type='text' name='%s' %s %s class='QTItextEntryInteraction' />", $this->responseIdentifier, $max_length, $value);
     }
 
 }
