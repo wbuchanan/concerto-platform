@@ -36,7 +36,7 @@ class QTIAssessmentItem extends OModule {
 
     public function validate() {
         $document = new DOMDocument('1.0', 'UTF-8');
-        $document->loadXML($this->XML);
+        @$document->loadXML($this->XML);
         if (!$document) {
             return json_encode(array("result" => OQTIElement::VALIDATION_ERROR_TYPES_XML, "section" => "XML", "target" => "XML"));
         }
@@ -178,6 +178,37 @@ class QTIAssessmentItem extends OModule {
             }
         }
         return $code;
+    }
+
+    public function mysql_save() {
+        $exclude = array("id", "updated", "root");
+        if ($this->id == 0) {
+            $this->created = date("Y-m-d H:i:s");
+            $sql = "INSERT INTO ";
+        }
+        else
+            $sql = "UPDATE ";
+        $sql.=sprintf("`%s` SET ", self::get_mysql_table());
+
+        $i = 0;
+        foreach (get_object_vars($this) as $k => $v) {
+            if (is_string($v))
+                $v = mysql_real_escape_string($v);
+            if (in_array($k, $exclude))
+                continue;
+            if ($i > 0)
+                $sql.=", ";
+            $sql.=sprintf("`%s`='%s' ", $k, $v);
+            $i++;
+        }
+
+        if ($this->id != 0)
+            $sql.=sprintf("WHERE `id`='%d'", $this->id);
+        mysql_query($sql);
+        if ($this->id != 0)
+            return $this->id;
+        else
+            return mysql_insert_id();
     }
 
     public static function create_db($delete = false) {

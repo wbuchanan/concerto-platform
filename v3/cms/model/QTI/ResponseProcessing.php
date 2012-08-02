@@ -29,7 +29,10 @@ class ResponseProcessing extends OQTIElement {
     public static $name = "responseProcessing";
     public static $possible_attributes = array(
         "template",
-        "templateLocation"
+        "templateLocation",
+        "xmlns",
+        "xmlns:xsi",
+        "xsi:schemaLocation"
     );
     public static $required_attributes = array();
     public static $possible_children = array(
@@ -43,6 +46,24 @@ class ResponseProcessing extends OQTIElement {
         self::$required_attributes = array_merge(parent::$required_attributes, self::$required_attributes);
         self::$possible_children = array_merge(parent::$possible_children, self::$possible_children);
         self::$required_children = array_merge(parent::$required_children, self::$required_children);
+    }
+
+    public function validate() {
+        $result = parent::validate();
+        if (json_decode($result)->result != 0 || $this->template == null)
+            return $result;
+
+        @$xml = file_get_contents($this->template);
+        if (!$xml)
+            return $result;
+
+        $doc = new DOMDocument("1.0", "UTF-8");
+        @$doc->loadXML($xml);
+        $node = $doc->documentElement;
+        $node = $this->node->ownerDocument->importNode($node, true);
+        $this->parent->node->replaceChild($node,$this->node);
+        
+        return parent::validate();
     }
 
 }
