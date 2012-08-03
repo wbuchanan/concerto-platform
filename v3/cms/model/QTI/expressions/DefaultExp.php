@@ -42,72 +42,7 @@ class DefaultExp extends AExpression {
     }
 
     public function get_R_code() {
-        $root = $this->parent;
-        while ($root->parent != null) {
-            $root = $root->parent;
-        }
-
-        $default = array();
-        $found = false;
-        foreach ($root->responseDeclaration as $var) {
-            if ($var->identifier == $this->identifier) {
-                $found = true;
-                if ($var->defaultValue != null) {
-                    foreach ($var->defaultValue->value as $val) {
-                        array_push($default, $val->get_text());
-                    }
-                    break;
-                }
-            }
-        }
-
-        if (!$found) {
-            foreach ($root->templateDeclaration as $var) {
-                if ($var->identifier == $this->identifier) {
-                    $found = true;
-                    if ($var->defaultValue != null) {
-                        foreach ($var->defaultValue->value as $val) {
-                            array_push($default, $val->get_text());
-                        }
-                        break;
-                    }
-                }
-            }
-        }
-
-        if (!$found) {
-            foreach ($root->outcomeDeclaration as $var) {
-                if ($var->identifier == $this->identifier) {
-                    $found = true;
-                    if ($var->defaultValue != null) {
-                        foreach ($var->defaultValue->value as $val) {
-                            array_push($default, $val->get_text());
-                        }
-                        break;
-                    }
-                }
-            }
-        }
-
-        if ($found) {
-            if (count($default) == 0)
-                return "NULL";
-            if (count($default == 1))
-                return "convertVariable('" . $default[0] . "')";
-            if (count($default) > 0) {
-                $code = "convertVariable(c(";
-                $i = 0;
-                foreach ($default as $d) {
-                    if ($i > 0)
-                        $code.=",";
-                    $code.="'" . $d . "'";
-                    $i++;
-                }
-                $code.="))";
-            }
-        }
-        else
-            return "NULL";
+        return $this->identifier.".default";
     }
 
 }

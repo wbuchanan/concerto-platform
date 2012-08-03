@@ -47,6 +47,12 @@ class SetDefaultValue extends ATemplateRule {
         self::$required_children = array_merge(parent::$required_children, self::$required_children);
     }
 
+    public function get_R_code() {
+        return sprintf("%s.default <<- %s
+            %s <<- %s
+            ", $this->identifier, $this->expression->get_R_code(), $this->identifier, $this->expression->get_R_code());
+    }
+
 }
 
 ?>

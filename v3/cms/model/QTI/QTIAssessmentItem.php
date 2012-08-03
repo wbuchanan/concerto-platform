@@ -88,30 +88,36 @@ class QTIAssessmentItem extends OModule {
             if ($response->defaultValue != null) {
                 $code.=sprintf("
                     %s <<- c()
-                    ", $response->identifier);
+                    %s.default <<- c()
+                    ", $response->identifier, $response->identifier);
                 foreach ($response->defaultValue->value as $val) {
                     $code.=sprintf("
                         %s <<- c(%s,'%s')
-                        ", $response->identifier, $response->identifier, $val->get_text());
+                        %s.default <<- c(%s.default,'%s')
+                        ", $response->identifier, $response->identifier, $val->get_text(), $response->identifier, $response->identifier, $val->get_text());
                 }
                 $code.=sprintf("
                     %s <<- convertVariable(%s)
-                    ", $response->identifier, $response->identifier);
+                    %s.default <<- convertVariable(%s.default)
+                    ", $response->identifier, $response->identifier, $response->identifier, $response->identifier);
             }
         }
         foreach ($this->root->outcomeDeclaration as $response) {
             if ($response->defaultValue != null) {
                 $code.=sprintf("
                     %s <<- c()
-                    ", $response->identifier);
+                    %s.default <<- c()
+                    ", $response->identifier, $response->identifier);
                 foreach ($response->defaultValue->value as $val) {
                     $code.=sprintf("
                         %s <<- c(%s,'%s')
-                        ", $response->identifier, $response->identifier, $val->get_text());
+                        %s.default <<- c(%s.default,'%s')
+                        ", $response->identifier, $response->identifier, $val->get_text(), $response->identifier, $response->identifier, $val->get_text());
                 }
                 $code.=sprintf("
                     %s <<- convertVariable(%s)
-                    ", $response->identifier, $response->identifier);
+                    %s.default <<- convertVariable(%s.default)
+                    ", $response->identifier, $response->identifier, $response->identifier, $response->identifier);
             }
         }
         return $code;
@@ -131,15 +137,18 @@ class QTIAssessmentItem extends OModule {
             if ($template->defaultValue != null) {
                 $code.=sprintf("
                     %s <<- c()
-                    ", $template->identifier);
+                    %s.default <<- c()
+                    ", $template->identifier, $template->identifier);
                 foreach ($template->defaultValue->value as $val) {
                     $code.=sprintf("
                         %s <<- c(%s,'%s')
-                        ", $template->identifier, $template->identifier, $val->get_text());
+                        %s.default <<- c(%s.default,'%s')
+                        ", $template->identifier, $template->identifier, $val->get_text(), $template->identifier, $template->identifier, $val->get_text());
                 }
                 $code.=sprintf("
                     %s <<- convertVariable(%s)
-                    ", $template->identifier, $template->identifier);
+                    %s.default <<- convertVariable(%s.default)
+                    ", $template->identifier, $template->identifier, $template->identifier, $template->identifier);
             }
         }
 
@@ -191,7 +200,7 @@ class QTIAssessmentItem extends OModule {
         return $code;
     }
 
-    public function get_QTI_ini_R_code($map=null) {
+    public function get_QTI_ini_R_code($map = null) {
         $code = $this->get_variable_declaration_R_code();
         $code.= $this->get_template_processing_R_code($map);
         return $code;
