@@ -41,7 +41,6 @@ class OQTIElement {
         "and" => "AndExp",
         "or" => "OrExp"
     );
-    
     public static $implemented_presentation_elements = array(
         "printedVariable",
         "textEntryInteraction"
@@ -52,7 +51,7 @@ class OQTIElement {
         $this->parent = $parent;
     }
 
-    public function validate() {
+    public function validate($map = null) {
         $result = $this->validate_possible_attributes();
         if (json_decode($result)->result != 0)
             return $result;
@@ -61,7 +60,7 @@ class OQTIElement {
         if (json_decode($result)->result != 0)
             return $result;
 
-        $this->set_attributes();
+        $this->set_attributes($map);
 
         $result = $this->validate_possible_children();
         if (json_decode($result)->result != 0)
@@ -71,7 +70,7 @@ class OQTIElement {
         if (json_decode($result)->result != 0)
             return $result;
 
-        $result = $this->validate_children();
+        $result = $this->validate_children($map);
         return $result;
     }
 
@@ -139,7 +138,7 @@ class OQTIElement {
         return json_encode(array("result" => 0));
     }
 
-    private function validate_children() {
+    private function validate_children($map = null) {
         if (in_array("*", static::$possible_children))
             return json_encode(array("result" => 0));
         foreach ($this->node->childNodes as $node) {
@@ -150,7 +149,7 @@ class OQTIElement {
                 return json_encode(array("result" => self::VALIDATION_ERROR_TYPES_CLASS_NOT_EXISTS, "section" => static::$name, "target" => $class_name));
             }
             $child = new $class_name($node, $this);
-            $result = $child->validate();
+            $result = $child->validate($map);
             if (json_decode($result)->result != 0)
                 return $result;
             $this->set_children($child);
@@ -185,11 +184,15 @@ class OQTIElement {
         }
     }
 
-    private function set_attributes() {
+    private function set_attributes($map = null) {
         $attributes = $this->node->attributes;
         foreach ($attributes as $attr) {
             $attr_name = $attr->nodeName;
             $this->$attr_name = $attr->nodeValue;
+            if ($attr_name == "identifier" || $attr_name == "responseIdentifier" || $attr_name == "outcomeIdentifier" || $attr_name == "templateIdentifier") {
+                if ($map != null && array_key_exists($attr->nodeValue, $map))
+                    $this->$attr_name = $map[$attr->nodeValue];
+            }
         }
     }
 

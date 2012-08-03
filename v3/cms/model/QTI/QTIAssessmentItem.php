@@ -34,7 +34,19 @@ class QTIAssessmentItem extends OModule {
         parent::__construct($params);
     }
 
-    public function validate() {
+    public function get_mapped_variables($TestSection_id) {
+        $map = array();
+        $ts = TestSection::from_mysql_id($TestSection_id);
+        if ($ts == null || $ts->TestSectionType_id != DS_TestSectionType::QTI_INITIALIZATION)
+            return null;
+        $vals = $ts->get_values();
+        for ($i = 1; $i < count($vals); $i = $i + 2) {
+            $map[$vals[$i]] = $vals[$i + 1];
+        }
+        return $map;
+    }
+
+    public function validate($map = null) {
         $document = new DOMDocument('1.0', 'UTF-8');
         @$document->loadXML($this->XML);
         if (!$document) {
@@ -46,7 +58,7 @@ class QTIAssessmentItem extends OModule {
         }
         $assessmentItem = new AssessmentItem($root->item(0));
         $this->root = $assessmentItem;
-        return $this->root->validate();
+        return $this->root->validate($map);
     }
 
     public function get_outputs() {
@@ -62,7 +74,7 @@ class QTIAssessmentItem extends OModule {
         }
         return $result;
     }
-    
+
     public function get_description() {
         return Template::strip_html($this->description);
     }
@@ -105,7 +117,7 @@ class QTIAssessmentItem extends OModule {
         return $code;
     }
 
-    public function get_template_processing_R_code() {
+    public function get_template_processing_R_code($map = null) {
         //declare template variables
         //declare correct responses
         //modify default response
@@ -167,14 +179,14 @@ class QTIAssessmentItem extends OModule {
                 foreach ($search as $elem) {
                     $name = ucfirst($name);
                     $obj = new $name($elem, $this->root->itemBody);
-                    $obj->validate();
+                    $obj->validate($map);
                     $html_result = str_ireplace($this->root->node->ownerDocument->saveXML($elem), $obj->get_HTML_code(), $html_result);
                 }
             }
         }
         $code.=sprintf("
-            QTI_HTML <<- '%s'
-            ", addcslashes($html_result, "'"));
+            %s <<- '%s'
+            ", ($map != null && array_key_exists("QTI_HTML", $map) ? $map["QTI_HTML"] : "QTI_HTML"), addcslashes($html_result, "'"));
 
         return $code;
     }

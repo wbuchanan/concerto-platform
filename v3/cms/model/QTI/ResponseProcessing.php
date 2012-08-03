@@ -48,8 +48,8 @@ class ResponseProcessing extends OQTIElement {
         self::$required_children = array_merge(parent::$required_children, self::$required_children);
     }
 
-    public function validate() {
-        $result = parent::validate();
+    public function validate($map = null) {
+        $result = parent::validate($map);
         if (json_decode($result)->result != 0 || $this->template == null)
             return $result;
 
@@ -61,9 +61,9 @@ class ResponseProcessing extends OQTIElement {
         @$doc->loadXML($xml);
         $node = $doc->documentElement;
         $node = $this->node->ownerDocument->importNode($node, true);
-        $this->parent->node->replaceChild($node,$this->node);
-        
-        return parent::validate();
+        $this->parent->node->replaceChild($node, $this->node);
+
+        return parent::validate($map);
     }
 
 }
