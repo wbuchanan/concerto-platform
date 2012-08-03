@@ -135,7 +135,7 @@ class Setup {
         else
             return json_encode(array("result" => 1, "param" => $path));
     }
-    
+
     public static function thumbnails_directory_writable_check() {
         require '../Ini.php';
         $ini = new Ini();
@@ -309,7 +309,8 @@ class Setup {
         $versions_to_update = array();
 
         $previous_version = Setting::get_setting("version");
-        if($previous_version==null) $previous_version = Ini::$version;
+        if ($previous_version == null)
+            $previous_version = Ini::$version;
 
         $recalculate_hash = false;
         $repopulate_TestTemplate = false;
@@ -948,7 +949,7 @@ class Setup {
                 return json_encode(array("result" => 0, "param" => "3.6.11"));
             }
         }
-        
+
         if (Ini::does_patch_apply("3.7.2", $previous_version)) {
             if ($simulate) {
                 array_push($versions_to_update, "3.7.2");
@@ -961,7 +962,7 @@ class Setup {
                 ";
                 if (!mysql_query($sql))
                     return json_encode(array("result" => 1, "param" => $sql));
-                
+
                 //UserTypeRight - add default user type rights for new module
                 $sql = "
                 INSERT INTO `UserTypeRight` (`id`, `updated`, `created`, `Module_id`, `UserType_id`, `read`, `write`, `ownership`) VALUES
@@ -973,6 +974,25 @@ class Setup {
 
                 Setting::set_setting("version", "3.7.2");
                 return json_encode(array("result" => 0, "param" => "3.7.2"));
+            }
+        }
+
+        if (Ini::does_patch_apply("3.7.3", $previous_version)) {
+            if ($simulate) {
+                array_push($versions_to_update, "3.7.3");
+            } else {
+
+                //DS_TestSectionType - add new section types
+                $sql = "
+                INSERT INTO `DS_TestSectionType` (`id`, `name`, `value`, `position`) VALUES
+                (13, 'QTI item initialization', '13', 13),
+                (14, 'QTI item response processing', '14', 14);
+                ";
+                if (!mysql_query($sql))
+                    return json_encode(array("result" => 1, "param" => $sql));
+
+                Setting::set_setting("version", "3.7.3");
+                return json_encode(array("result" => 0, "param" => "3.7.3"));
             }
         }
 

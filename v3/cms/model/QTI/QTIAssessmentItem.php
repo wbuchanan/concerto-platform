@@ -49,6 +49,24 @@ class QTIAssessmentItem extends OModule {
         return $this->root->validate();
     }
 
+    public function get_outputs() {
+        $result = array(array("name" => "QTI_HTML", "type" => "HTML"));
+        foreach ($this->root->templateDeclaration as $var) {
+            array_push($result, array("name" => $var->identifier, "type" => "template"));
+        }
+        foreach ($this->root->responseDeclaration as $var) {
+            array_push($result, array("name" => $var->identifier, "type" => "response"));
+        }
+        foreach ($this->root->outcomeDeclaration as $var) {
+            array_push($result, array("name" => $var->identifier, "type" => "outcome"));
+        }
+        return $result;
+    }
+    
+    public function get_description() {
+        return Template::strip_html($this->description);
+    }
+
     public function get_variable_declaration_R_code() {
         //default outcome
         //default response

@@ -35,6 +35,8 @@ class DS_TestSectionType extends ODataSet {
     const LOOP = 10;
     const TEST = 11;
     const LOWER_LEVEL_R_CODE = 12;
+    const QTI_INITIALIZATION = 13;
+    const QTI_RESPONSE_PROCESSING = 14;
 
     public static function get_all_selectable() {
         $result = array();
@@ -62,6 +64,8 @@ class DS_TestSectionType extends ODataSet {
             case self::LOOP: return Language::string(391);
             case self::TEST: return Language::string(392);
             case self::LOWER_LEVEL_R_CODE: return Language::string(445);
+            case self::QTI_INITIALIZATION: return Language::string(481);
+            case self::QTI_RESPONSE_PROCESSING: return Language::string(482);
         }
     }
 
@@ -83,6 +87,8 @@ class DS_TestSectionType extends ODataSet {
             case self::TEST: return Language::string(393);
             case self::LOOP: return Language::string(394);
             case self::LOWER_LEVEL_R_CODE: return Language::string(446);
+            case self::QTI_INITIALIZATION: return Language::string(483);
+            case self::QTI_RESPONSE_PROCESSING: return Language::string(484);
         }
     }
 
@@ -120,7 +126,9 @@ class DS_TestSectionType extends ODataSet {
             (9, 'custom section', '9', 9),
             (10, 'loop', '10', 10),
             (11, 'test inclusion', '11', 11),
-            (12, 'lower level R code', '12', 12);
+            (12, 'lower level R code', '12', 12),
+            (13, 'QTI item initialization', '13', 13),
+            (14, 'QTI item response processing', '14', 14);
             ";
         return mysql_query($sql);
     }

@@ -4011,5 +4011,59 @@ Note: You can add new languages by inserting "<new_language>string translated in
             <bg></bg>
             <nl></nl>
         </string>
+        <string id="481" js="1">
+            <en>QTI item initialization</en>
+            <de></de>
+            <pl>inicjalizacja elementu QTI</pl>
+            <cn></cn>
+            <fr></fr>
+            <bg></bg>
+            <nl></nl>
+        </string>
+        <string id="482" js="1">
+            <en>QTI item response processing</en>
+            <de></de>
+            <pl>przetwarzanie odpowiedzi elementu QTI</pl>
+            <cn></cn>
+            <fr></fr>
+            <bg></bg>
+            <nl></nl>
+        </string>
+        <string id="483">
+            <en>This section will initialize QTI item variables and HTML code.</en>
+            <de></de>
+            <pl>Ta sekcja zainicjalizuje zmienne i kod HTML elementu QTI.</pl>
+            <cn></cn>
+            <fr></fr>
+            <bg></bg>
+            <nl></nl>
+        </string>
+        <string id="484">
+            <en>This section will process QTI item response.</en>
+            <de></de>
+            <pl>Ta sekcja przetworzy odpowiedź elementu QTI.</pl>
+            <cn></cn>
+            <fr></fr>
+            <bg></bg>
+            <nl></nl>
+        </string>
+        <string id="485">
+            <en>Select QTI item to be initialized.</en>
+            <de></de>
+            <pl>Wybierz element QTI, który chcesz zainicjować.</pl>
+            <cn></cn>
+            <fr></fr>
+            <bg></bg>
+            <nl></nl>
+        </string>
+        <string id="486">
+            <en>Description of selected QTI item</en>
+            <de></de>
+            <pl>Opis obecnie wybranego elementu QTI</pl>
+            <cn></cn>
+            <fr></fr>
+            <bg></bg>
+            <nl></nl>
+        </string>
     </strings>
 </root> 

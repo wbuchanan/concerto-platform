@@ -34,7 +34,9 @@ Test.sectionTypes={
     custom:9,
     loop:10,
     test:11,
-    lowerLevelRCode:12
+    lowerLevelRCode:12,
+    QTIInitialization:13,
+    QTIResponseProcessing:14
 };
 
 Test.className="Test";
@@ -219,6 +221,16 @@ Test.getSectionValues=function(section){
             });
             return values;
         }
+        case Test.sectionTypes.QTIInitialization:{
+            var values = [
+            $(".divSection[seccounter="+section.counter+"] #selectQTIAssessmentItem_"+section.counter).val(),
+            ];
+            $(".divSection[seccounter="+section.counter+"] .controlValue"+section.counter+"_rets").each(function(){
+                values.push($(this).attr("referenced"));
+                values.push($(this).val());
+            });
+            return values;
+        }
         default:{
             return [];
         }
@@ -280,6 +292,12 @@ Test.getSectionTypeName=function(type){
         case Test.sectionTypes.test:{
             return dictionary["s392"];
         }
+        case Test.sectionTypes.QTIInitialization:{
+            return dictionary["s481"];
+        }
+        case Test.sectionTypes.QTIResponseProcessing:{
+            return dictionary["s482"];
+        }
     }
 }
 
@@ -327,6 +345,10 @@ Test.uiRefreshSectionContent=function(type,counter,value,oid,end){
         }
         case Test.sectionTypes.test:{
             if(value==null) value = [0];
+            break;
+        }
+        case Test.sectionTypes.QTIInitialization:{
+            if(value==null) value=[0];
             break;
         }
     }
