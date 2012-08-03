@@ -33,12 +33,24 @@ class AndExp extends AExpression {
         "expression"
     );
 
-    public function __construct($node,$parent) {
-        parent::__construct($node,$parent);
+    public function __construct($node, $parent) {
+        parent::__construct($node, $parent);
         self::$possible_attributes = array_merge(parent::$possible_attributes, self::$possible_attributes);
         self::$required_attributes = array_merge(parent::$required_attributes, self::$required_attributes);
         self::$possible_children = array_merge(parent::$possible_children, self::$possible_children);
         self::$required_children = array_merge(parent::$required_children, self::$required_children);
+    }
+
+    public function get_R_code() {
+        $code = "";
+        foreach ($this->expression as $exp) {
+            if ($exp == "NULL")
+                return "NULL";
+            if ($code != "")
+                $code.=" && ";
+            $code.=$exp->get_R_code();
+        }
+        return $code;
     }
 
 }

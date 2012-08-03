@@ -41,6 +41,17 @@ class OrExp extends AExpression {
         self::$required_children = array_merge(parent::$required_children, self::$required_children);
     }
 
+    public function get_R_code() {
+        $code = "";
+        foreach ($this->expression as $exp) {
+            if ($exp == "NULL")
+                return "NULL";
+            if ($code != "")
+                $code.=" || ";
+            $code.=$exp->get_R_code();
+        }
+        return $code;
+    }
 }
 
 ?>
