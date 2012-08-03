@@ -75,7 +75,9 @@ if ($oid != 0) {
         <?= $section->end == 1 ? "true" : "false" ?>
                     );
         <?php
-        if ($section->TestSectionType_id == 3)
+        if ($section->TestSectionType_id == DS_TestSectionType::QTI_RESPONSE_PROCESSING)
+            array_push($late_refresh_sections, $section);
+        if ($section->TestSectionType_id == DS_TestSectionType::GO_TO)
             array_push($late_refresh_sections, $section);
     }
 

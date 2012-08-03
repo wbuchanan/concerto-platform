@@ -231,6 +231,9 @@ Test.getSectionValues=function(section){
             });
             return values;
         }
+        case Test.sectionTypes.QTIResponseProcessing:{
+            return [$(".divSection[seccounter="+section.counter+"] select").val()];
+        }
         default:{
             return [];
         }
@@ -318,7 +321,10 @@ Test.uiRefreshSectionContent=function(type,counter,value,oid,end){
             if(value==null) value =[""];
             break;
         }
-        case Test.sectionTypes.goTo:
+        case Test.sectionTypes.goTo: {
+            if(value==null) value=[0];
+            break;
+        }
         case Test.sectionTypes.loadTemplate:{
             if(value==null) value=[0,0,0];
             break;
@@ -351,6 +357,10 @@ Test.uiRefreshSectionContent=function(type,counter,value,oid,end){
             if(value==null) value=[0];
             break;
         }
+        case Test.sectionTypes.QTIResponseProcessing:{
+            if(value==null) value=[0];
+            break;
+        }
     }
     
     var detail = 0;
@@ -371,7 +381,7 @@ Test.uiRefreshSectionContent=function(type,counter,value,oid,end){
         switch(type){
             case Test.sectionTypes.RCode:{
                 var cm = Methods.iniCodeMirror("textareaCodeMirror_"+counter, "r", false,"905px",function(){
-                });
+                    });
                 Test.codeMirrors.push(cm);
                 break;
             }
@@ -382,7 +392,7 @@ Test.uiRefreshSectionContent=function(type,counter,value,oid,end){
             }
             case Test.sectionTypes.setVariable:{
                 var cm = Methods.iniCodeMirror("textareaCodeMirror_"+counter, "r", false,"905px",function(){
-                });
+                    });
                 Test.codeMirrors.push(cm);
                 break;
             }
@@ -393,6 +403,16 @@ Test.uiRefreshSectionContent=function(type,counter,value,oid,end){
                     var s = Test.sectionDivToObject($(this));
                     if(s.counter==counter) return;
                     $("#selectGoTo_"+counter).append("<option value='"+s.counter+"' "+(value[0]==s.counter?"selected":"")+">"+s.counter+": "+Test.getSectionTypeName(s.type)+"</option>");
+                });
+                break;
+            }
+            case Test.sectionTypes.QTIResponseProcessing:{
+                var sections = Test.getSections();
+                $("#selectQTI_"+counter).append("<option value='0'>&lt;"+dictionary["s58"]+"&gt;</option>");
+                sections.each(function(){
+                    var s = Test.sectionDivToObject($(this));
+                    if(s.type!=Test.sectionTypes.QTIInitialization) return;
+                    $("#selectQTI_"+counter).append("<option value='"+s.counter+"' "+(value[0]==s.counter?"selected":"")+">"+s.counter+": "+Test.getSectionTypeName(s.type)+"</option>");
                 });
                 break;
             }
@@ -657,9 +677,20 @@ Test.uiSectionChanged=function(){
     var sections = Test.getSections();
     sections.each(function(){
         var s = Test.sectionDivToObject($(this));
-        if(s.type==Test.sectionTypes.goTo){
+        if(s.type==Test.sectionTypes.goTo || s.type==Test.sectionTypes.QTIResponseProcessing){
             var value = $(this).find("select").val();
             Test.uiRefreshSectionContent(s.type, s.counter, [value]);
+        }
+    });
+}
+
+Test.uiQTIAssessmentItemsChanged=function(){
+    var sections = Test.getSections();
+    sections.each(function(){
+        var s = Test.sectionDivToObject($(this));
+        if(s.type==Test.sectionTypes.QTIInitialization){
+            var value = Test.getSectionValues(Test.sectionDivToObject($('#divSection_'+s.counter)));
+            Test.uiRefreshSectionContent(s.type, s.counter, value);
         }
     });
 }

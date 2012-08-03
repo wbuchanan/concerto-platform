@@ -180,6 +180,28 @@ class TestSection extends OTable {
                     );
                     break;
                 }
+            case DS_TestSectionType::QTI_RESPONSE_PROCESSING: {
+                    $ts = TestSection::from_property(array("counter" => $vals[0], "Test_id" => $this->Test_id), false);
+                    if ($ts == null)
+                        return sprintf("stop('Invalid test section id: %s in section #%s')", $vals[0], $this->counter);
+                    $tsvals = $ts->get_values();
+                    $ai = QTIAssessmentItem::from_mysql_id($tsvals[0]);
+                    if ($ai == null)
+                        return sprintf("stop('Invalid QTI assessment item id: %s in section #%s')", $tsvals[0], $this->counter);
+                    $map = QTIAssessmentItem::get_mapped_variables($ts->id);
+                    $result = $ai->validate($map);
+                    if (json_decode($result)->result != 0)
+                        return sprintf("stop('Validation failed on QTI assessment item id: %s in section #%s')", $tsvals[0], $this->counter);
+
+                    $qtir = $ai->get_response_processing_R_code();
+
+                    $code = sprintf("
+                        %s
+                        return(%d)
+                        ", $qtir, ($this->end == 0 ? $next_counter : -2)
+                    );
+                    break;
+                }
             case DS_TestSectionType::LOAD_HTML_TEMPLATE: {
                     $template_id = $vals[0];
                     $template = Template::from_mysql_id($template_id);
