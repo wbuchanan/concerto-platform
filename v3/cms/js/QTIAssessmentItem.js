@@ -65,9 +65,65 @@ QTIAssessmentItem.getFullSaveObject = function(){
 QTIAssessmentItem.uiSaveValidate=function(ignoreOnBefore){
     if(!this.checkRequiredFields([
         $("#form"+this.className+"InputName").val()
-    ])) {
+        ])) {
         Methods.alert(dictionary["s415"],"alert");
         return false;
     }
     QTIAssessmentItem.uiSaveValidated(ignoreOnBefore);
+}
+
+QTIAssessmentItem.uiRevalidate=function(){
+    var thisClass = this;
+    var xml = $("#form"+this.className+"TextareaXML").val();
+    $.post("query/QTIAssessmentItem_revalidate.php",{
+        xml:xml
+    },function(data){
+        if(data.result==0){
+            $("#div"+thisClass.className+"Validation").removeClass("ui-state-error");
+            $("#div"+thisClass.className+"Validation").addClass("ui-state-highlight");
+        } else {
+            $("#div"+thisClass.className+"Validation").removeClass("ui-state-highlight");
+            $("#div"+thisClass.className+"Validation").addClass("ui-state-error");
+        }
+        switch(data.result){
+            case -1:{
+                location.reload();
+                break;
+            }
+            case 0:{
+                $("#div"+thisClass.className+"Validation").html("<b>" + dictionary["s470"] + "</b>");
+                break;
+            }
+        }
+        if(data.result>0){
+            $("#div"+thisClass.className+"Validation").html("<b>" + dictionary["s471"] + "</b><br/>"+dictionary["s472"]+"<b>");
+            switch(data.result){
+                case 1:{
+                    $("#div"+thisClass.className+"Validation").html($("#div"+thisClass.className+"Validation").html()+dictionary["s475"]);
+                    break;
+                }
+                case 2:{
+                    $("#div"+thisClass.className+"Validation").html($("#div"+thisClass.className+"Validation").html()+dictionary["s476"]);
+                    break;
+                }
+                case 4:{
+                    $("#div"+thisClass.className+"Validation").html($("#div"+thisClass.className+"Validation").html()+dictionary["s478"]);
+                    break;
+                }
+                case 3:{
+                    $("#div"+thisClass.className+"Validation").html($("#div"+thisClass.className+"Validation").html()+dictionary["s477"]);
+                    break;
+                }
+                case 5:{
+                    $("#div"+thisClass.className+"Validation").html($("#div"+thisClass.className+"Validation").html()+dictionary["479"]);
+                    break;
+                }
+                case 6:{
+                    $("#div"+thisClass.className+"Validation").html($("#div"+thisClass.className+"Validation").html()+dictionary["s480"]);
+                    break;
+                }
+            }
+            $("#div"+thisClass.className+"Validation").html($("#div"+thisClass.className+"Validation").html()+"</b>, " +dictionary["s473"] + "<b>" +data.section+ "</b>, " +dictionary["s474"] + "<b>" +data.target+ "</b>");
+        }
+    },"json");
 }

@@ -46,9 +46,12 @@ class QTIAssessmentItem extends OModule {
         return $map;
     }
 
-    public function validate($map = null) {
+    public function validate($map = null, $xml = null) {
         $document = new DOMDocument('1.0', 'UTF-8');
-        @$document->loadXML($this->XML);
+        if ($xml != null)
+            @$document->loadXML($xml);
+        else
+            @$document->loadXML($this->XML);
         if (!$document) {
             return json_encode(array("result" => OQTIElement::VALIDATION_ERROR_TYPES_XML, "section" => "XML", "target" => "XML"));
         }

@@ -72,6 +72,7 @@ if ($oid != 0) {
             Methods.iniIconButton(".btnCancel", "cancel");
             Methods.iniIconButton(".btnSave", "disk");
             Methods.iniIconButton(".btnDelete", "trash");
+            Methods.iniIconButton(".btnRevalidate", "refresh");
     <?php
     if ($class_name::$exportable && $oid > 0) {
         ?>
@@ -146,6 +147,9 @@ if ($oid != 0) {
                         }
                         ?>
                     </div>
+                    <div align="center">
+                        <button class="btnRevalidate" onclick="<?= $class_name ?>.uiRevalidate()"><?= Language::string(487) ?></button>
+                    </div>
                 </td>
             </tr>
             <tr>
@@ -210,6 +214,7 @@ if ($oid != 0) {
                     <?php
                 }
                 ?>
+                <button class="btnRevalidate" onclick="<?= $class_name ?>.uiRevalidate()"><?= Language::string(487) ?></button>
             </div>
         </div>
         <?php

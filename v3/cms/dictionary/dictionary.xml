@@ -3912,7 +3912,7 @@ Note: You can add new languages by inserting "<new_language>string translated in
             <bg></bg>
             <nl></nl>
         </string>
-        <string id="470">
+        <string id="470" js="1">
             <en>QTI XML has been successfuly validated.</en>
             <de></de>
             <pl>XML QTI został pomyślnie zwalidowany.</pl>
@@ -3921,7 +3921,7 @@ Note: You can add new languages by inserting "<new_language>string translated in
             <bg></bg>
             <nl></nl>
         </string>
-        <string id="471">
+        <string id="471" js="1">
             <en>QTI XML is incorrect. Correct XML and press revalidate button.</en>
             <de></de>
             <pl>XML QTI nie jest poprawny. Popraw go a następnie naciśnij przycisk rewaliduj.</pl>
@@ -3930,7 +3930,7 @@ Note: You can add new languages by inserting "<new_language>string translated in
             <bg></bg>
             <nl></nl>
         </string>
-        <string id="472">
+        <string id="472" js="1">
             <en>Error type: </en>
             <de></de>
             <pl>Typ błędu: </pl>
@@ -3939,7 +3939,7 @@ Note: You can add new languages by inserting "<new_language>string translated in
             <bg></bg>
             <nl></nl>
         </string>
-        <string id="473">
+        <string id="473" js="1">
             <en>element: </en>
             <de></de>
             <pl>element: </pl>
@@ -3948,7 +3948,7 @@ Note: You can add new languages by inserting "<new_language>string translated in
             <bg></bg>
             <nl></nl>
         </string>
-        <string id="474">
+        <string id="474" js="1">
             <en>target: </en>
             <de></de>
             <pl>cel: </pl>
@@ -3957,7 +3957,7 @@ Note: You can add new languages by inserting "<new_language>string translated in
             <bg></bg>
             <nl></nl>
         </string>
-        <string id="475">
+        <string id="475" js="1">
             <en>XML root</en>
             <de></de>
             <pl>korzeń XML:</pl>
@@ -3966,7 +3966,7 @@ Note: You can add new languages by inserting "<new_language>string translated in
             <bg></bg>
             <nl></nl>
         </string>
-        <string id="476">
+        <string id="476" js="1">
             <en>attribute not allowed</en>
             <de></de>
             <pl>atrybut niedostępny</pl>
@@ -3975,7 +3975,7 @@ Note: You can add new languages by inserting "<new_language>string translated in
             <bg></bg>
             <nl></nl>
         </string>
-        <string id="477">
+        <string id="477" js="1">
             <en>attribute required</en>
             <de></de>
             <pl>atrybut wymagany</pl>
@@ -3984,7 +3984,7 @@ Note: You can add new languages by inserting "<new_language>string translated in
             <bg></bg>
             <nl></nl>
         </string>
-        <string id="478">
+        <string id="478" js="1">
             <en>child not allowed</en>
             <de></de>
             <pl>potomek niedostępny</pl>
@@ -3993,7 +3993,7 @@ Note: You can add new languages by inserting "<new_language>string translated in
             <bg></bg>
             <nl></nl>
         </string>
-        <string id="479">
+        <string id="479" js="1">
             <en>child required</en>
             <de></de>
             <pl>potomek wymagany</pl>
@@ -4002,7 +4002,7 @@ Note: You can add new languages by inserting "<new_language>string translated in
             <bg></bg>
             <nl></nl>
         </string>
-        <string id="480">
+        <string id="480" js="1">
             <en>class does not exist</en>
             <de></de>
             <pl>klasa nie istnieje</pl>
@@ -4060,6 +4060,15 @@ Note: You can add new languages by inserting "<new_language>string translated in
             <en>Description of selected QTI item</en>
             <de></de>
             <pl>Opis obecnie wybranego elementu QTI</pl>
+            <cn></cn>
+            <fr></fr>
+            <bg></bg>
+            <nl></nl>
+        </string>
+        <string id="487">
+            <en>revalidate</en>
+            <de></de>
+            <pl>rewaliduj</pl>
             <cn></cn>
             <fr></fr>
             <bg></bg>
