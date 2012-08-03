@@ -34,7 +34,7 @@ class QTIAssessmentItem extends OModule {
         parent::__construct($params);
     }
 
-    public function get_mapped_variables($TestSection_id) {
+    public static function get_mapped_variables($TestSection_id) {
         $map = array();
         $ts = TestSection::from_mysql_id($TestSection_id);
         if ($ts == null || $ts->TestSectionType_id != DS_TestSectionType::QTI_INITIALIZATION)
@@ -191,9 +191,9 @@ class QTIAssessmentItem extends OModule {
         return $code;
     }
 
-    public function get_QTI_ini_R_code() {
+    public function get_QTI_ini_R_code($map=null) {
         $code = $this->get_variable_declaration_R_code();
-        $code.= $this->get_template_processing_R_code();
+        $code.= $this->get_template_processing_R_code($map);
         return $code;
     }
 

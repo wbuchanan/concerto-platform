@@ -162,6 +162,24 @@ class TestSection extends OTable {
                     );
                     break;
                 }
+            case DS_TestSectionType::QTI_INITIALIZATION: {
+                    $ai = QTIAssessmentItem::from_mysql_id($vals[0]);
+                    if ($ai == null)
+                        return sprintf("stop('Invalid QTI assessment item id: %s in section #%s')", $vals[0], $this->counter);
+                    $map = QTIAssessmentItem::get_mapped_variables($this->id);
+                    $result = $ai->validate($map);
+                    if (json_decode($result)->result != 0)
+                        return sprintf("stop('Validation failed on QTI assessment item id: %s in section #%s')", $vals[0], $this->counter);
+
+                    $qtir = $ai->get_QTI_ini_R_code($map);
+
+                    $code = sprintf("
+                        %s
+                        return(%d)
+                        ", $qtir, ($this->end == 0 ? $next_counter : -2)
+                    );
+                    break;
+                }
             case DS_TestSectionType::LOAD_HTML_TEMPLATE: {
                     $template_id = $vals[0];
                     $template = Template::from_mysql_id($template_id);
