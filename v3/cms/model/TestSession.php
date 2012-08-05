@@ -489,7 +489,7 @@ class TestSession extends OTable {
         return $session;
     }
 
-    public static function forward($tid, $sid, $hash, $values, $btn_name, $debug, $time) {
+    public static function forward($tid, $sid, $hash, $values, $btn_name, $debug, $time, $resume_from_last_template = false) {
         $session = null;
         $result = array();
         if ($sid != null && $hash != null) {
@@ -530,9 +530,17 @@ class TestSession extends OTable {
                             "output" => ""
                         );
                     }
+                } else {
+                    if (!$resume_from_last_template)
+                        $result = $session->resume($values);
+                    else {
+                        $ts = TestSection::from_mysql_id($session->Template_TestSection_id);
+                        if ($ts == null)
+                            $result = $session->resume($values);
+                        else
+                            $result = $session->run_Test($ts->counter, $values);
+                    }
                 }
-                else
-                    $result = $session->resume($values);
             }
             else {
                 $result = array(

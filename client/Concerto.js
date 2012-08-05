@@ -17,7 +17,9 @@ along with this program; if not, write to the Free Software
 Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA.
 */
 
-function Concerto(container,hash,sid,tid,queryPath,callbackGet,callbackSend,debug,remote,loadingImageSource){
+function Concerto(container,hash,sid,tid,queryPath,callbackGet,callbackSend,debug,remote,loadingImageSource,resumeFromLastTemplate){
+    this.resumeFromLastTemplate = false;
+    if(resumeFromLastTemplate!=null) this.resumeFromLastTemplate = resumeFromLastTemplate;
     this.loadingImageSource = 'css/img/ajax-loader.gif';
     if(loadingImageSource!=null) this.loadingImageSource = loadingImageSource;
     this.remote = false;
@@ -85,6 +87,8 @@ function Concerto(container,hash,sid,tid,queryPath,callbackGet,callbackSend,debu
         var thisClass = this;
         
         var params = {};
+        params["resume_from_last_template"] = this.resumeFromLastTemplate?"1":"0";
+        this.resumeFromLastTemplate = false;
         if(this.hash!=null && this.sessionID!=null) 
         {
             params["hash"] = this.hash;

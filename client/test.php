@@ -35,7 +35,7 @@
         <script type="text/javascript" src="client/ConcertoMethods.js"></script>
         <script type="text/javascript" src="client/Concerto.js"></script>
         <script type="text/javascript" src="client/concerto.jquery.js"></script>
-        
+
         <script>
             function start(){
                 $("#divTestContainer").concerto({
@@ -53,19 +53,21 @@
                     loadingImageSource:"client/css/img/ajax-loader.gif",
                     callback:function(sessionID,sessionHash, status, finished){
                         $("#log").html("<b>resume</b> - sessionID: "+sessionID+", sessionHash: "+sessionHash+", status: "+status+", finished: "+finished);
-                    }});
+                    },
+                    resumeFromLastTemplate:$("#resumeFromLastTemplate").is(":checked")});
             }
         </script>
     </head>
 
     <body>
         <div id="log">
-            
+
         </div>
         <div>
             testID: <input type="text" id="testID" />, 
             sessionID: <input type="text" id="sessionID" />
             sessionHash: <input type="text" id="sessionHash" />
+            resume from last template: <input type="checkbox" id="resumeFromLastTemplate" />
         </div>
         <div>
             <button onclick="start()">start new</button><button onclick="resume()">resume</button>

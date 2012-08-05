@@ -28,7 +28,8 @@ test = null;
             'sessionHash': null,
             'params':{},
             'loadingImageSource':null,
-            'callback':function(sessionID,sessionHash, status, finished){}
+            'callback':function(sessionID,sessionHash, status, finished){},
+            'resumeFromLastTemplate':false
         }, options);
 
         this.each(function() {    
@@ -44,7 +45,8 @@ test = null;
                 null, 
                 null, 
                 true,
-                settings.loadingImageSource
+                settings.loadingImageSource,
+                settings.resumeFromLastTemplate
                 );      
             var values = new Array();
             for(var key in settings.params){

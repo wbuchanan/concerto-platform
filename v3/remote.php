@@ -36,7 +36,8 @@ $server->register('run_test', // method name
     'values' => 'xsd:string',
     'debug' => 'xsd:string',
     'pass' => 'xsd:string',
-    'time' => 'xsd:string'
+    'time' => 'xsd:string',
+    'resume_from_last_template' => 'xsd:string'
         ), array(
     'result' => 'xsd:string'
         ), 'urn:ConcertoClientWSDL', // namespace
@@ -81,11 +82,11 @@ function authorize_WS($pass) {
         return false;
 }
 
-function run_test($tid, $sid, $hash, $btn_name, $values, $debug, $pass, $time) {
+function run_test($tid, $sid, $hash, $btn_name, $values, $debug, $pass, $time, $resume_from_last_template) {
     if (!authorize_WS($pass))
         return false;
 
-    $result = TestSession::forward($tid, $sid, $hash, json_decode($values), $btn_name, $debug, $time);
+    $result = TestSession::forward($tid, $sid, $hash, json_decode($values), $btn_name, $debug, $time, $resume_from_last_template == "1");
     return json_encode($result);
 }
 

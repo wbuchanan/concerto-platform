@@ -54,7 +54,8 @@ switch ($method) {
                 "btn_name" => array_key_exists("btn_name", $_POST) ? $_POST['btn_name'] : null,
                 "debug" => array_key_exists("debug", $_POST) ? $_POST['debug'] : null,
                 "pass" => md5($ws_password),
-                "time" => $time
+                "time" => $time,
+                "resume_from_last_template" => array_key_exists("resume_from_last_template", $_POST) ? $_POST['resume_from_last_template'] : "0"
                     ));
             break;
         }
