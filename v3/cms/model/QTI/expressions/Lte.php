@@ -41,6 +41,17 @@ class Lte extends AExpression {
         self::$required_children = array_merge(parent::$required_children, self::$required_children);
     }
 
+    public function get_R_code() {
+        //NULL check should be improved
+        if (count($this->expression) != 2)
+            return "NULL";
+        $exp1 = $this->expression[0];
+        $exp2 = $this->expression[1];
+        if ($exp1 == "NULL" || $exp2 == "NULL")
+            return "NULL";
+
+        return $exp1 . "<=" . $exp2;
+    }
 }
 
 ?>

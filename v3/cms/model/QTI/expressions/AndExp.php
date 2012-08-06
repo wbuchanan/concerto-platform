@@ -42,6 +42,7 @@ class AndExp extends AExpression {
     }
 
     public function get_R_code() {
+        //NULL check should be improved
         $code = "";
         foreach ($this->expression as $exp) {
             if ($exp == "NULL")

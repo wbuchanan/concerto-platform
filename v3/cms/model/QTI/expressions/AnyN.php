@@ -20,6 +20,7 @@
  */
 
 class AnyN extends AExpression {
+
     //attributes
     public $min = "";
     public $max = "";
@@ -41,12 +42,25 @@ class AnyN extends AExpression {
         "expression"
     );
 
-    public function __construct($node,$parent) {
-        parent::__construct($node,$parent);
+    public function __construct($node, $parent) {
+        parent::__construct($node, $parent);
         self::$possible_attributes = array_merge(parent::$possible_attributes, self::$possible_attributes);
         self::$required_attributes = array_merge(parent::$required_attributes, self::$required_attributes);
         self::$possible_children = array_merge(parent::$possible_children, self::$possible_children);
         self::$required_children = array_merge(parent::$required_children, self::$required_children);
+    }
+
+    public function get_R_code() {
+        $vector.="c(";
+        $i = 0;
+        foreach ($this->expression as $exp) {
+            if ($i > 0)
+                $vector.=",";
+            $vector.=$exp->get_R_code();
+            $i++;
+        }
+        $vector.=")";
+        return "if(table(" . $vector . ")['TRUE']>=" . $this->min . " && table(" . $vector . ")['TRUE']<=" . $this->max . ") TRUE else if(length(" . $vector . ")-" . $this->min . "<table(" . $vector . ")['FALSE'] || " . $this->max . "<table(" . $vector . ")['TRUE']) FALSE else NULL";
     }
 
 }

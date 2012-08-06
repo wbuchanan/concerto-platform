@@ -39,12 +39,37 @@ class Equal extends AExpression {
         "expression"
     );
 
-    public function __construct($node,$parent) {
-        parent::__construct($node,$parent);
+    public function __construct($node, $parent) {
+        parent::__construct($node, $parent);
         self::$possible_attributes = array_merge(parent::$possible_attributes, self::$possible_attributes);
         self::$required_attributes = array_merge(parent::$required_attributes, self::$required_attributes);
         self::$possible_children = array_merge(parent::$possible_children, self::$possible_children);
         self::$required_children = array_merge(parent::$required_children, self::$required_children);
+    }
+
+    public function get_R_code() {
+        //NULL check should be improved
+        if (count($this->expression) != 2)
+            return "NULL";
+        $exp1 = $this->expression[0];
+        $exp2 = $this->expression[1];
+        if ($exp1 == "NULL" || $exp2 == "NULL")
+            return "NULL";
+        $t0 = 0;
+        $t1 = 0;
+        if (count($this->tolerance) == 1) {
+            $t0 = $this->tolerance[0];
+            $t1 = $this->tolerance[0];
+        }
+        if (count($this->tolerance) == 2) {
+            $t0 = $this->tolerance[0];
+            $t1 = $this->tolerance[1];
+        }
+        switch ($this->toleranceMode) {
+            case "absolute": return $exp1 . "-" . $t0 . "<=" . $exp2 . "&&" . $exp2 . "<=" . $exp1 . "+" . $t1;
+            case "relative": return $exp1 . "*(1-" . $t0 . "/100)<=" . $exp2 . "&&" . $exp2 . "<=" . $exp1 . "*(1+" . $t1 . "/100)";
+            default: return $exp1 . "==" . $exp2;
+        }
     }
 
 }
