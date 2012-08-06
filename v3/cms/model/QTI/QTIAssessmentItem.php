@@ -253,6 +253,71 @@ class QTIAssessmentItem extends OModule {
             return mysql_insert_id();
     }
 
+    public function export() {
+        $xml = new DOMDocument('1.0', "UTF-8");
+        $xml->preserveWhiteSpace = false;
+        $xml->formatOutput = true;
+
+        $export = $xml->createElement("export");
+        $export->setAttribute("version", Ini::$version);
+        $xml->appendChild($export);
+
+        $element = $this->to_XML();
+        $obj = $xml->importNode($element, true);
+        $export->appendChild($obj);
+
+        return trim($xml->saveXML());
+    }
+
+    public function import_XML($xml) {
+        $this->Sharing_id = 1;
+
+        $xpath = new DOMXPath($xml);
+
+        $elements = $xpath->query("/export");
+        foreach ($elements as $element) {
+            if (Ini::$version != $element->getAttribute("version"))
+                return -5;
+        }
+
+        $elements = $xpath->query("/export/QTIAssessmentItem");
+        foreach ($elements as $element) {
+            $this->xml_hash = $element->getAttribute("xml_hash");
+            $children = $element->childNodes;
+            foreach ($children as $child) {
+                switch ($child->nodeName) {
+                    case "name": $this->name = $child->nodeValue;
+                        break;
+                    case "description": $this->description = $child->nodeValue;
+                        break;
+                    case "XML": $this->XML = $child->nodeValue;
+                        break;
+                }
+            }
+        }
+        return $this->mysql_save();
+    }
+
+    public function to_XML() {
+        $xml = new DOMDocument('1.0', 'UTF-8');
+
+        $element = $xml->createElement("QTIAssessmentItem");
+        $element->setAttribute("id", $this->id);
+        $element->setAttribute("xml_hash", $this->xml_hash);
+        $xml->appendChild($element);
+
+        $name = $xml->createElement("name", htmlspecialchars($this->name, ENT_QUOTES, "UTF-8"));
+        $element->appendChild($name);
+
+        $description = $xml->createElement("description", htmlspecialchars($this->name, ENT_QUOTES, "UTF-8"));
+        $element->appendChild($description);
+
+        $XML = $xml->createElement("XML", htmlspecialchars($this->XML, ENT_QUOTES, "UTF-8"));
+        $element->appendChild($XML);
+
+        return $element;
+    }
+
     public static function create_db($delete = false) {
         if ($delete) {
             if (!mysql_query("DROP TABLE IF EXISTS `QTIAssessmentItem`;"))

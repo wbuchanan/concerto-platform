@@ -243,12 +243,14 @@ class Test extends OModule {
         $templates_ids = array();
         $custom_sections_ids = array();
         $tables_ids = array();
+        $qtiai_ids = array();
         $sql = sprintf("SELECT 
             `TestSection`.`id`,`TestSectionValue`.`value`,`TestSection`.`TestSectionType_id` 
             FROM `TestSection` 
             LEFT JOIN `TestSectionValue` ON `TestSectionValue`.`TestSection_id`=`TestSection`.`id`
             WHERE 
-            (`TestSection`.`TestSectionType_id`=2 AND `TestSectionValue`.`index`=0 OR
+            (`TestSection`.`TestSectionType_id`=13 AND `TestSectionValue`.`index`=0 OR
+            `TestSection`.`TestSectionType_id`=2 AND `TestSectionValue`.`index`=0 OR
             `TestSection`.`TestSectionType_id`=9 AND `TestSectionValue`.`index`=0 OR
             `TestSection`.`TestSectionType_id`=11 AND `TestSectionValue`.`index`=0 OR
             `TestSection`.`TestSectionType_id`=8 AND `TestSectionValue`.`index`=3 OR
@@ -276,6 +278,30 @@ class Test extends OModule {
                                 $obj = $xml->importNode($element, true);
                                 $export->appendChild($obj);
                                 array_push($templates_ids, $r[1]);
+                            }
+                        }
+                        break;
+                    }
+                //QTIAssessmentItem
+                case 13: {
+                        if (!in_array($r[1], $qtiai_ids)) {
+                            $qtiai = QTIAssessmentItem::from_mysql_id($r[1]);
+                            if ($qtiai != null) {
+                                $present_qtiai = $xpath->query("/export/QTIAssessmentItem");
+                                $exists = false;
+                                foreach ($present_qtiai as $obj) {
+                                    if ($qtiai->xml_hash == $obj->getAttribute("xml_hash")) {
+                                        $exists = true;
+                                        break;
+                                    }
+                                }
+                                if ($exists)
+                                    break;
+
+                                $element = $qtiai->to_XML();
+                                $obj = $xml->importNode($element, true);
+                                $export->appendChild($obj);
+                                array_push($qtiai_ids, $r[1]);
                             }
                         }
                         break;
@@ -409,7 +435,8 @@ class Test extends OModule {
             "Template" => array(),
             "Table" => array(),
             "CustomSection" => array(),
-            "Test" => array()
+            "Test" => array(),
+            "QTIAssessmentItem" => array()
         );
 
         //link templates
@@ -424,6 +451,21 @@ class Test extends OModule {
                 $obj->Owner_id = $logged_user->id;
                 $lid = $obj->import_XML(Template::convert_to_XML_document($element));
                 $compare["Template"][$id] = $lid;
+            }
+        }
+
+        //link QTI assessment items
+        $logged_user = User::get_logged_user();
+        $elements = $xpath->query("/export/QTIAssessmentItem");
+        foreach ($elements as $element) {
+            $id = $element->getAttribute("id");
+            $hash = $element->getAttribute("xml_hash");
+            $compare["QTIAssessmentItem"][$id] = QTIAssessmentItem::find_xml_hash($hash);
+            if ($compare["QTIAssessmentItem"][$id] == 0) {
+                $obj = new QTIAssessmentItem();
+                $obj->Owner_id = $logged_user->id;
+                $lid = $obj->import_XML(QTIAssessmentItem::convert_to_XML_document($element));
+                $compare["QTIAssessmentItem"][$id] = $lid;
             }
         }
 
@@ -535,6 +577,15 @@ class Test extends OModule {
                         $value = 0;
                         if (isset($compare["Template"][$test_section["value"]["v0"]]))
                             $value = $compare["Template"][$test_section["value"]["v0"]];
+                        $test_section["value"]["v0"] = $value;
+                        break;
+                    }
+                case 13: {
+                        if ($test_section["value"]["v0"] == 0)
+                            break;
+                        $value = 0;
+                        if (isset($compare["QTIAssessmentItem"][$test_section["value"]["v0"]]))
+                            $value = $compare["QTIAssessmentItem"][$test_section["value"]["v0"]];
                         $test_section["value"]["v0"] = $value;
                         break;
                     }
