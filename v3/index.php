@@ -33,6 +33,8 @@ if (!isset($ini))
         <meta http-equiv="Cache-Control" content="no-cache"/>
         <meta http-equiv="Expires" content="-1"/>
         <title>Concerto</title>
+        
+        <link rel="stylesheet" href="css/QTI.css" />
 
         <script type="text/javascript" src="cms/js/lib/jquery-1.7.1.min.js"></script>
         <script type="text/javascript" src="cms/js/lib/jquery.json-2.3.min.js"></script>

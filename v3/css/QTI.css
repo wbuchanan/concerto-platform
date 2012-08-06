@@ -1,0 +1,24 @@
+/* 
+    Document   : QTI
+    Created on : 06-Aug-2012, 20:44:06
+    Author     : Przemyslaw Lis
+    Description:
+        Purpose of the stylesheet follows.
+*/
+
+root { 
+    display: block;
+}
+
+.QTIPrompt {
+    
+}
+
+.QTIBlockChoiceLabel{
+    
+}
+
+QTIBlockChoiceInteraction {
+    
+}
+

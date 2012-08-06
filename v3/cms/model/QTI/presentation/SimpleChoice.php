@@ -37,6 +37,17 @@ class SimpleChoice extends AChoice {
         self::$required_children = array_merge(parent::$required_children, self::$required_children);
     }
 
+    public function get_HTML_code() {
+        $label = $this->get_contents();
+        $interaction = "";
+        if ($this->parent->maxChoices == "1") {
+            $interaction = sprintf("<input type='radio' name='%s' value='%s' />", $this->parent->responseIdentifier, $this->identifier);
+        } else {
+            $interaction = sprintf("<input type='checkbox' name='%s' value='%s' />", $this->parent->responseIdentifier, $this->identifier);
+        }
+        return sprintf("<tr><td class='QTIBlockChoiceLabel'>%s</td><td class='QTIBlockChoiceInteraction'>%s</td></tr>", $label, $interaction);
+    }
+
 }
 
 ?>

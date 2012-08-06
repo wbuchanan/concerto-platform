@@ -163,7 +163,7 @@ class QTIAssessmentItem extends OModule {
                     ", $response->identifier);
                 foreach ($response->correctResponse->value as $val) {
                     $code.=sprintf("
-                        %s.correct <<- c(%s,'%s')
+                        %s.correct <<- c(%s.correct,'%s')
                         ", $response->identifier, $response->identifier, $val->get_text());
                 }
                 $code.=sprintf("

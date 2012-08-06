@@ -42,6 +42,7 @@ class OQTIElement {
         "or" => "OrExp"
     );
     public static $implemented_presentation_elements = array(
+        "choiceInteraction",
         "printedVariable",
         "textEntryInteraction"
     );
@@ -198,6 +199,14 @@ class OQTIElement {
 
     public function get_text() {
         return addcslashes($this->node->textContent, "'\"");
+    }
+
+    public function get_contents() {
+        $contents = "";
+        foreach ($this->node->childNodes as $child) {
+            $contents.=$this->node->ownerDocument->saveXML($child);
+        }
+        return addcslashes($contents, "'\"");
     }
 
 }

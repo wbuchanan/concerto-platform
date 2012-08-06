@@ -37,6 +37,10 @@ class Prompt extends ABodyElement {
         self::$required_children = array_merge(parent::$required_children, self::$required_children);
     }
 
+    public function get_HTML_code() {
+        return sprintf("<caption class='QTIPrompt'>%s</caption>", $this->get_contents());
+    }
+
 }
 
 ?>
