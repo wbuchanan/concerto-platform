@@ -182,8 +182,9 @@ class QTIAssessmentItem extends OModule {
         }
 
         //set HTML
-        $html_result = $this->root->node->ownerDocument->saveXML($this->root->itemBody->node);
+        $html_result = "";
         if ($this->root->itemBody != null) {
+            $html_result = $this->root->node->ownerDocument->saveXML($this->root->itemBody->node);
             $xpath = new DOMXPath($this->root->node->ownerDocument);
             $xpath->registerNamespace("qti", "http://www.imsglobal.org/xsd/imsqti_v2p0");
             foreach (OQTIElement::$implemented_presentation_elements as $name) {

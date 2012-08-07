@@ -21,11 +21,6 @@
 
 class ItemBody extends ABodyElement {
 
-    //attributes
-    public $id = null;
-    public $class = null;
-    public $lang = null;
-    public $label = null;
     public static $name = "itemBody";
     public static $possible_attributes = array();
     public static $required_attributes = array();
@@ -40,6 +35,19 @@ class ItemBody extends ABodyElement {
         self::$required_attributes = array_merge(parent::$required_attributes, self::$required_attributes);
         self::$possible_children = array_merge(parent::$possible_children, self::$possible_children);
         self::$required_children = array_merge(parent::$required_children, self::$required_children);
+    }
+
+    public function get_HTML_code() {
+        $id = "";
+        if ($this->id != null)
+            $id = $this->id;
+        $class = "";
+        if ($this->class != null)
+            $class = $this->class;
+        $code = sprintf("<div %s %s >", ($id != "" ? "id='" . $id . "'" : ""), "class='QTIItemBody " . $class . "'");
+        $code.=$this->get_contents();
+        $code.="</div>";
+        return $code;
     }
 
 }
