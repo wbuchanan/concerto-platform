@@ -43,7 +43,7 @@ class SimpleChoice extends AChoice {
         if ($this->parent->maxChoices == "1") {
             $interaction = sprintf("<input type='radio' name='%s' value='%s' />", $this->parent->responseIdentifier, $this->identifier);
         } else {
-            $interaction = sprintf("<input type='checkbox' name='%s' value='%s' />", $this->parent->responseIdentifier, $this->identifier);
+            $interaction = sprintf("<input type='checkbox' name='%s' value='%s' onclick='QTI.maxChoices(this,\"%s\",%s)' />", $this->parent->responseIdentifier, $this->identifier, $this->parent->responseIdentifier, $this->parent->maxChoices);
         }
         return sprintf("<tr><td class='QTIBlockChoiceLabel'>%s</td><td class='QTIBlockChoiceInteraction'>%s</td></tr>", $label, $interaction);
     }

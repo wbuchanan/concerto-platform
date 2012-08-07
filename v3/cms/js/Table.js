@@ -522,7 +522,7 @@ Table.uiEditColumn=function(obj){
                     return;
                 }
                 
-                if ( !Test.variableValidation(name.val()))
+                if ( !Test.variableValidation(name.val(),false))
                 {
                     var oldValue = name.val();
                     var newValue = Test.convertVariable(name.val(),false);

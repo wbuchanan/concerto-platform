@@ -41,6 +41,7 @@ if (!isset($ini))
 
         <script type="text/javascript" src="js/ConcertoMethods.js"></script>
         <script type="text/javascript" src="js/Concerto.js"></script>
+        <script type="text/javascript" src="js/QTI.js"></script>
         <script>
             $(function(){
                 var values = new Array();

@@ -152,10 +152,24 @@ class TestSession extends OTable {
                         %s <- NA
                         ", $val->name);
             } else {
-                $code.=sprintf("
+                if (!is_array($val->value)) {
+                    $code.=sprintf("
                     %s <- '%s'
                     %s <<- convertVariable(%s)
                     ", $val->name, addslashes($val->value), $val->name, $val->name);
+                } else {
+                    $code.=sprintf("
+                    %s <- c()
+                    ", $val->name);
+                    foreach ($val->value as $v) {
+                        $code.=sprintf("
+                            %s <- c(%s,'%s')
+                            ", $val->name, $val->name, addslashes($v));
+                    }
+                    $code.=sprintf("
+                        %s <<- convertVariable(%s)
+                        ", $val->name, $val->name);
+                }
             }
         }
 

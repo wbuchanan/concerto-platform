@@ -770,17 +770,17 @@ Test.uiTablesChanged=function(){
     });
 }
 
-Test.variableValidation=function(value,dots){
-    if(dots == null) dots = true;
+Test.variableValidation=function(value,special){
+    if(special == null) special = true;
     var oldValue = value;
-    var newValue = Test.convertVariable(oldValue,dots);
+    var newValue = Test.convertVariable(oldValue,special);
     if(oldValue!=newValue) return false;
     else return true;
 }
 
-Test.convertVariable=function(value,dots){
-    if(dots == null) dots = true;
-    if(dots) {
+Test.convertVariable=function(value,special){
+    if(special == null) special = true;
+    if(special) {
         value = value.replace(/[^A-Z^a-z^0-9^\.^_]/gi,"");
         value = value.replace(/\.{2,}/gi,".");
     }

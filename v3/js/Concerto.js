@@ -161,46 +161,31 @@ function Concerto(container,hash,sid,tid,queryPath,callbackGet,callbackSend,debu
     this.getControlsValues=function(){
         var values = new Array();
         
-        $(this.container).find("input:text").each(function(){
-            var obj = {
-                name:$(this).attr("name"),
-                value:$(this).val()
-            };
-            values.push($.toJSON(obj));
+        $(this.container).find("input:text, input:hidden, input:password, textarea, select, input:checkbox:checked, input:radio:checked").each(function(){
+            var name = $(this).attr("name");
+            var value = $(this).val();
+            var found = false;
+            for(var i=0;i<values.length;i++){
+                if(values[i].name == name){
+                    found = true;
+                    if(values[i].value instanceof Array) values[i].value.push(value);
+                    else values[i].value = [values[i].value,value];
+                }
+            }
+            if(!found) {
+                var obj = {
+                    name:name,
+                    value:value
+                };
+                values.push(obj);
+            }
         });
         
-        $(this.container).find("input:hidden").each(function(){
-            var obj = {
-                name:$(this).attr("name"),
-                value:$(this).val()
-            };
-            values.push($.toJSON(obj));
-        });
+        for(var i=0;i<values.length;i++){
+            values[i] = $.toJSON(values[i]);
+        }
         
-        $(this.container).find("input:password").each(function(){
-            var obj = {
-                name:$(this).attr("name"),
-                value:$(this).val()
-            };
-            values.push($.toJSON(obj));
-        });
-        
-        $(this.container).find("textarea").each(function(){
-            var obj = {
-                name:$(this).attr("name"),
-                value:$(this).val()
-            };
-            values.push($.toJSON(obj));
-        });
-        
-        $(this.container).find("select").each(function(){
-            var obj = {
-                name:$(this).attr("name"),
-                value:$(this).val()
-            };
-            values.push($.toJSON(obj));
-        });
-        
+        /*
         $(this.container).find("input:checkbox").each(function(){
             var obj = {
                 name:$(this).attr("name"),
@@ -236,6 +221,7 @@ function Concerto(container,hash,sid,tid,queryPath,callbackGet,callbackSend,debu
         for(var key in radios){
             values.push($.toJSON(radios[key]));
         }
+        */
         
         return values;
     }
