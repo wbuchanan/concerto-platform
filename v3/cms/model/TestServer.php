@@ -404,17 +404,16 @@ class TestServer {
         if (!array_key_exists($key, $this->clients)) {
             $session = TestSession::from_mysql_id($data->session_id);
             if ($session->serialized == 1) {
+                include Ini::$path_internal . 'SETTINGS.php';
                 $code = "
                 options(encoding='UTF-8')
                 library(session)
                 restore.session('" . $session->get_RSession_file_path() . "')
 
-                CONCERTO_ARGS <- commandArgs(T)
-                CONCERTO_DB_HOST <- CONCERTO_ARGS[1]
-                CONCERTO_DB_PORT <- as.numeric(CONCERTO_ARGS[2])
-                CONCERTO_DB_LOGIN <- CONCERTO_ARGS[3]
-                CONCERTO_DB_PASSWORD <- CONCERTO_ARGS[4]
-                CONCERTO_DB_NAME <- CONCERTO_ARGS[5]
+                CONCERTO_DB_HOST <- '" . $db_host . "'
+                CONCERTO_DB_PORT <- as.numeric(" . ($db_port != "" ? $db_port : "3306") . ")
+                CONCERTO_DB_LOGIN <- '" . $db_user . "'
+                CONCERTO_DB_PASSWORD <- '" . $db_password . "'
 
                 CONCERTO_DRIVER <- dbDriver('MySQL')
                 for(CONCERTO_DB_CONNECTION in dbListConnections(CONCERTO_DRIVER)) { dbDisconnect(CONCERTO_DB_CONNECTION) }
@@ -425,7 +424,6 @@ class TestServer {
                 rm(CONCERTO_DB_PORT)
                 rm(CONCERTO_DB_LOGIN)
                 rm(CONCERTO_DB_PASSWORD)
-                rm(CONCERTO_ARGS)
                 ";
                 $session->serialized = 0;
                 $session->mysql_save();
