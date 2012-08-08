@@ -47,6 +47,43 @@ class OrderInteraction extends ABlockInteraction {
         self::$required_children = array_merge(parent::$required_children, self::$required_children);
     }
 
+    public function get_HTML_code() {
+        $code = "";
+        if ($this->prompt != null)
+            $code.=$this->prompt->get_HTML_code();
+        $choices = array();
+        if ($this->shuffle == "false")
+            $choices = $this->simpleChoice;
+        else {
+            $temp = array();
+            foreach ($this->simpleChoice as $choice) {
+                if ($choice->fixed == "false")
+                    array_push($temp, $choice);
+            }
+            for ($i = 0; $i < count($this->simpleChoice); $i++) {
+                if ($this->simpleChoice[$i]->fixed == "true")
+                    array_push($choices, $this->simpleChoice[$i]);
+                else {
+                    $index = rand(0, count($temp) - 1);
+                    array_push($choices, $temp[$index]);
+                    unset($temp[$index]);
+                    $temp = array_values($temp);
+                }
+            }
+        }
+        $code.="<script>
+            $(function(){
+            $('.QTIOrderedContainer').sortable();
+            });
+            </script>";
+        $code.="<div class='QTIOrderedContainer'>";
+        foreach ($choices as $choice) {
+            $code.=$choice->get_HTML_code();
+        }
+        $code.="</div>";
+        return $code;
+    }
+
 }
 
 ?>

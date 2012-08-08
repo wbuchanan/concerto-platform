@@ -39,16 +39,23 @@ class SimpleChoice extends AChoice {
 
     public function get_HTML_code() {
         $label = $this->get_contents();
-        $interaction = "";
-        if ($this->parent->maxChoices == "1") {
-            $interaction = sprintf("<input type='radio' name='%s' value='%s' />", $this->parent->responseIdentifier, $this->identifier);
-        } else {
-            $onclick = "";
-            if ($this->parent->maxChoices != "0")
-                $onclick = sprintf("onclick='QTI.maxChoices(this,\"%s\",%s)'", $this->parent->responseIdentifier, $this->parent->maxChoices);
-            $interaction = sprintf("<input type='checkbox' name='%s' value='%s' %s />", $this->parent->responseIdentifier, $this->identifier, $onclick);
+        $class_name = get_class($this->parent);
+        if ($class_name::$name == "choiceInteraction") {
+            $interaction = "";
+            if ($this->parent->maxChoices == "1") {
+                $interaction = sprintf("<input type='radio' name='%s' value='%s' />", $this->parent->responseIdentifier, $this->identifier);
+            } else {
+                $onclick = "";
+                if ($this->parent->maxChoices != "0")
+                    $onclick = sprintf("onclick='QTI.maxChoices(this,\"%s\",%s)'", $this->parent->responseIdentifier, $this->parent->maxChoices);
+                $interaction = sprintf("<input type='checkbox' name='%s' value='%s' %s />", $this->parent->responseIdentifier, $this->identifier, $onclick);
+            }
+            return sprintf("<tr><td class='QTIBlockChoiceLabel'>%s</td><td class='QTIBlockChoiceInteraction'>%s</td></tr>", $label, $interaction);
         }
-        return sprintf("<tr><td class='QTIBlockChoiceLabel'>%s</td><td class='QTIBlockChoiceInteraction'>%s</td></tr>", $label, $interaction);
+        if ($class_name::$name == "orderInteraction") {
+            $class = ($this->parent->orientation==null || $this->parent->orientation=='horizontal'?'QTIHorizontalOrderedElement':'QTIVerticalOrderedElement');
+            return sprintf("<div class='%s'>%s<input type='hidden' name='%s' value='%s' /></div>", $class, $label, $this->parent->responseIdentifier, $this->identifier);
+        }
     }
 
 }

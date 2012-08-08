@@ -44,6 +44,7 @@ class OQTIElement {
     public static $implemented_presentation_elements = array(
         "itemBody",
         "choiceInteraction",
+        "orderInteraction",
         "printedVariable",
         "textEntryInteraction"
     );

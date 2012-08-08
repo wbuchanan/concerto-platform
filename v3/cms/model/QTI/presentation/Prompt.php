@@ -38,7 +38,7 @@ class Prompt extends ABodyElement {
     }
 
     public function get_HTML_code() {
-        return sprintf("<caption class='QTIPrompt'>%s</caption>", $this->get_contents());
+        return sprintf("<div class='QTIPrompt'>%s</div>", $this->get_contents());
     }
 
 }

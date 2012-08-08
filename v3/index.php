@@ -38,6 +38,7 @@ if (!isset($ini))
 
         <script type="text/javascript" src="cms/js/lib/jquery-1.7.1.min.js"></script>
         <script type="text/javascript" src="cms/js/lib/jquery.json-2.3.min.js"></script>
+        <script type="text/javascript" src="cms/js/lib/jquery-ui-1.8.18.custom.min.js"></script>
 
         <script type="text/javascript" src="js/ConcertoMethods.js"></script>
         <script type="text/javascript" src="js/Concerto.js"></script>

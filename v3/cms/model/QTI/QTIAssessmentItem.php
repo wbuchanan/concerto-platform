@@ -214,7 +214,7 @@ class QTIAssessmentItem extends OModule {
                 $search = $xpath->query("//qti:" . $name);
                 foreach ($search as $elem) {
                     $name = ucfirst($name);
-                    $obj = new $name($elem, $this->root->itemBody);
+                    $obj = new $name($elem, ($name != "ItemBody" ? $this->root->itemBody : $this->root));
                     $obj->validate($map);
                     $html_result = str_ireplace($this->root->node->ownerDocument->saveXML($elem), $obj->get_HTML_code(), $html_result);
                 }

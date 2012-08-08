@@ -21,20 +21,19 @@ QTImapResponse <- function(variableName){
     variable <- get(variableName)
     mapEntry <- get(paste(variableName,".mapping.mapEntry",sep=''))
     defaultValue <- get(paste(variableName,".mapping.defaultValue",sep=''))
-    if(length(mapEntry)==0) return(defaultValue) 
-    else {  
-        result <- 0
-        for(v in unique(variable)){
-            if(!is.na(mapEntry[v])) result <- result + mapEntry[v]
-        }
-        if(exists(paste(variableName,".mapping.lowerBound",sep=''))){
-            lowerBound <- get(paste(variableName,".mapping.lowerBound",sep=''))
-            if(result<lowerBound) result <- lowerBound
-        }
-        if(exists(paste(variableName,".mapping.upperBound",sep=''))){
-            upperBound <- get(paste(variableName,".mapping.upperBound",sep=''))
-            if(result>upperBound) result <- upperBound
-        }
-        return(result)
+
+    result <- 0
+    for(v in unique(variable)){
+        if(!is.na(mapEntry[v])) result <- result + mapEntry[v]
+        else result <- result + defaultValue
     }
+    if(exists(paste(variableName,".mapping.lowerBound",sep=''))){
+        lowerBound <- get(paste(variableName,".mapping.lowerBound",sep=''))
+        if(result<lowerBound) result <- lowerBound
+    }
+    if(exists(paste(variableName,".mapping.upperBound",sep=''))){
+        upperBound <- get(paste(variableName,".mapping.upperBound",sep=''))
+        if(result>upperBound) result <- upperBound
+    }
+    return(result)
 }
