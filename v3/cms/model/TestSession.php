@@ -469,6 +469,7 @@ class TestSession extends OTable {
             ", $this->Test_id, $this->id, $db_host, ($db_port != "" ? $db_port : "3306"), $db_user, $db_password, $db_name, ($path_mysql_home != "" ? "Sys.setenv('MYSQL_HOME'='" . $path_mysql_home . "')" : ""));
         $code .= "CONCERTO_TEMP_PATH <- '" . $path . "'
             source('" . Ini::$path_internal . "lib/R/mainmethods.R" . "')
+            source('" . Ini::$path_internal . "lib/R/QTI.R" . "')
             ";
         $code .=$this->get_Test()->get_TestSections_RFunction_declaration();
         return $code;

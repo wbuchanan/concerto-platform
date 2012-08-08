@@ -104,6 +104,29 @@ class QTIAssessmentItem extends OModule {
                     %s.default <<- convertVariable(%s.default)
                     ", $response->identifier, $response->identifier, $response->identifier, $response->identifier);
             }
+            if ($response->mapping != null) {
+                $code.=sprintf("
+                    %s.mapping.defaultValue <<- convertVariable(%s)
+                    ", $response->identifier, $response->mapping->defaultValue);
+                if ($response->mapping->lowerBound != null) {
+                    $code.=sprintf("
+                    %s.mapping.lowerBound <<- convertVariable(%s)
+                    ", $response->identifier, $response->mapping->lowerBound);
+                }
+                if ($response->mapping->upperBound != null) {
+                    $code.=sprintf("
+                    %s.mapping.upperBound <<- convertVariable(%s)
+                    ", $response->identifier, $response->mapping->upperBound);
+                }
+                $code.=sprintf("
+                    %s.mapping.mapEntry <<- c()
+                    ", $response->identifier);
+                foreach ($response->mapping->mapEntry as $me) {
+                    $code.=sprintf("
+                    %s.mapping.mapEntry <<- c(%s.mapping.mapEntry,'%s'=%s)
+                    ", $response->identifier, $response->identifier, addcslashes($me->mapKey, "'"), addcslashes($me->mappedValue, "'"));
+                }
+            }
         }
         foreach ($this->root->outcomeDeclaration as $response) {
             if ($response->defaultValue != null) {
@@ -188,7 +211,7 @@ class QTIAssessmentItem extends OModule {
             $xpath = new DOMXPath($this->root->node->ownerDocument);
             $xpath->registerNamespace("qti", "http://www.imsglobal.org/xsd/imsqti_v2p0");
             foreach (OQTIElement::$implemented_presentation_elements as $name) {
-                $search = $xpath->query(".//qti:" . $name, $this->root->itemBody->node);
+                $search = $xpath->query("//qti:" . $name);
                 foreach ($search as $elem) {
                     $name = ucfirst($name);
                     $obj = new $name($elem, $this->root->itemBody);
@@ -212,7 +235,7 @@ class QTIAssessmentItem extends OModule {
 
     public function get_response_processing_R_code() {
         $code = "";
-        //response processing
+//response processing
         if ($this->root->responseProcessing != null) {
             foreach ($this->root->responseProcessing->responseRule as $rule) {
                 $code.=sprintf("

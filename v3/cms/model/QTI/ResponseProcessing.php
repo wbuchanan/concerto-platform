@@ -63,6 +63,8 @@ class ResponseProcessing extends OQTIElement {
         $node = $this->node->ownerDocument->importNode($node, true);
         $this->parent->node->replaceChild($node, $this->node);
 
+        $this->node = $node;
+
         return parent::validate($map);
     }
 

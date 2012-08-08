@@ -136,10 +136,6 @@ class TestSection extends OTable {
                             %s <<- %s
                             ", $vals[$j], $ret->name);
 
-                        $code.=sprintf("
-                            %s <<- convertVariable(%s)
-                            ", $vals[$j], $vals[$j]);
-
                         $j++;
                     }
                     $code.=sprintf("
@@ -278,10 +274,6 @@ class TestSection extends OTable {
                             %s <<- %s
                             ", $vals[$j], $ret->name);
 
-                            $returns_code.=sprintf("
-                            %s <<- convertVariable(%s)
-                            ", $vals[$j], $vals[$j]);
-
                             $j++;
                         }
 
@@ -405,10 +397,6 @@ class TestSection extends OTable {
                     $columns_count = $vals[0];
                     $conds_count = $vals[1];
 
-                    $set_rvar_code = sprintf('
-                                %s <<- convertVariable(%s)
-                                ', $vals[4], $vals[4]);
-
                     if ($type == 0) {
                         $table = Table::from_mysql_id($vals[5]);
                         if ($table == null)
@@ -460,9 +448,8 @@ class TestSection extends OTable {
                         CONCERTO_SQL <- paste("%s",sep="")
                         CONCERTO_SQL_RESULT <- dbSendQuery(CONCERTO_DB_CONNECTION,CONCERTO_SQL)
                         %s <<- fetch(CONCERTO_SQL_RESULT,n=-1)
-                        %s
                         return(%d)
-                        ', $sql, $vals[4], $set_rvar_code, ($this->end == 0 ? $next_counter : -2));
+                        ', $sql, $vals[4], ($this->end == 0 ? $next_counter : -2));
                         break;
                     }
                     if ($type == 1) {
@@ -470,9 +457,8 @@ class TestSection extends OTable {
                         %s <<- {
                         %s
                         }
-                        %s
                         return(%d)
-                        ', $vals[4], $vals[3], $set_rvar_code, ($this->end == 0 ? $next_counter : -2)
+                        ', $vals[4], $vals[3], ($this->end == 0 ? $next_counter : -2)
                         );
                         break;
                     }
