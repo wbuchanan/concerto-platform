@@ -10,18 +10,69 @@ root {
     display: block;
 }
 
+.QTITitle {
+
+}
+
 .QTIPrompt {
-    
+
 }
 
 .QTIBlockChoiceLabel{
-    
+
 }
 
 .QTIBlockChoiceInteraction {
-    
+
+}
+
+.QTIDisplayTable {
+    display: table;
+}
+
+.QTIHorizontalOrderedElement {
+    float: left;
+    margin:5px;
+    padding:5px;
+    cursor: move;
+    -webkit-touch-callout: none;
+    -webkit-user-select: none;
+    -khtml-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
+}
+
+.QTIVerticalOrderedElement {
+    margin:5px;
+    padding:5px;
+    cursor: move;
+    -webkit-touch-callout: none;
+    -webkit-user-select: none;
+    -khtml-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
 }
 
 .QTIItemBody {
-    
+    padding:5px;
+    border:1px solid grey;
+}
+
+.QTIDraggableOptionsContainer {
+    border:1px dotted grey;
+}
+
+.QTIAssociatePlaceholder {
+    min-width: 50px;
+    padding:5px;
+    border:1px dotted grey;
+    margin:5px;
+}
+
+.QTIAssociation {
+    padding:5px;
+    border:1px dotted grey;
+    margin:5px;
 }
