@@ -43,6 +43,16 @@ class SimpleAssociableChoice extends AAssociableChoice {
         self::$required_children = array_merge(parent::$required_children, self::$required_children);
     }
 
+    public function get_HTML_code() {
+        $label = $this->get_contents();
+        $class_name = get_class($this->parent);
+        $class = "QTIAssociateDraggable";
+        if ($class_name::$name == "associateInteraction") {
+            $class .= ' QTIHorizontalOrderedElement';
+            return sprintf("<div class='%s' matchMax='%s' identifier='%s'>%s</div>", $class, $this->matchMax, $this->identifier, $label);
+        }
+    }
+
 }
 
 ?>

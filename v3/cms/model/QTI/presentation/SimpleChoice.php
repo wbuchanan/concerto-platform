@@ -53,7 +53,8 @@ class SimpleChoice extends AChoice {
             return sprintf("<tr><td class='QTIBlockChoiceLabel'>%s</td><td class='QTIBlockChoiceInteraction'>%s</td></tr>", $label, $interaction);
         }
         if ($class_name::$name == "orderInteraction") {
-            $class = ($this->parent->orientation==null || $this->parent->orientation=='horizontal'?'QTIHorizontalOrderedElement':'QTIVerticalOrderedElement');
+            $class = "";
+            $class .= ($this->parent->orientation==null || $this->parent->orientation=='horizontal'?'QTIHorizontalOrderedElement':'QTIVerticalOrderedElement');
             return sprintf("<div class='%s'>%s<input type='hidden' name='%s' value='%s' /></div>", $class, $label, $this->parent->responseIdentifier, $this->identifier);
         }
     }

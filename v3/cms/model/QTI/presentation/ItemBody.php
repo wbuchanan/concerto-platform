@@ -44,7 +44,7 @@ class ItemBody extends ABodyElement {
         $class = "";
         if ($this->class != null)
             $class = $this->class;
-        $code = sprintf("<div %s %s ><div class='QTITitle'>%s</div>", ($id != "" ? "id='" . $id . "'" : ""), "class='QTIItemBody " . $class . "'", $this->parent->title);
+        $code = sprintf("<div %s %s ><div class='QTITitle'>%s</div>", ($id != "" ? "id='" . $id . "'" : ""), "class='QTIItemBody QTIDisplayTable " . $class . "'", $this->parent->title);
         $code.=$this->get_contents();
         $code.="</div>";
         return $code;

@@ -26,13 +26,12 @@ root {
 
 }
 
-.QTIOrderedContainer {
+.QTIDisplayTable {
     display: table;
 }
 
 .QTIHorizontalOrderedElement {
     float: left;
-    border:1px dotted grey;
     margin:5px;
     padding:5px;
     cursor: move;
@@ -45,7 +44,6 @@ root {
 }
 
 .QTIVerticalOrderedElement {
-    border:1px dotted grey;
     margin:5px;
     padding:5px;
     cursor: move;
@@ -58,5 +56,23 @@ root {
 }
 
 .QTIItemBody {
+    padding:5px;
+    border:1px solid grey;
+}
 
+.QTIDraggableOptionsContainer {
+    border:1px dotted grey;
+}
+
+.QTIAssociatePlaceholder {
+    min-width: 50px;
+    padding:5px;
+    border:1px dotted grey;
+    margin:5px;
+}
+
+.QTIAssociation {
+    padding:5px;
+    border:1px dotted grey;
+    margin:5px;
 }

@@ -45,6 +45,7 @@ class OQTIElement {
         "itemBody",
         "choiceInteraction",
         "orderInteraction",
+        "associateInteraction",
         "printedVariable",
         "textEntryInteraction"
     );

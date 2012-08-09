@@ -76,7 +76,7 @@ class OrderInteraction extends ABlockInteraction {
             $('.QTIOrderedContainer').sortable();
             });
             </script>";
-        $code.="<div class='QTIOrderedContainer'>";
+        $code.="<div class='QTIDisplayTable'>";
         foreach ($choices as $choice) {
             $code.=$choice->get_HTML_code();
         }
