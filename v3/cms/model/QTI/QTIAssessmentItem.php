@@ -46,7 +46,7 @@ class QTIAssessmentItem extends OModule {
         return $map;
     }
 
-    public function validate($map = null, $xml = null) {
+    public function validate($map = null, $xml = null, $TestSection_id = 0) {
         $document = new DOMDocument('1.0', 'UTF-8');
         if ($xml != null)
             @$document->loadXML($xml);
@@ -61,7 +61,7 @@ class QTIAssessmentItem extends OModule {
         }
         $assessmentItem = new AssessmentItem($root->item(0));
         $this->root = $assessmentItem;
-        return $this->root->validate($map);
+        return $this->root->validate($map, $TestSection_id);
     }
 
     public function get_outputs() {
@@ -149,7 +149,7 @@ class QTIAssessmentItem extends OModule {
         return $code;
     }
 
-    public function get_template_processing_R_code($map = null) {
+    public function get_template_processing_R_code($map = null, $TestSection_id = 0) {
         //declare template variables
         //declare correct responses
         //modify default response
@@ -215,7 +215,7 @@ class QTIAssessmentItem extends OModule {
                 foreach ($search as $elem) {
                     $name = ucfirst($name);
                     $obj = new $name($elem, ($name != "ItemBody" ? $this->root->itemBody : $this->root));
-                    $obj->validate($map);
+                    $obj->validate($map, $TestSection_id);
                     $html_result = str_ireplace($this->root->node->ownerDocument->saveXML($elem), $obj->get_HTML_code(), $html_result);
                 }
             }
@@ -227,9 +227,9 @@ class QTIAssessmentItem extends OModule {
         return $code;
     }
 
-    public function get_QTI_ini_R_code($map = null) {
+    public function get_QTI_ini_R_code($map = null, $TestSection_id = 0) {
         $code = $this->get_variable_declaration_R_code();
-        $code.= $this->get_template_processing_R_code($map);
+        $code.= $this->get_template_processing_R_code($map, $TestSection_id);
         return $code;
     }
 

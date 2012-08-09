@@ -163,11 +163,11 @@ class TestSection extends OTable {
                     if ($ai == null)
                         return sprintf("stop('Invalid QTI assessment item id: %s in section #%s')", $vals[0], $this->counter);
                     $map = QTIAssessmentItem::get_mapped_variables($this->id);
-                    $result = $ai->validate($map);
+                    $result = $ai->validate($map, null, $this->id);
                     if (json_decode($result)->result != 0)
                         return sprintf("stop('Validation failed on QTI assessment item id: %s in section #%s')", $vals[0], $this->counter);
 
-                    $qtir = $ai->get_QTI_ini_R_code($map);
+                    $qtir = $ai->get_QTI_ini_R_code($map, $this->id);
 
                     $code = sprintf("
                         %s
@@ -185,7 +185,7 @@ class TestSection extends OTable {
                     if ($ai == null)
                         return sprintf("stop('Invalid QTI assessment item id: %s in section #%s')", $tsvals[0], $this->counter);
                     $map = QTIAssessmentItem::get_mapped_variables($ts->id);
-                    $result = $ai->validate($map);
+                    $result = $ai->validate($map, null, $ts->id);
                     if (json_decode($result)->result != 0)
                         return sprintf("stop('Validation failed on QTI assessment item id: %s in section #%s')", $tsvals[0], $this->counter);
 

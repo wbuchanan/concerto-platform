@@ -48,8 +48,8 @@ class ResponseProcessing extends OQTIElement {
         self::$required_children = array_merge(parent::$required_children, self::$required_children);
     }
 
-    public function validate($map = null) {
-        $result = parent::validate($map);
+    public function validate($map = null, $TestSection_id = 0) {
+        $result = parent::validate($map, $TestSection_id);
         if (json_decode($result)->result != 0 || $this->template == null)
             return $result;
 
@@ -65,7 +65,7 @@ class ResponseProcessing extends OQTIElement {
 
         $this->node = $node;
 
-        return parent::validate($map);
+        return parent::validate($map, $TestSection_id);
     }
 
 }

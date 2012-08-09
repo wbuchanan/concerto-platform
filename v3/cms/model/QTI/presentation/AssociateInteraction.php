@@ -48,8 +48,6 @@ class AssociateInteraction extends ABlockInteraction {
     }
 
     public function get_HTML_code() {
-//unlimited maxAssociations not implemented
-//option maxMatch not implemented
         $code = "";
         if ($this->prompt != null)
             $code.=$this->prompt->get_HTML_code();
@@ -75,7 +73,7 @@ class AssociateInteraction extends ABlockInteraction {
         }
         $code.="<script>
             $(function(){
-                QTI.initializeAssociation('".$this->responseIdentifier."'," . $this->maxAssociations . ");
+                QTI.initializeAssociation(".$this->TestSection_id.",'".$this->responseIdentifier."'," . $this->maxAssociations . ");
             });
             </script>";
         $code.="<div class='QTIDisplayTable QTIDraggableOptionsContainer'>";
@@ -84,8 +82,8 @@ class AssociateInteraction extends ABlockInteraction {
         }
         $code.="</div>";
         $code.="<div align='center'><table><tr>";
-        $code.="<td id='QTIAsssociateAddAssociationDropable' class='QTIAssociatePlaceholder' align='center'>+</td>";
-        $code.="<td id='QTIAsssociateRemoveAssociationDropable' class='QTIAssociatePlaceholder' align='center'>-</td>";
+        $code.="<td class='QTIAssociatePlaceholder QTIAsssociateAddAssociationDropable' align='center'>+</td>";
+        $code.="<td class='QTIAssociatePlaceholder QTIAsssociateRemoveAssociationDropable' align='center'>-</td>";
         $code.="</tr></table></div>";
         $code.="<div class='QTIAssociationsContainer'></div>";
         return $code;

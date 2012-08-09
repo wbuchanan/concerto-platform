@@ -23,6 +23,7 @@ class OQTIElement {
 
     public $parent = null;
     public $node = null;
+    public $TestSection_id = 0;
 
     const VALIDATION_ERROR_TYPES_XML = 1;
     const VALIDATION_ERROR_TYPES_ATTRIBUTE_NOT_AVAILABLE = 2;
@@ -55,7 +56,8 @@ class OQTIElement {
         $this->parent = $parent;
     }
 
-    public function validate($map = null) {
+    public function validate($map = null, $TestSection_id = 0) {
+        $this->TestSection_id = $TestSection_id;
         $result = $this->validate_possible_attributes();
         if (json_decode($result)->result != 0)
             return $result;
@@ -74,7 +76,7 @@ class OQTIElement {
         if (json_decode($result)->result != 0)
             return $result;
 
-        $result = $this->validate_children($map);
+        $result = $this->validate_children($map, $this->TestSection_id);
         return $result;
     }
 
@@ -142,7 +144,7 @@ class OQTIElement {
         return json_encode(array("result" => 0));
     }
 
-    private function validate_children($map = null) {
+    private function validate_children($map = null, $TestSection_id = 0) {
         if (in_array("*", static::$possible_children))
             return json_encode(array("result" => 0));
         foreach ($this->node->childNodes as $node) {
@@ -153,7 +155,7 @@ class OQTIElement {
                 return json_encode(array("result" => self::VALIDATION_ERROR_TYPES_CLASS_NOT_EXISTS, "section" => static::$name, "target" => $class_name));
             }
             $child = new $class_name($node, $this);
-            $result = $child->validate($map);
+            $result = $child->validate($map, $TestSection_id);
             if (json_decode($result)->result != 0)
                 return $result;
             $this->set_children($child);
