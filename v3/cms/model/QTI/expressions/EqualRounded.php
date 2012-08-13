@@ -50,18 +50,26 @@ class EqualRounded extends AExpression {
     }
 
     public function get_R_code() {
-        //NULL check should be improved
         //roundingMode - significantFigures - not implemented
         if (count($this->expression) != 2)
             return "NULL";
-        $exp1 = $this->expression[0];
-        $exp2 = $this->expression[1];
-        if ($exp1 == "NULL" || $exp2 == "NULL")
-            return "NULL";
-
         if ($this->roundingMode != "decimalPlaces")
             return "stop('" . static::$name . "::" . __FUNCTION__ . "::roundingMode::" . $this->roundingMode . " - not implemented')";
-        return "round(" . $exp1 . "," . $this->figures . ")==round(" . $exp2 . "," . $this->figures . ")";
+
+        $exp1 = $this->expression[0]->get_R_code();
+        $exp2 = $this->expression[1]->get_R_code();
+        $code = "if(is.null(" . $exp1 . ") || is.null(" . $exp2 . ")) NULL else { ";
+
+        $code.= "round(" . $exp1 . "," . $this->figures . ")==round(" . $exp2 . "," . $this->figures . ")";
+        return $code.=" } ";
+    }
+
+    public function get_cardinality() {
+        return "single";
+    }
+
+    public function get_baseType() {
+        return "boolean";
     }
 
 }

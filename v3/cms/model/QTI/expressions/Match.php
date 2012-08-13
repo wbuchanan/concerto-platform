@@ -44,11 +44,17 @@ class Match extends AExpression {
     public function get_R_code() {
         if (count($this->expression) != 2)
             return "NULL";
-        $ex1 = $this->expression[0]->get_R_code();
-        $ex2 = $this->expression[1]->get_R_code();
-        if ($ex1 == "NULL" || $ex2 == "NULL")
-            return "NULL";
-        return $ex1 . "==" . $ex2;
+        $exp1 = $this->expression[0]->get_R_code();
+        $exp2 = $this->expression[1]->get_R_code();
+        return "if(is.null(" . $exp1 . ") || is.null(" . $exp2 . ")) NULL else { QTIequal(" . $exp1 . "," . $exp2 . ",'" . $exp1->get_baseType() . "' }";
+    }
+
+    public function get_cardinality() {
+        return "single";
+    }
+
+    public function get_baseType() {
+        return "boolean";
     }
 
 }

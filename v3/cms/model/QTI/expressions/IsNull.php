@@ -45,6 +45,13 @@ class IsNull extends AExpression {
         return sprintf("is.null(%s)", $this->expression->get_R_code());
     }
 
+    public function get_cardinality() {
+        return "single";
+    }
+
+    public function get_baseType() {
+        return "boolean";
+    }
 }
 
 ?>

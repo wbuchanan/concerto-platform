@@ -41,12 +41,33 @@ class StringMatch extends AExpression {
         "expression"
     );
 
-    public function __construct($node,$parent) {
-        parent::__construct($node,$parent);
+    public function __construct($node, $parent) {
+        parent::__construct($node, $parent);
         self::$possible_attributes = array_merge(parent::$possible_attributes, self::$possible_attributes);
         self::$required_attributes = array_merge(parent::$required_attributes, self::$required_attributes);
         self::$possible_children = array_merge(parent::$possible_children, self::$possible_children);
         self::$required_children = array_merge(parent::$required_children, self::$required_children);
+    }
+
+    public function get_R_code() {
+        if (count($this->expression) != 2)
+            return "NULL";
+        $exp1 = $this->expression[0]->get_R_code();
+        $exp2 = $this->expression[0]->get_R_code();
+        $code = "";
+        if ($this->subString == "true")
+            $code = sprintf("grepl(" . $exp2 . "," . $exp1 . "," . ($this->caseSensitive == "true" ? "FALSE" : "TRUE") . ")");
+        else
+            $code = "if(nchar(" . $exp1 . ")==nchar(" . $exp2 . ")) grepl(" . $exp2 . "," . $exp1 . "," . ($this->caseSensitive == "true" ? "FALSE" : "TRUE") . ") else FALSE";
+        return "if(is.null(" . $exp1 . ") || is.null(" . $exp2 . ")) NULL else { " . $code . " }";
+    }
+
+    public function get_cardinality() {
+        return sprintf("single");
+    }
+
+    public function get_baseType() {
+        return sprintf("boolean");
     }
 
 }

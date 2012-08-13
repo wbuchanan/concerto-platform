@@ -41,6 +41,22 @@ class Member extends AExpression {
         self::$required_children = array_merge(parent::$required_children, self::$required_children);
     }
 
+    public function get_R_code() {
+        if (count($this->expression) != 2)
+            return "NULL";
+        $exp1 = $this->expression[0]->get_R_code();
+        $exp2 = $this->expression[1]->get_R_code();
+        $code = "if(is.null(" . $exp1 . ") || is.null(" . $exp2 . ")) NULL else { QTIcontains(" . $exp2 . "," . $exp1 . ",'" . $exp1->get_baseType . "','" . $exp1->get_cardinality . "') }";
+        return $code;
+    }
+
+    public function get_cardinality() {
+        return "single";
+    }
+
+    public function get_baseType() {
+        return "boolean";
+    }
 }
 
 ?>

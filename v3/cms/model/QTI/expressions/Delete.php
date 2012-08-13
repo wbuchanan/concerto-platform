@@ -44,9 +44,17 @@ class Delete extends AExpression {
     public function get_R_code() {
         if (count($this->expression) != 2)
             return "NULL";
-        $exp1 = $this->expression[0];
-        $exp2 = $this->expression[1];
-        return $exp2 . "[which(" . $exp2 . "!=" . $exp1 . ")]";
+        $exp1 = $this->expression[0]->get_R_code();
+        $exp2 = $this->expression[1]->get_R_code();
+        return "QTIdelete(" . $exp1 . "," . $exp2 . ",'" . $this->exp1->get_baseType . "')";
+    }
+
+    public function get_cardinality() {
+        return $this->expression[1]->get_cardinality();
+    }
+
+    public function get_baseType() {
+        return $this->expression[1]->get_baseType();
     }
 
 }

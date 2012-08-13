@@ -35,6 +35,17 @@ class NullExp extends AExpression {
         self::$required_children = array_merge(parent::$required_children, self::$required_children);
     }
 
+    public function get_R_code() {
+        return "NULL";
+    }
+
+    public function get_cardinality() {
+        return "single";
+    }
+
+    public function get_baseType() {
+        return "";
+    }
 }
 
 ?>

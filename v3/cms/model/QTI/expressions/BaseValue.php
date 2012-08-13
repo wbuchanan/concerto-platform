@@ -44,6 +44,14 @@ class BaseValue extends AExpression {
     public function get_R_code(){
         return "convertVariable('".$this->get_text()."')";
     }
+    
+    public function get_cardinality(){
+        return "single";
+    }
+    
+    public function get_baseType(){
+        return $this->baseType;
+    }
 }
 
 ?>

@@ -48,13 +48,11 @@ class Equal extends AExpression {
     }
 
     public function get_R_code() {
-        //NULL check should be improved
         if (count($this->expression) != 2)
             return "NULL";
-        $exp1 = $this->expression[0];
-        $exp2 = $this->expression[1];
-        if ($exp1 == "NULL" || $exp2 == "NULL")
-            return "NULL";
+        $exp1 = $this->expression[0]->get_R_code();
+        $exp2 = $this->expression[1]->get_R_code();
+        $code = "if(is.null(" . $exp1 . ") || is.null(" . $exp2 . ")) NULL else { ";
         $t0 = 0;
         $t1 = 0;
         if (count($this->tolerance) == 1) {
@@ -66,10 +64,19 @@ class Equal extends AExpression {
             $t1 = $this->tolerance[1];
         }
         switch ($this->toleranceMode) {
-            case "absolute": return $exp1 . "-" . $t0 . "<=" . $exp2 . "&&" . $exp2 . "<=" . $exp1 . "+" . $t1;
-            case "relative": return $exp1 . "*(1-" . $t0 . "/100)<=" . $exp2 . "&&" . $exp2 . "<=" . $exp1 . "*(1+" . $t1 . "/100)";
-            default: return $exp1 . "==" . $exp2;
+            case "absolute": $code.= "(" . $exp1 . ")-" . $t0 . "<= (" . $exp2 . ") && (" . $exp2 . ") <= (" . $exp1 . ")+" . $t1;
+            case "relative": $code.= "(" . $exp1 . ")*(1-" . $t0 . "/100)<= (" . $exp2 . ") && (" . $exp2 . ") <= (" . $exp1 . ") *(1+" . $t1 . "/100)";
+            default: $code.= $exp1 . "==" . $exp2;
         }
+        return $code . " } ";
+    }
+
+    public function get_cardinality() {
+        return "single";
+    }
+
+    public function get_baseType() {
+        return "boolean";
     }
 
 }

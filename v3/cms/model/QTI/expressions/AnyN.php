@@ -63,6 +63,13 @@ class AnyN extends AExpression {
         return "if(table(" . $vector . ")['TRUE']>=" . $this->min . " && table(" . $vector . ")['TRUE']<=" . $this->max . ") TRUE else if(length(" . $vector . ")-" . $this->min . "<table(" . $vector . ")['FALSE'] || " . $this->max . "<table(" . $vector . ")['TRUE']) FALSE else NULL";
     }
 
+    public function get_cardinality(){
+        return "single";
+    }
+    
+    public function get_baseType(){
+        return "boolean";
+    }
 }
 
 ?>

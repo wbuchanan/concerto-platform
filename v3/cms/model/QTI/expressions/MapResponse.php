@@ -45,6 +45,13 @@ class MapResponse extends AExpression {
         return sprintf("QTImapResponse('%s')", addcslashes($this->identifier, "'"));
     }
 
+    public function get_cardinality() {
+        return "single";
+    }
+
+    public function get_baseType() {
+        return "float";
+    }
 }
 
 ?>

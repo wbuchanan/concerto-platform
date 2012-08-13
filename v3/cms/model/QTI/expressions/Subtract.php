@@ -41,6 +41,34 @@ class Subtract extends AExpression {
         self::$required_children = array_merge(parent::$required_children, self::$required_children);
     }
 
+    public function get_R_code() {
+        $code = "if(";
+        $i = 0;
+        foreach ($this->expression as $exp) {
+            if ($i > 0)
+                $code.="||";
+            $code.=sprintf("is.null(%s)", $exp->get_R_code());
+            $i++;
+        }
+        $code.=") NULL else { ";
+        $i = 0;
+        foreach ($this->expression as $exp) {
+            if ($i > 0)
+                $code.="-";
+            $code.=sprintf("(%s)", $exp->get_R_code());
+            $i++;
+        }
+        $code.=" } ";
+        return $code;
+    }
+
+    public function get_cardinality() {
+        return "single";
+    }
+
+    public function get_baseType() {
+        return "float";
+    }
 }
 
 ?>

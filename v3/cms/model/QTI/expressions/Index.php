@@ -48,8 +48,16 @@ class Index extends AExpression {
     }
 
     public function get_R_code() {
-        $exp = $this->expression[0] . "[" . $this->n . "]";
-        return "if(length(" . $this->expression[0] . ")<=" . $this->n . ") " . $exp . " else NULL";
+        $exp = "(" . $this->expression . ")[" . $this->n . "]";
+        return "if(length(" . $this->expression . ")<=" . $this->n . ") { " . $exp . " } else NULL";
+    }
+
+    public function get_cardinality() {
+        return "single";
+    }
+
+    public function get_baseType() {
+        return $this->expression->get_baseType();
     }
 
 }

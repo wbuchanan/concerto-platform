@@ -45,6 +45,13 @@ class DefaultExp extends AExpression {
         return $this->identifier.".default";
     }
 
+    public function get_cardinality() {
+        return sprintf("%s.cardinality", $this->identifier);
+    }
+
+    public function get_baseType() {
+        return sprintf("%s.baseType", $this->identifier);
+    }
 }
 
 ?>

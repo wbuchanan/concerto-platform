@@ -42,15 +42,20 @@ class Contains extends AExpression {
     }
 
     public function get_R_code() {
-        //NULL check should be improved
-        //only checks for unordered appearance
         if (count($this->expression) != 2)
             return "NULL";
-        $exp1 = $this->expression[0];
-        $exp2 = $this->expression[1];
-        if ($exp1 == "NULL" || $exp2 == "NULL")
-            return "NULL";
-        return "all(" . $exp2 . "%in%" . $exp1 . ")";
+        $exp1 = $this->expression[0]->get_R_code();
+        $exp2 = $this->expression[1]->get_R_code();
+        $code = "if(is.null(" . $exp1 . ") || is.null(" . $exp2 . ")) NULL else { QTIcontains(" . $exp1 . "," . $exp2 . ",'" . $exp1->get_baseType . "','" . $exp1->get_cardinality . "') }";
+        return $code;
+    }
+
+    public function get_cardinality() {
+        return "single";
+    }
+
+    public function get_baseType() {
+        return "boolean";
     }
 
 }

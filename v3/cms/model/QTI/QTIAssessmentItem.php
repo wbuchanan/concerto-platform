@@ -88,6 +88,13 @@ class QTIAssessmentItem extends OModule {
 
         $code = "";
         foreach ($this->root->responseDeclaration as $response) {
+            $code.=sprintf("
+                %s <<- NULL
+                %s.cardinality <<- '%s'
+                ", $response->identifier, $response->identifier, $response->cardinality);
+            $code.=sprintf("
+                %s.baseType <<- %s
+                ", $response->identifier, $response->baseType != null ? "'" . $response->baseType . "'" : "NULL");
             if ($response->defaultValue != null) {
                 $code.=sprintf("
                     %s <<- c()
@@ -129,6 +136,13 @@ class QTIAssessmentItem extends OModule {
             }
         }
         foreach ($this->root->outcomeDeclaration as $response) {
+            $code.=sprintf("
+                %s <<- NULL
+                %s.cardinality <<- '%s'
+                ", $response->identifier, $response->identifier, $response->cardinality);
+            $code.=sprintf("
+                %s.baseType <<- %s
+                ", $response->identifier, $response->baseType != null ? "'" . $response->baseType . "'" : "NULL");
             if ($response->defaultValue != null) {
                 $code.=sprintf("
                     %s <<- c()
@@ -160,6 +174,13 @@ class QTIAssessmentItem extends OModule {
         $code = "";
         //default value of template variables
         foreach ($this->root->templateDeclaration as $template) {
+            $code.=sprintf("
+                %s <<- NULL
+                %s.cardinality <<- '%s'
+                ", $template->identifier, $template->identifier, $template->cardinality);
+            $code.=sprintf("
+                %s.baseType <<- %s
+                ", $template->identifier, $template->baseType != null ? "'" . $template->baseType . "'" : "NULL");
             if ($template->defaultValue != null) {
                 $code.=sprintf("
                     %s <<- c()

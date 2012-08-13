@@ -52,6 +52,16 @@ class Ordered extends AExpression {
         return $code;
     }
 
+    public function get_cardinality() {
+        return "ordered";
+    }
+
+    public function get_baseType() {
+        if (count($this->expression) > 0)
+            return $this->expression[0]->get_baseType();
+        return "";
+    }
+
 }
 
 ?>

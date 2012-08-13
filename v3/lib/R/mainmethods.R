@@ -134,6 +134,19 @@ convertVariable <- function(var){
     return(result)
 }
 
+containsOrderedVector <- function(subject,search){
+    j = 1;
+    for(i in subject){
+        if(search[j]==i){
+            if(length(search)==j) return(TRUE)
+            j=j+1
+        } else {
+            j = 1
+        }
+    }
+    return(FALSE)
+}
+
 library(RMySQL)
 CONCERTO_DB_DRIVER <- dbDriver('MySQL')
 CONCERTO_DB_CONNECTION <- dbConnect(CONCERTO_DB_DRIVER, user = CONCERTO_DB_LOGIN, password = CONCERTO_DB_PASSWORD, dbname = CONCERTO_DB_NAME, host = CONCERTO_DB_HOST, port = CONCERTO_DB_PORT)

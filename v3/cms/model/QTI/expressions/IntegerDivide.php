@@ -21,7 +21,7 @@
 
 class IntegerDivide extends AExpression {
 
-    //children
+//children
     public $expression = array();
     public static $name = "integerDivide";
     public static $possible_attributes = array();
@@ -46,9 +46,15 @@ class IntegerDivide extends AExpression {
             return "NULL";
         $exp1 = $this->expression[0]->get_R_code();
         $exp2 = $this->expression[1]->get_R_code();
-        if ($exp2 == "0" || $exp1 == "NULL" || $exp2 == "NULL")
-            return "NULL";
-        return "round(" . $exp1 . "/" . $exp2 . ")";
+        return "if(is.null(" . $exp1 . ") || is.null(" . $exp2 . ") || (" . $exp2 . ") ==0) NULL else { round((" . $exp1 . " ) / (" . $exp2 . ")) }";
+    }
+
+    public function get_cardinality() {
+        return "single";
+    }
+
+    public function get_baseType() {
+        return "integer";
     }
 
 }

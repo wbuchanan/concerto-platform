@@ -58,6 +58,13 @@ class RandomInteger extends AExpression {
         return "sample(" . $c . ",1)";
     }
 
+    public function get_cardinality() {
+        return "single";
+    }
+
+    public function get_baseType() {
+        return "integer";
+    }
 }
 
 ?>

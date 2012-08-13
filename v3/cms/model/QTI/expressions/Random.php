@@ -43,7 +43,16 @@ class Random extends AExpression {
 
     public function get_R_code() {
         $exp = $this->expression->get_R_code();
-        return $exp . "[sample(1:length(" . $exp . "),1)]";
+        $random = "(" . $exp . ")[sample(1:length(" . $exp . "),1)]";
+        return sprintf("if(is.null(%s)) NULL else { %s }", $exp, $random);
+    }
+
+    public function get_cardinality() {
+        return "single";
+    }
+
+    public function get_baseType() {
+        return $this->expression->get_baseType();
     }
 
 }

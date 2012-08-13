@@ -38,6 +38,13 @@ abstract class AExpression extends OQTIElement {
         return "stop('" . static::$name . "::" . __FUNCTION__ . " - not implemented')";
     }
 
+    public function get_cardinality(){
+        return "stop('" . static::$name . "::" . __FUNCTION__ . " - not implemented')";
+    }
+    
+    public function get_baseType(){
+        return "stop('" . static::$name . "::" . __FUNCTION__ . " - not implemented')";
+    }
 }
 
 ?>

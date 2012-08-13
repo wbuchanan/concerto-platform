@@ -42,16 +42,30 @@ class AndExp extends AExpression {
     }
 
     public function get_R_code() {
-        //NULL check should be improved
         $code = "";
         foreach ($this->expression as $exp) {
-            if ($exp == "NULL")
-                return "NULL";
-            if ($code != "")
-                $code.=" && ";
-            $code.=$exp->get_R_code();
+            if ($code == "")
+                $code.="if(is.null(" . $exp . ")";
+            else
+                $code.=" || is.null(" . $exp . ")";
         }
+        $code.=") NULL else {";
+        $i = 0;
+        foreach ($this->expression as $exp) {
+            if ($i > 0)
+                $code.=" && ";
+            $code.= "(" . $exp->get_R_code() . ")";
+        }
+        $code.="}";
         return $code;
+    }
+
+    public function get_cardinality() {
+        return "single";
+    }
+
+    public function get_baseType() {
+        return "boolean";
     }
 
 }

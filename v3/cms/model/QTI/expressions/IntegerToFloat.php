@@ -33,12 +33,25 @@ class IntegerToFloat extends AExpression {
         "expression"
     );
 
-    public function __construct($node,$parent) {
-        parent::__construct($node,$parent);
+    public function __construct($node, $parent) {
+        parent::__construct($node, $parent);
         self::$possible_attributes = array_merge(parent::$possible_attributes, self::$possible_attributes);
         self::$required_attributes = array_merge(parent::$required_attributes, self::$required_attributes);
         self::$possible_children = array_merge(parent::$possible_children, self::$possible_children);
         self::$required_children = array_merge(parent::$required_children, self::$required_children);
+    }
+
+    public function get_R_code() {
+        $exp = $this->expression;
+        return "if(is.null(" . $exp . ")) NULL else { " . $exp . " }";
+    }
+
+    public function get_cardinality() {
+        return "single";
+    }
+
+    public function get_baseType() {
+        return "float";
     }
 
 }

@@ -42,15 +42,19 @@ class Divide extends AExpression {
     }
 
     public function get_R_code() {
-        //NULL check should be improved
-        //0 check should be improved
         if (count($this->expression) != 2)
             return "NULL";
-        $exp1 = $this->expression[0];
-        $exp2 = $this->expression[1];
-        if ($exp1 == "NULL" || $exp2 == "NULL" || $exp2 == "0")
-            return "NULL";
-        return $exp1 . "/" . $exp2;
+        $exp1 = $this->expression[0]->get_R_code();
+        $exp2 = $this->expression[1]->get_R_code();
+        return "if(is.null(" . $exp1 . ") || is.null(" . $exp2 . ") || (" . $exp2 . ") ==0) NULL else { (" . $exp1 . ") / (" . $exp2 . ") }";
+    }
+
+    public function get_cardinality() {
+        return "single";
+    }
+
+    public function get_baseType() {
+        return "float";
     }
 
 }
