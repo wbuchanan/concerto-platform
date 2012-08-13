@@ -1,4 +1,9 @@
 #labels Featured
+=We strongly encourage you to test Concerto using our FREE Concerto hosting before you attempt to install it on your own machine =
+
+To get your FREE account go to: http://www.psychometrics.cam.ac.uk/page/386/hosting-services.htm
+
+
 =Installation of Concerto v3.x=
 
 ==Requirements==
