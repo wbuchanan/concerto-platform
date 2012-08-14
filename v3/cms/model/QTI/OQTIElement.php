@@ -55,6 +55,7 @@ class OQTIElement {
         "inlineChoiceInteraction",
         "extendedTextInteraction",
         "hottextInteraction",
+        "sliderInteraction",
         "object"
     );
 

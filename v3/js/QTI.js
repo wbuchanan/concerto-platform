@@ -114,3 +114,15 @@ QTI.gapMatchInteractionCheck=function(tsid, name,obj){
         if($(".QTIItemBody_"+tsid+" .QTIgapMatchInteractionCheckbox:checked[name='"+name+"'][vi='"+vi+"']").length==0) elem.html("___"+vi+"___");
     }
 }
+
+QTI.initializeSliderInteraction=function(tsid,min,max,step,orientation){
+    $(".QTIItemBody_"+tsid+" .QTIsliderInteraction").slider({
+        min:min,
+        max:max,
+        step:step,
+        orientation:orientation,
+        stop:function(event,ui){
+            $(".QTIItemBody_"+tsid+" .QTIsliderInteractionInput").val($(this).slider("option","value"));
+        }
+    });
+}

@@ -35,10 +35,11 @@ if (!isset($ini))
         <title>Concerto</title>
         
         <link rel="stylesheet" href="css/QTI.css" />
+        <link rel="stylesheet" href="css/jQueryUI/cupertino/jquery-ui-1.8.22.custom.css" />
 
         <script type="text/javascript" src="cms/js/lib/jquery-1.7.1.min.js"></script>
         <script type="text/javascript" src="cms/js/lib/jquery.json-2.3.min.js"></script>
-        <script type="text/javascript" src="cms/js/lib/jquery-ui-1.8.18.custom.min.js"></script>
+        <script type="text/javascript" src="cms/js/lib/jquery-ui-1.8.22.custom.min.js"></script>
 
         <script type="text/javascript" src="js/ConcertoMethods.js"></script>
         <script type="text/javascript" src="js/Concerto.js"></script>
@@ -64,12 +65,11 @@ if (!isset($ini))
                 test = new Concerto($("#divTestContainer"),<?= array_key_exists("hash", $_GET) ? "'".$_GET['hash']."'" : "null" ?>,<?= array_key_exists("sid", $_GET) ? $_GET['sid'] : "null" ?>,<?= array_key_exists("tid", $_GET) ? $_GET['tid'] : "null" ?>);
                 test.run(null,values);
 <?php } ?>
-    })
+    });
         </script>
     </head>
 
     <body>
-
         <div style="width:100%;" id="divTestContainer"></div>
     </body>
 </html>
