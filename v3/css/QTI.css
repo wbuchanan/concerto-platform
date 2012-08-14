@@ -76,3 +76,9 @@ root {
     border:1px dotted grey;
     margin:5px;
 }
+
+.QTIgap {
+    text-decoration: underline;
+    font-weight: bold;
+    font-style: italic;
+}

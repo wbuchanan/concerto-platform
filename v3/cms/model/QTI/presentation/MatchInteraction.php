@@ -47,6 +47,75 @@ class MatchInteraction extends ABlockInteraction {
         self::$required_children = array_merge(parent::$required_children, self::$required_children);
     }
 
+    public function get_HTML_code() {
+        $code = "";
+        $sms1 = array();
+        $sms2 = array();
+        if ($this->shuffle == "false") {
+            $sms1 = $this->simpleMatchSet[0]->simpleAssociableChoice;
+            $sms2 = $this->simpleMatchSet[1]->simpleAssociableChoice;
+        } else {
+            $temp1 = array();
+            $temp2 = array();
+            foreach ($this->simpleMatchSet[0]->simpleAssociableChoice as $choice) {
+                if ($choice->fixed == "false")
+                    array_push($temp1, $choice);
+            }
+            foreach ($this->simpleMatchSet[1]->simpleAssociableChoice as $choice) {
+                if ($choice->fixed == "false")
+                    array_push($temp2, $choice);
+            }
+            for ($i = 0; $i < count($this->simpleMatchSet[0]->simpleAssociableChoice); $i++) {
+                if ($this->simpleMatchSet[0]->simpleAssociableChoice[$i]->fixed == "true")
+                    array_push($sms1, $this->simpleMatchSet[0]->simpleAssociableChoice[$i]);
+                else {
+                    $index = rand(0, count($temp1) - 1);
+                    array_push($sms1, $temp1[$index]);
+                    unset($temp1[$index]);
+                    $temp1 = array_values($temp1);
+                }
+            }
+            for ($i = 0; $i < count($this->simpleMatchSet[1]->simpleAssociableChoice); $i++) {
+                if ($this->simpleMatchSet[1]->simpleAssociableChoice[$i]->fixed == "true")
+                    array_push($sms2, $this->simpleMatchSet[1]->simpleAssociableChoice[$i]);
+                else {
+                    $index = rand(0, count($temp2) - 1);
+                    array_push($sms2, $temp2[$index]);
+                    unset($temp2[$index]);
+                    $temp2 = array_values($temp2);
+                }
+            }
+        }
+        $code.="<script>
+            </script>";
+        $code.= $this->prompt != null ? $this->prompt->get_HTML_code() : "";
+        $code.="<table><tr><td></td>";
+        foreach ($sms2 as $choice) {
+            $code.=sprintf("<td>%s</td>", $choice->get_contents());
+        }
+        $code.="</tr>";
+        foreach ($sms1 as $choiceV) {
+            $code.="<tr>";
+            $code.=sprintf("<td>%s</td>", $choiceV->get_contents());
+            foreach ($sms2 as $choiceH) {
+                if ($choiceV->matchGroup != null && $choiceV->matchGroup != "" && !in_array($choiceH->identifier, explode(" ", $choiceV->matchGroup))) {
+                    $code.="<td></td>";
+                    continue;
+                }
+                if ($choiceH->matchGroup != null && $choiceH->matchGroup != "" && !in_array($choiceV->identifier, explode(" ", $choiceH->matchGroup))) {
+                    $code.="<td></td>";
+                    continue;
+                }
+                $value = $choiceV->identifier . " " . $choiceH->identifier;
+                $check = sprintf("<input class='QTImatchInteractionCheckbox' vi='%s' hi='%s' vmm='%s' hmm='%s' type='checkbox' value='%s' name='%s' onclick='QTI.matchInteractionCheck(%s,\"%s\",this,%s)' />", $choiceV->identifier, $choiceH->identifier, $choiceV->matchMax, $choiceH->matchMax, $value, $this->responseIdentifier, $this->TestSection_id, $this->responseIdentifier, $this->maxAssociations);
+                $code.=sprintf("<td align='center' valign='middle'>%s</td>", $check);
+            }
+            $code.="</tr>";
+        }
+        $code.="</table>";
+        return $code;
+    }
+
 }
 
 ?>

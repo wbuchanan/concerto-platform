@@ -47,8 +47,12 @@ class OQTIElement {
         "choiceInteraction",
         "orderInteraction",
         "associateInteraction",
+        "matchInteraction",
         "printedVariable",
-        "textEntryInteraction"
+        "gapMatchInteraction",
+        "gap",
+        "textEntryInteraction",
+        "object"
     );
 
     public function __construct($node, $parent = null) {
@@ -145,14 +149,17 @@ class OQTIElement {
     }
 
     private function validate_children($map = null, $TestSection_id = 0) {
-        if (in_array("*", static::$possible_children))
+        if (in_array("*", static::$possible_children) && count(static::$possible_children) == 1)
             return json_encode(array("result" => 0));
         foreach ($this->node->childNodes as $node) {
             if ($node->nodeType != XML_ELEMENT_NODE)
                 continue;
             $class_name = self::get_mapped_class_name($node->nodeName);
             if (!class_exists($class_name)) {
-                return json_encode(array("result" => self::VALIDATION_ERROR_TYPES_CLASS_NOT_EXISTS, "section" => static::$name, "target" => $class_name));
+                if (!in_array("*", static::$possible_children))
+                    return json_encode(array("result" => self::VALIDATION_ERROR_TYPES_CLASS_NOT_EXISTS, "section" => static::$name, "target" => $class_name));
+                else
+                    continue;
             }
             $child = new $class_name($node, $this);
             $result = $child->validate($map, $TestSection_id);

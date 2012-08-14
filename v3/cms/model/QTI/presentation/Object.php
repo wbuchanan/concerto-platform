@@ -50,6 +50,16 @@ class Object extends ABodyElement {
         self::$required_children = array_merge(parent::$required_children, self::$required_children);
     }
 
+    public function get_HTML_code() {
+        $width = "";
+        if ($this->width != null)
+            $width = sprintf("width='%s'", $this->width);
+        $height = "";
+        if ($this->$height != null)
+            $height = sprintf("height='%s'", $this->$height);
+        return sprintf("<img src='%s' %s %s />", $this->data, $width, $height);
+    }
+
 }
 
 ?>

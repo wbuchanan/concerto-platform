@@ -89,3 +89,28 @@ QTI.addAssociation=function(tsid, name,obj,maxAssociations){
     QTI.refreshAssociations(tsid, name);
     QTI.refreshAssociationOptions(tsid, name);
 }
+
+QTI.matchInteractionCheck=function(tsid, name,obj,maxAssociations){
+    var hi = $(obj).attr("hi");
+    var vi = $(obj).attr("vi");
+    var hmm = $(obj).attr("hmm");
+    var vmm = $(obj).attr("vmm");
+    if($(".QTIItemBody_"+tsid+" .QTImatchInteractionCheckbox:checked[name='"+name+"']").length>maxAssociations) $(obj).attr("checked",false);
+    if($(".QTIItemBody_"+tsid+" .QTImatchInteractionCheckbox:checked[name='"+name+"'][hi='"+hi+"']").length>hmm) $(obj).attr("checked",false);
+    if($(".QTIItemBody_"+tsid+" .QTImatchInteractionCheckbox:checked[name='"+name+"'][vi='"+vi+"']").length>vmm) $(obj).attr("checked",false);
+}
+
+QTI.gapMatchInteractionCheck=function(tsid, name,obj){
+    var hi = $(obj).attr("hi");
+    var vi = $(obj).attr("vi");
+    var hmm = $(obj).attr("hmm");
+    if($(".QTIItemBody_"+tsid+" .QTIgapMatchInteractionCheckbox:checked[name='"+name+"'][hi='"+hi+"']").length>hmm) $(obj).attr("checked",false);
+    if($(".QTIItemBody_"+tsid+" .QTIgapMatchInteractionCheckbox:checked[name='"+name+"'][vi='"+vi+"']").length>1) $(obj).attr("checked",false);
+    
+    var elem = $(".QTIItemBody_"+tsid+" font[identifier='"+vi+"']");
+    var content = $(".QTIItemBody_"+tsid+" .choiceContent_"+hi).html();
+    if($(obj).is(":checked")) elem.html(content);
+    else {
+        if($(".QTIItemBody_"+tsid+" .QTIgapMatchInteractionCheckbox:checked[name='"+name+"'][vi='"+vi+"']").length==0) elem.html("___"+vi+"___");
+    }
+}
