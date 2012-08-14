@@ -55,8 +55,8 @@ class Object extends ABodyElement {
         if ($this->width != null)
             $width = sprintf("width='%s'", $this->width);
         $height = "";
-        if ($this->$height != null)
-            $height = sprintf("height='%s'", $this->$height);
+        if ($this->height != null)
+            $height = sprintf("height='%s'", $this->height);
         return sprintf("<img src='%s' %s %s />", $this->data, $width, $height);
     }
 

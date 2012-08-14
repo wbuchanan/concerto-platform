@@ -19,7 +19,8 @@
   Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA.
  */
 
-class ExtendedTextInteraction extends ABlockStringInteraction { 
+class ExtendedTextInteraction extends ABlockStringInteraction {
+
     //attributes
     public $maxStrings = null;
     public $expectedLines = null;
@@ -38,6 +39,24 @@ class ExtendedTextInteraction extends ABlockStringInteraction {
         self::$required_attributes = array_merge(parent::$required_attributes, self::$required_attributes);
         self::$possible_children = array_merge(parent::$possible_children, self::$possible_children);
         self::$required_children = array_merge(parent::$required_children, self::$required_children);
+    }
+
+    public function get_HTML_code() {
+        $code = "";
+        if ($this->prompt != null)
+            $code.=$this->prompt->get_HTML_code();
+
+        $count = 1;
+        $expectedLines = "";
+        $value = ($this->placeholderText != null ? sprintf("value='%s'", $this->placeholderText) : "");
+        if ($this->expectedLines != null)
+            $expectedLines = "rows='" . $this->expectedLines . "'";
+        if ($this->maxStrings != null)
+            $count = $this->maxStrings;
+        for ($i = 0; $i < $count; $i++) {
+            $code.=sprintf("<textarea class='QTIextendedTextInteraction' %s name='%s'>%s</textarea>", $expectedLines, $this->responseIdentifier, $value);
+        }
+        return $code;
     }
 
 }

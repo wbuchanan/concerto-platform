@@ -35,6 +35,10 @@ class InlineChoice extends AChoice {
         self::$required_children = array_merge(parent::$required_children, self::$required_children);
     }
 
+    public function get_HTML_code() {
+        return sprintf("<option value='%s'>%s</option>", $this->identifier, $this->get_contents());
+    }
+
 }
 
 ?>

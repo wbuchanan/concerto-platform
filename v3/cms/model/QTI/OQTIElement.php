@@ -52,6 +52,9 @@ class OQTIElement {
         "gapMatchInteraction",
         "gap",
         "textEntryInteraction",
+        "inlineChoiceInteraction",
+        "extendedTextInteraction",
+        "hottextInteraction",
         "object"
     );
 

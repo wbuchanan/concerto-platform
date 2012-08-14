@@ -37,6 +37,13 @@ class Hottext extends AChoice {
         self::$required_children = array_merge(parent::$required_children, self::$required_children);
     }
 
+    public function get_HTML_code() {
+        if ($this->parent->maxChoices == 1) {
+            return sprintf("<input type='radio' name='%s' value='%s' class='QTIhottext' /><font class='QTIhottextLabel'>%s</font>", $this->parent->responseIdentifier, $this->identifier, $this->get_contents());
+        }
+        return sprintf("<input type='checkbox' name='%s' value='%s' class='QTIhottext' onclick='QTI.maxChoices(%s,\"%s\",this,%s)' /><font class='QTIhottextLabel'>%s</font>", $this->parent->responseIdentifier, $this->identifier, $this->TestSection_id, $this->parent->responseIdentifier, $this->parent->maxChoices, $this->get_contents());
+    }
+
 }
 
 ?>

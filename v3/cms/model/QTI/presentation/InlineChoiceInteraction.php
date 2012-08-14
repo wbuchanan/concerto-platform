@@ -45,6 +45,36 @@ class InlineChoiceInteraction extends AInlineInteraction {
         self::$required_children = array_merge(parent::$required_children, self::$required_children);
     }
 
+    public function get_HTML_code() {
+        $choices = array();
+        if ($this->shuffle == "false")
+            $choices = $this->inlineChoice;
+        else {
+            $temp = array();
+            foreach ($this->inlineChoice as $choice) {
+                if ($choice->fixed == "false")
+                    array_push($temp, $choice);
+            }
+            for ($i = 0; $i < count($this->inlineChoice); $i++) {
+                if ($this->inlineChoice[$i]->fixed == "true")
+                    array_push($choices, $this->inlineChoice[$i]);
+                else {
+                    $index = rand(0, count($temp) - 1);
+                    array_push($choices, $temp[$index]);
+                    unset($temp[$index]);
+                    $temp = array_values($temp);
+                }
+            }
+        }
+
+        $code = sprintf("<select class='QTIinlineChoiceInteraction' name='%s'>", $this->responseIdentifier);
+        foreach ($choices as $choice) {
+            $code.=$choice->get_HTML_code();
+        }
+        $code.="</select>";
+        return $code;
+    }
+
 }
 
 ?>

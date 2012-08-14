@@ -41,6 +41,34 @@ class HottextInteraction extends ABlockInteraction {
         self::$required_children = array_merge(parent::$required_children, self::$required_children);
     }
 
+    public function get_hottext() {
+        $result = array();
+        $xpath = new DOMXPath($this->node->ownerDocument);
+        $xpath->registerNamespace("qti", "http://www.imsglobal.org/xsd/imsqti_v2p0");
+        $search = $xpath->query("//qti:hottext");
+        foreach ($search as $elem) {
+            $obj = new Hottext($elem, $this);
+            $obj->validate(null, $this->TestSection_id);
+            array_push($result, $obj);
+        }
+        return $result;
+    }
+
+    public function get_HTML_code() {
+        $code = "";
+        if ($this->prompt != null)
+            $code.=$this->prompt->get_HTML_code();
+        foreach ($this->node->childNodes as $child) {
+            if ($child->nodeName != "prompt" && $child->nodeName != "hottext") {
+                $code.=$this->node->ownerDocument->saveXML($child);
+            }
+        }
+        foreach ($this->get_hottext() as $ht) {
+            $code = str_ireplace($this->node->ownerDocument->saveXML($ht->node), $ht->get_HTML_code(), $code);
+        }
+        return $code;
+    }
+
 }
 
 ?>
