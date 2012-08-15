@@ -264,6 +264,11 @@ class QTIAssessmentItem extends OModule {
                     ", $rule->get_R_code());
             }
         }
+        foreach ($this->root->modalFeedback as $mf) {
+            $code.=sprintf("
+                %s
+                ", $mf->get_R_code());
+        }
         return $code;
     }
 

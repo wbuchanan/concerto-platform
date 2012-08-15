@@ -37,6 +37,11 @@ class FeedbackBlock extends AFeedbackElement {
         self::$required_children = array_merge(parent::$required_children, self::$required_children);
     }
 
+    /*
+      public function get_HTML_code() {
+      return sprintf("<div class='QTIfeedbackBlock' style='display:%s;' identifier='%s' outcomeIdentifier='%s' showHide='%s'>%s</div>", $this->showHide == "show" ? "none" : "", $this->identifier, $this->outcomeIdentifier, $this->showHide, $this->get_contents());
+      }
+     */
 }
 
 ?>

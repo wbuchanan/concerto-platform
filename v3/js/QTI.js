@@ -26,71 +26,71 @@ QTI.initializeAssociateInteraction=function(tsid,name,maxAssociations){
 QTI.refreshAssociationOptions = function(tsid, name){
     if($(".QTIitemBody_"+tsid+" .QTIdraggableOptionsContainer").children().length==0) $(".QTIitemBody_"+tsid+" .QTIdraggableOptionsContainer").hide(0);
     else $(".QTIitemBody_"+tsid+" .QTIdraggableOptionsContainer").show(0);
-}
-QTI.refreshAssociations = function(tsid, name){
+    }
+    QTI.refreshAssociations = function(tsid, name){
     $(".QTIitemBody_"+tsid+" .QTIassociation").each(function(){
         if($(this).html()=="") {
-            $(this).remove();
-            return;
+        $(this).remove();
+        return;
         }
         $(this).children("input").remove();
         if($(this).children(".QTIitemBody_"+tsid+" .QTIassociateDraggable").length==2){
-            var value = "";
-            $(this).children(".QTIitemBody_"+tsid+" .QTIassociateDraggable").each(function(){
-                if(value!="") value+=" ";
-                value+=$(this).attr("identifier");
+        var value = "";
+        $(this).children(".QTIitemBody_"+tsid+" .QTIassociateDraggable").each(function(){
+            if(value!="") value+=" ";
+            value+=$(this).attr("identifier");
             });
-            $(this).append("<input type='hidden' name='"+name+"' value='"+value+"' />");
+        $(this).append("<input type='hidden' name='"+name+"' value='"+value+"' />");
         }
-    });
-}
-QTI.removeAssociation=function(tsid, name,obj){
+        });
+    }
+    QTI.removeAssociation=function(tsid, name,obj){
     obj.css("top","0px");
     obj.css("left","0px");
     $(".QTIitemBody_"+tsid+" .QTIdraggableOptionsContainer").append(obj);
     QTI.refreshAssociations(tsid, name);
     QTI.refreshAssociationOptions(tsid, name);
-}
-QTI.addAssociation=function(tsid, name,obj,maxAssociations){
+    }
+    QTI.addAssociation=function(tsid, name,obj,maxAssociations){
     var currentAssociations = $('.QTIitemBody_'+tsid+' .QTIassociation').length;
     obj.css("top","0px");
     obj.css("left","0px");
     if(currentAssociations<maxAssociations || maxAssociations==0){
-        var identifier = obj.attr("identifier");
-        if(obj.attr("matchmax")==0 || obj.attr("matchmax")>$(".QTIitemBody_"+tsid+" .QTIassociateDraggable[identifier='"+identifier+"']").length) obj = obj.clone();
-        $("<div class='QTIassociation QTIdisplayTable'></div>").append(obj).appendTo($(".QTIitemBody_"+tsid+" .QTIassociationsContainer"));
+    var identifier = obj.attr("identifier");
+    if(obj.attr("matchmax")==0 || obj.attr("matchmax")>$(".QTIitemBody_"+tsid+" .QTIassociateDraggable[identifier='"+identifier+"']").length) obj = obj.clone();
+    $("<div class='QTIassociation QTIdisplayTable'></div>").append(obj).appendTo($(".QTIitemBody_"+tsid+" .QTIassociationsContainer"));
     }
     $('.QTIitemBody_'+tsid+' .QTIassociateDraggable').draggable({
         revert:'invalid'
-    });
+        });
     $(".QTIitemBody_"+tsid+" .QTIassociation").droppable({
         drop:function(event,ui){
-            ui.draggable.css("top","0px");
-            ui.draggable.css("left","0px");
-            if($(this).children("div").length==2) return;
-            if(ui.draggable.attr("matchGroup")!=undefined && ui.draggable.attr("matchGroup")!="" && $(this).children("div").length==1) {
-                var groups = ui.draggable.attr("matchGroup").split(" ");
-                var otherIdentifier = $(this).children("div").attr("identifier");
-                var found = false;
-                for(var i=0;i<groups.length;i++){
-                    if(otherIdentifier == groups[i]){
-                        found = true;
-                        break;
-                    }
-                }
-                if(!found) return;
-            }
-            $(this).append(ui.draggable);
-            
-            QTI.refreshAssociations(tsid, name);
-            QTI.refreshAssociationOptions(tsid, name);
+        ui.draggable.css("top","0px");
+        ui.draggable.css("left","0px");
+        if($(this).children("div").length==2) return;
+        if(ui.draggable.attr("matchGroup")!=undefined && ui.draggable.attr("matchGroup")!="" && $(this).children("div").length==1) {
+        var groups = ui.draggable.attr("matchGroup").split(" ");
+        var otherIdentifier = $(this).children("div").attr("identifier");
+        var found = false;
+        for(var i=0;i<groups.length;i++){
+        if(otherIdentifier == groups[i]){
+        found = true;
+        break;
         }
-    });
+        }
+        if(!found) return;
+        }
+        $(this).append(ui.draggable);
+            
+        QTI.refreshAssociations(tsid, name);
+        QTI.refreshAssociationOptions(tsid, name);
+        }
+        });
     QTI.refreshAssociations(tsid, name);
     QTI.refreshAssociationOptions(tsid, name);
-}
+    }
 
-QTI.matchInteractionCheck=function(tsid, name,obj,maxAssociations){
+    QTI.matchInteractionCheck=function(tsid, name,obj,maxAssociations){
     var hi = $(obj).attr("hi");
     var vi = $(obj).attr("vi");
     var hmm = $(obj).attr("hmm");
@@ -98,9 +98,9 @@ QTI.matchInteractionCheck=function(tsid, name,obj,maxAssociations){
     if($(".QTIitemBody_"+tsid+" .QTImatchInteractionCheckbox:checked[name='"+name+"']").length>maxAssociations) $(obj).attr("checked",false);
     if($(".QTIitemBody_"+tsid+" .QTImatchInteractionCheckbox:checked[name='"+name+"'][hi='"+hi+"']").length>hmm) $(obj).attr("checked",false);
     if($(".QTIitemBody_"+tsid+" .QTImatchInteractionCheckbox:checked[name='"+name+"'][vi='"+vi+"']").length>vmm) $(obj).attr("checked",false);
-}
+    }
 
-QTI.gapMatchInteractionCheck=function(tsid, name,obj){
+    QTI.gapMatchInteractionCheck=function(tsid, name,obj){
     var hi = $(obj).attr("hi");
     var vi = $(obj).attr("vi");
     var hmm = $(obj).attr("hmm");
@@ -111,8 +111,8 @@ QTI.gapMatchInteractionCheck=function(tsid, name,obj){
     var content = $(".QTIitemBody_"+tsid+" .choiceContent_"+hi).html();
     if($(obj).is(":checked")) elem.html(content);
     else {
-        if($(".QTIitemBody_"+tsid+" .QTIgapMatchInteractionCheckbox:checked[name='"+name+"'][vi='"+vi+"']").length==0) elem.html("___"+vi+"___");
-    }
+    if($(".QTIitemBody_"+tsid+" .QTIgapMatchInteractionCheckbox:checked[name='"+name+"'][vi='"+vi+"']").length==0) elem.html("___"+vi+"___");
+}
 }
 
 QTI.initializeSliderInteraction=function(tsid,min,max,step,orientation){

@@ -51,6 +51,13 @@ class ModalFeedback extends OQTIElement {
         self::$required_children = array_merge(parent::$required_children, self::$required_children);
     }
 
+    public function get_R_code() {
+        if ($this->showHide == "show")
+            return sprintf("if(QTIcontains(%s,convertVariable('%s'),%s.baseType,%s.cardinality)) %s <<- '%s'", $this->outcomeIdentifier, $this->identifier, $this->outcomeIdentifier, $this->outcomeIdentifier, $this->outcomeIdentifier, addcslashes($this->get_contents(), "'"));
+        else
+            return sprintf("if(!QTIcontains(%s,convertVariable('%s'),%s.baseType,%s.cardinality)) %s <<- '%s'", $this->outcomeIdentifier, $this->identifier, $this->outcomeIdentifier, $this->outcomeIdentifier, $this->outcomeIdentifier, addcslashes($this->get_contents(), "'"));
+    }
+
 }
 
 ?>

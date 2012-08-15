@@ -48,7 +48,10 @@ class SetOutcomeValue extends AResponseRule {
     }
 
     public function get_R_code() {
-        return sprintf("%s <<- %s", $this->identifier, $this->expression->get_R_code());
+        return sprintf("
+            %s <<- %s
+            %s.baseType <<- '%s'
+            ", $this->identifier, $this->expression->get_R_code(), $this->identifier, $this->expression->get_baseType());
     }
 
 }
