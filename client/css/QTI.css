@@ -10,27 +10,19 @@ root {
     display: block;
 }
 
-.QTITitle {
+.QTItitle {
 
 }
 
-.QTIPrompt {
+.QTIprompt {
 
 }
 
-.QTIBlockChoiceLabel{
-
-}
-
-.QTIBlockChoiceInteraction {
-
-}
-
-.QTIDisplayTable {
+.QTIdisplayTable {
     display: table;
 }
 
-.QTIHorizontalOrderedElement {
+.QTIhorizontalOrderedElement {
     float: left;
     margin:5px;
     padding:5px;
@@ -43,7 +35,7 @@ root {
     user-select: none;
 }
 
-.QTIVerticalOrderedElement {
+.QTIverticalOrderedElement {
     margin:5px;
     padding:5px;
     cursor: move;
@@ -55,24 +47,82 @@ root {
     user-select: none;
 }
 
-.QTIItemBody {
+.QTIitemBody {
     padding:5px;
     border:1px solid grey;
 }
 
-.QTIDraggableOptionsContainer {
+.QTIdraggableOptionsContainer {
     border:1px dotted grey;
 }
 
-.QTIAssociatePlaceholder {
+.QTIassociateAction {
     min-width: 50px;
     padding:5px;
     border:1px dotted grey;
     margin:5px;
 }
 
-.QTIAssociation {
+.QTIassociation {
     padding:5px;
     border:1px dotted grey;
     margin:5px;
 }
+
+.QTIgap {
+    text-decoration: underline;
+    font-weight: bold;
+    font-style: italic;
+}
+
+.QTIsliderInteraction {
+}
+
+.QTItable {
+
+}
+
+.QTItableRowHeader {
+
+}
+
+.QTItableColumnHeader {
+
+}
+
+.QTItableCell {
+
+}
+
+.QTIorderContainer {
+
+}
+
+.QTIprintedVariable {
+
+}
+
+.QTIextendedTextInteraction {
+
+}
+
+.QTItextEntryInteraction {
+
+}
+
+.QTIinlineChoiceInteraction {
+
+}
+
+.QTIhottextLabel{
+
+}
+/*
+.QTIfeedbackInline {
+    font-weight: bold;
+}
+
+.QTIfeedbackBlock {
+    font-weight: bold;
+}
+*/
