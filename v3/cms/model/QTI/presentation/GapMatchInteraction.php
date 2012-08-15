@@ -89,25 +89,25 @@ class GapMatchInteraction extends ABlockInteraction {
             }
         }
         $code.="<br/><br/>";
-        $code.="<table><tr><td></td>";
+        $code.="<table class='QTItable'><tr><td class='QTItableColumnHeader'></td>";
         foreach ($choices as $choice) {
-            $code.=sprintf("<td class='%s'>%s</td>", "choiceContent_" . $choice->identifier, $choice->get_HTML_code());
+            $code.=sprintf("<td class='%s QTItableColumnHeader'>%s</td>", "choiceContent_" . $choice->identifier, $choice->get_HTML_code());
         }
         $code.="</tr>";
         foreach ($this->get_gaps() as $gap) {
-            $code.=sprintf("<tr><td>%s</td>", $gap->identifier);
+            $code.=sprintf("<tr><td class='QTItableRowHeader'>%s</td>", $gap->identifier);
             foreach ($choices as $choice) {
                 if ($gap->matchGroup != null && $gap->matchGroup != "" && !in_array($choice->identifier, explode(" ", $gap->matchGroup))) {
-                    $code.="<td></td>";
+                    $code.="<td class='QTItableCell'></td>";
                     continue;
                 }
                 if ($choice->matchGroup != null && $choice->matchGroup != "" && !in_array($gap->identifier, explode(" ", $choice->matchGroup))) {
-                    $code.="<td></td>";
+                    $code.="<td class='QTItableCell'></td>";
                     continue;
                 }
 
                 $value = $choice->identifier . " " . $gap->identifier;
-                $code.=sprintf("<td valign='middle' align='center'><input type='checkbox' vi='%s' hi='%s' hmm='%s' class='QTIgapMatchInteractionCheckbox' name='%s' value='%s' onclick='QTI.gapMatchInteractionCheck(%s,\"%s\",this)' /></td>", $gap->identifier, $choice->identifier, $choice->matchMax, $this->responseIdentifier, $value, $this->TestSection_id, $this->responseIdentifier);
+                $code.=sprintf("<td class='QTItableCell' valign='middle' align='center'><input type='checkbox' vi='%s' hi='%s' hmm='%s' class='QTIgapMatchInteractionCheckbox' name='%s' value='%s' onclick='QTI.gapMatchInteractionCheck(%s,\"%s\",this)' /></td>", $gap->identifier, $choice->identifier, $choice->matchMax, $this->responseIdentifier, $value, $this->TestSection_id, $this->responseIdentifier);
             }
             $code.="</tr>";
         }

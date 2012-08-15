@@ -46,7 +46,7 @@ class PrintedVariable extends ABodyElement {
     }
 
     public function get_HTML_code() {
-        return "{{" . $this->identifier . "}}";
+        return "<font class='QTIprintedVariable'>{{" . $this->identifier . "}}</font>";
     }
 
 }

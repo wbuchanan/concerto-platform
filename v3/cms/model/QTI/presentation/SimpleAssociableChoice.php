@@ -46,9 +46,9 @@ class SimpleAssociableChoice extends AAssociableChoice {
     public function get_HTML_code() {
         $label = $this->get_contents();
         $class_name = get_class($this->parent);
-        $class = "QTIAssociateDraggable";
+        $class = "QTIassociateDraggable";
         if ($class_name::$name == "associateInteraction") {
-            $class .= ' QTIHorizontalOrderedElement';
+            $class .= ' QTIhorizontalOrderedElement';
             $matchGroup = "";
             if($this->matchGroup!=null) $matchGroup = "matchGroup='".$this->matchGroup."'";
             return sprintf("<div class='%s' matchMax='%s' identifier='%s' %s >%s</div>", $class, $this->matchMax, $this->identifier, $matchGroup, $label);

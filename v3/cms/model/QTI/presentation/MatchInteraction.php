@@ -89,26 +89,26 @@ class MatchInteraction extends ABlockInteraction {
         $code.="<script>
             </script>";
         $code.= $this->prompt != null ? $this->prompt->get_HTML_code() : "";
-        $code.="<table><tr><td></td>";
+        $code.="<table class='QTItable'><tr><td class='QTItableColumnHeader'></td>";
         foreach ($sms2 as $choice) {
-            $code.=sprintf("<td>%s</td>", $choice->get_contents());
+            $code.=sprintf("<td class='QTItableColumnHeader'>%s</td>", $choice->get_contents());
         }
         $code.="</tr>";
         foreach ($sms1 as $choiceV) {
             $code.="<tr>";
-            $code.=sprintf("<td>%s</td>", $choiceV->get_contents());
+            $code.=sprintf("<td class='QTItableRowHeader'>%s</td>", $choiceV->get_contents());
             foreach ($sms2 as $choiceH) {
                 if ($choiceV->matchGroup != null && $choiceV->matchGroup != "" && !in_array($choiceH->identifier, explode(" ", $choiceV->matchGroup))) {
-                    $code.="<td></td>";
+                    $code.="<td class='QTItableCell'></td>";
                     continue;
                 }
                 if ($choiceH->matchGroup != null && $choiceH->matchGroup != "" && !in_array($choiceV->identifier, explode(" ", $choiceH->matchGroup))) {
-                    $code.="<td></td>";
+                    $code.="<td class='QTItableCell'></td>";
                     continue;
                 }
                 $value = $choiceV->identifier . " " . $choiceH->identifier;
                 $check = sprintf("<input class='QTImatchInteractionCheckbox' vi='%s' hi='%s' vmm='%s' hmm='%s' type='checkbox' value='%s' name='%s' onclick='QTI.matchInteractionCheck(%s,\"%s\",this,%s)' />", $choiceV->identifier, $choiceH->identifier, $choiceV->matchMax, $choiceH->matchMax, $value, $this->responseIdentifier, $this->TestSection_id, $this->responseIdentifier, $this->maxAssociations);
-                $code.=sprintf("<td align='center' valign='middle'>%s</td>", $check);
+                $code.=sprintf("<td class='QTItableCell' align='center' valign='middle'>%s</td>", $check);
             }
             $code.="</tr>";
         }

@@ -73,10 +73,10 @@ class OrderInteraction extends ABlockInteraction {
         }
         $code.="<script>
             $(function(){
-                QTI.initializeOrdered(".$this->TestSection_id.")
+                QTI.initializeOrderInteraction(".$this->TestSection_id.");
             });
             </script>";
-        $code.="<div class='QTIDisplayTable'>";
+        $code.="<div class='QTIdisplayTable QTIorderContainer'>";
         foreach ($choices as $choice) {
             $code.=$choice->get_HTML_code();
         }

@@ -47,14 +47,14 @@ class SimpleChoice extends AChoice {
             } else {
                 $onclick = "";
                 if ($this->parent->maxChoices != "0")
-                    $onclick = sprintf("onclick='QTI.maxChoices(" . $this->TestSection_id . ",this,\"%s\",%s)'", $this->parent->responseIdentifier, $this->parent->maxChoices);
+                    $onclick = sprintf("onclick='QTI.maxChoicesCheck(" . $this->TestSection_id . ",this,\"%s\",%s)'", $this->parent->responseIdentifier, $this->parent->maxChoices);
                 $interaction = sprintf("<input type='checkbox' name='%s' value='%s' %s />", $this->parent->responseIdentifier, $this->identifier, $onclick);
             }
-            return sprintf("<tr><td class='QTIBlockChoiceLabel'>%s</td><td class='QTIBlockChoiceInteraction'>%s</td></tr>", $label, $interaction);
+            return $interaction;
         }
         if ($class_name::$name == "orderInteraction") {
             $class = "";
-            $class .= ($this->parent->orientation == null || $this->parent->orientation == 'horizontal' ? 'QTIHorizontalOrderedElement' : 'QTIVerticalOrderedElement');
+            $class .= ($this->parent->orientation == null || $this->parent->orientation == 'horizontal' ? 'QTIhorizontalOrderedElement' : 'QTIverticalOrderedElement');
             return sprintf("<div class='%s'>%s<input type='hidden' name='%s' value='%s' /></div>", $class, $label, $this->parent->responseIdentifier, $this->identifier);
         }
     }

@@ -51,7 +51,7 @@ class ChoiceInteraction extends ABlockInteraction {
         $code = "";
         if ($this->prompt != null)
             $code.=$this->prompt->get_HTML_code();
-        $code .= "<table>";
+        $code .= "<table class='QTItable'>";
         $choices = array();
         if ($this->shuffle == "false")
             $choices = $this->simpleChoice;
@@ -73,7 +73,7 @@ class ChoiceInteraction extends ABlockInteraction {
             }
         }
         foreach ($choices as $choice) {
-            $code.=$choice->get_HTML_code();
+            $code.=sprintf("<tr><td class='QTItableRowHeader'>%s</td><td class='QTItableCell'>%s</td></tr>", $choice->get_contents(), $choice->get_HTML_code());
         }
         $code.="</table>";
         return $code;

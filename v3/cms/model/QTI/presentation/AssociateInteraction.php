@@ -73,19 +73,19 @@ class AssociateInteraction extends ABlockInteraction {
         }
         $code.="<script>
             $(function(){
-                QTI.initializeAssociation(".$this->TestSection_id.",'".$this->responseIdentifier."'," . $this->maxAssociations . ");
+                QTI.initializeAssociateInteraction(".$this->TestSection_id.",'".$this->responseIdentifier."'," . $this->maxAssociations . ");
             });
             </script>";
-        $code.="<div class='QTIDisplayTable QTIDraggableOptionsContainer'>";
+        $code.="<div class='QTIdisplayTable QTIdraggableOptionsContainer'>";
         foreach ($choices as $choice) {
             $code.=$choice->get_HTML_code();
         }
         $code.="</div>";
         $code.="<div align='center'><table><tr>";
-        $code.="<td class='QTIAssociatePlaceholder QTIAsssociateAddAssociationDropable' align='center'>+</td>";
-        $code.="<td class='QTIAssociatePlaceholder QTIAsssociateRemoveAssociationDropable' align='center'>-</td>";
+        $code.="<td class='QTIassociateAction QTIasssociateAddAssociationDropable' align='center'>+</td>";
+        $code.="<td class='QTIassociateAction QTIasssociateRemoveAssociationDropable' align='center'>-</td>";
         $code.="</tr></table></div>";
-        $code.="<div class='QTIAssociationsContainer'></div>";
+        $code.="<div class='QTIassociationsContainer'></div>";
         return $code;
     }
 
