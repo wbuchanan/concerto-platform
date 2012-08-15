@@ -5,7 +5,7 @@ QTI.maxChoicesCheck=function(tsid,obj,name,maxChoices){
 }
 
 QTI.initializeOrderInteraction = function(tsid){
-    $('.QTIitemBody_'+tsid+' .QTIOrderedContainer').sortable();
+    $('.QTIitemBody_'+tsid+' .QTIorderContainer').sortable();
 }
 
 QTI.initializeAssociateInteraction=function(tsid,name,maxAssociations){

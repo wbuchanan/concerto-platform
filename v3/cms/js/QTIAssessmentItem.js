@@ -75,9 +75,11 @@ QTIAssessmentItem.uiSaveValidate=function(ignoreOnBefore){
 QTIAssessmentItem.uiRevalidate=function(){
     var thisClass = this;
     var xml = $("#form"+this.className+"TextareaXML").val();
+    $("#div"+thisClass.className+"Validation").mask(dictionary["s319"]);
     $.post("query/QTIAssessmentItem_revalidate.php",{
         xml:xml
     },function(data){
+        $("#div"+thisClass.className+"Validation").unmask();
         if(data.result==0){
             $("#div"+thisClass.className+"Validation").removeClass("ui-state-error");
             $("#div"+thisClass.className+"Validation").addClass("ui-state-highlight");
