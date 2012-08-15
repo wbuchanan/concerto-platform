@@ -69,7 +69,7 @@ if ($oid != 0) {
         <?= $section->counter ?>,
                         null,
         <?= $section->id ?>,
-        <?= $section->TestSectionType_id == 3 ? "false" : "true" ?>,
+        <?= $section->TestSectionType_id == 3 || $section->TestSectionType_id == 14? "false" : "true" ?>,
                         null,
                         null,
         <?= $section->end == 1 ? "true" : "false" ?>
