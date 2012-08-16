@@ -535,7 +535,9 @@ class TestSession extends OTable {
                             "TEST_ID" => 0,
                             "TEST_SESSION_ID" => 0,
                             "STATUS" => TestSession::TEST_SESSION_STATUS_TAMPERED,
-                            "TEMPLATE_ID" => 0
+                            "TEMPLATE_ID" => 0,
+                            "HEAD" => "",
+                            "FINISHED" => 1
                         )
                     );
                     if ($session->debug == 1) {
@@ -566,7 +568,9 @@ class TestSession extends OTable {
                         "TEST_ID" => 0,
                         "TEST_SESSION_ID" => 0,
                         "STATUS" => TestSession::TEST_SESSION_STATUS_TAMPERED,
-                        "TEMPLATE_ID" => 0
+                        "TEMPLATE_ID" => 0,
+                        "HEAD" => "",
+                        "FINISHED" => 1
                     ),
                     "debug" => array(
                         "code" => 0,

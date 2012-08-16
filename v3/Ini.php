@@ -42,7 +42,7 @@ class Ini {
     public static $r_max_execution_time = 180;
     public static $r_server_timeout = 1080;
     public static $timer_tamper_prevention = true;
-    public static $timer_tamper_prevention_tolerance = 3;
+    public static $timer_tamper_prevention_tolerance = 10;
     public static $path_online_library_ws = "";
     public static $remote_client_password = "";
     public static $public_registration = false;

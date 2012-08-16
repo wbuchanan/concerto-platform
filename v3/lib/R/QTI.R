@@ -24,6 +24,7 @@ QTImapResponse <- function(variableName){
 
     result <- 0
     for(v in unique(variable)){
+        v <- as.character(v)
         if(get(paste(variableName,".baseType",sep=""))=="pair"){
             v2 = unlist(strsplit(v," "))
             v2 = paste(v2[2]," ",v2[1],sep="")
