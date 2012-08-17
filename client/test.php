@@ -28,13 +28,17 @@
         <meta http-equiv="Cache-Control" content="no-cache"/>
         <meta http-equiv="Expires" content="-1"/>
         <title>Concerto</title>
+        
+        <link rel="stylesheet" href="client/css/QTI.css" />
+        <link rel="stylesheet" href="client/css/jQueryUI/cupertino/jquery-ui-1.8.22.custom.css" />
 
-        <script type="text/javascript" src="client/jquery-1.7.1.min.js"></script>
+        <script type="text/javascript" src="client/jquery-1.8.0.min.js"></script>
         <script type="text/javascript" src="client/jquery.json-2.3.min.js"></script>
 
         <script type="text/javascript" src="client/ConcertoMethods.js"></script>
         <script type="text/javascript" src="client/Concerto.js"></script>
         <script type="text/javascript" src="client/concerto.jquery.js"></script>
+        <script type="text/javascript" src="client/QTI.js"></script>
 
         <script>
             function start(){

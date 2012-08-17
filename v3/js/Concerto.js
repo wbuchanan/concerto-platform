@@ -103,7 +103,8 @@ function Concerto(container,hash,sid,tid,queryPath,callbackGet,callbackSend,debu
         if(this.isDebug!=null && this.isDebug==true) params["debug"]=1;
         else params["debug"]=0;
         
-        $.post(this.remote?this.queryPath:this.queryPath+"r_call.php",
+        var date = new Date();
+        $.post((this.remote?this.queryPath:this.queryPath+"r_call.php")+"?timestamp="+date.getTime(),
             params,
             function(data){
                 thisClass.data = data.data;
