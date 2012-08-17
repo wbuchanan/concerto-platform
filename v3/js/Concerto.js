@@ -247,10 +247,10 @@ function Concerto(container,hash,sid,tid,queryPath,callbackGet,callbackSend,debu
         $(container).find(":button:not(.notInteractive)").click(function(){
             thisClass.submit($(this).attr("name"));
         });
-        $(container).find(":image:not(.notInteractive)").click(function(){
+        $(container).find("input:image:not(.notInteractive)").click(function(){
             thisClass.submit($(this).attr("name"));
         });
-        $(container).find(":submit:not(.notInteractive)").click(function(){
+        $(container).find("input:submit:not(.notInteractive)").click(function(){
             thisClass.submit($(this).attr("name"));
         });
     }
