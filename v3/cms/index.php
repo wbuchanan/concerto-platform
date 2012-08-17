@@ -43,7 +43,7 @@ if (!isset($ini)) {
         <link rel="stylesheet" href="lib/CodeMirror/theme/night.css" />
 
         <script type="text/javascript" src="js/lib/jquery-1.8.0.min.js"></script>
-        <script type="text/javascript" src="js/lib/jquery-ui-1.8.22.custom.min.js"></script>
+        <script type="text/javascript" src="js/lib/jquery-ui-1.8.23.custom.min.js"></script>
         <script type="text/javascript" src="js/lib/tooltip/jquery.ui.widget.js"></script>
         <script type="text/javascript" src="js/lib/tooltip/jquery.ui.tooltip.js"></script>
         <script type="text/javascript" src="js/lib/selectmenu/jquery.ui.selectmenu.js"></script>

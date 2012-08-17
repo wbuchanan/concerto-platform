@@ -30,10 +30,11 @@
         <title>Concerto</title>
         
         <link rel="stylesheet" href="client/css/QTI.css" />
-        <link rel="stylesheet" href="client/css/jQueryUI/cupertino/jquery-ui-1.8.22.custom.css" />
+        <link rel="stylesheet" href="client/css/jQueryUI/cupertino/jquery-ui-1.8.23.custom.css" />
 
         <script type="text/javascript" src="client/jquery-1.8.0.min.js"></script>
         <script type="text/javascript" src="client/jquery.json-2.3.min.js"></script>
+        <script type="text/javascript" src="client/jquery-ui-1.8.23.custom.min.js"></script>
 
         <script type="text/javascript" src="client/ConcertoMethods.js"></script>
         <script type="text/javascript" src="client/Concerto.js"></script>
