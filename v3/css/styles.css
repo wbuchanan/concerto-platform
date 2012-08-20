@@ -1,0 +1,19 @@
+/* 
+    Document   : styles
+    Created on : 20-Aug-2012, 18:22:56
+    Author     : Przemyslaw Lis
+    Description:
+        Purpose of the stylesheet follows.
+*/
+
+root { 
+    display: block;
+}
+
+.divFormFloatingBar {
+    position:fixed;
+    top: 0px;
+    left:0%;
+    right:0%;
+    opacity: 0.75;
+}

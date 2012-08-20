@@ -18,8 +18,7 @@
   Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA.
  */
 
-if (!isset($ini))
-{
+if (!isset($ini)) {
     require_once'Ini.php';
     $ini = new Ini();
 }
@@ -33,7 +32,8 @@ if (!isset($ini))
         <meta http-equiv="Cache-Control" content="no-cache"/>
         <meta http-equiv="Expires" content="-1"/>
         <title>Concerto</title>
-        
+
+        <link rel="stylesheet" href="css/styles.css" />
         <link rel="stylesheet" href="css/QTI.css" />
         <link rel="stylesheet" href="css/jQueryUI/cupertino/jquery-ui-1.8.23.custom.css" />
 
@@ -41,6 +41,7 @@ if (!isset($ini))
         <script type="text/javascript" src="cms/js/lib/jquery.json-2.3.min.js"></script>
         <script type="text/javascript" src="cms/js/lib/jquery-ui-1.8.23.custom.min.js"></script>
 
+        <script type="text/javascript" src="js/lib/jquery.cookie.js"></script>
         <script type="text/javascript" src="js/ConcertoMethods.js"></script>
         <script type="text/javascript" src="js/Concerto.js"></script>
         <script type="text/javascript" src="js/QTI.js"></script>
@@ -48,21 +49,20 @@ if (!isset($ini))
             $(function(){
                 var values = new Array();
 <?php
-    foreach($_GET as $key=>$value)
-    {
-        if($key=="sid" || $key=="tid" || $key=="hash") continue;
-?>
-        values.push($.toJSON({
-            name:"<?=$key?>",
-            value:"<?=$value?>"
-        }));
-<?php
-    }
-    
-    if (array_key_exists("sid", $_GET) || array_key_exists("tid", $_GET))
-    {
+foreach ($_GET as $key => $value) {
+    if ($key == "sid" || $key == "tid" || $key == "hash")
+        continue;
     ?>
-                test = new Concerto($("#divTestContainer"),<?= array_key_exists("hash", $_GET) ? "'".$_GET['hash']."'" : "null" ?>,<?= array_key_exists("sid", $_GET) ? $_GET['sid'] : "null" ?>,<?= array_key_exists("tid", $_GET) ? $_GET['tid'] : "null" ?>);
+                values.push($.toJSON({
+                    name:"<?= $key ?>",
+                    value:"<?= $value ?>"
+                }));
+    <?php
+}
+
+if (array_key_exists("sid", $_GET) || array_key_exists("tid", $_GET)) {
+    ?>
+                test = new Concerto($("#divTestContainer"),<?= array_key_exists("hash", $_GET) ? "'" . $_GET['hash'] . "'" : "null" ?>,<?= array_key_exists("sid", $_GET) ? $_GET['sid'] : "null" ?>,<?= array_key_exists("tid", $_GET) ? $_GET['tid'] : "null" ?>);
                 test.run(null,values);
 <?php } ?>
     });
@@ -70,6 +70,39 @@ if (!isset($ini))
     </head>
 
     <body>
-        <div style="width:100%;" id="divTestContainer"></div>
+        <div class="divFormFloatingBar" align="right">
+            <table>
+                <tr>
+                    <td style="display:none;" class="tdSessionLauncher">
+                        <fieldset class="ui-widget-content">
+                            <legend>available tests</legend>
+                            <select id="selectTest" class="ui-widget-content" onchange="Concerto.selectTest()">
+                                <option value="0">&lt;none selected&gt;</option>
+                                <?php
+                                $z = mysql_query("SELECT * FROM `Test` WHERE `open`=1");
+                                while ($r = mysql_fetch_array($z)) {
+                                    ?>
+                                    <option value="<?= $r['id'] ?>"><?= $r['name'] ?></option>
+                                    <?php
+                                }
+                                ?>
+                            </select>
+                        </fieldset>
+                    </td>
+                    <td style="display:none;" class="tdSessionLauncher">
+                        <fieldset class="ui-widget-content">
+                            <legend>opened sessions</legend>
+                            <select class="ui-widget-content" id="selectOpenedSessions" onchange="Concerto.selectSession()">
+
+                            </select>
+                        </fieldset>
+                    </td>
+                    <td><img src="css/img/c.jpg" style="cursor:pointer;" onclick="Concerto.toggleSessionLauncher()" /></td>
+                </tr>
+            </table>
+        </div>
+        <div style="width:100%;" id="divTestContainer">
+            <div align="center"><img src="cms/css/img/logo.png" /> v<?= Ini::$version ?></div>
+        </div>
     </body>
 </html>

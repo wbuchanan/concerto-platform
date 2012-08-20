@@ -93,6 +93,7 @@ function Concerto(container,hash,sid,tid,queryPath,callbackGet,callbackSend,debu
         {
             params["hash"] = this.hash;
             params["sid"] = this.sessionID;
+            if(!this.remote) Concerto.saveSessionCookie(this.sessionID,this.hash);
         }
         else
         {
@@ -121,6 +122,8 @@ function Concerto(container,hash,sid,tid,queryPath,callbackGet,callbackSend,debu
                 if(thisClass.data["STATUS"]==Concerto.statusTypes.template) thisClass.loadTemplate(thisClass.data["HTML"],thisClass.data["HEAD"]);
                 if(thisClass.data["STATUS"]==Concerto.statusTypes.completed) $(thisClass.container).html("");
                 if(thisClass.data["STATUS"]==Concerto.statusTypes.tampered) $(thisClass.container).html("<h2>Session unavailable.</h2>");
+                
+                if(thisClass.finished && !thisClass.remote) Concerto.removeSessionCookie(thisClass.sessionID, thisClass.hash);
                 
                 if(thisClass.data["STATUS"]==Concerto.statusTypes.error){
                     if(thisClass.debug==null){
@@ -186,44 +189,6 @@ function Concerto(container,hash,sid,tid,queryPath,callbackGet,callbackSend,debu
             values[i] = $.toJSON(values[i]);
         }
         
-        /*
-        $(this.container).find("input:checkbox").each(function(){
-            var obj = {
-                name:$(this).attr("name"),
-                value:$(this).is(":checked")?1:0
-            };
-            values.push($.toJSON(obj));
-        });
-        
-        var radios = {};
-        $(this.container).find("input:radio").each(function(){
-            var checked = $(this).is(":checked");
-            var name = $(this).attr("name");
-            
-            var obj = {
-                name:name,
-                value:(checked?$(this).val():"NA")
-            };
-            
-            var found = false;
-            for(var key in radios){
-                if(key==name) {
-                    found = true;
-                    if(checked&&radios[key].value=="NA") {
-                        radios[key]=obj;
-                        break;
-                    }
-                }
-            }
-            if(!found){
-                radios[name]=obj;
-            }
-        });
-        for(var key in radios){
-            values.push($.toJSON(radios[key]));
-        }
-        */
-        
         return values;
     }
     
@@ -264,3 +229,98 @@ Concerto.statusTypes={
     error:4,
     tampered:5
 };
+
+Concerto.toggleSessionLauncher=function(){
+    $(".tdSessionLauncher").toggle(500);
+}
+
+Concerto.getSessionCookie=function(){
+    var session = $.cookie('concerto_test_sessions');
+    if(session==null) return [];
+    else return $.evalJSON(session);
+}
+
+Concerto.resetSessionCookie = function(){
+    $.cookie('concerto_test_sessions',$.toJSON([]),{
+        expires:1
+    });
+}
+
+Concerto.fillSessionSelection = function(session){
+    if(session==null){
+        session = Concerto.getSessionCookie();
+    }
+    $("#selectOpenedSessions").html("<option value='0'>&lt;none selected&gt;</option>");
+    for(var i=0;i<session.length;i++){
+        var index = i+1;
+        var elem = session[i];
+        $("#selectOpenedSessions").append("<option value='"+index+"' sid='"+elem.sid+"' hash='"+elem.hash+"'>#"+elem.sid+": "+elem.date+"</option>");
+    }
+}
+
+Concerto.saveSessionCookie=function(sid,hash){
+    var session = Concerto.getSessionCookie();
+    var date = new Date();
+    var exists = false;
+    for(var i=0;i<session.length;i++){
+        var elem = session[i];
+        if(elem.sid == sid && elem.hash == hash){
+            exists = true;
+            session[i].date = date.toUTCString();
+        }
+    }
+    if(!exists){
+        session.push({
+            sid:sid,
+            hash:hash,
+            date:date.toUTCString()
+        });
+    }
+    $.cookie('concerto_test_sessions',$.toJSON(session),{
+        expires:1
+    });
+    Concerto.fillSessionSelection(session);
+}
+
+Concerto.removeSessionCookie=function(sid,hash){
+    var session = Concerto.getSessionCookie();
+    var result = [];
+    for(var i=0;i<session.length;i++){
+        var elem = session[i];
+        if(elem.sid != sid && elem.hash != hash){
+            result.push(elem);
+        }
+    }
+    $.cookie('concerto_test_sessions',$.toJSON(result),{
+        expires:1
+    });
+    Concerto.fillSessionSelection(result);
+}
+
+Concerto.selectTest=function(){
+    var select = $("#selectTest");
+    var tid = select.val();
+    if(test!=null){
+        test.stop();
+        test = new Concerto(test.container,null,null,tid,test.queryPath,test.callbackGet,test.callbackSend,test.debug,test.remote,test.loadingImageSource,test.resumeFromLastTemplate);
+    }
+    test = new Concerto($("#divTestContainer"),null,null,tid);
+    test.run(null,[]);
+    select.val(0);
+    Concerto.toggleSessionLauncher();
+}
+
+Concerto.selectSession=function(){
+    var select = $("#selectOpenedSessions");
+    var sid = select.children("option[value='"+select.val()+"']").attr('sid');
+    var hash = select.children("option[value='"+select.val()+"']").attr('hash');
+    if(test!=null){
+        test.stop();
+        test = new Concerto(test.container,hash,sid,null,test.queryPath,test.callbackGet,test.callbackSend,test.debug,test.remote,test.loadingImageSource,test.resumeFromLastTemplate);
+    }
+    test = new Concerto($("#divTestContainer"),hash,sid,null);
+    test.run(null,[]);
+    
+    select.val(0);
+    Concerto.toggleSessionLauncher();
+}

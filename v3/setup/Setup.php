@@ -996,6 +996,25 @@ class Setup {
             }
         }
 
+        if (Ini::does_patch_apply("3.7.4", $previous_version)) {
+            if ($simulate) {
+                array_push($versions_to_update, "3.7.4");
+            } else {
+
+                //Test - add open field
+                $sql = "SHOW COLUMNS FROM `Test` WHERE `Field`='open'";
+                $z = mysql_query($sql);
+                if (mysql_num_rows($z) == 0) {
+                    $sql = "ALTER TABLE `Test` ADD `open` tinyint(1) NOT NULL;";
+                    if (!mysql_query($sql))
+                        return json_encode(array("result" => 1, "param" => $sql));
+                }
+
+                Setting::set_setting("version", "3.7.4");
+                return json_encode(array("result" => 0, "param" => "3.7.4"));
+            }
+        }
+
         if ($simulate)
             return json_encode(array("versions" => $versions_to_update, "validate_column_names" => $validate_column_names, "repopulate_TestTemplate" => $repopulate_TestTemplate, "recalculate_hash" => $recalculate_hash, "create_db" => self::create_db_structure(true)));
         return json_encode(array("result" => 2));

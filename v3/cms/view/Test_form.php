@@ -128,6 +128,15 @@ if ($oid != 0) {
                     </div>
                 </td>
             </tr>
+            <tr>
+                <td class="noWrap horizontalPadding tdFormLabel"><?= Language::string(488) ?>:</td>
+                <td><span class="tooltip spanIcon ui-icon ui-icon-help" title="<?= Language::string(489) ?>"></span></td>
+                <td class="fullWidth">
+                    <div class="horizontalMargin">
+                        <input type="checkbox" id="form<?= $class_name ?>CheckboxOpen" value="1" <?= $obj->open == 1 ? "checked" : "" ?> />
+                    </div>
+                </td>
+            </tr>
 
             <?php if ($oid > 0 && $logged_user->is_ownerhsip_changeable($obj)) {
                 ?>

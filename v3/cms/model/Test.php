@@ -24,6 +24,7 @@ class Test extends OModule {
     public $name = "unnamed test";
     public $description = "";
     public $session_count = 0;
+    public $open = 0;
     public $xml_hash = "";
     public static $exportable = true;
     public static $mysql_table_name = "Test";
@@ -728,6 +729,9 @@ class Test extends OModule {
 
         $description = $xml->createElement("description", htmlspecialchars($this->name, ENT_QUOTES, "UTF-8"));
         $element->appendChild($description);
+        
+        $open = $xml->createElement("open", htmlspecialchars($this->open, ENT_QUOTES, "UTF-8"));
+        $element->appendChild($open);
 
         $sections = $xml->createElement("TestSections");
         $element->appendChild($sections);
@@ -773,6 +777,7 @@ class Test extends OModule {
             `updated` timestamp NOT NULL default CURRENT_TIMESTAMP on update CURRENT_TIMESTAMP,
             `created` timestamp NOT NULL default '0000-00-00 00:00:00',
             `name` text NOT NULL,
+            `open` tinyint(1) NOT NULL,
             `session_count` bigint(20) NOT NULL,
             `description` text NOT NULL,
             `xml_hash` text NOT NULL,

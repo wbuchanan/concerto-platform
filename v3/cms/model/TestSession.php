@@ -529,11 +529,11 @@ class TestSession extends OTable {
 
                     $result = array(
                         "data" => array(
-                            "HASH" => "",
+                            "HASH" => $hash,
                             "TIME_LIMIT" => 0,
                             "HTML" => "",
                             "TEST_ID" => 0,
-                            "TEST_SESSION_ID" => 0,
+                            "TEST_SESSION_ID" => $sid,
                             "STATUS" => TestSession::TEST_SESSION_STATUS_TAMPERED,
                             "TEMPLATE_ID" => 0,
                             "HEAD" => "",
@@ -562,11 +562,11 @@ class TestSession extends OTable {
             else {
                 $result = array(
                     "data" => array(
-                        "HASH" => "",
+                        "HASH" => $hash,
                         "TIME_LIMIT" => 0,
                         "HTML" => "",
                         "TEST_ID" => 0,
-                        "TEST_SESSION_ID" => 0,
+                        "TEST_SESSION_ID" => $sid,
                         "STATUS" => TestSession::TEST_SESSION_STATUS_TAMPERED,
                         "TEMPLATE_ID" => 0,
                         "HEAD" => "",

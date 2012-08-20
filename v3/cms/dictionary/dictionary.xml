@@ -4074,5 +4074,23 @@ Note: You can add new languages by inserting "<new_language>string translated in
             <bg></bg>
             <nl></nl>
         </string>
+        <string id="488">
+            <en>open</en>
+            <de></de>
+            <pl>otwarty</pl>
+            <cn></cn>
+            <fr></fr>
+            <bg></bg>
+            <nl></nl>
+        </string>
+        <string id="489">
+            <en>Check if you want to make this test available to run by everyone.</en>
+            <de></de>
+            <pl>Zaznacz jeśli chcesz uczynić ten test dostępnym do uruchomienia przez wszystkich.</pl>
+            <cn></cn>
+            <fr></fr>
+            <bg></bg>
+            <nl></nl>
+        </string>
     </strings>
 </root> 

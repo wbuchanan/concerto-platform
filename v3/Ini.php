@@ -31,7 +31,7 @@ class Ini {
     public static $path_r_script = "";
     public static $path_temp = "";
     public static $path_mysql_home = "";
-    public static $version = "3.7.3";
+    public static $version = "3.7.4";
     public static $sock_host = "127.0.0.1";
     public static $sock_port = "8888";
     public static $path_unix_sock = "";
@@ -41,8 +41,8 @@ class Ini {
     public static $r_instances_timeout = 900;
     public static $r_max_execution_time = 180;
     public static $r_server_timeout = 1080;
-    public static $timer_tamper_prevention = false;
-    public static $timer_tamper_prevention_tolerance = 10;
+    public static $timer_tamper_prevention = true;
+    public static $timer_tamper_prevention_tolerance = 30;
     public static $path_online_library_ws = "";
     public static $remote_client_password = "";
     public static $public_registration = false;
@@ -130,6 +130,8 @@ class Ini {
         self::$contact_emails = $contact_emails;
         self::$forum_url = $forum_url;
         self::$project_homepage_url = $project_homepage_url;
+        self::$timer_tamper_prevention = $timer_tamper_prevention;
+        self::$timer_tamper_prevention_tolerance = $timer_tamper_prevention_tolerance;
     }
 
     public static function does_patch_apply($patch_version, $previous_version) {
