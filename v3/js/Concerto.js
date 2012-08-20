@@ -242,7 +242,8 @@ Concerto.getSessionCookie=function(){
 
 Concerto.resetSessionCookie = function(){
     $.cookie('concerto_test_sessions',$.toJSON([]),{
-        expires:1
+        expires:1,
+        path:"/"
     });
 }
 
@@ -277,7 +278,8 @@ Concerto.saveSessionCookie=function(sid,hash){
         });
     }
     $.cookie('concerto_test_sessions',$.toJSON(session),{
-        expires:1
+        expires:1,
+        path:"/"
     });
     Concerto.fillSessionSelection(session);
 }
@@ -292,7 +294,8 @@ Concerto.removeSessionCookie=function(sid,hash){
         }
     }
     $.cookie('concerto_test_sessions',$.toJSON(result),{
-        expires:1
+        expires:1,
+        path:"/"
     });
     Concerto.fillSessionSelection(result);
 }
@@ -316,9 +319,9 @@ Concerto.selectSession=function(){
     var hash = select.children("option[value='"+select.val()+"']").attr('hash');
     if(test!=null){
         test.stop();
-        test = new Concerto(test.container,hash,sid,null,test.queryPath,test.callbackGet,test.callbackSend,test.debug,test.remote,test.loadingImageSource,test.resumeFromLastTemplate);
+        test = new Concerto(test.container,hash,sid,null,test.queryPath,test.callbackGet,test.callbackSend,test.debug,test.remote,test.loadingImageSource,true);
     }
-    test = new Concerto($("#divTestContainer"),hash,sid,null);
+    test = new Concerto($("#divTestContainer"),hash,sid,null,null,null,null,null,null,null,true);
     test.run(null,[]);
     
     select.val(0);

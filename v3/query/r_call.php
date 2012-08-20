@@ -43,7 +43,11 @@ $debug = null;
 if (array_key_exists("debug", $_POST))
     $debug = $_POST['debug'];
 
-$result = TestSession::forward($tid, $sid, $hash, $values, $btn_name, $debug, $time);
+$resume_from_last_template = 0;
+if (array_key_exists("resume_from_last_template", $_POST))
+    $resume_from_last_template = $_POST['resume_from_last_template'];
+
+$result = TestSession::forward($tid, $sid, $hash, $values, $btn_name, $debug, $time, $resume_from_last_template == 1);
 
 echo json_encode($result);
 ?>
