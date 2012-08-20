@@ -64,8 +64,8 @@ if (array_key_exists("sid", $_GET) || array_key_exists("tid", $_GET)) {
     ?>
                 test = new Concerto($("#divTestContainer"),<?= array_key_exists("hash", $_GET) ? "'" . $_GET['hash'] . "'" : "null" ?>,<?= array_key_exists("sid", $_GET) ? $_GET['sid'] : "null" ?>,<?= array_key_exists("tid", $_GET) ? $_GET['tid'] : "null" ?>);
                 test.run(null,values);
-                Concerto.fillSessionSelection();
 <?php } ?>
+        Concerto.fillSessionSelection();
     });
         </script>
     </head>

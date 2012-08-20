@@ -93,7 +93,7 @@ function Concerto(container,hash,sid,tid,queryPath,callbackGet,callbackSend,debu
         {
             params["hash"] = this.hash;
             params["sid"] = this.sessionID;
-            if(!this.remote) Concerto.saveSessionCookie(this.sessionID,this.hash);
+            if(!this.remote && !this.isDebug) Concerto.saveSessionCookie(this.sessionID,this.hash);
         }
         else
         {
@@ -123,7 +123,7 @@ function Concerto(container,hash,sid,tid,queryPath,callbackGet,callbackSend,debu
                 if(thisClass.data["STATUS"]==Concerto.statusTypes.completed) $(thisClass.container).html("");
                 if(thisClass.data["STATUS"]==Concerto.statusTypes.tampered) $(thisClass.container).html("<h2>Session unavailable.</h2>");
                 
-                if(thisClass.finished && !thisClass.remote) Concerto.removeSessionCookie(thisClass.sessionID, thisClass.hash);
+                if(thisClass.finished && !thisClass.remote && !thisClass.isDebug) Concerto.removeSessionCookie(thisClass.sessionID, thisClass.hash);
                 
                 if(thisClass.data["STATUS"]==Concerto.statusTypes.error){
                     if(thisClass.debug==null){
@@ -303,7 +303,7 @@ Concerto.removeSessionCookie=function(sid,hash){
 Concerto.selectTest=function(){
     var select = $("#selectTest");
     var tid = select.val();
-    if(test!=null){
+    if(typeof test != 'undefined' && test!=null){
         test.stop();
         test = new Concerto(test.container,null,null,tid,test.queryPath,test.callbackGet,test.callbackSend,test.debug,test.remote,test.loadingImageSource,test.resumeFromLastTemplate);
     }
@@ -317,7 +317,7 @@ Concerto.selectSession=function(){
     var select = $("#selectOpenedSessions");
     var sid = select.children("option[value='"+select.val()+"']").attr('sid');
     var hash = select.children("option[value='"+select.val()+"']").attr('hash');
-    if(test!=null){
+    if(typeof test != 'undefined' && test!=null){
         test.stop();
         test = new Concerto(test.container,hash,sid,null,test.queryPath,test.callbackGet,test.callbackSend,test.debug,test.remote,test.loadingImageSource,true);
     }
