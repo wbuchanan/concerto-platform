@@ -98,7 +98,7 @@ if (array_key_exists("sid", $_GET) || array_key_exists("tid", $_GET)) {
                             </select>
                         </fieldset>
                     </td>
-                    <td><img src="css/img/c.jpg" style="cursor:pointer;" onclick="Concerto.toggleSessionLauncher()" /></td>
+                    <td><img src="css/img/c.png" style="cursor:pointer;" onclick="Concerto.toggleSessionLauncher()" /></td>
                 </tr>
             </table>
         </div>
