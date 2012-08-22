@@ -127,7 +127,7 @@ function Concerto(container,hash,sid,tid,queryPath,callbackGet,callbackSend,debu
                 
                 if(thisClass.data["STATUS"]==Concerto.statusTypes.error){
                     if(thisClass.debug==null){
-                        $(thisClass.container).html("<h2>Fatal test exception encounterd. Test halted.</h2>");
+                        $(thisClass.container).html("<h2>Fatal test exception encountered. Test halted.</h2>");
                     }
                     else {
                         $(thisClass.container).html("<h2>R return code</h2>");
