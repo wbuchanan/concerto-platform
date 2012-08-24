@@ -86,19 +86,19 @@ class TestInstance {
             if (!stream_set_blocking($this->pipes[0], 0)) {
                 if (TestServer::$debug) {
                     TestServer::log_debug("TestInstance->read() --- Error: (stream_set_blocking) #0");
-                    break;
+                    return false;
                 }
             }
             if (!stream_set_blocking($this->pipes[1], 0)) {
                 if (TestServer::$debug) {
                     TestServer::log_debug("TestInstance->read() --- Error: (stream_set_blocking) #1");
-                    break;
+                    return false;
                 }
             }
             if (!stream_set_blocking($this->pipes[2], 0)) {
                 if (TestServer::$debug) {
                     TestServer::log_debug("TestInstance->read() --- Error: (stream_set_blocking) #2");
-                    break;
+                    return false;
                 }
             }
 

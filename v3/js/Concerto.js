@@ -165,7 +165,7 @@ function Concerto(container,hash,sid,tid,queryPath,callbackGet,callbackSend,debu
     this.getControlsValues=function(){
         var values = new Array();
         
-        $(this.container).find("input:text, input:hidden, input:password, textarea, select, input:checkbox:checked, input:radio:checked").each(function(){
+        $(this.container).find("input:text, input[type='hidden'], input:password, textarea, select, input:checkbox:checked, input:radio:checked").each(function(){
             var name = $(this).attr("name");
             var value = $(this).val();
             var found = false;

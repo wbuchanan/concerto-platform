@@ -642,6 +642,13 @@ class Setup {
             if ($simulate) {
                 array_push($versions_to_update, "3.5.0");
             } else {
+                $sql = "SHOW COLUMNS FROM `TestSession` WHERE `Field`='serialized'";
+                $z = mysql_query($sql);
+                if (mysql_num_rows($z) == 0) {
+                    $sql = "ALTER TABLE `TestSession` ADD `serialized` tinyint(1) NOT NULL default '0';";
+                    if (!mysql_query($sql))
+                        return json_encode(array("result" => 1, "param" => $sql));
+                }
 
                 //Table - added description field
                 $sql = "SHOW COLUMNS FROM `Table` WHERE `Field`='description'";
