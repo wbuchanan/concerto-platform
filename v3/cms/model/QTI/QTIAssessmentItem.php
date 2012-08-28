@@ -302,6 +302,18 @@ class QTIAssessmentItem extends OModule {
         else
             return mysql_insert_id();
     }
+    
+    public function mysql_save_from_post($post) {
+        $lid = parent::mysql_save_from_post($post);
+
+        $obj = static::from_mysql_id($lid);
+        if ($obj != null) {
+            $xml_hash = $obj->calculate_xml_hash();
+            $obj->xml_hash = $xml_hash;
+            $obj->mysql_save();
+        }
+        return $lid;
+    }
 
     public function export() {
         $xml = new DOMDocument('1.0', "UTF-8");

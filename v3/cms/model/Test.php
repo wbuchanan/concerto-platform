@@ -421,7 +421,7 @@ class Test extends OModule {
         return ($sub_test ? $xml : $xml->saveXML());
     }
 
-    public function import_XML($xml) {
+    public function import_XML($xml, $compare = null) {
         $this->Sharing_id = 1;
 
         $xpath = new DOMXPath($xml);
@@ -432,13 +432,15 @@ class Test extends OModule {
                 return -5;
         }
 
-        $compare = array(
-            "Template" => array(),
-            "Table" => array(),
-            "CustomSection" => array(),
-            "Test" => array(),
-            "QTIAssessmentItem" => array()
-        );
+        if ($compare == null) {
+            $compare = array(
+                "Template" => array(),
+                "Table" => array(),
+                "CustomSection" => array(),
+                "Test" => array(),
+                "QTIAssessmentItem" => array()
+            );
+        }
 
         //link templates
         $logged_user = User::get_logged_user();
@@ -508,7 +510,7 @@ class Test extends OModule {
             if ($compare["Test"][$id] == 0) {
                 $obj = new Test();
                 $obj->Owner_id = $logged_user->id;
-                $lid = $obj->import_XML(CustomSection::convert_to_XML_document($element));
+                $lid = $obj->import_XML(CustomSection::convert_to_XML_document($element),$compare);
                 $compare["Test"][$id] = $lid;
             }
         }
@@ -523,6 +525,8 @@ class Test extends OModule {
                 case "name": $this->name = $child->nodeValue;
                     break;
                 case "description": $this->description = $child->nodeValue;
+                    break;
+                case "open": $this->open = $child->nodeValue;
                     break;
             }
         }
@@ -729,7 +733,7 @@ class Test extends OModule {
 
         $description = $xml->createElement("description", htmlspecialchars($this->name, ENT_QUOTES, "UTF-8"));
         $element->appendChild($description);
-        
+
         $open = $xml->createElement("open", htmlspecialchars($this->open, ENT_QUOTES, "UTF-8"));
         $element->appendChild($open);
 
