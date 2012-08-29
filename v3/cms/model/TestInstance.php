@@ -33,6 +33,11 @@ class TestInstance {
     public $close = false;
     public $is_serializing = false;
     public $is_serialized = false;
+    public $is_chunked = false;
+    public $is_chunked_ready = false;
+    public $is_chunked_working = false;
+    public $chunked_lines = array();
+    public $chunked_index = 0;
 
     public function __construct($session_id = 0) {
         $this->session_id = $session_id;
@@ -78,7 +83,7 @@ class TestInstance {
         );
 
         include Ini::$path_internal . 'SETTINGS.php';
-        $this->r = proc_open("\"".Ini::$path_r_exe . "\" --vanilla", $descriptorspec, $this->pipes, Ini::$path_temp, $env);
+        $this->r = proc_open("\"" . Ini::$path_r_exe . "\" --vanilla", $descriptorspec, $this->pipes, Ini::$path_temp, $env);
         if (is_resource($this->r)) {
             if (TestServer::$debug)
                 TestServer::log_debug("TestInstance->start() --- Test instance started");
@@ -133,21 +138,95 @@ class TestInstance {
             ", $session->get_RSession_file_path()));
     }
 
+    public function send_chunked($code, $lines, $i) {
+        $marker = "
+            #SESSION CODE CHUNKED
+            ";
+        $this->is_chunked_ready = false;
+        if (!$this->is_chunked) {
+            $this->is_chunked = true;
+            $this->response = "";
+            $this->chunked_lines = $lines;
+            $this->code = $code . $marker;
+        } else {
+            $this->code.=$code . $marker;
+        }
+        $this->chunked_index = $i;
+
+        $bytes = fwrite($this->pipes[0], $code . $marker);
+        if (TestServer::$debug)
+            TestServer::log_debug("TestInstance->send_chunked() --- " . $bytes . " written to test instance ( chunked )");
+        $this->is_chunked_working = true;
+    }
+
+    public function read_chunked() {
+        $this->code_execution_halted = false;
+        $this->last_action_time = time();
+
+        $result = "";
+        $error = "";
+        while ($append = fread($this->pipes[1], 4096)) {
+            $result.=$append;
+        }
+        if (strpos($result, '#SESSION CODE CHUNKED') !== false) {
+            $this->is_chunked_ready = true;
+        }
+        if (strpos($result, '"SESSION SERIALIZATION FINISHED"') !== false) {
+            $this->is_serialized = true;
+        }
+
+        while ($append = fread($this->pipes[2], 4096)) {
+            $error.=$append;
+        }
+        if (strpos($error, 'Execution halted') !== false) {
+            $result .= $error;
+            $this->code_execution_halted = true;
+            $this->is_chunked_ready = true;
+        }
+
+        $this->response.=$result;
+
+        if ($this->is_chunked_ready) {
+            return $this->response;
+        }
+
+        return null;
+    }
+
     public function send($code) {
+        $marker = "
+            #SESSION CODE CHUNKED
+            ";
+        
         if (TestServer::$debug)
             TestServer::log_debug("TestInstance->send() --- Sending " . strlen($code) . " data to test instance");
         $this->last_action_time = time();
 
         $lines = explode("\n", $code);
         $code = "";
+        $i = -1;
         foreach ($lines as $line) {
+            $i++;
             $line = trim($line);
             if ($line == "")
                 continue;
+            if (strlen($code . $line . "
+                ".$marker) > 65536) {
+                $this->send_chunked($code, $lines, $i);
+                return;
+            }
             $code .= $line . "
                 ";
         }
-        $this->code = $code;
+        if (!$this->is_chunked) {
+            $this->code = $code;
+            $this->response = "";
+        } else {
+            $this->code.=$code;
+        }
+
+        $this->is_chunked = false;
+
         $bytes = "";
         if ($this->is_serializing) {
             $bytes = fwrite($this->pipes[0], $code . "
@@ -165,7 +244,6 @@ class TestInstance {
             $this->is_serialized = false;
         $this->is_working = true;
         $this->is_data_ready = false;
-        $this->response = "";
     }
 
     public function read() {

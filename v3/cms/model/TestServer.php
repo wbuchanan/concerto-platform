@@ -248,6 +248,37 @@ class TestServer {
 
             //interpret data start
             foreach ($this->clients as $k => $v) {
+                //chunked
+                if ($this->instances[$k]->is_chunked_working) {
+                    $response = $this->instances[$k]->read_chunked();
+                    if ($this->instances[$k]->is_serialized) {
+                        $this->close_instance($k, true);
+                    }
+                    if ($response != null) {
+                        $this->instances[$k]->is_chunked_ready = false;
+                        $this->instances[$k]->is_chunked_working = false;
+                        if (self::$debug) {
+                            self::log_debug("TestServer->start() --- Client '$k' test data read ( chunked )");
+                            if (self::$debug_stream_data)
+                                self::log_debug($response, false);
+                        }
+
+                        if ($this->instances[$k]->code_execution_halted)
+                            $this->close_instance($k);
+                        else if ($this->instances[$k]->close)
+                            $this->serialize_instance($k);
+                        else {
+                            $code = "";
+                            for ($j = $this->instances[$k]->chunked_index; $j < count($this->instances[$k]->chunked_lines); $j++) {
+                                $code.=$this->instances[$k]->chunked_lines[$j] . "
+                                    ";
+                            }
+                            $this->instances[$k]->send($code);
+                        }
+                    }
+                }
+
+                //read
                 if ($this->instances[$k]->is_working) {
                     $response = $this->instances[$k]->read();
                     if ($this->instances[$k]->is_serialized) {
