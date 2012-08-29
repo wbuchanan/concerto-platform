@@ -3814,9 +3814,9 @@ Note: You can add new languages by inserting "<new_language>string translated in
             <nl></nl>
         </string>
         <string id="459">
-            <en>QTI</en>
+            <en>QTI (beta)</en>
             <de></de>
-            <pl>QTI</pl>
+            <pl>QTI (beta)</pl>
             <cn></cn>
             <bg></bg>
             <fr></fr>

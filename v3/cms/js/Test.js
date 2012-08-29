@@ -162,6 +162,22 @@ Test.getSectionValues=function(section){
             });
             return values;
         }
+        case Test.sectionTypes.custom:{
+            var values = [
+            $(".divSection[seccounter="+section.counter+"] .controlValue"+section.counter).val(),
+            $(".divSection[seccounter="+section.counter+"] .controlValue"+section.counter+"_params").length,
+            $(".divSection[seccounter="+section.counter+"] .controlValue"+section.counter+"_rets").length,
+            ];
+            $(".divSection[seccounter="+section.counter+"] .controlValue"+section.counter+"_params").each(function(){
+                values.push($(this).attr("referenced"));
+                values.push($(this).val());
+            });
+            $(".divSection[seccounter="+section.counter+"] .controlValue"+section.counter+"_rets").each(function(){
+                values.push($(this).attr("referenced"));
+                values.push($(this).val());
+            });
+            return values;
+        }
         case Test.sectionTypes.loadTemplate:{
             var values = [
             $(".divSection[seccounter="+section.counter+"] #selectTemplate_"+section.counter).val(),
@@ -196,13 +212,6 @@ Test.getSectionValues=function(section){
             $(".divSection[seccounter="+section.counter+"] .controlValue"+section.counter+"_link").length, //where count
             $(".divSection[seccounter="+section.counter+"] .controlValue"+section.counter+"_set").length //set count
             ];
-            $(".divSection[seccounter="+section.counter+"] .controlValue"+section.counter).each(function(){
-                values.push($(this).val());
-            });
-            return values;
-        }
-        case Test.sectionTypes.custom:{
-            var values=new Array();
             $(".divSection[seccounter="+section.counter+"] .controlValue"+section.counter).each(function(){
                 values.push($(this).val());
             });
@@ -343,7 +352,7 @@ Test.uiRefreshSectionContent=function(type,counter,value,oid,end){
             break;
         }
         case Test.sectionTypes.custom:{
-            if(value==null) value = [0];
+            if(value==null) value = [0,0,0];
             break;
         }
         case Test.sectionTypes.loop:{
@@ -502,7 +511,7 @@ Test.uiWriteSection=function(type,parent,counter,value,oid,refresh,csid,after,en
     if(refresh==null) refresh=true;
     if(counter==null) counter = Test.getCounter();
     if(csid==null) csid = 0;
-    if(csid!=0 && value==null) value=[csid];
+    if(csid!=0 && value==null) value=[csid,0,0];
     var sortable = true;
     if(type==Test.sectionTypes.start||type==Test.sectionTypes.end) sortable = false;
     

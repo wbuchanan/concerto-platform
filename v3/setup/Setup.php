@@ -1022,6 +1022,36 @@ class Setup {
             }
         }
 
+        if (Ini::does_patch_apply("3.7.5", $previous_version)) {
+            if ($simulate) {
+                array_push($versions_to_update, "3.7.5");
+            } else {
+
+                //TestSectionValue - custom section values
+                $ts = TestSection::from_property(array("TestSectionType_id" => DS_TestSectionType::CUSTOM));
+                foreach ($ts as $custom) {
+                    $value = TestSectionValue::from_property(array("TestSection_id" => $custom->id, "index" => 0), false);
+                    $custom->delete_values();
+
+                    $value->id = 0;
+                    $value->mysql_save();
+
+                    $value->id = 0;
+                    $value->index = 1;
+                    $value->value = 0;
+                    $value->mysql_save();
+
+                    $value->id = 0;
+                    $value->index = 2;
+                    $value->value = 0;
+                    $value->mysql_save();
+                }
+
+                Setting::set_setting("version", "3.7.5");
+                return json_encode(array("result" => 0, "param" => "3.7.5"));
+            }
+        }
+
         if ($simulate)
             return json_encode(array("versions" => $versions_to_update, "validate_column_names" => $validate_column_names, "repopulate_TestTemplate" => $repopulate_TestTemplate, "recalculate_hash" => $recalculate_hash, "create_db" => self::create_db_structure(true)));
         return json_encode(array("result" => 2));

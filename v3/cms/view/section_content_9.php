@@ -57,14 +57,14 @@ $returns = $section->get_return_CustomSectionVariables();
                     </tr>
                 </table>
             </td>
-            <td class="tdSectionColumnIcon"><span class="spanIcon ui-icon ui-icon-script tooltip" title="<?=Language::string(447)?>" onclick="Test.convertToLowerLevel(<?=$_POST['counter']?>)"></span></td>
+            <td class="tdSectionColumnIcon"><span class="spanIcon ui-icon ui-icon-script tooltip" title="<?= Language::string(447) ?>" onclick="Test.convertToLowerLevel(<?= $_POST['counter'] ?>)"></span></td>
             <td class="tdSectionColumnEnd"><input type="checkbox" class="tooltip" id="chkEndSection_<?= $_POST['counter'] ?>" class="chkEndSection" <?= $_POST['end'] == 1 ? "checked" : "" ?> title="<?= Language::string(369) ?>" /></td>
             <td class="tdSectionColumnIcon"><span class="spanIcon tooltip ui-icon ui-icon-trash" onclick="Test.uiRemoveSection(<?= $_POST['counter'] ?>)" title="<?= Language::string(59) ?>"></span></td>
             <td class="tdSectionColumnIcon"><span class="spanIcon tooltip ui-icon ui-icon-plus" onclick="Test.uiAddLogicSection(0,<?= $_POST['counter'] ?>)" title="<?= Language::string(60) ?>"></span></td>
         </tr>
     </table>
 </div>
-<div class="divSectionDetail <?= $_POST['detail'] == 1 || $_POST['oid'] == 0  ? "" : "notVisible" ?>">
+<div class="divSectionDetail <?= $_POST['detail'] == 1 || $_POST['oid'] == 0 ? "" : "notVisible" ?>">
     <input type="hidden" class="controlValue<?= $_POST['counter'] ?>" value="<?= $vals[0] ?>" />
     <?php
     if (count($parameters) > 0 || count($returns) > 0) {
@@ -82,19 +82,34 @@ $returns = $section->get_return_CustomSectionVariables();
                                 <table>
                                     <?php
                                     for ($i = 0; $i < count($parameters); $i++) {
+                                        $val = $parameters[$i]->name;
+                                        for ($j = 0; $j < $vals[1] * 2; $j = $j + 2) {
+                                            if ($vals[3 + $j] == $parameters[$i]->name && isset($vals[3 + $j + 1]) && $vals[3 + $j + 1] != "") {
+                                                $val = $vals[3 + $j + 1];
+                                                break;
+                                            }
+                                        }
                                         ?>
                                         <tr>
                                             <td class="tdSectionColumnIcon"><span class="spanIcon ui-icon ui-icon-help tooltip" title="<?= htmlspecialchars(Template::strip_html($parameters[$i]->description), ENT_QUOTES) ?>"></span></td>
                                             <td><?= $parameters[$i]->name ?></td>
                                             <td class="noWrap tdVarPointer"><b><-</b></td>
-                                            <td class="tdVarPointer"><input type="text" class="controlValue<?= $_POST['counter'] ?> ui-widget-content ui-corner-all comboboxVars fullWidth" value="<?= htmlspecialchars(isset($vals[$j]) ? $vals[$j] : $parameters[$i]->name, ENT_QUOTES) ?>" /></td>
+                                            <td class="tdVarPointer"><input referenced="<?= $parameters[$i]->name ?>" type="text" class="controlValue<?= $_POST['counter'] ?>_params ui-widget-content ui-corner-all comboboxVars fullWidth" value="<?= htmlspecialchars($val, ENT_QUOTES) ?>" /></td>
                                         </tr>
                                         <?php
-                                        $j++;
                                     }
                                     ?>
                                 </table>
                             </div>
+                        </div>
+                        <div class="notVisible">
+                            <?php
+                            for ($i = 0; $i < count($parameters); $i++) {
+                                ?>
+                                <input class="inputParameterVar" type="hidden" value="<?= $parameters[$i]->name ?>" />
+                                <?php
+                            }
+                            ?>
                         </div>
                     </td>
                     <?php
@@ -109,19 +124,35 @@ $returns = $section->get_return_CustomSectionVariables();
                                 <table>
                                     <?php
                                     for ($i = 0; $i < count($returns); $i++) {
+                                        $ret = $returns[$i]->name;
+
+                                        for ($j = 0; $j < $vals[2] * 2; $j = $j + 2) {
+                                            if ($vals[3 + $vals[1] * 2 + $j] == $returns[$i]->name && isset($vals[3 + $vals[1] * 2 + $j]) && $vals[3 + $vals[1] * 2 + $j] != "") {
+                                                $ret = $vals[3 + $vals[1] * 2 + $j + 1];
+                                                break;
+                                            }
+                                        }
                                         ?>
                                         <tr>
                                             <td class="tdSectionColumnIcon"><span class="spanIcon ui-icon ui-icon-help tooltip" title="<?= htmlspecialchars(Template::strip_html($returns[$i]->description), ENT_QUOTES) ?>"></span></td>
                                             <td><?= $returns[$i]->name ?></td>
                                             <td class="noWrap tdVarPointer"><b>->></b></td>
-                                            <td class="tdVarPointer"><input onchange="Test.uiSetVarNameChanged($(this))" type="text" class="ui-state-focus comboboxSetVars comboboxVars controlValue<?= $_POST['counter'] ?> ui-widget-content ui-corner-all fullWidth" value="<?= htmlspecialchars(isset($vals[$j]) ? $vals[$j] : $returns[$i]->name, ENT_QUOTES) ?>" /></td>
+                                            <td class="tdVarPointer"><input referenced="<?= $returns[$i]->name ?>" onchange="Test.uiSetVarNameChanged($(this))" type="text" class="ui-state-focus comboboxSetVars comboboxVars controlValue<?= $_POST['counter'] ?>_rets ui-widget-content ui-corner-all fullWidth" value="<?= htmlspecialchars($ret, ENT_QUOTES) ?>" /></td>
                                         </tr>
                                         <?php
-                                        $j = $j + 3;
                                     }
                                     ?>
                                 </table>
                             </div>
+                        </div>
+                        <div class="notVisible">
+                            <?php
+                            for ($i = 0; $i < count($returns); $i++) {
+                                ?>
+                                <input class="inputReturnVar" type="hidden" value="<?= $returns[$i]->name ?>" />
+                                <?php
+                            }
+                            ?>
                         </div>
                     </td>
                     <?php

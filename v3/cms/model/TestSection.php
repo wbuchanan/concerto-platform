@@ -55,6 +55,11 @@ class TestSection extends OTable {
         return $result;
     }
 
+    public function delete_values() {
+        $sql = sprintf("DELETE FROM `%s` WHERE `TestSection_id`=%d", TestSectionValue::get_mysql_table(), $this->id);
+        mysql_query($sql);
+    }
+
     public function get_RFunctionName() {
         return "CONCERTO_Test" . $this->Test_id . "Section" . $this->counter;
     }
@@ -123,20 +128,31 @@ class TestSection extends OTable {
                     $parameters = $cs->get_parameter_CustomSectionVariables();
                     $returns = $cs->get_return_CustomSectionVariables();
                     $code = "";
-                    $j = 1;
                     foreach ($parameters as $param) {
+                        $val = $param->name;
+                        for ($j = 0; $j < $vals[1] * 2; $j = $j + 2) {
+                            if ($vals[3 + $j] == $param->name && isset($vals[3 + $j + 1]) && $vals[3 + $j + 1] != "") {
+                                $val = $vals[3 + $j + 1];
+                                break;
+                            }
+                        }
                         $code.=sprintf("
                             %s <- %s
-                            ", $param->name, $vals[$j]);
-                        $j++;
+                            ", $param->name, $val);
                     }
                     $code.=$cs->code;
                     foreach ($returns as $ret) {
+                        $val = $ret->name;
+
+                        for ($j = 0; $j < $vals[2] * 2; $j = $j + 2) {
+                            if ($vals[3 + $vals[1] * 2 + $j] == $ret->name && isset($vals[3 + $vals[1] * 2 + $j]) && $vals[3 + $vals[1] * 2 + $j] != "") {
+                                $val = $vals[3 + $vals[1] * 2 + $j + 1];
+                                break;
+                            }
+                        }
                         $code.=sprintf("
                             %s <<- %s
-                            ", $vals[$j], $ret->name);
-
-                        $j++;
+                            ", $val, $ret->name);
                     }
                     $code.=sprintf("
                         return(%d)
