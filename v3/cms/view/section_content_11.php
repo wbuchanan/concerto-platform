@@ -64,11 +64,10 @@ $returns = $section->get_return_TestVariables();
         </tr>
     </table>
 </div>
-<div class="divSectionDetail <?= $_POST['detail'] == 1 || $_POST['oid'] == 0  ? "" : "notVisible" ?>">
+<div class="divSectionDetail <?= $_POST['detail'] == 1 || $_POST['oid'] == 0 ? "" : "notVisible" ?>">
     <input type="hidden" class="controlValue<?= $_POST['counter'] ?>" value="<?= $vals[0] ?>" />
     <?php
     if (count($parameters) > 0 || count($returns) > 0) {
-        $j = 1;
         ?>
         <table class="fullWidth">
             <tr>
@@ -82,19 +81,34 @@ $returns = $section->get_return_TestVariables();
                                 <table>
                                     <?php
                                     for ($i = 0; $i < count($parameters); $i++) {
+                                        $val = $parameters[$i]->name;
+                                        for ($j = 0; $j < $vals[1] * 2; $j = $j + 2) {
+                                            if ($vals[3 + $j] == $parameters[$i]->name && isset($vals[3 + $j + 1]) && $vals[3 + $j + 1] != "") {
+                                                $val = $vals[3 + $j + 1];
+                                                break;
+                                            }
+                                        }
                                         ?>
                                         <tr>
                                             <td class="tdSectionColumnIcon"><span class="spanIcon ui-icon ui-icon-help tooltip" title="<?= htmlspecialchars(Template::strip_html($parameters[$i]->description), ENT_QUOTES) ?>"></span></td>
                                             <td><?= $parameters[$i]->name ?></td>
                                             <td class="noWrap tdVarPointer"><b><-</b></td>
-                                            <td class="tdVarPointer"><input type="text" class="controlValue<?= $_POST['counter'] ?> ui-widget-content ui-corner-all comboboxVars fullWidth" value="<?= htmlspecialchars(isset($vals[$j]) ? $vals[$j] : $parameters[$i]->name, ENT_QUOTES) ?>" /></td>
+                                            <td class="tdVarPointer"><input type="text" referenced="<?= $parameters[$i]->name ?>" class="controlValue<?= $_POST['counter'] ?>_params ui-widget-content ui-corner-all comboboxVars fullWidth" value="<?= htmlspecialchars($val, ENT_QUOTES) ?>" /></td>
                                         </tr>
                                         <?php
-                                        $j++;
                                     }
                                     ?>
                                 </table>
                             </div>
+                        </div>
+                        <div class="notVisible">
+                            <?php
+                            for ($i = 0; $i < count($parameters); $i++) {
+                                ?>
+                                <input class="inputParameterVar" type="hidden" value="<?= $parameters[$i]->name ?>" />
+                                <?php
+                            }
+                            ?>
                         </div>
                     </td>
                     <?php
@@ -109,19 +123,35 @@ $returns = $section->get_return_TestVariables();
                                 <table>
                                     <?php
                                     for ($i = 0; $i < count($returns); $i++) {
+                                        $ret = $returns[$i]->name;
+
+                                        for ($j = 0; $j < $vals[2] * 2; $j = $j + 2) {
+                                            if ($vals[3 + $vals[1] * 2 + $j] == $returns[$i]->name && isset($vals[3 + $vals[1] * 2 + $j]) && $vals[3 + $vals[1] * 2 + $j] != "") {
+                                                $ret = $vals[3 + $vals[1] * 2 + $j + 1];
+                                                break;
+                                            }
+                                        }
                                         ?>
                                         <tr>
                                             <td class="tdSectionColumnIcon"><span class="spanIcon ui-icon ui-icon-help tooltip" title="<?= htmlspecialchars(Template::strip_html($returns[$i]->description), ENT_QUOTES) ?>"></span></td>
                                             <td><?= $returns[$i]->name ?></td>
                                             <td class="noWrap tdVarPointer"><b>->></b></td>
-                                            <td class="tdVarPointer"><input onchange="Test.uiSetVarNameChanged($(this))" type="text" class="ui-state-focus comboboxSetVars comboboxVars controlValue<?= $_POST['counter'] ?> ui-widget-content ui-corner-all fullWidth" value="<?= htmlspecialchars(isset($vals[$j]) ? $vals[$j] : $returns[$i]->name, ENT_QUOTES) ?>" /></td>
+                                            <td class="tdVarPointer"><input referenced="<?= $returns[$i]->name ?>" onchange="Test.uiSetVarNameChanged($(this))" type="text" class="ui-state-focus comboboxSetVars comboboxVars controlValue<?= $_POST['counter'] ?>_rets ui-widget-content ui-corner-all fullWidth" value="<?= htmlspecialchars($ret, ENT_QUOTES) ?>" /></td>
                                         </tr>
                                         <?php
-                                        $j = $j + 3;
                                     }
                                     ?>
                                 </table>
                             </div>
+                        </div>
+                        <div class="notVisible">
+                            <?php
+                            for ($i = 0; $i < count($returns); $i++) {
+                                ?>
+                                <input class="inputReturnVar" type="hidden" value="<?= $returns[$i]->name ?>" />
+                                <?php
+                            }
+                            ?>
                         </div>
                     </td>
                     <?php

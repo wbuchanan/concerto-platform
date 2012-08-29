@@ -278,19 +278,30 @@ class TestSection extends OTable {
                         $returns = $test->get_return_TestVariables();
                         $returns_code = "";
 
-                        $j = 1;
                         foreach ($parameters as $param) {
+                            $val = $param->name;
+                            for ($j = 0; $j < $vals[1] * 2; $j = $j + 2) {
+                                if ($vals[3 + $j] == $param->name && isset($vals[3 + $j + 1]) && $vals[3 + $j + 1] != "") {
+                                    $val = $vals[3 + $j + 1];
+                                    break;
+                                }
+                            }
                             $params_code.=sprintf("
-                            %s <<- %s
-                            ", $param->name, $vals[$j]);
-                            $j++;
+                            %s <- %s
+                            ", $param->name, $val);
                         }
                         foreach ($returns as $ret) {
+                            $val = $ret->name;
+
+                            for ($j = 0; $j < $vals[2] * 2; $j = $j + 2) {
+                                if ($vals[3 + $vals[1] * 2 + $j] == $ret->name && isset($vals[3 + $vals[1] * 2 + $j]) && $vals[3 + $vals[1] * 2 + $j] != "") {
+                                    $val = $vals[3 + $vals[1] * 2 + $j + 1];
+                                    break;
+                                }
+                            }
                             $returns_code.=sprintf("
                             %s <<- %s
-                            ", $vals[$j], $ret->name);
-
-                            $j++;
+                            ", $val, $ret->name);
                         }
 
                         $code.=sprintf("

@@ -68,7 +68,6 @@ $returns = $section->get_return_CustomSectionVariables();
     <input type="hidden" class="controlValue<?= $_POST['counter'] ?>" value="<?= $vals[0] ?>" />
     <?php
     if (count($parameters) > 0 || count($returns) > 0) {
-        $j = 1;
         ?>
         <table class="fullWidth">
             <tr>

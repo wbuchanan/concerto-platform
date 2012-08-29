@@ -162,6 +162,7 @@ Test.getSectionValues=function(section){
             });
             return values;
         }
+        case Test.sectionTypes.test:
         case Test.sectionTypes.custom:{
             var values = [
             $(".divSection[seccounter="+section.counter+"] .controlValue"+section.counter).val(),
@@ -219,13 +220,6 @@ Test.getSectionValues=function(section){
         }
         case Test.sectionTypes.loop:{
             var values = new Array();
-            $(".divSection[seccounter="+section.counter+"] .controlValue"+section.counter).each(function(){
-                values.push($(this).val());
-            });
-            return values;
-        }
-        case Test.sectionTypes.test:{
-            var values=new Array();
             $(".divSection[seccounter="+section.counter+"] .controlValue"+section.counter).each(function(){
                 values.push($(this).val());
             });
@@ -360,7 +354,7 @@ Test.uiRefreshSectionContent=function(type,counter,value,oid,end){
             break;
         }
         case Test.sectionTypes.test:{
-            if(value==null) value = [0];
+            if(value==null) value = [0,0,0];
             break;
         }
         case Test.sectionTypes.QTIInitialization:{
