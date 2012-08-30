@@ -82,6 +82,15 @@ function Concerto(container,hash,sid,tid,queryPath,callbackGet,callbackSend,debu
     
     this.run=function(btnName,values){
         if(this.isStopped) return;
+        
+        if(this.testID!=null && this.sessionID==null && this.hash==null && !this.debug && !this.remote){
+            var lastSession = Concerto.getSessionObject(this.testID);
+            if(lastSession!=null){
+                Concerto.iniSessionResumeDialog(this,btnName,values,lastSession);
+                return;
+            }
+        }
+        
         this.status = Concerto.statusTypes.working;
         ConcertoMethods.loading(this.container,this.loadingImageSource);
         var thisClass = this;
@@ -93,7 +102,6 @@ function Concerto(container,hash,sid,tid,queryPath,callbackGet,callbackSend,debu
         {
             params["hash"] = this.hash;
             params["sid"] = this.sessionID;
-            if(!this.remote && !this.isDebug) Concerto.saveSessionCookie(this.sessionID,this.hash);
         }
         else
         {
@@ -124,6 +132,7 @@ function Concerto(container,hash,sid,tid,queryPath,callbackGet,callbackSend,debu
                 if(thisClass.data["STATUS"]==Concerto.statusTypes.tampered) $(thisClass.container).html("<h2>Session unavailable.</h2>");
                 
                 if(thisClass.finished && !thisClass.remote && !thisClass.isDebug) Concerto.removeSessionCookie(thisClass.sessionID, thisClass.hash);
+                else Concerto.saveSessionCookie(thisClass.sessionID,thisClass.hash, thisClass.testID);
                 
                 if(thisClass.data["STATUS"]==Concerto.statusTypes.error){
                     if(thisClass.debug==null){
@@ -230,10 +239,6 @@ Concerto.statusTypes={
     tampered:5
 };
 
-Concerto.toggleSessionLauncher=function(){
-    $(".tdSessionLauncher").toggle(500);
-}
-
 Concerto.getSessionCookie=function(){
     var session = $.cookie('concerto_test_sessions');
     if(session==null) return [];
@@ -247,41 +252,31 @@ Concerto.resetSessionCookie = function(){
     });
 }
 
-Concerto.fillSessionSelection = function(session){
-    if(session==null){
-        session = Concerto.getSessionCookie();
-    }
-    $("#selectOpenedSessions").html("<option value='0'>&lt;none selected&gt;</option>");
-    for(var i=0;i<session.length;i++){
-        var index = i+1;
-        var elem = session[i];
-        $("#selectOpenedSessions").append("<option value='"+index+"' sid='"+elem.sid+"' hash='"+elem.hash+"'>#"+elem.sid+": "+elem.date+"</option>");
-    }
-}
-
-Concerto.saveSessionCookie=function(sid,hash){
+Concerto.saveSessionCookie=function(sid,hash,tid){
     var session = Concerto.getSessionCookie();
     var date = new Date();
     var exists = false;
     for(var i=0;i<session.length;i++){
         var elem = session[i];
-        if(elem.sid == sid && elem.hash == hash){
+        if(elem.tid == tid){
             exists = true;
             session[i].date = date.toUTCString();
+            session[i].sid = sid;
+            session[i].hash = hash;
         }
     }
     if(!exists){
         session.push({
             sid:sid,
             hash:hash,
-            date:date.toUTCString()
+            date:date.toUTCString(),
+            tid:tid
         });
     }
     $.cookie('concerto_test_sessions',$.toJSON(session),{
         expires:1,
         path:"/"
     });
-    Concerto.fillSessionSelection(session);
 }
 
 Concerto.removeSessionCookie=function(sid,hash){
@@ -297,7 +292,6 @@ Concerto.removeSessionCookie=function(sid,hash){
         expires:1,
         path:"/"
     });
-    Concerto.fillSessionSelection(result);
 }
 
 Concerto.selectTest=function(){
@@ -310,20 +304,49 @@ Concerto.selectTest=function(){
     test = new Concerto($("#divTestContainer"),null,null,tid);
     test.run(null,[]);
     select.val(0);
-    Concerto.toggleSessionLauncher();
 }
 
-Concerto.selectSession=function(){
-    var select = $("#selectOpenedSessions");
-    var sid = select.children("option[value='"+select.val()+"']").attr('sid');
-    var hash = select.children("option[value='"+select.val()+"']").attr('hash');
+Concerto.selectSession=function(sid,hash){
     if(typeof test != 'undefined' && test!=null){
         test.stop();
         test = new Concerto(test.container,hash,sid,null,test.queryPath,test.callbackGet,test.callbackSend,test.debug,test.remote,test.loadingImageSource,true);
     }
     test = new Concerto($("#divTestContainer"),hash,sid,null,null,null,null,null,null,null,true);
     test.run(null,[]);
-    
-    select.val(0);
-    Concerto.toggleSessionLauncher();
+}
+
+Concerto.getSessionObject=function(tid){
+    var session = Concerto.getSessionCookie();
+    for(var i=0;i<session.length;i++){
+        var s = session[i];
+        if(s.tid==tid) return s;
+    }
+    return null;
+}
+
+Concerto.iniSessionResumeDialog=function(obj,btnName,values,lastSession){
+    $("#divSessionResumeDialog").dialog({
+        modal:true,
+        resizable:false,
+        open:function(){
+            $(".ui-dialog").css("font-size","10px");
+        },
+        buttons:[
+        {
+            text:"resume",
+            click:function(){
+                $(this).dialog("close");
+                Concerto.selectSession(lastSession.sid, lastSession.hash);
+            }
+        },
+        {
+            text:"start new",
+            click:function(){
+                $(this).dialog("close");
+                Concerto.removeSessionCookie(lastSession.sid, lastSession.hash);
+                obj.run(btnName,values);
+            }
+        }
+        ]
+    });
 }

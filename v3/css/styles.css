@@ -20,12 +20,3 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA.
 root { 
     display: block;
 }
-
-.divFormFloatingBar {
-    position:fixed;
-    top: 0px;
-    right:0%;
-    opacity: 0.75;
-    background-color: transparent;
-    z-index: 1000;
-}

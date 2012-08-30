@@ -65,45 +65,34 @@ if (array_key_exists("sid", $_GET) || array_key_exists("tid", $_GET)) {
                 test = new Concerto($("#divTestContainer"),<?= array_key_exists("hash", $_GET) ? "'" . $_GET['hash'] . "'" : "null" ?>,<?= array_key_exists("sid", $_GET) ? $_GET['sid'] : "null" ?>,<?= array_key_exists("tid", $_GET) ? $_GET['tid'] : "null" ?>);
                 test.run(null,values);
 <?php } ?>
-        Concerto.fillSessionSelection();
     });
         </script>
     </head>
 
     <body>
-        <div class="divFormFloatingBar" align="right">
-            <table>
-                <tr>
-                    <td style="display:none;" class="tdSessionLauncher">
-                        <fieldset class="ui-widget-content">
-                            <legend>available tests</legend>
-                            <select id="selectTest" class="ui-widget-content" onchange="Concerto.selectTest()">
-                                <option value="0">&lt;none selected&gt;</option>
-                                <?php
-                                $z = mysql_query("SELECT * FROM `Test` WHERE `open`=1");
-                                while ($r = mysql_fetch_array($z)) {
-                                    ?>
-                                    <option value="<?= $r['id'] ?>"><?= $r['name'] ?></option>
-                                    <?php
-                                }
-                                ?>
-                            </select>
-                        </fieldset>
-                    </td>
-                    <td style="display:none;" class="tdSessionLauncher">
-                        <fieldset class="ui-widget-content">
-                            <legend>opened sessions</legend>
-                            <select class="ui-widget-content" id="selectOpenedSessions" onchange="Concerto.selectSession()">
-
-                            </select>
-                        </fieldset>
-                    </td>
-                    <td><img src="css/img/c.png" style="cursor:pointer;" onclick="Concerto.toggleSessionLauncher()" /></td>
-                </tr>
-            </table>
-        </div>
         <div style="width:100%;" id="divTestContainer">
             <div align="center"><img src="cms/css/img/logo.png" /> v<?= Ini::$version ?></div>
+            <div align="center">
+                <div style="display: table;">
+                    <fieldset class="ui-widget-content">
+                        <legend>available tests</legend>
+                        <select id="selectTest" class="ui-widget-content" onchange="Concerto.selectTest()">
+                            <option value="0">&lt;none selected&gt;</option>
+                            <?php
+                            $z = mysql_query("SELECT * FROM `Test` WHERE `open`=1");
+                            while ($r = mysql_fetch_array($z)) {
+                                ?>
+                                <option value="<?= $r['id'] ?>"><?= $r['name'] ?></option>
+                                <?php
+                            }
+                            ?>
+                        </select>
+                    </fieldset>
+                </div>
+            </div>
+            <div id="divSessionResumeDialog" title="session resuming" style="display:none;">
+                <p>This test has ongoing session. Do you want to resume current test session?</p>
+            </div>
         </div>
     </body>
 </html>
