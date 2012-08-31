@@ -234,44 +234,44 @@ class Table extends OModule {
         $row = 1;
         $column_names = array();
 
-        $lines = file($path);
-        foreach ($lines as $line) {
-            $data = str_getcsv(trim($line), $delimeter, $enclosure);
-            if ($row == 1) {
-                $sql = "CREATE TABLE  " . $this->get_table_name() . " (";
-                for ($i = 1; $i <= count($data); $i++) {
-                    $column_name = "c" . $i;
-                    if ($header)
-                        $column_name = Table::format_column_name($data[$i - 1]);
-                    if (trim($column_name) == "")
-                        continue;
-                    array_push($column_names, $column_name);
-                    if ($i > 1)
-                        $sql.=",";
-                    $sql.="`" . $column_name . "`  TEXT NOT NULL";
+        if (($handle = fopen($path, "r")) !== FALSE) {
+            while (($data = fgetcsv($handle, 0, $delimeter, $enclosure)) !== FALSE) {
+                if ($row == 1) {
+                    $sql = "CREATE TABLE  " . $this->get_table_name() . " (";
+                    for ($i = 1; $i <= count($data); $i++) {
+                        $column_name = "c" . $i;
+                        if ($header)
+                            $column_name = Table::format_column_name($data[$i - 1]);
+                        if (trim($column_name) == "")
+                            continue;
+                        array_push($column_names, $column_name);
+                        if ($i > 1)
+                            $sql.=",";
+                        $sql.="`" . $column_name . "`  TEXT NOT NULL";
 
-                    $sql2 = sprintf("INSERT INTO `%s` (`index`,`name`,`Table_id`,`TableColumnType_id`) VALUES (%d,'%s',%d,%d)", TableColumn::get_mysql_table(), $i, $column_name, $this->id, 1);
-                    if (!mysql_query($sql2))
+                        $sql2 = sprintf("INSERT INTO `%s` (`index`,`name`,`Table_id`,`TableColumnType_id`) VALUES (%d,'%s',%d,%d)", TableColumn::get_mysql_table(), $i, $column_name, $this->id, 1);
+                        if (!mysql_query($sql2))
+                            return -4;
+                    }
+                    $sql.=") ENGINE = INNODB DEFAULT CHARSET=utf8;";
+                    if (!mysql_query($sql))
                         return -4;
+                    if ($header) {
+                        $row++;
+                        continue;
+                    }
                 }
-                $sql.=") ENGINE = INNODB DEFAULT CHARSET=utf8;";
+
+                $sql = sprintf("INSERT INTO `%s` SET ", $this->get_table_name());
+                for ($i = 1; $i <= count($column_names); $i++) {
+                    if ($i > 1)
+                        $sql.=", ";
+                    $sql.=sprintf("`%s`='%s'", $column_names[$i - 1], mysql_real_escape_string($data[$i - 1]));
+                }
                 if (!mysql_query($sql))
                     return -4;
-                if ($header) {
-                    $row++;
-                    continue;
-                }
+                $row++;
             }
-
-            $sql = sprintf("INSERT INTO `%s` SET ", $this->get_table_name());
-            for ($i = 1; $i <= count($column_names); $i++) {
-                if ($i > 1)
-                    $sql.=", ";
-                $sql.=sprintf("`%s`='%s'", $column_names[$i - 1], mysql_real_escape_string($data[$i - 1]));
-            }
-            if (!mysql_query($sql))
-                return -4;
-            $row++;
         }
         return 0;
     }

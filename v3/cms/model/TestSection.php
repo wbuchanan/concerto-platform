@@ -520,13 +520,16 @@ class TestSection extends OTable {
         return null;
     }
 
-    public function get_next_not_child_TestSection() {
-        $sql = sprintf("SELECT * FROM `%s` WHERE `Test_id`=%d AND `id`>%d AND `parent_counter`=%d ORDER BY `id` ASC LIMIT 0,1", TestSection::get_mysql_table(), $this->Test_id, $this->id, $this->parent_counter);
+    public function get_next_not_child_TestSection($parent_counter = null) {
+        if ($parent_counter == null)
+            $parent_counter = $this->parent_counter;
+        $sql = sprintf("SELECT * FROM `%s` WHERE `Test_id`=%d AND `id`>%d AND `parent_counter`=%d ORDER BY `id` ASC LIMIT 0,1", TestSection::get_mysql_table(), $this->Test_id, $this->id, $parent_counter);
         $z = mysql_query($sql);
         while ($r = mysql_fetch_array($z)) {
             return TestSection::from_mysql_result($r);
         }
-        return null;
+        $parent = TestSection::from_property(array("Test_id" => $this->Test_id, "counter" => $parent_counter), false);
+        return $this->get_next_not_child_TestSection($parent->parent_counter);
     }
 
     public function to_XML() {
