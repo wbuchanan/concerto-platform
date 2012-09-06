@@ -53,6 +53,8 @@ class Ini {
     public static $contact_emails = "";
     public static $forum_url = "";
     public static $project_homepage_url = "";
+    public static $timezone = "Europe/London";
+    public static $mysql_timezone = "+0:00";
 
     function __construct($connect = true, $session = true, $headers = true) {
         //if (substr_count($_SERVER['HTTP_ACCEPT_ENCODING'], 'gzip')) ob_start("ob_gzhandler"); 
@@ -132,6 +134,9 @@ class Ini {
         self::$project_homepage_url = $project_homepage_url;
         self::$timer_tamper_prevention = $timer_tamper_prevention;
         self::$timer_tamper_prevention_tolerance = $timer_tamper_prevention_tolerance;
+        self::$timezone = $timezone;
+        if($mysql_timezone=="") self::$mysql_timezone = $timezone;
+        else self::$mysql_timezone = $mysql_timezone;
     }
 
     public static function does_patch_apply($patch_version, $previous_version) {
@@ -183,6 +188,7 @@ class Ini {
         if (!$h)
             return false;
         mysql_set_charset('utf8', $h);
+        mysql_query(sprintf("SET time_zone = '%s';",Ini::$mysql_timezone));
         if (mysql_select_db($db_name, $h))
             return true;
         else
