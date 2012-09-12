@@ -19,7 +19,7 @@ An essential part of setting up web pages is its publication. This includes uplo
 
 ==Inserting Images Using Image Icon==
 
-The best way to insert images is to do so directly using the toolbar in the templates tab. Click the _image_ icon http://ns39618.ovh.net/~vaishali/mini/img_btn.jpg and enter relevant details as shown below.
+The best way to insert images is to do so directly using the toolbar in the templates tab. Click the _image_ icon http://cambridgepsychometrics.com/~vaishali/mini/img_btn.jpg and enter relevant details as shown below.
 
 URL: _www location of your uploaded files_
 
@@ -30,32 +30,32 @@ Width, Height, Border, HSpace, VSpace, Align: _size, position etc._
 You can preview your image as you type the specifications. Click OK to insert image into the HTML template.
 .
 
-http://ns39618.ovh.net/~vaishali/mini/img_prop.jpg
+http://cambridgepsychometrics.com/~vaishali/mini/img_prop.jpg
 
 .
 
 ==Insert Audio & Video Clips Using Link Icon==
-Inserting audio and video clips can be done via the _link_ icon http://ns39618.ovh.net/~vaishali/mini/link_btn.jpg on the toolbar. Specify the details of the link as shown below. Further, you can also set the _target_ such that the video/audio clip opens in the same window or pop-up window etc. You can embed the link in text or an icon image by selecting the text/image and then clicking the _link icon_.
+Inserting audio and video clips can be done via the _link_ icon http://cambridgepsychometrics.com/~vaishali/mini/link_btn.jpg on the toolbar. Specify the details of the link as shown below. Further, you can also set the _target_ such that the video/audio clip opens in the same window or pop-up window etc. You can embed the link in text or an icon image by selecting the text/image and then clicking the _link icon_.
 
 .
 
-http://ns39618.ovh.net/~vaishali/mini/link_prop.jpg
+http://cambridgepsychometrics.com/~vaishali/mini/link_prop.jpg
 
 .
 
 ==Inserting Images & Clips via the Source==
 Another way of adding interesting elements to your test is by directly inserting HTML code into the source of the template. 
 
-http://ns39618.ovh.net/~vaishali/mini/source_btn.jpg - Click the _source_ icon in the toolbar to view/edit the HTML code.
+http://cambridgepsychometrics.com/~vaishali/mini/source_btn.jpg - Click the _source_ icon in the toolbar to view/edit the HTML code.
 
 
 For example, pasting the following code into the source page will add background music to your test page.
 
-*<embed autostart="true" hidden="true" loop="false" src="http://ns39618.ovh.net/~abcde/Nara.mp3"></embed>* 
+*<embed autostart="true" hidden="true" loop="false" src="http://cambridgepsychometrics.com/~abcde/Nara.mp3"></embed>* 
 
 The following HTML code will embed an audio clip with audio controls on the test page.
 
-*<audio controls="controls"><source src="http://ns39618.ovh.net/~abcde/Nara.mp3" type="audio/mpeg"></source></audio>*
+*<audio controls="controls"><source src="http://cambridgepsychometrics.com/~abcde/Nara.mp3" type="audio/mpeg"></source></audio>*
 
 The _src_ attribute has to be necessarily modified (substitute the url of your audio clip). The other attributes in the code can be modified to suit your needs. _autostart_ indicates whether the song file should start playing automatically or not. _hidden_ indicates whether the media player is hidden or not. _loop_ indicates whether the clip should be repeated.
 
