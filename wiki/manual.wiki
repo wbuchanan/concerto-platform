@@ -15,7 +15,7 @@ The platform relies on three main elements:
 We rely as much as possible on popular open source packages in order to maximize the safety and reliability of the system, and to ensure that its elements are kept up-to-date. 
 
 = Tips =
-You can get help and tips related to particular objects by hovering your mouse pointer over the question mark icon: http://ns39618.ovh.net/~michal/concerto/question.png
+You can get help and tips related to particular objects by hovering your mouse pointer over the question mark icon: http://cambridgepsychometrics.com/~michal/concerto/question.png
 
 = Administrator Panel =
 
@@ -41,7 +41,7 @@ There are several sections in the Administration Panel.
 
 == Header ==
 
-http://ns39618.ovh.net/~michal/concerto/header.jpg
+http://cambridgepsychometrics.com/~michal/concerto/header.jpg
 
 Buttons on the left allow you to quickly navigate to:
  * *Concerto Platform homepage on code.google.com* where you can find  support, report an issue with the application, download the latest version or just browse through the source code.
@@ -55,11 +55,11 @@ On the right side you'll find your login details and a log out button.
 
 Items Tab is the heart of Concerto. Here you can create/edit/debug HTML templates and R syntax.
 
-http://ns39618.ovh.net/~michal/concerto/create_item.png
+http://cambridgepsychometrics.com/~michal/concerto/create_item.png
 
 === List of item templates ===
 
-http://ns39618.ovh.net/~michal/concerto/item_list.jpg
+http://cambridgepsychometrics.com/~michal/concerto/item_list.jpg
 
 This list contains your HTML templates (and templates created by others bt shared with you). It has 5 columns: 
     # *ID* - the HTML template's unique system id. This ID is used in the set.next.template(template_id) function used to switch HTML templates.
@@ -72,11 +72,11 @@ The list can be sorted by clicking on the column header. Use a search box to sea
 
 === Actions ===
 
-http://ns39618.ovh.net/~michal/concerto/choose_action.png
+http://cambridgepsychometrics.com/~michal/concerto/choose_action.png
 
 Clicking on the choose action drop-down button shows a list of possible actions:
 
-http://ns39618.ovh.net/~michal/concerto/actions.png
+http://cambridgepsychometrics.com/~michal/concerto/actions.png
 
 Available actions include:
  * *Run* -  start the test using given HTML template. Note that most of the test will not run if you start in the middle!
@@ -86,7 +86,7 @@ Available actions include:
 
 === HTML layer tab===
 
-http://ns39618.ovh.net/~michal/concerto/item_editor.jpg
+http://cambridgepsychometrics.com/~michal/concerto/item_editor.jpg
 
 We can divide this section into three parts:
   # the Duplicate HTML Template panel allows us to import the HTML layer from another template. Simply select the "source" template from the list and click the *import HTML* button.
@@ -106,7 +106,7 @@ Important elements include:*
   # *standard HTML/CSS/JS* code: text, videos, sounds, images, etc.  
 
 === R Interaction tab===
-http://ns39618.ovh.net/~michal/concerto/r_interaction.png
+http://cambridgepsychometrics.com/~michal/concerto/r_interaction.png
 
 This section contains a list of the HTML buttons that were declared (added) to the HTML presentation layer. You can use *R code to execute* to assign R syntax that will be executed once the button is pressed by the user (or if time runs out in the case of buttons set as default). 
 
@@ -128,16 +128,16 @@ set.var("greeting","hello!")
 }}}
 and use this variable on the HTML templates by inserting string in the HTML editor:
 
-http://ns39618.ovh.net/~michal/concerto/greeting.PNG
+http://cambridgepsychometrics.com/~michal/concerto/greeting.PNG
 
 Obviously, this function should be used to fill HTML templates with content, e.g. text, pictures, sounds, etc. For instance, click the
-http://ns39618.ovh.net/~michal/concerto/img.PNG icon in the HTML layer editor, and insert string {{image_source}} in the "URL" field:
+http://cambridgepsychometrics.com/~michal/concerto/img.PNG icon in the HTML layer editor, and insert string {{image_source}} in the "URL" field:
 
-http://ns39618.ovh.net/~michal/concerto/image_source.PNG
+http://cambridgepsychometrics.com/~michal/concerto/image_source.PNG
 
 Later you can use set.var() function to set this image from the R script level, e.g.: 
 
-http://ns39618.ovh.net/~michal/concerto/r_image.PNG
+http://cambridgepsychometrics.com/~michal/concerto/r_image.PNG
 
 == set.next.template(next_HTML_template_id) ==
 
@@ -145,7 +145,7 @@ This function sets which HTML template should be load next when the R calculatio
 
 For instance, if you want to set next template to demo1 (of id: 7):
 
-http://ns39618.ovh.net/~michal/concerto/id.png
+http://cambridgepsychometrics.com/~michal/concerto/id.png
 
 use this R code:
 
@@ -168,7 +168,7 @@ http://dev.myiqtest.org/concerto2/index.php?hash=ab0334826613005bfcf26d52392b7ce
 }}}
 
 ==Debug mode==
-http://ns39618.ovh.net/~michal/concerto/debug.PNG
+http://cambridgepsychometrics.com/~michal/concerto/debug.PNG
 
 To start the test in *debug mode* select the *Debug* button from the HTML Template's List. Alternatively, if you are an administrator you can enter debug mode by passing the *debug* option through the URL, e.g. 
 {{{
@@ -194,7 +194,7 @@ Concerto_installation_path/index.php?hash=5da7d117adfd5632b8e8aa661426879f&user_
 }}}
 
 =="RStudio" tab==
-http://ns39618.ovh.net/~michal/concerto/r_studio.PNG
+http://cambridgepsychometrics.com/~michal/concerto/r_studio.PNG
 
 If you have *RStudio* installed on your server you can integrate it with the *Concerto Platform*. It's optional, and you can always switch it on or off using the *setup page* mentioned earlier. 
 
@@ -206,7 +206,7 @@ RStudio can be useful to:
  * manage the files on the server (it has a convenient file manager). 
 
 =="Users" tab==
-http://ns39618.ovh.net/~michal/concerto/users.PNG
+http://cambridgepsychometrics.com/~michal/concerto/users.PNG
 
 This tab is only accessible for *super admin* users. It allows him/her to add/remove/edit users and user groups, and to define access rights.
 
