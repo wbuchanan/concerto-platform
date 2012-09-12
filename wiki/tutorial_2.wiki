@@ -33,7 +33,7 @@ First, you need to create 3 HTML templates using an HTML Layer tab. If you don't
  * a button with a meaningful name, e.g. "Start"
 and look like that:
 
-http://ns39618.ovh.net/~michal/concerto/item1.PNG
+http://cambridgepsychometrics.com/~michal/concerto/item1.PNG
 
 ===Second HTML template should contain:===
  * a friendly title and a short instruction 
@@ -46,7 +46,7 @@ http://ns39618.ovh.net/~michal/concerto/item1.PNG
  * And, for presentation purposes, fields {{theta}}, {{sem}}, {{difficulty}}, {{discrimination}}. We will use R syntax to fill those fields with the current values of those parameters.
 
 This template should look like that:
-http://ns39618.ovh.net/~michal/concerto/item2.PNG
+http://cambridgepsychometrics.com/~michal/concerto/item2.PNG
 
 ===Third template should contain:===
  * a friendly title
@@ -54,7 +54,7 @@ http://ns39618.ovh.net/~michal/concerto/item2.PNG
  * fields {{theta}} and {{sem}} to be filled by the R syntax
 
 It should look like that:
-http://ns39618.ovh.net/~michal/concerto/item3.PNG
+http://cambridgepsychometrics.com/~michal/concerto/item3.PNG
 
 = Step 2: Add R code to the templates =
   
