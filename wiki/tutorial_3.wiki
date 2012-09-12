@@ -94,7 +94,7 @@ http://dev.myiqtest.org/concerto/temp/{{image_source}}
 }}}
 Note that {{image_source}} variable will be sent to HTML layer by R syntax. Set width to 600 and height to 450 (this was the size defined for the image in the R syntax).  
 
-http://ns39618.ovh.net/~michal/concerto/add_image.PNG
+http://cambridgepsychometrics.com/~michal/concerto/add_image.PNG
 
 Go to the *R interaction Tab* and add this piece of code at the end of the existing one:
 
