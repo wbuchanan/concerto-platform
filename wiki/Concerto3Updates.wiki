@@ -11,7 +11,7 @@ We rely as much as possible on popular open source packages in order to maximize
 .
 ==Filter/Search Options==
 
-http://ns39618.ovh.net/~vaishali/sections/filter.jpg
+http://cambridgepsychometrics.com/~vaishali/sections/filter.jpg
 
 
 The search function in the updated version is slightly different from that of the previous version. Rather than just filling in your search criteria, you can now filter the list of available objects by any/all column(s). Drag and drop the column name to filter accordingly. 
@@ -21,14 +21,14 @@ Further, if you want to search for specific items, you can click the funnel icon
 .
 ==List of Available Objects/Currently Selected Objects==
 
-http://ns39618.ovh.net/~vaishali/sections/objects.jpg
+http://cambridgepsychometrics.com/~vaishali/sections/objects.jpg
 
 With the latest updates, the screen is no longer split in half to show the list of available objects and the selected object on either half. Rather, there is a button to switch from one to the other, giving the user a less cluttered workspace. The 'Currently selected object' button also shows the test id of the object that has been selected, for quick reference.
 
 .
 ==Protected Variables==
 
-http://ns39618.ovh.net/~vaishali/sections/protected.jpg
+http://cambridgepsychometrics.com/~vaishali/sections/protected.jpg
 
 This new feature has been incorporated with security in mind. The idea is that variables that should not be tampered with can be 'protected' from hackers etc. E.g. total_score in the Simple Test. Time limits are also important variables that should be protected so that they may not tampered with by anybody. Please note that user input/generated variables cannot be protected. E.g. user responses cannot be protected. 
 
@@ -37,14 +37,13 @@ Click the 'add' button and type in the name of the variable to be protected in t
 .
 ==Run Test Button==
 
-http://ns39618.ovh.net/~vaishali/sections/run.jpg
+http://cambridgepsychometrics.com/~vaishali/sections/run.jpg
 
 The 'Run Test' button is back, making life a weeeee bit easier for all! Clicking the button will open your test in a separate tab, so you can see how it looks/works (the debug button  has a section where the test can be viewed, but javascript and css is disabled in this).
 
 .
 ==Online Object Library==
 
-http://ns39618.ovh.net/~vaishali/v3.6/general/online_lib.jpg
+http://cambridgepsychometrics.com/~vaishali/v3.6/general/online_lib.jpg
 
 The Online Object Library is a support system for Concerto users. The idea is that any object (test, custom section, HTML template or table) that you construct can be shared with the Concerto community and vice-versa. In turn, if you need some help creating a test/template etc, why not take a look at the Online Object Library to see what is available? Do not be shy about uploading your work, even if you are a beginner! On the other hand, please ensure your object is working and/or meaningful before uploading. 
-
