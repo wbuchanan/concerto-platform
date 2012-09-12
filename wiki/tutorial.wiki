@@ -25,23 +25,23 @@ Demo installation: http://dev.myiqtest.org/concerto/admin/
   
  * To create a new HTML template click the *'create new'* button on the top left side of the *'items'* tab.
 
-http://ns39618.ovh.net/~michal/concerto/create_new.jpg
+http://cambridgepsychometrics.com/~michal/concerto/create_new.jpg
 
   * Enter the name of the template (e.g. *'my first template'*) - *note that you will not be able to save it without giving it a name*
 
-http://ns39618.ovh.net/~michal/concerto/item_name.PNG
+http://cambridgepsychometrics.com/~michal/concerto/item_name.PNG
 
   * In the *'HTML Layer'* tab, add a text field by clicking on the "*Text Field*" icon. 
 
-http://ns39618.ovh.net/~michal/concerto/cke_text.PNG
+http://cambridgepsychometrics.com/~michal/concerto/cke_text.PNG
 
   * Set the name of the Text Field to *user_name*. The value entered by the user in this Text Field will be stored as a variable under this field's name ("user_name"). This variable can be later used in other templates or in the R script. In the same window you can also specify a size for the field and choose its default contents (e.g. "Enter your name here"). Click *OK* to accept changes.
 
-http://ns39618.ovh.net/~michal/concerto/user_name.PNG
+http://cambridgepsychometrics.com/~michal/concerto/user_name.PNG
 
   * Now add a button by clicking the "Button" icon. 
 
-http://ns39618.ovh.net/~michal/concerto/cke_button.PNG
+http://cambridgepsychometrics.com/~michal/concerto/cke_button.PNG
 
   * Set the button's name to *btn_start*, and button text(value) to  *Start*. Later you will assign an R script to this button to be executed once it's clicked. Accept by clicking *OK*.
 
@@ -51,7 +51,7 @@ http://dev.myiqtest.org/concerto2/wiki_images/ckeditor_btn_properties.png
 
   * Save the HTML template by clicking the *'save'* button.
 
-http://ns39618.ovh.net/~michal/concerto/save.PNG
+http://cambridgepsychometrics.com/~michal/concerto/save.PNG
 
 The resulting HTML Template should look more or less like this:
 
@@ -63,15 +63,15 @@ http://dev.myiqtest.org/concerto2/wiki_images/demo_start.png
   * Give it a name in the HTML layer tab - *note that you will not be able to save it without giving it a name*
   * Add a radio button in the *'HTML layer'* tab by clicking "Radio Button" icon.
 
-http://ns39618.ovh.net/~michal/concerto/cke_radio.PNG
+http://cambridgepsychometrics.com/~michal/concerto/cke_radio.PNG
 
   * Set radio button's name to *radio1* and it's value to *0*. Checking the "Selected" option will select this button by default.
 
-http://ns39618.ovh.net/~michal/concerto/radio_properties.PNG
+http://cambridgepsychometrics.com/~michal/concerto/radio_properties.PNG
 
   * Add another radio button and give it the same name as the previous one - "*radio1*", but this time set the value to *1*. The value of the radio button selected by the user is stored as a variable under button's name. Hence, selecting first of the radio buttons sets the "radio1" variable to "0", and selecting the second one sets "radio1" to "1". Note, that radio buttons allow user to select one of the possible responses, for multiple correct response use "check boxes"!. Variable "*radio1*" can be later used in other templates or in the R script, e.g. to check which response was selected by the user. You can use any other input formats in your test: "check boxes", "Text Fields", "drop down lists", or even Flash Games that return a value (or set of values) to the platform. Alternatively, you can declare several buttons with different R scripts assigned to each of them. 
 
-http://ns39618.ovh.net/~michal/concerto/radio_properties2.PNG
+http://cambridgepsychometrics.com/~michal/concerto/radio_properties2.PNG
 
   * Add button with name *btn_next* and text(value) *Submit*.
 
@@ -85,7 +85,7 @@ http://ns39618.ovh.net/~michal/concerto/radio_properties2.PNG
  
 This HTML template should look more or less like this:
 
-http://ns39618.ovh.net/~michal/concerto/item_html.PNG
+http://cambridgepsychometrics.com/~michal/concerto/item_html.PNG
 
 
 == Feedback HTML Template ==
@@ -95,12 +95,12 @@ http://ns39618.ovh.net/~michal/concerto/item_html.PNG
  
 This HTML template should look more or less like this:
 
-http://ns39618.ovh.net/~michal/concerto/feedback_html.PNG
+http://cambridgepsychometrics.com/~michal/concerto/feedback_html.PNG
 
 = Step 2: Assign R code to buttons =
 == Start the test button ==
   * Press the "*Edit*"  button next to the *'demo_start'* HTML Template
-http://ns39618.ovh.net/~michal/concerto/edit_action.png
+http://cambridgepsychometrics.com/~michal/concerto/edit_action.png
 
   * Go to the *'R Interaction'* tab, where you can assign R code to the buttons present on a given Template.
 
@@ -147,7 +147,7 @@ set.next.template(TEST_HTML_TEMPLATE_ID)
 
 *Replace the "TEST_HTML_TEMPLATE_ID" with the test's HTML Template ID that you can find on the item templates' list:*
 
-http://ns39618.ovh.net/~michal/concerto/id_demo_item.PNG
+http://cambridgepsychometrics.com/~michal/concerto/id_demo_item.PNG
 
 In my case, ID of the appropriate template is 10, and thus set.next.template()  function looks like that:
 {{{
