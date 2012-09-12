@@ -28,7 +28,7 @@ The test you create will be composed of three HTML Templates:
  * _Add a Start button:_ Click the ‘Button’ icon and enter a name (e.g. btn_start), text (“Start”) and click ‘OK’.
  * Save the template!
 
-http://ns39618.ovh.net/~vaishali/v3.7/Aug08Simple/intro.JPG
+http://cambridgepsychometrics.com/~vaishali/v3.7/Aug08Simple/intro.JPG
 
 
 === Test Items Template===
@@ -40,7 +40,7 @@ http://ns39618.ovh.net/~vaishali/v3.7/Aug08Simple/intro.JPG
  * _Add a Submit button:_ Click the ‘Button’ icon and assign a name ("btn_submit") and text value ("Submit"). Click ‘OK’. 
  * Save the template!
 
-http://ns39618.ovh.net/~vaishali/v3.7/Aug08Simple/items.JPG
+http://cambridgepsychometrics.com/~vaishali/v3.7/Aug08Simple/items.JPG
 
 
 ===Feedback Template===
@@ -49,7 +49,7 @@ http://ns39618.ovh.net/~vaishali/v3.7/Aug08Simple/items.JPG
 {{user_name}}, your total score is {{total_score}}.
  * Save the template!
 
-http://ns39618.ovh.net/~vaishali/v3.7/Aug08Simple/feedback.JPG
+http://cambridgepsychometrics.com/~vaishali/v3.7/Aug08Simple/feedback.JPG
 
 
 ==Step 2: Creating an item bank==
@@ -64,7 +64,7 @@ Note: In your Items template, you have assigned 0 to a radio button described as
 
 _Note: You can import your tables from CSV files (compatible with R, SPSS, and Excel) and also manage tables using a professional MySQL tool._
 
-http://ns39618.ovh.net/~vaishali/v3.7/Aug08Simple/table.JPG
+http://cambridgepsychometrics.com/~vaishali/v3.7/Aug08Simple/table.JPG
 
 
 ==Step 3: Creating a table to store user responses==
@@ -75,7 +75,7 @@ As in the previous step, create a table with three columns to store the data. Go
 
 At this moment, the table is empty without any rows of data. Don't forget to save the table!
 
-http://ns39618.ovh.net/~vaishali/v3.7/Aug08Simple/user_responses.JPG
+http://cambridgepsychometrics.com/~vaishali/v3.7/Aug08Simple/user_responses.JPG
 
 ==Step 4: Creating and adding sections to your test==
 
@@ -96,25 +96,25 @@ Follow the table below to add new sections to your test, using the editor. Pleas
 || Load HTML template || Choose the HTML template: *introduction* (or whatever name you assigned to this HTML template).||
 || Set variable || SET VARIABLE:  *current_question*  by R code:  *1*  (We will use this variable to control which question to show next.)||
 || Set variable || SET VARIABLE:  *total_score*  by R code:  *0*.  (This variable will be used to calculate the total score of the participant by counting the number of correct answers.)||
-|| - || http://ns39618.ovh.net/~vaishali/v3.7/Aug08Simple/1.jpg ||
+|| - || http://cambridgepsychometrics.com/~vaishali/v3.7/Aug08Simple/1.jpg ||
 
 || *SECTION TYPE* || *DETAILS* ||
 || Set variable || SET VARIABLE: *question*  from table: *simple_test_table*  COLUMN: *question*  WHERE: *item_id* _equal_ *current_question*  (Note what happens - we simply select one cell from the table you’ve created earlier. Concerto will take the content of the cell in the “question” column and the row where item_id equals 1 (you have set current_question to 1, previously))||
 || Set variable || SET VARIABLE: *answer*  from table: *simple_test_table*  COLUMN: *answer*  WHERE: *item_id* _equal_ *current_question*.  (Now we set variable “answer” to the appropriate value from the table.)||
 || Load HTML template || Choose HTML template: *items* (or whatever name you gave to this HTML template). ||
-|| - ||http://ns39618.ovh.net/~vaishali/v3.7/Aug08Simple/2.jpg ||
+|| - ||http://cambridgepsychometrics.com/~vaishali/v3.7/Aug08Simple/2.jpg ||
 
 || *SECTION TYPE* || *DETAILS* ||
 || IF statement || IF *is.na(radio1)* _equal_ *T*  THEN click '+' icon below 'THEN'. GO TO SECTION: *load items template* (i.e. go to the previous section in your test. This step presents the testee with the same item if no radio button is selected.) ||
 || IF statement || IF *answer* _equal_ *radio1*  THEN click '+' icon below 'THEN'. SET VARIABLE: *total_score*  by R code  *total_score+1* (Simple! IF answer is equal to the value of the radio button selected by the user THEN increase total score by 1. _Note: to add the next section “outside of the if clause” use the ‘+’ icon at the very bottom of the entire IF statement box._)||
-|| - || http://ns39618.ovh.net/~vaishali/v3.7/Aug08Simple/3.jpg||
+|| - || http://cambridgepsychometrics.com/~vaishali/v3.7/Aug08Simple/3.jpg||
 
 || *SECTION TYPE* || *DETAILS* ||
 || Set variable || SET VARIABLE:  *current_question*  by R code:  *current_question+1*  (Add one to the current_question value to select the 2nd question from the table next time, and so on and so forth!)||
 || IF statement || IF *current_question*  _equal or lesser than_  *4* THEN click '+' icon below 'THEN'. Choose section type GO TO: *(from the drop-down list select the section of the test where you were setting the value of the “question” variable)* (First you check IF you haven’t reached the maximum number of questions you wanted to show. If you haven’t THEN you go back in the test structure –not to the very beginning but to the place where you were getting some values from the table. The section number in the example test here is 6, but it might vary from user to user. Lastly, click the ‘+’ at the top right of the IF statement box to add a new section.)||
 || Table Modification || Choose the table you created to store the data (i.e. “user_responses”) and click the radio button next to insert (to add new entries to the table). Click the ‘+’ button under ‘set’ and give values to the columns selected. The values should be variables from the current test, e.g. total_score, user_name, or operations compatible with R language. _Note: CONCERTO_TEST_SESSION_ID is a unique value automatically generated for each test session. Similar variables are CONCERTO_TEST_ID, LAT_PRESSED_BUTTON_NAME, TIME_LIMIT, TIME_TAKEN. You can use these variables without predefining or setting their values._ ||
 || Load HTML template || Choose the HTML template: *feedback* (or whatever else you named this template)||
-|| - || http://ns39618.ovh.net/~vaishali/v3.7/Aug08Simple/4.jpg ||
+|| - || http://cambridgepsychometrics.com/~vaishali/v3.7/Aug08Simple/4.jpg ||
 || || _END_ ||
 
 
