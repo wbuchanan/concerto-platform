@@ -18,7 +18,7 @@ It is best to use Google Chrome to run the Concerto administration panel. Please
 
 Create a new template called _introduction_adaptive_ and add some suitable text to describe the test and make participants feel comfortable. 
 
-http://ns39618.ovh.net/~vaishali/v3.7/Aug08Adaptive/intro.JPG
+http://cambridgepsychometrics.com/~vaishali/v3.7/Aug08Adaptive/intro.JPG
 
 
 ===Test item template===
@@ -31,7 +31,7 @@ Create a new template called _test item_adaptive_ and add the following content:
  * A button called "*Submit*"
  * For presentation purposes, add the field *{{theta}}*.
 
-http://ns39618.ovh.net/~vaishali/v3.7/Aug08Adaptive/items.JPG
+http://cambridgepsychometrics.com/~vaishali/v3.7/Aug08Adaptive/items.JPG
 
 
 ===Feedback template===
@@ -40,18 +40,18 @@ Create another new template called _feedback_adaptive_ that contains:
  * A few words of empathic feedback
  * A field *{{theta}}* 
 
-http://ns39618.ovh.net/~vaishali/v3.7/Aug08Adaptive/feedback.JPG
+http://cambridgepsychometrics.com/~vaishali/v3.7/Aug08Adaptive/feedback.JPG
 
 
 ==Step 2: Creating an Item Bank/Table from a CSV File==
 
 The next step is to create an item bank for the test. Usually, software like R and LTM package are used to generate item parameters. Here, let’s use a mock-up item bank with only one item parameter (difficulty) which can be generated using the Rasch model.
 
-Download and unzip this CSV file [http://ns39618.ovh.net/wiki2/_media/public/ibank.zip] and explore it using Excel or notepad.
+Download and unzip this CSV file [http://cambridgepsychometrics.com/wiki/_media/public/ibank.zip] and explore it using Excel or notepad.
 
 Go to the tables tab and click the ‘+ add new object’ icon to add a new table. Assign a meaningful name (E.g. adaptive_test_table) and save it. Click the import table from CSV file icon to import the table that you have downloaded. Concerto will automatically read the data into table format. All you need to do is alter the column names and the data types (see below).
 
-http://ns39618.ovh.net/~vaishali/v3.7/Aug08Adaptive/table.JPG
+http://cambridgepsychometrics.com/~vaishali/v3.7/Aug08Adaptive/table.JPG
 
 
 ==Step 3: Creating a test and adding sections==
@@ -70,7 +70,7 @@ Follow the table below to add new sections to your test, using the editor. Pleas
 || Load HTML template || Select the *introduction* template (or whatever you named it)||
 || Set variable || SET VARIABLE *theta* by R code: *"Score not available yet"*||
 || Set variable || SET VARIABLE *difficulties* from table: *adaptive_test* (or whatever you named it); COLUMNS *difficulty* ||
-|| - || http://ns39618.ovh.net/~vaishali/v3.7/Aug08Adaptive/1.JPG ||
+|| - || http://cambridgepsychometrics.com/~vaishali/v3.7/Aug08Adaptive/1.JPG ||
 
 
 || *SECTION TYPE* || *DETAILS* ||
@@ -78,21 +78,21 @@ Follow the table below to add new sections to your test, using the editor. Pleas
 || Set variable || SET VARIABLE *responses* by R code: *NULL*||
 || Set variable || SET VARIABLE *itempar* by R code: *as.matrix(cbind(1,difficulties,0,1))*||
 || Set variable || SET VARIABLE *catBank* by R code: *createItemBank(itempar,model="1pl")*||
-|| - ||  http://ns39618.ovh.net/~vaishali/v3.7/Aug08Adaptive/2.JPG  ||
+|| - ||  http://cambridgepsychometrics.com/~vaishali/v3.7/Aug08Adaptive/2.JPG  ||
 
 
 || *SECTION TYPE* || *DETAILS* ||
 || Set variable || SET VARIABLE *items_administered* by R code: *current_item*||
 || Set variable || SET VARIABLE *question* from table: *adaptive_test_table* (or whatever you named it); COLUMNS *content* WHERE *id*  _equal_  *current_item* ||
 || Set variable || SET VARIABLE *difficulty* from table: *adaptive_test_table (or whatever you named it); COLUMNS *difficulty* WHERE *id*  _equal_  *current_item* ||
-|| - ||  http://ns39618.ovh.net/~vaishali/v3.7/Aug08Adaptive/3.JPG  ||
+|| - ||  http://cambridgepsychometrics.com/~vaishali/v3.7/Aug08Adaptive/3.JPG  ||
 
 
 || *SECTION TYPE* || *DETAILS* ||
 || Set variable || SET VARIABLE *correct_answer* from table: *adaptive_test* (or whatever you named it); COLUMNS *correct_answer* WHERE *id*  _equal_  *current_item* ||
 || Load HTML template || Select the *test_item_adaptive* template (or whatever you named it).||
 || IF statement || IF *is.na(response)*  _equal_  *1* THEN _GO TO:_ *(select the previous section where you load the _items_ template)*. This step is to ensure that there are no missing responses or non-numeric type responses. ||
-|| - ||  http://ns39618.ovh.net/~vaishali/v3.7/Aug08Adaptive/4.JPG  ||
+|| - ||  http://cambridgepsychometrics.com/~vaishali/v3.7/Aug08Adaptive/4.JPG  ||
 
 
 || *SECTION TYPE* || *DETAILS* ||
@@ -100,14 +100,14 @@ Follow the table below to add new sections to your test, using the editor. Pleas
 || Set variable || SET VARIABLE *theta* by R code: *it<-itempar[items_administered,1:4, drop=F]* and in the next line *thetaEst(it, responses)*  _(Note: the above two lines of code should be in separate lines; do not enter them continuously as one sentence!)_||
 || Set variable || SET VARIABLE *current_item* by R code:  *nextItem(catBank, theta, out=as.numeric(items_administered))$item*   _Please pay attention to all the digits and letters, as well as the brackets, since even a small typo will stop the test from running properly._||
 || Set variable || SET VARIABLE *items_administered* by R code:  *c(items_administered, current_item)*||
-|| - ||  http://ns39618.ovh.net/~vaishali/v3.7/Aug08Adaptive/5.JPG  ||
+|| - ||  http://cambridgepsychometrics.com/~vaishali/v3.7/Aug08Adaptive/5.JPG  ||
 
 
 || *SECTION TYPE* || *DETAILS* ||
 || Set variable || SET VARIABLE *nitems* by R code:  *length(items_administered)*||
 || IF statement || IF *nitems*  _equal or lesser than_  *15* THEN _GO TO_ *(select the section where you set the variable "question")* ||
 || Load HTML template || Select *feedback* template (or whatever else you named it) ||
-|| - ||  http://ns39618.ovh.net/~vaishali/v3.7/Aug08Adaptive/6.JPG  ||
+|| - ||  http://cambridgepsychometrics.com/~vaishali/v3.7/Aug08Adaptive/6.JPG  ||
 || - || *_END_* ||
 
 
