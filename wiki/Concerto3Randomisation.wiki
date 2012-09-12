@@ -19,14 +19,14 @@ Randomisation can be achieved by using the R command sample _(a:b,c)_ which give
 
 In the example below, a randomized sequence of 6 numbers from 1 to 6 is generated, and each of them is assigned to the id sequence from 1 to 6 (_see Picture 1 below_). 
 
-http://ns39618.ovh.net/~vaishali/mini/random/pic1.jpg
+http://cambridgepsychometrics.com/~vaishali/mini/random/pic1.jpg
 
 
 By this means, the six response options can be randomly presented on the template with corresponding html codes given to the six buttons (_see Picture 2 below_). 
 
-http://ns39618.ovh.net/~vaishali/mini/random/pic2.jpg
+http://cambridgepsychometrics.com/~vaishali/mini/random/pic2.jpg
 
 
 _Picture 3_ (below) shows the table with the prepared html and id. 
 
-http://ns39618.ovh.net/~vaishali/mini/random/pic3.jpg
+http://cambridgepsychometrics.com/~vaishali/mini/random/pic3.jpg
