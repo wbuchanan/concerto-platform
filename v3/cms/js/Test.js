@@ -380,18 +380,18 @@ Test.uiRefreshSectionContent=function(type,counter,value,oid,end){
         $("#divSection_"+counter).find(".divSectionSummary").attr("onmouseover","Test.uiToggleHover("+counter+",true);").attr("onmouseout","Test.uiToggleHover("+counter+",false);");
         switch(type){
             case Test.sectionTypes.RCode:{
-                var cm = Methods.iniCodeMirror("textareaCodeMirror_"+counter, "r", false,"905px",function(){
+                var cm = Methods.iniCodeMirror("textareaCodeMirror_"+counter, "r", false,function(){
                     });
                 Test.codeMirrors.push(cm);
                 break;
             }
             case Test.sectionTypes.lowerLevelRCode:{
-                var cm = Methods.iniCodeMirror("textareaCodeMirror_"+counter, "r", false,"905px");
+                var cm = Methods.iniCodeMirror("textareaCodeMirror_"+counter, "r", false);
                 Test.codeMirrors.push(cm);
                 break;
             }
             case Test.sectionTypes.setVariable:{
-                var cm = Methods.iniCodeMirror("textareaCodeMirror_"+counter, "r", false,"905px",function(){
+                var cm = Methods.iniCodeMirror("textareaCodeMirror_"+counter, "r", false,function(){
                     });
                 Test.codeMirrors.push(cm);
                 break;

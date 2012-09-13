@@ -88,7 +88,7 @@ if ($oid != 0) {
                     }
                 });
                 Methods.iniCKEditor("#form<?= $class_name ?>TextareaDescription");
-                Template.formCodeMirror = Methods.iniCodeMirror("form<?= $class_name ?>TextareaHead", "htmlmixed", false,"845px");
+                Template.formCodeMirror = Methods.iniCodeMirror("form<?= $class_name ?>TextareaHead", "htmlmixed", false);
     <?php } ?>
             Methods.iniTooltips();
         });

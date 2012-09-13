@@ -81,7 +81,7 @@ if ($oid != 0) {
     if ($oid != -1) {
         ?>
                     Methods.iniCKEditor("#form<?= $class_name ?>TextareaDescription");
-                    Methods.iniCodeMirror("form<?= $class_name ?>TextareaCode", "r", false,"910px");
+                    Methods.iniCodeMirror("form<?= $class_name ?>TextareaCode", "r", false);
                     Methods.iniTooltips();
     <?php } ?>
             Methods.iniTooltips();

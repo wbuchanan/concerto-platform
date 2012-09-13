@@ -372,17 +372,17 @@ Methods.getTempID=function()
     return User.sessionID+"_"+time;
 };
 
-Methods.iniCodeMirror=function(id,mode,readOnly,maxWidth,onChangeCallback)
+Methods.iniCodeMirror=function(id,mode,readOnly,onChangeCallback)
 {
     var obj = document.getElementById(id);
     
     var myCodeMirror = CodeMirror.fromTextArea(obj,{
         mode:mode,
         fixedGutter:false,
-        theme:"night",
+        theme:"ambiance",
         lineNumbers:true,
         matchBrackets:true,
-        lineWrapping:false, 
+        lineWrapping:true, 
         autoClearEmptyLines:true,
         indentWithTabs:true,
         "readOnly":(readOnly!=null&readOnly?true:false),
@@ -392,7 +392,8 @@ Methods.iniCodeMirror=function(id,mode,readOnly,maxWidth,onChangeCallback)
             if(onChangeCallback!=null) onChangeCallback.call(this);
         }
     });
-    if(maxWidth!=null) $(obj).next().find(".CodeMirror-scroll").css("max-width",maxWidth);
+    //if(maxWidth!=null) $(obj).next().find(".CodeMirror-scroll").css("max-width",maxWidth);
+    myCodeMirror.refresh();
     return myCodeMirror;
 };
 

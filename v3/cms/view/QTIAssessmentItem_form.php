@@ -83,7 +83,7 @@ if ($oid != 0) {
     ?>
     <?php if ($oid != -1) { ?>
                 Methods.iniCKEditor("#form<?= $class_name ?>TextareaDescription");
-                QTIAssessmentItem.formCodeMirror = Methods.iniCodeMirror("form<?= $class_name ?>TextareaXML", "xml", false,"845px");
+                QTIAssessmentItem.formCodeMirror = Methods.iniCodeMirror("form<?= $class_name ?>TextareaXML", "xml", false);
     <?php } ?>
             Methods.iniTooltips();
         });

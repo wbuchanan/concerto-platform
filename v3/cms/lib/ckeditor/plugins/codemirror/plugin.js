@@ -24,11 +24,11 @@ CKEDITOR.plugins.add( 'codemirror', {
                 var codemirrorInit = 
                 CodeMirror.fromTextArea(editor.textarea.$,{
                     mode:"htmlmixed",
-                    theme:"night",
+                    theme:"ambiance",
                     fixedGutter:false,
                     lineNumbers:true,
                     matchBrackets:true,
-                    lineWrapping:false,
+                    lineWrapping:true,
                     autoClearEmptyLines:true,
                     indentWithTabs:true,
                     onChange:function(instance){
@@ -36,8 +36,8 @@ CKEDITOR.plugins.add( 'codemirror', {
                         instance.refresh();
                     }
                 });
-                //$(".cke_skin_kama").find(".CodeMirror-scroll").css("max-width","800px");
-                //codemirrorInit.refresh();
+                codemirrorInit.setSize(775,null);
+                codemirrorInit.refresh();
                 
                 editor.on( 'beforeCommandExec', function( e ){
                     e.removeListener();
