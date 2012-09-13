@@ -72,9 +72,9 @@ if (array_key_exists('oid', $_POST) && $_POST['oid'] != 0) {
         </tr>
     </table>
 </div>
-<div class="divSectionDetail <?= $_POST['detail'] == 1 || $_POST['oid'] == 0  ? "" : "notVisible" ?>">
-    <div class="ui-widget-content" align="center">
-        <div class="ui-widget-header" align="center"><?= Language::string(438) ?>:</div>
+<div class="divSectionDetail <?= $_POST['detail'] == 1 || $_POST['oid'] == 0 ? "" : "notVisible" ?>">
+    <fieldset class="ui-widget-content" align="center">
+        <legend><b><?= Language::string(438) ?>:</b></legend>
         <?php
         $i = 3;
         while (isset($vals[$i])) {
@@ -121,16 +121,14 @@ if (array_key_exists('oid', $_POST) && $_POST['oid'] != 0) {
         }
         ?>
 
-        <table>
-            <tr>
-                <td><span class="spanIcon tooltip ui-icon ui-icon-plus" onclick="Test.uiAddIfCond(<?= $_POST['counter'] ?>)" title="<?= Language::string(229) ?>"></span></td>
-                <td><?php if (isset($vals[3])) {
+        <div align="center">
+            <table>
+                <tr>
+                    <td><span class="spanIcon tooltip ui-icon ui-icon-plus" onclick="Test.uiAddIfCond(<?= $_POST['counter'] ?>)" title="<?= Language::string(229) ?>"></span></td>
+                    <td><?php if (isset($vals[3])) {
             ?><span class="spanIcon tooltip ui-icon ui-icon-minus" onclick="Test.uiRemoveIfCond(<?= $_POST['counter'] ?>)" title="<?= Language::string(230) ?>"></span><?php } ?></td>
-            </tr>
-        </table>
-    </div>
-
-    <div class="ui-widget-content" align="center">
-        <div class="ui-widget-header" align="center"><?= Language::string(439) ?>:</div>
-    </div>
+                </tr>
+            </table>
+        </div>
+    </fieldset>
 </div>

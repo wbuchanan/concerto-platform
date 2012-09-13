@@ -98,8 +98,8 @@ if ($qti != null) {
         <table class="fullWidth">
             <tr>
                 <td style="width:100%;" valign="top" align="center">
-                    <div class="ui-widget-content">
-                        <div class="ui-widget-header" align="center"><?= Language::string(113) ?>:</div>
+                    <fieldset class="ui-widget-content">
+                        <legend class="" align="center"><b><?= Language::string(113) ?>:</b></legend>
                         <div>
                             <table>
                                 <?php
@@ -135,7 +135,7 @@ if ($qti != null) {
                             }
                             ?>
                         </div>
-                    </div>
+                    </fieldset>
                 </td>
             </tr>
         </table>

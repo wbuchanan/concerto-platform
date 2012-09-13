@@ -49,8 +49,8 @@ if ($logged_user == null) {
     <table class="fullWidth">
         <tr>
             <td style="width:50%;" valign="top" align="center">
-                <div class="ui-widget-content">
-                    <div class="ui-widget-header" align="center"><?= Language::string(113) ?>:</div>
+                <fieldset class="ui-widget-content">
+                    <legend><b><?= Language::string(113) ?></b></legend>
                     <div>
                         <table>
                             <tr>
@@ -67,7 +67,7 @@ if ($logged_user == null) {
                         <input class="inputReturnVar" type="hidden" value="CONCERTO_TEST_ID" />
                         <input class="inputReturnVar" type="hidden" value="CONCERTO_TEST_SESSION_ID" />
                     </div>
-                </div>
+                </fieldset>
             </td>
         </tr>
     </table>

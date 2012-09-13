@@ -75,8 +75,8 @@ $returns = $section->get_return_TestVariables();
                 if (count($parameters) > 0) {
                     ?>
                     <td style="width:50%;" valign="top" align="center">
-                        <div class="ui-widget-content">
-                            <div class="ui-widget-header" align="center"><?= Language::string(106) ?>:</div>
+                        <fieldset class="ui-widget-content">
+                            <legend class="" align="center"><b><?= Language::string(106) ?>:</b></legend>
                             <div>
                                 <table>
                                     <?php
@@ -100,7 +100,7 @@ $returns = $section->get_return_TestVariables();
                                     ?>
                                 </table>
                             </div>
-                        </div>
+                        </fieldset>
                         <div class="notVisible">
                             <?php
                             for ($i = 0; $i < count($parameters); $i++) {
@@ -117,8 +117,8 @@ $returns = $section->get_return_TestVariables();
                 if (count($returns) > 0) {
                     ?>
                     <td style="width:50%;" valign="top" align="center">
-                        <div class="ui-widget-content">
-                            <div class="ui-widget-header" align="center"><?= Language::string(113) ?>:</div>
+                        <fieldset class="ui-widget-content">
+                            <legend class="" align="center"><b><?= Language::string(113) ?>:</b></legend>
                             <div>
                                 <table>
                                     <?php
@@ -143,7 +143,7 @@ $returns = $section->get_return_TestVariables();
                                     ?>
                                 </table>
                             </div>
-                        </div>
+                        </fieldset>
                         <div class="notVisible">
                             <?php
                             for ($i = 0; $i < count($returns); $i++) {

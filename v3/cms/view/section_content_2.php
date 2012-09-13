@@ -90,15 +90,15 @@ if ($template != null) {
         </tr>
     </table>
 </div>
-<div class="divSectionDetail <?= $_POST['detail'] == 1 || $_POST['oid'] == 0  ? "" : "notVisible" ?>">
+<div class="divSectionDetail <?= $_POST['detail'] == 1 || $_POST['oid'] == 0 ? "" : "notVisible" ?>">
     <?php
     if ($vals[0] != 0 && $template != null) {
         ?>
         <table class="fullWidth">
             <tr>
                 <td style="width:50%;" valign="top" align="center">
-                    <div class="ui-widget-content">
-                    <div class="ui-widget-header" align="center"><?= Language::string(106) ?>:</div>
+                    <fieldset class="ui-widget-content">
+                        <legend align="center"><b><?= Language::string(106) ?>:</b></legend>
                         <div>
                             <table>
                                 <?php
@@ -155,11 +155,11 @@ if ($template != null) {
                             ?>
                             <input class="inputParameterVar" type="hidden" value="TIME_LIMIT" />
                         </div>
-                    </div>
+                    </fieldset>
                 </td>
                 <td style="width:50%;" valign="top" align="center">
-                    <div class="ui-widget-content">
-                    <div class="ui-widget-header" align="center"><?= Language::string(113) ?>:</div>
+                    <fieldset class="ui-widget-content">
+                        <legend class="" align="center"><b><?= Language::string(113) ?>:</b></legend>
                         <div>
                             <table>
                                 <?php
@@ -207,7 +207,7 @@ if ($template != null) {
                             <input class="inputReturnVar" type="hidden" value="LAST_PRESSED_BUTTON_NAME" />
                             <input class="inputReturnVar" type="hidden" value="TIME_TAKEN" />
                         </div>
-                    </div>
+                    </fieldset>
                 </td>
             </tr>
         </table>

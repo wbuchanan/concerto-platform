@@ -79,8 +79,8 @@ else {
 <table class="fullWidth">
     <tr>
         <td style="width:50%;" valign="top" align="center">
-            <div class="ui-widget-content">
-                <div class="ui-widget-header" align="center"><?= Language::string(106) ?>:</div>
+            <fieldset class="ui-widget-content">
+                <legend class="" align="center"><b><?= Language::string(106) ?>:</b></legend>
                 <div class="div<?= $class_name ?>Parameters">
                     <?php
                     if (count($parameters) > 0) {
@@ -130,13 +130,13 @@ else {
                         </tr>
                     </table>
                 </div>
-            </div>
+            </fieldset>
         </td>
 
 
         <td style="width:50%;" valign="top" align="center">
-            <div class="ui-widget-content">
-                <div class="ui-widget-header" align="center"><?= Language::string(113) ?>:</div>
+            <fieldset class="ui-widget-content">
+                <legend class="" align="center"><b><?= Language::string(113) ?>:</b></legend>
                 <div class="div<?= $class_name ?>Returns">
                     <?php
                     if (count($returns) > 0) {
@@ -186,7 +186,7 @@ else {
                         </tr>
                     </table>
                 </div>
-            </div>
+            </fieldset>
         </td>
     </tr>
 </table>

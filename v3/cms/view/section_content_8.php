@@ -74,14 +74,14 @@ if ($table != null) {
                     </tr>
                 </table>
             </td>
-            <td class="tdSectionColumnIcon"><span class="spanIcon ui-icon ui-icon-script tooltip" title="<?=Language::string(447)?>" onclick="Test.convertToLowerLevel(<?=$_POST['counter']?>)"></span></td>
+            <td class="tdSectionColumnIcon"><span class="spanIcon ui-icon ui-icon-script tooltip" title="<?= Language::string(447) ?>" onclick="Test.convertToLowerLevel(<?= $_POST['counter'] ?>)"></span></td>
             <td class="tdSectionColumnEnd"><input type="checkbox" class="tooltip" id="chkEndSection_<?= $_POST['counter'] ?>" class="chkEndSection" <?= $_POST['end'] == 1 ? "checked" : "" ?> title="<?= Language::string(369) ?>" /></td>
             <td class="tdSectionColumnIcon"><span class="spanIcon tooltip ui-icon ui-icon-trash" onclick="Test.uiRemoveSection(<?= $_POST['counter'] ?>)" title="<?= Language::string(59) ?>"></span></td>
             <td class="tdSectionColumnIcon"><span class="spanIcon tooltip ui-icon ui-icon-plus" onclick="Test.uiAddLogicSection(0,<?= $_POST['counter'] ?>)" title="<?= Language::string(60) ?>"></span></td>
         </tr>
     </table>
 </div>
-<div class="divSectionDetail <?= $_POST['detail'] == 1 || $_POST['oid'] == 0  ? "" : "notVisible" ?>">
+<div class="divSectionDetail <?= $_POST['detail'] == 1 || $_POST['oid'] == 0 ? "" : "notVisible" ?>">
     <!-- type and table -->
     <div align="center">
         <b><?= Language::string(248) ?></b> <input type="radio" name="radioTableModType_<?= $_POST['counter'] ?>" class="radioTableModType_<?= $_POST['counter'] ?> radioTableModType" <?= !isset($vals[0]) || $vals[0] == 0 ? "checked" : "" ?> value="0" onchange="Test.uiRefreshSection(<?= $_POST['counter'] ?>,Test.sectionTypes.tableModification)" />, 
@@ -96,8 +96,8 @@ if ($table != null) {
             if ($vals[0] == 0 || $vals[0] == 1) {
                 ?>
                 <td style="width:50%;" valign="top" align="center">
-                    <div class="ui-widget-content">
-                        <div class="ui-widget-header" align="center"><?= Language::string(440) ?>:</div>
+                    <fieldset class="ui-widget-content">
+                        <legend class="" align="center"><b><?= Language::string(440) ?>:</b></legend>
                         <div>
                             <table class="fullWidth">
                                 <?php
@@ -138,7 +138,7 @@ if ($table != null) {
                                 </tr>
                             </table>
                         </div>
-                    </div>
+                    </fieldset>
                 </td>
                 <?php
             }
@@ -149,8 +149,8 @@ if ($table != null) {
             if ($vals[0] == 1 || $vals[0] == 2) {
                 ?>
                 <td style="width:50%;" valign="top" align="center">
-                    <div class="ui-widget-content">
-                        <div class="ui-widget-header" align="center"><?= Language::string(437) ?>:</div>
+                    <fieldset class="ui-widget-content">
+                        <legend class="" align="center"><b><?= Language::string(437) ?>:</b></legend>
                         <div>
                             <table class="fullWidth">
                                 <?php
@@ -195,8 +195,8 @@ if ($table != null) {
                                             </select> 
                                         </td>
                                         <?php $j++; ?>
-                                        <td <?=($vals[0]==2?"class='fullWidth'":"")?>>
-                                            <input type="text" class="controlValue<?= $_POST['counter'] ?> ui-widget-content ui-corner-all comboboxVars <?=($vals[0]==2?"fullWidth":"")?>" value="<?= htmlspecialchars(isset($vals[$j]) ? $vals[$j] : "", ENT_QUOTES) ?>" /> 
+                                        <td <?= ($vals[0] == 2 ? "class='fullWidth'" : "") ?>>
+                                            <input type="text" class="controlValue<?= $_POST['counter'] ?> ui-widget-content ui-corner-all comboboxVars <?= ($vals[0] == 2 ? "fullWidth" : "") ?>" value="<?= htmlspecialchars(isset($vals[$j]) ? $vals[$j] : "", ENT_QUOTES) ?>" /> 
                                         </td>
                                     </tr>
                                     <?php
@@ -212,7 +212,7 @@ if ($table != null) {
                                 </tr>
                             </table>
                         </div>
-                    </div>
+                    </fieldset>
                 </td>
             </tr>
         </table>

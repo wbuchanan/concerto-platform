@@ -3625,15 +3625,6 @@ Note: You can add new languages by inserting "<new_language>string translated in
             <bg></bg>
             <nl>bijkomende condities</nl>
         </string>
-        <string id="439">
-            <en>then</en>
-            <de></de>
-            <pl>wtedy</pl>
-            <cn></cn>
-            <fr></fr>
-            <bg></bg>
-            <nl>dan</nl>
-        </string>
         <string id="440">
             <en>set</en>
             <de></de>

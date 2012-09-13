@@ -53,14 +53,14 @@ if ($table != null) {
             <td class="tdSectionColumnIcon"><span id="spanExpandDetail_<?= $_POST['counter'] ?>" class="spanExpandDetail spanIcon ui-icon ui-icon-folder-<?= $_POST['detail'] == 1 ? "open" : "collapsed" ?> tooltip" title="<?= Language::string(390) ?>" onclick="Test.uiToggleDetails(<?= $_POST['counter'] ?>)"></span></td>
             <td class="tdSectionColumnType"><?= DS_TestSectionType::get_name_by_id(5) ?></td>
             <td class="tdSectionColumnAction"><input onchange="Test.uiSetVarNameChanged($(this))" type="text" class="ui-state-focus comboboxSetVars comboboxVars controlValue<?= $_POST['counter'] ?> ui-widget-content ui-corner-all fullWidth" value="<?= htmlspecialchars(isset($vals[4]) ? $vals[4] : "", ENT_QUOTES) ?>" /></td>
-            <td class="tdSectionColumnIcon"><span class="spanIcon ui-icon ui-icon-script tooltip" title="<?=Language::string(447)?>" onclick="Test.convertToLowerLevel(<?=$_POST['counter']?>)"></span></td>
+            <td class="tdSectionColumnIcon"><span class="spanIcon ui-icon ui-icon-script tooltip" title="<?= Language::string(447) ?>" onclick="Test.convertToLowerLevel(<?= $_POST['counter'] ?>)"></span></td>
             <td class="tdSectionColumnEnd"><input type="checkbox" class="tooltip" id="chkEndSection_<?= $_POST['counter'] ?>" class="chkEndSection" <?= $_POST['end'] == 1 ? "checked" : "" ?> title="<?= Language::string(369) ?>" /></td>
             <td class="tdSectionColumnIcon"><span class="spanIcon tooltip ui-icon ui-icon-trash" onclick="Test.uiRemoveSection(<?= $_POST['counter'] ?>)" title="<?= Language::string(59) ?>"></span></td>
             <td class="tdSectionColumnIcon"><span class="spanIcon tooltip ui-icon ui-icon-plus" onclick="Test.uiAddLogicSection(0,<?= $_POST['counter'] ?>)" title="<?= Language::string(60) ?>"></span></td>
         </tr>
     </table>
 </div>
-<div class="divSectionDetail <?= $_POST['detail'] == 1 || $_POST['oid'] == 0  ? "" : "notVisible" ?>">
+<div class="divSectionDetail <?= $_POST['detail'] == 1 || $_POST['oid'] == 0 ? "" : "notVisible" ?>">
     <div align="center">
         <b><?= Language::string(235) ?></b> <input type="radio" name="radioSetVarType_<?= $_POST['counter'] ?>" class="radioSetVarType_<?= $_POST['counter'] ?> radioSetVarType" <?= !isset($vals[2]) || $vals[2] == 0 ? "checked" : "" ?> value="0" onchange="Test.changeSetVarType(<?= $_POST['counter'] ?>)" />, 
         <b><?= Language::string(236) ?></b> <input type="radio" name="radioSetVarType_<?= $_POST['counter'] ?>" class="radioSetVarType_<?= $_POST['counter'] ?> radioSetVarType" <?= $vals[2] == 1 ? "checked" : "" ?> value="1" onchange="Test.changeSetVarType(<?= $_POST['counter'] ?>)" />
@@ -91,8 +91,8 @@ if ($table != null) {
         <table class="fullWidth">
             <tr>
                 <td style="width:50%;" valign="top" align="center">
-                    <div class="ui-widget-content">
-                        <div class="ui-widget-header" align="center"><?= Language::string(436) ?>:</div>
+                    <fieldset class="ui-widget-content">
+                        <legend class="" align="center"><b><?= Language::string(436) ?>:</b></legend>
                         <select class="controlValue<?= $_POST['counter'] ?> controlValue<?= $_POST['counter'] ?>_column ui-widget-content ui-corner-all fullWidth">
                             <option value="0">&lt;<?= Language::string(241) ?>&gt;</option>
                             <?php
@@ -142,11 +142,11 @@ if ($table != null) {
                             ?><span class="spanIcon tooltip ui-icon ui-icon-minus" onclick="Test.uiRemoveSetVarColumn(<?= $_POST['counter'] ?>)" title="<?= Language::string(20) ?>"></span><?php } ?></td>
                             </tr>
                         </table>
-                    </div>
+                    </fieldset>
                 </td>
                 <td style="width:50%;" valign="top" align="center">
-                    <div class="ui-widget-content">
-                        <div class="ui-widget-header" align="center"><?= Language::string(437) ?>:</div>
+                    <fieldset class="ui-widget-content">
+                        <legend class="" align="center"><b><?= Language::string(437) ?>:</b></legend>
                         <?php
                         if (isset($vals[1])) {
                             $i = 7 + $vals[0];
@@ -219,7 +219,7 @@ if ($table != null) {
                             ?><span class="spanIcon tooltip ui-icon ui-icon-minus" onclick="Test.uiRemoveSetVarCondition(<?= $_POST['counter'] ?>)" title="<?= Language::string(230) ?>"></span><?php } ?></td>
                             </tr>
                         </table>
-                    </div>
+                    </fieldset>
                 </td>
             </tr>
         </table>

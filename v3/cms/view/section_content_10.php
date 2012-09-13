@@ -86,7 +86,4 @@ if (array_key_exists('oid', $_POST) && $_POST['oid'] != 0) {
     <div class="<?= $vals[0] == 1 ? "notVisible" : "" ?>" align="center">
         <b><?= Language::string(400) ?></b>: <input type="text" class="ui-widget-content ui-corner-all comboboxVars controlValue<?= $_POST['counter'] ?>" value="<?= htmlspecialchars($vals[4], ENT_QUOTES) ?>" />, <b><?= Language::string(399) ?></b>: <input type="text" class="ui-widget-content ui-corner-all comboboxVars controlValue<?= $_POST['counter'] ?>" value="<?= htmlspecialchars($vals[5], ENT_QUOTES) ?>" />
     </div>
-    <div class="ui-widget-content" align="center">
-        <div class="ui-widget-header" align="center"><?= Language::string(439) ?>:</div>
-    </div>
 </div>
