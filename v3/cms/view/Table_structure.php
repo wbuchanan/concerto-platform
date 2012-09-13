@@ -45,23 +45,38 @@ if (!$logged_user->is_object_editable($obj))
         Table.uiIniDataGrid();
     });
 </script>
-<table>
-    <tr>
-        <td><button class="btnTableStructureImportTable" onclick="Table.uiImportTable()"><?= Language::string(125) ?></button></td>
-        <td><button class="btnTableStructureImportCSV" onclick="Table.uiImportCSV()"><?= Language::string(126) ?></button></td>
-        <td><button class="btnTableStructureExportCSV" onclick="Table.uiExportCSV()"><?= Language::string(127) ?></button></td>
-    </tr>
-</table>
-<br/>
 
 <!--grid magic starts here-->
 
-<div class="margin" align="center"><button id="btnExpand<?= $class_name ?>GridStructureContainer" class="btnExpand fullWidth" onclick="Methods.toggleExpand('#div<?= $class_name ?>GridStructureContainer', this)"><?= Language::string(350) ?></button></div>
-<div id="div<?= $class_name ?>GridStructureContainer" align="left" class="margin"></div>
-<br/>
-<div class="margin" align="center"><button id="btnExpand<?= $class_name ?>GridDataContainerExpandable" class="btnExpand fullWidth" onclick="Methods.toggleExpand('#div<?= $class_name ?>GridDataContainerExpandable', this)"><?= Language::string(351) ?></button></div>
-<div id="div<?= $class_name ?>GridDataContainerExpandable">
-    <div id="div<?= $class_name ?>DataStructureEmptyCaption" class="ui-state-error margin" style="display:none;"><?= Language::string(352) ?></div>
-    <div id="div<?= $class_name ?>GridDataContainer" align="left" class="margin">
+<fieldset class="padding ui-widget-content ui-corner-all margin">
+    <legend>
+        <table>
+            <tr>
+                <td><span class="tooltip spanIcon ui-icon ui-icon-help" title="<?= Language::string(502) ?>"></span></td>
+                <td class=""><b><?= Language::string(350) ?></b></td>
+            </tr>
+        </table>
+    </legend>
+    <div align="center">
+        <button class="btnTableStructureImportTable" onclick="Table.uiImportTable()"><?= Language::string(125) ?></button>
+        <button class="btnTableStructureImportCSV" onclick="Table.uiImportCSV()"><?= Language::string(126) ?></button>
+        <button class="btnTableStructureExportCSV" onclick="Table.uiExportCSV()"><?= Language::string(127) ?></button>
     </div>
-</div>
+    <div id="div<?= $class_name ?>GridStructureContainer" align="left" class="margin"></div>
+</fieldset>
+
+<fieldset class="padding ui-widget-content ui-corner-all margin">
+    <legend>
+        <table>
+            <tr>
+                <td><span class="tooltip spanIcon ui-icon ui-icon-help" title="<?= Language::string(503) ?>"></span></td>
+                <td class=""><b><?= Language::string(351) ?></b></td>
+            </tr>
+        </table>
+    </legend>
+    <div id="div<?= $class_name ?>GridDataContainerExpandable">
+        <div id="div<?= $class_name ?>DataStructureEmptyCaption" class="ui-state-error margin" style="display:none;"><?= Language::string(352) ?></div>
+        <div id="div<?= $class_name ?>GridDataContainer" align="left" class="margin">
+        </div>
+    </div>
+</fieldset>

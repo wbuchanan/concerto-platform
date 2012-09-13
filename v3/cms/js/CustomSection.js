@@ -33,11 +33,7 @@ CustomSection.onAfterSave=function()
 };
 
 CustomSection.onAfterAdd=function(){
-    Methods.iniCKEditor("#form"+this.className+"TextareaDescription",function(){
-        $("#divAddFormDialog").dialog("option","width",975);
-        $("#divAddFormDialog").dialog("option","position","center"); 
-    });
-}
+    }
 
 CustomSection.getAddSaveObject=function()
 {
@@ -45,7 +41,6 @@ CustomSection.getAddSaveObject=function()
         oid:this.currentID,
         class_name:this.className,
         name:$("#form"+this.className+"InputName").val(),
-        description:Methods.getCKEditorData("#form"+this.className+"TextareaDescription"),
         Sharing_id:$("#form"+this.className+"SelectSharing").val()
     };
 };
@@ -53,7 +48,7 @@ CustomSection.getAddSaveObject=function()
 CustomSection.uiSaveValidate=function(ignoreOnBefore){
     if(!this.checkRequiredFields([
         $("#form"+this.className+"InputName").val()
-    ])) {
+        ])) {
         Methods.alert(dictionary["s415"],"alert");
         return false;
     }
@@ -177,12 +172,12 @@ CustomSection.uiEditVariableDescription=function(obj){
         title:dictionary["s3"],
         modal:true,
         resizable:false,
-        width:975,
+        width:840,
         open:function(){
             $('.ui-widget-overlay').css('position', 'fixed');
         },
         close:function(){
-            //$('.ui-widget-overlay').css('position', 'absolute');
+        //$('.ui-widget-overlay').css('position', 'absolute');
         },
         create:function(){
             var thisDialog = $("#div"+CustomSection.className+"DialogDescription");
@@ -215,5 +210,6 @@ CustomSection.getFullSaveObject=function()
     obj["parameters"]=CustomSection.getSerializedParameterVariables();
     obj["returns"]=CustomSection.getSerializedReturnVariables();
     obj["code"]=$("#form"+this.className+"TextareaCode").val();
+    obj["description"]=Methods.getCKEditorData("#form"+this.className+"TextareaDescription");
     return obj;
 }

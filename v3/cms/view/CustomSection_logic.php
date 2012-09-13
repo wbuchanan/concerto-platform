@@ -65,8 +65,6 @@ else {
 
 <script>
     $(function(){
-        Methods.iniCodeMirror("form<?= $class_name ?>TextareaCode", "r", false,"910px");
-        Methods.iniTooltips();
         CustomSection.uiRefreshComboboxes();
     
         $(".tooltipCustomSectionLogic").tooltip({
@@ -192,12 +190,4 @@ else {
         </td>
     </tr>
 </table>
-
-<table>
-    <tr>
-        <td><span class="spanIcon ui-icon ui-icon-help tooltip" title="<?= Language::string(111) ?>"></span></td>
-        <td><b><?= Language::string(49) ?>:</b></td>
-    </tr>
-</table>
-<textarea id="form<?= $class_name ?>TextareaCode" class="fullWidth ui-widget-content ui-corner-all textareaCode"><?= $code ?></textarea>
 

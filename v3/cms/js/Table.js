@@ -35,10 +35,6 @@ Table.onAfterDelete=function(){
 }
 
 Table.onAfterAdd=function(){
-    Methods.iniCKEditor("#form"+this.className+"TextareaDescription",function(){
-        $("#divAddFormDialog").dialog("option","width",975);
-        $("#divAddFormDialog").dialog("option","position","center"); 
-    });
 }
 
 Table.getAddSaveObject=function()
@@ -47,7 +43,6 @@ Table.getAddSaveObject=function()
         oid:this.currentID,
         class_name:this.className,
         name:$("#form"+this.className+"InputName").val(),
-        description:Methods.getCKEditorData("#form"+this.className+"TextareaDescription"),
         Sharing_id:$("#form"+this.className+"SelectSharing").val()
     };
 };
@@ -56,6 +51,7 @@ Table.getFullSaveObject=function(){
     var obj = this.getAddSaveObject();
     obj["cols"] = Table.getSerializedColumns();
     obj["rows"] = Table.getRows();
+    obj["description"]=Methods.getCKEditorData("#form"+this.className+"TextareaDescription");
     if($("#form"+this.className+"SelectOwner").length==1) obj["Owner_id"]=$("#form"+this.className+"SelectOwner").val();
     
     return obj;
@@ -1026,7 +1022,7 @@ Table.uiChangeHTML=function(obj,field){
         title:dictionary["s36"],
         resizable:false,
         modal:true,
-        width:800,
+        width:840,
         open:function(){
             $('.ui-widget-overlay').css('position', 'fixed');
         },

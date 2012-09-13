@@ -84,9 +84,9 @@ if ($oid != 0) {
         });
     </script>
 
-    <div class="padding ui-widget-content ui-corner-all margin">
+    <fieldset class="padding ui-widget-content ui-corner-all margin">
+        <legend class=""><b><?= $caption ?></b></legend>
         <table>
-            <caption class="ui-widget-header"><?= $caption ?></caption>
             <tr>
                 <td class="noWrap horizontalPadding tdFormLabel">* <?= Language::string(70) ?>:</td>
                 <td><span class="tooltip spanIcon ui-icon ui-icon-help" title="<?= Language::string(159) ?>"></span></td>
@@ -133,61 +133,69 @@ if ($oid != 0) {
                 </tr>
             <?php } ?>
 
-            <tr>
-                <td colspan="3"><hr/></td>
-            </tr>
-            <tr>
-                <td colspan="3" id="form<?= $class_name ?>RightsList" align="center">
-                    <div class="margin" align="center"><button id="btnExpand<?= $class_name ?>RightsListExpandable" class="btnExpand fullWidth" onclick="Methods.toggleExpand('#div<?= $class_name ?>RightsListExpandable', this)"><?= Language::string(162) ?></button></div>
-                    <div id="div<?= $class_name ?>RightsListExpandable">
-                        <table>
-                            <thead>
-                                <tr>
-                                    <th class="noWrap ui-widget-header"><?= Language::string(163) ?></th>
-                                    <th class="noWrap ui-widget-header"><?= Language::string(164) ?></th>
-                                    <th class="noWrap ui-widget-header"><?= Language::string(165) ?></th>
-                                    <th class="noWrap ui-widget-header"><?= Language::string(166) ?></th>
-                                </tr>
-                            </thead>
-                            <tbody>
-                                <?php
-                                $modules = DS_Module::get_all("`name` ASC");
-                                foreach ($modules as $module) {
-                                    ?>
-                                    <tr>
-                                        <td class="noWrap ui-widget-content"><?= $module->name ?></td>
-                                        <td class="noWrap ui-widget-content">
-                                            <select class="fullWidth ui-widget-content ui-corner-all form<?= $class_name ?>ModuleRights" id="form<?= $class_name ?>ModuleRights_r_<?= $module->id ?>">
-                                                <?php foreach (DS_Right::get_all() as $right) {
-                                                    ?>
-                                                    <option value="<?= $right->id ?>" <?= ($obj != null && $obj->get_rights_by_module($module->id)->read == $right->id ? "selected" : "") ?> ><?= $right->get_name() ?></option>
-                                                <?php } ?>
-                                            </select>
-                                        </td> 
-                                        <td class="noWrap ui-widget-content">
-                                            <select class="fullWidth ui-widget-content ui-corner-all form<?= $class_name ?>ModuleRights" id="form<?= $class_name ?>ModuleRights_w_<?= $module->id ?>">
-                                                <?php foreach (DS_Right::get_all() as $right) {
-                                                    ?>
-                                                    <option value="<?= $right->id ?>" <?= ($obj != null && $obj->get_rights_by_module($module->id)->write == $right->id ? "selected" : "") ?> ><?= $right->get_name() ?></option>
-                                                <?php } ?>
-                                            </select>
-                                        </td>
-                                        <td class="noWrap ui-widget-content">
-                                            <input type="checkbox" class="form<?= $class_name ?>ModuleRights" id="form<?= $class_name ?>ModuleRights_o_<?= $module->id ?>" <?= $obj->get_rights_by_module($module->id)->ownership == 1 ? "checked" : "" ?>>
-                                        </td>
-                                    </tr>
-                                <?php } ?>
-                            </tbody>
-                        </table>
-                    </div>
-                </td>
-            </tr>
-            <tr>
-                <td colspan="3" align="center">
-                    <?= $buttons ?>
-                </td>
-            </tr>
         </table>
+    </fieldset>
+
+    <?php
+    if ($oid != -1) {
+        ?>
+        <fieldset class="padding ui-widget-content ui-corner-all margin">
+            <legend>
+                <table>
+                    <tr>
+                        <td><span class="tooltip spanIcon ui-icon ui-icon-help" title="<?= Language::string(509) ?>"></span></td>
+                        <td class=""><b><?= Language::string(162) ?></b></td>
+                    </tr>
+                </table>
+            </legend>
+            <div id="div<?= $class_name ?>RightsListExpandable">
+                <table class="fullWidth">
+                    <thead>
+                        <tr>
+                            <th class="noWrap ui-widget-header"><?= Language::string(163) ?></th>
+                            <th class="noWrap ui-widget-header"><?= Language::string(164) ?></th>
+                            <th class="noWrap ui-widget-header"><?= Language::string(165) ?></th>
+                            <th class="noWrap ui-widget-header"><?= Language::string(166) ?></th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <?php
+                        $modules = DS_Module::get_all("`name` ASC");
+                        foreach ($modules as $module) {
+                            ?>
+                            <tr>
+                                <td class="noWrap ui-widget-content"><?= $module->name ?></td>
+                                <td class="noWrap ui-widget-content">
+                                    <select class="fullWidth ui-widget-content ui-corner-all form<?= $class_name ?>ModuleRights" id="form<?= $class_name ?>ModuleRights_r_<?= $module->id ?>">
+                                        <?php foreach (DS_Right::get_all() as $right) {
+                                            ?>
+                                            <option value="<?= $right->id ?>" <?= ($obj != null && $obj->get_rights_by_module($module->id)->read == $right->id ? "selected" : "") ?> ><?= $right->get_name() ?></option>
+                                        <?php } ?>
+                                    </select>
+                                </td> 
+                                <td class="noWrap ui-widget-content">
+                                    <select class="fullWidth ui-widget-content ui-corner-all form<?= $class_name ?>ModuleRights" id="form<?= $class_name ?>ModuleRights_w_<?= $module->id ?>">
+                                        <?php foreach (DS_Right::get_all() as $right) {
+                                            ?>
+                                            <option value="<?= $right->id ?>" <?= ($obj != null && $obj->get_rights_by_module($module->id)->write == $right->id ? "selected" : "") ?> ><?= $right->get_name() ?></option>
+                                        <?php } ?>
+                                    </select>
+                                </td>
+                                <td class="noWrap ui-widget-content">
+                                    <input type="checkbox" class="form<?= $class_name ?>ModuleRights" id="form<?= $class_name ?>ModuleRights_o_<?= $module->id ?>" <?= $obj->get_rights_by_module($module->id)->ownership == 1 ? "checked" : "" ?>>
+                                </td>
+                            </tr>
+                        <?php } ?>
+                    </tbody>
+                </table>
+            </div>
+        </fieldset>
+        <?php
+    }
+    ?>
+    <div align="center">
+        <?= $buttons ?>
+    </td>
     </div>
     <?php
     if ($oid != -1) {

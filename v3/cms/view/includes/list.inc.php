@@ -18,15 +18,13 @@
   Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA.
  */
 
-if (!isset($ini))
-{
+if (!isset($ini)) {
     require_once'../../Ini.php';
     $ini = new Ini();
     $logged_user = User::get_logged_user();
 }
 
-if ($logged_user == null)
-{
+if ($logged_user == null) {
     echo "<script>location.reload();</script>";
     die(Language::string(278));
 }
@@ -34,26 +32,28 @@ $writeable = $logged_user->is_module_writeable($class_name);
 
 $cols = $class_name::get_list_columns();
 $fields_schema = "";
-foreach ($cols as $col)
-{
-    if(!$col["show"]) continue;
-    if ($fields_schema != "") $fields_schema.=",";
-    else $fields_schema.="{";
+foreach ($cols as $col) {
+    if (!$col["show"])
+        continue;
+    if ($fields_schema != "")
+        $fields_schema.=",";
+    else
+        $fields_schema.="{";
     $fields_schema.=sprintf("'%s': { type: '%s'}", $col["property"], $col["type"]);
 }
 $fields_schema.="}";
 
 $columns_def = "[";
-foreach ($cols as $col)
-{
-    if(!$col["show"]) continue;
+foreach ($cols as $col) {
+    if (!$col["show"])
+        continue;
     $columns_def.="{";
     if (array_key_exists("width", $col))
-            $columns_def.=sprintf("width: %s,", $col["width"]);
+        $columns_def.=sprintf("width: %s,", $col["width"]);
     if (array_key_exists("format", $col))
-            $columns_def.=sprintf("format: \"%s\",", $col["format"]);
+        $columns_def.=sprintf("format: \"%s\",", $col["format"]);
     if (array_key_exists("template", $col))
-            $columns_def.=sprintf("'template': \"%s\",", $col["template"]);
+        $columns_def.=sprintf("'template': \"%s\",", $col["template"]);
     $columns_def.=sprintf("title: \"%s\",", $col["name"]);
     $columns_def.=sprintf("field: \"%s\",", $col["property"]);
     $columns_def.=sprintf("filterable: %s,", $col["searchable"] ? "true" : "false");
@@ -65,8 +65,7 @@ foreach ($cols as $col)
 
 $action_template = "#if(editable) {#<span style='display:inline-block;' class='spanIcon tooltip ui-icon ui-icon-pencil' onclick='$class_name.uiEdit(" . '${ id }' . ")' title='" . Language::string(203) . "'></span>#}#";
 $action_template.="#if(editable) {#<span style='display:inline-block;' class='spanIcon tooltip ui-icon ui-icon-trash' onclick='$class_name.uiDelete(" . '${ id }' . ")' title='" . Language::string(204) . "'></span>#}#";
-if ($class_name::$exportable)
-{
+if ($class_name::$exportable) {
     $action_template.="<span style='display:inline-block;' class='spanIcon tooltip ui-icon ui-icon-arrowthickstop-1-n' onclick='$class_name.uiExport(" . '${ id }' . ")' title='" . Language::string(265) . "'></span>";
     $action_template.="<span style='display:inline-block;' class='spanIcon tooltip ui-icon ui-icon-gear' onclick='$class_name.uiUpload(" . '${ id }' . ")' title='" . Language::string(375) . "'></span>";
 }
@@ -95,62 +94,66 @@ $columns_def.="]";
             //toolbar: kendo.template($("#script<?= $class_name ?>ToolbarTemplate").html()),
             toolbar: [
                 { name: "add", template: '<button class="btnAdd" onclick="<?= $class_name ?>.uiAdd()"><?= Language::string(205) ?></button>'}
-                <?php if($class_name::$exportable) { echo ","; ?>
-                { name: "import", template: '<button class="btnImport" onclick="<?= $class_name ?>.uiImport()"><?= Language::string(266) ?></button>' },
-                { name: "download", template: '<button class="btnDownload" onclick="<?= $class_name ?>.uiDownload()"><?= Language::string(374) ?></button>' }
-                <?php } ?>
-            ],
-            dataSource: {
-                transport:{
-                    read: {
-                        url:"query/get_object_list.php?class_name=<?= $class_name ?>",
-                        dataType:"json"
-                    }
-                },
-                schema:{
-                    model:{
-                        fields:<?= $fields_schema ?>
-                    }
-                },
-                pageSize:<?= $class_name ?>.listLength
-            },
-            //scrollable: false,
-            filterable:{
-                messages: {
-                    info: dictionary["s340"],
-                    filter: dictionary["s341"],
-                    clear: dictionary["s342"]
-                },
-                operators: {
-                    string: {
-                        contains: dictionary["s344"],
-                        eq: dictionary["s222"],
-                        neq: dictionary["s221"],
-                        startswith: dictionary["s343"],
-                        endswith: dictionary["s345"]
-                    },
-                    number: {
-                        eq: dictionary["s222"],
-                        neq: dictionary["s221"],
-                        gte: dictionary["s224"],
-                        gt: dictionary["s223"],
-                        lte: dictionary["s226"],
-                        lt: dictionary["s225"]
-                    }
-                }
-            },
-            sortable:true,
-            pageable:true,
-            groupable:true,
-            scrollable:false,
-            columns:<?= $columns_def ?>
-        });
+<?php if ($class_name::$exportable) {
+    echo ","; ?>
+                                    { name: "import", template: '<button class="btnImport" onclick="<?= $class_name ?>.uiImport()"><?= Language::string(266) ?></button>' },
+                                    { name: "download", template: '<button class="btnDownload" onclick="<?= $class_name ?>.uiDownload()"><?= Language::string(374) ?></button>' }
+<?php } ?>
+                            ],
+                            dataSource: {
+                                transport:{
+                                    read: {
+                                        url:"query/get_object_list.php?class_name=<?= $class_name ?>",
+                                        dataType:"json"
+                                    }
+                                },
+                                schema:{
+                                    model:{
+                                        fields:<?= $fields_schema ?>
+                                    }
+                                },
+                                pageSize:<?= $class_name ?>.listLength
+                            },
+                            //scrollable: false,
+                            filterable:{
+                                messages: {
+                                    info: dictionary["s340"],
+                                    filter: dictionary["s341"],
+                                    clear: dictionary["s342"]
+                                },
+                                operators: {
+                                    string: {
+                                        contains: dictionary["s344"],
+                                        eq: dictionary["s222"],
+                                        neq: dictionary["s221"],
+                                        startswith: dictionary["s343"],
+                                        endswith: dictionary["s345"]
+                                    },
+                                    number: {
+                                        eq: dictionary["s222"],
+                                        neq: dictionary["s221"],
+                                        gte: dictionary["s224"],
+                                        gt: dictionary["s223"],
+                                        lte: dictionary["s226"],
+                                        lt: dictionary["s225"]
+                                    }
+                                }
+                            },
+                            sortable:true,
+                            pageable:true,
+                            groupable:true,
+                            scrollable:false,
+                            columns:<?= $columns_def ?>
+                        });
             
-        Methods.iniIconButton(".btnAdd", "plus");
-        Methods.iniIconButton(".btnImport","arrowthickstop-1-s");
-        Methods.iniIconButton(".btnDownload","gear");
-    });
+                        Methods.iniIconButton(".btnAdd", "plus");
+                        Methods.iniIconButton(".btnImport","arrowthickstop-1-s");
+                        Methods.iniIconButton(".btnDownload","gear");
+                    });
 </script>
 
-<div id="div<?= $class_name ?>Grid" class="margin grid">
-</div>
+<fieldset class="padding ui-widget-content ui-corner-all margin">
+    <legend class=""><b><?= Language::string(199) ?></b></legend>
+    <div id="div<?= $class_name ?>Grid" class="margin grid">
+    </div>
+</fieldset>

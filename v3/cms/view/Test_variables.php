@@ -76,115 +76,125 @@ else {
     });
 </script>
 
-<table class="fullWidth">
-    <tr>
-        <td style="width:50%;" valign="top" align="center">
-            <div class="ui-widget-content">
-                <div class="ui-widget-header" align="center"><?= Language::string(106) ?>:</div>
-                <div class="div<?= $class_name ?>Parameters">
-                    <?php
-                    if (count($parameters) > 0) {
-                        ?>
-                        <table class="fullWidth table<?=$class_name?>Parameters">
-                            <?php
-                        }
-                        foreach ($parameters as $param) {
-                            ?>
-                            <tr>
-                                <td>
-                                    <span class="spanIcon tooltipTestLogic ui-icon ui-icon-document-b" onclick="Test.uiEditVariableDescription($(this).next())" title="<?= Language::string(107) ?>"></span>
-                                    <textarea class="notVisible"><?= $param->description ?></textarea>
-                                </td>
-                                <td class="fullWidth">
-                                    <input onchange="Test.uiVarNameChanged($(this))" type="text" class="ui-state-focus comboboxVars comboboxVarsParameter ui-widget-content ui-corner-all fullWidth" value="<?= htmlspecialchars($param->name, ENT_QUOTES) ?>" />
-                                </td>
-                            </tr>
-                            <?php
-                        }
+<fieldset class="padding ui-widget-content ui-corner-all margin">
+    <legend>
+        <table>
+            <tr>
+                <td><span class="tooltip spanIcon ui-icon ui-icon-help" title="<?= Language::string(494) ?>"></span></td>
+                <td class=""><b><?= Language::string(403) ?></b></td>
+            </tr>
+        </table>
+    </legend>
+    <table class="fullWidth">
+        <tr>
+            <td style="width:50%;" valign="top" align="center">
+                <div class="ui-widget-content">
+                    <div class="ui-widget-header" align="center"><?= Language::string(106) ?>:</div>
+                    <div class="div<?= $class_name ?>Parameters">
+                        <?php
                         if (count($parameters) > 0) {
                             ?>
-                        </table>
-                        <?php
-                    } else {
-                        ?>
-                        <div class="ui-state-error padding margin" align="center"><?= Language::string(108) ?></div>
-                        <?php
-                    }
-                    ?>
-                    <div class="notVisible">
-                        <?php
-                        foreach ($parameters as $param) {
+                            <table class="fullWidth table<?= $class_name ?>Parameters">
+                                <?php
+                            }
+                            foreach ($parameters as $param) {
+                                ?>
+                                <tr>
+                                    <td>
+                                        <span class="spanIcon tooltipTestLogic ui-icon ui-icon-document-b" onclick="Test.uiEditVariableDescription($(this).next())" title="<?= Language::string(107) ?>"></span>
+                                        <textarea class="notVisible"><?= $param->description ?></textarea>
+                                    </td>
+                                    <td class="fullWidth">
+                                        <input onchange="Test.uiVarNameChanged($(this))" type="text" class="ui-state-focus comboboxVars comboboxVarsParameter ui-widget-content ui-corner-all fullWidth" value="<?= htmlspecialchars($param->name, ENT_QUOTES) ?>" />
+                                    </td>
+                                </tr>
+                                <?php
+                            }
+                            if (count($parameters) > 0) {
+                                ?>
+                            </table>
+                            <?php
+                        } else {
                             ?>
-                            <input class="inputTestParameterVar" type="hidden" value="<?= $param->name ?>" />
+                            <div class="ui-state-error padding margin" align="center"><?= Language::string(108) ?></div>
                             <?php
                         }
                         ?>
-                    </div>
-                    <table>
-                        <tr>
-                            <td><span class="spanIcon ui-icon ui-icon-help tooltip" title="<?= Language::string(405) ?>"></span></td>
-                            <td><span class="spanIcon tooltip ui-icon ui-icon-plus" onclick="Test.uiAddParameter()" title="<?= Language::string(109) ?>"></span></td>
-                            <td><?php
-                        if (count($parameters) > 0) {
-                            ?><span class="spanIcon tooltip ui-icon ui-icon-minus" onclick="Test.uiRemoveParameter()" title="<?= Language::string(110) ?>"></span><?php } ?></td>
-                        </tr>
-                    </table>
-                </div>
-            </div>
-        </td>
-        <td style="width:50%;" valign="top" align="center">
-            <div class="ui-widget-content">
-                <div class="ui-widget-header" align="center"><?= Language::string(113) ?>:</div>
-                <div class="div<?= $class_name ?>Returns">
-                    <?php
-                    if (count($returns) > 0) {
-                        ?>
-                        <table class="fullWidth table<?=$class_name?>Returns">
+                        <div class="notVisible">
                             <?php
-                        }
-                        foreach ($returns as $ret) {
+                            foreach ($parameters as $param) {
+                                ?>
+                                <input class="inputTestParameterVar" type="hidden" value="<?= $param->name ?>" />
+                                <?php
+                            }
                             ?>
+                        </div>
+                        <table>
                             <tr>
-                                <td>
-                                    <span class="spanIcon tooltipTestLogic ui-icon ui-icon-document-b" onclick="Test.uiEditVariableDescription($(this).next())" title="<?= Language::string(107) ?>"></span>
-                                    <textarea class="notVisible"><?= $ret->description ?></textarea>
-                                </td>
-                                <td class="fullWidth">
-                                    <input onchange="Test.uiVarNameChanged($(this))" type="text" class="comboboxVars comboboxVarsReturn ui-widget-content ui-corner-all fullWidth" value="<?= htmlspecialchars($ret->name, ENT_QUOTES) ?>" />
-                                </td>
+                                <td><span class="spanIcon ui-icon ui-icon-help tooltip" title="<?= Language::string(405) ?>"></span></td>
+                                <td><span class="spanIcon tooltip ui-icon ui-icon-plus" onclick="Test.uiAddParameter()" title="<?= Language::string(109) ?>"></span></td>
+                                <td><?php
+                            if (count($parameters) > 0) {
+                                ?><span class="spanIcon tooltip ui-icon ui-icon-minus" onclick="Test.uiRemoveParameter()" title="<?= Language::string(110) ?>"></span><?php } ?></td>
                             </tr>
-                            <?php
-                        }
-                        if (count($returns) > 0) {
-                            ?>
                         </table>
+                    </div>
+                </div>
+            </td>
+            <td style="width:50%;" valign="top" align="center">
+                <div class="ui-widget-content">
+                    <div class="ui-widget-header" align="center"><?= Language::string(113) ?>:</div>
+                    <div class="div<?= $class_name ?>Returns">
                         <?php
-                    } else {
-                        ?>
-                        <div class="ui-state-error padding margin" align="center"><?= Language::string(114) ?></div>
-                        <?php
-                    }
-                    ?>
-                    <div class="notVisible">
-                        <?php
-                        foreach ($returns as $ret) {
+                        if (count($returns) > 0) {
                             ?>
-                            <input class="inputTestReturnVar" type="hidden" value="<?= $ret->name ?>" />
+                            <table class="fullWidth table<?= $class_name ?>Returns">
+                                <?php
+                            }
+                            foreach ($returns as $ret) {
+                                ?>
+                                <tr>
+                                    <td>
+                                        <span class="spanIcon tooltipTestLogic ui-icon ui-icon-document-b" onclick="Test.uiEditVariableDescription($(this).next())" title="<?= Language::string(107) ?>"></span>
+                                        <textarea class="notVisible"><?= $ret->description ?></textarea>
+                                    </td>
+                                    <td class="fullWidth">
+                                        <input onchange="Test.uiVarNameChanged($(this))" type="text" class="comboboxVars comboboxVarsReturn ui-widget-content ui-corner-all fullWidth" value="<?= htmlspecialchars($ret->name, ENT_QUOTES) ?>" />
+                                    </td>
+                                </tr>
+                                <?php
+                            }
+                            if (count($returns) > 0) {
+                                ?>
+                            </table>
+                            <?php
+                        } else {
+                            ?>
+                            <div class="ui-state-error padding margin" align="center"><?= Language::string(114) ?></div>
                             <?php
                         }
                         ?>
+                        <div class="notVisible">
+                            <?php
+                            foreach ($returns as $ret) {
+                                ?>
+                                <input class="inputTestReturnVar" type="hidden" value="<?= $ret->name ?>" />
+                                <?php
+                            }
+                            ?>
+                        </div>
+                        <table>
+                            <tr>
+                                <td><span class="spanIcon ui-icon ui-icon-help tooltip" title="<?= Language::string(406) ?>"></span></td>
+                                <td><span class="spanIcon tooltip ui-icon ui-icon-plus" onclick="Test.uiAddReturn()" title="<?= Language::string(115) ?>"></span></td>
+                                <td><?php
+                            if (count($returns) > 0) {
+                                ?><span class="spanIcon tooltip ui-icon ui-icon-minus" onclick="Test.uiRemoveReturn()" title="<?= Language::string(116) ?>"></span><?php } ?></td>
+                            </tr>
+                        </table>
                     </div>
-                    <table>
-                        <tr>
-                            <td><span class="spanIcon ui-icon ui-icon-help tooltip" title="<?= Language::string(406) ?>"></span></td>
-                            <td><span class="spanIcon tooltip ui-icon ui-icon-plus" onclick="Test.uiAddReturn()" title="<?= Language::string(115) ?>"></span></td>
-                            <td><?php
-                        if (count($returns) > 0) {
-                            ?><span class="spanIcon tooltip ui-icon ui-icon-minus" onclick="Test.uiRemoveReturn()" title="<?= Language::string(116) ?>"></span><?php } ?></td>
-                        </tr>
-                    </table>
                 </div>
-            </div>
-        </td>
-    </tr>
-</table>
+            </td>
+        </tr>
+    </table>
+</fieldset>

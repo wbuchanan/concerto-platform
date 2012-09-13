@@ -80,23 +80,23 @@ if ($oid != 0) {
         <?php
     }
     ?>
-            Template.formCodeMirror = Methods.iniCodeMirror("form<?= $class_name ?>TextareaHead", "htmlmixed", false,"845px");
-            Methods.iniCKEditor("#form<?= $class_name ?>TextareaHTML",function(){
-                try{
-                    $("#divAddFormDialog").dialog("option","position","center"); 
-                } catch(err) {
-                }
-            });
     <?php if ($oid != -1) { ?>
+                Methods.iniCKEditor("#form<?= $class_name ?>TextareaHTML",function(){
+                    try{
+                        $("#divAddFormDialog").dialog("option","position","center"); 
+                    } catch(err) {
+                    }
+                });
                 Methods.iniCKEditor("#form<?= $class_name ?>TextareaDescription");
+                Template.formCodeMirror = Methods.iniCodeMirror("form<?= $class_name ?>TextareaHead", "htmlmixed", false,"845px");
     <?php } ?>
             Methods.iniTooltips();
         });
     </script>
 
-    <div class="padding ui-widget-content ui-corner-all margin">
+    <fieldset class="padding ui-widget-content ui-corner-all margin">
+        <legend class=""><b><?= $caption ?></b></legend>
         <table>
-            <caption class="ui-widget-header"><?= $caption ?></caption>
             <tr>
                 <td class="noWrap horizontalPadding tdFormLabel">* <?= Language::string(70) ?>:</td>
                 <td><span class="tooltip spanIcon ui-icon ui-icon-help" title="<?= Language::string(135) ?>"></span></td>
@@ -106,34 +106,20 @@ if ($oid != 0) {
                     </div>
                 </td>
             </tr>
-            <tr>
-                <td class="noWrap horizontalPadding tdFormLabel"><?= Language::string(97) ?>:</td>
-                <td><span class="tooltip spanIcon ui-icon ui-icon-help" title="<?= Language::string(98) ?>"></span></td>
-                <td>
-                    <div class="horizontalMargin" align="center"><button id="btnExpand<?= $class_name ?>Description" class="btnExpand fullWidth" onclick="Methods.toggleExpand('#form<?= $class_name ?>DivDescription', this)"><?= Language::string(97) ?></button></div>
-                    <div class="horizontalMargin" align="center" id="form<?= $class_name ?>DivDescription" style="display:none;">
-                        <textarea id="form<?= $class_name ?>TextareaDescription" name="form<?= $class_name ?>TextareaDescription" class="fullWidth ui-widget-content ui-corner-all"><?= htmlspecialchars(stripslashes($obj->description)) ?></textarea>
-                    </div>
-                </td>
-            </tr>
-            <tr>
-                <td class="noWrap horizontalPadding tdFormLabel"><?= Language::string(407) ?>:</td>
-                <td><span class="tooltip spanIcon ui-icon ui-icon-help" title="<?= Language::string(408) ?>"></span></td>
-                <td>
-                    <div class="horizontalMargin">
-                        <textarea id="form<?= $class_name ?>TextareaHead" name="form<?= $class_name ?>TextareaHead"><?= htmlspecialchars(stripslashes($obj->head)) ?></textarea>
-                    </div>
-                </td>
-            </tr>
-            <tr>
-                <td class="noWrap horizontalPadding tdFormLabel"><?= Language::string(18) ?>:</td>
-                <td><span class="tooltip spanIcon ui-icon ui-icon-help" title="<?= Language::string(136) ?>"></span></td>
-                <td>
-                    <div class="horizontalMargin" align="center">
-                        <textarea id="form<?= $class_name ?>TextareaHTML" name="form<?= $class_name ?>TextareaHTML"><?= htmlspecialchars(stripslashes($obj->HTML)) ?></textarea>
-                    </div>
-                </td>
-            </tr>
+            <?php
+            if ($oid != -1) {
+                ?>
+                <tr>
+                    <td class="noWrap horizontalPadding tdFormLabel"><?= Language::string(97) ?>:</td>
+                    <td><span class="tooltip spanIcon ui-icon ui-icon-help" title="<?= Language::string(98) ?>"></span></td>
+                    <td>
+                        <div class="horizontalMargin" align="center"><button id="btnExpand<?= $class_name ?>Description" class="btnExpand fullWidth" onclick="Methods.toggleExpand('#form<?= $class_name ?>DivDescription', this)"><?= Language::string(97) ?></button></div>
+                        <div class="horizontalMargin" align="center" id="form<?= $class_name ?>DivDescription" style="display:none;">
+                            <textarea id="form<?= $class_name ?>TextareaDescription" name="form<?= $class_name ?>TextareaDescription" class="fullWidth ui-widget-content ui-corner-all"><?= htmlspecialchars(stripslashes($obj->description)) ?></textarea>
+                        </div>
+                    </td>
+                </tr>
+            <?php } ?>
             <tr>
                 <td class="noWrap horizontalPadding tdFormLabel"><?= Language::string(72) ?>:</td>
                 <td><span class="tooltip spanIcon ui-icon ui-icon-help" title="<?= Language::string(137) ?>"></span></td>
@@ -171,13 +157,48 @@ if ($oid != 0) {
                     </td>
                 </tr>
             <?php } ?>
-
-            <tr>
-                <td colspan="3" align="center">
-                    <?= $buttons ?>
-                </td>
-            </tr>
         </table>
+    </fieldset>
+
+    <?php
+    if ($oid != -1) {
+        ?>
+        <fieldset class="padding ui-widget-content ui-corner-all margin">
+            <legend>
+                <table>
+                    <tr>
+                        <td><span class="tooltip spanIcon ui-icon ui-icon-help" title="<?= Language::string(501) ?>"></span></td>
+                        <td class=""><b><?= Language::string(491) ?></b></td>
+                    </tr>
+                </table>
+            </legend>
+            <table>
+                <tr>
+                    <td class="noWrap horizontalPadding tdFormLabel"><?= Language::string(407) ?>:</td>
+                    <td><span class="tooltip spanIcon ui-icon ui-icon-help" title="<?= Language::string(408) ?>"></span></td>
+                    <td>
+                        <div class="horizontalMargin">
+                            <textarea id="form<?= $class_name ?>TextareaHead" name="form<?= $class_name ?>TextareaHead"><?= htmlspecialchars(stripslashes($obj->head)) ?></textarea>
+                        </div>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="noWrap horizontalPadding tdFormLabel"><?= Language::string(18) ?>:</td>
+                    <td><span class="tooltip spanIcon ui-icon ui-icon-help" title="<?= Language::string(136) ?>"></span></td>
+                    <td>
+                        <div class="horizontalMargin" align="center">
+                            <textarea id="form<?= $class_name ?>TextareaHTML" name="form<?= $class_name ?>TextareaHTML"><?= htmlspecialchars(stripslashes($obj->HTML)) ?></textarea>
+                        </div>
+                    </td>
+                </tr>
+            </table>
+        </fieldset>
+        <?php
+    }
+    ?>
+
+    <div align="center">
+        <?= $buttons ?>
     </div>
     <?php
     if ($oid != -1) {

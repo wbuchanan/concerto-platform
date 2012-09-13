@@ -84,9 +84,9 @@ if ($oid != 0) {
         });
     </script>
 
-    <div class="padding ui-widget-content ui-corner-all margin">
+    <fieldset class="padding ui-widget-content ui-corner-all margin">
+        <legend class=""><b><?= $caption ?></b></legend>
         <table>
-            <caption class="ui-widget-header"><?= $caption ?></caption>
             <tr>
                 <td class="noWrap horizontalPadding tdFormLabel">* <?= Language::string(173) ?>:</td>
                 <td><span class="tooltip spanIcon ui-icon ui-icon-help" title="<?= Language::string(178) ?>"></span></td>
@@ -214,12 +214,10 @@ if ($oid != 0) {
                     </div>
                 </td>
             </tr>
-            <tr>
-                <td colspan="3" align="center">
-                    <?= $buttons ?>
-                </td>
-            </tr>
         </table>
+    </fieldset>
+    <div align="center">
+        <?= $buttons ?>
     </div>
     <?php
     if ($oid != -1) {

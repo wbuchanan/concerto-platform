@@ -36,11 +36,6 @@ Template.onAfterDelete=function(){
 }
 
 Template.onAfterAdd=function(){
-    Methods.iniCKEditor("#form"+this.className+"TextareaDescription",function(){
-        $("#divAddFormDialog").dialog("option","width",990);
-        $("#divAddFormDialog").dialog("option","position","center"); 
-    });
-    if(Template.formCodeMirror!=null) Template.formCodeMirror.refresh();
 }
 
 Template.formCodeMirror=null;
@@ -52,13 +47,13 @@ Template.getAddSaveObject=function()
         name:$("#form"+this.className+"InputName").val(),
         HTML:Methods.getCKEditorData("#form"+this.className+"TextareaHTML"),
         head:$("#form"+this.className+"TextareaHead").val(),
-        description:Methods.getCKEditorData("#form"+this.className+"TextareaDescription"),
         Sharing_id:$("#form"+this.className+"SelectSharing").val()
     };
 };
 
 Template.getFullSaveObject = function(){
     var obj = this.getAddSaveObject();
+    obj["description"]=Methods.getCKEditorData("#form"+this.className+"TextareaDescription");
     if($("#form"+this.className+"SelectOwner").length==1) obj["Owner_id"]=$("#form"+this.className+"SelectOwner").val();
     return obj;
 }

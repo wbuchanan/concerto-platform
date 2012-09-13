@@ -50,7 +50,7 @@ if ($readable)
         <?php } ?>
 
         <?php if ($logged_user->is_module_writeable($class_name)) { ?>
-        <div align="center" id="div<?= $class_name ?>Form" class="table" style="display:none;">
+        <div align="center" id="div<?= $class_name ?>Form" class="table fullWidth" style="display:none;">
             <?php include Ini::$path_internal . 'cms/view/' . $class_name . '_form.php'; ?>
         </div>
         <?php } ?>

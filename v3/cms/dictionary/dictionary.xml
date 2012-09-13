@@ -62,7 +62,7 @@ Note: You can add new languages by inserting "<new_language>string translated in
             <cn>修改描述</cn>
             <fr>changement de description</fr>
             <bg>промяна на описанието</bg>
-            <en>beschrijving wijzigen</en>
+            <nl>beschrijving wijzigen</nl>
         </string>
         <string id="4" js="1">
             <en>Concerto - confirmation</en>
@@ -1306,15 +1306,6 @@ Note: You can add new languages by inserting "<new_language>string translated in
             <bg>тестовата логика е празна</bg>
             <nl>de testlogica is leeg</nl>
         </string>
-        <string id="146">
-            <en>choose section type</en>
-            <de>wähle Sektionstyp</de>
-            <pl>wybierz typ sekcji</pl>
-            <cn>选择章节类型</cn>
-            <fr>choisir un type de section</fr>
-            <bg>избери вида на секцията</bg>
-            <nl>kies sectietype</nl>
-        </string>
         <string id="147">
             <en>basic sections</en>
             <de>Grundlegende Sektionen</de>
@@ -2203,13 +2194,13 @@ Note: You can add new languages by inserting "<new_language>string translated in
             <nl>Nieuw object importeren</nl>
         </string>
         <string id="267">
-            <en>Select file to be exported</en>
-            <de>Wähle zu exportierende Datei aus</de>
+            <en>Select file with exported object</en>
+            <de></de>
             <pl>Wybierz plik z wyeksportowanym obiektem</pl>
-            <cn>选择导出文件</cn>
+            <cn></cn>
             <fr></fr>
-            <bg>Изберете файл за експортиране</bg>
-            <nl>Selecteer het te exporteren bestand</nl>
+            <bg></bg>
+            <nl></nl>
         </string>
         <string id="268" js="1">
             <en>Importing object</en>
@@ -4087,6 +4078,186 @@ Note: You can add new languages by inserting "<new_language>string translated in
             <en>Check if you want to make this test available to run by everyone.</en>
             <de></de>
             <pl>Zaznacz jeśli chcesz uczynić ten test dostępnym do uruchomienia przez wszystkich.</pl>
+            <cn></cn>
+            <fr></fr>
+            <bg></bg>
+            <nl></nl>
+        </string>
+        <string id="490">
+            <en>custom section input/output</en>
+            <de></de>
+            <pl>wejście/wyjście własnej sekcji</pl>
+            <cn></cn>
+            <fr></fr>
+            <bg></bg>
+            <nl></nl>
+        </string>
+        <string id="491">
+            <en>HTML source code</en>
+            <de></de>
+            <pl>Kod źródłowy HTML</pl>
+            <cn></cn>
+            <fr></fr>
+            <bg></bg>
+            <nl></nl>
+        </string>
+        <string id="492">
+            <en>variables</en>
+            <de></de>
+            <pl>zmienne</pl>
+            <cn></cn>
+            <fr></fr>
+            <bg></bg>
+            <nl></nl>
+        </string>
+        <string id="493">
+            <en>You can declare variables that are protected and can't be send from user side.</en>
+            <de></de>
+            <pl>Można zadeklarować tutaj zmienne, które są chronione i nie mogą zostać wysłane ze strony użytkownika.</pl>
+            <cn></cn>
+            <fr></fr>
+            <bg></bg>
+            <nl></nl>
+        </string>
+        <string id="494">
+            <en>You can declare input and output variables here, which can later be used in variable assignment when the test is nested.</en>
+            <de></de>
+            <pl>Można zadeklarować tutaj zmienne wejścia i wyjścia, które później mogą być użyte do przypisania zmiennych gdy test jest zagnieżdżony.</pl>
+            <cn></cn>
+            <fr></fr>
+            <bg></bg>
+            <nl></nl>
+        </string>
+        <string id="495">
+            <en>You can declare test logic here.</en>
+            <de></de>
+            <pl>Można zadeklarować tutaj logikę testu.</pl>
+            <cn></cn>
+            <fr></fr>
+            <bg></bg>
+            <nl></nl>
+        </string>
+        <string id="496">
+            <en>List of variables declared in test logic.</en>
+            <de></de>
+            <pl>Lista zmiennych zadeklarowanych w logice testu.</pl>
+            <cn></cn>
+            <fr></fr>
+            <bg></bg>
+            <nl></nl>
+        </string>
+        <string id="497" js="1">
+            <en>Online Library</en>
+            <de></de>
+            <pl>Biblioteka Online</pl>
+            <cn></cn>
+            <fr></fr>
+            <bg></bg>
+            <nl></nl>
+        </string>
+        <string id="498" js="1">
+            <en>Choose an object you want to download from Online Library.</en>
+            <de></de>
+            <pl>Wybierz obiekt, który chcesz pobrać z Biblioteki Online.</pl>
+            <cn></cn>
+            <fr></fr>
+            <bg></bg>
+            <nl></nl>
+        </string>
+        <string id="499">
+            <en>Describe object you have selected to upload to Online Library.</en>
+            <de></de>
+            <pl>Opisz obiekt, który wybrałeś do wysłania do Biblioteki Online.</pl>
+            <cn></cn>
+            <fr></fr>
+            <bg></bg>
+            <nl></nl>
+        </string>
+        <string id="500">
+            <en>You can declare input and output variables here, which can later be used in variable assignment when the custom section is included in test logic.</en>
+            <de></de>
+            <pl>Można zadeklarować tutaj zmienne wejścia i wyjścia, które później mogą być użyte do przypisania zmiennych gdy sekcja własna jest dołączona do logiki testu.</pl>
+            <cn></cn>
+            <fr></fr>
+            <bg></bg>
+            <nl></nl>
+        </string>
+        <string id="501">
+            <en>You can declare template HTML presentation properties here.</en>
+            <de></de>
+            <pl>Można tutaj zadeklarować właściwości prezentacji szablonu HTML.</pl>
+            <cn></cn>
+            <fr></fr>
+            <bg></bg>
+            <nl></nl>
+        </string>
+        <string id="502">
+            <en>You can declare table structure here.</en>
+            <de></de>
+            <pl>Można tutaj zadeklarować strukturę tabeli.</pl>
+            <cn></cn>
+            <fr></fr>
+            <bg></bg>
+            <nl></nl>
+        </string>
+        <string id="503">
+            <en>You can add/edit/delete table records here.</en>
+            <de></de>
+            <pl>Można tutaj dodać/zmienić/usunąć wpisy w tabeli.</pl>
+            <cn></cn>
+            <fr></fr>
+            <bg></bg>
+            <nl></nl>
+        </string>
+        <string id="504">
+            <en>CSV file properties</en>
+            <de></de>
+            <pl>właściwości pliku CSV</pl>
+            <cn></cn>
+            <fr></fr>
+            <bg></bg>
+            <nl></nl>
+        </string>
+        <string id="505">
+            <en>Declare properties of CSV file you want to import.</en>
+            <de></de>
+            <pl>Zadeklaruj właściwości pliku CSV, który chcesz zaimportować.</pl>
+            <cn></cn>
+            <fr></fr>
+            <bg></bg>
+            <nl></nl>
+        </string>
+        <string id="506">
+            <en>Declare properties of CSV file you want to export table to.</en>
+            <de></de>
+            <pl>Zadeklaruj właściwości pliku CSV do którego chcesz wyeksportować tabelę.</pl>
+            <cn></cn>
+            <fr></fr>
+            <bg></bg>
+            <nl></nl>
+        </string>
+        <string id="507">
+            <en>column properties</en>
+            <de></de>
+            <pl>właścwiości kolumny</pl>
+            <cn></cn>
+            <fr></fr>
+            <bg></bg>
+            <nl></nl>
+        </string>
+        <string id="508">
+            <en>Declare column properties.</en>
+            <de></de>
+            <pl>Zadeklaruj właścwiości kolumny.</pl>
+            <cn></cn>
+            <fr></fr>
+            <bg></bg>
+            <nl></nl>
+        </string>
+        <string id="509">
+            <en>Set user type priviliges.</en>
+            <de></de>
+            <pl>Ustaw przywileje typu użytkownika.</pl>
             <cn></cn>
             <fr></fr>
             <bg></bg>

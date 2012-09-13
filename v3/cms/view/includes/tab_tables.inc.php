@@ -18,25 +18,33 @@
   Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA.
  */
 
-if (!isset($ini))
-{
+if (!isset($ini)) {
     require_once'../../Ini.php';
     $ini = new Ini();
 }
 
 $logged_user = User::get_logged_user();
-if ($logged_user == null) die(Language::string(81));
+if ($logged_user == null)
+    die(Language::string(81));
 
 $class_name = "Table";
 $class_label = Language::string(85);
 $readable = $logged_user->is_module_accesible($class_name);
 $writeable = $logged_user->is_module_writeable($class_name);
 
-include Ini::$path_internal."cms/view/includes/tab.inc.php"; 
+include Ini::$path_internal . "cms/view/includes/tab.inc.php";
 ?>
 
 <div id="divTableDialogExportCSV" class="notVisible">
-    <div class="padding ui-widget-content ui-corner-all margin">
+    <fieldset class="padding ui-widget-content ui-corner-all margin">
+        <legend>
+            <table>
+                <tr>
+                    <td><span class="tooltip spanIcon ui-icon ui-icon-help" title="<?= Language::string(506) ?>"></span></td>
+                    <td class=""><b><?= Language::string(504) ?></b></td>
+                </tr>
+            </table>
+        </legend>
         <table>
             <tr>
                 <td class="noWrap horizontalPadding tdFormLabel"><?= Language::string(330) ?>:</td>
@@ -66,11 +74,19 @@ include Ini::$path_internal."cms/view/includes/tab.inc.php";
                 </td>
             </tr>
         </table>
-    </div>
+    </fieldset>
 </div>
 
 <div id="divTableDialogImportCSV" class="notVisible">
-    <div class="padding ui-widget-content ui-corner-all margin">
+    <fieldset class="padding ui-widget-content ui-corner-all margin">
+        <legend>
+            <table>
+                <tr>
+                    <td><span class="tooltip spanIcon ui-icon ui-icon-help" title="<?= Language::string(505) ?>"></span></td>
+                    <td class=""><b><?= Language::string(504) ?></b></td>
+                </tr>
+            </table>
+        </legend>
         <table>
             <tr>
                 <td class="noWrap horizontalPadding tdFormLabel"><?= Language::string(330) ?>:</td>
@@ -109,42 +125,38 @@ include Ini::$path_internal."cms/view/includes/tab.inc.php";
                 </td>
             </tr>
         </table>
-    </div>
+    </fieldset>
 </div>
 
-<div id="divTableDialogImport" class="notVisible">
-    <div class="padding ui-widget-content ui-corner-all margin">
-        <table>
-            <tr>
-                <td class="noWrap horizontalPadding tdFormLabel"><?= Language::string(86) ?>:</td>
-                <td><span class="tooltip spanIcon ui-icon ui-icon-help" title="<?= Language::string(267) ?>"></span></td>
-                <td class="fullWidth">
-                    <div class="horizontalMargin" align="center">
-                        <input id="fileTableImport" type="file" name="files[]" class="fullWidth ui-widget-content ui-corner-all" />
-                    </div>
-                </td>
-            </tr>
-        </table>
-    </div>
+<div id="div<?= $class_name ?>DialogImport" class="notVisible">
+    <fieldset class="padding ui-widget-content ui-corner-all margin">
+        <legend>
+            <table>
+                <tr>
+                    <td><span class="tooltip spanIcon ui-icon ui-icon-help" title="<?= Language::string(267) ?>"></span></td>
+                    <td class=""><b><?= Language::string(86) ?>:</b></td>
+                </tr>
+            </table>
+        </legend>
+        <input id="file<?= $class_name ?>Import" type="file" name="files[]" class="fullWidth ui-widget-content ui-corner-all" />
+    </fieldset>
 </div>
 
 <div id="div<?= $class_name ?>DialogImportMySQL" class="notVisible">
 </div>
 
 <div id="div<?= $class_name ?>DialogHTML" class="notVisible">
-    <div class="padding ui-widget-content ui-corner-all margin">
-        <table>
-            <tr>
-                <td class="noWrap horizontalPadding tdFormLabel"><?= Language::string(18) ?>:</td>
-                <td><span class="tooltip spanIcon ui-icon ui-icon-help" title="<?= Language::string(259) ?>"></span></td>
-                <td class="fullWidth">
-                    <div class="horizontalMargin">
-                        <textarea id="form<?= $class_name ?>TextareaHTML" name="form<?= $class_name ?>TextareaHTML" class="fullWidth ui-widget-content ui-corner-all">
+    <fieldset class="padding ui-widget-content ui-corner-all margin">
+        <legend>
+            <table>
+                <tr>
+                    <td><span class="tooltip spanIcon ui-icon ui-icon-help" title="<?= Language::string(259) ?>"></span></td>
+                    <td class=""><b><?= Language::string(18) ?>:</b></td>
+                </tr>
+            </table>
+        </legend>
+        <textarea id="form<?= $class_name ?>TextareaHTML" name="form<?= $class_name ?>TextareaHTML" class="fullWidth ui-widget-content ui-corner-all">
                                                                                                                         
-                        </textarea>
-                    </div>
-                </td>
-            </tr>
-        </table>
-    </div>
+        </textarea>
+    </fieldset>
 </div>

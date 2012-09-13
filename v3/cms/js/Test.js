@@ -55,10 +55,6 @@ Test.onAfterImport=function(){
 }
 
 Test.onAfterAdd=function(){
-    Methods.iniCKEditor("#form"+this.className+"TextareaDescription",function(){
-        $("#divAddFormDialog").dialog("option","width",975);
-        $("#divAddFormDialog").dialog("option","position","center"); 
-    });
 }
 
 Test.onAfterSave=function()
@@ -72,7 +68,6 @@ Test.getAddSaveObject=function()
         class_name:this.className,
         name:$("#form"+this.className+"InputName").val(),
         open:$("#form"+this.className+"CheckboxOpen").is(":checked")?1:0,
-        description:Methods.getCKEditorData("#form"+this.className+"TextareaDescription"),
         Sharing_id:$("#form"+this.className+"SelectSharing").val()
     };
 };
@@ -83,6 +78,7 @@ Test.getFullSaveObject = function() {
     obj["sections"] = Test.getSerializedSections();
     obj["parameters"]=Test.getSerializedParameterVariables();
     obj["returns"]=Test.getSerializedReturnVariables();
+    obj["description"]=Methods.getCKEditorData("#form"+this.className+"TextareaDescription");
     if($("#form"+this.className+"SelectOwner").length==1) obj["Owner_id"]=$("#form"+this.className+"SelectOwner").val();
     return obj;
 }
@@ -1297,7 +1293,7 @@ Test.uiEditVariableDescription=function(obj){
         title:dictionary["s3"],
         modal:true,
         resizable:false,
-        width:975,
+        width:840,
         create:function(){
             var thisDialog = $("#div"+Test.className+"DialogDescription");
             Methods.iniCKEditor($(this).find("textarea"),function(){

@@ -1,5 +1,4 @@
 <?php
-
 /*
   Concerto Platform - Online Adaptive Testing Platform
   Copyright (C) 2011-2012, The Psychometrics Centre, Cambridge University
@@ -19,14 +18,12 @@
   Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA.
  */
 
-if (!isset($ini))
-{
+if (!isset($ini)) {
     require_once'../../Ini.php';
     $ini = new Ini();
 }
 $logged_user = User::get_logged_user();
-if ($logged_user == null)
-{
+if ($logged_user == null) {
     echo "<script>location.reload();</script>";
     die(Language::string(278));
 }
@@ -34,13 +31,27 @@ if ($logged_user == null)
 $obj = $_POST['class_name']::from_mysql_id($_POST['oid']);
 
 if ($obj == null || !$logged_user->is_object_readable($obj))
-        die(Language::string(81));
+    die(Language::string(81));
 ?>
 
-<div class="padding ui-widget-content ui-corner-all margin">
+<script>
+    $(function(){
+        Methods.iniTooltips();
+    })
+</script>
+
+<fieldset class="padding ui-widget-content ui-corner-all margin">
+    <legend>
+        <table>
+            <tr>
+                <td><span class="tooltip spanIcon ui-icon ui-icon-help" title="<?= Language::string(499) ?>"></span></td>
+                <td class=""><b><?= Language::string(497) ?></b></td>
+            </tr>
+        </table>
+    </legend>
     <table>
         <tr>
-            <td class="noWrap horizontalPadding ui-widget-header"><?= Language::string(70) ?>:</td>
+            <td class="noWrap horizontalPadding tdFormLabel"><?= Language::string(70) ?>:</td>
             <td><span class="tooltip spanIcon ui-icon ui-icon-help" title="<?= Language::string(376) ?>"></span></td>
             <td class="fullWidth">
                 <div class="horizontalMargin" align="center">
@@ -49,7 +60,7 @@ if ($obj == null || !$logged_user->is_object_readable($obj))
             </td>
         </tr>
         <tr>
-            <td class="noWrap horizontalPadding ui-widget-header"><?= Language::string(97) ?>:</td>
+            <td class="noWrap horizontalPadding tdFormLabel"><?= Language::string(97) ?>:</td>
             <td><span class="tooltip spanIcon ui-icon ui-icon-help" title="<?= Language::string(377) ?>"></span></td>
             <td class="fullWidth">
                 <div class="horizontalMargin" align="center">
@@ -58,7 +69,7 @@ if ($obj == null || !$logged_user->is_object_readable($obj))
             </td>
         </tr>
         <tr>
-            <td class="noWrap horizontalPadding ui-widget-header"><?= Language::string(378) ?>:</td>
+            <td class="noWrap horizontalPadding tdFormLabel"><?= Language::string(378) ?>:</td>
             <td><span class="tooltip spanIcon ui-icon ui-icon-help" title="<?= Language::string(380) ?>"></span></td>
             <td class="fullWidth">
                 <div class="horizontalMargin" align="center">
@@ -67,7 +78,7 @@ if ($obj == null || !$logged_user->is_object_readable($obj))
             </td>
         </tr>
         <tr>
-            <td class="noWrap horizontalPadding ui-widget-header"><?= Language::string(379) ?>:</td>
+            <td class="noWrap horizontalPadding tdFormLabel"><?= Language::string(379) ?>:</td>
             <td><span class="tooltip spanIcon ui-icon ui-icon-help" title="<?= Language::string(381) ?>"></span></td>
             <td class="fullWidth">
                 <div class="horizontalMargin" align="center">
@@ -76,4 +87,4 @@ if ($obj == null || !$logged_user->is_object_readable($obj))
             </td>
         </tr>
     </table>
-</div>
+</fieldset>

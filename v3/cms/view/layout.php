@@ -77,7 +77,7 @@ if (Ini::$cms_session_keep_alive) {
 </script>
 <div class="padding ui-widget-content ui-corner-all margin table" align="center"><?php include Ini::$path_internal . 'cms/view/includes/header.inc.php'; ?></div>
 
-<div align="center" class="margin table" style="min-width: 970px;" >
+<div align="center" class="" style="width: 970px;" >
     <div id="tnd_mainMenu">
         <ul>
             <?php

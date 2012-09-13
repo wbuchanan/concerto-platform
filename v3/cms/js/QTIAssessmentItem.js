@@ -36,10 +36,6 @@ QTIAssessmentItem.onAfterDelete=function(){
 }
 
 QTIAssessmentItem.onAfterAdd=function(){
-    Methods.iniCKEditor("#form"+this.className+"TextareaDescription",function(){
-        $("#divAddFormDialog").dialog("option","width",990);
-        $("#divAddFormDialog").dialog("option","position","center"); 
-    });
     if(QTIAssessmentItem.formCodeMirror!=null) QTIAssessmentItem.formCodeMirror.refresh();
 }
 
@@ -51,13 +47,13 @@ QTIAssessmentItem.getAddSaveObject=function()
         class_name:this.className,
         name:$("#form"+this.className+"InputName").val(),
         XML:$("#form"+this.className+"TextareaXML").val(),
-        description:Methods.getCKEditorData("#form"+this.className+"TextareaDescription"),
         Sharing_id:$("#form"+this.className+"SelectSharing").val()
     };
 };
 
 QTIAssessmentItem.getFullSaveObject = function(){
     var obj = this.getAddSaveObject();
+    obj["description"]=Methods.getCKEditorData("#form"+this.className+"TextareaDescription");
     if($("#form"+this.className+"SelectOwner").length==1) obj["Owner_id"]=$("#form"+this.className+"SelectOwner").val();
     return obj;
 }

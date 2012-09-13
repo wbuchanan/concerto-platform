@@ -93,7 +93,7 @@ OModule.inheritance=function(obj)
             open:function(){
                 $('.ui-widget-overlay').css('position', 'fixed');
                 Methods.stopModalLoading();
-                $("#divDialogDownload").html("<div id='divDialogDownloadGrid'></div>");
+                $("#divDialogDownload").html("<fieldset class='padding ui-widget-content ui-corner-all margin'><legend><table><tr><td><span class='tooltip spanIcon ui-icon ui-icon-help' title='"+dictionary["s498"]+"'></span></td><td class=''><b>"+dictionary["s497"]+"</b></td></tr></table></legend><div id='divDialogDownloadGrid'></div></fieldset>");
                 $("#divDialogDownloadGrid").kendoGrid({
                     dataBound:function(e){
                         Methods.iniTooltips();

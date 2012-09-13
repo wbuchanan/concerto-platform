@@ -35,18 +35,16 @@ $writeable = $logged_user->is_module_writeable($class_name);
 include Ini::$path_internal."cms/view/includes/tab.inc.php"; 
 ?>
 
-<div id="div<?=$class_name?>DialogImport" class="notVisible">
-    <div class="padding ui-widget-content ui-corner-all margin">
-        <table>
-            <tr>
-                <td class="noWrap horizontalPadding tdFormLabel"><?= Language::string(86) ?>:</td>
-                <td><span class="tooltip spanIcon ui-icon ui-icon-help" title="<?= Language::string(267) ?>"></span></td>
-                <td class="fullWidth">
-                    <div class="horizontalMargin" align="center">
-                        <input id="file<?=$class_name?>Import" type="file" name="files[]" class="fullWidth ui-widget-content ui-corner-all" />
-                    </div>
-                </td>
-            </tr>
-        </table>
-    </div>
+<div id="div<?= $class_name ?>DialogImport" class="notVisible">
+    <fieldset class="padding ui-widget-content ui-corner-all margin">
+        <legend>
+            <table>
+                <tr>
+                    <td><span class="tooltip spanIcon ui-icon ui-icon-help" title="<?= Language::string(267) ?>"></span></td>
+                    <td class=""><b><?= Language::string(86) ?>:</b></td>
+                </tr>
+            </table>
+        </legend>
+        <input id="file<?= $class_name ?>Import" type="file" name="files[]" class="fullWidth ui-widget-content ui-corner-all" />
+    </fieldset>
 </div>

@@ -36,9 +36,7 @@ if (!$logged_user->is_object_editable($obj))
 
 <script>
     $(function(){
-        Methods.iniIconButton("#btnExpand<?= $class_name ?>divTestLogicExpandable","arrowthick-1-n");
         Methods.iniIconButton(".btnAddLogicSection", "plus");
-        Methods.iniIconButton("#btnExpand<?= $class_name ?>Variables","arrowthick-1-s");
         
         $( "#divTestLogic" ).sortable({
             items: "> div.sortable",
@@ -69,7 +67,7 @@ if ($oid != 0) {
         <?= $section->counter ?>,
                         null,
         <?= $section->id ?>,
-        <?= $section->TestSectionType_id == 3 || $section->TestSectionType_id == 14? "false" : "true" ?>,
+        <?= $section->TestSectionType_id == 3 || $section->TestSectionType_id == 14 ? "false" : "true" ?>,
                         null,
                         null,
         <?= $section->end == 1 ? "true" : "false" ?>
@@ -101,33 +99,19 @@ if ($oid != 0) {
     });
 </script>
 
-<div class="margin" align="center">
-    <table>
-        <tr>
-            <td>
-                <button class="btnLogicVariables" onclick="Test.uiShowVarsDialog()"><?= Language::string(144) ?></button>
-            </td>
-            <td>
-                <button class="btnDebugTest" onclick="Test.uiIniDebug()"><?= Language::string(284) ?></button>
-            </td>
-            <td>
-                <button class="btnRunTest" onclick="window.open('<?= Ini::$path_external . "?tid=" . $obj->id ?>','_blank')"><?= Language::string(362) ?></button>
-            </td>
-        </tr>
-    </table>
-</div>
-
-<?php include Ini::$path_internal . "cms/view/Test_security.php"; ?>
-<br/>
-<div class="margin" align="center"><button id="btnExpand<?= $class_name ?>Variables" class="btnExpand fullWidth" onclick="Methods.toggleExpand('#divTestVariables', this)"><?= Language::string(403) ?></button></div>
-<div align="left" class="margin" id="divTestVariables" style="display:none;">
-    <?php include Ini::$path_internal . "cms/view/Test_variables.php"; ?>
-</div>
-<br/>
-
-<div class="margin" align="center"><button id="btnExpand<?= $class_name ?>divTestLogicExpandable" class="btnExpand fullWidth" onclick="Methods.toggleExpand('#divTestLogicExpandable', this)"><?= Language::string(359) ?></button></div>
-<div id="divTestLogicExpandable">
+<fieldset class="padding ui-widget-content ui-corner-all margin">
+    <legend>
+        <table>
+            <tr>
+                <td><span class="tooltip spanIcon ui-icon ui-icon-help" title="<?= Language::string(495) ?>"></span></td>
+                <td class=""><b><?= Language::string(359) ?></b></td>
+            </tr>
+        </table>
+    </legend>
     <div align="center">
+        <button class="btnLogicVariables" onclick="Test.uiShowVarsDialog()"><?= Language::string(144) ?></button>
+        <button class="btnDebugTest" onclick="Test.uiIniDebug()"><?= Language::string(284) ?></button>
+        <button class="btnRunTest" onclick="window.open('<?= Ini::$path_external . "?tid=" . $obj->id ?>','_blank')"><?= Language::string(362) ?></button>
         <button class="btnLogicToggleAll" onclick="Test.uiToggleAll()"><?= Language::string(401) ?></button>
         <button class="btnLogicToggleVarAssignment" onclick="Test.uiToggleVarAssignments()"><?= Language::string(454) ?></button>
     </div>
@@ -137,8 +121,8 @@ if ($oid != 0) {
             <?= Language::string(145) ?>
         </div>
     </div>
-</div>
 
-<div id="divTestDialog" class="notVisible">
-    <?php include Ini::$path_internal . 'cms/view/Test_section_dialog.php'; ?>
-</div>
+    <div id="divTestDialog" class="notVisible">
+        <?php include Ini::$path_internal . 'cms/view/Test_section_dialog.php'; ?>
+    </div>
+</fieldset>

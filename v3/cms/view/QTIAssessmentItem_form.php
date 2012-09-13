@@ -81,17 +81,17 @@ if ($oid != 0) {
         <?php
     }
     ?>
-            QTIAssessmentItem.formCodeMirror = Methods.iniCodeMirror("form<?= $class_name ?>TextareaXML", "xml", false,"845px");
     <?php if ($oid != -1) { ?>
                 Methods.iniCKEditor("#form<?= $class_name ?>TextareaDescription");
+                QTIAssessmentItem.formCodeMirror = Methods.iniCodeMirror("form<?= $class_name ?>TextareaXML", "xml", false,"845px");
     <?php } ?>
             Methods.iniTooltips();
         });
     </script>
 
-    <div class="padding ui-widget-content ui-corner-all margin">
+    <fieldset class="padding ui-widget-content ui-corner-all margin">
+        <legend class=""><b><?= $caption ?></b></legend>
         <table>
-            <caption class="ui-widget-header"><?= $caption ?></caption>
             <tr>
                 <td class="noWrap horizontalPadding tdFormLabel">* <?= Language::string(70) ?>:</td>
                 <td><span class="tooltip spanIcon ui-icon ui-icon-help" title="<?= Language::string(464) ?>"></span></td>
@@ -101,57 +101,22 @@ if ($oid != 0) {
                     </div>
                 </td>
             </tr>
-            <tr>
-                <td class="noWrap horizontalPadding tdFormLabel"><?= Language::string(97) ?>:</td>
-                <td><span class="tooltip spanIcon ui-icon ui-icon-help" title="<?= Language::string(98) ?>"></span></td>
-                <td>
-                    <div class="horizontalMargin" align="center"><button id="btnExpand<?= $class_name ?>Description" class="btnExpand fullWidth" onclick="Methods.toggleExpand('#form<?= $class_name ?>DivDescription', this)"><?= Language::string(97) ?></button></div>
-                    <div class="horizontalMargin" align="center" id="form<?= $class_name ?>DivDescription" style="display:none;">
-                        <textarea id="form<?= $class_name ?>TextareaDescription" name="form<?= $class_name ?>TextareaDescription" class="fullWidth ui-widget-content ui-corner-all"><?= htmlspecialchars(stripslashes($obj->description)) ?></textarea>
-                    </div>
-                </td>
-            </tr>
-            <tr>
-                <td class="noWrap horizontalPadding tdFormLabel"><?= Language::string(465) ?>:</td>
-                <td><span class="tooltip spanIcon ui-icon ui-icon-help" title="<?= Language::string(466) ?>"></span></td>
-                <td>
-                    <div class="horizontalMargin">
-                        <textarea id="form<?= $class_name ?>TextareaXML" name="form<?= $class_name ?>TextareaXML"><?= htmlspecialchars(stripslashes($obj->XML)) ?></textarea>
-                    </div>
-                    <?php
-                    $validation = json_decode($obj->validate());
-                    ?>
-                    <div class="horizontalMargin <?= $validation->result == 0 ? "ui-state-highlight" : "ui-state-error" ?>" id="div<?= $class_name ?>Validation" align="center">
-                        <?php
-                        if ($validation->result == 0) {
-                            echo "<b>" . Language::string(470) . "</b>";
-                        } else {
-                            echo "<b>" . Language::string(471) . "</b>" . "</br>";
-                            echo Language::string(472);
-                            echo "<b>";
-                            switch ($validation->result) {
-                                case OQTIElement::VALIDATION_ERROR_TYPES_XML: echo Language::string(475);
-                                    break;
-                                case OQTIElement::VALIDATION_ERROR_TYPES_CHILD_REQUIRED: echo Language::string(479);
-                                    break;
-                                case OQTIElement::VALIDATION_ERROR_TYPES_CHILD_NOT_AVAILABLE: echo Language::string(478);
-                                    break;
-                                case OQTIElement::VALIDATION_ERROR_TYPES_ATTRIBUTE_REQUIRED: echo Language::string(477);
-                                    break;
-                                case OQTIElement::VALIDATION_ERROR_TYPES_ATTRIBUTE_NOT_AVAILABLE: echo Language::string(476);
-                                    break;
-                                case OQTIElement::VALIDATION_ERROR_TYPES_CLASS_NOT_EXISTS: echo Language::string(480);
-                                    break;
-                            }
-                            echo "</b>, " . Language::string(473) . "<b>" . $validation->section . "</b>, " . Language::string(474) . "<b>" . $validation->target . "</b>";
-                        }
-                        ?>
-                    </div>
-                    <div align="center">
-                        <button class="btnRevalidate" onclick="<?= $class_name ?>.uiRevalidate()"><?= Language::string(487) ?></button>
-                    </div>
-                </td>
-            </tr>
+            <?php
+            if ($oid != -1) {
+                ?>
+                <tr>
+                    <td class="noWrap horizontalPadding tdFormLabel"><?= Language::string(97) ?>:</td>
+                    <td><span class="tooltip spanIcon ui-icon ui-icon-help" title="<?= Language::string(98) ?>"></span></td>
+                    <td>
+                        <div class="horizontalMargin" align="center"><button id="btnExpand<?= $class_name ?>Description" class="btnExpand fullWidth" onclick="Methods.toggleExpand('#form<?= $class_name ?>DivDescription', this)"><?= Language::string(97) ?></button></div>
+                        <div class="horizontalMargin" align="center" id="form<?= $class_name ?>DivDescription" style="display:none;">
+                            <textarea id="form<?= $class_name ?>TextareaDescription" name="form<?= $class_name ?>TextareaDescription" class="fullWidth ui-widget-content ui-corner-all"><?= htmlspecialchars(stripslashes($obj->description)) ?></textarea>
+                        </div>
+                    </td>
+                </tr>
+                <?php
+            }
+            ?>
             <tr>
                 <td class="noWrap horizontalPadding tdFormLabel"><?= Language::string(72) ?>:</td>
                 <td><span class="tooltip spanIcon ui-icon ui-icon-help" title="<?= Language::string(467) ?>"></span></td>
@@ -189,13 +154,55 @@ if ($oid != 0) {
                     </td>
                 </tr>
             <?php } ?>
-
-            <tr>
-                <td colspan="3" align="center">
-                    <?= $buttons ?>
-                </td>
-            </tr>
         </table>
+    </fieldset>
+
+    <?php
+    if ($oid != -1) {
+        ?>
+        <fieldset class="padding ui-widget-content ui-corner-all margin">
+            <legend class=""><table><tr><td><span class="tooltip spanIcon ui-icon ui-icon-help" title="<?= Language::string(466) ?>"></span></td><td><b><?= Language::string(465) ?></b></td></tr></table></legend>
+            <div align="center">
+                <button class="btnRevalidate" onclick="<?= $class_name ?>.uiRevalidate()"><?= Language::string(487) ?></button>
+            </div>
+            <div class="horizontalMargin">
+                <textarea id="form<?= $class_name ?>TextareaXML" name="form<?= $class_name ?>TextareaXML"><?= htmlspecialchars(stripslashes($obj->XML)) ?></textarea>
+            </div>
+            <?php
+            $validation = json_decode($obj->validate());
+            ?>
+            <div class="horizontalMargin <?= $validation->result == 0 ? "ui-state-highlight" : "ui-state-error" ?>" id="div<?= $class_name ?>Validation" align="center">
+                <?php
+                if ($validation->result == 0) {
+                    echo "<b>" . Language::string(470) . "</b>";
+                } else {
+                    echo "<b>" . Language::string(471) . "</b>" . "</br>";
+                    echo Language::string(472);
+                    echo "<b>";
+                    switch ($validation->result) {
+                        case OQTIElement::VALIDATION_ERROR_TYPES_XML: echo Language::string(475);
+                            break;
+                        case OQTIElement::VALIDATION_ERROR_TYPES_CHILD_REQUIRED: echo Language::string(479);
+                            break;
+                        case OQTIElement::VALIDATION_ERROR_TYPES_CHILD_NOT_AVAILABLE: echo Language::string(478);
+                            break;
+                        case OQTIElement::VALIDATION_ERROR_TYPES_ATTRIBUTE_REQUIRED: echo Language::string(477);
+                            break;
+                        case OQTIElement::VALIDATION_ERROR_TYPES_ATTRIBUTE_NOT_AVAILABLE: echo Language::string(476);
+                            break;
+                        case OQTIElement::VALIDATION_ERROR_TYPES_CLASS_NOT_EXISTS: echo Language::string(480);
+                            break;
+                    }
+                    echo "</b>, " . Language::string(473) . "<b>" . $validation->section . "</b>, " . Language::string(474) . "<b>" . $validation->target . "</b>";
+                }
+                ?>
+            </div>
+        </fieldset>
+        <?php
+    }
+    ?>
+    <div align="center">
+        <?= $buttons ?>
     </div>
     <?php
     if ($oid != -1) {

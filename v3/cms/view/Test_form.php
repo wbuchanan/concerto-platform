@@ -92,9 +92,9 @@ if ($oid != 0) {
         });
     </script>
 
-    <div class="padding ui-widget-content ui-corner-all margin">
+    <fieldset class="padding ui-widget-content ui-corner-all margin">
+        <legend class=""><b><?= $caption ?></b></legend>
         <table>
-            <caption class="ui-widget-header"><?= $caption ?></caption>
             <tr>
                 <td class="noWrap horizontalPadding tdFormLabel">* <?= Language::string(70) ?>:</td>
                 <td><span class="tooltip spanIcon ui-icon ui-icon-help" title="<?= Language::string(141) ?>"></span></td>
@@ -104,16 +104,22 @@ if ($oid != 0) {
                     </div>
                 </td>
             </tr>
-            <tr>
-                <td class="noWrap horizontalPadding tdFormLabel"><?= Language::string(97) ?>:</td>
-                <td><span class="tooltip spanIcon ui-icon ui-icon-help" title="<?= Language::string(98) ?>"></span></td>
-                <td class="fullWidth">
-                    <div class="horizontalMargin" align="center"><button id="btnExpand<?= $class_name ?>Description" class="btnExpand fullWidth" onclick="Methods.toggleExpand('#form<?= $class_name ?>DivDescription', this)"><?= Language::string(97) ?></button></div>
-                    <div class="horizontalMargin" align="center" id="form<?= $class_name ?>DivDescription" style="display:none;">
-                        <textarea id="form<?= $class_name ?>TextareaDescription" name="form<?= $class_name ?>TextareaDescription" class="fullWidth ui-widget-content ui-corner-all"><?= htmlspecialchars(stripslashes($obj->description)) ?></textarea>
-                    </div>
-                </td>
-            </tr>
+            <?php
+            if ($oid != -1) {
+                ?>
+                <tr>
+                    <td class="noWrap horizontalPadding tdFormLabel"><?= Language::string(97) ?>:</td>
+                    <td><span class="tooltip spanIcon ui-icon ui-icon-help" title="<?= Language::string(98) ?>"></span></td>
+                    <td class="fullWidth">
+                        <div class="horizontalMargin" align="center"><button id="btnExpand<?= $class_name ?>Description" class="btnExpand fullWidth" onclick="Methods.toggleExpand('#form<?= $class_name ?>DivDescription', this)"><?= Language::string(97) ?></button></div>
+                        <div class="horizontalMargin" align="center" id="form<?= $class_name ?>DivDescription" style="display:none;">
+                            <textarea id="form<?= $class_name ?>TextareaDescription" name="form<?= $class_name ?>TextareaDescription" class="fullWidth ui-widget-content ui-corner-all"><?= htmlspecialchars(stripslashes($obj->description)) ?></textarea>
+                        </div>
+                    </td>
+                </tr>
+                <?php
+            }
+            ?>
             <tr>
                 <td class="noWrap horizontalPadding tdFormLabel"><?= Language::string(72) ?>:</td>
                 <td><span class="tooltip spanIcon ui-icon ui-icon-help" title="<?= Language::string(142) ?>"></span></td>
@@ -159,28 +165,20 @@ if ($oid != 0) {
                         </div>
                     </td>
                 </tr>
-            <?php } ?>
-
-            <?php
-            if ($oid != -1) {
-                ?>
-                <tr>
-                    <td colspan="3"><hr/></td>
-                </tr>
-                <tr>
-                    <td colspan="3" align="center">
-                        <?php include Ini::$path_internal . "cms/view/Test_logic.php"; ?>
-                    </td>
-                </tr>
-                <?php
-            }
-            ?>
-            <tr>
-                <td colspan="3" align="center">
-                    <?= $buttons ?>
-                </td>
-            </tr>
-        </table>
+            </table>
+        </fieldset>
+        <?php
+    }
+    if ($oid != -1) {
+        include Ini::$path_internal . "cms/view/Test_security.php";
+        ?>
+        <div id="div<?= $class_name ?>Variables"><?php include Ini::$path_internal . "cms/view/Test_variables.php"; ?></div>
+        <?php
+        include Ini::$path_internal . "cms/view/Test_logic.php";
+    }
+    ?>
+    <div align="center">
+        <?= $buttons ?>
     </div>
     <?php
     if ($oid != -1) {

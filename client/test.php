@@ -32,7 +32,7 @@
         <link rel="stylesheet" href="client/css/QTI.css" />
         <link rel="stylesheet" href="client/css/jQueryUI/cupertino/jquery-ui-1.8.23.custom.css" />
 
-        <script type="text/javascript" src="client/jquery-1.8.0.min.js"></script>
+        <script type="text/javascript" src="client/jquery-1.8.1.min.js"></script>
         <script type="text/javascript" src="client/jquery.json-2.3.min.js"></script>
         <script type="text/javascript" src="client/jquery-ui-1.8.23.custom.min.js"></script>
 

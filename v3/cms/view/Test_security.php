@@ -18,25 +18,25 @@
   Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA.
  */
 
-if (!isset($ini))
-{
+if (!isset($ini)) {
     require_once'../../Ini.php';
     $ini = new Ini();
 }
 $logged_user = User::get_logged_user();
-if ($logged_user == null)
-{
+if ($logged_user == null) {
     echo "<script>location.reload();</script>";
     die(Language::string(278));
 }
 
-if (!$logged_user->is_module_writeable($class_name)) die(Language::string(81));
-if (!$logged_user->is_object_editable($obj)) die(Language::string(81));
+if (!$logged_user->is_module_writeable($class_name))
+    die(Language::string(81));
+if (!$logged_user->is_object_editable($obj))
+    die(Language::string(81));
 ?>
 
 <script>
     $(function(){
-        Methods.iniIconButton("#btnExpand<?=$class_name?>GridProtectedVariables","arrowthick-1-s");
+        Methods.iniIconButton("#btnExpand<?= $class_name ?>GridProtectedVariables","arrowthick-1-s");
         var fields = {
             id:{
                 type:"number",
@@ -93,5 +93,14 @@ if (!$logged_user->is_object_editable($obj)) die(Language::string(81));
     })
 </script>
 
-<div class="margin" align="center"><button id="btnExpand<?=$class_name?>GridProtectedVariables" class="btnExpand fullWidth" onclick="Methods.toggleExpand('#div<?= $class_name ?>GridProtectedVars', this)"><?= Language::string(358) ?></button></div>
-<div id="div<?= $class_name ?>GridProtectedVars" class="grid margin" align="left" style="display:none;"></div>
+<fieldset class="padding ui-widget-content ui-corner-all margin">
+    <legend>
+        <table>
+            <tr>
+                <td><span class="tooltip spanIcon ui-icon ui-icon-help" title="<?= Language::string(493) ?>"></span></td>
+                <td class=""><b><?= Language::string(358) ?></b></td>
+            </tr>
+        </table>
+    </legend>
+    <div id="div<?= $class_name ?>GridProtectedVars" class="grid margin" align="left" style=""></div>
+</fieldset>
