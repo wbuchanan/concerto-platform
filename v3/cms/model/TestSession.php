@@ -401,7 +401,7 @@ class TestSession extends OTable {
             for(CONCERTO_DB_CONNECTION in dbListConnections(CONCERTO_DRIVER)) { dbDisconnect(CONCERTO_DB_CONNECTION) }
             CONCERTO_DB_CONNECTION <- dbConnect(CONCERTO_DRIVER, user = CONCERTO_DB_LOGIN, password = CONCERTO_DB_PASSWORD, dbname = CONCERTO_DB_NAME, host = CONCERTO_DB_HOST, port = CONCERTO_DB_PORT)
             dbSendQuery(CONCERTO_DB_CONNECTION,statement = \"SET NAMES 'utf8';\")
-            dbSendQuery(CONCERTO_DB_CONNECTION,statement = \"SET time_zone='".Ini::$mysql_timezone."';\")
+            dbSendQuery(CONCERTO_DB_CONNECTION,statement = \"SET time_zone='" . Ini::$mysql_timezone . "';\")
             
             rm(CONCERTO_DB_HOST)
             rm(CONCERTO_DB_PORT)
@@ -595,6 +595,26 @@ class TestSession extends OTable {
                 $test = $session->get_Test();
                 if ($test != null) {
                     $values = $test->verified_input_values($values);
+                } else {
+                    $result = array(
+                        "data" => array(
+                            "HASH" => $hash,
+                            "TIME_LIMIT" => 0,
+                            "HTML" => "",
+                            "TEST_ID" => $tid,
+                            "TEST_SESSION_ID" => $sid,
+                            "STATUS" => TestSession::TEST_SESSION_STATUS_TAMPERED,
+                            "TEMPLATE_ID" => 0,
+                            "HEAD" => "",
+                            "FINISHED" => 1
+                        ),
+                        "debug" => array(
+                            "code" => 0,
+                            "return" => "",
+                            "output" => ""
+                        )
+                    );
+                    return $result;
                 }
 
                 $result = $session->run_test(null, $values);
