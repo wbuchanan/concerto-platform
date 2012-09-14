@@ -55,7 +55,7 @@ Test.onAfterImport=function(){
 }
 
 Test.onAfterAdd=function(){
-}
+    }
 
 Test.onAfterSave=function()
 {
@@ -124,6 +124,15 @@ Test.convertToLowerLevel=function(counter){
             }
         }
     },"json");
+}
+
+Test.duplicateSection=function(counter){
+    var obj = $("#divSection_"+counter);
+    var end = false;
+    if($("#chkEndSection_"+counter).length>0){
+        end = $("#chkEndSection_"+counter).is(":checked");
+    }
+    Test.uiWriteSection(obj.attr("sectype"), obj.attr("secparent"), Test.getCounter(), Test.getSectionValues(Test.sectionDivToObject(obj)), 0, true, obj.attr("csid"), counter, end);
 }
 
 Test.sectionCounter = 0;
@@ -514,7 +523,7 @@ Test.uiWriteSection=function(type,parent,counter,value,oid,refresh,csid,after,en
     }
     
     var section = $("<div />",{
-        "class": "divSection smallMargin divSectionType"+type+" "+(!sortable?"notSortable":"sortable"),
+        "class": "divSection smallMargin "+(!sortable?"notSortable":"sortable"),
         id:"divSection_"+counter,
         csid:csid,
         align:"left",

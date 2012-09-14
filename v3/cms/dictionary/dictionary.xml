@@ -4263,5 +4263,14 @@ Note: You can add new languages by inserting "<new_language>string translated in
             <bg></bg>
             <nl></nl>
         </string>
+        <string id="511">
+            <en>duplicate test section</en>
+            <de></de>
+            <pl>duplikuj sekcję testu</pl>
+            <cn></cn>
+            <fr></fr>
+            <bg></bg>
+            <nl></nl>
+        </string>
     </strings>
 </root> 
