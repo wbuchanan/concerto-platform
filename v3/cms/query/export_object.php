@@ -18,19 +18,40 @@
   along with this program; if not, write to the Free Software
   Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA.
  */
-if (!isset($ini))
-{
+if (!isset($ini)) {
     require_once '../../Ini.php';
     $ini = new Ini();
 }
 $logged_user = User::get_logged_user();
-if ($logged_user == null) header("Location: ".Ini::$path_external."cms/index.php");
+if ($logged_user == null)
+    header("Location: " . Ini::$path_external . "cms/index.php");
 
-$obj = $_GET['class_name']::from_mysql_id($_GET['oid']);
-if (!$logged_user->is_object_readable($obj)) die(Language::string(81));
+if (!is_array($_GET['oid']))
+    $oid = array($_GET['oid']);
+else
+    $oid = $_GET['oid'];
 
-header('Content-Disposition: attachment; filename="export_' . $_GET['class_name'] . '_' . $_GET['oid'] . '.concerto"');
+$xml = new DOMDocument('1.0', 'UTF-8');
+$export = $xml->createElement("export");
+$export->setAttribute("version", Ini::$version);
+$xml->appendChild($export);
+foreach ($oid as $id) {
+    $obj = $_GET['class_name']::from_mysql_id($id);
+    if (!$logged_user->is_object_readable($obj))
+        die(Language::string(81));
+
+    $xml_elem = new DOMDocument('1.0', 'UTF-8');
+    $xml_elem->loadXML($obj->export());
+    $xpath = new DOMXPath($xml_elem);
+    $search = $xpath->query("/export/*");
+    foreach ($search as $elem) {
+        $newNode = $xml->importNode($elem, true);
+        $export->appendChild($newNode);
+    }
+}
+
+header('Content-Disposition: attachment; filename="export_' . $_GET['class_name'] . '.concerto"');
 header('Content-Type: application/x-download');
 
-echo gzcompress($obj->export(),1);
+echo gzcompress($xml->saveXML(), 1);
 ?>

@@ -44,6 +44,10 @@ foreach ($cols as $col) {
 $fields_schema.="}";
 
 $columns_def = "[";
+
+$check_template = "<input type='checkbox' class='chk" . $class_name . "List' value='" . '${ id }' . "' onchange='" . $class_name . ".uiListCheckToggle(this," . '${ id }' . ")' />";
+
+$columns_def.=sprintf("{ title:'', width:30, filterable: false, sortable: false, groupable: false, template: \"%s\"},", $check_template);
 foreach ($cols as $col) {
     if (!$col["show"])
         continue;
@@ -90,70 +94,93 @@ $columns_def.="]";
                         });
                     });
                 }
+<?= $class_name ?>.uiRefreshCheckedList();
             },
             //toolbar: kendo.template($("#script<?= $class_name ?>ToolbarTemplate").html()),
             toolbar: [
                 { name: "add", template: '<button class="btnAdd" onclick="<?= $class_name ?>.uiAdd()"><?= Language::string(205) ?></button>'}
-<?php if ($class_name::$exportable) {
-    echo ","; ?>
-                                    { name: "import", template: '<button class="btnImport" onclick="<?= $class_name ?>.uiImport()"><?= Language::string(266) ?></button>' },
-                                    { name: "download", template: '<button class="btnDownload" onclick="<?= $class_name ?>.uiDownload()"><?= Language::string(374) ?></button>' }
+<?php
+if ($class_name::$exportable) {
+    echo ",";
+    ?>
+                        { name: "import", template: '<button class="btnImport" onclick="<?= $class_name ?>.uiImport()"><?= Language::string(266) ?></button>' },
+                        { name: "download", template: '<button class="btnDownload" onclick="<?= $class_name ?>.uiDownload()"><?= Language::string(374) ?></button>' }
 <?php } ?>
-                            ],
-                            dataSource: {
-                                transport:{
-                                    read: {
-                                        url:"query/get_object_list.php?class_name=<?= $class_name ?>",
-                                        dataType:"json"
-                                    }
-                                },
-                                schema:{
-                                    model:{
-                                        fields:<?= $fields_schema ?>
-                                    }
-                                },
-                                pageSize:<?= $class_name ?>.listLength
-                            },
-                            //scrollable: false,
-                            filterable:{
-                                messages: {
-                                    info: dictionary["s340"],
-                                    filter: dictionary["s341"],
-                                    clear: dictionary["s342"]
-                                },
-                                operators: {
-                                    string: {
-                                        contains: dictionary["s344"],
-                                        eq: dictionary["s222"],
-                                        neq: dictionary["s221"],
-                                        startswith: dictionary["s343"],
-                                        endswith: dictionary["s345"]
-                                    },
-                                    number: {
-                                        eq: dictionary["s222"],
-                                        neq: dictionary["s221"],
-                                        gte: dictionary["s224"],
-                                        gt: dictionary["s223"],
-                                        lte: dictionary["s226"],
-                                        lt: dictionary["s225"]
-                                    }
-                                }
-                            },
-                            sortable:true,
-                            pageable:true,
-                            groupable:true,
-                            scrollable:false,
-                            columns:<?= $columns_def ?>
-                        });
+            ],
+            dataSource: {
+                transport:{
+                    read: {
+                        url:"query/get_object_list.php?class_name=<?= $class_name ?>",
+                        dataType:"json"
+                    }
+                },
+                schema:{
+                    model:{
+                        fields:<?= $fields_schema ?>
+                    }
+                },
+                pageSize:<?= $class_name ?>.listLength
+            },
+            //scrollable: false,
+            filterable:{
+                messages: {
+                    info: dictionary["s340"],
+                    filter: dictionary["s341"],
+                    clear: dictionary["s342"]
+                },
+                operators: {
+                    string: {
+                        contains: dictionary["s344"],
+                        eq: dictionary["s222"],
+                        neq: dictionary["s221"],
+                        startswith: dictionary["s343"],
+                        endswith: dictionary["s345"]
+                    },
+                    number: {
+                        eq: dictionary["s222"],
+                        neq: dictionary["s221"],
+                        gte: dictionary["s224"],
+                        gt: dictionary["s223"],
+                        lte: dictionary["s226"],
+                        lt: dictionary["s225"]
+                    }
+                }
+            },
+            sortable:true,
+            pageable:true,
+            groupable:true,
+            scrollable:false,
+            columns:<?= $columns_def ?>
+        });
             
-                        Methods.iniIconButton(".btnAdd", "plus");
-                        Methods.iniIconButton(".btnImport","arrowthickstop-1-s");
-                        Methods.iniIconButton(".btnDownload","gear");
-                    });
+        Methods.iniIconButton(".btnAdd", "plus");
+        Methods.iniIconButton(".btnImport","arrowthickstop-1-s");
+        Methods.iniIconButton(".btnDownload","gear");
+        
+        Methods.iniIconButton(".btnCheckAll","check");
+        Methods.iniIconButton(".btnUncheckAll","close");
+        Methods.iniIconButton(".btnRemoveChecked","trash");
+        Methods.iniIconButton(".btnExportChecked","arrowthickstop-1-n");
+    });
 </script>
 
 <fieldset class="padding ui-widget-content ui-corner-all margin">
     <legend class=""><b><?= Language::string(199) ?></b></legend>
+    <table class="fullWidth">
+        <tr>
+            <td align="center">
+                <button class="btnCheckAll" onclick="<?=$class_name?>.uiListCheckAll()"><?= Language::string(512) ?></button>
+                <button class="btnUncheckAll" onclick="<?=$class_name?>.uiListUncheckAll()"><?= Language::string(513) ?></button>
+            </td>
+            <td align="center">
+                <?= Language::string(514) ?><font id="font<?= $class_name ?>CheckedCount">0</font>
+            </td>
+            <td align="center">
+                <button class="btnRemoveChecked" onclick="<?=$class_name?>.uiDelete(<?=$class_name?>.checkedList)"><?= Language::string(515) ?></button>
+                <?php if ($class_name::$exportable) { ?><button class="btnExportChecked" onclick="<?=$class_name?>.uiExport(<?=$class_name?>.checkedList)"><?= Language::string(516) ?></button><?php } ?>
+            </td>
+        </tr>
+    </table>
     <div id="div<?= $class_name ?>Grid" class="margin grid">
     </div>
 </fieldset>

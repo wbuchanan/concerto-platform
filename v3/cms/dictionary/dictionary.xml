@@ -4272,5 +4272,59 @@ Note: You can add new languages by inserting "<new_language>string translated in
             <bg></bg>
             <nl></nl>
         </string>
+        <string id="512">
+            <en>check all</en>
+            <de></de>
+            <pl>zaznacz wszystkie</pl>
+            <cn></cn>
+            <fr></fr>
+            <bg></bg>
+            <nl></nl>
+        </string>
+        <string id="513">
+            <en>uncheck all</en>
+            <de></de>
+            <pl>odznacz wszystkie</pl>
+            <cn></cn>
+            <fr></fr>
+            <bg></bg>
+            <nl></nl>
+        </string>
+        <string id="514">
+            <en>checked objects count: </en>
+            <de></de>
+            <pl>ilość zaznaczonych obiektów: </pl>
+            <cn></cn>
+            <fr></fr>
+            <bg></bg>
+            <nl></nl>
+        </string>
+        <string id="515">
+            <en>delete checked</en>
+            <de></de>
+            <pl>usuń zaznaczone</pl>
+            <cn></cn>
+            <fr></fr>
+            <bg></bg>
+            <nl></nl>
+        </string>
+        <string id="516">
+            <en>export checked</en>
+            <de></de>
+            <pl>wyeksportuj zaznaczone</pl>
+            <cn></cn>
+            <fr></fr>
+            <bg></bg>
+            <nl></nl>
+        </string>
+        <string id="517" js="1">
+            <en>Are you sure you want to delete selected objects?</en>
+            <de></de>
+            <pl>Jesteś pewien, że chcesz usunąć wybrane obiekty?</pl>
+            <cn></cn>
+            <fr></fr>
+            <bg></bg>
+            <nl></nl>
+        </string>
     </strings>
 </root> 

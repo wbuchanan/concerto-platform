@@ -155,6 +155,7 @@ class Template extends OModule {
                 return -5;
         }
 
+        $last_result = 0;
         $elements = $xpath->query("/export/Template");
         foreach ($elements as $element) {
             $this->xml_hash = $element->getAttribute("xml_hash");
@@ -171,8 +172,9 @@ class Template extends OModule {
                         break;
                 }
             }
+            $last_result = $this->mysql_save();
         }
-        return $this->mysql_save();
+        return $last_result;
     }
 
     public function mysql_save_from_post($post) {

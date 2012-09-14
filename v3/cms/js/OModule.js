@@ -457,6 +457,9 @@ OModule.inheritance=function(obj)
 	
     obj.uiDelete=function(oid,ignoreOnBefore)
     {
+        var isArray = false;
+        if(oid instanceof Array) isArray = true;
+        
         if(ignoreOnBefore==null) ignoreOnBefore=false;
         var thisClass = this;
         
@@ -464,12 +467,22 @@ OModule.inheritance=function(obj)
             if(!thisClass.onBeforeDelete(oid)) return;
         }
         
-        Methods.confirm(dictionary["s8"].format(oid),null,function(){
+        var question = dictionary["s8"].format(oid);
+        if(isArray) question = dictionary["s517"];
+        
+        Methods.confirm(question,null,function(){
             if(thisClass.reloadOnModification) { 
                 Methods.modalLoading();
             }
             
-            if(oid==thisClass.currentID && !thisClass.reloadOnModification) thisClass.uiEdit(0);
+            var objEdited = false;
+            if(isArray){
+                if(thisClass.isCheckedList(thisClass.currentID)) objEdited = true;
+            } else {
+                if(oid==thisClass.currentID) objEdited = true;
+            }
+            
+            if(objEdited && !thisClass.reloadOnModification) thisClass.uiEdit(0);
             $.post("query/delete_object.php",
             {
                 class_name:thisClass.className,
@@ -480,6 +493,11 @@ OModule.inheritance=function(obj)
                 if(thisClass.reloadOnModification) Methods.stopModalLoading();
                 switch(data.result){
                     case 0:{
+                        if(!isArray) thisClass.uiListCheckRemove(oid);
+                        else {
+                            thisClass.checkedList = [];
+                            thisClass.uiRefreshCheckedList();
+                        }
                         if(!thisClass.reloadOnModification) {
                             thisClass.uiList();
                             if(thisClass.onAfterDelete) thisClass.onAfterDelete();
@@ -595,7 +613,14 @@ OModule.inheritance=function(obj)
     }
     
     obj.uiExport=function(oid){
-        location.href="query/export_object.php?class_name="+this.className+"&oid="+oid;
+        var param = oid;
+        if(oid instanceof Array){
+            param = "";
+            for(var i=0;i<oid.length;i++){
+                param+="&oid[]="+oid[i];
+            }
+        }
+        location.href="query/export_object.php?class_name="+this.className+param;
     };
     
     obj.getMessageSuccessfulSave = function(){
@@ -680,4 +705,57 @@ OModule.inheritance=function(obj)
         if(thisClass.uiSaveValidate) thisClass.uiSaveValidate(ignoreOnBefore, isNew);
         else thisClass.uiSaveValidated(ignoreOnBefore,isNew);
     };
+    
+    obj.checkedList = [];
+    obj.uiListCheckAll=function(){
+        $(".chk"+obj.className+"List").each(function(){
+            if(!$(this).is(":checked")) {
+                $(this).attr("checked",true);
+                obj.uiListCheckAdd(parseInt($(this).val()));
+            }
+        });
+    }
+    
+    obj.uiListUncheckAll=function(){
+        $(".chk"+obj.className+"List").each(function(){
+            if($(this).is(":checked")) {
+                $(this).attr("checked",false);
+                obj.uiListCheckRemove(parseInt($(this).val()));
+            }
+        });
+    }
+    
+    obj.uiListCheckToggle=function(o,id){
+        if($(o).is(":checked")){
+            obj.uiListCheckAdd(id);
+        }
+        else {
+            obj.uiListCheckRemove(id);
+        }
+    }
+    
+    obj.uiListCheckAdd=function(id){
+        if(!obj.isCheckedList(id)) obj.checkedList.push(id);
+        obj.uiRefreshCheckedList();
+    }
+    
+    obj.uiListCheckRemove=function(id){
+        if(obj.isCheckedList(id)) obj.checkedList.splice(obj.checkedList.indexOf(id),1);
+        obj.uiRefreshCheckedList();
+    }
+    
+    obj.isCheckedList=function(id){
+        if(obj.checkedList.indexOf(id)!=-1) return true;
+        else return false;
+    }
+    
+    obj.uiRefreshCheckedList=function(){
+        var fontCount = $("#font"+obj.className+"CheckedCount");
+        fontCount.html(obj.checkedList.length);
+        
+        $(".chk"+obj.className+"List").each(function(){
+            if(obj.isCheckedList(parseInt($(this).val()))) $(this).attr("checked",true);
+            else $(this).attr("checked",false);
+        })
+    }
 };

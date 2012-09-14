@@ -19,25 +19,29 @@
   Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA.
  */
 
-if (!isset($ini))
-{
+if (!isset($ini)) {
     require_once '../../Ini.php';
     $ini = new Ini();
 }
 $logged_user = User::get_logged_user();
-if ($logged_user == null)
-{
+if ($logged_user == null) {
     echo json_encode(array("result" => -1));
     exit();
 }
 
-$obj = $_POST['class_name']::from_mysql_id($_POST['oid']);
-if (!$logged_user->is_object_editable($obj))
-{
-    echo json_encode(array("result" => -2));
-    exit();
-}
+if (!is_array($_POST['oid']))
+    $oid = array($_POST['oid']);
+else
+    $oid = $_POST['oid'];
 
-$obj->mysql_delete();
+foreach ($oid as $id) {
+    $obj = $_POST['class_name']::from_mysql_id($id);
+    if (!$logged_user->is_object_editable($obj)) {
+        echo json_encode(array("result" => -2));
+        exit();
+    }
+
+    $obj->mysql_delete();
+}
 echo json_encode(array("result" => 0));
 ?>
