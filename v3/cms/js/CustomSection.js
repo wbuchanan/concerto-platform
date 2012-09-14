@@ -45,14 +45,14 @@ CustomSection.getAddSaveObject=function()
     };
 };
 
-CustomSection.uiSaveValidate=function(ignoreOnBefore){
+CustomSection.uiSaveValidate=function(ignoreOnBefore,isNew){
     if(!this.checkRequiredFields([
         $("#form"+this.className+"InputName").val()
         ])) {
         Methods.alert(dictionary["s415"],"alert");
         return false;
     }
-    CustomSection.uiSaveValidated(ignoreOnBefore);
+    CustomSection.uiSaveValidated(ignoreOnBefore,isNew);
 }
 
 CustomSection.onAfterDelete=function(){

@@ -25,9 +25,10 @@ UserType.className="UserType";
 UserType.reloadOnModification=true;
 UserType.reloadHash="tnd_mainMenu-users";
 
-UserType.onBeforeSave=function(){
+UserType.onBeforeSave=function(isNew){
+    if(isNew==null) isNew = false;
     Methods.confirmUnsavedLost(function(){
-        UserType.uiSave(true);
+        UserType.uiSave(true,isNew);
     });
 }
 
@@ -84,12 +85,12 @@ UserType.getFullSaveObject=function(){
     return obj;
 }
 
-UserType.uiSaveValidate=function(ignoreOnBefore){
+UserType.uiSaveValidate=function(ignoreOnBefore,isNew){
     if(!this.checkRequiredFields([
         $("#form"+this.className+"InputName").val()
     ])) {
         Methods.alert(dictionary["s415"],"alert");
         return false;
     }
-    UserType.uiSaveValidated(ignoreOnBefore);
+    UserType.uiSaveValidated(ignoreOnBefore,isNew);
 }

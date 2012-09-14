@@ -601,11 +601,11 @@ OModule.inheritance=function(obj)
     obj.getMessageSuccessfulSave = function(){
         return dictionary["s9"];
     }
-    obj.uiSaveValidated=function(ignoreOnBefore){
+    obj.uiSaveValidated=function(ignoreOnBefore,isNew){
         var thisClass = this;
             
         if(thisClass.onBeforeSave && !ignoreOnBefore) {
-            if(!thisClass.onBeforeSave()) return;
+            if(!thisClass.onBeforeSave(isNew)) return;
         }
 		
         if(thisClass.reloadOnModification) { 
@@ -614,8 +614,14 @@ OModule.inheritance=function(obj)
         
         $("#divAddFormDialog").parent().mask(dictionary["s319"]);
         $("#div"+thisClass.className+"Form").mask(dictionary["s319"]);
+        
+        var params = {};
+        if(this.currentID==0&&!isNew) params = this.getAddSaveObject();
+        else params = this.getFullSaveObject();
+        if(isNew) params['oid']=0;
+        
         $.post("query/save_object.php",
-            (this.currentID==0?this.getAddSaveObject():this.getFullSaveObject()),
+            params,
             function(data)
             {
                 $("#divAddFormDialog").parent().unmask();
@@ -631,9 +637,9 @@ OModule.inheritance=function(obj)
                         if(data.oid!=0)
                         {
                             var isNewObject = false;
-                            if(thisClass.currentID==0) isNewObject = true;
+                            if(thisClass.currentID==0||isNew) isNewObject = true;
                             if(!thisClass.reloadOnModification) { 
-                                if(thisClass.currentID!=0) thisClass.uiList();
+                                if(thisClass.currentID!=0&&!isNew) thisClass.uiList();
                                 else thisClass.uiReload(data.oid);
                             }
                             Methods.alert(thisClass.getMessageSuccessfulSave(isNewObject),"info", dictionary["s274"],function(){
@@ -664,12 +670,14 @@ OModule.inheritance=function(obj)
             },"json");
     }
 	
-    obj.uiSave=function(ignoreOnBefore)
+    obj.uiSave=function(ignoreOnBefore,isNew)
     {
         if(ignoreOnBefore==null) ignoreOnBefore=false;
         var thisClass = this;
         
-        if(thisClass.uiSaveValidate) thisClass.uiSaveValidate(ignoreOnBefore);
-        else thisClass.uiSaveValidated(ignoreOnBefore);
+        if(isNew==null) isNew = false;
+        
+        if(thisClass.uiSaveValidate) thisClass.uiSaveValidate(ignoreOnBefore, isNew);
+        else thisClass.uiSaveValidated(ignoreOnBefore,isNew);
     };
 };

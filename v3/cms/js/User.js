@@ -25,9 +25,10 @@ User.sessionID="";
 User.reloadOnModification=true;
 User.reloadHash="tnd_mainMenu-users";
 
-User.onBeforeSave=function(){
+User.onBeforeSave=function(isNew){
+    if(isNew==null) isNew = false;
     Methods.confirmUnsavedLost(function(){
-        User.uiSave(true);
+        User.uiSave(true,isNew);
     });
 }
 
@@ -78,7 +79,7 @@ User.getFullSaveObject=function()
     return obj;
 }
 
-User.uiSaveValidate=function(ignoreOnBefore){
+User.uiSaveValidate=function(ignoreOnBefore,isNew){
     if(!this.checkRequiredFields([
         $("#form"+this.className+"InputLogin").val(),
         $("#form"+this.className+"InputFirstname").val(),
@@ -107,7 +108,7 @@ User.uiSaveValidate=function(ignoreOnBefore){
     },function(data){
         switch(data.result){
             case 0: {
-                User.uiSaveValidated(ignoreOnBefore);
+                User.uiSaveValidated(ignoreOnBefore,isNew);
                 break;
             }
             case 1:{

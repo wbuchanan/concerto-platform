@@ -44,6 +44,7 @@ if (isset($_POST['oid']) && $_POST['oid'] != 0)
 $btn_cancel = "<button class='btnCancel' onclick='" . $class_name . ".uiEdit(0)'>" . Language::string(23) . "</button>";
 $btn_delete = "<button class='btnDelete' onclick='" . $class_name . ".uiDelete($oid)'>" . Language::string(94) . "</button>";
 $btn_save = "<button class='btnSave' onclick='" . $class_name . ".uiSave()'>" . Language::string(95) . "</button>";
+$btn_save_new = "<button class='btnSaveNew' onclick='" . $class_name . ".uiSave(null,true)'>" . Language::string(510) . "</button>";
 
 $caption = "";
 $buttons = "";
@@ -55,7 +56,7 @@ if ($oid > 0) {
         die(Language::string(81));
 
     $caption = $edit_caption . " #" . $oid;
-    $buttons = $btn_cancel . $btn_save . $btn_delete;
+    $buttons = $btn_cancel . $btn_save . $btn_save_new . $btn_delete;
 }
 else {
     $obj = new $class_name();
@@ -71,6 +72,7 @@ if ($oid != 0) {
             Methods.iniIconButton("#btnExpand<?= $class_name ?>Description","arrowthick-1-s");
             Methods.iniIconButton(".btnCancel", "cancel");
             Methods.iniIconButton(".btnSave", "disk");
+            Methods.iniIconButton(".btnSaveNew", "disk");
             Methods.iniIconButton(".btnDelete", "trash");
             Methods.iniIconButton(".btnDebugTest", "lightbulb");
             Methods.iniIconButton(".btnLogicVariables", "star");
@@ -189,6 +191,7 @@ if ($oid != 0) {
                 <?= $btn_cancel ?>
                 <?= $btn_delete ?>
                 <?= $btn_save ?>
+                <?= $btn_save_new ?>
                 <?php
                 if ($class_name::$exportable && $oid > 0) {
                     ?>

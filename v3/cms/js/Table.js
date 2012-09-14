@@ -57,14 +57,14 @@ Table.getFullSaveObject=function(){
     return obj;
 }
 
-Table.uiSaveValidate=function(ignoreOnBefore){
+Table.uiSaveValidate=function(ignoreOnBefore,isNew){
     if(!this.checkRequiredFields([
         $("#form"+this.className+"InputName").val()
     ])) {
         Methods.alert(dictionary["s415"],"alert");
         return false;
     }
-    Table.uiSaveValidated(ignoreOnBefore);
+    Table.uiSaveValidated(ignoreOnBefore,isNew);
 }
 
 Table.uiRemoveColumn=function(obj){
@@ -451,16 +451,6 @@ Table.getRows=function(){
     }
     return result;
 }
-
-/*
-Table.uiSaveValidate=function(ignoreOnBefore){
-    if(Table.getColumns().length==0){
-        Methods.alert(dictionary["s353"], "alert",dictionary["s274"]);
-        return false;
-    }
-    this.uiSaveValidated(ignoreOnBefore);
-}
-*/
 
 Table.doesColumnExists=function(name){
     var grid = $("#div"+this.className+"GridData").data('kendoGrid');

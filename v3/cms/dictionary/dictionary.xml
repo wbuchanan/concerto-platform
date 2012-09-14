@@ -4254,5 +4254,14 @@ Note: You can add new languages by inserting "<new_language>string translated in
             <bg></bg>
             <nl></nl>
         </string>
+        <string id="510">
+            <en>save as new</en>
+            <de></de>
+            <pl>zapisz jako nowe</pl>
+            <cn></cn>
+            <fr></fr>
+            <bg></bg>
+            <nl></nl>
+        </string>
     </strings>
 </root> 

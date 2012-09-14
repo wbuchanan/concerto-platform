@@ -56,31 +56,32 @@ class CustomSection extends OModule {
         if ($this->id != 0) {
             $this->delete_object_links(CustomSectionVariable::get_mysql_table());
             $i = 0;
-            if (array_key_exists("parameters", $post)) {
-                foreach ($post["parameters"] as $param) {
-                    $p = json_decode($param);
-                    $var = new CustomSectionVariable();
-                    $var->description = $p->description;
-                    $var->name = $p->name;
-                    $var->index = $i;
-                    $var->type = 0;
-                    $var->CustomSection_id = $lid;
-                    $var->mysql_save();
-                    $i++;
-                }
+        }
+
+        if (array_key_exists("parameters", $post)) {
+            foreach ($post["parameters"] as $param) {
+                $p = json_decode($param);
+                $var = new CustomSectionVariable();
+                $var->description = $p->description;
+                $var->name = $p->name;
+                $var->index = $i;
+                $var->type = 0;
+                $var->CustomSection_id = $lid;
+                $var->mysql_save();
+                $i++;
             }
-            if (array_key_exists("returns", $post)) {
-                foreach ($post["returns"] as $ret) {
-                    $r = json_decode($ret);
-                    $var = new CustomSectionVariable();
-                    $var->description = $r->description;
-                    $var->name = $r->name;
-                    $var->index = $i;
-                    $var->type = 1;
-                    $var->CustomSection_id = $lid;
-                    $var->mysql_save();
-                    $i++;
-                }
+        }
+        if (array_key_exists("returns", $post)) {
+            foreach ($post["returns"] as $ret) {
+                $r = json_decode($ret);
+                $var = new CustomSectionVariable();
+                $var->description = $r->description;
+                $var->name = $r->name;
+                $var->index = $i;
+                $var->type = 1;
+                $var->CustomSection_id = $lid;
+                $var->mysql_save();
+                $i++;
             }
         }
 
@@ -215,6 +216,7 @@ class CustomSection extends OModule {
             ";
         return mysql_query($sql);
     }
+
 }
 
 ?>

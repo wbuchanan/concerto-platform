@@ -58,12 +58,12 @@ Template.getFullSaveObject = function(){
     return obj;
 }
 
-Template.uiSaveValidate=function(ignoreOnBefore){
+Template.uiSaveValidate=function(ignoreOnBefore,isNew){
     if(!this.checkRequiredFields([
         $("#form"+this.className+"InputName").val()
     ])) {
         Methods.alert(dictionary["s415"],"alert");
         return false;
     }
-    Template.uiSaveValidated(ignoreOnBefore);
+    Template.uiSaveValidated(ignoreOnBefore,isNew);
 }

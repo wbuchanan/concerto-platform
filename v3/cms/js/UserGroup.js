@@ -25,9 +25,10 @@ UserGroup.className="UserGroup";
 UserGroup.reloadOnModification=true;
 UserGroup.reloadHash="tnd_mainMenu-users";
 
-UserGroup.onBeforeSave=function(){
+UserGroup.onBeforeSave=function(isNew){
+    if(isNew==null) isNew = false;
     Methods.confirmUnsavedLost(function(){
-        UserGroup.uiSave(true);
+        UserGroup.uiSave(true,isNew);
     });
 }
 
@@ -66,12 +67,12 @@ UserGroup.getFullSaveObject=function()
     return obj;
 }
 
-UserGroup.uiSaveValidate=function(ignoreOnBefore){
+UserGroup.uiSaveValidate=function(ignoreOnBefore,isNew){
     if(!this.checkRequiredFields([
         $("#form"+this.className+"InputName").val()
     ])) {
         Methods.alert(dictionary["s415"],"alert");
         return false;
     }
-    UserGroup.uiSaveValidated(ignoreOnBefore);
+    UserGroup.uiSaveValidated(ignoreOnBefore,isNew);
 }

@@ -58,14 +58,14 @@ QTIAssessmentItem.getFullSaveObject = function(){
     return obj;
 }
 
-QTIAssessmentItem.uiSaveValidate=function(ignoreOnBefore){
+QTIAssessmentItem.uiSaveValidate=function(ignoreOnBefore,isNew){
     if(!this.checkRequiredFields([
         $("#form"+this.className+"InputName").val()
         ])) {
         Methods.alert(dictionary["s415"],"alert");
         return false;
     }
-    QTIAssessmentItem.uiSaveValidated(ignoreOnBefore);
+    QTIAssessmentItem.uiSaveValidated(ignoreOnBefore,isNew);
 }
 
 QTIAssessmentItem.uiRevalidate=function(){

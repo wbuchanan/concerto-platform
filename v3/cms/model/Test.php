@@ -43,44 +43,67 @@ class Test extends OModule {
 
             $this->delete_object_links(TestVariable::get_mysql_table());
             $i = 0;
-            if (array_key_exists("parameters", $post)) {
-                foreach ($post["parameters"] as $param) {
-                    $p = json_decode($param);
-                    $var = new TestVariable();
-                    $var->description = $p->description;
-                    $var->name = $p->name;
-                    $var->index = $i;
-                    $var->type = 0;
-                    $var->Test_id = $lid;
-                    $var->mysql_save();
-                    $i++;
-                }
-            }
-            if (array_key_exists("returns", $post)) {
-                foreach ($post["returns"] as $ret) {
-                    $r = json_decode($ret);
-                    $var = new TestVariable();
-                    $var->description = $r->description;
-                    $var->name = $r->name;
-                    $var->index = $i;
-                    $var->type = 1;
-                    $var->Test_id = $lid;
-                    $var->mysql_save();
-                    $i++;
-                }
-            }
         } else {
-            $start_section = new TestSection();
-            $start_section->TestSectionType_id = DS_TestSectionType::START;
-            $start_section->Test_id = $lid;
-            $start_section->counter = 1;
-            $start_section->mysql_save();
+            $found = false;
+            if (isset($post['sections'])) {
+                foreach ($post['sections'] as $section) {
+                    if ($section['counter'] == 1) {
+                        $found = true;
+                        break;
+                    }
+                }
+            }
+            if (!$found) {
+                $start_section = new TestSection();
+                $start_section->TestSectionType_id = DS_TestSectionType::START;
+                $start_section->Test_id = $lid;
+                $start_section->counter = 1;
+                $start_section->mysql_save();
+            }
 
-            $end_section = new TestSection();
-            $end_section->TestSectionType_id = DS_TestSectionType::END;
-            $end_section->Test_id = $lid;
-            $end_section->counter = 2;
-            $end_section->mysql_save();
+            $found = false;
+            if (isset($post['sections'])) {
+                foreach ($post['sections'] as $section) {
+                    if ($section['counter'] == 2) {
+                        $found = true;
+                        break;
+                    }
+                }
+            }
+            if (!$found) {
+                $end_section = new TestSection();
+                $end_section->TestSectionType_id = DS_TestSectionType::END;
+                $end_section->Test_id = $lid;
+                $end_section->counter = 2;
+                $end_section->mysql_save();
+            }
+        }
+
+        if (array_key_exists("parameters", $post)) {
+            foreach ($post["parameters"] as $param) {
+                $p = json_decode($param);
+                $var = new TestVariable();
+                $var->description = $p->description;
+                $var->name = $p->name;
+                $var->index = $i;
+                $var->type = 0;
+                $var->Test_id = $lid;
+                $var->mysql_save();
+                $i++;
+            }
+        }
+        if (array_key_exists("returns", $post)) {
+            foreach ($post["returns"] as $ret) {
+                $r = json_decode($ret);
+                $var = new TestVariable();
+                $var->description = $r->description;
+                $var->name = $r->name;
+                $var->index = $i;
+                $var->type = 1;
+                $var->Test_id = $lid;
+                $var->mysql_save();
+                $i++;
+            }
         }
 
         if (isset($post['sections'])) {
@@ -510,7 +533,7 @@ class Test extends OModule {
             if ($compare["Test"][$id] == 0) {
                 $obj = new Test();
                 $obj->Owner_id = $logged_user->id;
-                $lid = $obj->import_XML(CustomSection::convert_to_XML_document($element),$compare);
+                $lid = $obj->import_XML(CustomSection::convert_to_XML_document($element), $compare);
                 $compare["Test"][$id] = $lid;
             }
         }

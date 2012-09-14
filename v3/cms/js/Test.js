@@ -83,14 +83,14 @@ Test.getFullSaveObject = function() {
     return obj;
 }
 
-Test.uiSaveValidate=function(ignoreOnBefore){
+Test.uiSaveValidate=function(ignoreOnBefore,isNew){
     if(!this.checkRequiredFields([
         $("#form"+this.className+"InputName").val()
         ])) {
         Methods.alert(dictionary["s415"],"alert");
         return false;
     }
-    Test.uiSaveValidated(ignoreOnBefore);
+    Test.uiSaveValidated(ignoreOnBefore,isNew);
 }
 
 Test.isTestDirty = false;
