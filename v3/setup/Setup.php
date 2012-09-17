@@ -916,7 +916,6 @@ class Setup {
             }
 
             $validate_column_names = true;
-            $recalculate_hash = true;
             $repopulate_TestTemplate = true;
         }
 
@@ -1080,6 +1079,7 @@ class Setup {
                 Setting::set_setting("version", "3.7.6");
                 return json_encode(array("result" => 0, "param" => "3.7.6"));
             }
+            $recalculate_hash = true;
         }
 
         if ($simulate)
