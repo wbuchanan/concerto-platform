@@ -38,3 +38,6 @@ For more information on support and services that we offer. Please refer to the 
 
 ===Can the custom data table concept be used to effectively create a login page for test candidates?===
 Yes, you can easily create a login page by storing necessary information in a table. We plan to add, in the near future, an inbuilt authentication system for Concerto tests.
+
+===Are there any tutorials on creating MCQ items?===
+There are no specific tutorials on MCQ, but you can use the simple tutorial and add as many response options as you want to create multiple choice questions. Radio buttons should be named the same, with different values for each response option in the group.
