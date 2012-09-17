@@ -308,6 +308,7 @@ class Table extends OModule {
                 return -5;
         }
 
+        $last_result = 0;
         $elements = $xpath->query("/export/Table");
         foreach ($elements as $element) {
             $this->xml_hash = $element->getAttribute("xml_hash");
@@ -320,36 +321,37 @@ class Table extends OModule {
                         break;
                 }
             }
-        }
 
-        $post['cols'] = array();
-        $elements = $xpath->query("/export/Table/TableColumns/TableColumn");
-        foreach ($elements as $element) {
-            $children = $element->childNodes;
-            $col = array("oid" => 0);
-            foreach ($children as $child) {
-                switch ($child->nodeName) {
-                    case "name": $col["name"] = $child->nodeValue;
-                        break;
-                    case "TableColumnType_id": $col["type"] = $child->nodeValue;
-                        break;
+            $post['cols'] = array();
+            $elements_tc = $xpath->query("./TableColumns/TableColumn", $element);
+            foreach ($elements_tc as $element_tc) {
+                $children = $element_tc->childNodes;
+                $col = array("oid" => 0);
+                foreach ($children as $child) {
+                    switch ($child->nodeName) {
+                        case "name": $col["name"] = $child->nodeValue;
+                            break;
+                        case "TableColumnType_id": $col["type"] = $child->nodeValue;
+                            break;
+                    }
                 }
+                array_push($post['cols'], json_encode($col));
             }
-            array_push($post['cols'], json_encode($col));
-        }
 
-        $post['rows'] = array();
-        $elements = $xpath->query("/export/Table/rows/row");
-        foreach ($elements as $element) {
-            $children = $element->childNodes;
-            $row = array();
-            foreach ($children as $child) {
-                $row[$child->nodeName] = $child->nodeValue;
+            $post['rows'] = array();
+            $elements_r = $xpath->query("./rows/row", $element);
+            foreach ($elements_r as $element_r) {
+                $children = $element_r->childNodes;
+                $row = array();
+                foreach ($children as $child) {
+                    $row[$child->nodeName] = $child->nodeValue;
+                }
+                array_push($post['rows'], json_encode($row));
             }
-            array_push($post['rows'], json_encode($row));
-        }
 
-        return $this->mysql_save_from_post($post);
+            $last_result = $this->mysql_save_from_post($post);
+        }
+        return $last_result;
     }
 
     public function to_XML() {

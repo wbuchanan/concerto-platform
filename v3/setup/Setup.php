@@ -171,7 +171,7 @@ class Setup {
         if ($elems[0] > 2)
             return json_encode(array("result" => 0, "param" => $version));
         if ($elems[0] == 2) {
-            if ($elems[1] >= 12)
+            if ($elems[1] >= 15)
                 return json_encode(array("result" => 0, "param" => $version));
         }
         return json_encode(array("result" => 1, "param" => $version));

@@ -619,6 +619,8 @@ OModule.inheritance=function(obj)
             for(var i=0;i<oid.length;i++){
                 param+="&oid[]="+oid[i];
             }
+        } else {
+            param="&oid="+oid;
         }
         location.href="query/export_object.php?class_name="+this.className+param;
     };

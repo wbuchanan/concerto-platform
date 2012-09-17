@@ -134,29 +134,29 @@ class CustomSection extends OModule {
                         break;
                 }
             }
-        }
+            $lid = $this->mysql_save();
 
-        $lid = $this->mysql_save();
-
-        $elements = $xpath->query("/export/CustomSection/CustomSectionVariables/CustomSectionVariable");
-        foreach ($elements as $element) {
-            $obj = new CustomSectionVariable();
-            $obj->CustomSection_id = $lid;
-            $children = $element->childNodes;
-            foreach ($children as $child) {
-                switch ($child->nodeName) {
-                    case "name": $obj->name = $child->nodeValue;
-                        break;
-                    case "description": $obj->description = $child->nodeValue;
-                        break;
-                    case "index": $obj->index = $child->nodeValue;
-                        break;
-                    case "type": $obj->type = $child->nodeValue;
-                        break;
+            $elements = $xpath->query("./CustomSectionVariables/CustomSectionVariable",$element);
+            foreach ($elements as $element) {
+                $obj = new CustomSectionVariable();
+                $obj->CustomSection_id = $lid;
+                $children = $element->childNodes;
+                foreach ($children as $child) {
+                    switch ($child->nodeName) {
+                        case "name": $obj->name = $child->nodeValue;
+                            break;
+                        case "description": $obj->description = $child->nodeValue;
+                            break;
+                        case "index": $obj->index = $child->nodeValue;
+                            break;
+                        case "type": $obj->type = $child->nodeValue;
+                            break;
+                    }
                 }
+                $obj->mysql_save();
             }
-            $obj->mysql_save();
         }
+
         return $lid;
     }
 

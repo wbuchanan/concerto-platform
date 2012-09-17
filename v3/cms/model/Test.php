@@ -529,7 +529,8 @@ class Test extends OModule {
             $element = $elements->item($i);
             $id = $element->getAttribute("id");
             $hash = $element->getAttribute("xml_hash");
-            $compare["Test"][$id] = Test::find_xml_hash($hash);
+            if (!isset($compare["Test"][$id]))
+                $compare["Test"][$id] = 0;
             if ($compare["Test"][$id] == 0) {
                 $obj = new Test();
                 $obj->Owner_id = $logged_user->id;

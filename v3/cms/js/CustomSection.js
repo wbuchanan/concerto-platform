@@ -167,7 +167,7 @@ CustomSection.uiRefreshLogic=function(parameters,returns){
 }
     
 CustomSection.uiEditVariableDescription=function(obj){
-    $("#formDialog"+CustomSection.className+"TextareaDescription").val(obj.val());
+    $("#dialog"+CustomSection.className+"TextareaDescription").val(obj.val());
     $("#div"+CustomSection.className+"DialogDescription").dialog({
         title:dictionary["s3"],
         modal:true,
@@ -181,7 +181,7 @@ CustomSection.uiEditVariableDescription=function(obj){
         },
         create:function(){
             var thisDialog = $("#div"+CustomSection.className+"DialogDescription");
-            Methods.iniCKEditor($(this).find("textarea"),function(){
+            Methods.iniCKEditor($("#dialog"+CustomSection.className+"TextareaDescription"),function(){
                 thisDialog.dialog("option","position","center");
             });
         },
@@ -189,7 +189,7 @@ CustomSection.uiEditVariableDescription=function(obj){
         {
             text:dictionary["s38"],
             click:function(){
-                obj.val(Methods.getCKEditorData($(this).find('textarea')));
+                obj.val(Methods.getCKEditorData($("#dialog"+CustomSection.className+"TextareaDescription")));
                 $(this).dialog("close");
             }
         },

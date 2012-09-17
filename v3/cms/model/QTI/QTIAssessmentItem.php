@@ -302,7 +302,7 @@ class QTIAssessmentItem extends OModule {
         else
             return mysql_insert_id();
     }
-    
+
     public function mysql_save_from_post($post) {
         $lid = parent::mysql_save_from_post($post);
 
@@ -342,6 +342,7 @@ class QTIAssessmentItem extends OModule {
                 return -5;
         }
 
+        $last_result = 0;
         $elements = $xpath->query("/export/QTIAssessmentItem");
         foreach ($elements as $element) {
             $this->xml_hash = $element->getAttribute("xml_hash");
@@ -356,8 +357,9 @@ class QTIAssessmentItem extends OModule {
                         break;
                 }
             }
+            $last_result = $this->mysql_save();
         }
-        return $this->mysql_save();
+        return $last_result;
     }
 
     public function to_XML() {
