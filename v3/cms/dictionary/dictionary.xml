@@ -176,6 +176,7 @@ Note: You can add new languages by inserting "<new_language>string translated in
             <fr>modifier le nom de la colonne</fr>
             <bg>промени името на колоната</bg>
             <nl>kolomnaam wijzigen</nl>
+            <pt></pt>
         </string>
         <string id="15" js="1">
             <en>A column with that name already exists.</en>
@@ -185,6 +186,7 @@ Note: You can add new languages by inserting "<new_language>string translated in
             <fr>Une colonne de ce nom existe déjà.</fr>
             <bg>Колона с такова име вече съществува</bg>
             <nl>Een kolom met die naam bestaat al</nl>
+            <pt></pt>
         </string>
         <string id="16" js="1">
             <en>string</en>
@@ -354,6 +356,7 @@ Note: You can add new languages by inserting "<new_language>string translated in
             <fr>suppression de la ligne du tableau</fr>
             <bg>изтриване на ред от таблицата</bg>
             <nl>tabelrij verwijderen</nl>
+            <pt></pt>
         </string>
         <string id="34" js="1">
             <en>Are you sure you want to delete this column?</en>
@@ -363,6 +366,7 @@ Note: You can add new languages by inserting "<new_language>string translated in
             <fr>Êtes-vous certain de vouloir supprimer cette colonne?</fr>
             <bg>Сигурни ли сте, че искате да изтриете тази колона</bg>
             <nl>Bent u zeker dat u deze kolom wil verwijderen?</nl>
+            <pt></pt>
         </string>
         <string id="35" js="1">
             <en>deleting table column</en>
@@ -372,6 +376,7 @@ Note: You can add new languages by inserting "<new_language>string translated in
             <fr>suppression de la colonne du tableau</fr>
             <bg>изтриване на колона от таблицата</bg>
             <nl>tabelkolom verwijderen</nl>
+            <pt></pt>
         </string>
         <string id="36" js="1">
             <en>changing HTML</en>
@@ -381,6 +386,7 @@ Note: You can add new languages by inserting "<new_language>string translated in
             <fr>changement HTML</fr>
             <bg>промяна на HTML</bg>
             <nl>HTML wijzigen</nl>
+            <pt></pt>
         </string>
         <string id="37" js="1">
             <en>add</en>
@@ -390,6 +396,7 @@ Note: You can add new languages by inserting "<new_language>string translated in
             <fr>ajouter</fr>
             <bg>прибави</bg>
             <nl>toevoegen</nl>
+            <pt></pt>
         </string>
         <string id="38" js="1">
             <en>change</en>
@@ -399,6 +406,7 @@ Note: You can add new languages by inserting "<new_language>string translated in
             <fr>changement</fr>
             <bg>промени</bg>
             <nl>wijzigen</nl>
+            <pt></pt>
         </string>
         <string id="39" js="1">
             <en>Edit HTML. Current HTML:</en>
@@ -408,6 +416,7 @@ Note: You can add new languages by inserting "<new_language>string translated in
             <fr>Modifier HTML. HTML courant:</fr>
             <bg>Редактирай HTML. Настоящ HTML:</bg>
             <nl>Bewerk HTML. Huidige HTML:</nl>
+            <pt></pt>
         </string>
         <string id="40">
             <en>Directly enter R code that is to be interpreted.</en>
@@ -417,6 +426,7 @@ Note: You can add new languages by inserting "<new_language>string translated in
             <fr>Entrez directement le code R qui doit être interprété.</fr>
             <bg>Директно въведи R кода за интерпретация</bg>
             <nl>Voer rechtstreeks de R code in die geinterpreteerd dient te worden.</nl>
+            <pt></pt>
         </string>
         <string id="41">
             <en>Stop R processes and load selected HTML template.</en>
@@ -426,6 +436,7 @@ Note: You can add new languages by inserting "<new_language>string translated in
             <fr>Arrêter le processus R et charger le modèle HTML sélectionné.</fr>
             <bg>Спри R процеса и зареди избрания HTML шаблон</bg>
             <nl>Stop de R processen en laad de geselecteerde HTML-sjabloon.</nl>
+            <pt></pt>
         </string>
         <string id="42">
             <en>Skip to a specific section of the test.</en>
@@ -435,6 +446,7 @@ Note: You can add new languages by inserting "<new_language>string translated in
             <fr>Passer à une section spécifique du test.</fr>
             <bg>Пропусни специфична част от теста</bg>
             <nl>Doorgaan naar een specifieke testsectie</nl>
+            <pt></pt>
         </string>
         <string id="43">
             <en><![CDATA[Specify conditions and their consequences. Multiple conditions and consequences can be specified.]]></en>
@@ -444,6 +456,7 @@ Note: You can add new languages by inserting "<new_language>string translated in
             <fr><![CDATA[Spécifier les conditions et leurs conséquences. De multiples conditions et conséquences peuvent être spécifiées.]]></fr>
             <bg><![CDATA[Определете условията и техните следствия. Множество условия и следствия могат да бъдат определени.]]></bg>
             <nl><![CDATA[Specifieer condities en bijhorende gevolgen. Meerdere condities en gevolgen kunnen gespecifieerd worden.]]></nl>
+            <pt></pt>
         </string>
         <string id="44">
             <en><![CDATA[Define variables (i.e. set variables). Methods to set variable: <ul><li><b>from table</b>: select a previously defined table in Concerto and filter necessary rows and columns. Set the whole table by leaving the <b>WHERE</b> clause empty</li><li><b>by R code</b>: directly type in R code. E.g. function result, mathematical calculation</li></ul>]]></en>
@@ -453,6 +466,7 @@ Note: You can add new languages by inserting "<new_language>string translated in
             <fr><![CDATA[Définir les variables (par ex. établir les variables).. Méthode afin de d'établir les variables: <ul><li><b>du tableau</b>: sélectionner un tableau préalablement défini dans concerto et filtrer les lignes et colonnes nécessaires. Établir un tableau complet en laissant la clause <b>OU</b> vide </li><li><b>avec le code R </b>: taper directement dans le code R. Par exemple: fonctiont résultat, calcul mathématique</li></ul>]]></fr>
             <bg><![CDATA[Дефинирайте променливи (т.е. създайте променливи). Методи за създаване на променлива: <ul><li><b>чрез таблица</b>: изберете предварително дефинирана таблица в Concerto и филтрирайте необходимите редове и колони. Може да вземете цяла таблица <b>КЪДЕ</b> условието е празно</li><li><b>чрез R код</b>: директно като напишете R кода. Т.е. резултат от функция, математическо пресмятане</li></ul>]]> </bg>
             <nl><![CDATA[Definieer variabelen (i.e. kies variabelen). Methoden om variable te kiezen: <ul><li><b>uit tabel</b>: een voordien gedefinieerde tabel in Concerto selecteren en de nodige rijen en kolommen filteren. Selecteer de volledige tabel door de <b>WAAR</b> clause leeg te laten</li><li><b>via R code</b>: rechtstreeks R code typen. Bv. functie resultaat, wiskundige berekening</li></ul>]]></nl>
+            <pt></pt>
         </string>
         <string id="45">
             <en>The start section is the entry point to your test logic. It cannot be modified.</en>
@@ -462,6 +476,7 @@ Note: You can add new languages by inserting "<new_language>string translated in
             <fr>La section Début est le point d'entrée de la logique du test. Elle ne peut pas être modifiée.</fr>
             <bg>Началната секция е входната точка за логиката на теста. Тя не може да бъде променяна</bg>
             <nl>De beginsectie is de start van de teststructuur. Deze kan niet aangepast worden.</nl>
+            <pt></pt>
         </string>
         <string id="46">
             <en>The End section is the last section of your test logic. It cannot be modified.</en>
@@ -471,6 +486,7 @@ Note: You can add new languages by inserting "<new_language>string translated in
             <fr>La section Fin est le point d'entrée de la logique du test. Elle ne peut pas être modifiée.</fr>
             <bg>Крайната секция е последната секция в логиката на теста. Тя не може да бъде променяна</bg>
             <nl>De einde-sectie is de laatste sectie van de teststructuur. Deze kan niet aangepast worden.</nl>
+            <pt></pt>
         </string>
         <string id="47">
             <en><![CDATA[Modify existing tables with the help of three basic database operations:<ul><li><b>INSERT</b>: insert a single row and values corresponding to each column</li><li><b>UPDATE</b>: modify table rows that meet criteria found in the <b>WHERE</b> clause. Specify which columns you want to modify and values for each.</li><li><b>DELETE</b>: delete table rows that meet criteria found in the <b>WHERE</b> clause.</li></ul>]]></en>
@@ -480,6 +496,7 @@ Note: You can add new languages by inserting "<new_language>string translated in
             <fr><![CDATA[Modifier les tableaux existant avec l'aide de trois opérations de base:<ul><li><b>INSERTION</b>: insère une seule ligne et ses valeurs correspondantes dans chacune des colonnes.</li><li><b>Mettre à jour </b>: modifie les lignes du tableau qui rencontrent les critères inclus dans la clause <b>OU</b>. spécifiez quelle colonnes vous voulez modifier et les valeurs de chacune d'entre elles.</li><li><b>Supprimer</b>: supprime les lignes du tableau qui rencontrent les critères inclus dans la clause <b>OU</b>.</li></ul>]]></fr>
             <bg><![CDATA[Променете съществуващите таблици с помощта на три основни операции за бази данни: <ul><li><b>ВМЪКНИ</b>: вмъкни единичен ред и стойности отнасящи се за всяка колона </li><li><b>ОБНОВИ</b>: промени редовете на таблицата, които отговорят на критерия, който се намира <b>КЪДЕ</b> в условието. Посочете кои колони искате да модифицирате и стойностите за всяка.</li><li><b>ИЗТРИЙ</b>: изтрийте редове от таблицата, които се намират <b>КЪДЕ</b> в условието.</li></ul>]]></bg>
             <nl><![CDATA[Bestaande tabellen aanpassen met de hulp van drie database basisoperaties:<ul><li><b>INSERT</b>: een enkele rij invoegen met de corresponderende waarden van elke kolom</li><li><b>UPDATE</b>: tabelrijen aanpassen die voldoen aan de criteria uit de <b>WAAR</b> clause. Specifieren van welke kolommen u wil aanpassen en hun corresponderende waarden.</li><li><b>VERWIJDEREN</b>: verwijderen van tabelrijen die voldoen aan de criteria uit de <b>WAAR</b> clause.</li></ul>]]></nl>
+            <pt></pt>
         </string>
         <string id="48">
             <en>This is the custom test section.</en>
@@ -489,6 +506,7 @@ Note: You can add new languages by inserting "<new_language>string translated in
             <fr> Ceci est une section personnalisée du test.</fr>
             <bg>Това е персонализирана секция от теста</bg>
             <nl>Dit is een aangepaste testsectie</nl>
+            <pt></pt>
         </string>
         <string id="49" js="1">
             <en>R code</en>
@@ -498,6 +516,7 @@ Note: You can add new languages by inserting "<new_language>string translated in
             <fr>code R</fr>
             <bg>R код</bg>
             <nl>R code</nl>
+            <pt></pt>
         </string>
         <string id="50" js="1">
             <en>load HTML template</en>
@@ -507,6 +526,7 @@ Note: You can add new languages by inserting "<new_language>string translated in
             <fr>charger un modèle HTML</fr>
             <bg>Зареди HTML шаблон</bg>
             <nl>HTML-sjabloon openen</nl>
+            <pt></pt>
         </string>
         <string id="51" js="1">
             <en>go to</en>
@@ -516,6 +536,7 @@ Note: You can add new languages by inserting "<new_language>string translated in
             <fr>aller à</fr>
             <bg>иди на</bg>
             <nl>ga naar</nl>
+            <pt></pt>
         </string>
         <string id="52" js="1">
             <en>IF statement</en>
@@ -525,6 +546,7 @@ Note: You can add new languages by inserting "<new_language>string translated in
             <fr>expression SI</fr>
             <bg>АКО твърдение</bg>
             <nl>ALS functie</nl>
+            <pt></pt>
         </string>
         <string id="53" js="1">
             <en>set variable</en>
@@ -534,6 +556,7 @@ Note: You can add new languages by inserting "<new_language>string translated in
             <fr>définir une variable</fr>
             <bg>създай променлива</bg>
             <nl>Defineer variabele</nl>
+            <pt></pt>
         </string>
         <string id="54" js="1">
             <en>start</en>
@@ -543,6 +566,7 @@ Note: You can add new languages by inserting "<new_language>string translated in
             <bg>начало</bg>
             <fr>commencer</fr>
             <nl>start</nl>
+            <pt></pt>
         </string>
         <string id="55" js="1">
             <en>end</en>
@@ -552,6 +576,7 @@ Note: You can add new languages by inserting "<new_language>string translated in
             <fr>fin</fr>
             <bg>край</bg>
             <nl>einde</nl>
+            <pt></pt>
         </string>
         <string id="56" js="1">
             <en>table modification</en>
@@ -561,6 +586,7 @@ Note: You can add new languages by inserting "<new_language>string translated in
             <fr>modification du tableau</fr>
             <bg>промяна на таблицата</bg>
             <nl>tabel aanpassen</nl>
+            <pt></pt>
         </string>
         <string id="57" js="1">
             <en>custom section</en>
@@ -570,6 +596,7 @@ Note: You can add new languages by inserting "<new_language>string translated in
             <fr>section personnalisée</fr>
             <bg>персонализирана секция</bg>
             <nl>aangepaste sectie</nl>
+            <pt></pt>
         </string>
         <string id="58" js="1">
             <en>ignore</en>
@@ -579,6 +606,7 @@ Note: You can add new languages by inserting "<new_language>string translated in
             <fr>ignorer</fr>
             <bg>игнорирай</bg>
             <nl>negeren</nl>
+            <pt></pt>
         </string>
         <string id="59">
             <en>remove test logic section</en>
@@ -588,6 +616,7 @@ Note: You can add new languages by inserting "<new_language>string translated in
             <fr>enlever la section logique du test</fr>
             <bg>премахни секцията за логиката на теста</bg>
             <nl>logische testsectie verwijderen</nl>
+            <pt></pt>
         </string>
         <string id="60">
             <en>add test logic section</en>
@@ -597,6 +626,7 @@ Note: You can add new languages by inserting "<new_language>string translated in
             <fr>ajouter une section logique du test</fr>
             <bg>прибави секция с логиката на теста</bg>
             <nl>logische testsectie toevoegen</nl>
+            <pt></pt>
         </string>
         <string id="61" js="1">
             <en>adding new section</en>
@@ -606,6 +636,7 @@ Note: You can add new languages by inserting "<new_language>string translated in
             <fr>ajouter une nouvelle section</fr>
             <bg>прибавете нова секция</bg>
             <nl>nieuwe sectie toevoegen</nl>
+            <pt></pt>
         </string>
         <string id="62" js="1">
             <en>are you sure you want to remove this test section?</en>
@@ -615,6 +646,7 @@ Note: You can add new languages by inserting "<new_language>string translated in
             <fr>ête-vous certain de vouloir supprimer cette section du test?</fr>
             <bg>сигурни ли сте, че искате да премахнете този секция на теста?</bg>
             <nl>Bent u zeker dat u deze testsectie wil verwijderen?</nl>
+            <pt></pt>
         </string>
         <string id="63" js="1">
             <en>removing test section</en>
@@ -624,6 +656,7 @@ Note: You can add new languages by inserting "<new_language>string translated in
             <fr>suppression de lasection du test</fr>
             <bg>премахване на секция от теста</bg>
             <nl>testsectie verwijderen</nl>
+            <pt></pt>
         </string>
         <string id="64" js="1">
             <en>close</en>
@@ -633,6 +666,7 @@ Note: You can add new languages by inserting "<new_language>string translated in
             <fr>fermer</fr>
             <bg>затваряне</bg>
             <nl>sluiten</nl>
+            <pt></pt>
         </string>
         <string id="65" js="1">
             <en>test logic variables</en>
@@ -642,6 +676,7 @@ Note: You can add new languages by inserting "<new_language>string translated in
             <fr>variables de la logique du test</fr>
             <bg>променливи на тестовата логика</bg>
             <nl>logische variabelen van de test </nl>
+            <pt></pt>
         </string>
         <string id="66" js="1">
             <en>Password and password confirmation do not match!</en>
@@ -651,6 +686,7 @@ Note: You can add new languages by inserting "<new_language>string translated in
             <fr>Le mot de passe et la confirmation du mot de passe ne correspondent pas!</fr>
             <bg>Паролата и потвърждението на паролата не съответстват</bg>
             <nl>wachtwoord en wachtwoordbevestiging zijn niet gelijk!</nl>
+            <pt></pt>
         </string>
         <string id="67" js="1">
             <en>login/password combination is incorrect!</en>
@@ -660,6 +696,7 @@ Note: You can add new languages by inserting "<new_language>string translated in
             <fr>La combinaison nom d'utilisateur/mot de passe est incorrecte!</fr>
             <bg>Комбинацията потребителско име/парола е грешна</bg>
             <nl>login/wachtwoord combinatie is ongeldig!</nl>
+            <pt></pt>
         </string>
         <string id="68">
             <en>unnamed custom section</en>
@@ -669,6 +706,7 @@ Note: You can add new languages by inserting "<new_language>string translated in
             <fr>section personnalisée sans nom</fr>
             <bg>неименувана персонализирана секция</bg>
             <nl>naamloze aangepaste sectie</nl>
+            <pt></pt>
         </string>
         <string id="69" js="1">
             <en>id</en>
@@ -678,6 +716,7 @@ Note: You can add new languages by inserting "<new_language>string translated in
             <fr>id</fr>
             <bg>id</bg>
             <nl>id</nl>
+            <pt></pt>
         </string>
         <string id="70" js="1">
             <en>name</en>
@@ -687,6 +726,7 @@ Note: You can add new languages by inserting "<new_language>string translated in
             <fr>nom</fr>
             <bg>име</bg>
             <nl>naam</nl>
+            <pt></pt>
         </string>
         <string id="71">
             <en>owner</en>
@@ -696,6 +736,7 @@ Note: You can add new languages by inserting "<new_language>string translated in
             <fr>propriétaire</fr>
             <bg>собственик</bg>
             <nl>eigenaar</nl>
+            <pt></pt>
         </string>
         <string id="72">
             <en>access rights</en>
@@ -705,6 +746,7 @@ Note: You can add new languages by inserting "<new_language>string translated in
             <fr>droits d'accès</fr>
             <bg>права за достъп</bg>
             <nl>toegangsrechten</nl>
+            <pt></pt>
         </string>
         <string id="73" js="1">
             <en>none</en>
@@ -714,6 +756,7 @@ Note: You can add new languages by inserting "<new_language>string translated in
             <fr>aucun</fr>
             <bg>липса</bg>
             <nl>geen</nl>
+            <pt></pt>
         </string>
         <string id="74">
             <en>unnamed table</en>
@@ -723,6 +766,7 @@ Note: You can add new languages by inserting "<new_language>string translated in
             <bg>променлива без име</bg>
             <fr>tableau sans nom</fr>
             <nl>naamloze tabel</nl>
+            <pt></pt>
         </string>
         <string id="75">
             <en>unnamed template</en>
@@ -732,6 +776,7 @@ Note: You can add new languages by inserting "<new_language>string translated in
             <fr>modèle sans nom</fr>
             <bg>шаблон без име</bg>
             <nl>naamloze template</nl>
+            <pt></pt>
         </string>
         <string id="76">
             <en>unnamed test</en>
@@ -741,6 +786,7 @@ Note: You can add new languages by inserting "<new_language>string translated in
             <fr>test sans nom</fr>
             <bg>тест без име</bg>
             <nl>naamloze test</nl>
+            <pt></pt>
         </string>
         <string id="77">
             <en>incognito</en>
@@ -750,6 +796,7 @@ Note: You can add new languages by inserting "<new_language>string translated in
             <fr>incognito</fr>
             <bg>инкогнито</bg>
             <nl>incognito</nl>
+            <pt></pt>
         </string>
         <string id="78">
             <en>unknown</en>
@@ -759,6 +806,7 @@ Note: You can add new languages by inserting "<new_language>string translated in
             <bg>непознат</bg>
             <fr>inconnu</fr>
             <nl>onbekend</nl>
+            <pt></pt>
         </string>
         <string id="79">
             <en>unnamed user group</en>
@@ -768,6 +816,7 @@ Note: You can add new languages by inserting "<new_language>string translated in
             <bg>потребителска група без име</bg>
             <fr></fr>
             <nl>naamloze gebruikersgroep</nl>
+            <pt></pt>
         </string>
         <string id="80">
             <en>unnamed user type</en>
@@ -777,6 +826,7 @@ Note: You can add new languages by inserting "<new_language>string translated in
             <fr>type d'utilisateur sans nom</fr>
             <bg>Тип на потребител без име</bg>
             <nl>naamloos gebruikerstype</nl>
+            <pt></pt>
         </string>
         <string id="81" js="1">
             <en>Access denied!</en>
@@ -786,6 +836,7 @@ Note: You can add new languages by inserting "<new_language>string translated in
             <fr>Accès refusé!</fr>
             <bg>Достъп отказан</bg>
             <nl>Toegang geweigerd!</nl>
+            <pt></pt>
         </string>
         <string id="82">
             <en>logged user</en>
@@ -795,6 +846,7 @@ Note: You can add new languages by inserting "<new_language>string translated in
             <fr>utilisateur connecté</fr>
             <bg>влязъл потребител</bg>
             <nl>aangemelde gebruiker</nl>
+            <pt></pt>
         </string>
         <string id="83">
             <en>log out</en>
@@ -804,6 +856,7 @@ Note: You can add new languages by inserting "<new_language>string translated in
             <fr>se déconnecter</fr>
             <bg>изход</bg>
             <nl>afmelden</nl>
+            <pt></pt>
         </string>
         <string id="84">
             <en>custom test sections</en>
@@ -813,6 +866,7 @@ Note: You can add new languages by inserting "<new_language>string translated in
             <fr>section de test personnalisée</fr>
             <bg>персонализирани тестови секции</bg>
             <nl>aangepaste testsectie</nl>
+            <pt></pt>
         </string>
         <string id="85">
             <en>tables</en>
@@ -822,6 +876,7 @@ Note: You can add new languages by inserting "<new_language>string translated in
             <fr>tableux</fr>
             <bg>таблици</bg>
             <nl>tabellen</nl>
+            <pt></pt>
         </string>
         <string id="86">
             <en>file</en>
@@ -831,6 +886,7 @@ Note: You can add new languages by inserting "<new_language>string translated in
             <bg>файл</bg>
             <fr>fichier</fr>
             <nl>bestand</nl>
+            <pt></pt>
         </string>
         <string id="87">
             <en>templates</en>
@@ -840,6 +896,7 @@ Note: You can add new languages by inserting "<new_language>string translated in
             <fr>modèles</fr>
             <bg>шаблони</bg>
             <nl>sjablonen</nl>
+            <pt></pt>
         </string>
         <string id="88">
             <en>tests</en>
@@ -849,6 +906,7 @@ Note: You can add new languages by inserting "<new_language>string translated in
             <bg>тестове</bg>
             <fr>tests</fr>
             <nl>tests</nl>
+            <pt></pt>
         </string>
         <string id="89">
             <en>admins</en>
@@ -858,6 +916,7 @@ Note: You can add new languages by inserting "<new_language>string translated in
             <bg>администратори</bg>
             <fr>administrateurs</fr>
             <nl>beheerders</nl>
+            <pt></pt>
         </string>
         <string id="90">
             <en>admin types</en>
@@ -867,6 +926,7 @@ Note: You can add new languages by inserting "<new_language>string translated in
             <fr>atypes d'administrateurs</fr>
             <bg>видове администратори</bg>
             <nl>beheerder types</nl>
+            <pt></pt>
         </string>
         <string id="91">
             <en>admin groups</en>
@@ -876,6 +936,7 @@ Note: You can add new languages by inserting "<new_language>string translated in
             <fr>groupes d'administrateurs</fr>
             <bg>административни групи</bg>
             <nl>beheerder groepen</nl>
+            <pt></pt>
         </string>
         <string id="92">
             <en>editing custom test section</en>
@@ -885,6 +946,7 @@ Note: You can add new languages by inserting "<new_language>string translated in
             <fr>modifier les sections de test personnalisées</fr>
             <bg>редактиране на персонализирана секция на теста</bg>
             <nl>bewerken van aanpasbare testsectie</nl>
+            <pt></pt>
         </string>
         <string id="93">
             <en>creating new custom test section</en>
@@ -894,6 +956,7 @@ Note: You can add new languages by inserting "<new_language>string translated in
             <fr>créer une enouvelle section de test personnalisée</fr>
             <bg>създаване на нова персонализирана секция на теста</bg>
             <nl>nieuwe aanpasbare testsectie</nl>
+            <pt></pt>
         </string>
         <string id="94">
             <en>delete</en>
@@ -903,6 +966,7 @@ Note: You can add new languages by inserting "<new_language>string translated in
             <fr>supprimer</fr>
             <bg>изтрий</bg>
             <nl>verwijderen</nl>
+            <pt></pt>
         </string>
         <string id="95" js="1">
             <en>save</en>
@@ -912,6 +976,7 @@ Note: You can add new languages by inserting "<new_language>string translated in
             <fr>sauvegarder</fr>
             <bg>съхрани</bg>
             <nl>opslaan</nl>
+            <pt></pt>
         </string>
         <string id="96">
             <en>name of the custom section</en>
@@ -921,6 +986,7 @@ Note: You can add new languages by inserting "<new_language>string translated in
             <fr>nom de la section personnalisée</fr>
             <bg>име на персонализираната секция</bg>
             <nl>naam van de aanpasbare testsectie</nl>
+            <pt></pt>
         </string>
         <string id="97">
             <en>description</en>
@@ -930,6 +996,7 @@ Note: You can add new languages by inserting "<new_language>string translated in
             <fr>description</fr>
             <bg>описание</bg>
             <nl>beschrijving</nl>
+            <pt></pt>
         </string>
         <string id="98">
             <en>Brief description of the object.</en>
@@ -939,6 +1006,7 @@ Note: You can add new languages by inserting "<new_language>string translated in
             <fr></fr>
             <bg></bg>
             <nl>Korte beschrijving van het object</nl>
+            <pt></pt>
         </string>
         <string id="99">
             <en>access rights to this custom section</en>
@@ -948,6 +1016,7 @@ Note: You can add new languages by inserting "<new_language>string translated in
             <fr>droits d'accès à cette section personnalisée</fr>
             <bg>права за достъп до този секция</bg>
             <nl>toegangsrechten tot deze aanpasbare testsectie</nl>
+            <pt></pt>
         </string>
         <string id="100">
             <en>private</en>
@@ -957,6 +1026,7 @@ Note: You can add new languages by inserting "<new_language>string translated in
             <fr>privé</fr>
             <bg>личен</bg>
             <nl>privaat</nl>
+            <pt></pt>
         </string>
         <string id="101">
             <en>group</en>
@@ -966,6 +1036,7 @@ Note: You can add new languages by inserting "<new_language>string translated in
             <fr>groupe</fr>
             <bg>частен</bg>
             <nl>groep</nl>
+            <pt></pt>
         </string>
         <string id="102">
             <en>public</en>
@@ -975,6 +1046,7 @@ Note: You can add new languages by inserting "<new_language>string translated in
             <fr>publique</fr>
             <bg>публичен</bg>
             <nl>publiek</nl>
+            <pt></pt>
         </string>
         <string id="103">
             <en>owner of this custom section</en>
@@ -984,6 +1056,7 @@ Note: You can add new languages by inserting "<new_language>string translated in
             <fr>propriétaire de cette section personnalisée</fr>
             <bg>собственик на персонализираната секция</bg>
             <nl>eigenaar van deze aanpasbare testsectie</nl>
+            <pt></pt>
         </string>
         <string id="104">
             <en>Edit description. Current description:</en>
@@ -993,6 +1066,7 @@ Note: You can add new languages by inserting "<new_language>string translated in
             <fr>Modifier la description. Description actuelle:</fr>
             <bg>Редактиране на описанието. Настоящо описание:</bg>
             <nl>Bewerken van beschrijving. Huidige beschrijving:</nl>
+            <pt></pt>
         </string>
         <string id="105">
             <en>Define section input parameters.</en>
@@ -1002,6 +1076,7 @@ Note: You can add new languages by inserting "<new_language>string translated in
             <fr>Définir les paramètres d'entrée de la section. utiliser les variables ainsi définies dans le code R de la section.</fr>
             <bg>Дефиниране на входните параметри. Използване на променливи, декларирани вече в секцията на R кода</bg>
             <nl>Definieren van sectie input parameters. Gebruik de gedefinieerde variabelen uit de R code van de sectie.</nl>
+            <pt></pt>
         </string>
         <string id="106">
             <en>parameters</en>
@@ -1011,6 +1086,7 @@ Note: You can add new languages by inserting "<new_language>string translated in
             <fr>paramètres</fr>
             <bg>параметри</bg>
             <nl>parameters</nl>
+            <pt></pt>
         </string>
         <string id="107">
             <en>edit description</en>
@@ -1020,6 +1096,7 @@ Note: You can add new languages by inserting "<new_language>string translated in
             <fr>modifier la description</fr>
             <bg>редактиране на описанието</bg>
             <nl>bewerken van beschrijving</nl>
+            <pt></pt>
         </string>
         <string id="108">
             <en>no parameters defined</en>
@@ -1029,6 +1106,7 @@ Note: You can add new languages by inserting "<new_language>string translated in
             <fr>aucun paramètres de définis</fr>
             <bg>не са дефинирани параметри</bg>
             <nl>geen parameters gedefinieerd</nl>
+            <pt></pt>
         </string>
         <string id="109">
             <en>add parameter</en>
@@ -1038,6 +1116,7 @@ Note: You can add new languages by inserting "<new_language>string translated in
             <fr>ajouter une variable paramètre</fr>
             <bg>добави параметър</bg>
             <nl>parameter toevoegen</nl>
+            <pt></pt>
         </string>
         <string id="110">
             <en>remove parameter</en>
@@ -1047,6 +1126,7 @@ Note: You can add new languages by inserting "<new_language>string translated in
             <fr>enlever une variable paramètre</fr>
             <bg>премахни параметър</bg>
             <nl>parameter verwijderen</nl>
+            <pt></pt>
         </string>
         <string id="111">
             <en>R code relevant for this custom section. Parameters declared above can be used here.</en>
@@ -1056,6 +1136,7 @@ Note: You can add new languages by inserting "<new_language>string translated in
             <fr>code R pertinent à cette section. Les paramètres déclarés ci-dessus peuvent être utilisés ici.</fr>
             <bg>R код, отнасящ се за тази секция. Параметрите декларирани по-горе, може да бъдат използвани тук</bg>
             <nl>Relevante R code voor deze aanpasbare sectie. Eerder gedeclareerde parameters kunnen hier gebruikt worden.</nl>
+            <pt></pt>
         </string>
         <string id="112">
             <en>Specify variables in this section to be available for use in other test sections.</en>
@@ -1065,6 +1146,7 @@ Note: You can add new languages by inserting "<new_language>string translated in
             <fr>Spécifier que les variables utilisées dans cette section puissent être disponible globallement, afin qu'elles soient utilisées dans d'autres sections du test.</fr>
             <bg>Дефинирайте променливите в тази секция, за да могат да бъдат достъпни глобално и да бъдат използвани в другите секции</bg>
             <nl>Specifieer in deze sectie variabelen die globaal beschikbaar moeten zijn in andere testsecties.</nl>
+            <pt></pt>
         </string>
         <string id="113">
             <en>returns</en>
@@ -1074,6 +1156,7 @@ Note: You can add new languages by inserting "<new_language>string translated in
             <fr>retours</fr>
             <bg>връща</bg>
             <nl>returns</nl>
+            <pt></pt>
         </string>
         <string id="114">
             <en>no returns defined</en>
@@ -1083,6 +1166,7 @@ Note: You can add new languages by inserting "<new_language>string translated in
             <fr>aucun retour défini</fr>
             <bg>не е дефинирано връщане</bg>
             <nl>geen returns gedefinieerd</nl>
+            <pt></pt>
         </string>
         <string id="115">
             <en>add return variable</en>
@@ -1092,6 +1176,7 @@ Note: You can add new languages by inserting "<new_language>string translated in
             <fr>ajout d'une variable retour</fr>
             <bg>прибави променлива за връщане</bg>
             <nl>return variabele toevoegen</nl>
+            <pt></pt>
         </string>
         <string id="116">
             <en>remove return variable</en>
@@ -1101,6 +1186,7 @@ Note: You can add new languages by inserting "<new_language>string translated in
             <fr>enlever une variable retour</fr>
             <bg>премахни променлива за връщане</bg>
             <nl>return variabele verwijderen</nl>
+            <pt></pt>
         </string>
         <string id="117">
             <en>editing table</en>
@@ -1110,6 +1196,7 @@ Note: You can add new languages by inserting "<new_language>string translated in
             <fr>modifier un tableau</fr>
             <bg>редактиране на таблица</bg>
             <nl>tabel bewerken</nl>
+            <pt></pt>
         </string>
         <string id="118">
             <en>creating new table</en>
@@ -1119,6 +1206,7 @@ Note: You can add new languages by inserting "<new_language>string translated in
             <fr>créer un nouveau tableau</fr>
             <bg>създаване на нова таблица</bg>
             <nl>nieuwe tabel aanmaken</nl>
+            <pt></pt>
         </string>
         <string id="119">
             <en>name of the table</en>
@@ -1128,6 +1216,7 @@ Note: You can add new languages by inserting "<new_language>string translated in
             <fr>nom du tableau</fr>
             <bg>име на таблицата</bg>
             <nl>naam van de tabel</nl>
+            <pt></pt>
         </string>
         <string id="120">
             <en>table access rights</en>
@@ -1137,6 +1226,7 @@ Note: You can add new languages by inserting "<new_language>string translated in
             <fr>accès aux droits du tableau</fr>
             <bg>права за достъп до таблицата</bg>
             <nl>tabel toegangsrechten</nl>
+            <pt></pt>
         </string>
         <string id="121">
             <en>owner of the table</en>
@@ -1146,6 +1236,7 @@ Note: You can add new languages by inserting "<new_language>string translated in
             <fr>propriétaire du tableau</fr>
             <bg>собственик на таблицата</bg>
             <nl>eigenaar van de tabel</nl>
+            <pt></pt>
         </string>
         <string id="122" js="1">
             <en>type</en>
@@ -1155,6 +1246,7 @@ Note: You can add new languages by inserting "<new_language>string translated in
             <fr>type</fr>
             <bg>вид</bg>
             <nl>type</nl>
+            <pt></pt>
         </string>
         <string id="123">
             <en>no object selected</en>
@@ -1164,6 +1256,7 @@ Note: You can add new languages by inserting "<new_language>string translated in
             <fr>aucun objet sélectionné</fr>
             <bg>не е избран обект</bg>
             <nl>geen object geselecteerd</nl>
+            <pt></pt>
         </string>
         <string id="124">
             <en>MySQL table</en>
@@ -1173,6 +1266,7 @@ Note: You can add new languages by inserting "<new_language>string translated in
             <fr>Tableau MySQL</fr>
             <bg>MySQL таблица</bg>
             <nl>MySQL tabel</nl>
+            <pt></pt>
         </string>
         <string id="125">
             <en>import table from MySQL table</en>
@@ -1182,6 +1276,7 @@ Note: You can add new languages by inserting "<new_language>string translated in
             <fr>importer un tableau à partir d'un tableau MySQL</fr>
             <bg>Импортирай таблицата от MySQL таблицата</bg>
             <nl>tabel importeren uit MySQL tabel</nl>
+            <pt></pt>
         </string>
         <string id="126">
             <en>import table from CSV file</en>
@@ -1191,6 +1286,7 @@ Note: You can add new languages by inserting "<new_language>string translated in
             <fr>importer un tableau à partir d'un fichier CSV</fr>
             <bg>импортирай таблицана от CSV файла</bg>
             <nl>tabel importeren uit CSV-bestand</nl>
+            <pt></pt>
         </string>
         <string id="127">
             <en>export table to CSV file</en>
@@ -1200,6 +1296,7 @@ Note: You can add new languages by inserting "<new_language>string translated in
             <fr>exporter un tableau à partir d'un fichier CSV</fr>
             <bg>експортирай таблицата към CSV файл</bg>
             <nl>tabel exporteren naar CSV-bestand</nl>
+            <pt></pt>
         </string>
         <string id="129">
             <en>add column</en>
@@ -1209,6 +1306,7 @@ Note: You can add new languages by inserting "<new_language>string translated in
             <fr>ajouter une colonne</fr>
             <bg>прибави колона</bg>
             <nl>kolom toevoegen</nl>
+            <pt></pt>
         </string>
         <string id="130" js="1">
             <en>edit HTML</en>
@@ -1218,6 +1316,7 @@ Note: You can add new languages by inserting "<new_language>string translated in
             <fr>modifier HTML</fr>
             <bg>редактирай HTML</bg>
             <nl>HTML bewerken</nl>
+            <pt></pt>
         </string>
         <string id="133">
             <en>editing HTML template</en>
@@ -1227,6 +1326,7 @@ Note: You can add new languages by inserting "<new_language>string translated in
             <fr>modifier un modèle HTML</fr>
             <bg>редактиране на HTML шаблона</bg>
             <nl>HTML-sjabloon bewerken</nl>
+            <pt></pt>
         </string>
         <string id="134">
             <en>creating new HTML template</en>
@@ -1236,6 +1336,7 @@ Note: You can add new languages by inserting "<new_language>string translated in
             <fr>créer un nouveau modèle HTML</fr>
             <bg>създаване на нов HTML шаблон</bg>
             <nl>nieuw HTML-sjabloon aanmaken</nl>
+            <pt></pt>
         </string>
         <string id="135">
             <en>name of HTML template</en>
@@ -1245,6 +1346,7 @@ Note: You can add new languages by inserting "<new_language>string translated in
             <fr>nom du modèle HTML</fr>
             <bg>име на HTML шаблона</bg>
             <nl>naam van HTML-sjabloon</nl>
+            <pt></pt>
         </string>
         <string id="136">
             <en>HTML content of the template</en>
@@ -1254,6 +1356,7 @@ Note: You can add new languages by inserting "<new_language>string translated in
             <fr>contenu HTML du modèle</fr>
             <bg>HTML съдържание на шаблона</bg>
             <nl>HTML-inhoud van de sjabloon</nl>
+            <pt></pt>
         </string>
         <string id="137">
             <en>template access rights</en>
@@ -1263,6 +1366,7 @@ Note: You can add new languages by inserting "<new_language>string translated in
             <fr>droits d'accès du modèle</fr>
             <bg>права за достъп до шаблона</bg>
             <nl>sjabloon toegangsrechten</nl>
+            <pt></pt>
         </string>
         <string id="138">
             <en>owner of the template</en>
@@ -1272,6 +1376,7 @@ Note: You can add new languages by inserting "<new_language>string translated in
             <fr>propriétaire du modèle</fr>
             <bg>собственик на шаблона</bg>
             <nl>eigenaar van de sjabloon</nl>
+            <pt></pt>
         </string>
         <string id="139">
             <en>editing test</en>
@@ -1281,6 +1386,7 @@ Note: You can add new languages by inserting "<new_language>string translated in
             <fr>modification du test</fr>
             <bg>редактиране на теста</bg>
             <nl>test bewerken</nl>
+            <pt></pt>
         </string>
         <string id="140">
             <en>creating new test</en>
@@ -1290,6 +1396,7 @@ Note: You can add new languages by inserting "<new_language>string translated in
             <fr>créer un nouveau test</fr>
             <bg>създаване на нов тест</bg>
             <nl>nieuwe test aanmaken</nl>
+            <pt></pt>
         </string>
         <string id="141">
             <en>name of the test</en>
@@ -1299,6 +1406,7 @@ Note: You can add new languages by inserting "<new_language>string translated in
             <fr>nom du test</fr>
             <bg>име на теста</bg>
             <nl>naam van de test</nl>
+            <pt></pt>
         </string>
         <string id="142">
             <en>test access rights</en>
@@ -1308,6 +1416,7 @@ Note: You can add new languages by inserting "<new_language>string translated in
             <fr>droits d'accès au test</fr>
             <bg>права за достъп до теста</bg>
             <nl>toegangsrechten van de test</nl>
+            <pt></pt>
         </string>
         <string id="143">
             <en>owner of the test</en>
@@ -1317,6 +1426,7 @@ Note: You can add new languages by inserting "<new_language>string translated in
             <fr>propriétaire du test</fr>
             <bg>собственик на теста</bg>
             <nl>eigenaar van de test</nl>
+            <pt></pt>
         </string>
         <string id="144">
             <en>show test variables</en>
@@ -1326,6 +1436,7 @@ Note: You can add new languages by inserting "<new_language>string translated in
             <fr>voir les variables du test</fr>
             <bg>показване на тестовите променливи</bg>
             <nl>toon test variabelen</nl>
+            <pt></pt>
         </string>
         <string id="145">
             <en>test logic is empty</en>
@@ -1335,6 +1446,7 @@ Note: You can add new languages by inserting "<new_language>string translated in
             <fr>la logique du test est vide</fr>
             <bg>тестовата логика е празна</bg>
             <nl>de testlogica is leeg</nl>
+            <pt></pt>
         </string>
         <string id="147">
             <en>basic sections</en>
@@ -1344,6 +1456,7 @@ Note: You can add new languages by inserting "<new_language>string translated in
             <fr>sections de base</fr>
             <bg>основни секции</bg>
             <nl>basissecties</nl>
+            <pt></pt>
         </string>
         <string id="148">
             <en>custom sections</en>
@@ -1353,6 +1466,7 @@ Note: You can add new languages by inserting "<new_language>string translated in
             <fr>section personnalisée</fr>
             <bg>персонализирани секции</bg>
             <nl>aanpasbare secties</nl>
+            <pt></pt>
         </string>
         <string id="149">
             <en>variable name</en>
@@ -1362,6 +1476,7 @@ Note: You can add new languages by inserting "<new_language>string translated in
             <fr>nom de la variable</fr>
             <bg>име на променливата</bg>
             <nl>naam van de variabele</nl>
+            <pt></pt>
         </string>
         <string id="150">
             <en>section</en>
@@ -1371,6 +1486,7 @@ Note: You can add new languages by inserting "<new_language>string translated in
             <fr>section</fr>
             <bg>секция</bg>
             <nl>sectie</nl>
+            <pt></pt>
         </string>
         <string id="151">
             <en>parameter/return</en>
@@ -1380,6 +1496,7 @@ Note: You can add new languages by inserting "<new_language>string translated in
             <fr>paramètre/retour</fr>
             <bg>параметър/връщане</bg>
           <nl>parameter/return</nl>
+            <pt></pt>
         </string>
         <string id="152">
             <en>editing admin group</en>
@@ -1389,6 +1506,7 @@ Note: You can add new languages by inserting "<new_language>string translated in
             <fr>modifier les groupes d'administrateurs</fr>
             <bg>редактиране на групата администратори</bg>
             <nl>beheerdersgroep bewerken</nl>
+            <pt></pt>
         </string>
         <string id="153">
             <en>creating admin group</en>
@@ -1398,6 +1516,7 @@ Note: You can add new languages by inserting "<new_language>string translated in
             <fr>créer un groupe d'administrateurs</fr>
             <bg>създаване на групата администратори</bg>
             <nl>beheerdersgroep aanmaken</nl>
+            <pt></pt>
         </string>
         <string id="154">
             <en>name of the admin group</en>
@@ -1407,6 +1526,7 @@ Note: You can add new languages by inserting "<new_language>string translated in
             <fr>nom du groupe d'administrateurs</fr>
             <bg>име на групата администратори</bg>
             <nl>naam van de beheerdersgroep</nl>
+            <pt></pt>
         </string>
         <string id="155">
             <en>admin group access rights</en>
@@ -1416,6 +1536,7 @@ Note: You can add new languages by inserting "<new_language>string translated in
             <fr>droits d'accès du groupe d'administrateurs</fr>
             <bg>права за достъп на групата администратори</bg>
             <nl>beheerdersgroep toegangsrechten</nl>
+            <pt></pt>
         </string>
         <string id="156">
             <en>owner of the admin group</en>
@@ -1425,6 +1546,7 @@ Note: You can add new languages by inserting "<new_language>string translated in
             <fr>propriétaire du groupe d'administrateurs</fr>
             <bg>собственик на групата администратори</bg>
             <nl>eigenaar van de beheerdersgroep</nl>
+            <pt></pt>
         </string>
         <string id="157">
             <en>editing admin type</en>
@@ -1433,6 +1555,7 @@ Note: You can add new languages by inserting "<new_language>string translated in
             <cn>编辑管理员类型</cn>
             <bg>редактиране на вида на администратора</bg>
             <nl>beheerderstype bewerken</nl>
+            <pt></pt>
         </string>
         <string id="158">
             <en>creating new admin type</en>
@@ -1442,6 +1565,7 @@ Note: You can add new languages by inserting "<new_language>string translated in
             <fr>créer un nouveau type d'administrateur</fr>
             <bg>създаване на нов вид администратор</bg>
             <nl>Nieuw beheerderstype aanmaken</nl>
+            <pt></pt>
         </string>
         <string id="159">
             <en>name of the admin type</en>
@@ -1451,6 +1575,7 @@ Note: You can add new languages by inserting "<new_language>string translated in
             <fr>nom du type d'administrateur</fr>
             <bg>име на вида администратор</bg>
             <nl>Naam van het beheerderstype</nl>
+            <pt></pt>
         </string>
         <string id="160">
             <en>access rights of the admin type</en>
@@ -1460,6 +1585,7 @@ Note: You can add new languages by inserting "<new_language>string translated in
             <fr>droits d'accès du type d'administrateur</fr>
             <bg>права за достъп на вида администратор</bg>
             <nl>toegangsrechten van het beheerderstype</nl>
+            <pt></pt>
         </string>
         <string id="161">
             <en>admin type owner</en>
@@ -1469,6 +1595,7 @@ Note: You can add new languages by inserting "<new_language>string translated in
             <fr>propriétaire du type d'accès</fr>
             <bg>собственик на вида администратор</bg>
             <nl>eigenaar van het beheerderstype</nl>
+            <pt></pt>
         </string>
         <string id="162">
             <en>admin type rights</en>
@@ -1478,6 +1605,7 @@ Note: You can add new languages by inserting "<new_language>string translated in
             <fr>droits d'accès d'administrateurs</fr>
             <bg>права на вида администратор</bg>
             <nl>toegangsrechten van het beheerderstype</nl>
+            <pt></pt>
         </string>
         <string id="163">
             <en>module</en>
@@ -1487,6 +1615,7 @@ Note: You can add new languages by inserting "<new_language>string translated in
             <fr>module</fr>
             <bg>модули</bg>
             <nl>module</nl>
+            <pt></pt>
         </string>
         <string id="164">
             <en>read rights</en>
@@ -1496,6 +1625,7 @@ Note: You can add new languages by inserting "<new_language>string translated in
              <fr>groitd de lecture</fr>
             <bg>права за четене</bg>
             <nl>toegangsrechten lezen</nl>
+            <pt></pt>
         </string>
         <string id="165">
             <en>write rights</en>
@@ -1504,6 +1634,7 @@ Note: You can add new languages by inserting "<new_language>string translated in
             <cn>书写权限</cn>
             <bg>права за писане</bg>
             <nl>toegangsrechten schrijven</nl>
+            <pt></pt>
         </string>
         <string id="166">
             <en>owner change</en>
@@ -1513,6 +1644,7 @@ Note: You can add new languages by inserting "<new_language>string translated in
              <fr>changement de propriétaire</fr>
             <bg>смяна на собственика</bg>
             <nl>eigenaar wijzigen</nl>
+            <pt></pt>
         </string>
         <string id="167">
             <en>HTML templates</en>
@@ -1522,6 +1654,7 @@ Note: You can add new languages by inserting "<new_language>string translated in
             <fr>modèle HTML</fr>
             <bg>HTML шаблони</bg>
             <nl>HTML sjablonen</nl>
+            <pt></pt>
         </string>
         <string id="168">
             <en>standard</en>
@@ -1531,6 +1664,7 @@ Note: You can add new languages by inserting "<new_language>string translated in
             <fr>standard</fr>
             <bg>стандартни</bg>
             <nl>standaard</nl>
+            <pt></pt>
         </string>
         <string id="169">
             <en>all</en>
@@ -1540,6 +1674,7 @@ Note: You can add new languages by inserting "<new_language>string translated in
             <fr>tout</fr>
             <bg>всички</bg>
             <nl>alles</nl>
+            <pt></pt>
         </string>
         <string id="170">
             <en>editing admin</en>
@@ -1549,6 +1684,7 @@ Note: You can add new languages by inserting "<new_language>string translated in
             <fr>modifier l'administrateur</fr>
             <bg>редактиране на администратора</bg>
             <nl>beheerder bewerken</nl>
+            <pt></pt>
         </string>
         <string id="171">
             <en>creating new admin</en>
@@ -1558,6 +1694,7 @@ Note: You can add new languages by inserting "<new_language>string translated in
              <fr>créer un nouvel administrateur</fr>
             <bg>създаване на нов администратор</bg>
             <nl>nieuwe beheerder aanmaken</nl>
+            <pt></pt>
         </string>
         <string id="173">
             <en>login</en>
@@ -1567,6 +1704,7 @@ Note: You can add new languages by inserting "<new_language>string translated in
              <fr>ouvrir une session</fr>
             <bg>вход</bg>
             <nl>login</nl>
+            <pt></pt>
         </string>
         <string id="174">
             <en>email</en>
@@ -1576,6 +1714,7 @@ Note: You can add new languages by inserting "<new_language>string translated in
             <fr>email</fr>
             <bg>имейл</bg>
             <nl>e-mail</nl>
+            <pt></pt>
         </string>
         <string id="175">
             <en>last login</en>
@@ -1585,6 +1724,7 @@ Note: You can add new languages by inserting "<new_language>string translated in
             <fr>dernière ouverture de session</fr>
             <bg>последно влизане</bg>
             <nl>laatste log-in</nl>
+            <pt></pt>
         </string>
         <string id="176">
             <en>admin group</en>
@@ -1594,6 +1734,7 @@ Note: You can add new languages by inserting "<new_language>string translated in
             <fr>groupe d'administrateurs</fr>
             <bg>група на администраторите</bg>
             <nl>beheerdersgroep</nl>
+            <pt></pt>
         </string>
         <string id="177">
             <en>admin type</en>
@@ -1603,6 +1744,7 @@ Note: You can add new languages by inserting "<new_language>string translated in
             <fr>type d'administrateur</fr>
             <bg>вид на администратора</bg>
             <nl>beheerderstype</nl>
+            <pt></pt>
         </string>
         <string id="178">
             <en>Please enter a unique login id</en>
@@ -1612,6 +1754,7 @@ Note: You can add new languages by inserting "<new_language>string translated in
             <fr></fr>
             <bg></bg>
             <nl>Vul een unieke log-in id in.</nl>
+            <pt></pt>
         </string>
         <string id="179">
             <en>password</en>
@@ -1621,6 +1764,7 @@ Note: You can add new languages by inserting "<new_language>string translated in
             <bg>парола</bg>
             <fr>mot de passe</fr>
             <nl>wachtwoord</nl>
+            <pt></pt>
         </string>
         <string id="180">
             <en>Select box to set the password</en>
@@ -1629,6 +1773,7 @@ Note: You can add new languages by inserting "<new_language>string translated in
             <cn>设置密码</cn>
             <bg>Изберете полето за въвеждане на парола</bg>
             <nl>Selecteer het veld om het wachtwoord in te stellen</nl>
+            <pt></pt>
         </string>
         <string id="181">
             <en>Please enter a memorable password</en>
@@ -1638,6 +1783,7 @@ Note: You can add new languages by inserting "<new_language>string translated in
             <fr></fr>
             <bg></bg>
             <nl>Vul een gemakkelijk te onthouden wachtwoord in.</nl>
+            <pt></pt>
         </string>
         <string id="182">
             <en>password confirmation</en>
@@ -1647,6 +1793,7 @@ Note: You can add new languages by inserting "<new_language>string translated in
             <fr>confirmation du mot de passe</fr>
             <bg>потвърждение на паролата</bg>
             <nl>wachtwoord bevestiging</nl>
+            <pt></pt>
         </string>
         <string id="183">
             <en>Please retype the password as above</en>
@@ -1656,6 +1803,7 @@ Note: You can add new languages by inserting "<new_language>string translated in
             <fr></fr>
             <bg></bg>
             <nl>Hertyp het wachtwoord zoals hierboven</nl>
+            <pt></pt>
         </string>
         <string id="184">
             <en>first name</en>
@@ -1665,6 +1813,7 @@ Note: You can add new languages by inserting "<new_language>string translated in
              <fr>prénom</fr>
             <bg>име</bg>
             <nl>voornaam</nl>
+            <pt></pt>
         </string>
         <string id="185">
             <en>last name</en>
@@ -1674,6 +1823,7 @@ Note: You can add new languages by inserting "<new_language>string translated in
             <fr>nom de famille</fr>
             <bg>фамилия</bg>
             <nl>familienaam</nl>
+            <pt></pt>
         </string>
         <string id="186">
             <en>Please provide your first name</en>
@@ -1682,6 +1832,7 @@ Note: You can add new languages by inserting "<new_language>string translated in
             <cn></cn>
             <bg></bg>
             <nl>Vul uw voornaam in.</nl>
+            <pt></pt>
         </string>
         <string id="187">
             <en>Please provide your last name</en>
@@ -1691,6 +1842,7 @@ Note: You can add new languages by inserting "<new_language>string translated in
             <fr></fr>
             <bg></bg>
             <nl>Vul uw familienaam in.</nl>
+            <pt></pt>
         </string>
         <string id="188">
             <en>We will contact you via this email if you run into any problems with your account etc.</en>
@@ -1700,6 +1852,7 @@ Note: You can add new languages by inserting "<new_language>string translated in
             <fr></fr>
             <bg></bg>
             <nl>Wij nemen contact met u op via dit e-mailadres als u problemen met uw account ondervindt, etc.. </nl>
+            <pt></pt>
         </string>
         <string id="189">
             <en>phone no.</en>
@@ -1709,6 +1862,7 @@ Note: You can add new languages by inserting "<new_language>string translated in
             <fr>numéro de téléphone </fr>
             <bg>телефон:</bg>
             <nl>telefoonnummer</nl>
+            <pt></pt>
         </string>
         <string id="190">
             <en>This is optional contact information.</en>
@@ -1727,6 +1881,7 @@ Note: You can add new languages by inserting "<new_language>string translated in
             <fr>groupe d'administrateurs</fr>
             <bg>група на администраторите</bg>
             <nl>beheerdersgroep</nl>
+            <pt></pt>
         </string>
         <string id="192">
             <en>admin type</en>
@@ -1736,6 +1891,7 @@ Note: You can add new languages by inserting "<new_language>string translated in
             <fr>type d'administrateur</fr>
             <bg>вид на администраторите</bg>
             <nl>beheerderstype</nl>
+            <pt></pt>
         </string>
         <string id="193">
             <en>Create and manage the entire structure of each test.</en>
@@ -1745,6 +1901,7 @@ Note: You can add new languages by inserting "<new_language>string translated in
             <fr>créer et modifier la structure entière du test</fr>
             <bg>създаване и управление на цялата структура на всеки тест </bg>
             <nl>Ontwerp en beheer de volledige structuur van elke test.</nl>
+            <pt></pt>
         </string>
         <string id="194">
             <en>Create custom test logic sections to meet the requirements of specific tests.</en>
@@ -1754,6 +1911,7 @@ Note: You can add new languages by inserting "<new_language>string translated in
             <fr>Créer une section logique personnalisée qui rencontre les prérequis du test</fr>
             <bg>Създаване на персонализирани секции на логиката на теста, които покриват изискванията на всеки тест</bg>
             <nl>Ontwerp aangepaste logische testsecties om aan de eisen van specifieke tests te voldoen.</nl>
+            <pt></pt>
         </string>
         <string id="195">
             <en>Create and edit HTML templates as they are visible to the test taker.</en>
@@ -1763,6 +1921,7 @@ Note: You can add new languages by inserting "<new_language>string translated in
             <fr>Créer et modifier des modèles HTML lorsqu'ils sont visibles au participant au test.</fr>
             <bg>Създаване и редактиране на HTM, както те се видими за тествания</bg>
             <nl>Ontwerp en bewerk HTML sjablonen die zichtbaar zullen zijn voor de gebruiker</nl>
+            <pt></pt>
         </string>
         <string id="196">
             <en>Create tables for storing and managing test data, including item content, correct responses and response history etc.</en>
@@ -1772,6 +1931,7 @@ Note: You can add new languages by inserting "<new_language>string translated in
             <fr>Créer des tableaux afin de stocker et de gérer les données du test, en incluant le contenu des énoncés, les réponses correctes et l'historique des réponses etc...</fr>
             <bg>Създаване на таблици за сортиране и упрвление на данните от теста, включително съдържанието на айтемите, верните отговори, историята  на отговарянето и т.н.</bg>
             <nl>Ontwerp tabellen voor het opslaan en beheren van testdata, inclusief de inhoud van items, correcte antwoorden, antwoordgeschiedenis, etc...</nl>
+            <pt></pt>
         </string>
         <string id="197">
             <en>Create and manage admin and standard user accounts, user groups and access rights of users.</en>
@@ -1781,6 +1941,7 @@ Note: You can add new languages by inserting "<new_language>string translated in
             <fr>Créer et gérer les comptes d'administrateurs et d'utilisateurs standards, les groupes d'utilisateurs et les droits d'accès des utilisateurs.</fr>
             <bg>Създаване и управление на администратори и стандартни потребители, потребителските групи и правата за достъп на потребителите.</bg>
             <nl>Ontwerp en beheer standaardgebruiker- en beheerdersaccounts, gebruikersgroepen en toegangsrechten van gebruikers.</nl>
+            <pt></pt>
         </string>
         <string id="198">
             <en>admins, admin groups and admin types</en>
@@ -1790,6 +1951,7 @@ Note: You can add new languages by inserting "<new_language>string translated in
             <fr>administrateurs, groupes d'administrateurs et droits d'administrateurs</fr>
             <bg>администратори, групи администратори и видове администратори</bg>
             <nl>beheerder, beheerdersgroepen en beheerderstypes</nl>
+            <pt></pt>
         </string>
         <string id="199">
             <en>available objects</en>
@@ -1799,6 +1961,7 @@ Note: You can add new languages by inserting "<new_language>string translated in
             <fr>objets disponibles</fr>
             <bg>достъпни обекти</bg>
             <nl>beschikbare objecten</nl>
+            <pt></pt>
         </string>
         <string id="203">
             <en>edit object</en>
@@ -1808,6 +1971,7 @@ Note: You can add new languages by inserting "<new_language>string translated in
             <fr>modifier l'objet</fr>
             <bg>редактиране на обект</bg>
             <nl>object bewerken</nl>
+            <pt></pt>
         </string>
         <string id="204" js="1">
             <en>delete object</en>
@@ -1817,6 +1981,7 @@ Note: You can add new languages by inserting "<new_language>string translated in
             <fr>supprimer l'objet</fr>
             <bg>изтриване на обект</bg>
             <nl>object verwijderen</nl>
+            <pt></pt>
         </string>
         <string id="205">
             <en>add new object</en>
@@ -1826,6 +1991,7 @@ Note: You can add new languages by inserting "<new_language>string translated in
             <fr>ajouter un nouvel objet</fr>
             <bg>прибави нов обект</bg>
             <nl>Nieuw object toevoegen</nl>
+            <pt></pt>
         </string>
         <string id="211">
             <en>login to platform</en>
@@ -1835,6 +2001,7 @@ Note: You can add new languages by inserting "<new_language>string translated in
             <fr>se connecter à la plateforme</fr>
             <bg>вход в платформата</bg>
             <nl>log-in op platform</nl>
+            <pt></pt>
         </string>
         <string id="212">
             <en>Enter your login and password.</en>
@@ -1844,6 +2011,7 @@ Note: You can add new languages by inserting "<new_language>string translated in
             <fr>Entrez votre nom d'utilisateur et votre mot de passe</fr>
             <bg>Въведете Вашето потребителско име и парола. </bg>
             <nl>Geef uw log-in en wachtwoord</nl>
+            <pt></pt>
         </string>
         <string id="213">
             <en>Select the HTML template to be loaded.</en>
@@ -1853,6 +2021,7 @@ Note: You can add new languages by inserting "<new_language>string translated in
             <fr>Sélectionner un modèle HTML à charger.</fr>
             <bg>Изберете HTML шаблона, който да бъде зареден</bg>
             <nl>Selecteer de te laden HTML-sjabloon.</nl>
+            <pt></pt>
         </string>
         <string id="214">
             <en>Description of selected HTML template</en>
@@ -1862,6 +2031,7 @@ Note: You can add new languages by inserting "<new_language>string translated in
             <fr></fr>
             <bg></bg>
             <nl>Beschrijving van de te laden HTML-sjabloon</nl>
+            <pt></pt>
         </string>
         <string id="215">
             <en>value of this variable will be inserted into the HTML template</en>
@@ -1871,6 +2041,7 @@ Note: You can add new languages by inserting "<new_language>string translated in
             <fr>La valeur de cette variable va être insérée dans le modèle HTML</fr>
             <bg>стойността на тази променлива ще бъде вмъкната в HTML шаблона</bg>
             <nl>De waarde van deze variabele wordt ingevoegd in de HTML-sjabloon.</nl>
+            <pt></pt>
         </string>
         <string id="216">
             <en><![CDATA[Time left (in seconds) to submit test item. A value of 0 implies unlimited time. Insert <b>{{TIME_LEFT}}</b> variable into HTML templates to make the timer visible.]]></en>
@@ -1880,6 +2051,7 @@ Note: You can add new languages by inserting "<new_language>string translated in
              <fr><![CDATA[Temps restant (en secondes) pour soumettre l'énoncé du test. Une valeur de 0 sous-tend un temps illimité. Insérer la variable <b>{{TIME_LEFT}}</b> dans le modèle HTML afin de rendre le chronomètre visible.]]></fr>
             <bg><![CDATA[Оставащо време (в секунди)), за да бъде попълнен тестовия айтем. Стойност 0 означава неограничено време. Вмъкни <b>{{TIME_LEFT}}</b> променлива в HTML шаблона, за да направите този таймер видим.]]></bg>
             <nl><![CDATA[Resterende tijd (in seconden) om op een test item te antwoorden. Een waarde van 0 impliceert onberkte tijd. Voeg de variabele <b>{{TIME_LEFT}}</b> in op de HTML-sjabloon om de timer zichtbaar te maken.]]></nl>
+            <pt></pt>
         </string>
         <string id="217">
             <en>this variable type is</en>
@@ -1889,6 +2061,7 @@ Note: You can add new languages by inserting "<new_language>string translated in
             <fr>cette variable est</fr>
             <bg>видът на тази променлива е</bg>
             <nl>dit type variabele is</nl>
+            <pt></pt>
         </string>
         <string id="221" js="1">
             <en>not equal</en>
@@ -1898,6 +2071,7 @@ Note: You can add new languages by inserting "<new_language>string translated in
             <fr>pas égal à</fr>
             <bg>не е равно</bg>
             <nl>niet gelijk aan</nl>
+            <pt></pt>
         </string>
         <string id="222" js="1">
             <en>equal</en>
@@ -1907,6 +2081,7 @@ Note: You can add new languages by inserting "<new_language>string translated in
             <fr>égal</fr>
             <bg>равно</bg>
             <nl>gelijk aan</nl>
+            <pt></pt>
         </string>
         <string id="223" js="1">
             <en>greater than</en>
@@ -1916,6 +2091,7 @@ Note: You can add new languages by inserting "<new_language>string translated in
             <fr>égal à</fr>
             <bg>повече от</bg>
             <nl>groter dan</nl>
+            <pt></pt>
         </string>
         <string id="224" js="1">
             <en>equal or greater than</en>
@@ -1925,6 +2101,7 @@ Note: You can add new languages by inserting "<new_language>string translated in
             <fr>plus grand ou égal à</fr>
             <bg>повече или равно на</bg>
             <nl>groter dan of gelijk aan</nl>
+            <pt></pt>
         </string>
         <string id="225" js="1">
             <en>lesser than</en>
@@ -1934,6 +2111,7 @@ Note: You can add new languages by inserting "<new_language>string translated in
             <fr>plus petit que</fr>
             <bg>по-малко от</bg>
             <nl>kleiner dan</nl>
+            <pt></pt>
         </string>
         <string id="226" js="1">
             <en>equal or lesser than</en>
@@ -1943,6 +2121,7 @@ Note: You can add new languages by inserting "<new_language>string translated in
             <fr>plus petit ou égal à</fr>
             <bg>равно или по-малко от</bg>
             <nl>kleiner dan of gelijk aan</nl>
+            <pt></pt>
         </string>
         <string id="227" js="1">
             <en>AND</en>
@@ -1952,6 +2131,7 @@ Note: You can add new languages by inserting "<new_language>string translated in
             <fr>ET</fr>
             <bg>И</bg>
             <nl>EN</nl>
+            <pt></pt>
         </string>
         <string id="228" js="1">
             <en>OR</en>
@@ -1961,6 +2141,7 @@ Note: You can add new languages by inserting "<new_language>string translated in
             <fr>OU</fr>
             <bg>ИЛИ</bg>
             <nl>OF</nl>
+            <pt></pt>
         </string>
         <string id="229">
             <en>add condition</en>
@@ -1970,6 +2151,7 @@ Note: You can add new languages by inserting "<new_language>string translated in
             <fr>ajouter une condition</fr>
             <bg>условие прибави</bg>
             <nl>conditie toevoegen</nl>
+            <pt></pt>
         </string>
         <string id="230">
             <en>remove condition</en>
@@ -1979,6 +2161,7 @@ Note: You can add new languages by inserting "<new_language>string translated in
             <fr>enlever une condition</fr>
             <bg>условие извади</bg>
             <nl>conditie verwijderen</nl>
+            <pt></pt>
         </string>
         <string id="232" js="1">
             <en>add test logic section to IF clause</en>
@@ -1988,6 +2171,7 @@ Note: You can add new languages by inserting "<new_language>string translated in
             <fr>ajouter une section logique du test à une clause SI</fr>
             <bg>прибави секцията с тестовата логика към АКО условието</bg>
             <nl>logische testsectie toevoegen aan ALS clausule</nl>
+            <pt></pt>
         </string>
         <string id="235">
             <en>from table</en>
@@ -1997,6 +2181,7 @@ Note: You can add new languages by inserting "<new_language>string translated in
             <cn>来自于表格</cn>
             <bg>от тaблицата</bg>
             <nl>uit tabel</nl>
+            <pt></pt>
         </string>
         <string id="236">
             <en>by R code</en>
@@ -2006,6 +2191,7 @@ Note: You can add new languages by inserting "<new_language>string translated in
             <fr>avec un code R</fr>
             <bg>чрез R кода</bg>
             <nl>via R code</nl>
+            <pt></pt>
         </string>
         <string id="239">
             <en>no table selected</en>
@@ -2015,6 +2201,7 @@ Note: You can add new languages by inserting "<new_language>string translated in
             <fr>aucun tableau sélectionné</fr>
             <bg>не е избрана таблица</bg>
             <nl>geen tabel geselecteerd</nl>
+            <pt></pt>
         </string>
         <string id="241">
             <en>no column selected</en>
@@ -2024,6 +2211,7 @@ Note: You can add new languages by inserting "<new_language>string translated in
             <fr>aucune colonne sélectionnée</fr>
             <bg>не са избрани колони</bg>
             <nl>geen kolom geselecteerd</nl>
+            <pt></pt>
         </string>
         <string id="242">
             <en>WHERE</en>
@@ -2033,6 +2221,7 @@ Note: You can add new languages by inserting "<new_language>string translated in
             <fr>où</fr>
             <bg>КЪДЕ</bg>
             <nl>WAAR</nl>
+            <pt></pt>
         </string>
         <string id="243">
             <en>like</en>
@@ -2042,6 +2231,7 @@ Note: You can add new languages by inserting "<new_language>string translated in
             <fr>comme</fr>
             <bg>подобно</bg>
             <nl>zoals</nl>
+            <pt></pt>
         </string>
         <string id="244">
             <en>not like</en>
@@ -2051,6 +2241,7 @@ Note: You can add new languages by inserting "<new_language>string translated in
             <fr>pas comme</fr>
             <bg>не е подобно</bg>
             <nl>niet zoals</nl>
+            <pt></pt>
         </string>
         <string id="245">
             <en>Test id. Read only variable.</en>
@@ -2060,6 +2251,7 @@ Note: You can add new languages by inserting "<new_language>string translated in
             <fr>ID du test. Variable en lecture seulement.</fr>
             <bg>ID на теста. Чети само променливите.</bg>
             <nl>Test id. Dit is een alleen-lezen variabele.</nl>
+            <pt></pt>
         </string>
         <string id="246">
             <en>Test session id. Read only variable.</en>
@@ -2069,6 +2261,7 @@ Note: You can add new languages by inserting "<new_language>string translated in
             <fr>ID de la session du test. Variable en lecture seulement.</fr>
             <bg>ID на теста. Чети само променливите.</bg>
             <nl>Testsessie id. Dit is een alleen-lezen variabele.</nl>
+            <pt></pt>
         </string>
         <string id="248">
             <en>insert</en>
@@ -2078,6 +2271,7 @@ Note: You can add new languages by inserting "<new_language>string translated in
             <fr>Rafraîchir</fr>
             <bg>вмъкни</bg>
             <nl>invoegen</nl>
+            <pt></pt>
         </string>
         <string id="249">
             <en>update</en>
@@ -2087,6 +2281,7 @@ Note: You can add new languages by inserting "<new_language>string translated in
             <fr>Actualiser</fr>
             <bg>обнови</bg>
             <nl>update</nl>
+            <pt></pt>
         </string>
         <string id="250">
             <en>delete</en>
@@ -2096,6 +2291,7 @@ Note: You can add new languages by inserting "<new_language>string translated in
             <fr>supprimer</fr>
             <bg>изтрий</bg>
             <nl>verwijderen</nl>
+            <pt></pt>
         </string>
         <string id="253">
             <en>Select the type of section to be added to the test logic</en>
@@ -2105,6 +2301,7 @@ Note: You can add new languages by inserting "<new_language>string translated in
             <fr>sélectionner le type de section à être ajouté à la logique du test</fr>
             <bg>Избери вида на секцията, която да бъде добавена към тестовата логика</bg>
             <nl>Selecteer het sectietype dat toegevoegd dient te worden aan de testlogica</nl>
+            <pt></pt>
         </string>
         <string id="254">
             <en>Enter variable description that will be visible to anyone using this section in their test.</en>
@@ -2114,6 +2311,7 @@ Note: You can add new languages by inserting "<new_language>string translated in
             <fr>Entrer une définition de la variable qui sera visible à quiconque utilisant cette section dans leur test.</fr>
             <bg>Въведи променливата, която ще бъде видима за всеки, който използва тази секция от теста</bg>
             <nl>Voer een beschrijving van de variabele in, zichtbaar aan iedereen die deze sectie in hun test gebruikt.</nl>
+            <pt></pt>
         </string>
         <string id="255">
             <en>Select the MySQL table whose structure and data are to be imported into this table.</en>
@@ -2123,6 +2321,7 @@ Note: You can add new languages by inserting "<new_language>string translated in
             <fr>Sélectionner le tableau MySQL dont la structure et les données doivent être importées dans ce tableau.</fr>
             <bg>Избери MySQL таблицата, чиято структура и данни ще бъдат ще бъдат импортирани в тази таблица</bg>
             <nl>Selecteer de MySQL tabel waarvan de structuur en data geimporteerd dienen te worden in deze tabel.</nl>
+            <pt></pt>
         </string>
         <string id="256">
             <en>Select the CSV file to be imported.</en>
@@ -2132,6 +2331,7 @@ Note: You can add new languages by inserting "<new_language>string translated in
             <fr>Sélectionner le fichier CSV à être importé.</fr>
             <bg>Изберете CSV файл за импорт</bg>
             <nl>Selecteer het te importeren CSV-bestand.</nl>
+            <pt></pt>
         </string>
         <string id="257">
             <en>Select the name of the column</en>
@@ -2141,6 +2341,7 @@ Note: You can add new languages by inserting "<new_language>string translated in
             <fr>Sélectionner le nom de la colonne</fr>
             <bg>Изберете име на колоната</bg>
             <nl>Selecteer de naam van de kolom.</nl>
+            <pt></pt>
         </string>
         <string id="258">
             <en>Select the column type</en>
@@ -2150,6 +2351,7 @@ Note: You can add new languages by inserting "<new_language>string translated in
             <fr>Sélectionner le type de colonne</fr>
             <bg>Изберете вид на колоната</bg>
             <nl>Selecteer het kolomtype</nl>
+            <pt></pt>
         </string>
         <string id="259">
             <en>enter HTML value of the cell</en>
@@ -2159,6 +2361,7 @@ Note: You can add new languages by inserting "<new_language>string translated in
             <fr>entrer la valeur HTML de la cellule</fr>
             <bg>въведете HTML стойност на полето</bg>
             <nl>Voer de HTML waarde in van de cel</nl>
+            <pt></pt>
         </string>
         <string id="260">
             <en>Enter your unique login id</en>
@@ -2168,6 +2371,7 @@ Note: You can add new languages by inserting "<new_language>string translated in
             <fr>entrer votre identifiant unique</fr>
             <bg>Въведете Вашето уникално потребителско име</bg>
             <nl>Voer uw unieke log-in id in</nl>
+            <pt></pt>
         </string>
         <string id="261">
             <en>Enter your password</en>
@@ -2177,6 +2381,7 @@ Note: You can add new languages by inserting "<new_language>string translated in
             <fr>Votre version est PÉRIMÉE</fr>
             <bg>Въведете парола</bg>
             <nl>Voer uw wachtwoord in</nl>
+            <pt></pt>
         </string>
         <string id="262">
             <en>Your version is OUTDATED.</en>
@@ -2186,6 +2391,7 @@ Note: You can add new languages by inserting "<new_language>string translated in
             <fr>Votre version est OBSOLETE.</fr>
             <bg>Вашата версия е стара</bg>
             <nl>Uw versie is VEROUDERD.</nl>
+            <pt></pt>
         </string>
         <string id="263">
             <en>CLICK HERE TO DOWNLOAD THE LATEST VERSION</en>
@@ -2195,6 +2401,7 @@ Note: You can add new languages by inserting "<new_language>string translated in
             <fr>CLIQUEZ ICI POUR TÉLÉCHERGER LA DERNIÈRE VERSION</fr>
             <bg>КЛИКНЕТЕ ТУК ЗА ДА СВАЛИТЕ НАЙ-НОВАТА ВЕРСИЯ</bg>
             <nl>KLIK HIER OM DE NIEUWSTE VERSIE TE DOWNLOADEN</nl>
+            <pt></pt>
         </string>
         <string id="264">
             <en>Your version is up-to-date</en>
@@ -2204,6 +2411,7 @@ Note: You can add new languages by inserting "<new_language>string translated in
             <fr></fr>
             <bg>Вашата версия е актуална</bg>
             <nl>Uw versie is up-to-date</nl>
+            <pt></pt>
         </string>
         <string id="265" js="1">
             <en>Export</en>
@@ -2213,6 +2421,7 @@ Note: You can add new languages by inserting "<new_language>string translated in
             <fr>Exporter</fr>
             <bg>Експорт</bg>
             <nl>Exporteren</nl>
+            <pt></pt>
         </string>
         <string id="266">
             <en>Import new object</en>
@@ -2222,6 +2431,7 @@ Note: You can add new languages by inserting "<new_language>string translated in
             <fr>Importer un nouvel objet</fr>
             <bg>Импорт на нов обект</bg>
             <nl>Nieuw object importeren</nl>
+            <pt></pt>
         </string>
         <string id="267">
             <en>Select file with exported object</en>
@@ -2231,6 +2441,7 @@ Note: You can add new languages by inserting "<new_language>string translated in
             <fr></fr>
             <bg></bg>
             <nl></nl>
+            <pt></pt>
         </string>
         <string id="268" js="1">
             <en>Importing object</en>
@@ -2240,6 +2451,7 @@ Note: You can add new languages by inserting "<new_language>string translated in
             <fr>Importer l'objet</fr>
             <bg>Импортиране на обект</bg>
             <nl>Object importeren</nl>
+            <pt></pt>
         </string>
         <string id="269" js="1">
             <en>Are you sure you want to import the object from this file?</en>
@@ -2249,6 +2461,7 @@ Note: You can add new languages by inserting "<new_language>string translated in
             <fr>Êtes-vous certain de vouloir importer cet objet provenant de ce fichier?</fr>
             <bg>Сигурни ли сте, че искате да импортирате този обект от файла?</bg>
             <nl>Bent u zeker dat u het object uit dit bestand wil importeren?</nl>
+            <pt></pt>
         </string>
         <string id="270" js="1">
             <en>Object imported</en>
@@ -2258,6 +2471,7 @@ Note: You can add new languages by inserting "<new_language>string translated in
             <fr>Une erreur est survenue lors de l'importation de l'objet</fr>
             <bg>Обектът е импортиран</bg>
             <nl>Object geimporteerd</nl>
+            <pt></pt>
         </string>
         <string id="271" js="1">
             <en>There was an error while importing the object</en>
@@ -2267,6 +2481,7 @@ Note: You can add new languages by inserting "<new_language>string translated in
             <fr>Une erreur est survenue lors de l'importation de l'objet</fr>
             <bg>Грешка при импортирането на обекта</bg>
             <nl>Er is een fout opgetreden tijdens het importeren van het object</nl>
+            <pt></pt>
         </string>
         <string id="272" js="1">
             <en>File does not exist.</en>
@@ -2276,6 +2491,7 @@ Note: You can add new languages by inserting "<new_language>string translated in
             <fr>Le fichier n'existe pas.</fr>
             <bg>Файлът не съществува</bg>
             <nl>Bestand bestaat niet</nl>
+            <pt></pt>
         </string>
         <string id="273" js="1">
             <en>Deleting object</en>
@@ -2285,6 +2501,7 @@ Note: You can add new languages by inserting "<new_language>string translated in
             <fr>Sauvegarder l'objet</fr>
             <bg>Изтриване на обект</bg>
             <nl>Object verwijderen</nl>
+            <pt></pt>
         </string>
         <string id="274" js="1">
             <en>Saving object</en>
@@ -2294,6 +2511,7 @@ Note: You can add new languages by inserting "<new_language>string translated in
             <fr>Sauvegarder l'objet</fr>
             <bg>Съхранение на обект</bg>
             <nl>Object opslaan</nl>
+            <pt></pt>
         </string>
         <string id="278" js="1">
             <en>Not logged in</en>
@@ -2303,6 +2521,7 @@ Note: You can add new languages by inserting "<new_language>string translated in
             <fr></fr>
             <bg>Не сте влезли</bg>
             <nl>Niet ingelogd</nl>
+            <pt></pt>
         </string>
         <string id="283">
             <en>This is a system variable</en>
@@ -2312,6 +2531,7 @@ Note: You can add new languages by inserting "<new_language>string translated in
             <fr>Ceci est une variable système</fr>
             <bg>Това е системна променлива</bg>
             <nl>Dit is een systeemvariabele</nl>
+            <pt></pt>
         </string>
         <string id="284" js="1">
             <en>debug</en>
@@ -2321,6 +2541,7 @@ Note: You can add new languages by inserting "<new_language>string translated in
             <fr>déboguer</fr>
             <bg>дебъг</bg>
             <nl>debuggen</nl>
+            <pt></pt>
         </string>
         <string id="285" js="1">
             <en><![CDATA[Test #{0} - debug <b>(idle)</b>]]></en>
@@ -2330,6 +2551,7 @@ Note: You can add new languages by inserting "<new_language>string translated in
             <fr><![CDATA[Test #{0} - déboguer <b>(temps mort)</b>]]></fr>
             <bg><![CDATA[Тест #{0} - дебъг <b>(празен ход)</b>]]></bg>
             <nl><![CDATA[Test #{0} - debuggen <b>(wachtend)</b>]]></nl>
+            <pt></pt>
         </string>
         <string id="286" js="1">
             <en>Test #{0} - debug</en>
@@ -2339,6 +2561,7 @@ Note: You can add new languages by inserting "<new_language>string translated in
             <fr>Test #{0} - déboguer </fr>
             <bg>Тест #{0} - дебъг</bg>
             <nl>Test #{0} - debuggen</nl>
+            <pt></pt>
         </string>
         <string id="287" js="1">
             <en>Please ensure that all changes to the test logic have been saved prior to debugging. Unsaved changes will not be considered in the debugging process.</en>
@@ -2348,6 +2571,7 @@ Note: You can add new languages by inserting "<new_language>string translated in
             <fr>assurez-vous que tous les changements à la logique du test ont été sauvegardés. Les changements qui n'ont pas été sauvegardés ne seront pas considérés lors du processus de déboguage</fr>
             <bg>Проверете дали всички промени в тестовата логика са съхранени преди дебъга. Несъхранените промени няма да повлияят на процеса на дебъг</bg>
             <nl>Kijk na of alle wijzigingen aan de test logica opgeslagen werden vooraleer te debuggen. Niet-opgeslagen wijzigingen worden niet in rekening genomen tijdens het debugproces.</nl>
+            <pt></pt>
         </string>
         <string id="288" js="1">
             <en><![CDATA[Please press the <b>begin</b> button.]]></en>
@@ -2357,6 +2581,7 @@ Note: You can add new languages by inserting "<new_language>string translated in
             <fr><![CDATA[appuyez sur le bouton <b>commencer</b>.]]></fr>
             <bg><![CDATA[Моля натиснете бутона <b>старт</b>]]></bg>
             <nl><![CDATA[Klik op de <b>begin</b> knop.]]></nl>
+            <pt></pt>
         </string>
         <string id="289" js="1">
             <en><![CDATA[Test #{0} - syntax validation <b>(in progress...)]]></en>
@@ -2366,6 +2591,7 @@ Note: You can add new languages by inserting "<new_language>string translated in
             <fr><![CDATA[Test #{0} - validation de la syntaxe <b>(en progrès...)]]></fr>
             <bg><![CDATA[Тест #{0} - валидизирането на синтаксиса <b>(в действие...)]]></bg>
             <nl><![CDATA[Test #{0} - syntax validatie <b>(bezig...)]]></nl>
+            <pt></pt>
         </string>
         <string id="290" js="1">
             <en>Syntax validation</en>
@@ -2375,6 +2601,7 @@ Note: You can add new languages by inserting "<new_language>string translated in
             <fr>Validation de la syntaxe</fr>
             <bg>Валидизация на синтаксиса</bg>
             <nl>Syntax validatie</nl>
+            <pt></pt>
         </string>
         <string id="291" js="1">
             <en><![CDATA[Test section with index #{0} syntax validation: <font style='color:green;'><b>PASSED</b></font>]]></en>
@@ -2384,6 +2611,7 @@ Note: You can add new languages by inserting "<new_language>string translated in
             <fr><![CDATA[Test section with index #{0} validation de la syntaxe: <font style='color:green;'><b>PASSÉE</b></font>]]></fr>
             <bg><![CDATA[Валидизация на тестова секция с индекс #{0}: <font style='color:green;'><b>УСПЕШНА</b></font>]]></bg>
             <nl><![CDATA[Testsectie met index #{0} syntaxvalidatie: <font style='color:green;'><b>OK</b></font>]]></nl>
+            <pt></pt>
         </string>
         <string id="292" js="1">
             <en><![CDATA[Test section with index #{0} syntax validation: <font style='color:red;'><b>FAILED</b></font>]]></en>
@@ -2393,6 +2621,7 @@ Note: You can add new languages by inserting "<new_language>string translated in
             <fr><![CDATA[Test section with index #{0} validation de la syntaxe: <font style='color:red;'><b>ÉCHOUÉE</b></font>]]></fr>
             <bg><![CDATA[Валидизация на тестова секция с индекс #{0}: <font style='color:green;'><b>НЕУСПЕШНА</b></font>]]></bg>
             <nl><![CDATA[Testsectie met index #{0} syntaxvalidatie: <font style='color:red;'><b>GEFAALD</b></font>]]></nl>
+            <pt></pt>
         </string>
         <string id="293" js="1">
             <en><![CDATA[Test #{0} - syntax validation <b>(finished)</b>]]></en>
@@ -2402,6 +2631,7 @@ Note: You can add new languages by inserting "<new_language>string translated in
             <fr><![CDATA[Test #{0} - validation de la syntaxe <b>(terminée)</b>]]></fr>
             <bg><![CDATA[Тест #{0} – валидизацията на синтаксиса <b>(завърши)</b>]]></bg>
             <nl><![CDATA[Test #{0} - syntaxvalidatie <b>(voltooid)</b>]]></nl>
+            <pt></pt>
         </string>
         <string id="294" js="1">
             <en><![CDATA[Syntax validation <font style='color:green;'>PASSED</font>.]]></en>
@@ -2411,6 +2641,7 @@ Note: You can add new languages by inserting "<new_language>string translated in
             <fr><![CDATA[Validation de la syntaxe<font style='color:green;'>PASSÉE</font>.]]></fr>
             <bg><![CDATA[Валидизацията на синтаксиса <font style='color:green;'>ПРЕМИНАТА</font>.]]></bg>
             <nl><![CDATA[Syntaxvalidatie <font style='color:green;'>OK</font>.]]></nl>
+            <pt></pt>
         </string>
         <string id="295" js="1">
             <en><![CDATA[Test #{0} - syntax validation <b>(FAILED on section index #{1} - debug HALTED)</b>]]></en>
@@ -2420,6 +2651,7 @@ Note: You can add new languages by inserting "<new_language>string translated in
             <fr><![CDATA[Test #{0} - Validation de la syntaxe <b>(ÉCHOUÉE pour l'index de la section #{1} - déboguage INTERROMPU)</b>]]></fr>
             <bg><![CDATA[Тест #{0} – валидизацията на синтаксиса <b>(НЕУСПЕШНА в индекс на секция #{1} – дебъгът СПРЯН)</b>]]></bg>
             <nl><![CDATA[Test #{0} - syntaxvalidatie <b>(GEFAALD bij sectie met index #{1} - debug ONDERBROKEN)</b>]]></nl>
+            <pt></pt>
         </string>
         <string id="296" js="1">
             <en><![CDATA[Syntax validation <font style='color:red;'><b>FAILED</b></font> on section index #{0} - debug <font style='color:red;'><b>HALTED</b></font>]]></en>
@@ -2429,6 +2661,7 @@ Note: You can add new languages by inserting "<new_language>string translated in
             <fr><![CDATA[Validation de la syntaxe <font style='color:red;'><b>ÉCHOUÉE</b></font> pour l'index de la section #{0} - déboguage <font style='color:red;'><b>HALTED</b></font>]]></fr>
             <bg><![CDATA[Валидизацията на синтаксиса <font style='color:red;'><b>НЕУСПЕШНА</b></font> за индекс на секция #{0} - дебъгът <font style='color:red;'><b>СПРЯН</b></font>]]></bg>
             <nl><![CDATA[Syntaxvalidatie <font style='color:red;'><b>GEFAALD</b></font> bij sectie met index #{0} - debug <font style='color:red;'><b>ONDERBROKEN</b></font>]]></nl>
+            <pt></pt>
         </string>
         <string id="297" js="1">
             <en>Runtime debug</en>
@@ -2438,6 +2671,7 @@ Note: You can add new languages by inserting "<new_language>string translated in
             <fr></fr>
             <bg>дебъг в реално време</bg>
             <nl>Runtime debug</nl>
+            <pt></pt>
         </string>
         <string id="298" js="1">
             <en>Running test #{0}...</en>
@@ -2447,6 +2681,7 @@ Note: You can add new languages by inserting "<new_language>string translated in
             <fr>Test en cours d'exécution #{0}...</fr>
             <bg>Започване на тест #{0}...</bg>
             <nl>Test #{0} bezig...</nl>
+            <pt></pt>
         </string>
         <string id="299" js="1">
             <en><![CDATA[Test #{0} - runtime debug <b>(R code is being interpreted...)</b>]]></en>
@@ -2456,6 +2691,7 @@ Note: You can add new languages by inserting "<new_language>string translated in
             <fr><![CDATA[Test #{0} - Déboguade temps d'exécution <b>(le code R est en train d'être interprété...)</b>]]></fr>
             <bg><![CDATA[Тест #{0} - дебъг в реално време <b>(R кодът се интерпретира...)</b>]]></bg>
             <nl><![CDATA[Test #{0} - runtime debug <b>(R-code wordt geinterpreteerd...)</b>]]></nl>
+            <pt></pt>
         </string>
         <string id="300" js="1">
             <en>R code is being interpreted...</en>
@@ -2465,6 +2701,7 @@ Note: You can add new languages by inserting "<new_language>string translated in
             <fr>La réponse du code R a été recue</fr>
             <bg>R кодът е интерпретиран</bg>
             <nl>R-code wordt geinterpreteerd</nl>
+            <pt></pt>
         </string>
         <string id="301" js="1">
             <en>R code response received.</en>
@@ -2474,6 +2711,7 @@ Note: You can add new languages by inserting "<new_language>string translated in
             <fr>La réponse du code R a été recue</fr>
             <bg>Резултатът от R кода получен</bg>
             <nl>R-code resultaat ontvangen</nl>
+            <pt></pt>
         </string>
         <string id="302" js="1">
             <en><![CDATA[Test #{0}, session #{1} - runtime debug <b>(R logic error - debug HALTED)</b>]]></en>
@@ -2483,6 +2721,7 @@ Note: You can add new languages by inserting "<new_language>string translated in
             <fr><![CDATA[Test #{0}, session #{1} - deboguage temps d'exécution <b>(erreur logique R- Déboguage INTERROMPU)</b>]]></fr>
             <bg><![CDATA[Тестът #{0}, сесията #{1} - дебъг в реално време <b>(грешка в R логиката - дебъгът СПРЯН)</b>]]></bg>
             <nl><![CDATA[Test #{0}, sessie #{1} - runtime debug <b>(logica-fout in R - debug ONDERBROKEN)</b>]]></nl>
+            <pt></pt>
         </string>
         <string id="303" js="1">
             <en><![CDATA[R logic <font style='color:red;'><b>error</b></font>. Check R code output for additional info. Debug HALTED.]]></en>
@@ -2492,6 +2731,7 @@ Note: You can add new languages by inserting "<new_language>string translated in
             <fr><![CDATA[Logique R <font style='color:red;'><b>erreur</b></font>. Vérifier la sortie du code R pour de plus amples inforations. déboguage INTERROMPU.]]></fr>
             <bg><![CDATA[R логиката <font style='color:red;'><b>е грешна</b></font>. Проверете резултата от R кода за допълнителна информация. Дебъгът СПРЯН.]]></bg>
             <nl><![CDATA[R logica <font style='color:red;'><b>fout</b></font>. Check de output van de R-code voor verdere informatie. Debug ONDERBROKEN.]]></nl>
+            <pt></pt>
         </string>
         <string id="304" js="1">
             <en><![CDATA[R logic validation <font style='color:green;'><b>PASSED</b></font>.]]></en>
@@ -2501,6 +2741,7 @@ Note: You can add new languages by inserting "<new_language>string translated in
             <fr><![CDATA[Validation de la logique R<font style='color:green;'><b>PASSÉE</b></font>.]]></fr>
             <bg><![CDATA[R Валидизацията на логиката <font style='color:green;'><b>УСПЕШНА</b></font>.]]></bg>
             <nl><![CDATA[R logica validatie <font style='color:green;'><b>OK</b></font>.]]></nl>
+            <pt></pt>
         </string>
         <string id="305" js="1">
             <en>current HTML variables</en>
@@ -2510,6 +2751,7 @@ Note: You can add new languages by inserting "<new_language>string translated in
             <fr>valeur</fr>
             <bg>настоящи HTML променливи</bg>
             <nl>huidige HTML variabelen</nl>
+            <pt></pt>
         </string>
         <string id="306" js="1">
             <en>value</en>
@@ -2519,6 +2761,7 @@ Note: You can add new languages by inserting "<new_language>string translated in
             <fr>valeur</fr>
             <bg>стойност</bg>
             <nl>waarde</nl>
+            <pt></pt>
         </string>
         <string id="307" js="1">
             <en><![CDATA[Test #{0}, session #{1} - runtime debug <b><font style='color:green;'>PASSED</font></b>]]></en>
@@ -2528,6 +2771,7 @@ Note: You can add new languages by inserting "<new_language>string translated in
             <fr><![CDATA[Test #{0}, session #{1} - déboguage temps d'exécution <b><font style='color:green;'>PASSÉE</font></b>]]></fr>  
             <bg><![CDATA[Тестът #{0}, сесията #{1} - дебъгът в реално време <b><font style='color:green;'>УСПЕШЕН</font></b>]]></bg>
             <nl><![CDATA[Test #{0}, sessie #{1} - runtime debug <b><font style='color:green;'>OK</font></b>]]></nl>
+            <pt></pt>
         </string>
         <string id="308" js="1">
             <en>End section reached. The test has finished.</en>
@@ -2537,6 +2781,7 @@ Note: You can add new languages by inserting "<new_language>string translated in
              <fr>La fin de la section a été atteinte. Le test est terminé.</fr>  
             <bg>Крайната секция достигната. Тестът е завършен.</bg>
             <nl>Laatste sectie bereikt. Test beeindigd.</nl>
+            <pt></pt>
         </string>
         <string id="309" js="1">
             <en>Template #{0}</en>
@@ -2546,6 +2791,7 @@ Note: You can add new languages by inserting "<new_language>string translated in
             <fr>Modèle #{0}</fr>  
             <bg>Шаблон #{0}</bg>
             <nl>Template #{0}</nl>
+            <pt></pt>
         </string>
         <string id="310" js="1">
             <en>Template #{0} loaded ( time limit: {1} ).</en>
@@ -2555,6 +2801,7 @@ Note: You can add new languages by inserting "<new_language>string translated in
             <fr>Illimité #</fr>
             <bg>Шаблон #{0} зареден ( лимит от време: {1} ).</bg>
             <nl>Template #{0} geladen ( tijdlimiet: {1} ).</nl>
+            <pt></pt>
         </string>
         <string id="311" js="1">
             <en>unlimited</en>
@@ -2564,6 +2811,7 @@ Note: You can add new languages by inserting "<new_language>string translated in
             <fr>Illimité </fr>
             <bg>неограничен</bg>
             <nl>onbeperkt</nl>
+            <pt></pt>
         </string>
         <string id="312" js="1">
             <en>sec.</en>
@@ -2573,6 +2821,7 @@ Note: You can add new languages by inserting "<new_language>string translated in
             <fr>Sec.</fr>
             <bg>сек.</bg>
             <nl>sec.</nl>
+            <pt></pt>
         </string>
         <string id="313" js="1">
             <en>Awaiting user input...</en>
@@ -2582,6 +2831,7 @@ Note: You can add new languages by inserting "<new_language>string translated in
             <fr>En attente d'une saisie par l'utilisateur.</fr>
             <bg>Очакване за въвеждане на данни...</bg>
             <nl>Wachtend op input van de gebruiker...</nl>
+            <pt></pt>
         </string>
         <string id="314" js="1">
             <en><![CDATA[Test #{0}, session #{1}, template #{2} - runtime debug <b>(template loaded - awaiting user input...)</b>]]></en>
@@ -2591,6 +2841,7 @@ Note: You can add new languages by inserting "<new_language>string translated in
             <fr><![CDATA[Test #{0}, session #{1}, modèle #{2} - déboguage temps d'exécution <b>(modèle chargé - en attente d'une saisie par l'utilisateur...)</b>]]></fr>
             <bg><![CDATA[Тестът #{0}, сесията #{1}, шаблонът #{2} - дебъг в реално време <b>(шаблонът зареден - очакване за въвеждане на данни...)</b>]]></bg>
             <nl><![CDATA[Test #{0}, sessie #{1}, template #{2} - runtime debug <b>(template geladen - wachtend op input van de gebruiker...)</b>]]></nl>
+            <pt></pt>
         </string>
         <string id="315" js="1">
             <en>Item submitted. Time limit reached.</en>
@@ -2600,6 +2851,7 @@ Note: You can add new languages by inserting "<new_language>string translated in
             <fr></fr>
             <bg>Айтемът изпратен. Лимитът от време достигнат.</bg>
             <nl>Item verstuurd. Tijdlimiet bereikt</nl>
+            <pt></pt>
         </string>
         <string id="317" js="1">
             <en>variables send</en>
@@ -2609,6 +2861,7 @@ Note: You can add new languages by inserting "<new_language>string translated in
             <fr>gamme</fr>
             <bg>променливите изпратени.</bg>
             <nl>variabelen verzonden</nl>
+            <pt></pt>
         </string>
         <string id="319" js="1">
             <en>please wait...</en>
@@ -2618,6 +2871,7 @@ Note: You can add new languages by inserting "<new_language>string translated in
             <fr>Attendez s'il-vous plaît...</fr>
             <bg>Моля изчакайте...</bg>
             <nl>even geduld...</nl>
+            <pt></pt>
         </string>
         <string id="320" js="1">
             <en>Possible loss of unsaved data.</en>
@@ -2627,6 +2881,7 @@ Note: You can add new languages by inserting "<new_language>string translated in
             <fr>Certaines données non sauvegardées peuvent avoir été perdues</fr>
             <bg>Възможна загуба на несъхранени данни.</bg>
             <nl>Mogelijk verlies van niet-opgeslagen data.</nl>
+            <pt></pt>
         </string>
         <string id="321" js="1">
             <en>Are you sure you want to continue? All unsaved changes will be lost in the following modules:</en>
@@ -2636,6 +2891,7 @@ Note: You can add new languages by inserting "<new_language>string translated in
             <fr>Êtes vous certain de vouloir continuer? Cette action va réinitialiser les changements non sauvegardés dans les modules suivants:</fr>
             <bg>Сигурни ли сте, че искате да продължите? Това действие ще анулира несъхранените промени в следните модули:</bg>
             <nl>Bent u zeker dat u wilt doorgaan? Alle niet-opgeslagen wijzigingen zullen verloren gaan in de volgende modules:</nl>
+            <pt></pt>
         </string>
         <string id="322" js="1">
             <en>Are you sure you want to continue? This action will reset unsaved changes in all modules.</en>
@@ -2645,6 +2901,7 @@ Note: You can add new languages by inserting "<new_language>string translated in
             <fr>Êtes vous certain de vouloir continuer? Cette action va réinitialiser les changements non sauvegardés dans tous les modules.</fr>
             <bg>Сигурни ли сте, че искате да продължите? Това действие ще анулира несъхранените промени във всички модули.</bg>
             <nl>Bent u zeker dat u wilt doorgaan? Deze actie zal alle niet-opgeslagen wijzigingen tenietdoen in alle modules.</nl>
+            <pt></pt>
         </string>
         <string id="323" js="1">
             <en>begin</en>
@@ -2654,6 +2911,7 @@ Note: You can add new languages by inserting "<new_language>string translated in
             <fr>commencer</fr>
             <bg>започнете</bg>
             <nl>starten</nl>
+            <pt></pt>
         </string>
         <string id="324" js="1">
             <en>restart</en>
@@ -2663,6 +2921,7 @@ Note: You can add new languages by inserting "<new_language>string translated in
             <fr>recommencer</fr>
             <bg>започни отново</bg>
             <nl>herstarten</nl>
+            <pt></pt>
         </string>
         <string id="325">
             <en>field delimiter</en>
@@ -2672,6 +2931,7 @@ Note: You can add new languages by inserting "<new_language>string translated in
             <fr>délimitation de champ</fr>
             <bg>сепаратор на поле</bg>
             <nl>veldscheidingsteken</nl>
+            <pt></pt>
         </string>
         <string id="326">
             <en><![CDATA[Single character used to separate fields in a row. Default character is '<b>,</b>'.]]></en>
@@ -2681,6 +2941,7 @@ Note: You can add new languages by inserting "<new_language>string translated in
             <fr><![CDATA[Un seul caractère peut être utilisé afin de séparer les champs dans une ligne. Le caractère par défaut est '<b>,</b>'.]]></fr>
             <bg><![CDATA[Единичен знак за отделяне на полетата в реда. Знакът по подразбиране е <b>,</b>'.]]></bg>
             <nl><![CDATA[Enkel teken gebruikt om velden te scheiden in een rij. Standaardteken is '<b>,</b>'.]]></nl>
+            <pt></pt>
         </string>
         <string id="327">
             <en>field enclosure</en>
@@ -2690,6 +2951,7 @@ Note: You can add new languages by inserting "<new_language>string translated in
             <fr>champ joint</fr>
             <bg>завършване на полето</bg>
             <nl>veldbegrenzing</nl>
+            <pt></pt>
         </string>
         <string id="328">
             <en><![CDATA[Single character used to enclose string. Default character is '<b>"</b>'.]]></en>
@@ -2699,6 +2961,7 @@ Note: You can add new languages by inserting "<new_language>string translated in
             <fr><![CDATA[Un seur caractère peut être utilisé pour joindre des champs alphanumériques. Le caractère par défaut est '<b>"</b>'.]]></fr>
             <bg><![CDATA[Единичен знак, използван за завършване на реда от знаци. Знакът по подразбиране е '<b>"</b>'.]]></bg>
             <nl><![CDATA[Enkel teken gebruikt voor de begrenzing van een string. Standaardteken is '<b>"</b>'.]]></nl>
+            <pt></pt>
         </string>
         <string id="329" js="1">
             <en>Exporting table to CSV file</en>
@@ -2708,6 +2971,7 @@ Note: You can add new languages by inserting "<new_language>string translated in
             <fr>Exporter un tableau dans un fichier CSV</fr>
             <bg>Експортиране на таблицата към CSV файл.</bg>
             <nl>Tabel exporteren naar CSV-bestand</nl>
+            <pt></pt>
         </string>
         <string id="330">
             <en>header row</en>
@@ -2717,6 +2981,7 @@ Note: You can add new languages by inserting "<new_language>string translated in
             <fr>Ligne d'entête</fr>
             <bg>заглавен ред</bg>
             <nl>header</nl>
+            <pt></pt>
         </string>
         <string id="331">
             <en>Check box to import CSV with a header row. Header row values will be used as column names.</en>
@@ -2727,6 +2992,7 @@ Note: You can add new languages by inserting "<new_language>string translated in
             <bg>Поле за потвърждаване на CSV със заглавен
             ред. Стойностите на заглавния ред ще бъдат използвани за име на колоната</bg>
             <nl>Selecteer dit vak om een CSV-bestand met header te importeren. Waarden van de header zullen gebruikt worden als kolomnamen.</nl>
+            <pt></pt>
         </string>
         <string id="332">
             <en>Check box to export CSV with a header row. Header row will be first row in CSV with table column names.</en>
@@ -2736,6 +3002,7 @@ Note: You can add new languages by inserting "<new_language>string translated in
             <fr>Cocher la case afin d'exporter un fichier CSV avec une ligne d'entête. La ligne d'entête sera inclu dans la première ligne avec le nom de colonnes du tableau.</fr>
             <bg>Поле за потвърждаване на CSV със заглавен ред. Заглавния ред ще бъде първия ред в CSV с имена на колоните в таблицата.</bg>
             <nl>Selecteer dit vak om als een CSV-bestand met header te exporteren. Tabelkolomnamen zullen de eerste rij (header) vormen in het CSV-bestand.</nl>
+            <pt></pt>
         </string>
         <string id="333" js="1">
             <en>Error loading XML file. Cannot continue with import.</en>
@@ -2745,6 +3012,7 @@ Note: You can add new languages by inserting "<new_language>string translated in
             <fr>Une erreur est survenue lors du chargement d'un fichier XML. L'importation ne peut pas être continuée.</fr>
             <bg>Грешка при зареждането на XML файла. Не може да се продължи с импортирането.</bg>
             <nl>Fout bij laden van XML-bestand. Importeren afgebroken</nl>
+            <pt></pt>
         </string>
         <string id="334" js="1">
             <en>Column delimiter and enclosure fields are mandatory.</en>
@@ -2754,6 +3022,7 @@ Note: You can add new languages by inserting "<new_language>string translated in
             <fr>Un séparateur de colonne et un champ joint sont obligatoires.</fr>
             <bg>Сепараторът за колони и за вършването на полета не е задължително</bg>
             <nl>Kolomscheidingsteken en veldbegrenzers zijn verplicht.</nl>
+            <pt></pt>
         </string>
         <string id="335">
             <en>session count</en>
@@ -2763,6 +3032,7 @@ Note: You can add new languages by inserting "<new_language>string translated in
             <fr>Compteur de session</fr>
             <bg>броене на сесиите</bg>
             <nl>sessie teller</nl>
+            <pt></pt>
         </string>
         <string id="336" js="1">
             <en>At least one of the fields that should be unique is empty or already exists in the system.</en>
@@ -2772,6 +3042,7 @@ Note: You can add new languages by inserting "<new_language>string translated in
             <fr></fr>
             <bg></bg>
             <nl>Tenminste een van de unieke velden is leeg of bestaat reeds in het systeem.</nl>
+            <pt></pt>
         </string>
         <string id="337">
             <en>list of available objects</en>
@@ -2781,6 +3052,7 @@ Note: You can add new languages by inserting "<new_language>string translated in
             <fr>Liste des objets disponibles.</fr>
             <bg>списък на достъпните обекти</bg>
             <nl>lijst van beschikbare objecten</nl>
+            <pt></pt>
         </string>
         <string id="338" js="1">
             <en>currently selected object:</en>
@@ -2790,6 +3062,7 @@ Note: You can add new languages by inserting "<new_language>string translated in
             <fr>objet actuellement sélectionné</fr>
             <bg>актуални избрани обекти</bg>
             <nl>huidig geselecteerd object:</nl>
+            <pt></pt>
         </string>
         <string id="339" js="1">
             <en>Drag a column header and drop it here to group by that column</en>
@@ -2799,6 +3072,7 @@ Note: You can add new languages by inserting "<new_language>string translated in
             <fr>Glisser une entête de colonne et la déposer ici afin de grouper avec cette variable</fr>
             <bg>Изтегли заглавието на колоната и го пусни за групиране по колона</bg>
             <nl>Sleep een kolom header naar deze plaats om volgens die kolomwaarden te groeperen</nl>
+            <pt></pt>
         </string>
         <string id="340" js="1">
             <en>Show rows with value that:</en>
@@ -2808,6 +3082,7 @@ Note: You can add new languages by inserting "<new_language>string translated in
             <bg>Покажи редовете със стой ност:</bg>
             <fr>Montrer les lignes qui ont une valeur:</fr>
             <nl>Toon rijen met een waarde die:</nl>
+            <pt></pt>
         </string>
         <string id="341" js="1">
             <en>Filter</en>
@@ -2817,6 +3092,7 @@ Note: You can add new languages by inserting "<new_language>string translated in
             <fr>filtre</fr>
             <bg>Филтър</bg>
             <nl>Filter</nl>
+            <pt></pt>
         </string>
         <string id="342" js="1">
             <en>Clear</en>
@@ -2826,6 +3102,7 @@ Note: You can add new languages by inserting "<new_language>string translated in
             <fr>Effacer</fr>
             <bg>Изчисти</bg>
             <nl>Wissen</nl>
+            <pt></pt>
         </string>
         <string id="343" js="1">
             <en>starts with</en>
@@ -2835,6 +3112,7 @@ Note: You can add new languages by inserting "<new_language>string translated in
             <fr>commencer avec</fr>
             <bg>Започни с</bg>
             <nl>starten met</nl>
+            <pt></pt>
         </string>
         <string id="344" js="1">
             <en>contains</en>
@@ -2844,6 +3122,7 @@ Note: You can add new languages by inserting "<new_language>string translated in
             <fr>contient</fr>
             <bg>съдържа</bg>
             <nl>bevat</nl>
+            <pt></pt>
         </string>
         <string id="345" js="1">
             <en>ends with</en>
@@ -2853,6 +3132,7 @@ Note: You can add new languages by inserting "<new_language>string translated in
             <fr>terminer avec</fr>
             <bg>завършва с</bg>
             <nl>eindigt met</nl>
+            <pt></pt>
         </string>
         <string id="346" js="1">
             <en>after or equal</en>
@@ -2862,6 +3142,7 @@ Note: You can add new languages by inserting "<new_language>string translated in
             <fr>après ou égal à</fr>
             <bg>след или равно</bg>
             <nl>na of gelijk</nl>
+            <pt></pt>
         </string>
         <string id="347" js="1">
             <en>after</en>
@@ -2871,6 +3152,7 @@ Note: You can add new languages by inserting "<new_language>string translated in
             <fr>après</fr>
             <bg>след</bg>
             <nl>na</nl>
+            <pt></pt>
         </string>
         <string id="348" js="1">
             <en>before or equal</en>
@@ -2880,6 +3162,7 @@ Note: You can add new languages by inserting "<new_language>string translated in
             <fr>avant ou égal à</fr>
             <bg>пред или равно</bg>
             <nl>voor of gelijk</nl>
+            <pt></pt>
         </string>
         <string id="349" js="1">
             <en>before</en>
@@ -2889,6 +3172,7 @@ Note: You can add new languages by inserting "<new_language>string translated in
             <fr>avant</fr>
             <bg>пред</bg>
             <nl>voor</nl>
+            <pt></pt>
         </string>
         <string id="350">
             <en>table structure definition</en>
@@ -2898,6 +3182,7 @@ Note: You can add new languages by inserting "<new_language>string translated in
             <fr>définition de la structure du tableau </fr>
             <bg>дефиниране на структурата на таблицата</bg>
             <nl>definitie van de tabelstructuur</nl>
+            <pt></pt>
         </string>
         <string id="351">
             <en>table data</en>
@@ -2907,6 +3192,7 @@ Note: You can add new languages by inserting "<new_language>string translated in
             <fr>données du tableau</fr>
             <bg>данни на таблицата</bg>
             <nl>tabeldata</nl>
+            <pt></pt>
         </string>
         <string id="352">
             <en>table structure not defined</en>
@@ -2916,6 +3202,7 @@ Note: You can add new languages by inserting "<new_language>string translated in
             <fr>structure du tableau non défini</fr>
             <bg>структурата на таблицата не е дефинирана</bg>
             <nl>tabelstructuur niet gedefinieerd</nl>
+            <pt></pt>
         </string>
         <string id="353" js="1">
             <en>Cannot save table with undefined structure.</en>
@@ -2925,6 +3212,7 @@ Note: You can add new languages by inserting "<new_language>string translated in
             <fr>Un tableau dont la structure n'est pas définie ne peut pas être sauvegardé.</fr>
             <bg>Не може да се съхрани таблица с недефинирана структура.</bg>
             <nl>Kan tabel met niet-gedefinieerde structuur niet opslaan.</nl>
+            <pt></pt>
         </string>
         <string id="354" js="1">
             <en>integer</en>
@@ -2934,6 +3222,7 @@ Note: You can add new languages by inserting "<new_language>string translated in
             <fr>nombre entier</fr>
             <bg>цяло число</bg>
             <nl>integer</nl>
+            <pt></pt>
         </string>
         <string id="355" js="1">
             <en>float</en>
@@ -2943,6 +3232,7 @@ Note: You can add new languages by inserting "<new_language>string translated in
             <fr>flotter</fr>
             <bg>число с плаваща запетая</bg>
             <nl>float</nl>
+            <pt></pt>
         </string>
         <string id="358">
             <en>protected variables</en>
@@ -2952,6 +3242,7 @@ Note: You can add new languages by inserting "<new_language>string translated in
             <fr>Variables protégées</fr>
             <bg>запазена променлива</bg>
             <nl>beschermde variabele</nl>
+            <pt></pt>
         </string>
         <string id="359">
             <en>test logic</en>
@@ -2961,6 +3252,7 @@ Note: You can add new languages by inserting "<new_language>string translated in
             <fr>Logique du test</fr>
             <bg>тестова логика</bg>
             <nl>testlogica</nl>
+            <pt></pt>
         </string>
         <string id="360" js="1">
             <en>Are you sure you want to delete this protected variable?</en>
@@ -2970,6 +3262,7 @@ Note: You can add new languages by inserting "<new_language>string translated in
             <fr>Êtes-vous certain de vouloir supprimer cette variable protégée?</fr>
             <bg>Сигурни ли сте, че искате да изтриете тази запазена променлива?</bg>
             <nl>Bent u zeker dat u deze beschermde variabele wil verwijderen?</nl>
+            <pt></pt>
         </string>
         <string id="361" js="1">
             <en>deleting protected variable</en>
@@ -2979,6 +3272,7 @@ Note: You can add new languages by inserting "<new_language>string translated in
             <fr>suppression de la variable protégée</fr>
             <bg>изтриване на запазена променлива</bg>
             <nl>beschermde variabele verwijderen</nl>
+            <pt></pt>
         </string>
         <string id="362">
             <en>run test</en>
@@ -2988,6 +3282,7 @@ Note: You can add new languages by inserting "<new_language>string translated in
             <fr>exécuter le test</fr>
             <bg></bg>
             <nl>test uitvoeren</nl>
+            <pt></pt>
         </string>
         <string id="363">
             <en>(javascripts and css, except inline, will be turned off)</en>
@@ -2997,6 +3292,7 @@ Note: You can add new languages by inserting "<new_language>string translated in
             <fr></fr>
             <bg></bg>
             <nl>(javascripts en css, behalve incline, zullen uitgeschakeld worden)</nl>
+            <pt></pt>
         </string>
         <string id="364">
             <en>test output</en>
@@ -3006,6 +3302,7 @@ Note: You can add new languages by inserting "<new_language>string translated in
             <fr></fr>
             <bg></bg>
             <nl>test output</nl>
+            <pt></pt>
         </string>
         <string id="365">
             <en>test console</en>
@@ -3015,6 +3312,7 @@ Note: You can add new languages by inserting "<new_language>string translated in
             <fr></fr>
             <bg></bg>
             <nl>test console</nl>
+            <pt></pt>
         </string>
         <string id="366" js="1">
             <en>clear table</en>
@@ -3024,6 +3322,7 @@ Note: You can add new languages by inserting "<new_language>string translated in
             <fr></fr>
             <bg></bg>
             <nl>tabel leegmaken</nl>
+            <pt></pt>
         </string>
         <string id="367" js="1">
             <en>clearing table</en>
@@ -3033,6 +3332,7 @@ Note: You can add new languages by inserting "<new_language>string translated in
             <fr></fr>
             <bg></bg>
             <nl>tabel leegmaken</nl>
+            <pt></pt>
         </string>
         <string id="368" js="1">
             <en>Are you sure you want to clear the table? All rows will be deleted.</en>
@@ -3042,6 +3342,7 @@ Note: You can add new languages by inserting "<new_language>string translated in
             <fr></fr>
             <bg></bg>
             <nl>Bent u zeker dat de tabel wil leegmaken? Alle rijen zullen verwijderd worden.</nl>
+            <pt></pt>
         </string>
         <string id="369">
             <en>Check this checkbox if you want to release all resources used by test session after executing this section.</en>
@@ -3051,6 +3352,7 @@ Note: You can add new languages by inserting "<new_language>string translated in
             <fr></fr>
             <bg></bg>
             <nl>Selecteer dit vak indien u alle bronnen gebruikt door de testsessie wil vrijgeven na het uitvoeren van deze sectie.</nl>
+            <pt></pt>
         </string>
         <string id="370" js="1">
             <en>Version mismatch between imported object and Concerto platform. You can only import objects exported from the same version of Concerto.</en>
@@ -3060,6 +3362,7 @@ Note: You can add new languages by inserting "<new_language>string translated in
             <fr></fr>
             <bg></bg>
             <nl>Versie mismatch tussen geimporteerd object en Concerto platform. Alleen geexporteerde objecten uit dezelfde versie van Concerto kunnen geimporteerd worden.</nl>
+            <pt></pt>
         </string>
         <string id="371" js="1">
             <en>info</en>
@@ -3069,6 +3372,7 @@ Note: You can add new languages by inserting "<new_language>string translated in
             <fr>information</fr>
             <bg></bg>
             <nl>info</nl>
+            <pt></pt>
         </string>
         <string id="372">
             <en>Select the Table you want to use.</en>
@@ -3078,6 +3382,7 @@ Note: You can add new languages by inserting "<new_language>string translated in
             <fr></fr>
             <bg></bg>
             <nl>Selecteer de tabel die u wenst te gebruiken</nl>
+            <pt></pt>
         </string>
         <string id="373">
             <en>Description of selected Table</en>
@@ -3087,6 +3392,7 @@ Note: You can add new languages by inserting "<new_language>string translated in
             <fr></fr>
             <bg></bg>
             <nl>Beschrijving van de geselecteerde tabel</nl>
+            <pt></pt>
         </string>
         <string id="374" js="1">
             <en>download from online library</en>
@@ -3096,6 +3402,7 @@ Note: You can add new languages by inserting "<new_language>string translated in
             <fr></fr>
             <bg></bg>
             <nl>Download uit online bibliotheek</nl>
+            <pt></pt>
         </string>
         <string id="375">
             <en>upload to online library</en>
@@ -3105,6 +3412,7 @@ Note: You can add new languages by inserting "<new_language>string translated in
             <fr></fr>
             <bg></bg>
             <nl>upload naar online bibliotheek</nl>
+            <pt></pt>
         </string>
         <string id="376">
             <en>name of an object</en>
@@ -3114,6 +3422,7 @@ Note: You can add new languages by inserting "<new_language>string translated in
             <fr></fr>
             <bg></bg>
             <nl>naam van een object</nl>
+            <pt></pt>
         </string>
         <string id="377">
             <en>description of an object</en>
@@ -3123,6 +3432,7 @@ Note: You can add new languages by inserting "<new_language>string translated in
             <fr></fr>
             <bg></bg>
             <nl>beschrijving van een object</nl>
+            <pt></pt>
         </string>
         <string id="378" js="1">
             <en>author</en>
@@ -3132,6 +3442,7 @@ Note: You can add new languages by inserting "<new_language>string translated in
             <fr></fr>
             <bg></bg>
             <nl>auteur</nl>
+            <pt></pt>
         </string>
         <string id="379" js="1">
             <en>revision</en>
@@ -3141,6 +3452,7 @@ Note: You can add new languages by inserting "<new_language>string translated in
             <fr></fr>
             <bg></bg>
             <nl>revisie</nl>
+            <pt></pt>
         </string>
         <string id="380">
             <en>author of an object</en>
@@ -3150,6 +3462,7 @@ Note: You can add new languages by inserting "<new_language>string translated in
             <fr></fr>
             <bg></bg>
             <nl>auteur van een object</nl>
+            <pt></pt>
         </string>
         <string id="381">
             <en>revision of an object</en>
@@ -3159,6 +3472,7 @@ Note: You can add new languages by inserting "<new_language>string translated in
             <fr></fr>
             <bg></bg>
             <nl>revisie van een object</nl>
+            <pt></pt>
         </string>
         <string id="382" js="1">
             <en>uploading to online library</en>
@@ -3168,6 +3482,7 @@ Note: You can add new languages by inserting "<new_language>string translated in
             <fr></fr>
             <bg></bg>
             <nl>uploaden naar online bibliotheek</nl>
+            <pt></pt>
         </string>
         <string id="383" js="1">
             <en>upload</en>
@@ -3177,6 +3492,7 @@ Note: You can add new languages by inserting "<new_language>string translated in
             <fr></fr>
             <bg></bg>
             <nl>upload</nl>
+            <pt></pt>
         </string>
         <string id="384" js="1">
             <en>object uploaded</en>
@@ -3186,6 +3502,7 @@ Note: You can add new languages by inserting "<new_language>string translated in
             <fr></fr>
             <bg></bg>
             <nl>object geupload</nl>
+            <pt></pt>
         </string>
         <string id="385" js="1">
             <en>upload date</en>
@@ -3195,6 +3512,7 @@ Note: You can add new languages by inserting "<new_language>string translated in
             <fr></fr>
             <bg></bg>
             <nl>upload data</nl>
+            <pt></pt>
         </string>
         <string id="386" js="1">
             <en>download count</en>
@@ -3204,6 +3522,7 @@ Note: You can add new languages by inserting "<new_language>string translated in
             <fr></fr>
             <bg></bg>
             <nl>download teller</nl>
+            <pt></pt>
         </string>
         <string id="387" js="1">
             <en>downloading object from online library</en>
@@ -3213,6 +3532,7 @@ Note: You can add new languages by inserting "<new_language>string translated in
             <fr></fr>
             <bg></bg>
             <nl>object downloaden uit online bibliotheek</nl>
+            <pt></pt>
         </string>
         <string id="388" js="1">
             <en>object downloaded</en>
@@ -3222,6 +3542,7 @@ Note: You can add new languages by inserting "<new_language>string translated in
             <fr></fr>
             <bg></bg>
             <nl>object gedownload</nl>
+            <pt></pt>
         </string>
         <string id="389" js="1">
             <en>Object download failed</en>
@@ -3231,6 +3552,7 @@ Note: You can add new languages by inserting "<new_language>string translated in
             <fr></fr>
             <bg></bg>
             <nl>object download mislukt</nl>
+            <pt></pt>
         </string>
         <string id="390">
             <en>show section details</en>
@@ -3240,6 +3562,7 @@ Note: You can add new languages by inserting "<new_language>string translated in
             <fr></fr>
             <bg></bg>
             <nl>toon sessie details</nl>
+            <pt></pt>
         </string>
         <string id="391" js="1">
             <en>loop</en>
@@ -3249,6 +3572,7 @@ Note: You can add new languages by inserting "<new_language>string translated in
             <fr></fr>
             <bg></bg>
             <nl>loop</nl>
+            <pt></pt>
         </string>
         <string id="392" js="1">
             <en>test inclusion</en>
@@ -3258,6 +3582,7 @@ Note: You can add new languages by inserting "<new_language>string translated in
             <fr></fr>
             <bg></bg>
             <nl>testinhoud</nl>
+            <pt></pt>
         </string>
         <string id="393">
             <en>Includes selected test. Tests cross-dependancies are not recommended.</en>
@@ -3267,6 +3592,7 @@ Note: You can add new languages by inserting "<new_language>string translated in
             <fr></fr>
             <bg></bg>
             <nl>Bevat geselecteerde test. Inter-afhankelijkheden tussen tests zijn niet aanbevolen.</nl>
+            <pt></pt>
         </string>
         <string id="394">
             <en><![CDATA[Loops executes specific instruction block as long as conditon is met. You can choose from one of the two loops:<ul><li><b>FOR</b>: at the beggining of the loop index variable is declared and value is assigned. Each iteration changes index variable by some value and checks if condition is still met.</li><li><b>WHILE</b>: every iteration checks if condition is still met</li>]]></en>
@@ -3276,6 +3602,7 @@ Note: You can add new languages by inserting "<new_language>string translated in
             <fr></fr>
             <bg></bg>
             <nl><![CDATA[Loops voert specifiek instructieblok uit zolang conditie voldaan is. U kan kiezen uit een van de twee loops:<ul><li><b>FOR</b>: aan het begin van de loop wordt indexvariabele gedeclareerd en een waarde toegekend. Elke iteratie wijzigt de indexvariabele met een zekere waarde en checkt of de conditie nog steeds voldaan is.</li><li><b>WHILE</b>: elke iteratie checkt of de conditie nog steeds voldaan is</li>]]></nl>
+            <pt></pt>
         </string>
         <string id="395">
             <en>FOR</en>
@@ -3285,6 +3612,7 @@ Note: You can add new languages by inserting "<new_language>string translated in
             <fr></fr>
             <bg></bg>
             <nl>FOR</nl>
+            <pt></pt>
         </string>
         <string id="396">
             <en>WHILE</en>
@@ -3294,6 +3622,7 @@ Note: You can add new languages by inserting "<new_language>string translated in
             <fr></fr>
             <bg></bg>
             <nl>WHILE</nl>
+            <pt></pt>
         </string>
         <string id="397">
             <en>variable</en>
@@ -3303,6 +3632,7 @@ Note: You can add new languages by inserting "<new_language>string translated in
             <fr></fr>
             <bg></bg>
             <nl>variabele</nl>
+            <pt></pt>
         </string>
         <string id="398">
             <en>condition</en>
@@ -3312,6 +3642,7 @@ Note: You can add new languages by inserting "<new_language>string translated in
             <fr></fr>
             <bg></bg>
             <nl>conditie</nl>
+            <pt></pt>
         </string>
         <string id="399">
             <en>change by</en>
@@ -3321,6 +3652,7 @@ Note: You can add new languages by inserting "<new_language>string translated in
             <fr></fr>
             <bg></bg>
             <nl>wijzigen met</nl>
+            <pt></pt>
         </string>
         <string id="400">
             <en>initial value</en>
@@ -3330,6 +3662,7 @@ Note: You can add new languages by inserting "<new_language>string translated in
             <fr></fr>
             <bg></bg>
             <nl>initiele waarde</nl>
+            <pt></pt>
         </string>
         <string id="401" js="1">
             <en>expand all sections</en>
@@ -3339,6 +3672,7 @@ Note: You can add new languages by inserting "<new_language>string translated in
             <fr></fr>
             <bg></bg>
             <nl>maximaliseer alle secties</nl>
+            <pt></pt>
         </string>
         <string id="402" js="1">
             <en>collapse all sections</en>
@@ -3348,6 +3682,7 @@ Note: You can add new languages by inserting "<new_language>string translated in
             <fr></fr>
             <bg></bg>
             <nl>minimaliseer alle secties</nl>
+            <pt></pt>
         </string>
         <string id="403">
             <en>test input/output</en>
@@ -3357,6 +3692,7 @@ Note: You can add new languages by inserting "<new_language>string translated in
             <fr></fr>
             <bg></bg>
             <nl>test input/output</nl>
+            <pt></pt>
         </string>
         <string id="404">
             <en>test sections</en>
@@ -3366,6 +3702,7 @@ Note: You can add new languages by inserting "<new_language>string translated in
             <fr></fr>
             <bg></bg>
             <nl>test secties</nl>
+            <pt></pt>
         </string>
         <string id="405">
             <en>Define test input parameters.</en>
@@ -3375,6 +3712,7 @@ Note: You can add new languages by inserting "<new_language>string translated in
             <fr></fr>
             <bg></bg>
             <nl>Definieer test input parameters.</nl>
+            <pt></pt>
         </string>
         <string id="406">
             <en>Define test return variables.</en>
@@ -3384,6 +3722,7 @@ Note: You can add new languages by inserting "<new_language>string translated in
             <fr></fr>
             <bg></bg>
             <nl>Definieer test return variabelen.</nl>
+            <pt></pt>
         </string>
         <string id="407">
             <en>HTML head tag</en>
@@ -3393,6 +3732,7 @@ Note: You can add new languages by inserting "<new_language>string translated in
             <fr></fr>
             <bg></bg>
             <nl>HTML head tag</nl>
+            <pt></pt>
         </string>
         <string id="408">
             <en>HTML template head tag. Everything declared here will be available in every templates in the session. Session variables can't be inserted here.</en>
@@ -3402,6 +3742,7 @@ Note: You can add new languages by inserting "<new_language>string translated in
             <fr></fr>
             <bg></bg>
             <nl>HTML head tag. Alles dat hier gedeclareerd wordt, is beschikbaar in elke template in de sessie. Sessie variabelen kunnen hier niet ingevoegd worden.</nl>
+            <pt></pt>
         </string>
         <string id="410" js="1">
             <en>Register new account</en>
@@ -3411,6 +3752,7 @@ Note: You can add new languages by inserting "<new_language>string translated in
             <fr></fr>
             <bg></bg>
             <nl>Nieuwe account registeren</nl>
+            <pt></pt>
         </string>
         <string id="411">
             <en>log in</en>
@@ -3420,6 +3762,7 @@ Note: You can add new languages by inserting "<new_language>string translated in
             <fr></fr>
             <bg></bg>
             <nl>log-in</nl>
+            <pt></pt>
         </string>
         <string id="412" js="1">
             <en>register</en>
@@ -3429,6 +3772,7 @@ Note: You can add new languages by inserting "<new_language>string translated in
             <fr></fr>
             <bg></bg>
             <nl>registreren</nl>
+            <pt></pt>
         </string>
         <string id="413">
             <en>Please fill the form below to create a new account.</en>
@@ -3438,6 +3782,7 @@ Note: You can add new languages by inserting "<new_language>string translated in
             <fr></fr>
             <bg></bg>
             <nl>Gelieve onderstaand formulier in te vullen om een nieuwe account aan te maken.</nl>
+            <pt></pt>
         </string>
         <string id="414" js="1">
             <en>Account registered. You will now be redirected to the login page.</en>
@@ -3447,6 +3792,7 @@ Note: You can add new languages by inserting "<new_language>string translated in
             <fr></fr>
             <bg></bg>
             <nl>Account geregistreerd. U wordt nu doorverwezen naar de log-in pagina.</nl>
+            <pt></pt>
         </string>
         <string id="415" js="1">
             <en>Fields marked with * are required and can not be empty.</en>
@@ -3456,6 +3802,7 @@ Note: You can add new languages by inserting "<new_language>string translated in
             <fr></fr>
             <bg></bg>
             <nl>Velden aangeduid door * zijn verplicht</nl>
+            <pt></pt>
         </string>
         <string id="416">
             <en>academic</en>
@@ -3465,6 +3812,7 @@ Note: You can add new languages by inserting "<new_language>string translated in
             <fr></fr>
             <bg></bg>
             <nl>academisch</nl>
+            <pt></pt>
         </string>
         <string id="417">
             <en>commercial</en>
@@ -3474,6 +3822,7 @@ Note: You can add new languages by inserting "<new_language>string translated in
             <fr></fr>
             <bg></bg>
             <nl>commercieel</nl>
+            <pt></pt>
         </string>
         <string id="418">
             <en>other ( please specify below )</en>
@@ -3483,6 +3832,7 @@ Note: You can add new languages by inserting "<new_language>string translated in
             <fr></fr>
             <bg></bg>
             <nl>Ander (gelieve te verduidelijken hieronder)</nl>
+            <pt></pt>
         </string>
         <string id="419">
             <en>institution type</en>
@@ -3492,6 +3842,7 @@ Note: You can add new languages by inserting "<new_language>string translated in
             <fr></fr>
             <bg></bg>
             <nl>type instelling</nl>
+            <pt></pt>
         </string>
         <string id="420">
             <en>Please indicate the nature of your work</en>
@@ -3501,6 +3852,7 @@ Note: You can add new languages by inserting "<new_language>string translated in
             <fr></fr>
             <bg></bg>
             <nl>Geef de aard van uw werk aan</nl>
+            <pt></pt>
         </string>
         <string id="421">
             <en>institution name</en>
@@ -3510,6 +3862,7 @@ Note: You can add new languages by inserting "<new_language>string translated in
             <fr></fr>
             <bg></bg>
             <nl>naam instelling</nl>
+            <pt></pt>
         </string>
         <string id="422">
             <en>Please provide the name of your institution</en>
@@ -3519,6 +3872,7 @@ Note: You can add new languages by inserting "<new_language>string translated in
             <fr></fr>
             <bg></bg>
             <nl>Geef de naam van uw instelling</nl>
+            <pt></pt>
         </string>
         <string id="424">
             <en>create an account</en>
@@ -3528,6 +3882,7 @@ Note: You can add new languages by inserting "<new_language>string translated in
             <fr></fr>
             <bg></bg>
             <nl>Account aanmaken</nl>
+            <pt></pt>
         </string>
         <string id="425">
             <en>forgot your password?</en>
@@ -3537,6 +3892,7 @@ Note: You can add new languages by inserting "<new_language>string translated in
             <fr></fr>
             <bg></bg>
             <nl>wachtwoord vergeten?</nl>
+            <pt></pt>
         </string>
         <string id="426" js="1">
             <en>There is no user with the selected login.</en>
@@ -3546,6 +3902,7 @@ Note: You can add new languages by inserting "<new_language>string translated in
             <fr></fr>
             <bg></bg>
             <nl>Er is geen gebruiker met de geselecteerde log-in.</nl>
+            <pt></pt>
         </string>
         <string id="427" js="1">
             <en>recovering password</en>
@@ -3555,6 +3912,7 @@ Note: You can add new languages by inserting "<new_language>string translated in
             <fr></fr>
             <bg></bg>
             <nl>wachtwoord ophalen</nl>
+            <pt></pt>
         </string>
         <string id="428">
             <en>Concerto password recovery</en>
@@ -3564,6 +3922,7 @@ Note: You can add new languages by inserting "<new_language>string translated in
             <fr></fr>
             <bg></bg>
             <nl>Concerto wachtwoord ophalen</nl>
+            <pt></pt>
         </string>
         <string id="429">
             <en><![CDATA[To recover password please follow this link: <a href='%s'>LINK TO RECOVER PASSWORD</a>.]]></en>
@@ -3573,6 +3932,7 @@ Note: You can add new languages by inserting "<new_language>string translated in
             <fr></fr>
             <bg></bg>
             <nl><![CDATA[Om wachtwoord op te halen, gelieve deze link te volgen: <a href='%s'>LINK NAAR WACHTWOORD OPHALING</a>.]]></nl>
+            <pt></pt>
         </string>
         <string id="430">
             <en><![CDATA[Your new password is: <b>%s</b>]]></en>
@@ -3582,6 +3942,7 @@ Note: You can add new languages by inserting "<new_language>string translated in
             <fr></fr>
             <bg></bg>
             <nl><![CDATA[Uw nieuw wachtwoord is: <b>%s</b>]]></nl>
+            <pt></pt>
         </string>
         <string id="431" js="1">
             <en><![CDATA[Your new password has been sent to your email address. <b>Delivery of email can take up to several minutes.</b>]]></en>
@@ -3591,6 +3952,7 @@ Note: You can add new languages by inserting "<new_language>string translated in
             <fr></fr>
             <bg></bg>
             <nl><![CDATA[Uw nieuw wachtwoord werd verzonden naar uw e-mailadres. <b>Dit kan enkele minuten duren.</b>]]></nl>
+            <pt></pt>
         </string>
         <string id="432" js="1">
             <en><![CDATA[Mail has been sent to your user email account for verification. <b>Delivery of email can take up to several minutes.</b> Please follow the link in verification email to continue password recovery process.]]></en>
@@ -3600,6 +3962,7 @@ Note: You can add new languages by inserting "<new_language>string translated in
             <fr></fr>
             <bg></bg>
             <nl><![CDATA[E-mail werd verzonden naar uw user e-mailaccount voor bevestiging. <b>Dit kan enkele minuten duren.</b> Gelieve de link in de bevestingsmail te volgen om het wachtwoord-ophalingsproces voort te zetten.]]></nl>
+            <pt></pt>
         </string>
         <string id="433">
             <en>Please enter your login id</en>
@@ -3609,6 +3972,7 @@ Note: You can add new languages by inserting "<new_language>string translated in
             <fr></fr>
             <bg></bg>
             <nl>Voer uw log-in ID in</nl>
+            <pt></pt>
         </string>
         <string id="434">
             <en>Please enter your password</en>
@@ -3618,6 +3982,7 @@ Note: You can add new languages by inserting "<new_language>string translated in
             <fr></fr>
             <bg></bg>
             <nl>Voer uw wachtwoord in</nl>
+            <pt></pt>
         </string>
         <string id="435">
             <en>select table</en>
@@ -3627,6 +3992,7 @@ Note: You can add new languages by inserting "<new_language>string translated in
             <fr></fr>
             <bg></bg>
             <nl>tabel selecteren</nl>
+            <pt></pt>
         </string>
         <string id="436">
             <en>select columns</en>
@@ -3636,6 +4002,7 @@ Note: You can add new languages by inserting "<new_language>string translated in
             <fr></fr>
             <bg></bg>
             <nl>kolommen selecteren</nl>
+            <pt></pt>
         </string>
         <string id="437">
             <en>where</en>
@@ -3645,6 +4012,7 @@ Note: You can add new languages by inserting "<new_language>string translated in
             <fr></fr>
             <bg></bg>
             <nl>waar</nl>
+            <pt></pt>
         </string>
         <string id="438">
             <en>additional conditions</en>
@@ -3654,6 +4022,7 @@ Note: You can add new languages by inserting "<new_language>string translated in
             <fr></fr>
             <bg></bg>
             <nl>bijkomende condities</nl>
+            <pt></pt>
         </string>
         <string id="440">
             <en>set</en>
@@ -3663,6 +4032,7 @@ Note: You can add new languages by inserting "<new_language>string translated in
             <fr></fr>
             <bg></bg>
             <nl>zet</nl>
+            <pt></pt>
         </string>
         <string id="441">
             <en>if</en>
@@ -3672,6 +4042,7 @@ Note: You can add new languages by inserting "<new_language>string translated in
             <fr></fr>
             <bg></bg>
             <nl>als</nl>
+            <pt></pt>
         </string>
         <string id="442">
             <en>go to top</en>
@@ -3681,6 +4052,7 @@ Note: You can add new languages by inserting "<new_language>string translated in
             <fr></fr>
             <bg></bg>
             <nl>ga naar top</nl>
+            <pt></pt>
         </string>
         <string id="443">
             <en>export</en>
@@ -3690,6 +4062,7 @@ Note: You can add new languages by inserting "<new_language>string translated in
             <fr></fr>
             <bg></bg>
             <nl>exporteren</nl>
+            <pt></pt>
         </string>
         <string id="444" js="1">
             <en>Uploading file failed.</en>
@@ -3707,6 +4080,7 @@ Note: You can add new languages by inserting "<new_language>string translated in
             <fr></fr>
             <bg></bg>
             <nl>Lager niveau R-code</nl>
+            <pt></pt>
         </string>
         <string id="446">
             <en>This section represents exact R code that will be passed to R session.</en>
@@ -3716,6 +4090,7 @@ Note: You can add new languages by inserting "<new_language>string translated in
             <fr></fr>
             <bg></bg>
             <nl>Deze sectie toont de exacte R-code die doorgestuurd wordt naar de R-sessie.</nl>
+            <pt></pt>
         </string>
         <string id="447" js="1">
             <en>Convert section to lower level R code section.</en>
@@ -3725,6 +4100,7 @@ Note: You can add new languages by inserting "<new_language>string translated in
             <fr></fr>
             <bg></bg>
             <nl>Converteer sectie naar lager niveau R-code sectie.</nl>
+            <pt></pt>
         </string>
         <string id="448" js="1">
             <en>You need to save the changes that has been made in the test logic to convert any section to lower level R code.</en>
@@ -3734,6 +4110,7 @@ Note: You can add new languages by inserting "<new_language>string translated in
             <fr></fr>
             <bg></bg>
             <nl>Wijzigingen aan de testlogica dienen opgeslagen te worden, vooraleer een sectie naar lager niveau R-code geconverteerd kan worden.</nl>
+            <pt></pt>
         </string>
         <string id="449" js="1">
             <en>converting to lower level R code</en>
@@ -3743,6 +4120,7 @@ Note: You can add new languages by inserting "<new_language>string translated in
             <fr></fr>
             <bg></bg>
             <nl>converteren naar lager niveau R-code</nl>
+            <pt></pt>
         </string>
         <string id="450" js="1">
             <en>Are you sure you want to convert this section type to lower level R code section? After doing so you won't be able to revert back. Only saved changes will be converted to lower level R code.</en>
@@ -3752,6 +4130,7 @@ Note: You can add new languages by inserting "<new_language>string translated in
             <fr></fr>
             <bg></bg>
             <nl>Bent u zeker dat u deze sectietype wil converteren naar lager niveau R-code? Deze actie kan niet ongedaan gemaakt geworden. Alleen opgeslagen wijzingen zullen geconverteerd worden naar lager niveau R-code.</nl>
+            <pt></pt>
         </string>
         <string id="451">
             <en>forum</en>
@@ -3761,6 +4140,7 @@ Note: You can add new languages by inserting "<new_language>string translated in
             <fr></fr>
             <bg></bg>
             <nl>forum</nl>
+            <pt></pt>
         </string>
         <string id="452">
             <en>contact us</en>
@@ -3770,6 +4150,7 @@ Note: You can add new languages by inserting "<new_language>string translated in
             <fr></fr>
             <bg></bg>
             <nl>contact</nl>
+            <pt></pt>
         </string>
         <string id="453">
             <en>project homepage</en>
@@ -3779,6 +4160,7 @@ Note: You can add new languages by inserting "<new_language>string translated in
             <fr></fr>
             <bg></bg>
             <nl>project homepage</nl>
+            <pt></pt>
         </string>
         <string id="454" js="1">
             <en>show variables assignment</en>
@@ -3788,6 +4170,7 @@ Note: You can add new languages by inserting "<new_language>string translated in
             <fr></fr>
             <bg></bg>
             <nl>toewijzing variabelen weergeven</nl>
+            <pt></pt>
         </string>
         <string id="455" js="1">
             <en>hide variables assignment</en>
@@ -3797,6 +4180,7 @@ Note: You can add new languages by inserting "<new_language>string translated in
             <fr></fr>
             <bg></bg>
             <nl>toewijzing variabelen verbergen</nl>
+            <pt></pt>
         </string>
         <string id="456">
             <en>Users from pre v3.6.10 version need to recover their password using 'forgot your password?' link below. If you didn't enter your email at registration phase, then please contact system administrator first.</en>
@@ -3806,6 +4190,7 @@ Note: You can add new languages by inserting "<new_language>string translated in
             <fr></fr>
             <bg></bg>
             <nl>Gebruikers van de pre v3.6.10 versie dienen hun wachtwoord op te halen via de 'wachtwoord vergeten?' link hieronder. Indien u geen e-mailadres opgaf tijdens de registratiefase, gelieve contact op te nemen met de systeembeheerder.</nl>
+            <pt></pt>
         </string>
         <string id="457">
             <en>unnamed QTI assessment item</en>
@@ -3815,6 +4200,7 @@ Note: You can add new languages by inserting "<new_language>string translated in
             <bg></bg>
             <fr></fr>
             <nl></nl>
+            <pt></pt>
         </string>
         <string id="458">
             <en>QTI assessment item</en>
@@ -3824,6 +4210,7 @@ Note: You can add new languages by inserting "<new_language>string translated in
             <bg></bg>
             <fr></fr>
             <nl></nl>
+            <pt></pt>
         </string>
         <string id="459">
             <en>QTI (beta)</en>
@@ -3833,6 +4220,7 @@ Note: You can add new languages by inserting "<new_language>string translated in
             <bg></bg>
             <fr></fr>
             <nl></nl>
+            <pt></pt>
         </string>
         <string id="460" final="no">
             <en>You can implement QTI assessment items into your test here.</en>
@@ -3842,6 +4230,7 @@ Note: You can add new languages by inserting "<new_language>string translated in
             <bg></bg>
             <fr></fr>
             <nl></nl>
+            <pt></pt>
         </string>
         <string id="461">
             <en>QTI assessment items</en>
@@ -3851,6 +4240,7 @@ Note: You can add new languages by inserting "<new_language>string translated in
             <bg></bg>
             <fr></fr>
             <nl></nl>
+            <pt></pt>
         </string>
         <string id="462">
             <en>editing QTI assessment item</en>
@@ -3860,6 +4250,7 @@ Note: You can add new languages by inserting "<new_language>string translated in
             <fr></fr>
             <bg></bg>
             <nl></nl>
+            <pt></pt>
         </string>
         <string id="463">
             <en>creating new QTI assessment item</en>
@@ -3869,6 +4260,7 @@ Note: You can add new languages by inserting "<new_language>string translated in
             <fr></fr>
             <bg></bg>
             <nl></nl>
+            <pt></pt>
         </string>
         <string id="464">
             <en>name of QTI assessment item</en>
@@ -3878,6 +4270,7 @@ Note: You can add new languages by inserting "<new_language>string translated in
             <fr></fr>
             <bg></bg>
             <nl></nl>
+            <pt></pt>
         </string>
         <string id="465">
             <en>XML</en>
@@ -3887,6 +4280,7 @@ Note: You can add new languages by inserting "<new_language>string translated in
             <fr></fr>
             <bg></bg>
             <nl></nl>
+            <pt></pt>
         </string>
         <string id="466">
             <en>QTI assessment item XML code.</en>
@@ -3896,6 +4290,7 @@ Note: You can add new languages by inserting "<new_language>string translated in
             <fr></fr>
             <bg></bg>
             <nl></nl>
+            <pt></pt>
         </string>
         <string id="467">
             <en>QTI assessment item access rights</en>
@@ -3905,6 +4300,7 @@ Note: You can add new languages by inserting "<new_language>string translated in
             <fr></fr>
             <bg></bg>
             <nl></nl>
+            <pt></pt>
         </string>
         <string id="468">
             <en>owner of the QTI assessment item</en>
@@ -3914,6 +4310,7 @@ Note: You can add new languages by inserting "<new_language>string translated in
             <fr></fr>
             <bg></bg>
             <nl></nl>
+            <pt></pt>
         </string>
         <string id="469">
             <en>QTI XML is not yet validated. Press revalidate button.</en>
@@ -3923,6 +4320,7 @@ Note: You can add new languages by inserting "<new_language>string translated in
             <fr></fr>
             <bg></bg>
             <nl></nl>
+            <pt></pt>
         </string>
         <string id="470" js="1">
             <en>QTI XML has been successfuly validated.</en>
@@ -3932,6 +4330,7 @@ Note: You can add new languages by inserting "<new_language>string translated in
             <fr></fr>
             <bg></bg>
             <nl></nl>
+            <pt></pt>
         </string>
         <string id="471" js="1">
             <en>QTI XML is incorrect. Correct XML and press revalidate button.</en>
@@ -3941,6 +4340,7 @@ Note: You can add new languages by inserting "<new_language>string translated in
             <fr></fr>
             <bg></bg>
             <nl></nl>
+            <pt></pt>
         </string>
         <string id="472" js="1">
             <en>Error type: </en>
@@ -3950,6 +4350,7 @@ Note: You can add new languages by inserting "<new_language>string translated in
             <fr></fr>
             <bg></bg>
             <nl></nl>
+            <pt></pt>
         </string>
         <string id="473" js="1">
             <en>element: </en>
@@ -3959,6 +4360,7 @@ Note: You can add new languages by inserting "<new_language>string translated in
             <fr></fr>
             <bg></bg>
             <nl></nl>
+            <pt></pt>
         </string>
         <string id="474" js="1">
             <en>target: </en>
@@ -3968,6 +4370,7 @@ Note: You can add new languages by inserting "<new_language>string translated in
             <fr></fr>
             <bg></bg>
             <nl></nl>
+            <pt></pt>
         </string>
         <string id="475" js="1">
             <en>XML root</en>
@@ -3977,6 +4380,7 @@ Note: You can add new languages by inserting "<new_language>string translated in
             <fr></fr>
             <bg></bg>
             <nl></nl>
+            <pt></pt>
         </string>
         <string id="476" js="1">
             <en>attribute not allowed</en>
@@ -3986,6 +4390,7 @@ Note: You can add new languages by inserting "<new_language>string translated in
             <fr></fr>
             <bg></bg>
             <nl></nl>
+            <pt></pt>
         </string>
         <string id="477" js="1">
             <en>attribute required</en>
@@ -3995,6 +4400,7 @@ Note: You can add new languages by inserting "<new_language>string translated in
             <fr></fr>
             <bg></bg>
             <nl></nl>
+            <pt></pt>
         </string>
         <string id="478" js="1">
             <en>child not allowed</en>
@@ -4004,6 +4410,7 @@ Note: You can add new languages by inserting "<new_language>string translated in
             <fr></fr>
             <bg></bg>
             <nl></nl>
+            <pt></pt>
         </string>
         <string id="479" js="1">
             <en>child required</en>
@@ -4013,6 +4420,7 @@ Note: You can add new languages by inserting "<new_language>string translated in
             <fr></fr>
             <bg></bg>
             <nl></nl>
+            <pt></pt>
         </string>
         <string id="480" js="1">
             <en>class does not exist</en>
@@ -4022,6 +4430,7 @@ Note: You can add new languages by inserting "<new_language>string translated in
             <fr></fr>
             <bg></bg>
             <nl></nl>
+            <pt></pt>
         </string>
         <string id="481" js="1">
             <en>QTI item initialization</en>
@@ -4031,6 +4440,7 @@ Note: You can add new languages by inserting "<new_language>string translated in
             <fr></fr>
             <bg></bg>
             <nl></nl>
+            <pt></pt>
         </string>
         <string id="482" js="1">
             <en>QTI item response processing</en>
@@ -4040,6 +4450,7 @@ Note: You can add new languages by inserting "<new_language>string translated in
             <fr></fr>
             <bg></bg>
             <nl></nl>
+            <pt></pt>
         </string>
         <string id="483">
             <en>This section will initialize QTI item variables and HTML code.</en>
@@ -4049,6 +4460,7 @@ Note: You can add new languages by inserting "<new_language>string translated in
             <fr></fr>
             <bg></bg>
             <nl></nl>
+            <pt></pt>
         </string>
         <string id="484">
             <en>This section will process QTI item response.</en>
@@ -4058,6 +4470,7 @@ Note: You can add new languages by inserting "<new_language>string translated in
             <fr></fr>
             <bg></bg>
             <nl></nl>
+            <pt></pt>
         </string>
         <string id="485">
             <en>Select QTI item to be initialized.</en>
@@ -4067,6 +4480,7 @@ Note: You can add new languages by inserting "<new_language>string translated in
             <fr></fr>
             <bg></bg>
             <nl></nl>
+            <pt></pt>
         </string>
         <string id="486">
             <en>Description of selected QTI item</en>
@@ -4076,6 +4490,7 @@ Note: You can add new languages by inserting "<new_language>string translated in
             <fr></fr>
             <bg></bg>
             <nl></nl>
+            <pt></pt>
         </string>
         <string id="487">
             <en>revalidate</en>
@@ -4085,6 +4500,7 @@ Note: You can add new languages by inserting "<new_language>string translated in
             <fr></fr>
             <bg></bg>
             <nl></nl>
+            <pt></pt>
         </string>
         <string id="488">
             <en>open</en>
@@ -4094,6 +4510,7 @@ Note: You can add new languages by inserting "<new_language>string translated in
             <fr></fr>
             <bg></bg>
             <nl></nl>
+            <pt></pt>
         </string>
         <string id="489">
             <en>Check if you want to make this test available to run by everyone.</en>
@@ -4103,6 +4520,7 @@ Note: You can add new languages by inserting "<new_language>string translated in
             <fr></fr>
             <bg></bg>
             <nl></nl>
+            <pt></pt>
         </string>
         <string id="490">
             <en>custom section input/output</en>
@@ -4112,6 +4530,7 @@ Note: You can add new languages by inserting "<new_language>string translated in
             <fr></fr>
             <bg></bg>
             <nl></nl>
+            <pt></pt>
         </string>
         <string id="491">
             <en>HTML source code</en>
@@ -4121,6 +4540,7 @@ Note: You can add new languages by inserting "<new_language>string translated in
             <fr></fr>
             <bg></bg>
             <nl></nl>
+            <pt></pt>
         </string>
         <string id="492">
             <en>variables</en>
@@ -4130,6 +4550,7 @@ Note: You can add new languages by inserting "<new_language>string translated in
             <fr></fr>
             <bg></bg>
             <nl></nl>
+            <pt></pt>
         </string>
         <string id="493">
             <en>You can declare variables that are protected and can't be send from user side.</en>
@@ -4139,6 +4560,7 @@ Note: You can add new languages by inserting "<new_language>string translated in
             <fr></fr>
             <bg></bg>
             <nl></nl>
+            <pt></pt>
         </string>
         <string id="494">
             <en>You can declare input and output variables here, which can later be used in variable assignment when the test is nested.</en>
@@ -4148,6 +4570,7 @@ Note: You can add new languages by inserting "<new_language>string translated in
             <fr></fr>
             <bg></bg>
             <nl></nl>
+            <pt></pt>
         </string>
         <string id="495">
             <en>You can declare test logic here.</en>
@@ -4157,6 +4580,7 @@ Note: You can add new languages by inserting "<new_language>string translated in
             <fr></fr>
             <bg></bg>
             <nl></nl>
+            <pt></pt>
         </string>
         <string id="496">
             <en>List of variables declared in test logic.</en>
@@ -4166,6 +4590,7 @@ Note: You can add new languages by inserting "<new_language>string translated in
             <fr></fr>
             <bg></bg>
             <nl></nl>
+            <pt></pt>
         </string>
         <string id="497" js="1">
             <en>Online Library</en>
@@ -4175,6 +4600,7 @@ Note: You can add new languages by inserting "<new_language>string translated in
             <fr></fr>
             <bg></bg>
             <nl></nl>
+            <pt></pt>
         </string>
         <string id="498" js="1">
             <en>Choose an object you want to download from Online Library.</en>
@@ -4184,6 +4610,7 @@ Note: You can add new languages by inserting "<new_language>string translated in
             <fr></fr>
             <bg></bg>
             <nl></nl>
+            <pt></pt>
         </string>
         <string id="499">
             <en>Describe object you have selected to upload to Online Library.</en>
@@ -4193,6 +4620,7 @@ Note: You can add new languages by inserting "<new_language>string translated in
             <fr></fr>
             <bg></bg>
             <nl></nl>
+            <pt></pt>
         </string>
         <string id="500">
             <en>You can declare input and output variables here, which can later be used in variable assignment when the custom section is included in test logic.</en>
@@ -4202,6 +4630,7 @@ Note: You can add new languages by inserting "<new_language>string translated in
             <fr></fr>
             <bg></bg>
             <nl></nl>
+            <pt></pt>
         </string>
         <string id="501">
             <en>You can declare template HTML presentation properties here.</en>
@@ -4211,6 +4640,7 @@ Note: You can add new languages by inserting "<new_language>string translated in
             <fr></fr>
             <bg></bg>
             <nl></nl>
+            <pt></pt>
         </string>
         <string id="502">
             <en>You can declare table structure here.</en>
@@ -4220,6 +4650,7 @@ Note: You can add new languages by inserting "<new_language>string translated in
             <fr></fr>
             <bg></bg>
             <nl></nl>
+            <pt></pt>
         </string>
         <string id="503">
             <en>You can add/edit/delete table records here.</en>
@@ -4229,6 +4660,7 @@ Note: You can add new languages by inserting "<new_language>string translated in
             <fr></fr>
             <bg></bg>
             <nl></nl>
+            <pt></pt>
         </string>
         <string id="504">
             <en>CSV file properties</en>
@@ -4238,6 +4670,7 @@ Note: You can add new languages by inserting "<new_language>string translated in
             <fr></fr>
             <bg></bg>
             <nl></nl>
+            <pt></pt>
         </string>
         <string id="505">
             <en>Declare properties of CSV file you want to import.</en>
@@ -4247,6 +4680,7 @@ Note: You can add new languages by inserting "<new_language>string translated in
             <fr></fr>
             <bg></bg>
             <nl></nl>
+            <pt></pt>
         </string>
         <string id="506">
             <en>Declare properties of CSV file you want to export table to.</en>
@@ -4256,6 +4690,7 @@ Note: You can add new languages by inserting "<new_language>string translated in
             <fr></fr>
             <bg></bg>
             <nl></nl>
+            <pt></pt>
         </string>
         <string id="507">
             <en>column properties</en>
@@ -4265,6 +4700,7 @@ Note: You can add new languages by inserting "<new_language>string translated in
             <fr></fr>
             <bg></bg>
             <nl></nl>
+            <pt></pt>
         </string>
         <string id="508">
             <en>Declare column properties.</en>
@@ -4274,6 +4710,7 @@ Note: You can add new languages by inserting "<new_language>string translated in
             <fr></fr>
             <bg></bg>
             <nl></nl>
+            <pt></pt>
         </string>
         <string id="509">
             <en>Set user type priviliges.</en>
@@ -4283,6 +4720,7 @@ Note: You can add new languages by inserting "<new_language>string translated in
             <fr></fr>
             <bg></bg>
             <nl></nl>
+            <pt></pt>
         </string>
         <string id="510">
             <en>save as new</en>
@@ -4292,6 +4730,7 @@ Note: You can add new languages by inserting "<new_language>string translated in
             <fr></fr>
             <bg></bg>
             <nl></nl>
+            <pt></pt>
         </string>
         <string id="511">
             <en>duplicate test section</en>
@@ -4301,6 +4740,7 @@ Note: You can add new languages by inserting "<new_language>string translated in
             <fr></fr>
             <bg></bg>
             <nl></nl>
+            <pt></pt>
         </string>
         <string id="512">
             <en>check all</en>
@@ -4310,6 +4750,7 @@ Note: You can add new languages by inserting "<new_language>string translated in
             <fr></fr>
             <bg></bg>
             <nl></nl>
+            <pt></pt>
         </string>
         <string id="513">
             <en>uncheck all</en>
@@ -4319,6 +4760,7 @@ Note: You can add new languages by inserting "<new_language>string translated in
             <fr></fr>
             <bg></bg>
             <nl></nl>
+            <pt></pt>
         </string>
         <string id="514">
             <en>checked objects count: </en>
@@ -4328,6 +4770,7 @@ Note: You can add new languages by inserting "<new_language>string translated in
             <fr></fr>
             <bg></bg>
             <nl></nl>
+            <pt></pt>
         </string>
         <string id="515">
             <en>delete checked</en>
@@ -4337,6 +4780,7 @@ Note: You can add new languages by inserting "<new_language>string translated in
             <fr></fr>
             <bg></bg>
             <nl></nl>
+            <pt></pt>
         </string>
         <string id="516">
             <en>export checked</en>
@@ -4346,6 +4790,7 @@ Note: You can add new languages by inserting "<new_language>string translated in
             <fr></fr>
             <bg></bg>
             <nl></nl>
+            <pt></pt>
         </string>
         <string id="517" js="1">
             <en>Are you sure you want to delete selected objects?</en>
@@ -4355,6 +4800,7 @@ Note: You can add new languages by inserting "<new_language>string translated in
             <fr></fr>
             <bg></bg>
             <nl></nl>
+            <pt></pt>
         </string>
     </strings>
 </root> 
