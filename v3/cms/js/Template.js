@@ -35,6 +35,10 @@ Template.onAfterDelete=function(){
     Test.uiTemplatesChanged();
 }
 
+Template.onAfterImport=function(){
+    Test.uiTemplatesChanged();
+}
+
 Template.onAfterAdd=function(){
 }
 

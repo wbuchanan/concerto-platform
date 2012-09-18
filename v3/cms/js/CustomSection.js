@@ -35,6 +35,10 @@ CustomSection.onAfterSave=function()
 CustomSection.onAfterAdd=function(){
     }
 
+CustomSection.onAfterImport=function(){
+    Test.uiCustomSectionsChanged();
+}
+
 CustomSection.getAddSaveObject=function()
 {
     return { 

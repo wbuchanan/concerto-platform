@@ -34,6 +34,10 @@ Table.onAfterDelete=function(){
     Test.uiTablesChanged();
 }
 
+Table.onAfterImport=function(){
+    Test.uiTablesChanged();
+}
+
 Table.onAfterAdd=function(){
 }
 

@@ -67,6 +67,7 @@ else {
     $(function(){
         CustomSection.uiRefreshComboboxes();
     
+        Methods.iniTooltips();
         $(".tooltipCustomSectionLogic").tooltip({
             content:function(){
                 return "<?= Language::string(104) ?><hr/>"+$(this).next().val();

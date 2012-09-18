@@ -53,6 +53,12 @@ Test.onAfterImport=function(){
     Template.uiList();
     Table.uiList();
     QTIAssessmentItem.uiList();
+    
+    Test.uiTestsChanged();
+    Test.uiCustomSectionsChanged();
+    Test.uiTablesChanged();
+    Test.uiTemplatesChanged();
+    Test.uiQTIAssessmentItemsChanged();
 }
 
 Test.onAfterAdd=function(){
@@ -60,7 +66,12 @@ Test.onAfterAdd=function(){
 
 Test.onAfterSave=function()
 {
-    };
+    //Test.uiTestsChanged();
+};
+
+Test.onAfterDelete=function(){
+    Test.uiTestsChanged();
+}
 
 Test.getAddSaveObject=function()
 {
@@ -666,6 +677,18 @@ Test.uiCustomSectionsChanged=function(){
     sections.each(function(){
         var s = Test.sectionDivToObject($(this));
         if(s.type==Test.sectionTypes.custom){
+            var value = Test.getSectionValues(Test.sectionDivToObject($('#divSection_'+s.counter)));
+            Test.uiRefreshSectionContent(s.type, s.counter, value);
+        }
+    });
+    Test.uiRefreshAddSectionDialog();
+}
+
+Test.uiTestsChanged=function(){
+    var sections = Test.getSections();
+    sections.each(function(){
+        var s = Test.sectionDivToObject($(this));
+        if(s.type==Test.sectionTypes.test){
             var value = Test.getSectionValues(Test.sectionDivToObject($('#divSection_'+s.counter)));
             Test.uiRefreshSectionContent(s.type, s.counter, value);
         }

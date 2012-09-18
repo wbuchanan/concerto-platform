@@ -35,6 +35,10 @@ QTIAssessmentItem.onAfterDelete=function(){
     Test.uiQTIAssessmentItemsChanged();
 }
 
+QTIAssessmentItem.onAfterImport=function(){
+    Test.uiQTIAssessmentItemsChanged();
+}
+
 QTIAssessmentItem.onAfterAdd=function(){
     if(QTIAssessmentItem.formCodeMirror!=null) QTIAssessmentItem.formCodeMirror.refresh();
 }
