@@ -319,15 +319,6 @@ Setup.steps = [
         ),
     new SetupStep(
         false,
-        "R version at least <b>v2.15</b>",
-        "r_version_check",
-        "your R version: <b>{0}</b> - <b style='color:green;'>PASSED</b>",
-        "your R version: <b>{0}</b> - <b style='color:red;'>FAILED</b>",
-        "Update your R to v2.15 or higher.",
-        true     
-        ),
-    new SetupStep(
-        false,
         "PHP <b>'safe mode'</b> must be turned <b>OFF</b>",
         "php_safe_mode_check",
         "your PHP <b>'safe mode'</b> is turned <b>OFF</b> - <b style='color:green;'>PASSED</b>",
@@ -405,6 +396,15 @@ Setup.steps = [
         "your <b>R</b> executable file path: <b>{0}</b> <b>EXIST</b> - <b style='color:green;'>PASSED</b>",
         "your <b>R</b> executable file path: <b>{0}</b> <b>DOESN'T EXIST</b> - <b style='color:red;'>FAILED</b>",
         "R executable file path not set, set incorrectly or unaccesible to PHP.<br/>Usually the R executable file path is <b>/usr/bin/R</b>. Set your R executable path in <b>/SETTINGS.php</b> file.",
+        true     
+        ),
+    new SetupStep(
+        false,
+        "R version at least <b>v2.15</b>",
+        "r_version_check",
+        "your R version: <b>{0}</b> - <b style='color:green;'>PASSED</b>",
+        "your R version: <b>{0}</b> - <b style='color:red;'>FAILED</b>",
+        "Update your R to v2.15 or higher.",
         true     
         ),
     new SetupStep(
