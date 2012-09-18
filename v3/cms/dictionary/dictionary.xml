@@ -34,6 +34,7 @@ Note: You can add new languages by inserting "<new_language>string translated in
         <language id="fr">francais</language>
         <language id="nl">nederlands</language>
         <language id="pl">polski</language>
+        <language id="pt">português</language>
     </languages>
     
     <strings>
@@ -45,6 +46,7 @@ Note: You can add new languages by inserting "<new_language>string translated in
             <fr><![CDATA[La validation du nom de la variable a échoué. La valeur a été changée.<br/><br/>ancienne valeur: <b>{0}</b></br>nouvelle valeur: <b>{1}</b>]]></fr>
             <bg><![CDATA[Валидизацията на името на променливата е неуспешна. Стойността е променена.<br/><br/>стара стойност: <b>{0}</b></br>нова стойност: <b>{1}</b>]]></bg>
             <nl><![CDATA[Naamvalidatie van de variabele gefaald. De waarde werd gewijzigd.<br/><br/>oude waarde:  <b>{0}</b></br>nieuwe waarde: <b>{1}</b>]]></nl>
+          <pt></pt>
         </string>
         <string id="2" js="1">
             <en>variable validation</en>
@@ -54,6 +56,7 @@ Note: You can add new languages by inserting "<new_language>string translated in
             <fr>validation de la variable</fr>
             <bg>валидизация на променливата</bg>
             <nl>variabele validatie</nl>
+            <pt></pt>
         </string>
         <string id="3" js="1">
             <en>changing description</en>
@@ -63,6 +66,7 @@ Note: You can add new languages by inserting "<new_language>string translated in
             <fr>changement de description</fr>
             <bg>промяна на описанието</bg>
             <nl>beschrijving wijzigen</nl>
+            <pt></pt>
         </string>
         <string id="4" js="1">
             <en>Concerto - confirmation</en>
@@ -72,6 +76,7 @@ Note: You can add new languages by inserting "<new_language>string translated in
             <fr>Concerto - confirmation</fr>
             <bg>Concerto - потвърждение</bg>
             <nl>Concerto - bevestiging</nl>
+            <pt></pt>
         </string>
         <string id="5" js="1">
             <en>Concerto - alert</en>
@@ -81,6 +86,7 @@ Note: You can add new languages by inserting "<new_language>string translated in
             <fr>Concerto - alerte</fr>
             <bg>Concerto - внимание</bg>
             <nl>Concerto - waarschuwing</nl>
+            <pt></pt>
         </string>
         <string id="6" js="1">
             <en>HTML controls `name` validation failed. Value has been changed.\r\n\r\nold value: {0}\r\nnew value: {1}</en>
@@ -90,6 +96,7 @@ Note: You can add new languages by inserting "<new_language>string translated in
             <fr>HTML le contrôle de la variable `nom` a échoué. la valeur a été changée\n\r\nancienne valeur: {0}\r\nnouvelle valeur: {1}</fr>
             <bg>Валидизацията на името на HTML контролата неуспешна. Стойността беше променена.\r\n\r\nстара стойност: {0}\r\nнова стойност: {1}</bg>
             <nl>HTML de controle van de variabele `naam` is mislukt. De waarde werd gewijzigd.\r\n\r\noude waarde: {0}\r\nnieuw waarde: {1}</nl>
+            <pt></pt>
         </string>
         <string id="7" js="1">
             <en>adding new object</en>
@@ -99,6 +106,7 @@ Note: You can add new languages by inserting "<new_language>string translated in
             <fr>ajouter un nouvel objet</fr>
             <bg>прибавяне на нов обект</bg>
             <nl>Nieuw object toevoegen</nl>
+            <pt></pt>
         </string>
         <string id="8" js="1">
             <en>Are you sure you want to delete this object #{0}?</en>
@@ -108,6 +116,7 @@ Note: You can add new languages by inserting "<new_language>string translated in
             <fr> Êtes-vous certain de vouloir supprimer cet objet? #{0}?</fr>
             <bg>Сигурни ли сте, че искате да изтриете този обект #{0}</bg>
             <nl>Bent u zeker dat u dit object wil verwijderen #{0}?</nl>
+            <pt></pt>
         </string>
         <string id="9" js="1">
             <en>Object has been saved.</en>
@@ -117,6 +126,7 @@ Note: You can add new languages by inserting "<new_language>string translated in
             <fr>L'objet a été sauvegardé.</fr>
             <bg>Обектът е съхранен</bg>
             <nl>Object opgeslagen.</nl>
+            <pt></pt>
         </string>
         <string id="10" js="1">
             <en>Object has NOT been saved.</en>
@@ -126,6 +136,7 @@ Note: You can add new languages by inserting "<new_language>string translated in
             <fr>L'objet N'A PAS été sauvegardé.</fr>
             <bg>Обектът НЕ Е съхранен</bg>
             <nl>Object werd NIET opgeslagen.</nl>
+            <pt></pt>
         </string>
         <string id="11" js="1">
             <en>remove row</en>
@@ -135,6 +146,7 @@ Note: You can add new languages by inserting "<new_language>string translated in
             <fr>supprimer la ligne</fr>
             <bg>изтрий реда</bg>
             <nl>rij verwijderen</nl>
+            <pt></pt>
         </string>
         <string id="12" js="1">
             <en>editing column</en>
@@ -144,6 +156,7 @@ Note: You can add new languages by inserting "<new_language>string translated in
             <fr>modifier la colonne</fr>
             <bg>редактирай колоната</bg>
             <nl>kolom bewerken</nl>
+            <pt></pt>
         </string>
         <string id="13" js="1">
             <en>Column name is a mandatory field.</en>
@@ -153,6 +166,7 @@ Note: You can add new languages by inserting "<new_language>string translated in
             <fr>Le nom de colonne est un champ obligatoire.</fr>
             <bg>Името на колоната не е задължително</bg>
             <nl>Naam van de kolom is een verplicht veld.</nl>
+            <pt></pt>
         </string>
         <string id="14" js="1">
             <en>change column name</en>
@@ -180,6 +194,7 @@ Note: You can add new languages by inserting "<new_language>string translated in
             <fr>libre</fr>
             <bg>текст</bg>
             <nl>string</nl>
+            <pt></pt>
         </string>
         <string id="18" js="1">
             <en>HTML</en>
@@ -189,6 +204,7 @@ Note: You can add new languages by inserting "<new_language>string translated in
             <fr>HTML</fr>
             <bg>HTML</bg>
             <nl>HTML</nl>
+            <pt></pt>
         </string>
         <string id="19" js="1">
             <en>edit column</en>
@@ -198,6 +214,7 @@ Note: You can add new languages by inserting "<new_language>string translated in
             <fr>modifier la colonne</fr>
             <bg>редактиране на колоната</bg>
             <nl>kolom bewerken</nl>
+            <pt></pt>
         </string>
         <string id="20">
             <en>remove column</en>
@@ -207,6 +224,7 @@ Note: You can add new languages by inserting "<new_language>string translated in
             <fr>supprimer la colonne</fr>
             <bg>изтрий колоната</bg>
             <nl>kolom verwijderen</nl>
+            <pt></pt>
         </string>
         <string id="21" js="1">
             <en>importing table from MySQL table</en>
@@ -216,6 +234,7 @@ Note: You can add new languages by inserting "<new_language>string translated in
             <fr>importation d'un tableau provenant de MySQL table</fr>
             <bg>импортиране на таблицата от MySQL таблица</bg>
             <nl>tabel importeren vanuit MySQL tabel</nl>
+            <pt></pt>
         </string>
         <string id="22" js="1">
             <en>import</en>
@@ -225,6 +244,7 @@ Note: You can add new languages by inserting "<new_language>string translated in
             <fr>importer</fr>
             <bg>импортиране</bg>
             <nl>importeren</nl>
+            <pt></pt>
         </string>
         <string id="23" js="1">
             <en>cancel</en>
@@ -234,6 +254,7 @@ Note: You can add new languages by inserting "<new_language>string translated in
             <fr>annuler</fr>
             <bg>отмяна</bg>
             <nl>annuleren</nl>
+            <pt></pt>
         </string>
         <string id="24" js="1">
             <en>No table selected.</en>
@@ -243,6 +264,7 @@ Note: You can add new languages by inserting "<new_language>string translated in
             <fr>Aucun tableau sélectionnée.</fr>
             <bg>Не е избрана таблица</bg>
             <nl>Geen tabel geslecteerd</nl>
+            <pt></pt>
         </string>
         <string id="25" js="1">
             <en>importing table</en>
@@ -252,6 +274,7 @@ Note: You can add new languages by inserting "<new_language>string translated in
             <fr>Importation d'un tableau</fr>
             <bg>импортиране на таблица</bg>
             <nl>tabel importeren</nl>
+            <pt></pt>
         </string>
         <string id="26" js="1">
             <en>Table structure and data imported.</en>
@@ -261,6 +284,7 @@ Note: You can add new languages by inserting "<new_language>string translated in
             <fr>La structure et les données du tabeau ont été importées.</fr>
             <bg>Структурата на таблицата и данните са импортирани</bg>
             <nl>Structuur en data van de tabel geimporteerd</nl>
+            <pt></pt>
         </string>
         <string id="27" js="1">
             <en>Importing table from CSV file</en>
@@ -270,6 +294,7 @@ Note: You can add new languages by inserting "<new_language>string translated in
             <fr>Importation d'un tableau provenant d'un fichier CSV</fr>
             <bg>Импортиране на таблицата от CSV файл</bg>
             <nl>Tabel importeren vanuit een CSV-bestand</nl>
+            <pt></pt>
         </string>
         <string id="28" js="1">
             <en>Are you sure you want to replace the current table structure and data with that from the selected file?</en>
@@ -279,6 +304,7 @@ Note: You can add new languages by inserting "<new_language>string translated in
             <fr>Êtes-vous certain de vouloir remplacer la structure et les données du présent tableau par celles du fichier sélectionné?</fr>
             <bg>Сигурни ли сте, че искате да заместите настоящата структура и данни на таблицата с тези от избраната таблица</bg>
             <nl> Bent u zeker dat u de huidige tabelstructuur en data wilt vervangen door deze uit het geselecteerde bestand?</nl>
+            <pt></pt>
         </string>
         <string id="29" js="1">
             <en>file uploaded</en>
@@ -288,6 +314,7 @@ Note: You can add new languages by inserting "<new_language>string translated in
             <fr>fichier téléchargé</fr>
             <bg>Файлът е качен</bg>
             <nl>bestand geupload</nl>
+            <pt></pt>
         </string>
         <string id="30" js="1">
             <en>There was an error in importing table structure and data.</en>
@@ -297,6 +324,7 @@ Note: You can add new languages by inserting "<new_language>string translated in
             <fr>Une erreur est survenue en important la structure et les données du tableau.</fr>
             <bg>Има грешка при импортирането на стуктурата и данните на таблицата</bg>
             <nl>Er is een fout opgetreden bij het importeren van de tabelstructuur en data.</nl>
+            <pt></pt>
         </string>
         <string id="31" js="1">
             <en>adding new column</en>
@@ -306,6 +334,7 @@ Note: You can add new languages by inserting "<new_language>string translated in
             <fr>ajout d'une nouvelle colonne</fr>
             <bg>прибавяне на нова колона</bg>
             <nl>nieuwe kolom toevoegen</nl>
+            <pt></pt>
         </string>
         <string id="32" js="1">
             <en>Are you sure you want to delete this row?</en>
@@ -315,6 +344,7 @@ Note: You can add new languages by inserting "<new_language>string translated in
             <fr>Êtes-vous certain de vouloir supprimer cette ligne?</fr>
             <bg>Сигурни ли сте, че искате да изтриете този ред</bg>
             <nl>Bent u zeker dat u deze rij wil verwijderen?</nl>
+            <pt></pt>
         </string>
         <string id="33" js="1">
             <en>deleting table row</en>
