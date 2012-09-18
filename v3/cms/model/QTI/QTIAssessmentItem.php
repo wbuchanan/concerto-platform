@@ -373,7 +373,7 @@ class QTIAssessmentItem extends OModule {
         $name = $xml->createElement("name", htmlspecialchars($this->name, ENT_QUOTES, "UTF-8"));
         $element->appendChild($name);
 
-        $description = $xml->createElement("description", htmlspecialchars($this->name, ENT_QUOTES, "UTF-8"));
+        $description = $xml->createElement("description", htmlspecialchars($this->description, ENT_QUOTES, "UTF-8"));
         $element->appendChild($description);
 
         $XML = $xml->createElement("XML", htmlspecialchars($this->XML, ENT_QUOTES, "UTF-8"));

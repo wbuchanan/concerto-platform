@@ -52,6 +52,7 @@ Test.onAfterImport=function(){
     CustomSection.uiList();
     Template.uiList();
     Table.uiList();
+    QTIAssessmentItem.uiList();
 }
 
 Test.onAfterAdd=function(){

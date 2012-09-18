@@ -543,6 +543,8 @@ class Test extends OModule {
         $element = $elements->item($elements->length - 1);
         $this->xml_hash = $element->getAttribute("xml_hash");
         $element_id = $element->getAttribute("id");
+        if (isset($compare["Test"][$element_id]) && $compare["Test"][$element_id] != 0)
+            return $compare["Test"][$element_id];
         $children = $element->childNodes;
         foreach ($children as $child) {
             switch ($child->nodeName) {
@@ -755,7 +757,7 @@ class Test extends OModule {
         $name = $xml->createElement("name", htmlspecialchars($this->name, ENT_QUOTES, "UTF-8"));
         $element->appendChild($name);
 
-        $description = $xml->createElement("description", htmlspecialchars($this->name, ENT_QUOTES, "UTF-8"));
+        $description = $xml->createElement("description", htmlspecialchars($this->description, ENT_QUOTES, "UTF-8"));
         $element->appendChild($description);
 
         $open = $xml->createElement("open", htmlspecialchars($this->open, ENT_QUOTES, "UTF-8"));
