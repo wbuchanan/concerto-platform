@@ -67,33 +67,31 @@ if ($table != null) {
         <b><?= Language::string(236) ?></b> <input type="radio" name="radioSetVarType_<?= $_POST['counter'] ?>" class="radioSetVarType_<?= $_POST['counter'] ?> radioSetVarType" <?= $vals[2] == 1 ? "checked" : "" ?> value="1" onchange="Test.changeSetVarType(<?= $_POST['counter'] ?>)" />
     </div>
 
-    <table class="divSetVarType_0_<?= $_POST['counter'] ?> <?= isset($vals[2]) && $vals[2] != 0 ? "notVisible" : "" ?>">
-        <div align="center">
-            <table class="fullWidth">
-                <tr>
-                    <td class="noWrap"><b><?= Language::string(435) ?>:</b></td>
-                    <td><span class="spanIcon ui-icon ui-icon-help tooltip" title="<?= htmlspecialchars(Template::strip_html($description), ENT_QUOTES) ?>"></span></td>
-                    <?php if (isset($vals[5]) && $vals[5] != 0) { ?>
-                        <td>
-                            <span class="spanIcon ui-icon ui-icon-extlink tooltip" title="<?= Language::string(522) ?>" onclick="Test.uiGoToRelatedObject(<?= $_POST['counter'] ?>,<?= $vals[5] ?>)"></span>
-                        </td>
-                    <?php } ?>
-                    <td class="fullWidth">
-                        <select class="fullWidth controlValue<?= $_POST['counter'] ?> ui-widget-content ui-corner-all" onchange="Test.uiRefreshSectionContent(<?= $_POST['type'] ?>, <?= $_POST['counter'] ?>, Test.getSectionValues(Test.sectionDivToObject($('#divSection_<?= $_POST['counter'] ?>'))))">
-                            <option value="0">&lt;<?= Language::string(239) ?>&gt;</option>
-                            <?php
-                            $sql = $logged_user->mysql_list_rights_filter("Table", "`name` ASC");
-                            $z = mysql_query($sql);
-                            while ($r = mysql_fetch_array($z)) {
-                                $table = Table::from_mysql_id($r[0]);
-                                ?>
-                                <option value="<?= $table->id ?>" <?= isset($vals[5]) && $vals[5] == $table->id ? "selected" : "" ?> ><?= $table->name ?> ( <?= $table->get_system_data() ?> )</option>
-                            <?php } ?>
-                        </select>
+    <div class="divSetVarType_0_<?= $_POST['counter'] ?> <?= isset($vals[2]) && $vals[2] != 0 ? "notVisible" : "" ?>">
+        <table class="fullWidth">
+            <tr>
+                <td class="noWrap"><b><?= Language::string(435) ?>:</b></td>
+                <td><span class="spanIcon ui-icon ui-icon-help tooltip" title="<?= htmlspecialchars(Template::strip_html($description), ENT_QUOTES) ?>"></span></td>
+                <?php if (isset($vals[5]) && $vals[5] != 0) { ?>
+                    <td>
+                        <span class="spanIcon ui-icon ui-icon-extlink tooltip" title="<?= Language::string(522) ?>" onclick="Test.uiGoToRelatedObject(<?= $_POST['counter'] ?>,<?= $vals[5] ?>)"></span>
                     </td>
-                </tr>    
-            </table>
-        </div>
+                <?php } ?>
+                <td class="fullWidth">
+                    <select class="fullWidth controlValue<?= $_POST['counter'] ?> ui-widget-content ui-corner-all" onchange="Test.uiRefreshSectionContent(<?= $_POST['type'] ?>, <?= $_POST['counter'] ?>, Test.getSectionValues(Test.sectionDivToObject($('#divSection_<?= $_POST['counter'] ?>'))))">
+                        <option value="0">&lt;<?= Language::string(239) ?>&gt;</option>
+                        <?php
+                        $sql = $logged_user->mysql_list_rights_filter("Table", "`name` ASC");
+                        $z = mysql_query($sql);
+                        while ($r = mysql_fetch_array($z)) {
+                            $table = Table::from_mysql_id($r[0]);
+                            ?>
+                            <option value="<?= $table->id ?>" <?= isset($vals[5]) && $vals[5] == $table->id ? "selected" : "" ?> ><?= $table->name ?> ( <?= $table->get_system_data() ?> )</option>
+                        <?php } ?>
+                    </select>
+                </td>
+            </tr>    
+        </table>
         <table class="fullWidth">
             <tr>
                 <td style="width:50%;" valign="top" align="center">
@@ -238,9 +236,9 @@ if ($table != null) {
                 </td>
             </tr>
         </table>
-</div>
+    </div>
 
-<div class="divSetVarType_1_<?= $_POST['counter'] ?> <?= !isset($vals[2]) || $vals[2] != 1 ? "notVisible" : "" ?>">
-    <textarea id="textareaCodeMirror_<?= $_POST['counter'] ?>"><?= (isset($vals[3]) ? $vals[3] : "") ?></textarea>
-</div>
+    <div class="divSetVarType_1_<?= $_POST['counter'] ?> <?= !isset($vals[2]) || $vals[2] != 1 ? "notVisible" : "" ?>">
+        <textarea id="textareaCodeMirror_<?= $_POST['counter'] ?>"><?= (isset($vals[3]) ? $vals[3] : "") ?></textarea>
+    </div>
 </div>
