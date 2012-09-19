@@ -81,7 +81,14 @@ else {
     <tr>
         <td style="width:50%;" valign="top" align="center">
             <fieldset class="ui-widget-content">
-                <legend class="" align="center"><b><?= Language::string(106) ?>:</b></legend>
+                <legend class="" align="center">
+                    <table>
+                        <tr>
+                            <td><span class="spanIcon ui-icon ui-icon-help tooltip" title="<?= Language::string(105) ?>"></span></td>
+                            <td><b><?= Language::string(106) ?>:</b></td>
+                        </tr>
+                    </table>
+                </legend>
                 <div class="div<?= $class_name ?>Parameters">
                     <?php
                     if (count($parameters) > 0) {
@@ -89,6 +96,7 @@ else {
                         <table class="fullWidth table<?= $class_name ?>Parameters">
                             <?php
                         }
+                        $i = 0;
                         foreach ($parameters as $param) {
                             ?>
                             <tr>
@@ -99,8 +107,10 @@ else {
                                 <td class="fullWidth">
                                     <input onchange="CustomSection.uiVarNameChanged($(this))" type="text" class="comboboxCustomSectionVars comboboxCustomSectionVarsParameter ui-widget-content ui-corner-all fullWidth" value="<?= htmlspecialchars($param->name, ENT_QUOTES) ?>" />
                                 </td>
+                                <td><span class="spanIcon tooltip ui-icon ui-icon-minus" onclick="CustomSection.uiRemoveParameter(<?= $i ?>)" title="<?= Language::string(110) ?>"></span></td>
                             </tr>
                             <?php
+                            $i++;
                         }
                         if (count($parameters) > 0) {
                             ?>
@@ -123,11 +133,7 @@ else {
                     </div>
                     <table>
                         <tr>
-                            <td><span class="spanIcon ui-icon ui-icon-help tooltip" title="<?= Language::string(105) ?>"></span></td>
                             <td><span class="spanIcon tooltip ui-icon ui-icon-plus" onclick="CustomSection.uiAddParameter()" title="<?= Language::string(109) ?>"></span></td>
-                            <td><?php
-                        if (count($parameters) > 0) {
-                            ?><span class="spanIcon tooltip ui-icon ui-icon-minus" onclick="CustomSection.uiRemoveParameter()" title="<?= Language::string(110) ?>"></span><?php } ?></td>
                         </tr>
                     </table>
                 </div>
@@ -137,7 +143,13 @@ else {
 
         <td style="width:50%;" valign="top" align="center">
             <fieldset class="ui-widget-content">
-                <legend class="" align="center"><b><?= Language::string(113) ?>:</b></legend>
+                <legend class="" align="center">
+                    <table>
+                        <tr>
+                            <td><span class="spanIcon ui-icon ui-icon-help tooltip" title="<?= Language::string(111) ?>"></span></td>
+                            <td><b><?= Language::string(113) ?>:</b></td>
+                        </tr>
+                    </table></legend>
                 <div class="div<?= $class_name ?>Returns">
                     <?php
                     if (count($returns) > 0) {
@@ -145,6 +157,7 @@ else {
                         <table class="fullWidth table<?= $class_name ?>Returns">
                             <?php
                         }
+                        $i = 0;
                         foreach ($returns as $ret) {
                             ?>
                             <tr>
@@ -155,8 +168,10 @@ else {
                                 <td class="fullWidth">
                                     <input onchange="CustomSection.uiVarNameChanged($(this))" type="text" class="comboboxCustomSectionVars comboboxCustomSectionVarsReturn ui-widget-content ui-corner-all fullWidth" value="<?= htmlspecialchars($ret->name, ENT_QUOTES) ?>" />
                                 </td>
+                                <td><span class="spanIcon tooltip ui-icon ui-icon-minus" onclick="CustomSection.uiRemoveReturn(<?= $i ?>)" title="<?= Language::string(116) ?>"></span></td>
                             </tr>
                             <?php
+                            $i++;
                         }
                         if (count($returns) > 0) {
                             ?>
@@ -179,11 +194,7 @@ else {
                     </div>
                     <table>
                         <tr>
-                            <td><span class="spanIcon ui-icon ui-icon-help tooltip" title="<?= Language::string(111) ?>"></span></td>
                             <td><span class="spanIcon tooltip ui-icon ui-icon-plus" onclick="CustomSection.uiAddReturn()" title="<?= Language::string(115) ?>"></span></td>
-                            <td><?php
-                        if (count($returns) > 0) {
-                            ?><span class="spanIcon tooltip ui-icon ui-icon-minus" onclick="CustomSection.uiRemoveReturn()" title="<?= Language::string(116) ?>"></span><?php } ?></td>
                         </tr>
                     </table>
                 </div>

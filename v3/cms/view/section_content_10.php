@@ -63,7 +63,7 @@ if (array_key_exists('oid', $_POST) && $_POST['oid'] != 0) {
                     </tr>
                 </table>
             </td>
-            <td class="tdSectionColumnIcon"><span class="spanIcon ui-icon ui-icon-newwin tooltip" title="<?=Language::string(511)?>" onclick="Test.duplicateSection(<?=$_POST['counter']?>)"></span></td>
+            <td class="tdSectionColumnIcon"><span class="spanIcon ui-icon ui-icon-newwin tooltip" title="<?= Language::string(511) ?>" onclick="Test.duplicateSection(<?= $_POST['counter'] ?>)"></span></td>
             <td class="tdSectionColumnIcon"></td>
             <td class="tdSectionColumnEnd"></td>
             <td class="tdSectionColumnIcon"><span class="spanIcon tooltip ui-icon ui-icon-trash" onclick="Test.uiRemoveSection(<?= $_POST['counter'] ?>)" title="<?= Language::string(59) ?>"></span></td>
@@ -71,20 +71,39 @@ if (array_key_exists('oid', $_POST) && $_POST['oid'] != 0) {
         </tr>
     </table>
 </div>
-<div class="divSectionDetail <?= $_POST['detail'] == 1 || $_POST['oid'] == 0  ? "" : "notVisible" ?>">
-    <div align="center">
-        <b><?= Language::string(398) ?></b>:
-        <select class="ui-widget-content ui-corner-all controlValue<?= $_POST['counter'] ?>">
-            <option value="!=" <?= $vals[2] == "!=" ? "selected" : "" ?>><?= Language::string(221) ?></option>
-            <option value="==" <?= $vals[2] == "==" ? "selected" : "" ?>><?= Language::string(222) ?></option>
-            <option value=">" <?= $vals[2] == ">" ? "selected" : "" ?>><?= Language::string(223) ?></option>
-            <option value=">=" <?= $vals[2] == ">=" ? "selected" : "" ?>><?= Language::string(224) ?></option>
-            <option value="<" <?= $vals[2] == "<" ? "selected" : "" ?>><?= Language::string(225) ?></option>
-            <option value="<=" <?= $vals[2] == "<=" ? "selected" : "" ?>><?= Language::string(226) ?></option>
-        </select> 
-        <input type="text" class="ui-widget-content ui-corner-all comboboxVars controlValue<?= $_POST['counter'] ?>" value="<?= htmlspecialchars($vals[3], ENT_QUOTES) ?>" />
-    </div>
-    <div class="<?= $vals[0] == 1 ? "notVisible" : "" ?>" align="center">
-        <b><?= Language::string(400) ?></b>: <input type="text" class="ui-widget-content ui-corner-all comboboxVars controlValue<?= $_POST['counter'] ?>" value="<?= htmlspecialchars($vals[4], ENT_QUOTES) ?>" />, <b><?= Language::string(399) ?></b>: <input type="text" class="ui-widget-content ui-corner-all comboboxVars controlValue<?= $_POST['counter'] ?>" value="<?= htmlspecialchars($vals[5], ENT_QUOTES) ?>" />
-    </div>
+<div class="divSectionDetail <?= $_POST['detail'] == 1 || $_POST['oid'] == 0 ? "" : "notVisible" ?>">
+    <table class="fullWidth">
+        <tr>
+            <td>
+                <b><?= Language::string(398) ?></b>:
+            </td>
+            <td>
+                <select class="ui-widget-content ui-corner-all controlValue<?= $_POST['counter'] ?>">
+                    <option value="!=" <?= $vals[2] == "!=" ? "selected" : "" ?>><?= Language::string(221) ?></option>
+                    <option value="==" <?= $vals[2] == "==" ? "selected" : "" ?>><?= Language::string(222) ?></option>
+                    <option value=">" <?= $vals[2] == ">" ? "selected" : "" ?>><?= Language::string(223) ?></option>
+                    <option value=">=" <?= $vals[2] == ">=" ? "selected" : "" ?>><?= Language::string(224) ?></option>
+                    <option value="<" <?= $vals[2] == "<" ? "selected" : "" ?>><?= Language::string(225) ?></option>
+                    <option value="<=" <?= $vals[2] == "<=" ? "selected" : "" ?>><?= Language::string(226) ?></option>
+                </select> 
+            </td>
+            <td class="fullWidth">
+                <input type="text" class="fullWidth ui-widget-content ui-corner-all comboboxVars controlValue<?= $_POST['counter'] ?>" value="<?= htmlspecialchars($vals[3], ENT_QUOTES) ?>" />
+            </td>
+        </tr>
+    </table>
+    <table class="fullWidth" class="<?= $vals[0] == 1 ? "notVisible" : "" ?>">
+        <tr>
+            <td class="noWrap">
+                <b><?= Language::string(400) ?></b>:
+            </td>
+            <td style="width:50%;">
+                <input type="text" class="fullWidth ui-widget-content ui-corner-all comboboxVars controlValue<?= $_POST['counter'] ?>" value="<?= htmlspecialchars($vals[4], ENT_QUOTES) ?>" />
+            </td>
+            <td class="noWrap">, <b><?= Language::string(399) ?></b>:</td>
+            <td style="width:50%;">
+                <input type="text" class="fullWidth ui-widget-content ui-corner-all comboboxVars controlValue<?= $_POST['counter'] ?>" value="<?= htmlspecialchars($vals[5], ENT_QUOTES) ?>" />
+            </td>
+        </tr>
+    </table>
 </div>

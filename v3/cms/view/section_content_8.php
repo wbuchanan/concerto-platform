@@ -74,7 +74,7 @@ if ($table != null) {
                     </tr>
                 </table>
             </td>
-            <td class="tdSectionColumnIcon"><span class="spanIcon ui-icon ui-icon-newwin tooltip" title="<?=Language::string(511)?>" onclick="Test.duplicateSection(<?=$_POST['counter']?>)"></span></td>
+            <td class="tdSectionColumnIcon"><span class="spanIcon ui-icon ui-icon-newwin tooltip" title="<?= Language::string(511) ?>" onclick="Test.duplicateSection(<?= $_POST['counter'] ?>)"></span></td>
             <td class="tdSectionColumnIcon"><span class="spanIcon ui-icon ui-icon-script tooltip" title="<?= Language::string(447) ?>" onclick="Test.convertToLowerLevel(<?= $_POST['counter'] ?>)"></span></td>
             <td class="tdSectionColumnEnd"><input type="checkbox" class="tooltip" id="chkEndSection_<?= $_POST['counter'] ?>" class="chkEndSection" <?= $_POST['end'] == 1 ? "checked" : "" ?> title="<?= Language::string(369) ?>" /></td>
             <td class="tdSectionColumnIcon"><span class="spanIcon tooltip ui-icon ui-icon-trash" onclick="Test.uiRemoveSection(<?= $_POST['counter'] ?>)" title="<?= Language::string(59) ?>"></span></td>
@@ -99,46 +99,42 @@ if ($table != null) {
                 <td style="width:50%;" valign="top" align="center">
                     <fieldset class="ui-widget-content">
                         <legend class="" align="center"><b><?= Language::string(440) ?>:</b></legend>
-                        <div>
-                            <table class="fullWidth">
-                                <?php
-                                for ($i = 0; $i < $vals[2]; $i++) {
-                                    ?>
-                                    <tr>
-                                        <td>
-                                            <select class="controlValue<?= $_POST['counter'] ?> controlValue<?= $_POST['counter'] ?>_set ui-widget-content ui-corner-all">
-                                                <option value="0">&lt;<?= Language::string(241) ?>&gt;</option>
-                                                <?php
-                                                $table = Table::from_mysql_id($vals[3]);
-                                                if ($table != null) {
-                                                    $cols = $table->get_TableColumns();
-                                                    foreach ($cols as $col) {
-                                                        ?>
-                                                        <option value="<?= $col->index ?>" <?= $vals[4 + $i * 2] == $col->index ? "selected" : "" ?> ><?= $col->name ?></option>
-                                                        <?php
-                                                    }
-                                                }
-                                                ?>
-                                            </select>
-                                        </td>
-                                        <td style="width:10px;"><b>=</b></td>
-                                        <td class="fullWidth">
-                                            <input type="text" class="comboboxVars controlValue<?= $_POST['counter'] ?> ui-widget-content ui-corner-all fullWidth" value="<?= htmlspecialchars(isset($vals[5 + $i * 2]) ? $vals[5 + $i * 2] : "", ENT_QUOTES) ?>" />
-                                        </td>
-                                    </tr>
-                                    <?php
-                                }
+                        <table class="fullWidth">
+                            <?php
+                            for ($i = 0; $i < $vals[2]; $i++) {
                                 ?>
-                            </table>
-                            <table>
                                 <tr>
-                                    <td><span class="spanIcon tooltip ui-icon ui-icon-plus" onclick="Test.uiAddTableModSet(<?= $_POST['counter'] ?>)" title="<?= Language::string(129) ?>"></span></td>
-                                    <td><?php
-                            if ($vals[2] > 0) {
-                                    ?><span class="spanIcon tooltip ui-icon ui-icon-minus" onclick="Test.uiRemoveTableModSet(<?= $_POST['counter'] ?>)" title="<?= Language::string(20) ?>"></span><?php } ?></td>
+                                    <td>
+                                        <select class="controlValue<?= $_POST['counter'] ?> controlValue<?= $_POST['counter'] ?>_set ui-widget-content ui-corner-all">
+                                            <option value="0">&lt;<?= Language::string(241) ?>&gt;</option>
+                                            <?php
+                                            $table = Table::from_mysql_id($vals[3]);
+                                            if ($table != null) {
+                                                $cols = $table->get_TableColumns();
+                                                foreach ($cols as $col) {
+                                                    ?>
+                                                    <option value="<?= $col->index ?>" <?= $vals[4 + $i * 2] == $col->index ? "selected" : "" ?> ><?= $col->name ?></option>
+                                                    <?php
+                                                }
+                                            }
+                                            ?>
+                                        </select>
+                                    </td>
+                                    <td style="width:10px;"><b>=</b></td>
+                                    <td class="fullWidth">
+                                        <input type="text" class="comboboxVars controlValue<?= $_POST['counter'] ?> ui-widget-content ui-corner-all fullWidth" value="<?= htmlspecialchars(isset($vals[5 + $i * 2]) ? $vals[5 + $i * 2] : "", ENT_QUOTES) ?>" />
+                                    </td>
+                                    <td><span class="spanIcon tooltip ui-icon ui-icon-minus" onclick="Test.uiRemoveTableModSet(<?= $_POST['counter'] ?>,<?= $i ?>)" title="<?= Language::string(20) ?>"></span></td>
                                 </tr>
-                            </table>
-                        </div>
+                                <?php
+                            }
+                            ?>
+                        </table>
+                        <table>
+                            <tr>
+                                <td><span class="spanIcon tooltip ui-icon ui-icon-plus" onclick="Test.uiAddTableModSet(<?= $_POST['counter'] ?>)" title="<?= Language::string(129) ?>"></span></td>
+                            </tr>
+                        </table>
                     </fieldset>
                 </td>
                 <?php
@@ -152,67 +148,64 @@ if ($table != null) {
                 <td style="width:50%;" valign="top" align="center">
                     <fieldset class="ui-widget-content">
                         <legend class="" align="center"><b><?= Language::string(437) ?>:</b></legend>
-                        <div>
-                            <table class="fullWidth">
-                                <?php
-                                $j = 4 + $vals[2] * 2;
-                                for ($i = 0; $i < $vals[1]; $i++) {
-                                    ?>
-                                    <tr>
-                                        <td>
-                                            <select class="controlValue<?= $_POST['counter'] ?> controlValue<?= $_POST['counter'] ?>_link ui-widget-content ui-corner-all <?= $i == 0 ? "notVisible" : "" ?>">
-                                                <option value="AND" <?= isset($vals[$j]) && $vals[$j] == "AND" ? "selected" : "" ?>><?= Language::string(227) ?></option>
-                                                <option value="OR" <?= isset($vals[$j]) && $vals[$j] == "OR" ? "selected" : "" ?>><?= Language::string(228) ?></option>
-                                            </select> 
-                                        </td>
-                                        <?php $j++; ?>
-                                        <td>
-                                            <select class="controlValue<?= $_POST['counter'] ?> ui-widget-content ui-corner-all">
-                                                <option value="0">&lt;<?= Language::string(241) ?>&gt;</option>
-                                                <?php
-                                                $table = Table::from_mysql_id($vals[3]);
-                                                if ($table != null) {
-                                                    $cols = $table->get_TableColumns();
-                                                    foreach ($cols as $col) {
-                                                        ?>
-                                                        <option value="<?= $col->index ?>" <?= isset($vals[$j]) && $vals[$j] == $col->index ? "selected" : "" ?> ><?= $col->name ?></option>
-                                                        <?php
-                                                    }
-                                                }
-                                                ?>
-                                            </select> 
-                                        </td>
-                                        <?php $j++; ?>
-                                        <td>
-                                            <select class="controlValue<?= $_POST['counter'] ?> ui-widget-content ui-corner-all">
-                                                <option value="!=" <?= isset($vals[$j]) && $vals[$j] == "!=" ? "selected" : "" ?>><?= Language::string(221) ?></option>
-                                                <option value="=" <?= isset($vals[$j]) && $vals[$j] == "=" ? "selected" : "" ?>><?= Language::string(222) ?></option>
-                                                <option value=">" <?= isset($vals[$j]) && $vals[$j] == ">" ? "selected" : "" ?>><?= Language::string(223) ?></option>
-                                                <option value=">=" <?= isset($vals[$j]) && $vals[$j] == ">=" ? "selected" : "" ?>><?= Language::string(224) ?></option>
-                                                <option value="<" <?= isset($vals[$j]) && $vals[$j] == "<" ? "selected" : "" ?>><?= Language::string(225) ?></option>
-                                                <option value="<=" <?= isset($vals[$j]) && $vals[$j] == "<=" ? "selected" : "" ?>><?= Language::string(226) ?></option>
-                                                <option value="LIKE" <?= isset($vals[$j]) && $vals[$j] == "LIKE" ? "selected" : "" ?>><?= Language::string(243) ?></option>
-                                                <option value="NOT LIKE" <?= isset($vals[$j]) && $vals[$j] == "NOT LIKE" ? "selected" : "" ?>><?= Language::string(244) ?></option>
-                                            </select> 
-                                        </td>
-                                        <?php $j++; ?>
-                                        <td <?= ($vals[0] == 2 ? "class='fullWidth'" : "") ?>>
-                                            <input type="text" class="controlValue<?= $_POST['counter'] ?> ui-widget-content ui-corner-all comboboxVars <?= ($vals[0] == 2 ? "fullWidth" : "") ?>" value="<?= htmlspecialchars(isset($vals[$j]) ? $vals[$j] : "", ENT_QUOTES) ?>" /> 
-                                        </td>
-                                    </tr>
-                                    <?php
-                                    $j++;
-                                }
+                        <table class="fullWidth">
+                            <?php
+                            $j = 4 + $vals[2] * 2;
+                            for ($i = 0; $i < $vals[1]; $i++) {
                                 ?>
-                            </table>
-                            <table>
                                 <tr>
-                                    <td><span class="spanIcon tooltip ui-icon ui-icon-plus" onclick="Test.uiAddTableModWhere(<?= $_POST['counter'] ?>)" title="<?= Language::string(229) ?>"></span></td>
-                                    <td><?php if ($vals[1] > 0) {
-                                    ?><span class="spanIcon tooltip ui-icon ui-icon-minus" onclick="Test.uiRemoveTableModWhere(<?= $_POST['counter'] ?>)" title="<?= Language::string(230) ?>"></span><?php } ?></td>
+                                    <td>
+                                        <select class="controlValue<?= $_POST['counter'] ?> controlValue<?= $_POST['counter'] ?>_link ui-widget-content ui-corner-all <?= $i == 0 ? "notVisible" : "" ?>">
+                                            <option value="AND" <?= isset($vals[$j]) && $vals[$j] == "AND" ? "selected" : "" ?>><?= Language::string(227) ?></option>
+                                            <option value="OR" <?= isset($vals[$j]) && $vals[$j] == "OR" ? "selected" : "" ?>><?= Language::string(228) ?></option>
+                                        </select> 
+                                    </td>
+                                    <?php $j++; ?>
+                                    <td>
+                                        <select class="controlValue<?= $_POST['counter'] ?> ui-widget-content ui-corner-all">
+                                            <option value="0">&lt;<?= Language::string(241) ?>&gt;</option>
+                                            <?php
+                                            $table = Table::from_mysql_id($vals[3]);
+                                            if ($table != null) {
+                                                $cols = $table->get_TableColumns();
+                                                foreach ($cols as $col) {
+                                                    ?>
+                                                    <option value="<?= $col->index ?>" <?= isset($vals[$j]) && $vals[$j] == $col->index ? "selected" : "" ?> ><?= $col->name ?></option>
+                                                    <?php
+                                                }
+                                            }
+                                            ?>
+                                        </select> 
+                                    </td>
+                                    <?php $j++; ?>
+                                    <td>
+                                        <select class="controlValue<?= $_POST['counter'] ?> ui-widget-content ui-corner-all">
+                                            <option value="!=" <?= isset($vals[$j]) && $vals[$j] == "!=" ? "selected" : "" ?>><?= Language::string(221) ?></option>
+                                            <option value="=" <?= isset($vals[$j]) && $vals[$j] == "=" ? "selected" : "" ?>><?= Language::string(222) ?></option>
+                                            <option value=">" <?= isset($vals[$j]) && $vals[$j] == ">" ? "selected" : "" ?>><?= Language::string(223) ?></option>
+                                            <option value=">=" <?= isset($vals[$j]) && $vals[$j] == ">=" ? "selected" : "" ?>><?= Language::string(224) ?></option>
+                                            <option value="<" <?= isset($vals[$j]) && $vals[$j] == "<" ? "selected" : "" ?>><?= Language::string(225) ?></option>
+                                            <option value="<=" <?= isset($vals[$j]) && $vals[$j] == "<=" ? "selected" : "" ?>><?= Language::string(226) ?></option>
+                                            <option value="LIKE" <?= isset($vals[$j]) && $vals[$j] == "LIKE" ? "selected" : "" ?>><?= Language::string(243) ?></option>
+                                            <option value="NOT LIKE" <?= isset($vals[$j]) && $vals[$j] == "NOT LIKE" ? "selected" : "" ?>><?= Language::string(244) ?></option>
+                                        </select> 
+                                    </td>
+                                    <?php $j++; ?>
+                                    <td <?= ($vals[0] == 2 ? "class='fullWidth'" : "") ?>>
+                                        <input type="text" class="controlValue<?= $_POST['counter'] ?> ui-widget-content ui-corner-all comboboxVars <?= ($vals[0] == 2 ? "fullWidth" : "") ?>" value="<?= htmlspecialchars(isset($vals[$j]) ? $vals[$j] : "", ENT_QUOTES) ?>" /> 
+                                    </td>
+                                    <td><span class="spanIcon tooltip ui-icon ui-icon-minus" onclick="Test.uiRemoveTableModWhere(<?= $_POST['counter'] ?>,<?= $i ?>)" title="<?= Language::string(230) ?>"></span></td>
                                 </tr>
-                            </table>
-                        </div>
+                                <?php
+                                $j++;
+                            }
+                            ?>
+                        </table>
+                        <table>
+                            <tr>
+                                <td><span class="spanIcon tooltip ui-icon ui-icon-plus" onclick="Test.uiAddTableModWhere(<?= $_POST['counter'] ?>)" title="<?= Language::string(229) ?>"></span></td>
+                            </tr>
+                        </table>
                     </fieldset>
                 </td>
             </tr>

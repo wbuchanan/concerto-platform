@@ -131,9 +131,9 @@ CustomSection.uiAddParameter=function(){
     this.uiRefreshLogic(vars,null);
 };
 
-CustomSection.uiRemoveParameter=function(){
+CustomSection.uiRemoveParameter=function(index){
     var vars = this.getSerializedParameterVariables();
-    vars.pop();
+    vars.splice(index,1);
     this.uiRefreshLogic(vars,null);
 };
 
@@ -147,9 +147,9 @@ CustomSection.uiAddReturn=function(){
     this.uiRefreshLogic(null,vars);
 };
 
-CustomSection.uiRemoveReturn=function(){
+CustomSection.uiRemoveReturn=function(index){
     var vars = this.getSerializedReturnVariables();
-    vars.pop();
+    vars.splice(index,1);
     this.uiRefreshLogic(null,vars);
 };
     

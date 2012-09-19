@@ -50,7 +50,7 @@ if (array_key_exists('oid', $_POST) && $_POST['oid'] != 0) {
                 <table class="fullWidth">
                     <tr>
                         <td style="width:10px;"><?= Language::string(441) ?></td>
-                        <td><input type="text" class="ui-widget-content ui-corner-all comboboxVars controlValue<?= $_POST['counter'] ?>" value="<?= htmlspecialchars($vals[0], ENT_QUOTES) ?>" /></td>
+                        <td><input type="text" class="fullWidth ui-widget-content ui-corner-all comboboxVars controlValue<?= $_POST['counter'] ?>" value="<?= htmlspecialchars($vals[0], ENT_QUOTES) ?>" /></td>
                         <td style="width:50px;">
                             <select class="ui-widget-content ui-corner-all controlValue<?= $_POST['counter'] ?>">
                                 <option value="!=" <?= $vals[1] == "!=" ? "selected" : "" ?>><?= Language::string(221) ?></option>
@@ -61,11 +61,11 @@ if (array_key_exists('oid', $_POST) && $_POST['oid'] != 0) {
                                 <option value="<=" <?= $vals[1] == "<=" ? "selected" : "" ?>><?= Language::string(226) ?></option>
                             </select> 
                         </td>
-                        <td><input type="text" class="ui-widget-content ui-corner-all comboboxVars controlValue<?= $_POST['counter'] ?>" value="<?= htmlspecialchars($vals[2], ENT_QUOTES) ?>" /></td>
+                        <td><input type="text" class="fullWidth ui-widget-content ui-corner-all comboboxVars controlValue<?= $_POST['counter'] ?>" value="<?= htmlspecialchars($vals[2], ENT_QUOTES) ?>" /></td>
                     </tr>
                 </table>
             </td>
-            <td class="tdSectionColumnIcon"><span class="spanIcon ui-icon ui-icon-newwin tooltip" title="<?=Language::string(511)?>" onclick="Test.duplicateSection(<?=$_POST['counter']?>)"></span></td>
+            <td class="tdSectionColumnIcon"><span class="spanIcon ui-icon ui-icon-newwin tooltip" title="<?= Language::string(511) ?>" onclick="Test.duplicateSection(<?= $_POST['counter'] ?>)"></span></td>
             <td class="tdSectionColumnIcon"></td>
             <td class="tdSectionColumnEnd"></td>
             <td class="tdSectionColumnIcon"><span class="spanIcon tooltip ui-icon ui-icon-trash" onclick="Test.uiRemoveSection(<?= $_POST['counter'] ?>)" title="<?= Language::string(59) ?>"></span></td>
@@ -78,6 +78,7 @@ if (array_key_exists('oid', $_POST) && $_POST['oid'] != 0) {
         <legend><b><?= Language::string(438) ?>:</b></legend>
         <?php
         $i = 3;
+        $j = 0;
         while (isset($vals[$i])) {
             if ($i == 3) {
                 ?>
@@ -111,9 +112,11 @@ if (array_key_exists('oid', $_POST) && $_POST['oid'] != 0) {
                     <td>
                         <input type="text" class="ui-widget-content ui-corner-all comboboxVars controlValue<?= $_POST['counter'] ?> fullWidth" value="<?= htmlspecialchars($vals[$i], ENT_QUOTES) ?>" />
                     </td>
+                    <td><span class="spanIcon tooltip ui-icon ui-icon-minus" onclick="Test.uiRemoveIfCond(<?= $_POST['counter'] ?>,<?= $j ?>)" title="<?= Language::string(230) ?>"></span></td>
                 </tr>
-                <?php $i++; ?>
                 <?php
+                $i++;
+                $j++;
             }
             if ($i > 3) {
                 ?>
@@ -126,8 +129,6 @@ if (array_key_exists('oid', $_POST) && $_POST['oid'] != 0) {
             <table>
                 <tr>
                     <td><span class="spanIcon tooltip ui-icon ui-icon-plus" onclick="Test.uiAddIfCond(<?= $_POST['counter'] ?>)" title="<?= Language::string(229) ?>"></span></td>
-                    <td><?php if (isset($vals[3])) {
-            ?><span class="spanIcon tooltip ui-icon ui-icon-minus" onclick="Test.uiRemoveIfCond(<?= $_POST['counter'] ?>)" title="<?= Language::string(230) ?>"></span><?php } ?></td>
                 </tr>
             </table>
         </div>

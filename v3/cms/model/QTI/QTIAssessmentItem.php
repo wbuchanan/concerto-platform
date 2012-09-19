@@ -66,14 +66,16 @@ class QTIAssessmentItem extends OModule {
 
     public function get_outputs() {
         $result = array(array("name" => "QTI_HTML", "type" => "HTML"));
-        foreach ($this->root->templateDeclaration as $var) {
-            array_push($result, array("name" => $var->identifier, "type" => "template"));
-        }
-        foreach ($this->root->responseDeclaration as $var) {
-            array_push($result, array("name" => $var->identifier, "type" => "response"));
-        }
-        foreach ($this->root->outcomeDeclaration as $var) {
-            array_push($result, array("name" => $var->identifier, "type" => "outcome"));
+        if ($this->root != null) {
+            foreach ($this->root->templateDeclaration as $var) {
+                array_push($result, array("name" => $var->identifier, "type" => "template"));
+            }
+            foreach ($this->root->responseDeclaration as $var) {
+                array_push($result, array("name" => $var->identifier, "type" => "response"));
+            }
+            foreach ($this->root->outcomeDeclaration as $var) {
+                array_push($result, array("name" => $var->identifier, "type" => "outcome"));
+            }
         }
         return $result;
     }

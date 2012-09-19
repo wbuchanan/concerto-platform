@@ -370,7 +370,7 @@ Test.uiRefreshSectionContent=function(type,counter,value,oid,end){
             break;
         }
         case Test.sectionTypes.setVariable:{
-            if(value==null) value=[0,0,0,"","",0,0];
+            if(value==null) value=[0,0,1,"","",0,0];
             break;
         }
         case Test.sectionTypes.tableModification:{
@@ -751,10 +751,10 @@ Test.uiAddTableModSet=function(counter){
     Test.uiRefreshSectionContent(Test.sectionTypes.tableModification,counter,vals);
 }
 
-Test.uiRemoveTableModSet=function(counter){
+Test.uiRemoveTableModSet=function(counter,index){
     var vals = Test.getSectionValues(Test.sectionDivToObject($('#divSection_'+counter)));
     vals[2]--;
-    vals.splice(vals[2]*2+4, 2);
+    vals.splice(4+index*2, 2);
     Test.uiRefreshSectionContent(Test.sectionTypes.tableModification,counter,vals);
 }
 
@@ -764,8 +764,9 @@ Test.uiAddTableModWhere=function(counter){
     Test.uiRefreshSectionContent(Test.sectionTypes.tableModification,counter,vals);
 }
 
-Test.uiRemoveTableModWhere=function(counter){
+Test.uiRemoveTableModWhere=function(counter,index){
     var vals = Test.getSectionValues(Test.sectionDivToObject($('#divSection_'+counter)));
+    vals.splice(4+vals[2]*2+index*4,4);
     vals[1]--;
     Test.uiRefreshSectionContent(Test.sectionTypes.tableModification,counter,vals);
 }
@@ -776,9 +777,10 @@ Test.uiAddIfCond=function(counter){
     Test.uiRefreshSectionContent(Test.sectionTypes.ifStatement,counter,vals);
 }
 
-Test.uiRemoveIfCond=function(counter){
+Test.uiRemoveIfCond=function(counter,index){
     var vals = Test.getSectionValues(Test.sectionDivToObject($('#divSection_'+counter)));
-    vals.splice(vals.length-4, 4);
+    index = 3+4*index;
+    vals.splice(index, 4);
     Test.uiRefreshSectionContent(Test.sectionTypes.ifStatement,counter,vals);
 }
 
@@ -788,9 +790,9 @@ Test.uiAddSetVarColumn=function(counter){
     vals.splice(vals[0]+6, 0, 0);
     Test.uiRefreshSectionContent(Test.sectionTypes.setVariable,counter,vals);
 }
-Test.uiRemoveSetVarColumn=function(counter){
+Test.uiRemoveSetVarColumn=function(counter,index){
     var vals = Test.getSectionValues(Test.sectionDivToObject($('#divSection_'+counter)));
-    vals.splice(vals[0]+6, 1);
+    vals.splice(7+index, 1);
     vals[0]--;
     Test.uiRefreshSectionContent(Test.sectionTypes.setVariable,counter,vals);
 }
@@ -801,9 +803,10 @@ Test.uiAddSetVarCondition=function(counter){
     Test.uiRefreshSectionContent(Test.sectionTypes.setVariable,counter,vals);
 }
 
-Test.uiRemoveSetVarCondition=function(counter){
+Test.uiRemoveSetVarCondition=function(counter,index){
     var vals = Test.getSectionValues(Test.sectionDivToObject($('#divSection_'+counter)));
     vals[1]--;
+    vals.splice(7+index*4,4);
     Test.uiRefreshSectionContent(Test.sectionTypes.setVariable,counter,vals);
 }
 
@@ -1382,9 +1385,9 @@ Test.uiAddParameter=function(){
     this.uiRefreshVariables(vars,null);
 };
 
-Test.uiRemoveParameter=function(){
+Test.uiRemoveParameter=function(index){
     var vars = this.getSerializedParameterVariables();
-    vars.pop();
+    vars.splice(index,1);
     this.uiRefreshVariables(vars,null);
 };
 
@@ -1398,9 +1401,9 @@ Test.uiAddReturn=function(){
     this.uiRefreshVariables(null,vars);
 };
 
-Test.uiRemoveReturn=function(){
+Test.uiRemoveReturn=function(index){
     var vars = this.getSerializedReturnVariables();
-    vars.pop();
+    vars.splice(index,1);
     this.uiRefreshVariables(null,vars);
 };
 
