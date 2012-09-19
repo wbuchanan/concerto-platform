@@ -497,6 +497,9 @@ Test.uiRefreshSectionContent=function(type,counter,value,oid,end){
         Methods.iniTooltips();
         Test.uiRefreshCodeMirrors();
         Methods.incrementProgress();
+        if(Test.assignmentsShown) {
+            $("#divSection_"+counter+" .tdVarPointer").show(0);
+        } 
     });
 };
 
