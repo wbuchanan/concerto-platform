@@ -4838,5 +4838,14 @@ Note: You can add new languages by inserting "<new_language>string translated in
             <bg></bg>
             <nl></nl>
         </string>
+        <string id="522">
+            <en>go to related object</en>
+            <de></de>
+            <pl>przejdź do powiązanego obiektu</pl>
+            <cn></cn>
+            <fr></fr>
+            <bg></bg>
+            <nl></nl>
+        </string>
     </strings>
 </root> 

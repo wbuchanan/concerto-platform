@@ -73,6 +73,11 @@ if ($table != null) {
                 <tr>
                     <td class="noWrap"><b><?= Language::string(435) ?>:</b></td>
                     <td><span class="spanIcon ui-icon ui-icon-help tooltip" title="<?= htmlspecialchars(Template::strip_html($description), ENT_QUOTES) ?>"></span></td>
+                    <?php if (isset($vals[5]) && $vals[5] != 0) { ?>
+                        <td>
+                            <span class="spanIcon ui-icon ui-icon-extlink tooltip" title="<?= Language::string(522) ?>" onclick="Test.uiGoToRelatedObject(<?= $_POST['counter'] ?>,<?= $vals[5] ?>)"></span>
+                        </td>
+                    <?php } ?>
                     <td class="fullWidth">
                         <select class="fullWidth controlValue<?= $_POST['counter'] ?> ui-widget-content ui-corner-all" onchange="Test.uiRefreshSectionContent(<?= $_POST['type'] ?>, <?= $_POST['counter'] ?>, Test.getSectionValues(Test.sectionDivToObject($('#divSection_<?= $_POST['counter'] ?>'))))">
                             <option value="0">&lt;<?= Language::string(239) ?>&gt;</option>

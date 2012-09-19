@@ -58,6 +58,11 @@ if ($table != null) {
                 <table class="fullWidth">
                     <tr>
                         <td><span class="spanIcon ui-icon ui-icon-help tooltip" title="<?= htmlspecialchars(Template::strip_html($description), ENT_QUOTES) ?>"></span></td>
+                        <?php if (isset($vals[3]) && $vals[3] != 0) { ?>
+                            <td>
+                                <span class="spanIcon ui-icon ui-icon-extlink tooltip" title="<?= Language::string(522) ?>" onclick="Test.uiGoToRelatedObject(<?= $_POST['counter'] ?>,<?= $vals[3] ?>)"></span>
+                            </td>
+                        <?php } ?>
                         <td class="fullWidth">
                             <select id="selectTableModTable_<?= $_POST['counter'] ?>" class="controlValue<?= $_POST['counter'] ?> ui-widget-content ui-corner-all fullWidth" onchange="Test.uiRefreshSectionContent(<?= $_POST['type'] ?>, <?= $_POST['counter'] ?>, Test.getSectionValues(Test.sectionDivToObject($('#divSection_<?= $_POST['counter'] ?>'))))">
                                 <option value="0">&lt;no table selected&gt;</option>

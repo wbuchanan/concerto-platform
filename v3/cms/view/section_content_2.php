@@ -67,6 +67,11 @@ if ($template != null) {
                         <td>
                             <span class="spanIcon ui-icon ui-icon-help tooltip" title="<?= htmlspecialchars(Template::strip_html($description), ENT_QUOTES) ?>"></span>
                         </td>
+                        <?php if (isset($vals[0]) && $vals[0] != 0) { ?>
+                            <td>
+                                <span class="spanIcon ui-icon ui-icon-extlink tooltip" title="<?= Language::string(522) ?>" onclick="Test.uiGoToRelatedObject(<?= $_POST['counter'] ?>,<?= $vals[0] ?>)"></span>
+                            </td>
+                        <?php } ?>
                         <td class="fullWidth">
                             <select id="selectTemplate_<?= $_POST['counter'] ?>" class="fullWidth ui-widget-content ui-corner-all fullWidth" onchange="Test.uiRefreshSectionContent(<?= $_POST['type'] ?>, <?= $_POST['counter'] ?>, Test.getSectionValues(Test.sectionDivToObject($('#divSection_<?= $_POST['counter'] ?>'))))">
                                 <option value="0">&lt;<?= Language::string(73) ?>&gt;</option>
@@ -83,7 +88,7 @@ if ($template != null) {
                     </tr>
                 </table>
             </td>
-            <td class="tdSectionColumnIcon"><span class="spanIcon ui-icon ui-icon-newwin tooltip" title="<?=Language::string(511)?>" onclick="Test.duplicateSection(<?=$_POST['counter']?>)"></span></td>
+            <td class="tdSectionColumnIcon"><span class="spanIcon ui-icon ui-icon-newwin tooltip" title="<?= Language::string(511) ?>" onclick="Test.duplicateSection(<?= $_POST['counter'] ?>)"></span></td>
             <td class="tdSectionColumnIcon"></td>
             <td class="tdSectionColumnEnd"><input type="checkbox" class="tooltip" id="chkEndSection_<?= $_POST['counter'] ?>" class="chkEndSection" <?= $_POST['end'] == 1 ? "checked" : "" ?> title="<?= Language::string(369) ?>" /></td>
             <td class="tdSectionColumnIcon"><span class="spanIcon tooltip ui-icon ui-icon-trash" onclick="Test.uiRemoveSection(<?= $_POST['counter'] ?>)" title="<?= Language::string(59) ?>"></span></td>

@@ -105,6 +105,44 @@ Test.uiSaveValidate=function(ignoreOnBefore,isNew){
     Test.uiSaveValidated(ignoreOnBefore,isNew);
 }
 
+Test.uiGoToRelatedObject=function(counter,oid){
+    if(oid==0) return;
+    var div = $("#divSection_"+counter);
+    var obj = Test.sectionDivToObject(div);
+    switch(obj.type){
+        //templates
+        case Test.sectionTypes.loadTemplate:{
+            $("#tnd_mainMenu").tabs("select","#tnd_mainMenu-templates");
+            Template.uiEdit(oid);
+            break;
+        }
+        //tables
+        case Test.sectionTypes.tableModification:
+        case Test.sectionTypes.setVariable:{
+            $("#tnd_mainMenu").tabs("select","#tnd_mainMenu-tables");
+            Table.uiEdit(oid);
+            break;
+        }
+        //custom sections
+        case Test.sectionTypes.custom:{
+            $("#tnd_mainMenu").tabs("select","#tnd_mainMenu-customSections");
+            CustomSection.uiEdit(oid);
+            break;
+        }
+        //tests
+        case Test.sectionTypes.test:{
+            Test.uiEdit(oid);
+            break;
+        }
+        //QTI
+        case Test.sectionTypes.QTIInitialization:{
+            $("#tnd_mainMenu").tabs("select","#tnd_mainMenu-QTI");
+            QTIAssessmentItem.uiEdit(oid);
+            break;
+        }
+    }
+}
+
 Test.isTestDirty = false;
 Test.convertToLowerLevel=function(counter){
     if(Test.isTestDirty) {
