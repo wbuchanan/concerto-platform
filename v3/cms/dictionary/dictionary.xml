@@ -4802,5 +4802,41 @@ Note: You can add new languages by inserting "<new_language>string translated in
             <nl></nl>
             <pt></pt>
         </string>
+        <string id="518">
+            <en>Select the custom section to be loaded.</en>
+            <de></de>
+            <pl>Wybierz własną sekcję, którą chcesz wczytać.</pl>
+            <cn></cn>
+            <fr></fr>
+            <bg></bg>
+            <nl></nl>
+        </string>
+        <string id="519">
+            <en>Description of selected custom section</en>
+            <de></de>
+            <pl>Opis obecnie wybranej własnej sekcji</pl>
+            <cn></cn>
+            <fr></fr>
+            <bg></bg>
+            <nl></nl>
+        </string>
+        <string id="520">
+            <en>Select the test to be loaded.</en>
+            <de></de>
+            <pl>Wybierz test, który chcesz wczytać.</pl>
+            <cn></cn>
+            <fr></fr>
+            <bg></bg>
+            <nl></nl>
+        </string>
+        <string id="521">
+            <en>Description of selected test</en>
+            <de></de>
+            <pl>Opis obecnie wybranego testu</pl>
+            <cn></cn>
+            <fr></fr>
+            <bg></bg>
+            <nl></nl>
+        </string>
     </strings>
 </root> 

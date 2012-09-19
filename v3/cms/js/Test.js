@@ -67,7 +67,7 @@ Test.onAfterAdd=function(){
 Test.onAfterSave=function()
 {
     //Test.uiTestsChanged();
-};
+    };
 
 Test.onAfterDelete=function(){
     Test.uiTestsChanged();
@@ -179,10 +179,25 @@ Test.getSectionValues=function(section){
             });
             return values;
         }
-        case Test.sectionTypes.test:
+        case Test.sectionTypes.test: {
+            var values = [
+            $(".divSection[seccounter="+section.counter+"] #selectTest_"+section.counter).val(),
+            $(".divSection[seccounter="+section.counter+"] .controlValue"+section.counter+"_params").length,
+            $(".divSection[seccounter="+section.counter+"] .controlValue"+section.counter+"_rets").length,
+            ];
+            $(".divSection[seccounter="+section.counter+"] .controlValue"+section.counter+"_params").each(function(){
+                values.push($(this).attr("referenced"));
+                values.push($(this).val());
+            });
+            $(".divSection[seccounter="+section.counter+"] .controlValue"+section.counter+"_rets").each(function(){
+                values.push($(this).attr("referenced"));
+                values.push($(this).val());
+            });
+            return values;
+        }
         case Test.sectionTypes.custom:{
             var values = [
-            $(".divSection[seccounter="+section.counter+"] .controlValue"+section.counter).val(),
+            $(".divSection[seccounter="+section.counter+"] #selectCustomSection_"+section.counter).val(),
             $(".divSection[seccounter="+section.counter+"] .controlValue"+section.counter+"_params").length,
             $(".divSection[seccounter="+section.counter+"] .controlValue"+section.counter+"_rets").length,
             ];
