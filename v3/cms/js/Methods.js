@@ -212,7 +212,7 @@ Methods.alert=function(message,icon,title,callback)
         {
             ok:function(){
                 $(this).dialog("close");
-                //if(callback!=null) callback.call(this);
+            //if(callback!=null) callback.call(this);
             }
         }
     });
@@ -425,6 +425,12 @@ Methods.checkLatestVersion=function(callback,proxy)
         success: function(feed) {
             var max=Methods.currentVersion;
             var isNewerVersion=false;
+            if(feed.items == undefined){
+                Methods.latestVersion="?";
+            
+                callback.call(this,1,Methods.latestVersion);
+                return;
+            }
             for(var i=0;i<feed.items.length;i++) 
             {
                 var desc = feed.items[i].description;

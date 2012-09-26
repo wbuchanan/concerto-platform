@@ -390,6 +390,7 @@ class TestSession extends OTable {
             sink(stdout(), type='message')
             options(encoding='UTF-8')
             library(session)
+            " . ($path_mysql_home != "" ? "Sys.setenv('MYSQL_HOME'='" . $path_mysql_home . "')" : "") . "
             restore.session('" . $this->get_RSession_file_path() . "')
                 
             CONCERTO_DB_HOST <- '" . $db_host . "'

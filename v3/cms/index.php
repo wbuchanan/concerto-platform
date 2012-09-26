@@ -33,6 +33,7 @@ if (!isset($ini)) {
         <meta http-equiv="Expires" content="-1"/>
         <title>Concerto Platform</title>
         <link rel="stylesheet" href="css/styles.css" />
+        <link rel="stylesheet" href="../css/jQueryUI/cupertino/jquery-ui-1.8.23.custom.css" />
 
         <link rel="stylesheet" href="js/lib/loadmask/jquery.loadmask.css" />
         <link rel="stylesheet" href="js/lib/selectmenu/jquery.ui.selectmenu.css" />

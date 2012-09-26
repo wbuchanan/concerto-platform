@@ -31,7 +31,7 @@ class Ini {
     public static $path_r_script = "";
     public static $path_temp = "";
     public static $path_mysql_home = "";
-    public static $version = "3.8.0";
+    public static $version = "3.8.1";
     public static $sock_host = "127.0.0.1";
     public static $sock_port = "8888";
     public static $path_unix_sock = "";
@@ -103,7 +103,7 @@ class Ini {
         include __DIR__ . "/SETTINGS.php";
         self::$path_external = $path_external;
         self::$path_external_media = self::$path_external . "media/";
-        self::$path_internal = __DIR__ . "/";
+        self::$path_internal = str_replace("\\", "/", __DIR__) . "/";
         self::$path_internal_media = self::$path_internal . "media/";
         self::$path_r_script = $path_r_script;
         self::$path_r_exe = $path_r_exe;
@@ -135,8 +135,10 @@ class Ini {
         self::$timer_tamper_prevention = $timer_tamper_prevention;
         self::$timer_tamper_prevention_tolerance = $timer_tamper_prevention_tolerance;
         self::$timezone = $timezone;
-        if($mysql_timezone=="") self::$mysql_timezone = $timezone;
-        else self::$mysql_timezone = $mysql_timezone;
+        if ($mysql_timezone == "")
+            self::$mysql_timezone = $timezone;
+        else
+            self::$mysql_timezone = $mysql_timezone;
     }
 
     public static function does_patch_apply($patch_version, $previous_version) {
@@ -188,7 +190,7 @@ class Ini {
         if (!$h)
             return false;
         mysql_set_charset('utf8', $h);
-        mysql_query(sprintf("SET time_zone = '%s';",Ini::$mysql_timezone));
+        mysql_query(sprintf("SET time_zone = '%s';", Ini::$mysql_timezone));
         if (mysql_select_db($db_name, $h))
             return true;
         else
