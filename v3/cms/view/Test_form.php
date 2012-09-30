@@ -186,26 +186,24 @@ if ($oid != 0) {
     if ($oid != -1) {
         ?>
         <div class="divFormFloatingBar" align="right">
-            <div class="ui-widget-content ui-corner-tl table">
-                <button class="btnGoToTop" onclick="location.href='#'"><?= Language::string(442) ?></button>
-                <?= $btn_cancel ?>
-                <?= $btn_delete ?>
-                <?= $btn_save ?>
-                <?= $btn_save_new ?>
-                <?php
-                if ($class_name::$exportable && $oid > 0) {
-                    ?>
-                    <button class="btnExport" onclick="<?= $class_name ?>.uiExport(<?= $oid ?>)"><?= Language::string(443) ?></button>
-                    <button class="btnUpload" onclick="<?= $class_name ?>.uiUpload(<?= $oid ?>)"><?= Language::string(383) ?></button>
-                    <?php
-                }
+            <button class="btnGoToTop" onclick="location.href='#'"><?= Language::string(442) ?></button>
+            <?= $btn_cancel ?>
+            <?= $btn_delete ?>
+            <?= $btn_save ?>
+            <?= $btn_save_new ?>
+            <?php
+            if ($class_name::$exportable && $oid > 0) {
                 ?>
-                <button class="btnLogicVariables" onclick="Test.uiShowVarsDialog()"><?= Language::string(144) ?></button>
-                <button class="btnDebugTest" onclick="Test.uiIniDebug()"><?= Language::string(284) ?></button>
-                <button class="btnRunTest" onclick="window.open('<?= Ini::$path_external . "?tid=" . $obj->id ?>','_blank')"><?= Language::string(362) ?></button>
-                <button class="btnLogicToggleAll" onclick="Test.uiToggleAll()"><?= Language::string(401) ?></button>
-                <button class="btnLogicToggleVarAssignment" onclick="Test.uiToggleVarAssignments()"><?= Language::string(454) ?></button>
-            </div>
+                <button class="btnExport" onclick="<?= $class_name ?>.uiExport(<?= $oid ?>)"><?= Language::string(443) ?></button>
+                <button class="btnUpload" onclick="<?= $class_name ?>.uiUpload(<?= $oid ?>)"><?= Language::string(383) ?></button>
+                <?php
+            }
+            ?>
+            <button class="btnLogicVariables" onclick="Test.uiShowVarsDialog()"><?= Language::string(144) ?></button>
+            <button class="btnDebugTest" onclick="Test.uiIniDebug()"><?= Language::string(284) ?></button>
+            <button class="btnRunTest" onclick="window.open('<?= Ini::$path_external . "?tid=" . $obj->id ?>','_blank')"><?= Language::string(362) ?></button>
+            <button class="btnLogicToggleAll" onclick="Test.uiToggleAll()"><?= Language::string(401) ?></button>
+            <button class="btnLogicToggleVarAssignment" onclick="Test.uiToggleVarAssignments()"><?= Language::string(454) ?></button>
         </div>
         <?php
     }

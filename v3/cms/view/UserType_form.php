@@ -203,21 +203,19 @@ if ($oid != 0) {
     if ($oid != -1) {
         ?>
         <div class="divFormFloatingBar" align="right">
-            <div class="ui-widget-content ui-corner-tl table">
-                <button class="btnGoToTop" onclick="location.href='#'"><?= Language::string(442) ?></button>
-                <?= $btn_cancel ?>
-                <?= $btn_delete ?>
-                <?= $btn_save ?>
-                <?= $btn_save_new ?>
-                <?php
-                if ($class_name::$exportable && $oid > 0) {
-                    ?>
-                    <button class="btnExport" onclick="<?= $class_name ?>.uiExport(<?= $oid ?>)"><?= Language::string(443) ?></button>
-                    <button class="btnUpload" onclick="<?= $class_name ?>.uiUpload(<?= $oid ?>)"><?= Language::string(383) ?></button>
-                    <?php
-                }
+            <button class="btnGoToTop" onclick="location.href='#'"><?= Language::string(442) ?></button>
+            <?= $btn_cancel ?>
+            <?= $btn_delete ?>
+            <?= $btn_save ?>
+            <?= $btn_save_new ?>
+            <?php
+            if ($class_name::$exportable && $oid > 0) {
                 ?>
-            </div>
+                <button class="btnExport" onclick="<?= $class_name ?>.uiExport(<?= $oid ?>)"><?= Language::string(443) ?></button>
+                <button class="btnUpload" onclick="<?= $class_name ?>.uiUpload(<?= $oid ?>)"><?= Language::string(383) ?></button>
+                <?php
+            }
+            ?>
         </div>
         <?php
     }
