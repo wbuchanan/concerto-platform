@@ -587,7 +587,7 @@ Test.uiWriteSection=function(type,parent,counter,value,oid,refresh,csid,after,en
         container = $("#divTestLogic");
     } else 
 {
-        container = $("#divSection_"+parent).find(".divSectionContainer");
+        container = $("#divSection_"+parent).children(".divSectionContainer");
     }
     
     var section = $("<div />",{
