@@ -83,7 +83,7 @@ class TestInstance {
         );
 
         include Ini::$path_internal . 'SETTINGS.php';
-        $this->r = proc_open("\"" . Ini::$path_r_exe . "\" --vanilla", $descriptorspec, $this->pipes, Ini::$path_temp, $env);
+        $this->r = proc_open("\"" . Ini::$path_r_exe . "\" --vanilla --quiet --no-readline", $descriptorspec, $this->pipes, Ini::$path_temp, $env);
         if (is_resource($this->r)) {
             if (TestServer::$debug)
                 TestServer::log_debug("TestInstance->start() --- Test instance started");

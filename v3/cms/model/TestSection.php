@@ -504,7 +504,7 @@ class TestSection extends OTable {
         $parent = TestSection::from_property(array("Test_id" => $this->Test_id, "counter" => $this->parent_counter, "TestSectionType_id" => DS_TestSectionType::LOOP), false);
         if ($parent == null)
             return false;
-        $next = $this->get_next_TestSection();
+        $next = $this->get_next_not_child_TestSection();
         if ($next->parent_counter != $this->parent_counter)
             return true;
         else

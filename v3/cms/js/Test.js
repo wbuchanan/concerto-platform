@@ -452,7 +452,7 @@ Test.uiRefreshSectionContent=function(type,counter,value,oid,end){
         $("#divSection_"+counter).unmask();
         $("#divSection_"+counter).children(".divSectionContent").html(data);
         $("#divSection_"+counter).find(".divSectionSummary").attr("onmouseover","Test.uiToggleHover("+counter+",true);").attr("onmouseout","Test.uiToggleHover("+counter+",false);");
-        switch(type){
+        switch(parseInt(type)){
             case Test.sectionTypes.RCode:{
                 var cm = Methods.iniCodeMirror("textareaCodeMirror_"+counter, "r", false,function(){
                     });
@@ -847,7 +847,7 @@ Test.uiAddSetVarCondition=function(counter){
 Test.uiRemoveSetVarCondition=function(counter,index){
     var vals = Test.getSectionValues(Test.sectionDivToObject($('#divSection_'+counter)));
     vals[1]--;
-    vals.splice(7+index*4,4);
+    vals.splice(7+vals[0]+index*4,4);
     Test.uiRefreshSectionContent(Test.sectionTypes.setVariable,counter,vals);
 }
 

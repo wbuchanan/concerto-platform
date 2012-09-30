@@ -389,6 +389,7 @@ class TestSession extends OTable {
             $code = "
             sink(stdout(), type='message')
             options(encoding='UTF-8')
+            options(error=quote(stop(geterrmessage())))
             library(session)
             " . ($path_mysql_home != "" ? "Sys.setenv('MYSQL_HOME'='" . $path_mysql_home . "')" : "") . "
             restore.session('" . $this->get_RSession_file_path() . "')
@@ -459,6 +460,7 @@ class TestSession extends OTable {
         }
         $code .= sprintf("
             options(encoding='UTF-8')
+            options(error=quote(stop(geterrmessage())))
             CONCERTO_TEST_ID <- %d
             CONCERTO_TEST_SESSION_ID <- %d
             

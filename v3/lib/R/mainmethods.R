@@ -20,7 +20,6 @@
 setwd(CONCERTO_TEMP_PATH)
 library(session)
 library(catR)
-options(digits=3)
 
 update.session.counter <- function(CONCERTO_PARAM){
    CONCERTO_PARAM <- dbEscapeStrings(CONCERTO_DB_CONNECTION,toString(CONCERTO_PARAM))

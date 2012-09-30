@@ -438,6 +438,7 @@ class TestServer {
                 include Ini::$path_internal . 'SETTINGS.php';
                 $code = "
                 options(encoding='UTF-8')
+                options(error=quote(stop(geterrmessage())))
                 library(session)
                 restore.session('" . $session->get_RSession_file_path() . "')
 
