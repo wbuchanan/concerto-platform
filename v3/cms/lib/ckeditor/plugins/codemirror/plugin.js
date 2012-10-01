@@ -30,11 +30,11 @@ CKEDITOR.plugins.add( 'codemirror', {
                     matchBrackets:true,
                     lineWrapping:true,
                     autoClearEmptyLines:true,
-                    indentWithTabs:true,
-                    onChange:function(instance){
-                        instance.save();
-                        instance.refresh();
-                    }
+                    indentWithTabs:true
+                });
+                codemirrorInit.on("change",function(instance){
+                    instance.save();
+                    instance.refresh();
                 });
                 codemirrorInit.setSize(775,null);
                 codemirrorInit.refresh();

@@ -454,8 +454,7 @@ Test.uiRefreshSectionContent=function(type,counter,value,oid,end){
         $("#divSection_"+counter).find(".divSectionSummary").attr("onmouseover","Test.uiToggleHover("+counter+",true);").attr("onmouseout","Test.uiToggleHover("+counter+",false);");
         switch(parseInt(type)){
             case Test.sectionTypes.RCode:{
-                var cm = Methods.iniCodeMirror("textareaCodeMirror_"+counter, "r", false,function(){
-                    });
+                var cm = Methods.iniCodeMirror("textareaCodeMirror_"+counter, "r", false);
                 Test.codeMirrors.push(cm);
                 break;
             }
@@ -465,8 +464,7 @@ Test.uiRefreshSectionContent=function(type,counter,value,oid,end){
                 break;
             }
             case Test.sectionTypes.setVariable:{
-                var cm = Methods.iniCodeMirror("textareaCodeMirror_"+counter, "r", false,function(){
-                    });
+                var cm = Methods.iniCodeMirror("textareaCodeMirror_"+counter, "r", false);
                 Test.codeMirrors.push(cm);
                 break;
             }
