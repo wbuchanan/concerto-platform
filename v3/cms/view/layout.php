@@ -174,4 +174,4 @@ if (Ini::$cms_session_keep_alive) {
 <div id="divDialogDownload" class="notVisible">
 </div>
 
-<div class="margin padding ui-widget-content ui-corner-all table" align="center"><?php include Ini::$path_internal . 'cms/view/includes/footer.inc.php'; ?></div>
+<div class="margin padding ui-widget-content ui-corner-all table" style="margin-bottom:50px;" align="center"><?php include Ini::$path_internal . 'cms/view/includes/footer.inc.php'; ?></div>

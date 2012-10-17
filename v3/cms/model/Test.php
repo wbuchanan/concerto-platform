@@ -79,6 +79,7 @@ class Test extends OModule {
             }
         }
 
+        $i=0;
         if (array_key_exists("parameters", $post)) {
             foreach ($post["parameters"] as $param) {
                 $p = json_decode($param);

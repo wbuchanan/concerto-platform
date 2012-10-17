@@ -75,7 +75,7 @@ if (Ini::$public_registration) {
                             User.uiLogIn();
                         }
                     }]);
-                    $("button").first().addClass("ui-state-highlight");
+                    $("button").last().addClass("ui-state-highlight");
     <?php
 }
 ?>

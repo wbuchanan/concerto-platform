@@ -6,7 +6,6 @@
 }
 .CodeMirror-scroll {
   /* Set scrolling behaviour here */
-  overflow: auto;
   height: auto;
   overflow-y: hidden;
   overflow-x: auto;
@@ -177,6 +176,7 @@ div.CodeMirror span.CodeMirror-nonmatchingbracket {color: #f22;}
   color: inherit;
   z-index: 2;
   position: relative;
+  overflow: visible;
 }
 .CodeMirror-wrap pre {
   word-wrap: break-word;

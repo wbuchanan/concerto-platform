@@ -346,7 +346,7 @@ window.CodeMirror = (function() {
     if (updated) {
       signalLater(cm, cm, "update", cm);
       if (cm.display.showingFrom != oldFrom || cm.display.showingTo != oldTo)
-        signalLater(cm, cm, "update", cm, cm.display.showingFrom, cm.display.showingTo);
+        signalLater(cm, cm, "viewportChange", cm, cm.display.showingFrom, cm.display.showingTo);
     }
     updateSelection(cm);
     updateScrollbars(cm.display, cm.view.doc.height, scrollTop);
@@ -381,7 +381,8 @@ window.CodeMirror = (function() {
       for (var i = 0; i < changes.length; ++i)
         if (changes[i].diff) { positionsChangedFrom = changes[i].from; break; }
 
-    var from = Math.max(visible.from - 100, 0), to = Math.min(doc.size, visible.to + 100);
+    var from = Math.max(visible.from - cm.options.viewportMargin, 0);
+    var to = Math.min(doc.size, visible.to + cm.options.viewportMargin);
     if (display.showingFrom < from && from - display.showingFrom < 20) from = display.showingFrom;
     if (display.showingTo > to && display.showingTo - to < 20) to = Math.min(doc.size, display.showingTo);
 
@@ -430,7 +431,7 @@ window.CodeMirror = (function() {
       // is magically replaced with a new node in the DOM, leaving
       // us with a reference to an orphan (nextSibling-less) node.
       if (!curNode) return;
-      if (!line.hidden) {
+      if (!line.hidden || (line.hidden.handle.showWidgets && line.widgets)) {
         var end = curNode.offsetHeight + curNode.offsetTop;
         var height = end - relativeTo, diff = line.height - height;
         if (height < 2) height = textHeight(display);
@@ -501,9 +502,11 @@ window.CodeMirror = (function() {
     cm.view.doc.iter(from, to, function(line) {
       if (nextIntact && nextIntact.to == j) nextIntact = intact.shift();
       if (!nextIntact || nextIntact.from > j) {
-        if (line.hidden) var lineElement = elt("div");
-        else {
-          var lineElement = lineContent(cm, line), markers = line.gutterMarkers;
+        if (line.hidden && (!line.hidden.handle.showWidgets || !line.widgets)) { 
+            var lineElement = elt("div");
+        } else {
+          var lineElement = line.hidden ? elt("div") : lineContent(cm, line);
+          var markers = line.gutterMarkers;
           if (line.className) lineElement.className = line.className;
           // Lines with gutter elements or a background class need
           // to be wrapped again, and have the extra elements added
@@ -579,7 +582,7 @@ window.CodeMirror = (function() {
       var pos = headPos = cursorCoords(cm, sel.from, "div");
       display.cursor.style.left = pos.left + "px";
       display.cursor.style.top = pos.top + "px";
-      display.cursor.style.height = (pos.bottom - pos.top) * cm.options.cursorHeight + "px";
+      display.cursor.style.height = Math.max(0, pos.bottom - pos.top) * cm.options.cursorHeight + "px";
       display.cursor.style.display = "";
       display.selectionDiv.style.display = "none";
 
@@ -1931,7 +1934,7 @@ window.CodeMirror = (function() {
     function findNextLine() {
       for (var l = line + dir, e = dir < 0 ? -1 : doc.size; l != e; l += dir) {
         var lo = getLine(doc, l);
-        if (!lo.hidden || !lo.hidden.handle.unfoldOnEneter) { line = l; lineObj = lo; return true; }
+        if (!lo.hidden || lo.hidden.handle.unfoldOnEnter) { line = l; lineObj = lo; return true; }
       }
     }
     function moveOnce(boundToLine) {
@@ -2019,6 +2022,7 @@ window.CodeMirror = (function() {
       else if (option == "keyMap") keyMapChanged(this);
       else if (option == "gutters" || option == "lineNumbers") setGuttersForLineNumbers(this.options);
       else if (option == "tabindex") this.display.input.tabIndex = value;
+      else if (option == "viewportMargin") this.refresh();
       if (option == "lineNumbers" || option == "gutters" || option == "firstLineNumber" ||
           option == "theme" || option == "lineNumberFormatter")
         guttersChanged(this);
@@ -2205,11 +2209,12 @@ window.CodeMirror = (function() {
       regChange(this, no, no + 1);
     }),
 
-    foldLines: operation(null, function(from, to, unfoldOnEnter) {
+    foldLines: operation(null, function(from, to, options) {
       if (typeof from != "number") from = lineNo(from);
       if (typeof to != "number") to = lineNo(to);
       if (from > to) return;
-      var lines = [], handle = {lines: lines, unfoldOnEnter: unfoldOnEnter}, cm = this, view = cm.view, doc = view.doc;
+      var handle = options || {}, lines = handle.lines = [];
+      var cm = this, view = cm.view, doc = view.doc;
       doc.iter(from, to, function(line) {
         lines.push(line);
         if (!line.hidden && line.text.length == cm.view.maxLine.text.length)
@@ -2492,6 +2497,7 @@ window.CodeMirror = (function() {
     workDelay: 200,
     pollInterval: 100,
     undoDepth: 40,
+    viewportMargin: 100,
     tabindex: null,
     autofocus: null,
     lineNumberFormatter: function(integer) { return integer; }
@@ -3014,6 +3020,7 @@ window.CodeMirror = (function() {
     update: function(text, markedSpans, cm) {
       this.text = text;
       this.stateAfter = this.styles = null;
+      if (this.order != null) this.order = null;
       detachMarkedSpans(this);
       attachMarkedSpans(this, markedSpans);
       signalLater(cm, this, "change");
