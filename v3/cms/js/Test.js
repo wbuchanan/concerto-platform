@@ -599,9 +599,10 @@ Test.uiWriteSection=function(type,parent,counter,value,oid,refresh,csid,after,en
         style:"z-index:20; border:1px dotted grey; border-right:1px dotted transparent; margin:5px; margin-right:0px;"
     });
     
-    var sectionContainer = '<div class="divSectionBracket"><table class="noSpace"><tr><td class="noSpace">{</td><td class="noSpace"><span class="spanIcon tooltip ui-icon ui-icon-plus" onclick="Test.uiAddLogicSection('+counter+',0)"  title="'+dictionary["s232"]+'"></span></td></tr></table></div><div class="divSectionContainer"></div><div class="divSectionBracket"><table class="noSpace"><tr><td class="noSpace">}</td></tr></table></div>';
+    var sectionContainer = '<div class="divSectionBracket"><table class="noSpace fullWidth"><tr><td class="noSpace">{</td><td class="noSpace" align="right"><span class="spanIcon tooltip ui-icon ui-icon-plus" onclick="Test.uiAddLogicSection('+counter+',0)"  title="'+dictionary["s232"]+'"></span></td></tr></table></div><div class="divSectionContainer"></div><div class="divSectionBracket"><table class="noSpace"><tr><td class="noSpace">}</td></tr></table></div>';
     
     section.html('<div class="divSectionContent"></div>'+(type==Test.sectionTypes.ifStatement|| type==Test.sectionTypes.loop?sectionContainer:""));
+    if(type!=Test.sectionTypes.end) section.append('<div align="right"><span class="spanIcon tooltip ui-icon ui-icon-plus" onclick="Test.uiAddLogicSection(0,'+counter+')" title="'+dictionary['s60']+'"></span></div>');
     
     if(after!=null && after != 0){
         $(".divSection[seccounter='"+after+"']").after(section);

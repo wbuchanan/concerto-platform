@@ -43,7 +43,6 @@ if ($logged_user == null)
             <td class="tdSectionColumnIcon"></td>
             <td class="tdSectionColumnEnd"></td>
             <td class="tdSectionColumnIcon"></td>
-            <td class="tdSectionColumnIcon"></td>
         </tr>
     </table>
 </div>

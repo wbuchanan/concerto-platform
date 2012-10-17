@@ -618,7 +618,7 @@ Note: You can add new languages by inserting "<new_language>string translated in
             <nl>logische testsectie verwijderen</nl>
             <pt>remova seção lógica do teste</pt>
         </string>
-        <string id="60">
+        <string id="60" js="1">
             <en>add test logic section</en>
             <de>Füge Sektion zur Testlogik hinzu</de>
             <pl>dodaj sekcję logiki testu</pl>

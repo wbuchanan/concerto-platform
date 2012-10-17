@@ -69,7 +69,6 @@ if (array_key_exists('oid', $_POST) && $_POST['oid'] != 0) {
             <td class="tdSectionColumnIcon"></td>
             <td class="tdSectionColumnEnd"></td>
             <td class="tdSectionColumnIcon"><span class="spanIcon tooltip ui-icon ui-icon-trash" onclick="Test.uiRemoveSection(<?= $_POST['counter'] ?>)" title="<?= Language::string(59) ?>"></span></td>
-            <td class="tdSectionColumnIcon"><span class="spanIcon tooltip ui-icon ui-icon-plus" onclick="Test.uiAddLogicSection(0,<?= $_POST['counter'] ?>)" title="<?= Language::string(60) ?>"></span></td>
         </tr>
     </table>
 </div>

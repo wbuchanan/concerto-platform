@@ -41,7 +41,6 @@ if ($logged_user == null) {
             <td class="tdSectionColumnIcon"></td>
             <td class="tdSectionColumnEnd"></td>
             <td class="tdSectionColumnIcon"></td>
-            <td class="tdSectionColumnIcon"><span class="spanIcon tooltip ui-icon ui-icon-plus" onclick="Test.uiAddLogicSection(0,<?= $_POST['counter'] ?>)" title="<?= Language::string(60) ?>"></span></td>
         </tr>
     </table>
 </div>
