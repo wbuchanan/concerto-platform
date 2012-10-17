@@ -41,7 +41,7 @@ if (!isset($ini)) {
         <link rel="stylesheet" href="js/lib/kendo-ui/styles/kendo.common.css" />
         <link rel="stylesheet" href="js/lib/kendo-ui/styles/kendo.default.css" />
         <link rel="stylesheet" href="lib/CodeMirror/lib/codemirror.css" />
-        <link rel="stylesheet" href="lib/CodeMirror/theme/ambiance.css" />
+        <link rel="stylesheet" href="lib/CodeMirror/theme/blackboard.css" />
 
         <script type="text/javascript" src="js/lib/jquery-1.8.1.min.js"></script>
         <script type="text/javascript" src="js/lib/jquery-ui-1.8.23.custom.min.js"></script>
