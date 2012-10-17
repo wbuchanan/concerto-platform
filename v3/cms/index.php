@@ -33,20 +33,17 @@ if (!isset($ini)) {
         <meta http-equiv="Expires" content="-1"/>
         <title>Concerto Platform</title>
         <link rel="stylesheet" href="css/styles.css" />
-        <link rel="stylesheet" href="../css/jQueryUI/cupertino/jquery-ui-1.8.23.custom.css" />
+        <link rel="stylesheet" href="css/jQueryUI/cupertino/jquery-ui-1.9.0.custom.min.css" />
 
         <link rel="stylesheet" href="js/lib/loadmask/jquery.loadmask.css" />
         <link rel="stylesheet" href="js/lib/selectmenu/jquery.ui.selectmenu.css" />
-        <link rel="stylesheet" href="js/lib/tooltip/jquery.ui.tooltip.min.css" />
         <link rel="stylesheet" href="js/lib/kendo-ui/styles/kendo.common.css" />
         <link rel="stylesheet" href="js/lib/kendo-ui/styles/kendo.default.css" />
         <link rel="stylesheet" href="lib/CodeMirror/lib/codemirror.css" />
         <link rel="stylesheet" href="lib/CodeMirror/theme/blackboard.css" />
 
-        <script type="text/javascript" src="js/lib/jquery-1.8.1.min.js"></script>
-        <script type="text/javascript" src="js/lib/jquery-ui-1.8.23.custom.min.js"></script>
-        <script type="text/javascript" src="js/lib/tooltip/jquery.ui.widget.js"></script>
-        <script type="text/javascript" src="js/lib/tooltip/jquery.ui.tooltip.js"></script>
+        <script type="text/javascript" src="js/lib/jquery-1.8.2.min.js"></script>
+        <script type="text/javascript" src="js/lib/jquery-ui-1.9.0.custom.min.js"></script>
         <script type="text/javascript" src="js/lib/selectmenu/jquery.ui.selectmenu.js"></script>
         <script type="text/javascript" src="js/lib/jquery.json-2.3.min.js"></script>
         <script type="text/javascript" src="js/lib/loadmask/jquery.loadmask.min.js"></script>
