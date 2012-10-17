@@ -31,12 +31,11 @@ if (!isset($ini)) {
         <meta charset="UTF-8">
         <title>Concerto Platform - setup page</title>
         <link rel="stylesheet" href="../cms/css/styles.css" />
-        <link rel="stylesheet" href="../css/jQueryUI/cupertino/jquery-ui-1.8.23.custom.css" />
+        <link rel="stylesheet" href="../cms/css/jQueryUI/cupertino/jquery-ui-1.9.0.custom.min.css" />
 
-        <script type="text/javascript" src="../cms/js/lib/jquery-1.8.1.min.js"></script>
-        <script type="text/javascript" src="../cms/js/lib/jquery-ui-1.8.23.custom.min.js"></script>
+        <script type="text/javascript" src="../cms/js/lib/jquery-1.8.2.min.js"></script>
+        <script type="text/javascript" src="../cms/js/lib/jquery-ui-1.9.0.custom.min.js"></script>
         <script type="text/javascript" src="../cms/js/Methods.js"></script>
-        <script src="../cms/js/lib/themeswitcher/jquery.themeswitcher.min.js"></script>
         <script src="../cms/lib/jfeed/build/dist/jquery.jfeed.js"></script>
 
         <script src="Setup.js"></script>
@@ -44,12 +43,6 @@ if (!isset($ini)) {
         <script>
             
             $(function(){
-                $('#switcher').themeswitcher({
-                    loadTheme:"Cupertino",
-                    imgpath: "../cms/js/lib/themeswitcher/images/",
-                    onSelect:function(){
-                    }
-                });
                 Methods.currentVersion = "<?= Ini::$version ?>";
                 Setup.path_external="<?= Ini::$path_external ?>";
                 
@@ -60,7 +53,6 @@ if (!isset($ini)) {
     </head>
 
     <body>
-        <div id="switcher"></div>
         <div align="center">
             <h2>Concerto Platform - <?= Ini::$version != "" ? "v" . Ini::$version . " - " : "" ?>setup page</h2>
 
