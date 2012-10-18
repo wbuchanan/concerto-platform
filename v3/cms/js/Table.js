@@ -39,7 +39,7 @@ Table.onAfterImport=function(){
 }
 
 Table.onAfterAdd=function(){
-}
+    }
 
 Table.getAddSaveObject=function()
 {
@@ -64,7 +64,7 @@ Table.getFullSaveObject=function(){
 Table.uiSaveValidate=function(ignoreOnBefore,isNew){
     if(!this.checkRequiredFields([
         $("#form"+this.className+"InputName").val()
-    ])) {
+        ])) {
         Methods.alert(dictionary["s415"],"alert");
         return false;
     }
@@ -245,7 +245,8 @@ Table.uiIniDataGrid=function(){
         columns.push({
             title:' ',
             width:30,
-            field:"id",
+            sortable:false,
+            filterable:false,
             template:'<span style="display:inline-block;" class="spanIcon tooltip ui-icon ui-icon-trash" onclick="'+thisClass.className+'.uiRemoveRow($(this))" title="'+dictionary["s11"]+'"></span>'
         });
         
@@ -262,7 +263,7 @@ Table.uiIniDataGrid=function(){
                     fields:fields
                 }
             },
-            pageSize:25
+            pageSize:20
         });
         
         Table.dataGridSchemaFields = fields;
@@ -271,14 +272,66 @@ Table.uiIniDataGrid=function(){
             dataBound:function(e){
                 Methods.iniTooltips();  
                 Table.uiIniHTMLTooltips();
+                if(this.dataSource.group().length == 0) {
+                    setTimeout( function() {
+                        $(".k-grouping-header").html(dictionary["s339"]);
+                    });
+                }
             },
             dataSource: dataSource,
             scrollable:false,
-            pageable:true,
+            resizable: true,
             sortable:true,
-            //scrollable: {
-            //    virtual: true
-            //},
+            columnMenu:{
+                messages: {
+                    filter: dictionary["s341"],
+                    columns: dictionary["s533"],
+                    sortAscending: dictionary["s534"],
+                    sortDescending: dictionary["s535"]
+                }  
+            },
+            pageable: {
+                refresh:true,
+                pageSizes:true,
+                messages: {
+                    display: dictionary["s527"],
+                    empty: dictionary["s528"],
+                    page: dictionary["s529"],
+                    of: dictionary["s530"],
+                    itemsPerPage: dictionary["s531"],
+                    first: dictionary["s523"],
+                    previous: dictionary["s524"],
+                    next: dictionary["s525"],
+                    last: dictionary["s526"],
+                    refresh: dictionary["s532"]
+                }
+            },
+            filterable:{
+                messages: {
+                    info: dictionary["s340"],
+                    filter: dictionary["s341"],
+                    clear: dictionary["s342"],
+                    and: dictionary["s227"],
+                    or: dictionary["s228"]
+                },
+                operators: {
+                    string: {
+                        contains: dictionary["s344"],
+                        eq: dictionary["s222"],
+                        neq: dictionary["s221"],
+                        startswith: dictionary["s343"],
+                        endswith: dictionary["s345"]
+                    },
+                    number: {
+                        eq: dictionary["s222"],
+                        neq: dictionary["s221"],
+                        gte: dictionary["s224"],
+                        gt: dictionary["s223"],
+                        lte: dictionary["s226"],
+                        lt: dictionary["s225"]
+                    }
+                }
+            },
             columns: columns,
             toolbar:[
             {
@@ -641,7 +694,7 @@ Table.uiExportCSV=function(){
             $('.ui-widget-overlay').css('position', 'fixed');
         },
         close:function(){
-            //$('.ui-widget-overlay').css('position', 'absolute');
+        //$('.ui-widget-overlay').css('position', 'absolute');
         },
         buttons:[{
             text:dictionary["s265"],
@@ -681,10 +734,10 @@ Table.uiImportTable=function(){
             modal:true,
             resizable:false,
             open:function(){
-              $('.ui-widget-overlay').css('position', 'fixed');  
+                $('.ui-widget-overlay').css('position', 'fixed');  
             },
             close:function(){
-              //$('.ui-widget-overlay').css('position', 'absolute');  
+            //$('.ui-widget-overlay').css('position', 'absolute');  
             },
             buttons:[{
                 text:dictionary["s22"],
@@ -740,7 +793,7 @@ Table.uiImportCSV=function(){
         modal:true,
         width:400,
         close:function(){
-            //$('.ui-widget-overlay').css('position', 'absolute');
+        //$('.ui-widget-overlay').css('position', 'absolute');
         },
         beforeClose:function(){
             
@@ -847,7 +900,7 @@ Table.uiAddColumn=function(){
         resizable:false,
         modal:true,
         open:function(){
-          $('.ui-widget-overlay').css('position', 'fixed');  
+            $('.ui-widget-overlay').css('position', 'fixed');  
         },
         close:function(){
             name.val("");
@@ -1021,7 +1074,7 @@ Table.uiChangeHTML=function(obj,field){
             $('.ui-widget-overlay').css('position', 'fixed');
         },
         close:function(){
-          //$('.ui-widget-overlay').css('position', 'absolute');  
+        //$('.ui-widget-overlay').css('position', 'absolute');  
         },
         create:function(){
             var thisDialog = $("#div"+Table.className+"DialogHTML");

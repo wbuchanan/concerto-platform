@@ -57,10 +57,11 @@ foreach (Language::languages() as $lng_node)
     });
 </script>
 
-<table>
+<table style="width:500px;">
     <tr>
         <td style="width:33%;" align="center" valign="middle">
-            <?= Language::string(82) ?>: <b><?= $logged_user->login . "</b>, <b>" . $logged_user->get_full_name() ?></b>
+            <?= Language::string(82) ?>: <br/>
+            <b><?= $logged_user->login . "</b>, <b>" . $logged_user->get_full_name() ?></b><br/>
             <button class="btnLogout" onclick="User.uiLogOut()"><?= Language::string(83) ?></button>
         </td>
         <td style="width:33%;" align="center" valign="middle">

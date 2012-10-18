@@ -400,7 +400,7 @@ class User extends OModule {
             "sortable" => true,
             "type" => "number",
             "groupable" => false,
-            "width" => 100,
+            "width" => 120,
             "show" => true
         ));
 

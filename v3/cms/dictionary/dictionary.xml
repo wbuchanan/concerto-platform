@@ -4847,5 +4847,122 @@ Note: You can add new languages by inserting "<new_language>string translated in
             <bg></bg>
             <nl></nl>
         </string>
+        <string id="523" js="1">
+            <en>Go to the first page</en>
+            <de></de>
+            <pl>Przejdź do pierwszej strony</pl>
+            <cn></cn>
+            <fr></fr>
+            <bg></bg>
+            <nl></nl>
+        </string>
+        <string id="524" js="1">
+            <en>Go to the previous page</en>
+            <de></de>
+            <pl>Przejdź do poprzedniej strony</pl>
+            <cn></cn>
+            <fr></fr>
+            <bg></bg>
+            <nl></nl>
+        </string>
+        <string id="525" js="1">
+            <en>Go to the next page</en>
+            <de></de>
+            <pl>Przejdź do następnej strony</pl>
+            <cn></cn>
+            <fr></fr>
+            <bg></bg>
+            <nl></nl>
+        </string>
+        <string id="526" js="1">
+            <en>Go to the last page</en>
+            <de></de>
+            <pl>Przejdź do ostatniej strony</pl>
+            <cn></cn>
+            <fr></fr>
+            <bg></bg>
+            <nl></nl>
+        </string>
+        <string id="527" js="1">
+            <en>{0} - {1} of {2} objects</en>
+            <de></de>
+            <pl>{0} - {1} z {2} obiektów</pl>
+            <cn></cn>
+            <fr></fr>
+            <bg></bg>
+            <nl></nl>
+        </string>
+        <string id="528" js="1">
+            <en>No objects to display</en>
+            <de></de>
+            <pl>Brak obiektów do pokazania</pl>
+            <cn></cn>
+            <fr></fr>
+            <bg></bg>
+            <nl></nl>
+        </string>
+        <string id="529" js="1">
+            <en>Page</en>
+            <de></de>
+            <pl>Strona</pl>
+            <cn></cn>
+            <fr></fr>
+            <bg></bg>
+            <nl></nl>
+        </string>
+        <string id="530" js="1">
+            <en>of {0}</en>
+            <de></de>
+            <pl>z {0}</pl>
+            <cn></cn>
+            <fr></fr>
+            <bg></bg>
+            <nl></nl>
+        </string>
+        <string id="531" js="1">
+            <en>items per page</en>
+            <de></de>
+            <pl>obiektów na stronę</pl>
+            <cn></cn>
+            <fr></fr>
+            <bg></bg>
+            <nl></nl>
+        </string>
+        <string id="532" js="1">
+            <en>refresh</en>
+            <de></de>
+            <pl>odśwież</pl>
+            <cn></cn>
+            <fr></fr>
+            <bg></bg>
+            <nl></nl>
+        </string>
+        <string id="533" js="1">
+            <en>Columns</en>
+            <de></de>
+            <pl>Kolumny</pl>
+            <cn></cn>
+            <fr></fr>
+            <bg></bg>
+            <nl></nl>
+        </string>
+        <string id="534" js="1">
+            <en>Sort Ascending</en>
+            <de></de>
+            <pl>Posortuj Rosnąco</pl>
+            <cn></cn>
+            <fr></fr>
+            <bg></bg>
+            <nl></nl>
+        </string>
+        <string id="535" js="1">
+            <en>Sort Descending</en>
+            <de></de>
+            <pl>Posortuj Malejąco</pl>
+            <cn></cn>
+            <fr></fr>
+            <bg></bg>
+            <nl></nl>
+        </string>
     </strings>
 </root> 

@@ -22,7 +22,7 @@ function OModule() {};
 OModule.inheritance=function(obj)
 {
     obj.currentID=0;
-    obj.listLength=25;
+    obj.listLength=20;
     obj.reloadOnModification=false;
     obj.reloadHash="";
     obj.currentPanel = "list";
@@ -92,7 +92,7 @@ OModule.inheritance=function(obj)
             width:950,
             open:function(){
                 $('.ui-widget-overlay').css('position', 'fixed');
-                Methods.stopModalLoading();
+                //Methods.stopModalLoading();
                 $("#divDialogDownload").html("<fieldset class='padding ui-widget-content ui-corner-all margin'><legend><table><tr><td><span class='tooltip spanIcon ui-icon ui-icon-help' title='"+dictionary["s498"]+"'></span></td><td class=''><b>"+dictionary["s497"]+"</b></td></tr></table></legend><div id='divDialogDownloadGrid'></div></fieldset>");
                 $("#divDialogDownloadGrid").kendoGrid({
                     dataBound:function(e){
@@ -100,20 +100,6 @@ OModule.inheritance=function(obj)
                         if(this.dataSource.group().length == 0) {
                             setTimeout( function() {
                                 $(".k-grouping-header").html(dictionary["s339"]);
-                                $("select[name='logic']").each(function() {
-                                    $(this).data("kendoDropDownList").dataSource.data([
-                                    {
-                                        text: dictionary["s227"], 
-                                        value: "and"
-                                    },
-
-                                    {
-                                        text: dictionary["s228"], 
-                                        value: "or"
-                                    }
-                                    ]);
-                                    $(this).data("kendoDropDownList").select(0);
-                                });
                             });
                         }
                     },
@@ -152,13 +138,15 @@ OModule.inheritance=function(obj)
                                 }
                             }
                         },
-                        pageSize:15
+                        pageSize:10
                     },
                     filterable:{
                         messages: {
                             info: dictionary["s340"],
                             filter: dictionary["s341"],
-                            clear: dictionary["s342"]
+                            clear: dictionary["s342"],
+                            and: dictionary["s227"],
+                            or: dictionary["s228"]
                         },
                         operators: {
                             string: {
@@ -178,14 +166,38 @@ OModule.inheritance=function(obj)
                             }
                         }
                     },
+                    columnMenu:{
+                        messages: {
+                            filter: dictionary["s341"],
+                            columns: dictionary["s533"],
+                            sortAscending: dictionary["s534"],
+                            sortDescending: dictionary["s535"]
+                        }  
+                    },
                     sortable:true,
-                    pageable:true,
+                    pageable: {
+                        refresh:true,
+                        pageSizes:true,
+                        messages: {
+                            display: dictionary["s527"],
+                            empty: dictionary["s528"],
+                            page: dictionary["s529"],
+                            of: dictionary["s530"],
+                            itemsPerPage: dictionary["s531"],
+                            first: dictionary["s523"],
+                            previous: dictionary["s524"],
+                            next: dictionary["s525"],
+                            last: dictionary["s526"],
+                            refresh: dictionary["s532"]
+                        }
+                    },
                     groupable:true,
                     scrollable:false,
+                    resizable: true,
                     columns:[
                     {
                         title: dictionary["s371"],
-                        width: 40,
+                        width: 60,
                         template: "<span class='spanIcon ui-icon ui-icon-help tooltip' title='${description}'></span>",
                         field: "description",
                         filterable: false,
@@ -194,7 +206,7 @@ OModule.inheritance=function(obj)
                     },
                     {
                         title: dictionary["s69"],
-                        width: 40,
+                        width: 60,
                         field: "id",
                         filterable: true,
                         sortable: true,

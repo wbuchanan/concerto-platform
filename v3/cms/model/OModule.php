@@ -113,7 +113,7 @@ class OModule extends OTable {
                 "type" => "string",
                 "groupable" => false,
                 "template" => "<span class='spanIcon ui-icon ui-icon-help tooltip' title='" . '${get_description}' . "'></span>",
-                "width" => 40,
+                "width" => 50,
                 "show" => true
             ));
         }
@@ -125,7 +125,7 @@ class OModule extends OTable {
             "sortable" => true,
             "type" => "number",
             "groupable" => false,
-            "width" => 40,
+            "width" => 60,
             "show" => true
         ));
         array_push($cols, array(
@@ -153,7 +153,7 @@ class OModule extends OTable {
             "sortable" => true,
             "type" => "string",
             "groupable" => true,
-            "width" => 100,
+            "width" => 120,
             "show" => true
         ));
 

@@ -85,13 +85,6 @@ $columns_def.="]";
                 if(this.dataSource.group().length == 0) {
                     setTimeout( function() {
                         $(".k-grouping-header").html(dictionary["s339"]);
-                        $("select[name='logic']").each(function() {
-                            $(this).data("kendoDropDownList").dataSource.data([
-                                {text: dictionary["s227"], value: "and"},
-                                {text: dictionary["s228"], value: "or"}
-                            ]);
-                            $(this).data("kendoDropDownList").select(0);
-                        });
                     });
                 }
 <?= $class_name ?>.uiRefreshCheckedList();
@@ -126,7 +119,9 @@ if ($class_name::$exportable) {
                 messages: {
                     info: dictionary["s340"],
                     filter: dictionary["s341"],
-                    clear: dictionary["s342"]
+                    clear: dictionary["s342"],
+                    and: dictionary["s227"],
+                    or: dictionary["s228"]
                 },
                 operators: {
                     string: {
@@ -147,8 +142,32 @@ if ($class_name::$exportable) {
                 }
             },
             sortable:true,
-            pageable:true,
+            columnMenu:{
+              messages: {
+                  filter: dictionary["s341"],
+                  columns: dictionary["s533"],
+                  sortAscending: dictionary["s534"],
+                  sortDescending: dictionary["s535"]
+              }  
+            },
+            pageable: {
+                refresh:true,
+                pageSizes:true,
+                messages: {
+                    display: dictionary["s527"],
+                    empty: dictionary["s528"],
+                    page: dictionary["s529"],
+                    of: dictionary["s530"],
+                    itemsPerPage: dictionary["s531"],
+                    first: dictionary["s523"],
+                    previous: dictionary["s524"],
+                    next: dictionary["s525"],
+                    last: dictionary["s526"],
+                    refresh: dictionary["s532"]
+                }
+            },
             groupable:true,
+            resizable: true,
             scrollable:false,
             columns:<?= $columns_def ?>
         });
@@ -169,15 +188,15 @@ if ($class_name::$exportable) {
     <table class="fullWidth">
         <tr>
             <td align="center">
-                <button class="btnCheckAll" onclick="<?=$class_name?>.uiListCheckAll()"><?= Language::string(512) ?></button>
-                <button class="btnUncheckAll" onclick="<?=$class_name?>.uiListUncheckAll()"><?= Language::string(513) ?></button>
+                <button class="btnCheckAll" onclick="<?= $class_name ?>.uiListCheckAll()"><?= Language::string(512) ?></button>
+                <button class="btnUncheckAll" onclick="<?= $class_name ?>.uiListUncheckAll()"><?= Language::string(513) ?></button>
             </td>
             <td align="center">
                 <?= Language::string(514) ?><font id="font<?= $class_name ?>CheckedCount">0</font>
             </td>
             <td align="center">
-                <button class="btnRemoveChecked" onclick="<?=$class_name?>.uiDelete(<?=$class_name?>.checkedList)"><?= Language::string(515) ?></button>
-                <?php if ($class_name::$exportable) { ?><button class="btnExportChecked" onclick="<?=$class_name?>.uiExport(<?=$class_name?>.checkedList)"><?= Language::string(516) ?></button><?php } ?>
+                <button class="btnRemoveChecked" onclick="<?= $class_name ?>.uiDelete(<?= $class_name ?>.checkedList)"><?= Language::string(515) ?></button>
+                <?php if ($class_name::$exportable) { ?><button class="btnExportChecked" onclick="<?= $class_name ?>.uiExport(<?= $class_name ?>.checkedList)"><?= Language::string(516) ?></button><?php } ?>
             </td>
         </tr>
     </table>
