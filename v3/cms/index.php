@@ -37,8 +37,8 @@ if (!isset($ini)) {
 
         <link rel="stylesheet" href="js/lib/loadmask/jquery.loadmask.css" />
         <link rel="stylesheet" href="js/lib/selectmenu/jquery.ui.selectmenu.css" />
-        <link rel="stylesheet" href="js/lib/kendo-ui/styles/kendo.common.css" />
-        <link rel="stylesheet" href="js/lib/kendo-ui/styles/kendo.default.css" />
+        <link rel="stylesheet" href="js/lib/kendo-ui/styles/kendo.common.min.css" />
+        <link rel="stylesheet" href="js/lib/kendo-ui/styles/kendo.default.min.css" />
         <link rel="stylesheet" href="lib/CodeMirror/lib/codemirror.css" />
         <link rel="stylesheet" href="lib/CodeMirror/theme/blackboard.css" />
 
@@ -78,7 +78,7 @@ if (!isset($ini)) {
 
         <script>User.sessionID='<?= session_id(); ?>';</script>
         <?= Language::load_js_dictionary() ?>
-        <script type="text/javascript" src="js/lib/kendo-ui/kendo.all.min.js"></script>
+        <script type="text/javascript" src="js/lib/kendo-ui/js/kendo.web.min.js"></script>
         <script type="text/javascript" src="js/lib/kendo-ui/cultures/kendo.culture.<?= Language::get_kendo_culture() ?>.min.js"></script>
         <script type="text/javascript">
             kendo.culture("<?= Language::get_kendo_culture() ?>");

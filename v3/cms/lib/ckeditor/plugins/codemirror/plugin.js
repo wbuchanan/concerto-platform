@@ -24,7 +24,7 @@ CKEDITOR.plugins.add( 'codemirror', {
                 var codemirrorInit = 
                 CodeMirror.fromTextArea(editor.textarea.$,{
                     mode:"htmlmixed",
-                    theme:"ambiance",
+                    theme:"blackboard",
                     fixedGutter:false,
                     lineNumbers:true,
                     matchBrackets:true,
