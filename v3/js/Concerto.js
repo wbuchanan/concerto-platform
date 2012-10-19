@@ -83,14 +83,13 @@ function Concerto(container,hash,sid,tid,queryPath,callbackGet,callbackSend,debu
     this.run=function(btnName,values){
         if(this.isStopped) return;
         
-        if(this.testID!=null && this.sessionID==null && this.hash==null && !this.debug && !this.remote){
+        if(this.testID!=null && this.sessionID==null && this.hash==null && !this.isDebug && !this.remote){
             var lastSession = Concerto.getSessionObject(this.testID);
             if(lastSession!=null){
                 Concerto.iniSessionResumeDialog(this,btnName,values,lastSession);
                 return;
             }
         }
-        
         this.status = Concerto.statusTypes.working;
         ConcertoMethods.loading(this.container,this.loadingImageSource);
         var thisClass = this;
@@ -299,7 +298,7 @@ Concerto.selectTest=function(){
     var tid = select.val();
     if(typeof test != 'undefined' && test!=null){
         test.stop();
-        test = new Concerto(test.container,null,null,tid,test.queryPath,test.callbackGet,test.callbackSend,test.debug,test.remote,test.loadingImageSource,test.resumeFromLastTemplate);
+        test = new Concerto(test.container,null,null,tid,test.queryPath,test.callbackGet,test.callbackSend,test.isDebug,test.remote,test.loadingImageSource,test.resumeFromLastTemplate);
     }
     test = new Concerto($("#divTestContainer"),null,null,tid);
     test.run(null,[]);
@@ -309,7 +308,7 @@ Concerto.selectTest=function(){
 Concerto.selectSession=function(sid,hash){
     if(typeof test != 'undefined' && test!=null){
         test.stop();
-        test = new Concerto(test.container,hash,sid,null,test.queryPath,test.callbackGet,test.callbackSend,test.debug,test.remote,test.loadingImageSource,true);
+        test = new Concerto(test.container,hash,sid,null,test.queryPath,test.callbackGet,test.callbackSend,test.isDebug,test.remote,test.loadingImageSource,true);
     }
     test = new Concerto($("#divTestContainer"),hash,sid,null,null,null,null,null,null,null,true);
     test.run(null,[]);
