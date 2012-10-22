@@ -1,9 +1,2 @@
 === Learn More about Concerto===
 Visit [http://www.psychometrics.cam.ac.uk/page/338/concerto-testing-platform.htm The Psychometrics Centre website] for more information about us, including:
-
- * [http://www.psychometrics.cam.ac.uk/page/339/introduction.htm Product Overview]
- * [http://www.psychometrics.cam.ac.uk/page/359/support-and-services.htm Support and Services]
- * [http://code.google.com/p/concerto-platform/wiki/Resources?ts=1339668905&updated=Resources Resources]
- * [http://www.psychometrics.cam.ac.uk/page/342/events.htm Events]
- * Discussion Forum
- * [http://www.psychometrics.cam.ac.uk/page/345/contribute.htm Contribute to Concerto]
