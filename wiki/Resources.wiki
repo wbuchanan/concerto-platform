@@ -20,6 +20,6 @@
 
 === Demos ===
 
- * [[http://concerto.e-psychometrics.com/demo/?tid=528 A very simple adaptive test]]
+ * [http://concerto.e-psychometrics.com/demo/?tid=528 A very simple adaptive test]
   * TEMPORALLY OFFLINE - MOVING SERVERS:[http://dev.myiqtest.org/concerto3_demo/index.php?tid=80 Adaptive test]
  * TEMPORALLY OFFLINE - MOVING SERVERS:[http://dev.myiqtest.org/concerto/index.php?hash=004d269f4604dbc8058ae8384e6a239c Adaptive test with a fancy graph]
