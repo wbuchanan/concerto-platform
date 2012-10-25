@@ -27,12 +27,6 @@ if (!isset($ini)) {
 <script>
     $(function(){
         Methods.iniIconButton(".btnCreateNewAccount", "document");
-        $('#divHiddenThemer').themeswitcher({
-            loadTheme:"Cupertino",
-            imgpath: "js/lib/themeswitcher/images/",
-            onSelect:function(){
-            }
-        });
         $("#dd_login").dialog({
             modal:true,
             title:"<?= Language::string(211) ?>",

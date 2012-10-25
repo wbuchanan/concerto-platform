@@ -73,13 +73,12 @@ if (!isset($ini)) {
         <script src="js/lib/jquery-ui-dialog-ckeditor-patch.js"></script>
         <script src="js/lib/fileupload/jquery.iframe-transport.js"></script>
         <script src="js/lib/fileupload/jquery.fileupload.js"></script>
-        <script src="js/lib/themeswitcher/jquery.themeswitcher.min.js"></script>
         <script src="lib/jfeed/build/dist/jquery.jfeed.js"></script>
 
         <script>User.sessionID='<?= session_id(); ?>';</script>
         <?= Language::load_js_dictionary() ?>
         <script type="text/javascript" src="js/lib/kendo-ui/js/kendo.web.min.js"></script>
-        <script type="text/javascript" src="js/lib/kendo-ui/cultures/kendo.culture.<?= Language::get_kendo_culture() ?>.min.js"></script>
+        <script type="text/javascript" src="js/lib/kendo-ui/js/cultures/kendo.culture.<?= Language::get_kendo_culture() ?>.min.js"></script>
         <script type="text/javascript">
             kendo.culture("<?= Language::get_kendo_culture() ?>");
         </script>
