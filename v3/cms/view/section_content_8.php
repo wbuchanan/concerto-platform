@@ -60,7 +60,7 @@ if ($table != null) {
                         <td><span class="spanIcon ui-icon ui-icon-help tooltip" title="<?= htmlspecialchars(Template::strip_html($description), ENT_QUOTES) ?>"></span></td>
                         <?php if (isset($vals[3]) && $vals[3] != 0) { ?>
                             <td>
-                                <span class="spanIcon ui-icon ui-icon-extlink tooltip" title="<?= Language::string(522) ?>" onclick="Test.uiGoToRelatedObject(<?= $_POST['counter'] ?>,<?= $vals[3] ?>)"></span>
+                                <span class="spanIcon ui-icon ui-icon-extlink tooltip" title="<?= Language::string(522) ?>" onclick="Test.uiGoToRelatedObject(8,<?= $vals[3] ?>)"></span>
                             </td>
                         <?php } ?>
                         <td class="fullWidth">

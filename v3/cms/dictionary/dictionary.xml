@@ -4964,5 +4964,33 @@ Note: You can add new languages by inserting "<new_language>string translated in
             <bg></bg>
             <nl></nl>
         </string>
+        <string id="536">
+            <en>loader template</en>
+            <de></de>
+            <pl>szablon wczytywania</pl>
+            <cn></cn>
+            <fr></fr>
+            <bg></bg>
+            <nl></nl>
+        </string>
+        <string id="537">
+            <en>Choose the template you wish to be shown whenever R code will be interpreted. No variable insertion is possible on loader templates.</en>
+            <de></de>
+            <pl>Wybierz szablon jaki chcesz aby był wyświetlany, gdy kod R będzie interpretowany. Osadzanie zmiennych nie jest możliwe na szablonie wyczytywania.</pl>
+            <cn></cn>
+            <fr></fr>
+            <bg></bg>
+            <nl></nl>
+        </string>
+        <string id="538">
+            <en>default</en>
+            <de></de>
+            <pl>domyślnie</pl>
+            <cn></cn>
+            <fr></fr>
+            <bg></bg>
+            <nl></nl>
+            <pt></pt>
+        </string>
     </strings>
 </root> 

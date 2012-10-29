@@ -105,11 +105,9 @@ Test.uiSaveValidate=function(ignoreOnBefore,isNew){
     Test.uiSaveValidated(ignoreOnBefore,isNew);
 }
 
-Test.uiGoToRelatedObject=function(counter,oid){
+Test.uiGoToRelatedObject=function(type,oid){
     if(oid==0) return;
-    var div = $("#divSection_"+counter);
-    var obj = Test.sectionDivToObject(div);
-    switch(obj.type){
+    switch(type){
         //templates
         case Test.sectionTypes.loadTemplate:{
             $("#tnd_mainMenu").tabs("select","#tnd_mainMenu-templates");
@@ -1482,5 +1480,18 @@ Test.uiRefreshVariables=function(parameters,returns){
     },function(data){
         $("#div"+Test.className+"Variables").unmask();
         $("#div"+Test.className+"Variables").html(data);
+    })
+}
+
+Test.uiRefreshLoader=function(oid){
+    
+    $("#div"+Test.className+"Loader").mask(dictionary["s319"]);
+    $.post("view/Test_loader.php",{
+        oid:this.currentID,
+        class_name:this.className,
+        loader:oid
+    },function(data){
+        $("#div"+Test.className+"Loader").unmask();
+        $("#div"+Test.className+"Loader").html(data);
     })
 }

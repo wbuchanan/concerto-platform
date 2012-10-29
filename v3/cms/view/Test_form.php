@@ -175,6 +175,7 @@ if ($oid != 0) {
         include Ini::$path_internal . "cms/view/Test_security.php";
         ?>
         <div id="div<?= $class_name ?>Variables"><?php include Ini::$path_internal . "cms/view/Test_variables.php"; ?></div>
+        <div id="div<?= $class_name ?>Loader"><?php include Ini::$path_internal . "cms/view/Test_loader.php"; ?></div>
         <?php
         include Ini::$path_internal . "cms/view/Test_logic.php";
     }

@@ -57,7 +57,7 @@ if ($section != null) {
                         <td><span class="spanIcon ui-icon ui-icon-help tooltip" title="<?= htmlspecialchars(Template::strip_html($description), ENT_QUOTES) ?>"></span></td>
                         <?php if (isset($vals[0]) && $vals[0] != 0) { ?>
                             <td>
-                                <span class="spanIcon ui-icon ui-icon-extlink tooltip" title="<?= Language::string(522) ?>" onclick="Test.uiGoToRelatedObject(<?= $_POST['counter'] ?>,<?= $vals[0] ?>)"></span>
+                                <span class="spanIcon ui-icon ui-icon-extlink tooltip" title="<?= Language::string(522) ?>" onclick="Test.uiGoToRelatedObject(11,<?= $vals[0] ?>)"></span>
                             </td>
                         <?php } ?>
                         <td class="fullWidth">

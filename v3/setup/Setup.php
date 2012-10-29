@@ -1079,6 +1079,61 @@ class Setup {
                 Setting::set_setting("version", "3.7.6");
                 return json_encode(array("result" => 0, "param" => "3.7.6"));
             }
+        }
+        
+        if (Ini::does_patch_apply("3.8.6", $previous_version)) {
+            if ($simulate) {
+                array_push($versions_to_update, "3.8.6");
+            } else {
+
+                //Test - add loader_Template_id field
+                $sql = "SHOW COLUMNS FROM `Test` WHERE `Field`='loader_Template_id'";
+                $z = mysql_query($sql);
+                if (mysql_num_rows($z) == 0) {
+                    $sql = "ALTER TABLE `Test` ADD `loader_Template_id` bigint(20) NOT NULL;";
+                    if (!mysql_query($sql))
+                        return json_encode(array("result" => 1, "param" => $sql));
+                }
+                
+                //Template - add effect_show field
+                $sql = "SHOW COLUMNS FROM `Template` WHERE `Field`='effect_show'";
+                $z = mysql_query($sql);
+                if (mysql_num_rows($z) == 0) {
+                    $sql = "ALTER TABLE `Template` ADD `effect_show` text NOT NULL;";
+                    if (!mysql_query($sql))
+                        return json_encode(array("result" => 1, "param" => $sql));
+                }
+                
+                //Template - add effect_hide field
+                $sql = "SHOW COLUMNS FROM `Template` WHERE `Field`='effect_hide'";
+                $z = mysql_query($sql);
+                if (mysql_num_rows($z) == 0) {
+                    $sql = "ALTER TABLE `Template` ADD `effect_hide` text NOT NULL;";
+                    if (!mysql_query($sql))
+                        return json_encode(array("result" => 1, "param" => $sql));
+                }
+                
+                //Template - add effect_show_options field
+                $sql = "SHOW COLUMNS FROM `Template` WHERE `Field`='effect_show_options'";
+                $z = mysql_query($sql);
+                if (mysql_num_rows($z) == 0) {
+                    $sql = "ALTER TABLE `Template` ADD `effect_show_options` text NOT NULL;";
+                    if (!mysql_query($sql))
+                        return json_encode(array("result" => 1, "param" => $sql));
+                }
+                
+                //Template - add effect_hide_options field
+                $sql = "SHOW COLUMNS FROM `Template` WHERE `Field`='effect_hide_options'";
+                $z = mysql_query($sql);
+                if (mysql_num_rows($z) == 0) {
+                    $sql = "ALTER TABLE `Template` ADD `effect_hide_options` text NOT NULL;";
+                    if (!mysql_query($sql))
+                        return json_encode(array("result" => 1, "param" => $sql));
+                }
+
+                Setting::set_setting("version", "3.8.6");
+                return json_encode(array("result" => 0, "param" => "3.8.6"));
+            }
             $recalculate_hash = true;
         }
 

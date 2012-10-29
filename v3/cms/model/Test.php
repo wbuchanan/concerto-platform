@@ -25,6 +25,7 @@ class Test extends OModule {
     public $description = "";
     public $session_count = 0;
     public $open = 0;
+    public $loader_Template_id = 0;
     public $xml_hash = "";
     public static $exportable = true;
     public static $mysql_table_name = "Test";
@@ -79,7 +80,7 @@ class Test extends OModule {
             }
         }
 
-        $i=0;
+        $i = 0;
         if (array_key_exists("parameters", $post)) {
             foreach ($post["parameters"] as $param) {
                 $p = json_decode($param);
@@ -185,6 +186,10 @@ class Test extends OModule {
             }
         }
         return $result;
+    }
+
+    public function get_loader_Template() {
+        return Template::from_mysql_id($this->loader_Template_id);
     }
 
     public function mysql_delete() {
@@ -810,6 +815,7 @@ class Test extends OModule {
             `name` text NOT NULL,
             `open` tinyint(1) NOT NULL,
             `session_count` bigint(20) NOT NULL,
+            `loader_Template_id` bigint(20) NOT NULL,
             `description` text NOT NULL,
             `xml_hash` text NOT NULL,
             `Sharing_id` int(11) NOT NULL,

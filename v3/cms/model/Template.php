@@ -25,6 +25,10 @@ class Template extends OModule {
     public $HTML = "";
     public $head = "";
     public $description = "";
+    public $effect_show = "none";
+    public $effect_show_options = "";
+    public $effect_hide = "none";
+    public $effect_hide_options = "";
     public $xml_hash = "";
     public static $exportable = true;
     public static $mysql_table_name = "Template";
@@ -234,6 +238,10 @@ class Template extends OModule {
             `name` text NOT NULL,
             `head` text NOT NULL,
             `HTML` text NOT NULL,
+            `effect_show` text NOT NULL,
+            `effect_show_options` text NOT NULL,
+            `effect_hide` text NOT NULL,
+            `effect_hide_options` text NOT NULL,
             `description` text NOT NULL,
             `xml_hash` text NOT NULL,
             `Sharing_id` int(11) NOT NULL,

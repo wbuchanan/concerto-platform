@@ -70,7 +70,7 @@ if ($qti != null) {
                         </td>
                         <?php if (isset($vals[0]) && $vals[0] != 0) { ?>
                             <td>
-                                <span class="spanIcon ui-icon ui-icon-extlink tooltip" title="<?= Language::string(522) ?>" onclick="Test.uiGoToRelatedObject(<?= $_POST['counter'] ?>,<?= $vals[0] ?>)"></span>
+                                <span class="spanIcon ui-icon ui-icon-extlink tooltip" title="<?= Language::string(522) ?>" onclick="Test.uiGoToRelatedObject(13,<?= $vals[0] ?>)"></span>
                             </td>
                         <?php } ?>
                         <td class="fullWidth">
