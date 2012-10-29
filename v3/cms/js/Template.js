@@ -40,7 +40,7 @@ Template.onAfterImport=function(){
 }
 
 Template.onAfterAdd=function(){
-}
+    }
 
 Template.formCodeMirror=null;
 Template.getAddSaveObject=function()
@@ -58,6 +58,10 @@ Template.getAddSaveObject=function()
 Template.getFullSaveObject = function(){
     var obj = this.getAddSaveObject();
     obj["description"]=Methods.getCKEditorData("#form"+this.className+"TextareaDescription");
+    obj["effect_show"]=$("#form"+this.className+"SelectEffectShow").val();
+    obj["effect_hide"]=$("#form"+this.className+"SelectEffectHide").val();
+    obj["effect_show_options"]=this.getEffectOptions(true);
+    obj["effect_hide_options"]=this.getEffectOptions(false);
     if($("#form"+this.className+"SelectOwner").length==1) obj["Owner_id"]=$("#form"+this.className+"SelectOwner").val();
     return obj;
 }
@@ -65,9 +69,127 @@ Template.getFullSaveObject = function(){
 Template.uiSaveValidate=function(ignoreOnBefore,isNew){
     if(!this.checkRequiredFields([
         $("#form"+this.className+"InputName").val()
-    ])) {
+        ])) {
         Methods.alert(dictionary["s415"],"alert");
         return false;
     }
     Template.uiSaveValidated(ignoreOnBefore,isNew);
+}
+
+Template.setEffectOptions=function(isShow,optionsJSON){
+    var effect = $("#form"+this.className+"SelectEffect"+(isShow?"Show":"Hide"));
+    if(effect.val()=="none" || optionsJSON.trim() == "") return;
+    
+    var options = $.parseJSON(optionsJSON);
+    
+    switch(effect.val()){
+        case "blind":{
+            if(options["direction"]!=null) $("#select"+this.className+(isShow?"Show":"Hide")+"BlindDirection").val(options.direction);
+            break;
+        }
+        case "clip":{
+            if(options["direction"]!=null) $("#select"+this.className+(isShow?"Show":"Hide")+"ClipDirection").val(options.direction);
+            break;
+        }
+        case "drop":{
+            if(options["direction"]!=null) $("#select"+this.className+(isShow?"Show":"Hide")+"DropDirection").val(options.direction);
+            break;
+        }
+        case "explode":{
+            if(options["pieces"]!=null) $("#input"+this.className+(isShow?"Show":"Hide")+"ExplodePieces").val(options.pieces);
+            break;
+        }
+        case "fold":{
+            if(options["horizFirst"]!=null) $("#input"+this.className+(isShow?"Show":"Hide")+"FoldHorizFirst").attr("checked",options.horizFirst);
+            if(options["size"]!=null) $("#input"+this.className+(isShow?"Show":"Hide")+"FoldSize").val(options.size);
+            break;
+        }
+        case "puff":{
+            if(options["percent"]!=null) $("#input"+this.className+(isShow?"Show":"Hide")+"PuffPercent").val(options.percent);
+            break;
+        }
+        case "slide":{
+            if(options["direction"]!=null) $("#select"+this.className+(isShow?"Show":"Hide")+"SlideDirection").val(options.direction);
+            break;
+        }
+        case "scale":{
+            if(options["direction"]!=null) $("#select"+this.className+(isShow?"Show":"Hide")+"ScaleDirection").val(options.direction);
+            if(options["origin"]!=null) $("#select"+this.className+(isShow?"Show":"Hide")+"ScaleOrigin").val(options.origin);
+            if(options["percent"]!=null) $("#input"+this.className+(isShow?"Show":"Hide")+"ScalePercent").val(options.percent);
+            break;
+        }
+    }
+    if(options.duration!=null) $("#input"+this.className+(isShow?"Show":"Hide")+"Duration").val(options.duration);
+}
+
+Template.getEffectOptions=function(isShow){
+    var effect = $("#form"+this.className+"SelectEffect"+(isShow?"Show":"Hide"));
+    if(effect.val()=="none") return "";
+    
+    var options = {};
+    switch(effect.val()){
+        case "blind":{
+            options["direction"]=$("#select"+this.className+(isShow?"Show":"Hide")+"BlindDirection").val();
+            break;
+        }
+        case "clip":{
+            options["direction"]=$("#select"+this.className+(isShow?"Show":"Hide")+"ClipDirection").val();
+            break;
+        }
+        case "drop":{
+            options["direction"]=$("#select"+this.className+(isShow?"Show":"Hide")+"DropDirection").val();
+            break;
+        }
+        case "explode":{
+            options["pieces"]=$("#input"+this.className+(isShow?"Show":"Hide")+"ExplodePieces").val();
+            break;
+        }
+        case "fold":{
+            options["horizFirst"]=$("#input"+this.className+(isShow?"Show":"Hide")+"FoldHorizFirst").is(":checked");
+            options["size"]=$("#input"+this.className+(isShow?"Show":"Hide")+"FoldSize").val();
+            break;
+        }
+        case "puff":{
+            options["percent"]=$("#input"+this.className+(isShow?"Show":"Hide")+"PuffPercent").val();
+            break;
+        }
+        case "slide":{
+            options["direction"]=$("#select"+this.className+(isShow?"Show":"Hide")+"SlideDirection").val();
+            break;
+        }
+        case "scale":{
+            options["direction"]=$("#select"+this.className+(isShow?"Show":"Hide")+"ScaleDirection").val();
+            options["origin"]=$("#select"+this.className+(isShow?"Show":"Hide")+"ScaleOrigin").val();
+            options["percent"]=$("#input"+this.className+(isShow?"Show":"Hide")+"ScalePercent").val();
+            break;
+        }
+    }
+    options["duration"]=$("#input"+this.className+(isShow?"Show":"Hide")+"Duration").val();
+    return $.toJSON(options);
+}
+
+Template.uiChangeEffect=function(isShow){
+    var thisClass = this;
+    var options = this.getEffectOptions(!isShow);
+    var showEffect = $("#form"+this.className+"SelectEffectShow").val();
+    var hideEffect = $("#form"+this.className+"SelectEffectHide").val();
+    
+    var object = {
+        oid:thisClass.currentID,
+        class_name:thisClass.className,
+        effect_show:showEffect,
+        effect_hide:hideEffect
+    };
+    
+    if(isShow){
+        object["effect_hide_options"] = options;
+    } else {
+        object["effect_show_options"] = options;
+    }
+    
+    $("#div"+this.className+"Transitions").mask(dictionary["s319"]);
+    $.post("view/Template_transitions.php",object,function(data){
+        $("#div"+thisClass.className+"Transitions").unmask();
+        $("#div"+thisClass.className+"Transitions").html(data);
+    });
 }

@@ -164,6 +164,7 @@ if ($oid != 0) {
 
     <?php
     if ($oid != -1) {
+        ?><div id="div<?= $class_name ?>Transitions"><?php include Ini::$path_internal . "cms/view/Template_transitions.php"; ?></div><?php
         ?>
         <fieldset class="padding ui-widget-content ui-corner-all margin">
             <legend>

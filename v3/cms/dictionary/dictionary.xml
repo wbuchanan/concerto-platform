@@ -39,14 +39,22 @@ Note: You can add new languages by inserting "<new_language>string translated in
     
     <strings>
         <string id="1" js="1">
-            <en><![CDATA[Variable name validation failed. Value has been changed.<br/><br/>old value: <b>{0}</b></br>new value: <b>{1}</b>]]></en>
-            <de><![CDATA[Überprüfung des Variablennamens schlug fehl. Wert wurde geändert.<br/><br/>Alter Wert: <b>{0}</b></br>Neuer Wert: <b>{1}</b>]]></de>
-            <pl><![CDATA[Walidacja zmiennej nie powiodła się. Wartość została zmieniona.<br/><br/>poprzednia wartość: <b>{0}</b></br>nowa wartość: <b>{1}</b>]]></pl>
-            <cn><![CDATA[变量名称验证失败。数值已更改。<br/><br/>旧数值: <b>{0}</b></br>新数值: <b>{1}</b>]]></cn>  
-            <fr><![CDATA[La validation du nom de la variable a échoué. La valeur a été changée.<br/><br/>ancienne valeur: <b>{0}</b></br>nouvelle valeur: <b>{1}</b>]]></fr>
-            <bg><![CDATA[Валидизацията на името на променливата е неуспешна. Стойността е променена.<br/><br/>стара стойност: <b>{0}</b></br>нова стойност: <b>{1}</b>]]></bg>
-            <nl><![CDATA[Naamvalidatie van de variabele gefaald. De waarde werd gewijzigd.<br/><br/>oude waarde:  <b>{0}</b></br>nieuwe waarde: <b>{1}</b>]]></nl>
-            <pt><![CDATA[Falha no valiação no nome da variável. O valor foi alterado.<br/><br/>valor antigo: <b>{0}</b></br>novo valor: <b>{1}</b>]]></pt>
+            <en><![CDATA[Variable name validation failed. Value has been changed.<br/><br/>old value: <b>{0}</b></br>new value: <b>{1}</b>]]>
+            </en>
+            <de><![CDATA[Überprüfung des Variablennamens schlug fehl. Wert wurde geändert.<br/><br/>Alter Wert: <b>{0}</b></br>Neuer Wert: <b>{1}</b>]]>
+            </de>
+            <pl><![CDATA[Walidacja zmiennej nie powiodła się. Wartość została zmieniona.<br/><br/>poprzednia wartość: <b>{0}</b></br>nowa wartość: <b>{1}</b>]]>
+            </pl>
+            <cn><![CDATA[变量名称验证失败。数值已更改。<br/><br/>旧数值: <b>{0}</b></br>新数值: <b>{1}</b>]]>
+            </cn>  
+            <fr><![CDATA[La validation du nom de la variable a échoué. La valeur a été changée.<br/><br/>ancienne valeur: <b>{0}</b></br>nouvelle valeur: <b>{1}</b>]]>
+            </fr>
+            <bg><![CDATA[Валидизацията на името на променливата е неуспешна. Стойността е променена.<br/><br/>стара стойност: <b>{0}</b></br>нова стойност: <b>{1}</b>]]>
+            </bg>
+            <nl><![CDATA[Naamvalidatie van de variabele gefaald. De waarde werd gewijzigd.<br/><br/>oude waarde:  <b>{0}</b></br>nieuwe waarde: <b>{1}</b>]]>
+            </nl>
+            <pt><![CDATA[Falha no valiação no nome da variável. O valor foi alterado.<br/><br/>valor antigo: <b>{0}</b></br>novo valor: <b>{1}</b>]]>
+            </pt>
         </string>
         <string id="2" js="1">
             <en>variable validation</en>
@@ -449,24 +457,39 @@ Note: You can add new languages by inserting "<new_language>string translated in
             <pt>Passe para uma seção específica do teste</pt>
         </string>
         <string id="43">
-            <en><![CDATA[Specify conditions and their consequences. Multiple conditions and consequences can be specified.]]></en>
-            <de><![CDATA[Geben Sie Bedingungen und ihre Konsequenzen an. Mehrere Bedingungen und Konsequenzen können angegeben werden.]]></de>
-            <pl><![CDATA[Dzięki tej sekcji można tworzyć twierdzenia warunkowe. Dozwolone jest wiele warunków, oraz można zamieszczać wiele sekcji w bloku <b>WTEDY</b>.]]></pl>
-            <cn><![CDATA[声明条件及其结果。允许多重条件及结果。]]></cn>
-            <fr><![CDATA[Spécifier les conditions et leurs conséquences. De multiples conditions et conséquences peuvent être spécifiées.]]></fr>
-            <bg><![CDATA[Определете условията и техните следствия. Множество условия и следствия могат да бъдат определени.]]></bg>
-            <nl><![CDATA[Specifieer condities en bijhorende gevolgen. Meerdere condities en gevolgen kunnen gespecifieerd worden.]]></nl>
-            <pt><![CDATA[Especifique as condições e suas consequências. Múltiplas consequências são permitidas.]]></pt>
+            <en><![CDATA[Specify conditions and their consequences. Multiple conditions and consequences can be specified.]]>
+            </en>
+            <de><![CDATA[Geben Sie Bedingungen und ihre Konsequenzen an. Mehrere Bedingungen und Konsequenzen können angegeben werden.]]>
+            </de>
+            <pl><![CDATA[Dzięki tej sekcji można tworzyć twierdzenia warunkowe. Dozwolone jest wiele warunków, oraz można zamieszczać wiele sekcji w bloku <b>WTEDY</b>.]]>
+            </pl>
+            <cn><![CDATA[声明条件及其结果。允许多重条件及结果。]]>
+            </cn>
+            <fr><![CDATA[Spécifier les conditions et leurs conséquences. De multiples conditions et conséquences peuvent être spécifiées.]]>
+            </fr>
+            <bg><![CDATA[Определете условията и техните следствия. Множество условия и следствия могат да бъдат определени.]]>
+            </bg>
+            <nl><![CDATA[Specifieer condities en bijhorende gevolgen. Meerdere condities en gevolgen kunnen gespecifieerd worden.]]>
+            </nl>
+            <pt><![CDATA[Especifique as condições e suas consequências. Múltiplas consequências são permitidas.]]>
+            </pt>
         </string>
         <string id="44">
-            <en><![CDATA[Define variables (i.e. set variables). Methods to set variable: <ul><li><b>from table</b>: select a previously defined table in Concerto and filter necessary rows and columns. Set the whole table by leaving the <b>WHERE</b> clause empty</li><li><b>by R code</b>: directly type in R code. E.g. function result, mathematical calculation</li></ul>]]></en>
-            <de><![CDATA[Definiere Variablen (d.h. setze Variablen). Methoden um Vairabeln zu setzen: <ul><li><b>aus Tabelle</b>: wähle eine bereits definierte Tabelle in Concerto und filtere die notwendigen Zeilen und Spalten. Der ganzen Tabelle gleichsetzen in dem man die <b>WHERE</b> Aussage leer lässt</li><li><b>durch R Code</b>: R code direkt eingeben. Z.B. Resultat einer Funktion, mathematische Berechnung</li></ul>]]></de>
-            <pl><![CDATA[Ta sekcja daje mozliwość zadeklarowania zmiennej w logice testu. Można ustawić zmienną jedną z trzech metod:<ul><li><b>z tabeli</b>: można wybrać wcześniej zdefiniowaną tabelę w Concerto, oraz jej konkretne rekordy i kolumny. Można również wybrać całą tabelę pozostawiając blok <b>GDZIE</b> pusty</li><li><b>przez kod R</b>: można ustawić zmienną używając kodu R. Może to być cokolwiek co da się wykonać w języku R. Np. rezultat funkcji, matematyczne obliczenie</li></ul>]]></pl>
+            <en><![CDATA[Define variables (i.e. set variables). Methods to set variable: <ul><li><b>from table</b>: select a previously defined table in Concerto and filter necessary rows and columns. Set the whole table by leaving the <b>WHERE</b> clause empty</li><li><b>by R code</b>: directly type in R code. E.g. function result, mathematical calculation</li></ul>]]>
+            </en>
+            <de><![CDATA[Definiere Variablen (d.h. setze Variablen). Methoden um Vairabeln zu setzen: <ul><li><b>aus Tabelle</b>: wähle eine bereits definierte Tabelle in Concerto und filtere die notwendigen Zeilen und Spalten. Der ganzen Tabelle gleichsetzen in dem man die <b>WHERE</b> Aussage leer lässt</li><li><b>durch R Code</b>: R code direkt eingeben. Z.B. Resultat einer Funktion, mathematische Berechnung</li></ul>]]>
+            </de>
+            <pl><![CDATA[Ta sekcja daje mozliwość zadeklarowania zmiennej w logice testu. Można ustawić zmienną jedną z trzech metod:<ul><li><b>z tabeli</b>: można wybrać wcześniej zdefiniowaną tabelę w Concerto, oraz jej konkretne rekordy i kolumny. Można również wybrać całą tabelę pozostawiając blok <b>GDZIE</b> pusty</li><li><b>przez kod R</b>: można ustawić zmienną używając kodu R. Może to być cokolwiek co da się wykonać w języku R. Np. rezultat funkcji, matematyczne obliczenie</li></ul>]]>
+            </pl>
             <cn></cn>
-            <fr><![CDATA[Définir les variables (par ex. établir les variables). Méthode afin de d'établir les variables: <ul><li><b>du tableau</b>: sélectionner un tableau préalablement défini dans concerto et filtrer les lignes et colonnes nécessaires. Établir un tableau complet en laissant la clause <b>OU</b> vide </li><li><b>avec le code R </b>: taper directement dans le code R. Par exemple: fonctiont résultat, calcul mathématique</li></ul>]]></fr>
-            <bg><![CDATA[Дефинирайте променливи (т.е. създайте променливи). Методи за създаване на променлива: <ul><li><b>чрез таблица</b>: изберете предварително дефинирана таблица в Concerto и филтрирайте необходимите редове и колони. Може да вземете цяла таблица <b>КЪДЕ</b> условието е празно</li><li><b>чрез R код</b>: директно като напишете R кода. Т.е. резултат от функция, математическо пресмятане</li></ul>]]> </bg>
-            <nl><![CDATA[Definieer variabelen (i.e. kies variabelen). Methoden om variable te kiezen: <ul><li><b>uit tabel</b>: een voordien gedefinieerde tabel in Concerto selecteren en de nodige rijen en kolommen filteren. Selecteer de volledige tabel door de <b>WAAR</b> clause leeg te laten</li><li><b>via R code</b>: rechtstreeks R code typen. Bv. functie resultaat, wiskundige berekening</li></ul>]]></nl>
-            <pt><![CDATA[Definir as variáveis (per ex. estabelecer as variáveis). Método para determinar as variáveis: <ul><li><b>a partir de tabela</b>: selecione uma tabela definida previamente no Concerto e filtre as colunas e linhas necessárias. Selecione a tabela inteira deixando o campo <b>ONDE</b> vazio </li><li><b>através de código R</b>: insira diretamente o código R. Por exemplo> resultado de uma função, cálculo matemático</li></ul>]]></pt>
+            <fr><![CDATA[Définir les variables (par ex. établir les variables). Méthode afin de d'établir les variables: <ul><li><b>du tableau</b>: sélectionner un tableau préalablement défini dans concerto et filtrer les lignes et colonnes nécessaires. Établir un tableau complet en laissant la clause <b>OU</b> vide </li><li><b>avec le code R </b>: taper directement dans le code R. Par exemple: fonctiont résultat, calcul mathématique</li></ul>]]>
+            </fr>
+            <bg><![CDATA[Дефинирайте променливи (т.е. създайте променливи). Методи за създаване на променлива: <ul><li><b>чрез таблица</b>: изберете предварително дефинирана таблица в Concerto и филтрирайте необходимите редове и колони. Може да вземете цяла таблица <b>КЪДЕ</b> условието е празно</li><li><b>чрез R код</b>: директно като напишете R кода. Т.е. резултат от функция, математическо пресмятане</li></ul>]]> 
+            </bg>
+            <nl><![CDATA[Definieer variabelen (i.e. kies variabelen). Methoden om variable te kiezen: <ul><li><b>uit tabel</b>: een voordien gedefinieerde tabel in Concerto selecteren en de nodige rijen en kolommen filteren. Selecteer de volledige tabel door de <b>WAAR</b> clause leeg te laten</li><li><b>via R code</b>: rechtstreeks R code typen. Bv. functie resultaat, wiskundige berekening</li></ul>]]>
+            </nl>
+            <pt><![CDATA[Definir as variáveis (per ex. estabelecer as variáveis). Método para determinar as variáveis: <ul><li><b>a partir de tabela</b>: selecione uma tabela definida previamente no Concerto e filtre as colunas e linhas necessárias. Selecione a tabela inteira deixando o campo <b>ONDE</b> vazio </li><li><b>através de código R</b>: insira diretamente o código R. Por exemplo> resultado de uma função, cálculo matemático</li></ul>]]>
+            </pt>
         </string>
         <string id="45">
             <en>The start section is the entry point to your test logic. It cannot be modified.</en>
@@ -489,14 +512,22 @@ Note: You can add new languages by inserting "<new_language>string translated in
             <pt>A seção final é a última seção da lógica do teste. Isto não pode ser modificado.</pt>
         </string>
         <string id="47">
-            <en><![CDATA[Modify existing tables with the help of three basic database operations:<ul><li><b>INSERT</b>: insert a single row and values corresponding to each column</li><li><b>UPDATE</b>: modify table rows that meet criteria found in the <b>WHERE</b> clause. Specify which columns you want to modify and values for each.</li><li><b>DELETE</b>: delete table rows that meet criteria found in the <b>WHERE</b> clause.</li></ul>]]></en>
-            <de><![CDATA[Verändere existierende Tabelle mit der Hilfe von drei grundlegenden Datenbankoperationen:<ul><li><b>INSERT</b>: füge eine einzelne Zeile ein (mit Werten die zu jeder der Spalten korrespondieren)</li><li><b>UPDATE</b>: modifiziere alle Tabellenzeilen auf die die Kriterien in der <b>WHERE</b> Aussage zutreffen. Geben Sie die zu modifizierenden Spalten und die Werte dafür an.</li><li><b>DELETE</b>: lösche alle Tabellenzeilen auf die Kriterien in der <b>WHERE</b> Aussage zutreffen.</li></ul>]]></de>
-            <pl><![CDATA[Używajac tej sekcji można zmodyfikować wcześniej zdefiniowane tabele. Można wykonać trzy podstawowoe operacje na bazie danych:<ul><li><b>DODANIE</b>: używajac tej komendy można dodać nowy pojedyńczy rekord z wybranymi wartościami</li><li><b>ZMIANA</b>: używając tej komendy można zmodyfikować rekordy tabeli które spełniaja podane kryteria w bloku <b>GDZIE</b>. Można ustawić które kolumny chce się zmodyfikować i jaką wartość chce się im dać.</li><li><b>USUŃ</b>: używając tej komendy możesz usunąć rekordy tabeli które spełniają kryteria podane w bloku <b>GDZIE</b>.</li></ul>]]></pl>
-            <cn><![CDATA[借助以下三种基本数据库操作修改已有表格：<ul><li><b>插入</b>：插入一行及每列数值</li><li><b>更新</b>：修改表格行以满足 <b>当</b> 语句中的标准。可以指定修改的列及其数值。</li><li><b>删除</b>：删除表格中满足<b>当</b> 语句中标准的行。</li></ul>]]></cn>
-            <fr><![CDATA[Modifier les tableaux existant avec l'aide de trois opérations de base:<ul><li><b>INSERTION</b>: insère une seule ligne et ses valeurs correspondantes dans chacune des colonnes.</li><li><b>Mettre à jour </b>: modifie les lignes du tableau qui rencontrent les critères inclus dans la clause <b>OU</b>. spécifiez quelle colonnes vous voulez modifier et les valeurs de chacune d'entre elles.</li><li><b>Supprimer</b>: supprime les lignes du tableau qui rencontrent les critères inclus dans la clause <b>OU</b>.</li></ul>]]></fr>
-            <bg><![CDATA[Променете съществуващите таблици с помощта на три основни операции за бази данни: <ul><li><b>ВМЪКНИ</b>: вмъкни единичен ред и стойности отнасящи се за всяка колона </li><li><b>ОБНОВИ</b>: промени редовете на таблицата, които отговорят на критерия, който се намира <b>КЪДЕ</b> в условието. Посочете кои колони искате да модифицирате и стойностите за всяка.</li><li><b>ИЗТРИЙ</b>: изтрийте редове от таблицата, които се намират <b>КЪДЕ</b> в условието.</li></ul>]]></bg>
-            <nl><![CDATA[Bestaande tabellen aanpassen met de hulp van drie database basisoperaties:<ul><li><b>INSERT</b>: een enkele rij invoegen met de corresponderende waarden van elke kolom</li><li><b>UPDATE</b>: tabelrijen aanpassen die voldoen aan de criteria uit de <b>WAAR</b> clause. Specifieren van welke kolommen u wil aanpassen en hun corresponderende waarden.</li><li><b>VERWIJDEREN</b>: verwijderen van tabelrijen die voldoen aan de criteria uit de <b>WAAR</b> clause.</li></ul>]]></nl>
-            <pt><![CDATA[Modifique as tabelas existentes com a ajuda de três operações básicas:<ul><li><b>INSERÇÃO</b>: insira uma única linha e os valores correspondentes a cada coluna.</li><li><b>ATUALIZAÇÃO</b>: modifique as linhas da tabela que coincidem com o critério encontrado na condição <b>ONDE</b>. Especifique as colunas que você deseja modificar e seus respectivos valores.</li><li><b>REMOVER</b>: remove as linhas das tabelas que coincidem com o critério da condição <b>ONDE</b>.</li></ul>]]></pt>
+            <en><![CDATA[Modify existing tables with the help of three basic database operations:<ul><li><b>INSERT</b>: insert a single row and values corresponding to each column</li><li><b>UPDATE</b>: modify table rows that meet criteria found in the <b>WHERE</b> clause. Specify which columns you want to modify and values for each.</li><li><b>DELETE</b>: delete table rows that meet criteria found in the <b>WHERE</b> clause.</li></ul>]]>
+            </en>
+            <de><![CDATA[Verändere existierende Tabelle mit der Hilfe von drei grundlegenden Datenbankoperationen:<ul><li><b>INSERT</b>: füge eine einzelne Zeile ein (mit Werten die zu jeder der Spalten korrespondieren)</li><li><b>UPDATE</b>: modifiziere alle Tabellenzeilen auf die die Kriterien in der <b>WHERE</b> Aussage zutreffen. Geben Sie die zu modifizierenden Spalten und die Werte dafür an.</li><li><b>DELETE</b>: lösche alle Tabellenzeilen auf die Kriterien in der <b>WHERE</b> Aussage zutreffen.</li></ul>]]>
+            </de>
+            <pl><![CDATA[Używajac tej sekcji można zmodyfikować wcześniej zdefiniowane tabele. Można wykonać trzy podstawowoe operacje na bazie danych:<ul><li><b>DODANIE</b>: używajac tej komendy można dodać nowy pojedyńczy rekord z wybranymi wartościami</li><li><b>ZMIANA</b>: używając tej komendy można zmodyfikować rekordy tabeli które spełniaja podane kryteria w bloku <b>GDZIE</b>. Można ustawić które kolumny chce się zmodyfikować i jaką wartość chce się im dać.</li><li><b>USUŃ</b>: używając tej komendy możesz usunąć rekordy tabeli które spełniają kryteria podane w bloku <b>GDZIE</b>.</li></ul>]]>
+            </pl>
+            <cn><![CDATA[借助以下三种基本数据库操作修改已有表格：<ul><li><b>插入</b>：插入一行及每列数值</li><li><b>更新</b>：修改表格行以满足 <b>当</b> 语句中的标准。可以指定修改的列及其数值。</li><li><b>删除</b>：删除表格中满足<b>当</b> 语句中标准的行。</li></ul>]]>
+            </cn>
+            <fr><![CDATA[Modifier les tableaux existant avec l'aide de trois opérations de base:<ul><li><b>INSERTION</b>: insère une seule ligne et ses valeurs correspondantes dans chacune des colonnes.</li><li><b>Mettre à jour </b>: modifie les lignes du tableau qui rencontrent les critères inclus dans la clause <b>OU</b>. spécifiez quelle colonnes vous voulez modifier et les valeurs de chacune d'entre elles.</li><li><b>Supprimer</b>: supprime les lignes du tableau qui rencontrent les critères inclus dans la clause <b>OU</b>.</li></ul>]]>
+            </fr>
+            <bg><![CDATA[Променете съществуващите таблици с помощта на три основни операции за бази данни: <ul><li><b>ВМЪКНИ</b>: вмъкни единичен ред и стойности отнасящи се за всяка колона </li><li><b>ОБНОВИ</b>: промени редовете на таблицата, които отговорят на критерия, който се намира <b>КЪДЕ</b> в условието. Посочете кои колони искате да модифицирате и стойностите за всяка.</li><li><b>ИЗТРИЙ</b>: изтрийте редове от таблицата, които се намират <b>КЪДЕ</b> в условието.</li></ul>]]>
+            </bg>
+            <nl><![CDATA[Bestaande tabellen aanpassen met de hulp van drie database basisoperaties:<ul><li><b>INSERT</b>: een enkele rij invoegen met de corresponderende waarden van elke kolom</li><li><b>UPDATE</b>: tabelrijen aanpassen die voldoen aan de criteria uit de <b>WAAR</b> clause. Specifieren van welke kolommen u wil aanpassen en hun corresponderende waarden.</li><li><b>VERWIJDEREN</b>: verwijderen van tabelrijen die voldoen aan de criteria uit de <b>WAAR</b> clause.</li></ul>]]>
+            </nl>
+            <pt><![CDATA[Modifique as tabelas existentes com a ajuda de três operações básicas:<ul><li><b>INSERÇÃO</b>: insira uma única linha e os valores correspondentes a cada coluna.</li><li><b>ATUALIZAÇÃO</b>: modifique as linhas da tabela que coincidem com o critério encontrado na condição <b>ONDE</b>. Especifique as colunas que você deseja modificar e seus respectivos valores.</li><li><b>REMOVER</b>: remove as linhas das tabelas que coincidem com o critério da condição <b>ONDE</b>.</li></ul>]]>
+            </pt>
         </string>
         <string id="48">
             <en>This is the custom test section.</en>
@@ -1495,7 +1526,7 @@ Note: You can add new languages by inserting "<new_language>string translated in
             <cn>参数/返回值</cn>
             <fr>paramètre/retour</fr>
             <bg>параметър/връщане</bg>
-          <nl>parameter/return</nl>
+            <nl>parameter/return</nl>
             <pt>parâmetro/retorno</pt>
         </string>
         <string id="152">
@@ -1622,7 +1653,7 @@ Note: You can add new languages by inserting "<new_language>string translated in
             <de>lese Rechte</de>
             <pl>prawa odczytu</pl>
             <cn>阅读权限</cn>
-             <fr>groitd de lecture</fr>
+            <fr>groitd de lecture</fr>
             <bg>права за четене</bg>
             <nl>toegangsrechten lezen</nl>
             <pt>permissões de leitura</pt>
@@ -1641,7 +1672,7 @@ Note: You can add new languages by inserting "<new_language>string translated in
             <de>ändere Besitzer</de>
             <pl>zmiana wlaściciela</pl>
             <cn>所有者变更</cn>
-             <fr>changement de propriétaire</fr>
+            <fr>changement de propriétaire</fr>
             <bg>смяна на собственика</bg>
             <nl>eigenaar wijzigen</nl>
             <pt>proprietário da mudança</pt>
@@ -1691,7 +1722,7 @@ Note: You can add new languages by inserting "<new_language>string translated in
             <de>lege neuen Administrator an</de>
             <pl>tworzenie nowego administratora</pl>
             <cn>创建管理者</cn>
-             <fr>créer un nouvel administrateur</fr>
+            <fr>créer un nouvel administrateur</fr>
             <bg>създаване на нов администратор</bg>
             <nl>nieuwe beheerder aanmaken</nl>
             <pt>criando novo administrador</pt>
@@ -1701,7 +1732,7 @@ Note: You can add new languages by inserting "<new_language>string translated in
             <de>Benutzername</de>
             <pl>login</pl>
             <cn>登入</cn>
-             <fr>ouvrir une session</fr>
+            <fr>ouvrir une session</fr>
             <bg>вход</bg>
             <nl>login</nl>
             <pt>entrar</pt>
@@ -1810,7 +1841,7 @@ Note: You can add new languages by inserting "<new_language>string translated in
             <de>Vorname</de>
             <pl>imię</pl>
             <cn>名</cn>
-             <fr>prénom</fr>
+            <fr>prénom</fr>
             <bg>име</bg>
             <nl>voornaam</nl>
             <pt>primeiro nome</pt>
@@ -1872,7 +1903,7 @@ Note: You can add new languages by inserting "<new_language>string translated in
             <fr></fr>
             <bg></bg>
             <nl>Dit is niet verplichte contact-informatie</nl>
-       </string>
+        </string>
         <string id="191">
             <en>admin group</en>
             <de>Administratorengruppe</de>
@@ -2044,13 +2075,20 @@ Note: You can add new languages by inserting "<new_language>string translated in
             <pt></pt>
         </string>
         <string id="216">
-            <en><![CDATA[Time left (in seconds) to submit test item. A value of 0 implies unlimited time. Insert <b>{{TIME_LEFT}}</b> variable into HTML templates to make the timer visible.]]></en>
-            <de><![CDATA[Zeit (in Sekunden) die bleibt um das Item zu beantworten. Auf 0 setzen für unbeschränkte Zeit. Füge <b>{{TIME_LEFT}}</b> Variable in das HTML Template ein, um die verbleibende Zeit anzuzeigen.]]></de>
-            <pl><![CDATA[Czas w sekundach jaki użytkownik posiada aby przesłać element. Jeśli wartość jest równa 0 - oznacza to, że czas jest nieograniczony. Można wstawić zmienną <b>{{TIME_LEFT}}</b> do HTML aby wyświetlić odliczanie.]]></pl>
-            <cn><![CDATA[提交测试项目剩余时间（秒）。数值0表示无时间限制。在HTML模板中插入<b>{{剩余时间}}</b> 变量以显示倒计时。]]></cn>
-             <fr><![CDATA[Temps restant (en secondes) pour soumettre l'énoncé du test. Une valeur de 0 sous-tend un temps illimité. Insérer la variable <b>{{TIME_LEFT}}</b> dans le modèle HTML afin de rendre le chronomètre visible.]]></fr>
-            <bg><![CDATA[Оставащо време (в секунди)), за да бъде попълнен тестовия айтем. Стойност 0 означава неограничено време. Вмъкни <b>{{TIME_LEFT}}</b> променлива в HTML шаблона, за да направите този таймер видим.]]></bg>
-            <nl><![CDATA[Resterende tijd (in seconden) om op een test item te antwoorden. Een waarde van 0 impliceert onberkte tijd. Voeg de variabele <b>{{TIME_LEFT}}</b> in op de HTML-sjabloon om de timer zichtbaar te maken.]]></nl>
+            <en><![CDATA[Time left (in seconds) to submit test item. A value of 0 implies unlimited time. Insert <b>{{TIME_LEFT}}</b> variable into HTML templates to make the timer visible.]]>
+            </en>
+            <de><![CDATA[Zeit (in Sekunden) die bleibt um das Item zu beantworten. Auf 0 setzen für unbeschränkte Zeit. Füge <b>{{TIME_LEFT}}</b> Variable in das HTML Template ein, um die verbleibende Zeit anzuzeigen.]]>
+            </de>
+            <pl><![CDATA[Czas w sekundach jaki użytkownik posiada aby przesłać element. Jeśli wartość jest równa 0 - oznacza to, że czas jest nieograniczony. Można wstawić zmienną <b>{{TIME_LEFT}}</b> do HTML aby wyświetlić odliczanie.]]>
+            </pl>
+            <cn><![CDATA[提交测试项目剩余时间（秒）。数值0表示无时间限制。在HTML模板中插入<b>{{剩余时间}}</b> 变量以显示倒计时。]]>
+            </cn>
+            <fr><![CDATA[Temps restant (en secondes) pour soumettre l'énoncé du test. Une valeur de 0 sous-tend un temps illimité. Insérer la variable <b>{{TIME_LEFT}}</b> dans le modèle HTML afin de rendre le chronomètre visible.]]>
+            </fr>
+            <bg><![CDATA[Оставащо време (в секунди)), за да бъде попълнен тестовия айтем. Стойност 0 означава неограничено време. Вмъкни <b>{{TIME_LEFT}}</b> променлива в HTML шаблона, за да направите този таймер видим.]]>
+            </bg>
+            <nl><![CDATA[Resterende tijd (in seconden) om op een test item te antwoorden. Een waarde van 0 impliceert onberkte tijd. Voeg de variabele <b>{{TIME_LEFT}}</b> in op de HTML-sjabloon om de timer zichtbaar te maken.]]>
+            </nl>
             <pt></pt>
         </string>
         <string id="217">
@@ -2544,13 +2582,20 @@ Note: You can add new languages by inserting "<new_language>string translated in
             <pt></pt>
         </string>
         <string id="285" js="1">
-            <en><![CDATA[Test #{0} - debug <b>(idle)</b>]]></en>
-            <de><![CDATA[Test #{0} - debug <b>(wartend)</b>]]></de>
-            <pl><![CDATA[Test #{0} - debug <b>(bezczynny)</b>]]></pl>
-            <cn><![CDATA[测试 #{0} – 调试 <b>(空转)</b>]]></cn>
-            <fr><![CDATA[Test #{0} - déboguer <b>(temps mort)</b>]]></fr>
-            <bg><![CDATA[Тест #{0} - дебъг <b>(празен ход)</b>]]></bg>
-            <nl><![CDATA[Test #{0} - debuggen <b>(wachtend)</b>]]></nl>
+            <en><![CDATA[Test #{0} - debug <b>(idle)</b>]]>
+            </en>
+            <de><![CDATA[Test #{0} - debug <b>(wartend)</b>]]>
+            </de>
+            <pl><![CDATA[Test #{0} - debug <b>(bezczynny)</b>]]>
+            </pl>
+            <cn><![CDATA[测试 #{0} – 调试 <b>(空转)</b>]]>
+            </cn>
+            <fr><![CDATA[Test #{0} - déboguer <b>(temps mort)</b>]]>
+            </fr>
+            <bg><![CDATA[Тест #{0} - дебъг <b>(празен ход)</b>]]>
+            </bg>
+            <nl><![CDATA[Test #{0} - debuggen <b>(wachtend)</b>]]>
+            </nl>
             <pt></pt>
         </string>
         <string id="286" js="1">
@@ -2574,23 +2619,37 @@ Note: You can add new languages by inserting "<new_language>string translated in
             <pt></pt>
         </string>
         <string id="288" js="1">
-            <en><![CDATA[Please press the <b>begin</b> button.]]></en>
-            <de><![CDATA[Bitt den <b>Start</b> Knopf drücken.]]></de>
-            <pl><![CDATA[Proszę nacisnąć przycisk <b>zacznij</b>.]]></pl>
-            <cn><![CDATA[请按 <b>开始</b> 键.]]></cn>
-            <fr><![CDATA[appuyez sur le bouton <b>commencer</b>.]]></fr>
-            <bg><![CDATA[Моля натиснете бутона <b>старт</b>]]></bg>
-            <nl><![CDATA[Klik op de <b>begin</b> knop.]]></nl>
+            <en><![CDATA[Please press the <b>begin</b> button.]]>
+            </en>
+            <de><![CDATA[Bitt den <b>Start</b> Knopf drücken.]]>
+            </de>
+            <pl><![CDATA[Proszę nacisnąć przycisk <b>zacznij</b>.]]>
+            </pl>
+            <cn><![CDATA[请按 <b>开始</b> 键.]]>
+            </cn>
+            <fr><![CDATA[appuyez sur le bouton <b>commencer</b>.]]>
+            </fr>
+            <bg><![CDATA[Моля натиснете бутона <b>старт</b>]]>
+            </bg>
+            <nl><![CDATA[Klik op de <b>begin</b> knop.]]>
+            </nl>
             <pt></pt>
         </string>
         <string id="289" js="1">
-            <en><![CDATA[Test #{0} - syntax validation <b>(in progress...)]]></en>
-            <de><![CDATA[Test #{0} - Syntaxvalidierung <b>(läuft ...)]]></de>
-            <pl><![CDATA[Test #{0} - walidacja składni <b>(w trakcie...)]]></pl>
-            <cn><![CDATA[测试 #{0} – 句法验证 <b>(进行中……)]]></cn>
-            <fr><![CDATA[Test #{0} - validation de la syntaxe <b>(en progrès...)]]></fr>
-            <bg><![CDATA[Тест #{0} - валидизирането на синтаксиса <b>(в действие...)]]></bg>
-            <nl><![CDATA[Test #{0} - syntax validatie <b>(bezig...)]]></nl>
+            <en><![CDATA[Test #{0} - syntax validation <b>(in progress...)]]>
+            </en>
+            <de><![CDATA[Test #{0} - Syntaxvalidierung <b>(läuft ...)]]>
+            </de>
+            <pl><![CDATA[Test #{0} - walidacja składni <b>(w trakcie...)]]>
+            </pl>
+            <cn><![CDATA[测试 #{0} – 句法验证 <b>(进行中……)]]>
+            </cn>
+            <fr><![CDATA[Test #{0} - validation de la syntaxe <b>(en progrès...)]]>
+            </fr>
+            <bg><![CDATA[Тест #{0} - валидизирането на синтаксиса <b>(в действие...)]]>
+            </bg>
+            <nl><![CDATA[Test #{0} - syntax validatie <b>(bezig...)]]>
+            </nl>
             <pt></pt>
         </string>
         <string id="290" js="1">
@@ -2604,63 +2663,105 @@ Note: You can add new languages by inserting "<new_language>string translated in
             <pt></pt>
         </string>
         <string id="291" js="1">
-            <en><![CDATA[Test section with index #{0} syntax validation: <font style='color:green;'><b>PASSED</b></font>]]></en>
-            <de><![CDATA[Testsektion  mit Index #{0} Syntaxvalidierung: <font style='color:green;'><b>OK</b></font>]]></de>
-            <pl><![CDATA[Walidacja składni sekcji testu o indeksie #{0}: <font style='color:green;'><b>POWIODŁA SIĘ</b></font>]]></pl>
-            <cn><![CDATA[测试章节索引 #{0} 句法验证： < font style='color:green;'><b>通过</b></font>]]></cn>
-            <fr><![CDATA[Test section with index #{0} validation de la syntaxe: <font style='color:green;'><b>PASSÉE</b></font>]]></fr>
-            <bg><![CDATA[Валидизация на тестова секция с индекс #{0}: <font style='color:green;'><b>УСПЕШНА</b></font>]]></bg>
-            <nl><![CDATA[Testsectie met index #{0} syntaxvalidatie: <font style='color:green;'><b>OK</b></font>]]></nl>
+            <en><![CDATA[Test section with index #{0} syntax validation: <font style='color:green;'><b>PASSED</b></font>]]>
+            </en>
+            <de><![CDATA[Testsektion  mit Index #{0} Syntaxvalidierung: <font style='color:green;'><b>OK</b></font>]]>
+            </de>
+            <pl><![CDATA[Walidacja składni sekcji testu o indeksie #{0}: <font style='color:green;'><b>POWIODŁA SIĘ</b></font>]]>
+            </pl>
+            <cn><![CDATA[测试章节索引 #{0} 句法验证： < font style='color:green;'><b>通过</b></font>]]>
+            </cn>
+            <fr><![CDATA[Test section with index #{0} validation de la syntaxe: <font style='color:green;'><b>PASSÉE</b></font>]]>
+            </fr>
+            <bg><![CDATA[Валидизация на тестова секция с индекс #{0}: <font style='color:green;'><b>УСПЕШНА</b></font>]]>
+            </bg>
+            <nl><![CDATA[Testsectie met index #{0} syntaxvalidatie: <font style='color:green;'><b>OK</b></font>]]>
+            </nl>
             <pt></pt>
         </string>
         <string id="292" js="1">
-            <en><![CDATA[Test section with index #{0} syntax validation: <font style='color:red;'><b>FAILED</b></font>]]></en>
-            <de><![CDATA[Testsektion mit Index #{0} Syntaxvalidierung: <font style='color:red;'><b>FEHLGESCHLAGEN</b></font>]]></de>
-            <pl><![CDATA[Walidacja składni sekcji testu o indeksie #{0}: <font style='color:red;'><b>NIE POWIODŁA SIĘ</b></font>]]></pl>
-            <cn><![CDATA[测试章节索引 #{0} 句法验证： <font style='color:red;'><b>失败</b></font>]]></cn>
-            <fr><![CDATA[Test section with index #{0} validation de la syntaxe: <font style='color:red;'><b>ÉCHOUÉE</b></font>]]></fr>
-            <bg><![CDATA[Валидизация на тестова секция с индекс #{0}: <font style='color:green;'><b>НЕУСПЕШНА</b></font>]]></bg>
-            <nl><![CDATA[Testsectie met index #{0} syntaxvalidatie: <font style='color:red;'><b>GEFAALD</b></font>]]></nl>
+            <en><![CDATA[Test section with index #{0} syntax validation: <font style='color:red;'><b>FAILED</b></font>]]>
+            </en>
+            <de><![CDATA[Testsektion mit Index #{0} Syntaxvalidierung: <font style='color:red;'><b>FEHLGESCHLAGEN</b></font>]]>
+            </de>
+            <pl><![CDATA[Walidacja składni sekcji testu o indeksie #{0}: <font style='color:red;'><b>NIE POWIODŁA SIĘ</b></font>]]>
+            </pl>
+            <cn><![CDATA[测试章节索引 #{0} 句法验证： <font style='color:red;'><b>失败</b></font>]]>
+            </cn>
+            <fr><![CDATA[Test section with index #{0} validation de la syntaxe: <font style='color:red;'><b>ÉCHOUÉE</b></font>]]>
+            </fr>
+            <bg><![CDATA[Валидизация на тестова секция с индекс #{0}: <font style='color:green;'><b>НЕУСПЕШНА</b></font>]]>
+            </bg>
+            <nl><![CDATA[Testsectie met index #{0} syntaxvalidatie: <font style='color:red;'><b>GEFAALD</b></font>]]>
+            </nl>
             <pt></pt>
         </string>
         <string id="293" js="1">
-            <en><![CDATA[Test #{0} - syntax validation <b>(finished)</b>]]></en>
-            <de><![CDATA[Test #{0} - Syntaxvalidierung <b>(abgeschlossen)</b>]]></de>
-            <pl><![CDATA[Test #{0} - walidacja składni <b>(zakończona)</b>]]></pl>
-            <cn><![CDATA[测试 #{0} – 句法验证 <b>(完成)</b>]]></cn>
-            <fr><![CDATA[Test #{0} - validation de la syntaxe <b>(terminée)</b>]]></fr>
-            <bg><![CDATA[Тест #{0} – валидизацията на синтаксиса <b>(завърши)</b>]]></bg>
-            <nl><![CDATA[Test #{0} - syntaxvalidatie <b>(voltooid)</b>]]></nl>
+            <en><![CDATA[Test #{0} - syntax validation <b>(finished)</b>]]>
+            </en>
+            <de><![CDATA[Test #{0} - Syntaxvalidierung <b>(abgeschlossen)</b>]]>
+            </de>
+            <pl><![CDATA[Test #{0} - walidacja składni <b>(zakończona)</b>]]>
+            </pl>
+            <cn><![CDATA[测试 #{0} – 句法验证 <b>(完成)</b>]]>
+            </cn>
+            <fr><![CDATA[Test #{0} - validation de la syntaxe <b>(terminée)</b>]]>
+            </fr>
+            <bg><![CDATA[Тест #{0} – валидизацията на синтаксиса <b>(завърши)</b>]]>
+            </bg>
+            <nl><![CDATA[Test #{0} - syntaxvalidatie <b>(voltooid)</b>]]>
+            </nl>
             <pt></pt>
         </string>
         <string id="294" js="1">
-            <en><![CDATA[Syntax validation <font style='color:green;'>PASSED</font>.]]></en>
-            <de><![CDATA[Syntaxvalidierung <font style='color:green;'>OK</font>.]]></de>            
-            <pl><![CDATA[Walidacja składni <font style='color:green;'>POMYŚLNA</font>.]]></pl>
-            <cn><![CDATA[句法验证 <font style='color:green;'>通过</font>.]]></cn>
-            <fr><![CDATA[Validation de la syntaxe<font style='color:green;'>PASSÉE</font>.]]></fr>
-            <bg><![CDATA[Валидизацията на синтаксиса <font style='color:green;'>ПРЕМИНАТА</font>.]]></bg>
-            <nl><![CDATA[Syntaxvalidatie <font style='color:green;'>OK</font>.]]></nl>
+            <en><![CDATA[Syntax validation <font style='color:green;'>PASSED</font>.]]>
+            </en>
+            <de><![CDATA[Syntaxvalidierung <font style='color:green;'>OK</font>.]]>
+            </de>            
+            <pl><![CDATA[Walidacja składni <font style='color:green;'>POMYŚLNA</font>.]]>
+            </pl>
+            <cn><![CDATA[句法验证 <font style='color:green;'>通过</font>.]]>
+            </cn>
+            <fr><![CDATA[Validation de la syntaxe<font style='color:green;'>PASSÉE</font>.]]>
+            </fr>
+            <bg><![CDATA[Валидизацията на синтаксиса <font style='color:green;'>ПРЕМИНАТА</font>.]]>
+            </bg>
+            <nl><![CDATA[Syntaxvalidatie <font style='color:green;'>OK</font>.]]>
+            </nl>
             <pt></pt>
         </string>
         <string id="295" js="1">
-            <en><![CDATA[Test #{0} - syntax validation <b>(FAILED on section index #{1} - debug HALTED)</b>]]></en>
-            <de><![CDATA[Test #{0} - Syntaxvalidierung <b>(FEHLGESCHLAGEN bei Sektion mit Index #{1} - debug ANGEHALEN)</b>]]></de>
-            <pl><![CDATA[Test #{0} - walidacja składni <b>(NIE POWIODŁA SIĘ przy sekcji o indeksie #{1} - debug ZATRZYMANY)</b>]]></pl>
-            <cn><![CDATA[测试 #{0} – 句法验证 <b>(在章节索引 #{1} 处失败 – 调试中止)</b>]]></cn>
-            <fr><![CDATA[Test #{0} - Validation de la syntaxe <b>(ÉCHOUÉE pour l'index de la section #{1} - déboguage INTERROMPU)</b>]]></fr>
-            <bg><![CDATA[Тест #{0} – валидизацията на синтаксиса <b>(НЕУСПЕШНА в индекс на секция #{1} – дебъгът СПРЯН)</b>]]></bg>
-            <nl><![CDATA[Test #{0} - syntaxvalidatie <b>(GEFAALD bij sectie met index #{1} - debug ONDERBROKEN)</b>]]></nl>
+            <en><![CDATA[Test #{0} - syntax validation <b>(FAILED on section index #{1} - debug HALTED)</b>]]>
+            </en>
+            <de><![CDATA[Test #{0} - Syntaxvalidierung <b>(FEHLGESCHLAGEN bei Sektion mit Index #{1} - debug ANGEHALEN)</b>]]>
+            </de>
+            <pl><![CDATA[Test #{0} - walidacja składni <b>(NIE POWIODŁA SIĘ przy sekcji o indeksie #{1} - debug ZATRZYMANY)</b>]]>
+            </pl>
+            <cn><![CDATA[测试 #{0} – 句法验证 <b>(在章节索引 #{1} 处失败 – 调试中止)</b>]]>
+            </cn>
+            <fr><![CDATA[Test #{0} - Validation de la syntaxe <b>(ÉCHOUÉE pour l'index de la section #{1} - déboguage INTERROMPU)</b>]]>
+            </fr>
+            <bg><![CDATA[Тест #{0} – валидизацията на синтаксиса <b>(НЕУСПЕШНА в индекс на секция #{1} – дебъгът СПРЯН)</b>]]>
+            </bg>
+            <nl><![CDATA[Test #{0} - syntaxvalidatie <b>(GEFAALD bij sectie met index #{1} - debug ONDERBROKEN)</b>]]>
+            </nl>
             <pt></pt>
         </string>
         <string id="296" js="1">
-            <en><![CDATA[Syntax validation <font style='color:red;'><b>FAILED</b></font> on section index #{0} - debug <font style='color:red;'><b>HALTED</b></font>]]></en>
-            <de><![CDATA[Syntaxvalidierung <font style='color:red;'><b>FEHLGESCHLAGEN</b></font> bei Sektion mit Index #{0} - debug <font style='color:red;'><b>ANGEHALTEN</b></font>]]></de>
-            <pl><![CDATA[Walidacja składni <font style='color:red;'><b>NIE POWIODŁA SIĘ</b></font> dla sekcji o indeksie #{0} - debug <font style='color:red;'><b>ZATRZYMANY</b></font>]]></pl>
-            <cn><![CDATA[句法验证 <font style='color:red;'><b>F失败</b></font> 在章节索引 #{0} 处– 调试 <font style='color:red;'><b>中止</b></font>]]></cn>
-            <fr><![CDATA[Validation de la syntaxe <font style='color:red;'><b>ÉCHOUÉE</b></font> pour l'index de la section #{0} - déboguage <font style='color:red;'><b>HALTED</b></font>]]></fr>
-            <bg><![CDATA[Валидизацията на синтаксиса <font style='color:red;'><b>НЕУСПЕШНА</b></font> за индекс на секция #{0} - дебъгът <font style='color:red;'><b>СПРЯН</b></font>]]></bg>
-            <nl><![CDATA[Syntaxvalidatie <font style='color:red;'><b>GEFAALD</b></font> bij sectie met index #{0} - debug <font style='color:red;'><b>ONDERBROKEN</b></font>]]></nl>
+            <en><![CDATA[Syntax validation <font style='color:red;'><b>FAILED</b></font> on section index #{0} - debug <font style='color:red;'><b>HALTED</b></font>]]>
+            </en>
+            <de><![CDATA[Syntaxvalidierung <font style='color:red;'><b>FEHLGESCHLAGEN</b></font> bei Sektion mit Index #{0} - debug <font style='color:red;'><b>ANGEHALTEN</b></font>]]>
+            </de>
+            <pl><![CDATA[Walidacja składni <font style='color:red;'><b>NIE POWIODŁA SIĘ</b></font> dla sekcji o indeksie #{0} - debug <font style='color:red;'><b>ZATRZYMANY</b></font>]]>
+            </pl>
+            <cn><![CDATA[句法验证 <font style='color:red;'><b>F失败</b></font> 在章节索引 #{0} 处– 调试 <font style='color:red;'><b>中止</b></font>]]>
+            </cn>
+            <fr><![CDATA[Validation de la syntaxe <font style='color:red;'><b>ÉCHOUÉE</b></font> pour l'index de la section #{0} - déboguage <font style='color:red;'><b>HALTED</b></font>]]>
+            </fr>
+            <bg><![CDATA[Валидизацията на синтаксиса <font style='color:red;'><b>НЕУСПЕШНА</b></font> за индекс на секция #{0} - дебъгът <font style='color:red;'><b>СПРЯН</b></font>]]>
+            </bg>
+            <nl><![CDATA[Syntaxvalidatie <font style='color:red;'><b>GEFAALD</b></font> bij sectie met index #{0} - debug <font style='color:red;'><b>ONDERBROKEN</b></font>]]>
+            </nl>
             <pt></pt>
         </string>
         <string id="297" js="1">
@@ -2684,13 +2785,20 @@ Note: You can add new languages by inserting "<new_language>string translated in
             <pt></pt>
         </string>
         <string id="299" js="1">
-            <en><![CDATA[Test #{0} - runtime debug <b>(R code is being interpreted...)</b>]]></en>
-            <de><![CDATA[Test #{0} - Laufzeit debug <b>(R Code wird interpretiert...)</b>]]></de>
-            <pl><![CDATA[Test #{0} - debug na żywo <b>(kod R jest interpretowany..)</b>]]></pl>
-            <cn><![CDATA[测试 #{0} – 运行时间调试 <b>(R代码正在被编译…)</b>]]></cn>
-            <fr><![CDATA[Test #{0} - Déboguade temps d'exécution <b>(le code R est en train d'être interprété...)</b>]]></fr>
-            <bg><![CDATA[Тест #{0} - дебъг в реално време <b>(R кодът се интерпретира...)</b>]]></bg>
-            <nl><![CDATA[Test #{0} - runtime debug <b>(R-code wordt geinterpreteerd...)</b>]]></nl>
+            <en><![CDATA[Test #{0} - runtime debug <b>(R code is being interpreted...)</b>]]>
+            </en>
+            <de><![CDATA[Test #{0} - Laufzeit debug <b>(R Code wird interpretiert...)</b>]]>
+            </de>
+            <pl><![CDATA[Test #{0} - debug na żywo <b>(kod R jest interpretowany..)</b>]]>
+            </pl>
+            <cn><![CDATA[测试 #{0} – 运行时间调试 <b>(R代码正在被编译…)</b>]]>
+            </cn>
+            <fr><![CDATA[Test #{0} - Déboguade temps d'exécution <b>(le code R est en train d'être interprété...)</b>]]>
+            </fr>
+            <bg><![CDATA[Тест #{0} - дебъг в реално време <b>(R кодът се интерпретира...)</b>]]>
+            </bg>
+            <nl><![CDATA[Test #{0} - runtime debug <b>(R-code wordt geinterpreteerd...)</b>]]>
+            </nl>
             <pt></pt>
         </string>
         <string id="300" js="1">
@@ -2714,33 +2822,54 @@ Note: You can add new languages by inserting "<new_language>string translated in
             <pt></pt>
         </string>
         <string id="302" js="1">
-            <en><![CDATA[Test #{0}, session #{1} - runtime debug <b>(R logic error - debug HALTED)</b>]]></en>
-            <de><![CDATA[Test #{0}, session #{1} - Laufzeit debug <b>(R: logischer Fehler - debug ANGEHALTEN)</b>]]></de>
-            <pl><![CDATA[Test #{0}, sesja #{1} - debug na żywo <b>(błąd w logice R - debug ZATRZYMANY</b>]]></pl>
-            <cn><![CDATA[测试 #{0}，章节 #{1} – 运行时间调试 <b>(R逻辑错误 – 调试中止)</b>]]></cn>
-            <fr><![CDATA[Test #{0}, session #{1} - deboguage temps d'exécution <b>(erreur logique R- Déboguage INTERROMPU)</b>]]></fr>
-            <bg><![CDATA[Тестът #{0}, сесията #{1} - дебъг в реално време <b>(грешка в R логиката - дебъгът СПРЯН)</b>]]></bg>
-            <nl><![CDATA[Test #{0}, sessie #{1} - runtime debug <b>(logica-fout in R - debug ONDERBROKEN)</b>]]></nl>
+            <en><![CDATA[Test #{0}, session #{1} - runtime debug <b>(R logic error - debug HALTED)</b>]]>
+            </en>
+            <de><![CDATA[Test #{0}, session #{1} - Laufzeit debug <b>(R: logischer Fehler - debug ANGEHALTEN)</b>]]>
+            </de>
+            <pl><![CDATA[Test #{0}, sesja #{1} - debug na żywo <b>(błąd w logice R - debug ZATRZYMANY</b>]]>
+            </pl>
+            <cn><![CDATA[测试 #{0}，章节 #{1} – 运行时间调试 <b>(R逻辑错误 – 调试中止)</b>]]>
+            </cn>
+            <fr><![CDATA[Test #{0}, session #{1} - deboguage temps d'exécution <b>(erreur logique R- Déboguage INTERROMPU)</b>]]>
+            </fr>
+            <bg><![CDATA[Тестът #{0}, сесията #{1} - дебъг в реално време <b>(грешка в R логиката - дебъгът СПРЯН)</b>]]>
+            </bg>
+            <nl><![CDATA[Test #{0}, sessie #{1} - runtime debug <b>(logica-fout in R - debug ONDERBROKEN)</b>]]>
+            </nl>
             <pt></pt>
         </string>
         <string id="303" js="1">
-            <en><![CDATA[R logic <font style='color:red;'><b>error</b></font>. Check R code output for additional info. Debug HALTED.]]></en>
-            <de><![CDATA[R: logischer <font style='color:red;'><b>Fehler</b></font>. Prüfe R Code Ausgabe für zusätzliche Information. Debug ANGEHALTEN.]]></de>
-            <pl><![CDATA[<font style='color:red;'><b>Błąd</b></font> w logice R. Prosze sprawdzić wynik kodu R dla dodatkowych informacji. Debug ZATRZYMANY.]]></pl>
-            <cn><![CDATA[R逻辑 <font style='color:red;'><b>错误</b></font>。更多信息详见R代码输出。调试中止。]]></cn>
-            <fr><![CDATA[Logique R <font style='color:red;'><b>erreur</b></font>. Vérifier la sortie du code R pour de plus amples inforations. déboguage INTERROMPU.]]></fr>
-            <bg><![CDATA[R логиката <font style='color:red;'><b>е грешна</b></font>. Проверете резултата от R кода за допълнителна информация. Дебъгът СПРЯН.]]></bg>
-            <nl><![CDATA[R logica <font style='color:red;'><b>fout</b></font>. Check de output van de R-code voor verdere informatie. Debug ONDERBROKEN.]]></nl>
+            <en><![CDATA[R logic <font style='color:red;'><b>error</b></font>. Check R code output for additional info. Debug HALTED.]]>
+            </en>
+            <de><![CDATA[R: logischer <font style='color:red;'><b>Fehler</b></font>. Prüfe R Code Ausgabe für zusätzliche Information. Debug ANGEHALTEN.]]>
+            </de>
+            <pl><![CDATA[<font style='color:red;'><b>Błąd</b></font> w logice R. Prosze sprawdzić wynik kodu R dla dodatkowych informacji. Debug ZATRZYMANY.]]>
+            </pl>
+            <cn><![CDATA[R逻辑 <font style='color:red;'><b>错误</b></font>。更多信息详见R代码输出。调试中止。]]>
+            </cn>
+            <fr><![CDATA[Logique R <font style='color:red;'><b>erreur</b></font>. Vérifier la sortie du code R pour de plus amples inforations. déboguage INTERROMPU.]]>
+            </fr>
+            <bg><![CDATA[R логиката <font style='color:red;'><b>е грешна</b></font>. Проверете резултата от R кода за допълнителна информация. Дебъгът СПРЯН.]]>
+            </bg>
+            <nl><![CDATA[R logica <font style='color:red;'><b>fout</b></font>. Check de output van de R-code voor verdere informatie. Debug ONDERBROKEN.]]>
+            </nl>
             <pt></pt>
         </string>
         <string id="304" js="1">
-            <en><![CDATA[R logic validation <font style='color:green;'><b>PASSED</b></font>.]]></en>
-            <de><![CDATA[R logische validierung <font style='color:green;'><b>OK</b></font>.]]></de>
-            <pl><![CDATA[Walidacja logiki R <font style='color:green;'><b>POWIODŁA SIĘ</b></font>.]]></pl>
-            <cn><![CDATA[R逻辑验证 <font style='color:green;'><b>通过</b></font>.]]></cn>
-            <fr><![CDATA[Validation de la logique R<font style='color:green;'><b>PASSÉE</b></font>.]]></fr>
-            <bg><![CDATA[R Валидизацията на логиката <font style='color:green;'><b>УСПЕШНА</b></font>.]]></bg>
-            <nl><![CDATA[R logica validatie <font style='color:green;'><b>OK</b></font>.]]></nl>
+            <en><![CDATA[R logic validation <font style='color:green;'><b>PASSED</b></font>.]]>
+            </en>
+            <de><![CDATA[R logische validierung <font style='color:green;'><b>OK</b></font>.]]>
+            </de>
+            <pl><![CDATA[Walidacja logiki R <font style='color:green;'><b>POWIODŁA SIĘ</b></font>.]]>
+            </pl>
+            <cn><![CDATA[R逻辑验证 <font style='color:green;'><b>通过</b></font>.]]>
+            </cn>
+            <fr><![CDATA[Validation de la logique R<font style='color:green;'><b>PASSÉE</b></font>.]]>
+            </fr>
+            <bg><![CDATA[R Валидизацията на логиката <font style='color:green;'><b>УСПЕШНА</b></font>.]]>
+            </bg>
+            <nl><![CDATA[R logica validatie <font style='color:green;'><b>OK</b></font>.]]>
+            </nl>
             <pt></pt>
         </string>
         <string id="305" js="1">
@@ -2764,13 +2893,20 @@ Note: You can add new languages by inserting "<new_language>string translated in
             <pt></pt>
         </string>
         <string id="307" js="1">
-            <en><![CDATA[Test #{0}, session #{1} - runtime debug <b><font style='color:green;'>PASSED</font></b>]]></en>
-            <de><![CDATA[Test #{0}, Sitzung #{1} - Laufzeit debug <b><font style='color:green;'>OK</font></b>]]></de>
-            <pl><![CDATA[Test #{0}, sesja #{1} - debug na żywo <b><font style='color:green;'>POWIODŁ SIĘ</font></b>]]></pl>
-            <cn><![CDATA[测试 #{0}，章节 #{1} – 运行时间调试 <b><font style='color:green;'>通过</font></b>]]></cn>
-            <fr><![CDATA[Test #{0}, session #{1} - déboguage temps d'exécution <b><font style='color:green;'>PASSÉE</font></b>]]></fr>  
-            <bg><![CDATA[Тестът #{0}, сесията #{1} - дебъгът в реално време <b><font style='color:green;'>УСПЕШЕН</font></b>]]></bg>
-            <nl><![CDATA[Test #{0}, sessie #{1} - runtime debug <b><font style='color:green;'>OK</font></b>]]></nl>
+            <en><![CDATA[Test #{0}, session #{1} - runtime debug <b><font style='color:green;'>PASSED</font></b>]]>
+            </en>
+            <de><![CDATA[Test #{0}, Sitzung #{1} - Laufzeit debug <b><font style='color:green;'>OK</font></b>]]>
+            </de>
+            <pl><![CDATA[Test #{0}, sesja #{1} - debug na żywo <b><font style='color:green;'>POWIODŁ SIĘ</font></b>]]>
+            </pl>
+            <cn><![CDATA[测试 #{0}，章节 #{1} – 运行时间调试 <b><font style='color:green;'>通过</font></b>]]>
+            </cn>
+            <fr><![CDATA[Test #{0}, session #{1} - déboguage temps d'exécution <b><font style='color:green;'>PASSÉE</font></b>]]>
+            </fr>  
+            <bg><![CDATA[Тестът #{0}, сесията #{1} - дебъгът в реално време <b><font style='color:green;'>УСПЕШЕН</font></b>]]>
+            </bg>
+            <nl><![CDATA[Test #{0}, sessie #{1} - runtime debug <b><font style='color:green;'>OK</font></b>]]>
+            </nl>
             <pt></pt>
         </string>
         <string id="308" js="1">
@@ -2778,7 +2914,7 @@ Note: You can add new languages by inserting "<new_language>string translated in
             <de>Endsektion erreicht. Der Test ist zu Ende.</de>
             <pl>Osiągnieto końcową sekcję. Test został skończony.</pl>
             <cn>到达结束章节。测试已完成。</cn>
-             <fr>La fin de la section a été atteinte. Le test est terminé.</fr>  
+            <fr>La fin de la section a été atteinte. Le test est terminé.</fr>  
             <bg>Крайната секция достигната. Тестът е завършен.</bg>
             <nl>Laatste sectie bereikt. Test beeindigd.</nl>
             <pt></pt>
@@ -2834,13 +2970,20 @@ Note: You can add new languages by inserting "<new_language>string translated in
             <pt></pt>
         </string>
         <string id="314" js="1">
-            <en><![CDATA[Test #{0}, session #{1}, template #{2} - runtime debug <b>(template loaded - awaiting user input...)</b>]]></en>
-            <de><![CDATA[Test #{0}, Sitzung #{1}, Template #{2} - Laufzeit debug <b>(Template geladen - warte auf Benutzereingabe...)</b>]]></de>
-            <pl><![CDATA[Test #{0}, sesja #{1}, szablon #{2} - debug na żywo <b>(szablon wczytany - oczekiwanie na ruch użytkownika...)</b>]]></pl>
-            <cn><![CDATA[测试 #{0}，章节 #{1}，模板 #{2} – 运行时间调试 <b>(载入模板 – 等待用户输入……)</b>]]></cn>
-            <fr><![CDATA[Test #{0}, session #{1}, modèle #{2} - déboguage temps d'exécution <b>(modèle chargé - en attente d'une saisie par l'utilisateur...)</b>]]></fr>
-            <bg><![CDATA[Тестът #{0}, сесията #{1}, шаблонът #{2} - дебъг в реално време <b>(шаблонът зареден - очакване за въвеждане на данни...)</b>]]></bg>
-            <nl><![CDATA[Test #{0}, sessie #{1}, template #{2} - runtime debug <b>(template geladen - wachtend op input van de gebruiker...)</b>]]></nl>
+            <en><![CDATA[Test #{0}, session #{1}, template #{2} - runtime debug <b>(template loaded - awaiting user input...)</b>]]>
+            </en>
+            <de><![CDATA[Test #{0}, Sitzung #{1}, Template #{2} - Laufzeit debug <b>(Template geladen - warte auf Benutzereingabe...)</b>]]>
+            </de>
+            <pl><![CDATA[Test #{0}, sesja #{1}, szablon #{2} - debug na żywo <b>(szablon wczytany - oczekiwanie na ruch użytkownika...)</b>]]>
+            </pl>
+            <cn><![CDATA[测试 #{0}，章节 #{1}，模板 #{2} – 运行时间调试 <b>(载入模板 – 等待用户输入……)</b>]]>
+            </cn>
+            <fr><![CDATA[Test #{0}, session #{1}, modèle #{2} - déboguage temps d'exécution <b>(modèle chargé - en attente d'une saisie par l'utilisateur...)</b>]]>
+            </fr>
+            <bg><![CDATA[Тестът #{0}, сесията #{1}, шаблонът #{2} - дебъг в реално време <b>(шаблонът зареден - очакване за въвеждане на данни...)</b>]]>
+            </bg>
+            <nl><![CDATA[Test #{0}, sessie #{1}, template #{2} - runtime debug <b>(template geladen - wachtend op input van de gebruiker...)</b>]]>
+            </nl>
             <pt></pt>
         </string>
         <string id="315" js="1">
@@ -2934,13 +3077,20 @@ Note: You can add new languages by inserting "<new_language>string translated in
             <pt></pt>
         </string>
         <string id="326">
-            <en><![CDATA[Single character used to separate fields in a row. Default character is '<b>,</b>'.]]></en>
-            <de><![CDATA[Einzelnes Zeichen welches benutzt wird um Felder in einer Zeile zu trennen. Standardzeichen ist '<b>,</b>'.]]></de>
-            <pl><![CDATA[Pojedyńczy znak używany do oddzielenia pól w rzędzie. Domyślny znak to '<b>,</b>'.]]></pl>
-            <cn><![CDATA[在行内用于划分区域的单一字符。默认字符为'<b>,</b>'。]]></cn>
-            <fr><![CDATA[Un seul caractère peut être utilisé afin de séparer les champs dans une ligne. Le caractère par défaut est '<b>,</b>'.]]></fr>
-            <bg><![CDATA[Единичен знак за отделяне на полетата в реда. Знакът по подразбиране е <b>,</b>'.]]></bg>
-            <nl><![CDATA[Enkel teken gebruikt om velden te scheiden in een rij. Standaardteken is '<b>,</b>'.]]></nl>
+            <en><![CDATA[Single character used to separate fields in a row. Default character is '<b>,</b>'.]]>
+            </en>
+            <de><![CDATA[Einzelnes Zeichen welches benutzt wird um Felder in einer Zeile zu trennen. Standardzeichen ist '<b>,</b>'.]]>
+            </de>
+            <pl><![CDATA[Pojedyńczy znak używany do oddzielenia pól w rzędzie. Domyślny znak to '<b>,</b>'.]]>
+            </pl>
+            <cn><![CDATA[在行内用于划分区域的单一字符。默认字符为'<b>,</b>'。]]>
+            </cn>
+            <fr><![CDATA[Un seul caractère peut être utilisé afin de séparer les champs dans une ligne. Le caractère par défaut est '<b>,</b>'.]]>
+            </fr>
+            <bg><![CDATA[Единичен знак за отделяне на полетата в реда. Знакът по подразбиране е <b>,</b>'.]]>
+            </bg>
+            <nl><![CDATA[Enkel teken gebruikt om velden te scheiden in een rij. Standaardteken is '<b>,</b>'.]]>
+            </nl>
             <pt></pt>
         </string>
         <string id="327">
@@ -2954,13 +3104,20 @@ Note: You can add new languages by inserting "<new_language>string translated in
             <pt></pt>
         </string>
         <string id="328">
-            <en><![CDATA[Single character used to enclose string. Default character is '<b>"</b>'.]]></en>
-            <de><![CDATA[Einzelnes Zeichen das benutzt wird um Zeichenketten abzugrenzen. Standardzeichen ist '<b>"</b>'.]]></de>
-            <pl><![CDATA[Pojedyńczy znak używany do objęcia zakresu pola. Domyślny znak to '<b>"</b>'.]]></pl>
-            <cn><![CDATA[用于标记字符串的单一字符。默认字符为'<b>"</b>'。]]></cn>
-            <fr><![CDATA[Un seur caractère peut être utilisé pour joindre des champs alphanumériques. Le caractère par défaut est '<b>"</b>'.]]></fr>
-            <bg><![CDATA[Единичен знак, използван за завършване на реда от знаци. Знакът по подразбиране е '<b>"</b>'.]]></bg>
-            <nl><![CDATA[Enkel teken gebruikt voor de begrenzing van een string. Standaardteken is '<b>"</b>'.]]></nl>
+            <en><![CDATA[Single character used to enclose string. Default character is '<b>"</b>'.]]>
+            </en>
+            <de><![CDATA[Einzelnes Zeichen das benutzt wird um Zeichenketten abzugrenzen. Standardzeichen ist '<b>"</b>'.]]>
+            </de>
+            <pl><![CDATA[Pojedyńczy znak używany do objęcia zakresu pola. Domyślny znak to '<b>"</b>'.]]>
+            </pl>
+            <cn><![CDATA[用于标记字符串的单一字符。默认字符为'<b>"</b>'。]]>
+            </cn>
+            <fr><![CDATA[Un seur caractère peut être utilisé pour joindre des champs alphanumériques. Le caractère par défaut est '<b>"</b>'.]]>
+            </fr>
+            <bg><![CDATA[Единичен знак, използван за завършване на реда от знаци. Знакът по подразбиране е '<b>"</b>'.]]>
+            </bg>
+            <nl><![CDATA[Enkel teken gebruikt voor de begrenzing van een string. Standaardteken is '<b>"</b>'.]]>
+            </nl>
             <pt></pt>
         </string>
         <string id="329" js="1">
@@ -2990,7 +3147,8 @@ Note: You can add new languages by inserting "<new_language>string translated in
             <cn>包含标题行导入CSV。标题行数值将作为列名称。</cn>
             <fr>Cocher la case afin d'importer un fichier CSV avec une ligne d'entête.Les valeurs incluses dans la ligne d'entête seront utilisées comme nom de colonne.</fr>
             <bg>Поле за потвърждаване на CSV със заглавен
-            ред. Стойностите на заглавния ред ще бъдат използвани за име на колоната</bg>
+                ред. Стойностите на заглавния ред ще бъдат използвани за име на колоната
+            </bg>
             <nl>Selecteer dit vak om een CSV-bestand met header te importeren. Waarden van de header zullen gebruikt worden als kolomnamen.</nl>
             <pt></pt>
         </string>
@@ -3595,13 +3753,16 @@ Note: You can add new languages by inserting "<new_language>string translated in
             <pt></pt>
         </string>
         <string id="394">
-            <en><![CDATA[Loops executes specific instruction block as long as conditon is met. You can choose from one of the two loops:<ul><li><b>FOR</b>: at the beggining of the loop index variable is declared and value is assigned. Each iteration changes index variable by some value and checks if condition is still met.</li><li><b>WHILE</b>: every iteration checks if condition is still met</li>]]></en>
+            <en><![CDATA[Loops executes specific instruction block as long as conditon is met. You can choose from one of the two loops:<ul><li><b>FOR</b>: at the beggining of the loop index variable is declared and value is assigned. Each iteration changes index variable by some value and checks if condition is still met.</li><li><b>WHILE</b>: every iteration checks if condition is still met</li>]]>
+            </en>
             <de></de>
-            <pl><![CDATA[Pętle wykonują określony blok instrukcji dotąd aż warunek jest spełniony. Można wybrać jedną z dwóch pętli:<ul><li><b>FOR</b>: na początku pętli zadeklarowana jest zmienna indeksu i przypisana jest do niej wartość. Każda iteracja zmienia zmienną indeksu o określoną wartość i sprawdza czy warunek dalej jest spełniony.</li><li><b>WHILE</b>: każda iteracja sprawdza czy warunek jest dalej spełniony</li>]]></pl>
+            <pl><![CDATA[Pętle wykonują określony blok instrukcji dotąd aż warunek jest spełniony. Można wybrać jedną z dwóch pętli:<ul><li><b>FOR</b>: na początku pętli zadeklarowana jest zmienna indeksu i przypisana jest do niej wartość. Każda iteracja zmienia zmienną indeksu o określoną wartość i sprawdza czy warunek dalej jest spełniony.</li><li><b>WHILE</b>: każda iteracja sprawdza czy warunek jest dalej spełniony</li>]]>
+            </pl>
             <cn></cn>
             <fr></fr>
             <bg></bg>
-            <nl><![CDATA[Loops voert specifiek instructieblok uit zolang conditie voldaan is. U kan kiezen uit een van de twee loops:<ul><li><b>FOR</b>: aan het begin van de loop wordt indexvariabele gedeclareerd en een waarde toegekend. Elke iteratie wijzigt de indexvariabele met een zekere waarde en checkt of de conditie nog steeds voldaan is.</li><li><b>WHILE</b>: elke iteratie checkt of de conditie nog steeds voldaan is</li>]]></nl>
+            <nl><![CDATA[Loops voert specifiek instructieblok uit zolang conditie voldaan is. U kan kiezen uit een van de twee loops:<ul><li><b>FOR</b>: aan het begin van de loop wordt indexvariabele gedeclareerd en een waarde toegekend. Elke iteratie wijzigt de indexvariabele met een zekere waarde en checkt of de conditie nog steeds voldaan is.</li><li><b>WHILE</b>: elke iteratie checkt of de conditie nog steeds voldaan is</li>]]>
+            </nl>
             <pt></pt>
         </string>
         <string id="395">
@@ -3925,43 +4086,55 @@ Note: You can add new languages by inserting "<new_language>string translated in
             <pt></pt>
         </string>
         <string id="429">
-            <en><![CDATA[To recover password please follow this link: <a href='%s'>LINK TO RECOVER PASSWORD</a>.]]></en>
+            <en><![CDATA[To recover password please follow this link: <a href='%s'>LINK TO RECOVER PASSWORD</a>.]]>
+            </en>
             <de></de>
-            <pl><![CDATA[Aby odzyskać hasło proszę podążyć za tym linkiem: <a href='%s'>LINK DO ODZYSKANIA HASŁA</a>.]]></pl>
+            <pl><![CDATA[Aby odzyskać hasło proszę podążyć za tym linkiem: <a href='%s'>LINK DO ODZYSKANIA HASŁA</a>.]]>
+            </pl>
             <cn></cn>
             <fr></fr>
             <bg></bg>
-            <nl><![CDATA[Om wachtwoord op te halen, gelieve deze link te volgen: <a href='%s'>LINK NAAR WACHTWOORD OPHALING</a>.]]></nl>
+            <nl><![CDATA[Om wachtwoord op te halen, gelieve deze link te volgen: <a href='%s'>LINK NAAR WACHTWOORD OPHALING</a>.]]>
+            </nl>
             <pt></pt>
         </string>
         <string id="430">
-            <en><![CDATA[Your new password is: <b>%s</b>]]></en>
+            <en><![CDATA[Your new password is: <b>%s</b>]]>
+            </en>
             <de></de>
-            <pl><![CDATA[Twoje nowe hasło to: <b>%s</b>]]></pl>
+            <pl><![CDATA[Twoje nowe hasło to: <b>%s</b>]]>
+            </pl>
             <cn></cn>
             <fr></fr>
             <bg></bg>
-            <nl><![CDATA[Uw nieuw wachtwoord is: <b>%s</b>]]></nl>
+            <nl><![CDATA[Uw nieuw wachtwoord is: <b>%s</b>]]>
+            </nl>
             <pt></pt>
         </string>
         <string id="431" js="1">
-            <en><![CDATA[Your new password has been sent to your email address. <b>Delivery of email can take up to several minutes.</b>]]></en>
+            <en><![CDATA[Your new password has been sent to your email address. <b>Delivery of email can take up to several minutes.</b>]]>
+            </en>
             <de></de>
-            <pl><![CDATA[Twoje nowe hasło zostało wysłane na twój adres email. <b>Dostarczenie maila może zająć nawet kilkanaście minut.</b>]]></pl>
+            <pl><![CDATA[Twoje nowe hasło zostało wysłane na twój adres email. <b>Dostarczenie maila może zająć nawet kilkanaście minut.</b>]]>
+            </pl>
             <cn></cn>
             <fr></fr>
             <bg></bg>
-            <nl><![CDATA[Uw nieuw wachtwoord werd verzonden naar uw e-mailadres. <b>Dit kan enkele minuten duren.</b>]]></nl>
+            <nl><![CDATA[Uw nieuw wachtwoord werd verzonden naar uw e-mailadres. <b>Dit kan enkele minuten duren.</b>]]>
+            </nl>
             <pt></pt>
         </string>
         <string id="432" js="1">
-            <en><![CDATA[Mail has been sent to your user email account for verification. <b>Delivery of email can take up to several minutes.</b> Please follow the link in verification email to continue password recovery process.]]></en>
+            <en><![CDATA[Mail has been sent to your user email account for verification. <b>Delivery of email can take up to several minutes.</b> Please follow the link in verification email to continue password recovery process.]]>
+            </en>
             <de></de>
-            <pl><![CDATA[List weryfikacyjny został wysłany na skrzynkę pocztową twojego użytkownika. <b>Dostarczenie maila może zająć nawet kilkanaście minut.</b> Proszę podążyć za linkiem w liście weryfikacyjnym aby kontynuować process odzyskiwania hasła.]]></pl>
+            <pl><![CDATA[List weryfikacyjny został wysłany na skrzynkę pocztową twojego użytkownika. <b>Dostarczenie maila może zająć nawet kilkanaście minut.</b> Proszę podążyć za linkiem w liście weryfikacyjnym aby kontynuować process odzyskiwania hasła.]]>
+            </pl>
             <cn></cn>
             <fr></fr>
             <bg></bg>
-            <nl><![CDATA[E-mail werd verzonden naar uw user e-mailaccount voor bevestiging. <b>Dit kan enkele minuten duren.</b> Gelieve de link in de bevestingsmail te volgen om het wachtwoord-ophalingsproces voort te zetten.]]></nl>
+            <nl><![CDATA[E-mail werd verzonden naar uw user e-mailaccount voor bevestiging. <b>Dit kan enkele minuten duren.</b> Gelieve de link in de bevestingsmail te volgen om het wachtwoord-ophalingsproces voort te zetten.]]>
+            </nl>
             <pt></pt>
         </string>
         <string id="433">
@@ -4986,6 +5159,406 @@ Note: You can add new languages by inserting "<new_language>string translated in
             <en>default</en>
             <de></de>
             <pl>domyślnie</pl>
+            <cn></cn>
+            <fr></fr>
+            <bg></bg>
+            <nl></nl>
+            <pt></pt>
+        </string>
+        <string id="539">
+            <en>template transition effects</en>
+            <de></de>
+            <pl>efekty przejścia szablonu</pl>
+            <cn></cn>
+            <fr></fr>
+            <bg></bg>
+            <nl></nl>
+            <pt></pt>
+        </string>
+        <string id="540">
+            <en>Sets template transition effects. You can set effect for showing template and for template hiding.</en>
+            <de></de>
+            <pl>Ustawia efekty przejścia szablonu. Można ustawić efekt pokazania szablonu oraz ukrycia szablonu.</pl>
+            <cn></cn>
+            <fr></fr>
+            <bg></bg>
+            <nl></nl>
+            <pt></pt>
+        </string>
+        <string id="541">
+            <en>effect: show</en>
+            <de></de>
+            <pl>efekt: pokaż</pl>
+            <cn></cn>
+            <fr></fr>
+            <bg></bg>
+            <nl></nl>
+            <pt></pt>
+        </string>
+        <string id="542">
+            <en>effect: hide</en>
+            <de></de>
+            <pl>efekt: ukryj</pl>
+            <cn></cn>
+            <fr></fr>
+            <bg></bg>
+            <nl></nl>
+            <pt></pt>
+        </string>
+        <string id="543">
+            <en>Set an effect when showing the template.</en>
+            <de></de>
+            <pl>Ustaw efekt gdy szablon jest pokazywany.</pl>
+            <cn></cn>
+            <fr></fr>
+            <bg></bg>
+            <nl></nl>
+            <pt></pt>
+        </string>
+        <string id="544">
+            <en>Set an effect when hiding the template.</en>
+            <de></de>
+            <pl>Ustaw efekt gdy szablon jest ukrywany.</pl>
+            <cn></cn>
+            <fr></fr>
+            <bg></bg>
+            <nl></nl>
+            <pt></pt>
+        </string>
+        <string id="545">
+            <en>effect</en>
+            <de></de>
+            <pl>efekt</pl>
+            <cn></cn>
+            <fr></fr>
+            <bg></bg>
+            <nl></nl>
+            <pt></pt>
+        </string>
+        <string id="546">
+            <en>Choose transition effect.</en>
+            <de></de>
+            <pl>Wybierz efekt przejścia.</pl>
+            <cn></cn>
+            <fr></fr>
+            <bg></bg>
+            <nl></nl>
+            <pt></pt>
+        </string>
+        <string id="547">
+            <en>direction</en>
+            <de></de>
+            <pl>kierunek</pl>
+            <cn></cn>
+            <fr></fr>
+            <bg></bg>
+            <nl></nl>
+            <pt></pt>
+        </string>
+        <string id="548">
+            <en>The direction of the effect. Can be 'vertical' or 'horizontal'.</en>
+            <de></de>
+            <pl>Kierunek efektu. Może być 'pionowy' albo 'poziomy'.</pl>
+            <cn></cn>
+            <fr></fr>
+            <bg></bg>
+            <nl></nl>
+            <pt></pt>
+        </string>
+        <string id="549">
+            <en>horizontal</en>
+            <de></de>
+            <pl>poziomy</pl>
+            <cn></cn>
+            <fr></fr>
+            <bg></bg>
+            <nl></nl>
+            <pt></pt>
+        </string>
+        <string id="550">
+            <en>vertical</en>
+            <de></de>
+            <pl>pionowy</pl>
+            <cn></cn>
+            <fr></fr>
+            <bg></bg>
+            <nl></nl>
+            <pt></pt>
+        </string>
+        <string id="551">
+            <en>duration</en>
+            <de></de>
+            <pl>czas trwania</pl>
+            <cn></cn>
+            <fr></fr>
+            <bg></bg>
+            <nl></nl>
+            <pt></pt>
+        </string>
+        <string id="552">
+            <en>Duration of effect in miliseconds.</en>
+            <de></de>
+            <pl>Czas trwania efektu w milisekundach.</pl>
+            <cn></cn>
+            <fr></fr>
+            <bg></bg>
+            <nl></nl>
+            <pt></pt>
+        </string>
+        <string id="553">
+            <en>The direction of the effect. Can be 'left', 'right', 'up', 'down'.</en>
+            <de></de>
+            <pl>Kierunek efektu. Może być 'lewy', 'prawy', 'górny', 'dolny'.</pl>
+            <cn></cn>
+            <fr></fr>
+            <bg></bg>
+            <nl></nl>
+            <pt></pt>
+        </string>
+        <string id="554">
+            <en>left</en>
+            <de></de>
+            <pl>lewy</pl>
+            <cn></cn>
+            <fr></fr>
+            <bg></bg>
+            <nl></nl>
+            <pt></pt>
+        </string>
+        <string id="555">
+            <en>right</en>
+            <de></de>
+            <pl>prawy</pl>
+            <cn></cn>
+            <fr></fr>
+            <bg></bg>
+            <nl></nl>
+            <pt></pt>
+        </string>
+        <string id="556">
+            <en>up</en>
+            <de></de>
+            <pl>górny</pl>
+            <cn></cn>
+            <fr></fr>
+            <bg></bg>
+            <nl></nl>
+            <pt></pt>
+        </string>
+        <string id="557">
+            <en>down</en>
+            <de></de>
+            <pl>dolny</pl>
+            <cn></cn>
+            <fr></fr>
+            <bg></bg>
+            <nl></nl>
+            <pt></pt>
+        </string>
+        <string id="558">
+            <en>Number of pieces to be exploded to/imploded from.</en>
+            <de></de>
+            <pl>Ilość kawałków do jakich ma być szablon eksplodowany/implodowany z.</pl>
+            <cn></cn>
+            <fr></fr>
+            <bg></bg>
+            <nl></nl>
+            <pt></pt>
+        </string>
+        <string id="559">
+            <en>pieces</en>
+            <de></de>
+            <pl>kawałki</pl>
+            <cn></cn>
+            <fr></fr>
+            <bg></bg>
+            <nl></nl>
+            <pt></pt>
+        </string>
+        <string id="560">
+            <en>horizontally first</en>
+            <de></de>
+            <pl>najpierw poziomo</pl>
+            <cn></cn>
+            <fr></fr>
+            <bg></bg>
+            <nl></nl>
+            <pt></pt>
+        </string>
+        <string id="561">
+            <en>Whether to fold horizontally first or not. Can be true or false.</en>
+            <de></de>
+            <pl>Czy najpierw złożyć poziomo czy nie. Może być prawdą albo fałszem.</pl>
+            <cn></cn>
+            <fr></fr>
+            <bg></bg>
+            <nl></nl>
+            <pt></pt>
+        </string>
+        <string id="562">
+            <en>size</en>
+            <de></de>
+            <pl>rozmiar</pl>
+            <cn></cn>
+            <fr></fr>
+            <bg></bg>
+            <nl></nl>
+            <pt></pt>
+        </string>
+        <string id="563">
+            <en>Size to be folded to ( in pixels ).</en>
+            <de></de>
+            <pl>Rozmiar do jakiego ma być szablon złożony ( w pikselach ).</pl>
+            <cn></cn>
+            <fr></fr>
+            <bg></bg>
+            <nl></nl>
+            <pt></pt>
+        </string>
+        <string id="564">
+            <en>percent</en>
+            <de></de>
+            <pl>procent</pl>
+            <cn></cn>
+            <fr></fr>
+            <bg></bg>
+            <nl></nl>
+            <pt></pt>
+        </string>
+        <string id="565">
+            <en>The percentage to scale to.</en>
+            <de></de>
+            <pl>Procent do jakiego ma być zeskalowany szablon.</pl>
+            <cn></cn>
+            <fr></fr>
+            <bg></bg>
+            <nl></nl>
+            <pt></pt>
+        </string>
+        <string id="568">
+            <en>The direction of the effect. Can be 'both', 'vertical' or 'horizontal'.</en>
+            <de></de>
+            <pl>Kierunek efektu. Może być 'oba', 'pionowy', 'poziomy'.</pl>
+            <cn></cn>
+            <fr></fr>
+            <bg></bg>
+            <nl></nl>
+            <pt></pt>
+        </string>
+        <string id="569">
+            <en>both</en>
+            <de></de>
+            <pl>oba</pl>
+            <cn></cn>
+            <fr></fr>
+            <bg></bg>
+            <nl></nl>
+            <pt></pt>
+        </string>
+        <string id="570">
+            <en>origin</en>
+            <de></de>
+            <pl>pochodzenie</pl>
+            <cn></cn>
+            <fr></fr>
+            <bg></bg>
+            <nl></nl>
+            <pt></pt>
+        </string>
+        <string id="571">
+            <en>The vanishing point.</en>
+            <de></de>
+            <pl>Punkt znikania.</pl>
+            <cn></cn>
+            <fr></fr>
+            <bg></bg>
+            <nl></nl>
+            <pt></pt>
+        </string>
+        <string id="572">
+            <en>top left</en>
+            <de></de>
+            <pl>górny lewy</pl>
+            <cn></cn>
+            <fr></fr>
+            <bg></bg>
+            <nl></nl>
+            <pt></pt>
+        </string>
+        <string id="573">
+            <en>top center</en>
+            <de></de>
+            <pl>górny centralny</pl>
+            <cn></cn>
+            <fr></fr>
+            <bg></bg>
+            <nl></nl>
+            <pt></pt>
+        </string>
+        <string id="574">
+            <en>top right</en>
+            <de></de>
+            <pl>górny prawy</pl>
+            <cn></cn>
+            <fr></fr>
+            <bg></bg>
+            <nl></nl>
+            <pt></pt>
+        </string>
+        <string id="575">
+            <en>middle left</en>
+            <de></de>
+            <pl>środkowy lewy</pl>
+            <cn></cn>
+            <fr></fr>
+            <bg></bg>
+            <nl></nl>
+            <pt></pt>
+        </string>
+        <string id="576">
+            <en>middle center</en>
+            <de></de>
+            <pl>środkowy centralny</pl>
+            <cn></cn>
+            <fr></fr>
+            <bg></bg>
+            <nl></nl>
+            <pt></pt>
+        </string>
+        <string id="577">
+            <en>middle right</en>
+            <de></de>
+            <pl>środkowy prawy</pl>
+            <cn></cn>
+            <fr></fr>
+            <bg></bg>
+            <nl></nl>
+            <pt></pt>
+        </string>
+        <string id="578">
+            <en>bottom left</en>
+            <de></de>
+            <pl>dolny lewy</pl>
+            <cn></cn>
+            <fr></fr>
+            <bg></bg>
+            <nl></nl>
+            <pt></pt>
+        </string>
+        <string id="579">
+            <en>bottom center</en>
+            <de></de>
+            <pl>dolny centralny</pl>
+            <cn></cn>
+            <fr></fr>
+            <bg></bg>
+            <nl></nl>
+            <pt></pt>
+        </string>
+        <string id="580">
+            <en>bottom right</en>
+            <de></de>
+            <pl>dolny prawy</pl>
             <cn></cn>
             <fr></fr>
             <bg></bg>

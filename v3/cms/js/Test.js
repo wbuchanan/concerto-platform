@@ -91,6 +91,7 @@ Test.getFullSaveObject = function() {
     obj["parameters"]=Test.getSerializedParameterVariables();
     obj["returns"]=Test.getSerializedReturnVariables();
     obj["description"]=Methods.getCKEditorData("#form"+this.className+"TextareaDescription");
+    obj["loader_Template_id"]=$("#selectLoaderTemplate").val();
     if($("#form"+this.className+"SelectOwner").length==1) obj["Owner_id"]=$("#form"+this.className+"SelectOwner").val();
     return obj;
 }
