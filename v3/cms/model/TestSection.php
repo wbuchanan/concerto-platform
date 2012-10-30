@@ -228,8 +228,9 @@ class TestSection extends OTable {
                         update.session.counter(%d)
                         update.session.template_testsection_id(%d)
                         update.session.HTML(%d,%d,%d)
+                        update.session.effects('%s','%s','%s','%s')
                         return(%d)
-                        ", $template_id, TestSession::TEST_SESSION_STATUS_TEMPLATE, $next_counter, $this->id, $this->Test_id, $this->id, $template_id, ($this->end == 0 ? -1 : -2)
+                        ", $template_id, TestSession::TEST_SESSION_STATUS_TEMPLATE, $next_counter, $this->id, $this->Test_id, $this->id, $template_id, addcslashes($template->effect_show, "'"), addcslashes($template->effect_hide, "'"), addcslashes($template->effect_show_options, "'"), addcslashes($template->effect_hide_options, "'"), ($this->end == 0 ? -1 : -2)
                     );
 
                     break;

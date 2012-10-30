@@ -42,7 +42,6 @@ if (!isset($ini)) {
         <script type="text/javascript" src="cms/js/lib/jquery-ui-1.9.0.custom.min.js"></script>
 
         <script type="text/javascript" src="js/lib/jquery.cookie.js"></script>
-        <script type="text/javascript" src="js/ConcertoMethods.js"></script>
         <script type="text/javascript" src="js/Concerto.js"></script>
         <script type="text/javascript" src="js/QTI.js"></script>
         <script>
@@ -70,7 +69,7 @@ if (array_key_exists("sid", $_GET) || array_key_exists("tid", $_GET)) {
     </head>
 
     <body>
-        <div style="width:100%;" id="divTestContainer">
+        <div id="divTestContainer">
             <div align="center"><img src="cms/css/img/logo.png" /> v<?= Ini::$version ?></div>
             <div align="center">
                 <div style="display: table;">

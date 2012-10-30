@@ -174,6 +174,14 @@ class Template extends OModule {
                         break;
                     case "HTML": $this->HTML = $child->nodeValue;
                         break;
+                    case "effect_show": $this->effect_show = $child->nodeValue;
+                        break;
+                    case "effect_show_options": $this->effect_show_options = $child->nodeValue;
+                        break;
+                    case "effect_hide": $this->effect_hide = $child->nodeValue;
+                        break;
+                    case "effect_hide_options": $this->effect_hide_options = $child->nodeValue;
+                        break;
                 }
             }
             $last_result = $this->mysql_save();
@@ -221,6 +229,18 @@ class Template extends OModule {
 
         $head = $xml->createElement("head", htmlspecialchars($this->head, ENT_QUOTES, "UTF-8"));
         $element->appendChild($head);
+        
+        $effect_show = $xml->createElement("effect_show", htmlspecialchars($this->effect_show, ENT_QUOTES, "UTF-8"));
+        $element->appendChild($effect_show);
+        
+        $effect_hide = $xml->createElement("effect_hide", htmlspecialchars($this->effect_hide, ENT_QUOTES, "UTF-8"));
+        $element->appendChild($effect_hide);
+        
+        $effect_show_options = $xml->createElement("effect_show_options", htmlspecialchars($this->effect_show_options, ENT_QUOTES, "UTF-8"));
+        $element->appendChild($effect_show_options);
+        
+        $effect_hide_options = $xml->createElement("effect_hide_options", htmlspecialchars($this->effect_hide_options, ENT_QUOTES, "UTF-8"));
+        $element->appendChild($effect_hide_options);
 
         return $element;
     }

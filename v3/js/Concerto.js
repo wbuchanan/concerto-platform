@@ -15,13 +15,26 @@ GNU General Public License for more details.
 You should have received a copy of the GNU General Public License
 along with this program; if not, write to the Free Software
 Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA.
-*/
+ */
 
-function Concerto(container,hash,sid,tid,queryPath,callbackGet,callbackSend,debug,remote,loadingImageSource,resumeFromLastTemplate){
+$.ajaxSetup({
+    cache: false
+}); 
+
+function Concerto(container,hash,sid,tid,queryPath,callbackGet,callbackSend,debug,remote,defaultLoadingImageSource,resumeFromLastTemplate){
+    
+    this.isFirstTemplate = true;
+    this.effectTransition = 0;
+    this.loaderTransition = 0;
+    
+    this.isTemplateReady = false;
+    
+    this.defaultLoadingImageSource = 'css/img/ajax-loader.gif';
+    if(defaultLoadingImageSource!=null) this.defaultLoadingImageSource = defaultLoadingImageSource;
+    this.defaultLoader = "<div align='center' style='width:100%;height:100%;'><table style='width:100%;height:100%;'><tr><td valign='middle' align='center'><img src='"+this.defaultLoadingImageSource+"' /></td></tr></table></div>";
+    
     this.resumeFromLastTemplate = false;
     if(resumeFromLastTemplate!=null) this.resumeFromLastTemplate = resumeFromLastTemplate;
-    this.loadingImageSource = 'css/img/ajax-loader.gif';
-    if(loadingImageSource!=null) this.loadingImageSource = loadingImageSource;
     this.remote = false;
     if(remote!=null) this.remote = remote;
     this.isDebug = false;
@@ -39,6 +52,18 @@ function Concerto(container,hash,sid,tid,queryPath,callbackGet,callbackSend,debu
     this.debug = null;
     this.status = Concerto.statusTypes.created;
     this.finished = false;
+    
+    this.loaderHTML = "";
+    this.loaderHead = "";
+    this.loaderEffectShow = "";
+    this.loaderEffectHide = "";
+    this.loaderEffectShowOptions = "";
+    this.loaderEffectHideOptions = "";
+    
+    this.effectShow = "";
+    this.effectHide = "";
+    this.effectShowOptions = "";
+    this.effectHideOptions = "";
     
     this.timer = 0;
     this.timeObj = null;
@@ -81,6 +106,7 @@ function Concerto(container,hash,sid,tid,queryPath,callbackGet,callbackSend,debu
     }
     
     this.run=function(btnName,values){
+        this.isTemplateReady = false;
         if(this.isStopped) return;
         
         if(this.testID!=null && this.sessionID==null && this.hash==null && !this.isDebug && !this.remote){
@@ -91,7 +117,7 @@ function Concerto(container,hash,sid,tid,queryPath,callbackGet,callbackSend,debu
             }
         }
         this.status = Concerto.statusTypes.working;
-        ConcertoMethods.loading(this.container,this.loadingImageSource);
+        if(this.isFirstTemplate) $(this.container).html(this.defaultLoader);
         var thisClass = this;
         
         var params = {};
@@ -126,30 +152,37 @@ function Concerto(container,hash,sid,tid,queryPath,callbackGet,callbackSend,debu
                 thisClass.status = thisClass.data["STATUS"];
                 thisClass.finished = thisClass.data["FINISHED"]==1;
                 
-                if(thisClass.data["STATUS"]==Concerto.statusTypes.template) thisClass.loadTemplate(thisClass.data["HTML"],thisClass.data["HEAD"]);
-                if(thisClass.data["STATUS"]==Concerto.statusTypes.completed) $(thisClass.container).html("");
-                if(thisClass.data["STATUS"]==Concerto.statusTypes.tampered) $(thisClass.container).html("<h2>Session unavailable.</h2>");
+                thisClass.loaderHTML = thisClass.data["LOADER_HTML"];
+                thisClass.loaderHead = thisClass.data["LOADER_HEAD"];
+                thisClass.loaderEffectShow = thisClass.data["LOADER_EFFECT_SHOW"];
+                thisClass.loaderEffectHide = thisClass.data["LOADER_EFFECT_HIDE"];
+                thisClass.loaderEffectShowOptions = thisClass.data["LOADER_EFFECT_SHOW_OPTIONS"];
+                thisClass.loaderEffectHideOptions = thisClass.data["LOADER_EFFECT_HIDE_OPTIONS"];
+                
+                thisClass.effectShow = thisClass.data["EFFECT_SHOW"];
+                thisClass.effectShowOptions = thisClass.data["EFFECT_SHOW_OPTIONS"];
+                thisClass.effectHide = thisClass.data["EFFECT_HIDE"];
+                thisClass.effectHideOptions = thisClass.data["EFFECT_HIDE_OPTIONS"];
+                
+                if(thisClass.data["STATUS"]==Concerto.statusTypes.template) {
+                    if(thisClass.isFirstTemplate) $(thisClass.container).hide(0);
+                    
+                    thisClass.isTemplateReady = true;
+                    if(thisClass.isFirstTemplate) thisClass.loadTemplate();
+                    
+                    if(thisClass.effectTransition==0 && thisClass.loaderTransition == 2) {
+                        thisClass.hideLoader();
+                    }
+                }
+                if(thisClass.data["STATUS"]==Concerto.statusTypes.completed && thisClass.loaderTransition==2) thisClass.hideLoader();
+                
+                if(thisClass.data["STATUS"]==Concerto.statusTypes.tampered && (thisClass.loaderTranistion==1 || thisClass.loaderTransition==2)) thisClass.printError(Concerto.statusTypes.tampered);
                 
                 if(thisClass.finished && !thisClass.remote && !thisClass.isDebug) Concerto.removeSessionCookie(thisClass.sessionID, thisClass.hash);
                 else Concerto.saveSessionCookie(thisClass.sessionID,thisClass.hash, thisClass.testID);
                 
-                if(thisClass.data["STATUS"]==Concerto.statusTypes.error){
-                    if(thisClass.debug==null){
-                        $(thisClass.container).html("<h2>Fatal test exception encountered. Test halted.</h2>");
-                    }
-                    else {
-                        $(thisClass.container).html("<h2>R return code</h2>");
-                        $(thisClass.container).append(thisClass.debug["return"]);
-                        $(thisClass.container).append("<hr/>");
-                        $(thisClass.container).append("<h2>R code</h2>");
-                        $(thisClass.container).append(thisClass.debug["code"].replace(/\n/g,'<br />'));
-                        $(thisClass.container).append("<hr/>");
-                        $(thisClass.container).append("<h2>R output</h2>");
-                        for(var i=0; i<thisClass.debug["output"].length;i++){
-                            if(thisClass.debug["output"][i]==null) continue;
-                            $(thisClass.container).append(thisClass.debug["output"][i].replace(/\n/g,'<br />')+"<br/>");
-                        }
-                    }
+                if(thisClass.data["STATUS"]==Concerto.statusTypes.error && (thisClass.loaderTranistion==1 || thisClass.loaderTransition==2)){
+                    thisClass.printError(Concerto.statusTypes.error);
                 }
                 if(thisClass.callbackGet!=null) thisClass.callbackGet.call(thisClass, data);
                 return thisClass.data;
@@ -157,18 +190,82 @@ function Concerto(container,hash,sid,tid,queryPath,callbackGet,callbackSend,debu
         return null;
     };
     
+    this.printError=function(status){
+        switch(status){
+            case Concerto.statusTypes.tampered:{
+                $(this.container).html("<h2>Session unavailable.</h2>");
+                break;      
+            }
+            case Concerto.statusTypes.error:{
+                if(this.debug==null){
+                    $(this.container).html("<h2>Fatal test exception encountered. Test halted.</h2>");
+                }
+                else {
+                    $(this.container).html("<h2>R return code</h2>");
+                    $(this.container).append(this.debug["return"]);
+                    $(this.container).append("<hr/>");
+                    $(this.container).append("<h2>R code</h2>");
+                    $(this.container).append(this.debug["code"].replace(/\n/g,'<br />'));
+                    $(this.container).append("<hr/>");
+                    $(this.container).append("<h2>R output</h2>");
+                    for(var i=0; i<this.debug["output"].length;i++){
+                        if(this.debug["output"][i]==null) continue;
+                        $(this.container).append(this.debug["output"][i].replace(/\n/g,'<br />')+"<br/>");
+                    }
+                }
+                break;
+            }
+        }
+    }
+    
     this.insertSpecialVariables=function(html){
         html = html.replace("{{TIME_LEFT}}","<font class='fontTimeLeft'></font>");
         return html;
     };
     
-    this.loadTemplate=function(html,head){
+    this.loadTemplate=function(){
+        this.isFirstTemplate = false;
+        this.effectTransition = 1;
         var thisClass = this;
-        $("head").append(head);
-        $(thisClass.container).html(thisClass.insertSpecialVariables(html));
-        thisClass.addSubmitEvents();
-        thisClass.iniTimer();
+        $("head").append(this.data["HEAD"]);
+        $(thisClass.container).html(thisClass.insertSpecialVariables(this.data["HTML"]));
+        
+        this.showEffect();
     };
+    
+    this.showEffect=function(){
+        if(this.effectShow=="none" || this.effectShow.trim()=="") {
+            this.effectTransition = 2;
+            $(this.container).show(0);
+            this.addSubmitEvents();
+            this.iniTimer();
+            return;
+        }
+        
+        var thisClass = this;
+        
+        var options = {};
+        if(this.effectShowOptions.trim()!=""){
+            options = $.parseJSON(this.effectShowOptions);
+        }
+        
+        for(var k in options){
+            switch(k){
+                case "duration":
+                case "pieces":
+                case "size":
+                case "percent":
+                    options[k]=parseInt(options[k]);
+                    break;
+            }
+        }
+        $(this.container).show(this.effectShow,options,options.duration,function(){
+            this.effectTransition = 2;
+            thisClass.addSubmitEvents();
+            thisClass.iniTimer();
+        });
+            
+    }
     
     this.getControlsValues=function(){
         var values = new Array();
@@ -200,6 +297,131 @@ function Concerto(container,hash,sid,tid,queryPath,callbackGet,callbackSend,debu
         return values;
     }
     
+    this.hideEffect=function(){
+        this.effectTransition = 3;
+        if(this.effectHide=="none" || this.effectHide.trim()=="") {
+            this.effectTransition = 0;
+            $(this.container).hide(0);
+            if(this.isTemplateReady && this.loaderTransition==0) {
+                this.loadTemplate();
+            }
+            else if(this.loaderTransition==0 && this.status==Concerto.statusTypes.working){
+                this.showLoader();
+            }
+            else if(this.loaderTransition == 0 && (this.status == Concerto.statusTypes.tampered || this.status == Concerto.statusTypes.error))
+                this.printError(this.status);
+            return;
+        }
+        
+        var thisClass = this;
+        
+        var options = {};
+        if(this.effectHideOptions.trim()!=""){
+            options = $.parseJSON(this.effectHideOptions);
+        }
+        
+        for(var k in options){
+            switch(k){
+                case "duration":
+                case "pieces":
+                case "size":
+                case "percent":
+                    options[k]=parseInt(options[k]);
+                    break;
+            }
+        }
+        
+        $(this.container).hide(this.effectHide,options,options.duration,function(){
+            thisClass.effectTransition = 0;
+            if(thisClass.isTemplateReady && thisClass.loaderTransition==0) {
+                thisClass.loadTemplate();
+            }
+            else if(thisClass.loaderTransition==0 && thisClass.status==Concerto.statusTypes.working){
+                thisClass.showLoader();
+            }
+            else if(thisClass.loaderTransition == 0 && (thisClass.status == Concerto.statusTypes.tampered || thisClass.status == Concerto.statusTypes.error))
+                thisClass.printError(thisClass.status);
+        });
+            
+    }
+    
+    this.hideLoader=function(){
+        this.loaderTransition = 3;
+        if(this.loaderEffectHide=="none" || this.loaderEffectHide.trim()=="") {
+            this.loaderTransition = 0;
+            $(this.container).hide(0);
+            if(this.isTemplateReady) {
+                this.loadTemplate();
+            }
+            return;
+        }
+        
+        var thisClass = this;
+        
+        var options = {};
+        if(this.loaderEffectHideOptions.trim()!=""){
+            options = $.parseJSON(this.loaderEffectHideOptions);
+        }
+        
+        for(var k in options){
+            switch(k){
+                case "duration":
+                case "pieces":
+                case "size":
+                case "percent":
+                    options[k]=parseInt(options[k]);
+                    break;
+            }
+        }
+        
+        $(this.container).hide(this.loaderEffectHide,options,options.duration,function(){
+            thisClass.loaderTransition = 0;
+            if(thisClass.isTemplateReady) thisClass.loadTemplate();
+        });
+            
+    }
+    
+    this.showLoader=function(){
+        this.loaderTransition = 1;
+        if(this.data["LOADER_HTML"].trim()!=""){
+            if(this.data["LOADER_HEAD"].trim()!="") $("head").append(this.data["LOADER_HEAD"]);
+            $(this.container).html(this.insertSpecialVariables(this.data["LOADER_HTML"]));
+        } else {
+            $(this.container).html(this.defaultLoader);
+        }
+        
+        if(this.loaderEffectShow=="none" || this.loaderEffectShow.trim()=="") {
+            this.loaderTransition = 2;
+            $(this.container).show(0);
+            if(this.isTemplateReady && this.loaderTransition==2 || this.status == Concerto.statusTypes.completed) this.hideLoader();
+            return;
+        }
+        
+        var thisClass = this;
+        
+        var options = {};
+        if(this.loaderEffectShowOptions.trim()!=""){
+            options = $.parseJSON(this.loaderEffectShowOptions);
+        }
+        
+        for(var k in options){
+            switch(k){
+                case "duration":
+                case "pieces":
+                case "size":
+                case "percent":
+                    options[k]=parseInt(options[k]);
+                    break;
+            }
+        }
+        
+        $(this.container).show(this.loaderEffectShow,options,options.duration,function(){
+            thisClass.loaderTransition = 2;
+            if(thisClass.isTemplateReady && thisClass.loaderTransition==2 || thisClass.status == Concerto.statusTypes.completed && thisClass.loaderTransition==2 ) thisClass.hideLoader();
+        });
+            
+    }
+    
     this.submit=function(btnName){
         var currentTime = new Date();
         var thisClass=this;
@@ -210,6 +432,8 @@ function Concerto(container,hash,sid,tid,queryPath,callbackGet,callbackSend,debu
             name:"TIME_TAKEN",
             value:(currentTime.getTime()-thisClass.timeTemplateLoaded.getTime())/1000
         }));
+        this.isTemplateReady = false;
+        this.hideEffect();
         this.run(btnName,vals);
         if(this.callbackSend!=null) this.callbackSend.call(this,btnName,vals);
     };
@@ -298,7 +522,7 @@ Concerto.selectTest=function(){
     var tid = select.val();
     if(typeof test != 'undefined' && test!=null){
         test.stop();
-        test = new Concerto(test.container,null,null,tid,test.queryPath,test.callbackGet,test.callbackSend,test.isDebug,test.remote,test.loadingImageSource,test.resumeFromLastTemplate);
+        test = new Concerto(test.container,null,null,tid,test.queryPath,test.callbackGet,test.callbackSend,test.isDebug,test.remote,test.defaultLoadingImageSource,test.resumeFromLastTemplate);
     }
     test = new Concerto($("#divTestContainer"),null,null,tid);
     test.run(null,[]);
@@ -308,7 +532,7 @@ Concerto.selectTest=function(){
 Concerto.selectSession=function(sid,hash){
     if(typeof test != 'undefined' && test!=null){
         test.stop();
-        test = new Concerto(test.container,hash,sid,null,test.queryPath,test.callbackGet,test.callbackSend,test.isDebug,test.remote,test.loadingImageSource,true);
+        test = new Concerto(test.container,hash,sid,null,test.queryPath,test.callbackGet,test.callbackSend,test.isDebug,test.remote,test.defaultLoadingImageSource,true);
     }
     test = new Concerto($("#divTestContainer"),hash,sid,null,null,null,null,null,null,null,true);
     test.run(null,[]);

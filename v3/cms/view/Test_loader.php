@@ -49,7 +49,7 @@ else {
 $description = Language::string(213);
 $loader = null;
 if ($obj != null) {
-    if (array_key_exists("loader", $_POST) && $_POST['loader'] != 0) {
+    if (array_key_exists("loader", $_POST)) {
         $loader = Template::from_mysql_id($_POST['loader']);
     } else {
         $loader = $obj->get_loader_Template();
@@ -91,7 +91,7 @@ if ($loader != null)
             <?php } ?>
             <td class="fullWidth">
                 <select id="selectLoaderTemplate" class="fullWidth ui-widget-content ui-corner-all fullWidth" onchange="Test.uiRefreshLoader($(this).val())">
-                    <option value="0">&lt;<?= Language::string(538) ?>&gt;</option>
+                    <option value="0" <?= ($loader_id == 0 ? "selected" : "") ?>>&lt;<?= Language::string(538) ?>&gt;</option>
                     <?php
                     $sql = $logged_user->mysql_list_rights_filter("Template", "`name` ASC");
                     $z = mysql_query($sql);

@@ -5147,9 +5147,9 @@ Note: You can add new languages by inserting "<new_language>string translated in
             <nl></nl>
         </string>
         <string id="537">
-            <en>Choose the template you wish to be shown whenever R code will be interpreted. No variable insertion is possible on loader templates.</en>
+            <en>Choose the template you wish to be shown whenever R code will be interpreted. No variable insertion is possible on loader templates. Loader templates from nested tests are ignored.</en>
             <de></de>
-            <pl>Wybierz szablon jaki chcesz aby był wyświetlany, gdy kod R będzie interpretowany. Osadzanie zmiennych nie jest możliwe na szablonie wyczytywania.</pl>
+            <pl>Wybierz szablon jaki chcesz aby był wyświetlany, gdy kod R będzie interpretowany. Osadzanie zmiennych nie jest możliwe na szablonie wyczytywania. Szablony wczytywania z zagnieżdżonych testów są ignorowane.</pl>
             <cn></cn>
             <fr></fr>
             <bg></bg>

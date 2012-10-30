@@ -25,6 +25,11 @@ class TestTemplate extends OTable {
     public $TestSection_id = 0;
     public $Template_id = 0;
     public $HTML = "";
+    public $effect_show = "none";
+    public $effect_hide = "none";
+    public $effect_show_options = "";
+    public $effect_hide_options = "";
+    
     public static $mysql_table_name = "TestTemplate";
 
     public function to_XML() {
@@ -47,6 +52,18 @@ class TestTemplate extends OTable {
 
         $html = $xml->createElement("HTML", htmlspecialchars($this->HTML, ENT_QUOTES, "UTF-8"));
         $element->appendChild($html);
+        
+        $effect_show = $xml->createElement("effect_show", htmlspecialchars($this->effect_show, ENT_QUOTES, "UTF-8"));
+        $element->appendChild($effect_show);
+        
+        $effect_hide = $xml->createElement("effect_hide", htmlspecialchars($this->effect_hide, ENT_QUOTES, "UTF-8"));
+        $element->appendChild($effect_hide);
+        
+        $effect_show_options = $xml->createElement("effect_show_options", htmlspecialchars($this->effect_show_options, ENT_QUOTES, "UTF-8"));
+        $element->appendChild($effect_show_options);
+        
+        $effect_hide_options = $xml->createElement("effect_hide_options", htmlspecialchars($this->effect_hide_options, ENT_QUOTES, "UTF-8"));
+        $element->appendChild($effect_hide_options);
 
         return $element;
     }
@@ -70,6 +87,10 @@ class TestTemplate extends OTable {
                     $test_template->TestSection_id = $r['id'];
                     $test_template->Template_id = $vals[0];
                     $test_template->HTML = $html;
+                    $test_template->effect_show = $template->effect_show;
+                    $test_template->effect_hide = $template->effect_hide;
+                    $test_template->effect_show_options = $template->effect_show_options;
+                    $test_template->effect_hide_options = $template->effect_hide_options;
                     $test_template->mysql_save();
                 }
             }
@@ -90,6 +111,10 @@ class TestTemplate extends OTable {
             `TestSection_id` bigint(20) NOT NULL,
             `Template_id` bigint(20) NOT NULL,
             `HTML` text NOT NULL,
+            `effect_show` text NOT NULL,
+            `effect_hide` text NOT NULL,
+            `effect_show_options` text NOT NULL,
+            `effect_hide_options` text NOT NULL,
             PRIMARY KEY  (`id`)
             ) ENGINE=InnoDB  DEFAULT CHARSET=utf8;
             ";

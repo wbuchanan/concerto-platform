@@ -916,7 +916,6 @@ class Setup {
             }
 
             $validate_column_names = true;
-            $repopulate_TestTemplate = true;
         }
 
         if (Ini::does_patch_apply("3.6.10", $previous_version)) {
@@ -1130,11 +1129,153 @@ class Setup {
                     if (!mysql_query($sql))
                         return json_encode(array("result" => 1, "param" => $sql));
                 }
+                
+                ///
+                
+                //TestTemplate - add effect_show field
+                $sql = "SHOW COLUMNS FROM `TestTemplate` WHERE `Field`='effect_show'";
+                $z = mysql_query($sql);
+                if (mysql_num_rows($z) == 0) {
+                    $sql = "ALTER TABLE `TestTemplate` ADD `effect_show` text NOT NULL;";
+                    if (!mysql_query($sql))
+                        return json_encode(array("result" => 1, "param" => $sql));
+                }
+                
+                //TestTemplate - add effect_hide field
+                $sql = "SHOW COLUMNS FROM `TestTemplate` WHERE `Field`='effect_hide'";
+                $z = mysql_query($sql);
+                if (mysql_num_rows($z) == 0) {
+                    $sql = "ALTER TABLE `TestTemplate` ADD `effect_hide` text NOT NULL;";
+                    if (!mysql_query($sql))
+                        return json_encode(array("result" => 1, "param" => $sql));
+                }
+                
+                //TestTemplate - add effect_show_options field
+                $sql = "SHOW COLUMNS FROM `TestTemplate` WHERE `Field`='effect_show_options'";
+                $z = mysql_query($sql);
+                if (mysql_num_rows($z) == 0) {
+                    $sql = "ALTER TABLE `TestTemplate` ADD `effect_show_options` text NOT NULL;";
+                    if (!mysql_query($sql))
+                        return json_encode(array("result" => 1, "param" => $sql));
+                }
+                
+                //TestTemplate - add effect_hide_options field
+                $sql = "SHOW COLUMNS FROM `TestTemplate` WHERE `Field`='effect_hide_options'";
+                $z = mysql_query($sql);
+                if (mysql_num_rows($z) == 0) {
+                    $sql = "ALTER TABLE `TestTemplate` ADD `effect_hide_options` text NOT NULL;";
+                    if (!mysql_query($sql))
+                        return json_encode(array("result" => 1, "param" => $sql));
+                }
+                
+                ///
+                
+                //TestSession - add effect_show field
+                $sql = "SHOW COLUMNS FROM `TestSession` WHERE `Field`='effect_show'";
+                $z = mysql_query($sql);
+                if (mysql_num_rows($z) == 0) {
+                    $sql = "ALTER TABLE `TestSession` ADD `effect_show` text NOT NULL;";
+                    if (!mysql_query($sql))
+                        return json_encode(array("result" => 1, "param" => $sql));
+                }
+                
+                //TestSession - add effect_hide field
+                $sql = "SHOW COLUMNS FROM `TestSession` WHERE `Field`='effect_hide'";
+                $z = mysql_query($sql);
+                if (mysql_num_rows($z) == 0) {
+                    $sql = "ALTER TABLE `TestSession` ADD `effect_hide` text NOT NULL;";
+                    if (!mysql_query($sql))
+                        return json_encode(array("result" => 1, "param" => $sql));
+                }
+                
+                //TestSession - add effect_show_options field
+                $sql = "SHOW COLUMNS FROM `TestSession` WHERE `Field`='effect_show_options'";
+                $z = mysql_query($sql);
+                if (mysql_num_rows($z) == 0) {
+                    $sql = "ALTER TABLE `TestSession` ADD `effect_show_options` text NOT NULL;";
+                    if (!mysql_query($sql))
+                        return json_encode(array("result" => 1, "param" => $sql));
+                }
+                
+                //TestSession - add effect_hide_options field
+                $sql = "SHOW COLUMNS FROM `TestSession` WHERE `Field`='effect_hide_options'";
+                $z = mysql_query($sql);
+                if (mysql_num_rows($z) == 0) {
+                    $sql = "ALTER TABLE `TestSession` ADD `effect_hide_options` text NOT NULL;";
+                    if (!mysql_query($sql))
+                        return json_encode(array("result" => 1, "param" => $sql));
+                }
+                
+                ///
+                
+                //TestSession - add loader_effect_show field
+                $sql = "SHOW COLUMNS FROM `TestSession` WHERE `Field`='loader_effect_show'";
+                $z = mysql_query($sql);
+                if (mysql_num_rows($z) == 0) {
+                    $sql = "ALTER TABLE `TestSession` ADD `loader_effect_show` text NOT NULL;";
+                    if (!mysql_query($sql))
+                        return json_encode(array("result" => 1, "param" => $sql));
+                }
+                
+                //TestSession - add loader_effect_hide field
+                $sql = "SHOW COLUMNS FROM `TestSession` WHERE `Field`='loader_effect_hide'";
+                $z = mysql_query($sql);
+                if (mysql_num_rows($z) == 0) {
+                    $sql = "ALTER TABLE `TestSession` ADD `loader_effect_hide` text NOT NULL;";
+                    if (!mysql_query($sql))
+                        return json_encode(array("result" => 1, "param" => $sql));
+                }
+                
+                //TestSession - add loader_effect_show_options field
+                $sql = "SHOW COLUMNS FROM `TestSession` WHERE `Field`='loader_effect_show_options'";
+                $z = mysql_query($sql);
+                if (mysql_num_rows($z) == 0) {
+                    $sql = "ALTER TABLE `TestSession` ADD `loader_effect_show_options` text NOT NULL;";
+                    if (!mysql_query($sql))
+                        return json_encode(array("result" => 1, "param" => $sql));
+                }
+                
+                //TestSession - add loader_effect_hide_options field
+                $sql = "SHOW COLUMNS FROM `TestSession` WHERE `Field`='loader_effect_hide_options'";
+                $z = mysql_query($sql);
+                if (mysql_num_rows($z) == 0) {
+                    $sql = "ALTER TABLE `TestSession` ADD `loader_effect_hide_options` text NOT NULL;";
+                    if (!mysql_query($sql))
+                        return json_encode(array("result" => 1, "param" => $sql));
+                }
+                
+                //TestSession - add loader_Template_id field
+                $sql = "SHOW COLUMNS FROM `TestSession` WHERE `Field`='loader_Template_id'";
+                $z = mysql_query($sql);
+                if (mysql_num_rows($z) == 0) {
+                    $sql = "ALTER TABLE `TestSession` ADD `loader_Template_id` bigint(20) NOT NULL;";
+                    if (!mysql_query($sql))
+                        return json_encode(array("result" => 1, "param" => $sql));
+                }
+                
+                //TestSession - add loader_HTML field
+                $sql = "SHOW COLUMNS FROM `TestSession` WHERE `Field`='loader_HTML'";
+                $z = mysql_query($sql);
+                if (mysql_num_rows($z) == 0) {
+                    $sql = "ALTER TABLE `TestSession` ADD `loader_HTML` text NOT NULL;";
+                    if (!mysql_query($sql))
+                        return json_encode(array("result" => 1, "param" => $sql));
+                }
+                
+                //TestSession - add loader_head field
+                $sql = "SHOW COLUMNS FROM `TestSession` WHERE `Field`='loader_head'";
+                $z = mysql_query($sql);
+                if (mysql_num_rows($z) == 0) {
+                    $sql = "ALTER TABLE `TestSession` ADD `loader_head` text NOT NULL;";
+                    if (!mysql_query($sql))
+                        return json_encode(array("result" => 1, "param" => $sql));
+                }
 
                 Setting::set_setting("version", "3.8.6");
                 return json_encode(array("result" => 0, "param" => "3.8.6"));
             }
             $recalculate_hash = true;
+            $repopulate_TestTemplate = true;
         }
 
         if ($simulate)

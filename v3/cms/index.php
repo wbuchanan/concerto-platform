@@ -49,7 +49,6 @@ if (!isset($ini)) {
         <script type="text/javascript" src="js/lib/loadmask/jquery.loadmask.min.js"></script>
         <script type="text/javascript" src="js/lib/jsSHA/src/sha512.js"></script>
 
-        <script src="../js/ConcertoMethods.js"></script>
         <script src="../js/Concerto.js"></script>
 
         <script src="js/OModule.js"></script>

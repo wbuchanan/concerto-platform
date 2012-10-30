@@ -274,6 +274,31 @@ class Test extends OModule {
         $custom_sections_ids = array();
         $tables_ids = array();
         $qtiai_ids = array();
+
+        $loader = $this->get_loader_Template();
+        if ($loader != null) {
+            if (!in_array($loader->id, $templates_ids)) {
+                $template = $loader;
+                if ($template != null) {
+                    $present_templates = $xpath->query("/export/Template");
+                    $exists = false;
+                    foreach ($present_templates as $obj) {
+                        if ($template->xml_hash == $obj->getAttribute("xml_hash")) {
+                            $exists = true;
+                            break;
+                        }
+                    }
+                    if (!$exists) {
+
+                        $element = $template->to_XML();
+                        $obj = $xml->importNode($element, true);
+                        $export->appendChild($obj);
+                        array_push($templates_ids, $loader->id);
+                    }
+                }
+            }
+        }
+
         $sql = sprintf("SELECT 
             `TestSection`.`id`,`TestSectionValue`.`value`,`TestSection`.`TestSectionType_id` 
             FROM `TestSection` 
@@ -560,6 +585,8 @@ class Test extends OModule {
                     break;
                 case "open": $this->open = $child->nodeValue;
                     break;
+                case "loader_Template_id": $this->loader_Template_id = ($child->nodeValue == 0 ? 0 : $compare["Template"][$child->nodeValue]);
+                    break;
             }
         }
 
@@ -768,6 +795,9 @@ class Test extends OModule {
 
         $open = $xml->createElement("open", htmlspecialchars($this->open, ENT_QUOTES, "UTF-8"));
         $element->appendChild($open);
+        
+        $loader_Template_id = $xml->createElement("loader_Template_id", htmlspecialchars($this->loader_Template_id, ENT_QUOTES, "UTF-8"));
+        $element->appendChild($loader_Template_id);
 
         $sections = $xml->createElement("TestSections");
         $element->appendChild($sections);
