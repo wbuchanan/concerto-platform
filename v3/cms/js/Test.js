@@ -716,6 +716,7 @@ Test.sectionDivToObject=function(div){
 }
 
 Test.uiTemplatesChanged=function(){
+    Test.uiRefreshLoader($("#selectLoaderTemplate").val());
     var sections = Test.getSections();
     sections.each(function(){
         var s = Test.sectionDivToObject($(this));
