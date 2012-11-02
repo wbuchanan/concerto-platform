@@ -19,44 +19,40 @@
   Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA.
  */
 
-if (!isset($ini))
-{
+if (!isset($ini)) {
     require_once '../../Ini.php';
     $ini = new Ini();
 }
 $logged_user = User::get_logged_user();
-if ($logged_user == null)
-{
+if ($logged_user == null) {
     echo json_encode(array());
     exit();
 }
 
 $obj = Table::from_mysql_id($_GET['oid']);
-if ($obj == null || !$logged_user->is_object_readable($obj))
-{
+if ($obj == null || !$logged_user->is_object_readable($obj)) {
     echo json_encode(array());
     exit();
 }
 
-$table = array();
 $cols = array();
-if ($obj->has_table())
-{
+$i = 0;
+echo"[";
+if ($obj->has_table()) {
     $cols = TableColumn::from_property(array("Table_id" => $obj->id));
 
     $sql = sprintf("SELECT * FROM `%s`", $obj->get_table_name());
     $z = mysql_query($sql);
-    while ($r = mysql_fetch_array($z))
-    {
+    while ($r = mysql_fetch_array($z)) {
+        if ($i > 0)
+            echo ",";
         $row = array();
-        foreach($cols as $col)
-        {
+        foreach ($cols as $col) {
             $row[$col->name] = $r[$col->name];
         }
-        array_push($table,$row);
+        echo json_encode($row);
+        $i++;
     }
 }
-
-
-echo json_encode($table);
+echo"]";
 ?>
