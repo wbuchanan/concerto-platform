@@ -424,6 +424,9 @@ function Concerto(container,hash,sid,tid,queryPath,callbackGet,callbackSend,debu
     
     this.submit=function(btnName){
         var currentTime = new Date();
+        
+        this.status = Concerto.statusTypes.working;
+        
         var thisClass=this;
         this.clearTimer();
         if(this.isStopped) return;
