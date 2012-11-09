@@ -73,7 +73,7 @@ if ($class_name::$exportable) {
     $action_template.="<span style='display:inline-block;' class='spanIcon tooltip ui-icon ui-icon-arrowthickstop-1-n' onclick='$class_name.uiExport(" . '${ id }' . ")' title='" . Language::string(265) . "'></span>";
     $action_template.="<span style='display:inline-block;' class='spanIcon tooltip ui-icon ui-icon-gear' onclick='$class_name.uiUpload(" . '${ id }' . ")' title='" . Language::string(375) . "'></span>";
 }
-$columns_def.=sprintf("{ title:'', width:85, filterable: false, sortable: false, groupable: false, template: \"%s\"}", $action_template);
+$columns_def.=sprintf("{ title:'', width:85, filterable: false, sortable: false, groupable: false, resizable: false, template: \"%s\"}", $action_template);
 $columns_def.="]";
 ?>
 

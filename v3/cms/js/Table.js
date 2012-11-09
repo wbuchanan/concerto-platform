@@ -142,7 +142,7 @@ Table.uiReloadDataGrid=function(data,columns){
                 fields:Table.dataGridSchemaFields
             }
         },
-        pageSize:25
+        pageSize:20
     });
     
     $("#div"+thisClass.className+"GridData").kendoGrid({
@@ -152,11 +152,58 @@ Table.uiReloadDataGrid=function(data,columns){
         },
         dataSource: dataSource,
         scrollable:false,
-        pageable:true,
+        resizable: true,
         sortable:true,
-        //scrollable: {
-        //    virtual: true
-        //},
+        columnMenu:{
+            messages: {
+                filter: dictionary["s341"],
+                columns: dictionary["s533"],
+                sortAscending: dictionary["s534"],
+                sortDescending: dictionary["s535"]
+            }  
+        },
+        pageable: {
+            refresh:true,
+            pageSizes:true,
+            messages: {
+                display: dictionary["s527"],
+                empty: dictionary["s528"],
+                page: dictionary["s529"],
+                of: dictionary["s530"],
+                itemsPerPage: dictionary["s531"],
+                first: dictionary["s523"],
+                previous: dictionary["s524"],
+                next: dictionary["s525"],
+                last: dictionary["s526"],
+                refresh: dictionary["s532"]
+            }
+        },
+        filterable:{
+            messages: {
+                info: dictionary["s340"],
+                filter: dictionary["s341"],
+                clear: dictionary["s342"],
+                and: dictionary["s227"],
+                or: dictionary["s228"]
+            },
+            operators: {
+                string: {
+                    contains: dictionary["s344"],
+                    eq: dictionary["s222"],
+                    neq: dictionary["s221"],
+                    startswith: dictionary["s343"],
+                    endswith: dictionary["s345"]
+                },
+                number: {
+                    eq: dictionary["s222"],
+                    neq: dictionary["s221"],
+                    gte: dictionary["s224"],
+                    gt: dictionary["s223"],
+                    lte: dictionary["s226"],
+                    lt: dictionary["s225"]
+                }
+            }
+        },
         columns: columns,
         toolbar:[
         {
@@ -209,7 +256,8 @@ Table.uiIniDataGrid=function(){
             fields[data[i].name] = {}
             var col = {
                 title:title,
-                field:data[i].name
+                field:data[i].name,
+                width:30
             };
             
             switch(parseInt(data[i].type)){
@@ -247,6 +295,7 @@ Table.uiIniDataGrid=function(){
             width:30,
             sortable:false,
             filterable:false,
+            resizable:false,
             template:'<span style="display:inline-block;" class="spanIcon tooltip ui-icon ui-icon-trash" onclick="'+thisClass.className+'.uiRemoveRow($(this))" title="'+dictionary["s11"]+'"></span>'
         });
         
@@ -279,7 +328,7 @@ Table.uiIniDataGrid=function(){
                 }
             },
             dataSource: dataSource,
-            scrollable:false,
+            scrollable:true,
             resizable: true,
             sortable:true,
             columnMenu:{
@@ -381,9 +430,7 @@ Table.uiReloadStructureGrid=function(data,columns){
             template: '<button class="btnAdd" onclick="Table.uiAddColumn()">'+dictionary["s37"]+'</button>'
         }
         ],
-        editable: {
-            confirmation:false
-        },
+        editable: false,
         scrollable:false
     });
     Methods.iniIconButton(".btnAdd", "plus");
@@ -450,9 +497,7 @@ Table.uiIniStructureGrid=function(){
             template: '<button class="btnAdd" onclick="Table.uiAddColumn()">'+dictionary["s37"]+'</button>'
         }
         ],
-        editable: {
-            confirmation:false
-        },
+        editable: false,
         scrollable:false
     });
     Methods.iniIconButton(".btnAdd", "plus");

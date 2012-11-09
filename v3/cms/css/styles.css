@@ -126,6 +126,7 @@ ul {
 
 .grid {
     min-width:800px;
+    max-width:900px;
 }
 
 
