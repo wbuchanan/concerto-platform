@@ -75,7 +75,7 @@ if (array_key_exists("effect_hide_options", $_POST)) {
     $(function(){
         Methods.iniTooltips();
         Template.setEffectOptions(true, "<?= addcslashes($effect_show_options, '"') ?>");
-        Template.setEffectOptions(true, "<?= addcslashes($effect_hide_options, '"') ?>");
+        Template.setEffectOptions(false, "<?= addcslashes($effect_hide_options, '"') ?>");
     });
 </script>
 
