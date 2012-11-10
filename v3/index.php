@@ -42,6 +42,7 @@ if (!isset($ini)) {
         <script type="text/javascript" src="cms/js/lib/jquery-ui-1.9.0.custom.min.js"></script>
 
         <script type="text/javascript" src="js/lib/jquery.cookie.js"></script>
+        <script type="text/javascript" src="js/Compatibility.js"></script>
         <script type="text/javascript" src="js/Concerto.js"></script>
         <script type="text/javascript" src="js/QTI.js"></script>
         <script>

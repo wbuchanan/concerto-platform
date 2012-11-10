@@ -168,7 +168,7 @@ if ($class_name::$exportable) {
             },
             groupable:true,
             resizable: true,
-            scrollable:false,
+            scrollable:true,
             columns:<?= $columns_def ?>
         });
             

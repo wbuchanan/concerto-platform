@@ -33,6 +33,7 @@ if (!isset($ini)) {
         <meta http-equiv="Expires" content="-1"/>
         <title>Concerto Platform</title>
         <link rel="stylesheet" href="css/styles.css" />
+        <link rel="stylesheet" href="../css/QTI.css" />
         <link rel="stylesheet" href="css/jQueryUI/cupertino/jquery-ui-1.9.0.custom.min.css" />
 
         <link rel="stylesheet" href="js/lib/loadmask/jquery.loadmask.css" />
@@ -49,7 +50,9 @@ if (!isset($ini)) {
         <script type="text/javascript" src="js/lib/loadmask/jquery.loadmask.min.js"></script>
         <script type="text/javascript" src="js/lib/jsSHA/src/sha512.js"></script>
 
+        <script src="../js/Compatibility.js"></script>
         <script src="../js/Concerto.js"></script>
+        <script src="../js/QTI.js"></script>
 
         <script src="js/OModule.js"></script>
         <script src="js/Methods.js"></script>
