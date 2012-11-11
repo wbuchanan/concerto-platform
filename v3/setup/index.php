@@ -35,6 +35,7 @@ if (!isset($ini)) {
 
         <script type="text/javascript" src="../cms/js/lib/jquery-1.8.2.min.js"></script>
         <script type="text/javascript" src="../cms/js/lib/jquery-ui-1.9.0.custom.min.js"></script>
+        <script type="text/javascript" src="../js/Compatibility.js"></script>
         <script type="text/javascript" src="../cms/js/Methods.js"></script>
         <script src="../cms/lib/jfeed/build/dist/jquery.jfeed.js"></script>
 

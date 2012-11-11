@@ -24,15 +24,16 @@ class TableColumn extends OTable {
     public $index = 0;
     public $name = "";
     public $Table_id = 0;
-    public $TableColumnType_id = 0;
+    public $type = "";
+    public $length = "";
+    public $default_value = "";
+    public $attributes = "";
+    public $null = 0;
+    public $auto_increment = 0;
     public static $mysql_table_name = "TableColumn";
 
     public function get_Table() {
         return Table::from_mysql_id($this->Table_id);
-    }
-
-    public function get_TableColumnType() {
-        return DS_TableColumnType::from_mysql_id($this->TableColumnType_id);
     }
 
     public function to_XML() {
@@ -50,10 +51,44 @@ class TableColumn extends OTable {
         $name = $xml->createElement("name", htmlspecialchars($this->name, ENT_QUOTES, "UTF-8"));
         $element->appendChild($name);
 
-        $type = $xml->createElement("TableColumnType_id", htmlspecialchars($this->TableColumnType_id, ENT_QUOTES, "UTF-8"));
+        $type = $xml->createElement("type", htmlspecialchars($this->type, ENT_QUOTES, "UTF-8"));
         $element->appendChild($type);
 
+        $length = $xml->createElement("length", htmlspecialchars($this->length, ENT_QUOTES, "UTF-8"));
+        $element->appendChild($length);
+
+        $default_value = $xml->createElement("default_value", htmlspecialchars($this->default_value, ENT_QUOTES, "UTF-8"));
+        $element->appendChild($default_value);
+
+        $attributes = $xml->createElement("attributes", htmlspecialchars($this->attributes, ENT_QUOTES, "UTF-8"));
+        $element->appendChild($attributes);
+
+        $null = $xml->createElement("null", htmlspecialchars($this->null, ENT_QUOTES, "UTF-8"));
+        $element->appendChild($null);
+
+        $auto_increment = $xml->createElement("auto_increment", htmlspecialchars($this->auto_increment, ENT_QUOTES, "UTF-8"));
+        $element->appendChild($auto_increment);
+
         return $element;
+    }
+
+    public static function get_column_definition($type, $length, $attributes, $null, $auto_increment, $default_value) {
+        $result = $type;
+        if ($type == "HTML")
+            $result = "text";
+        if (trim($length) != "")
+            $result.="(" . $length . ") ";
+        if (trim($attributes) != "")
+            $result.=" " . $attributes;
+        if ($null == 1)
+            $result.=" NULL";
+        else
+            $result.=" NOT NULL";
+        if ($auto_increment == 1)
+            $result.=" AUTO_INCREMENT";
+        if (trim($default_value) != "")
+            $result.=" DEFAULT " . $default_value;
+        return $result;
     }
 
     public static function validate_columns_name() {
@@ -71,17 +106,7 @@ class TableColumn extends OTable {
 
             $table_name = $table->get_table_name();
 
-            $type = "TEXT NOT NULL";
-            switch ($r['TableColumnType_id']) {
-                case 2: {
-                        $type = "BIGINT NOT NULL";
-                        break;
-                    }
-                case 3: {
-                        $type = "DOUBLE NOT NULL";
-                        break;
-                    }
-            }
+            $type = TableColumn::get_column_definition($r['type'], $r['length'], $r['attributes'], $r['null'], $r['auto_increment'], $r['default_value']);
 
             $old_name = $r['name'];
             $new_name = Table::format_column_name($old_name);
@@ -116,7 +141,12 @@ class TableColumn extends OTable {
             `index` int(11) NOT NULL,
             `name` text NOT NULL,
             `Table_id` bigint(20) NOT NULL,
-            `TableColumnType_id` int(11) NOT NULL,
+            `type` text NOT NULL,
+            `length` text NOT NULL,
+            `default_value` text NOT NULL,
+            `attributes` text NOT NULL,
+            `null` tinyint(1) NOT NULL,
+            `auto_increment` tinyint(1) NOT NULL,
             PRIMARY KEY  (`id`)
             ) ENGINE=InnoDB  DEFAULT CHARSET=utf8;
             ";

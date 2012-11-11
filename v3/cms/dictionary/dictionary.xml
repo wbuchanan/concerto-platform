@@ -196,16 +196,6 @@ Note: You can add new languages by inserting "<new_language>string translated in
             <nl>Een kolom met die naam bestaat al</nl>
             <pt>Já existe uma coluna com este nome.</pt>
         </string>
-        <string id="16" js="1">
-            <en>string</en>
-            <de>Zeichenkette</de>
-            <pl>tekst</pl>
-            <cn>字符串</cn>
-            <fr>libre</fr>
-            <bg>текст</bg>
-            <nl>string</nl>
-            <pt>string</pt>
-        </string>
         <string id="18" js="1">
             <en>HTML</en>
             <de>HTML</de>
@@ -3372,26 +3362,6 @@ Note: You can add new languages by inserting "<new_language>string translated in
             <nl>Kan tabel met niet-gedefinieerde structuur niet opslaan.</nl>
             <pt></pt>
         </string>
-        <string id="354" js="1">
-            <en>integer</en>
-            <de>Ganzzahl</de>
-            <pl>liczba całkowita</pl>
-            <cn>整数</cn>
-            <fr>nombre entier</fr>
-            <bg>цяло число</bg>
-            <nl>integer</nl>
-            <pt></pt>
-        </string>
-        <string id="355" js="1">
-            <en>float</en>
-            <de>Fließkomman</de>
-            <pl>liczba zmiennoprzecinkowa</pl>
-            <cn>浮点数</cn>
-            <fr>flotter</fr>
-            <bg>число с плаваща запетая</bg>
-            <nl>float</nl>
-            <pt></pt>
-        </string>
         <string id="358">
             <en>protected variables</en>
             <de>geschützte Variablen</de>
@@ -5155,7 +5125,7 @@ Note: You can add new languages by inserting "<new_language>string translated in
             <bg></bg>
             <nl></nl>
         </string>
-        <string id="538">
+        <string id="538" js="1">
             <en>default</en>
             <de></de>
             <pl>domyślnie</pl>
@@ -5559,6 +5529,146 @@ Note: You can add new languages by inserting "<new_language>string translated in
             <en>bottom right</en>
             <de></de>
             <pl>dolny prawy</pl>
+            <cn></cn>
+            <fr></fr>
+            <bg></bg>
+            <nl></nl>
+            <pt></pt>
+        </string>
+        <string id="581">
+            <en>NUMERIC</en>
+            <de></de>
+            <pl>NUMERYCZNY</pl>
+            <cn></cn>
+            <fr></fr>
+            <bg></bg>
+            <nl></nl>
+            <pt></pt>
+        </string>
+        <string id="581">
+            <en>NUMERIC</en>
+            <de></de>
+            <pl>NUMERYCZNY</pl>
+            <cn></cn>
+            <fr></fr>
+            <bg></bg>
+            <nl></nl>
+            <pt></pt>
+        </string>
+        <string id="582">
+            <en>DATE AND TIME</en>
+            <de></de>
+            <pl>DATA I CZAS</pl>
+            <cn></cn>
+            <fr></fr>
+            <bg></bg>
+            <nl></nl>
+            <pt></pt>
+        </string>
+        <string id="583">
+            <en>STRING</en>
+            <de></de>
+            <pl>CIĄG ZNAKÓW</pl>
+            <cn></cn>
+            <fr></fr>
+            <bg></bg>
+            <nl></nl>
+            <pt></pt>
+        </string>
+        <string id="584">
+            <en>SPATIAL</en>
+            <de></de>
+            <pl>PRZESTRZENNY</pl>
+            <cn></cn>
+            <fr></fr>
+            <bg></bg>
+            <nl></nl>
+            <pt></pt>
+        </string>
+        <string id="585" js="1">
+            <en>length/values</en>
+            <de></de>
+            <pl>długość/wartości</pl>
+            <cn></cn>
+            <fr></fr>
+            <bg></bg>
+            <nl></nl>
+            <pt></pt>
+        </string>
+        <string id="586">
+            <en>Length of variables or possible values for data type 'set' and 'enum'. Leave blank for default.</en>
+            <de></de>
+            <pl>Długość zmiennych lub możliwe wartości dla typu 'set' i 'enum'. Pozostaw puste dla domyślnego.</pl>
+            <cn></cn>
+            <fr></fr>
+            <bg></bg>
+            <nl></nl>
+            <pt></pt>
+        </string>
+        <string id="587">
+            <en><![CDATA[Default value for a column. Can be set to <b>NULL</b> for nullable columns or <b>CURRENT_TIMESTAMP</b> for type 'timestamp'.]]></en>
+            <de></de>
+            <pl><![CDATA[Domyślna wartość kolumny. Może być ustawiona na <b>NULL</b> dla kolumn dopuszczających NULL lub <b>CURRENT_TIMESTAMP</b> dla typu 'timestamp'.]]></pl>
+            <cn></cn>
+            <fr></fr>
+            <bg></bg>
+            <nl></nl>
+            <pt></pt>
+        </string>
+        <string id="588" js="1">
+            <en>attributes</en>
+            <de></de>
+            <pl>atrybuty</pl>
+            <cn></cn>
+            <fr></fr>
+            <bg></bg>
+            <nl></nl>
+            <pt></pt>
+        </string>
+        <string id="589">
+            <en>column attributes</en>
+            <de></de>
+            <pl>atrybuty kolumny</pl>
+            <cn></cn>
+            <fr></fr>
+            <bg></bg>
+            <nl></nl>
+            <pt></pt>
+        </string>
+        <string id="590" js="1">
+            <en>NULL</en>
+            <de></de>
+            <pl>NULL</pl>
+            <cn></cn>
+            <fr></fr>
+            <bg></bg>
+            <nl></nl>
+            <pt></pt>
+        </string>
+        <string id="591">
+            <en>Check if column accepts NULL value.</en>
+            <de></de>
+            <pl>Zaznacz jeśli kolumna akceptuje wartość NULL.</pl>
+            <cn></cn>
+            <fr></fr>
+            <bg></bg>
+            <nl></nl>
+            <pt></pt>
+        </string>
+        <string id="592">
+            <en>AUTO_INCREMENT</en>
+            <de></de>
+            <pl>AUTO_INCREMENT</pl>
+            <cn></cn>
+            <fr></fr>
+            <bg></bg>
+            <nl></nl>
+            <pt></pt>
+        </string>
+        <string id="593">
+            <en>Check if column should be auto incremented.</en>
+            <de></de>
+            <pl>Zaznacz jeśli kolumna ma być auto inkrementowana.</pl>
             <cn></cn>
             <fr></fr>
             <bg></bg>

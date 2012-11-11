@@ -61,22 +61,7 @@ class Table extends OModule {
                 $col = json_decode($col_json);
                 if ($i > 0)
                     $sql.=",";
-                $sql.="`" . $col->name . "` ";
-                switch ($col->type) {
-                    case 1:
-                    case 4: {
-                            $sql.="TEXT NOT NULL";
-                            break;
-                        }
-                    case 2: {
-                            $sql.="BIGINT NOT NULL";
-                            break;
-                        }
-                    case 3: {
-                            $sql.="DOUBLE NOT NULL";
-                            break;
-                        }
-                }
+                $sql.="`" . $col->name . "` " . TableColumn::get_column_definition($col->type, $col->lengthValues, $col->attributes, $col->nullable, $col->auto_increment, $col->defaultValue);
                 $i++;
             }
             $sql.=") ENGINE = INNODB DEFAULT CHARSET=utf8;";
@@ -96,7 +81,7 @@ class Table extends OModule {
                     $oc->mysql_delete();
             }
 
-            $sql = sprintf("INSERT INTO `%s` (`index`,`name`,`Table_id`,`TableColumnType_id`) VALUES ", TableColumn::get_mysql_table());
+            $sql = sprintf("INSERT INTO `%s` (`index`,`name`,`Table_id`,`type`, `length`,`attributes`, `null`, `auto_increment`, `default_value`) VALUES ", TableColumn::get_mysql_table());
             $i = 0;
             foreach ($post['cols'] as $col_json) {
                 $col = json_decode($col_json);
@@ -105,7 +90,7 @@ class Table extends OModule {
                 if ($i > 0)
                     $sql.=",";
                 $sql.="(";
-                $sql.= ($i + 1) . ",'" . mysql_real_escape_string($col->name) . "'," . $lid . "," . $col->type;
+                $sql.= ($i + 1) . ",'" . mysql_real_escape_string($col->name) . "'," . $lid . ",'" . $col->type . "', '" . $col->lengthValues . "', '" . $col->attributes . "', " . $col->nullable . "," . $col->auto_increment . ",'" . $col->defaultValue . "'";
                 $sql.=")";
                 $i++;
                 //}
@@ -201,7 +186,7 @@ class Table extends OModule {
                         $sql.=",";
                     $sql.="`" . Table::format_column_name($col) . "`  TEXT NOT NULL";
 
-                    $sql2 = sprintf("INSERT INTO `%s` (`index`,`name`,`Table_id`,`TableColumnType_id`) VALUES (%d,'%s',%d,%d)", TableColumn::get_mysql_table(), ($j + 1), Table::format_column_name($col), $this->id, 1);
+                    $sql2 = sprintf("INSERT INTO `%s` (`index`,`name`,`Table_id`,`type`) VALUES (%d,'%s',%d,%s)", TableColumn::get_mysql_table(), ($j + 1), Table::format_column_name($col), $this->id, "text");
                     mysql_query($sql2);
 
                     $j++;
@@ -249,7 +234,7 @@ class Table extends OModule {
                             $sql.=",";
                         $sql.="`" . $column_name . "`  TEXT NOT NULL";
 
-                        $sql2 = sprintf("INSERT INTO `%s` (`index`,`name`,`Table_id`,`TableColumnType_id`) VALUES (%d,'%s',%d,%d)", TableColumn::get_mysql_table(), $i, $column_name, $this->id, 1);
+                        $sql2 = sprintf("INSERT INTO `%s` (`index`,`name`,`Table_id`,`type`) VALUES (%d,'%s',%d,%s)", TableColumn::get_mysql_table(), $i, $column_name, $this->id, "text");
                         if (!mysql_query($sql2))
                             return -4;
                     }
@@ -331,7 +316,17 @@ class Table extends OModule {
                     switch ($child->nodeName) {
                         case "name": $col["name"] = $child->nodeValue;
                             break;
-                        case "TableColumnType_id": $col["type"] = $child->nodeValue;
+                        case "type": $col["type"] = $child->nodeValue;
+                            break;
+                        case "length": $col["length"] = $child->nodeValue;
+                            break;
+                        case "default_value": $col["default_value"] = $child->nodeValue;
+                            break;
+                        case "attributes": $col["attributes"] = $child->nodeValue;
+                            break;
+                        case "null": $col["null"] = $child->nodeValue;
+                            break;
+                        case "auto_increment": $col["auto_increment"] = $child->nodeValue;
                             break;
                     }
                 }
@@ -373,14 +368,9 @@ class Table extends OModule {
 
         $cols = $this->get_TableColumns();
         foreach ($cols as $col) {
-            $column = $xml->createElement("TableColumn");
-            $column = $xml->importNode($column, true);
-            $columns->appendChild($column);
-
-            $name = $xml->createElement("name", $col->name);
-            $column->appendChild($name);
-            $type = $xml->createElement("TableColumnType_id", $col->TableColumnType_id);
-            $column->appendChild($type);
+            $elem = $col->to_XML();
+            $elem = $xml->importNode($elem, true);
+            $columns->appendChild($elem);
         }
 
         $rows = $xml->createElement("rows");

@@ -151,7 +151,7 @@ Table.uiReloadDataGrid=function(data,columns){
             Table.uiIniHTMLTooltips();
         },
         dataSource: dataSource,
-        scrollable:false,
+        scrollable:true,
         resizable: true,
         sortable:true,
         columnMenu:{
@@ -256,8 +256,7 @@ Table.uiIniDataGrid=function(){
             fields[data[i].name] = {}
             var col = {
                 title:title,
-                field:data[i].name,
-                width:30
+                field:data[i].name
             };
             
             switch(parseInt(data[i].type)){
@@ -449,8 +448,22 @@ Table.uiIniStructureGrid=function(){
             type:"string"
         },
         type:{
-            type:"number",
-            defaultValue:1
+            type:"string"
+        },
+        lengthValues:{
+            type:"string"
+        },
+        defaultValue:{
+            type:"string"
+        },
+        attributes:{
+            type:"string"
+        },
+        nullable:{
+            type:"number"
+        },
+        auto_increment:{
+            type:"number"
         }
     };
     
@@ -482,9 +495,24 @@ Table.uiIniStructureGrid=function(){
             field:"name"
         },{
             title:dictionary["s122"],
-            field:"type",
-            template: "# if(type==1){# "+dictionary["s16"]+" #} else if(type==2){# "+dictionary["s354"]+" #} else if(type==3){# "+dictionary["s355"]+" #} else if(type==4){# "+dictionary["s18"]+" #}#"
-
+            field:"type"
+        },{
+            title:dictionary["s585"],
+            field:"lengthValues"
+        },{
+            title:dictionary["s538"],
+            field:"defaultValue"
+        },{
+            title:dictionary["s588"],
+            field:"attributes"
+        },{
+            title:dictionary["s590"],
+            field:"nullable",
+            template:'<input type="checkbox" #= nullable==1?"checked":"" # disabled />'
+        },{
+            title:dictionary["s592"],
+            field:"auto_increment",
+            template:'<input type="checkbox" #= auto_increment==1?"checked":"" # disabled />'
         },{
             title:' ',
             width:50,
@@ -498,7 +526,7 @@ Table.uiIniStructureGrid=function(){
         }
         ],
         editable: false,
-        scrollable:false
+        scrollable:true
     });
     Methods.iniIconButton(".btnAdd", "plus");
 }
@@ -520,7 +548,12 @@ Table.getColumns=function(){
     for(var i=0;i<data.length;i++){
         cols.push({
             name:data[i].name,
-            type:data[i].type
+            type:data[i].type,
+            lengthValues:data[i].lengthValues,
+            defaultValue:data[i].defaultValue,
+            attributes:data[i].attributes,
+            nullable:data[i].nullable,
+            auto_increment:data[i].auto_increment
         })
     }
     return cols;
@@ -573,22 +606,43 @@ Table.uiEditColumn=function(obj){
     
     var oldName = item.name;
     var oldType = item.type;
+    var oldLengthValues = item.lengthValues;
+    var oldDefaultValue = item.defaultValue;
+    var oldAttributes = item.attributes;
+    var oldNullable = item.nullable;
+    var oldAutoIncrement = item.auto_increment;
     
     var name = $("#form"+Table.className+"InputColumnName");
     name.val(oldName);
     var type = $("#form"+Table.className+"SelectColumnType");
     type.val(oldType);
+    var lengthValues = $("#form"+Table.className+"InputColumnLength");
+    lengthValues.val(oldLengthValues);
+    var defaultValue = $("#form"+Table.className+"InputColumnDefault");
+    defaultValue.val(oldDefaultValue);
+    var attributes = $("#form"+Table.className+"SelectColumnAttributes");
+    attributes.val(oldAttributes);
+    var nullable = $("#form"+Table.className+"CheckboxColumnNull");
+    nullable.attr("checked",oldNullable==1);
+    var auto_increment = $("#form"+Table.className+"CheckboxColumnAutoIncrement");
+    auto_increment.attr("checked",oldAutoIncrement==1);
     
     $("#div"+this.className+"Dialog").dialog({
         title:dictionary["s12"],
         modal:true,
         resizable:false,
+        width:400,
         open:function(){
             $('.ui-widget-overlay').css('position', 'fixed');
         },
         close:function(){
             name.val("");
-            type.val(1);
+            type.val("HTML");
+            lengthValues.val("");
+            defaultValue.val("");
+            attributes.val("");
+            nullable.attr("checked",false);
+            auto_increment.attr("checked",false);
             //$('.ui-widget-overlay').css('position', 'absolute');
             $(this).dialog("destroy");
         },
@@ -619,40 +673,35 @@ Table.uiEditColumn=function(obj){
                     return;
                 }
                 
-                var typeName = dictionary["s16"];
-                switch(type.val())
-                {
-                    case "2":
-                    {
-                        typeName=dictionary["s354"];
-                        break;
-                    }
-                    case "3":
-                    {
-                        typeName=dictionary["s355"];
-                        break;
-                    }
-                    case "4":
-                    {
-                        typeName=dictionary["s18"];
-                        break;
-                    }
-                }
-                
                 //structGrid mod start
                 var rowStruct = structGrid.dataSource.data()[index];
                 rowStruct["name"]=name.val();
                 rowStruct["type"]=type.val();
+                rowStruct["lengthValues"]=lengthValues.val();
+                rowStruct["defaultValue"]=defaultValue.val();
+                rowStruct["attributes"]=attributes.val();
+                rowStruct["nullable"]=nullable.is(":checked")?1:0;
+                rowStruct["auto_increment"]=auto_increment.is(":checked")?1:0;
                 Table.uiRefreshStructureGrid();
                 
                 //dataGrid mod start
                 var dataGrid = $("#div"+thisClass.className+"GridData").data('kendoGrid');
                 
                 var ftype="string";
-                var fdefault="";
-                switch(parseInt(type.val())){
-                    case 2:
-                    case 3:{
+                var fdefault=defaultValue.val();
+                switch(type.val()){
+                    case "tinyint":
+                    case "smallint":
+                    case "mediumint":
+                    case "int":
+                    case "bigint":
+                    case "decimal":
+                    case "float":
+                    case "double":
+                    case "real":
+                    case "boolean":
+                    case "bit":
+                    case "serial":{
                         ftype="number";
                         fdefault=0;
                         break;
@@ -662,25 +711,33 @@ Table.uiEditColumn=function(obj){
                 Table.dataGridSchemaFields[name.val()] = {
                     type:ftype,
                     defaultValue:fdefault,
-                    editable: parseInt(type.val())!=4
+                    editable: type.val()!="HTML"
                 }
         
                 dataGrid.columns[index] = {
-                    title:name.val()+" ("+typeName+")",
+                    title:name.val(),
                     field:name.val()
                 };
                 
-                switch(parseInt(type.val())){
-                    case 1:{
-                        dataGrid.columns[index].editor = Table.stringEditor;
-                        break;
-                    }
-                    case 2:
-                    case 3:{
+                dataGrid.columns[index].editor = Table.stringEditor;
+                
+                switch(type.val()){
+                    case "tinyint":
+                    case "smallint":
+                    case "mediumint":
+                    case "int":
+                    case "bigint":
+                    case "decimal":
+                    case "float":
+                    case "double":
+                    case "real":
+                    case "boolean":
+                    case "bit":
+                    case "serial":{
                         dataGrid.columns[index].editor = Table.numberEditor;
                         break;
                     }
-                    case 4:{
+                    case "HTML":{
                         dataGrid.columns[index].editor = Table.htmlEditor;
                         dataGrid.columns[index].template = '<div class="horizontalMargin" align="center">'+
                         '<span class="spanIcon tooltipTableStructure ui-icon ui-icon-document-b" onclick="Table.uiChangeHTML($(this).next(),\''+name.val()+'\')" title="'+dictionary["s130"]+'"></span>'+
@@ -701,7 +758,7 @@ Table.uiEditColumn=function(obj){
                     item.fields[name.val()]={
                         type:ftype,
                         defaultValue:fdefault,
-                        editable: parseInt(type.val())!=4
+                        editable: type.val()!="HTML"
                     }
                     item.defaults[name.val()]=fdefault;
                 }
@@ -939,11 +996,17 @@ Table.uiAddColumn=function(){
     
     var name = $("#form"+Table.className+"InputColumnName");
     var type = $("#form"+Table.className+"SelectColumnType");
+    var lengthValues = $("#form"+Table.className+"InputColumnLength");
+    var defaultValue = $("#form"+Table.className+"InputColumnDefault");
+    var attributes = $("#form"+Table.className+"SelectColumnAttributes");
+    var nullable = $("#form"+Table.className+"CheckboxColumnNull");
+    var auto_increment = $("#form"+Table.className+"CheckboxColumnAutoIncrement");
     
     $("#div"+this.className+"Dialog").dialog({
         title:dictionary["s31"],
         resizable:false,
         modal:true,
+        width:400,
         open:function(){
             $('.ui-widget-overlay').css('position', 'fixed');  
         },
@@ -980,40 +1043,35 @@ Table.uiAddColumn=function(){
                     return;
                 }
                 
-                var typeName = dictionary["s16"];
-                switch(type.val())
-                {
-                    case "2":
-                    {
-                        typeName=dictionary["s354"];
-                        break;
-                    }
-                    case "3":
-                    {
-                        typeName=dictionary["s355"];
-                        break;
-                    }
-                    case "4":
-                    {
-                        typeName=dictionary["s18"];
-                        break;
-                    }
-                }
-                
                 var structGrid = $("#div"+thisClass.className+"GridStructure").data('kendoGrid');
                 structGrid.dataSource.add({
                     name:name.val(),
-                    type:type.val()
+                    type:type.val(),
+                    lengthValues:lengthValues.val(),
+                    defaultValue:defaultValue.val(),
+                    attributes:attributes.val(),
+                    nullable:nullable.is("checked")?1:0,
+                    auto_increment:auto_increment.is(":checked")?1:0
                 })
                 
                 //dataGrid mod start
                 var dataGrid = $("#div"+thisClass.className+"GridData").data('kendoGrid');
                 
                 var ftype="string";
-                var fdefault="";
-                switch(parseInt(type.val())){
-                    case 2:
-                    case 3:{
+                var fdefault=defaultValue.val();
+                switch(type.val()){
+                    case "tinyint":
+                    case "smallint":
+                    case "mediumint":
+                    case "int":
+                    case "bigint":
+                    case "decimal":
+                    case "float":
+                    case "double":
+                    case "real":
+                    case "boolean":
+                    case "bit":
+                    case "serial":{
                         ftype="number";
                         fdefault=0;
                         break;
@@ -1025,24 +1083,31 @@ Table.uiAddColumn=function(){
                 }
                 
                 var col = {
-                    title:name.val()+" ("+typeName+")",
+                    title:name.val(),
                     field:name.val()
                 }
-                switch(parseInt(type.val())){
-                    case 1:{
-                        col.editor = Table.stringEditor;
-                        Table.dataGridSchemaFields[name.val()].editable = true;
-                        break;
-                    }
-                    case 2:
-                    case 3:{
+                
+                col.editor = Table.stringEditor;
+                
+                switch(type.val()){
+                    case "tinyint":
+                    case "smallint":
+                    case "mediumint":
+                    case "int":
+                    case "bigint":
+                    case "decimal":
+                    case "float":
+                    case "double":
+                    case "real":
+                    case "boolean":
+                    case "bit":
+                    case "serial":{
                         col.editor = Table.numberEditor;
-                        Table.dataGridSchemaFields[name.val()].editable = true;
                         break;
                     }
-                    case 4:{
+                    case "HTML":{
                         col.editor = Table.htmlEditor;
-                        Table.dataGridSchemaFields[name.val()].editable = false;
+                        //Table.dataGridSchemaFields[name.val()].editable = false;
                         col.template = '<div class="horizontalMargin" align="center">'+
                         '<span class="spanIcon tooltipTableStructure ui-icon ui-icon-document-b" onclick="Table.uiChangeHTML($(this).next(),\''+name.val()+'\')" title="'+dictionary["s130"]+'"></span>'+
                         '<textarea class="notVisible">#='+name.val()+'#</textarea>'+
@@ -1059,7 +1124,7 @@ Table.uiAddColumn=function(){
                     row.fields[name.val()]={
                         type:ftype,
                         defaultValue:fdefault,
-                        editable: parseInt(type.val())!=4
+                        editable: type.val()!="HTML"
                     }
                     row.defaults[name.val()]=fdefault;
                 }

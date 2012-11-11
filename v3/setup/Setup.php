@@ -263,7 +263,6 @@ class Setup {
         DS_Module::create_db(true);
         DS_Right::create_db(true);
         DS_Sharing::create_db(true);
-        DS_TableColumnType::create_db(true);
         DS_TestSectionType::create_db(true);
         DS_UserInstitutionType::create_db(true);
         Setting::create_db(true);
@@ -1079,7 +1078,7 @@ class Setup {
                 return json_encode(array("result" => 0, "param" => "3.7.6"));
             }
         }
-        
+
         if (Ini::does_patch_apply("3.8.6", $previous_version)) {
             if ($simulate) {
                 array_push($versions_to_update, "3.8.6");
@@ -1093,7 +1092,7 @@ class Setup {
                     if (!mysql_query($sql))
                         return json_encode(array("result" => 1, "param" => $sql));
                 }
-                
+
                 //Template - add effect_show field
                 $sql = "SHOW COLUMNS FROM `Template` WHERE `Field`='effect_show'";
                 $z = mysql_query($sql);
@@ -1102,7 +1101,7 @@ class Setup {
                     if (!mysql_query($sql))
                         return json_encode(array("result" => 1, "param" => $sql));
                 }
-                
+
                 //Template - add effect_hide field
                 $sql = "SHOW COLUMNS FROM `Template` WHERE `Field`='effect_hide'";
                 $z = mysql_query($sql);
@@ -1111,7 +1110,7 @@ class Setup {
                     if (!mysql_query($sql))
                         return json_encode(array("result" => 1, "param" => $sql));
                 }
-                
+
                 //Template - add effect_show_options field
                 $sql = "SHOW COLUMNS FROM `Template` WHERE `Field`='effect_show_options'";
                 $z = mysql_query($sql);
@@ -1120,7 +1119,7 @@ class Setup {
                     if (!mysql_query($sql))
                         return json_encode(array("result" => 1, "param" => $sql));
                 }
-                
+
                 //Template - add effect_hide_options field
                 $sql = "SHOW COLUMNS FROM `Template` WHERE `Field`='effect_hide_options'";
                 $z = mysql_query($sql);
@@ -1129,9 +1128,8 @@ class Setup {
                     if (!mysql_query($sql))
                         return json_encode(array("result" => 1, "param" => $sql));
                 }
-                
+
                 ///
-                
                 //TestTemplate - add effect_show field
                 $sql = "SHOW COLUMNS FROM `TestTemplate` WHERE `Field`='effect_show'";
                 $z = mysql_query($sql);
@@ -1140,7 +1138,7 @@ class Setup {
                     if (!mysql_query($sql))
                         return json_encode(array("result" => 1, "param" => $sql));
                 }
-                
+
                 //TestTemplate - add effect_hide field
                 $sql = "SHOW COLUMNS FROM `TestTemplate` WHERE `Field`='effect_hide'";
                 $z = mysql_query($sql);
@@ -1149,7 +1147,7 @@ class Setup {
                     if (!mysql_query($sql))
                         return json_encode(array("result" => 1, "param" => $sql));
                 }
-                
+
                 //TestTemplate - add effect_show_options field
                 $sql = "SHOW COLUMNS FROM `TestTemplate` WHERE `Field`='effect_show_options'";
                 $z = mysql_query($sql);
@@ -1158,7 +1156,7 @@ class Setup {
                     if (!mysql_query($sql))
                         return json_encode(array("result" => 1, "param" => $sql));
                 }
-                
+
                 //TestTemplate - add effect_hide_options field
                 $sql = "SHOW COLUMNS FROM `TestTemplate` WHERE `Field`='effect_hide_options'";
                 $z = mysql_query($sql);
@@ -1167,9 +1165,8 @@ class Setup {
                     if (!mysql_query($sql))
                         return json_encode(array("result" => 1, "param" => $sql));
                 }
-                
+
                 ///
-                
                 //TestSession - add effect_show field
                 $sql = "SHOW COLUMNS FROM `TestSession` WHERE `Field`='effect_show'";
                 $z = mysql_query($sql);
@@ -1178,7 +1175,7 @@ class Setup {
                     if (!mysql_query($sql))
                         return json_encode(array("result" => 1, "param" => $sql));
                 }
-                
+
                 //TestSession - add effect_hide field
                 $sql = "SHOW COLUMNS FROM `TestSession` WHERE `Field`='effect_hide'";
                 $z = mysql_query($sql);
@@ -1187,7 +1184,7 @@ class Setup {
                     if (!mysql_query($sql))
                         return json_encode(array("result" => 1, "param" => $sql));
                 }
-                
+
                 //TestSession - add effect_show_options field
                 $sql = "SHOW COLUMNS FROM `TestSession` WHERE `Field`='effect_show_options'";
                 $z = mysql_query($sql);
@@ -1196,7 +1193,7 @@ class Setup {
                     if (!mysql_query($sql))
                         return json_encode(array("result" => 1, "param" => $sql));
                 }
-                
+
                 //TestSession - add effect_hide_options field
                 $sql = "SHOW COLUMNS FROM `TestSession` WHERE `Field`='effect_hide_options'";
                 $z = mysql_query($sql);
@@ -1205,9 +1202,8 @@ class Setup {
                     if (!mysql_query($sql))
                         return json_encode(array("result" => 1, "param" => $sql));
                 }
-                
+
                 ///
-                
                 //TestSession - add loader_effect_show field
                 $sql = "SHOW COLUMNS FROM `TestSession` WHERE `Field`='loader_effect_show'";
                 $z = mysql_query($sql);
@@ -1216,7 +1212,7 @@ class Setup {
                     if (!mysql_query($sql))
                         return json_encode(array("result" => 1, "param" => $sql));
                 }
-                
+
                 //TestSession - add loader_effect_hide field
                 $sql = "SHOW COLUMNS FROM `TestSession` WHERE `Field`='loader_effect_hide'";
                 $z = mysql_query($sql);
@@ -1225,7 +1221,7 @@ class Setup {
                     if (!mysql_query($sql))
                         return json_encode(array("result" => 1, "param" => $sql));
                 }
-                
+
                 //TestSession - add loader_effect_show_options field
                 $sql = "SHOW COLUMNS FROM `TestSession` WHERE `Field`='loader_effect_show_options'";
                 $z = mysql_query($sql);
@@ -1234,7 +1230,7 @@ class Setup {
                     if (!mysql_query($sql))
                         return json_encode(array("result" => 1, "param" => $sql));
                 }
-                
+
                 //TestSession - add loader_effect_hide_options field
                 $sql = "SHOW COLUMNS FROM `TestSession` WHERE `Field`='loader_effect_hide_options'";
                 $z = mysql_query($sql);
@@ -1243,7 +1239,7 @@ class Setup {
                     if (!mysql_query($sql))
                         return json_encode(array("result" => 1, "param" => $sql));
                 }
-                
+
                 //TestSession - add loader_Template_id field
                 $sql = "SHOW COLUMNS FROM `TestSession` WHERE `Field`='loader_Template_id'";
                 $z = mysql_query($sql);
@@ -1252,7 +1248,7 @@ class Setup {
                     if (!mysql_query($sql))
                         return json_encode(array("result" => 1, "param" => $sql));
                 }
-                
+
                 //TestSession - add loader_HTML field
                 $sql = "SHOW COLUMNS FROM `TestSession` WHERE `Field`='loader_HTML'";
                 $z = mysql_query($sql);
@@ -1261,7 +1257,7 @@ class Setup {
                     if (!mysql_query($sql))
                         return json_encode(array("result" => 1, "param" => $sql));
                 }
-                
+
                 //TestSession - add loader_head field
                 $sql = "SHOW COLUMNS FROM `TestSession` WHERE `Field`='loader_head'";
                 $z = mysql_query($sql);
@@ -1274,8 +1270,99 @@ class Setup {
                 Setting::set_setting("version", "3.8.6");
                 return json_encode(array("result" => 0, "param" => "3.8.6"));
             }
-            $recalculate_hash = true;
             $repopulate_TestTemplate = true;
+        }
+
+        if (Ini::does_patch_apply("3.8.7", $previous_version)) {
+            if ($simulate) {
+                array_push($versions_to_update, "3.8.7");
+            } else {
+
+                //TableColumn - add type field
+                $sql = "SHOW COLUMNS FROM `TableColumn` WHERE `Field`='type'";
+                $z = mysql_query($sql);
+                if (mysql_num_rows($z) == 0) {
+                    $sql = "ALTER TABLE `TableColumn` ADD `type` text NOT NULL;";
+                    if (!mysql_query($sql))
+                        return json_encode(array("result" => 1, "param" => $sql));
+                }
+
+                //TableColumn - add length field
+                $sql = "SHOW COLUMNS FROM `TableColumn` WHERE `Field`='length'";
+                $z = mysql_query($sql);
+                if (mysql_num_rows($z) == 0) {
+                    $sql = "ALTER TABLE `TableColumn` ADD `length` text NOT NULL;";
+                    if (!mysql_query($sql))
+                        return json_encode(array("result" => 1, "param" => $sql));
+                }
+
+                //TableColumn - add default_value field
+                $sql = "SHOW COLUMNS FROM `TableColumn` WHERE `Field`='default_value'";
+                $z = mysql_query($sql);
+                if (mysql_num_rows($z) == 0) {
+                    $sql = "ALTER TABLE `TableColumn` ADD `default_value` text NOT NULL;";
+                    if (!mysql_query($sql))
+                        return json_encode(array("result" => 1, "param" => $sql));
+                }
+
+                //TableColumn - add attributes field
+                $sql = "SHOW COLUMNS FROM `TableColumn` WHERE `Field`='attributes'";
+                $z = mysql_query($sql);
+                if (mysql_num_rows($z) == 0) {
+                    $sql = "ALTER TABLE `TableColumn` ADD `attributes` text NOT NULL;";
+                    if (!mysql_query($sql))
+                        return json_encode(array("result" => 1, "param" => $sql));
+                }
+
+                //TableColumn - add null field
+                $sql = "SHOW COLUMNS FROM `TableColumn` WHERE `Field`='null'";
+                $z = mysql_query($sql);
+                if (mysql_num_rows($z) == 0) {
+                    $sql = "ALTER TABLE `TableColumn` ADD `null` tinyint(1) NOT NULL;";
+                    if (!mysql_query($sql))
+                        return json_encode(array("result" => 1, "param" => $sql));
+                }
+
+                //TableColumn - add auto_increment field
+                $sql = "SHOW COLUMNS FROM `TableColumn` WHERE `Field`='auto_increment'";
+                $z = mysql_query($sql);
+                if (mysql_num_rows($z) == 0) {
+                    $sql = "ALTER TABLE `TableColumn` ADD `auto_increment` tinyint(1) NOT NULL;";
+                    if (!mysql_query($sql))
+                        return json_encode(array("result" => 1, "param" => $sql));
+                }
+
+                //TableColumn - fill type column text
+                $sql = "UPDATE `TableColumn` SET `type`='text' WHERE `TableColumnType_id`=1 OR `TableColumnType_id`=4";
+                $z = mysql_query($sql);
+                if (!mysql_query($sql))
+                    return json_encode(array("result" => 1, "param" => $sql));
+
+                //TableColumn - fill type column integer
+                $sql = "UPDATE `TableColumn` SET `type`='bigint' WHERE `TableColumnType_id`=2";
+                $z = mysql_query($sql);
+                if (!mysql_query($sql))
+                    return json_encode(array("result" => 1, "param" => $sql));
+
+                //TableColumn - fill type column double
+                $sql = "UPDATE `TableColumn` SET `type`='double' WHERE `TableColumnType_id`=3";
+                $z = mysql_query($sql);
+                if (!mysql_query($sql))
+                    return json_encode(array("result" => 1, "param" => $sql));
+
+                //TableColumn - remove DS_TableColumnType_id
+                $sql = "SHOW COLUMNS FROM `TableColumn` WHERE `Field`='TableColumnType_id'";
+                $z = mysql_query($sql);
+                if (mysql_num_rows($z) > 0) {
+                    $sql = "ALTER TABLE `TableColumn` DROP `TableColumnType_id`;";
+                    if (!mysql_query($sql))
+                        return json_encode(array("result" => 1, "param" => $sql));
+                }
+
+                Setting::set_setting("version", "3.8.7");
+                return json_encode(array("result" => 0, "param" => "3.8.7"));
+            }
+            $recalculate_hash = true;
         }
 
         if ($simulate)

@@ -196,15 +196,96 @@ if ($oid != 0) {
                         <td class="fullWidth">
                             <div class="horizontalMargin">
                                 <select id="form<?= $class_name ?>SelectColumnType" class="fullWidth ui-widget-content ui-corner-all">
-                                    <?php
-                                    $types = DS_TableColumnType::get_all();
-                                    foreach ($types as $type) {
-                                        ?>
-                                        <option value="<?= $type->id ?>"><?= $type->get_name() ?></option>
-                                        <?php
-                                    }
-                                    ?>
+                                    <optgroup label="<?= Language::string(581) ?>">
+                                        <option value="tinyint">tinyint</option>
+                                        <option value="smallint">smallint</option>
+                                        <option value="mediumint">mediumint</option>
+                                        <option value="int">int</option>
+                                        <option value="bigint">bigint</option>
+                                        <option value="decimal">decimal</option>
+                                        <option value="float">float</option>
+                                        <option value="double">double</option>
+                                        <option value="real">real</option>
+                                        <option value="bit">bit</option>
+                                        <option value="boolean">boolean</option>
+                                        <option value="serial">serial</option>
+                                    </optgroup>
+                                    <optgroup label="<?= Language::string(583) ?>">
+                                        <option value="HTML"><?= Language::string(18) ?></option>
+                                        <option value="char">char</option>
+                                        <option value="varchar">varchar</option>
+                                        <option value="tinytext">tinytext</option>
+                                        <option value="text">text</option>
+                                        <option value="mediumtext">mediumtext</option>
+                                        <option value="longtext">longtext</option>
+                                        <option value="binary">binary</option>
+                                        <option value="varbinary">varbinary</option>
+                                        <option value="tinyblob">tinyblob</option>
+                                        <option value="mediumblob">mediumblob</option>
+                                        <option value="blob">blob</option>
+                                        <option value="longblob">longblob</option>
+                                        <option value="enum">enum</option>
+                                        <option value="set">set</option>
+                                    </optgroup>
+                                    <optgroup label="<?= Language::string(582) ?>">
+                                        <option value="date">date</option>
+                                        <option value="datetime">datetime</option>
+                                        <option value="timestamp">timestamp</option>
+                                        <option value="time">time</option>
+                                        <option value="year">year</option>
+                                    </optgroup>
                                 </select>
+                            </div>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td class="noWrap horizontalPadding tdFormLabel"><?= Language::string(585) ?>:</td>
+                        <td><span class="tooltip spanIcon ui-icon ui-icon-help" title="<?= Language::string(586) ?>"></span></td>
+                        <td class="fullWidth">
+                            <div class="horizontalMargin">
+                                <input type="text" id="form<?= $class_name ?>InputColumnLength" value="" class="fullWidth ui-widget-content ui-corner-all" />
+                            </div>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td class="noWrap horizontalPadding tdFormLabel"><?= Language::string(538) ?>:</td>
+                        <td><span class="tooltip spanIcon ui-icon ui-icon-help" title="<?= Language::string(587) ?>"></span></td>
+                        <td class="fullWidth">
+                            <div class="horizontalMargin">
+                                <input type="text" id="form<?= $class_name ?>InputColumnDefault" value="" class="fullWidth ui-widget-content ui-corner-all" />
+                            </div>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td class="noWrap horizontalPadding tdFormLabel"><?= Language::string(588) ?>:</td>
+                        <td><span class="tooltip spanIcon ui-icon ui-icon-help" title="<?= Language::string(589) ?>"></span></td>
+                        <td class="fullWidth">
+                            <div class="horizontalMargin">
+                                <select id="form<?= $class_name ?>SelectColumnAttributes" class="fullWidth ui-widget-content ui-corner-all">
+                                    <option value="">&lt;<?= Language::string(73) ?>&gt;</option>
+                                    <option value="binary">binary</option>
+                                    <option value="unsigned">unsigned</option>
+                                    <option value="unsigned zerofill">unsigned zerofill</option>
+                                    <option value="on update current_timestamp">on update current_timestamp</option>
+                                </select>
+                            </div>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td class="noWrap horizontalPadding tdFormLabel"><?= Language::string(590) ?>:</td>
+                        <td><span class="tooltip spanIcon ui-icon ui-icon-help" title="<?= Language::string(591) ?>"></span></td>
+                        <td class="fullWidth">
+                            <div class="horizontalMargin">
+                                <input type="checkbox" id="form<?= $class_name ?>CheckboxColumnNull" value="1" class="ui-widget-content ui-corner-all" />
+                            </div>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td class="noWrap horizontalPadding tdFormLabel"><?= Language::string(592) ?>:</td>
+                        <td><span class="tooltip spanIcon ui-icon ui-icon-help" title="<?= Language::string(593) ?>"></span></td>
+                        <td class="fullWidth">
+                            <div class="horizontalMargin">
+                                <input type="checkbox" id="form<?= $class_name ?>CheckboxColumnAutoIncrement" value="1" class="ui-widget-content ui-corner-all" />
                             </div>
                         </td>
                     </tr>
