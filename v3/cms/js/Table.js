@@ -1005,6 +1005,7 @@ Table.setEditor = function(container,options){
     var items = grid.dataSource.data();
     
     var editor = $("<select style='resize:none; margin:auto; width:100%;' data-bind='value:" + options.field + "' />");
+    
     var col = null;
     for(var i=0;i<items.length;i++){
         if(items[i].name==options.field) {
@@ -1014,24 +1015,24 @@ Table.setEditor = function(container,options){
     }
     
     if(col.nullable==1){
-        editor.html("<option>&lt;"+dictionary["s73"]+"&gt;</option>");
+        //editor.html("<option value=''>&lt;"+dictionary["s73"]+"&gt;</option>");
     }
     
     if(col.lengthValues.trim()!=""){
-        var options = col.lengthValues.split("','");
+        var data = col.lengthValues.split("','");
         
-        if(options.length>0){
-            if(options[0].charAt(0)=="'") options[0] = options[0].substr(1);
+        if(data.length>0){
+            if(data[0].charAt(0)=="'") data[0] = data[0].substr(1);
             
-            var last = options[options.length-1];
+            var last = data[data.length-1];
             if(last.charAt(last.length-1)=="'") {
                 last = last.substr(0,last.length-1);
-                options[options.length-1] = last;
+                data[data.length-1] = last;
             }
         }
         
-        for(var i=0;i<options.length;i++){
-            editor.html(editor.html()+"<option value='"+options[i]+"'>"+options[i]+"</option>");
+        for(var i=0;i<data.length;i++){
+            editor.html(editor.html()+"<option value='"+data[i]+"'>"+data[i]+"</option>");
         }
     }
     

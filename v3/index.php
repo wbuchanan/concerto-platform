@@ -35,11 +35,11 @@ if (!isset($ini)) {
 
         <link rel="stylesheet" href="css/styles.css" />
         <link rel="stylesheet" href="css/QTI.css" />
-        <link rel="stylesheet" href="cms/css/jQueryUI/cupertino/jquery-ui-1.9.0.custom.min.css" />
+        <link rel="stylesheet" href="cms/css/jQueryUI/cupertino/jquery-ui-1.9.1.custom.min.css" />
 
         <script type="text/javascript" src="cms/js/lib/jquery-1.8.2.min.js"></script>
         <script type="text/javascript" src="cms/js/lib/jquery.json-2.3.min.js"></script>
-        <script type="text/javascript" src="cms/js/lib/jquery-ui-1.9.0.custom.min.js"></script>
+        <script type="text/javascript" src="cms/js/lib/jquery-ui-1.9.1.custom.min.js"></script>
 
         <script type="text/javascript" src="js/lib/jquery.cookie.js"></script>
         <script type="text/javascript" src="js/Compatibility.js"></script>

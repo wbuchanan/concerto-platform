@@ -34,7 +34,7 @@ if (!isset($ini)) {
         <title>Concerto Platform</title>
         <link rel="stylesheet" href="css/styles.css" />
         <link rel="stylesheet" href="../css/QTI.css" />
-        <link rel="stylesheet" href="css/jQueryUI/cupertino/jquery-ui-1.9.0.custom.min.css" />
+        <link rel="stylesheet" href="css/jQueryUI/cupertino/jquery-ui-1.9.1.custom.min.css" />
 
         <link rel="stylesheet" href="js/lib/loadmask/jquery.loadmask.css" />
         <link rel="stylesheet" href="js/lib/selectmenu/jquery.ui.selectmenu.css" />
@@ -44,7 +44,7 @@ if (!isset($ini)) {
         <link rel="stylesheet" href="lib/CodeMirror/theme/blackboard.css" />
 
         <script type="text/javascript" src="js/lib/jquery-1.8.2.min.js"></script>
-        <script type="text/javascript" src="js/lib/jquery-ui-1.9.0.custom.min.js"></script>
+        <script type="text/javascript" src="js/lib/jquery-ui-1.9.1.custom.min.js"></script>
         <script type="text/javascript" src="js/lib/selectmenu/jquery.ui.selectmenu.js"></script>
         <script type="text/javascript" src="js/lib/jquery.json-2.3.min.js"></script>
         <script type="text/javascript" src="js/lib/loadmask/jquery.loadmask.min.js"></script>
