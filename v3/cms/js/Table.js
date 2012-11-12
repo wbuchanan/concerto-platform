@@ -238,44 +238,43 @@ Table.uiIniDataGrid=function(){
         var columns = [];
         for(var i=0;i<data.length;i++)
         {
+            var templateSet = false;
             var title = data[i].name;
-            switch(parseInt(data[i].type)){
-                case 1:
-                    title+=" ("+dictionary["s16"]+")";
-                    break;
-                case 2:
-                    title+=" ("+dictionary["s354"]+")";
-                    break;
-                case 3:
-                    title+=" ("+dictionary["s355"]+")";
-                    break;
-                case 4:
-                    title+=" ("+dictionary["s18"]+")";
-                    break;
-            }
             fields[data[i].name] = {}
             var col = {
                 title:title,
                 field:data[i].name
             };
             
-            switch(parseInt(data[i].type)){
-                case 1:{
-                    col["editor"] = Table.stringEditor;
-                    fields[data[i].name]["type"] = "string";
-                    fields[data[i].name]["editable"] = true;
-                    fields[data[i].name]["defaultValue"] = "";
-                    break;
-                }
-                case 2:
-                case 3:{
+            col["editor"] = Table.stringEditor;
+            fields[data[i].name]["type"] = "string";
+            fields[data[i].name]["editable"] = true;
+            fields[data[i].name]["defaultValue"] = data[i].defaultValue;
+            fields[data[i].name]["nullable"] = data[i].nullable==1;
+            
+            switch(data[i].type){
+                case "tinyint":
+                case "smallint":
+                case "mediumint":
+                case "int":
+                case "bigint":
+                case "decimal":
+                case "float":
+                case "double":
+                case "real":
+                case "bit":
+                case "boolean":
+                case "serial":{
                     col["editor"] = Table.numberEditor;
                     fields[data[i].name]["type"]="number";
-                    fields[data[i].name]["editable"] = true;
-                    fields[data[i].name]["defaultValue"] = "0";
                     break;
                 }
-                case 4:{
+                case "set":
+                case "enum":{
+                    col["editor"] = Table.setEditor;
+                    break;
+                }
+                case "HTML":{
                     col["editor"] = Table.htmlEditor;
                     col["template"] = '<div class="horizontalMargin" align="center">'+
                     '<span class="spanIcon tooltipTableStructure ui-icon ui-icon-document-b" onclick="Table.uiChangeHTML($(this).next(),\''+data[i].name+'\')" title="'+dictionary["s130"]+'"></span>'+
@@ -283,10 +282,13 @@ Table.uiIniDataGrid=function(){
                     '</div>';
                     fields[data[i].name]["type"]="string";
                     fields[data[i].name]["editable"] = false;
-                    fields[data[i].name]["defaultValue"] = "";
+                    templateSet = true;
                     break;
                 }
             }
+            
+            if(fields[data[i].name]["nullable"] && !templateSet) col["template"]="#= "+data[i].name+"==null?'<span style=\"font-style:italic;\"><b>null</b></span>':"+data[i].name+" #";
+            
             columns.push(col);
         }
         columns.push({
@@ -317,6 +319,8 @@ Table.uiIniDataGrid=function(){
         Table.dataGridSchemaFields = fields;
     
         $("#div"+thisClass.className+"GridData").kendoGrid({
+            save:function(e){
+            },
             dataBound:function(e){
                 Methods.iniTooltips();  
                 Table.uiIniHTMLTooltips();
@@ -396,6 +400,7 @@ Table.uiIniDataGrid=function(){
                 confirmation:false
             }
         });
+        
         Methods.iniIconButton(".btnAdd", "plus");
         Methods.iniIconButton(".btnRemove", "trash");
         
@@ -687,6 +692,8 @@ Table.uiEditColumn=function(obj){
                 //dataGrid mod start
                 var dataGrid = $("#div"+thisClass.className+"GridData").data('kendoGrid');
                 
+                var templateSet = false;
+                
                 var ftype="string";
                 var fdefault=defaultValue.val();
                 switch(type.val()){
@@ -743,9 +750,12 @@ Table.uiEditColumn=function(obj){
                         '<span class="spanIcon tooltipTableStructure ui-icon ui-icon-document-b" onclick="Table.uiChangeHTML($(this).next(),\''+name.val()+'\')" title="'+dictionary["s130"]+'"></span>'+
                         '<textarea class="notVisible">#='+name.val()+'#</textarea>'+
                         '</div>';
+                        templateSet = true;
                         break;
                     }
                 }
+                
+                if(nullable.is(":checked") && !templateSet) dataGrid.columns[index].template="#= "+name.val()+"==null?'<span style=\"font-style:italic;\"><b>null</b></span>':"+name.val()+" #";
                     
                 for(var i=0;i<dataGrid.dataSource.data().length;i++){
                     var item = dataGrid.dataSource.data()[i];
@@ -982,13 +992,52 @@ Table.uiImportCSV=function(){
 }
 
 Table.stringEditor = function(container,options){
-    $("<textarea style='resize:none; margin:auto; width:100%; height:200px;' data-bind='value:" + options.field + "' />").appendTo(container);
+    $("<textarea style='resize:none; margin:auto; width:100%; height:100px;' data-bind='value:" + options.field + "' />").appendTo(container);
 }
+
+Table.setEditor = function(container,options){
+    var grid = $("#div"+Table.className+"GridStructure").data('kendoGrid');
+    var items = grid.dataSource.data();
+    
+    var editor = $("<select style='resize:none; margin:auto; width:100%;' data-bind='value:" + options.field + "' />");
+    var col = null;
+    for(var i=0;i<items.length;i++){
+        if(items[i].name==options.field) {
+            col = items[i];
+            break;
+        }
+    }
+    
+    if(col.nullable==1){
+        editor.html("<option>&lt;"+dictionary["s73"]+"&gt;</option>");
+    }
+    
+    if(col.lengthValues.trim()!=""){
+        var options = col.lengthValues.split("','");
+        
+        if(options.length>0){
+            if(options[0].charAt(0)=="'") options[0] = options[0].substr(1);
+            
+            var last = options[options.length-1];
+            if(last.charAt(last.length-1)=="'") {
+                last = last.substr(0,last.length-1);
+                options[options.length-1] = last;
+            }
+        }
+        
+        for(var i=0;i<options.length;i++){
+            editor.html(editor.html()+"<option value='"+options[i]+"'>"+options[i]+"</option>");
+        }
+    }
+    
+    editor.appendTo(container);
+}
+
 Table.numberEditor = function(container,options){
     $("<input type='text' style='resize:none; margin:auto; width:100%;' data-bind='value:" + options.field + "' />").appendTo(container);
 }
 Table.htmlEditor = function(container,options){
-    $("<textarea style='resize:none; margin:auto; width:100%; height:200px;' data-bind='value:" + options.field + "' />").appendTo(container);
+    $("<textarea style='resize:none; margin:auto; width:100%; height:100px;' data-bind='value:" + options.field + "' />").appendTo(container);
 }
 
 Table.uiAddColumn=function(){
@@ -1050,12 +1099,14 @@ Table.uiAddColumn=function(){
                     lengthValues:lengthValues.val(),
                     defaultValue:defaultValue.val(),
                     attributes:attributes.val(),
-                    nullable:nullable.is("checked")?1:0,
+                    nullable:nullable.is(":checked")?1:0,
                     auto_increment:auto_increment.is(":checked")?1:0
                 })
                 
                 //dataGrid mod start
                 var dataGrid = $("#div"+thisClass.className+"GridData").data('kendoGrid');
+                
+                var templateSet = false;
                 
                 var ftype="string";
                 var fdefault=defaultValue.val();
@@ -1112,10 +1163,13 @@ Table.uiAddColumn=function(){
                         '<span class="spanIcon tooltipTableStructure ui-icon ui-icon-document-b" onclick="Table.uiChangeHTML($(this).next(),\''+name.val()+'\')" title="'+dictionary["s130"]+'"></span>'+
                         '<textarea class="notVisible">#='+name.val()+'#</textarea>'+
                         '</div>';
+                        templateSet = true;
                         break;
                     }
                 }
         
+                if(nullable.is(":checked") && !templateSet) col["template"]="#= "+name.val()+"==null?'<span style=\"font-style:italic;\"><b>null</b></span>':"+name.val()+" #";
+                
                 dataGrid.columns.splice(dataGrid.columns.length-1,0,col);
                 
                 for(var i=0;i<dataGrid.dataSource.data().length;i++){

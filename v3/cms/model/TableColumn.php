@@ -73,13 +73,14 @@ class TableColumn extends OTable {
     }
 
     public static function get_column_definition($type, $length, $attributes, $null, $auto_increment, $default_value) {
-        $result = $type;
+        $result = mysql_real_escape_string($type);
         if ($type == "HTML")
             $result = "text";
-        if (trim($length) != "")
+        if (trim($length) != "") {
             $result.="(" . $length . ") ";
+        }
         if (trim($attributes) != "")
-            $result.=" " . $attributes;
+            $result.=" " . mysql_real_escape_string($attributes);
         if ($null == 1)
             $result.=" NULL";
         else
@@ -87,7 +88,7 @@ class TableColumn extends OTable {
         if ($auto_increment == 1)
             $result.=" AUTO_INCREMENT";
         if (trim($default_value) != "")
-            $result.=" DEFAULT " . $default_value;
+            $result.=" DEFAULT " . mysql_real_escape_string($default_value);
         return $result;
     }
 

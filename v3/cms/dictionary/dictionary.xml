@@ -5636,9 +5636,9 @@ Note: You can add new languages by inserting "<new_language>string translated in
             <pt></pt>
         </string>
         <string id="590" js="1">
-            <en>NULL</en>
+            <en>nullable</en>
             <de></de>
-            <pl>NULL</pl>
+            <pl>null</pl>
             <cn></cn>
             <fr></fr>
             <bg></bg>
@@ -5655,10 +5655,10 @@ Note: You can add new languages by inserting "<new_language>string translated in
             <nl></nl>
             <pt></pt>
         </string>
-        <string id="592">
-            <en>AUTO_INCREMENT</en>
+        <string id="592" js="1">
+            <en>auto increment</en>
             <de></de>
-            <pl>AUTO_INCREMENT</pl>
+            <pl>auto inkrementacja</pl>
             <cn></cn>
             <fr></fr>
             <bg></bg>

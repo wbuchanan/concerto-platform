@@ -90,7 +90,7 @@ class Table extends OModule {
                 if ($i > 0)
                     $sql.=",";
                 $sql.="(";
-                $sql.= ($i + 1) . ",'" . mysql_real_escape_string($col->name) . "'," . $lid . ",'" . $col->type . "', '" . $col->lengthValues . "', '" . $col->attributes . "', " . $col->nullable . "," . $col->auto_increment . ",'" . $col->defaultValue . "'";
+                $sql.= ($i + 1) . ",'" . mysql_real_escape_string($col->name) . "'," . $lid . ",'" . mysql_real_escape_string($col->type) . "', '" . mysql_real_escape_string($col->lengthValues) . "', '" . mysql_real_escape_string($col->attributes) . "', " . mysql_real_escape_string($col->nullable) . "," . mysql_real_escape_string($col->auto_increment) . ",'" . mysql_real_escape_string($col->defaultValue) . "'";
                 $sql.=")";
                 $i++;
                 //}
@@ -120,7 +120,10 @@ class Table extends OModule {
                         $col_name = $col->name;
                         if ($i > 0)
                             $sql.=",";
-                        $sql.="'" . mysql_real_escape_string($row->$col_name) . "'";
+                        if ($row->$col_name !== null)
+                            $sql.="'" . mysql_real_escape_string($row->$col_name) . "'";
+                        else
+                            $sql.="NULL";
                         $i++;
                     }
                     $sql.=")";
