@@ -744,6 +744,11 @@ Table.uiEditColumn=function(obj){
                         dataGrid.columns[index].editor = Table.numberEditor;
                         break;
                     }
+                    case "set":
+                    case "enum":{
+                        dataGrid.columns[index].editor = Table.setEditor;
+                        break;
+                    }
                     case "HTML":{
                         dataGrid.columns[index].editor = Table.htmlEditor;
                         dataGrid.columns[index].template = '<div class="horizontalMargin" align="center">'+
@@ -1154,6 +1159,11 @@ Table.uiAddColumn=function(){
                     case "bit":
                     case "serial":{
                         col.editor = Table.numberEditor;
+                        break;
+                    }
+                    case "set":
+                    case "enum":{
+                        col.editor = Table.setEditor;
                         break;
                     }
                     case "HTML":{
