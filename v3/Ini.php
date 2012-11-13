@@ -31,7 +31,7 @@ class Ini {
     public static $path_r_script = "";
     public static $path_temp = "";
     public static $path_mysql_home = "";
-    public static $version = "3.8.7";
+    public static $version = "3.8.8";
     public static $sock_host = "127.0.0.1";
     public static $sock_port = "8888";
     public static $path_unix_sock = "";
@@ -167,6 +167,8 @@ class Ini {
             "Setting",
             "Table",
             "TableColumn",
+            "TableIndex",
+            "TableIndexColumn",
             "Template",
             "Test",
             "TestProtectedVariable",
@@ -210,6 +212,8 @@ class Ini {
         require_once self::$path_internal . "cms/model/Template.php";
         require_once self::$path_internal . "cms/model/Table.php";
         require_once self::$path_internal . "cms/model/TableColumn.php";
+        require_once self::$path_internal . "cms/model/TableIndex.php";
+        require_once self::$path_internal . "cms/model/TableIndexColumn.php";
         require_once self::$path_internal . "cms/model/Test.php";
         require_once self::$path_internal . "cms/model/TestProtectedVariable.php";
         require_once self::$path_internal . "cms/model/TestServer.php";

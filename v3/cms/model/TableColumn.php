@@ -50,6 +50,9 @@ class TableColumn extends OTable {
 
         $name = $xml->createElement("name", htmlspecialchars($this->name, ENT_QUOTES, "UTF-8"));
         $element->appendChild($name);
+        
+        $table_id = $xml->createElement("Table_id", htmlspecialchars($this->Table_id, ENT_QUOTES, "UTF-8"));
+        $element->appendChild($table_id);
 
         $type = $xml->createElement("type", htmlspecialchars($this->type, ENT_QUOTES, "UTF-8"));
         $element->appendChild($type);
@@ -68,7 +71,7 @@ class TableColumn extends OTable {
 
         $auto_increment = $xml->createElement("auto_increment", htmlspecialchars($this->auto_increment, ENT_QUOTES, "UTF-8"));
         $element->appendChild($auto_increment);
-
+        
         return $element;
     }
 

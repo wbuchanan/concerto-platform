@@ -36,13 +36,10 @@ if (!$logged_user->is_object_editable($obj))
 
 <script>
     $(function(){
-        Methods.iniIconButton("#btnExpand<?= $class_name ?>GridStructureContainer","arrowthick-1-n");
-        Methods.iniIconButton("#btnExpand<?= $class_name ?>GridDataContainerExpandable","arrowthick-1-n");
         Table.uiIniHTMLTooltips();
         
         //table structure
         Table.uiIniStructureGrid();
-        Table.uiIniDataGrid();
     });
 </script>
 
@@ -63,20 +60,4 @@ if (!$logged_user->is_object_editable($obj))
         <button class="btnTableStructureExportCSV" onclick="Table.uiExportCSV()"><?= Language::string(127) ?></button>
     </div>
     <div id="div<?= $class_name ?>GridStructureContainer" align="left" class="margin"></div>
-</fieldset>
-
-<fieldset class="padding ui-widget-content ui-corner-all margin">
-    <legend>
-        <table>
-            <tr>
-                <td><span class="tooltip spanIcon ui-icon ui-icon-help" title="<?= Language::string(503) ?>"></span></td>
-                <td class=""><b><?= Language::string(351) ?></b></td>
-            </tr>
-        </table>
-    </legend>
-    <div id="div<?= $class_name ?>GridDataContainerExpandable">
-        <div id="div<?= $class_name ?>DataStructureEmptyCaption" class="ui-state-error margin" style="display:none;"><?= Language::string(352) ?></div>
-        <div id="div<?= $class_name ?>GridDataContainer" align="left" class="margin">
-        </div>
-    </div>
 </fieldset>

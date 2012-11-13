@@ -586,6 +586,70 @@ Table.uiIniStructureGrid=function(){
     Methods.iniIconButton(".btnAdd", "plus");
 }
 
+Table.indexGridSchemaFields = null;
+Table.uiIniIndexGrid=function(){
+    var thisClass = this;
+    
+    $("#div"+this.className+"GridIndexContainer").html("<div id='div"+this.className+"GridIndex' class='grid'></div>");
+    
+    var fields = {
+        id:{
+            type:"number"
+        },
+        type:{
+            type:"string"
+        },
+        columns:{
+            type:"string"
+        }
+    };
+    
+    var dataSource = new kendo.data.DataSource({
+        transport:{
+            read: {
+                url:"query/Table_index_list.php?oid="+thisClass.currentID,
+                dataType:"json"
+            }
+        },
+        schema:{
+            model:{
+                id:"id",
+                fields:fields
+            }
+        }
+    });
+    
+    Table.indexGridSchemaFields = fields;
+    
+    $("#div"+this.className+"GridIndex").kendoGrid({
+        dataBound:function(e){
+            Methods.iniTooltips();  
+        },
+        dataSource: dataSource,
+        columns: [{
+            title:dictionary["s122"],
+            field:"type"
+        },{
+            title:dictionary["s602"],
+            field:"columns"
+        },{
+            title:' ',
+            width:50,
+            template:'<span style="display:inline-block;" class="spanIcon tooltip ui-icon ui-icon-pencil" onclick="'+thisClass.className+'.uiEditIndex($(this))" title="'+dictionary["s603"]+'"></span>'+
+            '<span style="display:inline-block;" class="spanIcon tooltip ui-icon ui-icon-trash" onclick="'+thisClass.className+'.uiRemoveIndex($(this))" title="'+dictionary["s604"]+'"></span>'
+        }],
+        toolbar:[
+        {
+            name: "create", 
+            template: '<button class="btnAdd" onclick="Table.uiAddIndex()">'+dictionary["s605"]+'</button>'
+        }
+        ],
+        editable: false,
+        scrollable:true
+    });
+    Methods.iniIconButton(".btnAdd", "plus");
+}
+
 Table.uiAddRow=function(){
     var grid = $("#div"+this.className+"GridData").data('kendoGrid');
     grid.addRow();

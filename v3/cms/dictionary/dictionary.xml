@@ -5735,5 +5735,65 @@ Note: You can add new languages by inserting "<new_language>string translated in
             <nl></nl>
             <br></br>
         </string>
+        <string id="600">
+            <en>table indexes</en>
+            <de></de>
+            <pl>indeksy tablicy</pl>
+            <cn></cn>
+            <fr></fr>
+            <bg></bg>
+            <nl></nl>
+            <br></br>
+        </string>
+        <string id="601">
+            <en>Table indexes definition.</en>
+            <de></de>
+            <pl>Definicja indeksów tablicy.</pl>
+            <cn></cn>
+            <fr></fr>
+            <bg></bg>
+            <nl></nl>
+            <br></br>
+        </string>
+        <string id="602" js="1">
+            <en>columns</en>
+            <de></de>
+            <pl>kolumny</pl>
+            <cn></cn>
+            <fr></fr>
+            <bg></bg>
+            <nl></nl>
+            <br></br>
+        </string>
+        <string id="603" js="1">
+            <en>edit index</en>
+            <de></de>
+            <pl>edytuj indeks</pl>
+            <cn></cn>
+            <fr></fr>
+            <bg></bg>
+            <nl></nl>
+            <br></br>
+        </string>
+        <string id="604" js="1">
+            <en>remove index</en>
+            <de></de>
+            <pl>usuń indeks</pl>
+            <cn></cn>
+            <fr></fr>
+            <bg></bg>
+            <nl></nl>
+            <br></br>
+        </string>
+        <string id="605" js="1">
+            <en>add index</en>
+            <de></de>
+            <pl>dodaj indeks</pl>
+            <cn></cn>
+            <fr></fr>
+            <bg></bg>
+            <nl></nl>
+            <br></br>
+        </string>
     </strings>
 </root> 

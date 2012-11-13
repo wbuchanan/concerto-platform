@@ -166,6 +166,10 @@ class Table extends OModule {
     public function get_TableColumns() {
         return TableColumn::from_property(array("Table_id" => $this->id));
     }
+    
+    public function get_TableIndexes() {
+        return TableIndex::from_property(array("Table_id" => $this->id));
+    }
 
     public function import_from_mysql($table) {
         $this->mysql_delete_Table();
@@ -374,6 +378,16 @@ class Table extends OModule {
             $elem = $col->to_XML();
             $elem = $xml->importNode($elem, true);
             $columns->appendChild($elem);
+        }
+        
+        $indexes = $xml->createElement("TableIndexes");
+        $element->appendChild($indexes);
+        
+        $indx = $this->get_TableIndexes();
+        foreach ($indx as $index) {
+            $elem = $index->to_XML();
+            $elem = $xml->importNode($elem, true);
+            $indexes->appendChild($elem);
         }
 
         $rows = $xml->createElement("rows");

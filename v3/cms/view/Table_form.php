@@ -161,6 +161,8 @@ if ($oid != 0) {
     <?php
     if ($oid != -1) {
         include Ini::$path_internal . 'cms/view/Table_structure.php';
+        include Ini::$path_internal . 'cms/view/Table_indexes.php';
+        include Ini::$path_internal . 'cms/view/Table_data.php';
     }
     ?>
     <div align="center">
