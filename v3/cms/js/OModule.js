@@ -694,6 +694,7 @@ OModule.inheritance=function(obj)
                         }
                         break;
                     }
+                    //not logged in
                     case -1:{
                         Methods.alert(dictionary["s278"], "alert", dictionary["s274"],function(){
                             Methods.modalLoading();
@@ -701,9 +702,15 @@ OModule.inheritance=function(obj)
                         });
                         break;     
                     }
+                    //access denied
                     case -2:{
                         Methods.alert(dictionary["s81"], "alert", dictionary["s274"]);
                         break;     
+                    }
+                    //transaction error
+                    case -3:{
+                        Methods.alert(dictionary["s616"]+data.message, "alert", dictionary["s274"]);  
+                        break;
                     }
                 }
             },"json");

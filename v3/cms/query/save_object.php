@@ -63,7 +63,14 @@ else
     }
 }
 
-$_POST['oid'] = $obj->mysql_save_from_post($_POST);
-
-echo json_encode(array("result" => 0, "oid" => $_POST['oid']));
+$response = $obj->mysql_save_from_post($_POST);
+if(is_numeric($response)) {
+    $oid = $response;
+    $result = 0;
+    echo json_encode(array("result" => $result, "oid" => $oid));
+    exit();
+}
+else {
+    echo $response;
+}
 ?>

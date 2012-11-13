@@ -55,6 +55,7 @@ Table.getFullSaveObject=function(){
     var obj = this.getAddSaveObject();
     obj["cols"] = Table.getSerializedColumns();
     obj["rows"] = Table.getRows();
+    obj["indexes"] = Table.getSerializedIndexes();
     obj["description"]=Methods.getCKEditorData("#form"+this.className+"TextareaDescription");
     if($("#form"+this.className+"SelectOwner").length==1) obj["Owner_id"]=$("#form"+this.className+"SelectOwner").val();
     
@@ -374,7 +375,6 @@ Table.uiIniDataGrid=function(){
                         $(".k-grouping-header").html(dictionary["s339"]);
                     });
                 }
-                Table.uiRefreshIndexableColumns();
             },
             dataSource: dataSource,
             scrollable:true,
@@ -479,6 +479,7 @@ Table.uiReloadStructureGrid=function(data,columns){
         dataBound:function(e){
             Table.structureEmptyCheck();
             Methods.iniTooltips();  
+            Table.uiRefreshIndexableColumns();
         },
         dataSource: dataSource,
         columns: columns,
@@ -553,6 +554,7 @@ Table.uiIniStructureGrid=function(){
                 Table.uiIniIndexGrid();
                 Table.isIndexGridInitialized = true;
             }
+            Table.uiRefreshIndexableColumns();
         },
         dataSource: dataSource,
         columns: [{
@@ -905,6 +907,30 @@ Table.getColumns=function(){
         })
     }
     return cols;
+}
+
+Table.getIndexes=function(){
+    var grid = $("#div"+this.className+"GridIndex").data('kendoGrid');
+    var cols = new Array();
+    if(grid==null) return cols;
+    var data = grid.dataSource.data();
+    
+    for(var i=0;i<data.length;i++){
+        cols.push({
+            type:data[i].type,
+            columns:data[i].columns
+        })
+    }
+    return cols;
+}
+
+Table.getSerializedIndexes=function(){
+    var indexes = Table.getIndexes();
+    var result = new Array();
+    for(var i=0;i<indexes.length;i++) {
+        result.push($.toJSON( indexes[i]));
+    }
+    return result;
 }
 
 Table.getSerializedColumns=function(){

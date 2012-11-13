@@ -35,21 +35,19 @@ if ($obj == null || !$logged_user->is_object_readable($obj)) {
     exit();
 }
 
-$sql = sprintf("SELECT * FROM `TableIndex` WHERE `Table_id`='%d'", $_GET['oid']);
-
 $table = array();
 
-$z = mysql_query($sql);
-while ($r = mysql_fetch_array($z)) {
-    $obj = TableIndex::from_mysql_id($r["id"]);
+foreach ($obj->get_TableIndexes() as $index) {
     $columns = "";
-    foreach ($obj->get_TableIndexes() as $index) {
-        if ($columns != "")
-            $columns.=",";
-        $columns.=$index->TableColumn_id;
+    foreach ($index->get_TableIndexColumns() as $col) {
+        $tc = TableColumn::from_mysql_id($col->TableColumn_id);
+        if ($tc != null) {
+            if ($columns != "")
+                $columns.=",";
+            $columns.=$tc->name;
+        }
     }
-
-    $row = array("id" => $obj->id, "type" => $obj->type, "columns" => $columns);
+    $row = array("id" => $index->id, "type" => $index->type, "columns" => $columns);
     array_push($table, $row);
 }
 

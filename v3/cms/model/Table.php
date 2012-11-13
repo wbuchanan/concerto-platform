@@ -48,25 +48,74 @@ class Table extends OModule {
 
     public function mysql_save_from_post($post) {
         $lid = parent::mysql_save_from_post($post);
+
+        $sql = "START TRANSACTION";
+        mysql_query($sql);
+
         $this->mysql_delete_TableColumn();
 
         if (array_key_exists("cols", $post)) {
             $table_name = "`" . self::get_table_prefix() . "_" . $lid . "`";
 
+            //table
             $sql = "DROP TABLE IF EXISTS " . $table_name . ";";
             mysql_query($sql);
+
             $sql = "CREATE TABLE  " . $table_name . " (";
             $i = 0;
             foreach ($post['cols'] as $col_json) {
                 $col = json_decode($col_json);
                 if ($i > 0)
                     $sql.=",";
-                $sql.="`" . $col->name . "` " . TableColumn::get_column_definition($col->type, $col->lengthValues, $col->attributes, $col->nullable, $col->auto_increment, $col->defaultValue);
+                $sql.="`" . $col->name . "` " . TableColumn::get_column_definition($col->type, $col->lengthValues, $col->attributes, $col->nullable, 0, $col->defaultValue);
                 $i++;
             }
             $sql.=") ENGINE = INNODB DEFAULT CHARSET=utf8;";
-            mysql_query($sql);
+            if (!mysql_query($sql)) {
+                $message = mysql_error();
+                $sql = "ROLLBACK";
+                mysql_query($sql);
+                return json_encode(array("result" => -3, "message" => $message));
+            }
 
+            //indexes
+            if (array_key_exists("indexes", $post)) {
+                foreach ($post['indexes'] as $index_json) {
+                    $index = json_decode($index_json);
+                    $columns = explode(",", $index->columns);
+                    $cols = "";
+                    foreach ($columns as $column) {
+                        if ($cols != "")
+                            $cols.=",";
+                        $cols.="`" . $column . "`";
+                    }
+
+                    $sql = sprintf("ALTER TABLE %s ADD %s(%s)", $table_name, $index->type, $cols);
+                    if (!mysql_query($sql)) {
+                        $message = mysql_error();
+                        $sql = "ROLLBACK";
+                        mysql_query($sql);
+                        return json_encode(array("result" => -3, "message" => $message));
+                    }
+                }
+            }
+
+            //auto increment
+            foreach ($post['cols'] as $col_json) {
+                $col = json_decode($col_json);
+
+                if ($col->auto_increment == 1) {
+                    $sql = sprintf("ALTER TABLE %s CHANGE `%s` `%s` %s", $table_name, $col->name, $col->name, TableColumn::get_column_definition($col->type, $col->lengthValues, $col->attributes, $col->nullable, $col->auto_increment, $col->defaultValue));
+                    if (!mysql_query($sql)) {
+                        $message = mysql_error();
+                        $sql = "ROLLBACK";
+                        mysql_query($sql);
+                        return json_encode(array("result" => -3, "message" => $message));
+                    }
+                }
+            }
+
+            //TableColumn
             $pers_cols = TableColumn::from_property(array("Table_id" => $lid));
             foreach ($pers_cols as $oc) {
                 $delete = true;
@@ -95,8 +144,39 @@ class Table extends OModule {
                 $i++;
                 //}
             }
-            mysql_query($sql);
+            if (!mysql_query($sql)) {
+                $message = mysql_error();
+                $sql = "ROLLBACK";
+                mysql_query($sql);
+                return json_encode(array("result" => -3, "message" => $message));
+            }
 
+            //TableIndex
+            if (array_key_exists("indexes", $post)) {
+                foreach ($post['indexes'] as $index_json) {
+                    $index = json_decode($index_json);
+                    $columns = explode(",", $index->columns);
+
+                    $ti = new TableIndex();
+                    $ti->Table_id = $lid;
+                    $ti->type = $index->type;
+                    $ti_lid = $ti->mysql_save();
+
+                    $i = 0;
+                    foreach ($columns as $col) {
+                        $tc = TableColumn::from_property(array("Table_id" => $lid, "name" => $col), false);
+                        $tic = new TableIndexColumn();
+                        $tic->index = $i;
+                        $tic->TableIndex_id = $ti_lid;
+                        if ($tc != null)
+                            $tic->TableColumn_id = $tc->id;
+                        $tic->mysql_save();
+                        $i++;
+                    }
+                }
+            }
+
+            //data
             if (array_key_exists("rows", $post) && $post['rows'] != null && is_array($post['rows'])) {
                 $sql = "INSERT INTO " . $table_name . " (";
                 $i = 0;
@@ -128,10 +208,18 @@ class Table extends OModule {
                     }
                     $sql.=")";
                 }
-                mysql_query($sql);
+                if (!mysql_query($sql)) {
+                    $message = mysql_error();
+                    $sql = "ROLLBACK";
+                    mysql_query($sql);
+                    return json_encode(array("result" => -3, "message" => $message));
+                }
             }
         }
+        $sql = "COMMIT";
+        mysql_query($sql);
 
+        //hash
         $obj = static::from_mysql_id($lid);
         if ($obj != null) {
             $xml_hash = $obj->calculate_xml_hash();
@@ -161,12 +249,19 @@ class Table extends OModule {
 
     public function mysql_delete_TableColumn() {
         $this->delete_object_links(TableColumn::get_mysql_table());
+        $this->mysql_delete_TableIndex();
+    }
+
+    public function mysql_delete_TableIndex() {
+        foreach ($this->get_TableIndexes() as $index) {
+            $index->mysql_delete();
+        }
     }
 
     public function get_TableColumns() {
         return TableColumn::from_property(array("Table_id" => $this->id));
     }
-    
+
     public function get_TableIndexes() {
         return TableIndex::from_property(array("Table_id" => $this->id));
     }
@@ -379,10 +474,10 @@ class Table extends OModule {
             $elem = $xml->importNode($elem, true);
             $columns->appendChild($elem);
         }
-        
+
         $indexes = $xml->createElement("TableIndexes");
         $element->appendChild($indexes);
-        
+
         $indx = $this->get_TableIndexes();
         foreach ($indx as $index) {
             $elem = $index->to_XML();

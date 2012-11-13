@@ -312,7 +312,7 @@ if ($oid != 0) {
                         <td class="fullWidth">
                             <div class="horizontalMargin">
                                 <select id="form<?= $class_name ?>SelectIndexType" class="fullWidth ui-widget-content ui-corner-all">
-                                        <option value="primary">primary</option>
+                                        <option value="primary key">primary key</option>
                                         <option value="unique">unique</option>
                                         <option value="index">index</option>
                                         

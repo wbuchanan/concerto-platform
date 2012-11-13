@@ -20,7 +20,7 @@
  */
 
 class TableIndex extends OTable {
-    
+
     public $Table_id = 0;
     public $type = "";
     public static $mysql_table_name = "TableIndex";
@@ -31,6 +31,11 @@ class TableIndex extends OTable {
 
     public function get_TableIndexColumns() {
         return TableIndexColumn::from_property(array("TableIndex_id" => $this->id));
+    }
+
+    public function mysql_delete() {
+        parent::mysql_delete();
+        $this->delete_object_links(TableIndexColumn::get_mysql_table());
     }
 
     public function to_XML() {

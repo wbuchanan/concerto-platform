@@ -5948,5 +5948,15 @@ Note: You can add new languages by inserting "<new_language>string translated in
             <nl></nl>
             <br></br>
         </string>
+        <string id="616" js="1">
+            <en>MySQL transaction error: </en>
+            <de></de>
+            <pl>Błąd transakcji MySQL: </pl>
+            <cn></cn>
+            <fr></fr>
+            <bg></bg>
+            <nl></nl>
+            <br></br>
+        </string>
     </strings>
 </root> 
