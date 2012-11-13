@@ -371,6 +371,7 @@ Table.uiIniDataGrid=function(){
                         $(".k-grouping-header").html(dictionary["s339"]);
                     });
                 }
+                Table.uiRefreshIndexableColumns();
             },
             dataSource: dataSource,
             scrollable:true,
@@ -646,6 +647,195 @@ Table.uiIniIndexGrid=function(){
         ],
         editable: false,
         scrollable:true
+    });
+    Methods.iniIconButton(".btnAdd", "plus");
+}
+
+Table.uiRefreshIndexableColumns = function(){
+    var grid = $("#div"+Table.className+"GridStructure").data('kendoGrid');
+    var cols = grid.dataSource.data();
+    
+    var container = $("#div"+this.className+"IndexableColumns");
+    container.html("");
+    for(var i=0;i<cols.length;i++){
+        container.html(container.html()+"<input type='checkbox' class='checbkoxIndexableColumn' value='"+cols[i].name+"' />"+cols[i].name+"<br/>");
+    }
+}
+
+Table.getIndexColumns=function(){
+    var result = [];
+    $(".checbkoxIndexableColumn:checked").each(function(){
+        result.push($(this).val());
+    });
+    return result.join(",");
+}
+
+Table.decodeIndexColumns=function(columns){
+    return columns.split(",");
+}
+
+Table.uiAddIndex=function(){
+    var thisClass = this;
+    
+    var type = $("#form"+Table.className+"SelectIndexType");
+    
+    $("#div"+this.className+"IndexDialog").dialog({
+        title:dictionary["s610"],
+        resizable:false,
+        modal:true,
+        width:400,
+        open:function(){
+            $('.ui-widget-overlay').css('position', 'fixed');  
+        },
+        close:function(){
+            type.val("index");
+            $(".checbkoxIndexableColumn").attr("checked",false);
+            //$('.ui-widget-overlay').css('position', 'absolute');
+            $(this).dialog("destroy");
+        },
+        buttons:[
+        {
+            text:dictionary["s37"],
+            click:function(){
+                
+                if($(".checbkoxIndexableColumn:checked").length==0) 
+                {
+                    Methods.alert(dictionary["s612"], "alert", dictionary["s611"]);
+                    return;
+                }
+                
+                var indexGrid = $("#div"+thisClass.className+"GridIndex").data('kendoGrid');
+                indexGrid.dataSource.add({
+                    type:type.val(),
+                    columns:Table.getIndexColumns()
+                })
+                
+                $(this).dialog("close");
+                
+                Methods.iniTooltips();
+            }
+        },
+        {
+            text:dictionary["s23"],
+            click:function(){
+                $(this).dialog("close");
+            }
+        }
+        ]
+    });
+}
+
+Table.uiRemoveIndex=function(obj){
+    var thisClass = this;
+    Methods.confirm(dictionary["s613"], dictionary["s614"], function(){
+        var grid = $("#div"+thisClass.className+"GridIndex").data('kendoGrid');
+        var index = obj.closest('tr')[0].sectionRowIndex;
+        
+        grid.removeRow(grid.tbody.find("tr:eq("+index+")"));
+    });
+}
+
+Table.uiEditIndex=function(obj){
+    var thisClass = this;
+    
+    var indexGrid = $("#div"+thisClass.className+"GridIndex").data('kendoGrid');
+    var index = obj.closest('tr')[0].sectionRowIndex;
+    var item = indexGrid.dataItem(indexGrid.tbody.find("tr:eq("+index+")"));
+    
+    var oldType = item.type;
+    var oldColumns = Table.decodeIndexColumns(item.columns);
+    
+    var type = $("#form"+Table.className+"SelectIndexType");
+    type.val(oldType);
+    
+    Table.uiRefreshIndexableColumns();
+    for(var i=0;i<oldColumns.length;i++){
+        var col = oldColumns[i];
+        $(".checbkoxIndexableColumn[value='"+col+"']").attr("checked",true);
+    }
+    
+    $("#div"+this.className+"IndexDialog").dialog({
+        title:dictionary["s615"],
+        modal:true,
+        resizable:false,
+        width:400,
+        open:function(){
+            $('.ui-widget-overlay').css('position', 'fixed');
+        },
+        close:function(){
+            type.val("index");
+            Table.uiRefreshIndexableColumns();
+            //$('.ui-widget-overlay').css('position', 'absolute');
+            $(this).dialog("destroy");
+        },
+        buttons:[
+        {
+            text:dictionary["s95"],
+            click:function(){
+                if($(".checbkoxIndexableColumn:checked").length==0) 
+                {
+                    Methods.alert(dictionary["s612"], "alert", dictionary["s611"]);
+                    return;
+                }
+                
+                //structGrid mod start
+                var rowIndex = indexGrid.dataSource.data()[index];
+                rowIndex["type"]=type.val();
+                rowIndex["columns"]=Table.getIndexColumns();
+                Table.uiRefreshIndexGrid();
+                
+                $(this).dialog("close");
+                
+                Methods.iniTooltips();
+            }
+        },
+        {
+            text:dictionary["s23"],
+            click:function(){
+                $(this).dialog("close");
+            }
+        }
+        ]
+    });
+}
+
+Table.uiRefreshIndexGrid=function(){
+    var grid = $("#div"+this.className+"GridIndex").data('kendoGrid');
+    
+    var columns = grid.columns;
+    var items = grid.dataSource.data();
+    
+    Table.uiReloadIndexGrid(items, columns);
+}
+
+Table.uiReloadIndexGrid=function(data,columns){
+    var thisClass = this;
+    
+    $("#div"+this.className+"GridIndexContainer").html("<div id='div"+this.className+"GridIndex' class='grid'></div>");
+        
+    var dataSource = new kendo.data.DataSource({
+        data:data,
+        schema:{
+            model:{
+                fields:Table.indexGridSchemaFields
+            }
+        }
+    });
+    
+    $("#div"+thisClass.className+"GridIndex").kendoGrid({
+        dataBound:function(e){
+            Methods.iniTooltips();  
+        },
+        dataSource: dataSource,
+        columns: columns,
+        toolbar:[
+        {
+            name: "create", 
+            template: '<button class="btnAdd" onclick="Table.uiAddIndex()">'+dictionary["s37"]+'</button>'
+        }
+        ],
+        editable: false,
+        scrollable:false
     });
     Methods.iniIconButton(".btnAdd", "plus");
 }
@@ -1219,9 +1409,6 @@ Table.setEditor = function(container,options){
 }
 
 Table.boolEditor = function(container,options){
-    var grid = $("#div"+Table.className+"GridStructure").data('kendoGrid');
-    var items = grid.dataSource.data();
-    
     var editor = $("<select style='resize:none; margin:auto; width:100%;' data-bind='value:" + options.field + "'><option value='0'>"+dictionary["s595"]+"</option><option value='1'>"+dictionary["s594"]+"</option></select>");
     
     editor.appendTo(container);

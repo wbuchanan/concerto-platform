@@ -294,6 +294,44 @@ if ($oid != 0) {
                 </table>
             </fieldset>
         </div>
+    
+        <div id="div<?= $class_name ?>IndexDialog" class="notVisible">
+            <fieldset class="padding ui-widget-content ui-corner-all margin">
+                <legend>
+                    <table>
+                        <tr>
+                            <td><span class="tooltip spanIcon ui-icon ui-icon-help" title="<?= Language::string(607) ?>"></span></td>
+                            <td class=""><b><?= Language::string(606) ?></b></td>
+                        </tr>
+                    </table>
+                </legend>
+                <table>
+                    <tr>
+                        <td class="noWrap horizontalPadding tdFormLabel"><?= Language::string(122) ?>:</td>
+                        <td><span class="tooltip spanIcon ui-icon ui-icon-help" title="<?= Language::string(608) ?>"></span></td>
+                        <td class="fullWidth">
+                            <div class="horizontalMargin">
+                                <select id="form<?= $class_name ?>SelectIndexType" class="fullWidth ui-widget-content ui-corner-all">
+                                        <option value="primary">primary</option>
+                                        <option value="unique">unique</option>
+                                        <option value="index">index</option>
+                                        
+                                </select>
+                            </div>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td class="noWrap horizontalPadding tdFormLabel"><?= Language::string(602) ?>:</td>
+                        <td><span class="tooltip spanIcon ui-icon ui-icon-help" title="<?= Language::string(609) ?>"></span></td>
+                        <td class="fullWidth">
+                            <div class="horizontalMargin" id="div<?=$class_name?>IndexableColumns">
+                                
+                            </div>
+                        </td>
+                    </tr>
+                </table>
+            </fieldset>
+        </div>
         <?php
     }
     if ($oid != -1) {

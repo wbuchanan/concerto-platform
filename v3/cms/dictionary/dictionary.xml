@@ -5795,5 +5795,115 @@ Note: You can add new languages by inserting "<new_language>string translated in
             <nl></nl>
             <br></br>
         </string>
+        <string id="606">
+            <en>index properties</en>
+            <de></de>
+            <pl>właścwiości indeksu</pl>
+            <cn></cn>
+            <fr></fr>
+            <bg></bg>
+            <nl></nl>
+            <br></br>
+        </string>
+        <string id="607">
+            <en>Declare index properties.</en>
+            <de></de>
+            <pl>Zadeklaruj właścwiości indeksu.</pl>
+            <cn></cn>
+            <fr></fr>
+            <bg></bg>
+            <nl></nl>
+            <br></br>
+        </string>
+        <string id="608">
+            <en>Select index type.</en>
+            <de></de>
+            <pl>Wybierz typ indeksu</pl>
+            <cn></cn>
+            <fr></fr>
+            <bg></bg>
+            <nl></nl>
+            <br></br>
+        </string>
+        <string id="609">
+            <en>Select indexed columns.</en>
+            <de></de>
+            <pl>Wybierz zaindeksowane kolumny.</pl>
+            <cn></cn>
+            <fr></fr>
+            <bg></bg>
+            <nl></nl>
+            <br></br>
+        </string>
+        <string id="610" js="1">
+            <en>adding new index</en>
+            <de></de>
+            <pl>dodawanie nowego indeksu</pl>
+            <cn></cn>
+            <fr></fr>
+            <bg></bg>
+            <nl></nl>
+            <br></br>
+        </string>
+        <string id="610" js="1">
+            <en>adding new index</en>
+            <de></de>
+            <pl>dodawanie nowego indeksu</pl>
+            <cn></cn>
+            <fr></fr>
+            <bg></bg>
+            <nl></nl>
+            <br></br>
+        </string>
+        <string id="611" js="1">
+            <en>no column selected for indexing</en>
+            <de></de>
+            <pl>nie wybrano kolumny do zaindeksowania</pl>
+            <cn></cn>
+            <fr></fr>
+            <bg></bg>
+            <nl></nl>
+            <br></br>
+        </string>
+        <string id="612" js="1">
+            <en>check columns that you wish to index</en>
+            <de></de>
+            <pl>wybierz kolumny jakie chcesz zaindeksować</pl>
+            <cn></cn>
+            <fr></fr>
+            <bg></bg>
+            <nl></nl>
+            <br></br>
+        </string>
+        <string id="613" js="1">
+            <en>Are you sure you want to delete table index?</en>
+            <de></de>
+            <pl>Jesteś pewen, że chcesz usunąć indeks tabeli?</pl>
+            <cn></cn>
+            <fr></fr>
+            <bg></bg>
+            <nl></nl>
+            <br></br>
+        </string>
+        <string id="614" js="1">
+            <en>deleting table index</en>
+            <de></de>
+            <pl>usuwanie indeksu tabeli</pl>
+            <cn></cn>
+            <fr></fr>
+            <bg></bg>
+            <nl></nl>
+            <br></br>
+        </string>
+        <string id="615" js="1">
+            <en>editing table index</en>
+            <de></de>
+            <pl>edycja indeksu tabeli</pl>
+            <cn></cn>
+            <fr></fr>
+            <bg></bg>
+            <nl></nl>
+            <br></br>
+        </string>
     </strings>
 </root> 
