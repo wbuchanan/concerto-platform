@@ -2597,7 +2597,7 @@ Note: You can add new languages by inserting "<new_language>string translated in
             <fr>Test #{0} - déboguer </fr>
             <bg>Тест #{0} - дебъг</bg>
             <nl>Test #{0} - debuggen</nl>
-            <br><Teste #{0} - debug/br>
+            <br>Teste #{0} - debug</br>
         </string>
         <string id="287" js="1">
             <en>Please ensure that all changes to the test logic have been saved prior to debugging. Unsaved changes will not be considered in the debugging process.</en>
@@ -2707,7 +2707,7 @@ Note: You can add new languages by inserting "<new_language>string translated in
             <nl><![CDATA[Test #{0} - syntaxvalidatie <b>(voltooid)</b>]]>
             </nl>
             <br><![CDATA[Teste #{0} - validação de sintaxe <b>(finalizada)</b>]]>
-            /br>
+            </br>
         </string>
         <string id="294" js="1">
             <en><![CDATA[Syntax validation <font style='color:green;'>PASSED</font>.]]>
@@ -2988,7 +2988,7 @@ Note: You can add new languages by inserting "<new_language>string translated in
             </bg>
             <nl><![CDATA[Test #{0}, sessie #{1}, template #{2} - runtime debug <b>(template geladen - wachtend op input van de gebruiker...)</b>]]>
             </nl>
-            <br>![CDATA[Teste #{0}, seção #{1}, template #{2} - runtime debug <b>(template carregado - aguardando entrada do usuário...)</b>]]>
+            <br><![CDATA[Teste #{0}, seção #{1}, template #{2} - runtime debug <b>(template carregado - aguardando entrada do usuário...)</b>]]>
             </br>
         </string>
         <string id="315" js="1">
@@ -3921,7 +3921,7 @@ Note: You can add new languages by inserting "<new_language>string translated in
             <fr></fr>
             <bg></bg>
             <nl>registreren</nl>
-            <br><registrar/br>
+            <br>registrar</br>
         </string>
         <string id="413">
             <en>Please fill the form below to create a new account.</en>
@@ -4084,7 +4084,7 @@ Note: You can add new languages by inserting "<new_language>string translated in
             <bg></bg>
             <nl><![CDATA[Om wachtwoord op te halen, gelieve deze link te volgen: <a href='%s'>LINK NAAR WACHTWOORD OPHALING</a>.]]>
             </nl>
-            <br>![CDATA[Para recuperar uma senha por favor vá neste link: <a href='%s'>LINK PARA RECUPERAR SENHA</a>.]]>
+            <br><![CDATA[Para recuperar uma senha por favor vá neste link: <a href='%s'>LINK PARA RECUPERAR SENHA</a>.]]>
             </br>
         </string>
         <string id="430">
@@ -5952,6 +5952,16 @@ Note: You can add new languages by inserting "<new_language>string translated in
             <en>MySQL transaction error: </en>
             <de></de>
             <pl>Błąd transakcji MySQL: </pl>
+            <cn></cn>
+            <fr></fr>
+            <bg></bg>
+            <nl></nl>
+            <br></br>
+        </string>
+        <string id="617" js="1">
+            <en>simulating object save</en>
+            <de></de>
+            <pl>symulowanie zapisu obiektu</pl>
             <cn></cn>
             <fr></fr>
             <bg></bg>

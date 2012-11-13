@@ -26,6 +26,7 @@ OModule.inheritance=function(obj)
     obj.reloadOnModification=false;
     obj.reloadHash="";
     obj.currentPanel = "list";
+    obj.saveSimulation = false;
     
     obj.uiChangeListLength=function(length)
     {
@@ -640,15 +641,19 @@ OModule.inheritance=function(obj)
     obj.getMessageSuccessfulSave = function(){
         return dictionary["s9"];
     }
-    obj.uiSaveValidated=function(ignoreOnBefore,isNew){
+    obj.uiSaveValidated=function(ignoreOnBefore,isNew,simulate){
         var thisClass = this;
             
         if(thisClass.onBeforeSave && !ignoreOnBefore) {
             if(!thisClass.onBeforeSave(isNew)) return;
         }
 		
-        if(thisClass.reloadOnModification) { 
-            Methods.modalLoading();
+        if(simulate){
+            Methods.modalLoading(dictionary["s617"]);
+        } else {
+            if(thisClass.reloadOnModification) { 
+                Methods.modalLoading();
+            }
         }
         
         $("#divAddFormDialog").parent().mask(dictionary["s319"]);
@@ -658,6 +663,7 @@ OModule.inheritance=function(obj)
         if(this.currentID==0&&!isNew) params = this.getAddSaveObject();
         else params = this.getFullSaveObject();
         if(isNew) params['oid']=0;
+        if(simulate) params['save_simulation']=1;
         
         $.post("query/save_object.php",
             params,
@@ -667,30 +673,35 @@ OModule.inheritance=function(obj)
                 $("#div"+thisClass.className+"Form").unmask();
                 if(thisClass.currentID==0) $("#divAddFormDialog").dialog("close");
                 
-                if(thisClass.reloadOnModification) { 
+                if(thisClass.reloadOnModification || simulate) { 
                     Methods.stopModalLoading();
                 }
                 
                 switch(data.result){
                     case 0:{
-                        if(data.oid!=0)
-                        {
-                            var isNewObject = false;
-                            if(thisClass.currentID==0||isNew) isNewObject = true;
-                            if(!thisClass.reloadOnModification) { 
-                                if(thisClass.currentID!=0&&!isNew) thisClass.uiList();
-                                else thisClass.uiReload(data.oid);
-                            }
-                            Methods.alert(thisClass.getMessageSuccessfulSave(isNewObject),"info", dictionary["s274"],function(){
-                                if(thisClass.reloadOnModification) {
-                                    Methods.modalLoading();
-                                    Methods.reload(thisClass.reloadHash);
-                                }
-                                if(thisClass.onAfterSave) thisClass.onAfterSave(isNewObject);
-                            });
+                        if(simulate){
+                            thisClass.uiSaveValidated(ignoreOnBefore,isNew,false);
                         }
                         else {
-                            Methods.alert(dictionary["s10"],"alert", dictionary["s274"]);
+                            if(data.oid!=0)
+                            {
+                                var isNewObject = false;
+                                if(thisClass.currentID==0||isNew) isNewObject = true;
+                                if(!thisClass.reloadOnModification) { 
+                                    if(thisClass.currentID!=0&&!isNew) thisClass.uiList();
+                                    else thisClass.uiReload(data.oid);
+                                }
+                                Methods.alert(thisClass.getMessageSuccessfulSave(isNewObject),"info", dictionary["s274"],function(){
+                                    if(thisClass.reloadOnModification) {
+                                        Methods.modalLoading();
+                                        Methods.reload(thisClass.reloadHash);
+                                    }
+                                    if(thisClass.onAfterSave) thisClass.onAfterSave(isNewObject);
+                                });
+                            }
+                            else {
+                                Methods.alert(dictionary["s10"],"alert", dictionary["s274"]);
+                            }
                         }
                         break;
                     }
@@ -708,7 +719,7 @@ OModule.inheritance=function(obj)
                         break;     
                     }
                     //transaction error
-                    case -3:{
+                    case -6:{
                         Methods.alert(dictionary["s616"]+data.message, "alert", dictionary["s274"]);  
                         break;
                     }

@@ -47,21 +47,29 @@ class Table extends OModule {
     }
 
     public function mysql_save_from_post($post) {
+        $simulation = false;
+        if (array_key_exists("save_simulation", $post) && $post['save_simulation'] == 1)
+            $simulation = true;
+
         $lid = parent::mysql_save_from_post($post);
 
-        $sql = "START TRANSACTION";
-        mysql_query($sql);
-
-        $this->mysql_delete_TableColumn();
+        if (!$simulation) {
+            $this->mysql_delete_TableColumn();
+        }
 
         if (array_key_exists("cols", $post)) {
-            $table_name = "`" . self::get_table_prefix() . "_" . $lid . "`";
+            if ($simulation)
+                $table_name = "`" . self::get_table_prefix() . "_temp_" . $lid . "`";
+            else
+                $table_name = "`" . self::get_table_prefix() . "_" . $lid . "`";
 
-            //table
-            $sql = "DROP TABLE IF EXISTS " . $table_name . ";";
-            mysql_query($sql);
+//table
+            if (!$simulation) {
+                $sql = "DROP TABLE IF EXISTS " . $table_name . ";";
+                mysql_query($sql);
+            }
 
-            $sql = "CREATE TABLE  " . $table_name . " (";
+            $sql = "CREATE " . ($simulation ? "TEMPORARY" : "") . " TABLE  " . $table_name . " (";
             $i = 0;
             foreach ($post['cols'] as $col_json) {
                 $col = json_decode($col_json);
@@ -73,12 +81,10 @@ class Table extends OModule {
             $sql.=") ENGINE = INNODB DEFAULT CHARSET=utf8;";
             if (!mysql_query($sql)) {
                 $message = mysql_error();
-                $sql = "ROLLBACK";
-                mysql_query($sql);
-                return json_encode(array("result" => -3, "message" => $message));
+                return json_encode(array("result" => -6, "message" => $message));
             }
 
-            //indexes
+//indexes
             if (array_key_exists("indexes", $post)) {
                 foreach ($post['indexes'] as $index_json) {
                     $index = json_decode($index_json);
@@ -93,14 +99,12 @@ class Table extends OModule {
                     $sql = sprintf("ALTER TABLE %s ADD %s(%s)", $table_name, $index->type, $cols);
                     if (!mysql_query($sql)) {
                         $message = mysql_error();
-                        $sql = "ROLLBACK";
-                        mysql_query($sql);
-                        return json_encode(array("result" => -3, "message" => $message));
+                        return json_encode(array("result" => -6, "message" => $message));
                     }
                 }
             }
 
-            //auto increment
+//auto increment
             foreach ($post['cols'] as $col_json) {
                 $col = json_decode($col_json);
 
@@ -108,50 +112,35 @@ class Table extends OModule {
                     $sql = sprintf("ALTER TABLE %s CHANGE `%s` `%s` %s", $table_name, $col->name, $col->name, TableColumn::get_column_definition($col->type, $col->lengthValues, $col->attributes, $col->nullable, $col->auto_increment, $col->defaultValue));
                     if (!mysql_query($sql)) {
                         $message = mysql_error();
-                        $sql = "ROLLBACK";
-                        mysql_query($sql);
-                        return json_encode(array("result" => -3, "message" => $message));
+                        return json_encode(array("result" => -6, "message" => $message));
                     }
                 }
             }
 
-            //TableColumn
-            $pers_cols = TableColumn::from_property(array("Table_id" => $lid));
-            foreach ($pers_cols as $oc) {
-                $delete = true;
-                foreach ($post['cols'] as $nc) {
-                    $nc = json_decode($nc);
-                    if ($oc->id == $nc->oid) {
-                        $delete = false;
-                        break;
-                    }
-                }
-                if ($delete)
-                    $oc->mysql_delete();
-            }
+//TableColumn
+            $sql = "START TRANSACTION";
+            mysql_query($sql);
 
             $sql = sprintf("INSERT INTO `%s` (`index`,`name`,`Table_id`,`type`, `length`,`attributes`, `null`, `auto_increment`, `default_value`) VALUES ", TableColumn::get_mysql_table());
             $i = 0;
             foreach ($post['cols'] as $col_json) {
                 $col = json_decode($col_json);
-                //if ($col->oid == 0)
-                //{
+
                 if ($i > 0)
                     $sql.=",";
                 $sql.="(";
                 $sql.= ($i + 1) . ",'" . mysql_real_escape_string($col->name) . "'," . $lid . ",'" . mysql_real_escape_string($col->type) . "', '" . mysql_real_escape_string($col->lengthValues) . "', '" . mysql_real_escape_string($col->attributes) . "', " . mysql_real_escape_string($col->nullable) . "," . mysql_real_escape_string($col->auto_increment) . ",'" . mysql_real_escape_string($col->defaultValue) . "'";
                 $sql.=")";
                 $i++;
-                //}
             }
             if (!mysql_query($sql)) {
                 $message = mysql_error();
                 $sql = "ROLLBACK";
                 mysql_query($sql);
-                return json_encode(array("result" => -3, "message" => $message));
+                return json_encode(array("result" => -6, "message" => $message));
             }
 
-            //TableIndex
+//TableIndex
             if (array_key_exists("indexes", $post)) {
                 foreach ($post['indexes'] as $index_json) {
                     $index = json_decode($index_json);
@@ -176,7 +165,7 @@ class Table extends OModule {
                 }
             }
 
-            //data
+//data
             if (array_key_exists("rows", $post) && $post['rows'] != null && is_array($post['rows'])) {
                 $sql = "INSERT INTO " . $table_name . " (";
                 $i = 0;
@@ -212,14 +201,19 @@ class Table extends OModule {
                     $message = mysql_error();
                     $sql = "ROLLBACK";
                     mysql_query($sql);
-                    return json_encode(array("result" => -3, "message" => $message));
+                    return json_encode(array("result" => -6, "message" => $message));
                 }
             }
         }
-        $sql = "COMMIT";
-        mysql_query($sql);
+        if (!$simulation) {
+            $sql = "COMMIT";
+            mysql_query($sql);
+        } else {
+            $sql = "ROLLBACK";
+            mysql_query($sql);
+        }
 
-        //hash
+//hash
         $obj = static::from_mysql_id($lid);
         if ($obj != null) {
             $xml_hash = $obj->calculate_xml_hash();

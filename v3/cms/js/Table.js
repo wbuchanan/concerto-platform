@@ -22,6 +22,8 @@ OModule.inheritance(Table);
 
 Table.className="Table";
 
+Table.saveSimulation = true;
+
 Table.onAfterEdit=function()
 {
     };
@@ -69,7 +71,7 @@ Table.uiSaveValidate=function(ignoreOnBefore,isNew){
         Methods.alert(dictionary["s415"],"alert");
         return false;
     }
-    Table.uiSaveValidated(ignoreOnBefore,isNew);
+    Table.uiSaveValidated(ignoreOnBefore,isNew,this.saveSimulation);
 }
 
 Table.uiRemoveColumn=function(obj){
