@@ -5675,5 +5675,65 @@ Note: You can add new languages by inserting "<new_language>string translated in
             <nl></nl>
             <pt></pt>
         </string>
+        <string id="594" js="1">
+            <en>true</en>
+            <de></de>
+            <pl>prawda</pl>
+            <cn></cn>
+            <fr></fr>
+            <bg></bg>
+            <nl></nl>
+            <pt></pt>
+        </string>
+        <string id="595" js="1">
+            <en>false</en>
+            <de></de>
+            <pl>fałsz</pl>
+            <cn></cn>
+            <fr></fr>
+            <bg></bg>
+            <nl></nl>
+            <pt></pt>
+        </string>
+        <string id="596" js="1">
+            <en>Is after or equal to</en>
+            <de></de>
+            <pl>Jest po lub równe</pl>
+            <cn></cn>
+            <fr></fr>
+            <bg></bg>
+            <nl></nl>
+            <pt></pt>
+        </string>
+        <string id="597" js="1">
+            <en>Is after</en>
+            <de></de>
+            <pl>Jest po</pl>
+            <cn></cn>
+            <fr></fr>
+            <bg></bg>
+            <nl></nl>
+            <pt></pt>
+        </string>
+        <string id="598" js="1">
+            <en>Is before or equal to</en>
+            <de></de>
+            <pl>Jest przed lub równe</pl>
+            <cn></cn>
+            <fr></fr>
+            <bg></bg>
+            <nl></nl>
+            <pt></pt>
+        </string>
+        <string id="599" js="1">
+            <en>Is before</en>
+            <de></de>
+            <pl>Jest przed</pl>
+            <cn></cn>
+            <fr></fr>
+            <bg></bg>
+            <nl></nl>
+            <pt></pt>
+        </string>
     </strings>
 </root> 

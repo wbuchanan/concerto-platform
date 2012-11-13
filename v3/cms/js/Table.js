@@ -263,7 +263,6 @@ Table.uiIniDataGrid=function(){
                 case "double":
                 case "real":
                 case "bit":
-                case "boolean":
                 case "serial":{
                     col["editor"] = Table.numberEditor;
                     fields[data[i].name]["type"]="number";
@@ -272,6 +271,49 @@ Table.uiIniDataGrid=function(){
                 case "set":
                 case "enum":{
                     col["editor"] = Table.setEditor;
+                    break;
+                }
+                case "date":{
+                    fields[data[i].name]["type"]="date";
+                    col["editor"] = Table.dateEditor;
+                    col["format"]="{0:yyyy-MM-dd}";
+                    fields[data[i].name]["parse"]=function(val){
+                        return kendo.format("{0:yyyy-MM-dd}",val);
+                    }
+                    break;
+                }
+                case "timestamp":
+                case "datetime":{
+                    fields[data[i].name]["type"]="date";
+                    col["editor"] = Table.dateTimeEditor;
+                    col["format"]="{0:yyyy-MM-dd HH:mm:ss}";
+                    fields[data[i].name]["parse"]=function(val){
+                        return kendo.format("{0:yyyy-MM-dd HH:mm:ss}",val);
+                    }
+                    break;
+                }
+                case "year":{
+                    fields[data[i].name]["type"]="date";
+                    col["editor"] = Table.yearEditor;
+                    col["format"]="{0:yyyy}";
+                    fields[data[i].name]["parse"]=function(val){
+                        return kendo.format("{0:yyyy}",val);
+                    }
+                    break;
+                }
+                case "time":{
+                    fields[data[i].name]["type"]="string";
+                    col["editor"] = Table.timeEditor;
+                    fields[data[i].name]["parse"]=function(val){
+                        return kendo.format("{0:HH:mm:ss}",val);
+                    }
+                    //col["format"]="{0:HH:mm:ss}";
+                    break;
+                }
+                case "boolean":{
+                    fields[data[i].name]["type"]="numeric";
+                    col["editor"]=Table.boolEditor;
+                    col["template"]="<div align='center'><input type='checkbox' #= "+data[i].name+"==1 ? checked='checked' : '' # disabled readonly /></div>";
                     break;
                 }
                 case "HTML":{
@@ -381,6 +423,14 @@ Table.uiIniDataGrid=function(){
                         gt: dictionary["s223"],
                         lte: dictionary["s226"],
                         lt: dictionary["s225"]
+                    },
+                    date:{
+                        eq: dictionary["s222"],
+                        neq: dictionary["s221"],
+                        gte: dictionary["s596"],
+                        gt: dictionary["s597"],
+                        lte: dictionary["s598"],
+                        lt: dictionary["s599"]
                     }
                 }
             },
@@ -706,7 +756,6 @@ Table.uiEditColumn=function(obj){
                     case "float":
                     case "double":
                     case "real":
-                    case "boolean":
                     case "bit":
                     case "serial":{
                         ftype="number";
@@ -738,7 +787,6 @@ Table.uiEditColumn=function(obj){
                     case "float":
                     case "double":
                     case "real":
-                    case "boolean":
                     case "bit":
                     case "serial":{
                         dataGrid.columns[index].editor = Table.numberEditor;
@@ -747,6 +795,42 @@ Table.uiEditColumn=function(obj){
                     case "set":
                     case "enum":{
                         dataGrid.columns[index].editor = Table.setEditor;
+                        break;
+                    }
+                    case "date":{
+                        dataGrid.columns[index].editor = Table.dateEditor;
+                        Table.dataGridSchemaFields[name.val()]["parse"]=function(val){
+                            return kendo.format("{0:yyyy-MM-dd}",val);
+                        }
+                        break;
+                    }
+                    case "timestamp":
+                    case "datetime":{
+                        dataGrid.columns[index].editor = Table.dateTimeEditor;
+                        Table.dataGridSchemaFields[name.val()]["parse"]=function(val){
+                            return kendo.format("{0:yyyy-MM-dd HH:mm:ss}",val);
+                        }
+                        break;
+                    }
+                    case "year":{
+                        dataGrid.columns[index].editor = Table.yearEditor;
+                        Table.dataGridSchemaFields[name.val()]["parse"]=function(val){
+                            return kendo.format("{0:yyyy}",val);
+                        }
+                        break;
+                    }
+                    case "time":{
+                        dataGrid.columns[index].type="string";
+                        dataGrid.columns[index].editor = Table.timeEditor;
+                        dataGrid.columns[index]["parse"]=function(val){
+                            return kendo.format("{0:HH:mm:ss}",val);
+                        }
+                        break;
+                    }
+                    case "boolean":{
+                        Table.dataGridSchemaFields[name.val()]["type"]="numeric";
+                        dataGrid.columns[index]["editor"]=Table.boolEditor;
+                        dataGrid.columns[index]["template"]="<div align='center'><input type='checkbox' #= "+name.val()+"==1 ? checked='checked' : '' # disabled readonly /></div>";
                         break;
                     }
                     case "HTML":{
@@ -1000,6 +1084,37 @@ Table.stringEditor = function(container,options){
     $("<textarea style='resize:none; margin:auto; width:100%; height:100px;' data-bind='value:" + options.field + "' />").appendTo(container);
 }
 
+Table.dateEditor = function(container,options){
+    $("<input id='cellDatepicker' type='text' style='resize:none; margin:auto; width:100%;' data-bind='value:" + options.field + "' />").appendTo(container);
+    $("#cellDatepicker").kendoDatePicker({
+        format:"yyyy-MM-dd"
+    });
+}
+
+Table.dateTimeEditor = function(container,options){
+    $("<input id='cellDateTimepicker' type='text' style='resize:none; margin:auto; width:100%;' data-bind='value:" + options.field + "' />").appendTo(container);
+    $("#cellDateTimepicker").kendoDateTimePicker({
+        format:"yyyy-MM-dd HH:mm:ss"
+    });
+}
+
+Table.yearEditor = function(container,options){
+    $("<input id='cellYearpicker' type='text' style='resize:none; margin:auto; width:100%;' data-bind='value:" + options.field + "' />").appendTo(container);
+    $("#cellYearpicker").kendoDatePicker({
+        format:"yyyy",
+        start: "century",
+        depth: "decade"
+    });
+}
+
+Table.timeEditor = function(container,options){
+    $("<input id='cellTimepicker' type='text' style='resize:none; margin:auto; width:100%;' data-bind='value:" + options.field + "' />").appendTo(container);
+    $("#cellTimepicker").kendoTimePicker({
+        interval:1,
+        format: "HH:mm:ss"
+    });
+}
+
 Table.setEditor = function(container,options){
     var grid = $("#div"+Table.className+"GridStructure").data('kendoGrid');
     var items = grid.dataSource.data();
@@ -1015,7 +1130,7 @@ Table.setEditor = function(container,options){
     }
     
     if(col.nullable==1){
-        //editor.html("<option value=''>&lt;"+dictionary["s73"]+"&gt;</option>");
+    //editor.html("<option value=''>&lt;"+dictionary["s73"]+"&gt;</option>");
     }
     
     if(col.lengthValues.trim()!=""){
@@ -1035,6 +1150,15 @@ Table.setEditor = function(container,options){
             editor.html(editor.html()+"<option value='"+data[i]+"'>"+data[i]+"</option>");
         }
     }
+    
+    editor.appendTo(container);
+}
+
+Table.boolEditor = function(container,options){
+    var grid = $("#div"+Table.className+"GridStructure").data('kendoGrid');
+    var items = grid.dataSource.data();
+    
+    var editor = $("<select style='resize:none; margin:auto; width:100%;' data-bind='value:" + options.field + "'><option value='0'>"+dictionary["s595"]+"</option><option value='1'>"+dictionary["s594"]+"</option></select>");
     
     editor.appendTo(container);
 }
@@ -1126,7 +1250,6 @@ Table.uiAddColumn=function(){
                     case "float":
                     case "double":
                     case "real":
-                    case "boolean":
                     case "bit":
                     case "serial":{
                         ftype="number";
@@ -1156,7 +1279,6 @@ Table.uiAddColumn=function(){
                     case "float":
                     case "double":
                     case "real":
-                    case "boolean":
                     case "bit":
                     case "serial":{
                         col.editor = Table.numberEditor;
@@ -1165,6 +1287,42 @@ Table.uiAddColumn=function(){
                     case "set":
                     case "enum":{
                         col.editor = Table.setEditor;
+                        break;
+                    }
+                    case "date":{
+                        col["editor"] = Table.dateEditor;
+                        Table.dataGridSchemaFields[name.val()]["parse"]=function(val){
+                            return kendo.format("{0:yyyy-MM-dd}",val);
+                        }
+                        break;
+                    }
+                    case "timestamp":
+                    case "datetime":{
+                        col["editor"] = Table.dateTimeEditor;
+                        Table.dataGridSchemaFields[name.val()]["parse"]=function(val){
+                            return kendo.format("{0:yyyy-MM-dd HH:mm:ss}",val);
+                        }
+                        break;
+                    }
+                    case "year":{
+                        col["editor"] = Table.yearEditor;
+                        Table.dataGridSchemaFields[name.val()]["parse"]=function(val){
+                            return kendo.format("{0:yyyy}",val);
+                        }
+                        break;
+                    }
+                    case "time":{
+                        Table.dataGridSchemaFields[name.val()].type="string";
+                        col["editor"] = Table.timeEditor;
+                        Table.dataGridSchemaFields[name.val()]["parse"]=function(val){
+                            return kendo.format("{0:HH:mm:ss}",val);
+                        }
+                        break;
+                    }
+                    case "boolean":{
+                        Table.dataGridSchemaFields[name.val()]["type"]="numeric";
+                        col["editor"]=Table.boolEditor;
+                        col["template"]="<div align='center'><input type='checkbox' #= "+name.val()+"==1 ? checked='checked' : '' # disabled readonly /></div>";
                         break;
                     }
                     case "HTML":{
