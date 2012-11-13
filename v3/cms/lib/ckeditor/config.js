@@ -10,6 +10,7 @@ CKEDITOR.editorConfig = function( config )
     config.removePlugins = 'resize,maximize';
     
     config.toolbar = 'Full';
+    config.entities_latin = false;
  
     config.toolbar_Full =
     [
