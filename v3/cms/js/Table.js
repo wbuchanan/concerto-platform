@@ -89,6 +89,9 @@ Table.uiRemoveColumn=function(obj){
             delete dataGrid.dataSource.data()[i].defaults[item.name]
         }
         //delete Table.dataGridSchemaFields[item.name];
+        
+        Table.onColumnChange(item.name);
+        
         Table.structureEmptyCheck();
         Table.uiRefreshDataGrid();
     });
@@ -491,7 +494,9 @@ Table.uiReloadStructureGrid=function(data,columns){
     Methods.iniIconButton(".btnAdd", "plus");
 }
 
+Table.isIndexGridInitialized = false;
 Table.uiIniStructureGrid=function(){
+    Table.isIndexGridInitialized = false;
     var thisClass = this;
     
     $("#div"+this.className+"GridStructureContainer").html("<div id='div"+this.className+"GridStructure' class='grid'></div>");
@@ -544,6 +549,10 @@ Table.uiIniStructureGrid=function(){
         dataBound:function(e){
             Table.structureEmptyCheck();
             Methods.iniTooltips();  
+            if(!Table.isIndexGridInitialized) {
+                Table.uiIniIndexGrid();
+                Table.isIndexGridInitialized = true;
+            }
         },
         dataSource: dataSource,
         columns: [{
@@ -799,6 +808,36 @@ Table.uiEditIndex=function(obj){
     });
 }
 
+Table.onColumnChange=function(oldName,newName){
+    var grid = $("#div"+this.className+"GridIndex").data('kendoGrid');
+    var items = grid.dataSource.data();
+    var columns = grid.columns;
+    
+    var refreshRequired = false;
+    for(var i=0;i<items.length;i++){
+        var cols = items[i].columns;
+        var colsArray = Table.decodeIndexColumns(cols);
+        if(colsArray.indexOf(oldName)!=-1){
+            refreshRequired = true;
+            if(newName!=null) {
+                colsArray[colsArray.indexOf(oldName)]=newName;
+                items[i].columns = colsArray.join(",");
+            } else {
+                colsArray.splice(colsArray.indexOf(oldName),1);
+                items[i].columns = colsArray.join(",");
+            }
+            if(colsArray.length==0){
+                items.splice(i,1);
+                i--;
+            }
+        }
+    }
+    
+    if(refreshRequired){
+        Table.uiReloadIndexGrid(items, columns);
+    }
+}
+
 Table.uiRefreshIndexGrid=function(){
     var grid = $("#div"+this.className+"GridIndex").data('kendoGrid');
     
@@ -981,6 +1020,8 @@ Table.uiEditColumn=function(obj){
                     Methods.alert(dictionary["s1"].format(oldValue,newValue), "info", dictionary["s2"]);
                     return;
                 }
+                
+                Table.onColumnChange(oldName,name.val());
                 
                 //structGrid mod start
                 var rowStruct = structGrid.dataSource.data()[index];

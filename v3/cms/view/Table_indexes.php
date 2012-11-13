@@ -36,10 +36,6 @@ if (!$logged_user->is_object_editable($obj))
 
 <script>
     $(function(){
-        Table.uiIniHTMLTooltips();
-        
-        //table indexes
-        Table.uiIniIndexGrid();
     });
 </script>
 
