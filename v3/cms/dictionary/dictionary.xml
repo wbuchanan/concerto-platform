@@ -1922,7 +1922,7 @@ Note: You can add new languages by inserting "<new_language>string translated in
             <fr>créer et modifier la structure entière du test</fr>
             <bg>създаване и управление на цялата структура на всеки тест </bg>
             <nl>Ontwerp en beheer de volledige structuur van elke test.</nl>
-            <pt></pt>
+            <pt>Crie e administre a estrutura completa de cada teste</pt>
         </string>
         <string id="194">
             <en>Create custom test logic sections to meet the requirements of specific tests.</en>
@@ -1932,7 +1932,7 @@ Note: You can add new languages by inserting "<new_language>string translated in
             <fr>Créer une section logique personnalisée qui rencontre les prérequis du test</fr>
             <bg>Създаване на персонализирани секции на логиката на теста, които покриват изискванията на всеки тест</bg>
             <nl>Ontwerp aangepaste logische testsecties om aan de eisen van specifieke tests te voldoen.</nl>
-            <pt></pt>
+            <pt>Crie uma seção lógica personalizada que encontre os pré-requisitos do teste</pt>
         </string>
         <string id="195">
             <en>Create and edit HTML templates as they are visible to the test taker.</en>
@@ -1942,7 +1942,7 @@ Note: You can add new languages by inserting "<new_language>string translated in
             <fr>Créer et modifier des modèles HTML lorsqu'ils sont visibles au participant au test.</fr>
             <bg>Създаване и редактиране на HTM, както те се видими за тествания</bg>
             <nl>Ontwerp en bewerk HTML sjablonen die zichtbaar zullen zijn voor de gebruiker</nl>
-            <pt></pt>
+            <pt>Crie e edite um template HTML que são visíveis ao participante do teste</pt>
         </string>
         <string id="196">
             <en>Create tables for storing and managing test data, including item content, correct responses and response history etc.</en>
@@ -1952,7 +1952,7 @@ Note: You can add new languages by inserting "<new_language>string translated in
             <fr>Créer des tableaux afin de stocker et de gérer les données du test, en incluant le contenu des énoncés, les réponses correctes et l'historique des réponses etc...</fr>
             <bg>Създаване на таблици за сортиране и упрвление на данните от теста, включително съдържанието на айтемите, верните отговори, историята  на отговарянето и т.н.</bg>
             <nl>Ontwerp tabellen voor het opslaan en beheren van testdata, inclusief de inhoud van items, correcte antwoorden, antwoordgeschiedenis, etc...</nl>
-            <pt></pt>
+            <pt>Crie tabelas para armazenar e manusear dados do teste, incluindo o conteúdo do item, as respostas corretas e o histórico de respotas etc.</pt>
         </string>
         <string id="197">
             <en>Create and manage admin and standard user accounts, user groups and access rights of users.</en>
@@ -1962,7 +1962,7 @@ Note: You can add new languages by inserting "<new_language>string translated in
             <fr>Créer et gérer les comptes d'administrateurs et d'utilisateurs standards, les groupes d'utilisateurs et les droits d'accès des utilisateurs.</fr>
             <bg>Създаване и управление на администратори и стандартни потребители, потребителските групи и правата за достъп на потребителите.</bg>
             <nl>Ontwerp en beheer standaardgebruiker- en beheerdersaccounts, gebruikersgroepen en toegangsrechten van gebruikers.</nl>
-            <pt></pt>
+            <pt>Crie e manuseie contas de usuário padrão e admintrativas, grupos de usuários e permissões de acesso</pt>
         </string>
         <string id="198">
             <en>admins, admin groups and admin types</en>
@@ -1972,7 +1972,7 @@ Note: You can add new languages by inserting "<new_language>string translated in
             <fr>administrateurs, groupes d'administrateurs et droits d'administrateurs</fr>
             <bg>администратори, групи администратори и видове администратори</bg>
             <nl>beheerder, beheerdersgroepen en beheerderstypes</nl>
-            <pt></pt>
+            <pt>admins,grupo de admins, e tipos de admins</pt>
         </string>
         <string id="199">
             <en>available objects</en>
@@ -1982,7 +1982,7 @@ Note: You can add new languages by inserting "<new_language>string translated in
             <fr>objets disponibles</fr>
             <bg>достъпни обекти</bg>
             <nl>beschikbare objecten</nl>
-            <pt></pt>
+            <pt>objetos disponíveis</pt>
         </string>
         <string id="203">
             <en>edit object</en>
@@ -1992,7 +1992,7 @@ Note: You can add new languages by inserting "<new_language>string translated in
             <fr>modifier l'objet</fr>
             <bg>редактиране на обект</bg>
             <nl>object bewerken</nl>
-            <pt></pt>
+            <pt>edite o objeto</pt>
         </string>
         <string id="204" js="1">
             <en>delete object</en>
@@ -2002,7 +2002,7 @@ Note: You can add new languages by inserting "<new_language>string translated in
             <fr>supprimer l'objet</fr>
             <bg>изтриване на обект</bg>
             <nl>object verwijderen</nl>
-            <pt></pt>
+            <pt>delete o objeto</pt>
         </string>
         <string id="205">
             <en>add new object</en>
@@ -2012,7 +2012,7 @@ Note: You can add new languages by inserting "<new_language>string translated in
             <fr>ajouter un nouvel objet</fr>
             <bg>прибави нов обект</bg>
             <nl>Nieuw object toevoegen</nl>
-            <pt></pt>
+            <pt>adicione um novo objeto</pt>
         </string>
         <string id="211">
             <en>login to platform</en>
@@ -2022,7 +2022,7 @@ Note: You can add new languages by inserting "<new_language>string translated in
             <fr>se connecter à la plateforme</fr>
             <bg>вход в платформата</bg>
             <nl>log-in op platform</nl>
-            <pt></pt>
+            <pt>entre na plataforma</pt>
         </string>
         <string id="212">
             <en>Enter your login and password.</en>
@@ -2032,7 +2032,7 @@ Note: You can add new languages by inserting "<new_language>string translated in
             <fr>Entrez votre nom d'utilisateur et votre mot de passe</fr>
             <bg>Въведете Вашето потребителско име и парола. </bg>
             <nl>Geef uw log-in en wachtwoord</nl>
-            <pt></pt>
+            <pt>Entre com seu login e sua senha</pt>
         </string>
         <string id="213">
             <en>Select the HTML template to be loaded.</en>
@@ -2042,7 +2042,7 @@ Note: You can add new languages by inserting "<new_language>string translated in
             <fr>Sélectionner un modèle HTML à charger.</fr>
             <bg>Изберете HTML шаблона, който да бъде зареден</bg>
             <nl>Selecteer de te laden HTML-sjabloon.</nl>
-            <pt></pt>
+            <pt>Selecione o template HTML para ser lido</pt>
         </string>
         <string id="214">
             <en>Description of selected HTML template</en>
@@ -2052,7 +2052,7 @@ Note: You can add new languages by inserting "<new_language>string translated in
             <fr></fr>
             <bg></bg>
             <nl>Beschrijving van de te laden HTML-sjabloon</nl>
-            <pt></pt>
+            <pt>Decrição do template HTML selecionado</pt>
         </string>
         <string id="215">
             <en>value of this variable will be inserted into the HTML template</en>
@@ -2062,7 +2062,7 @@ Note: You can add new languages by inserting "<new_language>string translated in
             <fr>La valeur de cette variable va être insérée dans le modèle HTML</fr>
             <bg>стойността на тази променлива ще бъде вмъкната в HTML шаблона</bg>
             <nl>De waarde van deze variabele wordt ingevoegd in de HTML-sjabloon.</nl>
-            <pt></pt>
+            <pt>o valor desta variável será inserido no template HTML</pt>
         </string>
         <string id="216">
             <en><![CDATA[Time left (in seconds) to submit test item. A value of 0 implies unlimited time. Insert <b>{{TIME_LEFT}}</b> variable into HTML templates to make the timer visible.]]>
@@ -2079,7 +2079,7 @@ Note: You can add new languages by inserting "<new_language>string translated in
             </bg>
             <nl><![CDATA[Resterende tijd (in seconden) om op een test item te antwoorden. Een waarde van 0 impliceert onberkte tijd. Voeg de variabele <b>{{TIME_LEFT}}</b> in op de HTML-sjabloon om de timer zichtbaar te maken.]]>
             </nl>
-            <pt></pt>
+            <pt><![CDATA[Tempo disponível (em segundos) para enviar um teste. O valor 0 implica em tempo ilimitado. Insira a variável <b>{{TIME_LEFT}}</b> no seu template HTML para fazer o tempo ficar visível.]]></pt>
         </string>
         <string id="217">
             <en>this variable type is</en>
@@ -2089,7 +2089,7 @@ Note: You can add new languages by inserting "<new_language>string translated in
             <fr>cette variable est</fr>
             <bg>видът на тази променлива е</bg>
             <nl>dit type variabele is</nl>
-            <pt></pt>
+            <pt>o tipo desta variável é</pt>
         </string>
         <string id="221" js="1">
             <en>not equal</en>
@@ -2099,7 +2099,7 @@ Note: You can add new languages by inserting "<new_language>string translated in
             <fr>pas égal à</fr>
             <bg>не е равно</bg>
             <nl>niet gelijk aan</nl>
-            <pt></pt>
+            <pt>não igual</pt>
         </string>
         <string id="222" js="1">
             <en>equal</en>
@@ -2109,7 +2109,7 @@ Note: You can add new languages by inserting "<new_language>string translated in
             <fr>égal</fr>
             <bg>равно</bg>
             <nl>gelijk aan</nl>
-            <pt></pt>
+            <pt>igual</pt>
         </string>
         <string id="223" js="1">
             <en>greater than</en>
@@ -2119,7 +2119,7 @@ Note: You can add new languages by inserting "<new_language>string translated in
             <fr>égal à</fr>
             <bg>повече от</bg>
             <nl>groter dan</nl>
-            <pt></pt>
+            <pt>maior do que</pt>
         </string>
         <string id="224" js="1">
             <en>equal or greater than</en>
@@ -2129,7 +2129,7 @@ Note: You can add new languages by inserting "<new_language>string translated in
             <fr>plus grand ou égal à</fr>
             <bg>повече или равно на</bg>
             <nl>groter dan of gelijk aan</nl>
-            <pt></pt>
+            <pt>maior ou igual a</pt>
         </string>
         <string id="225" js="1">
             <en>lesser than</en>
@@ -2139,7 +2139,7 @@ Note: You can add new languages by inserting "<new_language>string translated in
             <fr>plus petit que</fr>
             <bg>по-малко от</bg>
             <nl>kleiner dan</nl>
-            <pt></pt>
+            <pt>menor que</pt>
         </string>
         <string id="226" js="1">
             <en>equal or lesser than</en>
@@ -2149,7 +2149,7 @@ Note: You can add new languages by inserting "<new_language>string translated in
             <fr>plus petit ou égal à</fr>
             <bg>равно или по-малко от</bg>
             <nl>kleiner dan of gelijk aan</nl>
-            <pt></pt>
+            <pt>menor ou igual a</pt>
         </string>
         <string id="227" js="1">
             <en>AND</en>
@@ -2159,7 +2159,7 @@ Note: You can add new languages by inserting "<new_language>string translated in
             <fr>ET</fr>
             <bg>И</bg>
             <nl>EN</nl>
-            <pt></pt>
+            <pt>E</pt>
         </string>
         <string id="228" js="1">
             <en>OR</en>
@@ -2169,7 +2169,7 @@ Note: You can add new languages by inserting "<new_language>string translated in
             <fr>OU</fr>
             <bg>ИЛИ</bg>
             <nl>OF</nl>
-            <pt></pt>
+            <pt>OU</pt>
         </string>
         <string id="229">
             <en>add condition</en>
@@ -2179,7 +2179,7 @@ Note: You can add new languages by inserting "<new_language>string translated in
             <fr>ajouter une condition</fr>
             <bg>условие прибави</bg>
             <nl>conditie toevoegen</nl>
-            <pt></pt>
+            <pt>adicionar condição</pt>
         </string>
         <string id="230">
             <en>remove condition</en>
@@ -2189,7 +2189,7 @@ Note: You can add new languages by inserting "<new_language>string translated in
             <fr>enlever une condition</fr>
             <bg>условие извади</bg>
             <nl>conditie verwijderen</nl>
-            <pt></pt>
+            <pt>remover condição</pt>
         </string>
         <string id="232" js="1">
             <en>add test logic section to IF clause</en>
@@ -2199,7 +2199,7 @@ Note: You can add new languages by inserting "<new_language>string translated in
             <fr>ajouter une section logique du test à une clause SI</fr>
             <bg>прибави секцията с тестовата логика към АКО условието</bg>
             <nl>logische testsectie toevoegen aan ALS clausule</nl>
-            <pt></pt>
+            <pt>adicionar uma seção lógica do teste à clásula IF</pt>
         </string>
         <string id="235">
             <en>from table</en>
@@ -2209,7 +2209,7 @@ Note: You can add new languages by inserting "<new_language>string translated in
             <cn>来自于表格</cn>
             <bg>от тaблицата</bg>
             <nl>uit tabel</nl>
-            <pt></pt>
+            <pt>da tabela</pt>
         </string>
         <string id="236">
             <en>by R code</en>
@@ -2219,7 +2219,7 @@ Note: You can add new languages by inserting "<new_language>string translated in
             <fr>avec un code R</fr>
             <bg>чрез R кода</bg>
             <nl>via R code</nl>
-            <pt></pt>
+            <pt>através de um código R</pt>
         </string>
         <string id="239">
             <en>no table selected</en>
@@ -2229,7 +2229,7 @@ Note: You can add new languages by inserting "<new_language>string translated in
             <fr>aucun tableau sélectionné</fr>
             <bg>не е избрана таблица</bg>
             <nl>geen tabel geselecteerd</nl>
-            <pt></pt>
+            <pt>nenhuma tabela selecionada</pt>
         </string>
         <string id="241">
             <en>no column selected</en>
@@ -2239,7 +2239,7 @@ Note: You can add new languages by inserting "<new_language>string translated in
             <fr>aucune colonne sélectionnée</fr>
             <bg>не са избрани колони</bg>
             <nl>geen kolom geselecteerd</nl>
-            <pt></pt>
+            <pt>nenhuma coluna selecionada</pt>
         </string>
         <string id="242">
             <en>WHERE</en>
@@ -2249,7 +2249,7 @@ Note: You can add new languages by inserting "<new_language>string translated in
             <fr>où</fr>
             <bg>КЪДЕ</bg>
             <nl>WAAR</nl>
-            <pt></pt>
+            <pt>onde</pt>
         </string>
         <string id="243">
             <en>like</en>
@@ -2259,7 +2259,7 @@ Note: You can add new languages by inserting "<new_language>string translated in
             <fr>comme</fr>
             <bg>подобно</bg>
             <nl>zoals</nl>
-            <pt></pt>
+            <pt>como</pt>
         </string>
         <string id="244">
             <en>not like</en>
@@ -2269,7 +2269,7 @@ Note: You can add new languages by inserting "<new_language>string translated in
             <fr>pas comme</fr>
             <bg>не е подобно</bg>
             <nl>niet zoals</nl>
-            <pt></pt>
+            <pt>não como</pt>
         </string>
         <string id="245">
             <en>Test id. Read only variable.</en>
@@ -2279,7 +2279,7 @@ Note: You can add new languages by inserting "<new_language>string translated in
             <fr>ID du test. Variable en lecture seulement.</fr>
             <bg>ID на теста. Чети само променливите.</bg>
             <nl>Test id. Dit is een alleen-lezen variabele.</nl>
-            <pt></pt>
+            <pt>ID do teste. Variável somente leitura</pt>
         </string>
         <string id="246">
             <en>Test session id. Read only variable.</en>
@@ -2289,7 +2289,7 @@ Note: You can add new languages by inserting "<new_language>string translated in
             <fr>ID de la session du test. Variable en lecture seulement.</fr>
             <bg>ID на теста. Чети само променливите.</bg>
             <nl>Testsessie id. Dit is een alleen-lezen variabele.</nl>
-            <pt></pt>
+            <pt>ID da seção do teste. Variável somente leitura</pt>
         </string>
         <string id="248">
             <en>insert</en>
@@ -2299,7 +2299,7 @@ Note: You can add new languages by inserting "<new_language>string translated in
             <fr>Rafraîchir</fr>
             <bg>вмъкни</bg>
             <nl>invoegen</nl>
-            <pt></pt>
+            <pt>insira</pt>
         </string>
         <string id="249">
             <en>update</en>
@@ -2309,7 +2309,7 @@ Note: You can add new languages by inserting "<new_language>string translated in
             <fr>Actualiser</fr>
             <bg>обнови</bg>
             <nl>update</nl>
-            <pt></pt>
+            <pt>update</pt>
         </string>
         <string id="250">
             <en>delete</en>
@@ -2319,7 +2319,7 @@ Note: You can add new languages by inserting "<new_language>string translated in
             <fr>supprimer</fr>
             <bg>изтрий</bg>
             <nl>verwijderen</nl>
-            <pt></pt>
+            <pt>delete</pt>
         </string>
         <string id="253">
             <en>Select the type of section to be added to the test logic</en>
@@ -2329,7 +2329,7 @@ Note: You can add new languages by inserting "<new_language>string translated in
             <fr>sélectionner le type de section à être ajouté à la logique du test</fr>
             <bg>Избери вида на секцията, която да бъде добавена към тестовата логика</bg>
             <nl>Selecteer het sectietype dat toegevoegd dient te worden aan de testlogica</nl>
-            <pt></pt>
+            <pt>Selecionar o tipo de seção para ser adicionada a lógica do teste</pt>
         </string>
         <string id="254">
             <en>Enter variable description that will be visible to anyone using this section in their test.</en>
@@ -2339,7 +2339,7 @@ Note: You can add new languages by inserting "<new_language>string translated in
             <fr>Entrer une définition de la variable qui sera visible à quiconque utilisant cette section dans leur test.</fr>
             <bg>Въведи променливата, която ще бъде видима за всеки, който използва тази секция от теста</bg>
             <nl>Voer een beschrijving van de variabele in, zichtbaar aan iedereen die deze sectie in hun test gebruikt.</nl>
-            <pt></pt>
+            <pt>Entre com uma descrição da variável que será visível a qualquer usuário desta seção no seu teste</pt>
         </string>
         <string id="255">
             <en>Select the MySQL table whose structure and data are to be imported into this table.</en>
@@ -2349,7 +2349,7 @@ Note: You can add new languages by inserting "<new_language>string translated in
             <fr>Sélectionner le tableau MySQL dont la structure et les données doivent être importées dans ce tableau.</fr>
             <bg>Избери MySQL таблицата, чиято структура и данни ще бъдат ще бъдат импортирани в тази таблица</bg>
             <nl>Selecteer de MySQL tabel waarvan de structuur en data geimporteerd dienen te worden in deze tabel.</nl>
-            <pt></pt>
+            <pt>Selecione uma tabela MySQL cuja estrutura e dados serão importados para essa tabela</pt>
         </string>
         <string id="256">
             <en>Select the CSV file to be imported.</en>
