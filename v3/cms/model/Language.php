@@ -78,6 +78,9 @@ class Language {
             case "fr": {
                     return "fr-FR";
                 }
+            case "br": {
+                    return "pt-BR";
+                }
         }
         return "en-GB";
     }
