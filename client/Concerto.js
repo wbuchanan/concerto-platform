@@ -174,14 +174,14 @@ function Concerto(container,hash,sid,tid,queryPath,callbackGet,callbackSend,debu
                         thisClass.hideLoader();
                     }
                 }
-                if(thisClass.data["STATUS"]==Concerto.statusTypes.completed && thisClass.loaderTransition==2) thisClass.hideLoader();
+                if(thisClass.data["STATUS"]==Concerto.statusTypes.completed && thisClass.loaderTransition==2  || thisClass.isFirstTemplate) thisClass.hideLoader();
                 
-                if(thisClass.data["STATUS"]==Concerto.statusTypes.tampered && (thisClass.loaderTranistion==1 || thisClass.loaderTransition==2)) thisClass.printError(Concerto.statusTypes.tampered);
+                if(thisClass.data["STATUS"]==Concerto.statusTypes.tampered && (thisClass.loaderTransition==1 || thisClass.loaderTransition==2  || thisClass.isFirstTemplate)) thisClass.printError(Concerto.statusTypes.tampered);
                 
                 if(thisClass.finished && !thisClass.remote && !thisClass.isDebug) Concerto.removeSessionCookie(thisClass.sessionID, thisClass.hash);
                 else Concerto.saveSessionCookie(thisClass.sessionID,thisClass.hash, thisClass.testID);
                 
-                if(thisClass.data["STATUS"]==Concerto.statusTypes.error && (thisClass.loaderTranistion==1 || thisClass.loaderTransition==2)){
+                if(thisClass.data["STATUS"]==Concerto.statusTypes.error && (thisClass.loaderTransition==1 || thisClass.loaderTransition==2 || thisClass.isFirstTemplate)){
                     thisClass.printError(Concerto.statusTypes.error);
                 }
                 if(thisClass.callbackGet!=null) thisClass.callbackGet.call(thisClass, data);
