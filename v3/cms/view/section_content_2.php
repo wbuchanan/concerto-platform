@@ -196,6 +196,11 @@ if ($template != null) {
                                 </tr>
                                 <tr>
                                     <td class="tdSectionColumnIcon"><span class="spanIcon ui-icon ui-icon-help tooltip" title="<?= Language::string(283) ?>"></span></td>
+                                    <td>OUT_OF_TIME</td>
+                                    <td>&nbsp;</td>
+                                </tr>
+                                <tr>
+                                    <td class="tdSectionColumnIcon"><span class="spanIcon ui-icon ui-icon-help tooltip" title="<?= Language::string(283) ?>"></span></td>
                                     <td>TIME_TAKEN</td>
                                     <td>&nbsp;</td>
                                 </tr>
@@ -210,6 +215,7 @@ if ($template != null) {
                             }
                             ?>
                             <input class="inputReturnVar" type="hidden" value="LAST_PRESSED_BUTTON_NAME" />
+                            <input class="inputReturnVar" type="hidden" value="OUT_OF_TIME" />
                             <input class="inputReturnVar" type="hidden" value="TIME_TAKEN" />
                         </div>
                     </fieldset>

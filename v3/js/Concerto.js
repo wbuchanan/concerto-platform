@@ -95,7 +95,7 @@ function Concerto(container,hash,sid,tid,queryPath,callbackGet,callbackSend,debu
             this.timer--;
             $(".fontTimeLeft").html(this.timer);
             if(this.timer==0){
-                this.submit("NONE");
+                this.submit("NONE",true);
             }
         }
     }
@@ -422,8 +422,9 @@ function Concerto(container,hash,sid,tid,queryPath,callbackGet,callbackSend,debu
             
     }
     
-    this.submit=function(btnName){
+    this.submit=function(btnName,timeout){
         var currentTime = new Date();
+        if(timeout==null) timeout = false;
         
         this.status = Concerto.statusTypes.working;
         
@@ -434,6 +435,10 @@ function Concerto(container,hash,sid,tid,queryPath,callbackGet,callbackSend,debu
         vals.push($.toJSON({
             name:"TIME_TAKEN",
             value:(currentTime.getTime()-thisClass.timeTemplateLoaded.getTime())/1000
+        }));
+        vals.push($.toJSON({
+            name:"OUT_OF_TIME",
+            value:timeout?1:0
         }));
         this.isTemplateReady = false;
         this.hideEffect();
