@@ -84,10 +84,17 @@ class Table extends OModule {
 
             $sql = "CREATE " . ($simulation ? "TEMPORARY" : "") . " TABLE  " . $table_name . " (";
             $i = 0;
+            $timestamp = false;
             foreach ($post['cols'] as $col_json) {
                 $col = json_decode($col_json);
                 if ($i > 0)
                     $sql.=",";
+                if (!$timestamp && $col->type == "timestamp") {
+                    $timestamp = true;
+                    $col->defaultValue = "CURRENT_TIMESTAMP";
+                    $col->attributes = "on update current_timestamp";
+                    $post['cols'][$i] = json_encode($col);
+                }
                 $sql.="`" . $col->name . "` " . TableColumn::get_column_definition($col->type, $col->lengthValues, $col->attributes, $col->nullable, 0, $col->defaultValue);
                 $i++;
             }
@@ -208,7 +215,7 @@ class Table extends OModule {
                     foreach ($post['cols'] as $col_json) {
                         $col = json_decode($col_json);
                         $col_name = $col->name;
-                        if ($row->$col_name == "")
+                        if ($row->$col_name == "" && $col->nullable == 1)
                             $row->$col_name = null;
                         if ($i > 0)
                             $sql.=",";

@@ -30,6 +30,7 @@ Table.onAfterEdit=function()
 
 Table.onAfterSave=function(){
     Test.uiTablesChanged();
+    Table.uiEdit(Table.currentID);
 };
     
 Table.onAfterDelete=function(){
@@ -247,6 +248,7 @@ Table.uiIniDataGrid=function(){
             var templateSet = false;
             var title = data[i].name;
             fields[data[i].name] = {}
+            
             var col = {
                 title:title,
                 field:data[i].name
@@ -256,6 +258,8 @@ Table.uiIniDataGrid=function(){
             fields[data[i].name]["type"] = "string";
             fields[data[i].name]["editable"] = true;
             fields[data[i].name]["defaultValue"] = data[i].defaultValue;
+            if(fields[data[i].name]["defaultValue"]!=null && fields[data[i].name]["defaultValue"].toLowerCase().trim()=="null") fields[data[i].name]["defaultValue"]=null;
+            if(fields[data[i].name]["defaultValue"]!=null && fields[data[i].name]["defaultValue"].toLowerCase().trim()=="current_timestamp") fields[data[i].name]["defaultValue"]=kendo.toString(new Date(),"yyyy-MM-dd HH:mm:ss");
             fields[data[i].name]["nullable"] = data[i].nullable==1;
             
             switch(data[i].type){
@@ -493,7 +497,8 @@ Table.uiReloadStructureGrid=function(data,columns){
         }
         ],
         editable: false,
-        scrollable:false
+        scrollable:true,
+        resizable:true
     });
     Methods.iniIconButton(".btnAdd", "plus");
 }
@@ -596,7 +601,8 @@ Table.uiIniStructureGrid=function(){
         }
         ],
         editable: false,
-        scrollable:true
+        scrollable:true,
+        resizable:true
     });
     Methods.iniIconButton(".btnAdd", "plus");
 }
@@ -1067,40 +1073,22 @@ Table.uiEditColumn=function(obj){
                 var dataGrid = $("#div"+thisClass.className+"GridData").data('kendoGrid');
                 
                 var templateSet = false;
-                
-                var ftype="string";
-                var fdefault=defaultValue.val();
-                switch(type.val()){
-                    case "tinyint":
-                    case "smallint":
-                    case "mediumint":
-                    case "int":
-                    case "bigint":
-                    case "decimal":
-                    case "float":
-                    case "double":
-                    case "real":
-                    case "bit":
-                    case "serial":{
-                        ftype="number";
-                        fdefault=0;
-                        break;
-                    }
-                }
-                //delete Table.dataGridSchemaFields[oldName];
-                Table.dataGridSchemaFields[name.val()] = {
-                    type:ftype,
-                    defaultValue:fdefault,
-                    editable: type.val()!="HTML"
-                }
-        
+            
                 dataGrid.columns[index] = {
                     title:name.val(),
                     field:name.val()
                 };
                 
-                dataGrid.columns[index].editor = Table.stringEditor;
-                
+                Table.dataGridSchemaFields[name.val()] = {};
+            
+                dataGrid.columns[index]["editor"] = Table.stringEditor;
+                Table.dataGridSchemaFields[name.val()]["type"] = "string";
+                Table.dataGridSchemaFields[name.val()]["editable"] = true;
+                Table.dataGridSchemaFields[name.val()]["defaultValue"] = defaultValue.val();
+                if(Table.dataGridSchemaFields[name.val()]["defaultValue"]!=null && Table.dataGridSchemaFields[name.val()]["defaultValue"].toLowerCase().trim()=="null") Table.dataGridSchemaFields[name.val()]["defaultValue"]=null;
+                if(Table.dataGridSchemaFields[name.val()]["defaultValue"]!=null && Table.dataGridSchemaFields[name.val()]["defaultValue"].toLowerCase().trim()=="current_timestamp") Table.dataGridSchemaFields[name.val()]["defaultValue"]=kendo.toString(new Date(),"yyyy-MM-dd HH:mm:ss");
+                Table.dataGridSchemaFields[name.val()]["nullable"] = nullable.is(":checked");
+            
                 switch(type.val()){
                     case "tinyint":
                     case "smallint":
@@ -1113,16 +1101,19 @@ Table.uiEditColumn=function(obj){
                     case "real":
                     case "bit":
                     case "serial":{
-                        dataGrid.columns[index].editor = Table.numberEditor;
+                        dataGrid.columns[index]["editor"] = Table.numberEditor;
+                        Table.dataGridSchemaFields[name.val()]["type"]="number";
                         break;
                     }
                     case "set":
                     case "enum":{
-                        dataGrid.columns[index].editor = Table.setEditor;
+                        dataGrid.columns[index]["editor"] = Table.setEditor;
                         break;
                     }
                     case "date":{
-                        dataGrid.columns[index].editor = Table.dateEditor;
+                        Table.dataGridSchemaFields[name.val()]["type"]="date";
+                        dataGrid.columns[index]["editor"] = Table.dateEditor;
+                        dataGrid.columns[index]["format"]="{0:yyyy-MM-dd}";
                         Table.dataGridSchemaFields[name.val()]["parse"]=function(val){
                             return kendo.format("{0:yyyy-MM-dd}",val);
                         }
@@ -1130,45 +1121,53 @@ Table.uiEditColumn=function(obj){
                     }
                     case "timestamp":
                     case "datetime":{
-                        dataGrid.columns[index].editor = Table.dateTimeEditor;
+                        Table.dataGridSchemaFields[name.val()]["type"]="date";
+                        dataGrid.columns[index]["editor"] = Table.dateTimeEditor;
+                        dataGrid.columns[index]["format"]="{0:yyyy-MM-dd HH:mm:ss}";
                         Table.dataGridSchemaFields[name.val()]["parse"]=function(val){
                             return kendo.format("{0:yyyy-MM-dd HH:mm:ss}",val);
                         }
                         break;
                     }
                     case "year":{
-                        dataGrid.columns[index].editor = Table.yearEditor;
+                        Table.dataGridSchemaFields[name.val()]["type"]="date";
+                        dataGrid.columns[index]["editor"] = Table.yearEditor;
+                        dataGrid.columns[index]["format"]="{0:yyyy}";
                         Table.dataGridSchemaFields[name.val()]["parse"]=function(val){
                             return kendo.format("{0:yyyy}",val);
                         }
                         break;
                     }
                     case "time":{
-                        dataGrid.columns[index].type="string";
-                        dataGrid.columns[index].editor = Table.timeEditor;
-                        dataGrid.columns[index]["parse"]=function(val){
+                        Table.dataGridSchemaFields[name.val()]["type"]="string";
+                        dataGrid.columns[index]["editor"] = Table.timeEditor;
+                        Table.dataGridSchemaFields[name.val()]["parse"]=function(val){
                             return kendo.format("{0:HH:mm:ss}",val);
                         }
+                        //col["format"]="{0:HH:mm:ss}";
                         break;
                     }
                     case "boolean":{
                         Table.dataGridSchemaFields[name.val()]["type"]="numeric";
                         dataGrid.columns[index]["editor"]=Table.boolEditor;
                         dataGrid.columns[index]["template"]="<div align='center'><input type='checkbox' #= "+name.val()+"==1 ? checked='checked' : '' # disabled readonly /></div>";
+                        templateSet = true;
                         break;
                     }
                     case "HTML":{
-                        dataGrid.columns[index].editor = Table.htmlEditor;
-                        dataGrid.columns[index].template = '<div class="horizontalMargin" align="center">'+
+                        dataGrid.columns[index]["editor"] = Table.htmlEditor;
+                        dataGrid.columns[index]["template"] = '<div class="horizontalMargin" align="center">'+
                         '<span class="spanIcon tooltipTableStructure ui-icon ui-icon-document-b" onclick="Table.uiChangeHTML($(this).next(),\''+name.val()+'\')" title="'+dictionary["s130"]+'"></span>'+
                         '<textarea class="notVisible">#='+name.val()+'#</textarea>'+
                         '</div>';
+                        Table.dataGridSchemaFields[name.val()]["type"]="string";
+                        Table.dataGridSchemaFields[name.val()]["editable"] = false;
                         templateSet = true;
                         break;
                     }
                 }
-                
-                if(nullable.is(":checked") && !templateSet) dataGrid.columns[index].template="#= "+name.val()+"==null?'<span style=\"font-style:italic;\"><b>null</b></span>':"+name.val()+" #";
+            
+                if(Table.dataGridSchemaFields[name.val()]["nullable"] && !templateSet) dataGrid.columns[index]["template"]="#= "+name.val()+"==null?'<span style=\"font-style:italic;\"><b>null</b></span>':"+name.val()+" #";
                     
                 for(var i=0;i<dataGrid.dataSource.data().length;i++){
                     var item = dataGrid.dataSource.data()[i];
@@ -1179,19 +1178,14 @@ Table.uiEditColumn=function(obj){
                         delete item.defaults[oldName]
                     }
                     item.fields[name.val()]={
-                        type:ftype,
-                        defaultValue:fdefault,
-                        editable: type.val()!="HTML"
+                        type:Table.dataGridSchemaFields[name.val()]["type"],
+                        defaultValue:Table.dataGridSchemaFields[name.val()]["defaultValue"],
+                        editable: Table.dataGridSchemaFields[name.val()]["editable"]
                     }
-                    item.defaults[name.val()]=fdefault;
+                    item.defaults[name.val()]=Table.dataGridSchemaFields[name.val()]["defaultValue"];
                 }
         
                 Table.uiRefreshDataGrid();
-                
-                if(type.val()!=oldType)
-                {
-                //fill
-                }
                 
                 $(this).dialog("close");
                 
@@ -1558,38 +1552,22 @@ Table.uiAddColumn=function(){
                 var dataGrid = $("#div"+thisClass.className+"GridData").data('kendoGrid');
                 
                 var templateSet = false;
-                
-                var ftype="string";
-                var fdefault=defaultValue.val();
-                switch(type.val()){
-                    case "tinyint":
-                    case "smallint":
-                    case "mediumint":
-                    case "int":
-                    case "bigint":
-                    case "decimal":
-                    case "float":
-                    case "double":
-                    case "real":
-                    case "bit":
-                    case "serial":{
-                        ftype="number";
-                        fdefault=0;
-                        break;
-                    }
-                }
-                Table.dataGridSchemaFields[name.val()] = {
-                    type:ftype,
-                    defaultValue:fdefault
-                }
-                
+            
                 var col = {
                     title:name.val(),
                     field:name.val()
-                }
+                };
                 
-                col.editor = Table.stringEditor;
-                
+                Table.dataGridSchemaFields[name.val()] = {};
+            
+                col["editor"] = Table.stringEditor;
+                Table.dataGridSchemaFields[name.val()]["type"] = "string";
+                Table.dataGridSchemaFields[name.val()]["editable"] = true;
+                Table.dataGridSchemaFields[name.val()]["defaultValue"] = defaultValue.val();
+                if(Table.dataGridSchemaFields[name.val()]["defaultValue"]!=null && Table.dataGridSchemaFields[name.val()]["defaultValue"].toLowerCase().trim()=="null") Table.dataGridSchemaFields[name.val()]["defaultValue"]=null;
+                if(Table.dataGridSchemaFields[name.val()]["defaultValue"]!=null && Table.dataGridSchemaFields[name.val()]["defaultValue"].toLowerCase().trim()=="current_timestamp") Table.dataGridSchemaFields[name.val()]["defaultValue"]=kendo.toString(new Date(),"yyyy-MM-dd HH:mm:ss");
+                Table.dataGridSchemaFields[name.val()]["nullable"] = nullable.is(":checked");
+            
                 switch(type.val()){
                     case "tinyint":
                     case "smallint":
@@ -1602,16 +1580,19 @@ Table.uiAddColumn=function(){
                     case "real":
                     case "bit":
                     case "serial":{
-                        col.editor = Table.numberEditor;
+                        col["editor"] = Table.numberEditor;
+                        Table.dataGridSchemaFields[name.val()]["type"]="number";
                         break;
                     }
                     case "set":
                     case "enum":{
-                        col.editor = Table.setEditor;
+                        col["editor"] = Table.setEditor;
                         break;
                     }
                     case "date":{
+                        Table.dataGridSchemaFields[name.val()]["type"]="date";
                         col["editor"] = Table.dateEditor;
+                        col["format"]="{0:yyyy-MM-dd}";
                         Table.dataGridSchemaFields[name.val()]["parse"]=function(val){
                             return kendo.format("{0:yyyy-MM-dd}",val);
                         }
@@ -1619,58 +1600,65 @@ Table.uiAddColumn=function(){
                     }
                     case "timestamp":
                     case "datetime":{
+                        Table.dataGridSchemaFields[name.val()]["type"]="date";
                         col["editor"] = Table.dateTimeEditor;
+                        col["format"]="{0:yyyy-MM-dd HH:mm:ss}";
                         Table.dataGridSchemaFields[name.val()]["parse"]=function(val){
                             return kendo.format("{0:yyyy-MM-dd HH:mm:ss}",val);
                         }
                         break;
                     }
                     case "year":{
+                        Table.dataGridSchemaFields[name.val()]["type"]="date";
                         col["editor"] = Table.yearEditor;
+                        col["format"]="{0:yyyy}";
                         Table.dataGridSchemaFields[name.val()]["parse"]=function(val){
                             return kendo.format("{0:yyyy}",val);
                         }
                         break;
                     }
                     case "time":{
-                        Table.dataGridSchemaFields[name.val()].type="string";
+                        Table.dataGridSchemaFields[name.val()]["type"]="string";
                         col["editor"] = Table.timeEditor;
                         Table.dataGridSchemaFields[name.val()]["parse"]=function(val){
                             return kendo.format("{0:HH:mm:ss}",val);
                         }
+                        //col["format"]="{0:HH:mm:ss}";
                         break;
                     }
                     case "boolean":{
                         Table.dataGridSchemaFields[name.val()]["type"]="numeric";
                         col["editor"]=Table.boolEditor;
                         col["template"]="<div align='center'><input type='checkbox' #= "+name.val()+"==1 ? checked='checked' : '' # disabled readonly /></div>";
+                        templateSet = true;
                         break;
                     }
                     case "HTML":{
-                        col.editor = Table.htmlEditor;
-                        //Table.dataGridSchemaFields[name.val()].editable = false;
-                        col.template = '<div class="horizontalMargin" align="center">'+
+                        col["editor"] = Table.htmlEditor;
+                        col["template"] = '<div class="horizontalMargin" align="center">'+
                         '<span class="spanIcon tooltipTableStructure ui-icon ui-icon-document-b" onclick="Table.uiChangeHTML($(this).next(),\''+name.val()+'\')" title="'+dictionary["s130"]+'"></span>'+
                         '<textarea class="notVisible">#='+name.val()+'#</textarea>'+
                         '</div>';
+                        Table.dataGridSchemaFields[name.val()]["type"]="string";
+                        Table.dataGridSchemaFields[name.val()]["editable"] = false;
                         templateSet = true;
                         break;
                     }
                 }
-        
-                if(nullable.is(":checked") && !templateSet) col["template"]="#= "+name.val()+"==null?'<span style=\"font-style:italic;\"><b>null</b></span>':"+name.val()+" #";
+            
+                if(Table.dataGridSchemaFields[name.val()]["nullable"] && !templateSet) col["template"]="#= "+name.val()+"==null?'<span style=\"font-style:italic;\"><b>null</b></span>':"+name.val()+" #";
                 
                 dataGrid.columns.splice(dataGrid.columns.length-1,0,col);
                 
                 for(var i=0;i<dataGrid.dataSource.data().length;i++){
                     var row = dataGrid.dataSource.data()[i];
-                    row[name.val()]=fdefault;
+                    row[name.val()]=Table.dataGridSchemaFields[name.val()]["defaultValue"];
                     row.fields[name.val()]={
-                        type:ftype,
-                        defaultValue:fdefault,
+                        type:Table.dataGridSchemaFields[name.val()]["type"],
+                        defaultValue:Table.dataGridSchemaFields[name.val()]["defaultValue"],
                         editable: type.val()!="HTML"
                     }
-                    row.defaults[name.val()]=fdefault;
+                    row.defaults[name.val()]=Table.dataGridSchemaFields[name.val()]["defaultValue"];
                 }
         
                 Table.uiRefreshDataGrid();
