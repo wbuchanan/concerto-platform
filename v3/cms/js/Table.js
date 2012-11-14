@@ -320,6 +320,7 @@ Table.uiIniDataGrid=function(){
                     fields[data[i].name]["type"]="numeric";
                     col["editor"]=Table.boolEditor;
                     col["template"]="<div align='center'><input type='checkbox' #= "+data[i].name+"==1 ? checked='checked' : '' # disabled readonly /></div>";
+                    templateSet = true;
                     break;
                 }
                 case "HTML":{

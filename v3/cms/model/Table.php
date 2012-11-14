@@ -46,6 +46,19 @@ class Table extends OModule {
         parent::mysql_delete();
     }
 
+    private static $auto_increment_row_comparer_field = "";
+
+    private static function auto_increment_row_comparer($a, $b) {
+        $a = json_decode($a);
+        $b = json_decode($b);
+
+        $field = self::$auto_increment_row_comparer_field;
+        if ($a->$field >= $b->$field && ($a->$field == null || $a->$field == ""))
+            return 1;
+        else
+            return -1;
+    }
+
     public function mysql_save_from_post($post) {
         $simulation = false;
         if (array_key_exists("save_simulation", $post) && $post['save_simulation'] == 1)
@@ -105,10 +118,13 @@ class Table extends OModule {
             }
 
 //auto increment
+            $auto_increment = false;
             foreach ($post['cols'] as $col_json) {
                 $col = json_decode($col_json);
 
                 if ($col->auto_increment == 1) {
+                    $auto_increment = true;
+                    self::$auto_increment_row_comparer_field = $col->name;
                     $sql = sprintf("ALTER TABLE %s CHANGE `%s` `%s` %s", $table_name, $col->name, $col->name, TableColumn::get_column_definition($col->type, $col->lengthValues, $col->attributes, $col->nullable, $col->auto_increment, $col->defaultValue));
                     if (!mysql_query($sql)) {
                         $message = mysql_error();
@@ -167,6 +183,11 @@ class Table extends OModule {
 
 //data
             if (array_key_exists("rows", $post) && $post['rows'] != null && is_array($post['rows'])) {
+
+                if ($auto_increment) {
+                    usort($post['rows'], "self::auto_increment_row_comparer");
+                }
+
                 $sql = "INSERT INTO " . $table_name . " (";
                 $i = 0;
                 foreach ($post['cols'] as $col_json) {
@@ -187,6 +208,8 @@ class Table extends OModule {
                     foreach ($post['cols'] as $col_json) {
                         $col = json_decode($col_json);
                         $col_name = $col->name;
+                        if ($row->$col_name == "")
+                            $row->$col_name = null;
                         if ($i > 0)
                             $sql.=",";
                         if ($row->$col_name !== null)
@@ -414,19 +437,35 @@ class Table extends OModule {
                             break;
                         case "type": $col["type"] = $child->nodeValue;
                             break;
-                        case "length": $col["length"] = $child->nodeValue;
+                        case "length": $col["lengthValues"] = $child->nodeValue;
                             break;
-                        case "default_value": $col["default_value"] = $child->nodeValue;
+                        case "default_value": $col["defaultValue"] = $child->nodeValue;
                             break;
                         case "attributes": $col["attributes"] = $child->nodeValue;
                             break;
-                        case "null": $col["null"] = $child->nodeValue;
+                        case "null": $col["nullable"] = $child->nodeValue;
                             break;
                         case "auto_increment": $col["auto_increment"] = $child->nodeValue;
                             break;
                     }
                 }
                 array_push($post['cols'], json_encode($col));
+            }
+
+            $post['indexes'] = array();
+            $elements_ti = $xpath->query("./TableIndexes/TableIndex", $element);
+            foreach ($elements_ti as $element_ti) {
+                $children = $element_ti->childNodes;
+                $index = array("oid" => 0);
+                foreach ($children as $child) {
+                    switch ($child->nodeName) {
+                        case "type": $index["type"] = $child->nodeValue;
+                            break;
+                        case "columns": $index["columns"] = $child->nodeValue;
+                            break;
+                    }
+                }
+                array_push($post['indexes'], json_encode($index));
             }
 
             $post['rows'] = array();

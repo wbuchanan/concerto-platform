@@ -33,6 +33,16 @@ class TableIndex extends OTable {
         return TableIndexColumn::from_property(array("TableIndex_id" => $this->id));
     }
 
+    public function get_columns_string() {
+        $result = "";
+        foreach ($this->get_TableIndexColumns() as $col) {
+            if ($result != "")
+                $result.=",";
+            $result.=$col->get_TableColumn()->name;
+        }
+        return $result;
+    }
+
     public function mysql_delete() {
         parent::mysql_delete();
         $this->delete_object_links(TableIndexColumn::get_mysql_table());
@@ -52,16 +62,9 @@ class TableIndex extends OTable {
 
         $type = $xml->createElement("type", htmlspecialchars($this->type, ENT_QUOTES, "UTF-8"));
         $element->appendChild($type);
-
-        $tic = $xml->createElement("TableIndexColumns");
-        $element->appendChild($tic);
-
-        $columns = $this->get_TableIndexColumns();
-        foreach ($columns as $col) {
-            $elem = $col->to_XML();
-            $elem = $xml->importNode($elem, true);
-            $tic->appendChild($elem);
-        }
+        
+        $cols = $xml->createElement("columns", htmlspecialchars($this->get_columns_string(), ENT_QUOTES, "UTF-8"));
+        $element->appendChild($cols);
 
         return $element;
     }

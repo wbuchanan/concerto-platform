@@ -30,6 +30,10 @@ class TableIndexColumn extends OTable {
     public function get_TableIndex() {
         return TableIndex::from_mysql_id($this->TableIndex_id);
     }
+    
+    public function get_TableColumn(){
+        return TableColumn::from_mysql_id($this->TableColumn_id);
+    }
 
     public function to_XML() {
         $xml = new DOMDocument('1.0', "UTF-8");

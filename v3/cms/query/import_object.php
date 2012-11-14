@@ -43,11 +43,13 @@ $obj = new $_POST['class_name']();
 $obj->Owner_id = $logged_user->id;
 $oid = $obj->import($path);
 
-$result = $oid;
-if(!is_numeric($result)) $result = -3;
-else 
-{
-    if($result>0) $result = 0;
+$response = $oid;
+if(is_numeric($response)) {
+    $oid = $response;
+    $result = 0;
+    echo json_encode(array("result" => $result, "oid" => $oid));
+    exit();
 }
-
-echo json_encode(array("result" => $result, "oid" => $oid));
+else {
+    echo $response;
+}

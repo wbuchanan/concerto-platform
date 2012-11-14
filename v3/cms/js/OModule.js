@@ -609,6 +609,11 @@ OModule.inheritance=function(obj)
                                             Methods.alert(dictionary["s370"], "alert", dictionary["s268"]);
                                             break;
                                         }
+                                        //transaction error
+                                        case -6:{
+                                            Methods.alert(dictionary["s616"]+data.message, "alert", dictionary["s268"]);  
+                                            break;
+                                        }
                                     }
                                 },"json");
                             });
