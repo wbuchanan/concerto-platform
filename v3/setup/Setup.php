@@ -1362,6 +1362,16 @@ class Setup {
                 Setting::set_setting("version", "3.8.7");
                 return json_encode(array("result" => 0, "param" => "3.8.7"));
             }
+        }
+
+        if (Ini::does_patch_apply("3.8.8", $previous_version)) {
+            if ($simulate) {
+                array_push($versions_to_update, "3.8.8");
+            } else {
+
+                Setting::set_setting("version", "3.8.8");
+                return json_encode(array("result" => 0, "param" => "3.8.8"));
+            }
             $recalculate_hash = true;
         }
 
