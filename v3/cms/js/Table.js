@@ -72,7 +72,7 @@ Table.uiSaveValidate=function(ignoreOnBefore,isNew){
         Methods.alert(dictionary["s415"],"alert");
         return false;
     }
-    Table.uiSaveValidated(ignoreOnBefore,isNew,this.saveSimulation);
+    Table.uiSaveValidated(ignoreOnBefore,isNew,(this.currentID!=0?this.saveSimulation:false));
 }
 
 Table.uiRemoveColumn=function(obj){
