@@ -94,7 +94,7 @@ class TestSection extends OTable {
         $loop = null;
         $loop_vals = null;
         if ($end_of_loop) {
-            $loop = TestSection::from_property(array("Test_id" => $this->Test_id, "counter" => $this->parent_counter), false);
+            $loop = $this->get_section_loop();
             $loop_vals = $loop->get_values();
             $next_counter = $loop->counter;
         }
@@ -243,10 +243,30 @@ class TestSection extends OTable {
                     break;
                 }
             case DS_TestSectionType::IF_STATEMENT: {
+                    $contents = TestSection::from_property(array("Test_id" => $this->Test_id, "parent_counter" => $this->counter));
+                    $is_empty = count($contents) == 0;
+
+                    $code = "";
                     $next_not_child = $this->get_next_not_child_TestSection();
                     $next_not_child_counter = $next_not_child->counter;
-                    if ($end_of_loop)
+                    if ($end_of_loop) {
                         $next_not_child_counter = $next_counter;
+                    } else {
+                        $is_end_of_loop = $this->is_end_of_loop(false);
+                        if ($is_end_of_loop) {
+                            $parent_loop = $this->get_section_loop();
+                            if ($parent_loop != null) {
+                                $next_not_child_counter = $parent_loop->counter;
+                            }
+                        }
+                    }
+
+                    if ($is_empty) {
+                        $code.=sprintf("
+                            return(%d)
+                            ", $next_not_child_counter);
+                        break;
+                    }
 
                     $additional_conds = "";
                     $i = 3;
@@ -255,7 +275,7 @@ class TestSection extends OTable {
                         $i+=4;
                     }
 
-                    $code = sprintf("
+                    $code .= sprintf("
                 if(%s %s %s %s) {
                     return(%d)
                     }
@@ -334,12 +354,31 @@ class TestSection extends OTable {
                     break;
                 }
             case DS_TestSectionType::LOOP: {
+                    $contents = TestSection::from_property(array("Test_id" => $this->Test_id, "parent_counter" => $this->counter));
+                    $is_empty = count($contents) == 0;
+
                     $next_not_child = $this->get_next_not_child_TestSection();
                     $next_not_child_counter = $next_not_child->counter;
-                    if ($end_of_loop)
+                    if ($end_of_loop) {
                         $next_not_child_counter = $next_counter;
-
+                    } else {
+                        $is_end_of_loop = $this->is_end_of_loop(false);
+                        if ($is_end_of_loop) {
+                            $parent_loop = $this->get_section_loop();
+                            if ($parent_loop != null) {
+                                $next_not_child_counter = $parent_loop->counter;
+                            }
+                        }
+                    }
                     $code = "";
+
+                    if ($is_empty) {
+                        $code.=sprintf("
+                            return(%d)
+                            ", $next_not_child_counter);
+                        break;
+                    }
+
                     if ($vals[0] == 1) {
                         $code = sprintf("
                 if(%s %s %s) {
@@ -363,7 +402,6 @@ class TestSection extends OTable {
                     }
                     else {
                     %s <<- FALSE
-                    print(" . $this->get_for_initialization_variable() . ")
                     return(%d)
                     }
                     ", $this->get_for_initialization_variable(), $this->get_for_initialization_variable(), $vals[1], $vals[1], $vals[5], $this->get_for_initialization_variable(), $vals[1], $vals[4], $vals[1], $vals[2], $vals[3], $next->counter, $this->get_for_initialization_variable(), $next_not_child_counter);
@@ -499,14 +537,52 @@ class TestSection extends OTable {
         return "CONCERTO_FOR_Test" . $this->Test_id . "Section" . $this->counter . "_INIT";
     }
 
-    public function is_end_of_loop() {
-        if ($this->parent_counter == 0)
+    public function get_section_loop() {
+        $parent_counter = $this->parent_counter;
+        if ($parent_counter == 0)
             return false;
-        $parent = TestSection::from_property(array("Test_id" => $this->Test_id, "counter" => $this->parent_counter, "TestSectionType_id" => DS_TestSectionType::LOOP), false);
-        if ($parent == null)
+
+        $is_in_loop = false;
+        $loop_counter = 0;
+        while ($parent_counter != 0) {
+            $parent = TestSection::from_property(array("Test_id" => $this->Test_id, "counter" => $parent_counter), false);
+            if ($parent == null)
+                return false;
+
+            if ($parent->TestSectionType_id == DS_TestSectionType::LOOP) {
+                $is_in_loop = true;
+                $loop_counter = $parent->counter;
+                break;
+            }
+
+            $parent_counter = $parent->parent_counter;
+        }
+        if (!$is_in_loop)
+            return null;
+        return TestSection::from_property(array("Test_id" => $this->Test_id, "counter" => $loop_counter), false);
+    }
+
+    public function is_end_of_loop($with_content = true) {
+        $loop = $this->get_section_loop();
+        if ($loop == null)
             return false;
-        $next = $this->get_next_not_child_TestSection();
-        if ($next->parent_counter != $this->parent_counter)
+
+        $last_id = 0;
+        $parent_counter = $loop->counter;
+        while ($parent_counter != 0) {
+            $children = TestSection::from_property(array("Test_id" => $this->Test_id, "parent_counter" => $parent_counter));
+            $parent_counter = 0;
+
+            foreach ($children as $child) {
+                if (!$with_content && $child->parent_counter != $this->counter || $with_content)
+                    if ($last_id < $child->id) {
+                        $last_id = $child->id;
+                        $parent_counter = $child->counter;
+                    }
+            }
+        }
+
+        if ($last_id == $this->id)
             return true;
         else
             return false;

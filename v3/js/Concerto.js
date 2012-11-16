@@ -174,7 +174,7 @@ function Concerto(container,hash,sid,tid,queryPath,callbackGet,callbackSend,debu
                         thisClass.hideLoader();
                     }
                 }
-                if(thisClass.data["STATUS"]==Concerto.statusTypes.completed && thisClass.loaderTransition==2  || thisClass.isFirstTemplate) thisClass.hideLoader();
+                if(thisClass.data["STATUS"]==Concerto.statusTypes.completed && (thisClass.loaderTransition==2 || thisClass.isFirstTemplate)) thisClass.hideLoader();
                 
                 if(thisClass.data["STATUS"]==Concerto.statusTypes.tampered && (thisClass.loaderTransition==1 || thisClass.loaderTransition==2  || thisClass.isFirstTemplate)) thisClass.printError(Concerto.statusTypes.tampered);
                 

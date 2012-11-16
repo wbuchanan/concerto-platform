@@ -33,18 +33,18 @@ if (!isset($ini)) {
         <meta http-equiv="Expires" content="-1"/>
         <title>Concerto</title>
 
-        <link rel="stylesheet" href="css/styles.css" />
-        <link rel="stylesheet" href="css/QTI.css" />
-        <link rel="stylesheet" href="cms/css/jQueryUI/cupertino/jquery-ui-1.9.1.custom.min.css" />
+        <link rel="stylesheet" href="css/styles.css?timestamp=<?= time() ?>" />
+        <link rel="stylesheet" href="css/QTI.css?timestamp=<?= time() ?>" />
+        <link rel="stylesheet" href="cms/css/jQueryUI/cupertino/jquery-ui-1.9.1.custom.min.css?timestamp=<?= time() ?>" />
 
-        <script type="text/javascript" src="cms/js/lib/jquery-1.8.2.min.js"></script>
-        <script type="text/javascript" src="cms/js/lib/jquery.json-2.3.min.js"></script>
-        <script type="text/javascript" src="cms/js/lib/jquery-ui-1.9.1.custom.min.js"></script>
+        <script type="text/javascript" src="cms/js/lib/jquery-1.8.2.min.js?timestamp=<?= time() ?>"></script>
+        <script type="text/javascript" src="cms/js/lib/jquery.json-2.3.min.js?timestamp=<?= time() ?>"></script>
+        <script type="text/javascript" src="cms/js/lib/jquery-ui-1.9.1.custom.min.js?timestamp=<?= time() ?>"></script>
 
-        <script type="text/javascript" src="js/lib/jquery.cookie.js"></script>
-        <script type="text/javascript" src="js/Compatibility.js"></script>
-        <script type="text/javascript" src="js/Concerto.js"></script>
-        <script type="text/javascript" src="js/QTI.js"></script>
+        <script type="text/javascript" src="js/lib/jquery.cookie.js?timestamp=<?= time() ?>"></script>
+        <script type="text/javascript" src="js/Compatibility.js?timestamp=<?= time() ?>"></script>
+        <script type="text/javascript" src="js/Concerto.js?timestamp=<?= time() ?>"></script>
+        <script type="text/javascript" src="js/QTI.js?timestamp=<?= time() ?>"></script>
         <script>
             $(function(){
                 var values = new Array();
