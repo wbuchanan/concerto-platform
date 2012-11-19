@@ -142,6 +142,10 @@ class TestInstance {
         $marker = "
             #SESSION CODE CHUNKED
             ";
+
+        if (TestServer::$debug)
+            TestServer::log_debug("TestInstance->send_chunked() --- lines no: " . count($lines) . ", i: " . $i);
+
         $this->is_chunked_ready = false;
         if (!$this->is_chunked) {
             $this->is_chunked = true;
@@ -150,6 +154,7 @@ class TestInstance {
             $this->code = $code . $marker;
         } else {
             $this->code.=$code . $marker;
+            $this->chunked_lines = $lines;
         }
         $this->chunked_index = $i;
 
@@ -197,7 +202,7 @@ class TestInstance {
         $marker = "
             #SESSION CODE CHUNKED
             ";
-        
+
         if (TestServer::$debug)
             TestServer::log_debug("TestInstance->send() --- Sending " . strlen($code) . " data to test instance");
         $this->last_action_time = time();
@@ -208,10 +213,11 @@ class TestInstance {
         foreach ($lines as $line) {
             $i++;
             $line = trim($line);
-            if ($line == "")
-                continue;
+            if ($line == "") {
+                //continue;
+            }
             if (strlen($code . $line . "
-                ".$marker) > 65536) {
+                " . $marker) > 65535) {
                 $this->send_chunked($code, $lines, $i);
                 return;
             }
