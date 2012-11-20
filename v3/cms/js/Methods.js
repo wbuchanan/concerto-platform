@@ -379,7 +379,7 @@ Methods.iniCodeMirror=function(id,mode,readOnly)
     var myCodeMirror = CodeMirror.fromTextArea(obj,{
         mode:mode,
         fixedGutter:false,
-        theme:"solarized light",
+        theme:"neat",
         lineNumbers:true,
         matchBrackets:true,
         lineWrapping:true, 
