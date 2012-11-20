@@ -23,6 +23,7 @@ class TestServer {
 
     public static $debug = true;
     public static $debug_stream_data = false;
+    public static $sleep_microseconds = 10000;
     private $last_action_time;
     private $main_sock;
     private $clients;
@@ -321,6 +322,8 @@ class TestServer {
                 }
             }
             //interpret data end
+            
+            usleep(self::$sleep_microseconds);
 
             $client_sock = @socket_accept($this->main_sock);
             if (!$client_sock) {
