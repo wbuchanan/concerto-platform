@@ -47,7 +47,7 @@ http://cambridgepsychometrics.com/~vaishali/v3.7/Aug08Adaptive/feedback.JPG
 
 The next step is to create an item bank for the test. Usually, software like R and LTM package are used to generate item parameters. Here, let’s use a mock-up item bank with only one item parameter (difficulty) which can be generated using the Rasch model.
 
-Download and unzip this CSV file [http://cambridgepsychometrics.com/wiki/_media/public/ibank.zip] and explore it using Excel or notepad.
+Download and unzip this CSV file [http://tinyurl.com/cefwg2z] and explore it using Excel or notepad.
 
 Go to the tables tab and click the ‘+ add new object’ icon to add a new table. Assign a meaningful name (E.g. adaptive_test_table) and save it. Click the import table from CSV file icon to import the table that you have downloaded. Concerto will automatically read the data into table format. All you need to do is alter the column names and the data types (see below).
 
