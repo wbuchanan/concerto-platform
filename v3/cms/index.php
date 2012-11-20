@@ -41,7 +41,7 @@ if (!isset($ini)) {
         <link rel="stylesheet" href="js/lib/kendo-ui/styles/kendo.common.min.css?timestamp=<?= time() ?>" />
         <link rel="stylesheet" href="js/lib/kendo-ui/styles/kendo.default.min.css?timestamp=<?= time() ?>" />
         <link rel="stylesheet" href="lib/CodeMirror/lib/codemirror.css?timestamp=<?= time() ?>" />
-        <link rel="stylesheet" href="lib/CodeMirror/theme/blackboard.css?timestamp=<?= time() ?>" />
+        <link rel="stylesheet" href="lib/CodeMirror/theme/solarized.css?timestamp=<?= time() ?>" />
 
         <script type="text/javascript" src="js/lib/jquery-1.8.2.min.js?timestamp=<?= time() ?>"></script>
         <script type="text/javascript" src="js/lib/jquery-ui-1.9.1.custom.min.js?timestamp=<?= time() ?>"></script>
