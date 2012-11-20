@@ -1965,14 +1965,14 @@ Note: You can add new languages by inserting "<new_language>string translated in
             <br>Crie e manuseie contas de usuário padrão e admintrativas, grupos de usuários e permissões de acesso</br>
         </string>
         <string id="198">
-            <en>admins, admin groups and admin types</en>
-            <de>Adminstratoren, Administratorengruppen und Administratorentypen </de>
-            <pl>administratorzy, grupy administratorów, oraz typy administratorów</pl>
-            <cn>管理员、管理群以及管理员类型</cn>
-            <fr>administrateurs, groupes d'administrateurs et droits d'administrateurs</fr>
-            <bg>администратори, групи администратори и видове администратори</bg>
-            <nl>beheerder, beheerdersgroepen en beheerderstypes</nl>
-            <br>admins,grupo de admins, e tipos de admins</br>
+            <en>admins</en>
+            <de></de>
+            <pl>administratorzy</pl>
+            <cn></cn>
+            <fr></fr>
+            <bg></bg>
+            <nl></nl>
+            <br></br>
         </string>
         <string id="199">
             <en>available objects</en>
