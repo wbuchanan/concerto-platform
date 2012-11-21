@@ -233,11 +233,7 @@ class TestServer {
 
         do {
             gc_collect_cycles();
-            if (time() - $this->last_action_time > Ini::$r_server_timeout) {
-                if (self::$debug)
-                    self::log_debug("TestServer->start() --- Reached max idle time");
-                break;
-            }
+            
             foreach ($this->clients as $k => $v) {
                 if ($this->instances[$k]->is_timedout() && !$this->instances[$k]->is_serializing) {
                     if (self::$debug) {
@@ -245,6 +241,12 @@ class TestServer {
                     }
                     $this->serialize_instance($k);
                 }
+            }
+            
+            if (time() - $this->last_action_time > Ini::$r_server_timeout) {
+                if (self::$debug)
+                    self::log_debug("TestServer->start() --- Reached max idle time");
+                break;
             }
 
             //interpret data start
@@ -320,6 +322,8 @@ class TestServer {
                             $this->serialize_instance($k);
                     }
                 }
+                
+                
             }
             //interpret data end
             
@@ -374,7 +378,7 @@ class TestServer {
                 }
                 if (strpos($input, "serialize:") === 0) {
                     if (self::$debug)
-                        self::log_debug("TestServer->start() --- Close command recieved");
+                        self::log_debug("TestServer->start() --- Serialize command recieved");
                     $vars = explode(":", $input);
                     $this->serialize_instance("sid" . $vars[1]);
                     continue;

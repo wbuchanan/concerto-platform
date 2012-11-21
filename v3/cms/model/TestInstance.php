@@ -25,6 +25,7 @@ class TestInstance {
     private $pipes;
     public $code_execution_halted = false;
     private $last_action_time;
+    private $last_execution_time;
     public $session_id = 0;
     public $is_working = false;
     public $is_data_ready = false;
@@ -47,6 +48,16 @@ class TestInstance {
         if (time() - $this->last_action_time > Ini::$r_instances_timeout) {
             if (TestServer::$debug)
                 TestServer::log_debug("TestInstance->is_timedout() --- Test instance timedout");
+            return true;
+        }
+        else
+            return false;
+    }
+
+    public function is_execution_timedout() {
+        if (time() - $this->last_execution_time > Ini::$r_max_execution_time) {
+            if (TestServer::$debug)
+                TestServer::log_debug("TestInstance->is_execution_timedout() --- Test instance execution timedout");
             return true;
         }
         else
@@ -120,7 +131,11 @@ class TestInstance {
             fclose($this->pipes[0]);
             fclose($this->pipes[1]);
             fclose($this->pipes[2]);
-            $ret = proc_close($this->r);
+
+            if ($this->is_execution_timedout())
+                $ret = proc_terminate($this->r);
+            else
+                $ret = proc_close($this->r);
             if (TestServer::$debug)
                 TestServer::log_debug("TestInstance->stop() --- Test instance closed with: " . $ret);
         }
@@ -145,6 +160,8 @@ class TestInstance {
 
         if (TestServer::$debug)
             TestServer::log_debug("TestInstance->send_chunked() --- lines no: " . count($lines) . ", i: " . $i);
+
+        $this->last_execution_time = time();
 
         $this->is_chunked_ready = false;
         if (!$this->is_chunked) {
@@ -206,6 +223,7 @@ class TestInstance {
         if (TestServer::$debug)
             TestServer::log_debug("TestInstance->send() --- Sending " . strlen($code) . " data to test instance");
         $this->last_action_time = time();
+        $this->last_execution_time = time();
 
         $lines = explode("\n", $code);
         $code = "";
@@ -280,6 +298,13 @@ class TestInstance {
         $this->response.=$result;
         if ($this->is_data_ready) {
             return $this->response;
+        } else {
+            if ($this->is_execution_timedout()) {
+                $this->code_execution_halted = true;
+                $this->is_data_ready = true;
+                return $this->response . "
+                    TIMEOUT";
+            }
         }
 
         return null;

@@ -35,7 +35,6 @@ class TestSession extends OTable {
     public $debug = 0;
     public $release = 0;
     public $serialized = 0;
-    
     public $effect_show = "none";
     public $effect_hide = "none";
     public $effect_show_options = "";
@@ -88,11 +87,11 @@ class TestSession extends OTable {
         $session->Test_id = $test_id;
         $session->r_type = $r_type;
         $session->debug = ($debug ? 1 : 0);
-        
+
         $test = Test::from_mysql_id($test_id);
-        if($test!=null){
+        if ($test != null) {
             $loader = $test->get_loader_Template();
-            if($loader!=null){
+            if ($loader != null) {
                 $session->loader_Template_id = $loader->id;
                 $session->loader_HTML = $loader->HTML;
                 $session->loader_head = $loader->head;
@@ -102,7 +101,7 @@ class TestSession extends OTable {
                 $session->loader_effect_show_options = $loader->effect_show_options;
             }
         }
-        
+
         $lid = $session->mysql_save();
 
         $sql = sprintf("UPDATE `%s` SET `session_count`=`session_count`+1 WHERE `%s`.`id`=%d", Test::get_mysql_table(), Test::get_mysql_table(), $test_id);
@@ -200,9 +199,8 @@ class TestSession extends OTable {
             }
         }
 
-        $section = $test->get_TestSection($counter);
-
-        $code.=sprintf("
+        if ($this->r_type == self::R_TYPE_RSCRIPT) {
+            $code.=sprintf("
             CONCERTO_TEST_FLOW<-%d
             evalWithTimeout({
             while(CONCERTO_TEST_FLOW > 0){
@@ -212,6 +210,18 @@ class TestSession extends OTable {
             },timeout=%s,onTimeout='error')
             if(CONCERTO_TEST_FLOW==-2) update.session.release(1)
             ", $counter, Ini::$r_max_execution_time);
+        } else {
+            $code.=sprintf("
+            CONCERTO_TEST_FLOW<-%d
+            
+            while(CONCERTO_TEST_FLOW > 0){
+                CONCERTO_TEST_FLOW <- do.call(paste('CONCERTO_Test',CONCERTO_TEST_ID,'Section',CONCERTO_TEST_FLOW,sep=''),list())
+            }
+            CONCERTO_FLOW_LOOP_FINISHED <- TRUE
+            
+            if(CONCERTO_TEST_FLOW==-2) update.session.release(1)
+            ", $counter);
+        }
 
         return $this->RCall($code, $ini_code_required);
     }
@@ -293,19 +303,19 @@ class TestSession extends OTable {
         $time_limit = 0;
         $Test_id = 0;
         $finished = 0;
-        
+
         $loader_HTML = "";
         $loader_head = "";
         $loader_effect_show = "none";
         $loader_effect_hide = "none";
         $loader_effect_show_options = "";
         $loader_effect_hide_options = "";
-        
+
         $effect_show = "none";
         $effect_hide = "none";
         $effect_show_options = "";
         $effect_hide_options = "";
-        
+
         if (!$debug_syntax) {
             $thisSession = TestSession::from_mysql_id($this->id);
             if ($thisSession != null) {
@@ -317,19 +327,19 @@ class TestSession extends OTable {
                 $hash = $thisSession->hash;
                 $time_limit = $thisSession->time_limit;
                 $Test_id = $thisSession->Test_id;
-                
+
                 $loader_HTML = $thisSession->loader_HTML;
                 $loader_head = $thisSession->loader_head;
                 $loader_effect_hide = $thisSession->loader_effect_hide;
                 $loader_effect_hide_options = $thisSession->loader_effect_hide_options;
                 $loader_effect_show = $thisSession->loader_effect_show;
                 $loader_effect_show_options = $thisSession->loader_effect_show_options;
-                
+
                 $effect_hide = $thisSession->effect_hide;
                 $effect_hide_options = $thisSession->effect_hide_options;
                 $effect_show = $thisSession->effect_show;
                 $effect_show_options = $thisSession->effect_show_options;
-                
+
                 if ($return != 0) {
                     $status = TestSession::TEST_SESSION_STATUS_ERROR;
                 }
@@ -401,14 +411,12 @@ class TestSession extends OTable {
                     "STATUS" => $status,
                     "TEMPLATE_ID" => $Template_id,
                     "FINISHED" => $finished,
-                    
                     "LOADER_HTML" => $loader_HTML,
                     "LOADER_HEAD" => $loader_head,
                     "LOADER_EFFECT_SHOW" => $loader_effect_show,
                     "LOADER_EFFECT_SHOW_OPTIONS" => $loader_effect_show_options,
                     "LOADER_EFFECT_HIDE" => $loader_effect_hide,
                     "LOADER_EFFECT_HIDE_OPTIONS" => $loader_effect_hide_options,
-                    
                     "EFFECT_SHOW" => $effect_show,
                     "EFFECT_HIDE" => $effect_hide,
                     "EFFECT_SHOW_OPTIONS" => $effect_show_options,

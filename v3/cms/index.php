@@ -50,6 +50,7 @@ if (!isset($ini)) {
         <script type="text/javascript" src="js/lib/loadmask/jquery.loadmask.min.js?timestamp=<?= time() ?>"></script>
         <script type="text/javascript" src="js/lib/jsSHA/src/sha512.js?timestamp=<?= time() ?>"></script>
 
+        <script src="../js/lib/jquery.cookie.js?timestamp=<?= time() ?>"></script>
         <script src="../js/Compatibility.js?timestamp=<?= time() ?>"></script>
         <script src="../js/Concerto.js?timestamp=<?= time() ?>"></script>
         <script src="../js/QTI.js?timestamp=<?= time() ?>"></script>

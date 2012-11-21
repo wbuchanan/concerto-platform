@@ -123,8 +123,7 @@ evalWithTimeout <- function (..., envir = parent.frame(), timeout, cpu = timeout
             }
         }
         else {
-            print(ex)
-            stop()
+            stop(msg)
         }
     })
     res
