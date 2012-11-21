@@ -57,7 +57,7 @@ QTIAssessmentItem.getAddSaveObject=function()
 
 QTIAssessmentItem.getFullSaveObject = function(){
     var obj = this.getAddSaveObject();
-    obj["description"]=Methods.getCKEditorData("#form"+this.className+"TextareaDescription");
+    obj["description"]=$("#form"+this.className+"TextareaDescription").val();
     if($("#form"+this.className+"SelectOwner").length==1) obj["Owner_id"]=$("#form"+this.className+"SelectOwner").val();
     return obj;
 }

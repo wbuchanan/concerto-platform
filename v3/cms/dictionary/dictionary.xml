@@ -1069,7 +1069,7 @@ Note: You can add new languages by inserting "<new_language>string translated in
             <nl>eigenaar van deze aanpasbare testsectie</nl>
             <br>proprietário desta seção personalizada</br>
         </string>
-        <string id="104">
+        <string id="104" js="1">
             <en>Edit description. Current description:</en>
             <de>Bearbeite Beschreibung. Aktuelle Beschreibung:</de>
             <pl>Edytuj opis. Obecny opis:</pl>

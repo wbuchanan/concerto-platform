@@ -177,6 +177,6 @@ CustomSection.getFullSaveObject=function()
     obj["parameters"]=CustomSection.getSerializedParameterVariables();
     obj["returns"]=CustomSection.getSerializedReturnVariables();
     obj["code"]=$("#form"+this.className+"TextareaCode").val();
-    obj["description"]=Methods.getCKEditorData("#form"+this.className+"TextareaDescription");
+    obj["description"]=$("#form"+this.className+"TextareaDescription").val();
     return obj;
 }

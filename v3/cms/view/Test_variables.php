@@ -67,12 +67,7 @@ else {
         Methods.iniTooltips();
         Test.uiRefreshComboBoxes();
     
-        $(".tooltipTestLogic").tooltip({
-            content:function(){
-                return "<?= Language::string(104) ?><hr/>"+$(this).next().val();
-            },
-            position:{ my: "left top", at: "left bottom", offset: "15 0" }
-        });
+        Methods.iniDescriptionTooltips();
     });
 </script>
 
@@ -109,7 +104,7 @@ else {
                                 ?>
                                 <tr>
                                     <td>
-                                        <span class="spanIcon tooltipTestLogic ui-icon ui-icon-document-b" onclick="Test.uiEditDescription($(this).next())" title="<?= Language::string(107) ?>"></span>
+                                        <span class="spanIcon tooltipDescription ui-icon ui-icon-document-b" onclick="Test.uiEditDescription($(this).next())" title="<?= Language::string(107) ?>"></span>
                                         <textarea class="notVisible"><?= $param->description ?></textarea>
                                     </td>
                                     <td class="fullWidth">
@@ -169,7 +164,7 @@ else {
                                 ?>
                                 <tr>
                                     <td>
-                                        <span class="spanIcon tooltipTestLogic ui-icon ui-icon-document-b" onclick="Test.uiEditDescription($(this).next())" title="<?= Language::string(107) ?>"></span>
+                                        <span class="spanIcon tooltipDescription ui-icon ui-icon-document-b" onclick="Test.uiEditDescription($(this).next())" title="<?= Language::string(107) ?>"></span>
                                         <textarea class="notVisible"><?= $ret->description ?></textarea>
                                     </td>
                                     <td class="fullWidth">

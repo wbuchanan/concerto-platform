@@ -68,7 +68,6 @@ if ($oid != 0) {
     ?>
     <script>
         $(function(){
-            Methods.iniIconButton("#btnExpand<?= $class_name ?>Description","arrowthick-1-s");
             Methods.iniIconButton(".btnGoToTop","arrow-1-n");
             Methods.iniIconButton(".btnCancel", "cancel");
             Methods.iniIconButton(".btnSave", "disk");
@@ -86,14 +85,28 @@ if ($oid != 0) {
     }
     ?>
             Methods.iniTooltips();
-    <?php if ($oid != -1) { ?>
-                Methods.iniCKEditor("#form<?= $class_name ?>TextareaDescription");
-    <?php } ?>
+            Methods.iniDescriptionTooltips();
         });
     </script>
 
     <fieldset class="padding ui-widget-content ui-corner-all margin">
-        <legend class=""><b><?= $caption ?></b></legend>
+        <legend class="">
+            <table>
+                <tr>
+                    <td><b><?= $caption ?></b></td>
+                    <?php
+                    if ($oid != -1) {
+                        ?>
+                        <td>
+                            <span class="spanIcon tooltipDescription ui-icon ui-icon-document-b" onclick="<?= $class_name ?>.uiEditDescription($(this).next())" title="<?= Language::string(107) ?>"></span>
+                            <textarea id="form<?= $class_name ?>TextareaDescription" name="form<?= $class_name ?>TextareaDescription" class="notVisible"><?= $obj->description ?></textarea>
+                        </td>
+                        <?php
+                    }
+                    ?>
+                </tr>
+            </table>
+        </legend>
         <table>
             <tr>
                 <td class="noWrap horizontalPadding tdFormLabel">* <?= Language::string(70) ?>:</td>
@@ -104,18 +117,6 @@ if ($oid != 0) {
                     </div>
                 </td>
             </tr>
-            <?php if ($oid != -1) { ?>
-                <tr>
-                    <td class="noWrap horizontalPadding tdFormLabel"><?= Language::string(97) ?>:</td>
-                    <td><span class="tooltip spanIcon ui-icon ui-icon-help" title="<?= Language::string(98) ?>"></span></td>
-                    <td class="fullWidth">
-                        <div class="horizontalMargin" align="center"><button id="btnExpand<?= $class_name ?>Description" class="btnExpand fullWidth" onclick="Methods.toggleExpand('#form<?= $class_name ?>DivDescription', this)"><?= Language::string(97) ?></button></div>
-                        <div class="horizontalMargin" align="center" id="form<?= $class_name ?>DivDescription" style="display:none;">
-                            <textarea id="form<?= $class_name ?>TextareaDescription" name="form<?= $class_name ?>TextareaDescription" class="fullWidth ui-widget-content ui-corner-all"><?= htmlspecialchars(stripslashes($obj->description)) ?></textarea>
-                        </div>
-                    </td>
-                </tr>
-            <?php } ?>
             <tr>
                 <td class="noWrap horizontalPadding tdFormLabel"><?= Language::string(72) ?>:</td>
                 <td><span class="tooltip spanIcon ui-icon ui-icon-help" title="<?= Language::string(120) ?>"></span></td>
@@ -294,7 +295,7 @@ if ($oid != 0) {
                 </table>
             </fieldset>
         </div>
-    
+
         <div id="div<?= $class_name ?>IndexDialog" class="notVisible">
             <fieldset class="padding ui-widget-content ui-corner-all margin">
                 <legend>
@@ -312,10 +313,10 @@ if ($oid != 0) {
                         <td class="fullWidth">
                             <div class="horizontalMargin">
                                 <select id="form<?= $class_name ?>SelectIndexType" class="fullWidth ui-widget-content ui-corner-all">
-                                        <option value="primary key">primary key</option>
-                                        <option value="unique">unique</option>
-                                        <option value="index">index</option>
-                                        
+                                    <option value="primary key">primary key</option>
+                                    <option value="unique">unique</option>
+                                    <option value="index">index</option>
+
                                 </select>
                             </div>
                         </td>
@@ -324,8 +325,8 @@ if ($oid != 0) {
                         <td class="noWrap horizontalPadding tdFormLabel"><?= Language::string(602) ?>:</td>
                         <td><span class="tooltip spanIcon ui-icon ui-icon-help" title="<?= Language::string(609) ?>"></span></td>
                         <td class="fullWidth">
-                            <div class="horizontalMargin" id="div<?=$class_name?>IndexableColumns">
-                                
+                            <div class="horizontalMargin" id="div<?= $class_name ?>IndexableColumns">
+
                             </div>
                         </td>
                     </tr>

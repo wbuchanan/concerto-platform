@@ -87,6 +87,7 @@ if ($oid != 0) {
     }
     ?>
             Methods.iniTooltips();
+            Methods.iniDescriptionTooltips();
         });
     </script>
 
@@ -99,7 +100,7 @@ if ($oid != 0) {
                     if ($oid != -1) {
                         ?>
                         <td>
-                            <span class="spanIcon tooltipTestLogic ui-icon ui-icon-document-b" onclick="Test.uiEditDescription($(this).next())" title="<?= Language::string(107) ?>"></span>
+                            <span class="spanIcon tooltipDescription ui-icon ui-icon-document-b" onclick="<?= $class_name ?>.uiEditDescription($(this).next())" title="<?= Language::string(107) ?>"></span>
                             <textarea id="form<?= $class_name ?>TextareaDescription" name="form<?= $class_name ?>TextareaDescription" class="notVisible"><?= $obj->description ?></textarea>
                         </td>
                         <?php

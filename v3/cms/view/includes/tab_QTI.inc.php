@@ -48,3 +48,18 @@ include Ini::$path_internal."cms/view/includes/tab.inc.php";
         <input id="file<?= $class_name ?>Import" type="file" name="files[]" class="fullWidth ui-widget-content ui-corner-all" />
     </fieldset>
 </div>
+
+<div id="div<?= $class_name ?>DialogDescription" class="notVisible">
+    <fieldset class="padding ui-widget-content ui-corner-all margin">
+        <legend>
+            <table>
+                <tr>
+                    <td><span class="tooltip spanIcon ui-icon ui-icon-help" title="<?= Language::string(254) ?>"></span></td>
+                    <td class=""><b><?= Language::string(97) ?>:</b></td>
+                </tr>
+            </table>
+        </legend>
+        <textarea id="dialog<?= $class_name ?>TextareaDescription" name="dialog<?= $class_name ?>TextareaDescription" class="fullWidth ui-widget-content ui-corner-all">
+        </textarea>
+    </fieldset>
+</div>

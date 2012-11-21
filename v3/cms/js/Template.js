@@ -57,7 +57,7 @@ Template.getAddSaveObject=function()
 
 Template.getFullSaveObject = function(){
     var obj = this.getAddSaveObject();
-    obj["description"]=Methods.getCKEditorData("#form"+this.className+"TextareaDescription");
+    obj["description"]=$("#form"+this.className+"TextareaDescription").val();
     obj["effect_show"]=$("#form"+this.className+"SelectEffectShow").val();
     obj["effect_hide"]=$("#form"+this.className+"SelectEffectHide").val();
     obj["effect_show_options"]=this.getEffectOptions(true);

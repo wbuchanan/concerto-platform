@@ -457,4 +457,17 @@ Methods.checkLatestVersion=function(callback,proxy)
             callback.call(this,isNewerVersion?1:0,Methods.latestVersion);
         }
     });  
+    
+    Methods.iniDescriptionTooltips=function(){
+        $(".tooltipDescription").tooltip({
+            content:function(){
+                return dictionary["s104"]+"<hr/>"+$(this).next().val();
+            },
+            position:{
+                my: "left top", 
+                at: "left bottom", 
+                offset: "15 0"
+            }
+        });
+    }
 };

@@ -59,7 +59,7 @@ Table.getFullSaveObject=function(){
     obj["cols"] = Table.getSerializedColumns();
     obj["rows"] = Table.getRows();
     obj["indexes"] = Table.getSerializedIndexes();
-    obj["description"]=Methods.getCKEditorData("#form"+this.className+"TextareaDescription");
+    obj["description"]=$("#form"+this.className+"TextareaDescription").val();
     if($("#form"+this.className+"SelectOwner").length==1) obj["Owner_id"]=$("#form"+this.className+"SelectOwner").val();
     
     return obj;
