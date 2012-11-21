@@ -99,7 +99,7 @@ if ($oid != 0) {
                     if ($oid != -1) {
                         ?>
                         <td>
-                            <span class="spanIcon tooltipDescription ui-icon ui-icon-document-b" onclick="<?=$class_name?>.uiEditDescription($(this).next())" title="<?= Language::string(107) ?>"></span>
+                            <span class="spanIcon tooltipDescription ui-icon ui-icon-document-b" onclick="<?= $class_name ?>.uiEditDescription($(this).next())" title="<?= Language::string(107) ?>"></span>
                             <textarea id="form<?= $class_name ?>TextareaDescription" name="form<?= $class_name ?>TextareaDescription" class="notVisible"><?= $obj->description ?></textarea>
                         </td>
                         <?php
@@ -108,54 +108,67 @@ if ($oid != 0) {
                 </tr>
             </table>
         </legend>
-        <table>
-            <tr>
-                <td class="noWrap horizontalPadding tdFormLabel">* <?= Language::string(70) ?>:</td>
-                <td><span class="tooltip spanIcon ui-icon ui-icon-help" title="<?= Language::string(464) ?>"></span></td>
-                <td class="fullWidth">
-                    <div class="horizontalMargin">
-                        <input type="text" id="form<?= $class_name ?>InputName" value="<?= $obj->name ?>" class="fullWidth ui-widget-content ui-corner-all" />
-                    </div>
-                </td>
-            </tr>
-            <tr>
-                <td class="noWrap horizontalPadding tdFormLabel"><?= Language::string(72) ?>:</td>
-                <td><span class="tooltip spanIcon ui-icon ui-icon-help" title="<?= Language::string(467) ?>"></span></td>
-                <td>
-                    <div class="horizontalMargin">
-                        <select id="form<?= $class_name ?>SelectSharing" class="fullWidth ui-widget-content ui-corner-all">
-                            <?php foreach (DS_Sharing::get_all() as $share) {
-                                ?>
-                                <option value="<?= $share->id ?>" <?= ($share->id == $obj->Sharing_id ? "selected" : "") ?>><?= $share->get_name() ?></option>
-                            <?php } ?>
-                        </select>
-                    </div>
-                </td>
-            </tr>
 
-            <?php if ($oid > 0 && $logged_user->is_ownerhsip_changeable($obj)) {
-                ?>
+        <div class="divFormElement">
+            <table class="fullWidth">
                 <tr>
-                    <td class="noWrap horizontalPadding tdFormLabel"><?= Language::string(71) ?>:</td>
-                    <td><span class="tooltip spanIcon ui-icon ui-icon-help" title="<?= Language::string(468) ?>"></span></td>
+                    <td class="noWrap tdFormLabel">* <?= Language::string(70) ?>:</td>
+                    <td class="tdFormIcon"><span class="tooltip spanIcon ui-icon ui-icon-help" title="<?= Language::string(464) ?>"></span></td>
                     <td>
-                        <div class="horizontalMargin">
-                            <select id="form<?= $class_name ?>SelectOwner" class="fullWidth ui-widget-content ui-corner-all">
-                                <option value="0" <?= (!$obj->has_Owner() ? "selected" : "") ?>>&lt;<?= Language::string(73) ?>&gt;</option>
-                                <?php
-                                $sql = $logged_user->mysql_list_rights_filter("User", "`User`.`lastname` ASC");
-                                $z = mysql_query($sql);
-                                while ($r = mysql_fetch_array($z)) {
-                                    $owner = User::from_mysql_id($r[0]);
+                        <div class="divFormControl">
+                            <input type="text" id="form<?= $class_name ?>InputName" value="<?= $obj->name ?>" class="fullWidth ui-widget-content ui-corner-all" />
+                        </div>
+                    </td>
+                </tr>
+            </table>
+        </div>
+
+        <div class="divFormElement">
+            <table class="fullWidth">
+                <tr>
+                    <td class="noWrap tdFormLabel"><?= Language::string(72) ?>:</td>
+                    <td class="tdFormIcon"><span class="tooltip spanIcon ui-icon ui-icon-help" title="<?= Language::string(467) ?>"></span></td>
+                    <td>
+                        <div class="divFormControl">
+                            <select id="form<?= $class_name ?>SelectSharing" class="fullWidth ui-widget-content ui-corner-all">
+                                <?php foreach (DS_Sharing::get_all() as $share) {
                                     ?>
-                                    <option value="<?= $owner->id ?>" <?= ($obj->Owner_id == $owner->id ? "selected" : "") ?>><?= $owner->get_full_name() ?></option>
+                                    <option value="<?= $share->id ?>" <?= ($share->id == $obj->Sharing_id ? "selected" : "") ?>><?= $share->get_name() ?></option>
                                 <?php } ?>
                             </select>
                         </div>
                     </td>
                 </tr>
-            <?php } ?>
-        </table>
+            </table>
+        </div>
+
+        <?php if ($oid > 0 && $logged_user->is_ownerhsip_changeable($obj)) {
+            ?>
+            <div class="divFormElement">
+                <table class="fullWidth">
+                    <tr>
+                        <td class="noWrap tdFormLabel"><?= Language::string(71) ?>:</td>
+                        <td class="tdFormIcon"><span class="tooltip spanIcon ui-icon ui-icon-help" title="<?= Language::string(468) ?>"></span></td>
+                        <td>
+                            <div class="divFormControl">
+                                <select id="form<?= $class_name ?>SelectOwner" class="fullWidth ui-widget-content ui-corner-all">
+                                    <option value="0" <?= (!$obj->has_Owner() ? "selected" : "") ?>>&lt;<?= Language::string(73) ?>&gt;</option>
+                                    <?php
+                                    $sql = $logged_user->mysql_list_rights_filter("User", "`User`.`lastname` ASC");
+                                    $z = mysql_query($sql);
+                                    while ($r = mysql_fetch_array($z)) {
+                                        $owner = User::from_mysql_id($r[0]);
+                                        ?>
+                                        <option value="<?= $owner->id ?>" <?= ($obj->Owner_id == $owner->id ? "selected" : "") ?>><?= $owner->get_full_name() ?></option>
+                                    <?php } ?>
+                                </select>
+                            </div>
+                        </td>
+                    </tr>
+                </table>
+            </div>
+        <?php } ?>
+        <div style="clear: left;" />
     </fieldset>
 
     <?php
@@ -198,7 +211,7 @@ if ($oid != 0) {
         </fieldset>
         <?php
     }
-    
+
     if ($oid != -1) {
         ?>
         <div class="divFormFloatingBar" align="right">

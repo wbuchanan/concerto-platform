@@ -95,10 +95,6 @@ body{
 .textareaCode {
 }
 
-.spanIcon{
-    cursor:pointer;
-}
-
 .divSection{
 }
 
@@ -170,10 +166,6 @@ ul {
     margin-left: 25px;
 }
 
-.tdFormLabel {
-    font-style: italic;
-}
-
 .divCodeMirrorContainer {
     max-width: 815px;
 }
@@ -192,4 +184,29 @@ ul {
 
 .iconAddSection {
     margin-top:15px;
+}
+
+.divFormElement {
+    float:left;
+    width:33%;
+    height:22px;
+    margin-bottom:5px;
+}
+
+.tdFormLabel {
+    font-style: italic;
+    width:80px;
+    margin-left:5px;
+}
+
+.spanIcon{
+    cursor:pointer;
+}
+
+.tdFormIcon {
+    width:16px;
+}
+
+.divFormControl {
+    margin-right:5px;
 }

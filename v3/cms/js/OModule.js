@@ -376,7 +376,7 @@ OModule.inheritance=function(obj)
                 modal:true,
                 resizable:false,
                 title:dictionary["s7"],
-                width:500,
+                width:925,
                 open:function(){
                     $('.ui-widget-overlay').css('position', 'fixed');
                     Methods.stopModalLoading();

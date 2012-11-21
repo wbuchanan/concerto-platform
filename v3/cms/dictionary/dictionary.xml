@@ -760,14 +760,14 @@ Note: You can add new languages by inserting "<new_language>string translated in
             <br>proprietário</br>
         </string>
         <string id="72">
-            <en>access rights</en>
-            <de>Zugriffsrechte</de>
-            <pl>prawa dostępu</pl>
-            <cn>访问权限</cn>
-            <fr>droits d'accès</fr>
-            <bg>права за достъп</bg>
-            <nl>toegangsrechten</nl>
-            <br>direitos de acesso</br>
+            <en>access</en>
+            <de></de>
+            <pl>dostęp</pl>
+            <cn></cn>
+            <fr></fr>
+            <bg></bg>
+            <nl></nl>
+            <br></br>
         </string>
         <string id="73" js="1">
             <en>none</en>
@@ -1797,14 +1797,14 @@ Note: You can add new languages by inserting "<new_language>string translated in
             <br>Por favor, adicione uma senha</br>
         </string>
         <string id="182">
-            <en>password confirmation</en>
-            <de>Passwortwiederhohlung</de>
-            <pl>potwierdzenie hasła</pl>
-            <cn>确认密码</cn>
-            <fr>confirmation du mot de passe</fr>
-            <bg>потвърждение на паролата</bg>
-            <nl>wachtwoord bevestiging</nl>
-            <br>Confirmação de senha</br>
+            <en>pass. conf.</en>
+            <de></de>
+            <pl>potw. hasła</pl>
+            <cn></cn>
+            <fr></fr>
+            <bg></bg>
+            <nl></nl>
+            <br></br>
         </string>
         <string id="183">
             <en>Please retype the password as above</en>
@@ -3974,14 +3974,14 @@ Note: You can add new languages by inserting "<new_language>string translated in
             <br>outra ( por favor especifique abaixo )</br>
         </string>
         <string id="419">
-            <en>institution type</en>
+            <en>inst. type</en>
             <de></de>
-            <pl>typ instytucji</pl>
+            <pl>typ inst.</pl>
             <cn></cn>
             <fr></fr>
             <bg></bg>
-            <nl>type instelling</nl>
-            <br>instituição</br>
+            <nl></nl>
+            <br></br>
         </string>
         <string id="420">
             <en>Please indicate the nature of your work</en>
@@ -3994,14 +3994,14 @@ Note: You can add new languages by inserting "<new_language>string translated in
             <br>Por favor indique a natureza de seu trabalho</br>
         </string>
         <string id="421">
-            <en>institution name</en>
+            <en>inst. name</en>
             <de></de>
-            <pl>nazwa instytucji</pl>
+            <pl>nazwa inst.</pl>
             <cn></cn>
             <fr></fr>
             <bg></bg>
-            <nl>naam instelling</nl>
-            <br>nome da instituição</br>
+            <nl></nl>
+            <br></br>
         </string>
         <string id="422">
             <en>Please provide the name of your institution</en>

@@ -88,139 +88,190 @@ if ($oid != 0) {
 
     <fieldset class="padding ui-widget-content ui-corner-all margin">
         <legend class=""><b><?= $caption ?></b></legend>
-        <table>
-            <tr>
-                <td class="noWrap horizontalPadding tdFormLabel">* <?= Language::string(173) ?>:</td>
-                <td><span class="tooltip spanIcon ui-icon ui-icon-help" title="<?= Language::string(178) ?>"></span></td>
-                <td class="fullWidth">
-                    <div class="horizontalMargin">
-                        <input type="text" id="form<?= $class_name ?>InputLogin" value="<?= $obj->login ?>" class="fullWidth ui-widget-content ui-corner-all" />
-                    </div>
-                </td>
-            </tr>
-            <tr>
-                <td class="noWrap horizontalPadding tdFormLabel"><input class="tooltip" type="checkbox" id="form<?= $class_name ?>CheckboxPassword" title="<?= Language::string(180) ?>" <?= $oid == -1 ? "checked style='display:none;'" : "" ?> /><?= Language::string(179) ?>:</td>
-                <td><span class="tooltip spanIcon ui-icon ui-icon-help" title="<?= Language::string(181) ?>"></span></td>
-                <td class="fullWidth">
-                    <div class="horizontalMargin">
-                        <input type="password" id="form<?= $class_name ?>InputPassword" class="fullWidth ui-widget-content ui-corner-all" />
-                    </div>
-                </td>
 
-            </tr>
-            <tr>
-                <td class="noWrap horizontalPadding tdFormLabel"><?= Language::string(182) ?>:</td>
-                <td><span class="tooltip spanIcon ui-icon ui-icon-help" title="<?= Language::string(183) ?>"></span></td>
-                <td class="fullWidth">
-                    <div class="horizontalMargin">
-                        <input type="password" id="form<?= $class_name ?>InputPasswordConf" class="fullWidth ui-widget-content ui-corner-all" />
-                    </div>
-                </td>
-            </tr>
-            <tr>
-                <td class="noWrap horizontalPadding tdFormLabel">* <?= Language::string(184) ?>:</td>
-                <td><span class="tooltip spanIcon ui-icon ui-icon-help" title="<?= Language::string(186) ?>"></span></td>
-                <td class="fullWidth">
-                    <div class="horizontalMargin">
-                        <input type="text" id="form<?= $class_name ?>InputFirstname" value="<?= $obj->firstname ?>" class="fullWidth ui-widget-content ui-corner-all" />
-                    </div>
-                </td>
-            </tr>
-            <tr>
-                <td class="noWrap horizontalPadding tdFormLabel">* <?= Language::string(185) ?>:</td>
-                <td><span class="tooltip spanIcon ui-icon ui-icon-help" title="<?= Language::string(187) ?>"></span></td>
-                <td class="fullWidth">
-                    <div class="horizontalMargin">
-                        <input type="text" id="form<?= $class_name ?>InputLastname" value="<?= $obj->lastname ?>" class="fullWidth ui-widget-content ui-corner-all" />
-                    </div>
-                </td>
-            </tr>
+        <div class="divFormElement">
+            <table class="fullWidth">
+                <tr>
+                    <td class="noWrap tdFormLabel">* <?= Language::string(173) ?>:</td>
+                    <td class="tdFormIcon"><span class="tooltip spanIcon ui-icon ui-icon-help" title="<?= Language::string(178) ?>"></span></td>
+                    <td>
+                        <div class="divFormControl">
+                            <input type="text" id="form<?= $class_name ?>InputLogin" value="<?= $obj->login ?>" class="fullWidth ui-widget-content ui-corner-all" />
+                        </div>
+                    </td>
+                </tr>
+            </table>
+        </div>
 
-            <tr>
-                <td class="noWrap horizontalPadding tdFormLabel">* <?= Language::string(419) ?>:</td>
-                <td><span class="tooltip spanIcon ui-icon ui-icon-help" title="<?= Language::string(420) ?>"></span></td>
-                <td class="fullWidth">
-                    <div class="horizontalMargin">
-                        <select id="form<?= $class_name ?>SelectInstitutionType" class="fullWidth ui-widget-content ui-corner-all">
-                            <?php foreach (DS_UserInstitutionType::get_all() as $it) {
-                                ?>
-                                <option value="<?= $it->id ?>" <?= ($it->id == $obj->UserInstitutionType_id ? "selected" : "") ?>><?= $it->get_name() ?></option>
-                            <?php } ?>
-                        </select>
-                    </div>
-                </td>
-            </tr>
-            <tr>
-                <td class="noWrap horizontalPadding tdFormLabel">* <?= Language::string(421) ?>:</td>
-                <td><span class="tooltip spanIcon ui-icon ui-icon-help" title="<?= Language::string(422) ?>"></span></td>
-                <td class="fullWidth">
-                    <div class="horizontalMargin">
-                        <input type="text" id="form<?= $class_name ?>InputInstitutionName" value="<?= $obj->institution_name ?>" class="fullWidth ui-widget-content ui-corner-all" />
-                    </div>
-                </td>
-            </tr>
+        <div class="divFormElement">
+            <table class="fullWidth">
+                <tr>
+                    <td class="noWrap tdFormLabel"><input class="tooltip" type="checkbox" id="form<?= $class_name ?>CheckboxPassword" title="<?= Language::string(180) ?>" <?= $oid == -1 ? "checked style='display:none;'" : "" ?> /><?= Language::string(179) ?>:</td>
+                    <td class="tdFormIcon"><span class="tooltip spanIcon ui-icon ui-icon-help" title="<?= Language::string(181) ?>"></span></td>
+                    <td>
+                        <div class="divFormControl">
+                            <input type="password" id="form<?= $class_name ?>InputPassword" class="fullWidth ui-widget-content ui-corner-all" />
+                        </div>
+                    </td>
 
-            <tr>
-                <td class="noWrap horizontalPadding tdFormLabel">* <?= Language::string(174) ?>:</td>
-                <td><span class="tooltip spanIcon ui-icon ui-icon-help" title="<?= Language::string(188) ?>"></span></td>
-                <td class="fullWidth">
-                    <div class="horizontalMargin">
-                        <input type="text" id="form<?= $class_name ?>InputEmail" value="<?= $obj->email ?>" class="fullWidth ui-widget-content ui-corner-all" />
-                    </div>
-                </td>
-            </tr>
-            <tr>
-                <td class="noWrap horizontalPadding tdFormLabel"><?= Language::string(189) ?>:</td>
-                <td><span class="tooltip spanIcon ui-icon ui-icon-help" title="<?= Language::string(190) ?>"></span></td>
-                <td class="fullWidth">
-                    <div class="horizontalMargin">
-                        <input type="text" id="form<?= $class_name ?>InputPhone" value="<?= $obj->phone ?>" class="fullWidth ui-widget-content ui-corner-all" />
-                    </div>
-                </td>
-            </tr>
-            <tr>
-                <td class="noWrap horizontalPadding tdFormLabel"><?= Language::string(176) ?>:</td>
-                <td><span class="tooltip spanIcon ui-icon ui-icon-help" title="<?= Language::string(191) ?>"></span></td>
-                <td class="fullWidth">
-                    <div class="horizontalMargin">
-                        <select id="form<?= $class_name ?>SelectUserGroup" class="fullWidth ui-widget-content ui-corner-all">
-                            <option value="0" <?= (!$obj->has_UserGroup() ? "selected" : "") ?>>&lt;<?= Language::string(73) ?>&gt;</option>
-                            <?php
-                            $sql = $logged_user->mysql_list_rights_filter("UserGroup", "`name` ASC");
-                            $z = mysql_query($sql);
-                            while ($r = mysql_fetch_array($z)) {
-                                $group = UserGroup::from_mysql_id($r[0]);
-                                ?>
-                                <option value="<?= $group->id ?>" <?= ($obj->UserGroup_id == $group->id ? "selected" : "") ?>><?= $group->name ?> ( <?= $group->get_system_data() ?> )</option>
-                            <?php } ?>
-                        </select>
-                    </div>
-                </td>
-            </tr>
-            <tr>
-                <td class="noWrap horizontalPadding tdFormLabel"><?= Language::string(177) ?>:</td>
-                <td><span class="tooltip spanIcon ui-icon ui-icon-help" title="<?= Language::string(192) ?>"></span></td>
-                <td class="fullWidth">
-                    <div class="horizontalMargin">
-                        <select id="form<?= $class_name ?>SelectUserType" class="fullWidth ui-widget-content ui-corner-all">
-                            <option value="0" <?= (!$obj->has_UserType() ? "selected" : "") ?>>&lt;<?= Language::string(73) ?>&gt;</option>
-                            <?php
-                            $sql = $logged_user->mysql_list_rights_filter("UserType", "`name` ASC");
-                            $z = mysql_query($sql);
-                            while ($r = mysql_fetch_array($z)) {
-                                $type = UserType::from_mysql_id($r[0]);
-                                ?>
-                                <option value="<?= $type->id ?>" <?= ($obj->UserType_id == $type->id ? "selected" : "") ?>><?= $type->name ?> ( <?= $type->get_system_data() ?> )</option>
-                            <?php } ?>
-                        </select>
-                    </div>
-                </td>
-            </tr>
-        </table>
+                </tr>
+            </table>
+        </div>
+
+        <div class="divFormElement">
+            <table class="fullWidth">
+                <tr>
+                    <td class="noWrap tdFormLabel"><?= Language::string(182) ?>:</td>
+                    <td class="tdFormIcon"><span class="tooltip spanIcon ui-icon ui-icon-help" title="<?= Language::string(183) ?>"></span></td>
+                    <td>
+                        <div class="divFormControl">
+                            <input type="password" id="form<?= $class_name ?>InputPasswordConf" class="fullWidth ui-widget-content ui-corner-all" />
+                        </div>
+                    </td>
+                </tr>
+            </table>
+        </div>
+
+        <div class="divFormElement">
+            <table class="fullWidth">
+                <tr>
+                    <td class="noWrap tdFormLabel">* <?= Language::string(184) ?>:</td>
+                    <td class="tdFormIcon"><span class="tooltip spanIcon ui-icon ui-icon-help" title="<?= Language::string(186) ?>"></span></td>
+                    <td>
+                        <div class="divFormControl">
+                            <input type="text" id="form<?= $class_name ?>InputFirstname" value="<?= $obj->firstname ?>" class="fullWidth ui-widget-content ui-corner-all" />
+                        </div>
+                    </td>
+                </tr>
+            </table>
+        </div>
+
+        <div class="divFormElement">
+            <table class="fullWidth">
+                <tr>
+                    <td class="noWrap tdFormLabel">* <?= Language::string(185) ?>:</td>
+                    <td class="tdFormIcon"><span class="tooltip spanIcon ui-icon ui-icon-help" title="<?= Language::string(187) ?>"></span></td>
+                    <td>
+                        <div class="divFormControl">
+                            <input type="text" id="form<?= $class_name ?>InputLastname" value="<?= $obj->lastname ?>" class="fullWidth ui-widget-content ui-corner-all" />
+                        </div>
+                    </td>
+                </tr>
+            </table>
+        </div>    
+
+        <div class="divFormElement">
+            <table class="fullWidth">
+                <tr>
+                    <td class="noWrap tdFormLabel">* <?= Language::string(419) ?>:</td>
+                    <td class="tdFormIcon"><span class="tooltip spanIcon ui-icon ui-icon-help" title="<?= Language::string(420) ?>"></span></td>
+                    <td>
+                        <div class="divFormControl">
+                            <select id="form<?= $class_name ?>SelectInstitutionType" class="fullWidth ui-widget-content ui-corner-all">
+                                <?php foreach (DS_UserInstitutionType::get_all() as $it) {
+                                    ?>
+                                    <option value="<?= $it->id ?>" <?= ($it->id == $obj->UserInstitutionType_id ? "selected" : "") ?>><?= $it->get_name() ?></option>
+                                <?php } ?>
+                            </select>
+                        </div>
+                    </td>
+                </tr>
+            </table>
+        </div>    
+
+        <div class="divFormElement">
+            <table class="fullWidth">
+                <tr>
+                    <td class="noWrap tdFormLabel">* <?= Language::string(421) ?>:</td>
+                    <td class="tdFormIcon"><span class="tooltip spanIcon ui-icon ui-icon-help" title="<?= Language::string(422) ?>"></span></td>
+                    <td>
+                        <div class="divFormControl">
+                            <input type="text" id="form<?= $class_name ?>InputInstitutionName" value="<?= $obj->institution_name ?>" class="fullWidth ui-widget-content ui-corner-all" />
+                        </div>
+                    </td>
+                </tr>
+            </table>
+        </div>    
+
+        <div class="divFormElement">
+            <table class="fullWidth">
+                <tr>
+                    <td class="noWrap tdFormLabel">* <?= Language::string(174) ?>:</td>
+                    <td class="tdFormIcon"><span class="tooltip spanIcon ui-icon ui-icon-help" title="<?= Language::string(188) ?>"></span></td>
+                    <td>
+                        <div class="divFormControl">
+                            <input type="text" id="form<?= $class_name ?>InputEmail" value="<?= $obj->email ?>" class="fullWidth ui-widget-content ui-corner-all" />
+                        </div>
+                    </td>
+                </tr>
+            </table>
+        </div>    
+
+        <div class="divFormElement">
+            <table class="fullWidth">
+                <tr>
+                    <td class="noWrap tdFormLabel"><?= Language::string(189) ?>:</td>
+                    <td class="tdFormIcon"><span class="tooltip spanIcon ui-icon ui-icon-help" title="<?= Language::string(190) ?>"></span></td>
+                    <td>
+                        <div class="divFormControl">
+                            <input type="text" id="form<?= $class_name ?>InputPhone" value="<?= $obj->phone ?>" class="fullWidth ui-widget-content ui-corner-all" />
+                        </div>
+                    </td>
+                </tr>
+            </table>
+        </div>    
+
+        <div class="divFormElement">
+            <table class="fullWidth">
+                <tr>
+                    <td class="noWrap tdFormLabel"><?= Language::string(176) ?>:</td>
+                    <td class="tdFormIcon"><span class="tooltip spanIcon ui-icon ui-icon-help" title="<?= Language::string(191) ?>"></span></td>
+                    <td>
+                        <div class="divFormControl">
+                            <select id="form<?= $class_name ?>SelectUserGroup" class="fullWidth ui-widget-content ui-corner-all">
+                                <option value="0" <?= (!$obj->has_UserGroup() ? "selected" : "") ?>>&lt;<?= Language::string(73) ?>&gt;</option>
+                                <?php
+                                $sql = $logged_user->mysql_list_rights_filter("UserGroup", "`name` ASC");
+                                $z = mysql_query($sql);
+                                while ($r = mysql_fetch_array($z)) {
+                                    $group = UserGroup::from_mysql_id($r[0]);
+                                    ?>
+                                    <option value="<?= $group->id ?>" <?= ($obj->UserGroup_id == $group->id ? "selected" : "") ?>><?= $group->name ?> ( <?= $group->get_system_data() ?> )</option>
+                                <?php } ?>
+                            </select>
+                        </div>
+                    </td>
+                </tr>
+            </table>
+        </div>    
+
+        <div class="divFormElement">
+            <table class="fullWidth">
+                <tr>
+                    <td class="noWrap tdFormLabel"><?= Language::string(177) ?>:</td>
+                    <td class="tdFormIcon"><span class="tooltip spanIcon ui-icon ui-icon-help" title="<?= Language::string(192) ?>"></span></td>
+                    <td>
+                        <div class="divFormControl">
+                            <select id="form<?= $class_name ?>SelectUserType" class="fullWidth ui-widget-content ui-corner-all">
+                                <option value="0" <?= (!$obj->has_UserType() ? "selected" : "") ?>>&lt;<?= Language::string(73) ?>&gt;</option>
+                                <?php
+                                $sql = $logged_user->mysql_list_rights_filter("UserType", "`name` ASC");
+                                $z = mysql_query($sql);
+                                while ($r = mysql_fetch_array($z)) {
+                                    $type = UserType::from_mysql_id($r[0]);
+                                    ?>
+                                    <option value="<?= $type->id ?>" <?= ($obj->UserType_id == $type->id ? "selected" : "") ?>><?= $type->name ?> ( <?= $type->get_system_data() ?> )</option>
+                                <?php } ?>
+                            </select>
+                        </div>
+                    </td>
+                </tr>
+            </table>
+        </div>    
+
+        <div style="clear: left;" />
     </fieldset>
-    <div align="center">
-        <?= $buttons ?>
-    </div>
+    
     <?php
     if ($oid != -1) {
         ?>
