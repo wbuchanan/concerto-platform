@@ -5958,5 +5958,15 @@ Note: You can add new languages by inserting "<new_language>string translated in
             <nl></nl>
             <br></br>
         </string>
+        <string id="618">
+            <en>For best experience, it is strongly recommended to use the latest browser version available.</en>
+            <de></de>
+            <pl>Mocno zalecane jest używanie najnowszej dostępnej wersji przeglądarki.</pl>
+            <cn></cn>
+            <fr></fr>
+            <bg></bg>
+            <nl></nl>
+            <br></br>
+        </string>
     </strings>
 </root> 
