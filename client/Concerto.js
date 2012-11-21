@@ -234,7 +234,7 @@ function Concerto(container,hash,sid,tid,queryPath,callbackGet,callbackSend,debu
     };
     
     this.showEffect=function(){
-        if(this.effectShow=="none" || this.effectShow.trim()=="") {
+        if(this.isDebug || this.effectShow=="none" || this.effectShow.trim()=="") {
             this.effectTransition = 2;
             $(this.container).show(0);
             this.addSubmitEvents();
@@ -300,7 +300,7 @@ function Concerto(container,hash,sid,tid,queryPath,callbackGet,callbackSend,debu
     this.hideEffect=function(){
         this.removeSubmitEvents();
         this.effectTransition = 3;
-        if(this.effectHide=="none" || this.effectHide.trim()=="") {
+        if(this.isDebug || this.effectHide=="none" || this.effectHide.trim()=="") {
             this.effectTransition = 0;
             $(this.container).hide(0);
             if(this.isTemplateReady && this.loaderTransition==0) {
@@ -348,7 +348,7 @@ function Concerto(container,hash,sid,tid,queryPath,callbackGet,callbackSend,debu
     
     this.hideLoader=function(){
         this.loaderTransition = 3;
-        if(this.loaderEffectHide=="none" || this.loaderEffectHide.trim()=="") {
+        if(this.isDebug || this.loaderEffectHide=="none" || this.loaderEffectHide.trim()=="") {
             this.loaderTransition = 0;
             $(this.container).hide(0);
             if(this.isTemplateReady) {
@@ -391,7 +391,7 @@ function Concerto(container,hash,sid,tid,queryPath,callbackGet,callbackSend,debu
             $(this.container).html(this.defaultLoader);
         }
         
-        if(this.loaderEffectShow=="none" || this.loaderEffectShow.trim()=="") {
+        if(this.isDebug || this.loaderEffectShow=="none" || this.loaderEffectShow.trim()=="") {
             this.loaderTransition = 2;
             $(this.container).show(0);
             if(this.isTemplateReady && this.loaderTransition==2 || this.status == Concerto.statusTypes.completed) this.hideLoader();
