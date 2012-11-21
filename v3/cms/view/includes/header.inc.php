@@ -18,23 +18,23 @@
   Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA.
  */
 
-if (!isset($ini))
-{
+if (!isset($ini)) {
     require_once'../../Ini.php';
     $ini = new Ini();
 }
 
 $logged_user = User::get_logged_user();
-if ($logged_user == null) die(Language::string(81));
+if ($logged_user == null)
+    die(Language::string(81));
 ?>
 
 <style type="text/css">
 <?php
 $icons = "";
-foreach (Language::languages() as $lng_node)
-{
+foreach (Language::languages() as $lng_node) {
     $attr = $lng_node->getAttributeNode("id")->value;
-    if ($icons != "") $icons.=",";
+    if ($icons != "")
+        $icons.=",";
     $icons.="{find:'.flagIcon_" . $attr . "'} ";
     ?>
         .flagIcon_<?= $attr ?> .ui-selectmenu-item-icon { background: url(css/img/<?= $attr ?>.png) center no-repeat; }
@@ -57,22 +57,18 @@ foreach (Language::languages() as $lng_node)
     });
 </script>
 
-<table style="width:500px;">
+<table class="fullWidth">
     <tr>
-        <td style="width:33%;" align="center" valign="middle">
-            <?= Language::string(82) ?>: <br/>
-            <b><?= $logged_user->login . "</b>, <b>" . $logged_user->get_full_name() ?></b><br/>
+        <td valign="middle" class="fullWidth noWrap">
+            <table><tr><td align="center" valign="middle"><img src="css/img/symbol.png" /></td><td align="center" valign="middle" style="padding-right:20px;"><b>v<?= Ini::$version ?></b></td><td id="divVersionCheck" style="padding-left:20px; padding-right:20px;"></td></tr></table>
+        </td>
+        <td valign="middle" class="noWrap">
+            <?= Language::string(82) ?>: <b><?= $logged_user->login . "</b>, <b>" . $logged_user->get_full_name() ?></b>
             <button class="btnLogout" onclick="User.uiLogOut()"><?= Language::string(83) ?></button>
-        </td>
-        <td style="width:33%;" align="center" valign="middle">
-            <table><tr><td align="center" valign="middle"><img src="css/img/logo.png" width="150" height="53" /></td><td align="center" valign="middle">v<?= Ini::$version ?></td></tr></table>
-            <div id="divVersionCheck"></div>
-        </td>
-        <td style="width:33%;" align="center" valign="middle">
+
             <select id="selectLanguage" class="smallMargin">
                 <?php
-                foreach (Language::languages() as $lng_node)
-                {
+                foreach (Language::languages() as $lng_node) {
                     $attr = $lng_node->getAttributeNode("id")
                     ?>
                     <option class="flagIcon_<?= $attr->value ?>" value="<?= $attr->value ?>" <?= $_SESSION['lng'] == $attr->value ? "selected" : "" ?>><?= $lng_node->nodeValue ?></option>

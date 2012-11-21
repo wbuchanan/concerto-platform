@@ -54,6 +54,7 @@ if ($logged_user == null) {
             }
             else
             {
+                div.css("color","green");
                 div.html("<?= Language::string(264) ?>");
             }
         });
@@ -75,7 +76,7 @@ if (Ini::$cms_session_keep_alive) {
 ?>
     });
 </script>
-<div class="padding ui-widget-content ui-corner-all margin table" align="center"><?php include Ini::$path_internal . 'cms/view/includes/header.inc.php'; ?></div>
+<div class="padding margin table" align="center" style="width: 970px;"><?php include Ini::$path_internal . 'cms/view/includes/header.inc.php'; ?></div>
 
 <div align="center" class="" style="width: 970px;" >
     <div id="tnd_mainMenu">

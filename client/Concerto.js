@@ -298,6 +298,7 @@ function Concerto(container,hash,sid,tid,queryPath,callbackGet,callbackSend,debu
     }
     
     this.hideEffect=function(){
+        this.removeSubmitEvents();
         this.effectTransition = 3;
         if(this.effectHide=="none" || this.effectHide.trim()=="") {
             this.effectTransition = 0;
@@ -458,6 +459,13 @@ function Concerto(container,hash,sid,tid,queryPath,callbackGet,callbackSend,debu
         $(container).find("input:submit:not(.notInteractive)").click(function(){
             thisClass.submit($(this).attr("name"));
         });
+    }
+    
+    this.removeSubmitEvents=function(){
+        
+        $(container).find(":button:not(.notInteractive)").unbind("click");
+        $(container).find("input:image:not(.notInteractive)").unbind("click");
+        $(container).find("input:submit:not(.notInteractive)").unbind("click");
     }
 };
 

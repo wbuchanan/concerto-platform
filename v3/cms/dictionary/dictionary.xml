@@ -2412,14 +2412,14 @@ Note: You can add new languages by inserting "<new_language>string translated in
             <br>Entre com sua senha</br>
         </string>
         <string id="262">
-            <en>Your version is OUTDATED.</en>
-            <de>Ihre Version ist VERALTET.</de>
-            <pl>Twoja wersja jest NIEAKTUALNA.</pl>
-            <cn>您的版本已过期。</cn>
-            <fr>Votre version est OBSOLETE.</fr>
-            <bg>Вашата версия е стара</bg>
-            <nl>Uw versie is VEROUDERD.</nl>
-            <br>Sua versão está DESATUALIZADA.</br>
+            <en>OUTDATED.</en>
+            <de></de>
+            <pl>NIEAKTUALNA.</pl>
+            <cn></cn>
+            <fr></fr>
+            <bg></bg>
+            <nl></nl>
+            <br></br>
         </string>
         <string id="263">
             <en>CLICK HERE TO DOWNLOAD THE LATEST VERSION</en>
@@ -2432,14 +2432,14 @@ Note: You can add new languages by inserting "<new_language>string translated in
             <br>CLIQUE AQUI PARA FAZER O DOWNLOAD DA ÚLTIMA VERSÃO</br>
         </string>
         <string id="264">
-            <en>Your version is up-to-date</en>
-            <de>Ihre version ist auf dem neuesten Stand</de>
-            <pl>Twoja wersja jest aktualna</pl>
-            <cn>已更新至最新版本</cn>
+            <en>up-to-date</en>
+            <de></de>
+            <pl>aktualna</pl>
+            <cn></cn>
             <fr></fr>
-            <bg>Вашата версия е актуална</bg>
-            <nl>Uw versie is up-to-date</nl>
-            <br>Sua versão está atualizada</br>
+            <bg></bg>
+            <nl></nl>
+            <br></br>
         </string>
         <string id="265" js="1">
             <en>Export</en>
