@@ -90,7 +90,7 @@ Test.getFullSaveObject = function() {
     obj["sections"] = Test.getSerializedSections();
     obj["parameters"]=Test.getSerializedParameterVariables();
     obj["returns"]=Test.getSerializedReturnVariables();
-    obj["description"]=Methods.getCKEditorData("#form"+this.className+"TextareaDescription");
+    obj["description"]=$("#form"+this.className+"TextareaDescription").val();
     obj["loader_Template_id"]=$("#selectLoaderTemplate").val();
     if($("#form"+this.className+"SelectOwner").length==1) obj["Owner_id"]=$("#form"+this.className+"SelectOwner").val();
     return obj;
@@ -1377,43 +1377,6 @@ Test.uiVarNameChanged=function(obj){
     
     Test.uiRefreshComboBoxes();
 };
-
-Test.uiEditVariableDescription=function(obj){
-    $("#dialog"+Test.className+"TextareaDescription").val(obj.val());
-    $("#div"+Test.className+"DialogDescription").dialog({
-        title:dictionary["s3"],
-        modal:true,
-        resizable:false,
-        width:840,
-        create:function(){
-            var thisDialog = $("#div"+Test.className+"DialogDescription");
-            Methods.iniCKEditor($(this).find("textarea"),function(){
-                thisDialog.dialog("option","position","center");
-            });
-        },
-        open:function(){
-            $('.ui-widget-overlay').css('position', 'fixed');
-        },
-        close:function(){
-        //$('.ui-widget-overlay').css('position', 'absolute');
-        },
-        buttons:[
-        {
-            text:dictionary["s38"],
-            click:function(){
-                obj.val(Methods.getCKEditorData($(this).find('textarea')));
-                $(this).dialog("close");
-            }
-        },
-        {
-            text:dictionary["s23"],
-            click:function(){
-                $(this).dialog("close");
-            }
-        }
-        ]
-    }); 
-}
 
 Test.uiAddParameter=function(){
     var vars = this.getSerializedParameterVariables();

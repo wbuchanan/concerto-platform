@@ -66,7 +66,7 @@ foreach (Language::languages() as $lng_node) {
             <?= Language::string(82) ?>: <b><?= $logged_user->login . "</b>, <b>" . $logged_user->get_full_name() ?></b>
             <button class="btnLogout" onclick="User.uiLogOut()"><?= Language::string(83) ?></button>
 
-            <select id="selectLanguage" class="smallMargin">
+            <select id="selectLanguage" class="">
                 <?php
                 foreach (Language::languages() as $lng_node) {
                     $attr = $lng_node->getAttributeNode("id")

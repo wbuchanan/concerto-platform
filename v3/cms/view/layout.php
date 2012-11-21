@@ -49,7 +49,7 @@ if ($logged_user == null) {
             var newer = isNewerVersion==1;
             if(newer)
             {
-                div.addClass("ui-state-error");
+                div.css("color","red");
                 div.html("<?= Language::string(262) ?> <a href='http://code.google.com/p/concerto-platform'><?= Language::string(263) ?> v"+version+"</a>");
             }
             else
@@ -76,7 +76,7 @@ if (Ini::$cms_session_keep_alive) {
 ?>
     });
 </script>
-<div class="padding margin table" align="center" style="width: 970px;"><?php include Ini::$path_internal . 'cms/view/includes/header.inc.php'; ?></div>
+<div class="table" align="center" style="width: 970px;"><?php include Ini::$path_internal . 'cms/view/includes/header.inc.php'; ?></div>
 
 <div align="center" class="" style="width: 970px;" >
     <div id="tnd_mainMenu">
@@ -175,4 +175,4 @@ if (Ini::$cms_session_keep_alive) {
 <div id="divDialogDownload" class="notVisible">
 </div>
 
-<div class="margin padding ui-widget-content ui-corner-all table" style="margin-bottom:50px;" align="center"><?php include Ini::$path_internal . 'cms/view/includes/footer.inc.php'; ?></div>
+<div class="margin padding table" style="margin-bottom:50px;" align="center"><?php include Ini::$path_internal . 'cms/view/includes/footer.inc.php'; ?></div>

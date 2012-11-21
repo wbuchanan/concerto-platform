@@ -1019,16 +1019,6 @@ Note: You can add new languages by inserting "<new_language>string translated in
             <nl>beschrijving</nl>
             <br>descrição</br>
         </string>
-        <string id="98">
-            <en>Brief description of the object.</en>
-            <de></de>
-            <pl>Krótki opis obiektu.</pl>
-            <cn>对象的简要描述</cn>
-            <fr></fr>
-            <bg></bg>
-            <nl>Korte beschrijving van het object</nl>
-            <br>Breve descrição do objeto.</br>
-        </string>
         <string id="99">
             <en>access rights to this custom section</en>
             <de>Zugriffsrechte auf diese benutzerdefinierte Testsektion</de>

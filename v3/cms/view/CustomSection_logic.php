@@ -101,7 +101,7 @@ else {
                             ?>
                             <tr>
                                 <td>
-                                    <span class="spanIcon tooltipCustomSectionLogic ui-icon ui-icon-document-b" onclick="CustomSection.uiEditVariableDescription($(this).next())" title="<?= Language::string(107) ?>"></span>
+                                    <span class="spanIcon tooltipCustomSectionLogic ui-icon ui-icon-document-b" onclick="CustomSection.uiEditDescription($(this).next())" title="<?= Language::string(107) ?>"></span>
                                     <textarea class="notVisible"><?= $param->description ?></textarea>
                                 </td>
                                 <td class="fullWidth">
@@ -162,7 +162,7 @@ else {
                             ?>
                             <tr>
                                 <td>
-                                    <span class="spanIcon tooltipCustomSectionLogic ui-icon ui-icon-document-b" onclick="CustomSection.uiEditVariableDescription($(this).next())" title="<?= Language::string(107) ?>"></span>
+                                    <span class="spanIcon tooltipCustomSectionLogic ui-icon ui-icon-document-b" onclick="CustomSection.uiEditDescription($(this).next())" title="<?= Language::string(107) ?>"></span>
                                     <textarea class="notVisible"><?= $ret->description ?></textarea>
                                 </td>
                                 <td class="fullWidth">

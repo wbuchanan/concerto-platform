@@ -109,7 +109,7 @@ else {
                                 ?>
                                 <tr>
                                     <td>
-                                        <span class="spanIcon tooltipTestLogic ui-icon ui-icon-document-b" onclick="Test.uiEditVariableDescription($(this).next())" title="<?= Language::string(107) ?>"></span>
+                                        <span class="spanIcon tooltipTestLogic ui-icon ui-icon-document-b" onclick="Test.uiEditDescription($(this).next())" title="<?= Language::string(107) ?>"></span>
                                         <textarea class="notVisible"><?= $param->description ?></textarea>
                                     </td>
                                     <td class="fullWidth">
@@ -169,7 +169,7 @@ else {
                                 ?>
                                 <tr>
                                     <td>
-                                        <span class="spanIcon tooltipTestLogic ui-icon ui-icon-document-b" onclick="Test.uiEditVariableDescription($(this).next())" title="<?= Language::string(107) ?>"></span>
+                                        <span class="spanIcon tooltipTestLogic ui-icon ui-icon-document-b" onclick="Test.uiEditDescription($(this).next())" title="<?= Language::string(107) ?>"></span>
                                         <textarea class="notVisible"><?= $ret->description ?></textarea>
                                     </td>
                                     <td class="fullWidth">

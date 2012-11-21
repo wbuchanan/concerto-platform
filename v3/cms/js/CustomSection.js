@@ -169,43 +169,6 @@ CustomSection.uiRefreshLogic=function(parameters,returns){
         $("#td"+CustomSection.className+"Logic").html(data);
     })
 }
-    
-CustomSection.uiEditVariableDescription=function(obj){
-    $("#dialog"+CustomSection.className+"TextareaDescription").val(obj.val());
-    $("#div"+CustomSection.className+"DialogDescription").dialog({
-        title:dictionary["s3"],
-        modal:true,
-        resizable:false,
-        width:840,
-        open:function(){
-            $('.ui-widget-overlay').css('position', 'fixed');
-        },
-        close:function(){
-        //$('.ui-widget-overlay').css('position', 'absolute');
-        },
-        create:function(){
-            var thisDialog = $("#div"+CustomSection.className+"DialogDescription");
-            Methods.iniCKEditor($("#dialog"+CustomSection.className+"TextareaDescription"),function(){
-                thisDialog.dialog("option","position","center");
-            });
-        },
-        buttons:[
-        {
-            text:dictionary["s38"],
-            click:function(){
-                obj.val(Methods.getCKEditorData($("#dialog"+CustomSection.className+"TextareaDescription")));
-                $(this).dialog("close");
-            }
-        },
-        {
-            text:dictionary["s23"],
-            click:function(){
-                $(this).dialog("close");
-            }
-        }
-        ]
-    }); 
-}
 
 CustomSection.getFullSaveObject=function()
 {
