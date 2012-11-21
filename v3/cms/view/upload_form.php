@@ -49,42 +49,62 @@ if ($obj == null || !$logged_user->is_object_readable($obj))
             </tr>
         </table>
     </legend>
-    <table>
-        <tr>
-            <td class="noWrap horizontalPadding tdFormLabel"><?= Language::string(70) ?>:</td>
-            <td><span class="tooltip spanIcon ui-icon ui-icon-help" title="<?= Language::string(376) ?>"></span></td>
-            <td class="fullWidth">
-                <div class="horizontalMargin" align="center">
-                    <input id="inputDialogUploadName" type="text" class="ui-widget-content ui-corner-all fullWidth" value="<?= $obj->name ?>" />
-                </div>
-            </td>
-        </tr>
-        <tr>
-            <td class="noWrap horizontalPadding tdFormLabel"><?= Language::string(97) ?>:</td>
-            <td><span class="tooltip spanIcon ui-icon ui-icon-help" title="<?= Language::string(377) ?>"></span></td>
-            <td class="fullWidth">
-                <div class="horizontalMargin" align="center">
-                    <textarea id="textareaDialogUploadDescription" name="textareaDialogUploadDescription" class="ui-widget-content ui-corner-all"><?= $obj->description ?></textarea>
-                </div>
-            </td>
-        </tr>
-        <tr>
-            <td class="noWrap horizontalPadding tdFormLabel"><?= Language::string(378) ?>:</td>
-            <td><span class="tooltip spanIcon ui-icon ui-icon-help" title="<?= Language::string(380) ?>"></span></td>
-            <td class="fullWidth">
-                <div class="horizontalMargin" align="center">
-                    <input id="inputDialogUploadAuthor" type="text" class="ui-widget-content ui-corner-all fullWidth" value="<?= $obj->get_owner_full_name() ?>" />
-                </div>
-            </td>
-        </tr>
-        <tr>
-            <td class="noWrap horizontalPadding tdFormLabel"><?= Language::string(379) ?>:</td>
-            <td><span class="tooltip spanIcon ui-icon ui-icon-help" title="<?= Language::string(381) ?>"></span></td>
-            <td class="fullWidth">
-                <div class="horizontalMargin" align="center">
-                    <input id="inputDialogUploadRevision" type="text" class="ui-widget-content ui-corner-all fullWidth" value="1" />
-                </div>
-            </td>
-        </tr>
-    </table>
+
+    <div class="divFormElement">
+        <table class="fullWidth">
+            <tr>
+                <td class="noWrap tdFormLabel"><?= Language::string(70) ?>:</td>
+                <td class="tdFormIcon"><span class="tooltip spanIcon ui-icon ui-icon-help" title="<?= Language::string(376) ?>"></span></td>
+                <td>
+                    <div class="divFormContent" align="center">
+                        <input id="inputDialogUploadName" type="text" class="ui-widget-content ui-corner-all fullWidth" value="<?= $obj->name ?>" />
+                    </div>
+                </td>
+            </tr>
+        </table>
+    </div>
+
+    <div class="divFormElement">
+        <table class="fullWidth">
+            <tr>
+                <td class="noWrap tdFormLabel"><?= Language::string(378) ?>:</td>
+                <td class="tdFormIcon"><span class="tooltip spanIcon ui-icon ui-icon-help" title="<?= Language::string(380) ?>"></span></td>
+                <td>
+                    <div class="divFormContent" align="center">
+                        <input id="inputDialogUploadAuthor" type="text" class="ui-widget-content ui-corner-all fullWidth" value="<?= $obj->get_owner_full_name() ?>" />
+                    </div>
+                </td>
+            </tr>
+        </table>
+    </div>
+
+    <div class="divFormElement">
+        <table class="fullWidth">
+            <tr>
+                <td class="noWrap tdFormLabel"><?= Language::string(379) ?>:</td>
+                <td class="tdFormIcon"><span class="tooltip spanIcon ui-icon ui-icon-help" title="<?= Language::string(381) ?>"></span></td>
+                <td>
+                    <div class="divFormContent" align="center">
+                        <input id="inputDialogUploadRevision" type="text" class="ui-widget-content ui-corner-all fullWidth" value="1" />
+                    </div>
+                </td>
+            </tr>
+        </table>
+    </div>
+
+    <div class="divFormElement" style="width:100%; height:auto;">
+        <table class="fullWidth">
+            <tr>
+                <td class="noWrap tdFormLabel"><?= Language::string(97) ?>:</td>
+                <td class="tdFormIcon"><span class="tooltip spanIcon ui-icon ui-icon-help" title="<?= Language::string(377) ?>"></span></td>
+                <td>
+                    <div class="divFormContent" align="center">
+                        <textarea id="textareaDialogUploadDescription" name="textareaDialogUploadDescription" class="ui-widget-content ui-corner-all"><?= $obj->description ?></textarea>
+                    </div>
+                </td>
+            </tr>
+        </table>
+    </div>
+
+    <div style="clear: left;" />
 </fieldset>
