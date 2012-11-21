@@ -29,6 +29,9 @@ class TestServer {
     private $clients;
     private $instances;
     private $is_alive = false;
+    
+    const SOCK_TYPE_UNIX = 0;
+    const SOCK_TYPE_TCP = 1;
 
     public static function log_debug($message, $timestamp = true) {
         $t = microtime(true);
@@ -59,9 +62,9 @@ class TestServer {
             self::log_debug("TestServer::send() --- Client sends data");
         }
         $socket = null;
-        if (Ini::$sock_type_used == 1)
+        if (Ini::$server_socks_type == 1)
             $socket = socket_create(AF_INET, SOCK_STREAM, SOL_TCP);
-        if (Ini::$sock_type_used == 0)
+        if (Ini::$server_socks_type == 0)
             $socket = socket_create(AF_UNIX, SOCK_STREAM, 0);
         if (!$socket) {
             if (self::$debug) {
@@ -70,9 +73,9 @@ class TestServer {
             return false;
         }
         $result = null;
-        if (Ini::$sock_type_used == 1)
-            $result = socket_connect($socket, Ini::$sock_host, Ini::$sock_port);
-        if (Ini::$sock_type_used == 0)
+        if (Ini::$server_socks_type == 1)
+            $result = socket_connect($socket, Ini::$server_host, Ini::$server_port);
+        if (Ini::$server_socks_type == 0)
             $result = socket_connect($socket, Ini::$path_unix_sock);
         if (!$result) {
             if (self::$debug) {
@@ -121,9 +124,9 @@ class TestServer {
             //self::log_debug("TestServer::is_running() --- Checking if server is running");
         }
         $socket = null;
-        if (Ini::$sock_type_used == 1)
+        if (Ini::$server_socks_type == 1)
             $socket = socket_create(AF_INET, SOCK_STREAM, SOL_TCP);
-        if (Ini::$sock_type_used == 0)
+        if (Ini::$server_socks_type == 0)
             $socket = socket_create(AF_UNIX, SOCK_STREAM, 0);
         if (!$socket) {
             if (self::$debug) {
@@ -133,9 +136,9 @@ class TestServer {
         }
 
         $result = null;
-        if (Ini::$sock_type_used == 1)
-            $result = @socket_connect($socket, Ini::$sock_host, Ini::$sock_port);
-        if (Ini::$sock_type_used == 0)
+        if (Ini::$server_socks_type == 1)
+            $result = @socket_connect($socket, Ini::$server_host, Ini::$server_port);
+        if (Ini::$server_socks_type == 0)
             $result = @socket_connect($socket, Ini::$path_unix_sock);
         //@socket_shutdown($socket);
         socket_close($socket);
@@ -174,9 +177,9 @@ class TestServer {
         $this->last_action_time = time();
         if (self::$debug)
             self::log_debug("TestServer->start() --- TestServer started");
-        if (Ini::$sock_type_used == 1)
+        if (Ini::$server_socks_type == 1)
             $this->main_sock = socket_create(AF_INET, SOCK_STREAM, SOL_TCP);
-        if (Ini::$sock_type_used == 0)
+        if (Ini::$server_socks_type == 0)
             $this->main_sock = socket_create(AF_UNIX, SOCK_STREAM, 0);
         if (!$this->main_sock) {
             if (self::$debug) {
@@ -196,9 +199,9 @@ class TestServer {
         }
 
         $bind = null;
-        if (Ini::$sock_type_used == 1)
-            $bind = socket_bind($this->main_sock, Ini::$sock_host, Ini::$sock_port);
-        if (Ini::$sock_type_used == 0)
+        if (Ini::$server_socks_type == 1)
+            $bind = socket_bind($this->main_sock, Ini::$server_host, Ini::$server_port);
+        if (Ini::$server_socks_type == 0)
             $bind = socket_bind($this->main_sock, Ini::$path_unix_sock);
         if (!$bind) {
             if (self::$debug) {

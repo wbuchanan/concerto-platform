@@ -31,7 +31,7 @@ if ($logged_user == null)
     exit();
 }
 
-$session = TestSession::start_new($_POST['Test_id'],  TestSession::R_TYPE_RSCRIPT);
+$session = TestSession::start_new($_POST['Test_id']);
 $test = $session->get_Test();
 
 if ($test == null)

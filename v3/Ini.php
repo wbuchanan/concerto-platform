@@ -31,13 +31,12 @@ class Ini {
     public static $path_r_script = "";
     public static $path_temp = "";
     public static $path_mysql_home = "";
-    public static $version = "3.8.8";
-    public static $sock_host = "127.0.0.1";
-    public static $sock_port = "8888";
+    public static $version = "3.9.0";
+    public static $server_host = "127.0.0.1";
+    public static $server_port = "8888";
     public static $path_unix_sock = "";
     public static $path_unix_sock_dir = "";
-    public static $sock_type_used = 0;
-    public static $r_instances_persistant = false;
+    public static $server_socks_type = 0;
     public static $r_instances_timeout = 900;
     public static $r_max_execution_time = 180;
     public static $r_server_timeout = 1080;
@@ -118,7 +117,9 @@ class Ini {
         else
             self::$path_unix_sock_dir = self::$path_internal . "socks/";
         self::$path_unix_sock = self::$path_unix_sock_dir . "RConcerto.sock";
-        self::$r_instances_persistant = $r_instances_persistant;
+        self::$server_socks_type = $server_socks_type == "UNIX" ? 0 : 1;
+        self::$server_host = $server_host;
+        self::$server_port = $server_port;
         self::$r_instances_timeout = $r_instances_persistant_instance_timeout;
         self::$r_server_timeout = $r_instances_persistant_server_timeout;
         self::$r_max_execution_time = $r_max_execution_time;

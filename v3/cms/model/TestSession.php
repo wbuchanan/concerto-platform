@@ -30,7 +30,6 @@ class TestSession extends OTable {
     public $Template_id = 0;
     public $time_tamper_prevention = 0;
     public $hash = "";
-    public $r_type = "";
     public $Template_TestSection_id = 0;
     public $debug = 0;
     public $release = 0;
@@ -53,8 +52,6 @@ class TestSession extends OTable {
     const TEST_SESSION_STATUS_COMPLETED = 3;
     const TEST_SESSION_STATUS_ERROR = 4;
     const TEST_SESSION_STATUS_TAMPERED = 5;
-    const R_TYPE_RSCRIPT = 0;
-    const R_TYPE_SOCKET_SERVER = 1;
 
     public function get_Test() {
         return Test::from_mysql_id($this->Test_id);
@@ -82,10 +79,9 @@ class TestSession extends OTable {
         unset($_SESSION['sids'][session_id()]);
     }
 
-    public static function start_new($test_id, $r_type, $debug = false) {
+    public static function start_new($test_id, $debug = false) {
         $session = new TestSession();
         $session->Test_id = $test_id;
-        $session->r_type = $r_type;
         $session->debug = ($debug ? 1 : 0);
 
         $test = Test::from_mysql_id($test_id);
@@ -129,18 +125,14 @@ class TestSession extends OTable {
     }
 
     public function close($sockets = true) {
-        if ($this->r_type == TestSession::R_TYPE_SOCKET_SERVER) {
-            if ($sockets && TestServer::is_running())
-                TestServer::send("close:" . $this->id);
-        }
+        if ($sockets && TestServer::is_running())
+            TestServer::send("close:" . $this->id);
         $this->remove_files();
     }
 
     public function serialize() {
-        if ($this->r_type == TestSession::R_TYPE_SOCKET_SERVER) {
-            if (TestServer::is_running())
-                TestServer::send("serialize:" . $this->id);
-        }
+        if (TestServer::is_running())
+            TestServer::send("serialize:" . $this->id);
     }
 
     public function remove_files() {
@@ -198,20 +190,7 @@ class TestSession extends OTable {
                 }
             }
         }
-
-        if ($this->r_type == self::R_TYPE_RSCRIPT) {
-            $code.=sprintf("
-            CONCERTO_TEST_FLOW<-%d
-            evalWithTimeout({
-            while(CONCERTO_TEST_FLOW > 0){
-                CONCERTO_TEST_FLOW <- do.call(paste('CONCERTO_Test',CONCERTO_TEST_ID,'Section',CONCERTO_TEST_FLOW,sep=''),list())
-            }
-            CONCERTO_FLOW_LOOP_FINISHED <- TRUE
-            },timeout=%s,onTimeout='error')
-            if(CONCERTO_TEST_FLOW==-2) update.session.release(1)
-            ", $counter, Ini::$r_max_execution_time);
-        } else {
-            $code.=sprintf("
+        $code.=sprintf("
             CONCERTO_TEST_FLOW<-%d
             
             while(CONCERTO_TEST_FLOW > 0){
@@ -221,7 +200,6 @@ class TestSession extends OTable {
             
             if(CONCERTO_TEST_FLOW==-2) update.session.release(1)
             ", $counter);
-        }
 
         return $this->RCall($code, $ini_code_required);
     }
@@ -247,11 +225,6 @@ class TestSession extends OTable {
             else
                 $command.=$this->get_next_ini_RCode();
         }
-        else if ($this->r_type == TestSession::R_TYPE_RSCRIPT) {
-            $command.="
-            sink(stdout(), type='message')
-            ";
-        }
 
         $command.=$code;
         if (!$debug_syntax)
@@ -260,36 +233,25 @@ class TestSession extends OTable {
         $output = array();
         $return = -999;
 
-        if ($this->r_type == TestSession::R_TYPE_SOCKET_SERVER) {
-            $command_obj = json_encode(array(
-                "session_id" => $this->id,
-                "code" => $command,
-                "close" => 0
-                    ));
+        $command_obj = json_encode(array(
+            "session_id" => $this->id,
+            "code" => $command,
+            "close" => 0
+                ));
 
-            if (TestServer::$debug)
-                TestServer::log_debug("TestSession->RCall --- checking for server");
-            if (!TestServer::is_running())
-                TestServer::start_process();
-            if (TestServer::$debug)
-                TestServer::log_debug("TestSession->RCall --- server found, trying to send");
-            $response = TestServer::send($command_obj);
-            $result = json_decode(trim($response));
-            if (TestServer::$debug)
-                TestServer::log_debug("TestSession->RCall --- sent and recieved response");
+        if (TestServer::$debug)
+            TestServer::log_debug("TestSession->RCall --- checking for server");
+        if (!TestServer::is_running())
+            TestServer::start_process();
+        if (TestServer::$debug)
+            TestServer::log_debug("TestSession->RCall --- server found, trying to send");
+        $response = TestServer::send($command_obj);
+        $result = json_decode(trim($response));
+        if (TestServer::$debug)
+            TestServer::log_debug("TestSession->RCall --- sent and recieved response");
 
-            $output = explode("\n", $result->output);
-            $return = $result->return;
-        }
-        else {
-            $this->write_RSource_file($command);
-
-            include Ini::$path_internal . 'SETTINGS.php';
-            $lang = "";
-            if (Ini::$unix_locale != "")
-                $lang = "LANG=\"" . Ini::$unix_locale . "\" ";
-            exec($lang . "\"" . Ini::$path_r_script . "\" --vanilla \"" . $this->get_RSource_file_path() . "\"", $output, $return);
-        }
+        $output = explode("\n", $result->output);
+        $return = $result->return;
 
         $thisSession = null;
         $status = TestSession::TEST_SESSION_STATUS_ERROR;
@@ -440,6 +402,8 @@ class TestSession extends OTable {
             $command = implode("\n", $command_lines);
             $command = htmlspecialchars($command, ENT_QUOTES);
 
+            if (!is_array($response))
+                $response = array();
             $response["debug"] = array(
                 "code" => $command,
                 "return" => $return,
@@ -457,33 +421,6 @@ class TestSession extends OTable {
 
     public function get_next_ini_RCode() {
         $code = "";
-        if ($this->r_type == TestSession::R_TYPE_RSCRIPT) {
-            include Ini::$path_internal . 'SETTINGS.php';
-            $code = "
-            sink(stdout(), type='message')
-            options(encoding='UTF-8')
-            options(error=quote(stop(geterrmessage())))
-            library(session)
-            " . ($path_mysql_home != "" ? "Sys.setenv('MYSQL_HOME'='" . $path_mysql_home . "')" : "") . "
-            restore.session('" . $this->get_RSession_file_path() . "')
-                
-            CONCERTO_DB_HOST <- '" . $db_host . "'
-            CONCERTO_DB_PORT <- as.numeric(" . ($db_port != "" ? $db_port : "3306") . ")
-            CONCERTO_DB_LOGIN <- '" . $db_user . "'
-            CONCERTO_DB_PASSWORD <- '" . $db_password . "'
-
-            CONCERTO_DRIVER <- dbDriver('MySQL')
-            for(CONCERTO_DB_CONNECTION in dbListConnections(CONCERTO_DRIVER)) { dbDisconnect(CONCERTO_DB_CONNECTION) }
-            CONCERTO_DB_CONNECTION <- dbConnect(CONCERTO_DRIVER, user = CONCERTO_DB_LOGIN, password = CONCERTO_DB_PASSWORD, dbname = CONCERTO_DB_NAME, host = CONCERTO_DB_HOST, port = CONCERTO_DB_PORT)
-            dbSendQuery(CONCERTO_DB_CONNECTION,statement = \"SET NAMES 'utf8';\")
-            dbSendQuery(CONCERTO_DB_CONNECTION,statement = \"SET time_zone='" . Ini::$mysql_timezone . "';\")
-            
-            rm(CONCERTO_DB_HOST)
-            rm(CONCERTO_DB_PORT)
-            rm(CONCERTO_DB_LOGIN)
-            rm(CONCERTO_DB_PASSWORD)
-            ";
-        }
         return $code;
     }
 
@@ -496,12 +433,6 @@ class TestSession extends OTable {
         foreach ($returns as $ret) {
             $code.=sprintf("update.session.return('%s')
                 ", $ret->name);
-        }
-
-        if ($this->r_type == TestSession::R_TYPE_RSCRIPT) {
-            $code .= "
-            save.session('" . $this->get_RSession_file_path() . "')
-            ";
         }
         return $code;
     }
@@ -525,13 +456,7 @@ class TestSession extends OTable {
         $path = Ini::$path_temp . $this->get_Test()->Owner_id;
         if (!is_dir($path))
             mkdir($path, 0777);
-        $code = "";
-        if ($this->r_type == TestSession::R_TYPE_RSCRIPT) {
-            $code.="
-            sink(stdout(), type='message')
-            ";
-        }
-        $code .= sprintf("
+        $code = sprintf("
             options(encoding='UTF-8')
             options(error=quote(stop(geterrmessage())))
             CONCERTO_TEST_ID <- %d
@@ -658,12 +583,11 @@ class TestSession extends OTable {
             }
         } else {
             if ($tid != null) {
-                $r_type = Ini::$r_instances_persistant ? TestSession::R_TYPE_SOCKET_SERVER : TestSession::R_TYPE_RSCRIPT;
                 if ($debug == 1)
                     $debug = true;
                 else
                     $debug = false;
-                $session = TestSession::start_new($tid, $r_type, $debug);
+                $session = TestSession::start_new($tid, $debug);
 
                 if ($values == null)
                     $values = array();
@@ -717,7 +641,6 @@ class TestSession extends OTable {
             `Template_id` bigint(20) NOT NULL,
             `time_tamper_prevention` INT NOT NULL,
             `hash` text NOT NULL,
-            `r_type` tinyint( 1 ) NOT NULL,
             `Template_TestSection_id` bigint(20) NOT NULL,
             `debug` tinyint(1) NOT NULL,
             `release` tinyint(1) NOT NULL,
