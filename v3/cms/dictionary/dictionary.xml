@@ -5139,14 +5139,14 @@ Note: You can add new languages by inserting "<new_language>string translated in
             <br>Ordenar decrescente</br>
         </string>
         <string id="536">
-            <en>loader template</en>
+            <en>loader</en>
             <de></de>
-            <pl>szablon wczytywania</pl>
+            <pl>wczytywanie</pl>
             <cn></cn>
             <fr></fr>
             <bg></bg>
             <nl></nl>
-            <br>carregar template</br>
+            <br></br>
         </string>
         <string id="537">
             <en>Choose the template you wish to be shown whenever R code will be interpreted. No variable insertion is possible on loader templates. Loader templates from nested tests are ignored.</en>

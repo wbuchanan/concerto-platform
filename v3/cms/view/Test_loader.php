@@ -46,7 +46,7 @@ else {
         die(Language::string(81));
 }
 
-$description = Language::string(213);
+$description = Language::string(537) . "<br/><br/>" . Language::string(213);
 $loader = null;
 if ($obj != null) {
     if (array_key_exists("loader", $_POST)) {
@@ -69,27 +69,17 @@ if ($loader != null)
     });
 </script>
 
-<fieldset class="padding ui-widget-content ui-corner-all margin">
-    <legend>
-        <table>
-            <tr>
-                <td><span class="tooltip spanIcon ui-icon ui-icon-help" title="<?= Language::string(537) ?>"></span></td>
-                <td class=""><b><?= Language::string(536) ?></b></td>
-            </tr>
-        </table>
-    </legend>
-
-    <table class="fullWidth">
-        <tr>
-            <td>
-                <span class="spanIcon ui-icon ui-icon-help tooltip" title="<?= htmlspecialchars(Template::strip_html($description), ENT_QUOTES) ?>"></span>
+<table class="fullWidth">
+    <tr>
+        <td class="noWrap tdFormLabel"><?= Language::string(536) ?>:</td>
+        <td class="tdFormIcon"><span class="tooltip spanIcon ui-icon ui-icon-help" title="<?= htmlspecialchars(Template::strip_html($description), ENT_QUOTES) ?>"></span></td>
+        <?php if ($loader != null) { ?>
+            <td class="tdFormIcon">
+                <span class="spanIcon ui-icon ui-icon-extlink tooltip" title="<?= Language::string(522) ?>" onclick="Test.uiGoToRelatedObject(Test.sectionTypes.loadTemplate,<?= $loader->id ?>)"></span>
             </td>
-            <?php if ($loader != null) { ?>
-                <td>
-                    <span class="spanIcon ui-icon ui-icon-extlink tooltip" title="<?= Language::string(522) ?>" onclick="Test.uiGoToRelatedObject(Test.sectionTypes.loadTemplate,<?= $loader->id ?>)"></span>
-                </td>
-            <?php } ?>
-            <td class="fullWidth">
+        <?php } ?>
+        <td>
+            <div class="divFormControl">
                 <select id="selectLoaderTemplate" class="fullWidth ui-widget-content ui-corner-all fullWidth" onchange="Test.uiRefreshLoader($(this).val())">
                     <option value="0" <?= ($loader_id == 0 ? "selected" : "") ?>>&lt;<?= Language::string(538) ?>&gt;</option>
                     <?php
@@ -101,8 +91,7 @@ if ($loader != null)
                         <option value="<?= $t->id ?>" <?= ($loader_id == $t->id ? "selected" : "") ?>><?= $t->name ?> ( <?= $t->get_system_data() ?> )</option>
                     <?php } ?>
                 </select>
-            </td>
-        </tr>
-    </table>
-
-</fieldset>
+            </div>
+        </td>
+    </tr>
+</table>
