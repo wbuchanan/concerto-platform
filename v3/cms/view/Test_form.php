@@ -176,11 +176,7 @@ if ($oid != 0) {
         <?php
         include Ini::$path_internal . "cms/view/Test_logic.php";
     }
-    ?>
-    <div align="center">
-        <?= $buttons ?>
-    </div>
-    <?php
+    
     if ($oid != -1) {
         ?>
         <div class="divFormFloatingBar" align="right">

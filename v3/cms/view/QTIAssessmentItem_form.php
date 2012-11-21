@@ -163,9 +163,6 @@ if ($oid != 0) {
         ?>
         <fieldset class="padding ui-widget-content ui-corner-all margin">
             <legend class=""><table><tr><td><span class="tooltip spanIcon ui-icon ui-icon-help" title="<?= Language::string(466) ?>"></span></td><td><b><?= Language::string(465) ?></b></td></tr></table></legend>
-            <div align="center">
-                <button class="btnRevalidate" onclick="<?= $class_name ?>.uiRevalidate()"><?= Language::string(487) ?></button>
-            </div>
             <div class="horizontalMargin">
                 <textarea id="form<?= $class_name ?>TextareaXML" name="form<?= $class_name ?>TextareaXML"><?= htmlspecialchars(stripslashes($obj->XML)) ?></textarea>
             </div>
@@ -201,11 +198,7 @@ if ($oid != 0) {
         </fieldset>
         <?php
     }
-    ?>
-    <div align="center">
-        <?= $buttons ?>
-    </div>
-    <?php
+    
     if ($oid != -1) {
         ?>
         <div class="divFormFloatingBar" align="right">

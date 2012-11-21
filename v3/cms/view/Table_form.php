@@ -165,12 +165,7 @@ if ($oid != 0) {
         include Ini::$path_internal . 'cms/view/Table_indexes.php';
         include Ini::$path_internal . 'cms/view/Table_data.php';
     }
-    ?>
-    <div align="center">
-        <?= $buttons ?>
-    </div>
-
-    <?php
+    
     if ($oid != -1) {
         ?>
         <div id="div<?= $class_name ?>Dialog" class="notVisible">

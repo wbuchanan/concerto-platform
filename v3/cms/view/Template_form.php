@@ -199,12 +199,7 @@ if ($oid != 0) {
         </fieldset>
         <?php
     }
-    ?>
-
-    <div align="center">
-        <?= $buttons ?>
-    </div>
-    <?php
+    
     if ($oid != -1) {
         ?>
         <div class="divFormFloatingBar" align="right">

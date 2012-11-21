@@ -108,13 +108,6 @@ if ($oid != 0) {
             </tr>
         </table>
     </legend>
-    <div align="center">
-        <button class="btnLogicVariables" onclick="Test.uiShowVarsDialog()"><?= Language::string(144) ?></button>
-        <button class="btnDebugTest" onclick="Test.uiIniDebug()"><?= Language::string(284) ?></button>
-        <button class="btnRunTest" onclick="window.open('<?= Ini::$path_external . "?tid=" . $obj->id ?>','_blank')"><?= Language::string(362) ?></button>
-        <button class="btnLogicToggleAll" onclick="Test.uiToggleAll()"><?= Language::string(401) ?></button>
-        <button class="btnLogicToggleVarAssignment" onclick="Test.uiToggleVarAssignments()"><?= Language::string(454) ?></button>
-    </div>
 
     <div id="divTestLogic" class="">
         <div id="divTestEmptyLogic" class="margin padding ui-state-error" align="center">

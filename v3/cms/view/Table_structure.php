@@ -54,10 +54,5 @@ if (!$logged_user->is_object_editable($obj))
             </tr>
         </table>
     </legend>
-    <div align="center">
-        <button class="btnTableStructureImportTable" onclick="Table.uiImportTable()"><?= Language::string(125) ?></button>
-        <button class="btnTableStructureImportCSV" onclick="Table.uiImportCSV()"><?= Language::string(126) ?></button>
-        <button class="btnTableStructureExportCSV" onclick="Table.uiExportCSV()"><?= Language::string(127) ?></button>
-    </div>
     <div id="div<?= $class_name ?>GridStructureContainer" align="left" class="margin"></div>
 </fieldset>
