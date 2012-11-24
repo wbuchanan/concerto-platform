@@ -144,13 +144,10 @@ class TestInstance {
     public function serialize() {
         if (TestServer::$debug)
             TestServer::log_debug("TestInstance->serialize() --- Serializing #" . $this->TestSession_id);
-        $session = TestSession::from_mysql_id($this->TestSession_id);
 
         $this->is_serializing = true;
-        
-        $this->send(sprintf("
-            save.session('%s')
-            ", $session->get_RSession_file_path()));
+
+        $this->send($this->get_serialize_code());
     }
 
     public function send_chunked($code, $lines, $i) {
@@ -216,8 +213,28 @@ class TestInstance {
     }
 
     public function send($code) {
-        //if ($session->status == TestSession::TEST_SESSION_STATUS_SERIALIZED) {
+        $send_code = "";
+
         $session = TestSession::from_mysql_id($this->TestSession_id);
+        switch ($session->status) {
+            case TestSession::TEST_SESSION_STATUS_NEW: {
+                    $send_code .= $this->get_ini_code($session);
+                    break;
+                }
+            case TestSession::TEST_SESSION_STATUS_SERIALIZED: {
+                    $send_code .= $this->get_unserialize_code($session);
+                    break;
+                }
+        }
+
+        if ($code != null)
+            $send_code .= $code;
+        else {
+            $test = Test::from_mysql_id($session->Test_id);
+            if ($test != null) {
+                $code.= $test->code;
+            }
+        }
 
         $marker = "
             #SESSION CODE CHUNKED
@@ -356,30 +373,18 @@ class TestInstance {
             rm(CONCERTO_TEMP_PATH)
             rm(CONCERTO_MYSQL_HOME)
             ', $test->id, $this->TestSession_id, $db_host, ($db_port != "" ? $db_port : "3306"), $db_user, $db_password, $db_name, $path, $path_mysql_home);
-        return $code;
-    }
 
-    public function get_append_code($session = null, $test = null) {
-        if ($session == null)
-            $session = $this->get_TestSession();
-        if ($session == null)
-            return("
-            stop('session #" . $this->TestSession_id . " doesn't exist!')
-                ");
-        if ($test == null)
-            $this->get_Test($session);
-        if ($test == null)
-            return("
-            stop('test #" . $session->Test_id . " doesn't exist!')
-                ");
-
-        $code = "
-            ";
+        $code .= '
+            concerto$updateAllReturnVariables=function(){
+                ';
         $returns = $test->get_return_TestVariables();
         foreach ($returns as $ret) {
             $code.=sprintf('concerto$updateReturnVariable("%s")
                 ', $ret->name);
         }
+        $code.="
+            }
+            ";
         return $code;
     }
 

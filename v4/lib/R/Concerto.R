@@ -37,6 +37,7 @@ concerto <- list(
 
     finalize = function(){
         dbSendQuery(concerto$db$connection, statement = sprintf("UPDATE `%s`.`TestSession` SET `release` = 1 WHERE `id`=%s",dbEscapeStrings(concerto$db$connection,concerto$db$name),dbEscapeStrings(concerto$db$connection,toString(concerto$sessionID))))
+        concerto$updateAllReturnVariables()
     },
 
     db = list(
@@ -72,6 +73,9 @@ concerto <- list(
             value <- dbEscapeStrings(concerto$db$connection,toString(value))
             dbSendQuery(concerto$db$connection, statement = sprintf("REPLACE INTO `%s`.`TestSessionReturn` SET `TestSession_id` ='%s', `name`='%s', `value`='%s'",dbEscapeStrings(concerto$db$connection,concerto$db$name),dbEscapeStrings(concerto$db$connection,toString(concerto$sessionID)),variable, value))
         }
+    },
+
+    updateAllReturnVariables = function() {
     },
 
     convertToNumeric = function(var){
