@@ -26,6 +26,7 @@ class Test extends OModule {
     public $session_count = 0;
     public $open = 0;
     public $loader_Template_id = 0;
+    public $code = "";
     public $xml_hash = "";
     public static $exportable = true;
     public static $mysql_table_name = "Test";
@@ -398,6 +399,7 @@ class Test extends OModule {
             `open` tinyint(1) NOT NULL,
             `session_count` bigint(20) NOT NULL,
             `loader_Template_id` bigint(20) NOT NULL,
+            `code` longtext NOT NULL,
             `description` text NOT NULL,
             `xml_hash` text NOT NULL,
             `Sharing_id` int(11) NOT NULL,

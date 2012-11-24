@@ -22,11 +22,11 @@ concerto <- list(
         print("initialization...")
 
         options(encoding='UTF-8')
-        concerto$testID = testID
-        concerto$sessionID = sessionID
+        concerto$testID <<- testID
+        concerto$sessionID <<- sessionID
 
         setwd(tempPath)
-        print(cat("working directory set to:",tempPath))
+        print(paste("working directory set to:",tempPath))
 
         library(session)
         library(catR)
@@ -36,7 +36,8 @@ concerto <- list(
     },
 
     finalize = function(){
-        dbSendQuery(concerto$db$connection, statement = sprintf("UPDATE `%s`.`TestSession` SET `release` = 1 WHERE `id`=%s",dbEscapeStrings(concerto$db$connection,concerto$db$name),dbEscapeStrings(concerto$db$connection,toString(concerto$sessionID))))
+        print("finalizing...")
+        print(dbSendQuery(concerto$db$connection, statement = sprintf("UPDATE `%s`.`TestSession` SET `status` = 3 WHERE `id`=%s",dbEscapeStrings(concerto$db$connection,concerto$db$name),dbEscapeStrings(concerto$db$connection,toString(concerto$sessionID)))))
         concerto$updateAllReturnVariables()
     },
 
@@ -49,15 +50,16 @@ concerto <- list(
             drv <- dbDriver('MySQL')
             con <- dbConnect(drv, user = user, password = password, dbname = dbName, host = host, port = port)
             dbSendQuery(con,statement = "SET NAMES 'utf8';")
-            dbSendQuery(con,statement = cat("SET time_zone='",dbTimezone,"';",sep=''))
+            dbSendQuery(con,statement = paste("SET time_zone='",dbTimezone,"';",sep=''))
 
-            concerto$db$connection = con
-            concerto$db$name = dbName
+            concerto$db$connection <<- con
+            concerto$db$name <<- dbName
         }
     ),
 
     serialize = function(path){
         print("serializing session...")
+        concerto$updateStatus(7)
         save.session(path)
     },
 
@@ -76,6 +78,14 @@ concerto <- list(
     },
 
     updateAllReturnVariables = function() {
+        print("updating all return variables...")
+    },
+
+    updateStatus = function(status) {
+        print(concerto$db$connection)
+        print(concerto$db$name)
+        status <- dbEscapeStrings(concerto$db$connection,toString(status))
+        dbSendQuery(concerto$db$connection, statement = sprintf("UPDATE `%s`.`TestSession` SET `status` = '%s' WHERE `id`=%s",dbEscapeStrings(concerto$db$connection,concerto$db$name),status,dbEscapeStrings(concerto$db$connection,toString(concerto$sessionID))))
     },
 
     convertToNumeric = function(var){

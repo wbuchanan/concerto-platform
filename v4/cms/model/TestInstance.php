@@ -30,6 +30,7 @@ class TestInstance {
     public $is_working = false;
     public $is_data_ready = false;
     public $response = "";
+    public $error_response = "";
     public $code = "";
     public $is_serializing = false;
     public $is_serialized = false;
@@ -151,10 +152,6 @@ class TestInstance {
     }
 
     public function send_chunked($code, $lines, $i) {
-        $marker = "
-            #SESSION CODE CHUNKED
-            ";
-
         if (TestServer::$debug)
             TestServer::log_debug("TestInstance->send_chunked() --- lines no: " . count($lines) . ", i: " . $i);
 
@@ -164,21 +161,24 @@ class TestInstance {
         if (!$this->is_chunked) {
             $this->is_chunked = true;
             $this->response = "";
+            $this->error_response = "";
             $this->chunked_lines = $lines;
-            $this->code = $code . $marker;
+            $this->code = $code;
         } else {
-            $this->code.=$code . $marker;
+            $this->code.=$code;
             $this->chunked_lines = $lines;
         }
         $this->chunked_index = $i;
 
-        $bytes = fwrite($this->pipes[0], $code . $marker);
+        $bytes = fwrite($this->pipes[0], $code);
         if (TestServer::$debug)
             TestServer::log_debug("TestInstance->send_chunked() --- " . $bytes . " written to test instance ( chunked )");
         $this->is_chunked_working = true;
     }
 
     public function read_chunked() {
+        //TODO make it as good as read() [statuses,timeouts,etc]
+
         $this->code_execution_halted = false;
         $this->last_action_time = time();
 
@@ -187,107 +187,35 @@ class TestInstance {
         while ($append = fread($this->pipes[1], 4096)) {
             $result.=$append;
         }
-        if (strpos($result, '#SESSION CODE CHUNKED') !== false) {
-            $this->is_chunked_ready = true;
-        }
-        if (strpos($result, '"SESSION SERIALIZATION FINISHED"') !== false) {
-            $this->is_serialized = true;
+
+        $lines = explode("\n", $result);
+        if (count($lines) > 0) {
+            $last_line = $lines[count($lines) - 1];
+
+            if ($last_line == "> " || $last_line == "+ ") {
+                if ($this->is_serializing) {
+                    $this->is_serialized = true;
+                } else
+                    $this->is_chunked_ready = true;
+            }
         }
 
         while ($append = fread($this->pipes[2], 4096)) {
             $error.=$append;
         }
         if (strpos($error, 'Execution halted') !== false) {
-            $result .= $error;
             $this->code_execution_halted = true;
             $this->is_chunked_ready = true;
         }
 
         $this->response.=$result;
+        $this->error_response.=$error;
 
         if ($this->is_chunked_ready) {
             return $this->response;
         }
 
         return null;
-    }
-
-    public function send($code) {
-        $send_code = "";
-
-        $session = TestSession::from_mysql_id($this->TestSession_id);
-        switch ($session->status) {
-            case TestSession::TEST_SESSION_STATUS_NEW: {
-                    $send_code .= $this->get_ini_code($session);
-                    break;
-                }
-            case TestSession::TEST_SESSION_STATUS_SERIALIZED: {
-                    $send_code .= $this->get_unserialize_code($session);
-                    break;
-                }
-        }
-
-        if ($code != null)
-            $send_code .= $code;
-        else {
-            $test = Test::from_mysql_id($session->Test_id);
-            if ($test != null) {
-                $code.= $test->code;
-            }
-        }
-
-        $marker = "
-            #SESSION CODE CHUNKED
-            ";
-
-        if (TestServer::$debug)
-            TestServer::log_debug("TestInstance->send() --- Sending " . strlen($code) . " data to test instance");
-        $this->last_action_time = time();
-        $this->last_execution_time = time();
-
-        $lines = explode("\n", $code);
-        $code = "";
-        $i = -1;
-        foreach ($lines as $line) {
-            $i++;
-            $line = trim($line);
-            if ($line == "") {
-                //continue;
-            }
-            if (strlen($code . $line . "
-                " . $marker) > 65535) {
-                $this->send_chunked($code, $lines, $i);
-                return;
-            }
-            $code .= $line . "
-                ";
-        }
-        if (!$this->is_chunked) {
-            $this->code = $code;
-            $this->response = "";
-        } else {
-            $this->code.=$code;
-        }
-
-        $this->is_chunked = false;
-
-        $bytes = "";
-        if ($this->is_serializing) {
-            $bytes = fwrite($this->pipes[0], $code . "
-        print('SESSION SERIALIZATION FINISHED')
-        ");
-        } else {
-            $bytes = fwrite($this->pipes[0], $code . "
-        print('CODE EXECUTION FINISHED')
-        ");
-        }
-        if (TestServer::$debug)
-            TestServer::log_debug("TestInstance->send() --- " . $bytes . " written to test instance");
-
-        if ($this->is_serializing)
-            $this->is_serialized = false;
-        $this->is_working = true;
-        $this->is_data_ready = false;
     }
 
     public function read() {
@@ -299,35 +227,133 @@ class TestInstance {
         while ($append = fread($this->pipes[1], 4096)) {
             $result.=$append;
         }
-        if (strpos($result, '"CODE EXECUTION FINISHED"') !== false) {
-            $this->is_data_ready = true;
-        }
-        if (strpos($result, '"SESSION SERIALIZATION FINISHED"') !== false) {
-            $this->is_serialized = true;
+
+        $session = TestSession::from_mysql_id($this->TestSession_id);
+        $change_status = false;
+
+        $lines = explode("\n", $result);
+        if (count($lines) > 0) {
+            $last_line = $lines[count($lines) - 1];
+
+            if ($last_line == "> ") {
+                if ($this->is_serializing) {
+                    $this->is_serialized = true;
+
+                    $change_status = true;
+                    $session->status = TestSession::TEST_SESSION_STATUS_SERIALIZED;
+                } else {
+                    $this->is_data_ready = true;
+
+                    if ($session->status != TestSession::TEST_SESSION_STATUS_COMPLETED) {
+                        $change_status = true;
+                        $session->status = TestSession::TEST_SESSION_STATUS_WAITING;
+                    }
+                }
+            }
         }
 
         while ($append = fread($this->pipes[2], 4096)) {
             $error.=$append;
         }
-        if (strpos($error, 'Execution halted') !== false) {
-            $result .= $error;
+        if (strpos($error, 'Execution halted') !== false || $this->is_execution_timedout()) {
             $this->code_execution_halted = true;
             $this->is_data_ready = true;
+
+            $change_status = true;
+            $session->status = TestSession::TEST_SESSION_STATUS_ERROR;
+
+            if ($this->is_execution_timedout())
+                $error.="
+                TIMEOUT
+                ";
         }
 
         $this->response.=$result;
-        if ($this->is_data_ready) {
+        $this->error_response .= $error;
+
+        if ($change_status) {
+            $session->mysql_save();
+        }
+
+        if ($this->is_data_ready)
             return $this->response;
-        } else {
-            if ($this->is_execution_timedout()) {
-                $this->code_execution_halted = true;
-                $this->is_data_ready = true;
-                return $this->response . "
-                    TIMEOUT";
+
+        return null;
+    }
+
+    public function send($code) {
+        $send_code = "";
+
+        $session = TestSession::from_mysql_id($this->TestSession_id);
+        $change_status = false;
+        switch ($session->status) {
+            case TestSession::TEST_SESSION_STATUS_NEW: {
+                    $change_status = true;
+                    $send_code .= $this->get_ini_code($session);
+                    break;
+                }
+            case TestSession::TEST_SESSION_STATUS_SERIALIZED: {
+                    $change_status = true;
+                    $send_code .= $this->get_unserialize_code($session);
+                    break;
+                }
+        }
+
+        if ($change_status) {
+            $session->status = TestSession::TEST_SESSION_STATUS_WORKING;
+            $session->mysql_save();
+        }
+
+        if ($code != null)
+            $send_code .= $code;
+        else {
+            $test = Test::from_mysql_id($session->Test_id);
+            if ($test != null) {
+                $send_code.= $test->code . $this->get_final_code();
             }
         }
 
-        return null;
+        if (TestServer::$debug)
+            TestServer::log_debug("TestInstance->send() --- Sending " . strlen($send_code) . " data to test instance");
+        $this->last_action_time = time();
+        $this->last_execution_time = time();
+
+        $lines = explode("\n", $send_code);
+        $code = "";
+        $i = -1;
+        foreach ($lines as $line) {
+            $i++;
+            $line = trim($line);
+            if ($line == "") {
+                //continue;
+            }
+            if (strlen($code . $line) > 65535) {
+                $this->send_chunked($code . "
+                    ", $lines, $i);
+                return;
+            }
+            $code .= $line . "
+                ";
+        }
+        if (!$this->is_chunked) {
+            $this->code = $code;
+            $this->response = "";
+            $this->error_response = "";
+        } else {
+            $this->code.=$code;
+        }
+
+        $this->is_chunked = false;
+
+        $bytes = fwrite($this->pipes[0], $code);
+
+        if (TestServer::$debug)
+            TestServer::log_debug("TestInstance->send() --- " . $bytes . " written to test instance");
+
+        if ($this->is_serializing)
+            $this->is_serialized = false;
+        $this->is_working = true;
+        $this->is_data_ready = false;
     }
 
     public function get_ini_code($session = null, $test = null) {
@@ -335,13 +361,13 @@ class TestInstance {
             $session = $this->get_TestSession();
         if ($session == null)
             return("
-            stop('session #" . $this->TestSession_id . " doesn't exist!')
+            stop('session #" . $this->TestSession_id . " does not exist!')
                 ");
         if ($test == null)
-            $this->get_Test($session);
+            $test = $this->get_Test($session);
         if ($test == null)
             return("
-            stop('test #" . $session->Test_id . " doesn't exist!')
+            stop('test #" . $session->Test_id . " does not exist!')
                 ");
 
         include Ini::$path_internal . 'SETTINGS.php';
@@ -359,9 +385,10 @@ class TestInstance {
             CONCERTO_DB_NAME <- "%s"
             CONCERTO_TEMP_PATH <- "%s"
             CONCERTO_MYSQL_HOME <- "%s"
+            CONCERTO_DB_TIMEZONE <- "%s"
             source("' . Ini::$path_internal . 'lib/R/Concerto.R")
                 
-            concerto$initialize(CONCERTO_TEST_ID,CONCERTO_TEST_SESSION_ID,CONCERTO_DB_LOGIN_CONCERTO_DB_PASSWORD,CONCERTO_DB_NAME,CONCERTO_DB_HOST,CONCERTO_DB_PORT,CONCERTO_MYSQL_HOME,CONCERTO_TEMP_PATH)
+            concerto$initialize(CONCERTO_TEST_ID,CONCERTO_TEST_SESSION_ID,CONCERTO_DB_LOGIN,CONCERTO_DB_PASSWORD,CONCERTO_DB_NAME,CONCERTO_DB_HOST,CONCERTO_DB_PORT,CONCERTO_MYSQL_HOME,CONCERTO_TEMP_PATH,CONCERTO_DB_TIMEZONE)
             
             rm(CONCERTO_TEST_ID)
             rm(CONCERTO_TEST_SESSION_ID)
@@ -372,19 +399,22 @@ class TestInstance {
             rm(CONCERTO_DB_NAME)
             rm(CONCERTO_TEMP_PATH)
             rm(CONCERTO_MYSQL_HOME)
-            ', $test->id, $this->TestSession_id, $db_host, ($db_port != "" ? $db_port : "3306"), $db_user, $db_password, $db_name, $path, $path_mysql_home);
+            rm(CONCERTO_DB_TIMEZONE)
+            ', $test->id, $this->TestSession_id, $db_host, ($db_port != "" ? $db_port : "3306"), $db_user, $db_password, $db_name, $path, $path_mysql_home, $mysql_timezone);
 
-        $code .= '
+        $returns = $test->get_return_TestVariables();
+        if (count($returns) > 0) {
+            $code .= '
             concerto$updateAllReturnVariables=function(){
                 ';
-        $returns = $test->get_return_TestVariables();
-        foreach ($returns as $ret) {
-            $code.=sprintf('concerto$updateReturnVariable("%s")
+            foreach ($returns as $ret) {
+                $code.=sprintf('concerto$updateReturnVariable("%s")
                 ', $ret->name);
-        }
-        $code.="
+            }
+            $code.="
             }
             ";
+        }
         return $code;
     }
 
@@ -393,13 +423,13 @@ class TestInstance {
             $session = $this->get_TestSession();
         if ($session == null)
             return("
-            stop('session #" . $this->TestSession_id . " doesn't exist!')
+            stop('session #" . $this->TestSession_id . " does not exist!')
                 ");
         if ($test == null)
-            $this->get_Test($session);
+            $test = $this->get_Test($session);
         if ($test == null)
             return("
-            stop('test #" . $session->Test_id . " doesn't exist!')
+            stop('test #" . $session->Test_id . " does not exist!')
                 ");
 
         $code = $this->get_ini_code($session, $test);
@@ -414,18 +444,25 @@ class TestInstance {
             $session = $this->get_TestSession();
         if ($session == null)
             return("
-            stop('session #" . $this->TestSession_id . " doesn't exist!')
+            stop('session #" . $this->TestSession_id . " does not exist!')
                 ");
         if ($test == null)
-            $this->get_Test($session);
+            $test = $this->get_Test($session);
         if ($test == null)
             return("
-            stop('test #" . $session->Test_id . " doesn't exist!')
+            stop('test #" . $session->Test_id . " does not exist!')
                 ");
 
         $code = sprintf('
             concerto$serialize("%s")
             ', $session->get_RSession_file_path());
+        return $code;
+    }
+
+    public function get_final_code() {
+        $code = '
+            concerto$finalize()
+            ';
         return $code;
     }
 

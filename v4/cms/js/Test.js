@@ -77,6 +77,7 @@ Test.getFullSaveObject = function() {
     obj["returns"]=Test.getSerializedReturnVariables();
     obj["description"]=$("#form"+this.className+"TextareaDescription").val();
     obj["loader_Template_id"]=$("#selectLoaderTemplate").val();
+    obj["code"]=$("#textareaTestLogic").val();
     if($("#form"+this.className+"SelectOwner").length==1) obj["Owner_id"]=$("#form"+this.className+"SelectOwner").val();
     return obj;
 }

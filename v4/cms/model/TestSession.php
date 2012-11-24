@@ -260,7 +260,7 @@ class TestSession extends OTable {
                 $status = TestSession::TEST_SESSION_STATUS_ERROR;
             }
 
-            if ($status == TestSession::TEST_SESSION_STATUS_WORKING && $release == 1 || $close)
+            if ($status == TestSession::TEST_SESSION_STATUS_WORKING && $release == 1)
                 $status = TestSession::TEST_SESSION_STATUS_COMPLETED;
 
             $thisSession->status = $status;
@@ -395,6 +395,8 @@ class TestSession extends OTable {
     }
 
     public static function forward($tid, $sid, $hash, $values, $btn_name, $debug, $time, $resume_from_last_template = false) {
+        if(is_string($values)) $values = json_decode ($values);
+        
         $session = null;
         $result = array();
         if ($sid != null && $hash != null) {

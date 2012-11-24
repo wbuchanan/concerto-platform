@@ -22,7 +22,7 @@
 class TestServer {
 
     public static $debug = true;
-    public static $debug_stream_data = false;
+    public static $debug_stream_data = true;
     public static $sleep_microseconds = 10000;
     private $last_action_time;
     private $main_sock;
@@ -33,14 +33,14 @@ class TestServer {
     const SOCK_TYPE_UNIX = 0;
     const SOCK_TYPE_TCP = 1;
 
-    public static function log_debug($message, $timestamp = true) {
+    public static function log_debug($message, $code = false) {
         $t = microtime(true);
         $micro = sprintf("%06d", ($t - floor($t)) * 1000000);
         $d = new DateTime(date('Y-m-d H:i:s.' . $micro, $t));
         $datetime = $d->format("Y-m-d H:i:s.u");
 
         $lfh = fopen(Ini::$path_temp . date('Y-m-d') . ".socket.log", "a");
-        fwrite($lfh, ($timestamp ? $datetime : "") . " {" . memory_get_peak_usage(true) . "B} --- " . $message . "\r\n");
+        fwrite($lfh, ($code ? "\n" : $datetime . " {" . round(memory_get_peak_usage(true) / 1000000, 3) . "MB} --- ") . $message . "\n" . ($code ? "\n" : ""));
         fclose($lfh);
     }
 
@@ -89,7 +89,7 @@ class TestServer {
         if (self::$debug) {
             self::log_debug("TestServer::send() --- sent data");
             if (self::$debug_stream_data)
-                self::log_debug($data, false);
+                self::log_debug($data, true);
         }
 
         $data = "";
@@ -99,7 +99,7 @@ class TestServer {
             if (self::$debug) {
                 self::log_debug("TestServer::send() --- data recieved (" . $len . ")");
                 if (self::$debug_stream_data)
-                    self::log_debug($data, false);
+                    self::log_debug($data, true);
             }
             if (substr($result, -1, 1) == chr(0))
                 break;
@@ -259,7 +259,7 @@ class TestServer {
                         if (self::$debug) {
                             self::log_debug("TestServer->start() --- Client '$k' test data read ( chunked )");
                             if (self::$debug_stream_data)
-                                self::log_debug($response, false);
+                                self::log_debug($response, true);
                         }
 
                         if ($this->instances[$k]->code_execution_halted)
@@ -286,8 +286,13 @@ class TestServer {
                         $this->instances[$k]->is_working = false;
                         if (self::$debug) {
                             self::log_debug("TestServer->start() --- Client '$k' test data read");
-                            if (self::$debug_stream_data)
-                                self::log_debug($response, false);
+                            if (self::$debug_stream_data) {
+                                self::log_debug($response, true);
+
+                                if ($this->instances[$k]->error_response != "") {
+                                    self::log_debug($this->instances[$k]->error_response, true);
+                                }
+                            }
                         }
 
                         $response = array(
@@ -349,7 +354,7 @@ class TestServer {
                 if (self::$debug) {
                     self::log_debug("TestServer->start() --- data recieved");
                     if (self::$debug_stream_data)
-                        self::log_debug($input, false);
+                        self::log_debug($input, true);
                 }
                 if ($input == "exit") {
                     if (self::$debug)
@@ -399,10 +404,6 @@ class TestServer {
             if ($session != null) {
                 if ($session->debug == 1)
                     $session->remove(false);
-                else {
-                    $session->status = TestSession::TEST_SESSION_STATUS_SERIALIZED;
-                    $session->mysql_save();
-                }
             }
         }
         if (self::$debug) {
@@ -464,7 +465,7 @@ class TestServer {
         if (self::$debug) {
             self::log_debug("TestServer->interpret_input() --- Client '$key' test data sent");
             if (self::$debug_stream_data)
-                self::log_debug($data->code, false);
+                self::log_debug($data->code, true);
         }
     }
 
