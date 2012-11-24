@@ -1,5 +1,4 @@
 <?php
-
 /*
   Concerto Platform - Online Adaptive Testing Platform
   Copyright (C) 2011-2012, The Psychometrics Centre, Cambridge University
@@ -20,27 +19,33 @@
  */
 
 if (!isset($ini)) {
-    require_once '../../Ini.php';
+    require_once'../../Ini.php';
     $ini = new Ini();
 }
 $logged_user = User::get_logged_user();
 if ($logged_user == null) {
-
-    echo json_encode(array("result" => -1));
-    exit();
+    echo "<script>location.reload();</script>";
+    die(Language::string(278));
 }
 
-$test = Test::from_mysql_id($_POST['oid']);
-if (!$logged_user->is_object_readable($test)) {
-    echo json_encode(array("result" => -2));
-    exit();
-}
-
-$obj = TestSection::from_property(array("Test_id" => $_POST['oid'], "counter" => $_POST['counter']), false);
-if ($obj == null) {
-    echo json_encode(array("result" => 0, "code" => ""));
-    exit();
-}
-
-echo json_encode(array("result" => 0, "code" => $obj->get_RCode()));
+if (!$logged_user->is_module_writeable($class_name))
+    die(Language::string(81));
+if (!$logged_user->is_object_editable($obj))
+    die(Language::string(81));
 ?>
+
+<script>
+    $(function(){
+    });
+</script>
+
+<fieldset class="padding ui-widget-content ui-corner-all margin">
+    <legend>
+        <table>
+            <tr>
+                <td><span class="tooltip spanIcon ui-icon ui-icon-help" title="<?= Language::string(620) ?>"></span></td>
+                <td class=""><b><?= Language::string(619) ?></b></td>
+            </tr>
+        </table>
+    </legend>
+</fieldset>

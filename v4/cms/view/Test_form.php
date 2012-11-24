@@ -73,11 +73,7 @@ if ($oid != 0) {
             Methods.iniIconButton(".btnSave", "disk");
             Methods.iniIconButton(".btnSaveNew", "disk");
             Methods.iniIconButton(".btnDelete", "trash");
-            Methods.iniIconButton(".btnDebugTest", "lightbulb");
-            Methods.iniIconButton(".btnLogicVariables", "star");
             Methods.iniIconButton(".btnRunTest", "play");
-            Methods.iniIconButton(".btnLogicToggleAll", "folder-collapsed");
-            Methods.iniIconButton(".btnLogicToggleVarAssignment", "folder-collapsed");
     <?php
     if ($class_name::$exportable && $oid > 0) {
         ?>
@@ -88,6 +84,9 @@ if ($oid != 0) {
     ?>
             Methods.iniTooltips();
             Methods.iniDescriptionTooltips();
+                            
+            $(".divTestVerticalElement").css("height",((Methods.winHeight()-100)/2));
+            $("#divTestResponse").css("height",Methods.winHeight()-100);
         });
     </script>
 
@@ -189,11 +188,21 @@ if ($oid != 0) {
 
     <?php
     if ($oid != -1) {
-        include Ini::$path_internal . "cms/view/Test_security.php";
         ?>
         <div id="div<?= $class_name ?>Variables"><?php include Ini::$path_internal . "cms/view/Test_variables.php"; ?></div>
+
+        <div id="divTestLogic" class="divTestHorizontalElement">
+            <?php include Ini::$path_internal . "cms/view/Test_logic.php"; ?>
+        </div>
+        <div id="divTestResponse" class="divTestHorizontalElement">
+            <div id="divTestSessionState" class="divTestVerticalElement">
+                <?php include Ini::$path_internal . "cms/view/Test_session_state.php"; ?>
+            </div>
+            <div id="divTestOutput" class="divTestVerticalElement">
+                <?php include Ini::$path_internal . "cms/view/Test_output.php"; ?>
+            </div>
+        </div>
         <?php
-        include Ini::$path_internal . "cms/view/Test_logic.php";
     }
 
     if ($oid != -1) {
@@ -212,11 +221,7 @@ if ($oid != 0) {
                 <?php
             }
             ?>
-            <button class="btnLogicVariables" onclick="Test.uiShowVarsDialog()"><?= Language::string(144) ?></button>
-            <button class="btnDebugTest" onclick="Test.uiIniDebug()"><?= Language::string(284) ?></button>
             <button class="btnRunTest" onclick="window.open('<?= Ini::$path_external . "?tid=" . $obj->id ?>','_blank')"><?= Language::string(362) ?></button>
-            <button class="btnLogicToggleAll" onclick="Test.uiToggleAll()"><?= Language::string(401) ?></button>
-            <button class="btnLogicToggleVarAssignment" onclick="Test.uiToggleVarAssignments()"><?= Language::string(454) ?></button>
         </div>
         <?php
     }

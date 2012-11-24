@@ -26,12 +26,11 @@ class TestInstance {
     public $code_execution_halted = false;
     private $last_action_time;
     private $last_execution_time;
-    public $session_id = 0;
+    public $TestSession_id = 0;
     public $is_working = false;
     public $is_data_ready = false;
     public $response = "";
     public $code = "";
-    public $close = false;
     public $is_serializing = false;
     public $is_serialized = false;
     public $is_chunked = false;
@@ -41,7 +40,7 @@ class TestInstance {
     public $chunked_index = 0;
 
     public function __construct($session_id = 0) {
-        $this->session_id = $session_id;
+        $this->TestSession_id = $session_id;
     }
 
     public function is_timedout() {
@@ -144,10 +143,11 @@ class TestInstance {
 
     public function serialize() {
         if (TestServer::$debug)
-            TestServer::log_debug("TestInstance->serialize() --- Serializing #" . $this->session_id);
-        $session = TestSession::from_mysql_id($this->session_id);
+            TestServer::log_debug("TestInstance->serialize() --- Serializing #" . $this->TestSession_id);
+        $session = TestSession::from_mysql_id($this->TestSession_id);
 
         $this->is_serializing = true;
+        
         $this->send(sprintf("
             save.session('%s')
             ", $session->get_RSession_file_path()));
@@ -216,6 +216,9 @@ class TestInstance {
     }
 
     public function send($code) {
+        //if ($session->status == TestSession::TEST_SESSION_STATUS_SERIALIZED) {
+        $session = TestSession::from_mysql_id($this->TestSession_id);
+
         $marker = "
             #SESSION CODE CHUNKED
             ";
@@ -308,6 +311,129 @@ class TestInstance {
         }
 
         return null;
+    }
+
+    public function get_ini_code($session = null, $test = null) {
+        if ($session == null)
+            $session = $this->get_TestSession();
+        if ($session == null)
+            return("
+            stop('session #" . $this->TestSession_id . " doesn't exist!')
+                ");
+        if ($test == null)
+            $this->get_Test($session);
+        if ($test == null)
+            return("
+            stop('test #" . $session->Test_id . " doesn't exist!')
+                ");
+
+        include Ini::$path_internal . 'SETTINGS.php';
+        $path = Ini::$path_temp . $test->Owner_id;
+        if (!is_dir($path))
+            mkdir($path, 0777);
+        $code = sprintf('
+            CONCERTO_TEST_ID <- %d
+            CONCERTO_TEST_SESSION_ID <- %d
+            
+            CONCERTO_DB_HOST <- "%s"
+            CONCERTO_DB_PORT <- as.numeric(%d)
+            CONCERTO_DB_LOGIN <- "%s"
+            CONCERTO_DB_PASSWORD <- "%s"
+            CONCERTO_DB_NAME <- "%s"
+            CONCERTO_TEMP_PATH <- "%s"
+            CONCERTO_MYSQL_HOME <- "%s"
+            source("' . Ini::$path_internal . 'lib/R/Concerto.R")
+                
+            concerto$initialize(CONCERTO_TEST_ID,CONCERTO_TEST_SESSION_ID,CONCERTO_DB_LOGIN_CONCERTO_DB_PASSWORD,CONCERTO_DB_NAME,CONCERTO_DB_HOST,CONCERTO_DB_PORT,CONCERTO_MYSQL_HOME,CONCERTO_TEMP_PATH)
+            
+            rm(CONCERTO_TEST_ID)
+            rm(CONCERTO_TEST_SESSION_ID)
+            rm(CONCERTO_DB_HOST)
+            rm(CONCERTO_DB_PORT)
+            rm(CONCERTO_DB_LOGIN)
+            rm(CONCERTO_DB_PASSWORD)
+            rm(CONCERTO_DB_NAME)
+            rm(CONCERTO_TEMP_PATH)
+            rm(CONCERTO_MYSQL_HOME)
+            ', $test->id, $this->TestSession_id, $db_host, ($db_port != "" ? $db_port : "3306"), $db_user, $db_password, $db_name, $path, $path_mysql_home);
+        return $code;
+    }
+
+    public function get_append_code($session = null, $test = null) {
+        if ($session == null)
+            $session = $this->get_TestSession();
+        if ($session == null)
+            return("
+            stop('session #" . $this->TestSession_id . " doesn't exist!')
+                ");
+        if ($test == null)
+            $this->get_Test($session);
+        if ($test == null)
+            return("
+            stop('test #" . $session->Test_id . " doesn't exist!')
+                ");
+
+        $code = "
+            ";
+        $returns = $test->get_return_TestVariables();
+        foreach ($returns as $ret) {
+            $code.=sprintf('concerto$updateReturnVariable("%s")
+                ', $ret->name);
+        }
+        return $code;
+    }
+
+    public function get_unserialize_code($session = null, $test = null) {
+        if ($session == null)
+            $session = $this->get_TestSession();
+        if ($session == null)
+            return("
+            stop('session #" . $this->TestSession_id . " doesn't exist!')
+                ");
+        if ($test == null)
+            $this->get_Test($session);
+        if ($test == null)
+            return("
+            stop('test #" . $session->Test_id . " doesn't exist!')
+                ");
+
+        $code = $this->get_ini_code($session, $test);
+        $code.=sprintf('
+            concerto$unserialize("%s")
+            ', $session->get_RSession_file_path());
+        return $code;
+    }
+
+    public function get_serialize_code($session = null, $test = null) {
+        if ($session == null)
+            $session = $this->get_TestSession();
+        if ($session == null)
+            return("
+            stop('session #" . $this->TestSession_id . " doesn't exist!')
+                ");
+        if ($test == null)
+            $this->get_Test($session);
+        if ($test == null)
+            return("
+            stop('test #" . $session->Test_id . " doesn't exist!')
+                ");
+
+        $code = sprintf('
+            concerto$serialize("%s")
+            ', $session->get_RSession_file_path());
+        return $code;
+    }
+
+    public function get_TestSession() {
+        return TestSession::from_mysql_id($this->TestSession_id);
+    }
+
+    public function get_Test($session = null) {
+        if ($session == null)
+            $session = $this->get_TestSession();
+        if ($session == null)
+            return null;
+        return Test::from_mysql_id($session->Test_id);
     }
 
 }

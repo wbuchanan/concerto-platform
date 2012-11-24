@@ -65,7 +65,6 @@ else {
 <script>
     $(function(){
         Methods.iniTooltips();
-        Test.uiRefreshComboBoxes();
     
         Methods.iniDescriptionTooltips();
     });

@@ -52,7 +52,7 @@ class GapMatchInteraction extends ABlockInteraction {
         $search = $xpath->query("//qti:gap");
         foreach ($search as $elem) {
             $obj = new Gap($elem, $this);
-            $obj->validate(null, $this->TestSection_id);
+            $obj->validate(null);
             array_push($result, $obj);
         }
         return $result;
@@ -107,7 +107,7 @@ class GapMatchInteraction extends ABlockInteraction {
                 }
 
                 $value = $choice->identifier . " " . $gap->identifier;
-                $code.=sprintf("<td class='QTItableCell' valign='middle' align='center'><input type='checkbox' vi='%s' hi='%s' hmm='%s' class='QTIgapMatchInteractionCheckbox' name='%s' value='%s' onclick='QTI.gapMatchInteractionCheck(%s,\"%s\",this)' /></td>", $gap->identifier, $choice->identifier, $choice->matchMax, $this->responseIdentifier, $value, $this->TestSection_id, $this->responseIdentifier);
+                $code.=sprintf("<td class='QTItableCell' valign='middle' align='center'><input type='checkbox' vi='%s' hi='%s' hmm='%s' class='QTIgapMatchInteractionCheckbox' name='%s' value='%s' onclick='QTI.gapMatchInteractionCheck(%s,\"%s\",this)' /></td>", $gap->identifier, $choice->identifier, $choice->matchMax, $this->responseIdentifier, $value, 1, $this->responseIdentifier);
             }
             $code.="</tr>";
         }

@@ -29,7 +29,7 @@ class TestServer {
     private $clients;
     private $instances;
     private $is_alive = false;
-    
+
     const SOCK_TYPE_UNIX = 0;
     const SOCK_TYPE_TCP = 1;
 
@@ -48,7 +48,7 @@ class TestServer {
         foreach ($this->clients as $k => $v) {
             $this->serialize_instance($k);
         }
-        //@socket_shutdown($this->main_sock);
+
         socket_close($this->main_sock);
         if (file_exists(Ini::$path_unix_sock))
             unlink(Ini::$path_unix_sock);
@@ -81,7 +81,7 @@ class TestServer {
             if (self::$debug) {
                 self::log_debug("TestServer::send() --- Error: (socket_connect) " . socket_last_error() . " - " . socket_strerror(socket_last_error()));
             }
-            //@socket_shutdown($socket);
+
             socket_close($socket);
             return false;
         }
@@ -103,12 +103,11 @@ class TestServer {
             }
             if (substr($result, -1, 1) == chr(0))
                 break;
-            //if ($len < 4096) break;
         }
         if (self::$debug) {
             self::log_debug("TestServer::send() --- reading finished");
         }
-        //@socket_shutdown($socket);
+
         socket_close($socket);
         if ($result === false) {
             if (self::$debug) {
@@ -120,9 +119,6 @@ class TestServer {
     }
 
     public static function is_running() {
-        if (self::$debug) {
-            //self::log_debug("TestServer::is_running() --- Checking if server is running");
-        }
         $socket = null;
         if (Ini::$server_socks_type == 1)
             $socket = socket_create(AF_INET, SOCK_STREAM, SOL_TCP);
@@ -140,14 +136,11 @@ class TestServer {
             $result = @socket_connect($socket, Ini::$server_host, Ini::$server_port);
         if (Ini::$server_socks_type == 0)
             $result = @socket_connect($socket, Ini::$path_unix_sock);
-        //@socket_shutdown($socket);
+
         socket_close($socket);
-        if (!$result) {
-            if (self::$debug) {
-                //self::log_debug("TestServer::is_running() --- Server is not running");
-            }
+        if (!$result)
             return false;
-        }
+
         if (self::$debug) {
             self::log_debug("TestServer::is_running() --- Server is running");
         }
@@ -236,7 +229,7 @@ class TestServer {
 
         do {
             gc_collect_cycles();
-            
+
             foreach ($this->clients as $k => $v) {
                 if ($this->instances[$k]->is_timedout() && !$this->instances[$k]->is_serializing) {
                     if (self::$debug) {
@@ -245,7 +238,7 @@ class TestServer {
                     $this->serialize_instance($k);
                 }
             }
-            
+
             if (time() - $this->last_action_time > Ini::$r_server_timeout) {
                 if (self::$debug)
                     self::log_debug("TestServer->start() --- Reached max idle time");
@@ -271,8 +264,6 @@ class TestServer {
 
                         if ($this->instances[$k]->code_execution_halted)
                             $this->close_instance($k);
-                        else if ($this->instances[$k]->close)
-                            $this->serialize_instance($k);
                         else {
                             $code = "";
                             for ($j = $this->instances[$k]->chunked_index; $j < count($this->instances[$k]->chunked_lines); $j++) {
@@ -300,9 +291,7 @@ class TestServer {
                         }
 
                         $response = array(
-                            "return" => $this->instances[$k]->code_execution_halted ? 1 : 0,
-                            "code" => $this->instances[$k]->code,
-                            "output" => $response
+                            "return" => $this->instances[$k]->code_execution_halted ? 1 : 0
                         );
 
                         $response = json_encode($response);
@@ -321,15 +310,11 @@ class TestServer {
 
                         if ($this->instances[$k]->code_execution_halted)
                             $this->close_instance($k);
-                        else if ($this->instances[$k]->close)
-                            $this->serialize_instance($k);
                     }
                 }
-                
-                
             }
             //interpret data end
-            
+
             usleep(self::$sleep_microseconds);
 
             $client_sock = @socket_accept($this->main_sock);
@@ -350,7 +335,6 @@ class TestServer {
                 $data.=$read;
                 if (substr($read, -1, 1) == chr(0))
                     break;
-                //if ($len < 4096) break;
             }
             if ($read === false) {
                 if (self::$debug) {
@@ -407,7 +391,6 @@ class TestServer {
             }
         }
         if (array_key_exists($key, $this->clients)) {
-            //@socket_shutdown($this->clients[$key]["sock"]);
             socket_close($this->clients[$key]["sock"]);
             unset($this->clients[$key]);
         }
@@ -417,7 +400,7 @@ class TestServer {
                 if ($session->debug == 1)
                     $session->remove(false);
                 else {
-                    $session->serialized = 1;
+                    $session->status = TestSession::TEST_SESSION_STATUS_SERIALIZED;
                     $session->mysql_save();
                 }
             }
@@ -443,37 +426,6 @@ class TestServer {
         $key = "sid" . $data->session_id;
 
         if (!array_key_exists($key, $this->clients)) {
-            $session = TestSession::from_mysql_id($data->session_id);
-            if ($session->serialized == 1) {
-                include Ini::$path_internal . 'SETTINGS.php';
-                $code = "
-                options(encoding='UTF-8')
-                options(error=quote(stop(geterrmessage())))
-                library(session)
-                restore.session('" . $session->get_RSession_file_path() . "')
-
-                CONCERTO_DB_HOST <- '" . $db_host . "'
-                CONCERTO_DB_PORT <- as.numeric(" . ($db_port != "" ? $db_port : "3306") . ")
-                CONCERTO_DB_LOGIN <- '" . $db_user . "'
-                CONCERTO_DB_PASSWORD <- '" . $db_password . "'
-
-                CONCERTO_DRIVER <- dbDriver('MySQL')
-                for(CONCERTO_DB_CONNECTION in dbListConnections(CONCERTO_DRIVER)) { dbDisconnect(CONCERTO_DB_CONNECTION) }
-                CONCERTO_DB_CONNECTION <- dbConnect(CONCERTO_DRIVER, user = CONCERTO_DB_LOGIN, password = CONCERTO_DB_PASSWORD, dbname = CONCERTO_DB_NAME, host = CONCERTO_DB_HOST, port = CONCERTO_DB_PORT)
-                dbSendQuery(CONCERTO_DB_CONNECTION,statement = \"SET NAMES 'utf8';\")
-                dbSendQuery(CONCERTO_DB_CONNECTION,statement = \"SET time_zone='".Ini::$mysql_timezone."';\")
-
-                rm(CONCERTO_DB_HOST)
-                rm(CONCERTO_DB_PORT)
-                rm(CONCERTO_DB_LOGIN)
-                rm(CONCERTO_DB_PASSWORD)
-                ";
-                $session->serialized = 0;
-                $session->mysql_save();
-
-                $data->code = $code . $data->code;
-                $input = json_encode($data);
-            }
             $this->clients[$key] = array();
             $this->clients[$key]["sock"] = $client_sock;
             if (self::$debug) {
@@ -481,7 +433,6 @@ class TestServer {
             }
         } else {
             if (is_resource($this->clients[$key]["sock"])) {
-                //@socket_shutdown($this->clients[$key]["sock"]);
                 socket_close($this->clients[$key]["sock"]);
                 $this->clients[$key]["sock"] = $client_sock;
             }
@@ -508,8 +459,6 @@ class TestServer {
                 self::log_debug("TestServer->interpret_input() --- Client '$key' test instance started");
             }
         }
-
-        $this->instances[$key]->close = $data->close == 1;
 
         $this->instances[$key]->send($data->code);
         if (self::$debug) {

@@ -42,6 +42,7 @@ if (!isset($ini)) {
         <link rel="stylesheet" href="js/lib/kendo-ui/styles/kendo.default.min.css?timestamp=<?= time() ?>" />
         <link rel="stylesheet" href="lib/CodeMirror/lib/codemirror.css?timestamp=<?= time() ?>" />
         <link rel="stylesheet" href="lib/CodeMirror/theme/neat.css?timestamp=<?= time() ?>" />
+        <link rel="stylesheet" href="lib/CodeMirror/lib/util/simple-hint.css?timestamp=<?= time() ?>" />
 
         <script type="text/javascript" src="js/lib/jquery-1.8.2.min.js?timestamp=<?= time() ?>"></script>
         <script type="text/javascript" src="js/lib/jquery-ui-1.9.1.custom.min.js?timestamp=<?= time() ?>"></script>
@@ -67,12 +68,19 @@ if (!isset($ini)) {
         <script src="js/QTIAssessmentItem.js?timestamp=<?= time() ?>"></script>
         <script src="lib/ckeditor/ckeditor.js?timestamp=<?= time() ?>"></script>
         <script src="lib/ckeditor/adapters/jquery.js?timestamp=<?= time() ?>"></script>
+        
         <script src="lib/CodeMirror/lib/codemirror.js?timestamp=<?= time() ?>"></script>
+        <script src="lib/CodeMirror/lib/util/formatting.js?timestamp=<?= time() ?>"></script>
+        <script src="lib/CodeMirror/lib/util/matchbrackets.js?timestamp=<?= time() ?>"></script>
+        <script src="lib/CodeMirror/lib/util/searchcursor.js?timestamp=<?= time() ?>"></script>
+        <script src="lib/CodeMirror/lib/util/match-highlighter.js?timestamp=<?= time() ?>"></script>
+        <script src="lib/CodeMirror/lib/util/simple-hint.js?timestamp=<?= time() ?>"></script>
         <script src="lib/CodeMirror/mode/htmlmixed/htmlmixed.js?timestamp=<?= time() ?>"></script>
         <script src="lib/CodeMirror/mode/r/r.js?timestamp=<?= time() ?>"></script>
         <script src="lib/CodeMirror/mode/xml/xml.js?timestamp=<?= time() ?>"></script>
         <script src="lib/CodeMirror/mode/javascript/javascript.js?timestamp=<?= time() ?>"></script>
         <script src="lib/CodeMirror/mode/css/css.js?timestamp=<?= time() ?>"></script>
+        
         <script src="js/lib/jquery-ui-dialog-ckeditor-patch.js?timestamp=<?= time() ?>"></script>
         <script src="js/lib/fileupload/jquery.iframe-transport.js?timestamp=<?= time() ?>"></script>
         <script src="js/lib/fileupload/jquery.fileupload.js?timestamp=<?= time() ?>"></script>

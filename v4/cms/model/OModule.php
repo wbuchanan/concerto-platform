@@ -35,6 +35,10 @@ class OModule extends OTable {
         else
             return false;
     }
+    
+    public function get_description() {
+        return Template::strip_html($this->description);
+    }
 
     public function get_Sharing() {
         return DS_Sharing::from_mysql_id($this->Sharing_id);

@@ -21,40 +21,34 @@
 
 class TestSession extends OTable {
 
-    public $Test_id = 0;
     public static $mysql_table_name = "TestSession";
-    public $counter = 1;
+    public $Test_id = 0;
     public $status = 0;
     public $time_limit = 0;
     public $HTML = "";
     public $Template_id = 0;
     public $time_tamper_prevention = 0;
     public $hash = "";
-    public $Template_TestSection_id = 0;
     public $debug = 0;
     public $release = 0;
-    public $serialized = 0;
-    public $effect_show = "none";
-    public $effect_hide = "none";
-    public $effect_show_options = "";
-    public $effect_hide_options = "";
-    public $loader_Template_id = 0;
-    public $loader_HTML = "";
-    public $loader_head = "";
-    public $loader_effect_show = "none";
-    public $loader_effect_hide = "none";
-    public $loader_effect_show_options = "";
-    public $loader_effect_hide_options = "";
+    public $output = "";
+    public $state = "";
 
-    const TEST_SESSION_STATUS_CREATED = 0;
+    const TEST_SESSION_STATUS_NEW = 0;
     const TEST_SESSION_STATUS_WORKING = 1;
     const TEST_SESSION_STATUS_TEMPLATE = 2;
     const TEST_SESSION_STATUS_COMPLETED = 3;
     const TEST_SESSION_STATUS_ERROR = 4;
     const TEST_SESSION_STATUS_TAMPERED = 5;
+    const TEST_SESSION_STATUS_WAITING = 6;
+    const TEST_SESSION_STATUS_SERIALIZED = 7;
 
     public function get_Test() {
         return Test::from_mysql_id($this->Test_id);
+    }
+
+    public function get_Template() {
+        return Template::from_mysql_id($this->Template_id);
     }
 
     public function register() {
@@ -84,24 +78,12 @@ class TestSession extends OTable {
         $session->Test_id = $test_id;
         $session->debug = ($debug ? 1 : 0);
 
-        $test = Test::from_mysql_id($test_id);
-        if ($test != null) {
-            $loader = $test->get_loader_Template();
-            if ($loader != null) {
-                $session->loader_Template_id = $loader->id;
-                $session->loader_HTML = $loader->HTML;
-                $session->loader_head = $loader->head;
-                $session->loader_effect_hide = $loader->effect_hide;
-                $session->loader_effect_hide_options = $loader->effect_hide_options;
-                $session->loader_effect_show = $loader->effect_show;
-                $session->loader_effect_show_options = $loader->effect_show_options;
-            }
-        }
-
         $lid = $session->mysql_save();
 
-        $sql = sprintf("UPDATE `%s` SET `session_count`=`session_count`+1 WHERE `%s`.`id`=%d", Test::get_mysql_table(), Test::get_mysql_table(), $test_id);
-        mysql_query($sql);
+        if (!$debug) {
+            $sql = sprintf("UPDATE `%s` SET `session_count`=`session_count`+1 WHERE `%s`.`id`=%d", Test::get_mysql_table(), Test::get_mysql_table(), $test_id);
+            mysql_query($sql);
+        }
 
         $session = TestSession::from_mysql_id($lid);
         if ($debug)
@@ -109,8 +91,8 @@ class TestSession extends OTable {
         return $session;
     }
 
-    public function remove($sockets = true) {
-        $this->close($sockets);
+    public function remove() {
+        $this->close();
         $this->mysql_delete();
     }
 
@@ -124,8 +106,8 @@ class TestSession extends OTable {
         mysql_query($sql);
     }
 
-    public function close($sockets = true) {
-        if ($sockets && TestServer::is_running())
+    public function close() {
+        if (TestServer::is_running())
             TestServer::send("close:" . $this->id);
         $this->remove_files();
     }
@@ -136,78 +118,8 @@ class TestSession extends OTable {
     }
 
     public function remove_files() {
-        if (file_exists($this->get_RSource_file_path()))
-            unlink($this->get_RSource_file_path());
         if (file_exists($this->get_RSession_file_path()))
             unlink($this->get_RSession_file_path());
-    }
-
-    public function resume($values = array()) {
-        return $this->run_Test($this->counter, $values);
-    }
-
-    public function run_Test($counter = null, $values = array()) {
-        $ini_code_required = false;
-        if ($counter == null)
-            $ini_code_required = true;
-        $test = $this->get_Test();
-        if ($counter == null) {
-            $counter = $test->get_starting_counter();
-        }
-        $this->counter = $counter;
-        $this->status = TestSession::TEST_SESSION_STATUS_WORKING;
-        $this->mysql_save();
-
-        $code = "";
-        $protected_vars = $test->get_TestProtectedVariables_name();
-        foreach ($values as $v) {
-            $val = json_decode($v);
-            if (!property_exists($val, "name") || trim($val->name) == "" || strpos(trim($val->name), "CONCERTO_") === 0 || in_array(trim($val->name), $protected_vars))
-                continue;
-
-            if ($val->value === "NA") {
-                $code.=sprintf("
-                        %s <- NA
-                        ", $val->name);
-            } else {
-                if (!is_array($val->value)) {
-                    $code.=sprintf("
-                    %s <- '%s'
-                    %s <<- convertVariable(%s)
-                    ", $val->name, addslashes($val->value), $val->name, $val->name);
-                } else {
-                    $code.=sprintf("
-                    %s <- c()
-                    ", $val->name);
-                    foreach ($val->value as $v) {
-                        $code.=sprintf("
-                            %s <- c(%s,'%s')
-                            ", $val->name, $val->name, addslashes($v));
-                    }
-                    $code.=sprintf("
-                        %s <<- convertVariable(%s)
-                        ", $val->name, $val->name);
-                }
-            }
-        }
-        $code.=sprintf("
-            CONCERTO_TEST_FLOW<-%d
-            
-            while(CONCERTO_TEST_FLOW > 0){
-                CONCERTO_TEST_FLOW <- do.call(paste('CONCERTO_Test',CONCERTO_TEST_ID,'Section',CONCERTO_TEST_FLOW,sep=''),list())
-            }
-            CONCERTO_FLOW_LOOP_FINISHED <- TRUE
-            
-            if(CONCERTO_TEST_FLOW==-2) update.session.release(1)
-            ", $counter);
-
-        return $this->RCall($code, $ini_code_required);
-    }
-
-    public function debug_syntax($ts_id, $close = false) {
-        $ts = TestSection::from_mysql_id($ts_id);
-        $result = $this->RCall($ts->get_RFunction(), false, $close, true);
-        return $result;
     }
 
     public function does_RSession_file_exists() {
@@ -217,26 +129,58 @@ class TestSession extends OTable {
             return false;
     }
 
-    public function RCall($code, $include_ini_code = false, $close = false, $debug_syntax = false) {
-        $command = "";
-        if (!$debug_syntax) {
-            if ($include_ini_code)
-                $command = $this->get_ini_RCode();
-            else
-                $command.=$this->get_next_ini_RCode();
+    public function RCall($values = null, $code = null, $resume_from_last_template = false) {
+
+        $test = Test::from_mysql_id($this->Test_id);
+        $loader = $test->get_loader_Template();
+
+        //resume from last template
+        if ($resume_from_last_template) {
+            $template = $this->get_Template();
+
+            if ($template != null) {
+                $response = array(
+                    "data" => array(
+                        "HEAD" => $template->head,
+                        "HASH" => $this->hash,
+                        "TIME_LIMIT" => $this->time_limit,
+                        "HTML" => $this->html,
+                        "TEST_ID" => $this->Test_id,
+                        "TEST_SESSION_ID" => $this->id,
+                        "STATUS" => $this->status,
+                        "TEMPLATE_ID" => $this->Template_id,
+                        "FINISHED" => $this->finished,
+                        "EFFECT_SHOW" => $template->effect_show,
+                        "EFFECT_HIDE" => $template->effect_hide,
+                        "EFFECT_SHOW_OPTIONS" => $template->effect_show_options,
+                        "EFFECT_HIDE_OPTIONS" => $template->effect_hide_options,
+                        "LOADER_HTML" => "",
+                        "LOADER_HEAD" => "",
+                        "LOADER_EFFECT_SHOW" => "none",
+                        "LOADER_EFFECT_SHOW_OPTIONS" => "",
+                        "LOADER_EFFECT_HIDE" => "none",
+                        "LOADER_EFFECT_HIDE_OPTIONS" => "",
+                    )
+                );
+
+                if ($loader != null) {
+                    $response["data"]["LOADER_HTML"] = $loader->HTML;
+                    $response["data"]["LOADER_HEAD"] = $loader->head;
+                    $response["data"]["LOADER_EFFECT_SHOW"] = $loader->effect_show;
+                    $response["data"]["LOADER_EFFECT_SHOW_OPTIONS"] = $loader->effect_show_options;
+                    $response["data"]["LOADER_EFFECT_HIDE"] = $loader->effect_hide;
+                    $response["data"]["LOADER_EFFECT_HIDE_OPTIONS"] = $loader->effect_hide_options;
+                }
+                return $response;
+            }
         }
 
-        $command.=$code;
-        if (!$debug_syntax)
-            $command.=$this->get_post_RCode();
-
-        $output = array();
-        $return = -999;
-
+        //R server connection
         $command_obj = json_encode(array(
             "session_id" => $this->id,
-            "code" => $command,
-            "close" => 0
+            "hash" => $this->hash,
+            "values" => $values,
+            "code" => $code
                 ));
 
         if (TestServer::$debug)
@@ -245,15 +189,12 @@ class TestSession extends OTable {
             TestServer::start_process();
         if (TestServer::$debug)
             TestServer::log_debug("TestSession->RCall --- server found, trying to send");
+
         $response = TestServer::send($command_obj);
         $result = json_decode(trim($response));
         if (TestServer::$debug)
             TestServer::log_debug("TestSession->RCall --- sent and recieved response");
 
-        $output = explode("\n", $result->output);
-        $return = $result->return;
-
-        $thisSession = null;
         $status = TestSession::TEST_SESSION_STATUS_ERROR;
         $removed = false;
         $release = 0;
@@ -277,81 +218,92 @@ class TestSession extends OTable {
         $effect_hide = "none";
         $effect_show_options = "";
         $effect_hide_options = "";
+        $state = "[]";
 
-        if (!$debug_syntax) {
-            $thisSession = TestSession::from_mysql_id($this->id);
-            if ($thisSession != null) {
-                $status = $thisSession->status;
-                $release = $thisSession->release;
-                $html = $thisSession->HTML;
-                $Template_id = $thisSession->Template_id;
-                $debug = $thisSession->debug;
-                $hash = $thisSession->hash;
-                $time_limit = $thisSession->time_limit;
-                $Test_id = $thisSession->Test_id;
+        $thisSession = TestSession::from_mysql_id($this->id);
 
-                $loader_HTML = $thisSession->loader_HTML;
-                $loader_head = $thisSession->loader_head;
-                $loader_effect_hide = $thisSession->loader_effect_hide;
-                $loader_effect_hide_options = $thisSession->loader_effect_hide_options;
-                $loader_effect_show = $thisSession->loader_effect_show;
-                $loader_effect_show_options = $thisSession->loader_effect_show_options;
+        $return = $result->return;
 
-                $effect_hide = $thisSession->effect_hide;
-                $effect_hide_options = $thisSession->effect_hide_options;
-                $effect_show = $thisSession->effect_show;
-                $effect_show_options = $thisSession->effect_show_options;
+        if ($thisSession != null) {
 
-                if ($return != 0) {
-                    $status = TestSession::TEST_SESSION_STATUS_ERROR;
-                }
+            $output = explode("\n", $thisSession->output);
+            $state = $thisSession->state;
 
-                if ($status == TestSession::TEST_SESSION_STATUS_WORKING && $release == 1 || $close)
-                    $status = TestSession::TEST_SESSION_STATUS_COMPLETED;
+            $status = $thisSession->status;
+            $release = $thisSession->release;
+            $html = $thisSession->HTML;
+            $Template_id = $thisSession->Template_id;
+            $debug = $thisSession->debug;
+            $hash = $thisSession->hash;
+            $time_limit = $thisSession->time_limit;
+            $Test_id = $thisSession->Test_id;
 
-                $thisSession->status = $status;
-                $thisSession->mysql_save();
-
-                switch ($status) {
-                    case TestSession::TEST_SESSION_STATUS_COMPLETED: {
-                            if ($debug) {
-                                TestSession::unregister($thisSession->id);
-                                $removed = true;
-                            }
-                            else
-                                $thisSession->serialize();
-                            break;
-                        }
-                    case TestSession::TEST_SESSION_STATUS_ERROR:
-                    case TestSession::TEST_SESSION_STATUS_TAMPERED: {
-                            if ($debug) {
-                                TestSession::unregister($thisSession->id);
-                                $removed = true;
-                            }
-                            else
-                                $thisSession->close();
-                            break;
-                        }
-                    case TestSession::TEST_SESSION_STATUS_TEMPLATE: {
-                            if ($debug) {
-                                $html = Template::strip_html($html);
-                                if ($release)
-                                    TestSession::unregister($thisSession->id);
-                            }
-                            else {
-                                $head = Template::from_mysql_id($Template_id)->head;
-                                if ($release)
-                                    $thisSession->serialize();
-                            }
-                            break;
-                        }
-                }
+            if ($loader != null) {
+                $loader_HTML = $loader->HTML;
+                $loader_head = $loader->head;
+                $loader_effect_hide = $loader->effect_hide;
+                $loader_effect_hide_options = $loader->effect_hide_options;
+                $loader_effect_show = $loader->effect_show;
+                $loader_effect_show_options = $loader->effect_show_options;
             }
-            else
-                $removed = true;
-        }
 
-        $test = Test::from_mysql_id($this->Test_id);
+            $template = Template::from_mysql_id($thisSession->Template_id);
+
+            if ($template != null) {
+                $effect_hide = $$template->effect_hide;
+                $effect_hide_options = $template->effect_hide_options;
+                $effect_show = $template->effect_show;
+                $effect_show_options = $template->effect_show_options;
+            }
+
+            if ($return != 0) {
+                $status = TestSession::TEST_SESSION_STATUS_ERROR;
+            }
+
+            if ($status == TestSession::TEST_SESSION_STATUS_WORKING && $release == 1 || $close)
+                $status = TestSession::TEST_SESSION_STATUS_COMPLETED;
+
+            $thisSession->status = $status;
+            $thisSession->mysql_save();
+
+            switch ($status) {
+                case TestSession::TEST_SESSION_STATUS_COMPLETED: {
+                        if ($debug) {
+                            TestSession::unregister($thisSession->id);
+                            $removed = true;
+                        }
+                        else
+                            $thisSession->serialize();
+                        break;
+                    }
+                case TestSession::TEST_SESSION_STATUS_ERROR:
+                case TestSession::TEST_SESSION_STATUS_TAMPERED: {
+                        if ($debug) {
+                            TestSession::unregister($thisSession->id);
+                            $removed = true;
+                        }
+                        else
+                            $thisSession->close();
+                        break;
+                    }
+                case TestSession::TEST_SESSION_STATUS_TEMPLATE: {
+                        if ($debug) {
+                            $html = Template::strip_html($html);
+                            if ($release)
+                                TestSession::unregister($thisSession->id);
+                        }
+                        else {
+                            $head = Template::from_mysql_id($Template_id)->head;
+                            if ($release)
+                                $thisSession->serialize();
+                        }
+                        break;
+                    }
+            }
+        }
+        else
+            $removed = true;
+
         $debug_data = false;
         $logged_user = User::get_logged_user();
         if ($logged_user != null)
@@ -361,31 +313,29 @@ class TestSession extends OTable {
             $finished = 1;
         }
 
-        if (!$debug_syntax) {
-            $response = array(
-                "data" => array(
-                    "HEAD" => $head,
-                    "HASH" => $hash,
-                    "TIME_LIMIT" => $time_limit,
-                    "HTML" => $html,
-                    "TEST_ID" => $Test_id,
-                    "TEST_SESSION_ID" => $this->id,
-                    "STATUS" => $status,
-                    "TEMPLATE_ID" => $Template_id,
-                    "FINISHED" => $finished,
-                    "LOADER_HTML" => $loader_HTML,
-                    "LOADER_HEAD" => $loader_head,
-                    "LOADER_EFFECT_SHOW" => $loader_effect_show,
-                    "LOADER_EFFECT_SHOW_OPTIONS" => $loader_effect_show_options,
-                    "LOADER_EFFECT_HIDE" => $loader_effect_hide,
-                    "LOADER_EFFECT_HIDE_OPTIONS" => $loader_effect_hide_options,
-                    "EFFECT_SHOW" => $effect_show,
-                    "EFFECT_HIDE" => $effect_hide,
-                    "EFFECT_SHOW_OPTIONS" => $effect_show_options,
-                    "EFFECT_HIDE_OPTIONS" => $effect_hide_options
-                )
-            );
-        }
+        $response = array(
+            "data" => array(
+                "HEAD" => $head,
+                "HASH" => $hash,
+                "TIME_LIMIT" => $time_limit,
+                "HTML" => $html,
+                "TEST_ID" => $Test_id,
+                "TEST_SESSION_ID" => $this->id,
+                "STATUS" => $status,
+                "TEMPLATE_ID" => $Template_id,
+                "FINISHED" => $finished,
+                "LOADER_HTML" => $loader_HTML,
+                "LOADER_HEAD" => $loader_head,
+                "LOADER_EFFECT_SHOW" => $loader_effect_show,
+                "LOADER_EFFECT_SHOW_OPTIONS" => $loader_effect_show_options,
+                "LOADER_EFFECT_HIDE" => $loader_effect_hide,
+                "LOADER_EFFECT_HIDE_OPTIONS" => $loader_effect_hide_options,
+                "EFFECT_SHOW" => $effect_show,
+                "EFFECT_HIDE" => $effect_hide,
+                "EFFECT_SHOW_OPTIONS" => $effect_show_options,
+                "EFFECT_HIDE_OPTIONS" => $effect_hide_options
+            )
+        );
 
         if ($debug_data) {
             for ($i = 0; $i < count($output); $i++) {
@@ -394,24 +344,16 @@ class TestSession extends OTable {
                 $output[$i] = htmlspecialchars($output[$i], ENT_QUOTES);
             }
 
-            $command_lines = explode("\n", $command);
-            for ($i = 0; $i < count($command_lines); $i++) {
-                if (strpos($command_lines[$i], "CONCERTO_DB_PASSWORD <-") !== false)
-                    $command_lines[$i] = "[hidden]";
-            }
-            $command = implode("\n", $command_lines);
-            $command = htmlspecialchars($command, ENT_QUOTES);
-
             if (!is_array($response))
                 $response = array();
             $response["debug"] = array(
-                "code" => $command,
                 "return" => $return,
-                "output" => $output
+                "output" => $output,
+                "state" => $state
             );
         }
 
-        if (Ini::$timer_tamper_prevention && !$debug_syntax && !$removed) {
+        if (Ini::$timer_tamper_prevention && !$removed) {
             $sql = sprintf("UPDATE `%s` SET `time_tamper_prevention`=%d WHERE `id`=%d", TestSession::get_mysql_table(), time(), $this->id);
             mysql_query($sql);
         }
@@ -419,62 +361,8 @@ class TestSession extends OTable {
         return $response;
     }
 
-    public function get_next_ini_RCode() {
-        $code = "";
-        return $code;
-    }
-
-    public function get_post_RCode() {
-        $code = "";
-
-        $test = $this->get_Test();
-        $returns = $test->get_return_TestVariables();
-
-        foreach ($returns as $ret) {
-            $code.=sprintf("update.session.return('%s')
-                ", $ret->name);
-        }
-        return $code;
-    }
-
-    public function write_RSource_file($code) {
-        $file = fopen($this->get_RSource_file_path(), 'w');
-        fwrite($file, $code);
-        fclose($file);
-    }
-
-    public function get_RSource_file_path() {
-        return Ini::$path_temp . $this->get_Test()->Owner_id . "/session_" . $this->id . ".R";
-    }
-
     public function get_RSession_file_path() {
         return Ini::$path_temp . $this->get_Test()->Owner_id . "/session_" . $this->id . ".Rs";
-    }
-
-    public function get_ini_RCode() {
-        include Ini::$path_internal . 'SETTINGS.php';
-        $path = Ini::$path_temp . $this->get_Test()->Owner_id;
-        if (!is_dir($path))
-            mkdir($path, 0777);
-        $code = sprintf("
-            options(encoding='UTF-8')
-            options(error=quote(stop(geterrmessage())))
-            CONCERTO_TEST_ID <- %d
-            CONCERTO_TEST_SESSION_ID <- %d
-            
-            CONCERTO_DB_HOST <- '%s'
-            CONCERTO_DB_PORT <- as.numeric(%d)
-            CONCERTO_DB_LOGIN <- '%s'
-            CONCERTO_DB_PASSWORD <- '%s'
-            CONCERTO_DB_NAME <- '%s'
-            %s
-            ", $this->Test_id, $this->id, $db_host, ($db_port != "" ? $db_port : "3306"), $db_user, $db_password, $db_name, ($path_mysql_home != "" ? "Sys.setenv('MYSQL_HOME'='" . $path_mysql_home . "')" : ""));
-        $code .= "CONCERTO_TEMP_PATH <- '" . $path . "'
-            source('" . Ini::$path_internal . "lib/R/mainmethods.R" . "')
-            source('" . Ini::$path_internal . "lib/R/QTI.R" . "')
-            ";
-        $code .=$this->get_Test()->get_TestSections_RFunction_declaration();
-        return $code;
     }
 
     public function mysql_save() {
@@ -544,24 +432,15 @@ class TestSession extends OTable {
                     );
                     if ($session->debug == 1) {
                         $result["debug"] = array(
-                            "code" => 0,
-                            "return" => "",
-                            "output" => ""
+                            "return" => 0,
+                            "output" => "",
+                            "state" => "[]"
                         );
                     }
                 } else {
-                    if (!$resume_from_last_template)
-                        $result = $session->resume($values);
-                    else {
-                        $ts = TestSection::from_mysql_id($session->Template_TestSection_id);
-                        if ($ts == null)
-                            $result = $session->resume($values);
-                        else
-                            $result = $session->run_Test($ts->counter, $values);
-                    }
+                    $result = $session->RCall($values, null, $resume_from_last_template);
                 }
-            }
-            else {
+            } else {
                 $result = array(
                     "data" => array(
                         "HASH" => $hash,
@@ -575,9 +454,9 @@ class TestSession extends OTable {
                         "FINISHED" => 1
                     ),
                     "debug" => array(
-                        "code" => 0,
-                        "return" => "",
-                        "output" => ""
+                        "return" => 0,
+                        "output" => "",
+                        "state" => "[]"
                     )
                 );
             }
@@ -609,15 +488,15 @@ class TestSession extends OTable {
                             "FINISHED" => 1
                         ),
                         "debug" => array(
-                            "code" => 0,
-                            "return" => "",
-                            "output" => ""
+                            "return" => 0,
+                            "output" => "",
+                            "state" => "[]"
                         )
                     );
                     return $result;
                 }
 
-                $result = $session->run_test(null, $values);
+                $result = $result = $session->RCall($values, null, $resume_from_last_template);
             }
         }
         return $result;
@@ -634,28 +513,16 @@ class TestSession extends OTable {
             `updated` timestamp NOT NULL default CURRENT_TIMESTAMP on update CURRENT_TIMESTAMP,
             `created` timestamp NOT NULL default '0000-00-00 00:00:00',
             `Test_id` bigint(20) NOT NULL,
-            `counter` int(11) NOT NULL,
             `status` tinyint(4) NOT NULL,
             `time_limit` int(11) NOT NULL,
             `HTML` text NOT NULL,
             `Template_id` bigint(20) NOT NULL,
             `time_tamper_prevention` INT NOT NULL,
             `hash` text NOT NULL,
-            `Template_TestSection_id` bigint(20) NOT NULL,
             `debug` tinyint(1) NOT NULL,
             `release` tinyint(1) NOT NULL,
-            `serialized` tinyint(1) NOT NULL,
-            `loader_Template_id` bigint(20) NOT NULL,
-            `loader_HTML` text NOT NULL,
-            `loader_head` text NOT NULL,
-            `loader_effect_show` text NOT NULL,
-            `loader_effect_hide` text NOT NULL,
-            `loader_effect_show_options` text NOT NULL,
-            `loader_effect_hide_options` text NOT NULL,
-            `effect_show` text NOT NULL,
-            `effect_hide` text NOT NULL,
-            `effect_show_options` text NOT NULL,
-            `effect_hide_options` text NOT NULL,
+            `output` longtext NOT NULL,
+            `state` longtext NOT NULL,
             PRIMARY KEY  (`id`)
             ) ENGINE=InnoDB  DEFAULT CHARSET=utf8;
             ";

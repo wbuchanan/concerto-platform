@@ -133,7 +133,7 @@ function Concerto(container,hash,sid,tid,queryPath,callbackGet,callbackSend,debu
             if(this.testID!=null) params["tid"] = this.testID;
         }
         if(btnName!=null) params["btn_name"] = btnName;
-        if(values!=null) params["values"] = values;
+        if(values!=null) params["values"] = $.toJSON(values);
         if(this.isDebug!=null && this.isDebug==true) params["debug"]=1;
         else params["debug"]=0;
         
@@ -268,33 +268,27 @@ function Concerto(container,hash,sid,tid,queryPath,callbackGet,callbackSend,debu
     }
     
     this.getControlsValues=function(){
-        var values = new Array();
+        var vars = {};
         
         $(this.container).find("input:text, input[type='hidden'], input:password, textarea, select, input:checkbox:checked, input:radio:checked").each(function(){
             var name = $(this).attr("name");
             var value = $(this).val();
+            
             var found = false;
-            for(var i=0;i<values.length;i++){
-                if(values[i].name == name){
+            for(var k in vars){
+                if(k == name){
                     found = true;
-                    if(values[i].value instanceof Array) values[i].value.push(value);
-                    else values[i].value = [values[i].value,value];
+                    if(vars[k] instanceof Array) vars[k].push(value);
+                    else vars[k] = [vars[k],value];
                 }
             }
+            
             if(!found) {
-                var obj = {
-                    name:name,
-                    value:value
-                };
-                values.push(obj);
+                vars[name] = value;
             }
         });
         
-        for(var i=0;i<values.length;i++){
-            values[i] = $.toJSON(values[i]);
-        }
-        
-        return values;
+        return vars;
     }
     
     this.hideEffect=function(){
@@ -432,19 +426,13 @@ function Concerto(container,hash,sid,tid,queryPath,callbackGet,callbackSend,debu
         var thisClass=this;
         this.clearTimer();
         if(this.isStopped) return;
-        var vals = this.getControlsValues();
-        vals.push($.toJSON({
-            name:"TIME_TAKEN",
-            value:(currentTime.getTime()-thisClass.timeTemplateLoaded.getTime())/1000
-        }));
-        vals.push($.toJSON({
-            name:"OUT_OF_TIME",
-            value:timeout?1:0
-        }));
+        var vars = this.getControlsValues();
+        vars["TIME_TAKEN"] = (currentTime.getTime()-thisClass.timeTemplateLoaded.getTime())/1000;
+        vars["OUT_OF_TIME"] = timeout?1:0;
         this.isTemplateReady = false;
         this.hideEffect();
-        this.run(btnName,vals);
-        if(this.callbackSend!=null) this.callbackSend.call(this,btnName,vals);
+        this.run(btnName,vars);
+        if(this.callbackSend!=null) this.callbackSend.call(this,btnName,vars);
     };
     
     this.addSubmitEvents=function(){
@@ -470,12 +458,14 @@ function Concerto(container,hash,sid,tid,queryPath,callbackGet,callbackSend,debu
 };
 
 Concerto.statusTypes={
-    created:0,
+    newSession:0,
     working:1,
     template:2,
     completed:3,
     error:4,
-    tampered:5
+    tampered:5,
+    waiting:6,
+    serialized:7
 };
 
 Concerto.getSessionCookie=function(){

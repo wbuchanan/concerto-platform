@@ -34,19 +34,7 @@ class QTIAssessmentItem extends OModule {
         parent::__construct($params);
     }
 
-    public static function get_mapped_variables($TestSection_id) {
-        $map = array();
-        $ts = TestSection::from_mysql_id($TestSection_id);
-        if ($ts == null || $ts->TestSectionType_id != DS_TestSectionType::QTI_INITIALIZATION)
-            return null;
-        $vals = $ts->get_values();
-        for ($i = 1; $i < count($vals); $i = $i + 2) {
-            $map[$vals[$i]] = $vals[$i + 1];
-        }
-        return $map;
-    }
-
-    public function validate($map = null, $xml = null, $TestSection_id = 0) {
+    public function validate($map = null, $xml = null) {
         $document = new DOMDocument('1.0', 'UTF-8');
         if ($xml != null)
             @$document->loadXML($xml);
@@ -61,7 +49,7 @@ class QTIAssessmentItem extends OModule {
         }
         $assessmentItem = new AssessmentItem($root->item(0));
         $this->root = $assessmentItem;
-        return $this->root->validate($map, $TestSection_id);
+        return $this->root->validate($map);
     }
 
     public function get_outputs() {
@@ -79,11 +67,7 @@ class QTIAssessmentItem extends OModule {
         }
         return $result;
     }
-
-    public function get_description() {
-        return Template::strip_html($this->description);
-    }
-
+    
     public function get_variable_declaration_R_code() {
         //default outcome
         //default response
@@ -109,22 +93,22 @@ class QTIAssessmentItem extends OModule {
                         ", $response->identifier, $response->identifier, $val->get_text(), $response->identifier, $response->identifier, $val->get_text());
                 }
                 $code.=sprintf("
-                    %s <<- convertVariable(%s)
-                    %s.default <<- convertVariable(%s.default)
+                    %s <<- ".'concerto$convertToNumeric'."(%s)
+                    %s.default <<- ".'concerto$convertToNumeric'."(%s.default)
                     ", $response->identifier, $response->identifier, $response->identifier, $response->identifier);
             }
             if ($response->mapping != null) {
                 $code.=sprintf("
-                    %s.mapping.defaultValue <<- convertVariable(%s)
+                    %s.mapping.defaultValue <<- ".'concerto$convertToNumeric'."(%s)
                     ", $response->identifier, $response->mapping->defaultValue);
                 if ($response->mapping->lowerBound != null) {
                     $code.=sprintf("
-                    %s.mapping.lowerBound <<- convertVariable(%s)
+                    %s.mapping.lowerBound <<- ".'concerto$convertToNumeric'."(%s)
                     ", $response->identifier, $response->mapping->lowerBound);
                 }
                 if ($response->mapping->upperBound != null) {
                     $code.=sprintf("
-                    %s.mapping.upperBound <<- convertVariable(%s)
+                    %s.mapping.upperBound <<- ".'concerto$convertToNumeric'."(%s)
                     ", $response->identifier, $response->mapping->upperBound);
                 }
                 $code.=sprintf("
@@ -157,15 +141,15 @@ class QTIAssessmentItem extends OModule {
                         ", $response->identifier, $response->identifier, $val->get_text(), $response->identifier, $response->identifier, $val->get_text());
                 }
                 $code.=sprintf("
-                    %s <<- convertVariable(%s)
-                    %s.default <<- convertVariable(%s.default)
+                    %s <<- ".'concerto$convertToNumeric'."(%s)
+                    %s.default <<- ".'concerto$convertToNumeric'."(%s.default)
                     ", $response->identifier, $response->identifier, $response->identifier, $response->identifier);
             }
         }
         return $code;
     }
 
-    public function get_template_processing_R_code($map = null, $TestSection_id = 0) {
+    public function get_template_processing_R_code($map = null) {
         //declare template variables
         //declare correct responses
         //modify default response
@@ -195,8 +179,8 @@ class QTIAssessmentItem extends OModule {
                         ", $template->identifier, $template->identifier, $val->get_text(), $template->identifier, $template->identifier, $val->get_text());
                 }
                 $code.=sprintf("
-                    %s <<- convertVariable(%s)
-                    %s.default <<- convertVariable(%s.default)
+                    %s <<- ".'concerto$convertToNumeric'."(%s)
+                    %s.default <<- ".'concerto$convertToNumeric'."(%s.default)
                     ", $template->identifier, $template->identifier, $template->identifier, $template->identifier);
             }
         }
@@ -213,7 +197,7 @@ class QTIAssessmentItem extends OModule {
                         ", $response->identifier, $response->identifier, $val->get_text());
                 }
                 $code.=sprintf("
-                    %s.correct <<- convertVariable(%s.correct)
+                    %s.correct <<- ".'concerto$convertToNumeric'."(%s.correct)
                     ", $response->identifier, $response->identifier);
             }
         }
@@ -238,7 +222,7 @@ class QTIAssessmentItem extends OModule {
                 foreach ($search as $elem) {
                     $name = ucfirst($name);
                     $obj = new $name($elem, ($name != "ItemBody" ? $this->root->itemBody : $this->root));
-                    $obj->validate($map, $TestSection_id);
+                    $obj->validate($map);
                     $html_result = str_ireplace($this->root->node->ownerDocument->saveXML($elem), $obj->get_HTML_code(), $html_result);
                 }
             }
@@ -250,9 +234,9 @@ class QTIAssessmentItem extends OModule {
         return $code;
     }
 
-    public function get_QTI_ini_R_code($map = null, $TestSection_id = 0) {
+    public function get_QTI_ini_R_code($map = null) {
         $code = $this->get_variable_declaration_R_code();
-        $code.= $this->get_template_processing_R_code($map, $TestSection_id);
+        $code.= $this->get_template_processing_R_code($map);
         return $code;
     }
 

@@ -133,7 +133,6 @@ Setup.check=function(obj,check,success,failure){
 Setup.versions = [];
 Setup.create_db = false;
 Setup.validate_column_names = false;
-Setup.repopulate_TestTemplate = false;
 Setup.recalculate_hash = false;
 Setup.getDBSteps=function(obj,success,failure){
     if(obj!=null) SetupStep.parentDBObj = obj;
@@ -147,13 +146,11 @@ Setup.getDBSteps=function(obj,success,failure){
         if(data.create_db) count++;
         count+=data.versions.length;
         if(data.validate_column_names) count++;
-        if(data.repopulate_TestTemplate) count++;
         if(data.recalculate_hash) count++;
         Setup.maxDBStep = count;
         Setup.create_db = data.create_db;
         Setup.versions = data.versions;
         Setup.validate_column_names = data.validate_column_names;
-        Setup.repopulate_TestTemplate = data.repopulate_TestTemplate;
         Setup.recalculate_hash = data.recalculate_hash;
         
         Setup.runDB();
@@ -193,11 +190,6 @@ Setup.runDB=function(){
         if(Setup.validate_column_names){
             Setup.validate_column_names=false;
             Setup.validateColumnsDBStep.check();
-            return;
-        }
-        if(Setup.repopulate_TestTemplate){
-            Setup.repopulate_TestTemplate=false;
-            Setup.repopulateTestTemplateDBStep.check();
             return;
         }
         if(Setup.recalculate_hash){
@@ -518,16 +510,6 @@ Setup.validateColumnsDBStep = new SetupStep(
     "<b>MySQL</b> database update - validate column names - <b style='color:green;'>PASSED</b>",
     "<b>MySQL</b> database - validate column names - <b style='color:red;'>FAILED</b>",
     "Setup application was unable to validate column names.",
-    true
-    );
-
-Setup.repopulateTestTemplateDBStep = new SetupStep(
-    true,
-    "<b>MySQL</b> database - repopulate TestTemplate",
-    "update_db_repopulate_TestTemplate",
-    "<b>MySQL</b> database update - repopulate TestTemplate - <b style='color:green;'>PASSED</b>",
-    "<b>MySQL</b> database - repopulate TestTemplate - <b style='color:red;'>FAILED</b>",
-    "Setup application was unable to repopulate TestTemplate.",
     true
     );
 

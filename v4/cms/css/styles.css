@@ -30,6 +30,7 @@ body{
     -moz-user-select: none;
     -ms-user-select: none;
     user-select: none;
+    height:100%;
 }
 
 .padding {
@@ -209,4 +210,30 @@ ul {
 
 .divFormControl {
     margin-right:5px;
+}
+
+.divTestHorizontalElement{
+    float:left;
+    width:50%;
+    height:100%;
+}
+
+.divTestVerticalElement {
+    width:466px;
+    min-height: 150px;
+}
+
+.codeMirrorActiveLine {
+    background: #EDF0F2 !important;
+}
+
+.codeMirrorSearchHighlight {
+    background: #F5E889 !important;
+}
+
+.CodeMirror-fullscreen {
+    display: block;
+    position: fixed !important;
+    top: 0; left: 0;
+    z-index: 9999;
 }

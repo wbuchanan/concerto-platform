@@ -31,7 +31,7 @@ class Ini {
     public static $path_r_script = "";
     public static $path_temp = "";
     public static $path_mysql_home = "";
-    public static $version = "3.9.0";
+    public static $version = "4.0.0.0 alpha1";
     public static $server_host = "127.0.0.1";
     public static $server_port = "8888";
     public static $path_unix_sock = "";
@@ -162,7 +162,6 @@ class Ini {
             "DS_Module",
             "DS_Right",
             "DS_Sharing",
-            "DS_TestSectionType",
             "DS_UserInstitutionType",
             "QTIAssessmentItem",
             "Setting",
@@ -172,12 +171,8 @@ class Ini {
             "TableIndexColumn",
             "Template",
             "Test",
-            "TestProtectedVariable",
-            "TestSection",
-            "TestSectionValue",
             "TestSession",
             "TestSessionReturn",
-            "TestTemplate",
             "TestVariable",
             "User",
             "UserGroup",
@@ -216,14 +211,10 @@ class Ini {
         require_once self::$path_internal . "cms/model/TableIndex.php";
         require_once self::$path_internal . "cms/model/TableIndexColumn.php";
         require_once self::$path_internal . "cms/model/Test.php";
-        require_once self::$path_internal . "cms/model/TestProtectedVariable.php";
         require_once self::$path_internal . "cms/model/TestServer.php";
         require_once self::$path_internal . "cms/model/TestInstance.php";
-        require_once self::$path_internal . "cms/model/TestSection.php";
-        require_once self::$path_internal . "cms/model/TestSectionValue.php";
         require_once self::$path_internal . "cms/model/TestSession.php";
         require_once self::$path_internal . "cms/model/TestSessionReturn.php";
-        require_once self::$path_internal . "cms/model/TestTemplate.php";
         require_once self::$path_internal . "cms/model/TestVariable.php";
         require_once self::$path_internal . "cms/model/CustomSection.php";
         require_once self::$path_internal . "cms/model/CustomSectionVariable.php";
@@ -371,7 +362,6 @@ class Ini {
         require_once self::$path_internal . "cms/model/ODataSet.php";
         require_once self::$path_internal . "cms/model/DS_Right.php";
         require_once self::$path_internal . "cms/model/DS_Sharing.php";
-        require_once self::$path_internal . "cms/model/DS_TestSectionType.php";
         require_once self::$path_internal . "cms/model/DS_UserInstitutionType.php";
         require_once self::$path_internal . "cms/model/DS_Module.php";
     }

@@ -31,6 +31,21 @@ if ($logged_user == null) {
 
 <script>
     $(function(){
+        $(window).resize(function(){
+            $("#divTestResponse").css("height",Methods.winHeight()-100);
+            $(".divTestVerticalElement").css("height",((Methods.winHeight()-200)/2)+"px");
+            Test.onScroll();
+            
+            var showing = document.body.getElementsByClassName("CodeMirror-fullscreen")[0];
+            if (!showing) return;
+            showing.CodeMirror.getWrapperElement().style.height = Methods.winHeight() + "px";
+            showing.CodeMirror.getWrapperElement().style.width = Methods.winWidth() + "px";
+        });
+      
+        $(window).scroll(function () { 
+            Test.onScroll();
+        });
+
         $("#tnd_mainMenu").tabs({
             show:function(event,ui){
                 if(ui.index==0){
@@ -86,7 +101,7 @@ if (Ini::$cms_session_keep_alive) {
                 ?>
                 <li><a href="#tnd_mainMenu-tests" class="tooltipTabs" title="<?= Language::string(193) ?>"><?= Language::string(88) ?></a></li>
             <?php } ?>
-                
+
             <?php
             if ($logged_user->is_module_accesible("QTIAssessmentItem")) {
                 ?>
@@ -125,7 +140,7 @@ if (Ini::$cms_session_keep_alive) {
                 <?php include Ini::$path_internal . 'cms/view/includes/tab_tests.inc.php'; ?>
             </div>
         <?php } ?>
-        
+
         <?php
         if ($logged_user->is_module_accesible("QTIAssessmentItem")) {
             ?>

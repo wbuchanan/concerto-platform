@@ -5968,5 +5968,45 @@ Note: You can add new languages by inserting "<new_language>string translated in
             <nl></nl>
             <br></br>
         </string>
+        <string id="619">
+            <en>test output</en>
+            <de></de>
+            <pl>komunikaty testu</pl>
+            <cn></cn>
+            <fr></fr>
+            <bg></bg>
+            <nl></nl>
+            <br></br>
+        </string>
+        <string id="620">
+            <en>Test output from the server are printed here.</en>
+            <de></de>
+            <pl>Tutaj są wyświetlane komunikaty testu z serwera.</pl>
+            <cn></cn>
+            <fr></fr>
+            <bg></bg>
+            <nl></nl>
+            <br></br>
+        </string>
+        <string id="621">
+            <en>test session state</en>
+            <de></de>
+            <pl>stan sesji testu</pl>
+            <cn></cn>
+            <fr></fr>
+            <bg></bg>
+            <nl></nl>
+            <br></br>
+        </string>
+        <string id="622">
+            <en>Test session state.</en>
+            <de></de>
+            <pl>Test session state.</pl>
+            <cn></cn>
+            <fr></fr>
+            <bg></bg>
+            <nl></nl>
+            <br></br>
+        </string>
     </strings>
 </root> 

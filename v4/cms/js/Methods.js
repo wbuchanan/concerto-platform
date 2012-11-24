@@ -15,7 +15,7 @@ GNU General Public License for more details.
 You should have received a copy of the GNU General Public License
 along with this program; if not, write to the Free Software
 Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA.
-*/
+ */
 
 dictionary = {};
 
@@ -374,7 +374,12 @@ Methods.getTempID=function()
 
 Methods.iniCodeMirror=function(id,mode,readOnly)
 {
-    var obj = document.getElementById(id);
+    var obj = null;
+    if (id.substring) {
+        obj = document.getElementById(id);
+    } else{
+        obj = id;
+    }
     
     var myCodeMirror = CodeMirror.fromTextArea(obj,{
         mode:mode,
@@ -385,14 +390,57 @@ Methods.iniCodeMirror=function(id,mode,readOnly)
         lineWrapping:true, 
         autoClearEmptyLines:true,
         indentWithTabs:true,
-        "readOnly":(readOnly!=null&readOnly?true:false)
+        "readOnly":(readOnly!=null&readOnly?true:false),
+        extraKeys: {
+            "F11": function(instance) {
+                Methods.setCodeMirrorFullScreen(instance, !Methods.isCodeMirrorFullScreen(instance));
+            },
+            "Esc": function(instance) {
+                if (Methods.isCodeMirrorFullScreen(instance)) Methods.setCodeMirrorFullScreen(instance, false);
+            },
+            "F2":function(instance){
+                var range = {
+                    from: instance.getCursor(true), 
+                    to: instance.getCursor(false)
+                }
+                instance.autoFormatRange(range.from, range.to);
+                instance.autoIndentRange(range.from, range.to);
+            }
+        }
     });
+    
     myCodeMirror.on("change",function(instance){
         instance.save();
         instance.refresh();
     });
+    myCodeMirror["previousLineHandle"] = myCodeMirror.getLineHandle(0);
+    myCodeMirror.addLineClass(myCodeMirror["previousLineHandle"],"background","codeMirrorActiveLine");
+    myCodeMirror.on("cursorActivity",function(instance){
+        instance.removeLineClass(instance["previousLineHandle"],"background","codeMirrorActiveLine");
+        var no = instance.getCursor(true).line;
+        instance.addLineClass(no,"background","codeMirrorActiveLine");
+        instance["previousLineHandle"] = instance.getLineHandle(no);
+        instance.matchHighlight("codeMirrorSearchHighlight",3);
+    });
+    
     //if(maxWidth!=null) $(obj).next().find(".CodeMirror-scroll").css("max-width",maxWidth);
     myCodeMirror.refresh();
+    
+    if(myCodeMirror.lineCount()>0){
+        var range = {
+            from: {
+                line:0, 
+                ch:0
+            }, 
+            to: {
+                line:myCodeMirror.lineCount()-1,
+                ch:myCodeMirror.getLine(myCodeMirror.lineCount()-1).length-1
+            }
+        }
+        myCodeMirror.autoFormatRange(range.from, range.to);
+        myCodeMirror.autoIndentRange(range.from, range.to);
+    }
+    
     return myCodeMirror;
 };
 
@@ -469,5 +517,32 @@ Methods.checkLatestVersion=function(callback,proxy)
                 offset: "15 0"
             }
         });
+    }
+    
+    Methods.isCodeMirrorFullScreen = function(cm) {
+        return /\bCodeMirror-fullscreen\b/.test(cm.getWrapperElement().className);
+    }
+    Methods.winHeight=function() {
+        return window.innerHeight || (document.documentElement || document.body).clientHeight;
+    }
+    
+    Methods.winWidth=function() {
+        return window.innerWidth || (document.documentElement || document.body).clientWidth;
+    }
+    
+    Methods.setCodeMirrorFullScreen=function(cm, full) {
+        var wrap = cm.getWrapperElement();
+        if (full) {
+            wrap.className += " CodeMirror-fullscreen";
+            wrap.style.height = Methods.winHeight() + "px";
+            wrap.style.width = Methods.winWidth() + "px";
+            document.documentElement.style.overflow = "hidden";
+        } else {
+            wrap.className = wrap.className.replace(" CodeMirror-fullscreen", "");
+            wrap.style.height = "auto";
+            wrap.style.width = "";
+            document.documentElement.style.overflow = "";
+        }
+        cm.refresh();
     }
 };

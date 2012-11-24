@@ -16,34 +16,16 @@
 ## along with this program; if not, write to the Free Software
 ## Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA.
 ##
- 
-setwd(CONCERTO_TEMP_PATH)
-library(session)
-library(catR)
 
-update.session.counter <- function(CONCERTO_PARAM){
-   CONCERTO_PARAM <- dbEscapeStrings(CONCERTO_DB_CONNECTION,toString(CONCERTO_PARAM))
-   dbSendQuery(CONCERTO_DB_CONNECTION, statement = sprintf("UPDATE `%s`.`TestSession` SET `counter` = '%s' WHERE `id`=%s",dbEscapeStrings(CONCERTO_DB_CONNECTION,CONCERTO_DB_NAME),CONCERTO_PARAM,dbEscapeStrings(CONCERTO_DB_CONNECTION,toString(CONCERTO_TEST_SESSION_ID))))
-}
 
 update.session.status <- function(CONCERTO_PARAM){
    CONCERTO_PARAM <- dbEscapeStrings(CONCERTO_DB_CONNECTION,toString(CONCERTO_PARAM))
    dbSendQuery(CONCERTO_DB_CONNECTION, statement = sprintf("UPDATE `%s`.`TestSession` SET `status` = '%s' WHERE `id`=%s",dbEscapeStrings(CONCERTO_DB_CONNECTION,CONCERTO_DB_NAME),CONCERTO_PARAM,dbEscapeStrings(CONCERTO_DB_CONNECTION,toString(CONCERTO_TEST_SESSION_ID))))
 }
 
-update.session.release <- function(CONCERTO_PARAM){
-   CONCERTO_PARAM <- dbEscapeStrings(CONCERTO_DB_CONNECTION,toString(CONCERTO_PARAM))
-   dbSendQuery(CONCERTO_DB_CONNECTION, statement = sprintf("UPDATE `%s`.`TestSession` SET `release` = '%s' WHERE `id`=%s",dbEscapeStrings(CONCERTO_DB_CONNECTION,CONCERTO_DB_NAME),CONCERTO_PARAM,dbEscapeStrings(CONCERTO_DB_CONNECTION,toString(CONCERTO_TEST_SESSION_ID))))
-}
-
 update.session.time_limit <- function(CONCERTO_PARAM){
    CONCERTO_PARAM <- dbEscapeStrings(CONCERTO_DB_CONNECTION,toString(CONCERTO_PARAM))
    dbSendQuery(CONCERTO_DB_CONNECTION, statement = sprintf("UPDATE `%s`.`TestSession` SET `time_limit` = '%s' WHERE `id`=%s",dbEscapeStrings(CONCERTO_DB_CONNECTION,CONCERTO_DB_NAME),CONCERTO_PARAM,dbEscapeStrings(CONCERTO_DB_CONNECTION,toString(CONCERTO_TEST_SESSION_ID))))
-}
-
-update.session.template_testsection_id <- function(CONCERTO_PARAM){
-   CONCERTO_PARAM <- dbEscapeStrings(CONCERTO_DB_CONNECTION,toString(CONCERTO_PARAM))
-   dbSendQuery(CONCERTO_DB_CONNECTION, statement = sprintf("UPDATE `%s`.`TestSession` SET `Template_TestSection_id` ='%s' WHERE `id`=%s",dbEscapeStrings(CONCERTO_DB_CONNECTION,CONCERTO_DB_NAME),CONCERTO_PARAM,dbEscapeStrings(CONCERTO_DB_CONNECTION,toString(CONCERTO_TEST_SESSION_ID))))
 }
 
 update.session.template_id <- function(CONCERTO_PARAM){
@@ -62,22 +44,6 @@ update.session.effects <- function(CONCERTO_PARAM1, CONCERTO_PARAM2, CONCERTO_PA
 update.session.HTML <- function(CONCERTO_PARAM1, CONCERTO_PARAM2, CONCERTO_PARAM3){
    CONCERTO_PARAM <- dbEscapeStrings(CONCERTO_DB_CONNECTION,toString(fill.session.HTML(get.template.HTML(CONCERTO_PARAM1,CONCERTO_PARAM2,CONCERTO_PARAM3))))
    dbSendQuery(CONCERTO_DB_CONNECTION, statement = sprintf("UPDATE `%s`.`TestSession` SET `HTML` = '%s' WHERE `id`=%s",dbEscapeStrings(CONCERTO_DB_CONNECTION,CONCERTO_DB_NAME),CONCERTO_PARAM,dbEscapeStrings(CONCERTO_DB_CONNECTION,toString(CONCERTO_TEST_SESSION_ID))))
-}
-
-get.template.HTML <- function(CONCERTO_PARAM1,CONCERTO_PARAM2,CONCERTO_PARAM3) {
-    CONCERTO_SQL <- sprintf("SELECT `HTML` FROM `TestTemplate` WHERE `Test_id`=%s AND `TestSection_id`=%s AND `Template_id`=%s",dbEscapeStrings(CONCERTO_DB_CONNECTION,toString(CONCERTO_PARAM1)),dbEscapeStrings(CONCERTO_DB_CONNECTION,toString(CONCERTO_PARAM2)),dbEscapeStrings(CONCERTO_DB_CONNECTION,toString(CONCERTO_PARAM3)))
-    CONCERTO_SQL_RESULT <- dbSendQuery(CONCERTO_DB_CONNECTION,CONCERTO_SQL)
-    CONCERTO_SQL_RESULT <- fetch(CONCERTO_SQL_RESULT,n=-1)
-    return(CONCERTO_SQL_RESULT[1,1])
-}
-
-update.session.return <- function(CONCERTO_PARAM) {
-    if(exists(CONCERTO_PARAM)) {
-        CONCERTO_VALUE <- toString(get(CONCERTO_PARAM))
-        CONCERTO_PARAM <- dbEscapeStrings(CONCERTO_DB_CONNECTION,toString(CONCERTO_PARAM))
-        CONCERTO_VALUE <- dbEscapeStrings(CONCERTO_DB_CONNECTION,toString(CONCERTO_VALUE))
-        dbSendQuery(CONCERTO_DB_CONNECTION, statement = sprintf("REPLACE INTO `%s`.`TestSessionReturn` SET `TestSession_id` ='%s', `name`='%s', `value`='%s'",dbEscapeStrings(CONCERTO_DB_CONNECTION,CONCERTO_DB_NAME),dbEscapeStrings(CONCERTO_DB_CONNECTION,toString(CONCERTO_TEST_SESSION_ID)),CONCERTO_PARAM, CONCERTO_VALUE))
-    }
 }
 
 fill.session.HTML <- function(CONCERTO_PARAM){
@@ -101,67 +67,3 @@ fill.session.HTML <- function(CONCERTO_PARAM){
     }
     return(CONCERTO_PARAM)
 }
-
-evalWithTimeout <- function (..., envir = parent.frame(), timeout, cpu = timeout, elapsed = timeout, onTimeout = c("error", "warning", "silent"))
-{
-    onTimeout <- match.arg(onTimeout)
-    res <- invisible()
-    setTimeLimit(cpu = cpu, elapsed = elapsed, transient = TRUE)
-    tryCatch({
-        res <- eval(..., envir = envir)
-    }, error = function(ex) {
-        msg <- ex$message
-        pattern <- gettext("reached elapsed time limit")
-        if (regexpr(pattern, msg) != -1) {
-            if (onTimeout == "error") {
-                stop("Timeout!")
-            }
-            else if (onTimeout == "warning") {
-                warning("Timeout!")
-            }
-            else if (onTimeout == "silent") {
-            }
-        }
-        else {
-            stop(msg)
-        }
-    })
-    res
-}
-
-convertVariable <- function(var){
-    result <- tryCatch({
-        if(is.character(var)) var <- as.numeric(var)
-        return(var)
-    }, warning = function(w) {
-        return(var)
-    }, error = function(e) {
-        return(var)
-    }, finally = function(){
-        return(var)
-    })
-    return(result)
-}
-
-containsOrderedVector <- function(subject,search){
-    j = 1;
-    for(i in subject){
-        if(search[j]==i){
-            if(length(search)==j) return(TRUE)
-            j=j+1
-        } else {
-            j = 1
-        }
-    }
-    return(FALSE)
-}
-
-library(RMySQL)
-CONCERTO_DB_DRIVER <- dbDriver('MySQL')
-CONCERTO_DB_CONNECTION <- dbConnect(CONCERTO_DB_DRIVER, user = CONCERTO_DB_LOGIN, password = CONCERTO_DB_PASSWORD, dbname = CONCERTO_DB_NAME, host = CONCERTO_DB_HOST, port = CONCERTO_DB_PORT)
-dbSendQuery(CONCERTO_DB_CONNECTION,statement = "SET NAMES 'utf8';")
-
-rm(CONCERTO_DB_HOST)
-rm(CONCERTO_DB_PORT)
-rm(CONCERTO_DB_LOGIN)
-rm(CONCERTO_DB_PASSWORD)

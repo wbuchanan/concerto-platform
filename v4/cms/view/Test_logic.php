@@ -36,66 +36,7 @@ if (!$logged_user->is_object_editable($obj))
 
 <script>
     $(function(){
-        Methods.iniIconButton(".btnAddLogicSection", "plus");
-        
-        $( "#divTestLogic" ).sortable({
-            items: "> div.sortable",
-            handle: ".sortableHandle",
-            opacity:0.5,
-            axis:"y",
-            forcePlaceholderSize:true,
-            placeholder:"ui-state-highlight"
-        });
-        
-        Test.contentsToRefresh=0;
-<?php
-if ($oid != 0) {
-    $sections = TestSection::from_property(array("Test_id" => $obj->id));
-    ?>
-                Methods.modalProgress(null, <?= count($sections) ?>);
-                Test.listenToSectionChanged=false;
-                Test.setCounter(<?= $obj->get_max_counter() ?>);
-    <?php
-    $late_refresh_sections = array();
-
-    foreach ($sections as $section) {
-        $vals = $section->get_values();
-        ?>
-                        Test.uiWriteSection(
-        <?= $section->TestSectionType_id ?>, 
-        <?= $section->parent_counter ?>, 
-        <?= $section->counter ?>,
-                        null,
-        <?= $section->id ?>,
-        <?= $section->TestSectionType_id == 3 || $section->TestSectionType_id == 14 ? "false" : "true" ?>,
-                        null,
-                        null,
-        <?= $section->end == 1 ? "true" : "false" ?>
-                    );
-        <?php
-        if ($section->TestSectionType_id == DS_TestSectionType::QTI_RESPONSE_PROCESSING)
-            array_push($late_refresh_sections, $section);
-        if ($section->TestSectionType_id == DS_TestSectionType::GO_TO)
-            array_push($late_refresh_sections, $section);
-    }
-
-    foreach ($late_refresh_sections as $section) {
-        $vals = $section->get_values();
-        ?>
-                        Test.uiRefreshSectionContent(
-        <?= $section->TestSectionType_id ?>,
-        <?= $section->counter ?>, 
-                        [<?= $vals[0] ?>], 
-        <?= $section->id ?>,
-        <?= $section->end == 1 ? "true" : "false" ?>
-                    );
-        <?php
-    }
-    ?>
-                Test.listenToSectionChanged=true;
-    <?php
-}
-?>
+        Methods.iniCodeMirror("textareaTestLogic", "r", false);
     });
 </script>
 
@@ -109,13 +50,5 @@ if ($oid != 0) {
         </table>
     </legend>
 
-    <div id="divTestLogic" class="">
-        <div id="divTestEmptyLogic" class="margin padding ui-state-error" align="center">
-            <?= Language::string(145) ?>
-        </div>
-    </div>
-
-    <div id="divTestDialog" class="notVisible">
-        <?php include Ini::$path_internal . 'cms/view/Test_section_dialog.php'; ?>
-    </div>
+    <textarea id="textareaTestLogic"></textarea>
 </fieldset>

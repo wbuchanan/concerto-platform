@@ -197,15 +197,6 @@ class Template extends OModule {
             $xml_hash = $obj->calculate_xml_hash();
             $obj->xml_hash = $xml_hash;
             $obj->mysql_save();
-
-            $tt = TestTemplate::from_property(array("Template_id" => $lid));
-            foreach ($tt as $elem) {
-                $ts = TestSection::from_mysql_id($elem->TestSection_id);
-                $vals = $ts->get_values();
-                $html = Template::output_html($obj->HTML, $vals, $obj->get_outputs(), $obj->get_inserts());
-                $elem->HTML = $html;
-                $elem->mysql_save();
-            }
         }
         return $lid;
     }
@@ -296,15 +287,6 @@ class Template extends OModule {
 
     public function get_preview_HTML() {
         return Template::strip_html($this->HTML);
-    }
-
-    public function get_description() {
-        return Template::strip_html($this->description);
-    }
-
-    public function mysql_delete() {
-        $this->delete_object_links(TestTemplate::get_mysql_table());
-        parent::mysql_delete();
     }
 
 }

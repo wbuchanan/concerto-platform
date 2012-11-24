@@ -46,7 +46,7 @@ class Member extends AExpression {
             return "NULL";
         $exp1 = $this->expression[0]->get_R_code();
         $exp2 = $this->expression[1]->get_R_code();
-        $code = "if(is.null(" . $exp1 . ") || is.null(" . $exp2 . ")) NULL else { QTIcontains(" . $exp2 . "," . $exp1 . ",'" . $exp1->get_baseType . "','" . $exp1->get_cardinality . "') }";
+        $code = "if(is.null(" . $exp1 . ") || is.null(" . $exp2 . ")) NULL else { ".'concerto$qti$contains'."(" . $exp2 . "," . $exp1 . ",'" . $exp1->get_baseType . "','" . $exp1->get_cardinality . "') }";
         return $code;
     }
 

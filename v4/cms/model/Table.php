@@ -545,10 +545,6 @@ class Table extends OModule {
         return $element;
     }
 
-    public function get_description() {
-        return Template::strip_html($this->description);
-    }
-
     public static function create_db($delete = false) {
         if ($delete) {
             if (!mysql_query("DROP TABLE IF EXISTS `Table`;"))

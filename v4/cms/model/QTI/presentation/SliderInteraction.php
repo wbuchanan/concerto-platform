@@ -53,7 +53,7 @@ class SliderInteraction extends ABlockInteraction {
     }
 
     public function get_HTML_code() {
-        $code = sprintf("<script>$(function(){ QTI.initializeSliderInteraction(%s,%s,%s,%s,'%s'); });</script>", $this->TestSection_id, $this->lowerBound, $this->upperBound, ($this->step != null ? $this->step : "null"), ($this->orientation != null ? $this->orientation : "horizontal"));
+        $code = sprintf("<script>$(function(){ QTI.initializeSliderInteraction(%s,%s,%s,%s,'%s'); });</script>", 1, $this->lowerBound, $this->upperBound, ($this->step != null ? $this->step : "null"), ($this->orientation != null ? $this->orientation : "horizontal"));
         if ($this->prompt != null)
             $code.=$this->prompt->get_HTML_code();
         $code.="<div class='QTIsliderInteraction'/>";

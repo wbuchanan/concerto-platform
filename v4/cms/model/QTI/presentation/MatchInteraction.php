@@ -107,7 +107,7 @@ class MatchInteraction extends ABlockInteraction {
                     continue;
                 }
                 $value = $choiceV->identifier . " " . $choiceH->identifier;
-                $check = sprintf("<input class='QTImatchInteractionCheckbox' vi='%s' hi='%s' vmm='%s' hmm='%s' type='checkbox' value='%s' name='%s' onclick='QTI.matchInteractionCheck(%s,\"%s\",this,%s)' />", $choiceV->identifier, $choiceH->identifier, $choiceV->matchMax, $choiceH->matchMax, $value, $this->responseIdentifier, $this->TestSection_id, $this->responseIdentifier, $this->maxAssociations);
+                $check = sprintf("<input class='QTImatchInteractionCheckbox' vi='%s' hi='%s' vmm='%s' hmm='%s' type='checkbox' value='%s' name='%s' onclick='QTI.matchInteractionCheck(%s,\"%s\",this,%s)' />", $choiceV->identifier, $choiceH->identifier, $choiceV->matchMax, $choiceH->matchMax, $value, $this->responseIdentifier, 1, $this->responseIdentifier, $this->maxAssociations);
                 $code.=sprintf("<td class='QTItableCell' align='center' valign='middle'>%s</td>", $check);
             }
             $code.="</tr>";

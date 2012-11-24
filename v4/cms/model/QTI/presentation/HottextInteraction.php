@@ -48,7 +48,7 @@ class HottextInteraction extends ABlockInteraction {
         $search = $xpath->query("//qti:hottext");
         foreach ($search as $elem) {
             $obj = new Hottext($elem, $this);
-            $obj->validate(null, $this->TestSection_id);
+            $obj->validate(null);
             array_push($result, $obj);
         }
         return $result;

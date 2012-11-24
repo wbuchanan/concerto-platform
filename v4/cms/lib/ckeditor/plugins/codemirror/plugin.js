@@ -17,25 +17,9 @@ CKEDITOR.plugins.add( 'codemirror', {
     init : function( editor ) {
         editor.on( 'mode', function() {
             if ( editor.mode == 'source' ) {
-                var sourceAreaElement = editor.textarea,
-                holderElement = sourceAreaElement.getParent();
-                var holderHeight = holderElement.$.clientHeight + 'px';
+               
+               var codemirrorInit = Methods.iniCodeMirror(editor.textarea.$, "htmlmixed", false);
                 
-                var codemirrorInit = 
-                CodeMirror.fromTextArea(editor.textarea.$,{
-                    mode:"htmlmixed",
-                    theme:"neat",
-                    fixedGutter:false,
-                    lineNumbers:true,
-                    matchBrackets:true,
-                    lineWrapping:true,
-                    autoClearEmptyLines:true,
-                    indentWithTabs:true
-                });
-                codemirrorInit.on("change",function(instance){
-                    instance.save();
-                    instance.refresh();
-                });
                 codemirrorInit.setSize(775,null);
                 codemirrorInit.refresh();
                 
