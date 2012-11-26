@@ -230,6 +230,7 @@ class TestServer {
         do {
             gc_collect_cycles();
 
+            //serialization
             foreach ($this->clients as $k => $v) {
                 if ($this->instances[$k]->is_timedout() && !$this->instances[$k]->is_serializing) {
                     if (self::$debug) {

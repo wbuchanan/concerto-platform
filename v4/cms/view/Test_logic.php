@@ -50,5 +50,5 @@ if (!$logged_user->is_object_editable($obj))
         </table>
     </legend>
 
-    <textarea id="textareaTestLogic"></textarea>
+    <textarea id="textareaTestLogic"><?=$obj->code?></textarea>
 </fieldset>

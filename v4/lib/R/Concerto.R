@@ -24,12 +24,15 @@ concerto <- list(
         options(encoding='UTF-8')
         concerto$testID <<- testID
         concerto$sessionID <<- sessionID
+        concerto$templateFIFOPath <<- paste(tempPath,"/fifo_",sessionID,sep='')
+        concerto$sessionPath <<- paste(tempPath,"/session_",sessionID,".Rs",sep='')
 
         setwd(tempPath)
         print(paste("working directory set to:",tempPath))
 
         library(session)
         library(catR)
+        library(rjson)
         library(RMySQL)
 
         concerto$db$connect(user,password,dbName,host,port,mysqlHome,dbTimezone)
@@ -37,7 +40,8 @@ concerto <- list(
 
     finalize = function(){
         print("finalizing...")
-        print(dbSendQuery(concerto$db$connection, statement = sprintf("UPDATE `%s`.`TestSession` SET `status` = 3 WHERE `id`=%s",dbEscapeStrings(concerto$db$connection,concerto$db$name),dbEscapeStrings(concerto$db$connection,toString(concerto$sessionID)))))
+
+        concerto$updateStatus(3)
         concerto$updateAllReturnVariables()
     },
 
@@ -57,23 +61,79 @@ concerto <- list(
         }
     ),
 
-    serialize = function(path){
+    template = list(
+        show = function(templateID,params=list()){
+            print(paste("showing template #",templateID,"...",sep=''))
+            if(!is.list(params)) stop("'params' must be a list!")
+
+            template <- concerto$template$get(templateID)
+            if(dim(template)[1]==0) stop(paste("Template #",templateID," not found!",sep=''))
+            concerto$updateTemplateID(templateID)
+            concerto$updateHTML(concerto$template$fillHTML(template[1,"HTML"],params))
+            concerto$updateStatus(2)
+            
+            closeAllConnections()
+            fifo_connection <- fifo(concerto$templateFIFOPath,"r",blocking=TRUE)
+            response <- readLines(fifo_connection)
+            print(response)
+            if(response=="serialize"){
+                concerto$serialize()
+            } else {
+                print(response)
+            }
+            return(response)
+        },
+
+        fillHTML = function(html,params=list()){
+            matches <- unlist(regmatches(html,gregexpr("\\{\\{[^\\}\\}]*\\}\\}",html)))
+            matches <- matches[!matches == '{{TIME_LEFT}}'] 
+            while(length(matches)>0){
+                index <- 1
+                while(index<=length(matches)){
+                    value <- gsub("\\{\\{","",matches[index])
+                    value <- gsub("\\}\\}","",value)
+                    if(!is.null(params[[value]])){
+                        html <- gsub(matches[index],toString(params[[value]]),html, fixed=TRUE)
+                    }
+                    else {
+                        html <- gsub(matches[index],"",html, fixed=TRUE)
+                    }
+                    index=index+1
+                }
+                matches <- unlist(regmatches(html,gregexpr("\\{\\{[^\\}\\}]*\\}\\}",html)))
+                matches <- matches[!matches == '{{TIME_LEFT}}'] 
+            }
+            return(html)
+        },
+
+        get = function(templateID){
+            dbName <- dbEscapeStrings(concerto$db$connection,concerto$db$name)
+            templateID <- dbEscapeStrings(concerto$db$connection,toString(templateID))
+            result <- dbSendQuery(concerto$db$connection,sprintf("SELECT `head`,`HTML` FROM `%s`.`Template` WHERE `id`='%s'",dbName,templateID))
+            response <- fetch(result,n=-1)
+            return(response)
+        }
+    ),
+
+    serialize = function(){
         print("serializing session...")
         concerto$updateStatus(7)
-        save.session(path)
+        save.session(concerto$sessionPath)
     },
 
-    unserialize = function(path){
+    unserialize = function(){
         print("unserializing session...")
-        restore.session(path)
+        restore.session(concerto$sessionPath)
     },
 
     updateReturnVariable = function(variable){
         if(exists(variable)) {
-            value <- toString(get(variable))
+            dbName <- dbEscapeStrings(concerto$db$connection,concerto$db$name)
+            sessionID <- dbEscapeStrings(concerto$db$connection,toString(concerto$sessionID))
+            value <- dbEscapeStrings(concerto$db$connection,toString(get(variable)))
             variable <- dbEscapeStrings(concerto$db$connection,toString(variable))
             value <- dbEscapeStrings(concerto$db$connection,toString(value))
-            dbSendQuery(concerto$db$connection, statement = sprintf("REPLACE INTO `%s`.`TestSessionReturn` SET `TestSession_id` ='%s', `name`='%s', `value`='%s'",dbEscapeStrings(concerto$db$connection,concerto$db$name),dbEscapeStrings(concerto$db$connection,toString(concerto$sessionID)),variable, value))
+            dbSendQuery(concerto$db$connection, statement = sprintf("REPLACE INTO `%s`.`TestSessionReturn` SET `TestSession_id` ='%s', `name`='%s', `value`='%s'",dbName,sessionID,variable, value))
         }
     },
 
@@ -81,11 +141,25 @@ concerto <- list(
         print("updating all return variables...")
     },
 
+    updateHTML = function(html){
+        dbName <- dbEscapeStrings(concerto$db$connection,concerto$db$name)
+        sessionID <- dbEscapeStrings(concerto$db$connection,toString(concerto$sessionID))
+        html <- dbEscapeStrings(concerto$db$connection,toString(html))
+        dbSendQuery(concerto$db$connection, statement = sprintf("UPDATE `%s`.`TestSession` SET `HTML` = '%s' WHERE `id`=%s",dbName,html,sessionID))
+    },
+
     updateStatus = function(status) {
-        print(concerto$db$connection)
-        print(concerto$db$name)
+        dbName <- dbEscapeStrings(concerto$db$connection,concerto$db$name)
+        sessionID <- dbEscapeStrings(concerto$db$connection,toString(concerto$sessionID))
         status <- dbEscapeStrings(concerto$db$connection,toString(status))
-        dbSendQuery(concerto$db$connection, statement = sprintf("UPDATE `%s`.`TestSession` SET `status` = '%s' WHERE `id`=%s",dbEscapeStrings(concerto$db$connection,concerto$db$name),status,dbEscapeStrings(concerto$db$connection,toString(concerto$sessionID))))
+        dbSendQuery(concerto$db$connection, statement = sprintf("UPDATE `%s`.`TestSession` SET `status` = '%s' WHERE `id`=%s",dbName,status,sessionID))
+    },
+
+    updateTemplateID = function(templateID) {
+        dbName <- dbEscapeStrings(concerto$db$connection,concerto$db$name)
+        sessionID <- dbEscapeStrings(concerto$db$connection,toString(concerto$sessionID))
+        templateID <- dbEscapeStrings(concerto$db$connection,toString(templateID))
+        dbSendQuery(concerto$db$connection, statement = sprintf("UPDATE `%s`.`TestSession` SET `Template_id` = '%s' WHERE `id`=%s",dbName,templateID,sessionID))
     },
 
     convertToNumeric = function(var){

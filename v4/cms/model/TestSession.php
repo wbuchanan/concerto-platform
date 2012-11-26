@@ -86,6 +86,7 @@ class TestSession extends OTable {
         }
 
         $session = TestSession::from_mysql_id($lid);
+        posix_mkfifo($session->get_RSession_fifo_path(), 0600);
         if ($debug)
             $session->register();
         return $session;
@@ -250,7 +251,7 @@ class TestSession extends OTable {
             $template = Template::from_mysql_id($thisSession->Template_id);
 
             if ($template != null) {
-                $effect_hide = $$template->effect_hide;
+                $effect_hide = $template->effect_hide;
                 $effect_hide_options = $template->effect_hide_options;
                 $effect_show = $template->effect_show;
                 $effect_show_options = $template->effect_show_options;
@@ -272,8 +273,6 @@ class TestSession extends OTable {
                             TestSession::unregister($thisSession->id);
                             $removed = true;
                         }
-                        else
-                            $thisSession->serialize();
                         break;
                     }
                 case TestSession::TEST_SESSION_STATUS_ERROR:
@@ -294,8 +293,6 @@ class TestSession extends OTable {
                         }
                         else {
                             $head = Template::from_mysql_id($Template_id)->head;
-                            if ($release)
-                                $thisSession->serialize();
                         }
                         break;
                     }
@@ -363,6 +360,10 @@ class TestSession extends OTable {
 
     public function get_RSession_file_path() {
         return Ini::$path_temp . $this->get_Test()->Owner_id . "/session_" . $this->id . ".Rs";
+    }
+    
+    public function get_RSession_fifo_path() {
+        return Ini::$path_temp . $this->get_Test()->Owner_id . "/fifo_" . $this->id;
     }
 
     public function mysql_save() {

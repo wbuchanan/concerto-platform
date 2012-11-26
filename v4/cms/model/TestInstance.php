@@ -94,7 +94,7 @@ class TestInstance {
         );
 
         include Ini::$path_internal . 'SETTINGS.php';
-        $this->r = proc_open("\"" . Ini::$path_r_exe . "\" --vanilla --quiet --no-readline", $descriptorspec, $this->pipes, Ini::$path_temp, $env);
+        $this->r = proc_open("\"" . Ini::$path_r_exe . "\" --vanilla --quiet", $descriptorspec, $this->pipes, Ini::$path_temp, $env);
         if (is_resource($this->r)) {
             if (TestServer::$debug)
                 TestServer::log_debug("TestInstance->start() --- Test instance started");
@@ -147,8 +147,12 @@ class TestInstance {
             TestServer::log_debug("TestInstance->serialize() --- Serializing #" . $this->TestSession_id);
 
         $this->is_serializing = true;
+        $this->is_working = true;
 
-        $this->send($this->get_serialize_code());
+        $fp = fopen(Ini::$path_temp . "1/fifo_" . $this->TestSession_id, "w");
+        fwrite($fp, "serialize
+            ");
+        fclose($fp);
     }
 
     public function send_chunked($code, $lines, $i) {
@@ -235,19 +239,31 @@ class TestInstance {
         if (count($lines) > 0) {
             $last_line = $lines[count($lines) - 1];
 
-            if ($last_line == "> ") {
-                if ($this->is_serializing) {
-                    $this->is_serialized = true;
+            if ($session->status == TestSession::TEST_SESSION_STATUS_SERIALIZED) {
+                $this->is_serialized = true;
+                $this->is_data_ready = true;
 
+                if (TestServer::$debug)
+                    TestServer::log_debug("TestInstance->read() --- Serialized instance recognized.");
+            }
+
+            if ($session->status == TestSession::TEST_SESSION_STATUS_TEMPLATE && !$this->is_serializing) {
+                $this->is_data_ready = true;
+
+                if (TestServer::$debug)
+                    TestServer::log_debug("TestInstance->read() --- Template instance recognized.");
+            } else if ($last_line == "> ") {
+                $this->is_data_ready = true;
+
+                if ($session->status != TestSession::TEST_SESSION_STATUS_COMPLETED) {
                     $change_status = true;
-                    $session->status = TestSession::TEST_SESSION_STATUS_SERIALIZED;
-                } else {
-                    $this->is_data_ready = true;
+                    $session->status = TestSession::TEST_SESSION_STATUS_WAITING;
 
-                    if ($session->status != TestSession::TEST_SESSION_STATUS_COMPLETED) {
-                        $change_status = true;
-                        $session->status = TestSession::TEST_SESSION_STATUS_WAITING;
-                    }
+                    if (TestServer::$debug)
+                        TestServer::log_debug("TestInstance->read() --- Serialized instance recognised.");
+                } else {
+                    if (TestServer::$debug)
+                        TestServer::log_debug("TestInstance->read() --- Completed instance recognised.");
                 }
             }
         }
@@ -357,24 +373,23 @@ class TestInstance {
     }
 
     public function get_ini_code($session = null, $test = null) {
+        $code = "";
         if ($session == null)
             $session = $this->get_TestSession();
         if ($session == null)
-            return("
-            stop('session #" . $this->TestSession_id . " does not exist!')
+            return($code . "stop('session #" . $this->TestSession_id . " does not exist!')
                 ");
         if ($test == null)
             $test = $this->get_Test($session);
         if ($test == null)
-            return("
-            stop('test #" . $session->Test_id . " does not exist!')
+            return($code . "stop('test #" . $session->Test_id . " does not exist!')
                 ");
 
         include Ini::$path_internal . 'SETTINGS.php';
         $path = Ini::$path_temp . $test->Owner_id;
         if (!is_dir($path))
             mkdir($path, 0777);
-        $code = sprintf('
+        $code .= sprintf('
             CONCERTO_TEST_ID <- %d
             CONCERTO_TEST_SESSION_ID <- %d
             
@@ -433,29 +448,9 @@ class TestInstance {
                 ");
 
         $code = $this->get_ini_code($session, $test);
-        $code.=sprintf('
-            concerto$unserialize("%s")
-            ', $session->get_RSession_file_path());
-        return $code;
-    }
-
-    public function get_serialize_code($session = null, $test = null) {
-        if ($session == null)
-            $session = $this->get_TestSession();
-        if ($session == null)
-            return("
-            stop('session #" . $this->TestSession_id . " does not exist!')
-                ");
-        if ($test == null)
-            $test = $this->get_Test($session);
-        if ($test == null)
-            return("
-            stop('test #" . $session->Test_id . " does not exist!')
-                ");
-
-        $code = sprintf('
-            concerto$serialize("%s")
-            ', $session->get_RSession_file_path());
+        $code.='
+            concerto$unserialize()
+            ';
         return $code;
     }
 
