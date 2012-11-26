@@ -361,7 +361,7 @@ class TestSession extends OTable {
     public function get_RSession_file_path() {
         return Ini::$path_temp . $this->get_Test()->Owner_id . "/session_" . $this->id . ".Rs";
     }
-    
+
     public function get_RSession_fifo_path() {
         return Ini::$path_temp . $this->get_Test()->Owner_id . "/fifo_" . $this->id;
     }
@@ -396,22 +396,20 @@ class TestSession extends OTable {
     }
 
     public static function forward($tid, $sid, $hash, $values, $btn_name, $debug, $time, $resume_from_last_template = false) {
-        if(is_string($values)) $values = json_decode ($values);
-        
+        if (is_string($values))
+            $values = json_decode($values,true);
+
         $session = null;
         $result = array();
         if ($sid != null && $hash != null) {
             $session = TestSession::authorized_session($sid, $hash);
 
             if ($session != null) {
-                if ($values == null)
-                    $values = array();
 
                 if ($btn_name != null) {
-                    array_push($values, json_encode(array(
-                                "name" => "LAST_PRESSED_BUTTON_NAME",
-                                "value" => $btn_name
-                            )));
+                    if ($values != null) {
+                        $val["LAST_PRESSED_BUTTON_NAME"] = $btn_name;
+                    }
                 }
 
                 if (Ini::$timer_tamper_prevention && $session->time_limit > 0 && $time - $session->time_tamper_prevention - Ini::$timer_tamper_prevention_tolerance > $session->time_limit) {

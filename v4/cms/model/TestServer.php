@@ -248,41 +248,19 @@ class TestServer {
 
             //interpret data start
             foreach ($this->clients as $k => $v) {
-                //chunked
-                if ($this->instances[$k]->is_chunked_working) {
-                    $response = $this->instances[$k]->read_chunked();
-                    if ($this->instances[$k]->is_serialized) {
-                        $this->close_instance($k, true);
-                    }
-                    if ($response != null) {
-                        $this->instances[$k]->is_chunked_ready = false;
-                        $this->instances[$k]->is_chunked_working = false;
-                        if (self::$debug) {
-                            self::log_debug("TestServer->start() --- Client '$k' test data read ( chunked )");
-                            if (self::$debug_stream_data)
-                                self::log_debug($response, true);
-                        }
-
-                        if ($this->instances[$k]->code_execution_halted)
-                            $this->close_instance($k);
-                        else {
-                            $code = "";
-                            for ($j = $this->instances[$k]->chunked_index; $j < count($this->instances[$k]->chunked_lines); $j++) {
-                                $code.=$this->instances[$k]->chunked_lines[$j] . "
-                                    ";
-                            }
-                            $this->instances[$k]->send($code);
-                        }
-                    }
-                }
-
                 //read
                 if ($this->instances[$k]->is_working) {
+                    $serialized = false;
                     $response = $this->instances[$k]->read();
                     if ($this->instances[$k]->is_serialized) {
+                        $this->last_action_time = time();
                         $this->close_instance($k, true);
+                        $serialized = true;
                     }
+
                     if ($response != null) {
+                        $this->last_action_time = time();
+
                         $this->instances[$k]->is_data_ready = false;
                         $this->instances[$k]->is_working = false;
                         if (self::$debug) {
@@ -296,26 +274,33 @@ class TestServer {
                             }
                         }
 
-                        $response = array(
-                            "return" => $this->instances[$k]->code_execution_halted ? 1 : 0
-                        );
+                        if (!$serialized) {
+                            $response = array(
+                                "return" => $this->instances[$k]->code_execution_halted ? 1 : 0
+                            );
 
-                        $response = json_encode($response);
+                            $response = json_encode($response);
 
-                        if (!socket_write($this->clients[$k]["sock"], $response . chr(0))) {
-                            if (self::$debug)
-                                self::log_debug("TestServer->start() --- Error: (socket_write) " . socket_last_error() . " - " . socket_strerror(socket_last_error()));
-                        }
-                        else {
-                            if (self::$debug) {
-                                self::log_debug("TestServer->start() --- Client '$k' test response sent back");
-                                if (self::$debug_stream_data)
-                                    self::log_debug($response, false);
+                            if (!socket_write($this->clients[$k]["sock"], $response . chr(0))) {
+                                if (self::$debug)
+                                    self::log_debug("TestServer->start() --- Error: (socket_write) " . socket_last_error() . " - " . socket_strerror(socket_last_error()));
                             }
-                        }
+                            else {
+                                if (self::$debug) {
+                                    self::log_debug("TestServer->start() --- Client '$k' test response sent back");
+                                    if (self::$debug_stream_data)
+                                        self::log_debug($response, false);
+                                }
+                            }
 
-                        if ($this->instances[$k]->code_execution_halted)
-                            $this->close_instance($k);
+                            if ($this->instances[$k]->code_execution_halted)
+                                $this->close_instance($k);
+                        }
+                    }
+
+                    if ($this->instances[$k]->is_finished) {
+                        $this->last_action_time = time();
+                        $this->close_instance($k, true);
                     }
                 }
             }
@@ -404,7 +389,7 @@ class TestServer {
             $session = TestSession::from_mysql_id($session_id);
             if ($session != null) {
                 if ($session->debug == 1)
-                    $session->remove(false);
+                    $session->remove();
             }
         }
         if (self::$debug) {
@@ -461,8 +446,7 @@ class TestServer {
                 self::log_debug("TestServer->interpret_input() --- Client '$key' test instance started");
             }
         }
-
-        $this->instances[$key]->send($data->code);
+        $this->instances[$key]->run($data->code, $data->values);
         if (self::$debug) {
             self::log_debug("TestServer->interpret_input() --- Client '$key' test data sent");
             if (self::$debug_stream_data)

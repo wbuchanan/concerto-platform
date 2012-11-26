@@ -34,11 +34,7 @@ class TestInstance {
     public $code = "";
     public $is_serializing = false;
     public $is_serialized = false;
-    public $is_chunked = false;
-    public $is_chunked_ready = false;
-    public $is_chunked_working = false;
-    public $chunked_lines = array();
-    public $chunked_index = 0;
+    public $is_finished = false;
 
     public function __construct($session_id = 0) {
         $this->TestSession_id = $session_id;
@@ -142,84 +138,44 @@ class TestInstance {
         return null;
     }
 
-    public function serialize() {
+    public function serialize($session = null) {
+        if ($session == null)
+            $session = $this->get_TestSession();
+
         if (TestServer::$debug)
             TestServer::log_debug("TestInstance->serialize() --- Serializing #" . $this->TestSession_id);
 
+        $this->response = "";
+        $this->error_response = "";
         $this->is_serializing = true;
+        $this->is_serialized = false;
         $this->is_working = true;
 
-        $fp = fopen(Ini::$path_temp . "1/fifo_" . $this->TestSession_id, "w");
-        fwrite($fp, "serialize
-            ");
+        $fp = fopen($session->get_RSession_fifo_path(), "w");
+        fwrite($fp, "serialize");
         fclose($fp);
     }
 
-    public function send_chunked($code, $lines, $i) {
-        if (TestServer::$debug)
-            TestServer::log_debug("TestInstance->send_chunked() --- lines no: " . count($lines) . ", i: " . $i);
+    public function send_variables($session = null, $variables = null) {
+        if ($session == null)
+            $session = $this->get_TestSession();
 
-        $this->last_execution_time = time();
+        $variables = json_encode($variables);
 
-        $this->is_chunked_ready = false;
-        if (!$this->is_chunked) {
-            $this->is_chunked = true;
-            $this->response = "";
-            $this->error_response = "";
-            $this->chunked_lines = $lines;
-            $this->code = $code;
-        } else {
-            $this->code.=$code;
-            $this->chunked_lines = $lines;
-        }
-        $this->chunked_index = $i;
-
-        $bytes = fwrite($this->pipes[0], $code);
-        if (TestServer::$debug)
-            TestServer::log_debug("TestInstance->send_chunked() --- " . $bytes . " written to test instance ( chunked )");
-        $this->is_chunked_working = true;
-    }
-
-    public function read_chunked() {
-        //TODO make it as good as read() [statuses,timeouts,etc]
-
-        $this->code_execution_halted = false;
-        $this->last_action_time = time();
-
-        $result = "";
-        $error = "";
-        while ($append = fread($this->pipes[1], 4096)) {
-            $result.=$append;
+        if (TestServer::$debug) {
+            TestServer::log_debug("TestInstance->serialize() --- sending variables to session #" . $this->TestSession_id);
+            if (TestServer::$debug_stream_data)
+                TestServer::log_debug($variables, true);
         }
 
-        $lines = explode("\n", $result);
-        if (count($lines) > 0) {
-            $last_line = $lines[count($lines) - 1];
 
-            if ($last_line == "> " || $last_line == "+ ") {
-                if ($this->is_serializing) {
-                    $this->is_serialized = true;
-                } else
-                    $this->is_chunked_ready = true;
-            }
-        }
+        $this->response = "";
+        $this->error_response = "";
+        $this->is_working = true;
 
-        while ($append = fread($this->pipes[2], 4096)) {
-            $error.=$append;
-        }
-        if (strpos($error, 'Execution halted') !== false) {
-            $this->code_execution_halted = true;
-            $this->is_chunked_ready = true;
-        }
-
-        $this->response.=$result;
-        $this->error_response.=$error;
-
-        if ($this->is_chunked_ready) {
-            return $this->response;
-        }
-
-        return null;
+        $fp = fopen($session->get_RSession_fifo_path(), "w");
+        fwrite($fp, $variables);
+        fclose($fp);
     }
 
     public function read() {
@@ -239,6 +195,7 @@ class TestInstance {
         if (count($lines) > 0) {
             $last_line = $lines[count($lines) - 1];
 
+            //serialized
             if ($session->status == TestSession::TEST_SESSION_STATUS_SERIALIZED) {
                 $this->is_serialized = true;
                 $this->is_data_ready = true;
@@ -247,6 +204,7 @@ class TestInstance {
                     TestServer::log_debug("TestInstance->read() --- Serialized instance recognized.");
             }
 
+            //template
             if ($session->status == TestSession::TEST_SESSION_STATUS_TEMPLATE && !$this->is_serializing) {
                 $this->is_data_ready = true;
 
@@ -258,10 +216,8 @@ class TestInstance {
                 if ($session->status != TestSession::TEST_SESSION_STATUS_COMPLETED) {
                     $change_status = true;
                     $session->status = TestSession::TEST_SESSION_STATUS_WAITING;
-
-                    if (TestServer::$debug)
-                        TestServer::log_debug("TestInstance->read() --- Serialized instance recognised.");
                 } else {
+                    $this->is_finished = true;
                     if (TestServer::$debug)
                         TestServer::log_debug("TestInstance->read() --- Completed instance recognised.");
                 }
@@ -297,13 +253,15 @@ class TestInstance {
         return null;
     }
 
-    public function send($code) {
+    public function run($code, $variables = null) {
+        $is_new = false;
         $send_code = "";
 
         $session = TestSession::from_mysql_id($this->TestSession_id);
         $change_status = false;
         switch ($session->status) {
             case TestSession::TEST_SESSION_STATUS_NEW: {
+                    $is_new = true;
                     $change_status = true;
                     $send_code .= $this->get_ini_code($session);
                     break;
@@ -311,6 +269,10 @@ class TestInstance {
             case TestSession::TEST_SESSION_STATUS_SERIALIZED: {
                     $change_status = true;
                     $send_code .= $this->get_unserialize_code($session);
+                    break;
+                }
+            case TestSession::TEST_SESSION_STATUS_TEMPLATE: {
+                    $change_status = true;
                     break;
                 }
         }
@@ -323,14 +285,16 @@ class TestInstance {
         if ($code != null)
             $send_code .= $code;
         else {
-            $test = Test::from_mysql_id($session->Test_id);
-            if ($test != null) {
-                $send_code.= $test->code . $this->get_final_code();
+            if ($is_new) {
+                $test = Test::from_mysql_id($session->Test_id);
+                if ($test != null) {
+                    $send_code.= $test->code . $this->get_final_code();
+                }
             }
         }
 
         if (TestServer::$debug)
-            TestServer::log_debug("TestInstance->send() --- Sending " . strlen($send_code) . " data to test instance");
+            TestServer::log_debug("TestInstance->run() --- Sending " . strlen($send_code) . " data to test instance");
         $this->last_action_time = time();
         $this->last_execution_time = time();
 
@@ -341,33 +305,24 @@ class TestInstance {
             $i++;
             $line = trim($line);
             if ($line == "") {
-                //continue;
-            }
-            if (strlen($code . $line) > 65535) {
-                $this->send_chunked($code . "
-                    ", $lines, $i);
-                return;
+                continue;
             }
             $code .= $line . "
                 ";
         }
-        if (!$this->is_chunked) {
-            $this->code = $code;
-            $this->response = "";
-            $this->error_response = "";
-        } else {
-            $this->code.=$code;
-        }
-
-        $this->is_chunked = false;
+        $this->code = $code;
+        $this->response = "";
+        $this->error_response = "";
 
         $bytes = fwrite($this->pipes[0], $code);
 
         if (TestServer::$debug)
-            TestServer::log_debug("TestInstance->send() --- " . $bytes . " written to test instance");
+            TestServer::log_debug("TestInstance->run() --- " . $bytes . " written to test instance");
 
-        if ($this->is_serializing)
-            $this->is_serialized = false;
+        if ($variables != null) {
+            $this->send_variables($session, $variables);
+        }
+
         $this->is_working = true;
         $this->is_data_ready = false;
     }

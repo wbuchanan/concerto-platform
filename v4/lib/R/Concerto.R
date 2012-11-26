@@ -74,12 +74,12 @@ concerto <- list(
             
             closeAllConnections()
             fifo_connection <- fifo(concerto$templateFIFOPath,"r",blocking=TRUE)
-            response <- readLines(fifo_connection)
+            response <- readLines(fifo_connection,warn=FALSE)
             print(response)
             if(response=="serialize"){
                 concerto$serialize()
             } else {
-                print(response)
+                response <- rjson::fromJSON(response)
             }
             return(response)
         },
