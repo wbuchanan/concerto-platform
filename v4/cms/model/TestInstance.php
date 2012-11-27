@@ -201,36 +201,38 @@ class TestInstance {
         $session = TestSession::from_mysql_id($this->TestSession_id);
         $change_status = false;
 
-        $lines = explode("\n", $result);
-        if (count($lines) > 0) {
-            $last_line = $lines[count($lines) - 1];
+        //serialized
+        if ($session->status == TestSession::TEST_SESSION_STATUS_SERIALIZED) {
+            $this->is_serialized = true;
+            $this->is_data_ready = true;
 
-            //serialized
-            if ($session->status == TestSession::TEST_SESSION_STATUS_SERIALIZED) {
-                $this->is_serialized = true;
+            if (TestServer::$debug)
+                TestServer::log_debug("TestInstance->read() --- Serialized instance recognized.");
+        } else {
+
+            //template
+            if ($session->status == TestSession::TEST_SESSION_STATUS_TEMPLATE && !$this->is_serializing) {
                 $this->is_data_ready = true;
 
                 if (TestServer::$debug)
-                    TestServer::log_debug("TestInstance->read() --- Serialized instance recognized.");
-            } else {
+                    TestServer::log_debug("TestInstance->read() --- Template instance recognized.");
+            }
+        }
 
-                //template
-                if ($session->status == TestSession::TEST_SESSION_STATUS_TEMPLATE && !$this->is_serializing) {
-                    $this->is_data_ready = true;
+        $lines = explode("\n", $result);
+        if (count($lines) > 1 && !$this->is_data_ready) {
+            $last_line = $lines[count($lines) - 1];
 
+            if ($last_line == "> ") {
+                $this->is_data_ready = true;
+
+                if ($session->status != TestSession::TEST_SESSION_STATUS_COMPLETED) {
+                    $change_status = true;
+                    $session->status = TestSession::TEST_SESSION_STATUS_WAITING;
+                } else {
+                    $this->is_finished = true;
                     if (TestServer::$debug)
-                        TestServer::log_debug("TestInstance->read() --- Template instance recognized.");
-                } else if ($last_line == "> ") {
-                    $this->is_data_ready = true;
-
-                    if ($session->status != TestSession::TEST_SESSION_STATUS_COMPLETED) {
-                        $change_status = true;
-                        $session->status = TestSession::TEST_SESSION_STATUS_WAITING;
-                    } else {
-                        $this->is_finished = true;
-                        if (TestServer::$debug)
-                            TestServer::log_debug("TestInstance->read() --- Completed instance recognised.");
-                    }
+                        TestServer::log_debug("TestInstance->read() --- Completed instance recognised.");
                 }
             }
         }
