@@ -51,8 +51,11 @@ class TestInstance {
             return false;
     }
 
-    public function is_execution_timedout() {
-        if (time() - $this->last_execution_time > Ini::$r_max_execution_time) {
+    public function is_execution_timedout($session = null) {
+        if ($session == null)
+            $session = $this->get_TestSession();
+
+        if (time() - $this->last_execution_time > Ini::$r_max_execution_time && $session->status == TestSession::TEST_SESSION_STATUS_WORKING) {
             if (TestServer::$debug)
                 TestServer::log_debug("TestInstance->is_execution_timedout() --- Test instance execution timedout");
             return true;
@@ -124,6 +127,7 @@ class TestInstance {
     }
 
     public function stop() {
+
         if ($this->is_started()) {
             fclose($this->pipes[0]);
             fclose($this->pipes[1]);
@@ -234,14 +238,14 @@ class TestInstance {
         while ($append = fread($this->pipes[2], 4096)) {
             $error.=$append;
         }
-        if (strpos($error, 'Execution halted') !== false || $this->is_execution_timedout()) {
+        if (strpos($error, 'Execution halted') !== false || $this->is_execution_timedout($session)) {
             $this->code_execution_halted = true;
             $this->is_data_ready = true;
 
             $change_status = true;
             $session->status = TestSession::TEST_SESSION_STATUS_ERROR;
 
-            if ($this->is_execution_timedout())
+            if ($this->is_execution_timedout($session))
                 $error.="
                 TIMEOUT
                 ";
@@ -259,8 +263,10 @@ class TestInstance {
             $this->pending_variables = null;
         }
 
-        if ($this->is_data_ready)
+        if ($this->is_data_ready) {
+            $this->last_action_time = time();
             return $this->response;
+        }
 
         return null;
     }

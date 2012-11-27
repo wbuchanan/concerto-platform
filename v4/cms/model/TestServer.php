@@ -298,7 +298,7 @@ class TestServer {
 
                     if ($serialized || $this->instances[$k]->is_finished) {
                         $this->last_action_time = time();
-                        $this->close_instance($k,$serialized);
+                        $this->close_instance($k, $serialized);
                     }
                 }
             }
@@ -447,7 +447,7 @@ class TestServer {
         $this->instances[$key]->run($data->code, $data->values);
         if (self::$debug) {
             self::log_debug("TestServer->interpret_input() --- Client '$key' test data sent");
-            if (self::$debug_stream_data)
+            if (self::$debug_stream_data && $data->code != null)
                 self::log_debug($data->code, true);
         }
     }
