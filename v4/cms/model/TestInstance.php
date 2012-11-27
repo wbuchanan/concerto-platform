@@ -126,14 +126,16 @@ class TestInstance {
         }
     }
 
-    public function stop() {
+    public function stop($terminate = false) {
 
         if ($this->is_started()) {
+            $this->send_close_signal();
+
             fclose($this->pipes[0]);
             fclose($this->pipes[1]);
             fclose($this->pipes[2]);
 
-            if ($this->is_execution_timedout()) {
+            if ($this->is_execution_timedout() || $terminate) {
                 $ret = proc_terminate($this->r);
             } else {
                 $ret = proc_close($this->r);
@@ -180,11 +182,38 @@ class TestInstance {
         $this->is_working = true;
 
         $fp = fopen($session->get_RSession_fifo_path(), "w");
+        stream_set_blocking($fp, 0);
         fwrite($fp, $variables);
         fclose($fp);
 
         if (TestServer::$debug) {
             TestServer::log_debug("TestInstance->send_variables() --- finished sending variables to session #" . $this->TestSession_id);
+        }
+    }
+
+    public function send_close_signal($session = null) {
+        if ($session == null)
+            $session = $this->get_TestSession();
+
+        if ($this->is_serialized)
+            return;
+
+        if (TestServer::$debug) {
+            TestServer::log_debug("TestInstance->send_close_signal() --- sending close signal to session #" . $this->TestSession_id);
+        }
+
+
+        $this->response = "";
+        $this->error_response = "";
+        $this->is_working = true;
+
+        $fp = fopen($session->get_RSession_fifo_path(), "w");
+        stream_set_blocking($fp, 0);
+        fwrite($fp, "close");
+        fclose($fp);
+
+        if (TestServer::$debug) {
+            TestServer::log_debug("TestInstance->send_close_signal() --- finished sending close signal to session #" . $this->TestSession_id);
         }
     }
 
@@ -393,21 +422,8 @@ class TestInstance {
             %s
             ', $test->id, $this->TestSession_id, $db_host, ($db_port != "" ? $db_port : "3306"), $db_user, $db_password, $db_name, $path, $path_mysql_home, $mysql_timezone, $unserialize ? "FALSE" : "TRUE", $unserialize ? '
                 concerto$unserialize()
-                concerto$db$connect(CONCERTO_DB_LOGIN,CONCERTO_DB_PASSWORD,CONCERTO_DB_NAME,CONCERTO_DB_HOST,CONCERTO_DB_PORT,CONCERTO_MYSQL_HOME,CONCERTO_DB_TIMEZONE)' : "", $unserialize ? 'if(exists("onUnserialize")) do.call("onUnserialize",list(lastReturn=rjson::fromJSON("' . addcslashes(json_encode($this->pending_variables), '"') . '")));' : "");
+                concerto$db$connect(CONCERTO_DB_LOGIN,CONCERTO_DB_PASSWORD,CONCERTO_DB_NAME,CONCERTO_DB_HOST,CONCERTO_DB_PORT,CONCERTO_MYSQL_HOME,CONCERTO_DB_TIMEZONE)' : "", $unserialize ? 'if(exists("onUnserialize")) do.call("onUnserialize",list(lastReturn=rjson::fromJSON("' . addcslashes(json_encode($this->pending_variables), '"') . '")),envir=.GlobalEnv);' : "");
 
-        $returns = $test->get_return_TestVariables();
-        if (count($returns) > 0) {
-            $code .= '
-            concerto$updateAllReturnVariables=function(){
-                ';
-            foreach ($returns as $ret) {
-                $code.=sprintf('concerto$updateReturnVariable("%s")
-                ', $ret->name);
-            }
-            $code.="
-            }
-            ";
-        }
         if ($unserialize)
             $this->pending_variables = null;
         return $code;

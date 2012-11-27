@@ -254,7 +254,6 @@ class Setup {
     }
 
     public static function reset_db() {
-        CustomSection::create_db(true);
         CustomSectionVariable::create_db(true);
         DS_Module::create_db(true);
         DS_Right::create_db(true);

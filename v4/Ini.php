@@ -157,8 +157,6 @@ class Ini {
 
     public static function get_system_tables() {
         return array(
-            "CustomSection",
-            "CustomSectionVariable",
             "DS_Module",
             "DS_Right",
             "DS_Sharing",
@@ -216,8 +214,6 @@ class Ini {
         require_once self::$path_internal . "cms/model/TestSession.php";
         require_once self::$path_internal . "cms/model/TestSessionReturn.php";
         require_once self::$path_internal . "cms/model/TestVariable.php";
-        require_once self::$path_internal . "cms/model/CustomSection.php";
-        require_once self::$path_internal . "cms/model/CustomSectionVariable.php";
         require_once self::$path_internal . "cms/model/QTI/OQTIElement.php";
         require_once self::$path_internal . "cms/model/QTI/expressions/AExpression.php";
         require_once self::$path_internal . "cms/model/QTI/expressions/AndExp.php";

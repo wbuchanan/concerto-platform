@@ -109,12 +109,6 @@ if (Ini::$cms_session_keep_alive) {
             <?php } ?>
 
             <?php
-            if ($logged_user->is_module_accesible("CustomSection")) {
-                ?>
-                <li><a href="#tnd_mainMenu-customSections" class="tooltipTabs" title="<?= Language::string(194) ?>"><?= Language::string(84) ?></a></li>
-            <?php } ?>
-
-            <?php
             if ($logged_user->is_module_accesible("Template")) {
                 ?>
                 <li><a href="#tnd_mainMenu-templates" class="tooltipTabs" title="<?= Language::string(195) ?>"><?= Language::string(167) ?></a></li>
@@ -146,14 +140,6 @@ if (Ini::$cms_session_keep_alive) {
             ?>
             <div id="tnd_mainMenu-QTI">
                 <?php include Ini::$path_internal . 'cms/view/includes/tab_QTI.inc.php'; ?>
-            </div>
-        <?php } ?>
-
-        <?php
-        if ($logged_user->is_module_accesible("CustomSection")) {
-            ?>
-            <div id="tnd_mainMenu-customSections">
-                <?php include Ini::$path_internal . 'cms/view/includes/tab_custom_sections.inc.php'; ?>
             </div>
         <?php } ?>
 

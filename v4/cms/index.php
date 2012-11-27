@@ -64,7 +64,6 @@ if (!isset($ini)) {
         <script src="js/Template.js?timestamp=<?= time() ?>"></script>
         <script src="js/Table.js?timestamp=<?= time() ?>"></script>
         <script src="js/Test.js?timestamp=<?= time() ?>"></script>
-        <script src="js/CustomSection.js?timestamp=<?= time() ?>"></script>
         <script src="js/QTIAssessmentItem.js?timestamp=<?= time() ?>"></script>
         <script src="lib/ckeditor/ckeditor.js?timestamp=<?= time() ?>"></script>
         <script src="lib/ckeditor/adapters/jquery.js?timestamp=<?= time() ?>"></script>

@@ -80,13 +80,18 @@ class TestSession extends OTable {
 
         $lid = $session->mysql_save();
 
+        $session = TestSession::from_mysql_id($lid);
+
         if (!$debug) {
             $sql = sprintf("UPDATE `%s` SET `session_count`=`session_count`+1 WHERE `%s`.`id`=%d", Test::get_mysql_table(), Test::get_mysql_table(), $test_id);
             mysql_query($sql);
         }
 
-        $session = TestSession::from_mysql_id($lid);
-        posix_mkfifo($session->get_RSession_fifo_path(), 0600);
+        $test = $session->get_Test();
+        if ($test != null) {
+            posix_mkfifo($session->get_RSession_fifo_path(), 0600);
+        }
+        
         if ($debug)
             $session->register();
         return $session;
@@ -121,6 +126,8 @@ class TestSession extends OTable {
     public function remove_files() {
         if (file_exists($this->get_RSession_file_path()))
             unlink($this->get_RSession_file_path());
+        if (file_exists($this->get_RSession_fifo_path()))
+            unlink($this->get_RSession_fifo_path());
     }
 
     public function does_RSession_file_exists() {
@@ -397,7 +404,7 @@ class TestSession extends OTable {
 
     public static function forward($tid, $sid, $hash, $values, $btn_name, $debug, $time, $resume_from_last_template = false) {
         if (is_string($values))
-            $values = json_decode($values,true);
+            $values = json_decode($values, true);
 
         $session = null;
         $result = array();

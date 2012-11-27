@@ -335,24 +335,29 @@ class TestServer {
 
             $input = trim($data);
             if ($input != "") {
+                $authorization_required = true;
+
                 if (self::$debug) {
                     self::log_debug("TestServer->start() --- data recieved");
                     if (self::$debug_stream_data)
                         self::log_debug($input, true);
                 }
                 if ($input == "exit") {
+                    $authorization_required = false;
                     if (self::$debug)
                         self::log_debug("TestServer->start() --- Exit command recieved");
                     break;
                 }
                 if (strpos($input, "close:") === 0) {
+                    $authorization_required = false;
                     if (self::$debug)
                         self::log_debug("TestServer->start() --- Close command recieved");
                     $vars = explode(":", $input);
-                    $this->close_instance("sid" . $vars[1]);
+                    $this->close_instance("sid" . $vars[1], false);
                     continue;
                 }
                 if (strpos($input, "serialize:") === 0) {
+                    $authorization_required = false;
                     if (self::$debug)
                         self::log_debug("TestServer->start() --- Serialize command recieved");
                     $vars = explode(":", $input);
@@ -360,22 +365,23 @@ class TestServer {
                     continue;
                 }
                 $this->last_action_time = time();
-                $client = $this->get_client($client_sock, $input);
-                $this->interpret_input($client, $input);
+                if (!$authorization_required || $this->authorize_client($client_sock, $input)) {
+                    $client = $this->get_client($client_sock, $input);
+                    $this->interpret_input($client, $input);
+                }
             }
-        }
-        while ($this->is_alive);
+        } while ($this->is_alive);
 
         $this->stop();
         gc_collect_cycles();
         gc_disable();
     }
 
-    private function close_instance($key, $serialized = false) {
+    private function close_instance($key, $serialized = false, $terminate = false) {
         $session_id = substr($key, 3);
         if (array_key_exists($key, $this->instances)) {
             if ($this->instances[$key]->is_started()) {
-                $this->instances[$key]->stop();
+                $this->instances[$key]->stop($terminate);
                 unset($this->instances[$key]);
             }
         }
@@ -426,6 +432,28 @@ class TestServer {
             }
         }
         return $this->clients[$key];
+    }
+
+    private function authorize_client($client_sock, $input) {
+        if (self::$debug)
+            self::log_debug("TestServer->authorize_client() --- Client authorization started");
+        $data = json_decode($input);
+
+        $session = TestSession::authorized_session($data->session_id, $data->hash);
+
+        if ($session == null) {
+            if (self::$debug)
+                self::log_debug("TestServer->authorize_client() --- Client authorization failed");
+            if (!socket_write($client_sock, json_encode(array("return" => -1)) . chr(0))) {
+                if (self::$debug)
+                    self::log_debug("TestServer->authorize_client() --- Error: (socket_write) " . socket_last_error() . " - " . socket_strerror(socket_last_error()));
+            }
+            return false;
+        }
+
+        if (self::$debug)
+            self::log_debug("TestServer->authorize_client() --- Client authorization succeeded");
+        return true;
     }
 
     private function interpret_input($client, $input) {

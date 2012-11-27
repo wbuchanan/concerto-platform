@@ -185,7 +185,6 @@ class Test extends OModule {
             $compare = array(
                 "Template" => array(),
                 "Table" => array(),
-                "CustomSection" => array(),
                 "Test" => array(),
                 "QTIAssessmentItem" => array()
             );
@@ -235,20 +234,6 @@ class Test extends OModule {
             }
         }
 
-        //link custom sections
-        $elements = $xpath->query("/export/CustomSection");
-        foreach ($elements as $element) {
-            $id = $element->getAttribute("id");
-            $hash = $element->getAttribute("xml_hash");
-            $compare["CustomSection"][$id] = CustomSection::find_xml_hash($hash);
-            if ($compare["CustomSection"][$id] == 0) {
-                $obj = new CustomSection();
-                $obj->Owner_id = $logged_user->id;
-                $lid = $obj->import_XML(CustomSection::convert_to_XML_document($element));
-                $compare["CustomSection"][$id] = $lid;
-            }
-        }
-
         //link tests
         $elements = $xpath->query("/export/Test");
         for ($i = 0; $i < $elements->length - 1; $i++) {
@@ -260,7 +245,7 @@ class Test extends OModule {
             if ($compare["Test"][$id] == 0) {
                 $obj = new Test();
                 $obj->Owner_id = $logged_user->id;
-                $lid = $obj->import_XML(CustomSection::convert_to_XML_document($element), $compare);
+                $lid = $obj->import_XML(Test::convert_to_XML_document($element), $compare);
                 $compare["Test"][$id] = $lid;
             }
         }

@@ -173,7 +173,7 @@ class User extends OModule {
         $this->clear_object_links(Template::get_mysql_table(), "Owner_id");
         $this->clear_object_links(Table::get_mysql_table(), "Owner_id");
         $this->clear_object_links(Test::get_mysql_table(), "Owner_id");
-        $this->clear_object_links(CustomSection::get_mysql_table(), "Owner_id");
+        $this->clear_object_links(QTIAssessmentItem::get_mysql_table(), "Owner_id");
         $this->mysql_delete_object();
     }
 

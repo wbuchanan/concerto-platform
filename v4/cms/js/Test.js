@@ -27,7 +27,6 @@ Test.className="Test";
 Test.widgetTypes = {
     table:1,
     template:2,
-    customSection:3,
     test:4,
     QTI:5
 }
@@ -37,13 +36,11 @@ Test.onAfterEdit=function()
     };
 
 Test.onAfterImport=function(){
-    CustomSection.uiList();
     Template.uiList();
     Table.uiList();
     QTIAssessmentItem.uiList();
     
     Test.uiTestsChanged();
-    Test.uiCustomSectionsChanged();
     Test.uiTablesChanged();
     Test.uiTemplatesChanged();
     Test.uiQTIAssessmentItemsChanged();
@@ -119,12 +116,6 @@ Test.uiGoToRelatedObject=function(type,oid){
             Table.uiEdit(oid);
             break;
         }
-        //custom sections
-        case Test.widgetTypes.customSection:{
-            $("#tnd_mainMenu").tabs("select","#tnd_mainMenu-customSections");
-            CustomSection.uiEdit(oid);
-            break;
-        }
         //tests
         case Test.widgetTypes.test:{
             Test.uiEdit(oid);
@@ -142,9 +133,6 @@ Test.uiGoToRelatedObject=function(type,oid){
 Test.uiTemplatesChanged=function(){
     Test.uiRefreshLoader($("#selectLoaderTemplate").val());
 }
-
-Test.uiCustomSectionsChanged=function(){
-    }
 
 Test.uiTestsChanged=function(){
     }

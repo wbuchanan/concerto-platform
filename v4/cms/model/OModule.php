@@ -165,15 +165,6 @@ class OModule extends OTable {
     }
 
     public static function calculate_all_xml_hashes() {
-        //CustomSection - calculate xml_hash
-        $sql = "SELECT `id` FROM `CustomSection`";
-        $z = mysql_query($sql);
-        while ($r = mysql_fetch_array($z)) {
-            set_time_limit(0);
-            $obj = CustomSection::from_mysql_id($r[0]);
-            $obj->xml_hash = $obj->calculate_xml_hash();
-            $obj->mysql_save();
-        }
 
         //Table - calculate xml_hash
         $sql = "SELECT `id` FROM `Table`";

@@ -84,6 +84,8 @@ concerto <- list(
             print(response)
             if(response=="serialize"){
                 concerto$serialize()
+            } else if(response=="close") {
+                stop("close command recieved")
             } else {
                 response <- rjson::fromJSON(response)
             }
@@ -115,16 +117,59 @@ concerto <- list(
         get = function(templateID){
             dbName <- dbEscapeStrings(concerto$db$connection,concerto$db$name)
             templateID <- dbEscapeStrings(concerto$db$connection,toString(templateID))
-            result <- dbSendQuery(concerto$db$connection,sprintf("SELECT `head`,`HTML` FROM `%s`.`Template` WHERE `id`='%s'",dbName,templateID))
+            result <- dbSendQuery(concerto$db$connection,sprintf("SELECT `id`,`head`,`HTML` FROM `%s`.`Template` WHERE `id`='%s'",dbName,templateID))
             response <- fetch(result,n=-1)
             return(response)
+        }
+    ),
+
+    test = list(
+        get = function(testID){
+            dbName <- dbEscapeStrings(concerto$db$connection,concerto$db$name)
+            testID <- dbEscapeStrings(concerto$db$connection,toString(testID))
+            result <- dbSendQuery(concerto$db$connection,sprintf("SELECT `id`,`code` FROM `%s`.`Test` WHERE `id`='%s'",dbName,testID))
+            response <- fetch(result,n=-1)
+            response$returnVariables <- concerto$test$getReturnVariables(testID)
+            return(response)
+        },
+
+        getReturnVariables = function(testID){
+            dbName <- dbEscapeStrings(concerto$db$connection,concerto$db$name)
+            testID <- dbEscapeStrings(concerto$db$connection,toString(testID))
+            result <- dbSendQuery(concerto$db$connection,sprintf("SELECT `name` FROM `%s`.`TestVariable` WHERE `Test_id`='%s' AND `type`=1",dbName,testID))
+            response <- fetch(result,n=-1)
+
+            result <- c()
+            for(i in response){
+                result <- c(result,i["name"])
+            }
+            return(result)
+        },
+
+        run = function(testID,params=list()){
+            print(paste("running test #",testID,"...",sep=''))
+
+            test <- concerto$test$get(testID)
+            if(dim(test)[1]==0) stop(paste("Test #",testID," not found!",sep=''))
+
+            for(param in ls(params)){
+                assign(param,params[[param]])
+            }
+
+            eval(parse(text=test[1,"code"]))
+
+            return <- ls()
+            for(ret in test$returnVariables){
+                if(exists(ret)) return[[ret]] <- get(ret)
+            }
+            return(return)
         }
     ),
 
     serialize = function(){
         print("serializing session...")
         closeAllConnections()
-        if(exists("onSerialize")) do.call("onSerialize",list());
+        if(exists("onSerialize")) do.call("onSerialize",list(),envir=.GlobalEnv);
         save.session(concerto$sessionPath)
         concerto$updateStatus(7)
         dbDisconnect(concerto$db$connection)
@@ -150,6 +195,11 @@ concerto <- list(
 
     updateAllReturnVariables = function() {
         print("updating all return variables...")
+
+        test <- concerto$test$get(concerto$testID)
+        for(ret in test$returnVariables){
+            concerto$updateReturnVariable(ret)
+        }
     },
 
     updateHTML = function(html){
