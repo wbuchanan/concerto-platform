@@ -35,6 +35,7 @@ class TestInstance {
     public $is_serializing = false;
     public $is_serialized = false;
     public $is_finished = false;
+    public $pending_variables = null;
 
     public function __construct($session_id = 0) {
         $this->TestSession_id = $session_id;
@@ -128,10 +129,11 @@ class TestInstance {
             fclose($this->pipes[1]);
             fclose($this->pipes[2]);
 
-            if ($this->is_execution_timedout())
+            if ($this->is_execution_timedout()) {
                 $ret = proc_terminate($this->r);
-            else
+            } else {
                 $ret = proc_close($this->r);
+            }
             if (TestServer::$debug)
                 TestServer::log_debug("TestInstance->stop() --- Test instance closed with: " . $ret);
         }
@@ -163,7 +165,7 @@ class TestInstance {
         $variables = json_encode($variables);
 
         if (TestServer::$debug) {
-            TestServer::log_debug("TestInstance->serialize() --- sending variables to session #" . $this->TestSession_id);
+            TestServer::log_debug("TestInstance->send_variables() --- sending variables to session #" . $this->TestSession_id);
             if (TestServer::$debug_stream_data)
                 TestServer::log_debug($variables, true);
         }
@@ -176,6 +178,10 @@ class TestInstance {
         $fp = fopen($session->get_RSession_fifo_path(), "w");
         fwrite($fp, $variables);
         fclose($fp);
+
+        if (TestServer::$debug) {
+            TestServer::log_debug("TestInstance->send_variables() --- finished sending variables to session #" . $this->TestSession_id);
+        }
     }
 
     public function read() {
@@ -202,24 +208,25 @@ class TestInstance {
 
                 if (TestServer::$debug)
                     TestServer::log_debug("TestInstance->read() --- Serialized instance recognized.");
-            }
+            } else {
 
-            //template
-            if ($session->status == TestSession::TEST_SESSION_STATUS_TEMPLATE && !$this->is_serializing) {
-                $this->is_data_ready = true;
+                //template
+                if ($session->status == TestSession::TEST_SESSION_STATUS_TEMPLATE && !$this->is_serializing) {
+                    $this->is_data_ready = true;
 
-                if (TestServer::$debug)
-                    TestServer::log_debug("TestInstance->read() --- Template instance recognized.");
-            } else if ($last_line == "> ") {
-                $this->is_data_ready = true;
-
-                if ($session->status != TestSession::TEST_SESSION_STATUS_COMPLETED) {
-                    $change_status = true;
-                    $session->status = TestSession::TEST_SESSION_STATUS_WAITING;
-                } else {
-                    $this->is_finished = true;
                     if (TestServer::$debug)
-                        TestServer::log_debug("TestInstance->read() --- Completed instance recognised.");
+                        TestServer::log_debug("TestInstance->read() --- Template instance recognized.");
+                } else if ($last_line == "> ") {
+                    $this->is_data_ready = true;
+
+                    if ($session->status != TestSession::TEST_SESSION_STATUS_COMPLETED) {
+                        $change_status = true;
+                        $session->status = TestSession::TEST_SESSION_STATUS_WAITING;
+                    } else {
+                        $this->is_finished = true;
+                        if (TestServer::$debug)
+                            TestServer::log_debug("TestInstance->read() --- Completed instance recognised.");
+                    }
                 }
             }
         }
@@ -247,6 +254,11 @@ class TestInstance {
             $session->mysql_save();
         }
 
+        if ($session->status == TestSession::TEST_SESSION_STATUS_WORKING && $this->pending_variables != null) {
+            $this->send_variables($session, $this->pending_variables);
+            $this->pending_variables = null;
+        }
+
         if ($this->is_data_ready)
             return $this->response;
 
@@ -254,6 +266,7 @@ class TestInstance {
     }
 
     public function run($code, $variables = null) {
+        $this->pending_variables = $variables;
         $is_new = false;
         $send_code = "";
 
@@ -267,8 +280,9 @@ class TestInstance {
                     break;
                 }
             case TestSession::TEST_SESSION_STATUS_SERIALIZED: {
+                    $is_new = true;
                     $change_status = true;
-                    $send_code .= $this->get_unserialize_code($session);
+                    $send_code .= $this->get_ini_code($session, null, true);
                     break;
                 }
             case TestSession::TEST_SESSION_STATUS_TEMPLATE: {
@@ -319,15 +333,11 @@ class TestInstance {
         if (TestServer::$debug)
             TestServer::log_debug("TestInstance->run() --- " . $bytes . " written to test instance");
 
-        if ($variables != null) {
-            $this->send_variables($session, $variables);
-        }
-
         $this->is_working = true;
         $this->is_data_ready = false;
     }
 
-    public function get_ini_code($session = null, $test = null) {
+    public function get_ini_code($session = null, $test = null, $unserialize = false) {
         $code = "";
         if ($session == null)
             $session = $this->get_TestSession();
@@ -358,7 +368,8 @@ class TestInstance {
             CONCERTO_DB_TIMEZONE <- "%s"
             source("' . Ini::$path_internal . 'lib/R/Concerto.R")
                 
-            concerto$initialize(CONCERTO_TEST_ID,CONCERTO_TEST_SESSION_ID,CONCERTO_DB_LOGIN,CONCERTO_DB_PASSWORD,CONCERTO_DB_NAME,CONCERTO_DB_HOST,CONCERTO_DB_PORT,CONCERTO_MYSQL_HOME,CONCERTO_TEMP_PATH,CONCERTO_DB_TIMEZONE)
+            concerto$initialize(CONCERTO_TEST_ID,CONCERTO_TEST_SESSION_ID,CONCERTO_DB_LOGIN,CONCERTO_DB_PASSWORD,CONCERTO_DB_NAME,CONCERTO_DB_HOST,CONCERTO_DB_PORT,CONCERTO_MYSQL_HOME,CONCERTO_TEMP_PATH,CONCERTO_DB_TIMEZONE,%s)
+            %s
             
             rm(CONCERTO_TEST_ID)
             rm(CONCERTO_TEST_SESSION_ID)
@@ -370,7 +381,11 @@ class TestInstance {
             rm(CONCERTO_TEMP_PATH)
             rm(CONCERTO_MYSQL_HOME)
             rm(CONCERTO_DB_TIMEZONE)
-            ', $test->id, $this->TestSession_id, $db_host, ($db_port != "" ? $db_port : "3306"), $db_user, $db_password, $db_name, $path, $path_mysql_home, $mysql_timezone);
+            
+            %s
+            ', $test->id, $this->TestSession_id, $db_host, ($db_port != "" ? $db_port : "3306"), $db_user, $db_password, $db_name, $path, $path_mysql_home, $mysql_timezone, $unserialize ? "FALSE" : "TRUE", $unserialize ? '
+                concerto$unserialize()
+                concerto$db$connect(CONCERTO_DB_LOGIN,CONCERTO_DB_PASSWORD,CONCERTO_DB_NAME,CONCERTO_DB_HOST,CONCERTO_DB_PORT,CONCERTO_MYSQL_HOME,CONCERTO_DB_TIMEZONE)' : "", $unserialize ? 'if(exists("onUnserialize")) do.call("onUnserialize",list(lastReturn=rjson::fromJSON("' . addcslashes(json_encode($this->pending_variables), '"') . '")));' : "");
 
         $returns = $test->get_return_TestVariables();
         if (count($returns) > 0) {
@@ -385,27 +400,8 @@ class TestInstance {
             }
             ";
         }
-        return $code;
-    }
-
-    public function get_unserialize_code($session = null, $test = null) {
-        if ($session == null)
-            $session = $this->get_TestSession();
-        if ($session == null)
-            return("
-            stop('session #" . $this->TestSession_id . " does not exist!')
-                ");
-        if ($test == null)
-            $test = $this->get_Test($session);
-        if ($test == null)
-            return("
-            stop('test #" . $session->Test_id . " does not exist!')
-                ");
-
-        $code = $this->get_ini_code($session, $test);
-        $code.='
-            concerto$unserialize()
-            ';
+        if ($unserialize)
+            $this->pending_variables = null;
         return $code;
     }
 

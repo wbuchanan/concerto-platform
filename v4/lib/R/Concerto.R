@@ -18,7 +18,7 @@
 ##
 
 concerto <- list(
-    initialize = function(testID,sessionID,user,password,dbName,host='localhost',port=3306,mysqlHome='',tempPath,dbTimezone){
+    initialize = function(testID,sessionID,user,password,dbName,host='localhost',port=3306,mysqlHome='',tempPath,dbTimezone,dbConnect){
         print("initialization...")
 
         options(encoding='UTF-8')
@@ -35,23 +35,26 @@ concerto <- list(
         library(rjson)
         library(RMySQL)
 
-        concerto$db$connect(user,password,dbName,host,port,mysqlHome,dbTimezone)
+        if(dbConnect) concerto$db$connect(user,password,dbName,host,port,mysqlHome,dbTimezone)
     },
 
     finalize = function(){
         print("finalizing...")
 
+        closeAllConnections()
+
         concerto$updateStatus(3)
         concerto$updateAllReturnVariables()
+        dbDisconnect(concerto$db$connection)
     },
 
     db = list(
         connect = function(user,password,dbName,host='localhost',port=3306,mysqlHome='',dbTimezone){
             print("connecting to database...")
-
             if(mysqlHome!='') Sys.setenv('MYSQL_HOME'=mysqlHome)
 
             drv <- dbDriver('MySQL')
+
             con <- dbConnect(drv, user = user, password = password, dbname = dbName, host = host, port = port)
             dbSendQuery(con,statement = "SET NAMES 'utf8';")
             dbSendQuery(con,statement = paste("SET time_zone='",dbTimezone,"';",sep=''))
@@ -65,16 +68,19 @@ concerto <- list(
         show = function(templateID,params=list()){
             print(paste("showing template #",templateID,"...",sep=''))
             if(!is.list(params)) stop("'params' must be a list!")
+            print(params)
 
             template <- concerto$template$get(templateID)
             if(dim(template)[1]==0) stop(paste("Template #",templateID," not found!",sep=''))
             concerto$updateTemplateID(templateID)
+
             concerto$updateHTML(concerto$template$fillHTML(template[1,"HTML"],params))
             concerto$updateStatus(2)
             
             closeAllConnections()
             fifo_connection <- fifo(concerto$templateFIFOPath,"r",blocking=TRUE)
             response <- readLines(fifo_connection,warn=FALSE)
+            closeAllConnections()
             print(response)
             if(response=="serialize"){
                 concerto$serialize()
@@ -117,8 +123,13 @@ concerto <- list(
 
     serialize = function(){
         print("serializing session...")
-        concerto$updateStatus(7)
+        closeAllConnections()
+        if(exists("onSerialize")) do.call("onSerialize",list());
         save.session(concerto$sessionPath)
+        concerto$updateStatus(7)
+        dbDisconnect(concerto$db$connection)
+        print("serialization finished")
+        stop("done")
     },
 
     unserialize = function(){

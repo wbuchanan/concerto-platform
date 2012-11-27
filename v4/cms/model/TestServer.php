@@ -253,8 +253,6 @@ class TestServer {
                     $serialized = false;
                     $response = $this->instances[$k]->read();
                     if ($this->instances[$k]->is_serialized) {
-                        $this->last_action_time = time();
-                        $this->close_instance($k, true);
                         $serialized = true;
                     }
 
@@ -298,9 +296,9 @@ class TestServer {
                         }
                     }
 
-                    if ($this->instances[$k]->is_finished) {
+                    if ($serialized || $this->instances[$k]->is_finished) {
                         $this->last_action_time = time();
-                        $this->close_instance($k, true);
+                        $this->close_instance($k,$serialized);
                     }
                 }
             }
