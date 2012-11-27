@@ -64,6 +64,17 @@ concerto <- list(
         }
     ),
 
+    table = list(
+        get = function(tableID){
+            dbName <- dbEscapeStrings(concerto$db$connection,concerto$db$name)
+            tableID <- dbEscapeStrings(concerto$db$connection,toString(tableID))
+            result <- dbSendQuery(concerto$db$connection,sprintf("SELECT `id`,`name` FROM `%s`.`Table` WHERE `id`='%s'",dbName,tableID))
+            response <- fetch(result,n=-1)
+            if(dim(response)[1]>0) response$table_name = paste("c3tbl_",tableID,sep='')
+            return(response)
+        }
+    ),
+
     template = list(
         show = function(templateID,params=list()){
             print(paste("showing template #",templateID,"...",sep=''))
