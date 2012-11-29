@@ -42,6 +42,10 @@ class User extends OModule {
         parent::__construct($params);
     }
 
+    public function get_UserR() {
+        return UserR::from_property(array("User_id" => $this->id), false);
+    }
+
     public static function recover_password($id, $hash) {
         $user = User::from_mysql_id($id);
         if ($user == null)
@@ -468,7 +472,8 @@ class User extends OModule {
         $sql = "
             INSERT INTO `User` (`id`, `updated`, `created`, `login`, `firstname`, `lastname`, `email`, `phone`, `password`, `UserType_id`, `UserGroup_id`, `last_login`, `Sharing_id`, `Owner_id`) VALUES (NULL, CURRENT_TIMESTAMP, NOW(), 'admin', 'unknown', '', '', '', '', '1', '', '0000-00-00 00:00:00', '1', '1');
             ";
-        if(!mysql_query($sql)) return false;
+        if (!mysql_query($sql))
+            return false;
         $user = User::from_mysql_id(1);
         $user->password = $user->calculate_raw_password_hash("admin");
         return $user->mysql_save();

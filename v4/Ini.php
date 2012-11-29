@@ -54,6 +54,9 @@ class Ini {
     public static $project_homepage_url = "";
     public static $timezone = "Europe/London";
     public static $mysql_timezone = "+0:00";
+    public static $r_users_name_prefix = "concerto_";
+    public static $r_users_group = "concerto";
+    public static $apache_user = "www-data";
 
     function __construct($connect = true, $session = true, $headers = true) {
         //if (substr_count($_SERVER['HTTP_ACCEPT_ENCODING'], 'gzip')) ob_start("ob_gzhandler"); 
@@ -140,6 +143,9 @@ class Ini {
             self::$mysql_timezone = $timezone;
         else
             self::$mysql_timezone = $mysql_timezone;
+        self::$r_users_name_prefix = $r_users_name_prefix;
+        self::$r_users_group = $r_users_group;
+        self::$apache_user = $apache_user;
     }
 
     public static function does_patch_apply($patch_version, $previous_version) {
@@ -173,6 +179,7 @@ class Ini {
             "TestSessionReturn",
             "TestVariable",
             "User",
+            "UserR",
             "UserGroup",
             "UserType",
             "UserTypeRight"
@@ -203,6 +210,7 @@ class Ini {
         require_once self::$path_internal . "cms/model/UserTypeRight.php";
         require_once self::$path_internal . "cms/model/UserType.php";
         require_once self::$path_internal . "cms/model/User.php";
+        require_once self::$path_internal . "cms/model/UserR.php";
         require_once self::$path_internal . "cms/model/Template.php";
         require_once self::$path_internal . "cms/model/Table.php";
         require_once self::$path_internal . "cms/model/TableColumn.php";

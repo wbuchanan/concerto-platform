@@ -33,8 +33,7 @@ $logged_user = User::get_logged_user();
 $internal_path = Ini::$path_internal_media.$logged_user->id;
 $external_path = Ini::$path_external_media.$logged_user->id;
 
-if(!is_dir($internal_path)) mkdir($internal_path,0777);
-if(!is_dir($external_path)) mkdir($external_path,0777);
+//if(!is_dir($internal_path)) mkdir($internal_path,0777);
 
 PGRFileManagerConfig::$rootPath=$internal_path;
 PGRFileManagerConfig::$urlPath=$external_path;

@@ -93,8 +93,12 @@ class TestInstance {
             2 => array("pipe", "w")
         );
 
-        include Ini::$path_internal . 'SETTINGS.php';
-        $this->r = proc_open("\"" . Ini::$path_r_exe . "\" --vanilla --quiet", $descriptorspec, $this->pipes, Ini::$path_temp, $env);
+        $session = TestSession::from_mysql_id($this->TestSession_id);
+        $test = $session->get_Test();
+        $owner = $test->get_Owner();
+
+        $userR = $owner->get_UserR();
+        $this->r = proc_open("sudo -u " . $userR->login . " " . Ini::$path_r_exe . " --vanilla --quiet", $descriptorspec, $this->pipes, Ini::$path_temp, $env);
         if (is_resource($this->r)) {
             if (TestServer::$debug)
                 TestServer::log_debug("TestInstance->start() --- Test instance started");
@@ -389,8 +393,6 @@ class TestInstance {
 
         include Ini::$path_internal . 'SETTINGS.php';
         $path = Ini::$path_temp . $test->Owner_id;
-        if (!is_dir($path))
-            mkdir($path, 0777);
         $code .= sprintf('
             CONCERTO_TEST_ID <- %d
             CONCERTO_TEST_SESSION_ID <- %d
@@ -403,9 +405,10 @@ class TestInstance {
             CONCERTO_TEMP_PATH <- "%s"
             CONCERTO_MYSQL_HOME <- "%s"
             CONCERTO_DB_TIMEZONE <- "%s"
+            CONCERTO_MEDIA_PATH <- "%s"
             source("' . Ini::$path_internal . 'lib/R/Concerto.R")
                 
-            concerto$initialize(CONCERTO_TEST_ID,CONCERTO_TEST_SESSION_ID,CONCERTO_DB_LOGIN,CONCERTO_DB_PASSWORD,CONCERTO_DB_NAME,CONCERTO_DB_HOST,CONCERTO_DB_PORT,CONCERTO_MYSQL_HOME,CONCERTO_TEMP_PATH,CONCERTO_DB_TIMEZONE,%s)
+            concerto$initialize(CONCERTO_TEST_ID,CONCERTO_TEST_SESSION_ID,CONCERTO_DB_LOGIN,CONCERTO_DB_PASSWORD,CONCERTO_DB_NAME,CONCERTO_DB_HOST,CONCERTO_DB_PORT,CONCERTO_MYSQL_HOME,CONCERTO_TEMP_PATH,CONCERTO_MEDIA_PATH,CONCERTO_DB_TIMEZONE,%s)
             %s
             
             rm(CONCERTO_TEST_ID)
@@ -418,9 +421,10 @@ class TestInstance {
             rm(CONCERTO_TEMP_PATH)
             rm(CONCERTO_MYSQL_HOME)
             rm(CONCERTO_DB_TIMEZONE)
+            rm(CONCERTO_MEDIA_PATH)
             
             %s
-            ', $test->id, $this->TestSession_id, $db_host, ($db_port != "" ? $db_port : "3306"), $db_user, $db_password, $db_name, $path, $path_mysql_home, $mysql_timezone, $unserialize ? "FALSE" : "TRUE", $unserialize ? '
+            ', $test->id, $this->TestSession_id, $db_host, ($db_port != "" ? $db_port : "3306"), $db_user, $db_password, $db_name, $path, $path_mysql_home, $mysql_timezone, Ini::$path_internal_media . $this->TestSession_id, $unserialize ? "FALSE" : "TRUE", $unserialize ? '
                 concerto$unserialize()
                 concerto$db$connect(CONCERTO_DB_LOGIN,CONCERTO_DB_PASSWORD,CONCERTO_DB_NAME,CONCERTO_DB_HOST,CONCERTO_DB_PORT,CONCERTO_MYSQL_HOME,CONCERTO_DB_TIMEZONE)' : "", $unserialize ? 'if(exists("onUnserialize")) do.call("onUnserialize",list(lastReturn=rjson::fromJSON("' . addcslashes(json_encode($this->pending_variables), '"') . '")),envir=.GlobalEnv);' : "");
 

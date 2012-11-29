@@ -40,5 +40,10 @@ $timer_tamper_prevention_tolerance = 30;
 //remote client
 $remote_client_password = "pass";
 
+//cron
+$r_users_name_prefix = "concerto_";
+$r_users_group = "concerto";
+$apache_user = "www-data";
+
 //ALWAYS RUN /setup AFTER CHANGING SETTINGS IN THIS FILE!
 ?>

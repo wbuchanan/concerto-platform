@@ -18,7 +18,7 @@
 ##
 
 concerto <- list(
-    initialize = function(testID,sessionID,user,password,dbName,host='localhost',port=3306,mysqlHome='',tempPath,dbTimezone,dbConnect){
+    initialize = function(testID,sessionID,user,password,dbName,host='localhost',port=3306,mysqlHome='',tempPath,mediaPath,dbTimezone,dbConnect){
         print("initialization...")
 
         options(encoding='UTF-8')
@@ -26,6 +26,10 @@ concerto <- list(
         concerto$sessionID <<- sessionID
         concerto$templateFIFOPath <<- paste(tempPath,"/fifo_",sessionID,sep='')
         concerto$sessionPath <<- paste(tempPath,"/session_",sessionID,".Rs",sep='')
+        concerto$mediaPath <<- mediaPath
+
+        if(!file.exists(concerto$templateFIFOPath)){
+        }
 
         setwd(tempPath)
         print(paste("working directory set to:",tempPath))

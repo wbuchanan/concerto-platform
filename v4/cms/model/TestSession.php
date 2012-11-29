@@ -89,7 +89,7 @@ class TestSession extends OTable {
 
         $test = $session->get_Test();
         if ($test != null) {
-            posix_mkfifo($session->get_RSession_fifo_path(), 0600);
+            posix_mkfifo($session->get_RSession_fifo_path(), 0774);
         }
         
         if ($debug)
