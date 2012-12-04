@@ -27,11 +27,6 @@ if ($logged_user == null) {
     echo "<script>location.reload();</script>";
     die(Language::string(278));
 }
-
-if (!$logged_user->is_module_writeable($class_name))
-    die(Language::string(81));
-if (!$logged_user->is_object_editable($obj))
-    die(Language::string(81));
 ?>
 
 <script>

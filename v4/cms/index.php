@@ -59,8 +59,6 @@ if (!isset($ini)) {
         <script src="js/OModule.js?timestamp=<?= time() ?>"></script>
         <script src="js/Methods.js?timestamp=<?= time() ?>"></script>
         <script src="js/User.js?timestamp=<?= time() ?>"></script>
-        <script src="js/UserGroup.js?timestamp=<?= time() ?>"></script>
-        <script src="js/UserType.js?timestamp=<?= time() ?>"></script>
         <script src="js/Template.js?timestamp=<?= time() ?>"></script>
         <script src="js/Table.js?timestamp=<?= time() ?>"></script>
         <script src="js/Test.js?timestamp=<?= time() ?>"></script>

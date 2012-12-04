@@ -19,38 +19,33 @@
   Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA.
  */
 
-if (!isset($ini))
-{
+if (!isset($ini)) {
     require_once '../../Ini.php';
     $ini = new Ini();
 }
 $logged_user = User::get_logged_user();
-if ($logged_user == null)
-{
+if ($logged_user == null) {
     echo json_encode(array());
     exit();
 }
 
-$sql = $logged_user->mysql_list_rights_filter($_GET['class_name'], "`" . $_GET['class_name']. "`.`id` ASC");
+$sql = sprintf("SELECT * FROM `%s` ORDER BY `id` ASC", $_GET['class_name']);
 
 $cols = $_GET['class_name']::get_list_columns();
 
 $table = array();
 
-$z=mysql_query($sql);
-while($r=mysql_fetch_array($z))
-{
+$z = mysql_query($sql);
+while ($r = mysql_fetch_array($z)) {
     $obj = $_GET['class_name']::from_mysql_id($r[0]);
     $row = array();
-    $i=0;
-    foreach($cols as $col)
-    {
-        $row[$col["property"]]=htmlspecialchars_decode($obj->get_list_column_value($i));
-        if($col["type"]=="number") $row[$col["property"]]+=0;
+    $i = 0;
+    foreach ($cols as $col) {
+        $row[$col["property"]] = htmlspecialchars_decode($obj->get_list_column_value($i));
+        if ($col["type"] == "number")
+            $row[$col["property"]]+=0;
         $i++;
     }
-    $editable = $logged_user->is_object_editable($obj);
-    $row["editable"]=$logged_user->is_object_editable($obj)?1:0;
     array_push($table, $row);
 }
 

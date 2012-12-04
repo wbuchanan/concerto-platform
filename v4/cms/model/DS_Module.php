@@ -23,16 +23,6 @@ class DS_Module extends ODataSet {
 
     public static $mysql_table_name = "DS_Module";
 
-    public function mysql_delete() {
-        $utr = UserTypeRight::from_property(array(
-                    "Module_id" => $this->id
-                ));
-        foreach ($utr as $obj)
-            $obj->mysql_delete();
-
-        $this->mysql_delete_object();
-    }
-
     public function get_name() {
         switch ($this->id) {
             case 1: return Language::string(167);
@@ -68,8 +58,6 @@ class DS_Module extends ODataSet {
             (1, 'HTML templates', 'Template', 1),
             (2, 'tables', 'Table', 2),
             (3, 'users', 'User', 3),
-            (4, 'user groups', 'UserGroup', 4),
-            (5, 'user types', 'UserType', 5),
             (6, 'tests', 'Test', 6),
             (7, 'custom test section', 'CustomSection', 7),
             (8, 'QTI assessment item', 'QTIAssessmentItem', 8);

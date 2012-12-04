@@ -50,8 +50,7 @@ Template.getAddSaveObject=function()
         class_name:this.className,
         name:$("#form"+this.className+"InputName").val(),
         HTML:Methods.getCKEditorData("#form"+this.className+"TextareaHTML"),
-        head:$("#form"+this.className+"TextareaHead").val(),
-        Sharing_id:$("#form"+this.className+"SelectSharing").val()
+        head:$("#form"+this.className+"TextareaHead").val()
     };
 };
 
@@ -62,7 +61,6 @@ Template.getFullSaveObject = function(){
     obj["effect_hide"]=$("#form"+this.className+"SelectEffectHide").val();
     obj["effect_show_options"]=this.getEffectOptions(true);
     obj["effect_hide_options"]=this.getEffectOptions(false);
-    if($("#form"+this.className+"SelectOwner").length==1) obj["Owner_id"]=$("#form"+this.className+"SelectOwner").val();
     return obj;
 }
 

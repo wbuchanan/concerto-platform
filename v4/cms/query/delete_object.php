@@ -36,10 +36,6 @@ else
 
 foreach ($oid as $id) {
     $obj = $_POST['class_name']::from_mysql_id($id);
-    if (!$logged_user->is_object_editable($obj)) {
-        echo json_encode(array("result" => -2));
-        exit();
-    }
 
     $obj->mysql_delete();
 }

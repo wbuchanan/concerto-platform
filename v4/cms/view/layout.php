@@ -96,76 +96,28 @@ if (Ini::$cms_session_keep_alive) {
 <div align="center" class="" style="width: 970px;" >
     <div id="tnd_mainMenu">
         <ul>
-            <?php
-            if ($logged_user->is_module_accesible("Test")) {
-                ?>
-                <li><a href="#tnd_mainMenu-tests" class="tooltipTabs" title="<?= Language::string(193) ?>"><?= Language::string(88) ?></a></li>
-            <?php } ?>
-
-            <?php
-            if ($logged_user->is_module_accesible("QTIAssessmentItem")) {
-                ?>
-                <li><a href="#tnd_mainMenu-QTI" class="tooltipTabs" title="<?= Language::string(460) ?>"><?= Language::string(459) ?></a></li>
-            <?php } ?>
-
-            <?php
-            if ($logged_user->is_module_accesible("Template")) {
-                ?>
-                <li><a href="#tnd_mainMenu-templates" class="tooltipTabs" title="<?= Language::string(195) ?>"><?= Language::string(167) ?></a></li>
-            <?php } ?>
-
-            <?php
-            if ($logged_user->is_module_accesible("Table")) {
-                ?>
-                <li><a href="#tnd_mainMenu-tables" class="tooltipTabs" title="<?= Language::string(196) ?>"><?= Language::string(85) ?></a></li>
-            <?php } ?>
-
-            <?php
-            if ($logged_user->is_module_accesible("User") || $logged_user->is_module_accesible("UserType") || $logged_user->is_module_accesible("UserGroup")) {
-                ?>
-                <li><a href="#tnd_mainMenu-users" class="tooltipTabs" title="<?= Language::string(197) ?>"><?= Language::string(198) ?></a></li>
-            <?php } ?>
+            <li><a href="#tnd_mainMenu-tests" class="tooltipTabs" title="<?= Language::string(193) ?>"><?= Language::string(88) ?></a></li>
+            <li><a href="#tnd_mainMenu-QTI" class="tooltipTabs" title="<?= Language::string(460) ?>"><?= Language::string(459) ?></a></li>
+            <li><a href="#tnd_mainMenu-templates" class="tooltipTabs" title="<?= Language::string(195) ?>"><?= Language::string(167) ?></a></li>
+            <li><a href="#tnd_mainMenu-tables" class="tooltipTabs" title="<?= Language::string(196) ?>"><?= Language::string(85) ?></a></li>
+            <li><a href="#tnd_mainMenu-users" class="tooltipTabs" title="<?= Language::string(197) ?>"><?= Language::string(198) ?></a></li>
         </ul>
 
-        <?php
-        if ($logged_user->is_module_accesible("Test")) {
-            ?>
-            <div id="tnd_mainMenu-tests">
-                <?php include Ini::$path_internal . 'cms/view/includes/tab_tests.inc.php'; ?>
-            </div>
-        <?php } ?>
-
-        <?php
-        if ($logged_user->is_module_accesible("QTIAssessmentItem")) {
-            ?>
-            <div id="tnd_mainMenu-QTI">
-                <?php include Ini::$path_internal . 'cms/view/includes/tab_QTI.inc.php'; ?>
-            </div>
-        <?php } ?>
-
-        <?php
-        if ($logged_user->is_module_accesible("Template")) {
-            ?>
-            <div id="tnd_mainMenu-templates">
-                <?php include Ini::$path_internal . 'cms/view/includes/tab_templates.inc.php'; ?>
-            </div>
-        <?php } ?>
-
-        <?php
-        if ($logged_user->is_module_accesible("Table")) {
-            ?>
-            <div id="tnd_mainMenu-tables">
-                <?php include Ini::$path_internal . 'cms/view/includes/tab_tables.inc.php'; ?>
-            </div>
-        <?php } ?>
-
-        <?php
-        if ($logged_user->is_module_accesible("User") || $logged_user->is_module_accesible("UserType") || $logged_user->is_module_accesible("UserGroup")) {
-            ?>
-            <div id="tnd_mainMenu-users">
-                <?php include Ini::$path_internal . 'cms/view/includes/tab_users.inc.php'; ?>
-            </div>
-        <?php } ?>
+        <div id="tnd_mainMenu-tests">
+            <?php include Ini::$path_internal . 'cms/view/includes/tab_tests.inc.php'; ?>
+        </div>
+        <div id="tnd_mainMenu-QTI">
+            <?php include Ini::$path_internal . 'cms/view/includes/tab_QTI.inc.php'; ?>
+        </div>
+        <div id="tnd_mainMenu-templates">
+            <?php include Ini::$path_internal . 'cms/view/includes/tab_templates.inc.php'; ?>
+        </div>
+        <div id="tnd_mainMenu-tables">
+            <?php include Ini::$path_internal . 'cms/view/includes/tab_tables.inc.php'; ?>
+        </div>
+        <div id="tnd_mainMenu-users">
+            <?php include Ini::$path_internal . 'cms/view/includes/tab_users.inc.php'; ?>
+        </div>
 
     </div>
 </div>

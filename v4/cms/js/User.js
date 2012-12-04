@@ -63,12 +63,10 @@ User.getAddSaveObject=function()
         lastname:$("#form"+this.className+"InputLastname").val(),
         email:$("#form"+this.className+"InputEmail").val(),
         phone:$("#form"+this.className+"InputPhone").val(),
-        UserGroup_id:$("#form"+this.className+"SelectUserGroup").val(),
         UserInstitutionType_id:$("#form"+this.className+"SelectInstitutionType").val(),
         institution_name:$("#form"+this.className+"InputInstitutionName").val(),
         modify_password:$("#form"+this.className+"CheckboxPassword").is(":checked")?1:0,
-        password_hash:hash,
-        UserType_id:$("#form"+this.className+"SelectUserType").val()
+        password_hash:hash
     };
 };
 

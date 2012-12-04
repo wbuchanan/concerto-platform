@@ -28,22 +28,11 @@ if ($logged_user == null) {
     die(Language::string(278));
 }
 
-if (isset($oid)) {
-    if (!$logged_user->is_module_writeable($class_name))
-        die(Language::string(81));
-    if (!$logged_user->is_object_editable($obj))
-        die(Language::string(81));
-}
-else {
+if (!isset($oid)) {
     $oid = $_POST['oid'];
     $obj = Test::from_mysql_id($oid);
 
     $class_name = $_POST['class_name'];
-
-    if (!$logged_user->is_module_writeable($class_name))
-        die(Language::string(81));
-    if (!$logged_user->is_object_editable($obj))
-        die(Language::string(81));
 }
 
 $description = Language::string(537) . "<br/><br/>" . Language::string(213);
@@ -83,7 +72,7 @@ if ($loader != null)
                 <select id="selectLoaderTemplate" class="fullWidth ui-widget-content ui-corner-all fullWidth" onchange="Test.uiRefreshLoader($(this).val())">
                     <option value="0" <?= ($loader_id == 0 ? "selected" : "") ?>>&lt;<?= Language::string(538) ?>&gt;</option>
                     <?php
-                    $sql = $logged_user->mysql_list_rights_filter("Template", "`name` ASC");
+                    $sql = "SELECT * FROM `Template` ORDER BY `name` ASC";
                     $z = mysql_query($sql);
                     while ($r = mysql_fetch_array($z)) {
                         $t = Template::from_mysql_id($r[0]);

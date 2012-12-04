@@ -49,8 +49,7 @@ Table.getAddSaveObject=function()
     return { 
         oid:this.currentID,
         class_name:this.className,
-        name:$("#form"+this.className+"InputName").val(),
-        Sharing_id:$("#form"+this.className+"SelectSharing").val()
+        name:$("#form"+this.className+"InputName").val()
     };
 };
 
@@ -60,7 +59,6 @@ Table.getFullSaveObject=function(){
     obj["rows"] = Table.getRows();
     obj["indexes"] = Table.getSerializedIndexes();
     obj["description"]=$("#form"+this.className+"TextareaDescription").val();
-    if($("#form"+this.className+"SelectOwner").length==1) obj["Owner_id"]=$("#form"+this.className+"SelectOwner").val();
     
     return obj;
 }
@@ -1283,10 +1281,6 @@ Table.uiImportTable=function(){
                                 location.reload();
                                 break;
                             }
-                            case -2:{
-                                Methods.alert(dictionary["s81"], "alert", dictionary["s25"]);
-                                break;
-                            }
                             default:{
                                 Methods.alert(dictionary["s30"], "alert", dictionary["s25"]);
                                 break;    
@@ -1367,10 +1361,6 @@ Table.uiImportCSV=function(){
                                     case -1:{
                                         Methods.alert(dictionary["s278"], "alert", dictionary["s25"]);
                                         location.reload();
-                                        break;
-                                    }
-                                    case -2:{
-                                        Methods.alert(dictionary["s81"], "alert", dictionary["s25"]);
                                         break;
                                     }
                                     case -3:{

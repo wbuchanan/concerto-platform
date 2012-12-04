@@ -31,16 +31,9 @@ if ($logged_user == null)
     exit();
 }
 
-if (!$logged_user->is_module_writeable($_POST['class_name']))
-{
-    echo json_encode(array("result" => -2));
-    exit();
-}
-
 $path = Ini::$path_internal . "cms/js/lib/fileupload/php/files/" . $_POST['file'];
 
 $obj = new $_POST['class_name']();
-$obj->Owner_id = $logged_user->id;
 $oid = $obj->import($path);
 
 $response = $oid;

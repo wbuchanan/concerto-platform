@@ -30,7 +30,7 @@ if ($logged_user == null) {
 }
 
 $obj = Table::from_mysql_id($_GET['oid']);
-if ($obj == null || !$logged_user->is_object_readable($obj)) {
+if ($obj == null) {
     echo json_encode(array());
     exit();
 }

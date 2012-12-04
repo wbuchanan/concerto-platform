@@ -63,8 +63,7 @@ Test.getAddSaveObject=function()
         oid:this.currentID,
         class_name:this.className,
         name:$("#form"+this.className+"InputName").val(),
-        open:$("#form"+this.className+"CheckboxOpen").is(":checked")?1:0,
-        Sharing_id:$("#form"+this.className+"SelectSharing").val()
+        open:$("#form"+this.className+"CheckboxOpen").is(":checked")?1:0
     };
 };
 
@@ -75,7 +74,6 @@ Test.getFullSaveObject = function() {
     obj["description"]=$("#form"+this.className+"TextareaDescription").val();
     obj["loader_Template_id"]=$("#selectLoaderTemplate").val();
     obj["code"]=$("#textareaTestLogic").val();
-    if($("#form"+this.className+"SelectOwner").length==1) obj["Owner_id"]=$("#form"+this.className+"SelectOwner").val();
     return obj;
 }
 

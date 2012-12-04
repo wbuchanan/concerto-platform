@@ -71,10 +71,6 @@ OModule.inheritance=function(obj)
                     location.reload();
                     break;
                 }
-                case -2:{
-                    Methods.alert(dictionary["s81"], "alert", dictionary["s387"]);
-                    break;
-                }
                 case -3:{
                     Methods.alert(dictionary["s389"], "alert", dictionary["s387"]);
                     break;
@@ -295,10 +291,6 @@ OModule.inheritance=function(obj)
                 case -1:{
                     Methods.alert(dictionary["s278"], "alert", dictionary["s382"]);
                     location.reload();
-                    break;
-                }
-                case -2:{
-                    Methods.alert(dictionary["s81"], "alert", dictionary["s382"]);
                     break;
                 }
                 default: {
@@ -528,10 +520,6 @@ OModule.inheritance=function(obj)
                         });
                         break;
                     }
-                    case -2:{
-                        Methods.alert(dictionary["s81"], "alert", dictionary["s273"]);
-                        break;
-                    }
                 }
             },"json");
         });
@@ -591,10 +579,6 @@ OModule.inheritance=function(obj)
                                         case -1:{
                                             Methods.alert(dictionary["s278"], "alert", dictionary["s268"]);
                                             location.reload();
-                                            break;
-                                        }
-                                        case -2:{
-                                            Methods.alert(dictionary["s81"], "alert", dictionary["s268"]);
                                             break;
                                         }
                                         case -3:{
@@ -716,11 +700,6 @@ OModule.inheritance=function(obj)
                             Methods.modalLoading();
                             Methods.reload(thisClass.reloadHash); 
                         });
-                        break;     
-                    }
-                    //access denied
-                    case -2:{
-                        Methods.alert(dictionary["s81"], "alert", dictionary["s274"]);
                         break;     
                     }
                     //transaction error

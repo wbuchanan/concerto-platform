@@ -311,7 +311,7 @@ class TestSession extends OTable {
         $debug_data = false;
         $logged_user = User::get_logged_user();
         if ($logged_user != null)
-            $debug_data = $logged_user->is_object_readable($test);
+            $debug_data = true;
 
         if ($release == 1 || $status == TestSession::TEST_SESSION_STATUS_COMPLETED || $status == TestSession::TEST_SESSION_STATUS_ERROR || $status == TestSession::TEST_SESSION_STATUS_TAMPERED) {
             $finished = 1;

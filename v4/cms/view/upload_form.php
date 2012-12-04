@@ -30,7 +30,7 @@ if ($logged_user == null) {
 
 $obj = $_POST['class_name']::from_mysql_id($_POST['oid']);
 
-if ($obj == null || !$logged_user->is_object_readable($obj))
+if ($obj == null)
     die(Language::string(81));
 ?>
 
@@ -71,7 +71,7 @@ if ($obj == null || !$logged_user->is_object_readable($obj))
                 <td class="tdFormIcon"><span class="tooltip spanIcon ui-icon ui-icon-help" title="<?= Language::string(380) ?>"></span></td>
                 <td>
                     <div class="divFormContent" align="center">
-                        <input id="inputDialogUploadAuthor" type="text" class="ui-widget-content ui-corner-all fullWidth" value="<?= $obj->get_owner_full_name() ?>" />
+                        <input id="inputDialogUploadAuthor" type="text" class="ui-widget-content ui-corner-all fullWidth" value="" />
                     </div>
                 </td>
             </tr>

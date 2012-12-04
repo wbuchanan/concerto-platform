@@ -28,22 +28,11 @@ if ($logged_user == null) {
     die(Language::string(278));
 }
 
-if (isset($oid)) {
-    if (!$logged_user->is_module_writeable($class_name))
-        die(Language::string(81));
-    if (!$logged_user->is_object_editable($obj))
-        die(Language::string(81));
-}
-else {
+if (!isset($oid)) {
     $oid = $_POST['oid'];
     $obj = Template::from_mysql_id($oid);
 
     $class_name = $_POST['class_name'];
-
-    if (!$logged_user->is_module_writeable($class_name))
-        die(Language::string(81));
-    if (!$logged_user->is_object_editable($obj))
-        die(Language::string(81));
 }
 
 $effect_show = $obj->effect_show;

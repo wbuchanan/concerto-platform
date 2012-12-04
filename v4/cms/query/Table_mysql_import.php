@@ -31,11 +31,6 @@ if ($logged_user == null)
 }
 
 $table = Table::from_mysql_id($_POST['oid']);
-if (!$logged_user->is_object_editable($table))
-{
-    echo json_encode(array("result" => -2));
-    exit();
-}
 
 echo json_encode(array("result" => $table->import_from_mysql($_POST['table'])));
 exit();

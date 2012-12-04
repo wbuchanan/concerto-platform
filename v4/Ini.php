@@ -45,7 +45,6 @@ class Ini {
     public static $path_online_library_ws = "";
     public static $remote_client_password = "";
     public static $public_registration = false;
-    public static $public_registration_default_UserType_id = 1;
     public static $cms_session_keep_alive = true;
     public static $cms_session_keep_alive_interval = 600;
     public static $unix_locale = "";
@@ -129,7 +128,6 @@ class Ini {
         self::$path_online_library_ws = "http://concerto.e-psychometrics.com/demo/online_library/ws.php";
         self::$remote_client_password = $remote_client_password;
         self::$public_registration = $public_registration;
-        self::$public_registration_default_UserType_id = $public_registration_default_UserType_id;
         self::$cms_session_keep_alive = $cms_session_keep_alive;
         self::$cms_session_keep_alive_interval = $cms_session_keep_alive_interval;
         self::$unix_locale = $unix_locale;
@@ -164,8 +162,6 @@ class Ini {
     public static function get_system_tables() {
         return array(
             "DS_Module",
-            "DS_Right",
-            "DS_Sharing",
             "DS_UserInstitutionType",
             "QTIAssessmentItem",
             "Setting",
@@ -179,10 +175,7 @@ class Ini {
             "TestSessionReturn",
             "TestVariable",
             "User",
-            "UserR",
-            "UserGroup",
-            "UserType",
-            "UserTypeRight"
+            "UserR"
         );
     }
 
@@ -206,9 +199,6 @@ class Ini {
         require_once self::$path_internal . "cms/model/OTable.php";
         require_once self::$path_internal . "cms/model/Setting.php";
         require_once self::$path_internal . "cms/model/OModule.php";
-        require_once self::$path_internal . "cms/model/UserGroup.php";
-        require_once self::$path_internal . "cms/model/UserTypeRight.php";
-        require_once self::$path_internal . "cms/model/UserType.php";
         require_once self::$path_internal . "cms/model/User.php";
         require_once self::$path_internal . "cms/model/UserR.php";
         require_once self::$path_internal . "cms/model/Template.php";
@@ -364,8 +354,6 @@ class Ini {
         require_once self::$path_internal . "cms/model/QTI/Value.php";
         require_once self::$path_internal . "cms/model/QTI/QTIAssessmentItem.php";
         require_once self::$path_internal . "cms/model/ODataSet.php";
-        require_once self::$path_internal . "cms/model/DS_Right.php";
-        require_once self::$path_internal . "cms/model/DS_Sharing.php";
         require_once self::$path_internal . "cms/model/DS_UserInstitutionType.php";
         require_once self::$path_internal . "cms/model/DS_Module.php";
     }

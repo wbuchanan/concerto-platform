@@ -31,12 +31,6 @@ if ($logged_user == null)
     exit();
 }
 
-if (!$logged_user->is_module_accesible($_POST['class_name']))
-{
-    echo json_encode(array("result" => -2));
-    exit();
-}
-
 $client = new nusoap_client(Ini::$path_online_library_ws . "?wsdl", true);
 $result = $client->call("download", array(
     "id" => $_POST['oid']
@@ -45,7 +39,6 @@ $result = $client->call("download", array(
 if ($result != false)
 {
     $obj = new $_POST['class_name']();
-    $obj->Owner_id = $logged_user->id;
 
     $xml = new DOMDocument('1.0', 'UTF-8');
     $xml->loadXML(gzuncompress(base64_decode($result)));

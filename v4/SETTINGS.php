@@ -28,7 +28,6 @@ $unix_locale = ""; //Unix locale LANG variable. Must be installed on the system.
 $timezone = 'Europe/London';
 $mysql_timezone = '+0:00'; //leave blank to make it the same as $timezone
 $public_registration = false;
-$public_registration_default_UserType_id = 4;
 $cms_session_keep_alive = true;
 $cms_session_keep_alive_interval = 900000; //miliseconds
 $contact_emails = "pl362@cam.ac.uk,mk583@cam.ac.uk,vm298@cam.ac.uk"; 

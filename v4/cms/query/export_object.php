@@ -37,8 +37,6 @@ $export->setAttribute("version", Ini::$version);
 $xml->appendChild($export);
 foreach ($oid as $id) {
     $obj = $_GET['class_name']::from_mysql_id($id);
-    if (!$logged_user->is_object_readable($obj))
-        die(Language::string(81));
 
     $xml_elem = new DOMDocument('1.0', 'UTF-8');
     $xml_elem->loadXML($obj->export());

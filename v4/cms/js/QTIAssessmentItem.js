@@ -50,15 +50,13 @@ QTIAssessmentItem.getAddSaveObject=function()
         oid:this.currentID,
         class_name:this.className,
         name:$("#form"+this.className+"InputName").val(),
-        XML:$("#form"+this.className+"TextareaXML").val(),
-        Sharing_id:$("#form"+this.className+"SelectSharing").val()
+        XML:$("#form"+this.className+"TextareaXML").val()
     };
 };
 
 QTIAssessmentItem.getFullSaveObject = function(){
     var obj = this.getAddSaveObject();
     obj["description"]=$("#form"+this.className+"TextareaDescription").val();
-    if($("#form"+this.className+"SelectOwner").length==1) obj["Owner_id"]=$("#form"+this.className+"SelectOwner").val();
     return obj;
 }
 

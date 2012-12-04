@@ -31,12 +31,6 @@ if ($logged_user == null)
     exit();
 }
 
-if (!$logged_user->is_module_accesible($_POST['class_name']))
-{
-    echo json_encode(array("result" => -2));
-    exit();
-}
-
 $obj = $_POST['class_name']::from_mysql_id($_POST['oid']);
 $result = $obj->upload($_POST['name'], $_POST['author'], $_POST['revision'], $_POST['description']);
 

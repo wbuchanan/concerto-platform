@@ -149,8 +149,6 @@ class Template extends OModule {
     }
 
     public function import_XML($xml) {
-        $this->Sharing_id = 1;
-
         $xpath = new DOMXPath($xml);
 
         $elements = $xpath->query("/export");
@@ -255,8 +253,6 @@ class Template extends OModule {
             `effect_hide_options` text NOT NULL,
             `description` text NOT NULL,
             `xml_hash` text NOT NULL,
-            `Sharing_id` int(11) NOT NULL,
-            `Owner_id` bigint(20) NOT NULL,
             PRIMARY KEY  (`id`)
             ) ENGINE=InnoDB  DEFAULT CHARSET=utf8;
             ";

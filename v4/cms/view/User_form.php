@@ -35,9 +35,6 @@ $edit_caption = Language::string(170);
 $new_caption = Language::string(171);
 //////////
 
-if (!$logged_user->is_module_writeable($class_name))
-    die(Language::string(81));
-
 $oid = 0;
 if (isset($_POST['oid']) && $_POST['oid'] != 0)
     $oid = $_POST['oid'];
@@ -52,9 +49,6 @@ $buttons = "";
 if ($oid > 0) {
     $oid = $_POST['oid'];
     $obj = $class_name::from_mysql_id($oid);
-
-    if (!$logged_user->is_object_editable($obj))
-        die(Language::string(81));
 
     $caption = $edit_caption . " #" . $oid;
     $buttons = $btn_cancel . $btn_save . $btn_save_new . $btn_delete;
@@ -219,55 +213,7 @@ if ($oid != 0) {
                     </td>
                 </tr>
             </table>
-        </div>    
-
-        <div class="divFormElement">
-            <table class="fullWidth">
-                <tr>
-                    <td class="noWrap tdFormLabel"><?= Language::string(176) ?>:</td>
-                    <td class="tdFormIcon"><span class="tooltip spanIcon ui-icon ui-icon-help" title="<?= Language::string(191) ?>"></span></td>
-                    <td>
-                        <div class="divFormControl">
-                            <select id="form<?= $class_name ?>SelectUserGroup" class="fullWidth ui-widget-content ui-corner-all">
-                                <option value="0" <?= (!$obj->has_UserGroup() ? "selected" : "") ?>>&lt;<?= Language::string(73) ?>&gt;</option>
-                                <?php
-                                $sql = $logged_user->mysql_list_rights_filter("UserGroup", "`name` ASC");
-                                $z = mysql_query($sql);
-                                while ($r = mysql_fetch_array($z)) {
-                                    $group = UserGroup::from_mysql_id($r[0]);
-                                    ?>
-                                    <option value="<?= $group->id ?>" <?= ($obj->UserGroup_id == $group->id ? "selected" : "") ?>><?= $group->name ?> ( <?= $group->get_system_data() ?> )</option>
-                                <?php } ?>
-                            </select>
-                        </div>
-                    </td>
-                </tr>
-            </table>
-        </div>    
-
-        <div class="divFormElement">
-            <table class="fullWidth">
-                <tr>
-                    <td class="noWrap tdFormLabel"><?= Language::string(177) ?>:</td>
-                    <td class="tdFormIcon"><span class="tooltip spanIcon ui-icon ui-icon-help" title="<?= Language::string(192) ?>"></span></td>
-                    <td>
-                        <div class="divFormControl">
-                            <select id="form<?= $class_name ?>SelectUserType" class="fullWidth ui-widget-content ui-corner-all">
-                                <option value="0" <?= (!$obj->has_UserType() ? "selected" : "") ?>>&lt;<?= Language::string(73) ?>&gt;</option>
-                                <?php
-                                $sql = $logged_user->mysql_list_rights_filter("UserType", "`name` ASC");
-                                $z = mysql_query($sql);
-                                while ($r = mysql_fetch_array($z)) {
-                                    $type = UserType::from_mysql_id($r[0]);
-                                    ?>
-                                    <option value="<?= $type->id ?>" <?= ($obj->UserType_id == $type->id ? "selected" : "") ?>><?= $type->name ?> ( <?= $type->get_system_data() ?> )</option>
-                                <?php } ?>
-                            </select>
-                        </div>
-                    </td>
-                </tr>
-            </table>
-        </div>    
+        </div>       
 
         <div style="clear: left;" />
     </fieldset>

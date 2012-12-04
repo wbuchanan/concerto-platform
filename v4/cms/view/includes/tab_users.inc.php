@@ -27,54 +27,8 @@ if (!isset($ini))
 $logged_user = User::get_logged_user();
 if ($logged_user == null) die(Language::string(81));
 
-$class_names = array("User", "UserGroup", "UserType");
-$class_labels = array(Language::string(89), Language::string(91), Language::string(90));
-$readables = array($logged_user->is_module_accesible($class_names[0]), $logged_user->is_module_accesible($class_names[1]), $logged_user->is_module_accesible($class_names[2]));
-$writeables = array($logged_user->is_module_writeable($class_names[0]), $logged_user->is_module_writeable($class_names[1]), $logged_user->is_module_writeable($class_names[2]));
+$class_name = "User";
+$class_label = Language::string(89);
 
-if ($readables[0] || $readables[1] || $readables[2])
-{
-    ?>
-
-    <script>
-        $(function(){
-           $("#divUserTabs").tabs(); 
-        });
-    </script>
-
-    <div id="divUserTabs">
-        <ul>
-            <?php
-            for ($i = 0; $i < 3; $i++)
-            {
-                if (!$readables[$i]) continue;
-                ?>
-                <li><a href="#divUserTabs<?= $class_names[$i] ?>"><?= $class_labels[$i] ?></a></li>
-                <?php
-            }
-            ?>
-        </ul>
-        <?php
-        for ($j = 0; $j < 3; $j++)
-        {
-            if (!$readables[$j]) continue;
-            ?>
-            <div id="divUserTabs<?= $class_names[$j] ?>">
-                <?php
-                $class_name = $class_names[$j];
-                $class_label = $class_labels[$j];
-                $readable = $readables[$j];
-                $writeable = $writeables[$j];
-
-                include Ini::$path_internal . "cms/view/includes/tab.inc.php";
-                ?>
-            </div>
-            <?php
-        }
-        ?>
-    </div>
-    <?php
-}
+include Ini::$path_internal."cms/view/includes/tab.inc.php"; 
 ?>
-
-

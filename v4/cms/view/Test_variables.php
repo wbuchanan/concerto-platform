@@ -29,10 +29,6 @@ if ($logged_user == null) {
 }
 
 if (isset($oid)) {
-    if (!$logged_user->is_module_writeable($class_name))
-        die(Language::string(81));
-    if (!$logged_user->is_object_editable($obj))
-        die(Language::string(81));
 
     $parameters = $obj->get_parameter_TestVariables();
     $returns = $obj->get_return_TestVariables();
@@ -54,11 +50,6 @@ else {
         }
     }
     $class_name = $_POST['class_name'];
-
-    if (!$logged_user->is_module_writeable($class_name))
-        die(Language::string(81));
-    if (!$logged_user->is_object_editable($obj))
-        die(Language::string(81));
 }
 ?>
 

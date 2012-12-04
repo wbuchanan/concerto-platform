@@ -19,19 +19,17 @@
   Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA.
  */
 
-if (!isset($ini))
-{
+if (!isset($ini)) {
     require_once '../../Ini.php';
     $ini = new Ini();
 }
 
-if(!Ini::$public_registration) {
-    echo json_encode(array("result"=>-1));
+if (!Ini::$public_registration) {
+    echo json_encode(array("result" => -1));
     exit();
 }
 
 $user = new User();
-$_POST['modify_password']=1;
-$_POST['UserType_id'] = Ini::$public_registration_default_UserType_id;
-echo json_encode(array("result"=>0,"oid"=>$user->mysql_save_from_post($_POST)));
+$_POST['modify_password'] = 1;
+echo json_encode(array("result" => 0, "oid" => $user->mysql_save_from_post($_POST)));
 ?>

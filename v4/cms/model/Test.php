@@ -171,8 +171,6 @@ class Test extends OModule {
     }
 
     public function import_XML($xml, $compare = null) {
-        $this->Sharing_id = 1;
-
         $xpath = new DOMXPath($xml);
 
         $elements = $xpath->query("/export");
@@ -199,7 +197,6 @@ class Test extends OModule {
             $compare["Template"][$id] = Template::find_xml_hash($hash);
             if ($compare["Template"][$id] == 0) {
                 $obj = new Template();
-                $obj->Owner_id = $logged_user->id;
                 $lid = $obj->import_XML(Template::convert_to_XML_document($element));
                 $compare["Template"][$id] = $lid;
             }
@@ -214,7 +211,6 @@ class Test extends OModule {
             $compare["QTIAssessmentItem"][$id] = QTIAssessmentItem::find_xml_hash($hash);
             if ($compare["QTIAssessmentItem"][$id] == 0) {
                 $obj = new QTIAssessmentItem();
-                $obj->Owner_id = $logged_user->id;
                 $lid = $obj->import_XML(QTIAssessmentItem::convert_to_XML_document($element));
                 $compare["QTIAssessmentItem"][$id] = $lid;
             }
@@ -228,7 +224,6 @@ class Test extends OModule {
             $compare["Table"][$id] = Table::find_xml_hash($hash);
             if ($compare["Table"][$id] == 0) {
                 $obj = new Table();
-                $obj->Owner_id = $logged_user->id;
                 $lid = $obj->import_XML(Table::convert_to_XML_document($element));
                 $compare["Table"][$id] = $lid;
             }
@@ -244,7 +239,6 @@ class Test extends OModule {
                 $compare["Test"][$id] = 0;
             if ($compare["Test"][$id] == 0) {
                 $obj = new Test();
-                $obj->Owner_id = $logged_user->id;
                 $lid = $obj->import_XML(Test::convert_to_XML_document($element), $compare);
                 $compare["Test"][$id] = $lid;
             }
@@ -387,8 +381,6 @@ class Test extends OModule {
             `code` longtext NOT NULL,
             `description` text NOT NULL,
             `xml_hash` text NOT NULL,
-            `Sharing_id` int(11) NOT NULL,
-            `Owner_id` bigint(20) NOT NULL,
             PRIMARY KEY  (`id`)
             ) ENGINE=InnoDB  DEFAULT CHARSET=utf8;
             ";

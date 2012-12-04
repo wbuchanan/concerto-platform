@@ -41,13 +41,10 @@ class OTable {
     }
 
     public static function find_xml_hash($hash) {
-        $logged_user = User::get_logged_user();
-        $sql = $logged_user->mysql_list_rights_filter(static::get_mysql_table(), "`" . static::get_mysql_table() . "`.`id` ASC");
+        $sql = sprintf("SELECT * FROM `%s` ORDER BY `id`", static::get_mysql_table());
         $z = mysql_query($sql);
         while ($r = mysql_fetch_array($z)) {
             $obj = static::from_mysql_id($r[0]);
-            if (!$logged_user->is_object_editable($obj))
-                continue;
             if ($obj->xml_hash == $hash)
                 return $r[0];
         }

@@ -28,8 +28,6 @@ if ($logged_user == null)
     header("Location: " . Ini::$path_external . "cms/index.php");
 
 $table = Table::from_mysql_id($_GET['oid']);
-if (!$logged_user->is_object_readable($table))
-    die(Language::string(81));
 
 function output_table_to_csv($table, $header_row = true, $col_sep = ",", $row_sep = "\r\n", $qut = '"') {
     $sql = sprintf("SELECT * FROM `%s`", $table->get_table_name());

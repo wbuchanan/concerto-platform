@@ -28,7 +28,6 @@ if ($logged_user == null) {
     echo "<script>location.reload();</script>";
     die(Language::string(278));
 }
-$writeable = $logged_user->is_module_writeable($class_name);
 
 $cols = $class_name::get_list_columns();
 $fields_schema = "";
@@ -67,8 +66,8 @@ foreach ($cols as $col) {
     $columns_def.=",";
 }
 
-$action_template = "#if(editable) {#<span style='display:inline-block;' class='spanIcon tooltip ui-icon ui-icon-pencil' onclick='$class_name.uiEdit(" . '${ id }' . ")' title='" . Language::string(203) . "'></span>#}#";
-$action_template.="#if(editable) {#<span style='display:inline-block;' class='spanIcon tooltip ui-icon ui-icon-trash' onclick='$class_name.uiDelete(" . '${ id }' . ")' title='" . Language::string(204) . "'></span>#}#";
+$action_template = "<span style='display:inline-block;' class='spanIcon tooltip ui-icon ui-icon-pencil' onclick='$class_name.uiEdit(" . '${ id }' . ")' title='" . Language::string(203) . "'></span>";
+$action_template.= "<span style='display:inline-block;' class='spanIcon tooltip ui-icon ui-icon-trash' onclick='$class_name.uiDelete(" . '${ id }' . ")' title='" . Language::string(204) . "'></span>";
 if ($class_name::$exportable) {
     $action_template.="<span style='display:inline-block;' class='spanIcon tooltip ui-icon ui-icon-arrowthickstop-1-n' onclick='$class_name.uiExport(" . '${ id }' . ")' title='" . Language::string(265) . "'></span>";
     $action_template.="<span style='display:inline-block;' class='spanIcon tooltip ui-icon ui-icon-gear' onclick='$class_name.uiUpload(" . '${ id }' . ")' title='" . Language::string(375) . "'></span>";

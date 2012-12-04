@@ -29,8 +29,6 @@ if ($logged_user == null) die(Language::string(81));
 
 $class_name = "Template";
 $class_label = Language::string(87);
-$readable = $logged_user->is_module_accesible($class_name);
-$writeable = $logged_user->is_module_writeable($class_name);
 
 include Ini::$path_internal."cms/view/includes/tab.inc.php"; 
 ?>

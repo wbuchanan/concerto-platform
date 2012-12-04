@@ -256,8 +256,6 @@ class Setup {
     public static function reset_db() {
         CustomSectionVariable::create_db(true);
         DS_Module::create_db(true);
-        DS_Right::create_db(true);
-        DS_Sharing::create_db(true);
         DS_UserInstitutionType::create_db(true);
         Setting::create_db(true);
         Table::create_db(true);
@@ -268,9 +266,6 @@ class Setup {
         TestSessionReturn::create_db(true);
         TestVariable::create_db(true);
         User::create_db(true);
-        UserGroup::create_db(true);
-        UserType::create_db(true);
-        UserTypeRight::create_db(true);
     }
 
     public static function update_db($simulate = false, $only_recalculate_hash = false, $only_validate_column_names = false, $only_create_db = false) {

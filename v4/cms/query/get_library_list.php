@@ -31,12 +31,6 @@ if ($logged_user == null)
     exit();
 }
 
-if (!$logged_user->is_module_accesible($_GET['class_name']))
-{
-    echo json_encode(array());
-    exit();
-}
-
 $client = new nusoap_client(Ini::$path_online_library_ws . "?wsdl", true);
 $result = $client->call("get_list", array(
     "Module_id" => DS_Module::from_property(array("value" => $_GET['class_name']), false)->id,
