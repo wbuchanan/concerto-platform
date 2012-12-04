@@ -33,7 +33,12 @@ if (!Ini::$public_registration) {
 
 $obj = $_POST['class_name']::from_mysql_id($_POST['oid']);
 
-$sql = sprintf("SELECT * FROM `%s` WHERE ( ", $_POST['class_name']);
+if ($_POST['class_name']::$is_master_table)
+    $db = "`" . Ini::$db_master_name . "`.";
+else
+    $db = "";
+
+$sql = sprintf("SELECT * FROM %s`%s` WHERE ( ", $db, $_POST['class_name']);
 $i = 0;
 foreach ($_POST['fields'] as $field) {
     if ($i > 0)
@@ -41,7 +46,7 @@ foreach ($_POST['fields'] as $field) {
     $f = json_decode($field);
     $sql.=sprintf("`%s`='%s' ", mysql_real_escape_string($f->name), mysql_real_escape_string(trim($f->value)));
     $i++;
-    if(trim($f->value)==""){
+    if (trim($f->value) == "") {
         echo json_encode(array("result" => 1));
         exit();
     }

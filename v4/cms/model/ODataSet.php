@@ -19,26 +19,29 @@
   Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA.
  */
 
-class ODataSet extends OTable
-{
+class ODataSet extends OTable {
+
     public $name = "";
     public $value = "";
     public $position = 0;
+    public static $is_master_table = true;
 
-    public static function get_all($sort="`position` ASC")
-    {
+    public static function get_all($sort = "`position` ASC") {
+        if (static::$is_master_table)
+            $db = "`" . Ini::$db_master_name . "`.";
+        else
+            $db = "";
+
         $res = array();
-        $sql = sprintf("SELECT * FROM `%s` ORDER BY %s", static::get_mysql_table(), $sort);
+        $sql = sprintf("SELECT * FROM %s`%s` ORDER BY %s", $db, static::get_mysql_table(), $sort);
         $z = mysql_query($sql);
-        while ($r = mysql_fetch_array($z))
-        {
+        while ($r = mysql_fetch_array($z)) {
             array_push($res, static::from_mysql_result($r));
         }
         return $res;
     }
 
-    public static function from_value($value)
-    {
+    public static function from_value($value) {
         return self::from_property(array("value" => $value), false);
     }
 

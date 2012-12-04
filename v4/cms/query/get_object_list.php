@@ -29,7 +29,12 @@ if ($logged_user == null) {
     exit();
 }
 
-$sql = sprintf("SELECT * FROM `%s` ORDER BY `id` ASC", $_GET['class_name']);
+if ($_GET['class_name']::$is_master_table)
+    $db = "`" . Ini::$db_master_name . "`.";
+else
+    $db = "";
+
+$sql = sprintf("SELECT * FROM %s`%s` ORDER BY `id` ASC", $db, $_GET['class_name']);
 
 $cols = $_GET['class_name']::get_list_columns();
 

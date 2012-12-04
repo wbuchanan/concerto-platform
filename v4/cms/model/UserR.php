@@ -25,6 +25,7 @@ class UserR extends OTable {
     public $password = "";
     public $User_id = 0;
     public static $mysql_table_name = "UserR";
+    public static $is_master_table = true;
 
     public static function create_db($db = null) {
         if ($db == null)

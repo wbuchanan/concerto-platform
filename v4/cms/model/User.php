@@ -34,6 +34,7 @@ class User extends OModule {
     public $db_password = "";
     public $db_name = "";
     public static $mysql_table_name = "User";
+    public static $is_master_table = true;
 
     public function __construct($params = array()) {
         $this->login = Language::string(77);
@@ -117,7 +118,8 @@ class User extends OModule {
     }
 
     public static function get_current_db() {
-        $logged_user = self::get_logged_user();
+        $logged_user = @self::get_logged_user();
+
         if ($logged_user == null)
             return null;
 
@@ -129,8 +131,8 @@ class User extends OModule {
 
     public static function get_all_db() {
         $result = array();
-        $sql = sprintf("SELECT `db_name` FROM `%s`", User::get_mysql_table());
-        $z = mysql_fetch_array($z);
+        $sql = sprintf("SELECT `db_name` FROM `%s`.`%s`", Ini::$db_master_name, User::get_mysql_table());
+        $z = mysql_query($sql);
         while ($r = mysql_fetch_array($z)) {
             array_push($result, $r['db_name']);
         }

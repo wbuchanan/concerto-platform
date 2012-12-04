@@ -253,19 +253,24 @@ class Setup {
 
         if ($only_recalculate_hash) {
             foreach (User::get_all_db() as $db) {
-                OModule::calculate_all_xml_hashes($db);
+                mysql_select_db($db);
+                OModule::calculate_all_xml_hashes();
             }
             return json_encode(array("result" => 0));
         }
 
         if ($only_validate_column_names) {
-            $result = TableColumn::validate_columns_name();
+            foreach (User::get_all_db() as $db) {
+                mysql_select_db($db);
+                $result = TableColumn::validate_columns_name();
+            }
             return json_encode(array("result" => $result ? 0 : 1));
         }
 
         $versions_to_update = array();
 
         $previous_version = Setting::get_setting("version");
+
         if ($previous_version == null)
             $previous_version = Ini::$version;
 

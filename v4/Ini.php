@@ -85,11 +85,11 @@ class Ini {
         if (Ini::$unix_locale != "")
             setlocale(LC_ALL, Ini::$unix_locale);
 
+        $this->load_classes();
         if ($connect) {
             if (!$this->initialize_db_connection())
                 die("Error initializing DB connection!");
         }
-        $this->load_classes();
 
         if ($session) {
             if (!isset($_GET['lng'])) {
@@ -204,9 +204,9 @@ class Ini {
             }
         }
 
-        foreach(User::get_all_db() as $db_name){
+        foreach (User::get_all_db() as $db_name) {
             foreach (Ini::get_user_system_tables() as $table) {
-                $sql = $sql = sprintf("SHOW TABLES IN `%s` LIKE '%s'", $db_name, $table);
+                $sql = sprintf("SHOW TABLES IN `%s` LIKE '%s'", $db_name, $table);
                 $z2 = mysql_query($sql);
                 if (mysql_num_rows($z2) == 0) {
                     if ($simulate) {
@@ -232,7 +232,11 @@ class Ini {
             return false;
         mysql_set_charset('utf8', $h);
         mysql_query(sprintf("SET time_zone = '%s';", Ini::$mysql_timezone));
-        if (mysql_select_db($db_master_name, $h))
+
+        $db = User::get_current_db();
+        if ($db == null)
+            $db = Ini::$db_master_name;
+        if (mysql_select_db($db, $h))
             return true;
         else
             return false;

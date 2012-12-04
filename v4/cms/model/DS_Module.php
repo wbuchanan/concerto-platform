@@ -28,10 +28,7 @@ class DS_Module extends ODataSet {
             case 1: return Language::string(167);
             case 2: return Language::string(85);
             case 3: return Language::string(89);
-            case 4: return Language::string(91);
-            case 5: return Language::string(90);
             case 6: return Language::string(88);
-            case 7: return Language::string(84);
             case 8: return Language::string(458);
         }
     }

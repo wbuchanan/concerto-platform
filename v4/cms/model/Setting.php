@@ -22,6 +22,7 @@
 class Setting extends OTable {
 
     public static $mysql_table_name = "Setting";
+    public static $is_master_table = true;
 
     public static function create_db($db = null) {
         if ($db == null)
@@ -44,7 +45,7 @@ class Setting extends OTable {
     }
 
     public static function get_setting($name) {
-        $sql = sprintf("SELECT `value` FROM `Setting` WHERE `name`='%s'", $name);
+        $sql = sprintf("SELECT `value` FROM `%s`.`Setting` WHERE `name`='%s'", Ini::$db_master_name, $name);
         $z = @mysql_query($sql);
         if (!$z)
             return null;
@@ -54,7 +55,7 @@ class Setting extends OTable {
     }
 
     public static function set_setting($name, $value) {
-        $sql = sprintf("UPDATE `Setting` SET `value`='%s' WHERE `name`='%s'", $value, $name);
+        $sql = sprintf("UPDATE `%s`.`Setting` SET `value`='%s' WHERE `name`='%s'", Ini::$db_master_name, $value, $name);
         if (!mysql_query($sql))
             return false;
         return true;

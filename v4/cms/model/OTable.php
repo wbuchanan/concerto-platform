@@ -24,6 +24,7 @@ class OTable {
     public $id = 0;
     public $created = "";
     public $updated = "";
+    public static $is_master_table = false;
 
     function __construct($params = array()) {
         $vars = get_object_vars($this);
@@ -41,8 +42,12 @@ class OTable {
     }
 
     public static function find_xml_hash($hash) {
+        if (static::$is_master_table)
+            $db = "`" . Ini::$db_master_name . "`.";
+        else
+            $db = "";
 
-        $sql = sprintf("SELECT * FROM `%s` ORDER BY `id`", static::get_mysql_table());
+        $sql = sprintf("SELECT * FROM %s`%s` ORDER BY `id`", $db, static::get_mysql_table());
         $z = mysql_query($sql);
         while ($r = mysql_fetch_array($z)) {
             $obj = static::from_mysql_id($r[0]);
@@ -93,6 +98,10 @@ class OTable {
     }
 
     public function mysql_save() {
+        if (static::$is_master_table)
+            $db = "`" . Ini::$db_master_name . "`.";
+        else
+            $db = "";
 
         $exclude = array("id", "updated");
         if ($this->id == 0) {
@@ -101,7 +110,7 @@ class OTable {
         }
         else
             $sql = "UPDATE ";
-        $sql.=sprintf("`%s` SET ", self::get_mysql_table());
+        $sql.=sprintf("%s`%s` SET ", $db, self::get_mysql_table());
 
         $i = 0;
         foreach (get_object_vars($this) as $k => $v) {
@@ -125,27 +134,46 @@ class OTable {
     }
 
     protected function clear_object_links($table, $field = null) {
+        if (static::$is_master_table)
+            $db = "`" . Ini::$db_master_name . "`.";
+        else
+            $db = "";
+
         if ($field == null)
             $field = static::get_mysql_table() . "_id";
-        $sql = sprintf("UPDATE `%s` SET `%s`=0 WHERE `%s`='%d'", $table, $field, $field, $this->id);
+        $sql = sprintf("UPDATE %s`%s` SET `%s`=0 WHERE `%s`='%d'", $db, $table, $field, $field, $this->id);
         mysql_query($sql);
     }
 
     protected function delete_object_links($table, $field = null) {
+        if (static::$is_master_table)
+            $db = "`" . Ini::$db_master_name . "`.";
+        else
+            $db = "";
+
         if ($field == null)
             $field = static::get_mysql_table() . "_id";
-        $sql = sprintf("DELETE FROM `%s` WHERE `%s`='%d'", $table, $field, $this->id);
+        $sql = sprintf("DELETE FROM %s`%s` WHERE `%s`='%d'", $db, $table, $field, $this->id);
         mysql_query($sql);
     }
 
     protected function mysql_delete_object() {
-        $sql = sprintf("DELETE FROM `%s` WHERE `id`='%d'", static::get_mysql_table(), $this->id);
+        if (static::$is_master_table)
+            $db = "`" . Ini::$db_master_name . "`.";
+        else
+            $db = "";
+
+        $sql = sprintf("DELETE FROM %s`%s` WHERE `id`='%d'", $db, static::get_mysql_table(), $this->id);
         mysql_query($sql);
     }
 
     public static function from_mysql_id($id) {
+        if (static::$is_master_table)
+            $db = "`" . Ini::$db_master_name . "`.";
+        else
+            $db = "";
 
-        $sql = sprintf("SELECT * FROM `%s` WHERE `id`='%d'", static::get_mysql_table(), $id);
+        $sql = sprintf("SELECT * FROM %s`%s` WHERE `id`='%d'", $db, static::get_mysql_table(), $id);
         $z = mysql_query($sql);
         while ($r = mysql_fetch_array($z)) {
             return static::from_mysql_result($r);
@@ -162,6 +190,11 @@ class OTable {
     }
 
     public static function from_property($pairs, $is_array = true) {
+        if (static::$is_master_table)
+            $db = "`" . Ini::$db_master_name . "`.";
+        else
+            $db = "";
+
         $result = array();
 
         $where = "";
@@ -171,7 +204,7 @@ class OTable {
             $where.=sprintf("`%s`='%s'", $k, $v);
         }
 
-        $sql = sprintf("SELECT * FROM `%s` WHERE %s ORDER BY `id` ASC", static::get_mysql_table(), $where);
+        $sql = sprintf("SELECT * FROM %s`%s` WHERE %s ORDER BY `id` ASC", $db, static::get_mysql_table(), $where);
 
         $z = mysql_query($sql);
         while ($r = mysql_fetch_array($z)) {
@@ -184,15 +217,6 @@ class OTable {
             return null;
         else
             return $result;
-    }
-
-    public static function mysql_delete_obsolete($link_field = "object_id") {
-        $sql = sprintf("SELECT * FROM `%s` WHERE `creation_time`<=%d AND `%s`=0", static::get_mysql_table(), time() - 60 * 60 * 24, $link_field);
-        $z = mysql_query($sql);
-        while ($r = mysql_fetch_array($z)) {
-            $obj = static::from_mysql_result($r);
-            $obj->mysql_delete();
-        }
     }
 
     public function to_DOMElement($xml_document) {
