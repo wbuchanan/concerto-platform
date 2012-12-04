@@ -424,7 +424,7 @@ class TestInstance {
             rm(CONCERTO_MEDIA_PATH)
             
             %s
-            ', $test->id, $this->TestSession_id, $db_host, ($db_port != "" ? $db_port : "3306"), $db_user, $db_password, $db_name, $path, $path_mysql_home, $mysql_timezone, Ini::$path_internal_media . $this->TestSession_id, $unserialize ? "FALSE" : "TRUE", $unserialize ? '
+            ', $test->id, $this->TestSession_id, $db_host, ($db_port != "" ? $db_port : "3306"), $db_master_user, $db_master_password, $db_master_name, $path, $path_mysql_home, $mysql_timezone, Ini::$path_internal_media . $this->TestSession_id, $unserialize ? "FALSE" : "TRUE", $unserialize ? '
                 concerto$unserialize()
                 concerto$db$connect(CONCERTO_DB_LOGIN,CONCERTO_DB_PASSWORD,CONCERTO_DB_NAME,CONCERTO_DB_HOST,CONCERTO_DB_PORT,CONCERTO_MYSQL_HOME,CONCERTO_DB_TIMEZONE)' : "", $unserialize ? 'if(exists("onUnserialize")) do.call("onUnserialize",list(lastReturn=rjson::fromJSON("' . addcslashes(json_encode($this->pending_variables), '"') . '")),envir=.GlobalEnv);' : "");
 

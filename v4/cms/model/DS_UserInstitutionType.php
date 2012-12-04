@@ -19,44 +19,40 @@
   Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA.
  */
 
-class DS_UserInstitutionType extends ODataSet
-{
+class DS_UserInstitutionType extends ODataSet {
+
     public static $mysql_table_name = "DS_UserInstitutionType";
 
-    public function get_name()
-    {
-        switch ($this->id)
-        {
+    public function get_name() {
+        switch ($this->id) {
             case 1: return Language::string(416);
             case 2: return Language::string(417);
             case 3: return Language::string(418);
         }
     }
 
-    public static function create_db($delete = false)
-    {
-        if ($delete)
-        {
-            if (!mysql_query("DROP TABLE IF EXISTS `DS_UserInstitutionType`;"))
-                    return false;
-        }
-        $sql = "
-            CREATE TABLE IF NOT EXISTS `DS_UserInstitutionType` (
+    public static function create_db($db = null) {
+        if ($db == null)
+            $db = Ini::$db_master_name;
+
+        $sql = sprintf("
+            CREATE TABLE IF NOT EXISTS `%s`.`DS_UserInstitutionType` (
             `id` int(11) NOT NULL auto_increment,
             `name` text NOT NULL,
             `value` text NOT NULL,
             `position` int(11) NOT NULL,
             PRIMARY KEY  (`id`)
             ) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=4 ;
-            ";
-        if (!mysql_query($sql)) return false;
+            ", $db);
+        if (!mysql_query($sql))
+            return false;
 
-        $sql = "
-            INSERT INTO `DS_UserInstitutionType` (`id`, `name`, `value`, `position`) VALUES
+        $sql = sprintf("
+            INSERT INTO `%s`.`DS_UserInstitutionType` (`id`, `name`, `value`, `position`) VALUES
             (1, 'academic', '1', 1),
             (2, 'commercial', '2', 2),
             (3, 'other ( please specify )', '3', 3);
-            ";
+            ", $db);
         return mysql_query($sql);
     }
 

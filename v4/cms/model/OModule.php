@@ -20,6 +20,7 @@
  */
 
 class OModule extends OTable {
+
     public static $exportable = false;
 
     public function get_description() {
@@ -113,10 +114,10 @@ class OModule extends OTable {
         return $cols;
     }
 
-    public static function calculate_all_xml_hashes() {
-
+    public static function calculate_all_xml_hashes($db) {
+        
         //Table - calculate xml_hash
-        $sql = "SELECT `id` FROM `Table`";
+        $sql = sprintf("SELECT `id` FROM `%s`.`Table`", $db);
         $z = mysql_query($sql);
         while ($r = mysql_fetch_array($z)) {
             set_time_limit(0);
@@ -126,7 +127,7 @@ class OModule extends OTable {
         }
 
         //Template - calculate xml_hash
-        $sql = "SELECT `id` FROM `Template`";
+        $sql = sprintf("SELECT `id` FROM `%s`.`Template`", $db);
         $z = mysql_query($sql);
         while ($r = mysql_fetch_array($z)) {
             set_time_limit(0);
@@ -135,8 +136,18 @@ class OModule extends OTable {
             $obj->mysql_save();
         }
 
+        //QTIAssessmentItem - calculate xml_hash
+        $sql = sprintf("SELECT `id` FROM `%s`.`QTIAssessmentItem`", $db);
+        $z = mysql_query($sql);
+        while ($r = mysql_fetch_array($z)) {
+            set_time_limit(0);
+            $obj = QTIAssessmentItem::from_mysql_id($r[0]);
+            $obj->xml_hash = $obj->calculate_xml_hash();
+            $obj->mysql_save();
+        }
+
         //Test - calculate xml_hash
-        $sql = "SELECT `id` FROM `Test`";
+        $sql = sprintf("SELECT `id` FROM `%s`.`Test`", $db);
         $z = mysql_query($sql);
         while ($r = mysql_fetch_array($z)) {
             set_time_limit(0);

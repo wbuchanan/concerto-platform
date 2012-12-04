@@ -91,7 +91,7 @@ class TestSession extends OTable {
         if ($test != null) {
             posix_mkfifo($session->get_RSession_fifo_path(), 0774);
         }
-        
+
         if ($debug)
             $session->register();
         return $session;
@@ -510,13 +510,11 @@ class TestSession extends OTable {
         return $result;
     }
 
-    public static function create_db($delete = false) {
-        if ($delete) {
-            if (!mysql_query("DROP TABLE IF EXISTS `TestSession`;"))
-                return false;
-        }
-        $sql = "
-            CREATE TABLE IF NOT EXISTS `TestSession` (
+    public static function create_db($db = null) {
+        if ($db == null)
+            $db = Ini::$db_master_name;
+        $sql = sprintf("
+            CREATE TABLE IF NOT EXISTS `%s`.`TestSession` (
             `id` bigint(20) NOT NULL auto_increment,
             `updated` timestamp NOT NULL default CURRENT_TIMESTAMP on update CURRENT_TIMESTAMP,
             `created` timestamp NOT NULL default '0000-00-00 00:00:00',
@@ -533,7 +531,7 @@ class TestSession extends OTable {
             `state` longtext NOT NULL,
             PRIMARY KEY  (`id`)
             ) ENGINE=InnoDB  DEFAULT CHARSET=utf8;
-            ";
+            ", $db);
         return mysql_query($sql);
     }
 

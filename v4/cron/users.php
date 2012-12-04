@@ -43,7 +43,7 @@ while ($r = mysql_fetch_array($z)) {
         `adduser --disabled-login --gecos "" --ingroup $group $name`;
 
         //passwd
-        $password = UserR::generate_password();
+        $password = User::generate_password();
         `passwd $name <<EOF\n$password\n$password\nEOF`;
 
         //insert UserR record

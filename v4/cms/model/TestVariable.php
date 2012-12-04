@@ -19,8 +19,8 @@
   Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA.
  */
 
-class TestVariable extends OTable
-{
+class TestVariable extends OTable {
+
     public $Test_id = 0;
     public $index = 0;
     public $name = "";
@@ -28,42 +28,36 @@ class TestVariable extends OTable
     public $type = 0;
     public static $mysql_table_name = "TestVariable";
 
-    public function get_Test()
-    {
+    public function get_Test() {
         return Test::from_mysql_id($this->Test_id);
     }
 
-    public function to_XML()
-    {
-        $xml = new DOMDocument('1.0',"UTF-8");
+    public function to_XML() {
+        $xml = new DOMDocument('1.0', "UTF-8");
 
         $element = $xml->createElement("TestVariable");
         $xml->appendChild($element);
 
-        $name = $xml->createElement("name", htmlspecialchars($this->name, ENT_QUOTES,"UTF-8"));
+        $name = $xml->createElement("name", htmlspecialchars($this->name, ENT_QUOTES, "UTF-8"));
         $element->appendChild($name);
 
-        $description = $xml->createElement("description", htmlspecialchars($this->description, ENT_QUOTES,"UTF-8"));
+        $description = $xml->createElement("description", htmlspecialchars($this->description, ENT_QUOTES, "UTF-8"));
         $element->appendChild($description);
 
-        $index = $xml->createElement("index", htmlspecialchars($this->index, ENT_QUOTES,"UTF-8"));
+        $index = $xml->createElement("index", htmlspecialchars($this->index, ENT_QUOTES, "UTF-8"));
         $element->appendChild($index);
 
-        $type = $xml->createElement("type", htmlspecialchars($this->type, ENT_QUOTES,"UTF-8"));
+        $type = $xml->createElement("type", htmlspecialchars($this->type, ENT_QUOTES, "UTF-8"));
         $element->appendChild($type);
 
         return $element;
     }
 
-    public static function create_db($delete = false)
-    {
-        if ($delete)
-        {
-            if (!mysql_query("DROP TABLE IF EXISTS `TestVariable`;"))
-                    return false;
-        }
-        $sql = "
-            CREATE TABLE IF NOT EXISTS `TestVariable` (
+    public static function create_db($db = null) {
+        if ($db == null)
+            $db = Ini::$db_master_name;
+        $sql = sprintf("
+            CREATE TABLE IF NOT EXISTS `%s`.`TestVariable` (
             `id` bigint(20) NOT NULL auto_increment,
             `updated` timestamp NOT NULL default CURRENT_TIMESTAMP on update CURRENT_TIMESTAMP,
             `created` timestamp NOT NULL default '0000-00-00 00:00:00',
@@ -74,7 +68,7 @@ class TestVariable extends OTable
             `type` tinyint(1) NOT NULL,
             PRIMARY KEY  (`id`)
             ) ENGINE=InnoDB  DEFAULT CHARSET=utf8;
-            ";
+            ", $db);
         return mysql_query($sql);
     }
 

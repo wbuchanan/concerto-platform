@@ -62,20 +62,18 @@ class TableIndex extends OTable {
 
         $type = $xml->createElement("type", htmlspecialchars($this->type, ENT_QUOTES, "UTF-8"));
         $element->appendChild($type);
-        
+
         $cols = $xml->createElement("columns", htmlspecialchars($this->get_columns_string(), ENT_QUOTES, "UTF-8"));
         $element->appendChild($cols);
 
         return $element;
     }
 
-    public static function create_db($delete = false) {
-        if ($delete) {
-            if (!mysql_query("DROP TABLE IF EXISTS `TableIndex`;"))
-                return false;
-        }
-        $sql = "
-            CREATE TABLE IF NOT EXISTS `TableIndex` (
+    public static function create_db($db = null) {
+        if ($db == null)
+            $db = Ini::$db_master_name;
+        $sql = sprintf("
+            CREATE TABLE IF NOT EXISTS `%s`.`TableIndex` (
             `id` bigint(20) NOT NULL auto_increment,
             `updated` timestamp NOT NULL default CURRENT_TIMESTAMP on update CURRENT_TIMESTAMP,
             `created` timestamp NOT NULL default '0000-00-00 00:00:00',
@@ -83,7 +81,7 @@ class TableIndex extends OTable {
             `type` text NOT NULL,
             PRIMARY KEY  (`id`)
             ) ENGINE=InnoDB  DEFAULT CHARSET=utf8;
-            ";
+            ", $db);
         return mysql_query($sql);
     }
 

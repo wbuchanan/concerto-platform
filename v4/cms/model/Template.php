@@ -218,29 +218,27 @@ class Template extends OModule {
 
         $head = $xml->createElement("head", htmlspecialchars($this->head, ENT_QUOTES, "UTF-8"));
         $element->appendChild($head);
-        
+
         $effect_show = $xml->createElement("effect_show", htmlspecialchars($this->effect_show, ENT_QUOTES, "UTF-8"));
         $element->appendChild($effect_show);
-        
+
         $effect_hide = $xml->createElement("effect_hide", htmlspecialchars($this->effect_hide, ENT_QUOTES, "UTF-8"));
         $element->appendChild($effect_hide);
-        
+
         $effect_show_options = $xml->createElement("effect_show_options", htmlspecialchars($this->effect_show_options, ENT_QUOTES, "UTF-8"));
         $element->appendChild($effect_show_options);
-        
+
         $effect_hide_options = $xml->createElement("effect_hide_options", htmlspecialchars($this->effect_hide_options, ENT_QUOTES, "UTF-8"));
         $element->appendChild($effect_hide_options);
 
         return $element;
     }
 
-    public static function create_db($delete = false) {
-        if ($delete) {
-            if (!mysql_query("DROP TABLE IF EXISTS `Template`;"))
-                return false;
-        }
-        $sql = "
-            CREATE TABLE IF NOT EXISTS `Template` (
+    public static function create_db($db = null) {
+        if ($db == null)
+            $db = Ini::$db_master_name;
+        $sql = sprintf("
+            CREATE TABLE IF NOT EXISTS `%s`.`Template` (
             `id` bigint(20) NOT NULL auto_increment,
             `updated` timestamp NOT NULL default CURRENT_TIMESTAMP on update CURRENT_TIMESTAMP,
             `created` timestamp NOT NULL default '0000-00-00 00:00:00',
@@ -255,7 +253,7 @@ class Template extends OModule {
             `xml_hash` text NOT NULL,
             PRIMARY KEY  (`id`)
             ) ENGINE=InnoDB  DEFAULT CHARSET=utf8;
-            ";
+            ", $db);
         return mysql_query($sql);
     }
 

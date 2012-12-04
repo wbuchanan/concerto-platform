@@ -60,6 +60,7 @@ class Table extends OModule {
     }
 
     public function mysql_save_from_post($post) {
+
         $simulation = false;
         if (array_key_exists("save_simulation", $post) && $post['save_simulation'] == 1)
             $simulation = true;
@@ -543,13 +544,11 @@ class Table extends OModule {
         return $element;
     }
 
-    public static function create_db($delete = false) {
-        if ($delete) {
-            if (!mysql_query("DROP TABLE IF EXISTS `Table`;"))
-                return false;
-        }
-        $sql = "
-            CREATE TABLE IF NOT EXISTS `Table` (
+    public static function create_db($db = null) {
+        if ($db == null)
+            $db = Ini::$db_master_name;
+        $sql = sprintf("
+            CREATE TABLE IF NOT EXISTS `%s`.`Table` (
             `id` bigint(20) NOT NULL auto_increment,
             `updated` timestamp NOT NULL default CURRENT_TIMESTAMP on update CURRENT_TIMESTAMP,
             `created` timestamp NOT NULL default '0000-00-00 00:00:00',
@@ -558,7 +557,7 @@ class Table extends OModule {
             `xml_hash` text NOT NULL,
             PRIMARY KEY  (`id`)
             ) ENGINE=InnoDB  DEFAULT CHARSET=utf8;
-            ";
+            ", $db);
         return mysql_query($sql);
     }
 

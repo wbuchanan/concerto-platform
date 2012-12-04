@@ -30,6 +30,9 @@ class User extends OModule {
     public $last_login = "";
     public $UserInstitutionType_id = 0;
     public $institution_name = "";
+    public $db_login = "";
+    public $db_password = "";
+    public $db_name = "";
     public static $mysql_table_name = "User";
 
     public function __construct($params = array()) {
@@ -50,7 +53,7 @@ class User extends OModule {
             return false;
         if ($hash != $user->calculate_password_recovery_hash())
             return false;
-        $pass = $user->get_new_password();
+        $pass = User::get_temp_password();
         $user->password = $user->calculate_raw_password_hash($pass);
         $user->mysql_save();
         User::mail_utf8($user->email, "no-reply@concerto.e-psychometrics.com", Language::string(428), sprintf(Language::string(430), $pass));
@@ -89,8 +92,12 @@ class User extends OModule {
         return mail($to, $subject, $message, $headers);
     }
 
-    public function get_new_password() {
+    public static function get_temp_password() {
         return rand(1000, 9999);
+    }
+
+    public static function generate_password() {
+        return md5(time() . rand(1000000000000000, 99999999999999999) . "ur");
     }
 
     public function get_UserInstitutionType() {
@@ -109,6 +116,27 @@ class User extends OModule {
         return null;
     }
 
+    public static function get_current_db() {
+        $logged_user = self::get_logged_user();
+        if ($logged_user == null)
+            return null;
+
+        if ($logged_user->db_name != $_SESSION['ptap_current_db']) {
+            return $logged_user->db_name;
+        }
+        return $_SESSION['ptap_current_db'];
+    }
+
+    public static function get_all_db() {
+        $result = array();
+        $sql = sprintf("SELECT `db_name` FROM `%s`", User::get_mysql_table());
+        $z = mysql_fetch_array($z);
+        while ($r = mysql_fetch_array($z)) {
+            array_push($result, $r['db_name']);
+        }
+        return $result;
+    }
+
     public static function log_in($login, $password) {
         $user = self::from_property(array(
                     "login" => $login
@@ -124,6 +152,7 @@ class User extends OModule {
 
             $_SESSION['ptap_logged_login'] = $login;
             $_SESSION['ptap_logged_password'] = $hash;
+            $_SESSION['ptap_current_db'] = $user->db_name;
         }
         return $user;
     }
@@ -131,6 +160,7 @@ class User extends OModule {
     public static function log_out() {
         unset($_SESSION['ptap_logged_login']);
         unset($_SESSION['ptap_logged_password']);
+        unset($_SESSION['ptap_current_db']);
     }
 
     public function get_last_login() {
@@ -148,29 +178,56 @@ class User extends OModule {
     }
 
     public function mysql_delete() {
-        $this->clear_object_links(Template::get_mysql_table(), "Owner_id");
-        $this->clear_object_links(Table::get_mysql_table(), "Owner_id");
-        $this->clear_object_links(Test::get_mysql_table(), "Owner_id");
-        $this->clear_object_links(QTIAssessmentItem::get_mysql_table(), "Owner_id");
+        $this->remove_db_user();
         $this->mysql_delete_object();
     }
 
     public function mysql_save_from_post($post) {
+        $is_new = $this->id == 0;
         $post['oid'] = parent::mysql_save_from_post($post);
         $obj = $this;
         if ($post['modify_password'] == 1) {
             $obj->password = $obj->calculate_password_hash($post['password_hash']);
             $obj->mysql_save();
         }
+
+        if ($is_new) {
+            $obj = User::from_mysql_id($post['oid']);
+            $obj->create_db_user($post['oid']);
+        }
+
         return $post['oid'];
     }
 
+    public function create_db_user() {
+        $user = Ini::$db_users_name_prefix . $this->id;
+        $password = self::generate_password();
+        $db_name = Ini::$db_users_db_name_prefix . $this->id;
+        $sql = sprintf("CREATE USER '%s'@'localhost' IDENTIFIED BY '%s';", $user, $password);
+        mysql_query($sql);
+        $this->db_login = $user;
+        $this->db_password = $password;
+        $this->db_name = $db_name;
+        $this->mysql_save();
+
+        $sql = sprintf("CREATE DATABASE `%s` DEFAULT CHARACTER SET utf8 COLLATE utf8_general_ci", $db_name);
+        mysql_query($sql);
+
+        $sql = sprintf("GRANT ALL PRIVILEGES ON `%s`.* TO '%s'@'localhost'", $db_name, $user);
+        mysql_query($sql);
+    }
+
+    public function remove_db_user() {
+        $sql = sprintf("DROP DATABASE `%s`", $this->db_name);
+        mysql_query($sql);
+
+        $sql = sprintf("DROP USER '%s'@'localhost'", $this->db_login);
+        mysql_query($sql);
+    }
+
     public function get_session_count() {
-        $sql = sprintf("SELECT SUM(`Test`.`session_count`) 
-            FROM `Test` 
-            LEFT JOIN `User` ON `User`.`id`=`Test`.`Owner_id`
-            WHERE `User`.`id`='%s'
-            GROUP BY `User`.`id`", $this->id);
+        $sql = sprintf("SELECT SUM(`%s`.`Test`.`session_count`) 
+            FROM `%s`.`Test`", $this->db_name, $this->db_name);
         $z = mysql_query($sql);
         while ($r = mysql_fetch_array($z)) {
             return $r[0];
@@ -223,19 +280,17 @@ class User extends OModule {
             if ($cols[$i]["property"] == "name") {
                 array_splice($cols, $i, 1);
                 $i--;
-            } 
+            }
         }
 
         return $cols;
     }
 
-    public static function create_db($delete = false) {
-        if ($delete) {
-            if (!mysql_query("DROP TABLE IF EXISTS `User`;"))
-                return false;
-        }
-        $sql = "
-            CREATE TABLE IF NOT EXISTS `User` (
+    public static function create_db($db = null) {
+        if ($db == null)
+            $db = Ini::$db_master_name;
+        $sql = sprintf("
+            CREATE TABLE IF NOT EXISTS `%s`.`User` (
             `id` bigint(20) NOT NULL auto_increment,
             `updated` timestamp NOT NULL default CURRENT_TIMESTAMP on update CURRENT_TIMESTAMP,
             `created` timestamp NOT NULL default '0000-00-00 00:00:00',
@@ -248,20 +303,29 @@ class User extends OModule {
             `last_login` timestamp NOT NULL default '0000-00-00 00:00:00',
             `UserInstitutionType_id` int(11) NOT NULL,
             `institution_name` text NOT NULL,
+            `db_login` text NOT NULL,
+            `db_password` text NOT NULL,
+            `db_name` text NOT NULL,
             PRIMARY KEY  (`id`)
             ) ENGINE=InnoDB  DEFAULT CHARSET=utf8;
-            ";
+            ", $db);
         if (!mysql_query($sql))
             return false;
 
-        $sql = "
-            INSERT INTO `User` (`id`, `updated`, `created`, `login`, `firstname`, `lastname`, `email`, `phone`, `password`, `last_login`) VALUES (NULL, CURRENT_TIMESTAMP, NOW(), 'admin', 'unknown', '', '', '', '', '0000-00-00 00:00:00');
-            ";
-        if (!mysql_query($sql))
-            return false;
-        $user = User::from_mysql_id(1);
-        $user->password = $user->calculate_raw_password_hash("admin");
-        return $user->mysql_save();
+        $admin_data = array(
+            "updated" => time(),
+            "created" => time(),
+            "login" => "admin",
+            "firstname" => "unknown",
+            "modify_password" => 0
+        );
+
+        $admin = new User();
+        $lid = $admin->mysql_save_from_post($admin_data);
+
+        $admin = User::from_mysql_id($lid);
+        $admin->password = $admin->calculate_raw_password_hash("admin");
+        return $admin->mysql_save();
     }
 
 }

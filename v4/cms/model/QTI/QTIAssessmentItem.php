@@ -67,7 +67,7 @@ class QTIAssessmentItem extends OModule {
         }
         return $result;
     }
-    
+
     public function get_variable_declaration_R_code() {
         //default outcome
         //default response
@@ -93,22 +93,22 @@ class QTIAssessmentItem extends OModule {
                         ", $response->identifier, $response->identifier, $val->get_text(), $response->identifier, $response->identifier, $val->get_text());
                 }
                 $code.=sprintf("
-                    %s <<- ".'concerto$convertToNumeric'."(%s)
-                    %s.default <<- ".'concerto$convertToNumeric'."(%s.default)
+                    %s <<- " . 'concerto$convertToNumeric' . "(%s)
+                    %s.default <<- " . 'concerto$convertToNumeric' . "(%s.default)
                     ", $response->identifier, $response->identifier, $response->identifier, $response->identifier);
             }
             if ($response->mapping != null) {
                 $code.=sprintf("
-                    %s.mapping.defaultValue <<- ".'concerto$convertToNumeric'."(%s)
+                    %s.mapping.defaultValue <<- " . 'concerto$convertToNumeric' . "(%s)
                     ", $response->identifier, $response->mapping->defaultValue);
                 if ($response->mapping->lowerBound != null) {
                     $code.=sprintf("
-                    %s.mapping.lowerBound <<- ".'concerto$convertToNumeric'."(%s)
+                    %s.mapping.lowerBound <<- " . 'concerto$convertToNumeric' . "(%s)
                     ", $response->identifier, $response->mapping->lowerBound);
                 }
                 if ($response->mapping->upperBound != null) {
                     $code.=sprintf("
-                    %s.mapping.upperBound <<- ".'concerto$convertToNumeric'."(%s)
+                    %s.mapping.upperBound <<- " . 'concerto$convertToNumeric' . "(%s)
                     ", $response->identifier, $response->mapping->upperBound);
                 }
                 $code.=sprintf("
@@ -141,8 +141,8 @@ class QTIAssessmentItem extends OModule {
                         ", $response->identifier, $response->identifier, $val->get_text(), $response->identifier, $response->identifier, $val->get_text());
                 }
                 $code.=sprintf("
-                    %s <<- ".'concerto$convertToNumeric'."(%s)
-                    %s.default <<- ".'concerto$convertToNumeric'."(%s.default)
+                    %s <<- " . 'concerto$convertToNumeric' . "(%s)
+                    %s.default <<- " . 'concerto$convertToNumeric' . "(%s.default)
                     ", $response->identifier, $response->identifier, $response->identifier, $response->identifier);
             }
         }
@@ -179,8 +179,8 @@ class QTIAssessmentItem extends OModule {
                         ", $template->identifier, $template->identifier, $val->get_text(), $template->identifier, $template->identifier, $val->get_text());
                 }
                 $code.=sprintf("
-                    %s <<- ".'concerto$convertToNumeric'."(%s)
-                    %s.default <<- ".'concerto$convertToNumeric'."(%s.default)
+                    %s <<- " . 'concerto$convertToNumeric' . "(%s)
+                    %s.default <<- " . 'concerto$convertToNumeric' . "(%s.default)
                     ", $template->identifier, $template->identifier, $template->identifier, $template->identifier);
             }
         }
@@ -197,7 +197,7 @@ class QTIAssessmentItem extends OModule {
                         ", $response->identifier, $response->identifier, $val->get_text());
                 }
                 $code.=sprintf("
-                    %s.correct <<- ".'concerto$convertToNumeric'."(%s.correct)
+                    %s.correct <<- " . 'concerto$convertToNumeric' . "(%s.correct)
                     ", $response->identifier, $response->identifier);
             }
         }
@@ -259,6 +259,7 @@ class QTIAssessmentItem extends OModule {
     }
 
     public function mysql_save() {
+
         $exclude = array("id", "updated", "root");
         if ($this->id == 0) {
             $this->created = date("Y-m-d H:i:s");
@@ -318,7 +319,6 @@ class QTIAssessmentItem extends OModule {
     }
 
     public function import_XML($xml) {
-
         $xpath = new DOMXPath($xml);
 
         $elements = $xpath->query("/export");

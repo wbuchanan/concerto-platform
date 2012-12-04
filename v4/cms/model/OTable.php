@@ -41,6 +41,7 @@ class OTable {
     }
 
     public static function find_xml_hash($hash) {
+
         $sql = sprintf("SELECT * FROM `%s` ORDER BY `id`", static::get_mysql_table());
         $z = mysql_query($sql);
         while ($r = mysql_fetch_array($z)) {
@@ -92,6 +93,7 @@ class OTable {
     }
 
     public function mysql_save() {
+
         $exclude = array("id", "updated");
         if ($this->id == 0) {
             $this->created = date("Y-m-d H:i:s");
@@ -142,6 +144,7 @@ class OTable {
     }
 
     public static function from_mysql_id($id) {
+
         $sql = sprintf("SELECT * FROM `%s` WHERE `id`='%d'", static::get_mysql_table(), $id);
         $z = mysql_query($sql);
         while ($r = mysql_fetch_array($z)) {

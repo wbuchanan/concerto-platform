@@ -50,7 +50,7 @@ if ($logged_user == null) {
         $sql = "SHOW TABLES";
         $z = mysql_query($sql);
         while ($r = mysql_fetch_array($z)) {
-            if (in_array($r[0], Ini::get_system_tables()) || (strpos($r[0], Table::get_table_prefix()) !== false && strpos($r[0], Table::get_table_prefix()) == 0))
+            if (in_array($r[0], Ini::get_user_system_tables()) || (strpos($r[0], Table::get_table_prefix()) !== false && strpos($r[0], Table::get_table_prefix()) == 0))
                 continue;
             ?>
             <option value="<?= $r[0] ?>"><?= $r[0] ?></option>

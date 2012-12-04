@@ -36,32 +36,29 @@ class DS_Module extends ODataSet {
         }
     }
 
-    public static function create_db($delete = false) {
-        if ($delete) {
-            if (!mysql_query("DROP TABLE IF EXISTS `DS_Module`;"))
-                return false;
-        }
-        $sql = "
-            CREATE TABLE IF NOT EXISTS `DS_Module` (
+    public static function create_db($db = null) {
+        if ($db == null)
+            $db = Ini::$db_master_name;
+        $sql = sprintf("
+            CREATE TABLE IF NOT EXISTS `%s`.`DS_Module` (
             `id` int(11) NOT NULL auto_increment,
             `name` text NOT NULL,
             `value` text NOT NULL,
             `position` int(11) NOT NULL,
             PRIMARY KEY  (`id`)
             ) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=8 ;
-            ";
+            " , $db);
         if (!mysql_query($sql))
             return false;
 
-        $sql = "
-            INSERT INTO `DS_Module` (`id`, `name`, `value`, `position`) VALUES
+        $sql = sprintf("
+            INSERT INTO `%s`.`DS_Module` (`id`, `name`, `value`, `position`) VALUES
             (1, 'HTML templates', 'Template', 1),
             (2, 'tables', 'Table', 2),
             (3, 'users', 'User', 3),
             (6, 'tests', 'Test', 6),
-            (7, 'custom test section', 'CustomSection', 7),
             (8, 'QTI assessment item', 'QTIAssessmentItem', 8);
-            ";
+            ", $db);
         return mysql_query($sql);
     }
 

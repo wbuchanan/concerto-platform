@@ -304,14 +304,16 @@ Test.uiRefreshLoader=function(oid){
 }
 
 Test.onScroll=function(){
-    if($(window).scrollTop()>$("#divTestResponse").offset().top){
-        $(".divTestVerticalElement").css("position","fixed");        
+    if($("#divTestResponse").length>0){
+        if($(window).scrollTop()>$("#divTestResponse").offset().top){
+            $(".divTestVerticalElement").css("position","fixed");        
                 
-        $(".divTestVerticalElement:eq(0)").css("top","0px");
-        $(".divTestVerticalElement:eq(1)").css("top",$(".divTestVerticalElement:eq(1)").css("height"));
+            $(".divTestVerticalElement:eq(0)").css("top","0px");
+            $(".divTestVerticalElement:eq(1)").css("top",$(".divTestVerticalElement:eq(1)").css("height"));
                 
-    } else {
-        $(".divTestVerticalElement").css("position","relative");
-        $(".divTestVerticalElement").css("top","auto");
+        } else {
+            $(".divTestVerticalElement").css("position","relative");
+            $(".divTestVerticalElement").css("top","auto");
+        }
     }
 }

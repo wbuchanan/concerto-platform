@@ -2,9 +2,11 @@
 //MySQL
 $db_host = "localhost";
 $db_port = "3306";
-$db_user = "db_user";
-$db_password = "db_password";
-$db_name = "db_name";
+$db_master_user = "db_master_user";
+$db_master_password = "db_password";
+$db_master_name = "db_master_name";
+$db_users_name_prefix = "concerto_";
+$db_users_db_name_prefix = "concerto_";
 
 //paths
 $path_external = "http://domain.com/"; //e.g. http://domain.com/concerto/

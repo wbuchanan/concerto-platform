@@ -50,7 +50,7 @@ class TableColumn extends OTable {
 
         $name = $xml->createElement("name", htmlspecialchars($this->name, ENT_QUOTES, "UTF-8"));
         $element->appendChild($name);
-        
+
         $table_id = $xml->createElement("Table_id", htmlspecialchars($this->Table_id, ENT_QUOTES, "UTF-8"));
         $element->appendChild($table_id);
 
@@ -71,7 +71,7 @@ class TableColumn extends OTable {
 
         $auto_increment = $xml->createElement("auto_increment", htmlspecialchars($this->auto_increment, ENT_QUOTES, "UTF-8"));
         $element->appendChild($auto_increment);
-        
+
         return $element;
     }
 
@@ -132,13 +132,11 @@ class TableColumn extends OTable {
         return true;
     }
 
-    public static function create_db($delete = false) {
-        if ($delete) {
-            if (!mysql_query("DROP TABLE IF EXISTS `TableColumn`;"))
-                return false;
-        }
-        $sql = "
-            CREATE TABLE IF NOT EXISTS `TableColumn` (
+    public static function create_db($db = null) {
+        if ($db == null)
+            $db = Ini::$db_master_name;
+        $sql = sprintf("
+            CREATE TABLE IF NOT EXISTS `%s`.`TableColumn` (
             `id` bigint(20) NOT NULL auto_increment,
             `updated` timestamp NOT NULL default CURRENT_TIMESTAMP on update CURRENT_TIMESTAMP,
             `created` timestamp NOT NULL default '0000-00-00 00:00:00',
@@ -153,7 +151,7 @@ class TableColumn extends OTable {
             `auto_increment` tinyint(1) NOT NULL,
             PRIMARY KEY  (`id`)
             ) ENGINE=InnoDB  DEFAULT CHARSET=utf8;
-            ";
+            ", $db);
         return mysql_query($sql);
     }
 

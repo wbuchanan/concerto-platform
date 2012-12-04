@@ -56,6 +56,9 @@ class Ini {
     public static $r_users_name_prefix = "concerto_";
     public static $r_users_group = "concerto";
     public static $apache_user = "www-data";
+    public static $db_users_name_prefix = "concerto_";
+    public static $db_users_db_name_prefix = "concerto_";
+    public static $db_master_name = "";
 
     function __construct($connect = true, $session = true, $headers = true) {
         //if (substr_count($_SERVER['HTTP_ACCEPT_ENCODING'], 'gzip')) ob_start("ob_gzhandler"); 
@@ -144,6 +147,9 @@ class Ini {
         self::$r_users_name_prefix = $r_users_name_prefix;
         self::$r_users_group = $r_users_group;
         self::$apache_user = $apache_user;
+        self::$db_users_name_prefix = $db_users_name_prefix;
+        self::$db_users_name_prefix = $db_users_name_prefix;
+        self::$db_master_name = $db_master_name;
     }
 
     public static function does_patch_apply($patch_version, $previous_version) {
@@ -159,12 +165,9 @@ class Ini {
         return false;
     }
 
-    public static function get_system_tables() {
+    public static function get_user_system_tables() {
         return array(
-            "DS_Module",
-            "DS_UserInstitutionType",
             "QTIAssessmentItem",
-            "Setting",
             "Table",
             "TableColumn",
             "TableIndex",
@@ -173,20 +176,63 @@ class Ini {
             "Test",
             "TestSession",
             "TestSessionReturn",
-            "TestVariable",
+            "TestVariable"
+        );
+    }
+
+    public static function get_master_system_tables() {
+        return array(
+            "DS_Module",
+            "DS_UserInstitutionType",
+            "Setting",
             "User",
             "UserR"
         );
     }
 
+    public static function create_db_structure($simulate = false) {
+        foreach (Ini::get_master_system_tables() as $table) {
+            $sql = sprintf("SHOW TABLES LIKE '%s'", $table);
+            $z = mysql_query($sql);
+            if (mysql_num_rows($z) == 0) {
+                if ($simulate) {
+                    return true;
+                } else {
+                    if (!$table::create_db())
+                        return json_encode(array("result" => 1, "param" => $table));
+                }
+            }
+        }
+
+        foreach(User::get_all_db() as $db_name){
+            foreach (Ini::get_user_system_tables() as $table) {
+                $sql = $sql = sprintf("SHOW TABLES IN `%s` LIKE '%s'", $db_name, $table);
+                $z2 = mysql_query($sql);
+                if (mysql_num_rows($z2) == 0) {
+                    if ($simulate) {
+                        return true;
+                    } else {
+                        if (!$table::create_db($db_name))
+                            return json_encode(array("result" => 1, "param" => $table));
+                    }
+                }
+            }
+        }
+
+        if ($simulate) {
+            return false;
+        }
+        return json_encode(array("result" => 0));
+    }
+
     private function initialize_db_connection() {
         include __DIR__ . "/SETTINGS.php";
-        $h = mysql_connect($db_host . ($db_port != "" ? ":" . $db_port : ""), $db_user, $db_password);
+        $h = mysql_connect($db_host . ($db_port != "" ? ":" . $db_port : ""), $db_master_user, $db_master_password);
         if (!$h)
             return false;
         mysql_set_charset('utf8', $h);
         mysql_query(sprintf("SET time_zone = '%s';", Ini::$mysql_timezone));
-        if (mysql_select_db($db_name, $h))
+        if (mysql_select_db($db_master_name, $h))
             return true;
         else
             return false;

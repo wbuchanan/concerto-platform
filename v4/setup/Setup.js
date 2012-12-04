@@ -480,6 +480,16 @@ Setup.steps = [
         "Install <b>RMySQL</b> package to main R library directory.",
         true     
         )
+    ,
+    new SetupStep(
+        false,
+        "<b>rjson</b> R package must be installed.",
+        "rjson_r_package_check",
+        "<b>rjson</b> package <b>IS INSTALLED</b> - <b style='color:green;'>PASSED</b>",
+        "<b>rjson</b> package <b>IS NOT INSTALLED</b> - <b style='color:red;'>FAILED</b>",
+        "Install <b>rjson</b> package to main R library directory.",
+        true     
+        )
     ];
 Setup.maxStep = Setup.steps.length;
 

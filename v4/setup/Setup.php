@@ -185,19 +185,19 @@ class Setup {
 
     public static function mysql_connection_check() {
         include'../SETTINGS.php';
-        if (@mysql_connect($db_host . ":" . $db_port, $db_user, $db_password))
-            return json_encode(array("result" => 0, "param" => "Host: <b>$db_host</b>, Port: <b>$db_port</b>, Login: <b>$db_user</b>"));
+        if (@mysql_connect($db_host . ":" . $db_port, $db_master_user, $db_master_password))
+            return json_encode(array("result" => 0, "param" => "Host: <b>$db_host</b>, Port: <b>$db_port</b>, Login: <b>$db_master_user</b>"));
         else
-            return json_encode(array("result" => 1, "param" => "Host: <b>$db_host</b>, Port: <b>$db_port</b>, Login: <b>$db_user</b>"));;
+            return json_encode(array("result" => 1, "param" => "Host: <b>$db_host</b>, Port: <b>$db_port</b>, Login: <b>$db_master_user</b>"));;
     }
 
     public static function mysql_select_db_check() {
         include'../SETTINGS.php';
         Setup::mysql_connection_check();
-        if (@mysql_select_db($db_name))
-            return json_encode(array("result" => 0, "param" => $db_name));
+        if (@mysql_select_db($db_master_name))
+            return json_encode(array("result" => 0, "param" => $db_master_name));
         else
-            return json_encode(array("result" => 1, "param" => $db_name));
+            return json_encode(array("result" => 1, "param" => $db_master_name));
     }
 
     public static function r_package_check($package) {
@@ -225,6 +225,15 @@ class Setup {
         return json_encode(array("result" => $return, "param" => "RMySQL"));
     }
 
+    public static function rjson_r_package_check() {
+        require '../Ini.php';
+        $ini = new Ini();
+        $array = array();
+        $return = 0;
+        exec('"' . Ini::$path_r_script . '" -e "library(rjson)"', $array, $return);
+        return json_encode(array("result" => $return, "param" => "rjson"));
+    }
+
     public static function session_r_package_check() {
         require '../Ini.php';
         $ini = new Ini();
@@ -234,50 +243,18 @@ class Setup {
         return json_encode(array("result" => $return, "param" => "session"));
     }
 
-    public static function create_db_structure($simulate = false) {
-        foreach (Ini::get_system_tables() as $table) {
-            $sql = sprintf("SHOW TABLES LIKE '%s'", $table);
-            $z = mysql_query($sql);
-            if (mysql_num_rows($z) == 0) {
-                if ($simulate) {
-                    return true;
-                } else {
-                    if (!$table::create_db())
-                        return json_encode(array("result" => 1, "param" => $table));
-                }
-            }
-        }
-        if ($simulate) {
-            return false;
-        }
-        return json_encode(array("result" => 0));
-    }
-
-    public static function reset_db() {
-        CustomSectionVariable::create_db(true);
-        DS_Module::create_db(true);
-        DS_UserInstitutionType::create_db(true);
-        Setting::create_db(true);
-        Table::create_db(true);
-        TableColumn::create_db(true);
-        Template::create_db(true);
-        Test::create_db(true);
-        TestSession::create_db(true);
-        TestSessionReturn::create_db(true);
-        TestVariable::create_db(true);
-        User::create_db(true);
-    }
-
     public static function update_db($simulate = false, $only_recalculate_hash = false, $only_validate_column_names = false, $only_create_db = false) {
         require '../Ini.php';
         $ini = new Ini();
 
         if ($only_create_db) {
-            return self::create_db_structure();
+            return Ini::create_db_structure();
         }
 
         if ($only_recalculate_hash) {
-            OModule::calculate_all_xml_hashes();
+            foreach (User::get_all_db() as $db) {
+                OModule::calculate_all_xml_hashes($db);
+            }
             return json_encode(array("result" => 0));
         }
 
@@ -317,7 +294,7 @@ class Setup {
          */
 
         if ($simulate)
-            return json_encode(array("versions" => $versions_to_update, "validate_column_names" => $validate_column_names, "recalculate_hash" => $recalculate_hash, "create_db" => self::create_db_structure(true)));
+            return json_encode(array("versions" => $versions_to_update, "validate_column_names" => $validate_column_names, "recalculate_hash" => $recalculate_hash, "create_db" => Ini::create_db_structure(true)));
         return json_encode(array("result" => 2));
     }
 

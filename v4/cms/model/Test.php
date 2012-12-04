@@ -325,7 +325,7 @@ class Test extends OModule {
                 array_push($post['returns'], $tv);
             }
         }
-        
+
         //FILL
 
         return $this->mysql_save_from_post($post);
@@ -347,7 +347,7 @@ class Test extends OModule {
 
         $open = $xml->createElement("open", htmlspecialchars($this->open, ENT_QUOTES, "UTF-8"));
         $element->appendChild($open);
-        
+
         $loader_Template_id = $xml->createElement("loader_Template_id", htmlspecialchars($this->loader_Template_id, ENT_QUOTES, "UTF-8"));
         $element->appendChild($loader_Template_id);
 
@@ -364,13 +364,11 @@ class Test extends OModule {
         return $element;
     }
 
-    public static function create_db($delete = false) {
-        if ($delete) {
-            if (!mysql_query("DROP TABLE IF EXISTS `Test`;"))
-                return false;
-        }
-        $sql = "
-            CREATE TABLE IF NOT EXISTS `Test` (
+    public static function create_db($db = null) {
+        if ($db == null)
+            $db = Ini::$db_master_name;
+        $sql = sprintf("
+            CREATE TABLE IF NOT EXISTS `%s`.`Test` (
             `id` bigint(20) NOT NULL auto_increment,
             `updated` timestamp NOT NULL default CURRENT_TIMESTAMP on update CURRENT_TIMESTAMP,
             `created` timestamp NOT NULL default '0000-00-00 00:00:00',
@@ -383,7 +381,7 @@ class Test extends OModule {
             `xml_hash` text NOT NULL,
             PRIMARY KEY  (`id`)
             ) ENGINE=InnoDB  DEFAULT CHARSET=utf8;
-            ";
+            ", $db);
         return mysql_query($sql);
     }
 
@@ -403,7 +401,7 @@ class Test extends OModule {
 
         return $cols;
     }
-    
+
     public function get_TestVariables() {
         return TestVariable::from_property(array("Test_id" => $this->id));
     }
