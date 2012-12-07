@@ -179,16 +179,21 @@ Methods.confirm=function(message,title,callback)
         close:function(){
         //$('.ui-widget-overlay').css('position', 'absolute');
         },
-        buttons:
+        buttons:[
         {
-            no:function(){
+            text:dictionary["s628"],
+            click:function(){
                 $(this).dialog("close");
-            },
-            yes:function(){
+            }
+        },
+        {
+            text:dictionary["s627"],
+            click:function(){
                 $(this).dialog("close");
                 callback.call(this);
             }
         }
+        ]
     });
 };
 
@@ -208,13 +213,15 @@ Methods.alert=function(message,icon,title,callback)
             //$('.ui-widget-overlay').css('position', 'absolute');
             if(callback!=null) callback.call(this);
         },
-        buttons:
+        buttons:[
         {
-            ok:function(){
+            text:dictionary["s629"],
+            click:function(){
                 $(this).dialog("close");
             //if(callback!=null) callback.call(this);
             }
         }
+        ]
     });
 }
 
@@ -505,54 +512,54 @@ Methods.checkLatestVersion=function(callback,proxy)
             callback.call(this,isNewerVersion?1:0,Methods.latestVersion);
         }
     });  
-    
-    Methods.iniDescriptionTooltips=function(){
-        $(".tooltipDescription").tooltip({
-            content:function(){
-                return dictionary["s104"]+"<hr/>"+$(this).next().val();
-            },
-            position:{
-                my: "left top", 
-                at: "left bottom", 
-                offset: "15 0"
-            }
-        });
-    }
-    
-    Methods.isCodeMirrorFullScreen = function(cm) {
-        return /\bCodeMirror-fullscreen\b/.test(cm.getWrapperElement().className);
-    }
-    Methods.winHeight=function() {
-        return window.innerHeight || (document.documentElement || document.body).clientHeight;
-    }
-    
-    Methods.winWidth=function() {
-        return window.innerWidth || (document.documentElement || document.body).clientWidth;
-    }
-    
-    Methods.setCodeMirrorFullScreen=function(cm, full) {
-        var wrap = cm.getWrapperElement();
-        if (full) {
-            wrap.className += " CodeMirror-fullscreen";
-            wrap.style.height = Methods.winHeight() + "px";
-            wrap.style.width = Methods.winWidth() + "px";
-            document.documentElement.style.overflow = "hidden";
-        } else {
-            wrap.className = wrap.className.replace(" CodeMirror-fullscreen", "");
-            wrap.style.height = "auto";
-            wrap.style.width = "";
-            document.documentElement.style.overflow = "";
-        }
-        cm.refresh();
-    }
-    
-    Methods.uiBlock=function(selector){ 
-        $(selector).blockUI({
-            message:dictionary["s319"]
-        });
-    }
-    
-    Methods.uiUnblock=function(selector){ 
-        $(selector).unblockUI();
-    }
 };
+
+Methods.iniDescriptionTooltips=function(){
+    $(".tooltipDescription").tooltip({
+        content:function(){
+            return dictionary["s104"]+"<hr/>"+$(this).next().val();
+        },
+        position:{
+            my: "left top", 
+            at: "left bottom", 
+            offset: "15 0"
+        }
+    });
+}
+    
+Methods.isCodeMirrorFullScreen = function(cm) {
+    return /\bCodeMirror-fullscreen\b/.test(cm.getWrapperElement().className);
+}
+Methods.winHeight=function() {
+    return window.innerHeight || (document.documentElement || document.body).clientHeight;
+}
+    
+Methods.winWidth=function() {
+    return window.innerWidth || (document.documentElement || document.body).clientWidth;
+}
+    
+Methods.setCodeMirrorFullScreen=function(cm, full) {
+    var wrap = cm.getWrapperElement();
+    if (full) {
+        wrap.className += " CodeMirror-fullscreen";
+        wrap.style.height = Methods.winHeight() + "px";
+        wrap.style.width = Methods.winWidth() + "px";
+        document.documentElement.style.overflow = "hidden";
+    } else {
+        wrap.className = wrap.className.replace(" CodeMirror-fullscreen", "");
+        wrap.style.height = "auto";
+        wrap.style.width = "";
+        document.documentElement.style.overflow = "";
+    }
+    cm.refresh();
+}
+    
+Methods.uiBlock=function(selector){ 
+    $(selector).block({
+        message:dictionary["s319"]
+    });
+}
+    
+Methods.uiUnblock=function(selector){ 
+    $(selector).unblock();
+}

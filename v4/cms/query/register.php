@@ -25,7 +25,7 @@ if (!isset($ini)) {
 }
 
 if (!Ini::$public_registration) {
-    echo json_encode(array("result" => -1));
+    echo json_encode(array("result" => -2));
     exit();
 }
 

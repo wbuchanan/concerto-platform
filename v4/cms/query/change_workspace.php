@@ -29,7 +29,7 @@ if ($logged_user == null) {
     exit();
 }
 
-if (!$logged_user->workspace_accessible($_POST['workspace'])) {
+if (!$logged_user->is_workspace_accessible($_POST['workspace'])) {
     echo json_encode(array("result" => -2));
     exit();
 }

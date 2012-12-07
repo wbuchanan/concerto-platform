@@ -193,7 +193,7 @@ class Ini {
 
     public static function create_db_structure($simulate = false) {
         foreach (Ini::get_master_system_tables() as $table) {
-            $sql = sprintf("SHOW TABLES LIKE '%s'", $table);
+            $sql = sprintf("SHOW TABLES IN `%s` LIKE '%s'", Ini::$db_master_name, $table);
             $z = mysql_query($sql);
             if (mysql_num_rows($z) == 0) {
                 if ($simulate) {

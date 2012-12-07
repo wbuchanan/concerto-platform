@@ -215,15 +215,14 @@ class User extends OModule {
                 $post['superuser'] = 0;
         }
         $post['oid'] = parent::mysql_save_from_post($post);
-        $obj = $this;
+        $obj = User::from_mysql_id($post['oid']);
         if ($post['modify_password'] == 1) {
             $obj->password = $obj->calculate_password_hash($post['password_hash']);
             $obj->mysql_save();
         }
 
         if ($is_new) {
-            $obj = User::from_mysql_id($post['oid']);
-            $obj->create_db_user($post['oid']);
+            $obj->create_db_user();
         }
 
         return $post['oid'];
@@ -245,6 +244,8 @@ class User extends OModule {
 
         $sql = sprintf("GRANT ALL PRIVILEGES ON `%s`.* TO '%s'@'localhost'", $db_name, $user);
         mysql_query($sql);
+
+        Ini::create_db_structure();
     }
 
     public function remove_db_user() {

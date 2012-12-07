@@ -65,7 +65,7 @@ OModule.inheritance=function(obj)
                     location.reload();
                     break;
                 }
-                case OModule.queryResults.accessDenied:{
+                case -2:{
                     Methods.alert(dictionary["s389"], "alert", dictionary["s387"]);
                     break;
                 }

@@ -36,7 +36,6 @@ if (!isset($ini)) {
         <link rel="stylesheet" href="../css/QTI.css?timestamp=<?= time() ?>" />
         <link rel="stylesheet" href="css/jQueryUI/cupertino/jquery-ui-1.9.2.custom.min.css?timestamp=<?= time() ?>" />
 
-        <link rel="stylesheet" href="js/lib/loadmask/jquery.loadmask.css?timestamp=<?= time() ?>" />
         <link rel="stylesheet" href="js/lib/selectmenu/jquery.ui.selectmenu.css?timestamp=<?= time() ?>" />
         <link rel="stylesheet" href="js/lib/kendo-ui/styles/kendo.common.min.css?timestamp=<?= time() ?>" />
         <link rel="stylesheet" href="js/lib/kendo-ui/styles/kendo.default.min.css?timestamp=<?= time() ?>" />
@@ -48,7 +47,6 @@ if (!isset($ini)) {
         <script type="text/javascript" src="js/lib/jquery-ui-1.9.2.custom.min.js?timestamp=<?= time() ?>"></script>
         <script type="text/javascript" src="js/lib/selectmenu/jquery.ui.selectmenu.js?timestamp=<?= time() ?>"></script>
         <script type="text/javascript" src="js/lib/jquery.json-2.3.min.js?timestamp=<?= time() ?>"></script>
-        <script type="text/javascript" src="js/lib/loadmask/jquery.loadmask.min.js?timestamp=<?= time() ?>"></script>
         <script type="text/javascript" src="js/lib/jsSHA/src/sha512.js?timestamp=<?= time() ?>"></script>
         <script type="text/javascript" src="js/lib/jquery.blockUI.js?timestamp=<?= time() ?>"></script>
 

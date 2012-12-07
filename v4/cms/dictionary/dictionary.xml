@@ -6048,5 +6048,55 @@ Note: You can add new languages by inserting "<new_language>string translated in
             <nl></nl>
             <br></br>
         </string>
+        <string id="627" js="1">
+            <en>yes</en>
+            <de></de>
+            <pl>tak</pl>
+            <cn></cn>
+            <fr></fr>
+            <bg></bg>
+            <nl></nl>
+            <br></br>
+        </string>
+        <string id="628" js="1">
+            <en>no</en>
+            <de></de>
+            <pl>nie</pl>
+            <cn></cn>
+            <fr></fr>
+            <bg></bg>
+            <nl></nl>
+            <br></br>
+        </string>
+        <string id="629" js="1">
+            <en>ok</en>
+            <de></de>
+            <pl>ok</pl>
+            <cn></cn>
+            <fr></fr>
+            <bg></bg>
+            <nl></nl>
+            <br></br>
+        </string>
+        <string id="630" js="1">
+            <en>changing workspace</en>
+            <de></de>
+            <pl>zmienianie przestrzeni pracy</pl>
+            <cn></cn>
+            <fr></fr>
+            <bg></bg>
+            <nl></nl>
+            <br></br>
+        </string>
+        <string id="631" js="1">
+            <en>Workspace changed.</en>
+            <de></de>
+            <pl>Przestrzeń pracy zmieniona.</pl>
+            <cn></cn>
+            <fr></fr>
+            <bg></bg>
+            <nl></nl>
+            <br></br>
+        </string>
     </strings>
 </root> 

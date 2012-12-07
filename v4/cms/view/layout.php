@@ -82,6 +82,8 @@ if ($logged_user == null) {
             }
         });
         
+        User.previousWorkspace = $("#selectWorkspace").val();
+        
 <?php
 if (Ini::$cms_session_keep_alive) {
     ?>
@@ -107,9 +109,9 @@ if (Ini::$cms_session_keep_alive) {
                         <td><?= Language::string(625) ?></td>
                         <td><span class="tooltip spanIcon ui-icon ui-icon-help" title="<?= Language::string(626) ?>"></span></td>
                         <td>
-                            <select class="ui-widget-content ui-corner-all" onchange="User.changeWorkspace(this)">
+                            <select id="selectWorkspace" class="ui-widget-content ui-corner-all" onchange="User.uiChangeWorkspace(this)">
                                 <?php $current_db = User::get_current_db(); ?>
-                                <option value="<?= $logged_user->db_name ?>" <?= $current_db == $logged_user->db_name ? "checked" : "" ?> ><?= $logged_user->id . ". " . $logged_user->get_full_name() ?></option>
+                                <option value="<?= $logged_user->db_name ?>" <?= $current_db == $logged_user->db_name ? "selected" : "" ?> ><?= $logged_user->id . ". " . $logged_user->get_full_name() ?></option>
                                 <?php
                                 $sql = "";
                                 if ($logged_user->superuser == 0) {
@@ -126,7 +128,7 @@ if (Ini::$cms_session_keep_alive) {
                                 while ($r = mysql_fetch_array($z)) {
                                     $user = User::from_mysql_id($r[0]);
                                     ?>
-                                    <option value="<?= $user->db_name ?>" <?= $current_db == $user->db_name ? "checked" : "" ?> ><?= $user->id . ". " . $user->get_full_name() ?></option>
+                                    <option value="<?= $user->db_name ?>" <?= $current_db == $user->db_name ? "selected" : "" ?> ><?= $user->id . ". " . $user->get_full_name() ?></option>
                                     <?php
                                 }
                                 ?>

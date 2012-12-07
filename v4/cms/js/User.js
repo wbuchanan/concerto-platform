@@ -78,16 +78,40 @@ User.getFullSaveObject=function()
     return obj;
 }
 
-User.changeWorkspace=function(obj){
-    var workspace = $(obj).val();
+User.previousWorkspace = null;
+User.uiChangeWorkspace=function(obj){
+    var thisClass = this;
+    var obj = $(obj);
+    var newWorkspace = obj.val();
     
-    $.post("query/change_workspace.php",{
-        workspace:workspace
-    },function(data){
-        switch(data.result){
-        //TODO continue here...
-        }
-    },"json");
+    Methods.confirmUnsavedLost(function(){
+        $.post("query/change_workspace.php",{
+            workspace:newWorkspace
+        },function(data){
+            switch(data.result){
+                case OModule.queryResults.OK:{
+                    obj.val(newWorkspace);
+                    Methods.alert(dictionary["s631"], "info", dictionary["s630"], function(){
+                        Methods.modalLoading();
+                        Methods.reload(thisClass.reloadHash);
+                    });
+                    break;
+                }
+                case OModule.queryResults.notLoggedIn:{
+                    Methods.alert(dictionary["s278"], "alert", dictionary["s630"],function(){
+                        Methods.modalLoading();
+                        Methods.reload(thisClass.reloadHash); 
+                    });
+                    break;     
+                }
+                case OModule.queryResults.accessDenied:{
+                    Methods.alert(dictionary["s81"], "alert", dictionary["s630"]);
+                    break;
+                }
+            }
+        },"json");
+    });
+    obj.val(User.previousWorkspace);
 }
 
 User.uiSaveValidate=function(ignoreOnBefore,isNew){
@@ -118,17 +142,17 @@ User.uiSaveValidate=function(ignoreOnBefore,isNew){
         })]
     },function(data){
         switch(data.result){
-            case 0: {
+            case OModule.queryResults.OK: {
                 User.uiSaveValidated(ignoreOnBefore,isNew);
                 break;
             }
             case 1:{
                 Methods.alert(dictionary["s336"],"alert",dictionary["s274"]);
-                return false;    
+                break;   
             }
-            case -1:{
+            case OModule.queryResults.notLoggedIn:{
                 Methods.alert(dictionary["s278"], "alert", dictionary["s274"]);
-                return false;
+                break;
             }
         }
     },"json");
@@ -167,7 +191,7 @@ User.register = function(){
         })]
     },function(data){
         switch(data.result){
-            case 0: {
+            case OModule.queryResults.OK: {
                 var hash = User.getClientHash(login,password);
                 $.post("query/register.php",{
                     login:login,
@@ -186,7 +210,7 @@ User.register = function(){
                             });
                             break;
                         }
-                        case -1:{
+                        case OModule.queryResults.accessDenied:{
                             Methods.alert(dictionary["s81"], "alert", dictionary["s410"]);
                             break;
                         }
@@ -199,7 +223,7 @@ User.register = function(){
                 Methods.alert(dictionary["s336"],"alert",dictionary["s410"]);
                 return;    
             }
-            case -1:{
+            case OModule.queryResults.notLoggedIn:{
                 Methods.alert(dictionary["s278"], "alert", dictionary["s410"]);
                 return;
             }
@@ -220,7 +244,7 @@ User.uiPasswordRecovery=function(){
         login:login
     },function(data){
         switch(data.result){
-            case 0:{
+            case OModule.queryResults.OK:{
                 Methods.alert(dictionary["s432"],"info",dictionary["s427"]);
                 break;
             }
