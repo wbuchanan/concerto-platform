@@ -101,6 +101,40 @@ if (Ini::$cms_session_keep_alive) {
             <li><a href="#tnd_mainMenu-templates" class="tooltipTabs" title="<?= Language::string(195) ?>"><?= Language::string(167) ?></a></li>
             <li><a href="#tnd_mainMenu-tables" class="tooltipTabs" title="<?= Language::string(196) ?>"><?= Language::string(85) ?></a></li>
             <li><a href="#tnd_mainMenu-users" class="tooltipTabs" title="<?= Language::string(197) ?>"><?= Language::string(198) ?></a></li>
+            <div style="float:right;">
+                <table>
+                    <tr>
+                        <td><?= Language::string(625) ?></td>
+                        <td><span class="tooltip spanIcon ui-icon ui-icon-help" title="<?= Language::string(626) ?>"></span></td>
+                        <td>
+                            <select class="ui-widget-content ui-corner-all" onchange="User.changeWorkspace(this)">
+                                <?php $current_db = User::get_current_db(); ?>
+                                <option value="<?= $logged_user->db_name ?>" <?= $current_db == $logged_user->db_name ? "checked" : "" ?> ><?= $logged_user->id . ". " . $logged_user->get_full_name() ?></option>
+                                <?php
+                                $sql = "";
+                                if ($logged_user->superuser == 0) {
+                                    $sql = sprintf("SELECT `%s`.`User`.`id` FROM `%s`.`User` 
+                                    RIGHT JOIN `%s`.`UserShare ON `%s`.`UserShare`.`owner_id`=`%s`.`User`.`id`
+                                    WHERE `%s`.`UserShare`.`invitee_id`=%d AND `%s`.`User`.`id`!=%d
+                                    ORDER BY `%s`.`User`.`id` ASC", Ini::$db_master_name, Ini::$db_master_name, Ini::$db_master_name, Ini::$db_master_name, Ini::$db_master_name, Ini::$db_master_name, $logged_user->id, Ini::$db_master_name, $logged_user->id, Ini::$db_master_name);
+                                } else {
+                                    $sql = sprintf("SELECT `id` FROM `%s`.`User`
+                                    WHERE `id`!=%d
+                                    ORDER BY `id`", Ini::$db_master_name, $logged_user->id);
+                                }
+                                $z = mysql_query($sql);
+                                while ($r = mysql_fetch_array($z)) {
+                                    $user = User::from_mysql_id($r[0]);
+                                    ?>
+                                    <option value="<?= $user->db_name ?>" <?= $current_db == $user->db_name ? "checked" : "" ?> ><?= $user->id . ". " . $user->get_full_name() ?></option>
+                                    <?php
+                                }
+                                ?>
+                            </select>
+                        </td>
+                    </tr>
+                </table>
+            </div>
         </ul>
 
         <div id="tnd_mainMenu-tests">

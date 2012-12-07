@@ -6008,5 +6008,45 @@ Note: You can add new languages by inserting "<new_language>string translated in
             <nl></nl>
             <br></br>
         </string>
+        <string id="623">
+            <en>super user</en>
+            <de></de>
+            <pl>super uż.</pl>
+            <cn></cn>
+            <fr></fr>
+            <bg></bg>
+            <nl></nl>
+            <br></br>
+        </string>
+        <string id="624">
+            <en>Super user can manage user list and switch to database of every other user.</en>
+            <de></de>
+            <pl>Super użytkownik może zarządzać listą użytkowników, oraz przejść na bazę dowolnego, innego użytkownika.</pl>
+            <cn></cn>
+            <fr></fr>
+            <bg></bg>
+            <nl></nl>
+            <br></br>
+        </string>
+        <string id="625">
+            <en>current workspace:</en>
+            <de></de>
+            <pl>obecna przestrzeń pracy:</pl>
+            <cn></cn>
+            <fr></fr>
+            <bg></bg>
+            <nl></nl>
+            <br></br>
+        </string>
+        <string id="626">
+            <en>Choose the workspace you want to switch to. You need to be invited by other users to their workspace before you can switch to it.</en>
+            <de></de>
+            <pl>Wybierz przestrzeń pracy na którą chcesz przejść. Musisz zostać zaproszony przez innych użytkowników do ich przestrzeni zanim będziesz mógł do niej przejść.</pl>
+            <cn></cn>
+            <fr></fr>
+            <bg></bg>
+            <nl></nl>
+            <br></br>
+        </string>
     </strings>
 </root> 

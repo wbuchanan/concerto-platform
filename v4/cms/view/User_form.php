@@ -52,8 +52,7 @@ if ($oid > 0) {
 
     $caption = $edit_caption . " #" . $oid;
     $buttons = $btn_cancel . $btn_save . $btn_save_new . $btn_delete;
-}
-else {
+} else {
     $obj = new $class_name();
     $caption = $new_caption;
     $buttons = "";
@@ -215,9 +214,29 @@ if ($oid != 0) {
             </table>
         </div>       
 
+        <?php
+        if ($logged_user->superuser) {
+            ?>
+            <div class="divFormElement">
+                <table class="fullWidth">
+                    <tr>
+                        <td class="noWrap tdFormLabel"><?= Language::string(623) ?>:</td>
+                        <td class="tdFormIcon"><span class="tooltip spanIcon ui-icon ui-icon-help" title="<?= Language::string(624) ?>"></span></td>
+                        <td>
+                            <div class="divFormControl">
+                                <input type="checkbox" id="form<?= $class_name ?>CheckboxSuperuser" <?= $obj->superuser == 1 ? "checked" : "" ?> class="ui-widget-content ui-corner-all" />
+                            </div>
+                        </td>
+                    </tr>
+                </table>
+            </div>       
+            <?php
+        }
+        ?>
+
         <div style="clear: left;" />
     </fieldset>
-    
+
     <?php
     if ($oid != -1) {
         ?>

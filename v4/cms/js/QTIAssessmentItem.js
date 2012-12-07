@@ -73,11 +73,11 @@ QTIAssessmentItem.uiSaveValidate=function(ignoreOnBefore,isNew){
 QTIAssessmentItem.uiRevalidate=function(){
     var thisClass = this;
     var xml = $("#form"+this.className+"TextareaXML").val();
-    $("#div"+thisClass.className+"Validation").mask(dictionary["s319"]);
+    Methods.uiBlock("#div"+thisClass.className+"Validation");
     $.post("query/QTIAssessmentItem_revalidate.php",{
         xml:xml
     },function(data){
-        $("#div"+thisClass.className+"Validation").unmask();
+        Methods.uiUnblock("#div"+thisClass.className+"Validation");
         if(data.result==0){
             $("#div"+thisClass.className+"Validation").removeClass("ui-state-error");
             $("#div"+thisClass.className+"Validation").addClass("ui-state-highlight");
@@ -86,11 +86,11 @@ QTIAssessmentItem.uiRevalidate=function(){
             $("#div"+thisClass.className+"Validation").addClass("ui-state-error");
         }
         switch(data.result){
-            case -1:{
+            case OModule.queryResults.notLoggedIn:{
                 location.reload();
                 break;
             }
-            case 0:{
+            case OModule.queryResults.OK:{
                 $("#div"+thisClass.className+"Validation").html("<b>" + dictionary["s470"] + "</b>");
                 break;
             }

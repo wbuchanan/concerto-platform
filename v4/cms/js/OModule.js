@@ -45,12 +45,6 @@ OModule.inheritance=function(obj)
         }
         return true;
     }
-        
-    obj.highlightCurrentElement=function()
-    {
-        $(".row"+this.className+" td").removeClass("ui-state-highlight");
-        $("#row"+this.className+this.currentID+" td").addClass("ui-state-highlight");
-    };
     
     obj.download=function(oid){
         var thisClass = this;
@@ -59,19 +53,19 @@ OModule.inheritance=function(obj)
             oid:oid
         },function(data){
             switch(data.result){
-                case 0:{
+                case OModule.queryResults.OK:{
                     $("#divDialogDownload").dialog("close");
                     Methods.alert(dictionary["s388"], "info", dictionary["s387"]);
                     if(thisClass.onAfterImport) thisClass.onAfterImport();
                     thisClass.uiReload(data.oid);
                     break;
                 }
-                case -1:{
+                case OModule.queryResults.notLoggedIn:{
                     Methods.alert(dictionary["s278"], "alert", dictionary["s387"]);
                     location.reload();
                     break;
                 }
-                case -3:{
+                case OModule.queryResults.accessDenied:{
                     Methods.alert(dictionary["s389"], "alert", dictionary["s387"]);
                     break;
                 }
@@ -283,12 +277,12 @@ OModule.inheritance=function(obj)
             revision:$("#inputDialogUploadRevision").val()
         },function(data){
             switch(parseInt(data.result)){
-                case 0:{
+                case OModule.queryResults.OK:{
                     $("#divDialogUpload").dialog("close");
                     Methods.alert(dictionary["s384"], "info", dictionary["s382"]);
                     break;
                 }
-                case -1:{
+                case OModule.queryResults.notLoggedIn:{
                     Methods.alert(dictionary["s278"], "alert", dictionary["s382"]);
                     location.reload();
                     break;
@@ -436,15 +430,14 @@ OModule.inheritance=function(obj)
             this.uiShowList();
         }
         
-        $("#div"+thisClass.className+"Form").mask(dictionary["s319"]);
+        Methods.uiBlock("#div"+thisClass.className+"Form");
         $.post("view/"+this.className+"_form.php",
         {
             oid:oid
         },
         function(data){
-            $("#div"+thisClass.className+"Form").unmask();
+            Methods.uiUnblock("#div"+thisClass.className+"Form");
             $("#div"+thisClass.className+"Form").html(data);
-            thisClass.highlightCurrentElement();
             if(thisClass.onAfterEdit) thisClass.onAfterEdit();
             if(callback!=null) callback.call(thisClass);
         });
@@ -453,11 +446,11 @@ OModule.inheritance=function(obj)
     obj.uiList=function()
     {
         var thisClass = this;
-        $("#div"+thisClass.className+"List").mask(dictionary["s319"]);
+        Methods.uiBlock("#div"+thisClass.className+"List");
         var grid = $("#div"+thisClass.className+"Grid").data("kendoGrid");
         grid.dataSource.read(); 
         grid.refresh();
-        $("#div"+thisClass.className+"List").unmask();
+        Methods.uiUnblock("#div"+thisClass.className+"List");
     };
 	
     obj.uiDelete=function(oid,ignoreOnBefore)
@@ -497,7 +490,7 @@ OModule.inheritance=function(obj)
             {
                 if(thisClass.reloadOnModification) Methods.stopModalLoading();
                 switch(data.result){
-                    case 0:{
+                    case OModule.queryResults.OK:{
                         if(!isArray) thisClass.uiListCheckRemove(oid);
                         else {
                             thisClass.checkedList = [];
@@ -513,7 +506,7 @@ OModule.inheritance=function(obj)
                         }
                         break;
                     }
-                    case -1:{
+                    case OModule.queryResults.notLoggedIn:{
                         Methods.alert(dictionary["s278"], "alert", dictionary["s273"],function(){
                             Methods.modalLoading();
                             Methods.reload(thisClass.reloadHash); 
@@ -552,7 +545,6 @@ OModule.inheritance=function(obj)
                     },
                     send: function (e, data) {
                         Methods.modalProgress();
-                        $("#div"+thisClass.className+"DialogImport").dialog("close");
                     },
                     progress: function(e,data) {
                         var progress = parseInt(data.loaded / data.total * 100, 10);
@@ -562,21 +554,21 @@ OModule.inheritance=function(obj)
                         $.each(data.result, function (index, file) {
                             Table.isFileUploaded = true;
                             Methods.confirm(dictionary["s269"], dictionary["s29"], function(){
-                                $("#div"+thisClass.className+"DialogImport").parent().mask(dictionary["s319"]);
+                                Methods.uiBlock($("#div"+thisClass.className+"DialogImport").parent());
                                 $.post("query/import_object.php",{
                                     class_name:thisClass.className,
                                     file:file.name
                                 },function(data){
-                                    $("#div"+thisClass.className+"DialogImport").parent().unmask();
+                                    Methods.uiUnblock($("#div"+thisClass.className+"DialogImport").parent());
                                     $("#div"+thisClass.className+"DialogImport").dialog("close");
                                     switch(data.result){
-                                        case 0:{
+                                        case OModule.queryResults.OK:{
                                             Methods.alert(dictionary["s270"], "info", dictionary["s268"]);
                                             thisClass.uiReload(data.oid);
                                             if(thisClass.onAfterImport) thisClass.onAfterImport();
                                             break;
                                         }
-                                        case -1:{
+                                        case OModule.queryResults.notLoggedIn:{
                                             Methods.alert(dictionary["s278"], "alert", dictionary["s268"]);
                                             location.reload();
                                             break;
@@ -585,16 +577,18 @@ OModule.inheritance=function(obj)
                                             Methods.alert(dictionary["s271"], "alert", dictionary["s268"]);
                                             break;
                                         }
+                                        //incorrect file
                                         case -4:{
                                             Methods.alert(dictionary["s333"], "alert", dictionary["s268"]);
                                             break;
                                         }
+                                        //version mismatch
                                         case -5:{
                                             Methods.alert(dictionary["s370"], "alert", dictionary["s268"]);
                                             break;
                                         }
                                         //transaction error
-                                        case -6:{
+                                        case OModule.queryResults.transactionError:{
                                             Methods.alert(dictionary["s616"]+data.message, "alert", dictionary["s268"]);  
                                             break;
                                         }
@@ -645,8 +639,8 @@ OModule.inheritance=function(obj)
             }
         }
         
-        $("#divAddFormDialog").parent().mask(dictionary["s319"]);
-        $("#div"+thisClass.className+"Form").mask(dictionary["s319"]);
+        Methods.uiBlock($("#divAddFormDialog").parent());
+        Methods.uiBlock("#div"+thisClass.className+"Form");
         
         var params = {};
         if(this.currentID==0&&!isNew) params = this.getAddSaveObject();
@@ -658,8 +652,8 @@ OModule.inheritance=function(obj)
             params,
             function(data)
             {
-                $("#divAddFormDialog").parent().unmask();
-                $("#div"+thisClass.className+"Form").unmask();
+                Methods.uiUnblock($("#divAddFormDialog").parent());
+                Methods.uiUnblock("#div"+thisClass.className+"Form");
                 if(thisClass.currentID==0) $("#divAddFormDialog").dialog("close");
                 
                 if(thisClass.reloadOnModification || simulate) { 
@@ -667,7 +661,7 @@ OModule.inheritance=function(obj)
                 }
                 
                 switch(data.result){
-                    case 0:{
+                    case OModule.queryResults.OK:{
                         if(simulate){
                             thisClass.uiSaveValidated(ignoreOnBefore,isNew,false);
                         }
@@ -694,16 +688,14 @@ OModule.inheritance=function(obj)
                         }
                         break;
                     }
-                    //not logged in
-                    case -1:{
+                    case OModule.queryResults.notLoggedIn:{
                         Methods.alert(dictionary["s278"], "alert", dictionary["s274"],function(){
                             Methods.modalLoading();
                             Methods.reload(thisClass.reloadHash); 
                         });
                         break;     
                     }
-                    //transaction error
-                    case -6:{
+                    case OModule.queryResults.transactionError:{
                         Methods.alert(dictionary["s616"]+data.message, "alert", dictionary["s274"]);  
                         break;
                     }
@@ -812,3 +804,10 @@ OModule.inheritance=function(obj)
         }); 
     }
 };
+
+OModule.queryResults = {
+    OK:0,
+    notLoggedIn:-1,
+    accessDenied:-2,
+    transactionError:-6
+}

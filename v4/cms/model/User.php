@@ -23,8 +23,8 @@ class User extends OModule {
 
     public $login = "incognito";
     public $firstname = "unknown";
-    public $lastname = "unknown";
-    public $email = "unknown";
+    public $lastname = "";
+    public $email = "";
     public $phone = "";
     public $password = "";
     public $last_login = "";
@@ -33,6 +33,7 @@ class User extends OModule {
     public $db_login = "";
     public $db_password = "";
     public $db_name = "";
+    public $superuser = 0;
     public static $mysql_table_name = "User";
     public static $is_master_table = true;
 
@@ -46,6 +47,22 @@ class User extends OModule {
 
     public function get_UserR() {
         return UserR::from_property(array("User_id" => $this->id), false);
+    }
+
+    public function is_workspace_accessible($db) {
+        if ($this->superuser == 1)
+            return true;
+        $shares = UserShare::from_property(array("invitee_id" => $this->id));
+        foreach ($shares as $share) {
+            $user = User::from_mysql_id($share->owner_id);
+            if ($user->db_name == $db)
+                return true;
+        }
+        return false;
+    }
+
+    public static function change_workspace($db) {
+        $_SESSION['ptap_current_db'] = $db;
     }
 
     public static function recover_password($id, $hash) {
@@ -123,7 +140,7 @@ class User extends OModule {
         if ($logged_user == null)
             return null;
 
-        if ($logged_user->db_name != $_SESSION['ptap_current_db']) {
+        if (!$logged_user->is_workspace_accessible($_SESSION['ptap_current_db'])) {
             return $logged_user->db_name;
         }
         return $_SESSION['ptap_current_db'];
@@ -181,11 +198,22 @@ class User extends OModule {
 
     public function mysql_delete() {
         $this->remove_db_user();
+        $this->remove_shares();
         $this->mysql_delete_object();
+    }
+
+    public function remove_shares() {
+        $this->delete_object_links(UserShare::get_mysql_table(), "owner_id");
+        $this->delete_object_links(UserShare::get_mysql_table(), "invitee_id");
     }
 
     public function mysql_save_from_post($post) {
         $is_new = $this->id == 0;
+        if (array_key_exists("superuser", $post)) {
+            $logged_user = User::get_logged_user();
+            if ($logged_user == null || $logged_user->superuser == 0)
+                $post['superuser'] = 0;
+        }
         $post['oid'] = parent::mysql_save_from_post($post);
         $obj = $this;
         if ($post['modify_password'] == 1) {
@@ -308,6 +336,7 @@ class User extends OModule {
             `db_login` text NOT NULL,
             `db_password` text NOT NULL,
             `db_name` text NOT NULL,
+            `superuser` tinyint(1) NOT NULL,
             PRIMARY KEY  (`id`)
             ) ENGINE=InnoDB  DEFAULT CHARSET=utf8;
             ", $db);
@@ -327,6 +356,7 @@ class User extends OModule {
 
         $admin = User::from_mysql_id($lid);
         $admin->password = $admin->calculate_raw_password_hash("admin");
+        $admin->superuser = 1;
         return $admin->mysql_save();
     }
 

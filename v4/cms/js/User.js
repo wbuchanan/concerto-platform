@@ -66,6 +66,7 @@ User.getAddSaveObject=function()
         UserInstitutionType_id:$("#form"+this.className+"SelectInstitutionType").val(),
         institution_name:$("#form"+this.className+"InputInstitutionName").val(),
         modify_password:$("#form"+this.className+"CheckboxPassword").is(":checked")?1:0,
+        superuser:$("#form"+this.className+"CheckboxSuperuser").length==1&&$("#form"+this.className+"CheckboxSuperuser").is(":checked")?1:0,
         password_hash:hash
     };
 };
@@ -75,6 +76,18 @@ User.getFullSaveObject=function()
     var obj = this.getAddSaveObject();
     
     return obj;
+}
+
+User.changeWorkspace=function(obj){
+    var workspace = $(obj).val();
+    
+    $.post("query/change_workspace.php",{
+        workspace:workspace
+    },function(data){
+        switch(data.result){
+        //TODO continue here...
+        }
+    },"json");
 }
 
 User.uiSaveValidate=function(ignoreOnBefore,isNew){
@@ -276,14 +289,14 @@ User.uiLogIn=function()
     var password = $("#dd_login_inp_password").val();
     var hash = User.getClientHash(login,password);
     
-    $("#dd_login").parent().mask(dictionary["s319"]);
+    Methods.uiBlock($("#dd_login").parent());
     $.post("query/log_in.php",
     {
         login:login,
         password:hash
     },
     function(data){
-        $("#dd_login").parent().unmask();
+        Methods.uiUnblock($("#dd_login").parent());
         if(data.success==1)
         {
             $("#dd_login").dialog("close");

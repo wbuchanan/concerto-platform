@@ -31,10 +31,10 @@ if (!isset($ini)) {
         <meta charset="UTF-8">
         <title>Concerto Platform - setup page</title>
         <link rel="stylesheet" href="../cms/css/styles.css?timestamp=<?= time() ?>" />
-        <link rel="stylesheet" href="../cms/css/jQueryUI/cupertino/jquery-ui-1.9.1.custom.min.css?timestamp=<?= time() ?>" />
+        <link rel="stylesheet" href="../cms/css/jQueryUI/cupertino/jquery-ui-1.9.2.custom.min.css?timestamp=<?= time() ?>" />
 
-        <script type="text/javascript" src="../cms/js/lib/jquery-1.8.2.min.js?timestamp=<?= time() ?>"></script>
-        <script type="text/javascript" src="../cms/js/lib/jquery-ui-1.9.1.custom.min.js?timestamp=<?= time() ?>"></script>
+        <script type="text/javascript" src="../cms/js/lib/jquery-1.8.3.min.js?timestamp=<?= time() ?>"></script>
+        <script type="text/javascript" src="../cms/js/lib/jquery-ui-1.9.2.custom.min.js?timestamp=<?= time() ?>"></script>
         <script type="text/javascript" src="../js/Compatibility.js?timestamp=<?= time() ?>"></script>
         <script type="text/javascript" src="../cms/js/Methods.js?timestamp=<?= time() ?>"></script>
         <script src="../cms/lib/jfeed/build/dist/jquery.jfeed.js?timestamp=<?= time() ?>"></script>

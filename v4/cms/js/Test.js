@@ -278,27 +278,27 @@ Test.uiRefreshVariables=function(parameters,returns){
     if(parameters==null) parameters=this.getSerializedParameterVariables();
     if(returns==null) returns = this.getSerializedReturnVariables();
     
-    $("#div"+Test.className+"Variables").mask(dictionary["s319"]);
+    Methods.uiBlock("#div"+Test.className+"Variables");
     $.post("view/Test_variables.php",{
         oid:this.currentID,
         class_name:this.className,
         parameters:parameters,
         returns:returns
     },function(data){
-        $("#div"+Test.className+"Variables").unmask();
+        Methods.uiUnblock("#div"+Test.className+"Variables");
         $("#div"+Test.className+"Variables").html(data);
     })
 }
 
 Test.uiRefreshLoader=function(oid){
     
-    $("#div"+Test.className+"Loader").mask(dictionary["s319"]);
+    Methods.uiBlock("#div"+Test.className+"Loader");
     $.post("view/Test_loader.php",{
         oid:this.currentID,
         class_name:this.className,
         loader:oid
     },function(data){
-        $("#div"+Test.className+"Loader").unmask();
+        Methods.uiUnblock("#div"+Test.className+"Loader");
         $("#div"+Test.className+"Loader").html(data);
     })
 }

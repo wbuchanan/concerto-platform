@@ -185,9 +185,9 @@ Template.uiChangeEffect=function(isShow){
         object["effect_show_options"] = options;
     }
     
-    $("#div"+this.className+"Transitions").mask(dictionary["s319"]);
+    Methods.uiBlock("#div"+this.className+"Transitions");
     $.post("view/Template_transitions.php",object,function(data){
-        $("#div"+thisClass.className+"Transitions").unmask();
+        Methods.uiUnblock("#div"+thisClass.className+"Transitions");
         $("#div"+thisClass.className+"Transitions").html(data);
     });
 }

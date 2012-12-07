@@ -1263,20 +1263,20 @@ Table.uiImportTable=function(){
                         Methods.alert(dictionary["s24"], "alert", dictionary["s25"]);
                         return;
                     }
-                    $("#div"+Table.className+"DialogImportMySQL").parent().mask(dictionary["s319"]);
+                    Methods.uiBlock($("#div"+Table.className+"DialogImportMySQL").parent());
                     $.post("query/Table_mysql_import.php",{
                         oid:thisClass.currentID,
                         table:selectTable.val()
                     },function(data){
-                        $("#div"+Table.className+"DialogImportMySQL").parent().unmask();
+                        Methods.uiUnblock($("#div"+Table.className+"DialogImportMySQL").parent());
                         $("#div"+Table.className+"DialogImportMySQL").dialog("close");
                         switch(parseInt(data.result)){
-                            case 0:{
+                            case OModule.queryResults.OK:{
                                 thisClass.uiEdit(thisClass.currentID);
                                 Methods.alert(dictionary["s26"], "info", dictionary["s25"]);
                                 break;
                             }
-                            case -1:{
+                            case OModule.queryResults.notLoggedIn:{
                                 Methods.alert(dictionary["s278"], "alert", dictionary["s25"]);
                                 location.reload();
                                 break;
@@ -1342,7 +1342,7 @@ Table.uiImportCSV=function(){
                         }
                             
                         Methods.confirm(dictionary["s28"], dictionary["s29"], function(){
-                            $("#div"+Table.className+"DialogImportCSV").parent().mask(dictionary["s319"]);
+                            Methods.uiBlock($("#div"+Table.className+"DialogImportCSV").parent());
                             $.post("query/Table_csv_import.php",{
                                 oid:Table.currentID,
                                 file:file.name,
@@ -1350,19 +1350,20 @@ Table.uiImportCSV=function(){
                                 enclosure:enclosure,
                                 header:$("#inputTableCSVImportHeader").is(":checked")?1:0
                             },function(data){
-                                $("#div"+Table.className+"DialogImportCSV").parent().unmask();
+                                Methods.uiUnblock($("#div"+Table.className+"DialogImportCSV").parent());
                                 $("#div"+Table.className+"DialogImportCSV").dialog("close");
                                 switch(parseInt(data.result)){
-                                    case 0:{
+                                    case OModule.queryResults.OK:{
                                         Methods.alert(dictionary["s26"], "info", dictionary["s25"]);
                                         Table.uiEdit(Table.currentID);
                                         break;
                                     }
-                                    case -1:{
+                                    case OModule.queryResults.notLoggedIn:{
                                         Methods.alert(dictionary["s278"], "alert", dictionary["s25"]);
                                         location.reload();
                                         break;
                                     }
+                                    //file doesn't exist
                                     case -3:{
                                         Methods.alert(dictionary["s272"], "alert", dictionary["s25"]);
                                         break;

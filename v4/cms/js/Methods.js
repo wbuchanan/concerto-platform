@@ -545,4 +545,14 @@ Methods.checkLatestVersion=function(callback,proxy)
         }
         cm.refresh();
     }
+    
+    Methods.uiBlock=function(selector){ 
+        $(selector).blockUI({
+            message:dictionary["s319"]
+        });
+    }
+    
+    Methods.uiUnblock=function(selector){ 
+        $(selector).unblockUI();
+    }
 };
