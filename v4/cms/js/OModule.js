@@ -26,7 +26,6 @@ OModule.inheritance=function(obj)
     obj.reloadOnModification=false;
     obj.reloadHash="";
     obj.currentPanel = "list";
-    obj.saveSimulation = false;
     
     obj.uiChangeListLength=function(length)
     {
@@ -616,7 +615,7 @@ OModule.inheritance=function(obj)
     obj.getMessageSuccessfulSave = function(){
         return dictionary["s9"];
     }
-    obj.uiSaveValidated=function(ignoreOnBefore,isNew,simulate){
+    obj.uiSaveValidated=function(ignoreOnBefore,isNew){
         var thisClass = this;
             
         if(thisClass.onBeforeSave && !ignoreOnBefore) {
@@ -635,7 +634,6 @@ OModule.inheritance=function(obj)
         if(this.currentID==0&&!isNew) params = this.getAddSaveObject();
         else params = this.getFullSaveObject();
         if(isNew) params['oid']=0;
-        if(simulate) params['save_simulation']=1;
         
         $.post("query/save_object.php",
             params,
@@ -647,28 +645,23 @@ OModule.inheritance=function(obj)
                 
                 switch(data.result){
                     case OModule.queryResults.OK:{
-                        if(simulate){
-                            thisClass.uiSaveValidated(ignoreOnBefore,isNew,false);
+                        if(data.oid!=0)
+                        {
+                            var isNewObject = false;
+                            if(thisClass.currentID==0||isNew) isNewObject = true;
+                            if(!thisClass.reloadOnModification) { 
+                                if(thisClass.currentID!=0&&!isNew) thisClass.uiList();
+                                else thisClass.uiReload(data.oid);
+                            }
+                            Methods.alert(thisClass.getMessageSuccessfulSave(isNewObject),"info", dictionary["s274"],function(){
+                                if(thisClass.reloadOnModification) {
+                                    Methods.reload(thisClass.reloadHash);
+                                }
+                                if(thisClass.onAfterSave) thisClass.onAfterSave(isNewObject);
+                            });
                         }
                         else {
-                            if(data.oid!=0)
-                            {
-                                var isNewObject = false;
-                                if(thisClass.currentID==0||isNew) isNewObject = true;
-                                if(!thisClass.reloadOnModification) { 
-                                    if(thisClass.currentID!=0&&!isNew) thisClass.uiList();
-                                    else thisClass.uiReload(data.oid);
-                                }
-                                Methods.alert(thisClass.getMessageSuccessfulSave(isNewObject),"info", dictionary["s274"],function(){
-                                    if(thisClass.reloadOnModification) {
-                                        Methods.reload(thisClass.reloadHash);
-                                    }
-                                    if(thisClass.onAfterSave) thisClass.onAfterSave(isNewObject);
-                                });
-                            }
-                            else {
-                                Methods.alert(dictionary["s10"],"alert", dictionary["s274"]);
-                            }
+                            Methods.alert(dictionary["s10"],"alert", dictionary["s274"]);
                         }
                         break;
                     }
