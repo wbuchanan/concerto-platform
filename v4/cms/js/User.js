@@ -92,14 +92,14 @@ User.uiChangeWorkspace=function(obj){
                 case OModule.queryResults.OK:{
                     obj.val(newWorkspace);
                     Methods.alert(dictionary["s631"], "info", dictionary["s630"], function(){
-                        Methods.modalLoading();
+                        Methods.uiBlockAll();
                         Methods.reload(thisClass.reloadHash);
                     });
                     break;
                 }
                 case OModule.queryResults.notLoggedIn:{
                     Methods.alert(dictionary["s278"], "alert", dictionary["s630"],function(){
-                        Methods.modalLoading();
+                        Methods.uiBlockAll();
                         Methods.reload(thisClass.reloadHash); 
                     });
                     break;     
@@ -324,10 +324,10 @@ User.uiLogIn=function()
         if(data.success==1)
         {
             $("#dd_login").dialog("close");
-            Methods.modalLoading();
+            Methods.uiBlockAll();
             $.post("view/layout.php",{},
                 function(data){
-                    Methods.stopModalLoading();
+                    Methods.uiUnblockAll();
                     $("#content").html(data);
                 });
         }
@@ -337,7 +337,7 @@ User.uiLogIn=function()
 
 User.uiLogOut=function()
 {
-    Methods.modalLoading();
+    Methods.uiBlockAll();
     $.post("query/log_out.php",{},
         function(data){
             location.href="index.php";

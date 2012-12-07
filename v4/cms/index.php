@@ -101,7 +101,6 @@ if (!isset($ini)) {
             ?>
         </div>
 
-        <div id="divLoadingDialog" class="notVisible"></div>
         <div id="divProgressDialog" class="notVisible">
             <div id="divProgressBar" class="fullWidth"></div>
         </div>

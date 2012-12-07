@@ -1240,9 +1240,7 @@ Table.uiExportCSV=function(){
 
 Table.uiImportTable=function(){
     var thisClass = this;
-    Methods.modalLoading();
     $.post("view/Table_import_mysql.php",{},function(data){
-        Methods.stopModalLoading();
         $("#div"+Table.className+"DialogImportMySQL").html(data);
         var selectTable = $("#form"+thisClass.className+"SelectMySQLTable");
         

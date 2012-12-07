@@ -50,7 +50,7 @@ foreach (Language::languages() as $lng_node) {
             style:"dropdown",
             width:100,
             change:function(){
-                Methods.modalLoading();
+                Methods.uiBlockAll();
                 location.href='index.php?lng='+$(this).val();
             }
         });

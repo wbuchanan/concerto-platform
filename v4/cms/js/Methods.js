@@ -47,28 +47,6 @@ Methods.toggleExpand=function(selector,btnSelector){
     });
 }
 
-Methods.modalLoading=function(title){
-    if(title==null) title=dictionary["s319"];
-    Methods.loading("#divLoadingDialog");
-    $("#divLoadingDialog").dialog({
-        title:title,
-        minHeight:50,
-        resizable:false,
-        modal:true,
-        closeOnEscape:false,
-        dialogClass:"no-close",
-        open:function(){
-            $('.ui-widget-overlay').css('position', 'fixed');
-        },
-        close:function(){
-        //$('.ui-widget-overlay').css('position', 'absolute');
-        },
-        buttons:
-        {
-    }
-    });
-}
-
 Methods.incrementProgress=function(value,max){
     if(Methods.modalProgressMaxValue == 0) return;
     if(value==null) value = 1;
@@ -120,10 +98,6 @@ Methods.modalProgress=function(title,max){
 
 Methods.stopModalProgress=function(){
     $("#divProgressDialog").dialog("close");
-}
-
-Methods.stopModalLoading=function(){
-    $("#divLoadingDialog").dialog("close");
 }
 
 Methods.reload=function(hash){
@@ -554,10 +528,32 @@ Methods.setCodeMirrorFullScreen=function(cm, full) {
     cm.refresh();
 }
     
-Methods.uiBlock=function(selector){ 
+Methods.uiBlock=function(selector,message){ 
+    if(message==null) message = dictionary["s319"];
     $(selector).block({
-        message:dictionary["s319"]
+        message:message,
+        overlayCSS:  { 
+            backgroundColor: '#8FA1B5', 
+            opacity:         0.6, 
+            cursor:          'wait' 
+        }
     });
+}
+
+Methods.uiBlockAll=function(message){
+    if(message==null) message = dictionary["s319"];
+    $.blockUI({
+        message:message,
+        overlayCSS:  { 
+            backgroundColor: '#8FA1B5', 
+            opacity:         0.6, 
+            cursor:          'wait' 
+        }
+    });
+}
+
+Methods.uiUnblockAll=function(){
+    $.unblockUI();
 }
     
 Methods.uiUnblock=function(selector){ 

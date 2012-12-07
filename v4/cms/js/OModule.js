@@ -83,7 +83,6 @@ OModule.inheritance=function(obj)
             width:950,
             open:function(){
                 $('.ui-widget-overlay').css('position', 'fixed');
-                //Methods.stopModalLoading();
                 $("#divDialogDownload").html("<fieldset class='padding ui-widget-content ui-corner-all margin'><legend><table><tr><td><span class='tooltip spanIcon ui-icon ui-icon-help' title='"+dictionary["s498"]+"'></span></td><td class=''><b>"+dictionary["s497"]+"</b></td></tr></table></legend><div id='divDialogDownloadGrid'></div></fieldset>");
                 $("#divDialogDownloadGrid").kendoGrid({
                     dataBound:function(e){
@@ -297,7 +296,6 @@ OModule.inheritance=function(obj)
     
     obj.uiUpload=function(oid){
         var thisClass = this;
-        Methods.modalLoading();
         $.post("view/upload_form.php",{
             class_name:thisClass.className,
             oid:oid
@@ -310,7 +308,6 @@ OModule.inheritance=function(obj)
                 width:950,
                 open:function(){
                     $('.ui-widget-overlay').css('position', 'fixed');
-                    Methods.stopModalLoading();
                     Methods.iniCKEditor("#textareaDialogUploadDescription", function(){
                         $("#divDialogUpload").dialog("option","position","center"); 
                     })
@@ -353,7 +350,6 @@ OModule.inheritance=function(obj)
     obj.uiShowAddDialog=function(){
         var thisClass = this;
         
-        Methods.modalLoading();
         $.post("view/"+this.className+"_form.php",{
             oid:-1
         },function(data){
@@ -365,7 +361,6 @@ OModule.inheritance=function(obj)
                 width:925,
                 open:function(){
                     $('.ui-widget-overlay').css('position', 'fixed');
-                    Methods.stopModalLoading();
                     if(thisClass.onAfterAdd) thisClass.onAfterAdd();
                 },
                 close:function(){
@@ -470,7 +465,7 @@ OModule.inheritance=function(obj)
         
         Methods.confirm(question,null,function(){
             if(thisClass.reloadOnModification) { 
-                Methods.modalLoading();
+                Methods.uiBlockAll();
             }
             
             var objEdited = false;
@@ -488,7 +483,6 @@ OModule.inheritance=function(obj)
             },
             function(data)
             {
-                if(thisClass.reloadOnModification) Methods.stopModalLoading();
                 switch(data.result){
                     case OModule.queryResults.OK:{
                         if(!isArray) thisClass.uiListCheckRemove(oid);
@@ -501,14 +495,12 @@ OModule.inheritance=function(obj)
                             if(thisClass.onAfterDelete) thisClass.onAfterDelete();
                         }
                         else {
-                            Methods.modalLoading();
                             Methods.reload(thisClass.reloadHash);
                         }
                         break;
                     }
                     case OModule.queryResults.notLoggedIn:{
                         Methods.alert(dictionary["s278"], "alert", dictionary["s273"],function(){
-                            Methods.modalLoading();
                             Methods.reload(thisClass.reloadHash); 
                         });
                         break;
@@ -631,16 +623,13 @@ OModule.inheritance=function(obj)
             if(!thisClass.onBeforeSave(isNew)) return;
         }
 		
-        if(simulate){
-            Methods.modalLoading(dictionary["s617"]);
+        if(thisClass.reloadOnModification) { 
+            Methods.uiBlockAll();
         } else {
-            if(thisClass.reloadOnModification) { 
-                Methods.modalLoading();
-            }
-        }
         
-        Methods.uiBlock($("#divAddFormDialog").parent());
-        Methods.uiBlock("#div"+thisClass.className+"Form");
+            if(isNew) Methods.uiBlock($("#divAddFormDialog").parent());
+            else Methods.uiBlock("#div"+thisClass.className+"Form");
+        }
         
         var params = {};
         if(this.currentID==0&&!isNew) params = this.getAddSaveObject();
@@ -652,13 +641,9 @@ OModule.inheritance=function(obj)
             params,
             function(data)
             {
-                Methods.uiUnblock($("#divAddFormDialog").parent());
-                Methods.uiUnblock("#div"+thisClass.className+"Form");
+                if(isNew) Methods.uiUnblock($("#divAddFormDialog").parent());
+                else Methods.uiUnblock("#div"+thisClass.className+"Form");
                 if(thisClass.currentID==0) $("#divAddFormDialog").dialog("close");
-                
-                if(thisClass.reloadOnModification || simulate) { 
-                    Methods.stopModalLoading();
-                }
                 
                 switch(data.result){
                     case OModule.queryResults.OK:{
@@ -676,7 +661,6 @@ OModule.inheritance=function(obj)
                                 }
                                 Methods.alert(thisClass.getMessageSuccessfulSave(isNewObject),"info", dictionary["s274"],function(){
                                     if(thisClass.reloadOnModification) {
-                                        Methods.modalLoading();
                                         Methods.reload(thisClass.reloadHash);
                                     }
                                     if(thisClass.onAfterSave) thisClass.onAfterSave(isNewObject);
@@ -690,12 +674,12 @@ OModule.inheritance=function(obj)
                     }
                     case OModule.queryResults.notLoggedIn:{
                         Methods.alert(dictionary["s278"], "alert", dictionary["s274"],function(){
-                            Methods.modalLoading();
                             Methods.reload(thisClass.reloadHash); 
                         });
                         break;     
                     }
                     case OModule.queryResults.transactionError:{
+                        if(thisClass.reloadOnModification) Methods.uiUnblockAll();
                         Methods.alert(dictionary["s616"]+data.message, "alert", dictionary["s274"]);  
                         break;
                     }
