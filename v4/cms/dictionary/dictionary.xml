@@ -2069,7 +2069,8 @@ Note: You can add new languages by inserting "<new_language>string translated in
             </bg>
             <nl><![CDATA[Resterende tijd (in seconden) om op een test item te antwoorden. Een waarde van 0 impliceert onberkte tijd. Voeg de variabele <b>{{TIME_LEFT}}</b> in op de HTML-sjabloon om de timer zichtbaar te maken.]]>
             </nl>
-            <br><![CDATA[Tempo disponível (em segundos) para enviar um teste. O valor 0 implica em tempo ilimitado. Insira a variável <b>{{TIME_LEFT}}</b> no seu template HTML para fazer o tempo ficar visível.]]></br>
+            <br><![CDATA[Tempo disponível (em segundos) para enviar um teste. O valor 0 implica em tempo ilimitado. Insira a variável <b>{{TIME_LEFT}}</b> no seu template HTML para fazer o tempo ficar visível.]]>
+            </br>
         </string>
         <string id="217">
             <en>this variable type is</en>
@@ -5639,14 +5640,17 @@ Note: You can add new languages by inserting "<new_language>string translated in
             <br>Comprimento das variáveis ou valores possíveis para o tipo de dados 'set e 'enum'. Deixe em branco para padrão</br>
         </string>
         <string id="587">
-            <en><![CDATA[Default value for a column. Can be set to <b>NULL</b> for nullable columns or <b>CURRENT_TIMESTAMP</b> for type 'timestamp'.]]></en>
+            <en><![CDATA[Default value for a column. Can be set to <b>NULL</b> for nullable columns or <b>CURRENT_TIMESTAMP</b> for type 'timestamp'.]]>
+            </en>
             <de></de>
-            <pl><![CDATA[Domyślna wartość kolumny. Może być ustawiona na <b>NULL</b> dla kolumn dopuszczających NULL lub <b>CURRENT_TIMESTAMP</b> dla typu 'timestamp'.]]></pl>
+            <pl><![CDATA[Domyślna wartość kolumny. Może być ustawiona na <b>NULL</b> dla kolumn dopuszczających NULL lub <b>CURRENT_TIMESTAMP</b> dla typu 'timestamp'.]]>
+            </pl>
             <cn></cn>
             <fr></fr>
             <bg></bg>
             <nl></nl>
-            <br><![CDATA[Valor padrão para uma coluna. Pode ser definido como <b>NULL</b> para colunas nulas ou <b>CURRENT_TIMESTAMP</b> para tipo 'timestamp'.]]></br>
+            <br><![CDATA[Valor padrão para uma coluna. Pode ser definido como <b>NULL</b> para colunas nulas ou <b>CURRENT_TIMESTAMP</b> para tipo 'timestamp'.]]>
+            </br>
         </string>
         <string id="588" js="1">
             <en>attributes</en>
@@ -6092,6 +6096,26 @@ Note: You can add new languages by inserting "<new_language>string translated in
             <en>Workspace changed.</en>
             <de></de>
             <pl>Przestrzeń pracy zmieniona.</pl>
+            <cn></cn>
+            <fr></fr>
+            <bg></bg>
+            <nl></nl>
+            <br></br>
+        </string>
+        <string id="632" js="1">
+            <en>There is already a table with this name. Please choose another one.</en>
+            <de></de>
+            <pl>Istnieje już tabela o podanej nazwie. Proszę wybrać inną.</pl>
+            <cn></cn>
+            <fr></fr>
+            <bg></bg>
+            <nl></nl>
+            <br></br>
+        </string>
+        <string id="633" js="1">
+            <en>Validating XML</en>
+            <de></de>
+            <pl>Walidowanie XML</pl>
             <cn></cn>
             <fr></fr>
             <bg></bg>

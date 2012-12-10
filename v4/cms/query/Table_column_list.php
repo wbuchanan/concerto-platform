@@ -35,16 +35,11 @@ if ($obj == null) {
     exit();
 }
 
-$sql = sprintf("SELECT * FROM `TableColumn` WHERE `Table_id`='%d'", $_GET['oid']);
-
-$table = array();
-
-$z = mysql_query($sql);
-while ($r = mysql_fetch_array($z)) {
-    $obj = TableColumn::from_mysql_id($r["id"]);
-    $row = array("id" => $obj->id, "name" => $obj->name, "type" => $obj->type, "lengthValues" => $obj->length, "defaultValue" => $obj->default_value, "attributes" => $obj->attributes, "nullable" => $obj->null, "auto_increment" => $obj->auto_increment);
-    array_push($table, $row);
+$result = array();
+foreach ($obj->get_columns() as $col) {
+    $row = array("id" => $col->name, "name" => $col->name, "type" => $col->get_type(), "lengthValues" => $col->get_length(), "defaultValue" => $col->default, "attributes" => $col->extra, "nullable" => $col->null);
+    array_push($result, $row);
 }
 
-echo json_encode($table);
+echo json_encode($result);
 ?>

@@ -61,14 +61,99 @@ Table.getFullSaveObject=function(){
     return obj;
 }
 
+Table.crudIndexesDeleted = [];
+Table.crudColumnsDeleted = [];
+Table.crudDataDeleted = [];
+
+Table.crudColumnsUpdated = [];
+Table.crudIndexesUpdated = [];
+Table.crudDataUpdated = [];
+
+Table.crudUpdate = function(collection,id){
+    switch(collection){
+        case "indexes":{
+            collection = Table.crudIndexesUpdated;
+            break;
+        }
+        case "columns":{
+            collection = Table.crudColumnsUpdated;
+            break;
+        }
+        case "data":{
+            collection = Table.crudDataUpdated;
+            break;
+        }
+    }
+    
+    var found = false;
+    for(var i=0;i<collection.length;i++){
+        if(collection.length[i]==id){
+            found = true;
+            break;
+        }
+    }
+    if(!found){
+        collection.push(id);
+    }
+}
+
+Table.crudDelete = function(collection,id){
+    switch(collection){
+        case "indexes":{
+            collection = Table.crudIndexesDeleted;
+            break;
+        }
+        case "columns":{
+            collection = Table.crudColumnsDeleted;
+            break;
+        }
+        case "data":{
+            collection = Table.crudDataDeleted;
+            break;
+        }
+    }
+    
+    var found = false;
+    for(var i=0;i<collection.length;i++){
+        if(collection.length[i]==id){
+            found = true;
+            break;
+        }
+    }
+    if(!found){
+        collection.push(id);
+    }
+}
+
 Table.uiSaveValidate=function(ignoreOnBefore,isNew){
+    var thisClass = this;
     if(!this.checkRequiredFields([
         $("#form"+this.className+"InputName").val()
         ])) {
         Methods.alert(dictionary["s415"],"alert");
         return false;
     }
-    Table.uiSaveValidated(ignoreOnBefore,isNew);
+    
+    //check if the table name is free
+    $.post("query/Table_name_check.php",{
+        oid:this.currentID,
+        name:$("#form"+this.className+"InputName").val()
+    },function(data){
+        switch(data.result){
+            case OModule.queryResults.OK:{
+                Table.uiSaveValidated(ignoreOnBefore,isNew);
+                break;   
+            }
+            case 1:{
+                Methods.alert(dictionary["s632"], "info", dictionary["s274"])
+                break;
+            }
+            case OModule.queryResults.notLoggedIn:{
+                thisClass.onNotLoggedIn(dictionary["s274"]);
+                break;
+            }
+        }
+    },"json");
 }
 
 Table.uiRemoveColumn=function(obj){
@@ -253,6 +338,7 @@ Table.uiIniDataGrid=function(){
             col["editor"] = Table.stringEditor;
             fields[data[i].name]["type"] = "string";
             fields[data[i].name]["editable"] = true;
+            if(data[i].name=="id") fields[data[i].name]["editable"] = false;
             fields[data[i].name]["defaultValue"] = data[i].defaultValue;
             if(fields[data[i].name]["defaultValue"]!=null && fields[data[i].name]["defaultValue"].toLowerCase().trim()=="null") fields[data[i].name]["defaultValue"]=null;
             if(fields[data[i].name]["defaultValue"]!=null && fields[data[i].name]["defaultValue"].toLowerCase().trim()=="current_timestamp") fields[data[i].name]["defaultValue"]=kendo.toString(new Date(),"yyyy-MM-dd HH:mm:ss");
@@ -508,7 +594,7 @@ Table.uiIniStructureGrid=function(){
     
     var fields = {
         id:{
-            type:"number"
+            type:"string"
         },
         name:{
             type:"string"
@@ -526,9 +612,6 @@ Table.uiIniStructureGrid=function(){
             type:"string"
         },
         nullable:{
-            type:"number"
-        },
-        auto_increment:{
             type:"number"
         }
     };
@@ -581,14 +664,10 @@ Table.uiIniStructureGrid=function(){
             field:"nullable",
             template:'<input type="checkbox" #= nullable==1?"checked":"" # disabled />'
         },{
-            title:dictionary["s592"],
-            field:"auto_increment",
-            template:'<input type="checkbox" #= auto_increment==1?"checked":"" # disabled />'
-        },{
             title:' ',
             width:50,
-            template:'<span style="display:inline-block;" class="spanIcon tooltip ui-icon ui-icon-pencil" onclick="'+thisClass.className+'.uiEditColumn($(this))" title="'+dictionary["s19"]+'"></span>'+
-            '<span style="display:inline-block;" class="spanIcon tooltip ui-icon ui-icon-trash" onclick="'+thisClass.className+'.uiRemoveColumn($(this))" title="'+dictionary["s204"]+'"></span>'
+            template:'#if(name!="id"){#<span style="display:inline-block;" class="spanIcon tooltip ui-icon ui-icon-pencil" onclick="'+thisClass.className+'.uiEditColumn($(this))" title="'+dictionary["s19"]+'"></span>'+
+            '<span style="display:inline-block;" class="spanIcon tooltip ui-icon ui-icon-trash" onclick="'+thisClass.className+'.uiRemoveColumn($(this))" title="'+dictionary["s204"]+'"></span>#}#'
         }],
         toolbar:[
         {
@@ -611,7 +690,10 @@ Table.uiIniIndexGrid=function(){
     
     var fields = {
         id:{
-            type:"number"
+            type:"string"
+        },
+        name:{
+            type:"string"
         },
         type:{
             type:"string"
@@ -644,6 +726,9 @@ Table.uiIniIndexGrid=function(){
         },
         dataSource: dataSource,
         columns: [{
+            title:dictionary["s70"],
+            field:"name"
+        },{
             title:dictionary["s122"],
             field:"type"
         },{
@@ -652,8 +737,8 @@ Table.uiIniIndexGrid=function(){
         },{
             title:' ',
             width:50,
-            template:'<span style="display:inline-block;" class="spanIcon tooltip ui-icon ui-icon-pencil" onclick="'+thisClass.className+'.uiEditIndex($(this))" title="'+dictionary["s603"]+'"></span>'+
-            '<span style="display:inline-block;" class="spanIcon tooltip ui-icon ui-icon-trash" onclick="'+thisClass.className+'.uiRemoveIndex($(this))" title="'+dictionary["s604"]+'"></span>'
+            template:'#if(type!="primary"){#<span style="display:inline-block;" class="spanIcon tooltip ui-icon ui-icon-pencil" onclick="'+thisClass.className+'.uiEditIndex($(this))" title="'+dictionary["s603"]+'"></span>'+
+            '<span style="display:inline-block;" class="spanIcon tooltip ui-icon ui-icon-trash" onclick="'+thisClass.className+'.uiRemoveIndex($(this))" title="'+dictionary["s604"]+'"></span>#}#'
         }],
         toolbar:[
         {
@@ -907,8 +992,7 @@ Table.getColumns=function(){
             lengthValues:data[i].lengthValues,
             defaultValue:data[i].defaultValue,
             attributes:data[i].attributes,
-            nullable:data[i].nullable,
-            auto_increment:data[i].auto_increment
+            nullable:data[i].nullable
         })
     }
     return cols;
@@ -989,7 +1073,6 @@ Table.uiEditColumn=function(obj){
     var oldDefaultValue = item.defaultValue;
     var oldAttributes = item.attributes;
     var oldNullable = item.nullable;
-    var oldAutoIncrement = item.auto_increment;
     
     var name = $("#form"+Table.className+"InputColumnName");
     name.val(oldName);
@@ -1003,8 +1086,6 @@ Table.uiEditColumn=function(obj){
     attributes.val(oldAttributes);
     var nullable = $("#form"+Table.className+"CheckboxColumnNull");
     nullable.attr("checked",oldNullable==1);
-    var auto_increment = $("#form"+Table.className+"CheckboxColumnAutoIncrement");
-    auto_increment.attr("checked",oldAutoIncrement==1);
     
     $("#div"+this.className+"Dialog").dialog({
         title:dictionary["s12"],
@@ -1016,12 +1097,11 @@ Table.uiEditColumn=function(obj){
         },
         close:function(){
             name.val("");
-            type.val("HTML");
+            type.val("int");
             lengthValues.val("");
             defaultValue.val("");
             attributes.val("");
             nullable.attr("checked",false);
-            auto_increment.attr("checked",false);
             //$('.ui-widget-overlay').css('position', 'absolute');
             $(this).dialog("destroy");
         },
@@ -1062,7 +1142,6 @@ Table.uiEditColumn=function(obj){
                 rowStruct["defaultValue"]=defaultValue.val();
                 rowStruct["attributes"]=attributes.val();
                 rowStruct["nullable"]=nullable.is(":checked")?1:0;
-                rowStruct["auto_increment"]=auto_increment.is(":checked")?1:0;
                 Table.uiRefreshStructureGrid();
                 
                 //dataGrid mod start
@@ -1150,7 +1229,10 @@ Table.uiEditColumn=function(obj){
                         templateSet = true;
                         break;
                     }
-                    case "HTML":{
+                    case "tinytext":
+                    case "mediumtext":
+                    case "long":
+                    case "text":{
                         dataGrid.columns[index]["editor"] = Table.htmlEditor;
                         dataGrid.columns[index]["template"] = '<div class="horizontalMargin" align="center">'+
                         '<span class="spanIcon tooltipTableStructure ui-icon ui-icon-document-b" onclick="Table.uiChangeHTML($(this).next(),\''+name.val()+'\')" title="'+dictionary["s130"]+'"></span>'+
@@ -1273,8 +1355,7 @@ Table.uiImportTable=function(){
                                 break;
                             }
                             case OModule.queryResults.notLoggedIn:{
-                                Methods.alert(dictionary["s278"], "alert", dictionary["s25"]);
-                                location.reload();
+                                thisClass.onNotLoggedIn(dictionary["s25"]);
                                 break;
                             }
                             default:{
@@ -1296,6 +1377,7 @@ Table.uiImportTable=function(){
 
 Table.isFileUploaded = false;
 Table.uiImportCSV=function(){
+    var thisClass = this;
     $("#div"+Table.className+"DialogImportCSV").dialog({
         title:dictionary["s27"],
         resizable:false,
@@ -1355,8 +1437,7 @@ Table.uiImportCSV=function(){
                                         break;
                                     }
                                     case OModule.queryResults.notLoggedIn:{
-                                        Methods.alert(dictionary["s278"], "alert", dictionary["s25"]);
-                                        location.reload();
+                                        thisClass.onNotLoggedIn(dictionary["s25"]);
                                         break;
                                     }
                                     //file doesn't exist
@@ -1481,7 +1562,6 @@ Table.uiAddColumn=function(){
     var defaultValue = $("#form"+Table.className+"InputColumnDefault");
     var attributes = $("#form"+Table.className+"SelectColumnAttributes");
     var nullable = $("#form"+Table.className+"CheckboxColumnNull");
-    var auto_increment = $("#form"+Table.className+"CheckboxColumnAutoIncrement");
     
     $("#div"+this.className+"Dialog").dialog({
         title:dictionary["s31"],
@@ -1531,8 +1611,7 @@ Table.uiAddColumn=function(){
                     lengthValues:lengthValues.val(),
                     defaultValue:defaultValue.val(),
                     attributes:attributes.val(),
-                    nullable:nullable.is(":checked")?1:0,
-                    auto_increment:auto_increment.is(":checked")?1:0
+                    nullable:nullable.is(":checked")?1:0
                 })
                 
                 //dataGrid mod start
@@ -1620,7 +1699,10 @@ Table.uiAddColumn=function(){
                         templateSet = true;
                         break;
                     }
-                    case "HTML":{
+                    case "tinytext":
+                    case "mediumtext":
+                    case "long":
+                    case "text":{
                         col["editor"] = Table.htmlEditor;
                         col["template"] = '<div class="horizontalMargin" align="center">'+
                         '<span class="spanIcon tooltipTableStructure ui-icon ui-icon-document-b" onclick="Table.uiChangeHTML($(this).next(),\''+name.val()+'\')" title="'+dictionary["s130"]+'"></span>'+
@@ -1643,7 +1725,7 @@ Table.uiAddColumn=function(){
                     row.fields[name.val()]={
                         type:Table.dataGridSchemaFields[name.val()]["type"],
                         defaultValue:Table.dataGridSchemaFields[name.val()]["defaultValue"],
-                        editable: type.val()!="HTML"
+                        editable: type.val()!="tinytext" && type.val()!="mediumtext" && type.val()!="longtext"&&type.val()!="text"
                     }
                     row.defaults[name.val()]=Table.dataGridSchemaFields[name.val()]["defaultValue"];
                 }

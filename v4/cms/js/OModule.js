@@ -60,8 +60,7 @@ OModule.inheritance=function(obj)
                     break;
                 }
                 case OModule.queryResults.notLoggedIn:{
-                    Methods.alert(dictionary["s278"], "alert", dictionary["s387"]);
-                    location.reload();
+                    thisClass.onNotLoggedIn(dictionary["s387"]);
                     break;
                 }
                 case -2:{
@@ -266,6 +265,7 @@ OModule.inheritance=function(obj)
     };
     
     obj.upload=function(oid){
+        var thisClass = this;
         $.post("query/upload_object.php",{
             class_name:this.className,
             oid:oid,
@@ -281,8 +281,7 @@ OModule.inheritance=function(obj)
                     break;
                 }
                 case OModule.queryResults.notLoggedIn:{
-                    Methods.alert(dictionary["s278"], "alert", dictionary["s382"]);
-                    location.reload();
+                    thisClass.onNotLoggedIn(dictionary["s382"]);
                     break;
                 }
                 default: {
@@ -499,9 +498,7 @@ OModule.inheritance=function(obj)
                         break;
                     }
                     case OModule.queryResults.notLoggedIn:{
-                        Methods.alert(dictionary["s278"], "alert", dictionary["s273"],function(){
-                            Methods.reload(thisClass.reloadHash); 
-                        });
+                        thisClass.onNotLoggedIn(dictionary["s273"]);
                         break;
                     }
                 }
@@ -560,8 +557,7 @@ OModule.inheritance=function(obj)
                                             break;
                                         }
                                         case OModule.queryResults.notLoggedIn:{
-                                            Methods.alert(dictionary["s278"], "alert", dictionary["s268"]);
-                                            location.reload();
+                                            thisClass.onNotLoggedIn(dictionary["s268"]);
                                             break;
                                         }
                                         case -3:{
@@ -666,9 +662,7 @@ OModule.inheritance=function(obj)
                         break;
                     }
                     case OModule.queryResults.notLoggedIn:{
-                        Methods.alert(dictionary["s278"], "alert", dictionary["s274"],function(){
-                            Methods.reload(thisClass.reloadHash); 
-                        });
+                        thisClass.onNotLoggedIn(dictionary["s274"]);
                         break;     
                     }
                     case OModule.queryResults.transactionError:{
@@ -690,6 +684,13 @@ OModule.inheritance=function(obj)
         if(thisClass.uiSaveValidate) thisClass.uiSaveValidate(ignoreOnBefore, isNew);
         else thisClass.uiSaveValidated(ignoreOnBefore,isNew);
     };
+    
+    obj.onNotLoggedIn = function(title){
+        var thisClass = this;
+        Methods.alert(dictionary["s278"], "alert", title,function(){
+            Methods.reload(thisClass.reloadHash); 
+        });
+    }
     
     obj.checkedList = [];
     obj.uiListCheckAll=function(){

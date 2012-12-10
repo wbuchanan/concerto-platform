@@ -19,70 +19,40 @@
   Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA.
  */
 
-class TableIndex extends OTable {
+class TableIndex {
 
-    public $Table_id = 0;
-    public $type = "";
-    public static $mysql_table_name = "TableIndex";
+    public $name = "";
+    public $non_unique = "";
+    public $columns = "";
 
-    public function get_Table() {
-        return Table::from_mysql_id($this->Table_id);
-    }
-
-    public function get_TableIndexColumns() {
-        return TableIndexColumn::from_property(array("TableIndex_id" => $this->id));
-    }
-
-    public function get_columns_string() {
-        $result = "";
-        foreach ($this->get_TableIndexColumns() as $col) {
-            if ($result != "")
-                $result.=",";
-            $result.=$col->get_TableColumn()->name;
+    public static function from_mysql_table($name) {
+        $indexes = array();
+        $sql = sprintf("SHOW INDEXES IN `%s`", mysql_real_escape_string($name));
+        $z = mysql_query($sql);
+        while ($r = mysql_fetch_array($z)) {
+            $found = false;
+            foreach ($indexes as $index) {
+                if ($index->name == $r['Key_name']) {
+                    $found = true;
+                    $index->columns.="," . $r['Column_name'];
+                    break;
+                }
+            }
+            if (!$found) {
+                $index = new TableIndex();
+                $index->name = $r['Key_name'];
+                $index->non_unique = $r['Non_unique'];
+                $index->columns = $r['Column_name'];
+                array_push($indexes, $index);
+            }
         }
-        return $result;
+        return $indexes;
     }
 
-    public function mysql_delete() {
-        parent::mysql_delete();
-        $this->delete_object_links(TableIndexColumn::get_mysql_table());
-    }
-
-    public function to_XML() {
-        $xml = new DOMDocument('1.0', "UTF-8");
-
-        $element = $xml->createElement("TableIndex");
-        $xml->appendChild($element);
-
-        $id = $xml->createElement("id", htmlspecialchars($this->id, ENT_QUOTES, "UTF-8"));
-        $element->appendChild($id);
-
-        $table_id = $xml->createElement("Table_id", htmlspecialchars($this->Table_id, ENT_QUOTES, "UTF-8"));
-        $element->appendChild($table_id);
-
-        $type = $xml->createElement("type", htmlspecialchars($this->type, ENT_QUOTES, "UTF-8"));
-        $element->appendChild($type);
-
-        $cols = $xml->createElement("columns", htmlspecialchars($this->get_columns_string(), ENT_QUOTES, "UTF-8"));
-        $element->appendChild($cols);
-
-        return $element;
-    }
-
-    public static function create_db($db = null) {
-        if ($db == null)
-            $db = Ini::$db_master_name;
-        $sql = sprintf("
-            CREATE TABLE IF NOT EXISTS `%s`.`TableIndex` (
-            `id` bigint(20) NOT NULL auto_increment,
-            `updated` timestamp NOT NULL default CURRENT_TIMESTAMP on update CURRENT_TIMESTAMP,
-            `created` timestamp NOT NULL default '0000-00-00 00:00:00',
-            `Table_id` bigint(20) NOT NULL,
-            `type` text NOT NULL,
-            PRIMARY KEY  (`id`)
-            ) ENGINE=InnoDB  DEFAULT CHARSET=utf8;
-            ", $db);
-        return mysql_query($sql);
+    public function get_type() {
+        if ($this->name == "PRIMARY")
+            return "primary";
+        return $this->non_unique == 0 ? "unique" : "index";
     }
 
 }

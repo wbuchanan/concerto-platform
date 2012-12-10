@@ -23,25 +23,20 @@ if (!isset($ini)) {
     require_once '../../Ini.php';
     $ini = new Ini();
 }
+
 $logged_user = User::get_logged_user();
 if ($logged_user == null) {
-    echo json_encode(array());
+    echo json_encode(array("result" => -1));
     exit();
 }
 
-$obj = Table::from_mysql_id($_GET['oid']);
-if ($obj == null) {
-    echo json_encode(array());
-    exit();
-}
+$table = Table::from_mysql_id($_POST['oid']);
+if ($table == null)
+    $table = new Table();
+$exists = $table->is_duplicate_table_name($_POST['name']);
 
-$indexes = array();
-
-foreach ($obj->get_indexes() as $index) {
-
-    $row = array("id" => $index->name, "name" => $index->name, "type" => $index->get_type(), "columns" => $index->columns);
-    array_push($indexes, $row);
-}
-
-echo json_encode($indexes);
+if ($exists)
+    echo json_encode(array("result" => 1));
+else
+    echo json_encode(array("result" => 0));
 ?>

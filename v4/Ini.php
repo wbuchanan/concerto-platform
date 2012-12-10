@@ -169,9 +169,6 @@ class Ini {
         return array(
             "QTIAssessmentItem",
             "Table",
-            "TableColumn",
-            "TableIndex",
-            "TableIndexColumn",
             "Template",
             "Test",
             "TestSession",
@@ -257,7 +254,6 @@ class Ini {
         require_once self::$path_internal . "cms/model/Table.php";
         require_once self::$path_internal . "cms/model/TableColumn.php";
         require_once self::$path_internal . "cms/model/TableIndex.php";
-        require_once self::$path_internal . "cms/model/TableIndexColumn.php";
         require_once self::$path_internal . "cms/model/Test.php";
         require_once self::$path_internal . "cms/model/TestServer.php";
         require_once self::$path_internal . "cms/model/TestInstance.php";

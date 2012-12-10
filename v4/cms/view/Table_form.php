@@ -158,7 +158,7 @@ if ($oid != 0) {
                                         <option value="tinyint">tinyint</option>
                                         <option value="smallint">smallint</option>
                                         <option value="mediumint">mediumint</option>
-                                        <option value="int">int</option>
+                                        <option value="int" selected>int</option>
                                         <option value="bigint">bigint</option>
                                         <option value="decimal">decimal</option>
                                         <option value="float">float</option>
@@ -169,13 +169,12 @@ if ($oid != 0) {
                                         <option value="serial">serial</option>
                                     </optgroup>
                                     <optgroup label="<?= Language::string(583) ?>">
-                                        <option value="HTML"><?= Language::string(18) ?></option>
                                         <option value="char">char</option>
                                         <option value="varchar">varchar</option>
-                                        <option value="tinytext">tinytext</option>
-                                        <option value="text">text</option>
-                                        <option value="mediumtext">mediumtext</option>
-                                        <option value="longtext">longtext</option>
+                                        <option value="tinytext">tinytext - HTML</option>
+                                        <option value="text">text - HTML</option>
+                                        <option value="mediumtext">mediumtext - HTML</option>
+                                        <option value="longtext">longtext - HTML</option>
                                         <option value="binary">binary</option>
                                         <option value="varbinary">varbinary</option>
                                         <option value="tinyblob">tinyblob</option>
@@ -238,15 +237,6 @@ if ($oid != 0) {
                             </div>
                         </td>
                     </tr>
-                    <tr>
-                        <td class="noWrap horizontalPadding tdFormLabel"><?= Language::string(592) ?>:</td>
-                        <td><span class="tooltip spanIcon ui-icon ui-icon-help" title="<?= Language::string(593) ?>"></span></td>
-                        <td class="fullWidth">
-                            <div class="horizontalMargin">
-                                <input type="checkbox" id="form<?= $class_name ?>CheckboxColumnAutoIncrement" value="1" class="ui-widget-content ui-corner-all" />
-                            </div>
-                        </td>
-                    </tr>
                 </table>
             </fieldset>
         </div>
@@ -268,7 +258,6 @@ if ($oid != 0) {
                         <td class="fullWidth">
                             <div class="horizontalMargin">
                                 <select id="form<?= $class_name ?>SelectIndexType" class="fullWidth ui-widget-content ui-corner-all">
-                                    <option value="primary key">primary key</option>
                                     <option value="unique">unique</option>
                                     <option value="index">index</option>
 

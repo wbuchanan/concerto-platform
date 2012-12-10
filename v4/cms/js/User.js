@@ -98,10 +98,7 @@ User.uiChangeWorkspace=function(obj){
                     break;
                 }
                 case OModule.queryResults.notLoggedIn:{
-                    Methods.alert(dictionary["s278"], "alert", dictionary["s630"],function(){
-                        Methods.uiBlockAll();
-                        Methods.reload(thisClass.reloadHash); 
-                    });
+                    thisClass.onNotLoggedIn(dictionary["s630"]);
                     break;     
                 }
                 case OModule.queryResults.accessDenied:{
@@ -115,6 +112,7 @@ User.uiChangeWorkspace=function(obj){
 }
 
 User.uiSaveValidate=function(ignoreOnBefore,isNew){
+    var thisClass = this;
     if(!this.checkRequiredFields([
         $("#form"+this.className+"InputLogin").val(),
         $("#form"+this.className+"InputFirstname").val(),
@@ -151,7 +149,7 @@ User.uiSaveValidate=function(ignoreOnBefore,isNew){
                 break;   
             }
             case OModule.queryResults.notLoggedIn:{
-                Methods.alert(dictionary["s278"], "alert", dictionary["s274"]);
+                thisClass.onNotLoggedIn(dictionary["s274"]);
                 break;
             }
         }
@@ -159,6 +157,8 @@ User.uiSaveValidate=function(ignoreOnBefore,isNew){
 }
 
 User.register = function(){
+    var thisClass = this;
+    
     var login = $("#dd_register_inp_login").val();
     var firstname = $("#dd_register_inp_first_name").val();
     var lastname = $("#dd_register_inp_last_name").val();
@@ -224,7 +224,7 @@ User.register = function(){
                 return;    
             }
             case OModule.queryResults.notLoggedIn:{
-                Methods.alert(dictionary["s278"], "alert", dictionary["s410"]);
+                thisClass.onNotLoggedIn(dictionary["s410"]);
                 return;
             }
         }

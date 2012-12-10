@@ -32,14 +32,6 @@ class Table extends OModule {
         parent::__construct($params);
     }
 
-    public function get_table_name() {
-        return self::get_table_prefix() . "_" . $this->id;
-    }
-
-    public static function get_table_prefix() {
-        return "c3tbl";
-    }
-
     public function mysql_delete() {
         $this->mysql_delete_Table();
 
@@ -59,193 +51,59 @@ class Table extends OModule {
             return -1;
     }
 
-    public function mysql_save_from_post($post) {
+    public function is_duplicate_table_name($name) {
+        if ($this->id == 0 || $this->name != $name) {
+            $sql = sprintf("SHOW TABLES LIKE '%s'", $name);
+            $z = mysql_query($sql);
+            if (mysql_num_rows($z) > 0)
+                return true;
+        }
+        return false;
+    }
 
-        $simulation = false;
-        if (array_key_exists("save_simulation", $post) && $post['save_simulation'] == 1)
-            $simulation = true;
+    public static function create_new_mysql_table($name) {
+        $sql = sprintf("CREATE TABLE  `%s` (
+            `id` bigint(20) NOT NULL auto_increment,
+            PRIMARY KEY  (`id`)
+            ) ENGINE=InnoDB  DEFAULT CHARSET=utf8;
+            ", mysql_real_escape_string($name));
+        return mysql_query($sql);
+    }
+
+    public function rename_mysql_table($name) {
+        $sql = sprintf("RENAME TABLE  `%s` TO  `%s` ;", mysql_real_escape_string($this->name), mysql_real_escape_string($name));
+        return mysql_query($sql);
+    }
+
+    public function get_columns() {
+        $result = array();
+        $sql = sprintf("SHOW COLUMNS IN `%s`", $this->name);
+        $z = mysql_query($sql);
+        while ($r = mysql_fetch_array($z)) {
+            array_push($result, TableColumn::from_mysql_result($r));
+        }
+        return $result;
+    }
+
+    public function get_indexes() {
+        return TableIndex::from_mysql_table($this->name);
+    }
+
+    public function mysql_save_from_post($post) {
+        $is_new = $this->id == 0;
+
+        if ($is_new) {
+            if (!Table::create_new_mysql_table($post['name']))
+                return json_encode(array("result" => -6, "message" => mysql_error()));
+        } else {
+            if (!$this->rename_mysql_table($post['name']))
+                return json_encode(array("result" => -6, "message" => mysql_error()));
+        }
 
         $lid = parent::mysql_save_from_post($post);
-
-        if (!$simulation) {
-            $this->mysql_delete_TableColumn();
-        }
-
-        if (array_key_exists("cols", $post)) {
-            if ($simulation)
-                $table_name = "`" . self::get_table_prefix() . "_temp_" . $lid . "`";
-            else
-                $table_name = "`" . self::get_table_prefix() . "_" . $lid . "`";
-
-//table
-            if (!$simulation) {
-                $sql = "DROP TABLE IF EXISTS " . $table_name . ";";
-                mysql_query($sql);
-            }
-
-            $sql = "CREATE " . ($simulation ? "TEMPORARY" : "") . " TABLE  " . $table_name . " (";
-            $i = 0;
-            $timestamp = false;
-            foreach ($post['cols'] as $col_json) {
-                $col = json_decode($col_json);
-                if ($i > 0)
-                    $sql.=",";
-                if (!$timestamp && $col->type == "timestamp") {
-                    $timestamp = true;
-                    $col->defaultValue = "CURRENT_TIMESTAMP";
-                    $col->attributes = "on update current_timestamp";
-                    $post['cols'][$i] = json_encode($col);
-                }
-                $sql.="`" . $col->name . "` " . TableColumn::get_column_definition($col->type, $col->lengthValues, $col->attributes, $col->nullable, 0, $col->defaultValue);
-                $i++;
-            }
-            $sql.=") ENGINE = INNODB DEFAULT CHARSET=utf8;";
-            if (!mysql_query($sql)) {
-                $message = mysql_error();
-                return json_encode(array("result" => -6, "message" => $message));
-            }
-
-//indexes
-            if (array_key_exists("indexes", $post)) {
-                foreach ($post['indexes'] as $index_json) {
-                    $index = json_decode($index_json);
-                    $columns = explode(",", $index->columns);
-                    $cols = "";
-                    foreach ($columns as $column) {
-                        if ($cols != "")
-                            $cols.=",";
-                        $cols.="`" . $column . "`";
-                    }
-
-                    $sql = sprintf("ALTER TABLE %s ADD %s(%s)", $table_name, $index->type, $cols);
-                    if (!mysql_query($sql)) {
-                        $message = mysql_error();
-                        return json_encode(array("result" => -6, "message" => $message));
-                    }
-                }
-            }
-
-//auto increment
-            $auto_increment = false;
-            foreach ($post['cols'] as $col_json) {
-                $col = json_decode($col_json);
-
-                if ($col->auto_increment == 1) {
-                    $auto_increment = true;
-                    self::$auto_increment_row_comparer_field = $col->name;
-                    $sql = sprintf("ALTER TABLE %s CHANGE `%s` `%s` %s", $table_name, $col->name, $col->name, TableColumn::get_column_definition($col->type, $col->lengthValues, $col->attributes, $col->nullable, $col->auto_increment, $col->defaultValue));
-                    if (!mysql_query($sql)) {
-                        $message = mysql_error();
-                        return json_encode(array("result" => -6, "message" => $message));
-                    }
-                }
-            }
-
-//TableColumn
-            $sql = "START TRANSACTION";
-            mysql_query($sql);
-
-            $sql = sprintf("INSERT INTO `%s` (`index`,`name`,`Table_id`,`type`, `length`,`attributes`, `null`, `auto_increment`, `default_value`) VALUES ", TableColumn::get_mysql_table());
-            $i = 0;
-            foreach ($post['cols'] as $col_json) {
-                $col = json_decode($col_json);
-
-                if ($i > 0)
-                    $sql.=",";
-                $sql.="(";
-                $sql.= ($i + 1) . ",'" . mysql_real_escape_string($col->name) . "'," . $lid . ",'" . mysql_real_escape_string($col->type) . "', '" . mysql_real_escape_string($col->lengthValues) . "', '" . mysql_real_escape_string($col->attributes) . "', " . mysql_real_escape_string($col->nullable) . "," . mysql_real_escape_string($col->auto_increment) . ",'" . mysql_real_escape_string($col->defaultValue) . "'";
-                $sql.=")";
-                $i++;
-            }
-            if (!mysql_query($sql)) {
-                $message = mysql_error();
-                $sql = "ROLLBACK";
-                mysql_query($sql);
-                return json_encode(array("result" => -6, "message" => $message));
-            }
-
-//TableIndex
-            if (array_key_exists("indexes", $post)) {
-                foreach ($post['indexes'] as $index_json) {
-                    $index = json_decode($index_json);
-                    $columns = explode(",", $index->columns);
-
-                    $ti = new TableIndex();
-                    $ti->Table_id = $lid;
-                    $ti->type = $index->type;
-                    $ti_lid = $ti->mysql_save();
-
-                    $i = 0;
-                    foreach ($columns as $col) {
-                        $tc = TableColumn::from_property(array("Table_id" => $lid, "name" => $col), false);
-                        $tic = new TableIndexColumn();
-                        $tic->index = $i;
-                        $tic->TableIndex_id = $ti_lid;
-                        if ($tc != null)
-                            $tic->TableColumn_id = $tc->id;
-                        $tic->mysql_save();
-                        $i++;
-                    }
-                }
-            }
-
-//data
-            if (array_key_exists("rows", $post) && $post['rows'] != null && is_array($post['rows'])) {
-
-                if ($auto_increment) {
-                    usort($post['rows'], "self::auto_increment_row_comparer");
-                }
-
-                $sql = "INSERT INTO " . $table_name . " (";
-                $i = 0;
-                foreach ($post['cols'] as $col_json) {
-                    if ($i > 0)
-                        $sql.=",";
-                    $col = json_decode($col_json);
-                    $sql.="`" . $col->name . "`";
-                    $i++;
-                }
-                $sql.=") VALUES ";
-
-                for ($a = 0; $a < count($post['rows']); $a++) {
-                    $row = json_decode($post['rows'][$a]);
-                    if ($a > 0)
-                        $sql.=",";
-                    $sql.="(";
-                    $i = 0;
-                    foreach ($post['cols'] as $col_json) {
-                        $col = json_decode($col_json);
-                        $col_name = $col->name;
-                        if ($row->$col_name == "" && $col->nullable == 1)
-                            $row->$col_name = null;
-                        if ($i > 0)
-                            $sql.=",";
-                        if ($row->$col_name !== null)
-                            $sql.="'" . mysql_real_escape_string($row->$col_name) . "'";
-                        else
-                            $sql.="NULL";
-                        $i++;
-                    }
-                    $sql.=")";
-                }
-                if (!mysql_query($sql)) {
-                    $message = mysql_error();
-                    $sql = "ROLLBACK";
-                    mysql_query($sql);
-                    return json_encode(array("result" => -6, "message" => $message));
-                }
-            }
-        }
-        if (!$simulation) {
-            $sql = "COMMIT";
-            mysql_query($sql);
-        } else {
-            $sql = "ROLLBACK";
-            mysql_query($sql);
-        }
-
-//hash
         $obj = static::from_mysql_id($lid);
+
+        //hash
         if ($obj != null) {
             $xml_hash = $obj->calculate_xml_hash();
             $obj->xml_hash = $xml_hash;
@@ -255,89 +113,13 @@ class Table extends OModule {
         return $lid;
     }
 
-    public function has_table() {
-        $table_name = self::get_table_prefix() . "_" . $this->id;
-        $sql = "SHOW TABLES LIKE '" . $table_name . "'";
-        $z = mysql_query($sql);
-        if (mysql_num_rows($z) > 0)
-            return true;
-        return false;
-    }
-
     public function mysql_delete_Table() {
-        $this->mysql_delete_TableColumn();
-
-        $table_name = "`" . $this->get_table_name() . "`";
-        $sql = "DROP TABLE IF EXISTS " . $table_name . ";";
+        $sql = "DROP TABLE IF EXISTS " . $this->name . ";";
         mysql_query($sql);
     }
 
-    public function mysql_delete_TableColumn() {
-        $this->delete_object_links(TableColumn::get_mysql_table());
-        $this->mysql_delete_TableIndex();
-    }
-
-    public function mysql_delete_TableIndex() {
-        foreach ($this->get_TableIndexes() as $index) {
-            $index->mysql_delete();
-        }
-    }
-
-    public function get_TableColumns() {
-        return TableColumn::from_property(array("Table_id" => $this->id));
-    }
-
-    public function get_TableIndexes() {
-        return TableIndex::from_property(array("Table_id" => $this->id));
-    }
-
     public function import_from_mysql($table) {
-        $this->mysql_delete_Table();
-
-        $columns = array();
-        $sql = sprintf("SHOW COLUMNS FROM `%s`", $table);
-        $z = mysql_query($sql);
-        while ($r = mysql_fetch_array($z)) {
-            array_push($columns, $r['Field']);
-        }
-
-        $sql = sprintf("SELECT * FROM `%s`", $table);
-        $z = mysql_query($sql);
-        $i = 0;
-        while ($r = mysql_fetch_array($z)) {
-            if ($i == 0) {
-                $sql = "CREATE TABLE  " . $this->get_table_name() . " (";
-                $j = 0;
-                foreach ($columns as $col) {
-                    if ($j > 0)
-                        $sql.=",";
-                    $sql.="`" . Table::format_column_name($col) . "`  TEXT NOT NULL";
-
-                    $sql2 = sprintf("INSERT INTO `%s` (`index`,`name`,`Table_id`,`type`) VALUES (%d,'%s',%d,%s)", TableColumn::get_mysql_table(), ($j + 1), Table::format_column_name($col), $this->id, "text");
-                    mysql_query($sql2);
-
-                    $j++;
-                }
-                $sql.=") ENGINE = INNODB DEFAULT CHARSET=utf8;";
-                mysql_query($sql);
-            }
-            $cols = "";
-            $vals = "";
-            $j = 0;
-            foreach ($columns as $col) {
-                if ($j > 0) {
-                    $cols.=",";
-                    $vals.=",";
-                }
-                $cols.="`" . Table::format_column_name($col) . "`";
-                $vals.="'" . $r[$col] . "'";
-                $j++;
-            }
-            $sql = sprintf("INSERT INTO `%s` (%s) VALUES (%s)", $this->get_table_name(), $cols, $vals);
-            mysql_query($sql);
-            $i++;
-        }
-        return 0;
+        
     }
 
     public function import_from_csv($path, $delimeter = ",", $enclosure = '"', $header = false) {

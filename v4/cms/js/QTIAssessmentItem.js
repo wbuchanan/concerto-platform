@@ -87,7 +87,7 @@ QTIAssessmentItem.uiRevalidate=function(){
         }
         switch(data.result){
             case OModule.queryResults.notLoggedIn:{
-                location.reload();
+                thisClass.onNotLoggedIn(dictionary["s633"]);
                 break;
             }
             case OModule.queryResults.OK:{
