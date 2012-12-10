@@ -360,7 +360,7 @@ class Table extends OModule {
                             $sql.=",";
                         $sql.="`" . $column_name . "`  TEXT NOT NULL";
 
-                        $sql2 = sprintf("INSERT INTO `%s` (`index`,`name`,`Table_id`,`type`) VALUES (%d,'%s',%d,%s)", TableColumn::get_mysql_table(), $i, $column_name, $this->id, "text");
+                        $sql2 = sprintf("INSERT INTO `%s` (`index`,`name`,`Table_id`,`type`) VALUES (%d,'%s',%d,'%s')", TableColumn::get_mysql_table(), $i, $column_name, $this->id, "text");
                         if (!mysql_query($sql2))
                             return -4;
                     }
