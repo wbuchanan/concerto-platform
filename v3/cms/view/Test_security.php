@@ -93,7 +93,7 @@ if (!$logged_user->is_object_editable($obj))
     })
 </script>
 
-<fieldset class="padding ui-widget-content ui-corner-all margin">
+<fieldset class="padding ui-widget-content ui-corner-all margin <?=User::view_class()?>">
     <legend>
         <table>
             <tr>

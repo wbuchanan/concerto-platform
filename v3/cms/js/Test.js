@@ -664,7 +664,7 @@ Test.uiWriteSection=function(type,parent,counter,value,oid,refresh,csid,after,en
         style:"z-index:20; border:1px dotted grey; border-right:1px dotted transparent; margin:5px; margin-right:0px;"
     });
     
-    var sectionContainer = '<div class="divSectionBracket"><table class="noSpace fullWidth"><tr><td class="noSpace">{</td><td class="noSpace" align="right"><button class="btnAddSection noWrap" onclick="Test.uiAddLogicSection('+counter+',0)">'+dictionary["s620"]+'</button></td></tr></table></div><div class="divSectionContainer"></div><div class="divSectionBracket"><table class="noSpace"><tr><td class="noSpace">}</td></tr></table></div>';
+    var sectionContainer = '<div class="divSectionBracket"><table class="noSpace fullWidth"><tr><td class="noSpace">{</td><td class="noSpace" align="left"><button class="btnAddSection noWrap" onclick="Test.uiAddLogicSection('+counter+',0)">'+dictionary["s620"]+'</button></td></tr></table></div><div class="divSectionContainer"></div><div class="divSectionBracket"><table class="noSpace"><tr><td class="noSpace">}</td></tr></table></div>';
     
     section.html('<div class="divSectionContent"></div>'+(type==Test.sectionTypes.ifStatement|| type==Test.sectionTypes.loop|| type==Test.sectionTypes.forLoop|| type==Test.sectionTypes.whileLoop?sectionContainer:""));
     

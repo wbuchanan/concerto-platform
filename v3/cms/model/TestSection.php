@@ -454,20 +454,27 @@ class TestSection extends OTable {
                     %s <<- TRUE
                     %s <<- 1
                 }
-                if(%s <= length(%s)) {
-                    %s <<- %s[%s]
-                    return(%d)
+
+                CONCERTO_TEMP_FOR_INDEX <- 1
+                
+                for(CONCERTO_TEMP_FOR_VALUE in %s){
+                    if(CONCERTO_TEMP_FOR_INDEX==%s){
+                        %s <<- CONCERTO_TEMP_FOR_VALUE
+                        return(%d)
+                        break
                     }
-                    else {
-                    %s <<- FALSE
-                    return(%d)
-                    }
+                    CONCERTO_TEMP_FOR_INDEX <- CONCERTO_TEMP_FOR_INDEX+1
+                }
+                
+                %s <<- FALSE
+                return(%d)
                     ", $this->get_for_initialization_variable(), $this->get_for_initialization_variable(),
                             $this->get_for_index_variable(), $this->get_for_index_variable(),
                             $this->get_for_initialization_variable(),
                             $this->get_for_index_variable(),
-                            $this->get_for_index_variable(),$vals[1],
-                            $vals[0],$vals[1],$this->get_for_index_variable(),
+                            $vals[1],
+                            $this->get_for_index_variable(),
+                            $vals[0],
                             $next->counter, 
                             $this->get_for_initialization_variable(), 
                             $next_not_child_counter);

@@ -191,7 +191,7 @@ if ($oid != 0) {
     if ($oid != -1) {
         include Ini::$path_internal . "cms/view/Test_logic.php";
         ?>
-        <div id="div<?= $class_name ?>Variables"><?php include Ini::$path_internal . "cms/view/Test_variables.php"; ?></div>
+    <div id="div<?= $class_name ?>Variables" class="<?=User::view_class()?>"><?php include Ini::$path_internal . "cms/view/Test_variables.php"; ?></div>
         <?php
         include Ini::$path_internal . "cms/view/Test_security.php";
     }

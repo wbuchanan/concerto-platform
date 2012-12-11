@@ -55,9 +55,9 @@ Table.getAddSaveObject=function()
 };
 
 Table.onViewSwitch=function(view){
-    if(view==0){
-        var grid = $("#div"+this.className+"GridStructure").data('kendoGrid');
-        if(grid!=null){
+    var grid = $("#div"+this.className+"GridStructure").data('kendoGrid');
+    if(grid!=null){
+        if(view==0){
             grid.hideColumn(2);
             grid.hideColumn(3);
             grid.hideColumn(4);
