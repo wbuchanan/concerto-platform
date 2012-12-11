@@ -56,7 +56,7 @@ if (array_key_exists('oid', $_POST) && $_POST['oid'] != 0) {
                                 <option value="1" <?= $vals[0] == 1 ? "selected" : "" ?>><?= Language::string(396) ?></option>
                             </select>
                         </td>
-                        <td>,<?= Language::string(397) ?>:</td>
+                        <td class="noWrap">, <?= Language::string(397) ?>:</td>
                         <td class="fullWidth">
                             <input type="text" class="ui-widget-content ui-corner-all comboboxVars controlValue<?= $_POST['counter'] ?> fullWidth ui-state-focus" value="<?= htmlspecialchars($vals[1], ENT_QUOTES) ?>" onchange="Test.uiSetVarNameChanged($(this))" />
                         </td>
@@ -67,6 +67,7 @@ if (array_key_exists('oid', $_POST) && $_POST['oid'] != 0) {
             <td class="tdSectionColumnIcon"></td>
             <td class="tdSectionColumnEnd"></td>
             <td class="tdSectionColumnIcon"><span class="spanIcon tooltip ui-icon ui-icon-trash" onclick="Test.uiRemoveSection(<?= $_POST['counter'] ?>)" title="<?= Language::string(59) ?>"></span></td>
+            <td class="tdSectionColumnButton"><button class="btnAddSection noWrap" onclick="Test.uiAddLogicSection(0,<?= $_POST['counter'] ?>)"><?= Language::string(619) ?></button></td>
         </tr>
     </table>
 </div>
@@ -91,7 +92,7 @@ if (array_key_exists('oid', $_POST) && $_POST['oid'] != 0) {
             </td>
         </tr>
     </table>
-    <table class="fullWidth" class="<?= $vals[0] == 1 ? "notVisible" : "" ?>">
+    <table class="fullWidth <?= $vals[0] == 1 ? "notVisible" : "" ?>">
         <tr>
             <td class="noWrap">
                 <b><?= Language::string(400) ?></b>:

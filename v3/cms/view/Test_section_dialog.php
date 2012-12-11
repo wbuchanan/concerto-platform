@@ -44,49 +44,49 @@ if (!isset($obj)) {
     </legend>
     <select id="formTestSelectSectionType" class="fullWidth ui-widget-content ui-corner-all">
         <optgroup label="<?= Language::string(147) ?>">
-<?php
-foreach (DS_TestSectionType::get_all_selectable() as $section) {
-    ?>
-                <option id="optionSectionType<?= $section->id ?>" value="<?= $section->id ?>" ><?= $section->get_name() ?></option>
+            <?php
+            foreach (DS_TestSectionType::get_all_selectable() as $section) {
+                ?>
+                <option id="optionSectionType<?= $section->id ?>" value="<?= $section->id ?>" ><?= $section->get_name() ?> <?= $section->id == DS_TestSectionType::LOOP ? Language::string(621) : "" ?></option>
             <?php } ?>
         </optgroup>
-            <?php
-            $sql = $logged_user->mysql_list_rights_filter("CustomSection", "`name` ASC");
-            $z = mysql_query($sql);
-            if (mysql_num_rows($z) > 0) {
-                ?>
+        <?php
+        $sql = $logged_user->mysql_list_rights_filter("CustomSection", "`name` ASC");
+        $z = mysql_query($sql);
+        if (mysql_num_rows($z) > 0) {
+            ?>
             <optgroup label="<?= Language::string(148) ?>">
-            <?php
-            while ($r = mysql_fetch_array($z)) {
-                $cs = CustomSection::from_mysql_id($r[0]);
-                ?>
+                <?php
+                while ($r = mysql_fetch_array($z)) {
+                    $cs = CustomSection::from_mysql_id($r[0]);
+                    ?>
                     <option id="optionSectionType<?= DS_TestSectionType::CUSTOM ?>" value="<?= DS_TestSectionType::CUSTOM ?>:<?= $cs->id ?>" ><?= $cs->name ?> ( <?= $cs->get_system_data() ?> )</option>
                     <?php
                 }
                 ?>
             </optgroup>
-                <?php
-            }
+            <?php
+        }
+        ?>
+        <?php
+        $sql = $logged_user->mysql_list_rights_filter("Test", "`name` ASC");
+        $z = mysql_query($sql);
+        if (mysql_num_rows($z) > 0) {
             ?>
-            <?php
-            $sql = $logged_user->mysql_list_rights_filter("Test", "`name` ASC");
-            $z = mysql_query($sql);
-            if (mysql_num_rows($z) > 0) {
-                ?>
             <optgroup label="<?= Language::string(404) ?>">
-            <?php
-            while ($r = mysql_fetch_array($z)) {
-                if ($r[0] == $obj->id)
-                    continue;
-                $cs = Test::from_mysql_id($r[0]);
-                ?>
+                <?php
+                while ($r = mysql_fetch_array($z)) {
+                    if ($r[0] == $obj->id)
+                        continue;
+                    $cs = Test::from_mysql_id($r[0]);
+                    ?>
                     <option id="optionSectionType<?= DS_TestSectionType::TEST ?>" value="<?= DS_TestSectionType::TEST ?>:<?= $cs->id ?>" ><?= $cs->name ?> ( <?= $cs->get_system_data() ?> )</option>
                     <?php
                 }
                 ?>
             </optgroup>
-                <?php
-            }
-            ?>
+            <?php
+        }
+        ?>
     </select>
 </fieldset>

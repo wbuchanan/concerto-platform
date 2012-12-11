@@ -639,16 +639,6 @@ Note: You can add new languages by inserting "<new_language>string translated in
             <nl>logische testsectie verwijderen</nl>
             <br>remova seção lógica do teste</br>
         </string>
-        <string id="60" js="1">
-            <en>add test logic section</en>
-            <de>Füge Sektion zur Testlogik hinzu</de>
-            <pl>dodaj sekcję logiki testu</pl>
-            <cn>添加测试逻辑章节</cn>
-            <fr>ajouter une section logique du test</fr>
-            <bg>прибави секция с логиката на теста</bg>
-            <nl>logische testsectie toevoegen</nl>
-            <br>adicine uma seção lógica ao teste</br>
-        </string>
         <string id="61" js="1">
             <en>adding new section</en>
             <de>neue Sektion hinzufügen</de>
@@ -919,7 +909,7 @@ Note: You can add new languages by inserting "<new_language>string translated in
             <nl>sjablonen</nl>
             <br>templates</br>
         </string>
-        <string id="88">
+        <string id="88" js="1">
             <en>tests</en>
             <de>Tests</de>
             <pl>testy</pl>
@@ -2180,16 +2170,6 @@ Note: You can add new languages by inserting "<new_language>string translated in
             <bg>условие извади</bg>
             <nl>conditie verwijderen</nl>
             <br>remover condição</br>
-        </string>
-        <string id="232" js="1">
-            <en>add test logic section to IF clause</en>
-            <de>Füge Testlogiksektion zu WENN Aussage hinzu.</de>
-            <pl>dodaj sekcję logiki testu do bloku JEŚLI</pl>
-            <cn>为IF语句添加测试逻辑章节</cn>
-            <fr>ajouter une section logique du test à une clause SI</fr>
-            <bg>прибави секцията с тестовата логика към АКО условието</bg>
-            <nl>logische testsectie toevoegen aan ALS clausule</nl>
-            <br>adicionar uma seção lógica do teste à clásula IF</br>
         </string>
         <string id="235">
             <en>from table</en>
@@ -5962,6 +5942,36 @@ Note: You can add new languages by inserting "<new_language>string translated in
             <en>For best experience, it is strongly recommended to use the latest browser version available.</en>
             <de></de>
             <pl>Mocno zalecane jest używanie najnowszej dostępnej wersji przeglądarki.</pl>
+            <cn></cn>
+            <fr></fr>
+            <bg></bg>
+            <nl></nl>
+            <br></br>
+        </string>
+        <string id="619">
+            <en>add section</en>
+            <de></de>
+            <pl>dodaj sekcję</pl>
+            <cn></cn>
+            <fr></fr>
+            <bg></bg>
+            <nl></nl>
+            <br></br>
+        </string>
+        <string id="620" js="1">
+            <en>add nested section</en>
+            <de></de>
+            <pl>dodaj zagnieżdżoną sekcję</pl>
+            <cn></cn>
+            <fr></fr>
+            <bg></bg>
+            <nl></nl>
+            <br></br>
+        </string>
+        <string id="621">
+            <en>( DEPRECATED )</en>
+            <de></de>
+            <pl>( PRZESTARZAŁE )</pl>
             <cn></cn>
             <fr></fr>
             <bg></bg>

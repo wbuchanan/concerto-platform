@@ -36,7 +36,6 @@ if (!$logged_user->is_object_editable($obj))
 
 <script>
     $(function(){
-        Methods.iniIconButton(".btnAddLogicSection", "plus");
         
         $( "#divTestLogic" ).sortable({
             items: "> div.sortable",

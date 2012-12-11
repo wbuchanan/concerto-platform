@@ -57,6 +57,9 @@ if ($table != null) {
             <td class="tdSectionColumnAction">
                 <table class="fullWidth">
                     <tr>
+                        <td>
+                            <span class="spanIcon ui-icon ui-icon-plus tooltip" title="<?= Language::string(205) ?>" onclick="Test.uiAddNewRelatedObject(8)"></span>
+                        </td>
                         <td><span class="spanIcon ui-icon ui-icon-help tooltip" title="<?= htmlspecialchars(Template::strip_html($description), ENT_QUOTES) ?>"></span></td>
                         <?php if (isset($vals[3]) && $vals[3] != 0) { ?>
                             <td>
@@ -83,6 +86,7 @@ if ($table != null) {
             <td class="tdSectionColumnIcon"><span class="spanIcon ui-icon ui-icon-script tooltip" title="<?= Language::string(447) ?>" onclick="Test.convertToLowerLevel(<?= $_POST['counter'] ?>)"></span></td>
             <td class="tdSectionColumnEnd"><input type="checkbox" id="chkEndSection_<?= $_POST['counter'] ?>" class="chkEndSection tooltip" <?= $_POST['end'] == 1 ? "checked" : "" ?> title="<?= Language::string(369) ?>" /></td>
             <td class="tdSectionColumnIcon"><span class="spanIcon tooltip ui-icon ui-icon-trash" onclick="Test.uiRemoveSection(<?= $_POST['counter'] ?>)" title="<?= Language::string(59) ?>"></span></td>
+            <td class="tdSectionColumnButton"><button class="btnAddSection noWrap" onclick="Test.uiAddLogicSection(0,<?= $_POST['counter'] ?>)"><?= Language::string(619) ?></button></td>
         </tr>
     </table>
 </div>

@@ -176,6 +176,11 @@ if ($oid != 0) {
     if ($oid != -1) {
         ?>
         <fieldset class="padding ui-widget-content ui-corner-all margin">
+            <legend class=""><table><tr><td><span class="spanIcon ui-icon ui-icon-help tooltip" title="<?= Language::string(111) ?>"></span></td><td><b><?= Language::string(49) ?>:</b></td></tr></table></legend>
+            <textarea id="form<?= $class_name ?>TextareaCode" class="fullWidth ui-widget-content ui-corner-all textareaCode"><?= $obj->code ?></textarea>
+        </fieldset>
+
+        <fieldset class="padding ui-widget-content ui-corner-all margin">
             <legend>
                 <table>
                     <tr>
@@ -187,11 +192,6 @@ if ($oid != 0) {
             <div id="td<?= $class_name ?>Logic">
                 <?php include Ini::$path_internal . "cms/view/CustomSection_logic.php"; ?>
             </div>
-        </fieldset>
-
-        <fieldset class="padding ui-widget-content ui-corner-all margin">
-            <legend class=""><table><tr><td><span class="spanIcon ui-icon ui-icon-help tooltip" title="<?= Language::string(111) ?>"></span></td><td><b><?= Language::string(49) ?>:</b></td></tr></table></legend>
-            <textarea id="form<?= $class_name ?>TextareaCode" class="fullWidth ui-widget-content ui-corner-all textareaCode"><?= $code ?></textarea>
         </fieldset>
         <?php
     }

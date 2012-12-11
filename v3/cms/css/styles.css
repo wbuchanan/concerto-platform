@@ -151,8 +151,11 @@ ul {
 }
 .tdSectionColumnAction{
 }
+.tdSectionColumnButton{
+    width:50px;
+}
 .tdSectionColumnEnd{
-    width:25px;
+    width:20px;
 }
 .sortableHandle{
     cursor: move;
@@ -209,4 +212,8 @@ ul {
 
 .divFormControl {
     margin-right:5px;
+}
+
+.btnAddSection{
+    font-size:9px !important;
 }
