@@ -41,6 +41,10 @@ Template.onAfterImport=function(){
 
 Template.onAfterAdd=function(){
     }
+    
+Template.uiRefreshCodeMirrors=function(){
+    if(Template.formCodeMirror!=null) Template.formCodeMirror.refresh();
+}
 
 Template.formCodeMirror=null;
 Template.getAddSaveObject=function()

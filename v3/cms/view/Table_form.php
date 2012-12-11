@@ -42,8 +42,8 @@ if (isset($_POST['oid']) && $_POST['oid'] != 0)
     $oid = $_POST['oid'];
 
 $btn_cancel = "<button class='btnCancel' onclick='" . $class_name . ".uiEdit(0)'>" . Language::string(23) . "</button>";
-$btn_delete = "<button class='btnDelete' onclick='" . $class_name . ".uiDelete($oid)'>" . Language::string(94) . "</button>";
-$btn_save = "<button class='btnSave' onclick='" . $class_name . ".uiSave()'>" . Language::string(95) . "</button>";
+$btn_delete = "<button class='btnDelete ui-state-error' onclick='" . $class_name . ".uiDelete($oid)'>" . Language::string(94) . "</button>";
+$btn_save = "<button class='btnSave ui-state-highlight' onclick='" . $class_name . ".uiSave()'>" . Language::string(95) . "</button>";
 $btn_save_new = "<button class='btnSaveNew' onclick='" . $class_name . ".uiSave(null,true)'>" . Language::string(510) . "</button>";
 
 $caption = "";
@@ -122,7 +122,7 @@ if ($oid != 0) {
             </table>
         </div>
 
-        <div class="divFormElement">
+        <div class="divFormElement <?= User::view_class() ?>">
             <table class="fullWidth">
                 <tr>
                     <td class="noWrap tdFormLabel"><?= Language::string(72) ?>:</td>
@@ -147,7 +147,7 @@ if ($oid != 0) {
         <?php
         if ($oid > 0 && $logged_user->is_ownerhsip_changeable($obj)) {
             ?>
-            <div class="divFormElement">
+            <div class="divFormElement <?= User::view_class() ?>">
                 <table class="fullWidth">
                     <tr>
                         <td class="noWrap tdFormLabel"><?= Language::string(71) ?>:</td>
@@ -209,49 +209,50 @@ if ($oid != 0) {
                         <td class="fullWidth">
                             <div class="horizontalMargin">
                                 <select id="form<?= $class_name ?>SelectColumnType" class="fullWidth ui-widget-content ui-corner-all">
-                                    <optgroup label="<?= Language::string(581) ?>">
-                                        <option value="tinyint">tinyint</option>
-                                        <option value="smallint">smallint</option>
-                                        <option value="mediumint">mediumint</option>
-                                        <option value="int">int</option>
-                                        <option value="bigint">bigint</option>
-                                        <option value="decimal">decimal</option>
-                                        <option value="float">float</option>
-                                        <option value="double">double</option>
-                                        <option value="real">real</option>
-                                        <option value="bit">bit</option>
-                                        <option value="boolean">boolean</option>
-                                        <option value="serial">serial</option>
+                                    <optgroup class="<?= User::view_class() ?>" label="<?= Language::string(581) ?>">
+                                        <option class="<?= User::view_class() ?>" value="tinyint">tinyint</option>
+                                        <option class="<?= User::view_class() ?>" value="smallint">smallint</option>
+                                        <option class="<?= User::view_class() ?>" value="mediumint">mediumint</option>
+                                        <option class="<?= User::view_class() ?>" value="int">int</option>
+                                        <option class="<?= User::view_class() ?>" value="bigint">bigint</option>
+                                        <option class="<?= User::view_class() ?>" value="decimal">decimal</option>
+                                        <option class="<?= User::view_class() ?>" value="float">float</option>
+                                        <option class="<?= User::view_class() ?>" value="double">double</option>
+                                        <option class="<?= User::view_class() ?>" value="real">real</option>
+                                        <option class="<?= User::view_class() ?>" value="bit">bit</option>
+                                        <option class="<?= User::view_class() ?>" value="boolean">boolean</option>
+                                        <option class="<?= User::view_class() ?>" value="serial">serial</option>
                                     </optgroup>
-                                    <optgroup label="<?= Language::string(583) ?>">
-                                        <option value="HTML"><?= Language::string(18) ?></option>
-                                        <option value="char">char</option>
-                                        <option value="varchar">varchar</option>
-                                        <option value="tinytext">tinytext</option>
-                                        <option value="text">text</option>
-                                        <option value="mediumtext">mediumtext</option>
-                                        <option value="longtext">longtext</option>
-                                        <option value="binary">binary</option>
-                                        <option value="varbinary">varbinary</option>
-                                        <option value="tinyblob">tinyblob</option>
-                                        <option value="mediumblob">mediumblob</option>
-                                        <option value="blob">blob</option>
-                                        <option value="longblob">longblob</option>
-                                        <option value="enum">enum</option>
-                                        <option value="set">set</option>
+                                    <optgroup class="<?= User::view_class() ?>" label="<?= Language::string(583) ?>">
+                                        <option class="<?= User::view_class() ?>" value="HTML"><?= Language::string(18) ?></option>
+                                        <option class="<?= User::view_class() ?>" value="char">char</option>
+                                        <option class="<?= User::view_class() ?>" value="varchar">varchar</option>
+                                        <option class="<?= User::view_class() ?>" value="tinytext">tinytext</option>
+                                        <option value="text" selected>text</option>
+                                        <option class="<?= User::view_class(true) ?>" value="double">numeric</option>
+                                        <option class="<?= User::view_class() ?>" value="mediumtext">mediumtext</option>
+                                        <option class="<?= User::view_class() ?>" value="longtext">longtext</option>
+                                        <option class="<?= User::view_class() ?>" value="binary">binary</option>
+                                        <option class="<?= User::view_class() ?>" value="varbinary">varbinary</option>
+                                        <option class="<?= User::view_class() ?>" value="tinyblob">tinyblob</option>
+                                        <option class="<?= User::view_class() ?>" value="mediumblob">mediumblob</option>
+                                        <option class="<?= User::view_class() ?>" value="blob">blob</option>
+                                        <option class="<?= User::view_class() ?>" value="longblob">longblob</option>
+                                        <option class="<?= User::view_class() ?>" value="enum">enum</option>
+                                        <option class="<?= User::view_class() ?>" value="set">set</option>
                                     </optgroup>
-                                    <optgroup label="<?= Language::string(582) ?>">
-                                        <option value="date">date</option>
-                                        <option value="datetime">datetime</option>
-                                        <option value="timestamp">timestamp</option>
-                                        <option value="time">time</option>
-                                        <option value="year">year</option>
+                                    <optgroup class="<?= User::view_class() ?>" label="<?= Language::string(582) ?>">
+                                        <option class="<?= User::view_class() ?>" value="date">date</option>
+                                        <option class="<?= User::view_class() ?>" value="datetime">datetime</option>
+                                        <option class="<?= User::view_class() ?>" value="timestamp">timestamp</option>
+                                        <option class="<?= User::view_class() ?>" value="time">time</option>
+                                        <option class="<?= User::view_class() ?>" value="year">year</option>
                                     </optgroup>
                                 </select>
                             </div>
                         </td>
                     </tr>
-                    <tr>
+                    <tr class="<?= User::view_class() ?>">
                         <td class="noWrap horizontalPadding tdFormLabel"><?= Language::string(585) ?>:</td>
                         <td><span class="tooltip spanIcon ui-icon ui-icon-help" title="<?= Language::string(586) ?>"></span></td>
                         <td class="fullWidth">
@@ -260,7 +261,7 @@ if ($oid != 0) {
                             </div>
                         </td>
                     </tr>
-                    <tr>
+                    <tr class="<?= User::view_class() ?>">
                         <td class="noWrap horizontalPadding tdFormLabel"><?= Language::string(538) ?>:</td>
                         <td><span class="tooltip spanIcon ui-icon ui-icon-help" title="<?= Language::string(587) ?>"></span></td>
                         <td class="fullWidth">
@@ -269,7 +270,7 @@ if ($oid != 0) {
                             </div>
                         </td>
                     </tr>
-                    <tr>
+                    <tr class="<?= User::view_class() ?>">
                         <td class="noWrap horizontalPadding tdFormLabel"><?= Language::string(588) ?>:</td>
                         <td><span class="tooltip spanIcon ui-icon ui-icon-help" title="<?= Language::string(589) ?>"></span></td>
                         <td class="fullWidth">
@@ -284,7 +285,7 @@ if ($oid != 0) {
                             </div>
                         </td>
                     </tr>
-                    <tr>
+                    <tr class="<?= User::view_class() ?>">
                         <td class="noWrap horizontalPadding tdFormLabel"><?= Language::string(590) ?>:</td>
                         <td><span class="tooltip spanIcon ui-icon ui-icon-help" title="<?= Language::string(591) ?>"></span></td>
                         <td class="fullWidth">
@@ -293,7 +294,7 @@ if ($oid != 0) {
                             </div>
                         </td>
                     </tr>
-                    <tr>
+                    <tr class="<?= User::view_class() ?>">
                         <td class="noWrap horizontalPadding tdFormLabel"><?= Language::string(592) ?>:</td>
                         <td><span class="tooltip spanIcon ui-icon ui-icon-help" title="<?= Language::string(593) ?>"></span></td>
                         <td class="fullWidth">

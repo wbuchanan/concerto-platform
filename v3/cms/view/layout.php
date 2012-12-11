@@ -31,10 +31,14 @@ if ($logged_user == null) {
 
 <script>
     $(function(){
+        Methods.currentView = <?= User::is_simple_view() ? 0 : 1 ?>;
         $("#tnd_mainMenu").tabs({
             show:function(event,ui){
                 if(ui.index==0){
                     Test.uiRefreshCodeMirrors();
+                }
+                if(ui.index==3){
+                    Template.uiRefreshCodeMirrors();
                 }
             }
         });
@@ -86,17 +90,17 @@ if (Ini::$cms_session_keep_alive) {
                 ?>
                 <li><a href="#tnd_mainMenu-tests" class="tooltipTabs" title="<?= Language::string(193) ?>"><?= Language::string(88) ?></a></li>
             <?php } ?>
-                
+
             <?php
             if ($logged_user->is_module_accesible("QTIAssessmentItem")) {
                 ?>
-                <li><a href="#tnd_mainMenu-QTI" class="tooltipTabs" title="<?= Language::string(460) ?>"><?= Language::string(459) ?></a></li>
+                <li class="<?= User::view_class() ?>"><a href="#tnd_mainMenu-QTI" class="tooltipTabs" title="<?= Language::string(460) ?>"><?= Language::string(459) ?></a></li>
             <?php } ?>
 
             <?php
             if ($logged_user->is_module_accesible("CustomSection")) {
                 ?>
-                <li><a href="#tnd_mainMenu-customSections" class="tooltipTabs" title="<?= Language::string(194) ?>"><?= Language::string(84) ?></a></li>
+                <li class="<?= User::view_class() ?>"><a href="#tnd_mainMenu-customSections" class="tooltipTabs" title="<?= Language::string(194) ?>"><?= Language::string(84) ?></a></li>
             <?php } ?>
 
             <?php
@@ -114,7 +118,7 @@ if (Ini::$cms_session_keep_alive) {
             <?php
             if ($logged_user->is_module_accesible("User") || $logged_user->is_module_accesible("UserType") || $logged_user->is_module_accesible("UserGroup")) {
                 ?>
-                <li><a href="#tnd_mainMenu-users" class="tooltipTabs" title="<?= Language::string(197) ?>"><?= Language::string(198) ?></a></li>
+                <li class="<?= User::view_class() ?>"><a href="#tnd_mainMenu-users" class="tooltipTabs" title="<?= Language::string(197) ?>"><?= Language::string(198) ?></a></li>
             <?php } ?>
         </ul>
 
@@ -125,7 +129,7 @@ if (Ini::$cms_session_keep_alive) {
                 <?php include Ini::$path_internal . 'cms/view/includes/tab_tests.inc.php'; ?>
             </div>
         <?php } ?>
-        
+
         <?php
         if ($logged_user->is_module_accesible("QTIAssessmentItem")) {
             ?>

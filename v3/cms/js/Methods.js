@@ -47,6 +47,26 @@ Methods.toggleExpand=function(selector,btnSelector){
     });
 }
 
+Methods.currentView = 0;
+Methods.uiChangeView=function(view){
+    $.post("query/change_view.php",{
+        view:view
+    },function(data){
+        if(data.result==0){
+            Methods.currentView = view;
+            if(view==0) {
+                $(".viewDependant").addClass("notVisible");
+                $(".viewReverslyDependant").removeClass("notVisible");
+            } else {
+                $(".viewDependant").removeClass("notVisible");
+                $(".viewReverslyDependant").addClass("notVisible");
+                Template.uiRefreshCodeMirrors();
+            }
+            Table.onViewSwitch(view);
+        }
+    },"json");
+}
+
 Methods.modalLoading=function(title){
     if(title==null) title=dictionary["s319"];
     Methods.loading("#divLoadingDialog");

@@ -47,7 +47,7 @@ if (!isset($obj)) {
             <?php
             foreach (DS_TestSectionType::get_all_selectable() as $section) {
                 ?>
-                <option id="optionSectionType<?= $section->id ?>" value="<?= $section->id ?>" ><?= $section->get_name() ?> <?= $section->id == DS_TestSectionType::LOOP ? Language::string(621) : "" ?></option>
+                <option id="optionSectionType<?= $section->id ?>" value="<?= $section->id ?>" class="<?= $section->id == DS_TestSectionType::LOWER_LEVEL_R_CODE || $section->id == DS_TestSectionType::LOOP || $section->id == DS_TestSectionType::QTI_INITIALIZATION || $section->id == DS_TestSectionType::QTI_RESPONSE_PROCESSING ? User::view_class() : "" ?>" ><?= $section->get_name() ?> <?= $section->id == DS_TestSectionType::LOOP ? Language::string(621) : "" ?></option>
             <?php } ?>
         </optgroup>
         <?php
@@ -55,12 +55,12 @@ if (!isset($obj)) {
         $z = mysql_query($sql);
         if (mysql_num_rows($z) > 0) {
             ?>
-            <optgroup label="<?= Language::string(148) ?>">
+            <optgroup label="<?= Language::string(148) ?>" class="<?= User::view_class() ?>">
                 <?php
                 while ($r = mysql_fetch_array($z)) {
                     $cs = CustomSection::from_mysql_id($r[0]);
                     ?>
-                    <option id="optionSectionType<?= DS_TestSectionType::CUSTOM ?>" value="<?= DS_TestSectionType::CUSTOM ?>:<?= $cs->id ?>" ><?= $cs->name ?> ( <?= $cs->get_system_data() ?> )</option>
+                    <option id="optionSectionType<?= DS_TestSectionType::CUSTOM ?>" value="<?= DS_TestSectionType::CUSTOM ?>:<?= $cs->id ?>" class="<?= User::view_class() ?>" ><?= $cs->name ?> ( <?= $cs->get_system_data() ?> )</option>
                     <?php
                 }
                 ?>

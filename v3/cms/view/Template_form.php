@@ -42,8 +42,8 @@ if (isset($_POST['oid']) && $_POST['oid'] != 0)
     $oid = $_POST['oid'];
 
 $btn_cancel = "<button class='btnCancel' onclick='" . $class_name . ".uiEdit(0)'>" . Language::string(23) . "</button>";
-$btn_delete = "<button class='btnDelete' onclick='" . $class_name . ".uiDelete($oid)'>" . Language::string(94) . "</button>";
-$btn_save = "<button class='btnSave' onclick='" . $class_name . ".uiSave()'>" . Language::string(95) . "</button>";
+$btn_delete = "<button class='btnDelete ui-state-error' onclick='" . $class_name . ".uiDelete($oid)'>" . Language::string(94) . "</button>";
+$btn_save = "<button class='btnSave ui-state-highlight' onclick='" . $class_name . ".uiSave()'>" . Language::string(95) . "</button>";
 $btn_save_new = "<button class='btnSaveNew' onclick='" . $class_name . ".uiSave(null,true)'>" . Language::string(510) . "</button>";
 
 $caption = "";
@@ -128,7 +128,7 @@ if ($oid != 0) {
             </table>
         </div>
 
-        <div class="divFormElement">
+        <div class="divFormElement <?= User::view_class() ?>">
             <table class="fullWidth">
                 <tr>
                     <td class="noWrap tdFormLabel"><?= Language::string(72) ?>:</td>
@@ -150,7 +150,7 @@ if ($oid != 0) {
 
         <?php if ($oid > 0 && $logged_user->is_ownerhsip_changeable($obj)) {
             ?>
-            <div class="divFormElement">
+            <div class="divFormElement <?= User::view_class() ?>">
                 <table class="fullWidth">
                     <tr>
                         <td class="noWrap tdFormLabel"><?= Language::string(71) ?>:</td>
@@ -179,7 +179,7 @@ if ($oid != 0) {
 
     <?php
     if ($oid != -1) {
-        ?><div id="div<?= $class_name ?>Transitions"><?php include Ini::$path_internal . "cms/view/Template_transitions.php"; ?></div><?php
+        ?><div id="div<?= $class_name ?>Transitions" class="<?= User::view_class() ?>"><?php include Ini::$path_internal . "cms/view/Template_transitions.php"; ?></div><?php
         ?>
         <fieldset class="padding ui-widget-content ui-corner-all margin">
             <legend>
@@ -191,7 +191,7 @@ if ($oid != 0) {
                 </table>
             </legend>
             <table>
-                <tr>
+                <tr class="<?= User::view_class() ?>">
                     <td class="noWrap horizontalPadding tdFormLabel"><?= Language::string(407) ?>:</td>
                     <td><span class="tooltip spanIcon ui-icon ui-icon-help" title="<?= Language::string(408) ?>"></span></td>
                     <td>

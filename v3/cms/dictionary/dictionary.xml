@@ -6028,5 +6028,25 @@ Note: You can add new languages by inserting "<new_language>string translated in
             <nl></nl>
             <br></br>
         </string>
+        <string id="627">
+            <en>simple view</en>
+            <de></de>
+            <pl>prosty widok</pl>
+            <cn></cn>
+            <fr></fr>
+            <bg></bg>
+            <nl></nl>
+            <br></br>
+        </string>
+        <string id="628">
+            <en>advanced view</en>
+            <de></de>
+            <pl>zaawansowany widok</pl>
+            <cn></cn>
+            <fr></fr>
+            <bg></bg>
+            <nl></nl>
+            <br></br>
+        </string>
     </strings>
 </root> 

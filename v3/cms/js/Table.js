@@ -54,6 +54,25 @@ Table.getAddSaveObject=function()
     };
 };
 
+Table.onViewSwitch=function(view){
+    if(view==0){
+        var grid = $("#div"+this.className+"GridStructure").data('kendoGrid');
+        if(grid!=null){
+            grid.hideColumn(2);
+            grid.hideColumn(3);
+            grid.hideColumn(4);
+            grid.hideColumn(5);
+            grid.hideColumn(6);
+        } else {
+            grid.showColumn(2);
+            grid.showColumn(3);
+            grid.showColumn(4);
+            grid.showColumn(5);
+            grid.showColumn(6);
+        }
+    }
+}
+
 Table.getFullSaveObject=function(){
     var obj = this.getAddSaveObject();
     obj["cols"] = Table.getSerializedColumns();
@@ -573,21 +592,26 @@ Table.uiIniStructureGrid=function(){
             field:"type"
         },{
             title:dictionary["s585"],
-            field:"lengthValues"
+            field:"lengthValues",
+            hidden:Methods.currentView==0
         },{
             title:dictionary["s538"],
-            field:"defaultValue"
+            field:"defaultValue",
+            hidden:Methods.currentView==0
         },{
             title:dictionary["s588"],
-            field:"attributes"
+            field:"attributes",
+            hidden:Methods.currentView==0
         },{
             title:dictionary["s590"],
             field:"nullable",
-            template:'<input type="checkbox" #= nullable==1?"checked":"" # disabled />'
+            template:'<input type="checkbox" #= nullable==1?"checked":"" # disabled />',
+            hidden:Methods.currentView==0
         },{
             title:dictionary["s592"],
             field:"auto_increment",
-            template:'<input type="checkbox" #= auto_increment==1?"checked":"" # disabled />'
+            template:'<input type="checkbox" #= auto_increment==1?"checked":"" # disabled />',
+            hidden:Methods.currentView==0
         },{
             title:' ',
             width:50,
@@ -1020,7 +1044,7 @@ Table.uiEditColumn=function(obj){
         },
         close:function(){
             name.val("");
-            type.val("HTML");
+            type.val("text");
             lengthValues.val("");
             defaultValue.val("");
             attributes.val("");
@@ -1506,7 +1530,7 @@ Table.uiAddColumn=function(){
         },
         close:function(){
             name.val("");
-            type.val(1);
+            type.val("text");
             //$('.ui-widget-overlay').css('position', 'absolute');
             $(this).dialog("destroy");
         },

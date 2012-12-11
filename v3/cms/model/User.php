@@ -129,6 +129,33 @@ class User extends OModule {
         return null;
     }
 
+    public static function is_simple_view() {
+        if (array_key_exists("ptap_view", $_SESSION)) {
+            return $_SESSION['ptap_view'] == 0;
+        } else {
+            $_SESSION['ptap_view'] = 0;
+            return true;
+        }
+    }
+
+    public static function view_class($reverse = false) {
+        if ($reverse) {
+            if (self::is_simple_view())
+                return"viewReverslyDependant";
+            else
+                return "notVisible viewReverslyDependant";
+        } else {
+            if (self::is_simple_view())
+                return"notVisible viewDependant";
+            else
+                return "viewDependant";
+        }
+    }
+
+    public static function set_view($view) {
+        $_SESSION['ptap_view'] = $view;
+    }
+
     public static function log_in($login, $password) {
         $user = self::from_property(array(
                     "login" => $login
@@ -144,6 +171,7 @@ class User extends OModule {
 
             $_SESSION['ptap_logged_login'] = $login;
             $_SESSION['ptap_logged_password'] = $hash;
+            $_SESSION['ptap_view'] = 0;
         }
         return $user;
     }
@@ -468,7 +496,8 @@ class User extends OModule {
         $sql = "
             INSERT INTO `User` (`id`, `updated`, `created`, `login`, `firstname`, `lastname`, `email`, `phone`, `password`, `UserType_id`, `UserGroup_id`, `last_login`, `Sharing_id`, `Owner_id`) VALUES (NULL, CURRENT_TIMESTAMP, NOW(), 'admin', 'unknown', '', '', '', '', '1', '', '0000-00-00 00:00:00', '1', '1');
             ";
-        if(!mysql_query($sql)) return false;
+        if (!mysql_query($sql))
+            return false;
         $user = User::from_mysql_id(1);
         $user->password = $user->calculate_raw_password_hash("admin");
         return $user->mysql_save();

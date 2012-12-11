@@ -40,8 +40,8 @@ if ($logged_user == null)
             <td class="tdSectionColumnIcon"></td>
             <td class="tdSectionColumnType"><?= DS_TestSectionType::get_name_by_id(7) ?></td>
             <td class="tdSectionColumnAction"></td>
-            <td class="tdSectionColumnIcon"></td>
-            <td class="tdSectionColumnEnd"></td>
+            <td class="tdSectionColumnIcon <?= User::view_class() ?>"></td>
+            <td class="tdSectionColumnEnd <?= User::view_class() ?>"></td>
             <td class="tdSectionColumnIcon"></td>
             <td class="tdSectionColumnButton"></td>
         </tr>

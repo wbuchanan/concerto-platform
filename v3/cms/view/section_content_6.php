@@ -38,8 +38,8 @@ if ($logged_user == null) {
             <td class="tdSectionColumnIcon"><span id="spanExpandDetail_<?= $_POST['counter'] ?>" class="spanExpandDetail spanIcon ui-icon ui-icon-folder-<?= $_POST['detail'] == 1 ? "open" : "collapsed" ?> tooltip" title="<?= Language::string(390) ?>" onclick="Test.uiToggleDetails(<?= $_POST['counter'] ?>)"></span></td>
             <td class="tdSectionColumnType"><?= DS_TestSectionType::get_name_by_id(6) ?></td>
             <td class="tdSectionColumnAction"></td>
-            <td class="tdSectionColumnIcon"></td>
-            <td class="tdSectionColumnEnd"></td>
+            <td class="tdSectionColumnIcon <?= User::view_class() ?>"></td>
+            <td class="tdSectionColumnEnd <?= User::view_class() ?>"></td>
             <td class="tdSectionColumnIcon"></td>
             <td class="tdSectionColumnButton"><button class="btnAddSection noWrap" onclick="Test.uiAddLogicSection(0,<?= $_POST['counter'] ?>)"><?= Language::string(619) ?></button></td>
         </tr>

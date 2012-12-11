@@ -410,7 +410,10 @@ OModule.inheritance=function(obj)
         $("#div"+this.className+"Form").show();
         $("#radio"+this.className+"List").removeAttr("checked");
         $("#radio"+this.className+"Form").attr("checked","checked");
-        $( "#div"+this.className+"RadioMenu" ).buttonset("refresh"); 
+        $( "#div"+this.className+"RadioMenu" ).buttonset("refresh");
+        
+        if(this.uiRefreshCodeMirrors) this.uiRefreshCodeMirrors();
+        
         this.currentPanel="form";
     }
     
