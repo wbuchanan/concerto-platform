@@ -36,7 +36,9 @@ Test.sectionTypes={
     test:11,
     lowerLevelRCode:12,
     QTIInitialization:13,
-    QTIResponseProcessing:14
+    QTIResponseProcessing:14,
+    forLoop:15,
+    whileLoop:16
 };
 
 Test.className="Test";
@@ -346,6 +348,20 @@ Test.getSectionValues=function(section){
         case Test.sectionTypes.QTIResponseProcessing:{
             return [$(".divSection[seccounter="+section.counter+"] select").val()];
         }
+        case Test.sectionTypes.whileLoop:{
+            var values = new Array();
+            $(".divSection[seccounter="+section.counter+"] .controlValue"+section.counter).each(function(){
+                values.push($(this).val());
+            });
+            return values;
+        }
+        case Test.sectionTypes.forLoop:{
+            var values = new Array();
+            $(".divSection[seccounter="+section.counter+"] .controlValue"+section.counter).each(function(){
+                values.push($(this).val());
+            });
+            return values;
+        }
         default:{
             return [];
         }
@@ -379,7 +395,6 @@ Test.getSectionTypeName=function(type){
         case Test.sectionTypes.loadTemplate:{
             return dictionary["s50"];
         }
-        
         case Test.sectionTypes.goTo:{
             return dictionary["s51"];
         }
@@ -412,6 +427,12 @@ Test.getSectionTypeName=function(type){
         }
         case Test.sectionTypes.QTIResponseProcessing:{
             return dictionary["s482"];
+        }
+        case Test.sectionTypes.forLoop:{
+            return dictionary["s622"];
+        }
+        case Test.sectionTypes.whileLoop:{
+            return dictionary["s623"];
         }
     }
 }
@@ -472,6 +493,12 @@ Test.uiRefreshSectionContent=function(type,counter,value,oid,end){
         case Test.sectionTypes.QTIResponseProcessing:{
             if(value==null) value=[0];
             break;
+        }
+        case Test.sectionTypes.whileLoop:{
+            if(value==null) value=["",0,""];
+        }
+        case Test.sectionTypes.forLoop:{
+            if(value==null) value=["",""];
         }
     }
     
@@ -639,7 +666,7 @@ Test.uiWriteSection=function(type,parent,counter,value,oid,refresh,csid,after,en
     
     var sectionContainer = '<div class="divSectionBracket"><table class="noSpace fullWidth"><tr><td class="noSpace">{</td><td class="noSpace" align="right"><button class="btnAddSection noWrap" onclick="Test.uiAddLogicSection('+counter+',0)">'+dictionary["s620"]+'</button></td></tr></table></div><div class="divSectionContainer"></div><div class="divSectionBracket"><table class="noSpace"><tr><td class="noSpace">}</td></tr></table></div>';
     
-    section.html('<div class="divSectionContent"></div>'+(type==Test.sectionTypes.ifStatement|| type==Test.sectionTypes.loop?sectionContainer:""));
+    section.html('<div class="divSectionContent"></div>'+(type==Test.sectionTypes.ifStatement|| type==Test.sectionTypes.loop|| type==Test.sectionTypes.forLoop|| type==Test.sectionTypes.whileLoop?sectionContainer:""));
     
     if(after!=null && after != 0){
         $(".divSection[seccounter='"+after+"']").after(section);
@@ -855,11 +882,24 @@ Test.uiAddIfCond=function(counter){
     Test.uiRefreshSectionContent(Test.sectionTypes.ifStatement,counter,vals);
 }
 
+Test.uiAddWhileCond=function(counter){
+    var vals = Test.getSectionValues(Test.sectionDivToObject($('#divSection_'+counter)));
+    vals = vals.concat([0,"","!=",""]);
+    Test.uiRefreshSectionContent(Test.sectionTypes.whileLoop,counter,vals);
+}
+
 Test.uiRemoveIfCond=function(counter,index){
     var vals = Test.getSectionValues(Test.sectionDivToObject($('#divSection_'+counter)));
     index = 3+4*index;
     vals.splice(index, 4);
     Test.uiRefreshSectionContent(Test.sectionTypes.ifStatement,counter,vals);
+}
+
+Test.uiRemoveWhileCond=function(counter,index){
+    var vals = Test.getSectionValues(Test.sectionDivToObject($('#divSection_'+counter)));
+    index = 3+4*index;
+    vals.splice(index, 4);
+    Test.uiRefreshSectionContent(Test.sectionTypes.whileLoop,counter,vals);
 }
 
 Test.uiAddSetVarColumn=function(counter){

@@ -420,6 +420,103 @@ class TestSection extends OTable {
                     }
                     break;
                 }
+            case DS_TestSectionType::FOR_LOOP: {
+                    $contents = TestSection::from_property(array("Test_id" => $this->Test_id, "parent_counter" => $this->counter));
+                    $is_empty = count($contents) == 0;
+
+                    $next_not_child = $this->get_next_not_child_TestSection();
+                    $next_not_child_counter = $next_not_child->counter;
+                    if ($end_of_loop) {
+                        $next_not_child_counter = $next_counter;
+                    } else {
+                        $is_end_of_loop = $this->is_end_of_loop(false);
+                        if ($is_end_of_loop) {
+                            $parent_loop = $this->get_section_loop();
+                            if ($parent_loop != null) {
+                                $next_not_child_counter = $parent_loop->counter;
+                            }
+                        }
+                    }
+                    $code = "";
+
+                    if ($is_empty) {
+                        $code.=sprintf("
+                            return(%d)
+                            ", $next_not_child_counter);
+                        break;
+                    }
+
+                    $code = sprintf("
+                if(exists('%s') && %s) {
+                    %s <<- %s + 1
+                }
+                else {
+                    %s <<- TRUE
+                    %s <<- 1
+                }
+                if(%s <= length(%s)) {
+                    %s <<- %s[%s]
+                    return(%d)
+                    }
+                    else {
+                    %s <<- FALSE
+                    return(%d)
+                    }
+                    ", $this->get_for_initialization_variable(), $this->get_for_initialization_variable(),
+                            $this->get_for_index_variable(), $this->get_for_index_variable(),
+                            $this->get_for_initialization_variable(),
+                            $this->get_for_index_variable(),
+                            $this->get_for_index_variable(),$vals[1],
+                            $vals[0],$vals[1],$this->get_for_index_variable(),
+                            $next->counter, 
+                            $this->get_for_initialization_variable(), 
+                            $next_not_child_counter);
+
+                    break;
+                }
+            case DS_TestSectionType::WHILE_LOOP: {
+                    $contents = TestSection::from_property(array("Test_id" => $this->Test_id, "parent_counter" => $this->counter));
+                    $is_empty = count($contents) == 0;
+
+                    $next_not_child = $this->get_next_not_child_TestSection();
+                    $next_not_child_counter = $next_not_child->counter;
+                    if ($end_of_loop) {
+                        $next_not_child_counter = $next_counter;
+                    } else {
+                        $is_end_of_loop = $this->is_end_of_loop(false);
+                        if ($is_end_of_loop) {
+                            $parent_loop = $this->get_section_loop();
+                            if ($parent_loop != null) {
+                                $next_not_child_counter = $parent_loop->counter;
+                            }
+                        }
+                    }
+                    $code = "";
+
+                    if ($is_empty) {
+                        $code.=sprintf("
+                            return(%d)
+                            ", $next_not_child_counter);
+                        break;
+                    }
+
+                    $additional_conds = "";
+                    $i = 3;
+                    while (isset($vals[$i])) {
+                        $additional_conds.=sprintf("%s %s %s %s", $vals[$i], $vals[$i + 1], $vals[$i + 2], $vals[$i + 3]);
+                        $i+=4;
+                    }
+
+                    $code = sprintf("
+                if(%s %s %s %s) {
+                    return(%d)
+                    }
+                    else {
+                    return(%d)
+                    }
+                    ", $vals[0], $vals[1], $vals[2], $additional_conds, $next->counter, $next_not_child_counter);
+                    break;
+                }
             case DS_TestSectionType::TABLE_MOD: {
                     $type = $vals[0];
                     $set_count = $vals[2];
@@ -553,6 +650,14 @@ class TestSection extends OTable {
         return "CONCERTO_FOR_Test" . $Test_id . "Section" . $counter . "_INIT";
     }
 
+    public function get_for_index_variable() {
+        return TestSection::build_for_index_variable($this->Test_id, $this->counter);
+    }
+
+    public static function build_for_index_variable($Test_id, $counter) {
+        return "CONCERTO_FOR_Test" . $Test_id . "Section" . $counter . "_INDEX";
+    }
+
     public function get_parent_loops_counters() {
         $loops = array();
         $parent_counter = $this->parent_counter;
@@ -564,7 +669,7 @@ class TestSection extends OTable {
             if ($parent == null)
                 return $loops;
 
-            if ($parent->TestSectionType_id == DS_TestSectionType::LOOP) {
+            if ($parent->TestSectionType_id == DS_TestSectionType::LOOP || $parent->TestSectionType_id == DS_TestSectionType::WHILE_LOOP || $parent->TestSectionType_id == DS_TestSectionType::FOR_LOOP) {
                 array_push($loops, $parent->counter);
             }
 
@@ -585,7 +690,7 @@ class TestSection extends OTable {
             if ($parent == null)
                 return false;
 
-            if ($parent->TestSectionType_id == DS_TestSectionType::LOOP) {
+            if ($parent->TestSectionType_id == DS_TestSectionType::LOOP || $parent->TestSectionType_id == DS_TestSectionType::WHILE_LOOP || $parent->TestSectionType_id == DS_TestSectionType::FOR_LOOP) {
                 $is_in_loop = true;
                 $loop_counter = $parent->counter;
                 break;

@@ -1380,7 +1380,7 @@ class Setup {
                 array_push($versions_to_update, "3.9.0");
             } else {
 
-                ///COMPATIBILITY FIX FOR V3.0.0 START
+                ///TestSession - removing r_type field
                 $sql = "SHOW COLUMNS FROM `TestSession` WHERE `Field`='r_type'";
                 $z = mysql_query($sql);
                 if (mysql_num_rows($z) > 0) {
@@ -1391,6 +1391,22 @@ class Setup {
 
                 Setting::set_setting("version", "3.9.0");
                 return json_encode(array("result" => 0, "param" => "3.9.0"));
+            }
+        }
+
+        if (Ini::does_patch_apply("3.9.2", $previous_version)) {
+            if ($simulate) {
+                array_push($versions_to_update, "3.9.2");
+            } else {
+
+                //DS_TestSectionType - adding two new loop sections
+                $sql = "INSERT INTO `DS_TestSectionType` (`id`, `name`, `value`, `position`) VALUES 
+                    (15, 'FOR loop', '15', 15),
+                    (16, 'WHILE loop', '16', 16)";
+                $z = mysql_query($sql);
+
+                Setting::set_setting("version", "3.9.2");
+                return json_encode(array("result" => 0, "param" => "3.9.2"));
             }
         }
 

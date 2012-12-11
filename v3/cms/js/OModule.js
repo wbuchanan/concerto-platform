@@ -378,6 +378,7 @@ OModule.inheritance=function(obj)
                 title:dictionary["s7"],
                 width:925,
                 open:function(){
+                    $("#divAddFormDialog").dialog("option","position","center"); 
                     $('.ui-widget-overlay').css('position', 'fixed');
                     Methods.stopModalLoading();
                     if(thisClass.onAfterAdd) thisClass.onAfterAdd();

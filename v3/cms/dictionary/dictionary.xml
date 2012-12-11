@@ -5978,5 +5978,55 @@ Note: You can add new languages by inserting "<new_language>string translated in
             <nl></nl>
             <br></br>
         </string>
+        <string id="622" js="1">
+            <en>FOR loop</en>
+            <de></de>
+            <pl>pętla FOR</pl>
+            <cn></cn>
+            <fr></fr>
+            <bg></bg>
+            <nl></nl>
+            <br></br>
+        </string>
+        <string id="623" js="1">
+            <en>WHILE loop</en>
+            <de></de>
+            <pl>pętla WHILE</pl>
+            <cn></cn>
+            <fr></fr>
+            <bg></bg>
+            <nl></nl>
+            <br></br>
+        </string>
+        <string id="624">
+            <en>FOR loop allows to go through all elements in specified sequence. Sequence element will be declared as specified variable.</en>
+            <de></de>
+            <pl>Pętla FOR pozwala przejść przez wszystkie elementy w określonej sekwencji. Element sekwencji zostanie zadeklarowany jako określona zmienna.</pl>
+            <cn></cn>
+            <fr></fr>
+            <bg></bg>
+            <nl></nl>
+            <br></br>
+        </string>
+        <string id="625">
+            <en>WHILE loop will be executed until specified conditional statement will stop to be true.</en>
+            <de></de>
+            <pl>Pętla WHILE będzie wykonywana dopóki orkeślone twierdzenie warunkowe przestanie być prawdziwe.</pl>
+            <cn></cn>
+            <fr></fr>
+            <bg></bg>
+            <nl></nl>
+            <br></br>
+        </string>
+        <string id="626">
+            <en>in sequence</en>
+            <de></de>
+            <pl>w sekwencji</pl>
+            <cn></cn>
+            <fr></fr>
+            <bg></bg>
+            <nl></nl>
+            <br></br>
+        </string>
     </strings>
 </root> 
