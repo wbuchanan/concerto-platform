@@ -236,7 +236,19 @@ class TestSection extends OTable {
                     break;
                 }
             case DS_TestSectionType::GO_TO: {
-                    $code = sprintf("
+                    $code = "";
+                    foreach ($this->get_parent_loops_counters() as $loop) {
+                        $target = TestSection::from_property(array("Test_id" => $this->Test_id, "counter" => $vals[0]), false);
+                        if ($target != null) {
+                            $target_loops = $target->get_parent_loops_counters();
+                            if (!in_array($loop, $target_loops)) {
+                                $code.=sprintf("
+                                    %s <<- FALSE
+                                    ", TestSection::build_for_initialization_variable($this->Test_id, $loop));
+                            }
+                        }
+                    }
+                    $code .= sprintf("
                         return(%d)
                         ", ($vals[0] == 0 ? $next_counter : $vals[0])
                     );
@@ -534,7 +546,31 @@ class TestSection extends OTable {
     }
 
     public function get_for_initialization_variable() {
-        return "CONCERTO_FOR_Test" . $this->Test_id . "Section" . $this->counter . "_INIT";
+        return TestSection::build_for_initialization_variable($this->Test_id, $this->counter);
+    }
+
+    public static function build_for_initialization_variable($Test_id, $counter) {
+        return "CONCERTO_FOR_Test" . $Test_id . "Section" . $counter . "_INIT";
+    }
+
+    public function get_parent_loops_counters() {
+        $loops = array();
+        $parent_counter = $this->parent_counter;
+        if ($parent_counter == 0)
+            return $loops;
+
+        while ($parent_counter != 0) {
+            $parent = TestSection::from_property(array("Test_id" => $this->Test_id, "counter" => $parent_counter), false);
+            if ($parent == null)
+                return $loops;
+
+            if ($parent->TestSectionType_id == DS_TestSectionType::LOOP) {
+                array_push($loops, $parent->counter);
+            }
+
+            $parent_counter = $parent->parent_counter;
+        }
+        return $loops;
     }
 
     public function get_section_loop() {

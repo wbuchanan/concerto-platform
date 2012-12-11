@@ -75,6 +75,25 @@ class TestInstance {
             return false;
     }
 
+    public function kill_children() {
+        $status = proc_get_status($this->r);
+        if ($status !== false) {
+            $ppid = $status['pid'];
+
+            if (TestServer::$debug)
+                TestServer::log_debug("TestInstance->kill_children() --- killing children of pid:" . $ppid);
+
+            $pids = preg_split('/\s+/', `ps -o pid --no-heading --ppid $ppid`);
+            foreach ($pids as $pid) {
+                if (is_numeric($pid)) {
+                    if (TestServer::$debug)
+                        TestServer::log_debug("TestInstance->kill_children() --- killing children " . $pid);
+                    posix_kill($pid, 9); //9 is the SIGKILL signal
+                }
+            }
+        }
+    }
+
     public function start() {
         $env = array();
         if (Ini::$unix_locale != "") {
@@ -98,6 +117,12 @@ class TestInstance {
         if (is_resource($this->r)) {
             if (TestServer::$debug)
                 TestServer::log_debug("TestInstance->start() --- Test instance started");
+
+            $status = proc_get_status($this->r);
+            if ($status !== false) {
+                if (TestServer::$debug)
+                    TestServer::log_debug("TestInstance->start() --- Test instance pid: " . $status["pid"]);
+            }
 
             if (!stream_set_blocking($this->pipes[0], 0)) {
                 if (TestServer::$debug) {
@@ -132,10 +157,16 @@ class TestInstance {
             fclose($this->pipes[1]);
             fclose($this->pipes[2]);
 
-            if ($this->is_execution_timedout())
-                $ret = proc_terminate($this->r);
-            else
-                $ret = proc_close($this->r);
+            if ($this->is_execution_timedout()) {
+                $status = proc_get_status($this->r);
+                if ($status !== false) {
+                    $this->kill_children();
+                    $return = proc_terminate($this->r);
+                    if (TestServer::$debug)
+                        TestServer::log_debug("TestInstance->stop() --- Test instance terminated with: " . $return);
+                }
+            }
+            $ret = proc_close($this->r);
             if (TestServer::$debug)
                 TestServer::log_debug("TestInstance->stop() --- Test instance closed with: " . $ret);
         }
@@ -173,6 +204,9 @@ class TestInstance {
             $this->code.=$code . $marker;
             $this->chunked_lines = $lines;
         }
+        if (strlen($this->code) > TestServer::$response_limit)
+            $this->code = "( ... )
+            " . substr($this->code, strlen($this->code) - TestServer::$response_limit);
         $this->chunked_index = $i;
 
         $bytes = fwrite($this->pipes[0], $code . $marker);
@@ -207,6 +241,10 @@ class TestInstance {
         }
 
         $this->response.=$result;
+
+        if (strlen($this->response) > TestServer::$response_limit)
+            $this->response = "( ... )
+            " . substr($this->response, strlen($this->response) - TestServer::$response_limit);
 
         if ($this->is_chunked_ready) {
             return $this->response;
@@ -248,6 +286,10 @@ class TestInstance {
         } else {
             $this->code.=$code;
         }
+
+        if (strlen($this->code) > TestServer::$response_limit)
+            $this->code = "( ... )
+            " . substr($this->code, strlen($this->code) - TestServer::$response_limit);
 
         $this->is_chunked = false;
 
@@ -296,6 +338,11 @@ class TestInstance {
         }
 
         $this->response.=$result;
+
+        if (strlen($this->response) > TestServer::$response_limit)
+            $this->response = "( ... )
+            " . substr($this->response, strlen($this->response) - TestServer::$response_limit);
+
         if ($this->is_data_ready) {
             return $this->response;
         } else {

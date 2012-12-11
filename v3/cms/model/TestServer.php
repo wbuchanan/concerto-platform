@@ -24,6 +24,7 @@ class TestServer {
     public static $debug = true;
     public static $debug_stream_data = false;
     public static $sleep_microseconds = 10000;
+    public static $response_limit = 256000;
     private $last_action_time;
     private $main_sock;
     private $clients;
