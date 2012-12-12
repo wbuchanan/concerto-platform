@@ -209,6 +209,8 @@ if ($oid != 0) {
                         <td class="fullWidth">
                             <div class="horizontalMargin">
                                 <select id="form<?= $class_name ?>SelectColumnType" class="fullWidth ui-widget-content ui-corner-all">
+                                    <option class="<?= User::view_class(true) ?>" value="text" <?= User::is_simple_view() ? "selected" : "" ?>>text</option>
+                                    <option class="<?= User::view_class(true) ?>" value="double">numeric</option>
                                     <optgroup class="<?= User::view_class() ?>" label="<?= Language::string(581) ?>">
                                         <option class="<?= User::view_class() ?>" value="tinyint">tinyint</option>
                                         <option class="<?= User::view_class() ?>" value="smallint">smallint</option>
@@ -228,8 +230,7 @@ if ($oid != 0) {
                                         <option class="<?= User::view_class() ?>" value="char">char</option>
                                         <option class="<?= User::view_class() ?>" value="varchar">varchar</option>
                                         <option class="<?= User::view_class() ?>" value="tinytext">tinytext</option>
-                                        <option value="text" selected>text</option>
-                                        <option class="<?= User::view_class(true) ?>" value="double">numeric</option>
+                                        <option class="<?= User::view_class() ?>" value="text" <?= !User::is_simple_view() ? "selected" : "" ?>>text</option>
                                         <option class="<?= User::view_class() ?>" value="mediumtext">mediumtext</option>
                                         <option class="<?= User::view_class() ?>" value="longtext">longtext</option>
                                         <option class="<?= User::view_class() ?>" value="binary">binary</option>
