@@ -43,6 +43,7 @@ foreach (Language::languages() as $lng_node) {
 
 <script type="text/javascript">
     $(function(){
+        $( "#divViewRadioMenu" ).buttonset();
         Methods.iniIconButton(".btnLogout", "person");
         
         $("#selectLanguage").selectmenu({
@@ -74,6 +75,14 @@ foreach (Language::languages() as $lng_node) {
                     <option class="flagIcon_<?= $attr->value ?>" value="<?= $attr->value ?>" <?= $_SESSION['lng'] == $attr->value ? "selected" : "" ?>><?= $lng_node->nodeValue ?></option>
                 <?php } ?>
             </select>
+        </td>
+        <td valign="middle" class="noWrap">
+            <div align="center" id="divViewRadioMenu">
+                <input type="radio" id="radioViewSimple" name="radioMenuView" <?= User::is_simple_view() ? 'checked="checked"' : '' ?> onclick="Methods.uiChangeView(0)" />
+                <label for="radioViewSimple"><?= Language::string(634) ?></label>
+                <input type="radio" id="radioViewAdvanced" name="radioMenuView" <?= !User::is_simple_view() ? 'checked="checked"' : '' ?> onclick="Methods.uiChangeView(1)" />
+                <label for="radioViewAdvanced"><?= Language::string(635) ?></label>
+            </div>
         </td>
     </tr>
 </table>

@@ -39,6 +39,26 @@ Methods.loading=function(selector){
     $(selector).html("<div align='center' style='width:100%;height:100%;'><table style='width:100%;height:100%;'><tr><td valign='middle' align='center'><img src='css/img/ajax-loader.gif' /></td></tr></table></div>")  
 };
 
+Methods.currentView = 0;
+Methods.uiChangeView=function(view){
+    $.post("query/change_view.php",{
+        view:view
+    },function(data){
+        if(data.result==0){
+            Methods.currentView = view;
+            if(view==0) {
+                $(".viewDependant").addClass("notVisible");
+                $(".viewReverslyDependant").removeClass("notVisible");
+            } else {
+                $(".viewDependant").removeClass("notVisible");
+                $(".viewReverslyDependant").addClass("notVisible");
+                Template.uiRefreshCodeMirrors();
+            }
+            Table.onViewSwitch(view);
+        }
+    },"json");
+}
+
 Methods.toggleExpand=function(selector,btnSelector){
     var icon = $(selector).is(":visible")?"arrowthick-1-s":"arrowthick-1-n";
     $(selector).toggle(0);

@@ -51,8 +51,7 @@ if ($oid > 0) {
 
     $caption = $edit_caption . " #" . $oid;
     $buttons = $btn_cancel . $btn_save . $btn_save_new . $btn_delete;
-}
-else {
+} else {
     $obj = new $class_name();
     $caption = $new_caption;
     $buttons = "";
@@ -127,7 +126,7 @@ if ($oid != 0) {
 
     <?php
     if ($oid != -1) {
-        ?><div id="div<?= $class_name ?>Transitions"><?php include Ini::$path_internal . "cms/view/Template_transitions.php"; ?></div><?php
+        ?><div id="div<?= $class_name ?>Transitions" class="<?= User::view_class() ?>"><?php include Ini::$path_internal . "cms/view/Template_transitions.php"; ?></div><?php
         ?>
         <fieldset class="padding ui-widget-content ui-corner-all margin">
             <legend>
@@ -139,7 +138,7 @@ if ($oid != 0) {
                 </table>
             </legend>
             <table>
-                <tr>
+                <tr class="<?= User::view_class() ?>">
                     <td class="noWrap horizontalPadding tdFormLabel"><?= Language::string(407) ?>:</td>
                     <td><span class="tooltip spanIcon ui-icon ui-icon-help" title="<?= Language::string(408) ?>"></span></td>
                     <td>

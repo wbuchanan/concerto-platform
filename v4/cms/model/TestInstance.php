@@ -133,21 +133,45 @@ class TestInstance {
     public function stop($terminate = false) {
 
         if ($this->is_started()) {
-            $this->send_close_signal();
+            //$this->send_close_signal();
 
             fclose($this->pipes[0]);
             fclose($this->pipes[1]);
             fclose($this->pipes[2]);
 
             if ($this->is_execution_timedout() || $terminate) {
-                $ret = proc_terminate($this->r);
-            } else {
-                $ret = proc_close($this->r);
+                $status = proc_get_status($this->r);
+                if ($status !== false) {
+                    $this->kill_children();
+                    $return = proc_terminate($this->r);
+                    if (TestServer::$debug)
+                        TestServer::log_debug("TestInstance->stop() --- Test instance terminated with: " . $return);
+                }
             }
+            $ret = proc_close($this->r);
             if (TestServer::$debug)
                 TestServer::log_debug("TestInstance->stop() --- Test instance closed with: " . $ret);
         }
         return null;
+    }
+
+    public function kill_children() {
+        $status = proc_get_status($this->r);
+        if ($status !== false) {
+            $ppid = $status['pid'];
+
+            if (TestServer::$debug)
+                TestServer::log_debug("TestInstance->kill_children() --- killing children of pid:" . $ppid);
+
+            $pids = preg_split('/\s+/', `ps -o pid --no-heading --ppid $ppid`);
+            foreach ($pids as $pid) {
+                if (is_numeric($pid)) {
+                    if (TestServer::$debug)
+                        TestServer::log_debug("TestInstance->kill_children() --- killing children " . $pid);
+                    posix_kill($pid, 9); //9 is the SIGKILL signal
+                }
+            }
+        }
     }
 
     public function serialize($session = null) {
@@ -288,6 +312,13 @@ class TestInstance {
 
         $this->response.=$result;
         $this->error_response .= $error;
+
+        if (strlen($this->response) > TestServer::$response_limit)
+            $this->response = "( ... )
+            " . substr($this->response, strlen($this->response) - TestServer::$response_limit);
+        if (strlen($this->error_response) > TestServer::$response_limit)
+            $this->error_response = "( ... )
+            " . substr($this->error_response, strlen($this->error_response) - TestServer::$response_limit);
 
         if ($change_status) {
             $session->mysql_save();

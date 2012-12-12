@@ -96,12 +96,61 @@ class Table extends OModule {
             if (!Table::create_new_mysql_table($post['name']))
                 return json_encode(array("result" => -6, "message" => mysql_error()));
         } else {
-            if (!$this->rename_mysql_table($post['name']))
-                return json_encode(array("result" => -6, "message" => mysql_error()));
+            if ($this->name != $post['name']) {
+                if (!$this->rename_mysql_table($post['name']))
+                    return json_encode(array("result" => -6, "message" => mysql_error()));
+            }
         }
 
         $lid = parent::mysql_save_from_post($post);
         $obj = static::from_mysql_id($lid);
+
+        if (array_key_exists("deleteData", $post)) {
+            if ($post["deleteData"] == "*") {
+                $sql = sprintf("DELETE * FROM `%s`", mysql_real_escape_string($obj->name));
+                if (!mysql_query($sql))
+                    return json_encode(array("result" => -6, "message" => mysql_error()));
+            } else {
+                $rows = json_decode($post["deleteData"]);
+                foreach ($rows as $row) {
+                    $sql = sprintf("DELETE * FROM `%s` WHERE id='%s'", mysql_real_escape_string($obj->name), mysql_real_escape_string($row->id));
+                    if (!mysql_query($sql))
+                        return json_encode(array("result" => -6, "message" => mysql_error()));
+                }
+            }
+        }
+
+        if (array_key_exists("deleteIndexes", $post)) {
+            $indexes = json_decode($post["deleteIndexes"]);
+            foreach ($indexes as $index) {
+                $sql = sprintf("DROP INDEX `%s` ON `%s`", mysql_real_escape_string($index->id), mysql_real_escape_string($obj->name));
+                if (!mysql_query($sql))
+                    return json_encode(array("result" => -6, "message" => mysql_error()));
+            }
+        }
+
+        if (array_key_exists("deleteColumns", $post)) {
+            $columns = json_decode($post["deleteColumns"]);
+            foreach ($columns as $column) {
+                $sql = sprintf("ALTER TABLE `%s` DROP COLUMN `%s`", mysql_real_escape_string($obj->name), mysql_real_escape_string($column->id));
+                if (!mysql_query($sql))
+                    return json_encode(array("result" => -6, "message" => mysql_error()));
+            }
+        }
+
+        if (array_key_exists("updateColumns", $post)) {
+            $columns = json_decode($post["updateColumns"]);
+            foreach ($columns as $column) {
+                $col = TableColumn::from_ui($column);
+                if ($column->id != "") {
+                    $sql = sprintf("ALTER TABLE `%s` CHANGE COLUMN `%s` `%s` `%s`", mysql_real_escape_string($obj->name), mysql_real_escape_string($column->id), mysql_real_escape_string($column->name), mysql_real_escape_string($col->get_definition()));
+                    if (!mysql_query($sql))
+                        return json_encode(array("result" => -6, "message" => mysql_error()));
+                } else {
+                    //continue here
+                }
+            }
+        }
 
         //hash
         if ($obj != null) {

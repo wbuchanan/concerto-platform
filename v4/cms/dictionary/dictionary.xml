@@ -5579,16 +5579,6 @@ Note: You can add new languages by inserting "<new_language>string translated in
             <nl></nl>
             <br>NÚMERICO</br>
         </string>
-        <string id="581">
-            <en>NUMERIC</en>
-            <de></de>
-            <pl>NUMERYCZNY</pl>
-            <cn></cn>
-            <fr></fr>
-            <bg></bg>
-            <nl></nl>
-            <br>NÚMERICO</br>
-        </string>
         <string id="582">
             <en>DATE AND TIME</en>
             <de></de>
@@ -6116,6 +6106,46 @@ Note: You can add new languages by inserting "<new_language>string translated in
             <en>Validating XML</en>
             <de></de>
             <pl>Walidowanie XML</pl>
+            <cn></cn>
+            <fr></fr>
+            <bg></bg>
+            <nl></nl>
+            <br></br>
+        </string>
+        <string id="634">
+            <en>simple view</en>
+            <de></de>
+            <pl>prosty widok</pl>
+            <cn></cn>
+            <fr></fr>
+            <bg></bg>
+            <nl></nl>
+            <br></br>
+        </string>
+        <string id="635">
+            <en>advanced view</en>
+            <de></de>
+            <pl>zaawansowany widok</pl>
+            <cn></cn>
+            <fr></fr>
+            <bg></bg>
+            <nl></nl>
+            <br></br>
+        </string>
+        <string id="636">
+            <en>numeric ( double type )</en>
+            <de></de>
+            <pl>numeryczny ( type double )</pl>
+            <cn></cn>
+            <fr></fr>
+            <bg></bg>
+            <nl></nl>
+            <br></br>
+        </string>
+        <string id="637">
+            <en>text ( HTML )</en>
+            <de></de>
+            <pl>tekst ( HTML )</pl>
             <cn></cn>
             <fr></fr>
             <bg></bg>

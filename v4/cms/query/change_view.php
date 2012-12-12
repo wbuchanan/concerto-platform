@@ -1,4 +1,5 @@
 <?php
+
 /*
   Concerto Platform - Online Adaptive Testing Platform
   Copyright (C) 2011-2012, The Psychometrics Centre, Cambridge University
@@ -19,31 +20,16 @@
  */
 
 if (!isset($ini)) {
-    require_once'../../Ini.php';
+    require_once '../../Ini.php';
     $ini = new Ini();
 }
 $logged_user = User::get_logged_user();
 if ($logged_user == null) {
-    echo "<script>location.reload();</script>";
-    die(Language::string(278));
+    echo json_encode(array("result" => -1));
+    exit();
 }
+
+User::set_view($_POST['view']);
+
+echo json_encode(array("result" => 0));
 ?>
-
-<script>
-    $(function(){
-    });
-</script>
-
-<!--grid magic starts here-->
-
-<fieldset class="padding ui-widget-content ui-corner-all margin <?= User::view_class() ?>">
-    <legend>
-        <table>
-            <tr>
-                <td><span class="tooltip spanIcon ui-icon ui-icon-help" title="<?= Language::string(601) ?>"></span></td>
-                <td class=""><b><?= Language::string(600) ?></b></td>
-            </tr>
-        </table>
-    </legend>
-    <div id="div<?= $class_name ?>GridIndexContainer" align="left" class="margin"></div>
-</fieldset>

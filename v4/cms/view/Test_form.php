@@ -77,7 +77,7 @@ if ($oid != 0) {
     ?>
             Methods.iniTooltips();
             Methods.iniDescriptionTooltips();
-                                
+                                        
             $(".divTestVerticalElement").css("height",((Methods.winHeight()-100)/2));
             $("#divTestResponse").css("height",Methods.winHeight()-100);
         });
@@ -114,7 +114,7 @@ if ($oid != 0) {
                 </tr>
             </table>
         </div>
-        <div class="divFormElement">
+        <div class="divFormElement <?= User::view_class() ?>">
             <table class="fullWidth">
                 <tr>
                     <td class="noWrap tdFormLabel"><?= Language::string(488) ?>:</td>
@@ -127,7 +127,7 @@ if ($oid != 0) {
                 </tr>
             </table>
         </div>
-        <div id="div<?= $class_name ?>Loader" class="divFormElement"><?php include Ini::$path_internal . "cms/view/Test_loader.php"; ?></div>   
+        <div id="div<?= $class_name ?>Loader" class="divFormElement <?= User::view_class() ?>"><?php include Ini::$path_internal . "cms/view/Test_loader.php"; ?></div>   
 
         <div style="clear: left;" />
     </fieldset>
@@ -135,7 +135,7 @@ if ($oid != 0) {
     <?php
     if ($oid != -1) {
         ?>
-        <div id="div<?= $class_name ?>Variables"><?php include Ini::$path_internal . "cms/view/Test_variables.php"; ?></div>
+        <div id="div<?= $class_name ?>Variables" class="<?= User::view_class() ?>"><?php include Ini::$path_internal . "cms/view/Test_variables.php"; ?></div>
 
         <div id="divTestLogic" class="divTestHorizontalElement">
             <?php include Ini::$path_internal . "cms/view/Test_logic.php"; ?>

@@ -24,7 +24,14 @@ Table.className="Table";
 
 Table.onAfterEdit=function()
 {
-    };
+    Table.crudIndexesDeleted = [];
+    Table.crudColumnsDeleted = [];
+    Table.crudDataDeleted = [];
+
+    Table.crudColumnsUpdated = [];
+    Table.crudIndexesUpdated = [];
+    Table.crudDataUpdated = [];
+};
 
 Table.onAfterSave=function(){
     Test.uiTablesChanged();
@@ -51,11 +58,31 @@ Table.getAddSaveObject=function()
     };
 };
 
+Table.onViewSwitch=function(view){
+    var grid = $("#div"+this.className+"GridStructure").data('kendoGrid');
+    if(grid!=null){
+        if(view==0){
+            grid.hideColumn(2);
+            grid.hideColumn(3);
+            grid.hideColumn(4);
+            grid.hideColumn(5);
+        } else {
+            grid.showColumn(2);
+            grid.showColumn(3);
+            grid.showColumn(4);
+            grid.showColumn(5);
+        }
+    }
+}
+
 Table.getFullSaveObject=function(){
     var obj = this.getAddSaveObject();
-    obj["cols"] = Table.getSerializedColumns();
-    obj["rows"] = Table.getRows();
-    obj["indexes"] = Table.getSerializedIndexes();
+    obj["deleteIndexes"] = Table.getSerializedCrudDeleted("indexes");
+    obj["deleteData"] = Table.getSerializedCrudDeleted("data");
+    obj["deleteColumns"] = Table.getSerializedCrudDeleted("columns");
+    obj["updateIndexes"] = Table.getSerializedCrudUpdated("indexes");
+    obj["updateData"] = Table.getSerializedCrudUpdated("data");
+    obj["updateColumns"] = Table.getSerializedCrudUpdated("columns");
     obj["description"]=$("#form"+this.className+"TextareaDescription").val();
     
     return obj;
@@ -68,6 +95,90 @@ Table.crudDataDeleted = [];
 Table.crudColumnsUpdated = [];
 Table.crudIndexesUpdated = [];
 Table.crudDataUpdated = [];
+
+Table.getSerializedCrudDeleted=function(collection){
+    switch(collection){
+        case "columns":{
+            return $.toJSON(Table.crudColumnsDeleted);
+            break;
+        }
+        case "indexes":{
+            return $.toJSON(Table.crudIndexesDeleted);
+            break;
+        }
+        case "data":{
+            var grid = $("#div"+this.className+"GridData").data('kendoGrid');
+            if(grid!=null) {
+                var data = grid.dataSource.data();
+                if(data.length==0) return "*";
+            }
+            return $.toJSON(Table.crudDataDeleted);
+            break;
+        }
+    }
+}
+
+Table.getSerializedCrudUpdated=function(collection){
+    switch(collection){
+        case "columns":{
+            var grid = $("#div"+this.className+"GridStructure").data('kendoGrid');
+            var cols = new Array();
+            if(grid!=null) {
+                var data = grid.dataSource.data();
+    
+                for(var i=0;i<data.length;i++){
+                    if(Table.crudColumnsUpdated.indexOf(data[i].id)!=-1 || data[i].id==""){
+                        cols.push({
+                            id:data[i].id,
+                            name:data[i].name,
+                            type:data[i].type,
+                            lengthValues:data[i].lengthValues,
+                            defaultValue:data[i].defaultValue,
+                            attributes:data[i].attributes,
+                            nullable:data[i].nullable
+                        });
+                    }
+                }
+            }
+            return $.toJSON(cols);
+            break;
+        }
+        case "indexes":{
+            var grid = $("#div"+this.className+"GridIndex").data('kendoGrid');
+            var indexes = new Array();
+            if(grid!=null) {
+                var data = grid.dataSource.data();
+    
+                for(var i=0;i<data.length;i++){
+                    if(Table.crudIndexesUpdated.indexOf(data[i].id)!=-1 || data[i].id==""){
+                        indexes.push({
+                            id:data[i].id,
+                            type:data[i].type,
+                            columns:data[i].columns
+                        });
+                    }
+                }
+            }
+            return $.toJSON(indexes);
+            break;
+        }
+        case "data":{
+            var grid = $("#div"+this.className+"GridData").data('kendoGrid');
+            var row = new Array();
+            if(grid!=null) {
+                var data = grid.dataSource.data();
+    
+                for(var i=0;i<data.length;i++){
+                    if(Table.crudIndexesUpdated.indexOf(data[i].id)!=-1 || data[i].id==null){
+                        row.push(data[i]);
+                    }
+                }
+            }
+            return $.toJSON(row);
+            break;
+        }
+    }
+}
 
 Table.crudUpdate = function(collection,id){
     switch(collection){
@@ -163,6 +274,10 @@ Table.uiRemoveColumn=function(obj){
         var index = obj.closest('tr')[0].sectionRowIndex;
         var item = grid.dataItem(grid.tbody.find("tr:eq("+index+")"));
         
+        if(item.id!=""){
+            Table.crudDelete("columns", item.id);
+        }
+        
         grid.removeRow(grid.tbody.find("tr:eq("+index+")"));
         
         var dataGrid = $("#div"+thisClass.className+"GridData").data('kendoGrid');
@@ -234,6 +349,11 @@ Table.uiReloadDataGrid=function(data,columns){
     });
     
     $("#div"+thisClass.className+"GridData").kendoGrid({
+        save:function(e){
+            if(e.model.id!=null){
+                Table.crudUpdate("data", e.model.id);
+            }
+        },
         dataBound:function(e){
             Methods.iniTooltips();  
             Table.uiIniHTMLTooltips();
@@ -455,6 +575,9 @@ Table.uiIniDataGrid=function(){
     
         $("#div"+thisClass.className+"GridData").kendoGrid({
             save:function(e){
+                if(e.model.id!=null){
+                    Table.crudUpdate("data", e.model.id);
+                }
             },
             dataBound:function(e){
                 Methods.iniTooltips();  
@@ -652,17 +775,21 @@ Table.uiIniStructureGrid=function(){
             field:"type"
         },{
             title:dictionary["s585"],
-            field:"lengthValues"
+            field:"lengthValues",
+            hidden:Methods.currentView==0
         },{
             title:dictionary["s538"],
-            field:"defaultValue"
+            field:"defaultValue",
+            hidden:Methods.currentView==0
         },{
             title:dictionary["s588"],
-            field:"attributes"
+            field:"attributes",
+            hidden:Methods.currentView==0
         },{
             title:dictionary["s590"],
             field:"nullable",
-            template:'<input type="checkbox" #= nullable==1?"checked":"" # disabled />'
+            template:'<input type="checkbox" #= nullable==1?"checked":"" # disabled />',
+            hidden:Methods.currentView==0
         },{
             title:' ',
             width:50,
@@ -831,6 +958,11 @@ Table.uiRemoveIndex=function(obj){
     Methods.confirm(dictionary["s613"], dictionary["s614"], function(){
         var grid = $("#div"+thisClass.className+"GridIndex").data('kendoGrid');
         var index = obj.closest('tr')[0].sectionRowIndex;
+        var item = grid.dataItem(grid.tbody.find("tr:eq("+index+")"));
+        
+        if(item.id!=""){
+            Table.crudDelete("indexes", item.id);
+        }
         
         grid.removeRow(grid.tbody.find("tr:eq("+index+")"));
     });
@@ -877,6 +1009,10 @@ Table.uiEditIndex=function(obj){
                 {
                     Methods.alert(dictionary["s612"], "alert", dictionary["s611"]);
                     return;
+                }
+                
+                if(item.id!=""){
+                    Table.crudUpdate("indexes", item.id);
                 }
                 
                 //structGrid mod start
@@ -1097,7 +1233,7 @@ Table.uiEditColumn=function(obj){
         },
         close:function(){
             name.val("");
-            type.val("int");
+            type.val("text");
             lengthValues.val("");
             defaultValue.val("");
             attributes.val("");
@@ -1133,6 +1269,9 @@ Table.uiEditColumn=function(obj){
                 }
                 
                 Table.onColumnChange(oldName,name.val());
+                if(item.id!=""){
+                    Table.crudUpdate("columns", item.id);
+                }
                 
                 //structGrid mod start
                 var rowStruct = structGrid.dataSource.data()[index];
@@ -1573,7 +1712,7 @@ Table.uiAddColumn=function(){
         },
         close:function(){
             name.val("");
-            type.val(1);
+            type.val("text");
             //$('.ui-widget-overlay').css('position', 'absolute');
             $(this).dialog("destroy");
         },
@@ -1755,6 +1894,12 @@ Table.uiRemoveRow=function(obj){
     var index = obj.closest('tr')[0].sectionRowIndex;
     Methods.confirm(dictionary["s32"], dictionary["s33"], function(){
         var grid = $("#div"+thisClass.className+"GridData").data('kendoGrid');
+        var item = grid.dataItem(grid.tbody.find("tr:eq("+index+")"));
+        
+        if(item.id!=0){
+            Table.crudDelete("data", item.id);
+        }
+        
         grid.removeRow(grid.tbody.find("tr:eq("+index+")"));
     });
 }

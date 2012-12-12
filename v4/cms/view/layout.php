@@ -31,6 +31,7 @@ if ($logged_user == null) {
 
 <script>
     $(function(){
+        Methods.currentView = <?= User::is_simple_view() ? 0 : 1 ?>;
         $(window).resize(function(){
             $("#divTestResponse").css("height",Methods.winHeight()-100);
             $(".divTestVerticalElement").css("height",((Methods.winHeight()-200)/2)+"px");
@@ -50,6 +51,9 @@ if ($logged_user == null) {
             show:function(event,ui){
                 if(ui.index==0){
                     Test.uiRefreshCodeMirrors();
+                }
+                if(ui.index==2){
+                    Template.uiRefreshCodeMirrors();
                 }
             }
         });
@@ -99,7 +103,7 @@ if (Ini::$cms_session_keep_alive) {
     <div id="tnd_mainMenu">
         <ul>
             <li><a href="#tnd_mainMenu-tests" class="tooltipTabs" title="<?= Language::string(193) ?>"><?= Language::string(88) ?></a></li>
-            <li><a href="#tnd_mainMenu-QTI" class="tooltipTabs" title="<?= Language::string(460) ?>"><?= Language::string(459) ?></a></li>
+            <li class="<?= User::view_class() ?>"><a href="#tnd_mainMenu-QTI" class="tooltipTabs" title="<?= Language::string(460) ?>"><?= Language::string(459) ?></a></li>
             <li><a href="#tnd_mainMenu-templates" class="tooltipTabs" title="<?= Language::string(195) ?>"><?= Language::string(167) ?></a></li>
             <li><a href="#tnd_mainMenu-tables" class="tooltipTabs" title="<?= Language::string(196) ?>"><?= Language::string(85) ?></a></li>
             <li><a href="#tnd_mainMenu-users" class="tooltipTabs" title="<?= Language::string(197) ?>"><?= Language::string(198) ?></a></li>

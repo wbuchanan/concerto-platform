@@ -65,6 +65,33 @@ class User extends OModule {
         $_SESSION['ptap_current_db'] = $db;
     }
 
+    public static function is_simple_view() {
+        if (array_key_exists("ptap_view", $_SESSION)) {
+            return $_SESSION['ptap_view'] == 0;
+        } else {
+            $_SESSION['ptap_view'] = 0;
+            return true;
+        }
+    }
+
+    public static function view_class($reverse = false) {
+        if ($reverse) {
+            if (self::is_simple_view())
+                return"viewReverslyDependant";
+            else
+                return "notVisible viewReverslyDependant";
+        } else {
+            if (self::is_simple_view())
+                return"notVisible viewDependant";
+            else
+                return "viewDependant";
+        }
+    }
+
+    public static function set_view($view) {
+        $_SESSION['ptap_view'] = $view;
+    }
+
     public static function recover_password($id, $hash) {
         $user = User::from_mysql_id($id);
         if ($user == null)
@@ -172,6 +199,7 @@ class User extends OModule {
             $_SESSION['ptap_logged_login'] = $login;
             $_SESSION['ptap_logged_password'] = $hash;
             $_SESSION['ptap_current_db'] = $user->db_name;
+            $_SESSION['ptap_view'] = 0;
         }
         return $user;
     }
@@ -180,6 +208,7 @@ class User extends OModule {
         unset($_SESSION['ptap_logged_login']);
         unset($_SESSION['ptap_logged_password']);
         unset($_SESSION['ptap_current_db']);
+        unset($_SESSION['ptap_view']);
     }
 
     public function get_last_login() {

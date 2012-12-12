@@ -39,6 +39,25 @@ class TableColumn {
         return $obj;
     }
 
+    public static function from_ui($ui) {
+        $this->name = $ui->name;
+        $this->type = $ui->type;
+        if ($ui->lengthValues != "")
+            $this->type.="(" . $ui->lengthValues . ")";
+        $this->null = $ui->nullable == 1;
+        $this->default = strtolower($ui->defaultValue) == "null" ? null : $ui->defaultValue;
+        $this->extra = $ui->attributes;
+    }
+
+    public function get_definition() {
+        $def = $this->type . " " . $this->extra . " " . ($this->null ? "NULL" : "NOT NULL") . " ";
+        if ($this->default != null) {
+            if ($this->default != "")
+                $def.="DEFAULT '" . $this->default . "'";
+        } else
+            $def.="DEFAULT NULL";
+    }
+
     public function get_type() {
         $type = explode("(", $this->type);
         return $type[0];
