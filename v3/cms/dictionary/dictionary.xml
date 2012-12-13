@@ -5858,16 +5858,6 @@ Note: You can add new languages by inserting "<new_language>string translated in
             <nl></nl>
             <br></br>
         </string>
-        <string id="610" js="1">
-            <en>adding new index</en>
-            <de></de>
-            <pl>dodawanie nowego indeksu</pl>
-            <cn></cn>
-            <fr></fr>
-            <bg></bg>
-            <nl></nl>
-            <br></br>
-        </string>
         <string id="611" js="1">
             <en>no column selected for indexing</en>
             <de></de>
