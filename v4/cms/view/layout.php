@@ -77,14 +77,6 @@ if ($logged_user == null) {
                 div.html("<?= Language::string(264) ?>");
             }
         });
-        $("#divUsersAccordion").accordion({
-            collapsible:true,
-            active:false,
-            animated:false,
-            change:function(){
-                $(this).accordion("resize");
-            }
-        });
         
         User.previousWorkspace = $("#selectWorkspace").val();
         

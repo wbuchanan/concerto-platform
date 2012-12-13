@@ -49,6 +49,10 @@ class User extends OModule {
         return UserR::from_property(array("User_id" => $this->id), false);
     }
 
+    public function get_full_description() {
+        return $this->id . ". " . $this->firstname . " " . $this->lastname . " ( " . $this->institution_name . " )";
+    }
+
     public function is_workspace_accessible($db) {
         if ($this->superuser == 1)
             return true;
@@ -147,6 +151,10 @@ class User extends OModule {
 
     public function get_UserInstitutionType() {
         return DS_UserInstitutionType::from_mysql_id($this->UserInstitutionType_id);
+    }
+
+    public function get_shares() {
+        return UserShare::from_property(array("owner_id" => $this->id));
     }
 
     public static function get_logged_user() {
@@ -248,6 +256,31 @@ class User extends OModule {
         if ($post['modify_password'] == 1) {
             $obj->password = $obj->calculate_password_hash($post['password_hash']);
             $obj->mysql_save();
+        }
+
+        if (array_key_exists("deleteShare", $post)) {
+            $rows = json_decode($post["deleteShare"]);
+            foreach ($rows as $row) {
+                $sql = sprintf("DELETE FROM `%s`.`%s` WHERE id='%s' AND `owner_id`='%s'", Ini::$db_master_name, UserShare::get_mysql_table(), mysql_real_escape_string($row), mysql_real_escape_string($this->id));
+                if (!mysql_query($sql))
+                    return json_encode(array("result" => -6, "message" => mysql_error()));
+            }
+        }
+
+        if (array_key_exists("updateShare", $post)) {
+            $rows = json_decode($post["updateShare"], true);
+            foreach ($rows as $row) {
+
+                if ($row["id"] != 0) {
+                    $sql = sprintf("UPDATE `%s`.`%s` SET `invitee_id`='%s' WHERE `id`=%s", Ini::$db_master_name, UserShare::get_mysql_table(), mysql_real_escape_string($row["invitee_id"]));
+                    if (!mysql_query($sql))
+                        return json_encode(array("result" => -6, "message" => mysql_error()));
+                } else {
+                    $sql = sprintf("INSERT INTO `%s`.`%s` SET `owner_id`='%s', `invitee_id`='%s'", Ini::$db_master_name, UserShare::get_mysql_table(), mysql_real_escape_string($this->id), mysql_real_escape_string($row['invitee_id']));
+                    if (!mysql_query($sql))
+                        return json_encode(array("result" => -6, "message" => mysql_error()));
+                }
+            }
         }
 
         if ($is_new) {

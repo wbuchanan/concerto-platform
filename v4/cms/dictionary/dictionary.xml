@@ -930,54 +930,14 @@ Note: You can add new languages by inserting "<new_language>string translated in
             <br>testes</br>
         </string>
         <string id="89">
-            <en>admins</en>
-            <de>Administratoren</de>
-            <pl>administratorzy</pl>
-            <cn>管理员</cn>
-            <bg>администратори</bg>
-            <fr>administrateurs</fr>
-            <nl>beheerders</nl>
-            <br>Administradores</br>
-        </string>
-        <string id="90">
-            <en>admin types</en>
-            <de>Administratorentypen</de>
-            <pl>typy administratorów</pl>
-            <cn>管理员类型</cn>
-            <fr>atypes d'administrateurs</fr>
-            <bg>видове администратори</bg>
-            <nl>beheerder types</nl>
-            <br>Tipos de administradores</br>
-        </string>
-        <string id="91">
-            <en>admin groups</en>
-            <de>Administratorengruppen</de>
-            <pl>grupy administratorów</pl>
-            <cn>管理群</cn>
-            <fr>groupes d'administrateurs</fr>
-            <bg>административни групи</bg>
-            <nl>beheerder groepen</nl>
-            <br>Grupos de administradores</br>
-        </string>
-        <string id="92">
-            <en>editing custom test section</en>
-            <de>bearbeite benutzerdefinierte Testsektion</de>
-            <pl>edycja własnej sekcji testu</pl>
-            <cn>编辑自主测试章节</cn>
-            <fr>modifier les sections de test personnalisées</fr>
-            <bg>редактиране на персонализирана секция на теста</bg>
-            <nl>bewerken van aanpasbare testsectie</nl>
-            <br>editando uma seção de teste personalizada</br>
-        </string>
-        <string id="93">
-            <en>creating new custom test section</en>
-            <de>erstelle neue benutzerdefinierte Testsektion</de>
-            <pl>tworzenie nowej własnej sekcji testu</pl>
-            <cn>创建自主测试章节</cn>
-            <fr>créer une enouvelle section de test personnalisée</fr>
-            <bg>създаване на нова персонализирана секция на теста</bg>
-            <nl>nieuwe aanpasbare testsectie</nl>
-            <br>criando uma nova seção personalizada de teste</br>
+            <en>users</en>
+            <de></de>
+            <pl>użytkownicy</pl>
+            <cn></cn>
+            <bg></bg>
+            <fr></fr>
+            <nl></nl>
+            <br></br>
         </string>
         <string id="94">
             <en>delete</en>
@@ -1509,115 +1469,6 @@ Note: You can add new languages by inserting "<new_language>string translated in
             <nl>parameter/return</nl>
             <br>parâmetro/retorno</br>
         </string>
-        <string id="152">
-            <en>editing admin group</en>
-            <de>Bearbeite Administratorengruppe</de>
-            <pl>edycja grupy aministratorów</pl>
-            <cn>编辑管理群</cn>
-            <fr>modifier les groupes d'administrateurs</fr>
-            <bg>редактиране на групата администратори</bg>
-            <nl>beheerdersgroep bewerken</nl>
-            <br>editando grupo de administradores</br>
-        </string>
-        <string id="153">
-            <en>creating admin group</en>
-            <de>lege Administratorengruppe an</de>
-            <pl>tworzenie grupy aministratorów</pl>
-            <cn>创建管理群</cn>
-            <fr>créer un groupe d'administrateurs</fr>
-            <bg>създаване на групата администратори</bg>
-            <nl>beheerdersgroep aanmaken</nl>
-            <br>criando grupo de administradores</br>
-        </string>
-        <string id="154">
-            <en>name of the admin group</en>
-            <de>Name der Administratorengruppe</de>
-            <pl>nazwa grupy aministratorów</pl>
-            <cn>管理群名称</cn>
-            <fr>nom du groupe d'administrateurs</fr>
-            <bg>име на групата администратори</bg>
-            <nl>naam van de beheerdersgroep</nl>
-            <br>nome do grupo de administradores</br>
-        </string>
-        <string id="155">
-            <en>admin group access rights</en>
-            <de>Zugriffsrechte für Administratorengruppe</de>
-            <pl>prawa dostepu grupy aministratorów</pl>
-            <cn>管理群访问权限</cn>
-            <fr>droits d'accès du groupe d'administrateurs</fr>
-            <bg>права за достъп на групата администратори</bg>
-            <nl>beheerdersgroep toegangsrechten</nl>
-            <br>permissões de acesso do grupo de administradores</br>
-        </string>
-        <string id="156">
-            <en>owner of the admin group</en>
-            <de>Zugriffsrechte auf Administratorengruppe</de>
-            <pl>wlaściciel grupy administratorów</pl>
-            <cn>管理群所有者</cn>
-            <fr>propriétaire du groupe d'administrateurs</fr>
-            <bg>собственик на групата администратори</bg>
-            <nl>eigenaar van de beheerdersgroep</nl>
-            <br>proprietário do grupo de administradores</br>
-        </string>
-        <string id="157">
-            <en>editing admin type</en>
-            <de>Bearbeite Administratorentyp</de>
-            <pl>edycja typu administratora</pl>
-            <cn>编辑管理员类型</cn>
-            <bg>редактиране на вида на администратора</bg>
-            <nl>beheerderstype bewerken</nl>
-            <br>editando administradores</br>
-        </string>
-        <string id="158">
-            <en>creating new admin type</en>
-            <de>lege neuen Administratorentyp an</de>
-            <pl>tworzenie nowego typu administratora</pl>
-            <cn>创建管理员类型</cn>
-            <fr>créer un nouveau type d'administrateur</fr>
-            <bg>създаване на нов вид администратор</bg>
-            <nl>Nieuw beheerderstype aanmaken</nl>
-            <br>criando novo administrador</br>
-        </string>
-        <string id="159">
-            <en>name of the admin type</en>
-            <de>Name des Adminsitratorentyps</de>
-            <pl>nazwa typu administratora</pl>
-            <cn>管理员类型名称</cn>
-            <fr>nom du type d'administrateur</fr>
-            <bg>име на вида администратор</bg>
-            <nl>Naam van het beheerderstype</nl>
-            <br>nome do tipo de admnistrador</br>
-        </string>
-        <string id="160">
-            <en>access rights of the admin type</en>
-            <de>Zugriffsrechte für den Administratorentyp</de>
-            <pl>prawa dostępu typu administratora</pl>
-            <cn>管理员类型访问权限</cn>
-            <fr>droits d'accès du type d'administrateur</fr>
-            <bg>права за достъп на вида администратор</bg>
-            <nl>toegangsrechten van het beheerderstype</nl>
-            <br>permissões de acesso do tipo de administrador</br>
-        </string>
-        <string id="161">
-            <en>admin type owner</en>
-            <de>Besitzer des Administratorentyps</de>
-            <pl>wlaściciel typu administratora</pl>
-            <cn>管理员类型所有者</cn>
-            <fr>propriétaire du type d'accès</fr>
-            <bg>собственик на вида администратор</bg>
-            <nl>eigenaar van het beheerderstype</nl>
-            <br>proprietário do tipo de administrador</br>
-        </string>
-        <string id="162">
-            <en>admin type rights</en>
-            <de>Administratorentyp Rechte</de>
-            <pl>prawa typu administratora</pl>
-            <cn>管理员类型权限</cn>
-            <fr>droits d'accès d'administrateurs</fr>
-            <bg>права на вида администратор</bg>
-            <nl>toegangsrechten van het beheerderstype</nl>
-            <br>permissões de acesso dos administradores</br>
-        </string>
         <string id="163">
             <en>module</en>
             <de>Modul</de>
@@ -1688,24 +1539,24 @@ Note: You can add new languages by inserting "<new_language>string translated in
             <br>todos</br>
         </string>
         <string id="170">
-            <en>editing admin</en>
-            <de>bearbeite Administrator</de>
-            <pl>edycja administratora</pl>
-            <cn>编辑管理者</cn>
-            <fr>modifier l'administrateur</fr>
-            <bg>редактиране на администратора</bg>
-            <nl>beheerder bewerken</nl>
-            <br>editando o administrador</br>
+            <en>editing user</en>
+            <de></de>
+            <pl>edycja użytkownika</pl>
+            <cn></cn>
+            <fr></fr>
+            <bg></bg>
+            <nl></nl>
+            <br></br>
         </string>
         <string id="171">
-            <en>creating new admin</en>
-            <de>lege neuen Administrator an</de>
-            <pl>tworzenie nowego administratora</pl>
-            <cn>创建管理者</cn>
-            <fr>créer un nouvel administrateur</fr>
-            <bg>създаване на нов администратор</bg>
-            <nl>nieuwe beheerder aanmaken</nl>
-            <br>criando novo administrador</br>
+            <en>creating new user</en>
+            <de></de>
+            <pl>tworzenie nowego użytkownika</pl>
+            <cn></cn>
+            <fr></fr>
+            <bg></bg>
+            <nl></nl>
+            <br></br>
         </string>
         <string id="173">
             <en>login</en>
@@ -1736,26 +1587,6 @@ Note: You can add new languages by inserting "<new_language>string translated in
             <bg>последно влизане</bg>
             <nl>laatste log-in</nl>
             <br>último acesso</br>
-        </string>
-        <string id="176">
-            <en>admin group</en>
-            <de>Administratorengruppe</de>
-            <pl>grupa administratora</pl>
-            <cn>管理群</cn>
-            <fr>groupe d'administrateurs</fr>
-            <bg>група на администраторите</bg>
-            <nl>beheerdersgroep</nl>
-            <br>grupo de administradores</br>
-        </string>
-        <string id="177">
-            <en>admin type</en>
-            <de>Administratorentyp</de>
-            <pl>typ administratora</pl>
-            <cn>管理员类型</cn>
-            <fr>type d'administrateur</fr>
-            <bg>вид на администратора</bg>
-            <nl>beheerderstype</nl>
-            <br>tipo de administradores</br>
         </string>
         <string id="178">
             <en>Please enter a unique login id</en>
@@ -1884,26 +1715,6 @@ Note: You can add new languages by inserting "<new_language>string translated in
             <bg></bg>
             <nl>Dit is niet verplichte contact-informatie</nl>
         </string>
-        <string id="191">
-            <en>admin group</en>
-            <de>Administratorengruppe</de>
-            <pl>grupa administratora</pl>
-            <cn>管理群</cn>
-            <fr>groupe d'administrateurs</fr>
-            <bg>група на администраторите</bg>
-            <nl>beheerdersgroep</nl>
-            <br>grupo de administradores</br>
-        </string>
-        <string id="192">
-            <en>admin type</en>
-            <de>Administratorentyp</de>
-            <pl>typ administratora</pl>
-            <cn>管理员类型</cn>
-            <fr>type d'administrateur</fr>
-            <bg>вид на администраторите</bg>
-            <nl>beheerderstype</nl>
-            <br>tipo de administradores</br>
-        </string>
         <string id="193">
             <en>Create and manage the entire structure of each test.</en>
             <de>Strukturen erstellen und verwalten für den jeweiligen Test.</de>
@@ -1945,19 +1756,19 @@ Note: You can add new languages by inserting "<new_language>string translated in
             <br>Crie tabelas para armazenar e manusear dados do teste, incluindo o conteúdo do item, as respostas corretas e o histórico de respotas etc.</br>
         </string>
         <string id="197">
-            <en>Create and manage admin and standard user accounts, user groups and access rights of users.</en>
-            <de>Administratoren- und Standardbenutzerkonten anlegen und verwalten, Benutzergruppen und Zugriffsrechte der Benutzer.</de>
-            <pl>Ta zakładka służy do tworzenia kont administratorów, którzy będą mogli korzystać z tego panelu. Możesz tutaj ustalić prawa dostępu, oraz stworzyć grupy w obrębie których administratorzy będą dzielić wskazane obiekty.</pl>
-            <cn>创建并维护管理员及普通用户帐户、用户群及用户访问权限。</cn>
-            <fr>Créer et gérer les comptes d'administrateurs et d'utilisateurs standards, les groupes d'utilisateurs et les droits d'accès des utilisateurs.</fr>
-            <bg>Създаване и управление на администратори и стандартни потребители, потребителските групи и правата за достъп на потребителите.</bg>
-            <nl>Ontwerp en beheer standaardgebruiker- en beheerdersaccounts, gebruikersgroepen en toegangsrechten van gebruikers.</nl>
-            <br>Crie e manuseie contas de usuário padrão e admintrativas, grupos de usuários e permissões de acesso</br>
+            <en>Create and manage user accounts.</en>
+            <de></de>
+            <pl>Twórz i zarządzaj kontami użytkowników.</pl>
+            <cn></cn>
+            <fr></fr>
+            <bg></bg>
+            <nl></nl>
+            <br></br>
         </string>
         <string id="198">
-            <en>admins</en>
+            <en>users</en>
             <de></de>
-            <pl>administratorzy</pl>
+            <pl>użytkownicy</pl>
             <cn></cn>
             <fr></fr>
             <bg></bg>
@@ -3994,7 +3805,7 @@ Note: You can add new languages by inserting "<new_language>string translated in
             <nl>Geef de aard van uw werk aan</nl>
             <br>Por favor indique a natureza de seu trabalho</br>
         </string>
-        <string id="421">
+        <string id="421" js="1">
             <en>inst. name</en>
             <de></de>
             <pl>nazwa inst.</pl>
@@ -6186,6 +5997,136 @@ Note: You can add new languages by inserting "<new_language>string translated in
             <en>Check if you don't have `id` column on your CSV file. It will be added automatically.</en>
             <de></de>
             <pl>Zaznacz jeśli nie masz kolumny `id` w swoim pliku CSV. Zostanie ona dodana automatycznie.</pl>
+            <cn></cn>
+            <fr></fr>
+            <bg></bg>
+            <nl></nl>
+            <br></br>
+        </string>
+        <string id="642">
+            <en>workspace sharing</en>
+            <de></de>
+            <pl>dzielenie przestrzeni pracy</pl>
+            <cn></cn>
+            <fr></fr>
+            <bg></bg>
+            <nl></nl>
+            <br></br>
+        </string>
+        <string id="643">
+            <en>Choose which user you want to make privileged enough to access your workspace. Be aware that you are granting full access to your database to selected users.</en>
+            <de></de>
+            <pl>Wybierz, których użytkowników chcesz uczynić uprzywilejowanych do dostępu do twojej przestrzeni pracy. Bądź świadom, że w ten sposób dajesz pełen dostęp do swojej bazy danych wybranym użytkownikom.</pl>
+            <cn></cn>
+            <fr></fr>
+            <bg></bg>
+            <nl></nl>
+            <br></br>
+        </string>
+        <string id="644" js="1">
+            <en>edit grant</en>
+            <de></de>
+            <pl>edytuj pozwolenie</pl>
+            <cn></cn>
+            <fr></fr>
+            <bg></bg>
+            <nl></nl>
+            <br></br>
+        </string>
+        <string id="645" js="1">
+            <en>remove grant</en>
+            <de></de>
+            <pl>usuń pozwolenie</pl>
+            <cn></cn>
+            <fr></fr>
+            <bg></bg>
+            <nl></nl>
+            <br></br>
+        </string>
+        <string id="646" js="1">
+            <en>add grant</en>
+            <de></de>
+            <pl>dodaj pozwolenie</pl>
+            <cn></cn>
+            <fr></fr>
+            <bg></bg>
+            <nl></nl>
+            <br></br>
+        </string>
+        <string id="647" js="1">
+            <en>adding new grant</en>
+            <de></de>
+            <pl>dodawanie nowego pozwolenia</pl>
+            <cn></cn>
+            <fr></fr>
+            <bg></bg>
+            <nl></nl>
+            <br></br>
+        </string>
+        <string id="648">
+            <en>user</en>
+            <de></de>
+            <pl>użytkownik</pl>
+            <cn></cn>
+            <fr></fr>
+            <bg></bg>
+            <nl></nl>
+            <br></br>
+        </string>
+        <string id="649">
+            <en>Choose user to whom you want to grant privilege of full access to your workspace.</en>
+            <de></de>
+            <pl>Wybierz użytkownika, któremu chcesz dać pozwolenie pełnego dostępu do przestrzeni pracy.</pl>
+            <cn></cn>
+            <fr></fr>
+            <bg></bg>
+            <nl></nl>
+            <br></br>
+        </string>
+        <string id="650">
+            <en>none choosen</en>
+            <de></de>
+            <pl>nie wybrano</pl>
+            <cn></cn>
+            <fr></fr>
+            <bg></bg>
+            <nl></nl>
+            <br></br>
+        </string>
+        <string id="651" js="1">
+            <en>editing grant</en>
+            <de></de>
+            <pl>edycja pozwolenia</pl>
+            <cn></cn>
+            <fr></fr>
+            <bg></bg>
+            <nl></nl>
+            <br></br>
+        </string>
+        <string id="652" js="1">
+            <en>no user selected</en>
+            <de></de>
+            <pl>nie wybrano użytkownika</pl>
+            <cn></cn>
+            <fr></fr>
+            <bg></bg>
+            <nl></nl>
+            <br></br>
+        </string>
+        <string id="653" js="1">
+            <en>Are you sure you want to delete user grant?</en>
+            <de></de>
+            <pl>Jesteś pewen, że chcesz usunąć pozwolenie użytkownika?</pl>
+            <cn></cn>
+            <fr></fr>
+            <bg></bg>
+            <nl></nl>
+            <br></br>
+        </string>
+        <string id="654" js="1">
+            <en>deleting user grant</en>
+            <de></de>
+            <pl>usuwanie pozwolenia użytkownika</pl>
             <cn></cn>
             <fr></fr>
             <bg></bg>

@@ -180,62 +180,6 @@ Table.getSerializedCrudUpdated=function(collection){
     }
 }
 
-Table.crudUpdate = function(collection,id){
-    switch(collection){
-        case "indexes":{
-            collection = Table.crudIndexesUpdated;
-            break;
-        }
-        case "columns":{
-            collection = Table.crudColumnsUpdated;
-            break;
-        }
-        case "data":{
-            collection = Table.crudDataUpdated;
-            break;
-        }
-    }
-    
-    var found = false;
-    for(var i=0;i<collection.length;i++){
-        if(collection.length[i]==id){
-            found = true;
-            break;
-        }
-    }
-    if(!found){
-        collection.push(id);
-    }
-}
-
-Table.crudDelete = function(collection,id){
-    switch(collection){
-        case "indexes":{
-            collection = Table.crudIndexesDeleted;
-            break;
-        }
-        case "columns":{
-            collection = Table.crudColumnsDeleted;
-            break;
-        }
-        case "data":{
-            collection = Table.crudDataDeleted;
-            break;
-        }
-    }
-    
-    var found = false;
-    for(var i=0;i<collection.length;i++){
-        if(collection.length[i]==id){
-            found = true;
-            break;
-        }
-    }
-    if(!found){
-        collection.push(id);
-    }
-}
-
 Table.uiSaveValidate=function(ignoreOnBefore,isNew){
     var thisClass = this;
     if(!this.checkRequiredFields([
@@ -275,7 +219,7 @@ Table.uiRemoveColumn=function(obj){
         var item = grid.dataItem(grid.tbody.find("tr:eq("+index+")"));
         
         if(item.id!=""){
-            Table.crudDelete("columns", item.id);
+            Table.crudUpdate(Table.crudColumnsDeleted, item.id);
         }
         
         grid.removeRow(grid.tbody.find("tr:eq("+index+")"));
@@ -351,7 +295,7 @@ Table.uiReloadDataGrid=function(data,columns){
     $("#div"+thisClass.className+"GridData").kendoGrid({
         save:function(e){
             if(e.model.id!=null){
-                Table.crudUpdate("data", e.model.id);
+                Table.crudUpdate(Table.crudDataUpdated, e.model.id);
             }
         },
         dataBound:function(e){
@@ -576,7 +520,7 @@ Table.uiIniDataGrid=function(){
         $("#div"+thisClass.className+"GridData").kendoGrid({
             save:function(e){
                 if(e.model.id!=null){
-                    Table.crudUpdate("data", e.model.id);
+                    Table.crudUpdate(Table.crudDataUpdated, e.model.id);
                 }
             },
             dataBound:function(e){
@@ -961,7 +905,7 @@ Table.uiRemoveIndex=function(obj){
         var item = grid.dataItem(grid.tbody.find("tr:eq("+index+")"));
         
         if(item.id!=""){
-            Table.crudDelete("indexes", item.id);
+            Table.crudUpdate(Table.crudIndexesDeleted, item.id);
         }
         
         grid.removeRow(grid.tbody.find("tr:eq("+index+")"));
@@ -1012,7 +956,7 @@ Table.uiEditIndex=function(obj){
                 }
                 
                 if(item.id!=""){
-                    Table.crudUpdate("indexes", item.id);
+                    Table.crudUpdate(Table.crudIndexesUpdated, item.id);
                 }
                 
                 //structGrid mod start
@@ -1270,7 +1214,7 @@ Table.uiEditColumn=function(obj){
                 
                 Table.onColumnChange(oldName,name.val());
                 if(itemID!=""){
-                    Table.crudUpdate("columns", itemID);
+                    Table.crudUpdate(Table.crudColumnsUpdated, itemID);
                 }
                 
                 //structGrid mod start
@@ -1921,7 +1865,7 @@ Table.uiRemoveRow=function(obj){
         var item = grid.dataItem(grid.tbody.find("tr:eq("+index+")"));
         
         if(item.id!=0){
-            Table.crudDelete("data", item.id);
+            Table.crudUpdate(Table.crudDataDeleted, item.id);
         }
         
         grid.removeRow(grid.tbody.find("tr:eq("+index+")"));

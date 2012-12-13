@@ -71,6 +71,20 @@ OModule.inheritance=function(obj)
         },"json");
     }
     
+    obj.crudUpdate = function(collection,id){
+    
+        var found = false;
+        for(var i=0;i<collection.length;i++){
+            if(collection.length[i]==id){
+                found = true;
+                break;
+            }
+        }
+        if(!found){
+            collection.push(id);
+        }
+    }
+    
     obj.uiDownload=function(){
         var thisClass = this;
         

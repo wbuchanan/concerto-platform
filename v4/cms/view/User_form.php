@@ -40,8 +40,8 @@ if (isset($_POST['oid']) && $_POST['oid'] != 0)
     $oid = $_POST['oid'];
 
 $btn_cancel = "<button class='btnCancel' onclick='" . $class_name . ".uiEdit(0)'>" . Language::string(23) . "</button>";
-$btn_delete = "<button class='btnDelete' onclick='" . $class_name . ".uiDelete($oid)'>" . Language::string(94) . "</button>";
-$btn_save = "<button class='btnSave' onclick='" . $class_name . ".uiSave()'>" . Language::string(95) . "</button>";
+$btn_delete = "<button class='btnDelete ui-state-error' onclick='" . $class_name . ".uiDelete($oid)'>" . Language::string(94) . "</button>";
+$btn_save = "<button class='btnSave ui-state-highlight' onclick='" . $class_name . ".uiSave()'>" . Language::string(95) . "</button>";
 $btn_save_new = "<button class='btnSaveNew' onclick='" . $class_name . ".uiSave(null,true)'>" . Language::string(510) . "</button>";
 
 $caption = "";
@@ -239,6 +239,13 @@ if ($oid != 0) {
 
     <?php
     if ($oid != -1) {
+        ?>
+        <div id="div<?= $class_name ?>ShareDialog" class="notVisible">
+            
+        </div>
+
+        <?php
+        include Ini::$path_internal . "cms/view/User_share.php";
         ?>
         <div class="divFormFloatingBar" align="right">
             <button class="btnGoToTop" onclick="location.href='#'"><?= Language::string(442) ?></button>

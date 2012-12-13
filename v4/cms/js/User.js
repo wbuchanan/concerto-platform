@@ -38,13 +38,15 @@ User.onBeforeDelete=function(oid){
     });
 }
 
+User.crudShareDeleted = [];
+User.crudShareUpdated = [];
 User.onAfterEdit=function() {
-    $("#divUsersAccordion").accordion("resize");
+    User.crudShareDeleted = [];
+    User.crudShareUpdated = [];
 };
 
 User.onAfterChangeListLength=function(){
-    $("#divUsersAccordion").accordion("resize");
-};
+    };
 
 User.onAfterList=function(){
     }
@@ -74,8 +76,285 @@ User.getAddSaveObject=function()
 User.getFullSaveObject=function()
 {
     var obj = this.getAddSaveObject();
-    
+    obj["deleteShare"] = User.getSerializedCrudDeleted();
+    obj["updateShare"] = User.getSerializedCrudUpdated();
     return obj;
+}
+
+User.getSerializedCrudDeleted=function(){
+    return $.toJSON(User.crudShareDeleted);
+}
+
+User.getSerializedCrudUpdated=function(){
+    var grid = $("#div"+this.className+"GridShare").data('kendoGrid');
+    var shares = new Array();
+    if(grid!=null) {
+        var data = grid.dataSource.data();
+    
+        for(var i=0;i<data.length;i++){
+            if(User.crudShareUpdated.indexOf(data[i].id)!=-1 || data[i].id==0){
+                shares.push({
+                    id:data[i].id,
+                    invitee_id:data[i].invitee_id
+                });
+            }
+        }
+    }
+    return $.toJSON(shares);
+      
+}
+
+User.getShares=function(){
+    var grid = $("#div"+this.className+"GridShare").data('kendoGrid');
+    var shares = new Array();
+    if(grid==null) return shares;
+    var data = grid.dataSource.data();
+    
+    for(var i=0;i<data.length;i++){
+        shares.push({
+            invitee_id:data[i].invitee_id
+        });
+    }
+    return shares;
+}
+
+User.uiEditShare=function(obj){
+    var thisClass = this;
+    
+    var shareGrid = $("#div"+thisClass.className+"GridShare").data('kendoGrid');
+    var index = obj.closest('tr')[0].sectionRowIndex;
+    var item = shareGrid.dataItem(shareGrid.tbody.find("tr:eq("+index+")"));
+    
+    $.post("view/User_grant.php",{
+        oid:this.currentID,
+        current_invitee_id:item.invitee_id,
+        shares:$.toJSON(User.getShares())
+    },function(data){
+        $("#div"+thisClass.className+"ShareDialog").html(data);
+        
+        $("#div"+thisClass.className+"ShareDialog").dialog({
+            title:dictionary["s651"],
+            resizable:false,
+            modal:true,
+            width:400,
+            open:function(){
+                $('.ui-widget-overlay').css('position', 'fixed');  
+            },
+            close:function(){
+                //$('.ui-widget-overlay').css('position', 'absolute');
+                $(this).dialog("destroy");
+            },
+            buttons:[
+            {
+                text:dictionary["s38"],
+                click:function(){
+                    if($("#select"+thisClass.className+"InviteeShareDialog").val()==0){
+                        Methods.alert(dictionary["s652"], "alert", dictionary["s651"]);
+                        return;
+                    }
+                    if(item.id!=0){
+                        User.crudUpdate("shares", item.id);
+                    }
+                    
+                    var rowIndex = shareGrid.dataSource.data()[index];
+                    rowIndex["invitee_id"]=$("#select"+thisClass.className+"InviteeShareDialog").val();
+                    rowIndex["name"]=$("#select"+thisClass.className+"InviteeShareDialog").children("option[selected='selected']").attr("name");
+                    rowIndex["institution"]=$("#select"+thisClass.className+"InviteeShareDialog").children("option[selected='selected']").attr("institution");
+                    User.uiRefreshShareGrid();
+                
+                    $(this).dialog("close");
+                
+                    Methods.iniTooltips();
+                }
+            },
+            {
+                text:dictionary["s23"],
+                click:function(){
+                    $(this).dialog("close");
+                }
+            }
+            ]
+        });
+    });
+}
+
+User.uiRemoveShare=function(obj){
+    var thisClass = this;
+    Methods.confirm(dictionary["s653"], dictionary["s654"], function(){
+        var grid = $("#div"+thisClass.className+"GridShare").data('kendoGrid');
+        var index = obj.closest('tr')[0].sectionRowIndex;
+        var item = grid.dataItem(grid.tbody.find("tr:eq("+index+")"));
+        
+        if(item.id!=""){
+            User.crudUpdate(User.crudShareDeleted, item.id);
+        }
+        
+        grid.removeRow(grid.tbody.find("tr:eq("+index+")"));
+    });
+}
+
+User.uiAddShare=function(){
+    var thisClass = this;
+    
+    $.post("view/User_grant.php",{
+        oid:this.currentID,
+        current_invitee_id:0,
+        shares:$.toJSON(User.getShares())
+    },function(data){
+        $("#div"+thisClass.className+"ShareDialog").html(data);
+        
+        $("#div"+thisClass.className+"ShareDialog").dialog({
+            title:dictionary["s647"],
+            resizable:false,
+            modal:true,
+            width:400,
+            open:function(){
+                $('.ui-widget-overlay').css('position', 'fixed');  
+            },
+            close:function(){
+                //$('.ui-widget-overlay').css('position', 'absolute');
+                $(this).dialog("destroy");
+            },
+            buttons:[
+            {
+                text:dictionary["s37"],
+                click:function(){
+                    if($("#select"+thisClass.className+"InviteeShareDialog").val()==0){
+                        Methods.alert(dictionary["s652"], "alert", dictionary["s647"]);
+                        return;
+                    }
+                    var shareGrid = $("#div"+thisClass.className+"GridShare").data('kendoGrid');
+                    shareGrid.dataSource.add({
+                        invitee_id:$("#select"+thisClass.className+"InviteeShareDialog").val(),
+                        name:$("#select"+thisClass.className+"InviteeShareDialog").children("option[selected='selected']").attr("name"),
+                        institution:$("#select"+thisClass.className+"InviteeShareDialog").children("option[selected='selected']").attr("institution")
+                    })
+                
+                    $(this).dialog("close");
+                
+                    Methods.iniTooltips();
+                }
+            },
+            {
+                text:dictionary["s23"],
+                click:function(){
+                    $(this).dialog("close");
+                }
+            }
+            ]
+        });
+    });
+}
+
+User.shareGridSchemaFields = null;
+User.uiReloadShareGrid=function(data,columns){
+    var thisClass = this;
+    
+    $("#div"+this.className+"GridShareContainer").html("<div id='div"+this.className+"GridShare' class='grid'></div>");
+        
+    var dataSource = new kendo.data.DataSource({
+        data:data,
+        schema:{
+            model:{
+                fields:User.shareGridSchemaFields
+            }
+        }
+    });
+    
+    $("#div"+thisClass.className+"GridShare").kendoGrid({
+        dataBound:function(e){
+            Methods.iniTooltips();  
+        },
+        dataSource: dataSource,
+        columns: columns,
+        toolbar:[
+        {
+            name: "create", 
+            template: '<button class="btnAdd" onclick="Table.uiAddShare()">'+dictionary["s37"]+'</button>'
+        }
+        ],
+        editable: false,
+        scrollable:false
+    });
+    Methods.iniIconButton(".btnAdd", "plus");
+}
+
+User.uiRefreshShareGrid=function(){
+    var grid = $("#div"+this.className+"GridShare").data('kendoGrid');
+    
+    var columns = grid.columns;
+    var items = grid.dataSource.data();
+    
+    User.uiReloadShareGrid(items, columns);
+}
+
+User.uiIniShareGrid=function(){
+    var thisClass = this;
+    
+    $("#div"+this.className+"GridShareContainer").html("<div id='div"+this.className+"GridShare' class='grid'></div>");
+    
+    var fields = {
+        id:{
+            type:"number"
+        },
+        invitee_id:{
+            type:"number"
+        },
+        name:{
+            type:"string"
+        },
+        institution:{
+            type:"string"
+        }
+    };
+    
+    var dataSource = new kendo.data.DataSource({
+        transport:{
+            read: {
+                url:"query/User_share_list.php?oid="+thisClass.currentID,
+                dataType:"json"
+            }
+        },
+        schema:{
+            model:{
+                id:"id",
+                fields:fields
+            }
+        }
+    });
+    
+    User.shareGridSchemaFields = fields;
+    
+    $("#div"+this.className+"GridShare").kendoGrid({
+        dataBound:function(e){
+            Methods.iniTooltips();  
+        },
+        dataSource: dataSource,
+        columns: [{
+            title:dictionary["s69"],
+            field:"invitee_id"
+        },{
+            title:dictionary["s70"],
+            field:"name"
+        },{
+            title:dictionary["s421"],
+            field:"institution"
+        },{
+            title:' ',
+            width:50,
+            template:'<span style="display:inline-block;" class="spanIcon tooltip ui-icon ui-icon-pencil" onclick="'+thisClass.className+'.uiEditShare($(this))" title="'+dictionary["s644"]+'"></span>'+
+            '<span style="display:inline-block;" class="spanIcon tooltip ui-icon ui-icon-trash" onclick="'+thisClass.className+'.uiRemoveShare($(this))" title="'+dictionary["s645"]+'"></span>'
+        }],
+        toolbar:[
+        {
+            name: "create", 
+            template: '<button class="btnAdd" onclick="'+thisClass.className+'.uiAddShare()">'+dictionary["s646"]+'</button>'
+        }
+        ],
+        editable: false,
+        scrollable:true
+    });
+    Methods.iniIconButton(".btnAdd", "plus");
 }
 
 User.previousWorkspace = null;
