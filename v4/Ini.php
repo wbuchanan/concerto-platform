@@ -59,6 +59,8 @@ class Ini {
     public static $db_users_name_prefix = "concerto_";
     public static $db_users_db_name_prefix = "concerto_";
     public static $db_master_name = "";
+    public static $db_host = "";
+    public static $db_port = "";
 
     function __construct($connect = true, $session = true, $headers = true) {
         //if (substr_count($_SERVER['HTTP_ACCEPT_ENCODING'], 'gzip')) ob_start("ob_gzhandler"); 
@@ -150,6 +152,8 @@ class Ini {
         self::$db_users_name_prefix = $db_users_name_prefix;
         self::$db_users_name_prefix = $db_users_name_prefix;
         self::$db_master_name = $db_master_name;
+        self::$db_host = $db_host;
+        self::$db_port = $db_port;
     }
 
     public static function does_patch_apply($patch_version, $previous_version) {

@@ -173,7 +173,7 @@ if ($oid != 0) {
                                         <option class="<?= User::view_class() ?>" value="char">char</option>
                                         <option class="<?= User::view_class() ?>" value="varchar">varchar</option>
                                         <option class="<?= User::view_class() ?>" value="tinytext">tinytext - HTML</option>
-                                        <option class="<?= User::view_class() ?>" value="text">text - HTML</option>
+                                        <option class="<?= User::view_class() ?>" value="text" <?= !User::is_simple_view() ? "selected" : "" ?>>text - HTML</option>
                                         <option class="<?= User::view_class() ?>" value="mediumtext">mediumtext - HTML</option>
                                         <option class="<?= User::view_class() ?>" value="longtext">longtext - HTML</option>
                                         <option class="<?= User::view_class() ?>" value="binary">binary</option>

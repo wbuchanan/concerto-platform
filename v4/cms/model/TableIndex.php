@@ -49,6 +49,21 @@ class TableIndex {
         return $indexes;
     }
 
+    public static function from_ui($ui) {
+        $obj = new TableIndex();
+        $obj->name = $ui->id;
+        $obj->non_unique = $ui->type == "index";
+        $obj->columns = $ui->columns;
+        return $obj;
+    }
+
+    public function get_definition() {
+        $cols = explode(",", $this->columns);
+        $cols = implode("`,`", $cols);
+        $cols = "(`" . $cols . "`)";
+        return ($this->non_unique ? "INDEX" : "UNIQUE") . " " . ($this->name != "" ? "`" . $this->name . "`" : "") . " " . $cols;
+    }
+
     public function get_type() {
         if ($this->name == "PRIMARY")
             return "primary";

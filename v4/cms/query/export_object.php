@@ -52,4 +52,5 @@ header('Content-Disposition: attachment; filename="export_' . $_GET['class_name'
 header('Content-Type: application/x-download');
 
 echo gzcompress($xml->saveXML(), 1);
+//echo $xml->saveXML();
 ?>

@@ -85,6 +85,18 @@ class Table extends OModule {
         return $result;
     }
 
+    public static function has_id($table_name) {
+        $table = new Table();
+        $table->name = $table_name;
+        foreach ($table->get_columns() as $column) {
+            if ($column->is_id())
+                return true;
+            else
+                return false;
+        }
+        return false;
+    }
+
     public function get_indexes() {
         return TableIndex::from_mysql_table($this->name);
     }
@@ -107,13 +119,13 @@ class Table extends OModule {
 
         if (array_key_exists("deleteData", $post)) {
             if ($post["deleteData"] == "*") {
-                $sql = sprintf("DELETE * FROM `%s`", mysql_real_escape_string($obj->name));
+                $sql = sprintf("DELETE FROM `%s`", mysql_real_escape_string($obj->name));
                 if (!mysql_query($sql))
                     return json_encode(array("result" => -6, "message" => mysql_error()));
             } else {
                 $rows = json_decode($post["deleteData"]);
                 foreach ($rows as $row) {
-                    $sql = sprintf("DELETE * FROM `%s` WHERE id='%s'", mysql_real_escape_string($obj->name), mysql_real_escape_string($row->id));
+                    $sql = sprintf("DELETE FROM `%s` WHERE id='%s'", mysql_real_escape_string($obj->name), mysql_real_escape_string($row->id));
                     if (!mysql_query($sql))
                         return json_encode(array("result" => -6, "message" => mysql_error()));
                 }
@@ -143,16 +155,57 @@ class Table extends OModule {
             foreach ($columns as $column) {
                 $col = TableColumn::from_ui($column);
                 if ($column->id != "") {
-                    $sql = sprintf("ALTER TABLE `%s` CHANGE COLUMN `%s` `%s` `%s`", mysql_real_escape_string($obj->name), mysql_real_escape_string($column->id), mysql_real_escape_string($column->name), mysql_real_escape_string($col->get_definition()));
+                    $sql = sprintf("ALTER TABLE `%s` CHANGE COLUMN `%s` `%s` %s", mysql_real_escape_string($obj->name), mysql_real_escape_string($column->id), mysql_real_escape_string($column->name), $col->get_definition());
                     if (!mysql_query($sql))
                         return json_encode(array("result" => -6, "message" => mysql_error()));
                 } else {
-                    //continue here
+                    $sql = sprintf("ALTER TABLE `%s` ADD COLUMN `%s` %s", mysql_real_escape_string($obj->name), mysql_real_escape_string($column->name), $col->get_definition());
+                    if (!mysql_query($sql))
+                        return json_encode(array("result" => -6, "message" => mysql_error()));
                 }
             }
         }
 
-        //hash
+        if (array_key_exists("updateIndexes", $post)) {
+            $indexes = json_decode($post["updateIndexes"]);
+            foreach ($indexes as $index) {
+                $ind = TableIndex::from_ui($index);
+                if ($index->id != "") {
+                    $sql = sprintf("ALTER TABLE `%s` DROP INDEX `%s`", mysql_real_escape_string($obj->name), mysql_real_escape_string($index->id));
+                    if (!mysql_query($sql))
+                        return json_encode(array("result" => -6, "message" => mysql_error()));
+                }
+                $sql = sprintf("ALTER TABLE `%s` ADD %s", mysql_real_escape_string($obj->name), $ind->get_definition());
+                if (!mysql_query($sql))
+                    return json_encode(array("result" => -6, "message" => mysql_error()));
+            }
+        }
+
+        if (array_key_exists("updateData", $post)) {
+            $rows = json_decode($post["updateData"], true);
+            foreach ($rows as $row) {
+                $set = "";
+                foreach ($row as $k => $v) {
+                    if ($k == "id")
+                        continue;
+                    if ($set != "")
+                        $set.=",";
+                    $set.="`" . mysql_real_escape_string($k) . "`='" . mysql_real_escape_string($v) . "'";
+                }
+
+                if ($row["id"] != null) {
+                    $sql = sprintf("UPDATE `%s` SET %s WHERE `id`=%s", mysql_real_escape_string($obj->name), $set, mysql_real_escape_string($row["id"]));
+                    if (!mysql_query($sql))
+                        return json_encode(array("result" => -6, "message" => mysql_error()));
+                } else {
+                    $sql = sprintf("INSERT INTO `%s` SET %s", mysql_real_escape_string($obj->name), $set);
+                    if (!mysql_query($sql))
+                        return json_encode(array("result" => -6, "message" => mysql_error()));
+                }
+            }
+        }
+
+//hash
         if ($obj != null) {
             $xml_hash = $obj->calculate_xml_hash();
             $obj->xml_hash = $xml_hash;
@@ -163,56 +216,73 @@ class Table extends OModule {
     }
 
     public function mysql_delete_Table() {
-        $sql = "DROP TABLE IF EXISTS " . $this->name . ";";
-        mysql_query($sql);
+        $sql = "DROP TABLE IF EXISTS `" . $this->name . "`;";
+        return mysql_query($sql);
     }
 
     public function import_from_mysql($table) {
-        
+        if (!Table::has_id($table)) {
+            return -7;
+        }
+
+        if (!$this->mysql_delete_Table()) {
+            return json_encode(array("result" => -6, "message" => mysql_error()));
+        }
+
+        $sql = sprintf("CREATE TABLE `%s` LIKE `%s`", $this->name, $table);
+        if (!mysql_query($sql)) {
+            return json_encode(array("result" => -6, "message" => mysql_error()));
+        }
+        $sql = sprintf("INSERT INTO `%s` SELECT * FROM `%s`", $this->name, $table);
+        if (!mysql_query($sql)) {
+            return json_encode(array("result" => -6, "message" => mysql_error()));
+        }
+        return 0;
     }
 
-    public function import_from_csv($path, $delimeter = ",", $enclosure = '"', $header = false) {
-        $this->mysql_delete_Table();
+    public function import_from_csv($path, $delimeter = ",", $enclosure = '"', $header = false, $id = true) {
+        if (!$this->mysql_delete_Table()) {
+            echo json_encode(array("result" => -6, mysql_error()));
+        }
+
+        if (!$this->create_new_mysql_table($this->name)) {
+            echo json_encode(array("result" => -6, mysql_error()));
+        }
 
         $row = 1;
         $column_names = array();
 
+        if (!$id)
+            array_push($column_names, "id");
+
         if (($handle = fopen($path, "r")) !== FALSE) {
             while (($data = fgetcsv($handle, 0, $delimeter, $enclosure)) !== FALSE) {
                 if ($row == 1) {
-                    $sql = "CREATE TABLE  " . $this->get_table_name() . " (";
-                    for ($i = 1; $i <= count($data); $i++) {
+                    for ($i = $id ? 1 : 2; $i <= count($data); $i++) {
                         $column_name = "c" . $i;
                         if ($header)
                             $column_name = Table::format_column_name($data[$i - 1]);
                         if (trim($column_name) == "")
                             continue;
                         array_push($column_names, $column_name);
-                        if ($i > 1)
-                            $sql.=",";
-                        $sql.="`" . $column_name . "`  TEXT NOT NULL";
-
-                        $sql2 = sprintf("INSERT INTO `%s` (`index`,`name`,`Table_id`,`type`) VALUES (%d,'%s',%d,%s)", TableColumn::get_mysql_table(), $i, $column_name, $this->id, "text");
-                        if (!mysql_query($sql2))
-                            return -4;
+                        $sql = sprintf("ALTER TABLE `%s` ADD `%s`  TEXT NOT NULL", $this->name, $column_name);
+                        if (!mysql_query($sql))
+                            return json_encode(array("result" => -6, "message" => mysql_error()));
                     }
-                    $sql.=") ENGINE = INNODB DEFAULT CHARSET=utf8;";
-                    if (!mysql_query($sql))
-                        return -4;
                     if ($header) {
                         $row++;
                         continue;
                     }
                 }
 
-                $sql = sprintf("INSERT INTO `%s` SET ", $this->get_table_name());
+                $sql = sprintf("INSERT INTO `%s` SET ", $this->name);
                 for ($i = 1; $i <= count($column_names); $i++) {
                     if ($i > 1)
                         $sql.=", ";
                     $sql.=sprintf("`%s`='%s'", $column_names[$i - 1], mysql_real_escape_string($data[$i - 1]));
                 }
                 if (!mysql_query($sql))
-                    return -4;
+                    return json_encode(array("result" => -6, "message" => mysql_error()));
                 $row++;
             }
         }
@@ -246,7 +316,7 @@ class Table extends OModule {
         $elements = $xpath->query("/export");
         foreach ($elements as $element) {
             if (Ini::$version != $element->getAttribute("version"))
-                return -5;
+                return json_encode(array("result" => -5));
         }
 
         $last_result = 0;
@@ -263,62 +333,33 @@ class Table extends OModule {
                 }
             }
 
-            $post['cols'] = array();
-            $elements_tc = $xpath->query("./TableColumns/TableColumn", $element);
-            foreach ($elements_tc as $element_tc) {
-                $children = $element_tc->childNodes;
-                $col = array("oid" => 0);
-                foreach ($children as $child) {
-                    switch ($child->nodeName) {
-                        case "name": $col["name"] = $child->nodeValue;
-                            break;
-                        case "type": $col["type"] = $child->nodeValue;
-                            break;
-                        case "length": $col["lengthValues"] = $child->nodeValue;
-                            break;
-                        case "default_value": $col["defaultValue"] = $child->nodeValue;
-                            break;
-                        case "attributes": $col["attributes"] = $child->nodeValue;
-                            break;
-                        case "null": $col["nullable"] = $child->nodeValue;
-                            break;
-                        case "auto_increment": $col["auto_increment"] = $child->nodeValue;
-                            break;
+            $dumps = $xpath->query("./TableDump", $element);
+            foreach ($dumps as $dump) {
+
+                $sql = htmlspecialchars_decode(trim($dump->nodeValue), ENT_QUOTES);
+                $lines = explode(";\n", $sql);
+
+                foreach ($lines as $line) {
+                    if (!mysql_query(htmlspecialchars_decode($line))) {
+                        return json_encode(array("result" => -6, "message" => mysql_error()));
                     }
                 }
-                array_push($post['cols'], json_encode($col));
             }
 
-            $post['indexes'] = array();
-            $elements_ti = $xpath->query("./TableIndexes/TableIndex", $element);
-            foreach ($elements_ti as $element_ti) {
-                $children = $element_ti->childNodes;
-                $index = array("oid" => 0);
-                foreach ($children as $child) {
-                    switch ($child->nodeName) {
-                        case "type": $index["type"] = $child->nodeValue;
-                            break;
-                        case "columns": $index["columns"] = $child->nodeValue;
-                            break;
-                    }
-                }
-                array_push($post['indexes'], json_encode($index));
-            }
-
-            $post['rows'] = array();
-            $elements_r = $xpath->query("./rows/row", $element);
-            foreach ($elements_r as $element_r) {
-                $children = $element_r->childNodes;
-                $row = array();
-                foreach ($children as $child) {
-                    $row[$child->nodeName] = $child->nodeValue;
-                }
-                array_push($post['rows'], json_encode($row));
-            }
-
-            $last_result = $this->mysql_save_from_post($post);
+            $last_result = $this->mysql_save();
         }
         return $last_result;
+    }
+
+    public function dump() {
+        include Ini::$path_internal . "SETTINGS.php";
+        $db_host = Ini::$db_host;
+        $db_port = Ini::$db_port;
+        $db_user = $db_master_user;
+        $db_password = $db_master_password;
+        $db_name = User::get_current_db();
+        $db_table = $this->name;
+        return `mysqldump --opt --host=$db_host --port=$db_port --user=$db_user --password="$db_password" --compact $db_name $db_table | grep -v '^\/\*![0-4][0-9]\{4\}.*\/;$'`;
     }
 
     public function to_XML() {
@@ -335,43 +376,8 @@ class Table extends OModule {
         $description = $xml->createElement("description", htmlspecialchars($this->description, ENT_QUOTES, "UTF-8"));
         $element->appendChild($description);
 
-        $columns = $xml->createElement("TableColumns");
-        $element->appendChild($columns);
-
-        $cols = $this->get_TableColumns();
-        foreach ($cols as $col) {
-            $elem = $col->to_XML();
-            $elem = $xml->importNode($elem, true);
-            $columns->appendChild($elem);
-        }
-
-        $indexes = $xml->createElement("TableIndexes");
-        $element->appendChild($indexes);
-
-        $indx = $this->get_TableIndexes();
-        foreach ($indx as $index) {
-            $elem = $index->to_XML();
-            $elem = $xml->importNode($elem, true);
-            $indexes->appendChild($elem);
-        }
-
-        $rows = $xml->createElement("rows");
-        $element->appendChild($rows);
-
-        if ($this->has_table()) {
-            $sql = sprintf("SELECT * FROM `%s`", $this->get_table_name());
-            $z = mysql_query($sql);
-            while ($r = mysql_fetch_array($z)) {
-                $row = $xml->createElement("row");
-
-                foreach ($cols as $col) {
-                    $cell = $xml->createElement($col->name, htmlspecialchars($r[$col->name], ENT_QUOTES, "UTF-8"));
-                    $row->appendChild($cell);
-                }
-
-                $rows->appendChild($row);
-            }
-        }
+        $dump = $xml->createElement("TableDump", htmlspecialchars($this->dump(), ENT_QUOTES, "UTF-8"));
+        $element->appendChild($dump);
         return $element;
     }
 

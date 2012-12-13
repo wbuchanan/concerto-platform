@@ -19,14 +19,12 @@
   Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA.
  */
 
-if (!isset($ini))
-{
+if (!isset($ini)) {
     require_once '../../Ini.php';
     $ini = new Ini();
 }
 $logged_user = User::get_logged_user();
-if ($logged_user == null)
-{
+if ($logged_user == null) {
     echo json_encode(array("result" => -1));
     exit();
 }
@@ -36,13 +34,20 @@ $result = $client->call("download", array(
     "id" => $_POST['oid']
         ));
 
-if ($result != false)
-{
+if ($result != false) {
     $obj = new $_POST['class_name']();
 
     $xml = new DOMDocument('1.0', 'UTF-8');
     $xml->loadXML(gzuncompress(base64_decode($result)));
 
-    $oid = $obj->import_XML($xml);
-    echo json_encode(array("result" => 0, "oid" => $oid));
-} else echo json_encode(array("result" => -3));
+    $response = $obj->import_XML($xml);
+    if (is_numeric($response)) {
+        $oid = $response;
+        $result = 0;
+        echo json_encode(array("result" => $result, "oid" => $oid));
+        exit();
+    } else {
+        echo $response;
+    }
+} else
+    echo json_encode(array("result" => -3));

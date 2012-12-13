@@ -6152,5 +6152,45 @@ Note: You can add new languages by inserting "<new_language>string translated in
             <nl></nl>
             <br></br>
         </string>
+        <string id="638" js="1">
+            <en>Operation failed. It is required from imported table to have a column named `id` as first column in the table with index PRIMARY and auto_increment attribute.</en>
+            <de></de>
+            <pl>Operacja nie powiodła się. Wymagane jest od importowanej tabeli aby posiadała kolumnę o nazwie `id` jako pierwszą kolumnę w tabeli z indeksem PRIMARY oraz atrybutem auto_increment.</pl>
+            <cn></cn>
+            <fr></fr>
+            <bg></bg>
+            <nl></nl>
+            <br></br>
+        </string>
+        <string id="639" js="1">
+            <en>Are you sure you want to perform this action? You will permanently loose current table structure and data.</en>
+            <de></de>
+            <pl>Jesteś pewien, że chcesz wykonać wybraną akcję? Spowoduje to trwałą utrate obecnej struktury i danych tabeli.</pl>
+            <cn></cn>
+            <fr></fr>
+            <bg></bg>
+            <nl></nl>
+            <br></br>
+        </string>
+        <string id="640">
+            <en>add `id` column</en>
+            <de></de>
+            <pl>dodaj kolumne `id`</pl>
+            <cn></cn>
+            <fr></fr>
+            <bg></bg>
+            <nl></nl>
+            <br></br>
+        </string>
+        <string id="641">
+            <en>Check if you don't have `id` column on your CSV file. It will be added automatically.</en>
+            <de></de>
+            <pl>Zaznacz jeśli nie masz kolumny `id` w swoim pliku CSV. Zostanie ona dodana automatycznie.</pl>
+            <cn></cn>
+            <fr></fr>
+            <bg></bg>
+            <nl></nl>
+            <br></br>
+        </string>
     </strings>
 </root> 

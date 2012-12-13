@@ -88,9 +88,10 @@ class Test extends OModule {
         foreach ($values as $val) {
             $v = json_decode($val);
             foreach ($params as $param) {
-                if ($param->name == $v->name)
+                if ($param->name == $v->name) {
                     array_push($result, $val);
-                break;
+                    break;
+                }
             }
         }
         return $result;
@@ -176,7 +177,7 @@ class Test extends OModule {
         $elements = $xpath->query("/export");
         foreach ($elements as $element) {
             if (Ini::$version != $element->getAttribute("version"))
-                return -5;
+                return json_encode(array("result" => -5));
         }
 
         if ($compare == null) {

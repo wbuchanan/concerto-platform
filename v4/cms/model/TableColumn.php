@@ -40,22 +40,25 @@ class TableColumn {
     }
 
     public static function from_ui($ui) {
-        $this->name = $ui->name;
-        $this->type = $ui->type;
+        $obj = new TableColumn();
+        $obj->name = $ui->name;
+        $obj->type = $ui->type;
         if ($ui->lengthValues != "")
-            $this->type.="(" . $ui->lengthValues . ")";
-        $this->null = $ui->nullable == 1;
-        $this->default = strtolower($ui->defaultValue) == "null" ? null : $ui->defaultValue;
-        $this->extra = $ui->attributes;
+            $obj->type.="(" . $ui->lengthValues . ")";
+        $obj->null = $ui->nullable == 1;
+        $obj->default = strtolower($ui->defaultValue) == "null" ? null : $ui->defaultValue;
+        $obj->extra = $ui->attributes;
+        return $obj;
     }
 
     public function get_definition() {
-        $def = $this->type . " " . $this->extra . " " . ($this->null ? "NULL" : "NOT NULL") . " ";
-        if ($this->default != null) {
+        $def = mysql_real_escape_string($this->type) . " " . mysql_real_escape_string($this->extra) . " " . ($this->null ? "NULL" : "NOT NULL") . " ";
+        if ($this->default !== null) {
             if ($this->default != "")
-                $def.="DEFAULT '" . $this->default . "'";
+                $def.="DEFAULT '" . mysql_real_escape_string($this->default) . "'";
         } else
             $def.="DEFAULT NULL";
+        return $def;
     }
 
     public function get_type() {

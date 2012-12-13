@@ -513,16 +513,6 @@ Setup.updateDBStep = new SetupStep(
     true
     );
 
-Setup.validateColumnsDBStep = new SetupStep(
-    true,
-    "<b>MySQL</b> database - validate column names",
-    "update_db_validate_column_names",
-    "<b>MySQL</b> database update - validate column names - <b style='color:green;'>PASSED</b>",
-    "<b>MySQL</b> database - validate column names - <b style='color:red;'>FAILED</b>",
-    "Setup application was unable to validate column names.",
-    true
-    );
-
 Setup.recalculateHashDBStep = new SetupStep(
     true,
     "<b>MySQL</b> database - recalculate hash",

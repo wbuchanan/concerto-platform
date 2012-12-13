@@ -87,6 +87,15 @@ include Ini::$path_internal . "cms/view/includes/tab.inc.php";
         </legend>
         <table>
             <tr>
+                <td class="noWrap horizontalPadding tdFormLabel"><?= Language::string(640) ?>:</td>
+                <td><span class="tooltip spanIcon ui-icon ui-icon-help" title="<?= Language::string(641) ?>"></span></td>
+                <td class="fullWidth">
+                    <div class="horizontalMargin" align="center">
+                        <input id="inputTableCSVImportID" type="checkbox" class="ui-widget-content ui-corner-all" value="1" />
+                    </div>
+                </td>
+            </tr>
+            <tr>
                 <td class="noWrap horizontalPadding tdFormLabel"><?= Language::string(330) ?>:</td>
                 <td><span class="tooltip spanIcon ui-icon ui-icon-help" title="<?= Language::string(331) ?>"></span></td>
                 <td class="fullWidth">

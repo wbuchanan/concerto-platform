@@ -25,16 +25,12 @@ class Setup {
         return self::update_db(true);
     }
 
-    public static function update_db_validate_column_names() {
-        return self::update_db(false, false, true);
-    }
-
     public static function create_db() {
-        return self::update_db(false, false, false, true);
+        return self::update_db(false, false,  true);
     }
 
     public static function update_db_recalculate_hash() {
-        return self::update_db(false, true, true);
+        return self::update_db(false, true);
     }
 
     public static function php_version_check() {
@@ -243,7 +239,7 @@ class Setup {
         return json_encode(array("result" => $return, "param" => "session"));
     }
 
-    public static function update_db($simulate = false, $only_recalculate_hash = false, $only_validate_column_names = false, $only_create_db = false) {
+    public static function update_db($simulate = false, $only_recalculate_hash = false, $only_create_db = false) {
         require '../Ini.php';
         $ini = new Ini();
 
@@ -257,14 +253,6 @@ class Setup {
                 OModule::calculate_all_xml_hashes();
             }
             return json_encode(array("result" => 0));
-        }
-
-        if ($only_validate_column_names) {
-            foreach (User::get_all_db() as $db) {
-                mysql_select_db($db);
-                $result = TableColumn::validate_columns_name();
-            }
-            return json_encode(array("result" => $result ? 0 : 1));
         }
 
         $versions_to_update = array();
@@ -299,7 +287,7 @@ class Setup {
          */
 
         if ($simulate)
-            return json_encode(array("versions" => $versions_to_update, "validate_column_names" => $validate_column_names, "recalculate_hash" => $recalculate_hash, "create_db" => Ini::create_db_structure(true)));
+            return json_encode(array("versions" => $versions_to_update, "recalculate_hash" => $recalculate_hash, "create_db" => Ini::create_db_structure(true)));
         return json_encode(array("result" => 2));
     }
 

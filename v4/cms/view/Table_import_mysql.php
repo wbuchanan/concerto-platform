@@ -27,6 +27,8 @@ if ($logged_user == null) {
     echo "<script>location.reload();</script>";
     die(Language::string(278));
 }
+
+$table = Table::from_mysql_id($_POST['oid']);
 ?>
 
 <script>
@@ -50,7 +52,7 @@ if ($logged_user == null) {
         $sql = "SHOW TABLES";
         $z = mysql_query($sql);
         while ($r = mysql_fetch_array($z)) {
-            if (in_array($r[0], Ini::get_user_system_tables()) || (strpos($r[0], Table::get_table_prefix()) !== false && strpos($r[0], Table::get_table_prefix()) == 0))
+            if (in_array($r[0], Ini::get_user_system_tables()) || $r[0] == $table->name)
                 continue;
             ?>
             <option value="<?= $r[0] ?>"><?= $r[0] ?></option>

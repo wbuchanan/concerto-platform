@@ -154,7 +154,7 @@ class Template extends OModule {
         $elements = $xpath->query("/export");
         foreach ($elements as $element) {
             if (Ini::$version != $element->getAttribute("version"))
-                return -5;
+                return json_encode(array("result" => -5));
         }
 
         $last_result = 0;

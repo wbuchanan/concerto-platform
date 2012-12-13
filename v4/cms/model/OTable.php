@@ -61,9 +61,9 @@ class OTable {
         $xml = new DOMDocument('1.0', 'UTF-8');
         $content = file_get_contents($path);
         if (!$content)
-            return -4;
+            return json_encode(array("result" => -4));
         if (!@$xml->loadXML(gzuncompress($content)))
-            return -4;
+            return json_encode(array("result" => -4));
 
         return $this->import_XML($xml);
     }

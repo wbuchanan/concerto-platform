@@ -38,21 +38,19 @@ if ($obj == null) {
 $cols = array();
 $i = 0;
 echo"[";
-if ($obj->has_table()) {
-    $cols = TableColumn::from_property(array("Table_id" => $obj->id));
+$cols = $obj->get_columns();
 
-    $sql = sprintf("SELECT * FROM `%s`", $obj->get_table_name());
-    $z = mysql_query($sql);
-    while ($r = mysql_fetch_array($z)) {
-        if ($i > 0)
-            echo ",";
-        $row = array();
-        foreach ($cols as $col) {
-            $row[$col->name] = $r[$col->name];
-        }
-        echo json_encode($row);
-        $i++;
+$sql = sprintf("SELECT * FROM `%s`", $obj->name);
+$z = mysql_query($sql);
+while ($r = mysql_fetch_array($z)) {
+    if ($i > 0)
+        echo ",";
+    $row = array();
+    foreach ($cols as $col) {
+        $row[$col->name] = $r[$col->name];
     }
+    echo json_encode($row);
+    $i++;
 }
 echo"]";
 ?>

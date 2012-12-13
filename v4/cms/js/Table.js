@@ -85,7 +85,7 @@ Table.getFullSaveObject=function(){
     obj["updateColumns"] = Table.getSerializedCrudUpdated("columns");
     obj["description"]=$("#form"+this.className+"TextareaDescription").val();
     
-    return obj;
+    return obj; 
 }
 
 Table.crudIndexesDeleted = [];
@@ -1202,7 +1202,7 @@ Table.uiEditColumn=function(obj){
     var structGrid = $("#div"+thisClass.className+"GridStructure").data('kendoGrid');
     var index = obj.closest('tr')[0].sectionRowIndex;
     var item = structGrid.dataItem(structGrid.tbody.find("tr:eq("+index+")"));
-    
+    var itemID = item.id;
     var oldName = item.name;
     var oldType = item.type;
     var oldLengthValues = item.lengthValues;
@@ -1269,8 +1269,8 @@ Table.uiEditColumn=function(obj){
                 }
                 
                 Table.onColumnChange(oldName,name.val());
-                if(item.id!=""){
-                    Table.crudUpdate("columns", item.id);
+                if(itemID!=""){
+                    Table.crudUpdate("columns", itemID);
                 }
                 
                 //structGrid mod start
@@ -1459,57 +1459,70 @@ Table.uiExportCSV=function(){
 
 Table.uiImportTable=function(){
     var thisClass = this;
-    $.post("view/Table_import_mysql.php",{},function(data){
-        $("#div"+Table.className+"DialogImportMySQL").html(data);
-        var selectTable = $("#form"+thisClass.className+"SelectMySQLTable");
+    Methods.confirm(dictionary["s639"], dictionary["s25"], function(){
+        $.post("view/Table_import_mysql.php",{
+            oid:thisClass.currentID
+        },function(data){
+            $("#div"+Table.className+"DialogImportMySQL").html(data);
+            var selectTable = $("#form"+thisClass.className+"SelectMySQLTable");
         
-        $("#div"+Table.className+"DialogImportMySQL").dialog({
-            title:dictionary["s21"],
-            modal:true,
-            resizable:false,
-            open:function(){
-                $('.ui-widget-overlay').css('position', 'fixed');  
-            },
-            close:function(){
-            //$('.ui-widget-overlay').css('position', 'absolute');  
-            },
-            buttons:[{
-                text:dictionary["s22"],
-                click:function(){
-                    if(selectTable.val()==0){
-                        Methods.alert(dictionary["s24"], "alert", dictionary["s25"]);
-                        return;
-                    }
-                    Methods.uiBlock($("#div"+Table.className+"DialogImportMySQL").parent());
-                    $.post("query/Table_mysql_import.php",{
-                        oid:thisClass.currentID,
-                        table:selectTable.val()
-                    },function(data){
-                        Methods.uiUnblock($("#div"+Table.className+"DialogImportMySQL").parent());
-                        $("#div"+Table.className+"DialogImportMySQL").dialog("close");
-                        switch(parseInt(data.result)){
-                            case OModule.queryResults.OK:{
-                                thisClass.uiEdit(thisClass.currentID);
-                                Methods.alert(dictionary["s26"], "info", dictionary["s25"]);
-                                break;
-                            }
-                            case OModule.queryResults.notLoggedIn:{
-                                thisClass.onNotLoggedIn(dictionary["s25"]);
-                                break;
-                            }
-                            default:{
-                                Methods.alert(dictionary["s30"], "alert", dictionary["s25"]);
-                                break;    
-                            }
+            $("#div"+Table.className+"DialogImportMySQL").dialog({
+                title:dictionary["s21"],
+                modal:true,
+                resizable:false,
+                open:function(){
+                    $('.ui-widget-overlay').css('position', 'fixed');  
+                },
+                close:function(){
+                //$('.ui-widget-overlay').css('position', 'absolute');  
+                },
+                buttons:[{
+                    text:dictionary["s22"],
+                    click:function(){
+                        if(selectTable.val()==0){
+                            Methods.alert(dictionary["s24"], "alert", dictionary["s25"]);
+                            return;
                         }
-                    },"json")
-                }
-            }, {
-                text:dictionary["s23"],
-                click:function(){
-                    $(this).dialog("close");
-                }
-            }]
+                    
+                        Methods.uiBlock($("#div"+Table.className+"DialogImportMySQL").parent());
+                        $.post("query/Table_mysql_import.php",{
+                            oid:thisClass.currentID,
+                            table:selectTable.val()
+                        },function(data){
+                            Methods.uiUnblock($("#div"+Table.className+"DialogImportMySQL").parent());
+                            $("#div"+Table.className+"DialogImportMySQL").dialog("close");
+                            switch(parseInt(data.result)){
+                                case OModule.queryResults.OK:{
+                                    thisClass.uiEdit(thisClass.currentID);
+                                    Methods.alert(dictionary["s26"], "info", dictionary["s25"]);
+                                    break;
+                                }
+                                case OModule.queryResults.notLoggedIn:{
+                                    thisClass.onNotLoggedIn(dictionary["s25"]);
+                                    break;
+                                }
+                                case OModule.queryResults.transactionError:{
+                                    Methods.alert(dictionary["s616"]+data.message, "alert", dictionary["s25"]);  
+                                    break;
+                                }
+                                case -7:{
+                                    Methods.alert(dictionary["s638"], "alert", dictionary["s25"]);      
+                                    break;
+                                }
+                                default:{
+                                    Methods.alert(dictionary["s30"], "alert", dictionary["s25"]);
+                                    break;    
+                                }
+                            }
+                        },"json");
+                    }
+                }, {
+                    text:dictionary["s23"],
+                    click:function(){
+                        $(this).dialog("close");
+                    }
+                }]
+            });
         });
     });
 }
@@ -1517,92 +1530,103 @@ Table.uiImportTable=function(){
 Table.isFileUploaded = false;
 Table.uiImportCSV=function(){
     var thisClass = this;
-    $("#div"+Table.className+"DialogImportCSV").dialog({
-        title:dictionary["s27"],
-        resizable:false,
-        modal:true,
-        width:400,
-        close:function(){
-        //$('.ui-widget-overlay').css('position', 'absolute');
-        },
-        beforeClose:function(){
+    Methods.confirm(dictionary["s639"], dictionary["s25"], function(){
+        $("#div"+Table.className+"DialogImportCSV").dialog({
+            title:dictionary["s27"],
+            resizable:false,
+            modal:true,
+            width:400,
+            close:function(){
+            //$('.ui-widget-overlay').css('position', 'absolute');
+            },
+            beforeClose:function(){
             
-        },
-        open:function(){
-            $('.ui-widget-overlay').css('position', 'fixed');
-            $('#file'+Table.className+'CSVImport').fileupload({
-                dataType: 'json',
-                url: 'js/lib/fileupload/php/index.php',
-                formData:function(form){
-                    return [{
-                        name:"oid",
-                        value:Table.currentID
-                    }]  
-                },
-                send: function(e,data){
-                    Methods.modalProgress();
-                    $("#div"+Table.className+"DialogImportCSV").dialog("close");
-                },
-                progress: function(e,data) {
-                    var progress = parseInt(data.loaded / data.total * 100, 10);
-                    Methods.changeProgress(progress);
-                },
-                done: function (e, data) {
-                    $.each(data.result, function (index, file) {
-                        Table.isFileUploaded = true;
-                        var delimeter = $("#inputTableCSVImportDelimeter").val();
-                        var enclosure = $("#inputTableCSVImportEnclosure").val();
+            },
+            open:function(){
+                $('.ui-widget-overlay').css('position', 'fixed');
+                $('#file'+Table.className+'CSVImport').fileupload({
+                    dataType: 'json',
+                    url: 'js/lib/fileupload/php/index.php',
+                    formData:function(form){
+                        return [{
+                            name:"oid",
+                            value:Table.currentID
+                        }]  
+                    },
+                    send: function(e,data){
+                        Methods.modalProgress();
+                        $("#div"+Table.className+"DialogImportCSV").dialog("close");
+                    },
+                    progress: function(e,data) {
+                        var progress = parseInt(data.loaded / data.total * 100, 10);
+                        Methods.changeProgress(progress);
+                    },
+                    done: function (e, data) {
+                        $.each(data.result, function (index, file) {
+                            Table.isFileUploaded = true;
+                            var delimeter = $("#inputTableCSVImportDelimeter").val();
+                            var enclosure = $("#inputTableCSVImportEnclosure").val();
                         
-                        if($.trim(delimeter)=="" || $.trim(enclosure)==""){
-                            Methods.alert(dictionary["s334"], "alert", dictionary["s25"]);
-                            return;
-                        }
+                            if($.trim(delimeter)=="" || $.trim(enclosure)==""){
+                                Methods.alert(dictionary["s334"], "alert", dictionary["s25"]);
+                                return;
+                            }
                             
-                        Methods.confirm(dictionary["s28"], dictionary["s29"], function(){
-                            Methods.uiBlock($("#div"+Table.className+"DialogImportCSV").parent());
-                            $.post("query/Table_csv_import.php",{
-                                oid:Table.currentID,
-                                file:file.name,
-                                delimeter:delimeter,
-                                enclosure:enclosure,
-                                header:$("#inputTableCSVImportHeader").is(":checked")?1:0
-                            },function(data){
-                                Methods.uiUnblock($("#div"+Table.className+"DialogImportCSV").parent());
-                                $("#div"+Table.className+"DialogImportCSV").dialog("close");
-                                switch(parseInt(data.result)){
-                                    case OModule.queryResults.OK:{
-                                        Methods.alert(dictionary["s26"], "info", dictionary["s25"]);
-                                        Table.uiEdit(Table.currentID);
-                                        break;
+                            Methods.confirm(dictionary["s28"], dictionary["s29"], function(){
+                                Methods.uiBlock($("#div"+Table.className+"DialogImportCSV").parent());
+                                $.post("query/Table_csv_import.php",{
+                                    oid:Table.currentID,
+                                    file:file.name,
+                                    delimeter:delimeter,
+                                    enclosure:enclosure,
+                                    header:$("#inputTableCSVImportHeader").is(":checked")?1:0,
+                                    id:$("#inputTableCSVImportID").is(":checked")?1:0
+                                },function(data){
+                                    Methods.uiUnblock($("#div"+Table.className+"DialogImportCSV").parent());
+                                    $("#div"+Table.className+"DialogImportCSV").dialog("close");
+                                    switch(parseInt(data.result)){
+                                        case OModule.queryResults.OK:{
+                                            Methods.alert(dictionary["s26"], "info", dictionary["s25"]);
+                                            Table.uiEdit(Table.currentID);
+                                            break;
+                                        }
+                                        case OModule.queryResults.notLoggedIn:{
+                                            thisClass.onNotLoggedIn(dictionary["s25"]);
+                                            break;
+                                        }
+                                        //file doesn't exist
+                                        case -3:{
+                                            Methods.alert(dictionary["s272"], "alert", dictionary["s25"]);
+                                            break;
+                                        }
+                                        case OModule.queryResults.transactionError:{
+                                            Methods.alert(dictionary["s616"]+data.message, "alert", dictionary["s25"]);  
+                                            break;
+                                        }
+                                        case -7:{
+                                            Methods.alert(dictionary["s638"], "alert", dictionary["s25"]);      
+                                            break;
+                                        }
+                                        default:{
+                                            Methods.alert(dictionary["s30"], "alert", dictionary["s25"]);
+                                            Table.uiEdit(Table.currentID);
+                                            break;
+                                        }
                                     }
-                                    case OModule.queryResults.notLoggedIn:{
-                                        thisClass.onNotLoggedIn(dictionary["s25"]);
-                                        break;
-                                    }
-                                    //file doesn't exist
-                                    case -3:{
-                                        Methods.alert(dictionary["s272"], "alert", dictionary["s25"]);
-                                        break;
-                                    }
-                                    default:{
-                                        Methods.alert(dictionary["s30"], "alert", dictionary["s25"]);
-                                        Table.uiEdit(Table.currentID);
-                                        break;
-                                    }
-                                }
-                            },"json");
+                                },"json");
+                            });
                         });
-                    });
+                    }
+                });
+            },
+            buttons:[{
+                text:dictionary["s23"],
+                click:function(){
+                    $(this).dialog("close");
                 }
-            });
-        },
-        buttons:[{
-            text:dictionary["s23"],
-            click:function(){
-                $(this).dialog("close");
-            }
-        }]
-    }); 
+            }]
+        }); 
+    });
 }
 
 Table.stringEditor = function(container,options){
