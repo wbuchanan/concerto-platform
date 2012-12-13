@@ -179,6 +179,7 @@ class User extends OModule {
     public static function log_out() {
         unset($_SESSION['ptap_logged_login']);
         unset($_SESSION['ptap_logged_password']);
+        unset($_SESSION['ptap_view']);
     }
 
     public function get_last_login() {

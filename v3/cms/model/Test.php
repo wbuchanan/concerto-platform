@@ -180,9 +180,10 @@ class Test extends OModule {
         foreach ($values as $val) {
             $v = json_decode($val);
             foreach ($params as $param) {
-                if ($param->name == $v->name)
+                if ($param->name == $v->name) {
                     array_push($result, $val);
-                break;
+                    break;
+                }
             }
         }
         return $result;
@@ -795,7 +796,7 @@ class Test extends OModule {
 
         $open = $xml->createElement("open", htmlspecialchars($this->open, ENT_QUOTES, "UTF-8"));
         $element->appendChild($open);
-        
+
         $loader_Template_id = $xml->createElement("loader_Template_id", htmlspecialchars($this->loader_Template_id, ENT_QUOTES, "UTF-8"));
         $element->appendChild($loader_Template_id);
 
