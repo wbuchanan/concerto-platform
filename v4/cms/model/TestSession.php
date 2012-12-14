@@ -33,6 +33,7 @@ class TestSession extends OTable {
     public $release = 0;
     public $output = "";
     public $state = "";
+    public $User_id = 0;
 
     const TEST_SESSION_STATUS_NEW = 0;
     const TEST_SESSION_STATUS_WORKING = 1;
@@ -51,18 +52,22 @@ class TestSession extends OTable {
         return Template::from_mysql_id($this->Template_id);
     }
 
+    public function get_User() {
+        return User::from_mysql_id($this->User_id);
+    }
+
     public function register() {
         if (array_key_exists("sids", $_SESSION)) {
             if (array_key_exists(session_id(), $_SESSION['sids'])) {
                 TestSession::unregister($_SESSION['sids'][session_id()]);
-                $_SESSION['sids'][session_id()] = $this->id;
+                $_SESSION['sids'][session_id()] = $this->User_id . "-" . $this->id;
             }
             else
-                $_SESSION['sids'][session_id()] = $this->id;
+                $_SESSION['sids'][session_id()] = $this->User_id . "-" . $this->id;
         }
         else {
             $_SESSION['sids'] = array();
-            $_SESSION['sids'][session_id()] = $this->id;
+            $_SESSION['sids'][session_id()] = $this->User_id . "-" . $this->id;
         }
     }
 
@@ -73,10 +78,11 @@ class TestSession extends OTable {
         unset($_SESSION['sids'][session_id()]);
     }
 
-    public static function start_new($test_id, $debug = false) {
+    public static function start_new($oid, $test_id, $debug = false) {
         $session = new TestSession();
         $session->Test_id = $test_id;
         $session->debug = ($debug ? 1 : 0);
+        $session->User_id = $oid;
 
         $lid = $session->mysql_save();
 
@@ -185,6 +191,7 @@ class TestSession extends OTable {
 
         //R server connection
         $command_obj = json_encode(array(
+            "owner_id" => $this->User_id,
             "session_id" => $this->id,
             "hash" => $this->hash,
             "values" => $values,
@@ -364,13 +371,19 @@ class TestSession extends OTable {
 
         return $response;
     }
+    
+    public static function change_db($owner_id) {
+        $owner = User::from_mysql_id($owner_id);
+        if ($owner != null)
+            mysql_select_db($owner->db_name);
+    }
 
     public function get_RSession_file_path() {
-        return Ini::$path_temp . $this->get_Test()->Owner_id . "/session_" . $this->id . ".Rs";
+        return Ini::$path_temp . $this->User_id . "/session_" . $this->id . ".Rs";
     }
 
     public function get_RSession_fifo_path() {
-        return Ini::$path_temp . $this->get_Test()->Owner_id . "/fifo_" . $this->id;
+        return Ini::$path_temp . $this->User_id . "/fifo_" . $this->id;
     }
 
     public function mysql_save() {
@@ -390,8 +403,8 @@ class TestSession extends OTable {
         return md5("cts" . $id . "." . rand(0, 100) . "." . time());
     }
 
-    public static function authorized_session($id, $hash) {
-        $session = TestSession::from_property(array("id" => $id, "hash" => $hash), false);
+    public static function authorized_session($oid, $id, $hash) {
+        $session = TestSession::from_property(array("id" => $id, "User_id" => $oid, "hash" => $hash), false);
         if ($session == null)
             return null;
         switch ($session->status) {
@@ -402,14 +415,14 @@ class TestSession extends OTable {
         return $session;
     }
 
-    public static function forward($tid, $sid, $hash, $values, $btn_name, $debug, $time, $resume_from_last_template = false) {
+    public static function forward($tid, $sid, $hash, $values, $btn_name, $debug, $time, $oid = null, $resume_from_last_template = false) {
         if (is_string($values))
             $values = json_decode($values, true);
 
         $session = null;
         $result = array();
-        if ($sid != null && $hash != null) {
-            $session = TestSession::authorized_session($sid, $hash);
+        if ($oid != null && $sid != null && $hash != null) {
+            $session = TestSession::authorized_session($oid, $sid, $hash);
 
             if ($session != null) {
 
@@ -469,12 +482,12 @@ class TestSession extends OTable {
                 );
             }
         } else {
-            if ($tid != null) {
+            if ($oid != null && $tid != null) {
                 if ($debug == 1)
                     $debug = true;
                 else
                     $debug = false;
-                $session = TestSession::start_new($tid, $debug);
+                $session = TestSession::start_new($oid, $tid, $debug);
 
                 if ($values == null)
                     $values = array();
@@ -529,6 +542,7 @@ class TestSession extends OTable {
             `release` tinyint(1) NOT NULL,
             `output` longtext NOT NULL,
             `state` longtext NOT NULL,
+            `User_id` bigint(20) NOT NULL,
             PRIMARY KEY  (`id`)
             ) ENGINE=InnoDB  DEFAULT CHARSET=utf8;
             ", $db);

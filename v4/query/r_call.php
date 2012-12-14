@@ -24,6 +24,9 @@ if (!isset($ini)) {
     $ini = new Ini();
 }
 
+$oid = null;
+if (array_key_exists("oid", $_POST))
+    $oid = $_POST['oid'];
 $tid = null;
 if (array_key_exists("tid", $_POST))
     $tid = $_POST['tid'];
@@ -47,7 +50,11 @@ $resume_from_last_template = 0;
 if (array_key_exists("resume_from_last_template", $_POST))
     $resume_from_last_template = $_POST['resume_from_last_template'];
 
-$result = TestSession::forward($tid, $sid, $hash, $values, $btn_name, $debug, $time, $resume_from_last_template == 1);
+$owner = User::from_mysql_id($oid);
+if ($owner != null) {
+    mysql_select_db($owner->db_name);
+}
+$result = TestSession::forward($tid, $sid, $hash, $values, $btn_name, $debug, $time, $oid, $resume_from_last_template == 1);
 
 echo json_encode($result);
 ?>

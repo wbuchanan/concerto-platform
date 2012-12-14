@@ -380,7 +380,9 @@ class TestServer {
 
     private function close_instance($key, $serialized = false, $terminate = false) {
         $session_id = substr($key, 3);
+        $owner_id = null;
         if (array_key_exists($key, $this->instances)) {
+            $owner_id = $this->instances[$key]->User_id;
             if ($this->instances[$key]->is_started()) {
                 $this->instances[$key]->stop($terminate);
                 unset($this->instances[$key]);
@@ -390,7 +392,8 @@ class TestServer {
             socket_close($this->clients[$key]["sock"]);
             unset($this->clients[$key]);
         }
-        if ($serialized) {
+        if ($serialized && $owner_id != null) {
+            TestSession::change_db($owner_id);
             $session = TestSession::from_mysql_id($session_id);
             if ($session != null) {
                 if ($session->debug == 1)
@@ -440,7 +443,8 @@ class TestServer {
             self::log_debug("TestServer->authorize_client() --- Client authorization started");
         $data = json_decode($input);
 
-        $session = TestSession::authorized_session($data->session_id, $data->hash);
+        TestSession::change_db($data->owner_id);
+        $session = TestSession::authorized_session($data->owner_id, $data->session_id, $data->hash);
 
         if ($session == null) {
             if (self::$debug)
@@ -462,7 +466,7 @@ class TestServer {
         $key = "sid" . $data->session_id;
 
         if (!array_key_exists($key, $this->instances)) {
-            $this->instances[$key] = new TestInstance($data->session_id);
+            $this->instances[$key] = new TestInstance($data->session_id, $data->owner_id);
             if (self::$debug) {
                 self::log_debug("TestServer->interpret_input() --- Client '$key' test instance created");
             }

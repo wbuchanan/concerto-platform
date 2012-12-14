@@ -77,7 +77,7 @@ if ($oid != 0) {
     ?>
             Methods.iniTooltips();
             Methods.iniDescriptionTooltips();
-                                        
+                                                            
             $(".divTestVerticalElement").css("height",((Methods.winHeight()-100)/2));
             $("#divTestResponse").css("height",Methods.winHeight()-100);
         });
@@ -166,8 +166,13 @@ if ($oid != 0) {
                 <button class="btnUpload" onclick="<?= $class_name ?>.uiUpload(<?= $oid ?>)"><?= Language::string(383) ?></button>
                 <?php
             }
+
+            $owner = User::from_property(array("db_name" => User::get_current_db()), false);
+            $owner_id = 0;
+            if ($owner != null)
+                $owner_id = $owner->id;
             ?>
-            <button class="btnRunTest" onclick="window.open('<?= Ini::$path_external . "?tid=" . $obj->id ?>','_blank')"><?= Language::string(362) ?></button>
+            <button class="btnRunTest" onclick="window.open('<?= Ini::$path_external . "?oid=" . $owner_id . "&tid=" . $obj->id ?>','_blank')"><?= Language::string(362) ?></button>
         </div>
         <?php
     }

@@ -27,6 +27,7 @@ class TestInstance {
     private $last_action_time;
     private $last_execution_time;
     public $TestSession_id = 0;
+    public $User_id = 0;
     public $is_working = false;
     public $is_data_ready = false;
     public $response = "";
@@ -37,8 +38,9 @@ class TestInstance {
     public $is_finished = false;
     public $pending_variables = null;
 
-    public function __construct($session_id = 0) {
+    public function __construct($session_id = 0, $owner_id = 0) {
         $this->TestSession_id = $session_id;
+        $this->User_id = $owner_id;
     }
 
     public function is_timedout() {
@@ -52,8 +54,10 @@ class TestInstance {
     }
 
     public function is_execution_timedout($session = null) {
-        if ($session == null)
+        TestSession::change_db($this->User_id);
+        if ($session == null) {
             $session = $this->get_TestSession();
+        }
 
         if (time() - $this->last_execution_time > Ini::$r_max_execution_time && $session->status == TestSession::TEST_SESSION_STATUS_WORKING) {
             if (TestServer::$debug)
@@ -76,6 +80,8 @@ class TestInstance {
     }
 
     public function start() {
+        TestSession::change_db($this->User_id);
+        
         $env = array();
         if (Ini::$unix_locale != "") {
             $encoding = Ini::$unix_locale;
@@ -92,12 +98,10 @@ class TestInstance {
             1 => array("pipe", "w"),
             2 => array("pipe", "w")
         );
-
-        $session = TestSession::from_mysql_id($this->TestSession_id);
-        $test = $session->get_Test();
-        $owner = $test->get_Owner();
-
+        
+        $owner = $this->get_User();
         $userR = $owner->get_UserR();
+
         $this->r = proc_open("sudo -u " . $userR->login . " " . Ini::$path_r_exe . " --vanilla --quiet", $descriptorspec, $this->pipes, Ini::$path_temp, $env);
         if (is_resource($this->r)) {
             if (TestServer::$debug)
@@ -175,8 +179,11 @@ class TestInstance {
     }
 
     public function serialize($session = null) {
-        if ($session == null)
+        TestSession::change_db($this->User_id);
+        
+        if ($session == null) {
             $session = $this->get_TestSession();
+        }
 
         if (TestServer::$debug)
             TestServer::log_debug("TestInstance->serialize() --- Serializing #" . $this->TestSession_id);
@@ -193,8 +200,11 @@ class TestInstance {
     }
 
     public function send_variables($session = null, $variables = null) {
-        if ($session == null)
+        TestSession::change_db($this->User_id);
+        
+        if ($session == null) {
             $session = $this->get_TestSession();
+        }
 
         $variables = json_encode($variables);
 
@@ -220,8 +230,11 @@ class TestInstance {
     }
 
     public function send_close_signal($session = null) {
-        if ($session == null)
+        TestSession::change_db($this->User_id);
+        
+        if ($session == null){
             $session = $this->get_TestSession();
+        }
 
         if ($this->is_serialized)
             return;
@@ -246,6 +259,8 @@ class TestInstance {
     }
 
     public function read() {
+        TestSession::change_db($this->User_id);
+        
         $this->code_execution_halted = false;
         $this->last_action_time = time();
 
@@ -338,6 +353,8 @@ class TestInstance {
     }
 
     public function run($code, $variables = null) {
+        TestSession::change_db($this->User_id);
+        
         $this->pending_variables = $variables;
         $is_new = false;
         $send_code = "";
@@ -410,6 +427,8 @@ class TestInstance {
     }
 
     public function get_ini_code($session = null, $test = null, $unserialize = false) {
+        TestSession::change_db($this->User_id);
+        
         $code = "";
         if ($session == null)
             $session = $this->get_TestSession();
@@ -423,7 +442,10 @@ class TestInstance {
                 ");
 
         include Ini::$path_internal . 'SETTINGS.php';
-        $path = Ini::$path_temp . $test->Owner_id;
+        $path = Ini::$path_temp . $session->User_id;
+
+        $user = $session->get_User();
+
         $code .= sprintf('
             CONCERTO_TEST_ID <- %d
             CONCERTO_TEST_SESSION_ID <- %d
@@ -434,12 +456,11 @@ class TestInstance {
             CONCERTO_DB_PASSWORD <- "%s"
             CONCERTO_DB_NAME <- "%s"
             CONCERTO_TEMP_PATH <- "%s"
-            CONCERTO_MYSQL_HOME <- "%s"
             CONCERTO_DB_TIMEZONE <- "%s"
             CONCERTO_MEDIA_PATH <- "%s"
             source("' . Ini::$path_internal . 'lib/R/Concerto.R")
                 
-            concerto$initialize(CONCERTO_TEST_ID,CONCERTO_TEST_SESSION_ID,CONCERTO_DB_LOGIN,CONCERTO_DB_PASSWORD,CONCERTO_DB_NAME,CONCERTO_DB_HOST,CONCERTO_DB_PORT,CONCERTO_MYSQL_HOME,CONCERTO_TEMP_PATH,CONCERTO_MEDIA_PATH,CONCERTO_DB_TIMEZONE,%s)
+            concerto$initialize(CONCERTO_TEST_ID,CONCERTO_TEST_SESSION_ID,CONCERTO_DB_LOGIN,CONCERTO_DB_PASSWORD,CONCERTO_DB_NAME,CONCERTO_DB_HOST,CONCERTO_DB_PORT,CONCERTO_TEMP_PATH,CONCERTO_MEDIA_PATH,CONCERTO_DB_TIMEZONE,%s)
             %s
             
             rm(CONCERTO_TEST_ID)
@@ -450,14 +471,13 @@ class TestInstance {
             rm(CONCERTO_DB_PASSWORD)
             rm(CONCERTO_DB_NAME)
             rm(CONCERTO_TEMP_PATH)
-            rm(CONCERTO_MYSQL_HOME)
             rm(CONCERTO_DB_TIMEZONE)
             rm(CONCERTO_MEDIA_PATH)
             
             %s
-            ', $test->id, $this->TestSession_id, $db_host, ($db_port != "" ? $db_port : "3306"), $db_master_user, $db_master_password, $db_master_name, $path, $path_mysql_home, $mysql_timezone, Ini::$path_internal_media . $this->TestSession_id, $unserialize ? "FALSE" : "TRUE", $unserialize ? '
+            ', $test->id, $this->TestSession_id, $db_host, ($db_port != "" ? $db_port : "3306"), $user->db_login, $user->db_password, $user->db_name, $path, $mysql_timezone, Ini::$path_internal_media . $this->User_id, $unserialize ? "FALSE" : "TRUE", $unserialize ? '
                 concerto$unserialize()
-                concerto$db$connect(CONCERTO_DB_LOGIN,CONCERTO_DB_PASSWORD,CONCERTO_DB_NAME,CONCERTO_DB_HOST,CONCERTO_DB_PORT,CONCERTO_MYSQL_HOME,CONCERTO_DB_TIMEZONE)' : "", $unserialize ? 'if(exists("onUnserialize")) do.call("onUnserialize",list(lastReturn=rjson::fromJSON("' . addcslashes(json_encode($this->pending_variables), '"') . '")),envir=.GlobalEnv);' : "");
+                concerto$db$connect(CONCERTO_DB_LOGIN,CONCERTO_DB_PASSWORD,CONCERTO_DB_NAME,CONCERTO_DB_HOST,CONCERTO_DB_PORT,CONCERTO_DB_TIMEZONE)' : "", $unserialize ? 'if(exists("onUnserialize")) do.call("onUnserialize",list(lastReturn=rjson::fromJSON("' . addcslashes(json_encode($this->pending_variables), '"') . '")),envir=.GlobalEnv);' : "");
 
         if ($unserialize)
             $this->pending_variables = null;
@@ -472,15 +492,23 @@ class TestInstance {
     }
 
     public function get_TestSession() {
+        TestSession::change_db($this->User_id);
+        
         return TestSession::from_mysql_id($this->TestSession_id);
     }
 
     public function get_Test($session = null) {
+        TestSession::change_db($this->User_id);
+        
         if ($session == null)
             $session = $this->get_TestSession();
         if ($session == null)
             return null;
         return Test::from_mysql_id($session->Test_id);
+    }
+
+    public function get_User() {
+        return User::from_mysql_id($this->User_id);
     }
 
 }

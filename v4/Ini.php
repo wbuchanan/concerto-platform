@@ -30,7 +30,6 @@ class Ini {
     public static $path_r_exe = "";
     public static $path_r_script = "";
     public static $path_temp = "";
-    public static $path_mysql_home = "";
     public static $version = "4.0.0.0.alpha5";
     public static $server_host = "127.0.0.1";
     public static $server_port = "8888";
@@ -118,7 +117,6 @@ class Ini {
             self::$path_temp = $path_temp;
         else
             self::$path_temp = self::$path_internal . "temp/";
-        self::$path_mysql_home = $path_mysql_home;
         if ($path_sock != "")
             self::$path_unix_sock_dir = $path_sock;
         else

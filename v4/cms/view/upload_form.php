@@ -71,7 +71,7 @@ if ($obj == null)
                 <td class="tdFormIcon"><span class="tooltip spanIcon ui-icon ui-icon-help" title="<?= Language::string(380) ?>"></span></td>
                 <td>
                     <div class="divFormContent" align="center">
-                        <input id="inputDialogUploadAuthor" type="text" class="ui-widget-content ui-corner-all fullWidth" value="" />
+                        <input id="inputDialogUploadAuthor" type="text" class="ui-widget-content ui-corner-all fullWidth" value="<?= $logged_user->get_full_name() . " / " . $logged_user->institution_name ?>" />
                     </div>
                 </td>
             </tr>

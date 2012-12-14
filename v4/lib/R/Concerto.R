@@ -18,7 +18,7 @@
 ##
 
 concerto <- list(
-    initialize = function(testID,sessionID,user,password,dbName,host='localhost',port=3306,mysqlHome='',tempPath,mediaPath,dbTimezone,dbConnect){
+    initialize = function(testID,sessionID,user,password,dbName,host='localhost',port=3306,tempPath,mediaPath,dbTimezone,dbConnect){
         print("initialization...")
 
         options(encoding='UTF-8')
@@ -39,7 +39,7 @@ concerto <- list(
         library(rjson)
         library(RMySQL)
 
-        if(dbConnect) concerto$db$connect(user,password,dbName,host,port,mysqlHome,dbTimezone)
+        if(dbConnect) concerto$db$connect(user,password,dbName,host,port,dbTimezone)
     },
 
     finalize = function(){
@@ -53,9 +53,8 @@ concerto <- list(
     },
 
     db = list(
-        connect = function(user,password,dbName,host='localhost',port=3306,mysqlHome='',dbTimezone){
+        connect = function(user,password,dbName,host='localhost',port=3306,dbTimezone){
             print("connecting to database...")
-            if(mysqlHome!='') Sys.setenv('MYSQL_HOME'=mysqlHome)
 
             drv <- dbDriver('MySQL')
 

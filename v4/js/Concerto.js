@@ -21,7 +21,7 @@ $.ajaxSetup({
     cache: false
 }); 
 
-function Concerto(container,hash,sid,tid,queryPath,callbackGet,callbackSend,debug,remote,defaultLoadingImageSource,resumeFromLastTemplate){
+function Concerto(container,oid,hash,sid,tid,queryPath,callbackGet,callbackSend,debug,remote,defaultLoadingImageSource,resumeFromLastTemplate){
     
     this.isFirstTemplate = true;
     this.effectTransition = 0;
@@ -41,6 +41,7 @@ function Concerto(container,hash,sid,tid,queryPath,callbackGet,callbackSend,debu
     if(debug!=null && debug==true) this.isDebug = true;
     this.container = container;
     this.sessionID = sid;
+    this.ownerID = oid;
     this.hash = hash;
     this.testID = tid;
     this.queryPath = queryPath==null?"query/":queryPath;
@@ -109,8 +110,8 @@ function Concerto(container,hash,sid,tid,queryPath,callbackGet,callbackSend,debu
         this.isTemplateReady = false;
         if(this.isStopped) return;
         
-        if(this.testID!=null && this.sessionID==null && this.hash==null && !this.isDebug && !this.remote){
-            var lastSession = Concerto.getSessionObject(this.testID);
+        if(this.testID!=null && this.ownerID!=null && this.sessionID==null && this.hash==null && !this.isDebug && !this.remote){
+            var lastSession = Concerto.getSessionObject(this.ownerID,this.testID);
             if(lastSession!=null){
                 Concerto.iniSessionResumeDialog(this,btnName,values,lastSession);
                 return;
@@ -123,14 +124,18 @@ function Concerto(container,hash,sid,tid,queryPath,callbackGet,callbackSend,debu
         var params = {};
         params["resume_from_last_template"] = this.resumeFromLastTemplate?"1":"0";
         this.resumeFromLastTemplate = false;
-        if(this.hash!=null && this.sessionID!=null) 
+        if(this.ownerID!=null && this.hash!=null && this.sessionID!=null) 
         {
+            params["oid"] = this.ownerID;
             params["hash"] = this.hash;
             params["sid"] = this.sessionID;
         }
         else
         {
-            if(this.testID!=null) params["tid"] = this.testID;
+            if(this.ownerID!=null && this.testID!=null) {
+                params["oid"] = this.ownerID;
+                params["tid"] = this.testID;
+            }
         }
         if(btnName!=null) params["btn_name"] = btnName;
         if(values!=null) params["values"] = $.toJSON(values);
@@ -481,13 +486,13 @@ Concerto.resetSessionCookie = function(){
     });
 }
 
-Concerto.saveSessionCookie=function(sid,hash,tid){
+Concerto.saveSessionCookie=function(oid,sid,hash,tid){
     var session = Concerto.getSessionCookie();
     var date = new Date();
     var exists = false;
     for(var i=0;i<session.length;i++){
         var elem = session[i];
-        if(elem.tid == tid){
+        if(elem.tid == tid && elem.oid == oid){
             exists = true;
             session[i].date = date.toUTCString();
             session[i].sid = sid;
@@ -496,6 +501,7 @@ Concerto.saveSessionCookie=function(sid,hash,tid){
     }
     if(!exists){
         session.push({
+            oid:oid,
             sid:sid,
             hash:hash,
             date:date.toUTCString(),
@@ -508,12 +514,12 @@ Concerto.saveSessionCookie=function(sid,hash,tid){
     });
 }
 
-Concerto.removeSessionCookie=function(sid,hash){
+Concerto.removeSessionCookie=function(oid,sid,hash){ 
     var session = Concerto.getSessionCookie();
     var result = [];
     for(var i=0;i<session.length;i++){
         var elem = session[i];
-        if(elem.sid != sid && elem.hash != hash){
+        if(elem.oid != oid || elem.sid != sid || elem.hash != hash){
             result.push(elem);
         }
     }
@@ -525,30 +531,33 @@ Concerto.removeSessionCookie=function(sid,hash){
 
 Concerto.selectTest=function(){
     var select = $("#selectTest");
+    var oid = select.children("option[selected='selected']").attr("owner");
     var tid = select.val();
     if(typeof test != 'undefined' && test!=null){
         test.stop();
-        test = new Concerto(test.container,null,null,tid,test.queryPath,test.callbackGet,test.callbackSend,test.isDebug,test.remote,test.defaultLoadingImageSource,test.resumeFromLastTemplate);
+        test = new Concerto(test.container,oid,null,null,tid,test.queryPath,test.callbackGet,test.callbackSend,test.isDebug,test.remote,test.defaultLoadingImageSource,test.resumeFromLastTemplate);
     }
-    test = new Concerto($("#divTestContainer"),null,null,tid);
+    else 
+        test = new Concerto($("#divTestContainer"),oid,null,null,tid);
     test.run(null,[]);
     select.val(0);
 }
 
-Concerto.selectSession=function(sid,hash){
+Concerto.selectSession=function(oid,sid,hash){
     if(typeof test != 'undefined' && test!=null){
         test.stop();
-        test = new Concerto(test.container,hash,sid,null,test.queryPath,test.callbackGet,test.callbackSend,test.isDebug,test.remote,test.defaultLoadingImageSource,true);
+        test = new Concerto(test.container,oid,hash,sid,null,test.queryPath,test.callbackGet,test.callbackSend,test.isDebug,test.remote,test.defaultLoadingImageSource,true);
     }
-    test = new Concerto($("#divTestContainer"),hash,sid,null,null,null,null,null,null,null,true);
+    else 
+        test = new Concerto($("#divTestContainer"),oid,hash,sid,null,null,null,null,null,null,null,true);
     test.run(null,[]);
 }
 
-Concerto.getSessionObject=function(tid){
+Concerto.getSessionObject=function(oid,tid){
     var session = Concerto.getSessionCookie();
     for(var i=0;i<session.length;i++){
         var s = session[i];
-        if(s.tid==tid) return s;
+        if(s.oid == oid && s.tid==tid) return s;
     }
     return null;
 }
@@ -565,14 +574,14 @@ Concerto.iniSessionResumeDialog=function(obj,btnName,values,lastSession){
             text:"resume",
             click:function(){
                 $(this).dialog("close");
-                Concerto.selectSession(lastSession.sid, lastSession.hash);
+                Concerto.selectSession(lastSession.oid, lastSession.sid, lastSession.hash);
             }
         },
         {
             text:"start new",
             click:function(){
                 $(this).dialog("close");
-                Concerto.removeSessionCookie(lastSession.sid, lastSession.hash);
+                Concerto.removeSessionCookie(lastSession.oid, lastSession.sid, lastSession.hash);
                 obj.run(btnName,values);
             }
         }

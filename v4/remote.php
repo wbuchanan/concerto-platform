@@ -37,6 +37,7 @@ $server->register('run_test', // method name
     'debug' => 'xsd:string',
     'pass' => 'xsd:string',
     'time' => 'xsd:string',
+    'oid' => 'xsd:string',
     'resume_from_last_template' => 'xsd:string'
         ), array(
     'result' => 'xsd:string'
@@ -51,7 +52,8 @@ $server->register('get_last_html', // method name
         array(
     'sid' => 'xsd:string',
     'hash' => 'xsd:string',
-    'pass' => 'xsd:string'
+    'pass' => 'xsd:string',
+    'oid' => 'xsd:string'
         ), array(
     'result' => 'xsd:string'
         ), 'urn:ConcertoClientWSDL', // namespace
@@ -65,7 +67,8 @@ $server->register('get_returns', // method name
         array(
     'sid' => 'xsd:string',
     'hash' => 'xsd:string',
-    'pass' => 'xsd:string'
+    'pass' => 'xsd:string',
+    'oid' => 'xsd:string'
         ), array(
     'result' => 'xsd:string'
         ), 'urn:ConcertoClientWSDL', // namespace
@@ -82,17 +85,24 @@ function authorize_WS($pass) {
         return false;
 }
 
-function run_test($tid, $sid, $hash, $btn_name, $values, $debug, $pass, $time, $resume_from_last_template) {
+function run_test($tid, $sid, $hash, $btn_name, $values, $debug, $pass, $time, $oid, $resume_from_last_template) {
     if (!authorize_WS($pass))
         return false;
+    $owner = User::from_mysql_id($oid);
+    if ($owner != null)
+        mysql_select_db($owner->db_name);
 
-    $result = TestSession::forward($tid, $sid, $hash, json_decode($values), $btn_name, $debug, $time, $resume_from_last_template == "1");
+    $result = TestSession::forward($tid, $sid, $hash, json_decode($values), $btn_name, $debug, $time, $oid = null, $resume_from_last_template == "1");
     return json_encode($result);
 }
 
-function get_last_html($sid, $hash, $pass) {
+function get_last_html($sid, $hash, $pass, $oid) {
     if (!authorize_WS($pass))
         return false;
+
+    $owner = User::from_mysql_id($oid);
+    if ($owner != null)
+        mysql_select_db($owner->db_name);
 
     $session = TestSession::from_property(array("id" => $sid, "hash" => $hash), false);
     if ($session == null)
@@ -100,9 +110,13 @@ function get_last_html($sid, $hash, $pass) {
     return json_encode(array("HTML" => $session->HTML));
 }
 
-function get_returns($sid, $hash, $pass) {
+function get_returns($sid, $hash, $pass, $oid) {
     if (!authorize_WS($pass))
         return false;
+
+    $owner = User::from_mysql_id($oid);
+    if ($owner != null)
+        mysql_select_db($owner->db_name);
 
     $session = TestSession::from_property(array("id" => $sid, "hash" => $hash), false);
     if ($session == null)
