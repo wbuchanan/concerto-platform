@@ -42,7 +42,7 @@ class MapResponse extends AExpression {
     }
 
     public function get_R_code() {
-        return sprintf('concerto$qti$mapResponse'."('%s')", addcslashes($this->identifier, "'"));
+        return sprintf('concerto$qti$mapResponse'."('result$%s')", addcslashes($this->identifier, "'"));
     }
 
     public function get_cardinality() {

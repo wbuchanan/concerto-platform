@@ -107,7 +107,7 @@ class GapMatchInteraction extends ABlockInteraction {
                 }
 
                 $value = $choice->identifier . " " . $gap->identifier;
-                $code.=sprintf("<td class='QTItableCell' valign='middle' align='center'><input type='checkbox' vi='%s' hi='%s' hmm='%s' class='QTIgapMatchInteractionCheckbox' name='%s' value='%s' onclick='QTI.gapMatchInteractionCheck(%s,\"%s\",this)' /></td>", $gap->identifier, $choice->identifier, $choice->matchMax, $this->responseIdentifier, $value, 1, $this->responseIdentifier);
+                $code.=sprintf("<td class='QTItableCell' valign='middle' align='center'><input type='checkbox' vi='%s' hi='%s' hmm='%s' class='QTIgapMatchInteractionCheckbox' name='%s' value='%s' onclick='QTI.gapMatchInteractionCheck(\"%s\",\"%s\",this)' /></td>", $gap->identifier, $choice->identifier, $choice->matchMax, $this->responseIdentifier, $value, $this->parent->id, $this->responseIdentifier);
             }
             $code.="</tr>";
         }

@@ -47,7 +47,7 @@ class SimpleChoice extends AChoice {
             } else {
                 $onclick = "";
                 if ($this->parent->maxChoices != "0")
-                    $onclick = sprintf("onclick='QTI.maxChoicesCheck(1,this,\"%s\",%s)'", $this->parent->responseIdentifier, $this->parent->maxChoices);
+                    $onclick = sprintf("onclick='QTI.maxChoicesCheck(\"%s\",this,\"%s\",%s)'", $this->parent->id, $this->parent->responseIdentifier, $this->parent->maxChoices);
                 $interaction = sprintf("<input type='checkbox' name='%s' value='%s' %s />", $this->parent->responseIdentifier, $this->identifier, $onclick);
             }
             return $interaction;

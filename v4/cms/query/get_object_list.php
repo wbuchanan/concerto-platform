@@ -29,20 +29,12 @@ if ($logged_user == null) {
     exit();
 }
 
-if ($_GET['class_name']::$is_master_table)
-    $db = "`" . Ini::$db_master_name . "`.";
-else
-    $db = "";
-
-$sql = sprintf("SELECT * FROM %s`%s` ORDER BY `id` ASC", $db, $_GET['class_name']);
-
+$list = $_GET['class_name']::get_list();
 $cols = $_GET['class_name']::get_list_columns();
 
 $table = array();
 
-$z = mysql_query($sql);
-while ($r = mysql_fetch_array($z)) {
-    $obj = $_GET['class_name']::from_mysql_id($r[0]);
+foreach ($list as $obj) {
     $row = array();
     $i = 0;
     foreach ($cols as $col) {

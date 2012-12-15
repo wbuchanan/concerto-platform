@@ -42,15 +42,15 @@ class Correct extends AExpression {
     }
 
     public function get_R_code() {
-        return $this->identifier . ".correct";
+        return 'result$' . $this->identifier . ".correct";
     }
 
     public function get_cardinality() {
-        return sprintf("%s.cardinality", $this->identifier);
+        return sprintf("result$%s.cardinality", $this->identifier);
     }
 
     public function get_baseType() {
-        return sprintf("%s.baseType", $this->identifier);
+        return sprintf("result$%s.baseType", $this->identifier);
     }
 
 }

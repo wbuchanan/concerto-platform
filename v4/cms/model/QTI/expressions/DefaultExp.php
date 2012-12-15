@@ -42,16 +42,17 @@ class DefaultExp extends AExpression {
     }
 
     public function get_R_code() {
-        return $this->identifier.".default";
+        return 'result$' . $this->identifier . ".default";
     }
 
     public function get_cardinality() {
-        return sprintf("%s.cardinality", $this->identifier);
+        return sprintf("result$%s.cardinality", $this->identifier);
     }
 
     public function get_baseType() {
-        return sprintf("%s.baseType", $this->identifier);
+        return sprintf("result$%s.baseType", $this->identifier);
     }
+
 }
 
 ?>

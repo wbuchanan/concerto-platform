@@ -1,5 +1,11 @@
 function QTI(){};
 
+QTI.counter = 0;
+QTI.getNextCounter = function(){
+    QTI.counter++;
+    return QTI.counter;
+}
+
 QTI.maxChoicesCheck=function(id,obj,name,maxChoices){
     if($(".QTIitemBody_"+id+" input:checkbox:checked[name='"+name+"']").length>maxChoices) $(obj).attr("checked",false);
 }

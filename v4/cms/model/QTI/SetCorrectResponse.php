@@ -48,7 +48,7 @@ class SetCorrectResponse extends ATemplateRule {
     }
 
     public function get_R_code() {
-        return sprintf("%s.correct <<- %s", $this->identifier, $this->expression->get_R_code());
+        return sprintf("result$%s.correct <- %s", $this->identifier, $this->expression->get_R_code());
     }
 
 }

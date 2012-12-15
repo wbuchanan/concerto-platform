@@ -48,8 +48,8 @@ class SetDefaultValue extends ATemplateRule {
     }
 
     public function get_R_code() {
-        return sprintf("%s.default <<- %s
-            %s <<- %s
+        return sprintf("result$%s.default <- %s
+            result$%s <- %s
             ", $this->identifier, $this->expression->get_R_code(), $this->identifier, $this->expression->get_R_code());
     }
 

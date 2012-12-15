@@ -23,7 +23,9 @@ class ItemBody extends ABodyElement {
 
     public static $name = "itemBody";
     public static $possible_attributes = array();
-    public static $required_attributes = array();
+    public static $required_attributes = array(
+        "id" //not in specification
+    );
     public static $possible_children = array(
         "*"
     );
@@ -44,7 +46,7 @@ class ItemBody extends ABodyElement {
         $class = "";
         if ($this->class != null)
             $class = $this->class;
-        $code = sprintf("<div %s %s ><div class='QTItitle'>%s</div>", ($id != "" ? "id='" . $id . "'" : ""), "class='QTIitemBody QTIitemBody_1 QTIdisplayTable " . $class . "'", $this->parent->title);
+        $code = sprintf("<div %s %s ><div class='QTItitle'>%s</div>", ($id != "" ? "id='" . $id . "'" : ""), "class='QTIitemBody QTIitemBody_" . $id . " QTIdisplayTable " . $class . "'", $this->parent->title);
         $code.=$this->get_contents();
         $code.="</div>";
         return $code;

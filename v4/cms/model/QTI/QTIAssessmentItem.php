@@ -72,81 +72,83 @@ class QTIAssessmentItem extends OModule {
         //default outcome
         //default response
 
-        $code = "";
+        $code ="";
         foreach ($this->root->responseDeclaration as $response) {
             $code.=sprintf("
-                %s <<- NULL
-                %s.cardinality <<- '%s'
+                result$%s <- NULL
+                result$%s.cardinality <- '%s'
                 ", $response->identifier, $response->identifier, $response->cardinality);
+
             $code.=sprintf("
-                %s.baseType <<- %s
+                result$%s.baseType <- %s
                 ", $response->identifier, $response->baseType != null ? "'" . $response->baseType . "'" : "NULL");
             if ($response->defaultValue != null) {
                 $code.=sprintf("
-                    %s <<- c()
-                    %s.default <<- c()
+                    result$%s <- c()
+                    result$%s.default <- c()
                     ", $response->identifier, $response->identifier);
                 foreach ($response->defaultValue->value as $val) {
                     $code.=sprintf("
-                        %s <<- c(%s,'%s')
-                        %s.default <<- c(%s.default,'%s')
+                        result$%s <- c(result$%s,'%s')
+                        result$%s.default <- c(result$%s.default,'%s')
                         ", $response->identifier, $response->identifier, $val->get_text(), $response->identifier, $response->identifier, $val->get_text());
                 }
                 $code.=sprintf("
-                    %s <<- " . 'concerto$convertToNumeric' . "(%s)
-                    %s.default <<- " . 'concerto$convertToNumeric' . "(%s.default)
+                    result$%s <- " . 'concerto$convertToNumeric' . "(result$%s)
+                    result$%s.default <- " . 'concerto$convertToNumeric' . "(result$%s.default)
                     ", $response->identifier, $response->identifier, $response->identifier, $response->identifier);
             }
             if ($response->mapping != null) {
                 $code.=sprintf("
-                    %s.mapping.defaultValue <<- " . 'concerto$convertToNumeric' . "(%s)
+                    result$%s.mapping.defaultValue <- " . 'concerto$convertToNumeric' . "(%s)
                     ", $response->identifier, $response->mapping->defaultValue);
                 if ($response->mapping->lowerBound != null) {
                     $code.=sprintf("
-                    %s.mapping.lowerBound <<- " . 'concerto$convertToNumeric' . "(%s)
+                    result$%s.mapping.lowerBound <- " . 'concerto$convertToNumeric' . "(%s)
                     ", $response->identifier, $response->mapping->lowerBound);
                 }
                 if ($response->mapping->upperBound != null) {
                     $code.=sprintf("
-                    %s.mapping.upperBound <<- " . 'concerto$convertToNumeric' . "(%s)
+                    result$%s.mapping.upperBound <- " . 'concerto$convertToNumeric' . "(%s)
                     ", $response->identifier, $response->mapping->upperBound);
                 }
                 $code.=sprintf("
-                    %s.mapping.mapEntry <<- c()
+                    result$%s.mapping.mapEntry <- c()
                     ", $response->identifier);
                 foreach ($response->mapping->mapEntry as $me) {
                     $code.=sprintf("
-                    %s.mapping.mapEntry <<- c(%s.mapping.mapEntry,'%s'=%s)
+                    result$%s.mapping.mapEntry <- c(result$%s.mapping.mapEntry,'%s'=%s)
                     ", $response->identifier, $response->identifier, addcslashes($me->mapKey, "'"), addcslashes($me->mappedValue, "'"));
                 }
             }
         }
         foreach ($this->root->outcomeDeclaration as $response) {
             $code.=sprintf("
-                %s <<- NULL
-                %s.cardinality <<- '%s'
+                result$%s <- NULL
+                result$%s.cardinality <- '%s'
                 ", $response->identifier, $response->identifier, $response->cardinality);
             $code.=sprintf("
-                %s.baseType <<- %s
+                result$%s.baseType <- %s
                 ", $response->identifier, $response->baseType != null ? "'" . $response->baseType . "'" : "NULL");
             if ($response->defaultValue != null) {
                 $code.=sprintf("
-                    %s <<- c()
-                    %s.default <<- c()
+                    result$%s <- c()
+                    result$%s.default <- c()
                     ", $response->identifier, $response->identifier);
                 foreach ($response->defaultValue->value as $val) {
                     $code.=sprintf("
-                        %s <<- c(%s,'%s')
-                        %s.default <<- c(%s.default,'%s')
+                        result$%s <- c(result$%s,'%s')
+                        result$%s.default <- c(result$%s.default,'%s')
                         ", $response->identifier, $response->identifier, $val->get_text(), $response->identifier, $response->identifier, $val->get_text());
                 }
                 $code.=sprintf("
-                    %s <<- " . 'concerto$convertToNumeric' . "(%s)
-                    %s.default <<- " . 'concerto$convertToNumeric' . "(%s.default)
+                    result$%s <- " . 'concerto$convertToNumeric' . "(result$%s)
+                    result$%s.default <- " . 'concerto$convertToNumeric' . "(result$%s.default)
                     ", $response->identifier, $response->identifier, $response->identifier, $response->identifier);
             }
         }
-        return $code;
+
+        return str_replace("\r", "", $code);
     }
 
     public function get_template_processing_R_code($map = null) {
@@ -161,26 +163,26 @@ class QTIAssessmentItem extends OModule {
         //default value of template variables
         foreach ($this->root->templateDeclaration as $template) {
             $code.=sprintf("
-                %s <<- NULL
-                %s.cardinality <<- '%s'
+                result$%s <- NULL
+                result$%s.cardinality <- '%s'
                 ", $template->identifier, $template->identifier, $template->cardinality);
             $code.=sprintf("
-                %s.baseType <<- %s
+                result$%s.baseType <- %s
                 ", $template->identifier, $template->baseType != null ? "'" . $template->baseType . "'" : "NULL");
             if ($template->defaultValue != null) {
                 $code.=sprintf("
-                    %s <<- c()
-                    %s.default <<- c()
+                    result$%s <- c()
+                    result$%s.default <- c()
                     ", $template->identifier, $template->identifier);
                 foreach ($template->defaultValue->value as $val) {
                     $code.=sprintf("
-                        %s <<- c(%s,'%s')
-                        %s.default <<- c(%s.default,'%s')
+                        result$%s <- c(result$%s,'%s')
+                        result$%s.default <- c(result$%s.default,'%s')
                         ", $template->identifier, $template->identifier, $val->get_text(), $template->identifier, $template->identifier, $val->get_text());
                 }
                 $code.=sprintf("
-                    %s <<- " . 'concerto$convertToNumeric' . "(%s)
-                    %s.default <<- " . 'concerto$convertToNumeric' . "(%s.default)
+                    result$%s <- " . 'concerto$convertToNumeric' . "(result$%s)
+                    result$%s.default <- " . 'concerto$convertToNumeric' . "(result$%s.default)
                     ", $template->identifier, $template->identifier, $template->identifier, $template->identifier);
             }
         }
@@ -189,15 +191,15 @@ class QTIAssessmentItem extends OModule {
         foreach ($this->root->responseDeclaration as $response) {
             if ($response->correctResponse != null) {
                 $code.=sprintf("
-                    %s.correct <<- c()
+                    result$%s.correct <- c()
                     ", $response->identifier);
                 foreach ($response->correctResponse->value as $val) {
                     $code.=sprintf("
-                        %s.correct <<- c(%s.correct,'%s')
+                        result$%s.correct <- c(result$%s.correct,'%s')
                         ", $response->identifier, $response->identifier, $val->get_text());
                 }
                 $code.=sprintf("
-                    %s.correct <<- " . 'concerto$convertToNumeric' . "(%s.correct)
+                    result$%s.correct <- " . 'concerto$convertToNumeric' . "(result$%s.correct)
                     ", $response->identifier, $response->identifier);
             }
         }
@@ -228,14 +230,14 @@ class QTIAssessmentItem extends OModule {
             }
         }
         $code.=sprintf("
-            %s <<- '%s'
+            result$%s <- '%s'
             ", ($map != null && array_key_exists("QTI_HTML", $map) ? $map["QTI_HTML"] : "QTI_HTML"), addcslashes($html_result, "'"));
 
-        return $code;
+        return str_replace("\r", "", $code);
     }
 
     public function get_QTI_ini_R_code($map = null) {
-        $code = $this->get_variable_declaration_R_code();
+        $code = $this->get_variable_declaration_R_code() . "\n";
         $code.= $this->get_template_processing_R_code($map);
         return $code;
     }
@@ -255,7 +257,7 @@ class QTIAssessmentItem extends OModule {
                 %s
                 ", $mf->get_R_code());
         }
-        return $code;
+        return str_replace("\r", "", $code);
     }
 
     public function mysql_save() {

@@ -16,7 +16,7 @@
 ## along with this program; if not, write to the Free Software
 ## Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA.
 ##
-
+ 
 concerto <- list(
     initialize = function(testID,sessionID,user,password,dbName,host='localhost',port=3306,tempPath,mediaPath,dbTimezone,dbConnect){
         print("initialization...")
@@ -91,19 +91,7 @@ concerto <- list(
             concerto$updateHTML(concerto$template$fillHTML(template[1,"HTML"],params))
             concerto$updateStatus(2)
             
-            closeAllConnections()
-            fifo_connection <- fifo(concerto$templateFIFOPath,"r",blocking=TRUE)
-            response <- readLines(fifo_connection,warn=FALSE)
-            closeAllConnections()
-            print(response)
-            if(response=="serialize"){
-                concerto$serialize()
-            } else if(response=="close") {
-                stop("close command recieved")
-            } else {
-                response <- rjson::fromJSON(response)
-            }
-            return(response)
+            return(concerto$interpretResponse())
         },
 
         fillHTML = function(html,params=list()){
@@ -237,6 +225,29 @@ concerto <- list(
         dbSendQuery(concerto$db$connection, statement = sprintf("UPDATE `%s`.`TestSession` SET `Template_id` = '%s' WHERE `id`=%s",dbName,templateID,sessionID))
     },
 
+    updateQTIID = function(qtiID) {
+        dbName <- dbEscapeStrings(concerto$db$connection,concerto$db$name)
+        sessionID <- dbEscapeStrings(concerto$db$connection,toString(concerto$sessionID))
+        qtiID <- dbEscapeStrings(concerto$db$connection,toString(qtiID))
+        dbSendQuery(concerto$db$connection, statement = sprintf("UPDATE `%s`.`TestSession` SET `QTIAssessmentItem_id` = '%s' WHERE `id`=%s",dbName,qtiID,sessionID))
+    },
+    
+    interpretResponse = function(){
+      closeAllConnections()
+      fifo_connection <- fifo(concerto$templateFIFOPath,"r",blocking=TRUE)
+      response <- readLines(fifo_connection,warn=FALSE)
+      closeAllConnections()
+      print(response)
+      if(response=="serialize"){
+          concerto$serialize()
+      } else if(response=="close") {
+          stop("close command recieved")
+      } else {
+          response <- rjson::fromJSON(response)
+      }
+      return(response)
+    },
+
     convertToNumeric = function(var){
         result <- tryCatch({
             if(is.character(var)) var <- as.numeric(var)
@@ -265,6 +276,62 @@ concerto <- list(
     },
 
     qti = list(
+        initialize = function(qtiID,params=list()){
+            print(paste("initializing QTI #",qtiID,"...",sep=''))
+            if(!is.list(params)) stop("'params' must be a list!")
+            print(params)
+            
+            qti <- concerto$qti$get(qtiID)
+            if(dim(qti)[1]==0) stop(paste("QTI #",qtiID," not found!",sep=''))
+
+            concerto$updateQTIID(qtiID)
+            concerto$updateStatus(8)
+            
+            #create 'result' list
+            response <- concerto$interpretResponse()
+            result <- list()
+            eval(parse(text=response$code))
+            if(length(params)>0){
+                for(i in ls(params)){
+                    result[[i]] <- params[[i]]
+                }
+            }
+            result$QTI_HTML <- concerto$template$fillHTML(result$QTI_HTML,result)
+            return(result)
+        },
+        responseProcessing = function(qtiID,ini,userResponse){
+            print(paste("response processing of QTI #",qtiID,"...",sep=''))
+            if(!is.list(ini)) stop("'initialization variable' must be a list!")
+            print(ini)
+            
+            if(!is.list(userResponse)) stop("'user response variable' must be a list!")
+            print(userResponse)
+            
+            qti <- concerto$qti$get(qtiID)
+            if(dim(qti)[1]==0) stop(paste("QTI #",qtiID," not found!",sep=''))
+            concerto$updateQTIID(qtiID)
+            
+            concerto$updateStatus(9)
+            
+            response <- concerto$interpretResponse()
+            
+            result <- ini
+            if(length(userResponse)>0){
+                for(i in ls(userResponse)){
+                    result[[i]] <- userResponse[[i]]
+                }
+            }
+            eval(parse(text=response$code))
+            
+            return(result)
+        },
+        get = function(qtiID){
+            dbName <- dbEscapeStrings(concerto$db$connection,concerto$db$name)
+            qtiID <- dbEscapeStrings(concerto$db$connection,toString(qtiID))
+            result <- dbSendQuery(concerto$db$connection,sprintf("SELECT `id`,`name` FROM `%s`.`QTIAssessmentItem` WHERE `id`='%s'",dbName,qtiID))
+            response <- fetch(result,n=-1)
+            return(response)
+        },
         mapResponse = function(variableName){
             variable <- get(variableName)
             mapEntry <- get(paste(variableName,".mapping.mapEntry",sep=''))

@@ -73,7 +73,7 @@ class AssociateInteraction extends ABlockInteraction {
         }
         $code.="<script>
             $(function(){
-                QTI.initializeAssociateInteraction(1,'".$this->responseIdentifier."'," . $this->maxAssociations . ");
+                QTI.initializeAssociateInteraction('" . $this->parent->id . "','" . $this->responseIdentifier . "'," . $this->maxAssociations . ");
             });
             </script>";
         $code.="<div class='QTIdisplayTable QTIdraggableOptionsContainer'>";

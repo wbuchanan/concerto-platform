@@ -470,7 +470,9 @@ Concerto.statusTypes={
     error:4,
     tampered:5,
     waiting:6,
-    serialized:7
+    serialized:7,
+    initQTI:8,
+    rpQTI:9
 };
 
 Concerto.getSessionCookie=function(){

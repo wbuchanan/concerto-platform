@@ -81,7 +81,7 @@ class TestInstance {
 
     public function start() {
         TestSession::change_db($this->User_id);
-        
+
         $env = array();
         if (Ini::$unix_locale != "") {
             $encoding = Ini::$unix_locale;
@@ -98,7 +98,7 @@ class TestInstance {
             1 => array("pipe", "w"),
             2 => array("pipe", "w")
         );
-        
+
         $owner = $this->get_User();
         $userR = $owner->get_UserR();
 
@@ -180,7 +180,7 @@ class TestInstance {
 
     public function serialize($session = null) {
         TestSession::change_db($this->User_id);
-        
+
         if ($session == null) {
             $session = $this->get_TestSession();
         }
@@ -199,9 +199,71 @@ class TestInstance {
         fclose($fp);
     }
 
+    public function send_QTI_initialization($session = null) {
+        TestSession::change_db($this->User_id);
+
+        if ($session == null) {
+            $session = $this->get_TestSession();
+        }
+
+        $qti = QTIAssessmentItem::from_mysql_id($session->QTIAssessmentItem_id);
+        $qti->validate();
+
+        $code = $qti->get_QTI_ini_R_code();
+        $json_code = json_encode(array("code" => $code));
+
+        if (TestServer::$debug) {
+            TestServer::log_debug("TestInstance->send_QTI_initialization() --- sending code to session #" . $this->TestSession_id);
+            if (TestServer::$debug_stream_data)
+                TestServer::log_debug($code, true);
+        }
+
+        $this->is_working = true;
+
+        $fp = fopen($session->get_RSession_fifo_path(), "w");
+        stream_set_blocking($fp, 0);
+        fwrite($fp, $json_code);
+        fclose($fp);
+
+        if (TestServer::$debug) {
+            TestServer::log_debug("TestInstance->send_QTI_initialization() --- finished sending code to session #" . $this->TestSession_id);
+        }
+    }
+
+    public function send_QTI_response_processing($session = null) {
+        TestSession::change_db($this->User_id);
+
+        if ($session == null) {
+            $session = $this->get_TestSession();
+        }
+
+        $qti = QTIAssessmentItem::from_mysql_id($session->QTIAssessmentItem_id);
+        $qti->validate();
+
+        $code = $qti->get_response_processing_R_code();
+        $json_code = json_encode(array("code" => $code));
+
+        if (TestServer::$debug) {
+            TestServer::log_debug("TestInstance->send_QTI_response_processing() --- sending code to session #" . $this->TestSession_id);
+            if (TestServer::$debug_stream_data)
+                TestServer::log_debug($code, true);
+        }
+
+        $this->is_working = true;
+
+        $fp = fopen($session->get_RSession_fifo_path(), "w");
+        stream_set_blocking($fp, 0);
+        fwrite($fp, $json_code);
+        fclose($fp);
+
+        if (TestServer::$debug) {
+            TestServer::log_debug("TestInstance->send_QTI_response_processing() --- finished sending code to session #" . $this->TestSession_id);
+        }
+    }
+
     public function send_variables($session = null, $variables = null) {
         TestSession::change_db($this->User_id);
-        
+
         if ($session == null) {
             $session = $this->get_TestSession();
         }
@@ -231,8 +293,8 @@ class TestInstance {
 
     public function send_close_signal($session = null) {
         TestSession::change_db($this->User_id);
-        
-        if ($session == null){
+
+        if ($session == null) {
             $session = $this->get_TestSession();
         }
 
@@ -260,7 +322,7 @@ class TestInstance {
 
     public function read() {
         TestSession::change_db($this->User_id);
-        
+
         $this->code_execution_halted = false;
         $this->last_action_time = time();
 
@@ -288,6 +350,28 @@ class TestInstance {
 
                 if (TestServer::$debug)
                     TestServer::log_debug("TestInstance->read() --- Template instance recognized.");
+            }
+
+            //QTI initialization
+            if ($session->status == TestSession::TEST_SESSION_STATUS_QTI_INIT && !$this->is_serializing) {
+
+                if (TestServer::$debug)
+                    TestServer::log_debug("TestInstance->read() --- QTI initialization instance recognized.");
+
+                $session->status = TestSession::TEST_SESSION_STATUS_WORKING;
+                $change_status = true;
+                $this->send_QTI_initialization($session);
+            }
+
+            //QTI response processing
+            if ($session->status == TestSession::TEST_SESSION_STATUS_QTI_RP && !$this->is_serializing) {
+
+                if (TestServer::$debug)
+                    TestServer::log_debug("TestInstance->read() --- QTI response processing instance recognized.");
+
+                $session->status = TestSession::TEST_SESSION_STATUS_WORKING;
+                $change_status = true;
+                $this->send_QTI_response_processing($session);
             }
         }
 
@@ -354,7 +438,7 @@ class TestInstance {
 
     public function run($code, $variables = null) {
         TestSession::change_db($this->User_id);
-        
+
         $this->pending_variables = $variables;
         $is_new = false;
         $send_code = "";
@@ -428,7 +512,7 @@ class TestInstance {
 
     public function get_ini_code($session = null, $test = null, $unserialize = false) {
         TestSession::change_db($this->User_id);
-        
+
         $code = "";
         if ($session == null)
             $session = $this->get_TestSession();
@@ -493,13 +577,13 @@ class TestInstance {
 
     public function get_TestSession() {
         TestSession::change_db($this->User_id);
-        
+
         return TestSession::from_mysql_id($this->TestSession_id);
     }
 
     public function get_Test($session = null) {
         TestSession::change_db($this->User_id);
-        
+
         if ($session == null)
             $session = $this->get_TestSession();
         if ($session == null)

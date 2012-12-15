@@ -34,6 +34,7 @@ class TestSession extends OTable {
     public $output = "";
     public $state = "";
     public $User_id = 0;
+    public $QTIAssessmentItem_id = 0;
 
     const TEST_SESSION_STATUS_NEW = 0;
     const TEST_SESSION_STATUS_WORKING = 1;
@@ -43,6 +44,8 @@ class TestSession extends OTable {
     const TEST_SESSION_STATUS_TAMPERED = 5;
     const TEST_SESSION_STATUS_WAITING = 6;
     const TEST_SESSION_STATUS_SERIALIZED = 7;
+    const TEST_SESSION_STATUS_QTI_INIT = 8;
+    const TEST_SESSION_STATUS_QTI_RP = 9;
 
     public function get_Test() {
         return Test::from_mysql_id($this->Test_id);
@@ -371,7 +374,7 @@ class TestSession extends OTable {
 
         return $response;
     }
-    
+
     public static function change_db($owner_id) {
         $owner = User::from_mysql_id($owner_id);
         if ($owner != null)
@@ -543,6 +546,7 @@ class TestSession extends OTable {
             `output` longtext NOT NULL,
             `state` longtext NOT NULL,
             `User_id` bigint(20) NOT NULL,
+            `QTIAssessmentItem_id` bigint(20) NOT NULL,
             PRIMARY KEY  (`id`)
             ) ENGINE=InnoDB  DEFAULT CHARSET=utf8;
             ", $db);

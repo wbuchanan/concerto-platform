@@ -204,7 +204,10 @@ class OTable {
             $where.=sprintf("`%s`='%s'", $k, $v);
         }
 
-        $sql = sprintf("SELECT * FROM %s`%s` WHERE %s ORDER BY `id` ASC", $db, static::get_mysql_table(), $where);
+        if ($where != "")
+            $where = "WHERE " . $where;
+
+        $sql = sprintf("SELECT * FROM %s`%s` %s ORDER BY `id` ASC", $db, static::get_mysql_table(), $where);
 
         $z = mysql_query($sql);
         while ($r = mysql_fetch_array($z)) {
@@ -234,6 +237,10 @@ class OTable {
             $subject = str_replace('\r', '', $subject);
         }
         return $subject;
+    }
+
+    public static function get_list() {
+        return static::from_property(array());
     }
 
 }

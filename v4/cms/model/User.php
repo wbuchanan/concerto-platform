@@ -423,6 +423,19 @@ class User extends OModule {
         return $admin->mysql_save();
     }
 
+    public static function get_list() {
+        $list = parent::get_list();
+        $logged_user = User::get_logged_user();
+        if ($logged_user != null) {
+            if ($logged_user->superuser == 1) {
+                return $list;
+            } else {
+                return array($logged_user);
+            }
+        }
+        return array();
+    }
+
 }
 
 ?>
