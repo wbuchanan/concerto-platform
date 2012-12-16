@@ -25,6 +25,10 @@ If you are interested in translating Concerto v3 to a language that is not yet s
 Note: You can add new languages by inserting "<new_language>string translated into new_language</new_language>" tag inside <string> tags.
 
 -->
+
+<!-- Luning: I am working on the Chinese translation. It takes forever to work on the file online, therefore, I am going to do it on a txt file and copy them back when finished. Please wait until I remove this comment (approximately by 17/12/2012) before you start working on your part. Sorry for the inconvenience. -->
+
+
 <root>
     <languages>
         <language id="en">english</language>
@@ -6022,7 +6026,7 @@ Note: You can add new languages by inserting "<new_language>string translated in
             <en>simple view</en>
             <de></de>
             <pl>prosty widok</pl>
-            <cn></cn>
+            <cn>简易模式</cn>
             <fr></fr>
             <bg></bg>
             <nl></nl>
@@ -6032,7 +6036,7 @@ Note: You can add new languages by inserting "<new_language>string translated in
             <en>advanced view</en>
             <de></de>
             <pl>zaawansowany widok</pl>
-            <cn></cn>
+            <cn>高级模式</cn>
             <fr></fr>
             <bg></bg>
             <nl></nl>
