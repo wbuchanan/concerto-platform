@@ -87,6 +87,7 @@ Test.uiSaveValidate=function(ignoreOnBefore,isNew){
     Test.uiSaveValidated(ignoreOnBefore,isNew);
 }
 
+Test.logicCodeMirror = null;
 Test.codeMirrors = new Array();
 Test.uiRefreshCodeMirrors=function(){
     for(var i=0;i<Test.codeMirrors.length;i++){
@@ -316,4 +317,18 @@ Test.onScroll=function(){
             $(".divTestVerticalElement").css("top","auto");
         }
     }
+}
+
+Test.uiStartDebug=function(){
+    Test.logicCodeMirror.toTextArea();
+    Test.logicCodeMirror = Methods.iniCodeMirror("textareaTestLogic", "r", true);
+    $("#btnStartDebug").button("disable");
+    $("#btnStopDebug").button("enable");
+}
+
+Test.uiStopDebug=function(){
+    Test.logicCodeMirror.toTextArea();
+    Test.logicCodeMirror = Methods.iniCodeMirror("textareaTestLogic", "r", false);
+    $("#btnStartDebug").button("enable");
+    $("#btnStopDebug").button("disable");
 }

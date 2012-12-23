@@ -31,6 +31,8 @@ if ($logged_user == null) {
 
 <script>
     $(function(){
+        Methods.iniIconButton("#btnStartDebug", "play");
+        Methods.iniIconButton("#btnStopDebug", "stop");
     });
 </script>
 
@@ -43,4 +45,20 @@ if ($logged_user == null) {
             </tr>
         </table>
     </legend>
+    <table>
+        <tr>
+            <td id="tdTestDebugStatus" style="width:100%;" class="ui-state-highlight ui-corner-all">
+                not started
+            </td>
+            <td>
+                <button id="btnStopDebug" style="font-size:smaller;" disabled="disabled" onclick="Test.uiStopDebug()">stop</button>
+            </td>
+            <td>
+                <button id="btnStartDebug" style="font-size: smaller;" onclick="Test.uiStartDebug()">start</button>
+            </td>
+        </tr>
+    </table>
+    <div id="divTestSessionState">
+
+    </div>
 </fieldset>

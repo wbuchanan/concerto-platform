@@ -31,7 +31,7 @@ if ($logged_user == null) {
 
 <script>
     $(function(){
-        Methods.iniCodeMirror("textareaTestLogic", "r", false);
+        Test.logicCodeMirror = Methods.iniCodeMirror("textareaTestLogic", "r", false);
     });
 </script>
 
@@ -45,5 +45,5 @@ if ($logged_user == null) {
         </table>
     </legend>
 
-    <textarea id="textareaTestLogic"><?=$obj->code?></textarea>
+    <textarea id="textareaTestLogic"><?= $obj->code ?></textarea>
 </fieldset>
