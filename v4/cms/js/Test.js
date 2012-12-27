@@ -317,13 +317,128 @@ Test.onScroll=function(){
             $(".divTestVerticalElement").css("top","auto");
         }
     }
-}
+} 
+
+Test.debugWindow = null;
 
 Test.uiStartDebug=function(){
+    Test.debugClearOutput();
     Test.logicCodeMirror.toTextArea();
     Test.logicCodeMirror = Methods.iniCodeMirror("textareaTestLogic", "r", true);
     $("#btnStartDebug").button("disable");
     $("#btnStopDebug").button("enable");
+    
+    Test.debugWindow = window.open("http://concerto.przemyslawlis.com");
+    Test.debugWindow.onload=function(){
+        Test.debugInitializeTest();
+    }
+}
+
+Test.currentFromLine = -1;
+Test.currentToLine = -1;
+Test.debugInitializeTest = function(){
+    Test.uiChangeDebugStatus("initializing...");
+    test = new Concerto($(Test.debugWindow.document).find("#divTestContainer"),1,null,null,Test.currentID,"../query/",
+        function(data){
+            switch(parseInt(data.data.STATUS)){
+                case Concerto.statusTypes.waiting:{
+                    Test.debugAppendOutput(data.debug.output);
+                    Test.debugAppendOutput(data.debug.error_output);
+                    Test.debugSetState(data.debug.state);
+                    if(Test.debugIsCurrentLineLast()){
+                        Test.uiChangeDebugStatus("Test finished.");
+                        break;
+                    }
+                    Test.debugRunNextLine();
+                    Test.uiChangeDebugStatus("Running line #"+(Test.currentFromLine+1));
+                    break;
+                }
+                case Concerto.statusTypes.waitingCode:{
+                    Test.debugAppendOutput(data.debug.output);
+                    Test.debugAppendOutput(data.debug.error_output);
+                    Test.debugSetState(data.debug.state);
+                    Test.debugRunNextLine();
+                    Test.uiChangeDebugStatus("Running line #"+(Test.currentFromLine+1));
+                    break;
+                }
+                case Concerto.statusTypes.template:{
+                    Test.debugAppendOutput(data.debug.output);
+                    Test.debugAppendOutput(data.debug.error_output);
+                    //Test.debugSetState(data.debug.state);
+                    Test.uiChangeDebugStatus("Template shown. Awaiting user input...");
+                    break;
+                }
+                case Concerto.statusTypes.error:{
+                    Test.uiChangeDebugStatus("Error after line #"+(Test.currentFromLine+1),"ui-state-error");   
+                    Test.debugAppendOutput(data.debug.output);
+                    Test.debugAppendOutput(data.debug.error_output);
+                    Test.debugSetState(data.debug.state);
+                    break;
+                }
+            }
+        },
+        function(data){
+            console.log(data);
+        },
+        true,false,null,false);
+    test.run(null,null);
+}
+Test.debugClearOutput=function(){
+    $("#divTestOutputContent").html("");
+}
+
+Test.debugAppendOutput=function(output){
+    $("#divTestOutputContent").append(output);
+}
+
+Test.debugSetState=function(state){
+    var obj = $.parseJSON(state);
+    var html = "<table>";
+    for(var k in obj){
+        if(k=="concerto") continue;
+        html+="<tr><td class='tdStateLabel' valign='top'>"+k+"</td><td class='tdStateValue' valign='top'>"+obj[k]+"</td></tr>";
+    }
+    html+="</table>";
+    $("#divTestSessionStateContent").html(html);
+}
+
+Test.debugGetCurrentCode=function(){
+    return Test.logicCodeMirror.getRange({
+        line:Test.currentFromLine,
+        ch:0
+    },{
+        line:Test.currentToLine,
+        ch:Test.logicCodeMirror.getLine(Test.currentToLine).length
+    });
+}
+
+Test.debugIsCurrentLineLast = function(){
+    if(Test.logicCodeMirror.lineCount()-1==Test.currentToLine) return true;
+    else return false;
+}
+
+Test.debugRunNextLine=function(){
+    Test.currentFromLine = Test.currentToLine+1;
+    Test.currentToLine = Test.currentFromLine;
+    Test.logicCodeMirror.setSelection({
+        line:Test.currentFromLine,
+        ch:0
+    },{
+        line:Test.currentToLine,
+        ch:Test.logicCodeMirror.getLine(Test.currentToLine).length
+    })
+    test.run(null,null,Test.debugGetCurrentCode());
+}
+
+Test.uiChangeDebugStatus=function(label,style){
+    $("#tdTestDebugStatus").html(label);
+    $("#tdTestDebugStatus").removeClass("ui-state-highlight");
+    $("#tdTestDebugStatus").removeClass("ui-state-error");
+    if(style!=null){
+        $("#tdTestDebugStatus").addClass(style);
+    } else {
+        $("#tdTestDebugStatus").addClass("ui-state-highlight");
+    }
 }
 
 Test.uiStopDebug=function(){

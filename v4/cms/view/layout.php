@@ -34,7 +34,7 @@ if ($logged_user == null) {
         Methods.currentView = <?= User::is_simple_view() ? 0 : 1 ?>;
         $(window).resize(function(){
             $("#divTestResponse").css("height",Methods.winHeight()-100);
-            $(".divTestVerticalElement").css("height",((Methods.winHeight()-200)/2)+"px");
+            $(".divTestVerticalElement").css("height",((Methods.winHeight()-125)/2)+"px");
             Test.onScroll();
             
             var showing = document.body.getElementsByClassName("CodeMirror-fullscreen")[0];

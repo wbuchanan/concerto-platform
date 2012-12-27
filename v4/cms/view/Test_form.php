@@ -77,9 +77,10 @@ if ($oid != 0) {
     ?>
             Methods.iniTooltips();
             Methods.iniDescriptionTooltips();
-                                                            
-            $(".divTestVerticalElement").css("height",((Methods.winHeight()-100)/2));
+            
             $("#divTestResponse").css("height",Methods.winHeight()-100);
+            $(".divTestVerticalElement").css("height",((Methods.winHeight()-125)/2)+"px");
+            Test.onScroll();
         });
     </script>
 
@@ -141,10 +142,10 @@ if ($oid != 0) {
             <?php include Ini::$path_internal . "cms/view/Test_logic.php"; ?>
         </div>
         <div id="divTestResponse" class="divTestHorizontalElement">
-            <div id="divTestSessionState" class="divTestVerticalElement">
+            <div id="divTestSessionState" class="divTestVerticalElement margin">
                 <?php include Ini::$path_internal . "cms/view/Test_session_state.php"; ?>
             </div>
-            <div id="divTestOutput" class="divTestVerticalElement">
+            <div id="divTestOutput" class="divTestVerticalElement margin">
                 <?php include Ini::$path_internal . "cms/view/Test_output.php"; ?>
             </div>
         </div>

@@ -219,8 +219,9 @@ ul {
 }
 
 .divTestVerticalElement {
-    width:466px;
-    min-height: 150px;
+    width:466px; 
+    padding:0px;
+    overflow-y:scroll;
 }
 
 .codeMirrorActiveLine {
@@ -236,4 +237,12 @@ ul {
     position: fixed !important;
     top: 0; left: 0;
     z-index: 9999;
+}
+
+.tdStateLabel {
+    font-weight: bold;
+}
+
+.tdStateValue {
+
 }

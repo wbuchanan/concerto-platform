@@ -34,7 +34,7 @@ if ($logged_user == null) {
     });
 </script>
 
-<fieldset class="padding ui-widget-content ui-corner-all margin">
+<fieldset class="padding ui-widget-content ui-corner-all" style="margin:0px;">
     <legend>
         <table>
             <tr>
@@ -43,4 +43,6 @@ if ($logged_user == null) {
             </tr>
         </table>
     </legend>
+    <div id="divTestOutputContent" style="word-break: break-all;">
+    </div>
 </fieldset>

@@ -45,6 +45,9 @@ if (array_key_exists("btn_name", $_POST))
 $debug = null;
 if (array_key_exists("debug", $_POST))
     $debug = $_POST['debug'];
+$code = null;
+if (array_key_exists("code", $_POST))
+    $code = $_POST['code'];
 
 $resume_from_last_template = 0;
 if (array_key_exists("resume_from_last_template", $_POST))
@@ -54,7 +57,7 @@ $owner = User::from_mysql_id($oid);
 if ($owner != null) {
     mysql_select_db($owner->db_name);
 }
-$result = TestSession::forward($tid, $sid, $hash, $values, $btn_name, $debug, $time, $oid, $resume_from_last_template == 1);
+$result = TestSession::forward($tid, $sid, $hash, $values, $btn_name, $debug, $time, $oid, $resume_from_last_template == 1, $code);
 
 echo json_encode($result);
 ?>

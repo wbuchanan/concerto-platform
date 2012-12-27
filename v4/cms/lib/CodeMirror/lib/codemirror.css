@@ -3,11 +3,14 @@
 .CodeMirror {
   /* Set height, width, borders, and global font properties here */
   font-family: monospace;
-  height: 300px;
+  border: 1px solid #eee;
+  height: auto;
+  background-color: white;
 }
 .CodeMirror-scroll {
   /* Set scrolling behaviour here */
-  overflow: auto;
+  overflow-y: hidden;
+  overflow-x: auto;
 }
 
 /* PADDING */
@@ -185,7 +188,7 @@ div.CodeMirror span.CodeMirror-nonmatchingbracket {color: #f22;}
 .CodeMirror-wrap pre {
   word-wrap: break-word;
   white-space: pre-wrap;
-  word-break: normal;
+  word-break: break-all;
 }
 .CodeMirror-linebackground {
   position: absolute;

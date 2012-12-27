@@ -36,7 +36,7 @@ if ($logged_user == null) {
     });
 </script>
 
-<fieldset class="padding ui-widget-content ui-corner-all margin">
+<fieldset class="padding ui-widget-content ui-corner-all" style="margin:0px;">
     <legend>
         <table>
             <tr>
@@ -45,9 +45,9 @@ if ($logged_user == null) {
             </tr>
         </table>
     </legend>
-    <table>
+    <table> 
         <tr>
-            <td id="tdTestDebugStatus" style="width:100%;" class="ui-state-highlight ui-corner-all">
+            <td id="tdTestDebugStatus" style="width:100%;" class="ui-state-highlight">
                 not started
             </td>
             <td>
@@ -58,7 +58,6 @@ if ($logged_user == null) {
             </td>
         </tr>
     </table>
-    <div id="divTestSessionState">
-
+    <div id="divTestSessionStateContent">
     </div>
 </fieldset>

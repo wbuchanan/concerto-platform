@@ -32,6 +32,7 @@ class TestSession extends OTable {
     public $debug = 0;
     public $release = 0;
     public $output = "";
+    public $error_output = "";
     public $state = "";
     public $User_id = 0;
     public $QTIAssessmentItem_id = 0;
@@ -46,6 +47,7 @@ class TestSession extends OTable {
     const TEST_SESSION_STATUS_SERIALIZED = 7;
     const TEST_SESSION_STATUS_QTI_INIT = 8;
     const TEST_SESSION_STATUS_QTI_RP = 9;
+    const TEST_SESSION_STATUS_WAITING_CODE = 10;
 
     public function get_Test() {
         return Test::from_mysql_id($this->Test_id);
@@ -244,7 +246,8 @@ class TestSession extends OTable {
 
         if ($thisSession != null) {
 
-            $output = explode("\n", $thisSession->output);
+            $output = $thisSession->output;
+            $error_output = $thisSession->error_output;
             $state = $thisSession->state;
 
             $status = $thisSession->status;
@@ -352,18 +355,14 @@ class TestSession extends OTable {
         );
 
         if ($debug_data) {
-            for ($i = 0; $i < count($output); $i++) {
-                if (strpos($output[$i], "CONCERTO_DB_PASSWORD <-") !== false)
-                    $output[$i] = "[hidden]";
-                $output[$i] = htmlspecialchars($output[$i], ENT_QUOTES);
-            }
 
             if (!is_array($response))
                 $response = array();
             $response["debug"] = array(
                 "return" => $return,
-                "output" => $output,
-                "state" => $state
+                "output" => nl2br(htmlspecialchars($output, ENT_QUOTES)),
+                "error_output" => nl2br(htmlspecialchars($error_output, ENT_QUOTES)),
+                "state" => nl2br($state)
             );
         }
 
@@ -418,7 +417,7 @@ class TestSession extends OTable {
         return $session;
     }
 
-    public static function forward($tid, $sid, $hash, $values, $btn_name, $debug, $time, $oid = null, $resume_from_last_template = false) {
+    public static function forward($tid, $sid, $hash, $values, $btn_name, $debug, $time, $oid = null, $resume_from_last_template = false, $code = null) {
         if (is_string($values))
             $values = json_decode($values, true);
 
@@ -462,7 +461,7 @@ class TestSession extends OTable {
                         );
                     }
                 } else {
-                    $result = $session->RCall($values, null, $resume_from_last_template);
+                    $result = $session->RCall($values, $code, $resume_from_last_template);
                 }
             } else {
                 $result = array(
@@ -520,7 +519,7 @@ class TestSession extends OTable {
                     return $result;
                 }
 
-                $result = $result = $session->RCall($values, null, $resume_from_last_template);
+                $result = $result = $session->RCall($values, $code, $resume_from_last_template);
             }
         }
         return $result;
@@ -544,6 +543,7 @@ class TestSession extends OTable {
             `debug` tinyint(1) NOT NULL,
             `release` tinyint(1) NOT NULL,
             `output` longtext NOT NULL,
+            `error_output` longtext NOT NULL,
             `state` longtext NOT NULL,
             `User_id` bigint(20) NOT NULL,
             `QTIAssessmentItem_id` bigint(20) NOT NULL,

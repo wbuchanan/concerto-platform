@@ -376,7 +376,7 @@ class TestInstance {
         }
 
         $lines = explode("\n", $result);
-        if (count($lines) > 1 && !$this->is_data_ready) {
+        if (count($lines) > 0 && !$this->is_data_ready) {
             $last_line = $lines[count($lines) - 1];
 
             if ($last_line == "> ") {
@@ -390,6 +390,14 @@ class TestInstance {
                     if (TestServer::$debug)
                         TestServer::log_debug("TestInstance->read() --- Completed instance recognised.");
                 }
+            }
+            if (strpos($last_line, "+ ") === 0 && $session->debug == 1) {
+                $this->is_data_ready = true;
+
+                $change_status = true;
+                $session->status = TestSession::TEST_SESSION_STATUS_WAITING_CODE;
+                if (TestServer::$debug)
+                    TestServer::log_debug("TestInstance->read() --- Waiting for code instance recognised.");
             }
         }
 
@@ -418,6 +426,12 @@ class TestInstance {
         if (strlen($this->error_response) > TestServer::$response_limit)
             $this->error_response = "( ... )
             " . substr($this->error_response, strlen($this->error_response) - TestServer::$response_limit);
+
+        if ($session->debug == 1) {
+            $session->output = $this->response;
+            $session->error_output = $this->error_response;
+            $change_status = true;
+        }
 
         if ($change_status) {
             $session->mysql_save();
@@ -473,11 +487,19 @@ class TestInstance {
             $send_code .= $code;
         else {
             if ($is_new) {
-                $test = Test::from_mysql_id($session->Test_id);
-                if ($test != null) {
-                    $send_code.= $test->code . $this->get_final_code();
+                if ($session->debug == 0) {
+                    $test = Test::from_mysql_id($session->Test_id);
+                    if ($test != null) {
+                        $send_code.= $test->code . $this->get_final_code();
+                    }
                 }
             }
+        }
+
+        if ($session->debug == 1) {
+            $send_code.='
+                concerto$updateState()
+                ';
         }
 
         if (TestServer::$debug)
@@ -494,8 +516,7 @@ class TestInstance {
             if ($line == "") {
                 continue;
             }
-            $code .= $line . "
-                ";
+            $code .= $line . "\n";
         }
         $this->code = $code;
         $this->response = "";

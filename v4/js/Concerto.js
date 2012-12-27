@@ -106,7 +106,7 @@ function Concerto(container,oid,hash,sid,tid,queryPath,callbackGet,callbackSend,
         this.isStopped = true;
     }
     
-    this.run=function(btnName,values){
+    this.run=function(btnName,values,code){
         this.isTemplateReady = false;
         if(this.isStopped) return;
         
@@ -141,6 +141,7 @@ function Concerto(container,oid,hash,sid,tid,queryPath,callbackGet,callbackSend,
         if(values!=null) params["values"] = $.toJSON(values);
         if(this.isDebug!=null && this.isDebug==true) params["debug"]=1;
         else params["debug"]=0;
+        if(code!=null) params["code"] = code;
         
         var date = new Date();
         $.post((this.remote?this.queryPath:this.queryPath+"r_call.php")+"?timestamp="+date.getTime(),
@@ -206,6 +207,7 @@ function Concerto(container,oid,hash,sid,tid,queryPath,callbackGet,callbackSend,
                     $(this.container).html("<h2>Fatal test exception encountered. Test halted.</h2>");
                 }
                 else {
+                /*
                     $(this.container).html("<h2>R return code</h2>");
                     $(this.container).append(this.debug["return"]);
                     $(this.container).append("<hr/>");
@@ -217,6 +219,7 @@ function Concerto(container,oid,hash,sid,tid,queryPath,callbackGet,callbackSend,
                         if(this.debug["output"][i]==null) continue;
                         $(this.container).append(this.debug["output"][i].replace(/\n/g,'<br />')+"<br/>");
                     }
+                    */
                 }
                 break;
             }
@@ -239,7 +242,7 @@ function Concerto(container,oid,hash,sid,tid,queryPath,callbackGet,callbackSend,
     };
     
     this.showEffect=function(){
-        if(this.isDebug || this.effectShow=="none" || this.effectShow.trim()=="") {
+        if(this.effectShow=="none" || this.effectShow.trim()=="") {
             this.effectTransition = 2;
             $(this.container).show(0);
             this.addSubmitEvents();
@@ -299,7 +302,7 @@ function Concerto(container,oid,hash,sid,tid,queryPath,callbackGet,callbackSend,
     this.hideEffect=function(){
         this.removeSubmitEvents();
         this.effectTransition = 3;
-        if(this.isDebug || this.effectHide=="none" || this.effectHide.trim()=="") {
+        if(this.effectHide=="none" || this.effectHide.trim()=="") {
             this.effectTransition = 0;
             $(this.container).hide(0);
             if(this.isTemplateReady && this.loaderTransition==0) {
@@ -347,7 +350,7 @@ function Concerto(container,oid,hash,sid,tid,queryPath,callbackGet,callbackSend,
     
     this.hideLoader=function(){
         this.loaderTransition = 3;
-        if(this.isDebug || this.loaderEffectHide=="none" || this.loaderEffectHide.trim()=="") {
+        if(this.loaderEffectHide=="none" || this.loaderEffectHide.trim()=="") {
             this.loaderTransition = 0;
             $(this.container).hide(0);
             if(this.isTemplateReady) {
@@ -390,7 +393,7 @@ function Concerto(container,oid,hash,sid,tid,queryPath,callbackGet,callbackSend,
             $(this.container).html(this.defaultLoader);
         }
         
-        if(this.isDebug || this.loaderEffectShow=="none" || this.loaderEffectShow.trim()=="") {
+        if(this.loaderEffectShow=="none" || this.loaderEffectShow.trim()=="") {
             this.loaderTransition = 2;
             $(this.container).show(0);
             if(this.isTemplateReady && this.loaderTransition==2 || this.status == Concerto.statusTypes.completed) this.hideLoader();
@@ -472,7 +475,8 @@ Concerto.statusTypes={
     waiting:6,
     serialized:7,
     initQTI:8,
-    rpQTI:9
+    rpQTI:9,
+    waitingCode:10
 };
 
 Concerto.getSessionCookie=function(){

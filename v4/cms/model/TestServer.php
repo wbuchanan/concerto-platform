@@ -297,7 +297,7 @@ class TestServer {
                         }
                     }
 
-                    if ($serialized || $this->instances[$k]->is_finished) {
+                    if ($serialized || (array_key_exists($k, $this->instances) && $this->instances[$k]->is_finished)) {
                         $this->last_action_time = time();
                         $this->close_instance($k, $serialized);
                     }
