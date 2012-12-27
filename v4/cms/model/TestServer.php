@@ -237,7 +237,11 @@ class TestServer {
                     if (self::$debug) {
                         self::log_debug("TestServer->start() --- Client '$k' timedout");
                     }
-                    $this->serialize_instance($k);
+                    $session = TestSession::from_mysql_id($this->instances[$k]->TestSession_id);
+                    if ($session->debug == 0)
+                        $this->serialize_instance($k);
+                    else
+                        $this->close_instance($k, true, true);
                 }
             }
 
@@ -299,7 +303,7 @@ class TestServer {
 
                     if ($serialized || (array_key_exists($k, $this->instances) && $this->instances[$k]->is_finished)) {
                         $this->last_action_time = time();
-                        $this->close_instance($k, $serialized);
+                        $this->close_instance($k);
                     }
                 }
             }
@@ -354,7 +358,7 @@ class TestServer {
                     if (self::$debug)
                         self::log_debug("TestServer->start() --- Close command recieved");
                     $vars = explode(":", $input);
-                    $this->close_instance("sid" . $vars[1], false);
+                    $this->close_instance("sid" . $vars[1]);
                     continue;
                 }
                 if (strpos($input, "serialize:") === 0) {
@@ -378,7 +382,7 @@ class TestServer {
         gc_disable();
     }
 
-    private function close_instance($key, $serialized = false, $terminate = false) {
+    private function close_instance($key, $terminate = false, $expired = false) {
         $session_id = substr($key, 3);
         $owner_id = null;
         if (array_key_exists($key, $this->instances)) {
@@ -392,14 +396,13 @@ class TestServer {
             socket_close($this->clients[$key]["sock"]);
             unset($this->clients[$key]);
         }
-        if ($serialized && $owner_id != null) {
-            TestSession::change_db($owner_id);
+
+        if ($expired) {
             $session = TestSession::from_mysql_id($session_id);
-            if ($session != null) {
-                if ($session->debug == 1)
-                    $session->remove();
-            }
+            $session->status = TestSession::TEST_SESSION_STATUS_EXPIRED;
+            $session->mysql_save();
         }
+
         if (self::$debug) {
             self::log_debug("TestServer->close_instance() --- Client '$key' closed");
         }

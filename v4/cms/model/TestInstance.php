@@ -137,20 +137,14 @@ class TestInstance {
     public function stop($terminate = false) {
 
         if ($this->is_started()) {
-            //$this->send_close_signal();
+            $this->send_close_signal();
 
             fclose($this->pipes[0]);
             fclose($this->pipes[1]);
             fclose($this->pipes[2]);
 
             if ($this->is_execution_timedout() || $terminate) {
-                $status = proc_get_status($this->r);
-                if ($status !== false) {
-                    $this->kill_children();
-                    $return = proc_terminate($this->r);
-                    if (TestServer::$debug)
-                        TestServer::log_debug("TestInstance->stop() --- Test instance terminated with: " . $return);
-                }
+                $this->terminate_processess();
             }
             $ret = proc_close($this->r);
             if (TestServer::$debug)
@@ -159,22 +153,28 @@ class TestInstance {
         return null;
     }
 
-    public function kill_children() {
+    public function terminate_processess() {
         $status = proc_get_status($this->r);
         if ($status !== false) {
             $ppid = $status['pid'];
 
-            if (TestServer::$debug)
-                TestServer::log_debug("TestInstance->kill_children() --- killing children of pid:" . $ppid);
+            TestInstance::kill_children($ppid);
+        }
+    }
 
-            $pids = preg_split('/\s+/', `ps -o pid --no-heading --ppid $ppid`);
-            foreach ($pids as $pid) {
-                if (is_numeric($pid)) {
-                    if (TestServer::$debug)
-                        TestServer::log_debug("TestInstance->kill_children() --- killing children " . $pid);
-                    posix_kill($pid, 9); //9 is the SIGKILL signal
-                }
-            }
+    public static function kill_children($ppid) {
+        if (TestServer::$debug)
+            TestServer::log_debug("TestInstance->terminate_processess() --- killing children of pid:" . $ppid);
+
+        $pids = preg_split('/\s+/', `ps -o pid --no-heading --ppid $ppid`);
+        foreach ($pids as $pid) {
+            if (is_numeric($pid))
+                TestInstance::kill_children($pid);
+        }
+        if (is_numeric($ppid)) {
+            if (TestServer::$debug)
+                TestServer::log_debug("TestInstance->terminate_processess() --- killing " . $ppid);
+            posix_kill($ppid, 9); //9 is the SIGKILL signal
         }
     }
 
@@ -193,10 +193,15 @@ class TestInstance {
         $this->is_serializing = true;
         $this->is_serialized = false;
         $this->is_working = true;
-
         $fp = fopen($session->get_RSession_fifo_path(), "w");
+        stream_set_blocking($fp, 0);
         fwrite($fp, "serialize");
         fclose($fp);
+
+        if ($session->debug == 1) {
+            $session->status = TestSession::TEST_SESSION_STATUS_SERIALIZED;
+            $session->mysql_save();
+        }
     }
 
     public function send_QTI_initialization($session = null) {
@@ -453,11 +458,12 @@ class TestInstance {
     public function run($code, $variables = null) {
         TestSession::change_db($this->User_id);
 
+        $session = TestSession::from_mysql_id($this->TestSession_id);
+
         $this->pending_variables = $variables;
         $is_new = false;
         $send_code = "";
 
-        $session = TestSession::from_mysql_id($this->TestSession_id);
         $change_status = false;
         switch ($session->status) {
             case TestSession::TEST_SESSION_STATUS_NEW: {

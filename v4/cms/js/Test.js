@@ -33,7 +33,9 @@ Test.widgetTypes = {
 
 Test.onAfterEdit=function()
 {
-    };
+    Test.currentFromLine = -1;
+    Test.currentToLine = -1;
+};
 
 Test.onAfterImport=function(){
     Template.uiList();
@@ -321,24 +323,24 @@ Test.onScroll=function(){
 
 Test.debugWindow = null;
 
-Test.uiStartDebug=function(){
+Test.uiStartDebug=function(url,uid){
     Test.debugClearOutput();
     Test.logicCodeMirror.toTextArea();
     Test.logicCodeMirror = Methods.iniCodeMirror("textareaTestLogic", "r", true);
     $("#btnStartDebug").button("disable");
     $("#btnStopDebug").button("enable");
     
-    Test.debugWindow = window.open("http://concerto.przemyslawlis.com");
+    Test.debugWindow = window.open(url);
     Test.debugWindow.onload=function(){
-        Test.debugInitializeTest();
+        Test.debugInitializeTest(uid);
     }
 }
 
 Test.currentFromLine = -1;
 Test.currentToLine = -1;
-Test.debugInitializeTest = function(){
+Test.debugInitializeTest = function(uid){
     Test.uiChangeDebugStatus("initializing...");
-    test = new Concerto($(Test.debugWindow.document).find("#divTestContainer"),1,null,null,Test.currentID,"../query/",
+    test = new Concerto($(Test.debugWindow.document).find("#divTestContainer"),uid,null,null,Test.currentID,"../query/",
         function(data){
             switch(parseInt(data.data.STATUS)){
                 case Concerto.statusTypes.waiting:{
@@ -347,6 +349,7 @@ Test.debugInitializeTest = function(){
                     Test.debugSetState(data.debug.state);
                     if(Test.debugIsCurrentLineLast()){
                         Test.uiChangeDebugStatus("Test finished.");
+                        Test.debugCloseTestWindow();
                         break;
                     }
                     Test.debugRunNextLine();
@@ -373,6 +376,12 @@ Test.debugInitializeTest = function(){
                     Test.debugAppendOutput(data.debug.output);
                     Test.debugAppendOutput(data.debug.error_output);
                     Test.debugSetState(data.debug.state);
+                    Test.debugCloseTestWindow();
+                    break;
+                }
+                case Concerto.statusTypes.tampered:{
+                    Test.uiChangeDebugStatus("Session is unavailable.","ui-state-error");   
+                    Test.debugCloseTestWindow();
                     break;
                 }
             }
@@ -382,6 +391,9 @@ Test.debugInitializeTest = function(){
         },
         true,false,null,false);
     test.run(null,null);
+}
+Test.debugCloseTestWindow=function(){
+    Test.debugWindow.close();
 }
 Test.debugClearOutput=function(){
     $("#divTestOutputContent").html("");
@@ -442,6 +454,9 @@ Test.uiChangeDebugStatus=function(label,style){
 }
 
 Test.uiStopDebug=function(){
+    Test.currentFromLine = -1;
+    Test.currentToLine = -1;
+    
     Test.logicCodeMirror.toTextArea();
     Test.logicCodeMirror = Methods.iniCodeMirror("textareaTestLogic", "r", false);
     $("#btnStartDebug").button("enable");

@@ -54,7 +54,7 @@ if ($logged_user == null) {
                 <button id="btnStopDebug" style="font-size:smaller;" disabled="disabled" onclick="Test.uiStopDebug()">stop</button>
             </td>
             <td>
-                <button id="btnStartDebug" style="font-size: smaller;" onclick="Test.uiStartDebug()">start</button>
+                <button id="btnStartDebug" style="font-size: smaller;" onclick="Test.uiStartDebug('<?= Ini::$path_external ?>',<?= $logged_user->id ?>)">start</button>
             </td>
         </tr>
     </table>

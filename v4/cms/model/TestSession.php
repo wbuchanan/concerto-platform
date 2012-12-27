@@ -48,6 +48,7 @@ class TestSession extends OTable {
     const TEST_SESSION_STATUS_QTI_INIT = 8;
     const TEST_SESSION_STATUS_QTI_RP = 9;
     const TEST_SESSION_STATUS_WAITING_CODE = 10;
+    const TEST_SESSION_STATUS_EXPIRED = 11;
 
     public function get_Test() {
         return Test::from_mysql_id($this->Test_id);
@@ -413,6 +414,7 @@ class TestSession extends OTable {
             case TestSession::TEST_SESSION_STATUS_ERROR: return null;
             case TestSession::TEST_SESSION_STATUS_TAMPERED: return null;
             case TestSession::TEST_SESSION_STATUS_COMPLETED: return null;
+            case TestSession::TEST_SESSION_STATUS_EXPIRED: return null;
         }
         return $session;
     }
