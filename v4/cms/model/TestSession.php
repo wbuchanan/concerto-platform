@@ -311,7 +311,6 @@ class TestSession extends OTable {
                     }
                 case TestSession::TEST_SESSION_STATUS_TEMPLATE: {
                         if ($debug) {
-                            $html = Template::strip_html($html);
                             if ($release)
                                 TestSession::unregister($thisSession->id);
                         }
@@ -409,8 +408,11 @@ class TestSession extends OTable {
         return md5("cts" . $id . "." . rand(0, 100) . "." . time());
     }
 
-    public static function authorized_session($oid, $id, $hash) {
-        $session = TestSession::from_property(array("id" => $id, "User_id" => $oid, "hash" => $hash), false);
+    public static function authorized_session($oid, $id, $hash, $check_logged_user = false) {
+        if (!$check_logged_user)
+            $session = TestSession::from_property(array("id" => $id, "User_id" => $oid, "hash" => $hash), false);
+        else
+            $session = TestSession::from_property(array("id" => $id, "User_id" => User::get_logged_user()->id, "hash" => $hash), false);
         if ($session == null)
             return null;
         switch ($session->status) {
@@ -428,7 +430,7 @@ class TestSession extends OTable {
         $session = null;
         $result = array();
         if ($oid != null && $sid != null && $hash != null) {
-            $session = TestSession::authorized_session($oid, $sid, $hash);
+            $session = TestSession::authorized_session($oid, $sid, $hash, true);
 
             if ($session != null) {
 

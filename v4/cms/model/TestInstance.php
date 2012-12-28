@@ -53,11 +53,9 @@ class TestInstance {
             return false;
     }
 
-    public function is_execution_timedout($session = null) {
+    public function is_execution_timedout() {
         TestSession::change_db($this->User_id);
-        if ($session == null) {
-            $session = $this->get_TestSession();
-        }
+        $session = $this->get_TestSession();
 
         if (time() - $this->last_execution_time > Ini::$r_max_execution_time && $session->status == TestSession::TEST_SESSION_STATUS_WORKING) {
             if (TestServer::$debug)
@@ -80,8 +78,6 @@ class TestInstance {
     }
 
     public function start() {
-        TestSession::change_db($this->User_id);
-
         $env = array();
         if (Ini::$unix_locale != "") {
             $encoding = Ini::$unix_locale;
@@ -135,9 +131,12 @@ class TestInstance {
     }
 
     public function stop($terminate = false) {
+        TestSession::change_db($this->User_id);
+        $session = TestSession::from_mysql_id($this->TestSession_id);
 
         if ($this->is_started()) {
-            $this->send_close_signal();
+            if ($session->status == TestSession::TEST_SESSION_STATUS_TEMPLATE)
+                $this->send_close_signal();
 
             fclose($this->pipes[0]);
             fclose($this->pipes[1]);
@@ -178,12 +177,9 @@ class TestInstance {
         }
     }
 
-    public function serialize($session = null) {
+    public function serialize() {
         TestSession::change_db($this->User_id);
-
-        if ($session == null) {
-            $session = $this->get_TestSession();
-        }
+        $session = $this->get_TestSession();
 
         if (TestServer::$debug)
             TestServer::log_debug("TestInstance->serialize() --- Serializing #" . $this->TestSession_id);
@@ -204,12 +200,9 @@ class TestInstance {
         }
     }
 
-    public function send_QTI_initialization($session = null) {
+    public function send_QTI_initialization() {
         TestSession::change_db($this->User_id);
-
-        if ($session == null) {
-            $session = $this->get_TestSession();
-        }
+        $session = $this->get_TestSession();
 
         $qti = QTIAssessmentItem::from_mysql_id($session->QTIAssessmentItem_id);
         $qti->validate();
@@ -235,12 +228,9 @@ class TestInstance {
         }
     }
 
-    public function send_QTI_response_processing($session = null) {
+    public function send_QTI_response_processing() {
         TestSession::change_db($this->User_id);
-
-        if ($session == null) {
-            $session = $this->get_TestSession();
-        }
+        $session = $this->get_TestSession();
 
         $qti = QTIAssessmentItem::from_mysql_id($session->QTIAssessmentItem_id);
         $qti->validate();
@@ -266,12 +256,9 @@ class TestInstance {
         }
     }
 
-    public function send_variables($session = null, $variables = null) {
+    public function send_variables($variables = null) {
         TestSession::change_db($this->User_id);
-
-        if ($session == null) {
-            $session = $this->get_TestSession();
-        }
+        $session = $this->get_TestSession();
 
         $variables = json_encode($variables);
 
@@ -296,12 +283,9 @@ class TestInstance {
         }
     }
 
-    public function send_close_signal($session = null) {
+    public function send_close_signal() {
         TestSession::change_db($this->User_id);
-
-        if ($session == null) {
-            $session = $this->get_TestSession();
-        }
+        $session = $this->get_TestSession();
 
         if ($this->is_serialized)
             return;
@@ -352,7 +336,6 @@ class TestInstance {
             //template
             if ($session->status == TestSession::TEST_SESSION_STATUS_TEMPLATE && !$this->is_serializing) {
                 $this->is_data_ready = true;
-
                 if (TestServer::$debug)
                     TestServer::log_debug("TestInstance->read() --- Template instance recognized.");
             }
@@ -365,7 +348,7 @@ class TestInstance {
 
                 $session->status = TestSession::TEST_SESSION_STATUS_WORKING;
                 $change_status = true;
-                $this->send_QTI_initialization($session);
+                $this->send_QTI_initialization();
             }
 
             //QTI response processing
@@ -376,7 +359,7 @@ class TestInstance {
 
                 $session->status = TestSession::TEST_SESSION_STATUS_WORKING;
                 $change_status = true;
-                $this->send_QTI_response_processing($session);
+                $this->send_QTI_response_processing();
             }
         }
 
@@ -409,14 +392,14 @@ class TestInstance {
         while ($append = fread($this->pipes[2], 4096)) {
             $error.=$append;
         }
-        if (strpos($error, 'Execution halted') !== false || $this->is_execution_timedout($session)) {
+        if (strpos($error, 'Execution halted') !== false || $this->is_execution_timedout()) {
             $this->code_execution_halted = true;
             $this->is_data_ready = true;
 
             $change_status = true;
             $session->status = TestSession::TEST_SESSION_STATUS_ERROR;
 
-            if ($this->is_execution_timedout($session))
+            if ($this->is_execution_timedout())
                 $error.="
                 TIMEOUT
                 ";
@@ -432,7 +415,7 @@ class TestInstance {
             $this->error_response = "( ... )
             " . substr($this->error_response, strlen($this->error_response) - TestServer::$response_limit);
 
-        if ($session->debug == 1) {
+        if ($session->debug == 1 && $this->is_data_ready) {
             $session->output = $this->response;
             $session->error_output = $this->error_response;
             $change_status = true;
@@ -443,7 +426,7 @@ class TestInstance {
         }
 
         if ($session->status == TestSession::TEST_SESSION_STATUS_WORKING && $this->pending_variables != null) {
-            $this->send_variables($session, $this->pending_variables);
+            $this->send_variables($this->pending_variables);
             $this->pending_variables = null;
         }
 
@@ -469,13 +452,13 @@ class TestInstance {
             case TestSession::TEST_SESSION_STATUS_NEW: {
                     $is_new = true;
                     $change_status = true;
-                    $send_code .= $this->get_ini_code($session);
+                    $send_code .= $this->get_ini_code();
                     break;
                 }
             case TestSession::TEST_SESSION_STATUS_SERIALIZED: {
                     $is_new = true;
                     $change_status = true;
-                    $send_code .= $this->get_ini_code($session, null, true);
+                    $send_code .= $this->get_ini_code(true);
                     break;
                 }
             case TestSession::TEST_SESSION_STATUS_TEMPLATE: {
@@ -537,17 +520,15 @@ class TestInstance {
         $this->is_data_ready = false;
     }
 
-    public function get_ini_code($session = null, $test = null, $unserialize = false) {
+    public function get_ini_code($unserialize = false) {
         TestSession::change_db($this->User_id);
 
         $code = "";
-        if ($session == null)
-            $session = $this->get_TestSession();
+        $session = $this->get_TestSession();
         if ($session == null)
             return($code . "stop('session #" . $this->TestSession_id . " does not exist!')
                 ");
-        if ($test == null)
-            $test = $this->get_Test($session);
+        $test = $this->get_Test();
         if ($test == null)
             return($code . "stop('test #" . $session->Test_id . " does not exist!')
                 ");
@@ -608,11 +589,9 @@ class TestInstance {
         return TestSession::from_mysql_id($this->TestSession_id);
     }
 
-    public function get_Test($session = null) {
+    public function get_Test() {
         TestSession::change_db($this->User_id);
-
-        if ($session == null)
-            $session = $this->get_TestSession();
+        $session = $this->get_TestSession();
         if ($session == null)
             return null;
         return Test::from_mysql_id($session->Test_id);

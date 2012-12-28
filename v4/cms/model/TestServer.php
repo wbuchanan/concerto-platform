@@ -47,7 +47,12 @@ class TestServer {
 
     public function stop() {
         foreach ($this->clients as $k => $v) {
-            $this->serialize_instance($k);
+            TestSession::change_db($this->instances[$k]->User_id);
+            $session = TestSession::from_mysql_id($this->instances[$k]->TestSession_id);
+            if ($session->debug == 0)
+                $this->serialize_instance($k);
+            else
+                $this->close_instance($k, true, true);
         }
 
         socket_close($this->main_sock);
@@ -237,6 +242,7 @@ class TestServer {
                     if (self::$debug) {
                         self::log_debug("TestServer->start() --- Client '$k' timedout");
                     }
+                    TestSession::change_db($this->instances[$k]->User_id);
                     $session = TestSession::from_mysql_id($this->instances[$k]->TestSession_id);
                     if ($session->debug == 0)
                         $this->serialize_instance($k);
@@ -379,9 +385,12 @@ class TestServer {
             self::log_debug("TestServer->close_instance() --- Client '$key' closed");
         }
 
-        $session = TestSession::from_mysql_id($session_id);
-        if ($session->debug == 1) {
-            $session->remove(false);
+        if ($owner_id != null) {
+            TestSession::change_db($owner_id);
+            $session = TestSession::from_mysql_id($session_id);
+            if ($session != null && $session->debug == 1) {
+                $session->remove(false);
+            }
         }
     }
 

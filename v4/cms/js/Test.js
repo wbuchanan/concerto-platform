@@ -35,6 +35,7 @@ Test.onAfterEdit=function()
 {
     Test.currentFromLine = -1;
     Test.currentToLine = -1;
+    Test.debugStopped = true;
 };
 
 Test.onAfterImport=function(){
@@ -324,10 +325,12 @@ Test.onScroll=function(){
 Test.debugWindow = null;
 
 Test.uiStartDebug=function(url,uid){
+    Test.debugStopped = false;
     Test.debugClearOutput();
     Test.logicCodeMirror.toTextArea();
     Test.logicCodeMirror = Methods.iniCodeMirror("textareaTestLogic", "r", true);
     $("#btnStartDebug").button("disable");
+    $("#btnStartDebug").button("option","label",dictionary["s324"]);
     $("#btnStopDebug").button("enable");
     
     Test.debugWindow = window.open(url);
@@ -339,21 +342,24 @@ Test.uiStartDebug=function(url,uid){
 Test.currentFromLine = -1;
 Test.currentToLine = -1;
 Test.debugInitializeTest = function(uid){
-    Test.uiChangeDebugStatus("initializing...");
+    //initialzing
+    Test.uiChangeDebugStatus(dictionary["s655"]);
     test = new Concerto($(Test.debugWindow.document).find("#divTestContainer"),uid,null,null,Test.currentID,"../query/",
         function(data){
+            if(Test.debugStopped) return;
             switch(parseInt(data.data.STATUS)){
                 case Concerto.statusTypes.waiting:{
                     Test.debugAppendOutput(data.debug.output);
                     Test.debugAppendOutput(data.debug.error_output);
                     Test.debugSetState(data.debug.state);
                     if(Test.debugIsCurrentLineLast()){
-                        Test.uiChangeDebugStatus("Test finished.");
+                        //test finished
+                        Test.uiChangeDebugStatus(dictionary["s656"]);
                         Test.debugCloseTestWindow();
                         break;
                     }
                     Test.debugRunNextLine();
-                    Test.uiChangeDebugStatus("Running line #"+(Test.currentFromLine+1));
+                    Test.uiChangeDebugStatus(dictionary["s657"].format(Test.currentFromLine+1));
                     break;
                 }
                 case Concerto.statusTypes.waitingCode:{
@@ -361,18 +367,18 @@ Test.debugInitializeTest = function(uid){
                     Test.debugAppendOutput(data.debug.error_output);
                     Test.debugSetState(data.debug.state);
                     Test.debugRunNextLine();
-                    Test.uiChangeDebugStatus("Running line #"+(Test.currentFromLine+1));
+                    Test.uiChangeDebugStatus(dictionary["s657"].format(Test.currentFromLine+1));
                     break;
                 }
                 case Concerto.statusTypes.template:{
                     Test.debugAppendOutput(data.debug.output);
                     Test.debugAppendOutput(data.debug.error_output);
                     //Test.debugSetState(data.debug.state);
-                    Test.uiChangeDebugStatus("Template shown. Awaiting user input...");
+                    Test.uiChangeDebugStatus(dictionary["s658"],"ui-state-error");
                     break;
                 }
                 case Concerto.statusTypes.error:{
-                    Test.uiChangeDebugStatus("Error after line #"+(Test.currentFromLine+1),"ui-state-error");   
+                    Test.uiChangeDebugStatus(dictionary["s659"].format(Test.currentFromLine+1),"ui-state-error");   
                     Test.debugAppendOutput(data.debug.output);
                     Test.debugAppendOutput(data.debug.error_output);
                     Test.debugSetState(data.debug.state);
@@ -380,14 +386,13 @@ Test.debugInitializeTest = function(uid){
                     break;
                 }
                 case Concerto.statusTypes.tampered:{
-                    Test.uiChangeDebugStatus("Session is unavailable.","ui-state-error");   
+                    Test.uiChangeDebugStatus(dictionary["s660"],"ui-state-error");   
                     Test.debugCloseTestWindow();
                     break;
                 }
             }
         },
         function(data){
-            console.log(data);
         },
         true,false,null,false);
     test.run(null,null);
@@ -405,10 +410,10 @@ Test.debugAppendOutput=function(output){
 
 Test.debugSetState=function(state){
     var obj = $.parseJSON(state);
-    var html = "<table>";
+    var html = "<table style='margin-top:10px;'>";
     for(var k in obj){
         if(k=="concerto") continue;
-        html+="<tr><td class='tdStateLabel' valign='top'>"+k+"</td><td class='tdStateValue' valign='top'>"+obj[k]+"</td></tr>";
+        html+="<tr><td class='tdStateLabel' valign='top'>"+k+": </td><td class='tdStateValue' valign='top'>"+obj[k]+"</td></tr>";
     }
     html+="</table>";
     $("#divTestSessionStateContent").html(html);
@@ -453,9 +458,11 @@ Test.uiChangeDebugStatus=function(label,style){
     }
 }
 
+Test.debugStopped = true;
 Test.uiStopDebug=function(){
     Test.currentFromLine = -1;
     Test.currentToLine = -1;
+    Test.debugStopped = true;
     
     Test.logicCodeMirror.toTextArea();
     Test.logicCodeMirror = Methods.iniCodeMirror("textareaTestLogic", "r", false);

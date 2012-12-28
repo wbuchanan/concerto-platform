@@ -2855,7 +2855,7 @@ Note: You can add new languages by inserting "<new_language>string translated in
         </string>
         <string id="323" js="1">
             <en>begin</en>
-            <de>Start</de>
+            <de>start</de>
             <pl>zacznij</pl>
             <cn>开始</cn>
             <fr>commencer</fr>
@@ -2865,7 +2865,7 @@ Note: You can add new languages by inserting "<new_language>string translated in
         </string>
         <string id="324" js="1">
             <en>restart</en>
-            <de>Neustart</de>
+            <de>neustart</de>
             <pl>zacznij od nowa</pl>
             <cn>重启</cn>
             <fr>recommencer</fr>
@@ -6127,6 +6127,86 @@ Note: You can add new languages by inserting "<new_language>string translated in
             <en>deleting user grant</en>
             <de></de>
             <pl>usuwanie pozwolenia użytkownika</pl>
+            <cn></cn>
+            <fr></fr>
+            <bg></bg>
+            <nl></nl>
+            <br></br>
+        </string>
+        <string id="655" js="1">
+            <en>initializing...</en>
+            <de></de>
+            <pl>inicjalizowanie...</pl>
+            <cn></cn>
+            <fr></fr>
+            <bg></bg>
+            <nl></nl>
+            <br></br>
+        </string>
+        <string id="656" js="1">
+            <en>test finished</en>
+            <de></de>
+            <pl>test ukończony</pl>
+            <cn></cn>
+            <fr></fr>
+            <bg></bg>
+            <nl></nl>
+            <br></br>
+        </string>
+        <string id="657" js="1">
+            <en>running line #{0}</en>
+            <de></de>
+            <pl>uruchamianie linii #{0}</pl>
+            <cn></cn>
+            <fr></fr>
+            <bg></bg>
+            <nl></nl>
+            <br></br>
+        </string>
+        <string id="658" js="1">
+            <en>awaiting user input...</en>
+            <de></de>
+            <pl>oczekiwanie na dane od użytkownika...</pl>
+            <cn></cn>
+            <fr></fr>
+            <bg></bg>
+            <nl></nl>
+            <br></br>
+        </string>
+        <string id="659" js="1">
+            <en>error after line #{0}!</en>
+            <de></de>
+            <pl>błąd po linii #{0}!</pl>
+            <cn></cn>
+            <fr></fr>
+            <bg></bg>
+            <nl></nl>
+            <br></br>
+        </string>
+        <string id="660" js="1">
+            <en>session is unavailable!</en>
+            <de></de>
+            <pl>sesja jest niedostępna!</pl>
+            <cn></cn>
+            <fr></fr>
+            <bg></bg>
+            <nl></nl>
+            <br></br>
+        </string>
+        <string id="661">
+            <en>not started</en>
+            <de></de>
+            <pl>nie rozpoczęty</pl>
+            <cn></cn>
+            <fr></fr>
+            <bg></bg>
+            <nl></nl>
+            <br></br>
+        </string>
+        <string id="662">
+            <en>stop</en>
+            <de></de>
+            <pl>stop</pl>
             <cn></cn>
             <fr></fr>
             <bg></bg>

@@ -48,13 +48,13 @@ if ($logged_user == null) {
     <table> 
         <tr>
             <td id="tdTestDebugStatus" style="width:100%;" class="ui-state-highlight">
-                not started
+                <?= Language::string(661) ?>
             </td>
             <td>
-                <button id="btnStopDebug" style="font-size:smaller;" disabled="disabled" onclick="Test.uiStopDebug()">stop</button>
+                <button id="btnStopDebug" style="font-size:smaller;" disabled="disabled" onclick="Test.uiStopDebug()"><?= Language::string(662) ?></button>
             </td>
             <td>
-                <button id="btnStartDebug" style="font-size: smaller;" onclick="Test.uiStartDebug('<?= Ini::$path_external ?>',<?= $logged_user->id ?>)">start</button>
+                <button id="btnStartDebug" style="font-size: smaller;" onclick="Test.uiStartDebug('<?= Ini::$path_external ?>',<?= $logged_user->id ?>)"><?= Language::string(323) ?></button>
             </td>
         </tr>
     </table>
