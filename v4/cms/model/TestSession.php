@@ -294,7 +294,7 @@ class TestSession extends OTable {
             switch ($status) {
                 case TestSession::TEST_SESSION_STATUS_COMPLETED: {
                         if ($debug) {
-                            TestSession::unregister($thisSession->id);
+                            TestSession::unregister($thisSession->User_id . "-" . $thisSession->id);
                             $removed = true;
                         }
                         break;
@@ -302,7 +302,7 @@ class TestSession extends OTable {
                 case TestSession::TEST_SESSION_STATUS_ERROR:
                 case TestSession::TEST_SESSION_STATUS_TAMPERED: {
                         if ($debug) {
-                            TestSession::unregister($thisSession->id);
+                            TestSession::unregister($thisSession->User_id . "-" . $thisSession->id);
                             $removed = true;
                         }
                         else
@@ -312,7 +312,7 @@ class TestSession extends OTable {
                 case TestSession::TEST_SESSION_STATUS_TEMPLATE: {
                         if ($debug) {
                             if ($release)
-                                TestSession::unregister($thisSession->id);
+                                TestSession::unregister($thisSession->User_id . "-" . $thisSession->id);
                         }
                         else {
                             $head = Template::from_mysql_id($Template_id)->head;
@@ -361,6 +361,9 @@ class TestSession extends OTable {
 
             if (!is_array($response))
                 $response = array();
+            if (strpos(trim($output), ">") !== 0) {
+                $output = "> " . trim($output);
+            }
             $response["debug"] = array(
                 "return" => $return,
                 "output" => nl2br(htmlspecialchars($output, ENT_QUOTES)),
@@ -442,7 +445,7 @@ class TestSession extends OTable {
 
                 if (Ini::$timer_tamper_prevention && $session->time_limit > 0 && $time - $session->time_tamper_prevention - Ini::$timer_tamper_prevention_tolerance > $session->time_limit) {
                     if ($session->debug == 1)
-                        TestSession::unregister($session->id);
+                        TestSession::unregister($session->User_id . "-" . $session->id);
                     else
                         $session->close();
 

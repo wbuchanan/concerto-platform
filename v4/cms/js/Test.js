@@ -311,10 +311,10 @@ Test.onScroll=function(){
     if($("#divTestResponse").length>0){
         if($(window).scrollTop()>$("#divTestResponse").offset().top){
             $(".divTestVerticalElement").css("position","fixed");        
-                
+            
             $(".divTestVerticalElement:eq(0)").css("top","0px");
             $(".divTestVerticalElement:eq(1)").css("top",$(".divTestVerticalElement:eq(1)").css("height"));
-                
+        
         } else {
             $(".divTestVerticalElement").css("position","relative");
             $(".divTestVerticalElement").css("top","auto");
@@ -350,7 +350,9 @@ Test.debugInitializeTest = function(uid){
             switch(parseInt(data.data.STATUS)){
                 case Concerto.statusTypes.waiting:{
                     Test.debugAppendOutput(data.debug.output);
+                    Test.debugAppendOutput("<br />");
                     Test.debugAppendOutput(data.debug.error_output);
+                    Test.uiAddOutputLineWidget(Test.currentToLine,data.debug.output);
                     Test.debugSetState(data.debug.state);
                     if(Test.debugIsCurrentLineLast()){
                         //test finished
@@ -364,7 +366,9 @@ Test.debugInitializeTest = function(uid){
                 }
                 case Concerto.statusTypes.waitingCode:{
                     Test.debugAppendOutput(data.debug.output);
+                    Test.debugAppendOutput("<br />");
                     Test.debugAppendOutput(data.debug.error_output);
+                    Test.uiAddOutputLineWidget(Test.currentToLine,data.debug.output);
                     Test.debugSetState(data.debug.state);
                     Test.debugRunNextLine();
                     Test.uiChangeDebugStatus(dictionary["s657"].format(Test.currentFromLine+1));
@@ -372,7 +376,9 @@ Test.debugInitializeTest = function(uid){
                 }
                 case Concerto.statusTypes.template:{
                     Test.debugAppendOutput(data.debug.output);
+                    Test.debugAppendOutput("<br />");
                     Test.debugAppendOutput(data.debug.error_output);
+                    Test.uiAddOutputLineWidget(Test.currentToLine,data.debug.output);
                     //Test.debugSetState(data.debug.state);
                     Test.uiChangeDebugStatus(dictionary["s658"],"ui-state-error");
                     break;
@@ -380,7 +386,10 @@ Test.debugInitializeTest = function(uid){
                 case Concerto.statusTypes.error:{
                     Test.uiChangeDebugStatus(dictionary["s659"].format(Test.currentFromLine+1),"ui-state-error");   
                     Test.debugAppendOutput(data.debug.output);
+                    Test.debugAppendOutput("<br />");
                     Test.debugAppendOutput(data.debug.error_output);
+                    Test.uiAddOutputLineWidget(Test.currentToLine,data.debug.output);
+                    Test.uiAddOutputLineWidget(Test.currentToLine,data.debug.error_output,"ui-state-error");
                     Test.debugSetState(data.debug.state);
                     Test.debugCloseTestWindow();
                     break;
@@ -468,4 +477,24 @@ Test.uiStopDebug=function(){
     Test.logicCodeMirror = Methods.iniCodeMirror("textareaTestLogic", "r", false);
     $("#btnStartDebug").button("enable");
     $("#btnStopDebug").button("disable");
+}
+
+Test.uiAddOutputLineWidget=function(lineNo,output,style){
+    
+    if(style==null) style="ui-state-highlight";
+    var outputLines = output.split("<br />");
+    var output = [];
+    for(var i=0;i<outputLines.length;i++){
+        var line = $.trim(outputLines[i]);
+        if(line.indexOf("&gt;")==0 || line.indexOf("+")==0 ) continue;
+        output.push(line);
+    }
+    if(output.length==0) return;
+    var obj = $("<div class='divInlineWidget "+style+"'>"+output.join("<br />")+"</div>")[0];
+    if(lineNo!=-1)
+        Test.logicCodeMirror.addLineWidget(lineNo,obj);
+    else 
+        Test.logicCodeMirror.addLineWidget(lineNo,obj,{
+            above:true
+        });
 }

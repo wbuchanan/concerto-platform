@@ -246,3 +246,7 @@ ul {
 .tdStateValue {
 
 }
+
+.divInlineWidget {
+    word-break: break-all;
+}
