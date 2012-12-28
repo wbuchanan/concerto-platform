@@ -476,8 +476,7 @@ Concerto.statusTypes={
     serialized:7,
     initQTI:8,
     rpQTI:9,
-    waitingCode:10,
-    expired:11
+    waitingCode:10
 };
 
 Concerto.getSessionCookie=function(){

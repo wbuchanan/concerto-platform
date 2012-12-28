@@ -347,28 +347,6 @@ class TestServer {
                     if (self::$debug_stream_data)
                         self::log_debug($input, true);
                 }
-                if ($input == "exit") {
-                    $authorization_required = false;
-                    if (self::$debug)
-                        self::log_debug("TestServer->start() --- Exit command recieved");
-                    break;
-                }
-                if (strpos($input, "close:") === 0) {
-                    $authorization_required = false;
-                    if (self::$debug)
-                        self::log_debug("TestServer->start() --- Close command recieved");
-                    $vars = explode(":", $input);
-                    $this->close_instance("sid" . $vars[1]);
-                    continue;
-                }
-                if (strpos($input, "serialize:") === 0) {
-                    $authorization_required = false;
-                    if (self::$debug)
-                        self::log_debug("TestServer->start() --- Serialize command recieved");
-                    $vars = explode(":", $input);
-                    $this->serialize_instance("sid" . $vars[1]);
-                    continue;
-                }
                 $this->last_action_time = time();
                 if (!$authorization_required || $this->authorize_client($client_sock, $input)) {
                     $client = $this->get_client($client_sock, $input);
@@ -382,7 +360,7 @@ class TestServer {
         gc_disable();
     }
 
-    private function close_instance($key, $terminate = false, $expired = false) {
+    private function close_instance($key, $terminate = false) {
         $session_id = substr($key, 3);
         $owner_id = null;
         if (array_key_exists($key, $this->instances)) {
@@ -397,14 +375,13 @@ class TestServer {
             unset($this->clients[$key]);
         }
 
-        if ($expired) {
-            $session = TestSession::from_mysql_id($session_id);
-            $session->status = TestSession::TEST_SESSION_STATUS_EXPIRED;
-            $session->mysql_save();
-        }
-
         if (self::$debug) {
             self::log_debug("TestServer->close_instance() --- Client '$key' closed");
+        }
+
+        $session = TestSession::from_mysql_id($session_id);
+        if ($session->debug == 1) {
+            $session->remove(false);
         }
     }
 
@@ -468,23 +445,38 @@ class TestServer {
         $data = json_decode($input);
         $key = "sid" . $data->session_id;
 
-        if (!array_key_exists($key, $this->instances)) {
-            $this->instances[$key] = new TestInstance($data->session_id, $data->owner_id);
-            if (self::$debug) {
-                self::log_debug("TestServer->interpret_input() --- Client '$key' test instance created");
+        if ($data->type == 0) {
+            if (!array_key_exists($key, $this->instances)) {
+                $this->instances[$key] = new TestInstance($data->session_id, $data->owner_id);
+                if (self::$debug) {
+                    self::log_debug("TestServer->interpret_input() --- Client '$key' test instance created");
+                }
             }
-        }
-        if (!$this->instances[$key]->is_started()) {
-            $this->instances[$key]->start();
-            if (self::$debug) {
-                self::log_debug("TestServer->interpret_input() --- Client '$key' test instance started");
+            if (!$this->instances[$key]->is_started()) {
+                $this->instances[$key]->start();
+                if (self::$debug) {
+                    self::log_debug("TestServer->interpret_input() --- Client '$key' test instance started");
+                }
             }
-        }
-        $this->instances[$key]->run($data->code, $data->values);
-        if (self::$debug) {
-            self::log_debug("TestServer->interpret_input() --- Client '$key' test data sent");
-            if (self::$debug_stream_data && $data->code != null)
-                self::log_debug($data->code, true);
+            $this->instances[$key]->run($data->code, $data->values);
+            if (self::$debug) {
+                self::log_debug("TestServer->interpret_input() --- Client '$key' test data sent");
+                if (self::$debug_stream_data && $data->code != null)
+                    self::log_debug($data->code, true);
+            }
+        } else {
+            if (array_key_exists($key, $this->instances)) {
+                switch ($data->code) {
+                    case "close": {
+                            $this->close_instance($key, true);
+                            break;
+                        }
+                    case "serialize": {
+                            $this->serialize_instance($key);
+                            break;
+                        }
+                }
+            }
         }
     }
 

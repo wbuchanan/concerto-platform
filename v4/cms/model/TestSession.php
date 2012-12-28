@@ -48,7 +48,6 @@ class TestSession extends OTable {
     const TEST_SESSION_STATUS_QTI_INIT = 8;
     const TEST_SESSION_STATUS_QTI_RP = 9;
     const TEST_SESSION_STATUS_WAITING_CODE = 10;
-    const TEST_SESSION_STATUS_EXPIRED = 11;
 
     public function get_Test() {
         return Test::from_mysql_id($this->Test_id);
@@ -78,7 +77,9 @@ class TestSession extends OTable {
     }
 
     public static function unregister($id) {
-        $obj = TestSession::from_mysql_id($id);
+        $ids = explode("-", $id);
+        TestSession::change_db($ids[0]);
+        $obj = TestSession::from_mysql_id($ids[1]);
         if ($obj != null)
             $obj->remove();
         unset($_SESSION['sids'][session_id()]);
@@ -109,8 +110,9 @@ class TestSession extends OTable {
         return $session;
     }
 
-    public function remove() {
-        $this->close();
+    public function remove($close = true) {
+        if ($close)
+            $this->close();
         $this->mysql_delete();
     }
 
@@ -126,13 +128,13 @@ class TestSession extends OTable {
 
     public function close() {
         if (TestServer::is_running())
-            TestServer::send("close:" . $this->id);
+            TestServer::send(json_encode(array("type" => 1, "code" => "close", "owner_id" => $this->User_id, "session_id" => $this->id, "hash" => $this->hash)));
         $this->remove_files();
     }
 
     public function serialize() {
         if (TestServer::is_running())
-            TestServer::send("serialize:" . $this->id);
+            TestServer::send(json_encode(array("type" => 1, "code" => "serialize", "owner_id" => $this->User_id, "session_id" => $this->id, "hash" => $this->hash)));
     }
 
     public function remove_files() {
@@ -201,7 +203,8 @@ class TestSession extends OTable {
             "session_id" => $this->id,
             "hash" => $this->hash,
             "values" => $values,
-            "code" => $code
+            "code" => $code,
+            "type" => 0
                 ));
 
         if (TestServer::$debug)
@@ -414,7 +417,6 @@ class TestSession extends OTable {
             case TestSession::TEST_SESSION_STATUS_ERROR: return null;
             case TestSession::TEST_SESSION_STATUS_TAMPERED: return null;
             case TestSession::TEST_SESSION_STATUS_COMPLETED: return null;
-            case TestSession::TEST_SESSION_STATUS_EXPIRED: return null;
         }
         return $session;
     }
