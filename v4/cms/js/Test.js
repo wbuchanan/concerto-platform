@@ -108,13 +108,13 @@ Test.uiGoToRelatedObject=function(type,oid){
     switch(type){
         //templates
         case Test.widgetTypes.template:{
-            $("#tnd_mainMenu").tabs("select","#tnd_mainMenu-templates");
+            $("#tnd_mainMenu").tabs("select","#tnd_mainMenu-Template");
             Template.uiEdit(oid);
             break;
         }
         //tables
         case Test.widgetTypes.table:{
-            $("#tnd_mainMenu").tabs("select","#tnd_mainMenu-tables");
+            $("#tnd_mainMenu").tabs("select","#tnd_mainMenu-Table");
             Table.uiEdit(oid);
             break;
         }
@@ -125,7 +125,7 @@ Test.uiGoToRelatedObject=function(type,oid){
         }
         //QTI
         case Test.widgetTypes.QTIInitialization:{
-            $("#tnd_mainMenu").tabs("select","#tnd_mainMenu-QTI");
+            $("#tnd_mainMenu").tabs("select","#tnd_mainMenu-QTIAssessmentItem");
             QTIAssessmentItem.uiEdit(oid);
             break;
         }

@@ -72,7 +72,7 @@ class QTIAssessmentItem extends OModule {
         //default outcome
         //default response
 
-        $code ="";
+        $code = "";
         foreach ($this->root->responseDeclaration as $response) {
             $code.=sprintf("
                 result$%s <- NULL
@@ -369,13 +369,11 @@ class QTIAssessmentItem extends OModule {
         return $element;
     }
 
-    public static function create_db($delete = false) {
-        if ($delete) {
-            if (!mysql_query("DROP TABLE IF EXISTS `QTIAssessmentItem`;"))
-                return false;
-        }
-        $sql = "
-            CREATE TABLE IF NOT EXISTS `QTIAssessmentItem` (
+    public static function create_db($db = null) {
+        if ($db == null)
+            $db = Ini::$db_master_name;
+        $sql = sprintf("
+            CREATE TABLE IF NOT EXISTS `%s`.`QTIAssessmentItem` (
             `id` bigint(20) NOT NULL auto_increment,
             `updated` timestamp NOT NULL default CURRENT_TIMESTAMP on update CURRENT_TIMESTAMP,
             `created` timestamp NOT NULL default '0000-00-00 00:00:00',
@@ -385,7 +383,7 @@ class QTIAssessmentItem extends OModule {
             `xml_hash` text NOT NULL,
             PRIMARY KEY  (`id`)
             ) ENGINE=InnoDB  DEFAULT CHARSET=utf8;
-            ";
+            ", $db);
         return mysql_query($sql);
     }
 

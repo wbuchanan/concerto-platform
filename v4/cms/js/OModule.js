@@ -437,13 +437,13 @@ OModule.inheritance=function(obj)
             this.uiShowList();
         }
         
-        Methods.uiBlock("#div"+thisClass.className+"Form");
+        Methods.uiBlockModule(thisClass.className);
         $.post("view/"+this.className+"_form.php",
         {
             oid:oid
         },
         function(data){
-            Methods.uiUnblock("#div"+thisClass.className+"Form");
+            Methods.uiUnblockModule(thisClass.className);
             $("#div"+thisClass.className+"Form").html(data);
             if(thisClass.onAfterEdit) thisClass.onAfterEdit();
             if(callback!=null) callback.call(thisClass);
@@ -637,7 +637,7 @@ OModule.inheritance=function(obj)
         } else {
         
             if(isNew) Methods.uiBlock($("#divAddFormDialog").parent());
-            else Methods.uiBlock("#div"+thisClass.className+"Form");
+            else Methods.uiBlockModule(thisClass.className);
         }
         
         var params = {};
@@ -650,7 +650,7 @@ OModule.inheritance=function(obj)
             function(data)
             {
                 if(isNew) Methods.uiUnblock($("#divAddFormDialog").parent());
-                else Methods.uiUnblock("#div"+thisClass.className+"Form");
+                else Methods.uiUnblockModule(thisClass.className);
                 if(thisClass.currentID==0) $("#divAddFormDialog").dialog("close");
                 
                 switch(data.result){

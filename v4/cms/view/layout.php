@@ -94,11 +94,11 @@ if (Ini::$cms_session_keep_alive) {
 <div align="center" class="" style="width: 970px;" >
     <div id="tnd_mainMenu">
         <ul>
-            <li><a href="#tnd_mainMenu-tests" class="tooltipTabs" title="<?= Language::string(193) ?>"><?= Language::string(88) ?></a></li>
-            <li class="<?= User::view_class() ?>"><a href="#tnd_mainMenu-QTI" class="tooltipTabs" title="<?= Language::string(460) ?>"><?= Language::string(459) ?></a></li>
-            <li><a href="#tnd_mainMenu-templates" class="tooltipTabs" title="<?= Language::string(195) ?>"><?= Language::string(167) ?></a></li>
-            <li><a href="#tnd_mainMenu-tables" class="tooltipTabs" title="<?= Language::string(196) ?>"><?= Language::string(85) ?></a></li>
-            <li><a href="#tnd_mainMenu-users" class="tooltipTabs" title="<?= Language::string(197) ?>"><?= Language::string(198) ?></a></li>
+            <li><a href="#tnd_mainMenu-Test" class="tooltipTabs" title="<?= Language::string(193) ?>"><?= Language::string(88) ?></a></li>
+            <li class="<?= User::view_class() ?>"><a href="#tnd_mainMenu-QTIAssessmentItem" class="tooltipTabs" title="<?= Language::string(460) ?>"><?= Language::string(459) ?></a></li>
+            <li><a href="#tnd_mainMenu-Template" class="tooltipTabs" title="<?= Language::string(195) ?>"><?= Language::string(167) ?></a></li>
+            <li><a href="#tnd_mainMenu-Table" class="tooltipTabs" title="<?= Language::string(196) ?>"><?= Language::string(85) ?></a></li>
+            <li><a href="#tnd_mainMenu-User" class="tooltipTabs" title="<?= Language::string(197) ?>"><?= Language::string(198) ?></a></li>
             <div style="float:right;">
                 <table>
                     <tr>
@@ -135,19 +135,19 @@ if (Ini::$cms_session_keep_alive) {
             </div>
         </ul>
 
-        <div id="tnd_mainMenu-tests">
+        <div id="tnd_mainMenu-Test">
             <?php include Ini::$path_internal . 'cms/view/includes/tab_tests.inc.php'; ?>
         </div>
-        <div id="tnd_mainMenu-QTI">
+        <div id="tnd_mainMenu-QTIAssessmentItem">
             <?php include Ini::$path_internal . 'cms/view/includes/tab_QTI.inc.php'; ?>
         </div>
-        <div id="tnd_mainMenu-templates">
+        <div id="tnd_mainMenu-Template">
             <?php include Ini::$path_internal . 'cms/view/includes/tab_templates.inc.php'; ?>
         </div>
-        <div id="tnd_mainMenu-tables">
+        <div id="tnd_mainMenu-Table">
             <?php include Ini::$path_internal . 'cms/view/includes/tab_tables.inc.php'; ?>
         </div>
-        <div id="tnd_mainMenu-users">
+        <div id="tnd_mainMenu-User">
             <?php include Ini::$path_internal . 'cms/view/includes/tab_users.inc.php'; ?>
         </div>
 

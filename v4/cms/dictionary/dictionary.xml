@@ -416,289 +416,6 @@ Note: You can add new languages by inserting "<new_language>string translated in
             <nl>Bewerk HTML. Huidige HTML:</nl>
             <br>Editar HTML. HTML atual:</br>
         </string>
-        <string id="40">
-            <en>Directly enter R code that is to be interpreted.</en>
-            <de>Zu interpretierenden R Code direkt eingeben.</de>
-            <pl>Używając tej sekcji można zinterpretować dowolny kod R.</pl>
-            <cn>直接输入需编译的R代码。</cn>
-            <fr>Entrez directement le code R qui doit être interprété.</fr>
-            <bg>Директно въведи R кода за интерпретация</bg>
-            <nl>Voer rechtstreeks de R code in die geinterpreteerd dient te worden.</nl>
-            <br>Entre diretamente com o código R que será interpretado.</br>
-        </string>
-        <string id="41">
-            <en>Stop R processes and load selected HTML template.</en>
-            <de>Stoppe den R Prozess und lade ausgewähltes HTML template</de>
-            <pl>Ta sekcja przerywa wykonywanie kodu R i wyświetla użytkownikowi szablon HTML.</pl>
-            <cn>停止R运行，导入所选HTML模板。</cn>
-            <fr>Arrêter le processus R et charger le modèle HTML sélectionné.</fr>
-            <bg>Спри R процеса и зареди избрания HTML шаблон</bg>
-            <nl>Stop de R processen en laad de geselecteerde HTML-sjabloon.</nl>
-            <br>Pare o processo do R e carregue o template HTML selecionado.</br>
-        </string>
-        <string id="42">
-            <en>Skip to a specific section of the test.</en>
-            <de>Gehe zu einer spezifischen Sektion des Tests.</de>
-            <pl>Ta sekcja pozwala przejść do innej wybranej sekcji.</pl>
-            <cn>转入测试特定章节。</cn>
-            <fr>Passer à une section spécifique du test.</fr>
-            <bg>Пропусни специфична част от теста</bg>
-            <nl>Doorgaan naar een specifieke testsectie</nl>
-            <br>Passe para uma seção específica do teste</br>
-        </string>
-        <string id="43">
-            <en><![CDATA[Specify conditions and their consequences. Multiple conditions and consequences can be specified.]]>
-            </en>
-            <de><![CDATA[Geben Sie Bedingungen und ihre Konsequenzen an. Mehrere Bedingungen und Konsequenzen können angegeben werden.]]>
-            </de>
-            <pl><![CDATA[Dzięki tej sekcji można tworzyć twierdzenia warunkowe. Dozwolone jest wiele warunków, oraz można zamieszczać wiele sekcji w bloku <b>WTEDY</b>.]]>
-            </pl>
-            <cn><![CDATA[声明条件及其结果。允许多重条件及结果。]]>
-            </cn>
-            <fr><![CDATA[Spécifier les conditions et leurs conséquences. De multiples conditions et conséquences peuvent être spécifiées.]]>
-            </fr>
-            <bg><![CDATA[Определете условията и техните следствия. Множество условия и следствия могат да бъдат определени.]]>
-            </bg>
-            <nl><![CDATA[Specifieer condities en bijhorende gevolgen. Meerdere condities en gevolgen kunnen gespecifieerd worden.]]>
-            </nl>
-            <br><![CDATA[Especifique as condições e suas consequências. Múltiplas consequências são permitidas.]]>
-            </br>
-        </string>
-        <string id="44">
-            <en><![CDATA[Define variables (i.e. set variables). Methods to set variable: <ul><li><b>from table</b>: select a previously defined table in Concerto and filter necessary rows and columns. Set the whole table by leaving the <b>WHERE</b> clause empty</li><li><b>by R code</b>: directly type in R code. E.g. function result, mathematical calculation</li></ul>]]>
-            </en>
-            <de><![CDATA[Definiere Variablen (d.h. setze Variablen). Methoden um Vairabeln zu setzen: <ul><li><b>aus Tabelle</b>: wähle eine bereits definierte Tabelle in Concerto und filtere die notwendigen Zeilen und Spalten. Der ganzen Tabelle gleichsetzen in dem man die <b>WHERE</b> Aussage leer lässt</li><li><b>durch R Code</b>: R code direkt eingeben. Z.B. Resultat einer Funktion, mathematische Berechnung</li></ul>]]>
-            </de>
-            <pl><![CDATA[Ta sekcja daje mozliwość zadeklarowania zmiennej w logice testu. Można ustawić zmienną jedną z trzech metod:<ul><li><b>z tabeli</b>: można wybrać wcześniej zdefiniowaną tabelę w Concerto, oraz jej konkretne rekordy i kolumny. Można również wybrać całą tabelę pozostawiając blok <b>GDZIE</b> pusty</li><li><b>przez kod R</b>: można ustawić zmienną używając kodu R. Może to być cokolwiek co da się wykonać w języku R. Np. rezultat funkcji, matematyczne obliczenie</li></ul>]]>
-            </pl>
-            <cn></cn>
-            <fr><![CDATA[Définir les variables (par ex. établir les variables). Méthode afin de d'établir les variables: <ul><li><b>du tableau</b>: sélectionner un tableau préalablement défini dans concerto et filtrer les lignes et colonnes nécessaires. Établir un tableau complet en laissant la clause <b>OU</b> vide </li><li><b>avec le code R </b>: taper directement dans le code R. Par exemple: fonctiont résultat, calcul mathématique</li></ul>]]>
-            </fr>
-            <bg><![CDATA[Дефинирайте променливи (т.е. създайте променливи). Методи за създаване на променлива: <ul><li><b>чрез таблица</b>: изберете предварително дефинирана таблица в Concerto и филтрирайте необходимите редове и колони. Може да вземете цяла таблица <b>КЪДЕ</b> условието е празно</li><li><b>чрез R код</b>: директно като напишете R кода. Т.е. резултат от функция, математическо пресмятане</li></ul>]]> 
-            </bg>
-            <nl><![CDATA[Definieer variabelen (i.e. kies variabelen). Methoden om variable te kiezen: <ul><li><b>uit tabel</b>: een voordien gedefinieerde tabel in Concerto selecteren en de nodige rijen en kolommen filteren. Selecteer de volledige tabel door de <b>WAAR</b> clause leeg te laten</li><li><b>via R code</b>: rechtstreeks R code typen. Bv. functie resultaat, wiskundige berekening</li></ul>]]>
-            </nl>
-            <br><![CDATA[Definir as variáveis (per ex. estabelecer as variáveis). Método para determinar as variáveis: <ul><li><b>a partir de tabela</b>: selecione uma tabela definida previamente no Concerto e filtre as colunas e linhas necessárias. Selecione a tabela inteira deixando o campo <b>ONDE</b> vazio </li><li><b>através de código R</b>: insira diretamente o código R. Por exemplo> resultado de uma função, cálculo matemático</li></ul>]]>
-            </br>
-        </string>
-        <string id="45">
-            <en>The start section is the entry point to your test logic. It cannot be modified.</en>
-            <de>Die Anfangssektion ist der Einstiegspunkt in die Testlogik. Sie kann nicht verändert werden.</de>
-            <pl>To jest sekcja początkowa. Nie można jej modyfikować. Stanowi punkt wejściowy do logiki testu.</pl>
-            <cn>启动章节是测试逻辑的起点，不可修改。</cn>
-            <fr>La section Début est le point d'entrée de la logique du test. Elle ne peut pas être modifiée.</fr>
-            <bg>Началната секция е входната точка за логиката на теста. Тя не може да бъде променяна</bg>
-            <nl>De beginsectie is de start van de teststructuur. Deze kan niet aangepast worden.</nl>
-            <br>O começo de uma seção é o ponto de início da lógica do teste. Isto não pode ser modificado.</br>
-        </string>
-        <string id="46">
-            <en>The End section is the last section of your test logic. It cannot be modified.</en>
-            <de>Die Endsektion ist die letzte Sektion Ihrer Testlogik. Sie kann nicht verändert werden.</de>
-            <pl>To jest sekcja końcowa. Nie można jej modyfikowac. To jest sekcja kończąca logikę testu.</pl>
-            <cn>结束章节是测试逻辑的终点，不可修改。</cn>
-            <fr>La section Fin est le point d'entrée de la logique du test. Elle ne peut pas être modifiée.</fr>
-            <bg>Крайната секция е последната секция в логиката на теста. Тя не може да бъде променяна</bg>
-            <nl>De einde-sectie is de laatste sectie van de teststructuur. Deze kan niet aangepast worden.</nl>
-            <br>A seção final é a última seção da lógica do teste. Isto não pode ser modificado.</br>
-        </string>
-        <string id="47">
-            <en><![CDATA[Modify existing tables with the help of three basic database operations:<ul><li><b>INSERT</b>: insert a single row and values corresponding to each column</li><li><b>UPDATE</b>: modify table rows that meet criteria found in the <b>WHERE</b> clause. Specify which columns you want to modify and values for each.</li><li><b>DELETE</b>: delete table rows that meet criteria found in the <b>WHERE</b> clause.</li></ul>]]>
-            </en>
-            <de><![CDATA[Verändere existierende Tabelle mit der Hilfe von drei grundlegenden Datenbankoperationen:<ul><li><b>INSERT</b>: füge eine einzelne Zeile ein (mit Werten die zu jeder der Spalten korrespondieren)</li><li><b>UPDATE</b>: modifiziere alle Tabellenzeilen auf die die Kriterien in der <b>WHERE</b> Aussage zutreffen. Geben Sie die zu modifizierenden Spalten und die Werte dafür an.</li><li><b>DELETE</b>: lösche alle Tabellenzeilen auf die Kriterien in der <b>WHERE</b> Aussage zutreffen.</li></ul>]]>
-            </de>
-            <pl><![CDATA[Używajac tej sekcji można zmodyfikować wcześniej zdefiniowane tabele. Można wykonać trzy podstawowoe operacje na bazie danych:<ul><li><b>DODANIE</b>: używajac tej komendy można dodać nowy pojedyńczy rekord z wybranymi wartościami</li><li><b>ZMIANA</b>: używając tej komendy można zmodyfikować rekordy tabeli które spełniaja podane kryteria w bloku <b>GDZIE</b>. Można ustawić które kolumny chce się zmodyfikować i jaką wartość chce się im dać.</li><li><b>USUŃ</b>: używając tej komendy możesz usunąć rekordy tabeli które spełniają kryteria podane w bloku <b>GDZIE</b>.</li></ul>]]>
-            </pl>
-            <cn><![CDATA[借助以下三种基本数据库操作修改已有表格：<ul><li><b>插入</b>：插入一行及每列数值</li><li><b>更新</b>：修改表格行以满足 <b>当</b> 语句中的标准。可以指定修改的列及其数值。</li><li><b>删除</b>：删除表格中满足<b>当</b> 语句中标准的行。</li></ul>]]>
-            </cn>
-            <fr><![CDATA[Modifier les tableaux existant avec l'aide de trois opérations de base:<ul><li><b>INSERTION</b>: insère une seule ligne et ses valeurs correspondantes dans chacune des colonnes.</li><li><b>Mettre à jour </b>: modifie les lignes du tableau qui rencontrent les critères inclus dans la clause <b>OU</b>. spécifiez quelle colonnes vous voulez modifier et les valeurs de chacune d'entre elles.</li><li><b>Supprimer</b>: supprime les lignes du tableau qui rencontrent les critères inclus dans la clause <b>OU</b>.</li></ul>]]>
-            </fr>
-            <bg><![CDATA[Променете съществуващите таблици с помощта на три основни операции за бази данни: <ul><li><b>ВМЪКНИ</b>: вмъкни единичен ред и стойности отнасящи се за всяка колона </li><li><b>ОБНОВИ</b>: промени редовете на таблицата, които отговорят на критерия, който се намира <b>КЪДЕ</b> в условието. Посочете кои колони искате да модифицирате и стойностите за всяка.</li><li><b>ИЗТРИЙ</b>: изтрийте редове от таблицата, които се намират <b>КЪДЕ</b> в условието.</li></ul>]]>
-            </bg>
-            <nl><![CDATA[Bestaande tabellen aanpassen met de hulp van drie database basisoperaties:<ul><li><b>INSERT</b>: een enkele rij invoegen met de corresponderende waarden van elke kolom</li><li><b>UPDATE</b>: tabelrijen aanpassen die voldoen aan de criteria uit de <b>WAAR</b> clause. Specifieren van welke kolommen u wil aanpassen en hun corresponderende waarden.</li><li><b>VERWIJDEREN</b>: verwijderen van tabelrijen die voldoen aan de criteria uit de <b>WAAR</b> clause.</li></ul>]]>
-            </nl>
-            <br><![CDATA[Modifique as tabelas existentes com a ajuda de três operações básicas:<ul><li><b>INSERÇÃO</b>: insira uma única linha e os valores correspondentes a cada coluna.</li><li><b>ATUALIZAÇÃO</b>: modifique as linhas da tabela que coincidem com o critério encontrado na condição <b>ONDE</b>. Especifique as colunas que você deseja modificar e seus respectivos valores.</li><li><b>REMOVER</b>: remove as linhas das tabelas que coincidem com o critério da condição <b>ONDE</b>.</li></ul>]]>
-            </br>
-        </string>
-        <string id="48">
-            <en>This is the custom test section.</en>
-            <de>Das ist eine benutzerdefinierte Testsektion.</de>
-            <pl>To jest sekcja własna.</pl>
-            <cn>这是自主测试章节。</cn>
-            <fr> Ceci est une section personnalisée du test.</fr>
-            <bg>Това е персонализирана секция от теста</bg>
-            <nl>Dit is een aangepaste testsectie</nl>
-            <br>Esta é uma seção customizável do teste.</br>
-        </string>
-        <string id="49" js="1">
-            <en>R code</en>
-            <de>R Code</de>
-            <pl>kod R</pl>
-            <cn>R代码</cn>
-            <fr>code R</fr>
-            <bg>R код</bg>
-            <nl>R code</nl>
-            <br>Código R</br>
-        </string>
-        <string id="50" js="1">
-            <en>load HTML template</en>
-            <de>lade HTML Template</de>
-            <pl>wczytaj szablon HTML</pl>
-            <cn>导入HTML模板</cn>
-            <fr>charger un modèle HTML</fr>
-            <bg>Зареди HTML шаблон</bg>
-            <nl>HTML-sjabloon openen</nl>
-            <br>carregar template HTML</br>
-        </string>
-        <string id="51" js="1">
-            <en>go to</en>
-            <de>Gehe zu</de>
-            <pl>idź do</pl>
-            <cn>前往</cn>
-            <fr>aller à</fr>
-            <bg>иди на</bg>
-            <nl>ga naar</nl>
-            <br>ir para</br>
-        </string>
-        <string id="52" js="1">
-            <en>IF statement</en>
-            <de>IF Aussage</de>
-            <pl>twierdzenie JEŚLI</pl>
-            <cn>IF语句</cn>
-            <fr>expression SI</fr>
-            <bg>АКО твърдение</bg>
-            <nl>ALS functie</nl>
-            <br>expressão SE</br>
-        </string>
-        <string id="53" js="1">
-            <en>set variable</en>
-            <de>Setze Variable</de>
-            <pl>ustaw zmienną</pl>
-            <cn>设定变量</cn>
-            <fr>définir une variable</fr>
-            <bg>създай променлива</bg>
-            <nl>Defineer variabele</nl>
-            <br>Definir uma variável</br>
-        </string>
-        <string id="54" js="1">
-            <en>start</en>
-            <de>Anfang</de>
-            <pl>początek</pl>
-            <cn>开始</cn>
-            <bg>начало</bg>
-            <fr>commencer</fr>
-            <nl>start</nl>
-            <br>iniciar</br>
-        </string>
-        <string id="55" js="1">
-            <en>end</en>
-            <de>Ende</de>
-            <pl>koniec</pl>
-            <cn>结束</cn>
-            <fr>fin</fr>
-            <bg>край</bg>
-            <nl>einde</nl>
-            <br>fim</br>
-        </string>
-        <string id="56" js="1">
-            <en>table modification</en>
-            <de>Ändere Tabelle</de>
-            <pl>modyfikacja tabeli</pl>
-            <cn>修改表格</cn>
-            <fr>modification du tableau</fr>
-            <bg>промяна на таблицата</bg>
-            <nl>tabel aanpassen</nl>
-            <br>modificação da tabela</br>
-        </string>
-        <string id="57" js="1">
-            <en>custom section</en>
-            <de>Benutzerdefinierte Sektion</de>
-            <pl>własna sekcja</pl>
-            <cn>自主章节</cn>
-            <fr>section personnalisée</fr>
-            <bg>персонализирана секция</bg>
-            <nl>aangepaste sectie</nl>
-            <br>seção personalizada</br>
-        </string>
-        <string id="58" js="1">
-            <en>ignore</en>
-            <de>ignorieren</de>
-            <pl>zignoruj</pl>
-            <cn>忽略</cn>
-            <fr>ignorer</fr>
-            <bg>игнорирай</bg>
-            <nl>negeren</nl>
-            <br>ignorar</br>
-        </string>
-        <string id="59">
-            <en>remove test logic section</en>
-            <de>entferne eine Sektion der Testlogik</de>
-            <pl>usuń sekcję logiki testu</pl>
-            <cn>移除测试逻辑章节</cn>
-            <fr>enlever la section logique du test</fr>
-            <bg>премахни секцията за логиката на теста</bg>
-            <nl>logische testsectie verwijderen</nl>
-            <br>remova seção lógica do teste</br>
-        </string>
-        <string id="60" js="1">
-            <en>add test logic section</en>
-            <de>Füge Sektion zur Testlogik hinzu</de>
-            <pl>dodaj sekcję logiki testu</pl>
-            <cn>添加测试逻辑章节</cn>
-            <fr>ajouter une section logique du test</fr>
-            <bg>прибави секция с логиката на теста</bg>
-            <nl>logische testsectie toevoegen</nl>
-            <br>adicine uma seção lógica ao teste</br>
-        </string>
-        <string id="61" js="1">
-            <en>adding new section</en>
-            <de>neue Sektion hinzufügen</de>
-            <pl>dodawanie nowej sekcji</pl>
-            <cn>添加新章节</cn>
-            <fr>ajouter une nouvelle section</fr>
-            <bg>прибавете нова секция</bg>
-            <nl>nieuwe sectie toevoegen</nl>
-            <br>adicionando nova seção</br>
-        </string>
-        <string id="62" js="1">
-            <en>are you sure you want to remove this test section?</en>
-            <de>Sind Sie sicher, dass Sie diese Sektion des Tests entfernen wollen?</de>
-            <pl>jesteś pewien, że chcesz usunąć sekcję testu?</pl>
-            <cn>确认移除此测试章节？</cn>
-            <fr>ête-vous certain de vouloir supprimer cette section du test?</fr>
-            <bg>сигурни ли сте, че искате да премахнете този секция на теста?</bg>
-            <nl>Bent u zeker dat u deze testsectie wil verwijderen?</nl>
-            <br>você tem certeza que deseja eliminar esta seção do teste?</br>
-        </string>
-        <string id="63" js="1">
-            <en>removing test section</en>
-            <de>entferne Testsektion</de>
-            <pl>usuwanie sekcji testu</pl>
-            <cn>移除测试章节</cn>
-            <fr>suppression de lasection du test</fr>
-            <bg>премахване на секция от теста</bg>
-            <nl>testsectie verwijderen</nl>
-            <br>removendo a seção do teste</br>
-        </string>
-        <string id="64" js="1">
-            <en>close</en>
-            <de>schließen</de>
-            <pl>zamknij</pl>
-            <cn>关闭</cn>
-            <fr>fermer</fr>
-            <bg>затваряне</bg>
-            <nl>sluiten</nl>
-            <br>fechar</br>
-        </string>
-        <string id="65" js="1">
-            <en>test logic variables</en>
-            <de>Variablen der Testlogik</de>
-            <pl>zmienne logiki testu</pl>
-            <cn>测试章节变量</cn>
-            <fr>variables de la logique du test</fr>
-            <bg>променливи на тестовата логика</bg>
-            <nl>logische variabelen van de test </nl>
-            <br>variáveis da lógica do teste</br>
-        </string>
         <string id="66" js="1">
             <en>Password and password confirmation do not match!</en>
             <de>Passwort und Passwortwiederhohlung stimmen nicht überein!</de>
@@ -718,16 +435,6 @@ Note: You can add new languages by inserting "<new_language>string translated in
             <bg>Комбинацията потребителско име/парола е грешна</bg>
             <nl>login/wachtwoord combinatie is ongeldig!</nl>
             <br>login ou senha incorretos!</br>
-        </string>
-        <string id="68">
-            <en>unnamed custom section</en>
-            <de>unbenannte benutzerdefinierte Testsektion</de>
-            <pl>nienazwana sekcja własna</pl>
-            <cn>未命名的自主章节</cn>
-            <fr>section personnalisée sans nom</fr>
-            <bg>неименувана персонализирана секция</bg>
-            <nl>naamloze aangepaste sectie</nl>
-            <br>seção personalizada sem nome</br>
         </string>
         <string id="69" js="1">
             <en>id</en>
@@ -829,26 +536,6 @@ Note: You can add new languages by inserting "<new_language>string translated in
             <nl>onbekend</nl>
             <br>desconhecido</br>
         </string>
-        <string id="79">
-            <en>unnamed user group</en>
-            <de>unbenannte Benutzergruppe</de>
-            <pl>nienazwana grupa użytkowników</pl>
-            <cn>未命名用户群</cn>
-            <bg>потребителска група без име</bg>
-            <fr></fr>
-            <nl>naamloze gebruikersgroep</nl>
-            <br>grupo de usuários sem nome</br>
-        </string>
-        <string id="80">
-            <en>unnamed user type</en>
-            <de>unbenannter Nutzertyp</de>
-            <pl>nienazwany typ użytkowników</pl>
-            <cn>未命名用户类型</cn>
-            <fr>type d'utilisateur sans nom</fr>
-            <bg>Тип на потребител без име</bg>
-            <nl>naamloos gebruikerstype</nl>
-            <br>tipo de usuário sem nome</br>
-        </string>
         <string id="81" js="1">
             <en>Access denied!</en>
             <de>Zugriff verweigert!</de>
@@ -878,16 +565,6 @@ Note: You can add new languages by inserting "<new_language>string translated in
             <bg>изход</bg>
             <nl>afmelden</nl>
             <br>desconectar</br>
-        </string>
-        <string id="84">
-            <en>custom test sections</en>
-            <de>Benutzerdefinierte Testsektion</de>
-            <pl>własne sekcje testu</pl>
-            <cn>自主测试章节</cn>
-            <fr>section de test personnalisée</fr>
-            <bg>персонализирани тестови секции</bg>
-            <nl>aangepaste testsectie</nl>
-            <br>seção de teste personalizada</br>
         </string>
         <string id="85">
             <en>tables</en>
@@ -959,16 +636,6 @@ Note: You can add new languages by inserting "<new_language>string translated in
             <nl>opslaan</nl>
             <br>salvar</br>
         </string>
-        <string id="96">
-            <en>name of the custom section</en>
-            <de>Name der benutzerdefinierten Sektion</de>
-            <pl>nazwa własnej sekcji</pl>
-            <cn>自主章节名称</cn>
-            <fr>nom de la section personnalisée</fr>
-            <bg>име на персонализираната секция</bg>
-            <nl>naam van de aanpasbare testsectie</nl>
-            <br>nome da seção personalizada</br>
-        </string>
         <string id="97">
             <en>description</en>
             <de>Beschreibung</de>
@@ -979,56 +646,6 @@ Note: You can add new languages by inserting "<new_language>string translated in
             <nl>beschrijving</nl>
             <br>descrição</br>
         </string>
-        <string id="99">
-            <en>access rights to this custom section</en>
-            <de>Zugriffsrechte auf diese benutzerdefinierte Testsektion</de>
-            <pl>prawa dostępu dla sekcji własnej</pl>
-            <cn>此自主章节的访问权限</cn>
-            <fr>droits d'accès à cette section personnalisée</fr>
-            <bg>права за достъп до този секция</bg>
-            <nl>toegangsrechten tot deze aanpasbare testsectie</nl>
-            <br>direitos de acesso à esta seção personalizada</br>
-        </string>
-        <string id="100">
-            <en>private</en>
-            <de>privat</de>
-            <pl>prywatne</pl>
-            <cn>未公开</cn>
-            <fr>privé</fr>
-            <bg>личен</bg>
-            <nl>privaat</nl>
-            <br>restrito</br>
-        </string>
-        <string id="101">
-            <en>group</en>
-            <de>Gruppe</de>
-            <pl>grupowe</pl>
-            <cn>群</cn>
-            <fr>groupe</fr>
-            <bg>частен</bg>
-            <nl>groep</nl>
-            <br>grupo</br>
-        </string>
-        <string id="102">
-            <en>public</en>
-            <de>öffentlich</de>
-            <pl>publiczne</pl>
-            <cn>公开</cn>
-            <fr>publique</fr>
-            <bg>публичен</bg>
-            <nl>publiek</nl>
-            <br>público</br>
-        </string>
-        <string id="103">
-            <en>owner of this custom section</en>
-            <de>Besitzer dieser benutzerdefinierten Sektion</de>
-            <pl>własciciel własnej sekcji</pl>
-            <cn>此自主章节所有者</cn>
-            <fr>propriétaire de cette section personnalisée</fr>
-            <bg>собственик на персонализираната секция</bg>
-            <nl>eigenaar van deze aanpasbare testsectie</nl>
-            <br>proprietário desta seção personalizada</br>
-        </string>
         <string id="104" js="1">
             <en>Edit description. Current description:</en>
             <de>Bearbeite Beschreibung. Aktuelle Beschreibung:</de>
@@ -1038,16 +655,6 @@ Note: You can add new languages by inserting "<new_language>string translated in
             <bg>Редактиране на описанието. Настоящо описание:</bg>
             <nl>Bewerken van beschrijving. Huidige beschrijving:</nl>
             <br>Editar descrição. Descrição atual:</br>
-        </string>
-        <string id="105">
-            <en>Define section input parameters.</en>
-            <de>Definiere Eingabeparameter der Sektion. Benutze Variabeln die in der R code Sektion deklariert wurden.</de>
-            <pl>Tutaj możesz zdefiniować parametry wejściowe sekcji. Można używać zmiennych które tutaj zostały zdeklarowane w kodzie R sekcji.</pl>
-            <cn>定义章节输入参数。</cn>
-            <fr>Définir les paramètres d'entrée de la section. utiliser les variables ainsi définies dans le code R de la section.</fr>
-            <bg>Дефиниране на входните параметри. Използване на променливи, декларирани вече в секцията на R кода</bg>
-            <nl>Definieren van sectie input parameters. Gebruik de gedefinieerde variabelen uit de R code van de sectie.</nl>
-            <br>Defina os parâmetros de entrada da seção.</br>
         </string>
         <string id="106">
             <en>parameters</en>
@@ -1098,26 +705,6 @@ Note: You can add new languages by inserting "<new_language>string translated in
             <bg>премахни параметър</bg>
             <nl>parameter verwijderen</nl>
             <br>eliminar parâmetro</br>
-        </string>
-        <string id="111">
-            <en>R code relevant for this custom section. Parameters declared above can be used here.</en>
-            <de>Für diese Sektion relevanter R Code. Parameter die oben deklariert wurden, können hier benutzt werden.</de>
-            <pl>To jest kod R sekcji. Możesz używać w nim parametrów które zdeklarowałeś powyżej.</pl>
-            <cn>此自主章节相关R代码。已声明参数可在此使用。</cn>
-            <fr>code R pertinent à cette section. Les paramètres déclarés ci-dessus peuvent être utilisés ici.</fr>
-            <bg>R код, отнасящ се за тази секция. Параметрите декларирани по-горе, може да бъдат използвани тук</bg>
-            <nl>Relevante R code voor deze aanpasbare sectie. Eerder gedeclareerde parameters kunnen hier gebruikt worden.</nl>
-            <br>Código R pertinente a esta seção personalizada. Os parâmetros declarados acima podem ser utilizado aqui</br>
-        </string>
-        <string id="112">
-            <en>Specify variables in this section to be available for use in other test sections.</en>
-            <de>Variablen angeben aus dieser Sektion, die global verfügbar sein sollen für andere Testsektionen.</de>
-            <pl>Tutaj możesz zdefiniować które zmienne użyte w sekcji chciałbyś przekazać poza sekcję. Zmienne te następnie mogą zostać użyte w innych sekcjach logiki.</pl>
-            <cn>指定此章节内可用于其他章节的变量。</cn>
-            <fr>Spécifier que les variables utilisées dans cette section puissent être disponible globallement, afin qu'elles soient utilisées dans d'autres sections du test.</fr>
-            <bg>Дефинирайте променливите в тази секция, за да могат да бъдат достъпни глобално и да бъдат използвани в другите секции</bg>
-            <nl>Specifieer in deze sectie variabelen die globaal beschikbaar moeten zijn in andere testsecties.</nl>
-            <br>Especifique as variávies desta seção que estarão disponíveis em outras seções do teste.</br>
         </string>
         <string id="113">
             <en>returns</en>
@@ -1189,26 +776,6 @@ Note: You can add new languages by inserting "<new_language>string translated in
             <nl>naam van de tabel</nl>
             <br>nome da tabela</br>
         </string>
-        <string id="120">
-            <en>table access rights</en>
-            <de>Zugriffsrechte auf Tabelle</de>
-            <pl>prawa dostępu tabeli</pl>
-            <cn>表格访问权限</cn>
-            <fr>accès aux droits du tableau</fr>
-            <bg>права за достъп до таблицата</bg>
-            <nl>tabel toegangsrechten</nl>
-            <br>permissões da tabela</br>
-        </string>
-        <string id="121">
-            <en>owner of the table</en>
-            <de>Besitzer der Tabelle</de>
-            <pl>wlaściciel tabeli</pl>
-            <cn>表格所有者</cn>
-            <fr>propriétaire du tableau</fr>
-            <bg>собственик на таблицата</bg>
-            <nl>eigenaar van de tabel</nl>
-            <br>proprietário da tabela</br>
-        </string>
         <string id="122" js="1">
             <en>type</en>
             <de>Typ</de>
@@ -1269,16 +836,6 @@ Note: You can add new languages by inserting "<new_language>string translated in
             <nl>tabel exporteren naar CSV-bestand</nl>
             <br>exportar tabela para um arquivo CSV</br>
         </string>
-        <string id="129">
-            <en>add column</en>
-            <de>füge Spalte hinzu</de>
-            <pl>dodaj kolumnę</pl>
-            <cn>添加列</cn>
-            <fr>ajouter une colonne</fr>
-            <bg>прибави колона</bg>
-            <nl>kolom toevoegen</nl>
-            <br>adicionar coluna</br>
-        </string>
         <string id="130" js="1">
             <en>edit HTML</en>
             <de>bearbeite HTML</de>
@@ -1329,26 +886,6 @@ Note: You can add new languages by inserting "<new_language>string translated in
             <nl>HTML-inhoud van de sjabloon</nl>
             <br>conteúdo do template HTML</br>
         </string>
-        <string id="137">
-            <en>template access rights</en>
-            <de>Zugriffsrechte für Template</de>
-            <pl>prawa dostępu szablonu</pl>
-            <cn>模板访问权限</cn>
-            <fr>droits d'accès du modèle</fr>
-            <bg>права за достъп до шаблона</bg>
-            <nl>sjabloon toegangsrechten</nl>
-            <br>permissões de acesso ao template</br>
-        </string>
-        <string id="138">
-            <en>owner of the template</en>
-            <de>Besitzer des Templates</de>
-            <pl>wlaściciel szablonu</pl>
-            <cn>模板所有者</cn>
-            <fr>propriétaire du modèle</fr>
-            <bg>собственик на шаблона</bg>
-            <nl>eigenaar van de sjabloon</nl>
-            <br>proprietário do tmemplate</br>
-        </string>
         <string id="139">
             <en>editing test</en>
             <de>bearbeite Test</de>
@@ -1379,135 +916,6 @@ Note: You can add new languages by inserting "<new_language>string translated in
             <nl>naam van de test</nl>
             <br>nome do teste</br>
         </string>
-        <string id="142">
-            <en>test access rights</en>
-            <de>Zugriffsrechte für Test</de>
-            <pl>prawa dostępu testu</pl>
-            <cn>测试访问权限</cn>
-            <fr>droits d'accès au test</fr>
-            <bg>права за достъп до теста</bg>
-            <nl>toegangsrechten van de test</nl>
-            <br>permissões de acesso ao teste</br>
-        </string>
-        <string id="143">
-            <en>owner of the test</en>
-            <de>Besitzer des Tests</de>
-            <pl>wlaściciel testu</pl>
-            <cn>测试所有者</cn>
-            <fr>propriétaire du test</fr>
-            <bg>собственик на теста</bg>
-            <nl>eigenaar van de test</nl>
-            <br>proprietário do teste</br>
-        </string>
-        <string id="144">
-            <en>show test variables</en>
-            <de>zeige Test variablen an</de>
-            <pl>pokaż zmienne testu</pl>
-            <cn>显示测试变量</cn>
-            <fr>voir les variables du test</fr>
-            <bg>показване на тестовите променливи</bg>
-            <nl>toon test variabelen</nl>
-            <br>mostrar as variáveis do teste</br>
-        </string>
-        <string id="145">
-            <en>test logic is empty</en>
-            <de>die Testlogik ist leer</de>
-            <pl>logika testu jest pusta</pl>
-            <cn>测试逻辑空白</cn>
-            <fr>la logique du test est vide</fr>
-            <bg>тестовата логика е празна</bg>
-            <nl>de testlogica is leeg</nl>
-            <br>a lógica do teste está vazia</br>
-        </string>
-        <string id="147">
-            <en>basic sections</en>
-            <de>Grundlegende Sektionen</de>
-            <pl>podstawowe sekcje</pl>
-            <cn>基础章节</cn>
-            <fr>sections de base</fr>
-            <bg>основни секции</bg>
-            <nl>basissecties</nl>
-            <br>seções básicas</br>
-        </string>
-        <string id="148">
-            <en>custom sections</en>
-            <de>Benutzerdefinierte Sektionen</de>
-            <pl>własne sekcje</pl>
-            <cn>自主章节</cn>
-            <fr>section personnalisée</fr>
-            <bg>персонализирани секции</bg>
-            <nl>aanpasbare secties</nl>
-            <br>seções personalizadas</br>
-        </string>
-        <string id="149">
-            <en>variable name</en>
-            <de>Variablennamen</de>
-            <pl>nazwa zmiennej</pl>
-            <cn>变量名称</cn>
-            <fr>nom de la variable</fr>
-            <bg>име на променливата</bg>
-            <nl>naam van de variabele</nl>
-            <br>nome da variável</br>
-        </string>
-        <string id="150">
-            <en>section</en>
-            <de>Sektion</de>
-            <pl>sekcja</pl>
-            <cn>章节</cn>
-            <fr>section</fr>
-            <bg>секция</bg>
-            <nl>sectie</nl>
-            <br>seção</br>
-        </string>
-        <string id="151">
-            <en>parameter/return</en>
-            <de>Parameter/Ausgabe</de>
-            <pl>parametr/zwrot</pl>
-            <cn>参数/返回值</cn>
-            <fr>paramètre/retour</fr>
-            <bg>параметър/връщане</bg>
-            <nl>parameter/return</nl>
-            <br>parâmetro/retorno</br>
-        </string>
-        <string id="163">
-            <en>module</en>
-            <de>Modul</de>
-            <pl>moduł</pl>
-            <cn>模块</cn>
-            <fr>module</fr>
-            <bg>модули</bg>
-            <nl>module</nl>
-            <br>Modulo</br>
-        </string>
-        <string id="164">
-            <en>read rights</en>
-            <de>lese Rechte</de>
-            <pl>prawa odczytu</pl>
-            <cn>阅读权限</cn>
-            <fr>groitd de lecture</fr>
-            <bg>права за четене</bg>
-            <nl>toegangsrechten lezen</nl>
-            <br>permissões de leitura</br>
-        </string>
-        <string id="165">
-            <en>write rights</en>
-            <de>schreibe Rechte</de>
-            <pl>prawa zapisu</pl>
-            <cn>书写权限</cn>
-            <bg>права за писане</bg>
-            <nl>toegangsrechten schrijven</nl>
-            <br>permissões de escrita</br>
-        </string>
-        <string id="166">
-            <en>owner change</en>
-            <de>ändere Besitzer</de>
-            <pl>zmiana wlaściciela</pl>
-            <cn>所有者变更</cn>
-            <fr>changement de propriétaire</fr>
-            <bg>смяна на собственика</bg>
-            <nl>eigenaar wijzigen</nl>
-            <br>proprietário da mudança</br>
-        </string>
         <string id="167">
             <en>HTML templates</en>
             <de>HTML Templates</de>
@@ -1517,26 +925,6 @@ Note: You can add new languages by inserting "<new_language>string translated in
             <bg>HTML шаблони</bg>
             <nl>HTML sjablonen</nl>
             <br>template HTML</br>
-        </string>
-        <string id="168">
-            <en>standard</en>
-            <de>standard</de>
-            <pl>standardowe</pl>
-            <cn>标准</cn>
-            <fr>standard</fr>
-            <bg>стандартни</bg>
-            <nl>standaard</nl>
-            <br>padrão</br>
-        </string>
-        <string id="169">
-            <en>all</en>
-            <de>alle</de>
-            <pl>wszystko</pl>
-            <cn>全部</cn>
-            <fr>tout</fr>
-            <bg>всички</bg>
-            <nl>alles</nl>
-            <br>todos</br>
         </string>
         <string id="170">
             <en>editing user</en>
@@ -1725,16 +1113,6 @@ Note: You can add new languages by inserting "<new_language>string translated in
             <nl>Ontwerp en beheer de volledige structuur van elke test.</nl>
             <br>Crie e administre a estrutura completa de cada teste</br>
         </string>
-        <string id="194">
-            <en>Create custom test logic sections to meet the requirements of specific tests.</en>
-            <de>Benutzerdefinierte Testlogiksektionen anlegen um den Anforderungen des spezifischen Tests zu genügen.</de>
-            <pl>W tej zakładce można stworzyć własne sekcje logiki testu i użyc ich w testach.</pl>
-            <cn>创建满足特定测试需求的自主测试章节。</cn>
-            <fr>Créer une section logique personnalisée qui rencontre les prérequis du test</fr>
-            <bg>Създаване на персонализирани секции на логиката на теста, които покриват изискванията на всеки тест</bg>
-            <nl>Ontwerp aangepaste logische testsecties om aan de eisen van specifieke tests te voldoen.</nl>
-            <br>Crie uma seção lógica personalizada que encontre os pré-requisitos do teste</br>
-        </string>
         <string id="195">
             <en>Create and edit HTML templates as they are visible to the test taker.</en>
             <de>Neue HTML Templates anlegen und bestehende verändern (so wie der Testbenutzer Sie sieht).</de>
@@ -1855,44 +1233,6 @@ Note: You can add new languages by inserting "<new_language>string translated in
             <nl>Beschrijving van de te laden HTML-sjabloon</nl>
             <br>Decrição do template HTML selecionado</br>
         </string>
-        <string id="215">
-            <en>value of this variable will be inserted into the HTML template</en>
-            <de>Wert dieser Variable wird in das HTML Template eingefügt</de>
-            <pl>wartość tej zmiennej zostanie osadzona w szablonie HTML</pl>
-            <cn>在HTML模板中插入此变量值</cn>
-            <fr>La valeur de cette variable va être insérée dans le modèle HTML</fr>
-            <bg>стойността на тази променлива ще бъде вмъкната в HTML шаблона</bg>
-            <nl>De waarde van deze variabele wordt ingevoegd in de HTML-sjabloon.</nl>
-            <br>o valor desta variável será inserido no template HTML</br>
-        </string>
-        <string id="216">
-            <en><![CDATA[Time left (in seconds) to submit test item. A value of 0 implies unlimited time. Insert <b>{{TIME_LEFT}}</b> variable into HTML templates to make the timer visible.]]>
-            </en>
-            <de><![CDATA[Zeit (in Sekunden) die bleibt um das Item zu beantworten. Auf 0 setzen für unbeschränkte Zeit. Füge <b>{{TIME_LEFT}}</b> Variable in das HTML Template ein, um die verbleibende Zeit anzuzeigen.]]>
-            </de>
-            <pl><![CDATA[Czas w sekundach jaki użytkownik posiada aby przesłać element. Jeśli wartość jest równa 0 - oznacza to, że czas jest nieograniczony. Można wstawić zmienną <b>{{TIME_LEFT}}</b> do HTML aby wyświetlić odliczanie.]]>
-            </pl>
-            <cn><![CDATA[提交测试项目剩余时间（秒）。数值0表示无时间限制。在HTML模板中插入<b>{{剩余时间}}</b> 变量以显示倒计时。]]>
-            </cn>
-            <fr><![CDATA[Temps restant (en secondes) pour soumettre l'énoncé du test. Une valeur de 0 sous-tend un temps illimité. Insérer la variable <b>{{TIME_LEFT}}</b> dans le modèle HTML afin de rendre le chronomètre visible.]]>
-            </fr>
-            <bg><![CDATA[Оставащо време (в секунди)), за да бъде попълнен тестовия айтем. Стойност 0 означава неограничено време. Вмъкни <b>{{TIME_LEFT}}</b> променлива в HTML шаблона, за да направите този таймер видим.]]>
-            </bg>
-            <nl><![CDATA[Resterende tijd (in seconden) om op een test item te antwoorden. Een waarde van 0 impliceert onberkte tijd. Voeg de variabele <b>{{TIME_LEFT}}</b> in op de HTML-sjabloon om de timer zichtbaar te maken.]]>
-            </nl>
-            <br><![CDATA[Tempo disponível (em segundos) para enviar um teste. O valor 0 implica em tempo ilimitado. Insira a variável <b>{{TIME_LEFT}}</b> no seu template HTML para fazer o tempo ficar visível.]]>
-            </br>
-        </string>
-        <string id="217">
-            <en>this variable type is</en>
-            <de>dieser Variablentyp ist</de>
-            <pl>typem tej zmiennej jest</pl>
-            <cn>此变量类型为</cn>
-            <fr>cette variable est</fr>
-            <bg>видът на тази променлива е</bg>
-            <nl>dit type variabele is</nl>
-            <br>o tipo desta variável é</br>
-        </string>
         <string id="221" js="1">
             <en>not equal</en>
             <de>ungleich</de>
@@ -1972,166 +1312,6 @@ Note: You can add new languages by inserting "<new_language>string translated in
             <bg>ИЛИ</bg>
             <nl>OF</nl>
             <br>OU</br>
-        </string>
-        <string id="229">
-            <en>add condition</en>
-            <de>Bedingung hinzufügen</de>
-            <pl>dodaj warunek</pl>
-            <cn>添加条件</cn>
-            <fr>ajouter une condition</fr>
-            <bg>условие прибави</bg>
-            <nl>conditie toevoegen</nl>
-            <br>adicionar condição</br>
-        </string>
-        <string id="230">
-            <en>remove condition</en>
-            <de>Bedingung entfernen</de>
-            <pl>usuń warunek</pl>
-            <cn>移除条件</cn>
-            <fr>enlever une condition</fr>
-            <bg>условие извади</bg>
-            <nl>conditie verwijderen</nl>
-            <br>remover condição</br>
-        </string>
-        <string id="232" js="1">
-            <en>add test logic section to IF clause</en>
-            <de>Füge Testlogiksektion zu WENN Aussage hinzu.</de>
-            <pl>dodaj sekcję logiki testu do bloku JEŚLI</pl>
-            <cn>为IF语句添加测试逻辑章节</cn>
-            <fr>ajouter une section logique du test à une clause SI</fr>
-            <bg>прибави секцията с тестовата логика към АКО условието</bg>
-            <nl>logische testsectie toevoegen aan ALS clausule</nl>
-            <br>adicionar uma seção lógica do teste à clásula IF</br>
-        </string>
-        <string id="235">
-            <en>from table</en>
-            <de>aus Tabelle</de>
-            <pl>z tabeli</pl>
-            <fr>à partir du tableau</fr>
-            <cn>来自于表格</cn>
-            <bg>от тaблицата</bg>
-            <nl>uit tabel</nl>
-            <br>da tabela</br>
-        </string>
-        <string id="236">
-            <en>by R code</en>
-            <de>durch R Code</de>
-            <pl>poprzez kod R</pl>
-            <cn>通过R代码</cn>
-            <fr>avec un code R</fr>
-            <bg>чрез R кода</bg>
-            <nl>via R code</nl>
-            <br>através de um código R</br>
-        </string>
-        <string id="239">
-            <en>no table selected</en>
-            <de>keine Tabelle ausgewählt</de>
-            <pl>nie wybrano tabeli</pl>
-            <cn>未选择表格</cn>
-            <fr>aucun tableau sélectionné</fr>
-            <bg>не е избрана таблица</bg>
-            <nl>geen tabel geselecteerd</nl>
-            <br>nenhuma tabela selecionada</br>
-        </string>
-        <string id="241">
-            <en>no column selected</en>
-            <de>keine Spalten ausgewählt</de>
-            <pl>nie wybrano kolumny</pl>
-            <cn>未选择列</cn>
-            <fr>aucune colonne sélectionnée</fr>
-            <bg>не са избрани колони</bg>
-            <nl>geen kolom geselecteerd</nl>
-            <br>nenhuma coluna selecionada</br>
-        </string>
-        <string id="242">
-            <en>WHERE</en>
-            <de>WHERE</de>
-            <pl>GDZIE</pl>
-            <cn>当</cn>
-            <fr>où</fr>
-            <bg>КЪДЕ</bg>
-            <nl>WAAR</nl>
-            <br>onde</br>
-        </string>
-        <string id="243">
-            <en>like</en>
-            <de>ähnlich</de>
-            <pl>podobne</pl>
-            <cn>类似于</cn>
-            <fr>comme</fr>
-            <bg>подобно</bg>
-            <nl>zoals</nl>
-            <br>como</br>
-        </string>
-        <string id="244">
-            <en>not like</en>
-            <de>nicht ähnlich</de>
-            <pl>niepodobne</pl>
-            <cn>不类似于</cn>
-            <fr>pas comme</fr>
-            <bg>не е подобно</bg>
-            <nl>niet zoals</nl>
-            <br>não como</br>
-        </string>
-        <string id="245">
-            <en>Test id. Read only variable.</en>
-            <de>Test id. Diese Variable kann nur gelesen werden.</de>
-            <pl>ID testu. Zmienna tylko do odczytu.</pl>
-            <cn>测试id。只读变量。</cn>
-            <fr>ID du test. Variable en lecture seulement.</fr>
-            <bg>ID на теста. Чети само променливите.</bg>
-            <nl>Test id. Dit is een alleen-lezen variabele.</nl>
-            <br>ID do teste. Variável somente leitura</br>
-        </string>
-        <string id="246">
-            <en>Test session id. Read only variable.</en>
-            <de>Testsitzungs id. Diese Variable kann nur gelesen werden.</de>
-            <pl>ID sesji testu. Zmienna tylko do odczytu.</pl>
-            <cn>测试章节id。只读变量。</cn>
-            <fr>ID de la session du test. Variable en lecture seulement.</fr>
-            <bg>ID на теста. Чети само променливите.</bg>
-            <nl>Testsessie id. Dit is een alleen-lezen variabele.</nl>
-            <br>ID da seção do teste. Variável somente leitura</br>
-        </string>
-        <string id="248">
-            <en>insert</en>
-            <de>einfügen</de>
-            <pl>dodaj</pl>
-            <cn>插入</cn>
-            <fr>Rafraîchir</fr>
-            <bg>вмъкни</bg>
-            <nl>invoegen</nl>
-            <br>insira</br>
-        </string>
-        <string id="249">
-            <en>update</en>
-            <de>aktualisieren</de>
-            <pl>zmień</pl>
-            <cn>更新</cn>
-            <fr>Actualiser</fr>
-            <bg>обнови</bg>
-            <nl>update</nl>
-            <br>update</br>
-        </string>
-        <string id="250">
-            <en>delete</en>
-            <de>löschen</de>
-            <pl>usuń</pl>
-            <cn>删除</cn>
-            <fr>supprimer</fr>
-            <bg>изтрий</bg>
-            <nl>verwijderen</nl>
-            <br>delete</br>
-        </string>
-        <string id="253">
-            <en>Select the type of section to be added to the test logic</en>
-            <de>Typ der zu Testlogik hinzuzufügenden Sektion auswählen</de>
-            <pl>wybierz typ sekcji jaką chciałbyś dodać do logiki testu</pl>
-            <cn>选择加入测试逻辑的章节类型</cn>
-            <fr>sélectionner le type de section à être ajouté à la logique du test</fr>
-            <bg>Избери вида на секцията, която да бъде добавена към тестовата логика</bg>
-            <nl>Selecteer het sectietype dat toegevoegd dient te worden aan de testlogica</nl>
-            <br>Selecionar o tipo de seção para ser adicionada a lógica do teste</br>
         </string>
         <string id="254">
             <en>Enter variable description that will be visible to anyone using this section in their test.</en>
@@ -2352,466 +1532,6 @@ Note: You can add new languages by inserting "<new_language>string translated in
             <bg>Не сте влезли</bg>
             <nl>Niet ingelogd</nl>
             <br>Não está logado</br>
-        </string>
-        <string id="283">
-            <en>This is a system variable</en>
-            <de>Dies ist eine Systemvariable</de>
-            <pl>Jest to zmienna systemowa</pl>
-            <cn>这是系统变量</cn>
-            <fr>Ceci est une variable système</fr>
-            <bg>Това е системна променлива</bg>
-            <nl>Dit is een systeemvariabele</nl>
-            <br>Esta é uma variável de sistema</br>
-        </string>
-        <string id="284" js="1">
-            <en>debug</en>
-            <de>debuggen</de>
-            <pl>debug</pl>
-            <cn>调试</cn>
-            <fr>déboguer</fr>
-            <bg>дебъг</bg>
-            <nl>debuggen</nl>
-            <br>debug</br>
-        </string>
-        <string id="285" js="1">
-            <en><![CDATA[Test #{0} - debug <b>(idle)</b>]]>
-            </en>
-            <de><![CDATA[Test #{0} - debug <b>(wartend)</b>]]>
-            </de>
-            <pl><![CDATA[Test #{0} - debug <b>(bezczynny)</b>]]>
-            </pl>
-            <cn><![CDATA[测试 #{0} – 调试 <b>(空转)</b>]]>
-            </cn>
-            <fr><![CDATA[Test #{0} - déboguer <b>(temps mort)</b>]]>
-            </fr>
-            <bg><![CDATA[Тест #{0} - дебъг <b>(празен ход)</b>]]>
-            </bg>
-            <nl><![CDATA[Test #{0} - debuggen <b>(wachtend)</b>]]>
-            </nl>
-            <br><![CDATA[Teste #{0} - debuggen <b>(wachtend)</b>]]>
-            </br>
-        </string>
-        <string id="286" js="1">
-            <en>Test #{0} - debug</en>
-            <de>Test #{0} - debug</de>
-            <pl>Test #{0} - debug</pl>
-            <cn> 测试 #{0} – 调试 </cn>
-            <fr>Test #{0} - déboguer </fr>
-            <bg>Тест #{0} - дебъг</bg>
-            <nl>Test #{0} - debuggen</nl>
-            <br>Teste #{0} - debug</br>
-        </string>
-        <string id="287" js="1">
-            <en>Please ensure that all changes to the test logic have been saved prior to debugging. Unsaved changes will not be considered in the debugging process.</en>
-            <de>Stellen Sie sicher, das alle Veränderungen an der Testlogik vor dem Debuggen gespeichert sind. Ungespeicherte Änderungen werden nicht im Debuggingprozess berücksichtigt.</de>
-            <pl>Proszę pamiętać, że należy zachować bieżącą logikę testu zanim się uruchomi debug. Wszelkie niezapisane zmiany nie bedą brane pod uwagę podczas debuggowania.</pl>
-            <cn>请确认在调试前保存当前测试逻辑的所有修改。未保存的修改将不会被调试。</cn>
-            <fr>assurez-vous que tous les changements à la logique du test ont été sauvegardés. Les changements qui n'ont pas été sauvegardés ne seront pas considérés lors du processus de déboguage</fr>
-            <bg>Проверете дали всички промени в тестовата логика са съхранени преди дебъга. Несъхранените промени няма да повлияят на процеса на дебъг</bg>
-            <nl>Kijk na of alle wijzigingen aan de test logica opgeslagen werden vooraleer te debuggen. Niet-opgeslagen wijzigingen worden niet in rekening genomen tijdens het debugproces.</nl>
-            <br>Por favor assegure-se que todas as modificações na lógica do teste tenham sido salvas antes de debugar. Modificações não salvas não serão consideradas no processo de debug.</br>
-        </string>
-        <string id="288" js="1">
-            <en><![CDATA[Please press the <b>begin</b> button.]]>
-            </en>
-            <de><![CDATA[Bitt den <b>Start</b> Knopf drücken.]]>
-            </de>
-            <pl><![CDATA[Proszę nacisnąć przycisk <b>zacznij</b>.]]>
-            </pl>
-            <cn><![CDATA[请按 <b>开始</b> 键.]]>
-            </cn>
-            <fr><![CDATA[appuyez sur le bouton <b>commencer</b>.]]>
-            </fr>
-            <bg><![CDATA[Моля натиснете бутона <b>старт</b>]]>
-            </bg>
-            <nl><![CDATA[Klik op de <b>begin</b> knop.]]>
-            </nl>
-            <br><![CDATA[Por favor pressione o botão <b>iniciar</b>.]]>
-            </br>
-        </string>
-        <string id="289" js="1">
-            <en><![CDATA[Test #{0} - syntax validation <b>(in progress...)]]>
-            </en>
-            <de><![CDATA[Test #{0} - Syntaxvalidierung <b>(läuft ...)]]>
-            </de>
-            <pl><![CDATA[Test #{0} - walidacja składni <b>(w trakcie...)]]>
-            </pl>
-            <cn><![CDATA[测试 #{0} – 句法验证 <b>(进行中……)]]>
-            </cn>
-            <fr><![CDATA[Test #{0} - validation de la syntaxe <b>(en progrès...)]]>
-            </fr>
-            <bg><![CDATA[Тест #{0} - валидизирането на синтаксиса <b>(в действие...)]]>
-            </bg>
-            <nl><![CDATA[Test #{0} - syntax validatie <b>(bezig...)]]>
-            </nl>
-            <br><![CDATA[Teste #{0} - validação de sintaxe <b>(em progresso...)]]>
-            </br>
-        </string>
-        <string id="290" js="1">
-            <en>Syntax validation</en>
-            <de>Syntaxvalidierung</de>
-            <pl>Walidacja składni</pl>
-            <cn>句法验证</cn>
-            <fr>Validation de la syntaxe</fr>
-            <bg>Валидизация на синтаксиса</bg>
-            <nl>Syntax validatie</nl>
-            <br>Validação de sintaxe</br>
-        </string>
-        <string id="291" js="1">
-            <en><![CDATA[Test section with index #{0} syntax validation: <font style='color:green;'><b>PASSED</b></font>]]>
-            </en>
-            <de><![CDATA[Testsektion  mit Index #{0} Syntaxvalidierung: <font style='color:green;'><b>OK</b></font>]]>
-            </de>
-            <pl><![CDATA[Walidacja składni sekcji testu o indeksie #{0}: <font style='color:green;'><b>POWIODŁA SIĘ</b></font>]]>
-            </pl>
-            <cn><![CDATA[测试章节索引 #{0} 句法验证： < font style='color:green;'><b>通过</b></font>]]>
-            </cn>
-            <fr><![CDATA[Test section with index #{0} validation de la syntaxe: <font style='color:green;'><b>PASSÉE</b></font>]]>
-            </fr>
-            <bg><![CDATA[Валидизация на тестова секция с индекс #{0}: <font style='color:green;'><b>УСПЕШНА</b></font>]]>
-            </bg>
-            <nl><![CDATA[Testsectie met index #{0} syntaxvalidatie: <font style='color:green;'><b>OK</b></font>]]>
-            </nl>
-            <br><![CDATA[Seção de Teste com índex #{0} validação de sintaxe: <font style='color:green;'><b>PASSOU</b></font>]]>
-            </br>
-        </string>
-        <string id="292" js="1">
-            <en><![CDATA[Test section with index #{0} syntax validation: <font style='color:red;'><b>FAILED</b></font>]]>
-            </en>
-            <de><![CDATA[Testsektion mit Index #{0} Syntaxvalidierung: <font style='color:red;'><b>FEHLGESCHLAGEN</b></font>]]>
-            </de>
-            <pl><![CDATA[Walidacja składni sekcji testu o indeksie #{0}: <font style='color:red;'><b>NIE POWIODŁA SIĘ</b></font>]]>
-            </pl>
-            <cn><![CDATA[测试章节索引 #{0} 句法验证： <font style='color:red;'><b>失败</b></font>]]>
-            </cn>
-            <fr><![CDATA[Test section with index #{0} validation de la syntaxe: <font style='color:red;'><b>ÉCHOUÉE</b></font>]]>
-            </fr>
-            <bg><![CDATA[Валидизация на тестова секция с индекс #{0}: <font style='color:green;'><b>НЕУСПЕШНА</b></font>]]>
-            </bg>
-            <nl><![CDATA[Testsectie met index #{0} syntaxvalidatie: <font style='color:red;'><b>GEFAALD</b></font>]]>
-            </nl>
-            <br><![CDATA[Seção de teste com índex #{0} validação de sintaxe: <font style='color:red;'><b>FALHA</b></font>]]>
-            </br>
-        </string>
-        <string id="293" js="1">
-            <en><![CDATA[Test #{0} - syntax validation <b>(finished)</b>]]>
-            </en>
-            <de><![CDATA[Test #{0} - Syntaxvalidierung <b>(abgeschlossen)</b>]]>
-            </de>
-            <pl><![CDATA[Test #{0} - walidacja składni <b>(zakończona)</b>]]>
-            </pl>
-            <cn><![CDATA[测试 #{0} – 句法验证 <b>(完成)</b>]]>
-            </cn>
-            <fr><![CDATA[Test #{0} - validation de la syntaxe <b>(terminée)</b>]]>
-            </fr>
-            <bg><![CDATA[Тест #{0} – валидизацията на синтаксиса <b>(завърши)</b>]]>
-            </bg>
-            <nl><![CDATA[Test #{0} - syntaxvalidatie <b>(voltooid)</b>]]>
-            </nl>
-            <br><![CDATA[Teste #{0} - validação de sintaxe <b>(finalizada)</b>]]>
-            </br>
-        </string>
-        <string id="294" js="1">
-            <en><![CDATA[Syntax validation <font style='color:green;'>PASSED</font>.]]>
-            </en>
-            <de><![CDATA[Syntaxvalidierung <font style='color:green;'>OK</font>.]]>
-            </de>            
-            <pl><![CDATA[Walidacja składni <font style='color:green;'>POMYŚLNA</font>.]]>
-            </pl>
-            <cn><![CDATA[句法验证 <font style='color:green;'>通过</font>.]]>
-            </cn>
-            <fr><![CDATA[Validation de la syntaxe<font style='color:green;'>PASSÉE</font>.]]>
-            </fr>
-            <bg><![CDATA[Валидизацията на синтаксиса <font style='color:green;'>ПРЕМИНАТА</font>.]]>
-            </bg>
-            <nl><![CDATA[Syntaxvalidatie <font style='color:green;'>OK</font>.]]>
-            </nl>
-            <br><![CDATA[Validação de Sintaxe<font style='color:green;'>PASSOU</font>.]]>
-            </br>
-        </string>
-        <string id="295" js="1">
-            <en><![CDATA[Test #{0} - syntax validation <b>(FAILED on section index #{1} - debug HALTED)</b>]]>
-            </en>
-            <de><![CDATA[Test #{0} - Syntaxvalidierung <b>(FEHLGESCHLAGEN bei Sektion mit Index #{1} - debug ANGEHALEN)</b>]]>
-            </de>
-            <pl><![CDATA[Test #{0} - walidacja składni <b>(NIE POWIODŁA SIĘ przy sekcji o indeksie #{1} - debug ZATRZYMANY)</b>]]>
-            </pl>
-            <cn><![CDATA[测试 #{0} – 句法验证 <b>(在章节索引 #{1} 处失败 – 调试中止)</b>]]>
-            </cn>
-            <fr><![CDATA[Test #{0} - Validation de la syntaxe <b>(ÉCHOUÉE pour l'index de la section #{1} - déboguage INTERROMPU)</b>]]>
-            </fr>
-            <bg><![CDATA[Тест #{0} – валидизацията на синтаксиса <b>(НЕУСПЕШНА в индекс на секция #{1} – дебъгът СПРЯН)</b>]]>
-            </bg>
-            <nl><![CDATA[Test #{0} - syntaxvalidatie <b>(GEFAALD bij sectie met index #{1} - debug ONDERBROKEN)</b>]]>
-            </nl>
-            <br><![CDATA[Teste #{0} - validação de sintaxe <b>(FALHOU na seção número #{1} - debug INTERROMPIDO)</b>]]>
-            </br>
-        </string>
-        <string id="296" js="1">
-            <en><![CDATA[Syntax validation <font style='color:red;'><b>FAILED</b></font> on section index #{0} - debug <font style='color:red;'><b>HALTED</b></font>]]>
-            </en>
-            <de><![CDATA[Syntaxvalidierung <font style='color:red;'><b>FEHLGESCHLAGEN</b></font> bei Sektion mit Index #{0} - debug <font style='color:red;'><b>ANGEHALTEN</b></font>]]>
-            </de>
-            <pl><![CDATA[Walidacja składni <font style='color:red;'><b>NIE POWIODŁA SIĘ</b></font> dla sekcji o indeksie #{0} - debug <font style='color:red;'><b>ZATRZYMANY</b></font>]]>
-            </pl>
-            <cn><![CDATA[句法验证 <font style='color:red;'><b>F失败</b></font> 在章节索引 #{0} 处– 调试 <font style='color:red;'><b>中止</b></font>]]>
-            </cn>
-            <fr><![CDATA[Validation de la syntaxe <font style='color:red;'><b>ÉCHOUÉE</b></font> pour l'index de la section #{0} - déboguage <font style='color:red;'><b>HALTED</b></font>]]>
-            </fr>
-            <bg><![CDATA[Валидизацията на синтаксиса <font style='color:red;'><b>НЕУСПЕШНА</b></font> за индекс на секция #{0} - дебъгът <font style='color:red;'><b>СПРЯН</b></font>]]>
-            </bg>
-            <nl><![CDATA[Syntaxvalidatie <font style='color:red;'><b>GEFAALD</b></font> bij sectie met index #{0} - debug <font style='color:red;'><b>ONDERBROKEN</b></font>]]>
-            </nl>
-            <br><![CDATA[Validação de sintaxe <font style='color:red;'><b>FALHOU</b></font> na seção número #{0} - debug <font style='color:red;'><b>INTERROMPIDO</b></font>]]>
-            </br>
-        </string>
-        <string id="297" js="1">
-            <en>Runtime debug</en>
-            <de>Laufzeit debug</de>
-            <pl>Debug na żywo</pl>
-            <cn>运行时间调试</cn>
-            <fr></fr>
-            <bg>дебъг в реално време</bg>
-            <nl>Runtime debug</nl>
-            <br>Runtime debug</br>
-        </string>
-        <string id="298" js="1">
-            <en>Running test #{0}...</en>
-            <de>Lasse Test mit der id #{0} laufen ...</de>
-            <pl>Uruchomienie testu #{0}...</pl>
-            <cn>运行测试#{0}……</cn>
-            <fr>Test en cours d'exécution #{0}...</fr>
-            <bg>Започване на тест #{0}...</bg>
-            <nl>Test #{0} bezig...</nl>
-            <br>Rodando Teste #{0}...</br>
-        </string>
-        <string id="299" js="1">
-            <en><![CDATA[Test #{0} - runtime debug <b>(R code is being interpreted...)</b>]]>
-            </en>
-            <de><![CDATA[Test #{0} - Laufzeit debug <b>(R Code wird interpretiert...)</b>]]>
-            </de>
-            <pl><![CDATA[Test #{0} - debug na żywo <b>(kod R jest interpretowany..)</b>]]>
-            </pl>
-            <cn><![CDATA[测试 #{0} – 运行时间调试 <b>(R代码正在被编译…)</b>]]>
-            </cn>
-            <fr><![CDATA[Test #{0} - Déboguade temps d'exécution <b>(le code R est en train d'être interprété...)</b>]]>
-            </fr>
-            <bg><![CDATA[Тест #{0} - дебъг в реално време <b>(R кодът се интерпретира...)</b>]]>
-            </bg>
-            <nl><![CDATA[Test #{0} - runtime debug <b>(R-code wordt geinterpreteerd...)</b>]]>
-            </nl>
-            <br><![CDATA[TestE #{0} - runtime debug <b>(Código R está sendo interpretado...)</b>]]>
-            </br>
-        </string>
-        <string id="300" js="1">
-            <en>R code is being interpreted...</en>
-            <de>R Code wird interpretiert...</de>
-            <pl>Kod R jest interpretowany...</pl>
-            <cn> R代码正在被编译…</cn>
-            <fr>La réponse du code R a été recue</fr>
-            <bg>R кодът е интерпретиран</bg>
-            <nl>R-code wordt geinterpreteerd</nl>
-            <br>Código R está sendo interpretado...</br>
-        </string>
-        <string id="301" js="1">
-            <en>R code response received.</en>
-            <de>R Code Ausgabe erhalten.</de>
-            <pl>Otrzymano odpowiedź kodu R.</pl>
-            <cn>收到R代码回复。</cn>
-            <fr>La réponse du code R a été recue</fr>
-            <bg>Резултатът от R кода получен</bg>
-            <nl>R-code resultaat ontvangen</nl>
-            <br>Código R recebido</br>
-        </string>
-        <string id="302" js="1">
-            <en><![CDATA[Test #{0}, session #{1} - runtime debug <b>(R logic error - debug HALTED)</b>]]>
-            </en>
-            <de><![CDATA[Test #{0}, session #{1} - Laufzeit debug <b>(R: logischer Fehler - debug ANGEHALTEN)</b>]]>
-            </de>
-            <pl><![CDATA[Test #{0}, sesja #{1} - debug na żywo <b>(błąd w logice R - debug ZATRZYMANY</b>]]>
-            </pl>
-            <cn><![CDATA[测试 #{0}，章节 #{1} – 运行时间调试 <b>(R逻辑错误 – 调试中止)</b>]]>
-            </cn>
-            <fr><![CDATA[Test #{0}, session #{1} - deboguage temps d'exécution <b>(erreur logique R- Déboguage INTERROMPU)</b>]]>
-            </fr>
-            <bg><![CDATA[Тестът #{0}, сесията #{1} - дебъг в реално време <b>(грешка в R логиката - дебъгът СПРЯН)</b>]]>
-            </bg>
-            <nl><![CDATA[Test #{0}, sessie #{1} - runtime debug <b>(logica-fout in R - debug ONDERBROKEN)</b>]]>
-            </nl>
-            <br><![CDATA[Teste #{0}, seção #{1} - runtime debug <b>(erro na lógica R - debug INTERROMPIDO)</b>]]>
-            </br>
-        </string>
-        <string id="303" js="1">
-            <en><![CDATA[R logic <font style='color:red;'><b>error</b></font>. Check R code output for additional info. Debug HALTED.]]>
-            </en>
-            <de><![CDATA[R: logischer <font style='color:red;'><b>Fehler</b></font>. Prüfe R Code Ausgabe für zusätzliche Information. Debug ANGEHALTEN.]]>
-            </de>
-            <pl><![CDATA[<font style='color:red;'><b>Błąd</b></font> w logice R. Prosze sprawdzić wynik kodu R dla dodatkowych informacji. Debug ZATRZYMANY.]]>
-            </pl>
-            <cn><![CDATA[R逻辑 <font style='color:red;'><b>错误</b></font>。更多信息详见R代码输出。调试中止。]]>
-            </cn>
-            <fr><![CDATA[Logique R <font style='color:red;'><b>erreur</b></font>. Vérifier la sortie du code R pour de plus amples inforations. déboguage INTERROMPU.]]>
-            </fr>
-            <bg><![CDATA[R логиката <font style='color:red;'><b>е грешна</b></font>. Проверете резултата от R кода за допълнителна информация. Дебъгът СПРЯН.]]>
-            </bg>
-            <nl><![CDATA[R logica <font style='color:red;'><b>fout</b></font>. Check de output van de R-code voor verdere informatie. Debug ONDERBROKEN.]]>
-            </nl>
-            <br><![CDATA[R logic <font style='color:red;'><b>error</b></font>. Verifique o output do código R para informações adicionais. Debug INTERROMPIDO.]]>
-            </br>
-        </string>
-        <string id="304" js="1">
-            <en><![CDATA[R logic validation <font style='color:green;'><b>PASSED</b></font>.]]>
-            </en>
-            <de><![CDATA[R logische validierung <font style='color:green;'><b>OK</b></font>.]]>
-            </de>
-            <pl><![CDATA[Walidacja logiki R <font style='color:green;'><b>POWIODŁA SIĘ</b></font>.]]>
-            </pl>
-            <cn><![CDATA[R逻辑验证 <font style='color:green;'><b>通过</b></font>.]]>
-            </cn>
-            <fr><![CDATA[Validation de la logique R<font style='color:green;'><b>PASSÉE</b></font>.]]>
-            </fr>
-            <bg><![CDATA[R Валидизацията на логиката <font style='color:green;'><b>УСПЕШНА</b></font>.]]>
-            </bg>
-            <nl><![CDATA[R logica validatie <font style='color:green;'><b>OK</b></font>.]]>
-            </nl>
-            <br><![CDATA[Validação de lógica R <font style='color:green;'><b>PASSOU</b></font>.]]>
-            </br>
-        </string>
-        <string id="305" js="1">
-            <en>current HTML variables</en>
-            <de>aktuelle HTML variablen</de>
-            <pl>obecne zmienne HTML</pl>
-            <cn>当前HTML变量</cn>
-            <fr>valeur</fr>
-            <bg>настоящи HTML променливи</bg>
-            <nl>huidige HTML variabelen</nl>
-            <br>variáveis HTML atuais</br>
-        </string>
-        <string id="306" js="1">
-            <en>value</en>
-            <de>Wert</de>
-            <pl>wartość</pl>
-            <cn>数值</cn>
-            <fr>valeur</fr>
-            <bg>стойност</bg>
-            <nl>waarde</nl>
-            <br>valor</br>
-        </string>
-        <string id="307" js="1">
-            <en><![CDATA[Test #{0}, session #{1} - runtime debug <b><font style='color:green;'>PASSED</font></b>]]>
-            </en>
-            <de><![CDATA[Test #{0}, Sitzung #{1} - Laufzeit debug <b><font style='color:green;'>OK</font></b>]]>
-            </de>
-            <pl><![CDATA[Test #{0}, sesja #{1} - debug na żywo <b><font style='color:green;'>POWIODŁ SIĘ</font></b>]]>
-            </pl>
-            <cn><![CDATA[测试 #{0}，章节 #{1} – 运行时间调试 <b><font style='color:green;'>通过</font></b>]]>
-            </cn>
-            <fr><![CDATA[Test #{0}, session #{1} - déboguage temps d'exécution <b><font style='color:green;'>PASSÉE</font></b>]]>
-            </fr>  
-            <bg><![CDATA[Тестът #{0}, сесията #{1} - дебъгът в реално време <b><font style='color:green;'>УСПЕШЕН</font></b>]]>
-            </bg>
-            <nl><![CDATA[Test #{0}, sessie #{1} - runtime debug <b><font style='color:green;'>OK</font></b>]]>
-            </nl>
-            <br><![CDATA[Teste #{0}, seção #{1} - runtime debug <b><font style='color:green;'>PASSOU</font></b>]]>
-            </br>
-        </string>
-        <string id="308" js="1">
-            <en>End section reached. The test has finished.</en>
-            <de>Endsektion erreicht. Der Test ist zu Ende.</de>
-            <pl>Osiągnieto końcową sekcję. Test został skończony.</pl>
-            <cn>到达结束章节。测试已完成。</cn>
-            <fr>La fin de la section a été atteinte. Le test est terminé.</fr>  
-            <bg>Крайната секция достигната. Тестът е завършен.</bg>
-            <nl>Laatste sectie bereikt. Test beeindigd.</nl>
-            <br>Fim da seção. O teste foi finalizado</br>
-        </string>
-        <string id="309" js="1">
-            <en>Template #{0}</en>
-            <de>Templatee #{0}</de>
-            <pl>Szablon #{0}</pl>
-            <cn>模板#{0}</cn>
-            <fr>Modèle #{0}</fr>  
-            <bg>Шаблон #{0}</bg>
-            <nl>Template #{0}</nl>
-            <br>Template #{0}</br>
-        </string>
-        <string id="310" js="1">
-            <en>Template #{0} loaded ( time limit: {1} ).</en>
-            <de>Template #{0} geladen ( Zeitlimit: {1} ).</de>
-            <pl>Szablon #{0} wczytany ( limit czasu: {1} ).</pl>
-            <cn> 载入模板 #{0} ( 时限： {1} )。</cn>
-            <fr>Illimité #</fr>
-            <bg>Шаблон #{0} зареден ( лимит от време: {1} ).</bg>
-            <nl>Template #{0} geladen ( tijdlimiet: {1} ).</nl>
-            <br>Template #{0} carregado (limite de tempo: {1} ).</br>
-        </string>
-        <string id="311" js="1">
-            <en>unlimited</en>
-            <de>unbeschränkt</de>
-            <pl>nieograniczony</pl>
-            <cn>无限的</cn>
-            <fr>Illimité </fr>
-            <bg>неограничен</bg>
-            <nl>onbeperkt</nl>
-            <br>ilimitado</br>
-        </string>
-        <string id="312" js="1">
-            <en>sec.</en>
-            <de>Sek.</de>
-            <pl>sek.</pl>
-            <cn>秒</cn>
-            <fr>Sec.</fr>
-            <bg>сек.</bg>
-            <nl>sec.</nl>
-            <br>sec.</br>
-        </string>
-        <string id="313" js="1">
-            <en>Awaiting user input...</en>
-            <de>Erwarte Benutzereingabe...</de>
-            <pl>Oczekiwanie na ruch użytkownika...</pl>
-            <cn>等待用户输入…</cn>
-            <fr>En attente d'une saisie par l'utilisateur.</fr>
-            <bg>Очакване за въвеждане на данни...</bg>
-            <nl>Wachtend op input van de gebruiker...</nl>
-            <br>Aguardando entrada de dados do usuário</br>
-        </string>
-        <string id="314" js="1">
-            <en><![CDATA[Test #{0}, session #{1}, template #{2} - runtime debug <b>(template loaded - awaiting user input...)</b>]]>
-            </en>
-            <de><![CDATA[Test #{0}, Sitzung #{1}, Template #{2} - Laufzeit debug <b>(Template geladen - warte auf Benutzereingabe...)</b>]]>
-            </de>
-            <pl><![CDATA[Test #{0}, sesja #{1}, szablon #{2} - debug na żywo <b>(szablon wczytany - oczekiwanie na ruch użytkownika...)</b>]]>
-            </pl>
-            <cn><![CDATA[测试 #{0}，章节 #{1}，模板 #{2} – 运行时间调试 <b>(载入模板 – 等待用户输入……)</b>]]>
-            </cn>
-            <fr><![CDATA[Test #{0}, session #{1}, modèle #{2} - déboguage temps d'exécution <b>(modèle chargé - en attente d'une saisie par l'utilisateur...)</b>]]>
-            </fr>
-            <bg><![CDATA[Тестът #{0}, сесията #{1}, шаблонът #{2} - дебъг в реално време <b>(шаблонът зареден - очакване за въвеждане на данни...)</b>]]>
-            </bg>
-            <nl><![CDATA[Test #{0}, sessie #{1}, template #{2} - runtime debug <b>(template geladen - wachtend op input van de gebruiker...)</b>]]>
-            </nl>
-            <br><![CDATA[Teste #{0}, seção #{1}, template #{2} - runtime debug <b>(template carregado - aguardando entrada do usuário...)</b>]]>
-            </br>
-        </string>
-        <string id="315" js="1">
-            <en>Item submitted. Time limit reached.</en>
-            <de>Item abgeschickt. Zeitlimit erreicht.</de>
-            <pl>Element wysłany. Limit czasowy został osiągnięty.</pl>
-            <cn>提交项目。已到达时限。</cn>
-            <fr></fr>
-            <bg>Айтемът изпратен. Лимитът от време достигнат.</bg>
-            <nl>Item verstuurd. Tijdlimiet bereikt</nl>
-            <br>Item enviado. Limite de tempo atingido.</br>
-        </string>
-        <string id="317" js="1">
-            <en>variables send</en>
-            <de>abgesandte Variablen</de>
-            <pl>wysłane zmienne</pl>
-            <cn>发送变量</cn>
-            <fr>gamme</fr>
-            <bg>променливите изпратени.</bg>
-            <nl>variabelen verzonden</nl>
-            <br>variáveis enviadas</br>
         </string>
         <string id="319" js="1">
             <en>please wait...</en>
@@ -3101,46 +1821,6 @@ Note: You can add new languages by inserting "<new_language>string translated in
             <nl>eindigt met</nl>
             <br>termina com</br>
         </string>
-        <string id="346" js="1">
-            <en>after or equal</en>
-            <de>danach oder gleich</de>
-            <pl>po lub równe</pl>
-            <cn>迟于（包括）</cn>
-            <fr>après ou égal à</fr>
-            <bg>след или равно</bg>
-            <nl>na of gelijk</nl>
-            <br>depois de ou igual à</br>
-        </string>
-        <string id="347" js="1">
-            <en>after</en>
-            <de>danach</de>
-            <pl>po</pl>
-            <cn>迟于</cn>
-            <fr>après</fr>
-            <bg>след</bg>
-            <nl>na</nl>
-            <br>depois</br>
-        </string>
-        <string id="348" js="1">
-            <en>before or equal</en>
-            <de>davor oder gleich</de>
-            <pl>przed lub równe</pl>
-            <cn>早于（包括）</cn>
-            <fr>avant ou égal à</fr>
-            <bg>пред или равно</bg>
-            <nl>voor of gelijk</nl>
-            <br>antes ou igual à</br>
-        </string>
-        <string id="349" js="1">
-            <en>before</en>
-            <de>davor</de>
-            <pl>przed</pl>
-            <cn>早于</cn>
-            <fr>avant</fr>
-            <bg>пред</bg>
-            <nl>voor</nl>
-            <br>antes</br>
-        </string>
         <string id="350">
             <en>table structure definition</en>
             <de>Definition der Tabellenstruktur</de>
@@ -3171,26 +1851,6 @@ Note: You can add new languages by inserting "<new_language>string translated in
             <nl>tabelstructuur niet gedefinieerd</nl>
             <br>estrutura da tabela não definida</br>
         </string>
-        <string id="353" js="1">
-            <en>Cannot save table with undefined structure.</en>
-            <de>Kann Tabelle mit undefinierter Struktur nicht speichern.</de>
-            <pl>Nie można zapisać tabeli, gdyż posiada ona niezdefiniowaną strukturę.</pl>
-            <cn>未定义表格结构，无法保存</cn>
-            <fr>Un tableau dont la structure n'est pas définie ne peut pas être sauvegardé.</fr>
-            <bg>Не може да се съхрани таблица с недефинирана структура.</bg>
-            <nl>Kan tabel met niet-gedefinieerde structuur niet opslaan.</nl>
-            <br>Não é possível salvar a tabela com uma estrutura não defina</br>
-        </string>
-        <string id="358">
-            <en>protected variables</en>
-            <de>geschützte Variablen</de>
-            <pl>chronione zmienne</pl>
-            <cn>保护变量</cn>
-            <fr>Variables protégées</fr>
-            <bg>запазена променлива</bg>
-            <nl>beschermde variabele</nl>
-            <br>variáveis protegidas</br>
-        </string>
         <string id="359">
             <en>test logic</en>
             <de>Testlogik</de>
@@ -3200,26 +1860,6 @@ Note: You can add new languages by inserting "<new_language>string translated in
             <bg>тестова логика</bg>
             <nl>testlogica</nl>
             <br>Lógica do teste</br>
-        </string>
-        <string id="360" js="1">
-            <en>Are you sure you want to delete this protected variable?</en>
-            <de>Sind Sie sicher, dass Sie diese geschützte Variable löschen wollen?</de>
-            <pl>Jesteś pewien, że chcesz usunąć ta chroniona zmienna?</pl>
-            <cn>确认删除此保护变量？</cn>
-            <fr>Êtes-vous certain de vouloir supprimer cette variable protégée?</fr>
-            <bg>Сигурни ли сте, че искате да изтриете тази запазена променлива?</bg>
-            <nl>Bent u zeker dat u deze beschermde variabele wil verwijderen?</nl>
-            <br>Você tem certeza que deseja deletar esta variável protegida?</br>
-        </string>
-        <string id="361" js="1">
-            <en>deleting protected variable</en>
-            <de>lösche geschützte Variable</de>
-            <pl>usuwanie chronionej zmiennej</pl>
-            <cn>删除保护变量</cn>
-            <fr>suppression de la variable protégée</fr>
-            <bg>изтриване на запазена променлива</bg>
-            <nl>beschermde variabele verwijderen</nl>
-            <br>deletando a variável protegida</br>
         </string>
         <string id="362">
             <en>run test</en>
@@ -3291,16 +1931,6 @@ Note: You can add new languages by inserting "<new_language>string translated in
             <nl>Bent u zeker dat de tabel wil leegmaken? Alle rijen zullen verwijderd worden.</nl>
             <br>Você tem certeza que deseja limpar esta tabela? Todas as linhas serão removidas.</br>
         </string>
-        <string id="369">
-            <en>Check this checkbox if you want to release all resources used by test session after executing this section.</en>
-            <pl>Zaznacz ten checkbox jeśli chcesz zwolnić wszystkie zasoby wykorzystywane przez sesję testu po uruchomieniu tej sekcji.</pl>
-            <de></de>
-            <cn>执行此章节后释放本测试场次使用的所有资源。</cn>
-            <fr></fr>
-            <bg></bg>
-            <nl>Selecteer dit vak indien u alle bronnen gebruikt door de testsessie wil vrijgeven na het uitvoeren van deze sectie.</nl>
-            <br>Selecione esta caixa se você deseja liberar todos os recursos usados para esta seção após executar esta seção.</br>
-        </string>
         <string id="370" js="1">
             <en>Version mismatch between imported object and Concerto platform. You can only import objects exported from the same version of Concerto.</en>
             <pl>Wersje importowanego obiektu oraz platformy Concerto się nie zgadzają. Można tylko importować obiekty wyeksportowane z tej samej wersji Concerto.</pl>
@@ -3320,26 +1950,6 @@ Note: You can add new languages by inserting "<new_language>string translated in
             <bg></bg>
             <nl>info</nl>
             <br>info</br>
-        </string>
-        <string id="372">
-            <en>Select the Table you want to use.</en>
-            <de></de>
-            <pl>Wybierz Tabele, która chcesz wczytać.</pl>
-            <cn>选择使用的表格</cn>
-            <fr></fr>
-            <bg></bg>
-            <nl>Selecteer de tabel die u wenst te gebruiken</nl>
-            <br>Selecionar a Tabela que você deseja utilizar</br>
-        </string>
-        <string id="373">
-            <en>Description of selected Table</en>
-            <de></de>
-            <pl>Opis obecnie wybranej Tabeli</pl>
-            <cn>所选表格描述</cn>
-            <fr></fr>
-            <bg></bg>
-            <nl>Beschrijving van de geselecteerde tabel</nl>
-            <br>Descrição da tabela selecionada</br>
         </string>
         <string id="374" js="1">
             <en>download from online library</en>
@@ -3501,140 +2111,6 @@ Note: You can add new languages by inserting "<new_language>string translated in
             <nl>object download mislukt</nl>
             <br>Falha no download do objeto</br>
         </string>
-        <string id="390">
-            <en>show section details</en>
-            <de></de>
-            <pl>pokaż detale sekcji</pl>
-            <cn>显示章节细节</cn>
-            <fr></fr>
-            <bg></bg>
-            <nl>toon sessie details</nl>
-            <br>mostrando detalhes da seção</br>
-        </string>
-        <string id="391" js="1">
-            <en>loop</en>
-            <de></de>
-            <pl>pętla</pl>
-            <cn>循环</cn>
-            <fr></fr>
-            <bg></bg>
-            <nl>loop</nl>
-            <br>loop (laço interativo)</br>
-        </string>
-        <string id="392" js="1">
-            <en>test inclusion</en>
-            <de></de>
-            <pl>włączenie testu</pl>
-            <cn>测试范围</cn>
-            <fr></fr>
-            <bg></bg>
-            <nl>testinhoud</nl>
-            <br>inclusão de teste</br>
-        </string>
-        <string id="393">
-            <en>Includes selected test. Tests cross-dependancies are not recommended.</en>
-            <de></de>
-            <pl>Dołącza wybrany test. Krzyżowe zależności między testami nie są zalecane.</pl>
-            <cn>包括已选测试。不推荐测试交互依赖。</cn>
-            <fr></fr>
-            <bg></bg>
-            <nl>Bevat geselecteerde test. Inter-afhankelijkheden tussen tests zijn niet aanbevolen.</nl>
-            <br>Incluir teste selecionado. Testes com dependências cruzadas não são recomendados</br>
-        </string>
-        <string id="394">
-            <en><![CDATA[Loops executes specific instruction block as long as conditon is met. You can choose from one of the two loops:<ul><li><b>FOR</b>: at the beggining of the loop index variable is declared and value is assigned. Each iteration changes index variable by some value and checks if condition is still met.</li><li><b>WHILE</b>: every iteration checks if condition is still met</li>]]>
-            </en>
-            <de></de>
-            <pl><![CDATA[Pętle wykonują określony blok instrukcji dotąd aż warunek jest spełniony. Można wybrać jedną z dwóch pętli:<ul><li><b>FOR</b>: na początku pętli zadeklarowana jest zmienna indeksu i przypisana jest do niej wartość. Każda iteracja zmienia zmienną indeksu o określoną wartość i sprawdza czy warunek dalej jest spełniony.</li><li><b>WHILE</b>: każda iteracja sprawdza czy warunek jest dalej spełniony</li>]]>
-            </pl>
-            <cn></cn>
-            <fr></fr>
-            <bg></bg>
-            <nl><![CDATA[Loops voert specifiek instructieblok uit zolang conditie voldaan is. U kan kiezen uit een van de twee loops:<ul><li><b>FOR</b>: aan het begin van de loop wordt indexvariabele gedeclareerd en een waarde toegekend. Elke iteratie wijzigt de indexvariabele met een zekere waarde en checkt of de conditie nog steeds voldaan is.</li><li><b>WHILE</b>: elke iteratie checkt of de conditie nog steeds voldaan is</li>]]>
-            </nl>
-            <br><![CDATA[Loops executam instruções específicas em um bloco até que a condição seja atendida. Você podee selecionar um de dois loops:<ul><li><b>FOR</b>: at the beggining of the loop index variable is declared and value is assigned. Each iteration changes index variable by some value and checks if condition is still met.</li><li><b>WHILE</b>: every iteration checks if condition is still met</li>]]>
-            </br>
-        </string>
-        <string id="395">
-            <en>FOR</en>
-            <de></de>
-            <pl>FOR</pl>
-            <cn>FOR</cn>
-            <fr></fr>
-            <bg></bg>
-            <nl>FOR</nl>
-            <br>FOR (PARA) </br>
-        </string>
-        <string id="396">
-            <en>WHILE</en>
-            <de></de>
-            <pl>WHILE</pl>
-            <cn>WHILE</cn>
-            <fr></fr>
-            <bg></bg>
-            <nl>WHILE</nl>
-            <br>WHILE (ENQUANTO)</br>
-        </string>
-        <string id="397">
-            <en>variable</en>
-            <de></de>
-            <pl>zmienna</pl>
-            <cn>变量</cn>
-            <fr></fr>
-            <bg></bg>
-            <nl>variabele</nl>
-            <br>variável</br>
-        </string>
-        <string id="398">
-            <en>condition</en>
-            <de></de>
-            <pl>warunek</pl>
-            <cn>条件</cn>
-            <fr></fr>
-            <bg></bg>
-            <nl>conditie</nl>
-            <br>condição</br>
-        </string>
-        <string id="399">
-            <en>change by</en>
-            <de></de>
-            <pl>zmień o</pl>
-            <cn>递增</cn>
-            <fr></fr>
-            <bg></bg>
-            <nl>wijzigen met</nl>
-            <br>modificado por</br>
-        </string>
-        <string id="400">
-            <en>initial value</en>
-            <de></de>
-            <pl>początkowa wartość</pl>
-            <cn>起始数值</cn>
-            <fr></fr>
-            <bg></bg>
-            <nl>initiele waarde</nl>
-            <br>valor inicial</br>
-        </string>
-        <string id="401" js="1">
-            <en>expand all sections</en>
-            <de></de>
-            <pl>rozwiń wszystkie sekcje</pl>
-            <cn>展开所有章节</cn>
-            <fr></fr>
-            <bg></bg>
-            <nl>maximaliseer alle secties</nl>
-            <br>expandir todas seções</br>
-        </string>
-        <string id="402" js="1">
-            <en>collapse all sections</en>
-            <de></de>
-            <pl>zwiń wszystkie sekcje</pl>
-            <cn>隐藏所有章节</cn>
-            <fr></fr>
-            <bg></bg>
-            <nl>minimaliseer alle secties</nl>
-            <br>minimizar todas as seções</br>
-        </string>
         <string id="403">
             <en>test input/output</en>
             <de></de>
@@ -3644,16 +2120,6 @@ Note: You can add new languages by inserting "<new_language>string translated in
             <bg></bg>
             <nl>test input/output</nl>
             <br>teste input/output</br>
-        </string>
-        <string id="404">
-            <en>test sections</en>
-            <de></de>
-            <pl>sekcje z testem</pl>
-            <cn>测试章节</cn>
-            <fr></fr>
-            <bg></bg>
-            <nl>test secties</nl>
-            <br>seções do teste</br>
         </string>
         <string id="405">
             <en>Define test input parameters.</en>
@@ -3951,66 +2417,6 @@ Note: You can add new languages by inserting "<new_language>string translated in
             <nl>Voer uw wachtwoord in</nl>
             <br>Por favor entre com a sua senha</br>
         </string>
-        <string id="435">
-            <en>select table</en>
-            <de></de>
-            <pl>wybierz tabelę</pl>
-            <cn></cn>
-            <fr></fr>
-            <bg></bg>
-            <nl>tabel selecteren</nl>
-            <br>selecionar a tabela</br>
-        </string>
-        <string id="436">
-            <en>select columns</en>
-            <de></de>
-            <pl>wybierz kolumny</pl>
-            <cn></cn>
-            <fr></fr>
-            <bg></bg>
-            <nl>kolommen selecteren</nl>
-            <br>selecionar colunas</br>
-        </string>
-        <string id="437">
-            <en>where</en>
-            <de></de>
-            <pl>gdzie</pl>
-            <cn></cn>
-            <fr></fr>
-            <bg></bg>
-            <nl>waar</nl>
-            <br>where (onde)</br>
-        </string>
-        <string id="438">
-            <en>additional conditions</en>
-            <de></de>
-            <pl>dodatkowe warunki</pl>
-            <cn></cn>
-            <fr></fr>
-            <bg></bg>
-            <nl>bijkomende condities</nl>
-            <br>condições adicionais</br>
-        </string>
-        <string id="440">
-            <en>set</en>
-            <de></de>
-            <pl>ustaw</pl>
-            <cn></cn>
-            <fr></fr>
-            <bg></bg>
-            <nl>zet</nl>
-            <br>set (seja)</br>
-        </string>
-        <string id="441">
-            <en>if</en>
-            <de></de>
-            <pl>jeśli</pl>
-            <cn></cn>
-            <fr></fr>
-            <bg></bg>
-            <nl>als</nl>
-            <br>if (se)</br>
-        </string>
         <string id="442">
             <en>go to top</en>
             <de></de>
@@ -4039,66 +2445,6 @@ Note: You can add new languages by inserting "<new_language>string translated in
             <fr></fr>
             <bg>Uploaden van bestand mislukt.</bg>
             <br>O processo de upload do arquivo falhou</br>
-        </string>
-        <string id="445" js="1">
-            <en>lower level R code</en>
-            <de></de>
-            <pl>kod R niższego poziomu</pl>
-            <cn></cn>
-            <fr></fr>
-            <bg></bg>
-            <nl>Lager niveau R-code</nl>
-            <br>lower level R code</br>
-        </string>
-        <string id="446">
-            <en>This section represents exact R code that will be passed to R session.</en>
-            <de></de>
-            <pl>Ta sekcja przedstawia dokładny kod R jaki zostanie przekazany do sesji R.</pl>
-            <cn></cn>
-            <fr></fr>
-            <bg></bg>
-            <nl>Deze sectie toont de exacte R-code die doorgestuurd wordt naar de R-sessie.</nl>
-            <br>Esta seção representa o código R que será parasso para a seção do R</br>
-        </string>
-        <string id="447" js="1">
-            <en>Convert section to lower level R code section.</en>
-            <de></de>
-            <pl>Konwersja sekcji na sekcję kodu R niższego poziomu.</pl>
-            <cn></cn>
-            <fr></fr>
-            <bg></bg>
-            <nl>Converteer sectie naar lager niveau R-code sectie.</nl>
-            <br>Converta a seção para uma seção de código R de baixo nível</br>
-        </string>
-        <string id="448" js="1">
-            <en>You need to save the changes that has been made in the test logic to convert any section to lower level R code.</en>
-            <de></de>
-            <pl>Należy najpierw zapisać zamiany jakie zostały wprowadzone do logiki testu zanim będzie można skonwertować jakąkolwiek sekcję do sekcji R niższego poziomu.</pl>
-            <cn></cn>
-            <fr></fr>
-            <bg></bg>
-            <nl>Wijzigingen aan de testlogica dienen opgeslagen te worden, vooraleer een sectie naar lager niveau R-code geconverteerd kan worden.</nl>
-            <br>Você precisa salvar as modificações que foram efetuadas na lógica do teste para converter qualquer seção em código de baixo nível do R</br>
-        </string>
-        <string id="449" js="1">
-            <en>converting to lower level R code</en>
-            <de></de>
-            <pl>konwersja do kodu R niższego poziomu</pl>
-            <cn></cn>
-            <fr></fr>
-            <bg></bg>
-            <nl>converteren naar lager niveau R-code</nl>
-            <br>convertendo para um código R de baixo nível</br>
-        </string>
-        <string id="450" js="1">
-            <en>Are you sure you want to convert this section type to lower level R code section? After doing so you won't be able to revert back. Only saved changes will be converted to lower level R code.</en>
-            <de></de>
-            <pl>Jesteś pewien, że chcesz zmienić typ sekcji do kodu R niższego poziomu? Po tej zmianie nie będzie możliwości powrotu do poprzedniego typu. Tylko zapisane zmiany zostaną przekonwertowane do kodu R niższego poziomu.</pl>
-            <cn></cn>
-            <fr></fr>
-            <bg></bg>
-            <nl>Bent u zeker dat u deze sectietype wil converteren naar lager niveau R-code? Deze actie kan niet ongedaan gemaakt geworden. Alleen opgeslagen wijzingen zullen geconverteerd worden naar lager niveau R-code.</nl>
-            <br>Você tem certeza que você deseja converter este tipo de seção para um código R de baixo nível? Após fazer isto não será possível reverter. Somente as modificações salvas serão convertidas para um código R de baixo nível.</br>
         </string>
         <string id="451">
             <en>forum</en>
@@ -4129,26 +2475,6 @@ Note: You can add new languages by inserting "<new_language>string translated in
             <bg></bg>
             <nl>project homepage</nl>
             <br>homepage do projeto</br>
-        </string>
-        <string id="454" js="1">
-            <en>show variables assignment</en>
-            <de></de>
-            <pl>pokaż przypisanie wartości</pl>
-            <cn></cn>
-            <fr></fr>
-            <bg></bg>
-            <nl>toewijzing variabelen weergeven</nl>
-            <br>mostre as atribuições da variável</br>
-        </string>
-        <string id="455" js="1">
-            <en>hide variables assignment</en>
-            <de></de>
-            <pl>ukryj przypisanie wartości</pl>
-            <cn></cn>
-            <fr></fr>
-            <bg></bg>
-            <nl>toewijzing variabelen verbergen</nl>
-            <br>esconda as atribuições da variável</br>
         </string>
         <string id="456">
             <en>Users from pre v3.6.10 version need to recover their password using 'forgot your password?' link below. If you didn't enter your email at registration phase, then please contact system administrator first.</en>
@@ -4260,36 +2586,6 @@ Note: You can add new languages by inserting "<new_language>string translated in
             <nl></nl>
             <br>Item QTI in código XML</br>
         </string>
-        <string id="467">
-            <en>QTI assessment item access rights</en>
-            <de></de>
-            <pl>prawa dostępu elementu oceny QTI</pl>
-            <cn></cn>
-            <fr></fr>
-            <bg></bg>
-            <nl></nl>
-            <br>Permissões de acesso do item QTI</br>
-        </string>
-        <string id="468">
-            <en>owner of the QTI assessment item</en>
-            <de></de>
-            <pl>wlaściciel elementu oceny QTI</pl>
-            <cn></cn>
-            <fr></fr>
-            <bg></bg>
-            <nl></nl>
-            <br>proprietário do item QTI</br>
-        </string>
-        <string id="469">
-            <en>QTI XML is not yet validated. Press revalidate button.</en>
-            <de></de>
-            <pl>XML QTI nie jest jeszcze zwalidowany. Proszę nacisnąć przycisk rewaliduj.</pl>
-            <cn></cn>
-            <fr></fr>
-            <bg></bg>
-            <nl></nl>
-            <br>XML do item QTI ainda não foi validado. Por favor pressione o botão revalidar.</br>
-        </string>
         <string id="470" js="1">
             <en>QTI XML has been successfuly validated.</en>
             <de></de>
@@ -4400,66 +2696,6 @@ Note: You can add new languages by inserting "<new_language>string translated in
             <nl></nl>
             <br>a classe não existe</br>
         </string>
-        <string id="481" js="1">
-            <en>QTI item initialization</en>
-            <de></de>
-            <pl>inicjalizacja elementu QTI</pl>
-            <cn></cn>
-            <fr></fr>
-            <bg></bg>
-            <nl></nl>
-            <br>Inicialização de item QTI</br>
-        </string>
-        <string id="482" js="1">
-            <en>QTI item response processing</en>
-            <de></de>
-            <pl>przetwarzanie odpowiedzi elementu QTI</pl>
-            <cn></cn>
-            <fr></fr>
-            <bg></bg>
-            <nl></nl>
-            <br>processando resposta ao item QTI</br>
-        </string>
-        <string id="483">
-            <en>This section will initialize QTI item variables and HTML code.</en>
-            <de></de>
-            <pl>Ta sekcja zainicjalizuje zmienne i kod HTML elementu QTI.</pl>
-            <cn></cn>
-            <fr></fr>
-            <bg></bg>
-            <nl></nl>
-            <br>Esta seção irá inicializar variáveis de um item QTI e código HTML.</br>
-        </string>
-        <string id="484">
-            <en>This section will process QTI item response.</en>
-            <de></de>
-            <pl>Ta sekcja przetworzy odpowiedź elementu QTI.</pl>
-            <cn></cn>
-            <fr></fr>
-            <bg></bg>
-            <nl></nl>
-            <br>Esta seção irá processar a resposta ao item QTI.</br>
-        </string>
-        <string id="485">
-            <en>Select QTI item to be initialized.</en>
-            <de></de>
-            <pl>Wybierz element QTI, który chcesz zainicjować.</pl>
-            <cn></cn>
-            <fr></fr>
-            <bg></bg>
-            <nl></nl>
-            <br>Selecioe o item QTI para ser inicializado</br>
-        </string>
-        <string id="486">
-            <en>Description of selected QTI item</en>
-            <de></de>
-            <pl>Opis obecnie wybranego elementu QTI</pl>
-            <cn></cn>
-            <fr></fr>
-            <bg></bg>
-            <nl></nl>
-            <br>Descrição do item QTI selcionado</br>
-        </string>
         <string id="487">
             <en>revalidate</en>
             <de></de>
@@ -4490,16 +2726,6 @@ Note: You can add new languages by inserting "<new_language>string translated in
             <nl></nl>
             <br>Selecione se você deseja manter este teste disponível para todos.</br>
         </string>
-        <string id="490">
-            <en>custom section input/output</en>
-            <de></de>
-            <pl>wejście/wyjście własnej sekcji</pl>
-            <cn></cn>
-            <fr></fr>
-            <bg></bg>
-            <nl></nl>
-            <br>input/output de seção customizada</br>
-        </string>
         <string id="491">
             <en>HTML source code</en>
             <de></de>
@@ -4509,26 +2735,6 @@ Note: You can add new languages by inserting "<new_language>string translated in
             <bg></bg>
             <nl></nl>
             <br>código fonte HTML</br>
-        </string>
-        <string id="492">
-            <en>variables</en>
-            <de></de>
-            <pl>zmienne</pl>
-            <cn></cn>
-            <fr></fr>
-            <bg></bg>
-            <nl></nl>
-            <br>variáveis</br>
-        </string>
-        <string id="493">
-            <en>You can declare variables that are protected and can't be send from user side.</en>
-            <de></de>
-            <pl>Można zadeklarować tutaj zmienne, które są chronione i nie mogą zostać wysłane ze strony użytkownika.</pl>
-            <cn></cn>
-            <fr></fr>
-            <bg></bg>
-            <nl></nl>
-            <br>Você pode declarar variáveis que estão protegidas e não podem ser enviadas do lado do usuário</br>
         </string>
         <string id="494">
             <en>You can declare input and output variables here, which can later be used in variable assignment when the test is nested.</en>
@@ -4549,16 +2755,6 @@ Note: You can add new languages by inserting "<new_language>string translated in
             <bg></bg>
             <nl></nl>
             <br>Você pode declara a lógica do seu teste aqui</br>
-        </string>
-        <string id="496">
-            <en>List of variables declared in test logic.</en>
-            <de></de>
-            <pl>Lista zmiennych zadeklarowanych w logice testu.</pl>
-            <cn></cn>
-            <fr></fr>
-            <bg></bg>
-            <nl></nl>
-            <br>Lista das variáveis declaradas na lógica do teste</br>
         </string>
         <string id="497" js="1">
             <en>Online Library</en>
@@ -4589,16 +2785,6 @@ Note: You can add new languages by inserting "<new_language>string translated in
             <bg></bg>
             <nl></nl>
             <br>Descreva o objeto que você selecionou para o upload para a Biblioteca Online</br>
-        </string>
-        <string id="500">
-            <en>You can declare input and output variables here, which can later be used in variable assignment when the custom section is included in test logic.</en>
-            <de></de>
-            <pl>Można zadeklarować tutaj zmienne wejścia i wyjścia, które później mogą być użyte do przypisania zmiennych gdy sekcja własna jest dołączona do logiki testu.</pl>
-            <cn></cn>
-            <fr></fr>
-            <bg></bg>
-            <nl></nl>
-            <br>Você pode declarar as variáveis de input e output aqui, estas variáveis podem ser utilizadas posteriormente na alocação de variáveis quando uma seção de teste customizada é incluída na lógica do teste.</br>
         </string>
         <string id="501">
             <en>You can declare template HTML presentation properties here.</en>
@@ -4680,16 +2866,6 @@ Note: You can add new languages by inserting "<new_language>string translated in
             <nl></nl>
             <br>Declare as propriedades da coluna</br>
         </string>
-        <string id="509">
-            <en>Set user type priviliges.</en>
-            <de></de>
-            <pl>Ustaw przywileje typu użytkownika.</pl>
-            <cn></cn>
-            <fr></fr>
-            <bg></bg>
-            <nl></nl>
-            <br>Define o tipo de privilégios do usuário</br>
-        </string>
         <string id="510">
             <en>save as new</en>
             <de></de>
@@ -4699,16 +2875,6 @@ Note: You can add new languages by inserting "<new_language>string translated in
             <bg></bg>
             <nl></nl>
             <br>Salvar como</br>
-        </string>
-        <string id="511">
-            <en>duplicate test section</en>
-            <de></de>
-            <pl>duplikuj sekcję testu</pl>
-            <cn></cn>
-            <fr></fr>
-            <bg></bg>
-            <nl></nl>
-            <br>Duplicar a seção do teste</br>
         </string>
         <string id="512">
             <en>check all</en>
@@ -4769,46 +2935,6 @@ Note: You can add new languages by inserting "<new_language>string translated in
             <bg></bg>
             <nl></nl>
             <br>Você tem certeza que deseja deletar os objetos selecionados</br>
-        </string>
-        <string id="518">
-            <en>Select the custom section to be loaded.</en>
-            <de></de>
-            <pl>Wybierz własną sekcję, którą chcesz wczytać.</pl>
-            <cn></cn>
-            <fr></fr>
-            <bg></bg>
-            <nl></nl>
-            <br>Selecionar a seção customizada para ser carregada</br>
-        </string>
-        <string id="519">
-            <en>Description of selected custom section</en>
-            <de></de>
-            <pl>Opis obecnie wybranej własnej sekcji</pl>
-            <cn></cn>
-            <fr></fr>
-            <bg></bg>
-            <nl></nl>
-            <br>Descrição da seção customizada selecionada</br>
-        </string>
-        <string id="520">
-            <en>Select the test to be loaded.</en>
-            <de></de>
-            <pl>Wybierz test, który chcesz wczytać.</pl>
-            <cn></cn>
-            <fr></fr>
-            <bg></bg>
-            <nl></nl>
-            <br>Selecione o teste para ser carregada</br>
-        </string>
-        <string id="521">
-            <en>Description of selected test</en>
-            <de></de>
-            <pl>Opis obecnie wybranego testu</pl>
-            <cn></cn>
-            <fr></fr>
-            <bg></bg>
-            <nl></nl>
-            <br>Descrição do teste selecionado</br>
         </string>
         <string id="522">
             <en>go to related object</en>
@@ -5410,16 +3536,6 @@ Note: You can add new languages by inserting "<new_language>string translated in
             <nl></nl>
             <br>STRING</br>
         </string>
-        <string id="584">
-            <en>SPATIAL</en>
-            <de></de>
-            <pl>PRZESTRZENNY</pl>
-            <cn></cn>
-            <fr></fr>
-            <bg></bg>
-            <nl></nl>
-            <br>SPACIAL</br>
-        </string>
         <string id="585" js="1">
             <en>length/values</en>
             <de></de>
@@ -5492,26 +3608,6 @@ Note: You can add new languages by inserting "<new_language>string translated in
             <bg></bg>
             <nl></nl>
             <br>Selecione se a coluna aceita valores NULL</br>
-        </string>
-        <string id="592" js="1">
-            <en>auto increment</en>
-            <de></de>
-            <pl>auto inkrementacja</pl>
-            <cn></cn>
-            <fr></fr>
-            <bg></bg>
-            <nl></nl>
-            <br>auto incrementar</br>
-        </string>
-        <string id="593">
-            <en>Check if column should be auto incremented.</en>
-            <de></de>
-            <pl>Zaznacz jeśli kolumna ma być auto inkrementowana.</pl>
-            <cn></cn>
-            <fr></fr>
-            <bg></bg>
-            <nl></nl>
-            <br>Selecione se a coluna deve ser auto incrementada</br>
         </string>
         <string id="594" js="1">
             <en>true</en>
@@ -5747,16 +3843,6 @@ Note: You can add new languages by inserting "<new_language>string translated in
             <en>MySQL transaction error: </en>
             <de></de>
             <pl>Błąd transakcji MySQL: </pl>
-            <cn></cn>
-            <fr></fr>
-            <bg></bg>
-            <nl></nl>
-            <br></br>
-        </string>
-        <string id="617" js="1">
-            <en>simulating object save</en>
-            <de></de>
-            <pl>symulowanie zapisu obiektu</pl>
             <cn></cn>
             <fr></fr>
             <bg></bg>

@@ -23,7 +23,7 @@ OModule.inheritance(User);
 User.className="User";
 User.sessionID="";
 User.reloadOnModification=true;
-User.reloadHash="tnd_mainMenu-users";
+User.reloadHash="tnd_mainMenu-User";
 
 User.onBeforeSave=function(isNew){
     if(isNew==null) isNew = false;

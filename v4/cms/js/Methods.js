@@ -547,6 +547,16 @@ Methods.setCodeMirrorFullScreen=function(cm, full) {
     }
     cm.refresh();
 }
+
+Methods.uiBlockModule=function(module,message){
+    Methods.uiBlock("#tnd_mainMenu-"+module, message);
+    Methods.uiBlock(".divFormFloatingBar", "");
+}
+
+Methods.uiUnblockModule=function(module){
+    Methods.uiUnblock("#tnd_mainMenu-"+module);
+    Methods.uiUnblock(".divFormFloatingBar");
+}
     
 Methods.uiBlock=function(selector,message){ 
     if(message==null) message = dictionary["s319"];

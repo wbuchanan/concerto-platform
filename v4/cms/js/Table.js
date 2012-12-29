@@ -738,7 +738,7 @@ Table.uiIniStructureGrid=function(){
             title:' ',
             width:50,
             template:'#if(name!="id"){#<span style="display:inline-block;" class="spanIcon tooltip ui-icon ui-icon-pencil" onclick="'+thisClass.className+'.uiEditColumn($(this))" title="'+dictionary["s19"]+'"></span>'+
-            '<span style="display:inline-block;" class="spanIcon tooltip ui-icon ui-icon-trash" onclick="'+thisClass.className+'.uiRemoveColumn($(this))" title="'+dictionary["s204"]+'"></span>#}#'
+            '<span style="display:inline-block;" class="spanIcon tooltip ui-icon ui-icon-trash" onclick="'+thisClass.className+'.uiRemoveColumn($(this))" title="'+dictionary["s20"]+'"></span>#}#'
         }],
         toolbar:[
         {
