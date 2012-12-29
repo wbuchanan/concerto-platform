@@ -51,10 +51,10 @@ if ($logged_user == null) {
                 <?= Language::string(661) ?>
             </td>
             <td>
-                <button id="btnStopDebug" style="font-size:smaller;" disabled="disabled" onclick="Test.uiStopDebug()"><?= Language::string(662) ?></button>
+                <button id="btnStopDebug" style="font-size:smaller; white-space: nowrap;" disabled="disabled" onclick="Test.uiStopDebug()"><?= Language::string(662) ?></button>
             </td>
             <td>
-                <button id="btnStartDebug" style="font-size: smaller;" onclick="Test.uiStartDebug('<?= Ini::$path_external ?>',<?= $logged_user->id ?>)"><?= Language::string(323) ?></button>
+                <button id="btnStartDebug" style="font-size: smaller; white-space: nowrap;" onclick="Test.uiStartDebug('<?= Ini::$path_external ?>',<?= $logged_user->id ?>)"><?= Language::string(323) ?></button>
             </td>
         </tr>
     </table>
