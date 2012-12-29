@@ -30,7 +30,7 @@ class Ini {
     public static $path_r_exe = "";
     public static $path_r_script = "";
     public static $path_temp = "";
-    public static $version = "4.0.0.0.alpha7";
+    public static $version = "4.0.0.alpha7";
     public static $server_host = "127.0.0.1";
     public static $server_port = "8888";
     public static $path_unix_sock = "";
@@ -47,9 +47,10 @@ class Ini {
     public static $cms_session_keep_alive = true;
     public static $cms_session_keep_alive_interval = 600;
     public static $unix_locale = "";
-    public static $contact_emails = "";
-    public static $forum_url = "";
-    public static $project_homepage_url = "";
+    public static $contact_emails = "pl362@cam.ac.uk,mk583@cam.ac.uk,vm298@cam.ac.uk";
+    public static $forum_url = "http://concerto.e-psychometrics.com/forum/";
+    public static $project_homepage_url = "http://code.google.com/p/concerto-platform/";
+    public static $project_changelog_url = "";
     public static $timezone = "Europe/London";
     public static $mysql_timezone = "+0:00";
     public static $r_users_name_prefix = "concerto_";
@@ -134,9 +135,6 @@ class Ini {
         self::$cms_session_keep_alive = $cms_session_keep_alive;
         self::$cms_session_keep_alive_interval = $cms_session_keep_alive_interval;
         self::$unix_locale = $unix_locale;
-        self::$contact_emails = $contact_emails;
-        self::$forum_url = $forum_url;
-        self::$project_homepage_url = $project_homepage_url;
         self::$timer_tamper_prevention = $timer_tamper_prevention;
         self::$timer_tamper_prevention_tolerance = $timer_tamper_prevention_tolerance;
         self::$timezone = $timezone;
@@ -152,19 +150,6 @@ class Ini {
         self::$db_master_name = $db_master_name;
         self::$db_host = $db_host;
         self::$db_port = $db_port;
-    }
-
-    public static function does_patch_apply($patch_version, $previous_version) {
-        $patch_elems = explode(".", $patch_version);
-        $previous_elems = explode(".", $previous_version);
-
-        if ($previous_elems[0] < $patch_elems[0])
-            return true;
-        if ($previous_elems[0] == $patch_elems[0] && $previous_elems[1] < $patch_elems[1])
-            return true;
-        if ($previous_elems[0] == $patch_elems[0] && $previous_elems[1] == $patch_elems[1] && $previous_elems[2] < $patch_elems[2])
-            return true;
-        return false;
     }
 
     public static function get_user_system_tables() {

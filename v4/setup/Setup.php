@@ -238,6 +238,21 @@ class Setup {
         exec('"' . Ini::$path_r_script . '" -e "library(session)"', $array, $return);
         return json_encode(array("result" => $return, "param" => "session"));
     }
+    
+    public static function does_patch_apply($patch_version, $previous_version) {
+        $patch_elems = explode(".", $patch_version);
+        $previous_elems = explode(".", $previous_version);
+
+        if ($previous_elems[0] < $patch_elems[0])
+            return true;
+        if ($previous_elems[0] == $patch_elems[0] && $previous_elems[1] < $patch_elems[1])
+            return true;
+        if ($previous_elems[0] == $patch_elems[0] && $previous_elems[1] == $patch_elems[1] && $previous_elems[2] < $patch_elems[2])
+            return true;
+        if ($previous_elems[0] == $patch_elems[0] && $previous_elems[1] == $patch_elems[1] && $previous_elems[2] == $patch_elems[2] &&$previous_elems[3] < $patch_elems[3])
+            return true;
+        return false;
+    }
 
     public static function update_db($simulate = false, $only_recalculate_hash = false, $only_create_db = false) {
         require '../Ini.php';
@@ -266,7 +281,7 @@ class Setup {
         $validate_column_names = false;
 
         /*
-          if (Ini::does_patch_apply("3.3.0", $previous_version)) {
+          if (Setup::does_patch_apply("3.3.0", $previous_version)) {
           if ($simulate) {
           array_push($versions_to_update, "3.3.0");
           } else {

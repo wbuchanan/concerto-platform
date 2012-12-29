@@ -361,7 +361,7 @@ class TestSession extends OTable {
 
             if (!is_array($response))
                 $response = array();
-            if (strpos(trim($output), ">") !== 0) {
+            if (strpos(trim($output), ">") !== 0 && strpos(trim($output), "[") !== 0) {
                 $output = "> " . trim($output);
             }
             $response["debug"] = array(

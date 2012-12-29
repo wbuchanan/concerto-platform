@@ -37,6 +37,7 @@ class TestInstance {
     public $is_serialized = false;
     public $is_finished = false;
     public $pending_variables = null;
+    public $debug_code_appended = false;
 
     public function __construct($session_id = 0, $owner_id = 0) {
         $this->TestSession_id = $session_id;
@@ -438,7 +439,7 @@ class TestInstance {
         return null;
     }
 
-    public function run($code, $variables = null) {
+    public function run($code, $variables = null, $reset_responses = true) {
         TestSession::change_db($this->User_id);
 
         $session = TestSession::from_mysql_id($this->TestSession_id);
@@ -485,12 +486,6 @@ class TestInstance {
             }
         }
 
-        if ($session->debug == 1) {
-            $send_code.='
-                concerto$updateState()
-                ';
-        }
-
         if (TestServer::$debug)
             TestServer::log_debug("TestInstance->run() --- Sending " . strlen($send_code) . " data to test instance");
         $this->last_action_time = time();
@@ -508,8 +503,10 @@ class TestInstance {
             $code .= $line . "\n";
         }
         $this->code = $code;
-        $this->response = "";
-        $this->error_response = "";
+        if ($reset_responses) {
+            $this->response = "";
+            $this->error_response = "";
+        }
 
         $bytes = fwrite($this->pipes[0], $code);
 

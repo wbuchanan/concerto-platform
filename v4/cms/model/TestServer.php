@@ -283,6 +283,17 @@ class TestServer {
                             }
                         }
 
+                        TestSession::change_db($this->instances[$k]->User_id);
+                        $session = TestSession::from_mysql_id($this->instances[$k]->TestSession_id);
+                        if ($session->debug == 1 && $session->status == TestSession::TEST_SESSION_STATUS_WAITING && !$this->instances[$k]->debug_code_appended) {
+                            $this->instances[$k]->debug_code_appended = true;
+                            $this->instances[$k]->run('
+                                concerto$updateState()
+                                ', null, false);
+                            continue;
+                        }
+                        $this->instances[$k]->debug_code_appended = false;
+
                         if (!$serialized) {
                             $response = array(
                                 "return" => $this->instances[$k]->code_execution_halted ? 1 : 0

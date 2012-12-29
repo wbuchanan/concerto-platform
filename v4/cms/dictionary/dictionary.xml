@@ -2476,16 +2476,6 @@ Note: You can add new languages by inserting "<new_language>string translated in
             <nl>project homepage</nl>
             <br>homepage do projeto</br>
         </string>
-        <string id="456">
-            <en>Users from pre v3.6.10 version need to recover their password using 'forgot your password?' link below. If you didn't enter your email at registration phase, then please contact system administrator first.</en>
-            <de></de>
-            <pl>Użytkownicy z przed wersji v3.6.10 przywrócić swoje hasło używając link 'zapomniałeś hasła?' poniżej. Jeżeli nie podało się adresu email w czasie rejestracji, należy skontaktować się z administratorem systemu.</pl>
-            <cn></cn>
-            <fr></fr>
-            <bg></bg>
-            <nl>Gebruikers van de pre v3.6.10 versie dienen hun wachtwoord op te halen via de 'wachtwoord vergeten?' link hieronder. Indien u geen e-mailadres opgaf tijdens de registratiefase, gelieve contact op te nemen met de systeembeheerder.</nl>
-            <br>Usuários anteriores a versão v.3.6.10 precisam recuperar suas senhas usando o link 'esqueceu sua senha?' abaixo. Se você não entrou com seu e-mail durante o processo de registro, por favor primeiro contate o administrador do sistema.</br> 
-        </string>
         <string id="457">
             <en>unnamed QTI assessment item</en>
             <de></de>
@@ -3850,9 +3840,9 @@ Note: You can add new languages by inserting "<new_language>string translated in
             <br></br>
         </string>
         <string id="618">
-            <en>For best experience, it is strongly recommended to use the latest browser version available.</en>
+            <en>For best experience, it is strongly recommended to use the latest version available of browser of your choice.</en>
             <de></de>
-            <pl>Mocno zalecane jest używanie najnowszej dostępnej wersji przeglądarki.</pl>
+            <pl>Mocno zalecane jest używanie najnowszej dostępnej wersji preferowanej przeglądarki.</pl>
             <cn></cn>
             <fr></fr>
             <bg></bg>
@@ -4293,6 +4283,16 @@ Note: You can add new languages by inserting "<new_language>string translated in
             <en>stop</en>
             <de></de>
             <pl>stop</pl>
+            <cn></cn>
+            <fr></fr>
+            <bg></bg>
+            <nl></nl>
+            <br></br>
+        </string>
+        <string id="663">
+            <en>changelog</en>
+            <de></de>
+            <pl>changelog</pl>
             <cn></cn>
             <fr></fr>
             <bg></bg>

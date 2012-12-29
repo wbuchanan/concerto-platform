@@ -82,6 +82,7 @@ concerto <- list(
         show = function(templateID,params=list()){
             print(paste("showing template #",templateID,"...",sep=''))
             if(!is.list(params)) stop("'params' must be a list!")
+            print("template params:")
             print(params)
 
             template <- concerto$template$get(templateID)
@@ -249,13 +250,14 @@ concerto <- list(
       fifo_connection <- fifo(concerto$templateFIFOPath,"r",blocking=TRUE)
       response <- readLines(fifo_connection,warn=FALSE)
       closeAllConnections()
-      print(response)
       if(response=="serialize"){
           concerto$serialize()
       } else if(response=="close") {
           stop("close command recieved")
       } else {
           response <- rjson::fromJSON(response)
+          print("response: ")
+          print(response)
       }
       return(response)
     },
