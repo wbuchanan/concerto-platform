@@ -77,7 +77,7 @@ if ($oid != 0) {
     ?>
             Methods.iniTooltips();
             Methods.iniDescriptionTooltips();
-            
+                                    
             $("#divTestResponse").css("height",Methods.winHeight()-100);
             $(".divTestVerticalElement").css("height",((Methods.winHeight()-125)/2)+"px");
             Test.onScroll();

@@ -114,64 +114,23 @@ class Test extends OModule {
         }
     }
 
-    public function export($xml = null, $sub_test = false, $main_test = null) {
-        if ($xml == null) {
-            $xml = new DOMDocument('1.0', 'UTF-8');
+    public function export() {
+        $xml = new DOMDocument('1.0', "UTF-8");
+        $xml->preserveWhiteSpace = false;
+        $xml->formatOutput = true;
 
-            $export = $xml->createElement("export");
-            $export->setAttribute("version", Ini::$version);
-            $xml->appendChild($export);
-            $xpath = new DOMXPath($xml);
-        } else {
-            $xpath = new DOMXPath($xml);
-            $export = $xpath->query("/export");
-            $export = $export->item(0);
-        }
+        $export = $xml->createElement("export");
+        $export->setAttribute("version", Ini::$version);
+        $xml->appendChild($export);
 
-        //append subobjects of test
-        $tests_ids = array();
-        array_push($tests_ids, $this->id);
-        $templates_ids = array();
-        $custom_sections_ids = array();
-        $tables_ids = array();
-        $qtiai_ids = array();
+        $element = $this->to_XML();
+        $obj = $xml->importNode($element, true);
+        $export->appendChild($obj);
 
-        $loader = $this->get_loader_Template();
-        if ($loader != null) {
-            if (!in_array($loader->id, $templates_ids)) {
-                $template = $loader;
-                if ($template != null) {
-                    $present_templates = $xpath->query("/export/Template");
-                    $exists = false;
-                    foreach ($present_templates as $obj) {
-                        if ($template->xml_hash == $obj->getAttribute("xml_hash")) {
-                            $exists = true;
-                            break;
-                        }
-                    }
-                    if (!$exists) {
-
-                        $element = $template->to_XML();
-                        $obj = $xml->importNode($element, true);
-                        $export->appendChild($obj);
-                        array_push($templates_ids, $loader->id);
-                    }
-                }
-            }
-        }
-
-        //FILL
-
-        if (!$sub_test) {
-            $element = $this->to_XML();
-            $obj = $xml->importNode($element, true);
-            $export->appendChild($obj);
-        }
-
-        return ($sub_test ? $xml : $xml->saveXML());
+        return trim($xml->saveXML());
     }
 
-    public function import_XML($xml, $compare = null) {
+    public function import_XML($xml) {
         $xpath = new DOMXPath($xml);
 
         $elements = $xpath->query("/export");
@@ -180,159 +139,53 @@ class Test extends OModule {
                 return json_encode(array("result" => -5));
         }
 
-        if ($compare == null) {
-            $compare = array(
-                "Template" => array(),
-                "Table" => array(),
-                "Test" => array(),
-                "QTIAssessmentItem" => array()
-            );
-        }
-
-        //link templates
-        $logged_user = User::get_logged_user();
-        $elements = $xpath->query("/export/Template");
-        foreach ($elements as $element) {
-            $id = $element->getAttribute("id");
-            $hash = $element->getAttribute("xml_hash");
-            $compare["Template"][$id] = Template::find_xml_hash($hash);
-            if ($compare["Template"][$id] == 0) {
-                $obj = new Template();
-                $lid = $obj->import_XML(Template::convert_to_XML_document($element));
-                $compare["Template"][$id] = $lid;
-            }
-        }
-
-        //link QTI assessment items
-        $logged_user = User::get_logged_user();
-        $elements = $xpath->query("/export/QTIAssessmentItem");
-        foreach ($elements as $element) {
-            $id = $element->getAttribute("id");
-            $hash = $element->getAttribute("xml_hash");
-            $compare["QTIAssessmentItem"][$id] = QTIAssessmentItem::find_xml_hash($hash);
-            if ($compare["QTIAssessmentItem"][$id] == 0) {
-                $obj = new QTIAssessmentItem();
-                $lid = $obj->import_XML(QTIAssessmentItem::convert_to_XML_document($element));
-                $compare["QTIAssessmentItem"][$id] = $lid;
-            }
-        }
-
-        //link tables
-        $elements = $xpath->query("/export/Table");
-        foreach ($elements as $element) {
-            $id = $element->getAttribute("id");
-            $hash = $element->getAttribute("xml_hash");
-            $compare["Table"][$id] = Table::find_xml_hash($hash);
-            if ($compare["Table"][$id] == 0) {
-                $obj = new Table();
-                $lid = $obj->import_XML(Table::convert_to_XML_document($element));
-                $compare["Table"][$id] = $lid;
-            }
-        }
-
-        //link tests
+        $last_result = 0;
         $elements = $xpath->query("/export/Test");
-        for ($i = 0; $i < $elements->length - 1; $i++) {
-            $element = $elements->item($i);
-            $id = $element->getAttribute("id");
-            $hash = $element->getAttribute("xml_hash");
-            if (!isset($compare["Test"][$id]))
-                $compare["Test"][$id] = 0;
-            if ($compare["Test"][$id] == 0) {
-                $obj = new Test();
-                $lid = $obj->import_XML(Test::convert_to_XML_document($element), $compare);
-                $compare["Test"][$id] = $lid;
-            }
-        }
-
-        $elements = $xpath->query("/export/Test");
-        $element = $elements->item($elements->length - 1);
-        $this->xml_hash = $element->getAttribute("xml_hash");
-        $element_id = $element->getAttribute("id");
-        if (isset($compare["Test"][$element_id]) && $compare["Test"][$element_id] != 0)
-            return $compare["Test"][$element_id];
-        $children = $element->childNodes;
-        foreach ($children as $child) {
-            switch ($child->nodeName) {
-                case "name": $this->name = $child->nodeValue;
-                    break;
-                case "description": $this->description = $child->nodeValue;
-                    break;
-                case "open": $this->open = $child->nodeValue;
-                    break;
-                case "loader_Template_id": $this->loader_Template_id = ($child->nodeValue == 0 ? 0 : $compare["Template"][$child->nodeValue]);
-                    break;
-            }
-        }
-
-        $this->id = $this->mysql_save();
-
-        $post = array();
-
-        $post["parameters"] = array();
-        $elements = $xpath->query("/export/Test[@id='" . $element_id . "']/TestVariables/TestVariable");
         foreach ($elements as $element) {
-            $tv = array();
-            $tv["Test_id"] = $element_id;
+            $element_id = $element->getAttribute("id");
+            $this->xml_hash = $element->getAttribute("xml_hash");
             $children = $element->childNodes;
-            $correct = true;
             foreach ($children as $child) {
                 switch ($child->nodeName) {
-                    case "index": $tv["index"] = $child->nodeValue;
+                    case "name": $this->name = $child->nodeValue;
                         break;
-                    case "name": $tv["name"] = $child->nodeValue;
+                    case "description": $this->description = $child->nodeValue;
                         break;
-                    case "description": $tv["description"] = $child->nodeValue;
+                    case "open": $this->open = $child->nodeValue;
                         break;
-                    case "type": {
-                            $tv["type"] = $child->nodeValue;
-                            if ($tv["type"] != 0)
-                                $correct = false;
-                            break;
-                        }
+                    case "loader_Template_id": $this->loader_Template_id = $child->nodeValue;
+                        break;
+                    case "code": $this->code = $child->nodeValue;
+                        break;
                 }
             }
-            if ($correct) {
-                $tv = json_encode($tv);
-                array_push($post['parameters'], $tv);
+            $last_result = $this->mysql_save();
+
+            $elements = $xpath->query("/export/Test[@id='" . $element_id . "']/TestVariables/TestVariable");
+            foreach ($elements as $element) {
+                $tv = new TestVariable();
+                $tv->Test_id = $last_result;
+                $children = $element->childNodes;
+                foreach ($children as $child) {
+                    switch ($child->nodeName) {
+                        case "index": $tv->index = $child->nodeValue;
+                            break;
+                        case "name": $tv->name = $child->nodeValue;
+                            break;
+                        case "description": $tv->description = $child->nodeValue;
+                            break;
+                        case "type": $tv->type = $child->nodeValue;
+                            break;
+                    }
+                }
+                $tv->mysql_save();
             }
         }
 
-        $post["returns"] = array();
-        $elements = $xpath->query("/export/Test[@id='" . $element_id . "']/TestVariables/TestVariable");
-        foreach ($elements as $element) {
-            $tv = array();
-            $tv["Test_id"] = $element_id;
-            $children = $element->childNodes;
-            $correct = true;
-            foreach ($children as $child) {
-                switch ($child->nodeName) {
-                    case "index": $tv["index"] = $child->nodeValue;
-                        break;
-                    case "name": $tv["name"] = $child->nodeValue;
-                        break;
-                    case "description": $tv["description"] = $child->nodeValue;
-                        break;
-                    case "type": {
-                            $tv["type"] = $child->nodeValue;
-                            if ($tv["type"] != 1)
-                                $correct = false;
-                            break;
-                        }
-                }
-            }
-            if ($correct) {
-                $tv = json_encode($tv);
-                array_push($post['returns'], $tv);
-            }
-        }
-
-        //FILL
-
-        return $this->mysql_save_from_post($post);
+        return $last_result;
     }
 
-    public function to_XML() {
+    public function to_XML() { 
         $xml = new DOMDocument();
 
         $element = $xml->createElement("Test");
@@ -348,6 +201,9 @@ class Test extends OModule {
 
         $open = $xml->createElement("open", htmlspecialchars($this->open, ENT_QUOTES, "UTF-8"));
         $element->appendChild($open);
+
+        $code = $xml->createElement("code", htmlspecialchars($this->code, ENT_QUOTES, "UTF-8"));
+        $element->appendChild($code);
 
         $loader_Template_id = $xml->createElement("loader_Template_id", htmlspecialchars($this->loader_Template_id, ENT_QUOTES, "UTF-8"));
         $element->appendChild($loader_Template_id);

@@ -68,8 +68,6 @@ if (!isset($ini)) {
         <script src="lib/CodeMirror/lib/codemirror.js?timestamp=<?= time() ?>"></script>
         <script src="lib/CodeMirror/lib/util/formatting.js?timestamp=<?= time() ?>"></script>
         <script src="lib/CodeMirror/lib/util/matchbrackets.js?timestamp=<?= time() ?>"></script>
-        <script src="lib/CodeMirror/lib/util/searchcursor.js?timestamp=<?= time() ?>"></script>
-        <script src="lib/CodeMirror/lib/util/match-highlighter.js?timestamp=<?= time() ?>"></script>
         <script src="lib/CodeMirror/lib/util/simple-hint.js?timestamp=<?= time() ?>"></script>
         <script src="lib/CodeMirror/mode/htmlmixed/htmlmixed.js?timestamp=<?= time() ?>"></script>
         <script src="lib/CodeMirror/mode/r/r.js?timestamp=<?= time() ?>"></script>

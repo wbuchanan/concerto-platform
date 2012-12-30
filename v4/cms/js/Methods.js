@@ -421,7 +421,6 @@ Methods.iniCodeMirror=function(id,mode,readOnly)
         var no = instance.getCursor(true).line;
         instance.addLineClass(no,"background","codeMirrorActiveLine");
         instance["previousLineHandle"] = instance.getLineHandle(no);
-        instance.matchHighlight("codeMirrorSearchHighlight",3);
     });
     
     //if(maxWidth!=null) $(obj).next().find(".CodeMirror-scroll").css("max-width",maxWidth);

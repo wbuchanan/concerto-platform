@@ -760,8 +760,9 @@ OModule.inheritance=function(obj)
     }
     
     obj.uiEditDescription=function(o){
-        $("#dialog"+CustomSection.className+"TextareaDescription").val(o.val());
-        $("#div"+CustomSection.className+"DialogDescription").dialog({
+        var thisClass = this;
+        $("#dialog"+this.className+"TextareaDescription").val(o.val());
+        $("#div"+this.className+"DialogDescription").dialog({
             title:dictionary["s3"],
             modal:true,
             resizable:false,
@@ -773,8 +774,8 @@ OModule.inheritance=function(obj)
             //$('.ui-widget-overlay').css('position', 'absolute');
             },
             create:function(){
-                var thisDialog = $("#div"+CustomSection.className+"DialogDescription");
-                Methods.iniCKEditor($("#dialog"+CustomSection.className+"TextareaDescription"),function(){
+                var thisDialog = $("#div"+thisClass.className+"DialogDescription");
+                Methods.iniCKEditor($("#dialog"+thisClass.className+"TextareaDescription"),function(){
                     thisDialog.dialog("option","position","center");
                 });
             },
@@ -782,7 +783,7 @@ OModule.inheritance=function(obj)
             {
                 text:dictionary["s38"],
                 click:function(){
-                    o.val(Methods.getCKEditorData($("#dialog"+CustomSection.className+"TextareaDescription")));
+                    o.val(Methods.getCKEditorData($("#dialog"+thisClass.className+"TextareaDescription")));
                     $(this).dialog("close");
                 }
             },
