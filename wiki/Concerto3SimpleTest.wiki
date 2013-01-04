@@ -11,6 +11,9 @@ Note: Concerto is case sensitive. For instance, a variable named “item” and 
 ==Login to Concerto==
 Although Concerto is compatible with all major web browsers, it is best to use Google Chrome to run the Concerto administration panel. Please ensure that you have Concerto v3.0 or higher, preferably the latest version. Go to concerto_installation_path/cms/ and login using your credentials. If you haven't installed Concerto on your server, you can use our demo installation. To create an account or log in to an existing account hosted on our server, go to: [http://concerto.e-psychometrics.com/demo/cms/]
 
+After logging in to Concerto, switch the interface to the SIMPLE mode using the buttons in the top right corner (you will not need advanced functions as for now!):
+
+http://concerto-platform.googlecode.com/files/simple-advanced.JPG
 
 ==Concept==
 
@@ -21,10 +24,6 @@ The test you create will be composed of three HTML Templates:
  
 
 ==Step 1: Create HTML Templates==
-
-
-
-http://concerto-platform.googlecode.com/files/simple-advanced.JPG
 
 ===Introduction template===
  * _Create a template:_ Click the “HTML templates” tab on the upper left side of the page. Click the ‘+ add new object’ icon below the “list of available objects”. Enter a unique name for the template (E.g. “introduction”) and click ‘save’ at the right bottom corner of the page.  
