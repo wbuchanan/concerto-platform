@@ -21,6 +21,11 @@ The test you create will be composed of three HTML Templates:
  
 
 ==Step 1: Create HTML Templates==
+
+
+
+http://concerto-platform.googlecode.com/files/simple-advanced.JPG
+
 ===Introduction template===
  * _Create a template:_ Click the “HTML templates” tab on the upper left side of the page. Click the ‘+ add new object’ icon below the “list of available objects”. Enter a unique name for the template (E.g. “introduction”) and click ‘save’ at the right bottom corner of the page.  
  * _Add suitable text:_ Type in a welcome message and instructions for the participants. 
