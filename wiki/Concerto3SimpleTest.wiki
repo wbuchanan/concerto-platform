@@ -56,7 +56,7 @@ http://cambridgepsychometrics.com/~vaishali/v3.7/Aug08Simple/feedback.JPG
 
 Go to the ‘tables’ tab (next to HTML templates). 
  * _Add a new table:_ Click the ‘+ add new object’ icon below the “list of available objects” button. Assign a name (e.g. “simple_test_table”) and save it.
- * _Add columns:_ Click the ‘+ add’ icon located in the 'table structure definition'. Enter the column name (“question”) and select ‘string’ as the data type. Click ‘+ add’. Add a second column (“answer”) consisting of 'integer' data and a third column (“item_id”), also consisting of 'integer' data.
+ * _Add columns:_ Click the ‘+ add’ icon located in the 'table structure definition'. Enter the column name (“question”) and select ‘text’ as the data type. Click ‘+ add’. Add a second column (“answer”) consisting of 'numeric' data and a third column (“item_id”), also consisting of 'numeric' data.
 _Your item bank is nearly done. Now you need to fill the table with the items in your test. The items should be structured such that they can be answered with yes/no options, as in your “items” template._
  * _Add rows:_ Click the ‘+ add’ icon in the 'table data' section (located below the table structure definition). The new row will always appear on top of the current table. Now, you can directly type in your items and corresponding answers by clicking within the relevant data cell.
 Note: In your Items template, you have assigned 0 to a radio button described as “No” and 1 to a radio button described as “Yes”. Thus, if “yes” is the correct answer to your question – put 1 in the Answer column. If “no” is the correct answer to your question, put 0 in the Answer column. Fill item_id with consecutive numbers starting from 1. The item_id will be used to present one item after another in the correct order.
@@ -69,9 +69,9 @@ http://cambridgepsychometrics.com/~vaishali/v3.7/Aug08Simple/table.JPG
 
 ==Step 3: Creating a table to store user responses==
 As in the previous step, create a table with three columns to store the data. Go back to the “list of available objects” under the ‘tables’ tab and click ‘+ add new object’. Assign a name to it (such as ‘user_responses’) and save it. Add three columns to the table and select the corresponding data types as shown below:
-* _SessionID_: integer; to store the test session ID (unique value assigned to each test session, so that multiple sessions taken by the same participant can be identified from each other.)
- * _Name_: string; to store the name the participant enters.
- * _Total_score_: integer; to store the participants’ scores.
+* _SessionID_: numeric; to store the test session ID (unique value assigned to each test session, so that multiple sessions taken by the same participant can be identified from each other.)
+ * _Name_: text; to store the name the participant enters.
+ * _Total_score_: numeric; to store the participants’ scores.
 
 At this moment, the table is empty without any rows of data. Don't forget to save the table!
 
