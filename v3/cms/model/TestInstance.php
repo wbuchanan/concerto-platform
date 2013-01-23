@@ -238,6 +238,11 @@ class TestInstance {
             $result .= $error;
             $this->code_execution_halted = true;
             $this->is_chunked_ready = true;
+
+            if (TestServer::$debug) {
+                TestServer::log_debug("TestInstance->read_chunked() --- Fatal test exception encountered on #" . $this->session_id . ": ");
+                TestServer::log_debug("\n" . $error . "\n", false);
+            }
         }
 
         $this->response.=$result;
@@ -335,6 +340,11 @@ class TestInstance {
             $result .= $error;
             $this->code_execution_halted = true;
             $this->is_data_ready = true;
+
+            if (TestServer::$debug) {
+                TestServer::log_debug("TestInstance->read() --- Fatal test exception encountered on #" . $this->session_id . ": ");
+                TestServer::log_debug("\n" . $error . "\n", false);
+            }
         }
 
         $this->response.=$result;
