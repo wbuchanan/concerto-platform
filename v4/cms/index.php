@@ -34,23 +34,23 @@ if (!isset($ini)) {
         <title>Concerto Platform</title>
         <link rel="stylesheet" href="css/styles.css?timestamp=<?= time() ?>" />
         <link rel="stylesheet" href="../css/QTI.css?timestamp=<?= time() ?>" />
-        <link rel="stylesheet" href="css/jQueryUI/cupertino/jquery-ui-1.9.2.custom.min.css?timestamp=<?= time() ?>" />
+        <link rel="stylesheet" href="css/jQueryUI/cupertino/jquery-ui-1.9.2.custom.min.css" />
 
-        <link rel="stylesheet" href="js/lib/selectmenu/jquery.ui.selectmenu.css?timestamp=<?= time() ?>" />
-        <link rel="stylesheet" href="js/lib/kendo-ui/styles/kendo.common.min.css?timestamp=<?= time() ?>" />
-        <link rel="stylesheet" href="js/lib/kendo-ui/styles/kendo.default.min.css?timestamp=<?= time() ?>" />
-        <link rel="stylesheet" href="lib/CodeMirror/lib/codemirror.css?timestamp=<?= time() ?>" />
-        <link rel="stylesheet" href="lib/CodeMirror/theme/neat.css?timestamp=<?= time() ?>" />
-        <link rel="stylesheet" href="lib/CodeMirror/lib/util/simple-hint.css?timestamp=<?= time() ?>" />
+        <link rel="stylesheet" href="js/lib/selectmenu/jquery.ui.selectmenu.css" />
+        <link rel="stylesheet" href="js/lib/kendo-ui/styles/kendo.common.min.css" />
+        <link rel="stylesheet" href="js/lib/kendo-ui/styles/kendo.default.min.css" />
+        <link rel="stylesheet" href="lib/CodeMirror/lib/codemirror.css" />
+        <link rel="stylesheet" href="lib/CodeMirror/theme/neat.css" />
+        <link rel="stylesheet" href="lib/CodeMirror/lib/util/simple-hint.css" />
 
-        <script type="text/javascript" src="js/lib/jquery-1.8.3.min.js?timestamp=<?= time() ?>"></script>
-        <script type="text/javascript" src="js/lib/jquery-ui-1.9.2.custom.min.js?timestamp=<?= time() ?>"></script>
-        <script type="text/javascript" src="js/lib/selectmenu/jquery.ui.selectmenu.js?timestamp=<?= time() ?>"></script>
-        <script type="text/javascript" src="js/lib/jquery.json-2.3.min.js?timestamp=<?= time() ?>"></script>
-        <script type="text/javascript" src="js/lib/jsSHA/src/sha512.js?timestamp=<?= time() ?>"></script>
-        <script type="text/javascript" src="js/lib/jquery.blockUI.js?timestamp=<?= time() ?>"></script>
+        <script type="text/javascript" src="js/lib/jquery-1.8.3.min.js"></script>
+        <script type="text/javascript" src="js/lib/jquery-ui-1.9.2.custom.min.js"></script>
+        <script type="text/javascript" src="js/lib/selectmenu/jquery.ui.selectmenu.js"></script>
+        <script type="text/javascript" src="js/lib/jquery.json-2.3.min.js"></script>
+        <script type="text/javascript" src="js/lib/jsSHA/src/sha512.js"></script>
+        <script type="text/javascript" src="js/lib/jquery.blockUI.js"></script>
 
-        <script src="../js/lib/jquery.cookie.js?timestamp=<?= time() ?>"></script>
+        <script src="../js/lib/jquery.cookie.js"></script>
         <script src="../js/Compatibility.js?timestamp=<?= time() ?>"></script>
         <script src="../js/Concerto.js?timestamp=<?= time() ?>"></script>
         <script src="../js/QTI.js?timestamp=<?= time() ?>"></script>
@@ -62,28 +62,28 @@ if (!isset($ini)) {
         <script src="js/Table.js?timestamp=<?= time() ?>"></script>
         <script src="js/Test.js?timestamp=<?= time() ?>"></script>
         <script src="js/QTIAssessmentItem.js?timestamp=<?= time() ?>"></script>
-        <script src="lib/ckeditor/ckeditor.js?timestamp=<?= time() ?>"></script>
-        <script src="lib/ckeditor/adapters/jquery.js?timestamp=<?= time() ?>"></script>
+        <script src="lib/ckeditor/ckeditor.js"></script>
+        <script src="lib/ckeditor/adapters/jquery.js"></script>
         
-        <script src="lib/CodeMirror/lib/codemirror.js?timestamp=<?= time() ?>"></script>
-        <script src="lib/CodeMirror/lib/util/formatting.js?timestamp=<?= time() ?>"></script>
-        <script src="lib/CodeMirror/lib/util/matchbrackets.js?timestamp=<?= time() ?>"></script>
-        <script src="lib/CodeMirror/lib/util/simple-hint.js?timestamp=<?= time() ?>"></script>
-        <script src="lib/CodeMirror/mode/htmlmixed/htmlmixed.js?timestamp=<?= time() ?>"></script>
-        <script src="lib/CodeMirror/mode/r/r.js?timestamp=<?= time() ?>"></script>
-        <script src="lib/CodeMirror/mode/xml/xml.js?timestamp=<?= time() ?>"></script>
-        <script src="lib/CodeMirror/mode/javascript/javascript.js?timestamp=<?= time() ?>"></script>
-        <script src="lib/CodeMirror/mode/css/css.js?timestamp=<?= time() ?>"></script>
+        <script src="lib/CodeMirror/lib/codemirror.js"></script>
+        <script src="lib/CodeMirror/lib/util/formatting.js"></script>
+        <script src="lib/CodeMirror/lib/util/matchbrackets.js"></script>
+        <script src="lib/CodeMirror/lib/util/simple-hint.js"></script>
+        <script src="lib/CodeMirror/mode/htmlmixed/htmlmixed.js"></script>
+        <script src="lib/CodeMirror/mode/r/r.js"></script>
+        <script src="lib/CodeMirror/mode/xml/xml.js"></script>
+        <script src="lib/CodeMirror/mode/javascript/javascript.js"></script>
+        <script src="lib/CodeMirror/mode/css/css.js"></script>
         
-        <script src="js/lib/jquery-ui-dialog-ckeditor-patch.js?timestamp=<?= time() ?>"></script>
-        <script src="js/lib/fileupload/jquery.iframe-transport.js?timestamp=<?= time() ?>"></script>
-        <script src="js/lib/fileupload/jquery.fileupload.js?timestamp=<?= time() ?>"></script>
-        <script src="lib/jfeed/build/dist/jquery.jfeed.js?timestamp=<?= time() ?>"></script>
+        <script src="js/lib/jquery-ui-dialog-ckeditor-patch.js"></script>
+        <script src="js/lib/fileupload/jquery.iframe-transport.js"></script>
+        <script src="js/lib/fileupload/jquery.fileupload.js"></script>
+        <script src="lib/jfeed/build/dist/jquery.jfeed.js"></script>
 
         <script>User.sessionID='<?= session_id(); ?>';</script>
         <?= Language::load_js_dictionary() ?>
-        <script type="text/javascript" src="js/lib/kendo-ui/js/kendo.web.min.js?timestamp=<?= time() ?>"></script>
-        <script type="text/javascript" src="js/lib/kendo-ui/js/cultures/kendo.culture.<?= Language::get_kendo_culture() ?>.min.js?timestamp=<?= time() ?>"></script>
+        <script type="text/javascript" src="js/lib/kendo-ui/js/kendo.web.min.js"></script>
+        <script type="text/javascript" src="js/lib/kendo-ui/js/cultures/kendo.culture.<?= Language::get_kendo_culture() ?>.min.js"></script>
         <script type="text/javascript">
             kendo.culture("<?= Language::get_kendo_culture() ?>");
         </script>

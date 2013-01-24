@@ -373,8 +373,95 @@ Methods.getTempID=function()
     return User.sessionID+"_"+time;
 };
 
-Methods.iniCodeMirror=function(id,mode,readOnly)
+Methods.codeMirrorAutocompleteWidget=null;
+Methods.iniAutoCompleteCodeMirror=function(mode,instance){
+    switch(mode){
+        case "r":{
+            var breakChar = [
+            '"',
+            "'",
+            "(",
+            ")",
+            "[",
+            "]",
+            "{",
+            "}",
+            " ",
+            "-",
+            "+",
+            "*",
+            "/",
+            "!",
+            "%",
+            "|",
+            "^",
+            "&",
+            "=",
+            ","
+            ];
+            
+            var cursor = instance.getCursor();
+            var funcName = "";
+            var ch = cursor.ch-1;
+            while(ch>=0){
+                var firstChar = instance.getRange({
+                    line:cursor.line,
+                    ch:ch
+                },{
+                    line:cursor.line,
+                    ch:ch+1
+                });
+                if(breakChar.indexOf(firstChar)!=-1){
+                    break;
+                }
+                funcName = instance.getRange({
+                    line:cursor.line,
+                    ch:ch
+                },cursor);
+                ch--;
+            }
+            if(funcName.length>0){
+                var obj = $("<div id='divCodeAutocomplete' style='z-index:3;'><select size='5' id='selectCodeAutocomplete' style='min-width:100px;' class='ui-widget-content ui-corner-all'></select></div>")[0];
+                Methods.codeMirrorAutocompleteWidget = instance.addWidget(cursor,obj,false);
+                Methods.uiBlock("#divCodeAutocomplete");
+                $.post("query/r_autocomplete.php",{
+                    string: funcName
+                },function(data){
+                    for(var i=0;i<data.names.length;i++){
+                        var name = data.names[i];
+                        var pack = data.packages[i];
+                        
+                        $("#selectCodeAutocomplete").append("<option value='"+name+"'>"+name+"</option>");
+                    }
+                    Methods.uiUnblock("#divCodeAutocomplete");
+                    var code =null;
+                    $("#selectCodeAutocomplete").blur(function(){
+                        $("#divCodeAutocomplete").remove()
+                    });
+                    $("#selectCodeAutocomplete").keydown(function(e) {
+                        code= (e.keyCode ? e.keyCode : e.which);
+                        //enter
+                        if (code == 13) {
+                            instance.replaceRange($("#selectCodeAutocomplete").val(),{line:cursor.line,ch:ch+1},instance.getCursor());
+                            $("#selectCodeAutocomplete").blur();
+                            instance.focus();
+                        }
+                        //escape
+                        if (code == 27) {
+                            $("#selectCodeAutocomplete").blur();
+                            instance.focus();
+                        }
+                    });
+                    $("#selectCodeAutocomplete").focus();
+                },"json");
+            }
+            break;
+        }
+    }
+}
+Methods.iniCodeMirror=function(id,mode,readOnly,autocomplete)
 {
+    if(autocomplete == null) autocomplete = false;
     var obj = null;
     if (id.substring) {
         obj = document.getElementById(id);
@@ -406,6 +493,10 @@ Methods.iniCodeMirror=function(id,mode,readOnly)
                 }
                 instance.autoFormatRange(range.from, range.to);
                 instance.autoIndentRange(range.from, range.to);
+            },
+            "Ctrl-Space":function(instance){
+                if(!autocomplete) return;
+                Methods.iniAutoCompleteCodeMirror(mode, instance);
             }
         }
     });

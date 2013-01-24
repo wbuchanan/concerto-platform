@@ -474,7 +474,7 @@ Test.uiStopDebug=function(){
     Test.debugStopped = true;
     
     Test.logicCodeMirror.toTextArea();
-    Test.logicCodeMirror = Methods.iniCodeMirror("textareaTestLogic", "r", false);
+    Test.logicCodeMirror = Methods.iniCodeMirror("textareaTestLogic", "r", false, true);
     $("#btnStartDebug").button("enable");
     $("#btnStopDebug").button("disable");
 }

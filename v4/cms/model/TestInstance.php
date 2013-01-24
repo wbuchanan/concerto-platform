@@ -404,6 +404,11 @@ class TestInstance {
                 $error.="
                 TIMEOUT
                 ";
+            
+            if (TestServer::$debug) {
+                TestServer::log_debug("TestInstance->read() --- Fatal test exception encountered on #" . $this->session_id . ": ");
+                TestServer::log_debug("\n" . $error . "\n", false);
+            }
         }
 
         $this->response.=$result;

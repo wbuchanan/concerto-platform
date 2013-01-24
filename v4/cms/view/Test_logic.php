@@ -31,7 +31,7 @@ if ($logged_user == null) {
 
 <script>
     $(function(){
-        Test.logicCodeMirror = Methods.iniCodeMirror("textareaTestLogic", "r", false);
+        Test.logicCodeMirror = Methods.iniCodeMirror("textareaTestLogic", "r", false,true);
     });
 </script>
 
