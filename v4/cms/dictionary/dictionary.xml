@@ -4299,5 +4299,15 @@ Note: You can add new languages by inserting "<new_language>string translated in
             <nl></nl>
             <br></br>
         </string>
+        <string id="664" js="1">
+            <en>no function selected</en>
+            <de></de>
+            <pl>nie wybrano funkcji</pl>
+            <cn></cn>
+            <fr></fr>
+            <bg></bg>
+            <nl></nl>
+            <br></br>
+        </string>
     </strings>
 </root> 
