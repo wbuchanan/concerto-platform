@@ -34,22 +34,18 @@ $path = Ini::$path_temp . session_id() . ".Rcd";
 $code = "
 library(tools)
 library(rjson)
+unlink('$path')
+fileConn<-file('$path',open='a')
 result = list(title=NULL,usage=NULL)
 
-db <- Rd_db('".$_POST['pack']."')
+db <- Rd_db('" . $_POST['pack'] . "')
 for(doc in db){
     aliases <- tools:::.Rd_get_metadata(x=doc,kind='alias')
-    if('".$_POST['func']."' %in% aliases) {
-        result".'$'."title <- tools:::.Rd_get_metadata(x=doc,kind='title')
-        result".'$'."usage <- paste(tools:::.Rd_get_metadata(doc,'usage'),collapse='<br/>')
+    if('" . $_POST['func'] . "' %in% aliases) {
+        tools::Rd2HTML(doc,out=fileConn)
         break
     }
 }
-
-result <- toJSON(result)
-
-fileConn<-file('$path')
-writeLines(result, fileConn)
 close(fileConn)
 ";
 
@@ -61,7 +57,9 @@ $rscript_path = Ini::$path_r_script;
 
 `$rscript_path $path`;
 
-$result = file_get_contents($path);
+$html = file_get_contents($path);
+
+$result = json_encode(array("html" => $html));
 
 if (file_exists($path))
     unlink($path);

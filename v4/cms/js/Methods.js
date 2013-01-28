@@ -383,6 +383,11 @@ Methods.getFuncDoc=function(func,pack){
     }
     return null;
 }
+Methods.getDocContent=function(html){
+    html = html.substr(html.indexOf("<body>")+6);
+    html = html.replace("</body></html>","");
+    return html;
+}
 Methods.iniAutoCompleteCodeMirror=function(mode,instance){
     switch(mode){
         case "r":{
@@ -430,7 +435,7 @@ Methods.iniAutoCompleteCodeMirror=function(mode,instance){
                 ch--;
             }
             if(funcName.length>0){
-                var obj = $("<div id='divCodeAutocomplete' style='position:absolute;'><table><tr><td valign='top'><select size='5' id='selectCodeAutocomplete' style='min-width:100px;' class='ui-widget-content ui-corner-all'></select></td><td><div id='divCodeAutocompleteDoc' style='min-width:300px;' class='ui-widget-content ui-state-highlight'>"+dictionary["s664"]+"</td></tr></table></div>");
+                var obj = $("<div id='divCodeAutocomplete' style='position:absolute; z-index:3;'><table><tr><td valign='top'><select size='5' id='selectCodeAutocomplete' style='min-width:100px;' class='ui-widget-content ui-corner-all'></select></td><td><div id='divCodeAutocompleteDoc' style='min-width:300px; padding:10px;' class='ui-widget-content'>"+dictionary["s664"]+"</td></tr></table></div>");
                 var pos = instance.cursorCoords(false,"page");
                 $("body").append(obj);
                 obj.css("top",pos.top);
@@ -440,6 +445,7 @@ Methods.iniAutoCompleteCodeMirror=function(mode,instance){
                     string: funcName
                 },function(data){
                     if(data.names!=null){
+                        var currPack = null;
                         for(var i=0;i<data.names.length;i++){
                             var name = "";
                             var pack = "";
@@ -450,8 +456,12 @@ Methods.iniAutoCompleteCodeMirror=function(mode,instance){
                                 name = data.names[i];
                                 pack = data.packages[i];
                             }
-                        
-                            $("#selectCodeAutocomplete").append("<option value='"+name+"' pack='"+pack+"'>"+name+"</option>");
+                            
+                            if(currPack==null || currPack.attr("label")!=pack){
+                                currPack = $("<optgroup label='"+pack+"' />");
+                                $("#selectCodeAutocomplete").append(currPack);
+                            }
+                            currPack.append("<option value='"+name+"' pack='"+pack+"'>"+name+"</option>");
                             if(!Array.isArray(data.names)) break;
                         }
                         
@@ -473,17 +483,16 @@ Methods.iniAutoCompleteCodeMirror=function(mode,instance){
                                         Methods.autoCompleteDocs.push({
                                             func:option.attr("value"),
                                             pack:option.attr("pack"),
-                                            title:data.title,
-                                            usage:data.usage
+                                            html:data.html
                                         });
                                     
-                                        $("#divCodeAutocompleteDoc").html("<div id='divCodeAutocompleteDocHeader' style='font-weight:bold; margin-bottom:10px;'>"+data.title+"</div><div id='divCodeAutocompleteDocUsage'>"+data.usage+"</div>");
+                                        $("#divCodeAutocompleteDoc").html(Methods.getDocContent(data.html));
                                         Methods.documentationLoaderIsWorking = false;
                                         $("#selectCodeAutocomplete").change();
                                     },"json");
                                 }
                             } else {
-                                $("#divCodeAutocompleteDoc").html("<div id='divCodeAutocompleteDocHeader' style='font-weight:bold; margin-bottom:10px;'>"+doc.title+"</div><div id='divCodeAutocompleteDocUsage'>"+doc.usage+"</div>");
+                                $("#divCodeAutocompleteDoc").html(Methods.getDocContent(doc.html));
                             }
                         });
                         $("#selectCodeAutocomplete").blur(function(){
@@ -493,12 +502,14 @@ Methods.iniAutoCompleteCodeMirror=function(mode,instance){
                             code= (e.keyCode ? e.keyCode : e.which);
                             //enter
                             if (code == 13) {
-                                instance.replaceRange($("#selectCodeAutocomplete").val(),{
+                                instance.replaceRange($("#selectCodeAutocomplete").val()+"()",{
                                     line:cursor.line,
                                     ch:ch+1
                                 },instance.getCursor());
                                 $("#selectCodeAutocomplete").blur();
                                 instance.focus();
+                                e.preventDefault();
+                                instance.setCursor({line:instance.getCursor().line,ch:instance.getCursor().ch-1})
                             }
                             //escape
                             if (code == 27) {
