@@ -344,7 +344,7 @@ Test.currentToLine = -1;
 Test.debugInitializeTest = function(uid){
     //initialzing
     Test.uiChangeDebugStatus(dictionary["s655"]);
-    test = new Concerto($(Test.debugWindow.document).find("#divTestContainer"),uid,null,null,Test.currentID,"../query/",
+    test = new Test.debugWindow.Concerto($(Test.debugWindow.document).find("#divTestContainer"),uid,null,null,Test.currentID,"../query/",
         function(data){
             if(Test.debugStopped) return;
             switch(parseInt(data.data.STATUS)){

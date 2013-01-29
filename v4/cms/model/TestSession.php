@@ -310,12 +310,10 @@ class TestSession extends OTable {
                         break;
                     }
                 case TestSession::TEST_SESSION_STATUS_TEMPLATE: {
+                        $head = Template::from_mysql_id($Template_id)->head;
                         if ($debug) {
                             if ($release)
                                 TestSession::unregister($thisSession->User_id . "-" . $thisSession->id);
-                        }
-                        else {
-                            $head = Template::from_mysql_id($Template_id)->head;
                         }
                         break;
                     }
