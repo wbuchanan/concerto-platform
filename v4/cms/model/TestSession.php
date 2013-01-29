@@ -364,12 +364,21 @@ class TestSession extends OTable {
             if (strpos(trim($output), ">") !== 0 && strpos(trim($output), "[") !== 0) {
                 $output = "> " . trim($output);
             }
-            $response["debug"] = array(
-                "return" => $return,
-                "output" => nl2br(htmlspecialchars($output, ENT_QUOTES)),
-                "error_output" => nl2br(htmlspecialchars($error_output, ENT_QUOTES)),
-                "state" => nl2br($state)
-            );
+
+            if ($debug) {
+                $state = json_decode($state, true);
+                foreach ($state as $k => $v) {
+                    $state[$k] = htmlspecialchars($v, ENT_QUOTES);
+                }
+                $state = json_encode($state);
+
+                $response["debug"] = array(
+                    "return" => $return,
+                    "output" => nl2br(htmlspecialchars($output, ENT_QUOTES)),
+                    "error_output" => nl2br(htmlspecialchars($error_output, ENT_QUOTES)),
+                    "state" => nl2br($state)
+                );
+            }
         }
 
         if (Ini::$timer_tamper_prevention && !$removed) {

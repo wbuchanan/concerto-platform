@@ -383,6 +383,17 @@ Test.debugInitializeTest = function(uid){
                     Test.uiChangeDebugStatus(dictionary["s658"],"ui-state-error");
                     break;
                 }
+                case Concerto.statusTypes.completed:{
+                    Test.debugAppendOutput(data.debug.output);
+                    Test.debugAppendOutput("<br />");
+                    Test.debugAppendOutput(data.debug.error_output);
+                    Test.uiAddOutputLineWidget(Test.currentToLine,data.debug.output);
+                    Test.debugSetState(data.debug.state);
+                    
+                    Test.uiChangeDebugStatus(dictionary["s656"]);
+                    Test.debugCloseTestWindow();
+                    break;
+                }
                 case Concerto.statusTypes.error:{
                     Test.uiChangeDebugStatus(dictionary["s659"].format(Test.currentFromLine+1),"ui-state-error");   
                     Test.debugAppendOutput(data.debug.output);
@@ -422,7 +433,7 @@ Test.debugSetState=function(state){
     var html = "<table style='margin-top:10px;'>";
     for(var k in obj){
         if(k=="concerto") continue;
-        html+="<tr><td class='tdStateLabel' valign='top'>"+k+": </td><td class='tdStateValue' valign='top'>"+obj[k]+"</td></tr>";
+        html+="<tr><td class='tdStateLabel' valign='top'>"+k+": </td><td class='tdStateValue' valign='top' style='word-break: break-all;'>"+obj[k]+"</td></tr>";
     }
     html+="</table>";
     $("#divTestSessionStateContent").html(html);
@@ -452,7 +463,18 @@ Test.debugRunNextLine=function(){
     },{
         line:Test.currentToLine,
         ch:Test.logicCodeMirror.getLine(Test.currentToLine).length
-    })
+    });
+    
+    var code = Test.debugGetCurrentCode();
+    if(code.trim()=="" || (code.length>0 && code.indexOf("#")==0)) {
+        if(Test.debugIsCurrentLineLast()){
+            Test.uiChangeDebugStatus(dictionary["s656"]);
+            Test.debugCloseTestWindow();
+        } else {
+            Test.debugRunNextLine();
+        }
+        return;
+    }
     test.run(null,null,Test.debugGetCurrentCode());
 }
 

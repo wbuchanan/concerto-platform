@@ -33,20 +33,18 @@ $path = Ini::$path_temp . session_id() . ".Rc";
 
 $code = "
 library(rjson)
-index <- 1
 result = list(names=c(),packages=c())
-for(package in search()){
+for(package in sort(search())){
     
     if(grepl('package:',x=package,fixed=T)) {
+        functions <- lsf.str(package,pattern='^" . $_POST['string'] . "')
         package <- gsub('package:','',x=package,fixed=T)
-        functions <- lsf.str(index,pattern='^" . $_POST['string'] . "')
         
         for(func in functions){
             result".'$'."names = c(result".'$'."names,func)
             result".'$'."packages = c(result".'$'."packages,package)
         }
     }
-    index <- index + 1
 }
 
 result <- toJSON(result)

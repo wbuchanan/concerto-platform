@@ -47,8 +47,8 @@ concerto <- list(
 
         closeAllConnections()
 
-        concerto$updateStatus(3)
         concerto$updateAllReturnVariables()
+        concerto$updateStatus(3)
         dbDisconnect(concerto$db$connection)
     },
 
@@ -161,7 +161,7 @@ concerto <- list(
 
             eval(parse(text=test[1,"code"]))
 
-            return <- ls()
+            return <- list()
             for(ret in test$returnVariables){
                 if(exists(ret)) return[[ret]] <- get(ret)
             }

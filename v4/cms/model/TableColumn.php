@@ -52,7 +52,7 @@ class TableColumn {
     }
 
     public function get_definition() {
-        $def = mysql_real_escape_string($this->type) . " " . mysql_real_escape_string($this->extra) . " " . ($this->null ? "NULL" : "NOT NULL") . " ";
+        $def = $this->type . " " . mysql_real_escape_string($this->extra) . " " . ($this->null ? "NULL" : "NOT NULL") . " ";
         if ($this->default !== null) {
             if ($this->default != "")
                 $def.="DEFAULT '" . mysql_real_escape_string($this->default) . "'";

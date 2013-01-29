@@ -169,7 +169,7 @@ Table.getSerializedCrudUpdated=function(collection){
                 var data = grid.dataSource.data();
     
                 for(var i=0;i<data.length;i++){
-                    if(Table.crudIndexesUpdated.indexOf(data[i].id)!=-1 || data[i].id==null){
+                    if(Table.crudDataUpdated.indexOf(data[i].id)!=-1 || data[i].id==null){
                         row.push(data[i]);
                     }
                 }

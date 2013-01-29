@@ -75,7 +75,7 @@ OModule.inheritance=function(obj)
     
         var found = false;
         for(var i=0;i<collection.length;i++){
-            if(collection.length[i]==id){
+            if(collection[i]==id){
                 found = true;
                 break;
             }
