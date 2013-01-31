@@ -79,7 +79,7 @@ concerto <- list(
     ),
 
     template = list(
-        show = function(templateID,params=list()){
+        show = function(templateID,params=list(),finalize=F){
             print(paste("showing template #",templateID,"...",sep=''))
             if(!is.list(params)) stop("'params' must be a list!")
             print("template params:")
@@ -90,6 +90,11 @@ concerto <- list(
             concerto$updateTemplateID(templateID)
 
             concerto$updateHTML(concerto$template$fillHTML(template[1,"HTML"],params))
+            
+            if(finalize){
+                concerto$updateAllReturnVariables()
+                concerto$updateRelease(1)
+            }
             concerto$updateStatus(2)
             
             return(concerto$interpretResponse())
@@ -217,6 +222,13 @@ concerto <- list(
         sessionID <- dbEscapeStrings(concerto$db$connection,toString(concerto$sessionID))
         status <- dbEscapeStrings(concerto$db$connection,toString(status))
         dbSendQuery(concerto$db$connection, statement = sprintf("UPDATE `%s`.`TestSession` SET `status` = '%s' WHERE `id`=%s",dbName,status,sessionID))
+    },
+
+    updateRelease = function(release) {
+        dbName <- dbEscapeStrings(concerto$db$connection,concerto$db$name)
+        sessionID <- dbEscapeStrings(concerto$db$connection,toString(concerto$sessionID))
+        release <- dbEscapeStrings(concerto$db$connection,toString(release))
+        dbSendQuery(concerto$db$connection, statement = sprintf("UPDATE `%s`.`TestSession` SET `release` = '%s' WHERE `id`=%s",dbName,release,sessionID))
     },
 
     updateState = function() {

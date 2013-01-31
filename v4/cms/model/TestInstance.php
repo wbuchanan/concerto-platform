@@ -339,6 +339,12 @@ class TestInstance {
                 $this->is_data_ready = true;
                 if (TestServer::$debug)
                     TestServer::log_debug("TestInstance->read() --- Template instance recognized.");
+
+                if ($session->release == 1) {
+                    $this->is_finished = true;
+                    if (TestServer::$debug)
+                        TestServer::log_debug("TestInstance->read() --- Final template instance recognized.");
+                }
             }
 
             //QTI initialization
@@ -404,7 +410,7 @@ class TestInstance {
                 $error.="
                 TIMEOUT
                 ";
-            
+
             if (TestServer::$debug) {
                 TestServer::log_debug("TestInstance->read() --- Fatal test exception encountered on #" . $this->TestSession_id . ": ");
                 TestServer::log_debug("\n" . $error . "\n", false);

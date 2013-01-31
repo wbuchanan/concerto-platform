@@ -312,8 +312,10 @@ class TestSession extends OTable {
                 case TestSession::TEST_SESSION_STATUS_TEMPLATE: {
                         $head = Template::from_mysql_id($Template_id)->head;
                         if ($debug) {
-                            if ($release)
+                            if ($release){
                                 TestSession::unregister($thisSession->User_id . "-" . $thisSession->id);
+                                $removed = true;
+                            }
                         }
                         break;
                     }
@@ -446,7 +448,7 @@ class TestSession extends OTable {
 
                 if ($btn_name != null) {
                     if ($values != null) {
-                        $val["LAST_PRESSED_BUTTON_NAME"] = $btn_name;
+                        $values["LAST_PRESSED_BUTTON_NAME"] = $btn_name;
                     }
                 }
 

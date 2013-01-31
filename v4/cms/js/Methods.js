@@ -435,7 +435,7 @@ Methods.iniAutoCompleteCodeMirror=function(mode,instance){
                 ch--;
             }
             if(funcName.length>0){
-                var obj = $("<div id='divCodeAutocomplete' style='position:absolute; z-index:3;'><table><tr><td valign='top'><select size='5' id='selectCodeAutocomplete' style='min-width:100px;' class='ui-widget-content ui-corner-all'></select></td><td><div id='divCodeAutocompleteDoc' style='min-width:300px; padding:10px;' class='ui-widget-content'>"+dictionary["s664"]+"</td></tr></table></div>");
+                var obj = $("<div id='divCodeAutocomplete' style='position:absolute; z-index:9999;'><table><tr><td valign='top'><select size='5' id='selectCodeAutocomplete' style='min-width:100px;' class='ui-widget-content ui-corner-all'></select></td><td><div id='divCodeAutocompleteDoc' style='min-width:300px; padding:10px;' class='ui-widget-content'>"+dictionary["s664"]+"</td></tr></table></div>");
                 var pos = instance.cursorCoords(false,"page");
                 $("body").append(obj);
                 obj.css("top",pos.top);
