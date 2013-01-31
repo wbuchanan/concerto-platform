@@ -468,7 +468,8 @@ class TestSession extends OTable {
             CONCERTO_DB_PASSWORD <- '%s'
             CONCERTO_DB_NAME <- '%s'
             %s
-            ", $this->Test_id, $this->id, $db_host, ($db_port != "" ? $db_port : "3306"), $db_user, $db_password, $db_name, ($path_mysql_home != "" ? "Sys.setenv('MYSQL_HOME'='" . $path_mysql_home . "')" : ""));
+            CONCERTO_DB_TIMEZONE <- '%s'
+            ", $this->Test_id, $this->id, $db_host, ($db_port != "" ? $db_port : "3306"), $db_user, $db_password, $db_name, ($path_mysql_home != "" ? "Sys.setenv('MYSQL_HOME'='" . $path_mysql_home . "')" : ""), Ini::$mysql_timezone);
         $code .= "CONCERTO_TEMP_PATH <- '" . $path . "'
             source('" . Ini::$path_internal . "lib/R/mainmethods.R" . "')
             source('" . Ini::$path_internal . "lib/R/QTI.R" . "')
