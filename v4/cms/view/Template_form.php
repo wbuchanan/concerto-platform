@@ -137,7 +137,7 @@ if ($oid != 0) {
                     </tr>
                 </table>
             </legend>
-            <table>
+            <table class="fullWidth">
                 <tr class="<?= User::view_class() ?>">
                     <td class="noWrap horizontalPadding tdFormLabel"><?= Language::string(407) ?>:</td>
                     <td><span class="tooltip spanIcon ui-icon ui-icon-help" title="<?= Language::string(408) ?>"></span></td>

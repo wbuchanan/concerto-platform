@@ -123,7 +123,6 @@ ul {
 
 .grid {
     min-width:800px;
-    max-width:900px;
 }
 
 
@@ -219,7 +218,7 @@ ul {
 }
 
 .divTestVerticalElement {
-    width:466px; 
+    width:100%; 
     padding:0px;
     overflow-y:scroll;
 }

@@ -92,14 +92,14 @@ if ($obj == null)
         </table>
     </div>
 
-    <div class="divFormElement" style="width:100%; height:auto;">
+    <div class="divFormElement" style="width:100%;height:auto;">
         <table class="fullWidth">
             <tr>
                 <td class="noWrap tdFormLabel"><?= Language::string(97) ?>:</td>
                 <td class="tdFormIcon"><span class="tooltip spanIcon ui-icon ui-icon-help" title="<?= Language::string(377) ?>"></span></td>
                 <td>
                     <div class="divFormContent" align="center">
-                        <textarea id="textareaDialogUploadDescription" name="textareaDialogUploadDescription" class="ui-widget-content ui-corner-all"><?= $obj->description ?></textarea>
+                        <textarea style="width:500px;" id="textareaDialogUploadDescription" name="textareaDialogUploadDescription" class="ui-widget-content ui-corner-all"><?= $obj->description ?></textarea>
                     </div>
                 </td>
             </tr>

@@ -89,9 +89,9 @@ if (Ini::$cms_session_keep_alive) {
 ?>
     });
 </script>
-<div class="table" align="center" style="width: 970px;"><?php include Ini::$path_internal . 'cms/view/includes/header.inc.php'; ?></div>
+<div align="center" style="min-width: 970px;"><?php include Ini::$path_internal . 'cms/view/includes/header.inc.php'; ?></div>
 
-<div align="center" class="" style="width: 970px;" >
+<div align="center" class="" style="min-width: 970px;" >
     <div id="tnd_mainMenu">
         <ul>
             <li><a href="#tnd_mainMenu-Test" class="tooltipTabs" title="<?= Language::string(193) ?>"><?= Language::string(88) ?></a></li>
