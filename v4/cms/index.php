@@ -34,17 +34,18 @@ if (!isset($ini)) {
         <title>Concerto Platform</title>
         <link rel="stylesheet" href="css/styles.css?timestamp=<?= time() ?>" />
         <link rel="stylesheet" href="../css/QTI.css?timestamp=<?= time() ?>" />
-        <link rel="stylesheet" href="css/jQueryUI/cupertino/jquery-ui-1.9.2.custom.min.css" />
+        <link rel="stylesheet" href="css/jQueryUI/cupertino/jquery-ui-1.10.0.custom.min.css" />
 
         <link rel="stylesheet" href="js/lib/selectmenu/jquery.ui.selectmenu.css" />
         <link rel="stylesheet" href="js/lib/kendo-ui/styles/kendo.common.min.css" />
         <link rel="stylesheet" href="js/lib/kendo-ui/styles/kendo.default.min.css" />
         <link rel="stylesheet" href="lib/CodeMirror/lib/codemirror.css" />
         <link rel="stylesheet" href="lib/CodeMirror/theme/neat.css" />
-        <link rel="stylesheet" href="lib/CodeMirror/lib/util/simple-hint.css" />
+        <link rel="stylesheet" href="lib/CodeMirror/addon/hint/simple-hint.css" />
 
-        <script type="text/javascript" src="js/lib/jquery-1.8.3.min.js"></script>
-        <script type="text/javascript" src="js/lib/jquery-ui-1.9.2.custom.min.js"></script>
+        <script type="text/javascript" src="js/lib/jquery-1.9.0.min.js"></script>
+        <script type="text/javascript" src="js/lib/jquery-migrate-1.1.0.min.js"></script>
+        <script type="text/javascript" src="js/lib/jquery-ui-1.10.0.custom.min.js"></script>
         <script type="text/javascript" src="js/lib/selectmenu/jquery.ui.selectmenu.js"></script>
         <script type="text/javascript" src="js/lib/jquery.json-2.3.min.js"></script>
         <script type="text/javascript" src="js/lib/jsSHA/src/sha512.js"></script>
@@ -66,9 +67,9 @@ if (!isset($ini)) {
         <script src="lib/ckeditor/adapters/jquery.js"></script>
         
         <script src="lib/CodeMirror/lib/codemirror.js"></script>
-        <script src="lib/CodeMirror/lib/util/formatting.js"></script>
-        <script src="lib/CodeMirror/lib/util/matchbrackets.js"></script>
-        <script src="lib/CodeMirror/lib/util/simple-hint.js"></script>
+        <script src="lib/CodeMirror/addon/format/formatting.js"></script>
+        <script src="lib/CodeMirror/addon/edit/matchbrackets.js"></script>
+        <script src="lib/CodeMirror/addon/hint/simple-hint.js"></script>
         <script src="lib/CodeMirror/mode/htmlmixed/htmlmixed.js"></script>
         <script src="lib/CodeMirror/mode/r/r.js"></script>
         <script src="lib/CodeMirror/mode/xml/xml.js"></script>
