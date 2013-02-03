@@ -322,7 +322,7 @@ OModule.inheritance=function(obj)
                     $('.ui-widget-overlay').css('position', 'fixed');
                     Methods.iniCKEditor("#textareaDialogUploadDescription", function(){
                         $("#divDialogUpload").dialog("option","position","center"); 
-                    })
+                    },800)
                 },
                 close:function(){
                 //$('.ui-widget-overlay').css('position', 'absolute');
@@ -777,7 +777,7 @@ OModule.inheritance=function(obj)
                 var thisDialog = $("#div"+thisClass.className+"DialogDescription");
                 Methods.iniCKEditor($("#dialog"+thisClass.className+"TextareaDescription"),function(){
                     thisDialog.dialog("option","position","center");
-                });
+                },800);
             },
             buttons:[
             {

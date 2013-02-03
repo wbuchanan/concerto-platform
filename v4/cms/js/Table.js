@@ -1904,7 +1904,7 @@ Table.uiChangeHTML=function(obj,field){
             var thisDialog = $("#div"+Table.className+"DialogHTML");
             Methods.iniCKEditor($(this).find("textarea"),function(){
                 thisDialog.dialog("option","position","center");
-            });
+            },800);
         },
         buttons:[
         {

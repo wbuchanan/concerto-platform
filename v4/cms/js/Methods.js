@@ -275,8 +275,12 @@ Methods.CKEditorDialogShowListener=function(e){
     }
 };
 
-Methods.iniCKEditor=function(selector,callback)
+Methods.iniCKEditor=function(selector,callback,width)
 {
+    var opts = {};
+    if(width!=null){
+        opts.width = width;
+    }
     Methods.removeCKEditor(selector);
     var editor = $(selector).ckeditor(function(){
         this.removeListener('dialogShow', Methods.CKEditorDialogShowListener);
@@ -284,7 +288,7 @@ Methods.iniCKEditor=function(selector,callback)
         this.on("mode",function(e){
         })
         if(callback!=null) callback.call(this);
-    });
+    },opts);
     return editor;
 };
 

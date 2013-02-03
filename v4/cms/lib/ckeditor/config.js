@@ -4,7 +4,6 @@
  */
 
 CKEDITOR.editorConfig = function( config ) {
-        config.width = 800;
         config.extraPlugins = 'codemirror';
         config.autoGrow_maxHeight = 800;
         config.autoGrow_onStartup = true;
