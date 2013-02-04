@@ -34,16 +34,14 @@ $path = Ini::$path_temp . session_id() . ".Rc";
 $code = "
 library(rjson)
 result = list(names=c(),packages=c())
-for(package in sort(search())){
+for(package in sort(.packages(T))){
     
-    if(grepl('package:',x=package,fixed=T)) {
-        functions <- lsf.str(package,pattern='^" . $_POST['string'] . "')
-        package <- gsub('package:','',x=package,fixed=T)
+    library(package,character.only=T)
+    functions <- lsf.str(paste('package:',package,sep=''),pattern='^" . $_POST['string'] . "')
         
-        for(func in functions){
-            result".'$'."names = c(result".'$'."names,func)
-            result".'$'."packages = c(result".'$'."packages,package)
-        }
+    for(func in functions){
+        result".'$'."names = c(result".'$'."names,func)
+        result".'$'."packages = c(result".'$'."packages,package)
     }
 }
 

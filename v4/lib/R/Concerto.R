@@ -89,6 +89,7 @@ concerto <- list(
             if(dim(template)[1]==0) stop(paste("Template #",templateID," not found!",sep=''))
             concerto$updateTemplateID(templateID)
 
+            concerto$updateHead(concerto$template$fillHTML(template[1,"head"],params))
             concerto$updateHTML(concerto$template$fillHTML(template[1,"HTML"],params))
             
             if(finalize){
@@ -215,6 +216,13 @@ concerto <- list(
         sessionID <- dbEscapeStrings(concerto$db$connection,toString(concerto$sessionID))
         html <- dbEscapeStrings(concerto$db$connection,toString(html))
         dbSendQuery(concerto$db$connection, statement = sprintf("UPDATE `%s`.`TestSession` SET `HTML` = '%s' WHERE `id`=%s",dbName,html,sessionID))
+    },
+
+    updateHead = function(html){
+        dbName <- dbEscapeStrings(concerto$db$connection,concerto$db$name)
+        sessionID <- dbEscapeStrings(concerto$db$connection,toString(concerto$sessionID))
+        html <- dbEscapeStrings(concerto$db$connection,toString(html))
+        dbSendQuery(concerto$db$connection, statement = sprintf("UPDATE `%s`.`TestSession` SET `head` = '%s' WHERE `id`=%s",dbName,html,sessionID))
     },
 
     updateStatus = function(status) {

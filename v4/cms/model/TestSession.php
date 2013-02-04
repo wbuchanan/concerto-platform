@@ -26,6 +26,7 @@ class TestSession extends OTable {
     public $status = 0;
     public $time_limit = 0;
     public $HTML = "";
+    public $head = "";
     public $Template_id = 0;
     public $time_tamper_prevention = 0;
     public $hash = "";
@@ -163,7 +164,7 @@ class TestSession extends OTable {
             if ($template != null) {
                 $response = array(
                     "data" => array(
-                        "HEAD" => $template->head,
+                        "HEAD" => $this->head,
                         "HASH" => $this->hash,
                         "TIME_LIMIT" => $this->time_limit,
                         "HTML" => $this->HTML,
@@ -257,6 +258,7 @@ class TestSession extends OTable {
             $status = $thisSession->status;
             $release = $thisSession->release;
             $html = $thisSession->HTML;
+            $head = $thisSession->head;
             $Template_id = $thisSession->Template_id;
             $debug = $thisSession->debug;
             $hash = $thisSession->hash;
@@ -310,7 +312,6 @@ class TestSession extends OTable {
                         break;
                     }
                 case TestSession::TEST_SESSION_STATUS_TEMPLATE: {
-                        $head = Template::from_mysql_id($Template_id)->head;
                         if ($debug) {
                             if ($release){
                                 TestSession::unregister($thisSession->User_id . "-" . $thisSession->id);
@@ -552,6 +553,7 @@ class TestSession extends OTable {
             `status` tinyint(4) NOT NULL,
             `time_limit` int(11) NOT NULL,
             `HTML` text NOT NULL,
+            `head` text NOT NULL,
             `Template_id` bigint(20) NOT NULL,
             `time_tamper_prevention` INT NOT NULL,
             `hash` text NOT NULL,
