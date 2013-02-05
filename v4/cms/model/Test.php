@@ -97,6 +97,13 @@ class Test extends OModule {
         return $result;
     }
 
+    public function format_open() {
+        if ($this->open == 1)
+            return Language::string(627);
+        else
+            return Language::string(628);
+    }
+
     public function get_loader_Template() {
         return Template::from_mysql_id($this->loader_Template_id);
     }
@@ -185,7 +192,7 @@ class Test extends OModule {
         return $last_result;
     }
 
-    public function to_XML() { 
+    public function to_XML() {
         $xml = new DOMDocument();
 
         $element = $xml->createElement("Test");
@@ -244,6 +251,17 @@ class Test extends OModule {
 
     public static function get_list_columns() {
         $cols = parent::get_list_columns();
+
+        array_push($cols, array(
+            "name" => Language::string(488),
+            "property" => "format_open",
+            "searchable" => true,
+            "sortable" => true,
+            "type" => "string",
+            "groupable" => true,
+            "width" => 120,
+            "show" => true
+        ));
 
         array_push($cols, array(
             "name" => Language::string(335),

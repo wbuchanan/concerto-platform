@@ -333,7 +333,20 @@ class Table extends OModule {
                 }
             }
 
-            $dumps = $xpath->query("./TableDump", $element);
+            $dumps = $xpath->query("./TableStructureDump", $element);
+            foreach ($dumps as $dump) {
+
+                $sql = htmlspecialchars_decode(trim($dump->nodeValue), ENT_QUOTES);
+                $lines = explode(";\n", $sql);
+
+                foreach ($lines as $line) {
+                    if (!mysql_query(htmlspecialchars_decode($line))) {
+                        return json_encode(array("result" => -6, "message" => mysql_error()));
+                    }
+                }
+            }
+
+            $dumps = $xpath->query("./TableDataDump", $element);
             foreach ($dumps as $dump) {
 
                 $sql = htmlspecialchars_decode(trim($dump->nodeValue), ENT_QUOTES);
@@ -351,7 +364,7 @@ class Table extends OModule {
         return $last_result;
     }
 
-    public function dump() {
+    public function dump_structure() {
         include Ini::$path_internal . "SETTINGS.php";
         $db_host = Ini::$db_host;
         $db_port = Ini::$db_port;
@@ -359,10 +372,28 @@ class Table extends OModule {
         $db_password = $db_master_password;
         $db_name = User::get_current_db();
         $db_table = $this->name;
-        return `mysqldump --opt --host=$db_host --port=$db_port --user=$db_user --password="$db_password" --compact $db_name $db_table | grep -v '^\/\*![0-4][0-9]\{4\}.*\/;$'`;
+        return `mysqldump --opt --host=$db_host --port=$db_port --user=$db_user --password="$db_password" --no-data --compact $db_name $db_table | grep -v '^\/\*![0-4][0-9]\{4\}.*\/;$'`;
     }
 
-    public function to_XML() {
+    public function dump_data() {
+        include Ini::$path_internal . "SETTINGS.php";
+        $db_host = Ini::$db_host;
+        $db_port = Ini::$db_port;
+        $db_user = $db_master_user;
+        $db_password = $db_master_password;
+        $db_name = User::get_current_db();
+        $db_table = $this->name;
+        return `mysqldump --opt --host=$db_host --port=$db_port --user=$db_user --password="$db_password" --no-create-info --compact $db_name $db_table | grep -v '^\/\*![0-4][0-9]\{4\}.*\/;$'`;
+    }
+
+    public function calculate_xml_hash() {
+        $xml = $this->to_XML(false);
+        $xml->removeAttribute("id");
+        $xml->removeAttribute("xml_hash");
+        return md5($xml->ownerDocument->saveXML($xml));
+    }
+
+    public function to_XML($with_data = true) {
         $xml = new DOMDocument('1.0', "UTF-8");
 
         $element = $xml->createElement("Table");
@@ -376,8 +407,13 @@ class Table extends OModule {
         $description = $xml->createElement("description", htmlspecialchars($this->description, ENT_QUOTES, "UTF-8"));
         $element->appendChild($description);
 
-        $dump = $xml->createElement("TableDump", htmlspecialchars($this->dump(), ENT_QUOTES, "UTF-8"));
-        $element->appendChild($dump);
+        $dump_structure = $xml->createElement("TableStructureDump", htmlspecialchars($this->dump_structure(), ENT_QUOTES, "UTF-8"));
+        $element->appendChild($dump_structure);
+
+        if ($with_data) {
+            $dump_data = $xml->createElement("TableDataDump", htmlspecialchars($this->dump_data(), ENT_QUOTES, "UTF-8"));
+            $element->appendChild($dump_data);
+        }
         return $element;
     }
 

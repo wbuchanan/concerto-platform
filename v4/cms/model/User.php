@@ -223,7 +223,7 @@ class User extends OModule {
         $datetime = explode(" ", $this->last_login);
         if ($datetime[0] == "0000-00-00")
             $datetime[0] = "&lt;" . Language::string(73) . "&gt;";
-        return $datetime[0];
+        return $this->last_login;
     }
 
     public function get_full_name() {

@@ -597,6 +597,7 @@ Methods.iniCodeMirror=function(id,mode,readOnly,autocomplete)
         }
         myCodeMirror.autoFormatRange(range.from, range.to);
         myCodeMirror.autoIndentRange(range.from, range.to);
+        myCodeMirror.setSelection(range.from);
     }
     
     return myCodeMirror;

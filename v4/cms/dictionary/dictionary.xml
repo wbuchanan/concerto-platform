@@ -2152,14 +2152,14 @@ Note: You can add new languages by inserting "<new_language>string translated in
             <br>HTML head tag</br>
         </string>
         <string id="408">
-            <en>HTML template head tag. Everything declared here will be available in every templates in the session. Session variables can't be inserted here.</en>
+            <en>HTML template head tag. Everything declared here will be available in every templates in the session. You can insert session variables here.</en>
             <de></de>
-            <pl>Tag head szablonu HTML. Wszystko co zostanie tutaj zadeklarowane będzie dostępne we wszystkich szablonach w całej sesji. Zmienne sesyjne nie mogą być tutaj używane.</pl>
-            <cn>HTML模板标题栏。场次内所有模板均可使用。不可插入场次变量。</cn>
+            <pl>Tag head szablonu HTML. Wszystko co zostanie tutaj zadeklarowane będzie dostępne we wszystkich szablonach w całej sesji. Można używać w nim zmiennych sesyjnych.</pl>
+            <cn></cn>
             <fr></fr>
             <bg></bg>
-            <nl>HTML head tag. Alles dat hier gedeclareerd wordt, is beschikbaar in elke template in de sessie. Sessie variabelen kunnen hier niet ingevoegd worden.</nl>
-            <br>HTML template head tag. Tudo declarado estará disponível em todos os templates da seção. Variáveis de seção não podem ser inseridas aqui.</br>
+            <nl></nl>
+            <br></br>
         </string>
         <string id="410" js="1">
             <en>Register new account</en>
@@ -4303,6 +4303,16 @@ Note: You can add new languages by inserting "<new_language>string translated in
             <en>no function selected</en>
             <de></de>
             <pl>nie wybrano funkcji</pl>
+            <cn></cn>
+            <fr></fr>
+            <bg></bg>
+            <nl></nl>
+            <br></br>
+        </string>
+        <string id="665">
+            <en>updated on</en>
+            <de></de>
+            <pl>zaktualizowane w</pl>
             <cn></cn>
             <fr></fr>
             <bg></bg>

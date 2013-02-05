@@ -73,6 +73,13 @@ class OModule extends OTable {
                 ));
         return $result;
     }
+    
+    public function get_updated() {
+        $datetime = explode(" ", $this->updated);
+        if ($datetime[0] == "0000-00-00")
+            $datetime[0] = "&lt;" . Language::string(73) . "&gt;";
+        return $this->updated;
+    }
 
     public static function get_list_columns() {
         $cols = array();
@@ -105,6 +112,15 @@ class OModule extends OTable {
             "name" => Language::string(70),
             "property" => "name",
             "searchable" => true,
+            "sortable" => true,
+            "type" => "string",
+            "groupable" => false,
+            "show" => true
+        ));
+        array_push($cols, array(
+            "name" => Language::string(665),
+            "property" => "get_updated",
+            "searchable" => false,
             "sortable" => true,
             "type" => "string",
             "groupable" => false,
