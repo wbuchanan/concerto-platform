@@ -26,7 +26,7 @@ class Setup {
     }
 
     public static function create_db() {
-        return self::update_db(false, false,  true);
+        return self::update_db(false, false, true);
     }
 
     public static function update_db_recalculate_hash() {
@@ -238,7 +238,7 @@ class Setup {
         exec('"' . Ini::$path_r_script . '" -e "library(session)"', $array, $return);
         return json_encode(array("result" => $return, "param" => "session"));
     }
-    
+
     public static function does_patch_apply($patch_version, $previous_version) {
         $patch_elems = explode(".", $patch_version);
         $previous_elems = explode(".", $previous_version);
@@ -249,9 +249,68 @@ class Setup {
             return true;
         if ($previous_elems[0] == $patch_elems[0] && $previous_elems[1] == $patch_elems[1] && $previous_elems[2] < $patch_elems[2])
             return true;
-        if ($previous_elems[0] == $patch_elems[0] && $previous_elems[1] == $patch_elems[1] && $previous_elems[2] == $patch_elems[2] &&$previous_elems[3] < $patch_elems[3])
+        if ($previous_elems[0] == $patch_elems[0] && $previous_elems[1] == $patch_elems[1] && $previous_elems[2] == $patch_elems[2] && $previous_elems[3] < $patch_elems[3])
             return true;
         return false;
+    }
+
+    public static function code_completion() {
+        require '../Ini.php';
+        $ini = new Ini();
+
+        $path = Ini::$path_temp . session_id() . ".Rc";
+
+        $sql = sprintf("TRUNCATE TABLE `%s`", RDocLibrary::get_mysql_table());
+        mysql_query($sql);
+        $sql = sprintf("TRUNCATE TABLE `%s`", RDocFunction::get_mysql_table());
+        mysql_query($sql);
+        
+        include "../SETTINGS.php";
+
+        $code = "
+        library(RMySQL)
+        library(tools)
+        unlink('$path')
+        drv <- dbDriver('MySQL')
+        con <- dbConnect(drv, user = '$db_master_user', password = '$db_master_password', dbname = '$db_master_name', host = '$db_host', port = $db_port)
+        dbSendQuery(con,statement = 'SET NAMES \"utf8\";')
+        dbSendQuery(con,statement = 'SET time_zone=\"$mysql_timezone\";')
+            
+        for(package in sort(.packages(T))){
+
+            dbSendQuery(con,paste('INSERT INTO `RDocLibrary` SET `name`=\"',package,'\"',sep=''))
+            lid <- dbGetQuery(con, paste('SELECT `id` FROM `RDocLibrary` WHERE `name`=\"',package,'\"',sep=''))[1,1]
+            library(package,character.only=T)
+            db <- Rd_db(package)
+            functions <- lsf.str(paste('package:',package,sep=''),pattern='*')
+
+            for(func in functions){
+                for(doc in db){
+                    aliases <- tools:::.Rd_get_metadata(x=doc,kind='alias')
+                    if(func %in% aliases) {
+                        fileConn<-file('$path',open='a+')
+                        tools::Rd2HTML(doc,out=fileConn)
+                        dbSendQuery(con,paste('INSERT INTO `RDocFunction` SET `name`=\"',func,'\", `RDocLibrary_id`=',lid,', HTML=\"',dbEscapeStrings(con,paste(readLines(fileConn),collapse='\n')),'\"',sep=''))
+                        unlink('$path')
+                        break
+                    }
+                }
+            }
+        }
+        ";
+
+        $fh = fopen($path, "w");
+        fwrite($fh, $code);
+        fclose($fh);
+
+        $rscript_path = Ini::$path_r_script;
+
+        `$rscript_path $path`;
+
+        if (file_exists($path))
+            unlink($path);
+
+        return json_encode(array("result" => 0, "param" => "doc"));
     }
 
     public static function update_db($simulate = false, $only_recalculate_hash = false, $only_create_db = false) {

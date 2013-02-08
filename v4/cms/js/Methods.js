@@ -431,6 +431,7 @@ Methods.iniAutoCompleteCodeMirror=function(mode,instance){
                 ch--;
             }
             if(funcName.length>0){
+                $("#divCodeAutocomplete").remove();
                 var obj = $("<div id='divCodeAutocomplete' style='position:absolute; z-index:9999;'><table><tr><td valign='top'><select size='5' id='selectCodeAutocomplete' style='min-width:100px;' class='ui-widget-content ui-corner-all'></select></td><td><div id='divCodeAutocompleteDoc' style='min-width:300px; padding:10px;' class='ui-widget-content'>"+dictionary["s664"]+"</td></tr></table></div>");
                 var pos = instance.cursorCoords(false,"page");
                 $("body").append(obj);
@@ -440,25 +441,12 @@ Methods.iniAutoCompleteCodeMirror=function(mode,instance){
                 $.post("query/r_autocomplete.php",{
                     string: funcName
                 },function(data){
-                    if(data.names!=null){
-                        var currPack = null;
-                        for(var i=0;i<data.names.length;i++){
-                            var name = "";
-                            var pack = "";
-                            if(!Array.isArray(data.names)){
-                                name = data.names;
-                                pack = data.packages;
-                            } else {
-                                name = data.names[i];
-                                pack = data.packages[i];
-                            }
+                    if(data.functions!=null){
+                        for(var i=0;i<data.functions.length;i++){
+                            var name = data.functions[i].name;
+                            var pack = data.functions[i].pack;
                             
-                            if(currPack==null || currPack.attr("label")!=pack){
-                                currPack = $("<optgroup label='"+pack+"' />");
-                                $("#selectCodeAutocomplete").append(currPack);
-                            }
-                            currPack.append("<option value='"+name+"' pack='"+pack+"'>"+name+"</option>");
-                            if(!Array.isArray(data.names)) break;
+                            $("#selectCodeAutocomplete").append("<option value='"+name+"' pack='"+pack+"'>"+name+"</option>");
                         }
                         
                         var code =null;

@@ -490,6 +490,16 @@ Setup.steps = [
         "Install <b>rjson</b> package to main R library directory.",
         true     
         )
+    ,
+    new SetupStep(
+        false,
+        "R code <b>documentation</b> will be cached.",
+        "code_completion",
+        "R code <b>documentation</b> <b>IS CACHED</b> - <b style='color:green;'>PASSED</b>",
+        "R code <b>documentation</b> <b>IS NOT CACHED</b> - <b style='color:red;'>FAILED</b>",
+        "Please try again.",
+        true     
+        )
     ];
 Setup.maxStep = Setup.steps.length;
 

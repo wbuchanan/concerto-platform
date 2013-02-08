@@ -29,41 +29,17 @@ if ($logged_user == null) {
     exit();
 }
 
-$path = Ini::$path_temp . session_id() . ".Rc";
-
-$code = "
-library(rjson)
-result = list(names=c(),packages=c())
-for(package in sort(.packages(T))){
-    
-    library(package,character.only=T)
-    functions <- lsf.str(paste('package:',package,sep=''),pattern='^" . $_POST['string'] . "')
-        
-    for(func in functions){
-        result".'$'."names = c(result".'$'."names,func)
-        result".'$'."packages = c(result".'$'."packages,package)
-    }
+$result = array();
+$result['functions'] = array();
+$sql = "SELECT `".Ini::$db_master_name."`.`".RDocFunction::get_mysql_table()."`.`name`, `".Ini::$db_master_name."`.`".RDocLibrary::get_mysql_table()."`.`name` 
+    FROM `".Ini::$db_master_name."`.`".RDocFunction::get_mysql_table()."` 
+    LEFT JOIN `".Ini::$db_master_name."`.`".RDocLibrary::get_mysql_table()."` ON `".Ini::$db_master_name."`.`".RDocLibrary::get_mysql_table()."`.`id` = `".Ini::$db_master_name."`.`".RDocFunction::get_mysql_table()."`.`RDocLibrary_id`
+    WHERE `".Ini::$db_master_name."`.`".RDocFunction::get_mysql_table()."`.`name` LIKE '".$_POST['string']."%' 
+    ORDER BY `".Ini::$db_master_name."`.`".RDocFunction::get_mysql_table()."`.`name` ASC";
+$z=mysql_query($sql);
+while($r=mysql_fetch_array($z)){
+    array_push($result['functions'], array("name"=>$r[0],"pack"=>$r[1]));
 }
 
-result <- toJSON(result)
-
-fileConn<-file('$path')
-writeLines(result, fileConn)
-close(fileConn)
-";
-
-$fh = fopen($path, "w");
-fwrite($fh, $code);
-fclose($fh);
-
-$rscript_path = Ini::$path_r_script;
-
-`$rscript_path $path`;
-
-$result = file_get_contents($path);
-
-if (file_exists($path))
-    unlink($path);
-
-echo $result;
+echo json_encode($result);
 ?>
