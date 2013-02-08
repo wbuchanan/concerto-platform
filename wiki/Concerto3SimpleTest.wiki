@@ -103,6 +103,7 @@ Follow the table below to add new sections to your test, using the editor. Pleas
 || - || http://cambridgepsychometrics.com/~vaishali/v3.7/Aug08Simple/1.jpg ||
 
 || *SECTION TYPE* || *DETAILS* ||
+|| R Code || Type code in the box provided: assign("radio",NA, envir=.GlobalEnv) ||
 || Set variable || SET VARIABLE: *question*  from table: *simple_test_table*  COLUMN: *question*  WHERE: *item_id* _equal_ *current_question*  (Note what happens - we simply select one cell from the table you’ve created earlier. Concerto will take the content of the cell in the “question” column and the row where item_id equals 1 (you have set current_question to 1, previously))||
 || Set variable || SET VARIABLE: *answer*  from table: *simple_test_table*  COLUMN: *answer*  WHERE: *item_id* _equal_ *current_question*.  (Now we set variable “answer” to the appropriate value from the table.)||
 || Load HTML template || Choose HTML template: *items* (or whatever name you gave to this HTML template). ||
