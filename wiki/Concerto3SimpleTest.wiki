@@ -103,16 +103,17 @@ Follow the table below to add new sections to your test, using the editor. Pleas
 || - || http://cambridgepsychometrics.com/~vaishali/v3.7/Aug08Simple/1.jpg ||
 
 || *SECTION TYPE* || *DETAILS* ||
-|| R Code || Type code in the box provided: _assign("radio",NA, envir=.GlobalEnv)_||
+|| Set Variable || SET VARIABLE:  *radio1*  by R code:  *-99*  (Add one to the current_question value to select the 2nd question from the table next time, and so on and so forth!)||
 || Set variable || SET VARIABLE: *question*  from table: *simple_test_table*  COLUMN: *question*  WHERE: *item_id* _equal_ *current_question*  (Note what happens - we simply select one cell from the table you’ve created earlier. Concerto will take the content of the cell in the “question” column and the row where item_id equals 1 (you have set current_question to 1, previously))||
 || Set variable || SET VARIABLE: *answer*  from table: *simple_test_table*  COLUMN: *answer*  WHERE: *item_id* _equal_ *current_question*.  (Now we set variable “answer” to the appropriate value from the table.)||
 || Load HTML template || Choose HTML template: *items* (or whatever name you gave to this HTML template). ||
+|| - ||http://cambridge.e-psychometrics.com/media/2/rcode.JPG||
 || - ||http://cambridgepsychometrics.com/~vaishali/v3.7/Aug08Simple/2.jpg ||
 
 || *SECTION TYPE* || *DETAILS* ||
-|| IF statement || IF *is.na(radio1)* _equal_ *T*  THEN click '+' icon below 'THEN'. GO TO SECTION: *load items template* (i.e. go to the previous section in your test. This step presents the testee with the same item if no radio button is selected.) ||
+|| IF statement || IF *radio1* _equal_ *-99*  THEN click '+' icon below 'THEN'. GO TO SECTION: *load items template* (i.e. go to the previous section in your test. This step presents the testee with the same item if no radio button is selected.) ||
 || IF statement || IF *answer* _equal_ *radio1*  THEN click '+' icon below 'THEN'. SET VARIABLE: *total_score*  by R code  *total_score+1* (Simple! IF answer is equal to the value of the radio button selected by the user THEN increase total score by 1. _Note: to add the next section “outside of the if clause” use the ‘+’ icon at the very bottom of the entire IF statement box._)||
-|| - || http://cambridgepsychometrics.com/~vaishali/v3.7/Aug08Simple/3.jpg||
+|| - || http://cambridge.e-psychometrics.com/media/2/if.JPG||
 
 || *SECTION TYPE* || *DETAILS* ||
 || Set variable || SET VARIABLE:  *current_question*  by R code:  *current_question+1*  (Add one to the current_question value to select the 2nd question from the table next time, and so on and so forth!)||
