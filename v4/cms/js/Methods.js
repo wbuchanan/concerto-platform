@@ -483,7 +483,7 @@ Methods.iniAutoCompleteCodeMirror=function(mode,instance){
                             $("#divCodeAutocomplete").remove();
                         });
                         $("#selectCodeAutocomplete").keydown(function(e) {
-                            code= (e.keyCode ? e.keyCode : e.which);
+                            code = (e.keyCode ? e.keyCode : e.which);
                             //enter
                             if (code == 13) {
                                 instance.replaceRange($("#selectCodeAutocomplete").val()+"()",{
@@ -492,8 +492,12 @@ Methods.iniAutoCompleteCodeMirror=function(mode,instance){
                                 },instance.getCursor());
                                 $("#selectCodeAutocomplete").blur();
                                 instance.focus();
-                                e.preventDefault();
                                 instance.setCursor({line:instance.getCursor().line,ch:instance.getCursor().ch-1})
+                                e.preventDefault();
+                            }
+                            //backspace
+                            if(code == 8){
+                                e.preventDefault();
                             }
                             //escape
                             if (code == 27) {
