@@ -41,6 +41,7 @@ tags.
         <language id="nl">nederlands</language>
         <language id="pl">polski</language>
         <language id="br">português</language>
+        <language id="tr">turkish</language>        
     </languages>
     
     <strings>
@@ -49,6 +50,10 @@ tags.
 
 </b>]]>
             </en>
+            <tr><![CDATA[Değişken adı doğrulaması sırasında hata oluştu. Değer değiştirildi.<br/><br/>eski değer: <b>{0}</b></br>yeni değer: <b>{1}
+
+</b>]]>
+            </tr>
             <de><![CDATA[Überprüfung des Variablennamens schlug fehl. Wert wurde geändert.<br/><br/>Alter Wert: <b>{0}</b></br>Neuer 
 
 Wert: <b>{1}</b>]]>
@@ -78,6 +83,7 @@ waarde: <b>{1}</b>]]>
         </string>
         <string id="2" js="1">
             <en>variable validation</en>
+            <tr>Değişken doğrulaması</tr>
             <de>Variablen Überprüfung</de>
             <pl>walidacja zmiennej</pl>
             <cn>变量验证</cn>	
@@ -88,6 +94,7 @@ waarde: <b>{1}</b>]]>
         </string>
         <string id="3" js="1">
             <en>changing description</en>
+            <tr>Açıklamayı değiştiriyor</tr>
             <de>Ändern der Beschreibung</de>
             <pl>zmiana opisu</pl>
             <cn>修改描述</cn>
