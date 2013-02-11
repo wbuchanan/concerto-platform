@@ -105,6 +105,7 @@ waarde: <b>{1}</b>]]>
         </string>
         <string id="4" js="1">
             <en>Concerto - confirmation</en>
+            <tr>Concerto - onaylama</tr>
             <de>Concerto - Bestätigung</de>
             <pl>Concerto - potwierdzenie</pl>
             <cn>Concerto - 确认</cn>
@@ -115,6 +116,7 @@ waarde: <b>{1}</b>]]>
         </string>
         <string id="5" js="1">
             <en>Concerto - alert</en>
+            <tr>Concerto - Alarm</tr>
             <de>Concerto - Alarm</de>
             <pl>Concerto - alert</pl>
             <cn>Concerto - 警告</cn>
@@ -125,6 +127,7 @@ waarde: <b>{1}</b>]]>
         </string>
         <string id="6" js="1">
             <en>HTML controls `name` validation failed. Value has been changed.\r\n\r\nold value: {0}\r\nnew value: {1}</en>
+            <tr>HTML kontrolleri `isim` doğrulanamadı. Değer değişti.\r\n\r\neski değer: {0}\r\nyeni değer: {1}</tr>
             <de>HTML Kontrollüberprüfung von `Name` schlug fehl. Wert wurde geändert.\r\n\r\nAlter Wert: {0}\r\nNeuer Wert: {1}</de>
             <pl>Walidacja pola `nazwa` kontrolki HTML nie powiodła się. Wartość została zmieniona.\r\n\r\npoprzednia wartość: {0}\r
 
@@ -143,6 +146,7 @@ waarde: <b>{1}</b>]]>
         </string>
         <string id="7" js="1">
             <en>adding new object</en>
+            <tr>yeni bir ekleme</tr>
             <de>Füge neues Objekt hinzu</de>
             <pl>dodawanie nowego obiektu</pl>
             <cn>添加新对象</cn>
@@ -153,6 +157,7 @@ waarde: <b>{1}</b>]]>
         </string>
         <string id="8" js="1">
             <en>Are you sure you want to delete this object #{0}?</en>
+            <tr>Bu nesneyi silmek istediğinden emin misin? #{0}?</tr>
             <de>Sind Sie sicher, dass Sie dieses Objekt löschen wollen #{0}?</de>
             <pl>Jesteś pewien, że chcesz usunąć obiekt #{0}?</pl>
             <cn>确认删除对象 #{0}?</cn>
@@ -163,6 +168,7 @@ waarde: <b>{1}</b>]]>
         </string>
         <string id="9" js="1">
             <en>Object has been saved.</en>
+            <tr>Nesne kaydedildi.</tr>
             <de>Objekt wurde gespeichert.</de>
             <pl>Obiekt został zapisany.</pl>
             <cn>对象已保存。</cn>
@@ -173,6 +179,7 @@ waarde: <b>{1}</b>]]>
         </string>
         <string id="10" js="1">
             <en>Object has NOT been saved.</en>
+            <tr>Nesne kaydedilmedi.</tr>
             <de>Objekt wurde NICHT gespeichert.</de>
             <pl>Obiekt NIE został zapisany.</pl>
             <cn>对象未保存。</cn>
@@ -183,6 +190,7 @@ waarde: <b>{1}</b>]]>
         </string>
         <string id="11" js="1">
             <en>remove row</en>
+            <tr>satır kaldırma</tr>
             <de>jetzt entfernen</de>
             <pl>usuń rekord</pl>
             <cn>移除行</cn>
@@ -193,6 +201,7 @@ waarde: <b>{1}</b>]]>
         </string>
         <string id="12" js="1">
             <en>editing column</en>
+            <tr>sutun düzenleme</tr>
             <de>bearbeite Spalte</de>
             <pl>edytowanie kolumny</pl>
             <cn>编辑列</cn>
@@ -203,6 +212,7 @@ waarde: <b>{1}</b>]]>
         </string>
         <string id="13" js="1">
             <en>Column name is a mandatory field.</en>
+            <tr>Sutun adı zorunlu bir alandır.</tr>
             <de>Spaltenname ist ein Pflichtfeld.</de>
             <pl>Nazwa kolumny nie może być pusta.</pl>
             <cn>列名称为必填项。</cn>
@@ -213,6 +223,7 @@ waarde: <b>{1}</b>]]>
         </string>
         <string id="14" js="1">
             <en>change column name</en>
+            <tr>sutun ismi değiştirme</tr>
             <de>ändere Spaltenname</de>
             <pl>zmiana nazwy kolumny</pl>
             <cn>修改列名称</cn>
@@ -223,6 +234,7 @@ waarde: <b>{1}</b>]]>
         </string>
         <string id="15" js="1">
             <en>A column with that name already exists.</en>
+            <tr>Bu ada sahip bir sutun zaten var.</tr>
             <de>Eine Spalte mit diesem Namen existiert bereits.</de>
             <pl>Kolumna o tej nazwie już istnieje.</pl>
             <cn>列名称重复。</cn>
@@ -233,6 +245,7 @@ waarde: <b>{1}</b>]]>
         </string>
         <string id="18" js="1">
             <en>HTML</en>
+            <tr>HTML</tr>
             <de>HTML</de>
             <pl>HTML</pl>
             <cn>HTML</cn>
@@ -243,6 +256,7 @@ waarde: <b>{1}</b>]]>
         </string>
         <string id="19" js="1">
             <en>edit column</en>
+            <tr>sutun ekleme</tr>
             <de>bearbeite Spalte</de>
             <pl>edytuj kolumnę</pl>
             <cn>编辑列</cn>
@@ -253,6 +267,7 @@ waarde: <b>{1}</b>]]>
         </string>
         <string id="20">
             <en>remove column</en>
+            <tr>sutunu kaldırma</tr>
             <de>entferne Spalte</de>
             <pl>usuń kolumnę</pl>
             <cn>移除列</cn>
@@ -263,6 +278,7 @@ waarde: <b>{1}</b>]]>
         </string>
         <string id="21" js="1">
             <en>importing table from MySQL table</en>
+            <tr>MySQL tablodan tablo ekleme</tr>
             <de>importiere Tabelle aus MySQL Tabelle</de>
             <pl>importowanie tabeli z tabeli MySQL</pl>
             <cn>从MySQL表格中导入表格</cn>
@@ -273,6 +289,7 @@ waarde: <b>{1}</b>]]>
         </string>
         <string id="22" js="1">
             <en>import</en>
+            <tr>veri alma</tr>
             <de>importieren</de>
             <pl>importuj</pl>
             <cn>导入</cn>
@@ -283,6 +300,7 @@ waarde: <b>{1}</b>]]>
         </string>
         <string id="23" js="1">
             <en>cancel</en>
+            <tr>iptal</tr>
             <de>abbrechen</de>
             <pl>anuluj</pl>
             <cn>取消</cn>
@@ -293,6 +311,7 @@ waarde: <b>{1}</b>]]>
         </string>
         <string id="24" js="1">
             <en>No table selected.</en>
+            <tr>Hiçbir tablo seçilmedi.</tr>
             <de>Keine Tabelle ausgewählt.</de>
             <pl>Nie wybrano tabeli.</pl>
             <cn>未选择表格</cn>
@@ -303,6 +322,7 @@ waarde: <b>{1}</b>]]>
         </string>
         <string id="25" js="1">
             <en>importing table</en>
+            <tr>tablo al</tr>
             <de>importiere Tabelle</de>
             <pl>importowanie tabeli</pl>
             <cn>导入表格</cn>
@@ -313,6 +333,7 @@ waarde: <b>{1}</b>]]>
         </string>
         <string id="26" js="1">
             <en>Table structure and data imported.</en>
+            <tr>Tablo yapısı ve veri alındı.</tr>
             <de>Tabellenstruktur und Daten importiert.</de>
             <pl>Struktura i dane tabeli zostały zaimportowane.</pl>
             <cn>已导入表格结构和数据。</cn>
@@ -323,6 +344,7 @@ waarde: <b>{1}</b>]]>
         </string>
         <string id="27" js="1">
             <en>Importing table from CSV file</en>
+            <tr>CSV dosaysından tablo alma</tr>
             <de>Importiere Tabelle aus CSV Datei</de>
             <pl>importowanie tabeli z pliku CSV</pl>
             <cn>从CSV文件中导入表格</cn>
@@ -333,6 +355,7 @@ waarde: <b>{1}</b>]]>
         </string>
         <string id="28" js="1">
             <en>Are you sure you want to replace the current table structure and data with that from the selected file?</en>
+            <tr>Seçili dosyadan mevcut veri ve tablo yapısını değiştirmek istediğinizden emin misiniz?</tr>
             <de>Sind sie sicher, dass Sie die aktuelle Tabellenstruktur und Daten durch die aus der ausgewählten Datei ersetzen 
 
 wollen?</de>
@@ -347,6 +370,7 @@ sélectionné?</fr>
         </string>
         <string id="29" js="1">
             <en>file uploaded</en>
+            <tr>dosya yüklendi</tr>
             <de>Datei hochgeladen</de>
             <pl>plik wysłany</pl>
             <cn>已上传文件</cn>
@@ -357,6 +381,7 @@ sélectionné?</fr>
         </string>
         <string id="30" js="1">
             <en>There was an error in importing table structure and data.</en>
+            <tr>Eklenen tablo yapısında ve veride bir hata oluştu.</tr>
             <de>Es gab einen Fehler beim importieren der Tabellenstruktur und Daten.</de>
             <pl>Wystąpił błąd podczas importowania struktury i danych tabeli.</pl>
             <cn>导入表格结构与数据发生错误。</cn>
@@ -367,6 +392,7 @@ sélectionné?</fr>
         </string>
         <string id="31" js="1">
             <en>adding new column</en>
+            <tr>Yeni bir sutun ekleme</tr>
             <de>füge neue Spalte hinzu</de>
             <pl>dodawanie nowej kolumny</pl>
             <cn>添加列</cn>
@@ -377,6 +403,7 @@ sélectionné?</fr>
         </string>
         <string id="32" js="1">
             <en>Are you sure you want to delete this row?</en>
+            <tr>Bu satırı silmek istediğinizden emin misiniz?</tr>
             <de>Sind Sie sicher, dass Sie diese Zeile löschen wollen?</de>
             <pl>Jesteś pewien, że chcesz usunąć ten rekord?</pl>
             <cn>确认删除此行？</cn>
@@ -387,6 +414,7 @@ sélectionné?</fr>
         </string>
         <string id="33" js="1">
             <en>deleting table row</en>
+            <tr>tablo satır silme</tr>
             <de>lösche Tabelle</de>
             <pl>usuwanie rekordu tabeli</pl>
             <cn>删除行</cn>
@@ -397,6 +425,7 @@ sélectionné?</fr>
         </string>
         <string id="34" js="1">
             <en>Are you sure you want to delete this column?</en>
+            <tr>Bu sutunu silmek istediğinizden emin misiniz?</tr>
             <de>Sind Sie sicher, dass Sie diese Spalte löschen wollen?</de>
             <pl>Jesteś pewien że chcesz usunąć tą kolumnę?</pl>
             <cn>确认删除此列？</cn>
@@ -407,6 +436,7 @@ sélectionné?</fr>
         </string>
         <string id="35" js="1">
             <en>deleting table column</en>
+            <tr>Tablo sutun silme</tr>
             <de>lösche Tabellenspalte</de>
             <pl>usuwanie kolumny tabeli</pl>
             <cn>删除列</cn>
@@ -417,6 +447,7 @@ sélectionné?</fr>
         </string>
         <string id="36" js="1">
             <en>changing HTML</en>
+            <tr>HTML değişiyor</tr>
             <de>HTML ändern</de>
             <pl>zmiana HTML</pl>
             <cn>修改HTML</cn>
@@ -427,6 +458,7 @@ sélectionné?</fr>
         </string>
         <string id="37" js="1">
             <en>add</en>
+            <tr>ekleme</tr>
             <de>hinzufügen</de>
             <pl>dodaj</pl>
             <cn>添加</cn>
@@ -437,6 +469,7 @@ sélectionné?</fr>
         </string>
         <string id="38" js="1">
             <en>change</en>
+            <tr>değiştirme</tr>
             <de>ändern</de>
             <pl>zmień</pl>
             <cn>修改</cn>
@@ -447,6 +480,7 @@ sélectionné?</fr>
         </string>
         <string id="39" js="1">
             <en>Edit HTML. Current HTML:</en>
+            <tr>HTML ekleme. Mevcut HTML:</tr>
             <de>Bearbeite HTML: Aktuelles HTML:</de>
             <pl>Edycja HTML. Obecny HTML:</pl>
             <cn>编辑HTML。当前HTML：</cn>
