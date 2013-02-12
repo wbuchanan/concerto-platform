@@ -1543,6 +1543,7 @@ utilisées dans d'autres sections du test.</fr>
         </string>
         <string id="125">
             <en>import table from MySQL table</en>
+            <tr>MySQL tablodan tablo ekleme</tr>
             <de>importiere Tabelle aus MySQL Tabelle</de>
             <pl>import tabeli z tabeli MySQL</pl>
             <cn>从MySQL表格导入表格</cn>
@@ -1553,6 +1554,7 @@ utilisées dans d'autres sections du test.</fr>
         </string>
         <string id="126">
             <en>import table from CSV file</en>
+            <tr>CSV dosyadan tablo ekleme</tr>
             <de>importiere Tabelle aus CSV Datei</de>
             <pl>import tabeli z pliku CSV</pl>
             <cn>从CSV文件导入表格</cn>
@@ -1563,6 +1565,7 @@ utilisées dans d'autres sections du test.</fr>
         </string>
         <string id="127">
             <en>export table to CSV file</en>
+            <tr>CSV dosyadan dışa tablo aktarma </tr>
             <de>exportiere Tabelle als CSV Datei</de>
             <pl>eksport tabeli do pliku CSV</pl>
             <cn>导出表格到CSV文件</cn>
@@ -1573,6 +1576,7 @@ utilisées dans d'autres sections du test.</fr>
         </string>
         <string id="129">
             <en>add column</en>
+            <tr>sütun ekleme</tr>
             <de>füge Spalte hinzu</de>
             <pl>dodaj kolumnę</pl>
             <cn>添加列</cn>
@@ -1583,6 +1587,7 @@ utilisées dans d'autres sections du test.</fr>
         </string>
         <string id="130" js="1">
             <en>edit HTML</en>
+            <tr>HTML ekleme</tr>
             <de>bearbeite HTML</de>
             <pl>edycja HTML</pl>
             <cn>编辑HTML</cn>
@@ -1593,6 +1598,7 @@ utilisées dans d'autres sections du test.</fr>
         </string>
         <string id="133">
             <en>editing HTML template</en>
+            <tr>HTML şablon ekleme</tr>
             <de>bearbeite HTML Template</de>
             <pl>edycja szablonu HTML</pl>
             <cn>编辑HTML模板</cn>
@@ -1603,6 +1609,7 @@ utilisées dans d'autres sections du test.</fr>
         </string>
         <string id="134">
             <en>creating new HTML template</en>
+            <tr>yeni HTML şablon yaratma</tr>
             <de>lege neues HTML Template an</de>
             <pl>tworzenie nowego szablonu HTML</pl>
             <cn>创建HTML模板</cn>
@@ -1613,6 +1620,7 @@ utilisées dans d'autres sections du test.</fr>
         </string>
         <string id="135">
             <en>name of HTML template</en>
+            <tr>HTML şablonun ismi</tr>
             <de>Name des HTML Templates</de>
             <pl>nazwa szablonu HTML</pl>
             <cn>HTML模板名称</cn>
@@ -1623,6 +1631,7 @@ utilisées dans d'autres sections du test.</fr>
         </string>
         <string id="136">
             <en>HTML content of the template</en>
+            <tr>Şablonun HTML içeriği</tr>
             <de>HTML Inhalt des Templates</de>
             <pl>zawartoćś HTML szablonu</pl>
             <cn>HTML模板内容</cn>
@@ -1633,6 +1642,7 @@ utilisées dans d'autres sections du test.</fr>
         </string>
         <string id="137">
             <en>template access rights</en>
+            <tr>şablon ulaşım hakları</tr>
             <de>Zugriffsrechte für Template</de>
             <pl>prawa dostępu szablonu</pl>
             <cn>模板访问权限</cn>
@@ -1643,6 +1653,7 @@ utilisées dans d'autres sections du test.</fr>
         </string>
         <string id="138">
             <en>owner of the template</en>
+            <tr>şablonun sahibi</tr>
             <de>Besitzer des Templates</de>
             <pl>wlaściciel szablonu</pl>
             <cn>模板所有者</cn>
@@ -1653,6 +1664,7 @@ utilisées dans d'autres sections du test.</fr>
         </string>
         <string id="139">
             <en>editing test</en>
+            <tr>testi düzenleme</tr>
             <de>bearbeite Test</de>
             <pl>edycja testu</pl>
             <cn>编辑测试</cn>
@@ -1663,6 +1675,7 @@ utilisées dans d'autres sections du test.</fr>
         </string>
         <string id="140">
             <en>creating new test</en>
+            <tr>yeni test yaratma</tr>
             <de>lege neuen Test an</de>
             <pl>tworzenie nowego testu</pl>
             <cn>创建测试</cn>
@@ -1673,6 +1686,7 @@ utilisées dans d'autres sections du test.</fr>
         </string>
         <string id="141">
             <en>name of the test</en>
+            <tr>testin ismi</tr>
             <de>Name des Tests</de>
             <pl>nazwa testu</pl>
             <cn>测试名称</cn>
@@ -1683,6 +1697,7 @@ utilisées dans d'autres sections du test.</fr>
         </string>
         <string id="142">
             <en>test access rights</en>
+            <tr>teste ulaşım hakları</tr>
             <de>Zugriffsrechte für Test</de>
             <pl>prawa dostępu testu</pl>
             <cn>测试访问权限</cn>
@@ -1693,6 +1708,7 @@ utilisées dans d'autres sections du test.</fr>
         </string>
         <string id="143">
             <en>owner of the test</en>
+            <tr>testin sahibi</tr>
             <de>Besitzer des Tests</de>
             <pl>wlaściciel testu</pl>
             <cn>测试所有者</cn>
@@ -1703,6 +1719,7 @@ utilisées dans d'autres sections du test.</fr>
         </string>
         <string id="144">
             <en>show test variables</en>
+            <tr>test değişkenlerini gösterme</tr>
             <de>zeige Test variablen an</de>
             <pl>pokaż zmienne testu</pl>
             <cn>显示测试变量</cn>
@@ -1713,6 +1730,7 @@ utilisées dans d'autres sections du test.</fr>
         </string>
         <string id="145">
             <en>test logic is empty</en>
+            <tr>test mantığı boştur</tr>
             <de>die Testlogik ist leer</de>
             <pl>logika testu jest pusta</pl>
             <cn>测试逻辑空白</cn>
@@ -1723,6 +1741,7 @@ utilisées dans d'autres sections du test.</fr>
         </string>
         <string id="147">
             <en>basic sections</en>
+            <tr>temel bölümler</tr>
             <de>Grundlegende Sektionen</de>
             <pl>podstawowe sekcje</pl>
             <cn>基础章节</cn>
@@ -1733,6 +1752,7 @@ utilisées dans d'autres sections du test.</fr>
         </string>
         <string id="148">
             <en>custom sections</en>
+            <tr>özel bölümler</tr>
             <de>Benutzerdefinierte Sektionen</de>
             <pl>własne sekcje</pl>
             <cn>自主章节</cn>
@@ -1743,6 +1763,7 @@ utilisées dans d'autres sections du test.</fr>
         </string>
         <string id="149">
             <en>variable name</en>
+            <tr>değişken ismi</tr>
             <de>Variablennamen</de>
             <pl>nazwa zmiennej</pl>
             <cn>变量名称</cn>
@@ -1753,6 +1774,7 @@ utilisées dans d'autres sections du test.</fr>
         </string>
         <string id="150">
             <en>section</en>
+            <tr>bölüm</tr>
             <de>Sektion</de>
             <pl>sekcja</pl>
             <cn>章节</cn>
@@ -1763,6 +1785,7 @@ utilisées dans d'autres sections du test.</fr>
         </string>
         <string id="151">
             <en>parameter/return</en>
+            <tr>parametre/return</tr>
             <de>Parameter/Ausgabe</de>
             <pl>parametr/zwrot</pl>
             <cn>参数/返回值</cn>
@@ -1773,6 +1796,7 @@ utilisées dans d'autres sections du test.</fr>
         </string>
         <string id="152">
             <en>editing admin group</en>
+            <tr>yönetici grubunu düzenleme</tr>
             <de>Bearbeite Administratorengruppe</de>
             <pl>edycja grupy aministratorów</pl>
             <cn>编辑管理群</cn>
@@ -1783,6 +1807,7 @@ utilisées dans d'autres sections du test.</fr>
         </string>
         <string id="153">
             <en>creating admin group</en>
+            <tr>yönetici grubu yaratma</tr>
             <de>lege Administratorengruppe an</de>
             <pl>tworzenie grupy aministratorów</pl>
             <cn>创建管理群</cn>
@@ -1793,6 +1818,7 @@ utilisées dans d'autres sections du test.</fr>
         </string>
         <string id="154">
             <en>name of the admin group</en>
+            <tr>yönetici grubunun ismi</tr>
             <de>Name der Administratorengruppe</de>
             <pl>nazwa grupy aministratorów</pl>
             <cn>管理群名称</cn>
@@ -1803,6 +1829,7 @@ utilisées dans d'autres sections du test.</fr>
         </string>
         <string id="155">
             <en>admin group access rights</en>
+            <tr>yönetici grup ulaşım hakları</tr>
             <de>Zugriffsrechte für Administratorengruppe</de>
             <pl>prawa dostepu grupy aministratorów</pl>
             <cn>管理群访问权限</cn>
@@ -1813,6 +1840,7 @@ utilisées dans d'autres sections du test.</fr>
         </string>
         <string id="156">
             <en>owner of the admin group</en>
+            <tr>owneryönetici grubun sahibi</tr>
             <de>Zugriffsrechte auf Administratorengruppe</de>
             <pl>wlaściciel grupy administratorów</pl>
             <cn>管理群所有者</cn>
@@ -1823,6 +1851,7 @@ utilisées dans d'autres sections du test.</fr>
         </string>
         <string id="157">
             <en>editing admin type</en>
+            <tr>yönetici çeşidi düzenleme</tr>
             <de>Bearbeite Administratorentyp</de>
             <pl>edycja typu administratora</pl>
             <cn>编辑管理员类型</cn>
@@ -1842,6 +1871,7 @@ utilisées dans d'autres sections du test.</fr>
         </string>
         <string id="159">
             <en>name of the admin type</en>
+            <tr>yöentici çeşidin ismi</tr>
             <de>Name des Adminsitratorentyps</de>
             <pl>nazwa typu administratora</pl>
             <cn>管理员类型名称</cn>
@@ -1852,6 +1882,7 @@ utilisées dans d'autres sections du test.</fr>
         </string>
         <string id="160">
             <en>access rights of the admin type</en>
+            <tr>yöneticinin ulaşım hakları</tr>
             <de>Zugriffsrechte für den Administratorentyp</de>
             <pl>prawa dostępu typu administratora</pl>
             <cn>管理员类型访问权限</cn>
@@ -1862,6 +1893,7 @@ utilisées dans d'autres sections du test.</fr>
         </string>
         <string id="161">
             <en>admin type owner</en>
+            <tr>yönetici çeşit sahipleri</tr>
             <de>Besitzer des Administratorentyps</de>
             <pl>wlaściciel typu administratora</pl>
             <cn>管理员类型所有者</cn>
@@ -1872,6 +1904,7 @@ utilisées dans d'autres sections du test.</fr>
         </string>
         <string id="162">
             <en>admin type rights</en>
+            <tr>yöentici çeşit hakları</tr>
             <de>Administratorentyp Rechte</de>
             <pl>prawa typu administratora</pl>
             <cn>管理员类型权限</cn>
@@ -1882,6 +1915,7 @@ utilisées dans d'autres sections du test.</fr>
         </string>
         <string id="163">
             <en>module</en>
+            <tr>modül</tr>
             <de>Modul</de>
             <pl>moduł</pl>
             <cn>模块</cn>
@@ -1892,6 +1926,7 @@ utilisées dans d'autres sections du test.</fr>
         </string>
         <string id="164">
             <en>read rights</en>
+            <tr>hakları okuma</tr>
             <de>lese Rechte</de>
             <pl>prawa odczytu</pl>
             <cn>阅读权限</cn>
@@ -1902,6 +1937,7 @@ utilisées dans d'autres sections du test.</fr>
         </string>
         <string id="165">
             <en>write rights</en>
+            <tr>hakları yazma</tr>
             <de>schreibe Rechte</de>
             <pl>prawa zapisu</pl>
             <cn>书写权限</cn>
@@ -1911,6 +1947,7 @@ utilisées dans d'autres sections du test.</fr>
         </string>
         <string id="166">
             <en>owner change</en>
+            <tr>sahip değiştirme</tr>
             <de>ändere Besitzer</de>
             <pl>zmiana wlaściciela</pl>
             <cn>所有者变更</cn>
@@ -1921,6 +1958,7 @@ utilisées dans d'autres sections du test.</fr>
         </string>
         <string id="167">
             <en>HTML templates</en>
+            <tr>HTML şablonlar</tr>
             <de>HTML Templates</de>
             <pl>szablony HTML</pl>
             <cn>HTML模板</cn>
@@ -1931,6 +1969,7 @@ utilisées dans d'autres sections du test.</fr>
         </string>
         <string id="168">
             <en>standard</en>
+            <tr>standart</tr>
             <de>standard</de>
             <pl>standardowe</pl>
             <cn>标准</cn>
@@ -1941,6 +1980,7 @@ utilisées dans d'autres sections du test.</fr>
         </string>
         <string id="169">
             <en>all</en>
+            <tr>hepsi</tr>
             <de>alle</de>
             <pl>wszystko</pl>
             <cn>全部</cn>
@@ -1951,6 +1991,7 @@ utilisées dans d'autres sections du test.</fr>
         </string>
         <string id="170">
             <en>editing admin</en>
+            <tr>yönetici düzenleme</tr>
             <de>bearbeite Administrator</de>
             <pl>edycja administratora</pl>
             <cn>编辑管理者</cn>
@@ -1961,6 +2002,7 @@ utilisées dans d'autres sections du test.</fr>
         </string>
         <string id="171">
             <en>creating new admin</en>
+            <tr>yeni yöentici yaratma</tr>
             <de>lege neuen Administrator an</de>
             <pl>tworzenie nowego administratora</pl>
             <cn>创建管理者</cn>
@@ -1971,6 +2013,7 @@ utilisées dans d'autres sections du test.</fr>
         </string>
         <string id="173">
             <en>login</en>
+            <tr>oturum açma</tr>
             <de>Benutzername</de>
             <pl>login</pl>
             <cn>登入</cn>
@@ -1981,6 +2024,7 @@ utilisées dans d'autres sections du test.</fr>
         </string>
         <string id="174">
             <en>email</en>
+            <tr>email</tr>
             <de>Email</de>
             <pl>email</pl>
             <cn>邮箱</cn>
@@ -1991,6 +2035,7 @@ utilisées dans d'autres sections du test.</fr>
         </string>
         <string id="175">
             <en>last login</en>
+            <tr>son oturum açma</tr>
             <de>letzter login</de>
             <pl>ostatni login</pl>
             <cn>最近登入</cn>
@@ -2001,6 +2046,7 @@ utilisées dans d'autres sections du test.</fr>
         </string>
         <string id="176">
             <en>admin group</en>
+            <tr>yönetici grup</tr>
             <de>Administratorengruppe</de>
             <pl>grupa administratora</pl>
             <cn>管理群</cn>
@@ -2011,6 +2057,7 @@ utilisées dans d'autres sections du test.</fr>
         </string>
         <string id="177">
             <en>admin type</en>
+            <tr>yönetici çeşit</tr>
             <de>Administratorentyp</de>
             <pl>typ administratora</pl>
             <cn>管理员类型</cn>
@@ -2021,6 +2068,7 @@ utilisées dans d'autres sections du test.</fr>
         </string>
         <string id="178">
             <en>Please enter a unique login id</en>
+            <tr>Lütfen benzersiz bir id ile oturum açınız</tr>
             <de></de>
             <pl>Proszę podać unikatowy identyfikator login</pl>
             <cn>请输入独特的登录id</cn>
@@ -2031,6 +2079,7 @@ utilisées dans d'autres sections du test.</fr>
         </string>
         <string id="179">
             <en>password</en>
+            <tr>şifre</tr>
             <de>Passwort</de>
             <pl>hasło</pl>
             <cn>密码</cn>
@@ -2041,6 +2090,7 @@ utilisées dans d'autres sections du test.</fr>
         </string>
         <string id="180">
             <en>Select box to set the password</en>
+            <tr>Parola ayarlamak için kutuyu seç</tr>
             <de>Wähle Box aus um das Passwort zu setzen</de>
             <pl>zaznacz jeśli chcesz ustawić hasło</pl>
             <cn>设置密码</cn>
@@ -2050,6 +2100,7 @@ utilisées dans d'autres sections du test.</fr>
         </string>
         <string id="181">
             <en>Please enter a memorable password</en>
+            <tr>Lütfen unutmayacağınız bir parola giriniz</tr>
             <de></de>
             <pl>Proszę podać łatwe do zapamiętania hasło</pl>
             <cn>请输入密码</cn>
@@ -2070,6 +2121,7 @@ utilisées dans d'autres sections du test.</fr>
         </string>
         <string id="183">
             <en>Please retype the password as above</en>
+            <tr>Lütfen yukarıdaki parolayı tekrar yazınız</tr>
             <de></de>
             <pl>Proszę podać ponownie hasło takie jak powyżej</pl>
             <cn>请如上重新输入密码</cn>
@@ -2080,6 +2132,7 @@ utilisées dans d'autres sections du test.</fr>
         </string>
         <string id="184">
             <en>first name</en>
+            <tr>isim</tr>
             <de>Vorname</de>
             <pl>imię</pl>
             <cn>名</cn>
@@ -2090,6 +2143,7 @@ utilisées dans d'autres sections du test.</fr>
         </string>
         <string id="185">
             <en>last name</en>
+            <tr>soyisim</tr>
             <de>nachname</de>
             <pl>nazwisko</pl>
             <cn>姓</cn>
@@ -2100,6 +2154,7 @@ utilisées dans d'autres sections du test.</fr>
         </string>
         <string id="186">
             <en>Please provide your first name</en>
+            <tr>Lütfen isminizi verin</tr>
             <de></de>
             <pl>Proszę podać swoje imię</pl>
             <cn>请提供您的名字</cn>
@@ -2109,6 +2164,7 @@ utilisées dans d'autres sections du test.</fr>
         </string>
         <string id="187">
             <en>Please provide your last name</en>
+            <tr>Lütfen soyisminizi verin</tr>
             <de></de>
             <pl>Proszę podać swoje nazwisko</pl>
             <cn>请提供您的姓氏</cn>
@@ -2119,6 +2175,7 @@ utilisées dans d'autres sections du test.</fr>
         </string>
         <string id="188">
             <en>We will contact you via this email if you run into any problems with your account etc.</en>
+            <tr>Siz eğer hesabınızla ilgili bir problemle karşılaşırsanız email yoluyla sizinle irtibata geçeceğiz.</tr>
             <de></de>
             <pl>Skontaktujemy się z tym adresem email w razie jakichkolwiek problemów z twoim kontem, itp.</pl>
             <cn>如果您的账户出现任何问题，我们将通过此电邮地址与您联系</cn>
@@ -2129,6 +2186,7 @@ utilisées dans d'autres sections du test.</fr>
         </string>
         <string id="189">
             <en>phone no.</en>
+            <tr>telefon numarası</tr>
             <de>Telefon</de>
             <pl>nr telefonu</pl>
             <cn>电话</cn>
@@ -2139,6 +2197,7 @@ utilisées dans d'autres sections du test.</fr>
         </string>
         <string id="190">
             <en>This is optional contact information.</en>
+            <tr>Bu isteğe bağlı girilmesi gereken bir iletişim bilgisidir.</tr>
             <de></de>
             <pl>To jest opcjonalna informacja kontaktowa.</pl>
             <cn>可选联系信息。</cn>
@@ -2148,6 +2207,7 @@ utilisées dans d'autres sections du test.</fr>
         </string>
         <string id="191">
             <en>admin group</en>
+            <tr>yönetici grup</tr>
             <de>Administratorengruppe</de>
             <pl>grupa administratora</pl>
             <cn>管理群</cn>
@@ -2158,6 +2218,7 @@ utilisées dans d'autres sections du test.</fr>
         </string>
         <string id="192">
             <en>admin type</en>
+            <tr>ayönetici çeşit</tr>
             <de>Administratorentyp</de>
             <pl>typ administratora</pl>
             <cn>管理员类型</cn>
@@ -2168,6 +2229,7 @@ utilisées dans d'autres sections du test.</fr>
         </string>
         <string id="193">
             <en>Create and manage the entire structure of each test.</en>
+            <tr>Her testin tüm yapısı oluşturma ve yönetme.</tr>
             <de>Strukturen erstellen und verwalten für den jeweiligen Test.</de>
             <pl>W tej zakładce można tworzyć testy.</pl>
             <cn>创建并管理测试的测试结构。</cn>
@@ -2178,6 +2240,7 @@ utilisées dans d'autres sections du test.</fr>
         </string>
         <string id="194">
             <en>Create custom test logic sections to meet the requirements of specific tests.</en>
+            <tr>Spesifik testlerin gereksinimlerini karşılamak için özel test mantığı bölümleri oluşturma.</tr>
             <de>Benutzerdefinierte Testlogiksektionen anlegen um den Anforderungen des spezifischen Tests zu genügen.</de>
             <pl>W tej zakładce można stworzyć własne sekcje logiki testu i użyc ich w testach.</pl>
             <cn>创建满足特定测试需求的自主测试章节。</cn>
@@ -2188,6 +2251,7 @@ utilisées dans d'autres sections du test.</fr>
         </string>
         <string id="195">
             <en>Create and edit HTML templates as they are visible to the test taker.</en>
+            <tr>Mevcut test alıcıları olarak HTML şablonları düzenleme ve yaratma.</tr>
             <de>Neue HTML Templates anlegen und bestehende verändern (so wie der Testbenutzer Sie sieht).</de>
             <pl>W tej zakładce można stworzyć szablony HTML elementów testu, które będzie widział użytkownik biorący udział w 
 
@@ -6446,6 +6510,7 @@ type 'timestamp'.]]></en>
         </string>
         <string id="619">
             <en>add section</en>
+            <tr>bölüm ekle</tr>
             <de></de>
             <pl>dodaj sekcję</pl>
             <cn>添加章节</cn>
@@ -6456,6 +6521,7 @@ type 'timestamp'.]]></en>
         </string>
         <string id="620" js="1">
             <en>add nested section</en>
+            <tr>iç içe bölüm ekle</tr>
             <de></de>
             <pl>dodaj zagnieżdżoną sekcję</pl>
             <cn>添加嵌套章节</cn>
@@ -6476,6 +6542,7 @@ type 'timestamp'.]]></en>
         </string>
         <string id="622" js="1">
             <en>FOR loop</en>
+            <tr>FOR dögüsü</tr>
             <de></de>
             <pl>pętla FOR</pl>
             <cn>FOR循环</cn>
@@ -6520,6 +6587,7 @@ jako określona zmienna.</pl>
         </string>
         <string id="626">
             <en>in sequence</en>
+            <tr>sırayla</tr>
             <de></de>
             <pl>w sekwencji</pl>
             <cn>依次</cn>
@@ -6530,6 +6598,7 @@ jako określona zmienna.</pl>
         </string>
         <string id="627">
             <en>simple view</en>
+            <tr>basit görünüm</tr>
             <de></de>
             <pl>prosty widok</pl>
             <cn>简易模式</cn>
@@ -6540,6 +6609,7 @@ jako określona zmienna.</pl>
         </string>
         <string id="628">
             <en>advanced view</en>
+            <tr>gelişmiş görünüm</tr>
             <de></de>
             <pl>zaawansowany widok</pl>
             <cn>高级模式</cn>
