@@ -6230,6 +6230,7 @@ type 'timestamp'.]]></en>
         </string>
         <string id="591">
             <en>Check if column accepts NULL value.</en>
+            <tr>Sütunun NULL değeri kabul ettiğini kontrol et .</tr>
             <de></de>
             <pl>Zaznacz jeśli kolumna akceptuje wartość NULL.</pl>
             <cn>列是否可空</cn>
@@ -6240,6 +6241,7 @@ type 'timestamp'.]]></en>
         </string>
         <string id="592" js="1">
             <en>auto increment</en>
+            <tr>otomotik arttırma</tr>
             <de></de>
             <pl>auto inkrementacja</pl>
             <cn>自动递增</cn>
@@ -6250,6 +6252,7 @@ type 'timestamp'.]]></en>
         </string>
         <string id="593">
             <en>Check if column should be auto incremented.</en>
+            <tr>Sütunun otomotik arttırılırlığını kontrol et.</tr>
             <de></de>
             <pl>Zaznacz jeśli kolumna ma być auto inkrementowana.</pl>
             <cn>列是否自动递增</cn>
@@ -6260,6 +6263,7 @@ type 'timestamp'.]]></en>
         </string>
         <string id="594" js="1">
             <en>true</en>
+            <tr>doğru</tr>
             <de></de>
             <pl>prawda</pl>
             <cn>真</cn>
@@ -6270,6 +6274,7 @@ type 'timestamp'.]]></en>
         </string>
         <string id="595" js="1">
             <en>false</en>
+            <tr>yanlış</tr>
             <de></de>
             <pl>fałsz</pl>
             <cn>假</cn>
@@ -6280,6 +6285,7 @@ type 'timestamp'.]]></en>
         </string>
         <string id="596" js="1">
             <en>Is after or equal to</en>
+            <tr>Sonra veya eşit mi</tr>
             <de></de>
             <pl>Jest po lub równe</pl>
             <cn>迟于或等于</cn>
@@ -6290,6 +6296,7 @@ type 'timestamp'.]]></en>
         </string>
         <string id="597" js="1">
             <en>Is after</en>
+            <tr>Sonra mı</tr>
             <de></de>
             <pl>Jest po</pl>
             <cn>迟于</cn>
@@ -6300,6 +6307,7 @@ type 'timestamp'.]]></en>
         </string>
         <string id="598" js="1">
             <en>Is before or equal to</en>
+            <tr>Önce veya eşit mi</tr>
             <de></de>
             <pl>Jest przed lub równe</pl>
             <cn>先于或等于</cn>
@@ -6310,6 +6318,7 @@ type 'timestamp'.]]></en>
         </string>
         <string id="599" js="1">
             <en>Is before</en>
+            <tr>Önce mi</tr>
             <de></de>
             <pl>Jest przed</pl>
             <cn>先于</cn>
@@ -6320,6 +6329,7 @@ type 'timestamp'.]]></en>
         </string>
         <string id="600">
             <en>table indexes</en>
+            <tr>table indeksleri</tr>
             <de></de>
             <pl>indeksy tablicy</pl>
             <cn>表格索引</cn>
@@ -6330,6 +6340,7 @@ type 'timestamp'.]]></en>
         </string>
         <string id="601">
             <en>Table indexes definition.</en>
+            <tr>Tabloindesleri tanımı.</tr>
             <de></de>
             <pl>Definicja indeksów tablicy.</pl>
             <cn>表格索引定义。</cn>
@@ -6340,6 +6351,7 @@ type 'timestamp'.]]></en>
         </string>
         <string id="602" js="1">
             <en>columns</en>
+            <tr>sütunlar</tr>
             <de></de>
             <pl>kolumny</pl>
             <cn>列</cn>
@@ -6350,6 +6362,7 @@ type 'timestamp'.]]></en>
         </string>
         <string id="603" js="1">
             <en>edit index</en>
+            <tr>indeks düzenle</tr>
             <de></de>
             <pl>edytuj indeks</pl>
             <cn>编辑索引</cn>
@@ -6360,6 +6373,7 @@ type 'timestamp'.]]></en>
         </string>
         <string id="604" js="1">
             <en>remove index</en>
+            <tr>indeks kaldır</tr>
             <de></de>
             <pl>usuń indeks</pl>
             <cn>移除索引</cn>
@@ -6370,6 +6384,7 @@ type 'timestamp'.]]></en>
         </string>
         <string id="605" js="1">
             <en>add index</en>
+            <tr>indeks ekle</tr>
             <de></de>
             <pl>dodaj indeks</pl>
             <cn>添加索引</cn>
@@ -6380,6 +6395,7 @@ type 'timestamp'.]]></en>
         </string>
         <string id="606">
             <en>index properties</en>
+            <tr>indeks özellikleri</tr>
             <de></de>
             <pl>właścwiości indeksu</pl>
             <cn>索引属性</cn>
@@ -6390,6 +6406,7 @@ type 'timestamp'.]]></en>
         </string>
         <string id="607">
             <en>Declare index properties.</en>
+            <tr>İndeks özellilerini bildirin.</tr>
             <de></de>
             <pl>Zadeklaruj właścwiości indeksu.</pl>
             <cn>声明索引属性。</cn>
@@ -6430,6 +6447,7 @@ type 'timestamp'.]]></en>
         </string>
         <string id="611" js="1">
             <en>no column selected for indexing</en>
+            <en>indeks için sutun seçilmemiştir</en>
             <de></de>
             <pl>nie wybrano kolumny do zaindeksowania</pl>
             <cn>未选择索引列</cn>
@@ -6440,6 +6458,7 @@ type 'timestamp'.]]></en>
         </string>
         <string id="612" js="1">
             <en>check columns that you wish to index</en>
+            <tr>istediğiniz indeks sütunları işaretleyiniz</tr>
             <de></de>
             <pl>wybierz kolumny jakie chcesz zaindeksować</pl>
             <cn>选择索引列</cn>
@@ -6450,6 +6469,7 @@ type 'timestamp'.]]></en>
         </string>
         <string id="613" js="1">
             <en>Are you sure you want to delete table index?</en>
+            <tr>Tablo indeksini silmek istediğinizden emin misiniz?</tr>
             <de></de>
             <pl>Jesteś pewen, że chcesz usunąć indeks tabeli?</pl>
             <cn>确认删除表格索引？</cn>
@@ -6460,6 +6480,7 @@ type 'timestamp'.]]></en>
         </string>
         <string id="614" js="1">
             <en>deleting table index</en>
+            <en>tablo indeks silme</en>            
             <de></de>
             <pl>usuwanie indeksu tabeli</pl>
             <cn>删除表格索引</cn>
@@ -6470,6 +6491,7 @@ type 'timestamp'.]]></en>
         </string>
         <string id="615" js="1">
             <en>editing table index</en>
+            <tr>tablo indeks düzenleme</tr>
             <de></de>
             <pl>edycja indeksu tabeli</pl>
             <cn>编辑表格索引</cn>
@@ -6480,6 +6502,7 @@ type 'timestamp'.]]></en>
         </string>
         <string id="616" js="1">
             <en>MySQL transaction error: </en>
+            <tr>MySQL işlem hatası: </tr>
             <de></de>
             <pl>Błąd transakcji MySQL: </pl>
             <cn>MySQL交易错误：</cn>
