@@ -1871,7 +1871,7 @@ utilisées dans d'autres sections du test.</fr>
         </string>
         <string id="159">
             <en>name of the admin type</en>
-            <tr>yöentici çeşidin ismi</tr>
+            <tr>yönetici çeşidin ismi</tr>
             <de>Name des Adminsitratorentyps</de>
             <pl>nazwa typu administratora</pl>
             <cn>管理员类型名称</cn>
@@ -1904,7 +1904,7 @@ utilisées dans d'autres sections du test.</fr>
         </string>
         <string id="162">
             <en>admin type rights</en>
-            <tr>yöentici çeşit hakları</tr>
+            <tr>yönetici çeşit hakları</tr>
             <de>Administratorentyp Rechte</de>
             <pl>prawa typu administratora</pl>
             <cn>管理员类型权限</cn>
@@ -2002,7 +2002,7 @@ utilisées dans d'autres sections du test.</fr>
         </string>
         <string id="171">
             <en>creating new admin</en>
-            <tr>yeni yöentici yaratma</tr>
+            <tr>yeni yönetici yaratma</tr>
             <de>lege neuen Administrator an</de>
             <pl>tworzenie nowego administratora</pl>
             <cn>创建管理者</cn>
@@ -2266,6 +2266,9 @@ teście.</pl>
             <en>Create tables for storing and managing test data, including item content, correct responses and response history 
 
 etc.</en>
+            <tr>Test verilerini yönetmek ve depolamak, madde içeriği içermek, doğru yanıtlar ve yanıt geçmişi için tablolar oluşturma 
+
+vb.</tr>
             <de>Tabellen anlegen um Testdaten zu speichern und verwalten; auch Iteminhalte, richtige Antworten und Antworthistorie 
 
 usw.</de>
@@ -2286,6 +2289,7 @@ histórico de respotas etc.</br>
         </string>
         <string id="197">
             <en>Create and manage admin and standard user accounts, user groups and access rights of users.</en>
+            <tr>Kullanıcının ulaşım haklarını, kullanıcı gruplarını ve standart kullanıcı hesaplarını ve yöneticiyi yönetmek ve oluşturmak.</tr>
             <de>Administratoren- und Standardbenutzerkonten anlegen und verwalten, Benutzergruppen und Zugriffsrechte der 
 
 Benutzer.</de>
@@ -2304,6 +2308,7 @@ d'accès des utilisateurs.</fr>
         </string>
         <string id="198">
             <en>admins</en>
+            <tr>yöneticiler</tr>
             <de></de>
             <pl>administratorzy</pl>
             <cn>管理员</cn>
@@ -2314,6 +2319,7 @@ d'accès des utilisateurs.</fr>
         </string>
         <string id="199">
             <en>available objects</en>
+            <tr>kullanılabilir nesneler</tr>
             <de>verfügbare Objekte</de>
             <pl>dostępne obiekty</pl>
             <cn>可用对象</cn>
@@ -2324,6 +2330,7 @@ d'accès des utilisateurs.</fr>
         </string>
         <string id="203">
             <en>edit object</en>
+            <tr>nesneyi düzenle</tr>
             <de>bearbeite Objekt</de>
             <pl>edytuj obiekt</pl>
             <cn>编辑对象</cn>
@@ -2334,6 +2341,7 @@ d'accès des utilisateurs.</fr>
         </string>
         <string id="204" js="1">
             <en>delete object</en>
+            <tr>nesneyi sil</tr>
             <de>lösche Objekt</de>
             <pl>usuń obiekt</pl>
             <cn>删除对象</cn>
@@ -2344,6 +2352,7 @@ d'accès des utilisateurs.</fr>
         </string>
         <string id="205">
             <en>add new object</en>
+            <tr>yeni nesne ekle</tr>
             <de>füge neues Objekt hinzu</de>
             <pl>dodaj nowy obiekt</pl>
             <cn>添加对象</cn>
@@ -2354,6 +2363,7 @@ d'accès des utilisateurs.</fr>
         </string>
         <string id="211">
             <en>login to platform</en>
+            <tr>platforma giriş</tr>
             <de>Login zur Platform</de>
             <pl>logowanie do platformy</pl>
             <cn>登入系统</cn>
@@ -2364,6 +2374,7 @@ d'accès des utilisateurs.</fr>
         </string>
         <string id="212">
             <en>Enter your login and password.</en>
+            <tr>Adınızı ve şifrenizi girin.</tr>
             <de>Geben Sie Ihren Benutzernamen und Ihr Passwort ein.</de>
             <pl>Podaj swój login i hasło.</pl>
             <cn>输入用户名和密码</cn>
@@ -2374,6 +2385,7 @@ d'accès des utilisateurs.</fr>
         </string>
         <string id="213">
             <en>Select the HTML template to be loaded.</en>
+            <tr>Yüklenmesi için HTML şablonu seçin.</tr>
             <de>Zu ladendes HTML Template auswählen.</de>
             <pl>Wybierz szablon HTML, który chcesz wczytać.</pl>
             <cn>选择载入HTML模板</cn>
@@ -2384,6 +2396,7 @@ d'accès des utilisateurs.</fr>
         </string>
         <string id="214">
             <en>Description of selected HTML template</en>
+            <tr>Seçili HTML şablonun tanımı</tr>
             <de></de>
             <pl>Opis obecnie wybranego szablonu HTML</pl>
             <cn>所选HTML模板描述</cn>
@@ -2394,6 +2407,7 @@ d'accès des utilisateurs.</fr>
         </string>
         <string id="215">
             <en>value of this variable will be inserted into the HTML template</en>
+            <tr>bu değişkenin değeri HTML şablonu içine eklenecektir</tr>
             <de>Wert dieser Variable wird in das HTML Template eingefügt</de>
             <pl>wartość tej zmiennej zostanie osadzona w szablonie HTML</pl>
             <cn>在HTML模板中插入此变量值</cn>
@@ -2407,6 +2421,10 @@ d'accès des utilisateurs.</fr>
 
 variable into HTML templates to make the timer visible.]]>
             </en>
+             <tr><![CDATA[Test sorusunu göndermek için kalan süre (Saniye) . 0 ın A değeri sınırsız süreyi ifade eder. Ekle <b>{{KALAN_SÜRE}}</b> 
+
+zamanlayıcıyı görünür yapmak için  HTML şablonları içine değişken.]]>
+            </tr>
             <de><![CDATA[Zeit (in Sekunden) die bleibt um das Item zu beantworten. Auf 0 setzen für unbeschränkte Zeit. Füge <b>
 
 {{TIME_LEFT}}</b> Variable in das HTML Template ein, um die verbleibende Zeit anzuzeigen.]]>
@@ -2435,6 +2453,7 @@ Voeg de variabele <b>{{TIME_LEFT}}</b> in op de HTML-sjabloon om de timer zichtb
         </string>
         <string id="217">
             <en>this variable type is</en>
+            <tr>bu değişken türü olur</tr>
             <de>dieser Variablentyp ist</de>
             <pl>typem tej zmiennej jest</pl>
             <cn>此变量类型为</cn>
@@ -2445,6 +2464,7 @@ Voeg de variabele <b>{{TIME_LEFT}}</b> in op de HTML-sjabloon om de timer zichtb
         </string>
         <string id="221" js="1">
             <en>not equal</en>
+            <tr>eşit değil</tr>
             <de>ungleich</de>
             <pl>nie równe</pl>
             <cn>不等于</cn>
@@ -2455,6 +2475,7 @@ Voeg de variabele <b>{{TIME_LEFT}}</b> in op de HTML-sjabloon om de timer zichtb
         </string>
         <string id="222" js="1">
             <en>equal</en>
+            <tr>eşit</tr>
             <de>gleich</de>
             <pl>równe</pl>
             <cn>等于</cn>
@@ -2465,6 +2486,7 @@ Voeg de variabele <b>{{TIME_LEFT}}</b> in op de HTML-sjabloon om de timer zichtb
         </string>
         <string id="223" js="1">
             <en>greater than</en>
+            <tr>büyüktür</tr>
             <de>größer als</de>
             <pl>większe niż</pl>
             <cn>大于</cn>
@@ -2475,6 +2497,7 @@ Voeg de variabele <b>{{TIME_LEFT}}</b> in op de HTML-sjabloon om de timer zichtb
         </string>
         <string id="224" js="1">
             <en>equal or greater than</en>
+            <tr>eşittir ya da büyüktür</tr>
             <de>größer oder gleich</de>
             <pl>równe lub większe niż</pl>
             <cn>大于或等于</cn>
@@ -2485,6 +2508,7 @@ Voeg de variabele <b>{{TIME_LEFT}}</b> in op de HTML-sjabloon om de timer zichtb
         </string>
         <string id="225" js="1">
             <en>lesser than</en>
+            <tr>daha küçüktür</tr>
             <de>kleiner als</de>
             <pl>mniejsze niż</pl>
             <cn>小于</cn>
@@ -2495,6 +2519,7 @@ Voeg de variabele <b>{{TIME_LEFT}}</b> in op de HTML-sjabloon om de timer zichtb
         </string>
         <string id="226" js="1">
             <en>equal or lesser than</en>
+            <tr>eşit ya da daha küçüktür</tr>
             <de>kleiner oder gleich</de>
             <pl>równe lub mniejsze niż</pl>
             <cn>小于或等于</cn>
@@ -2505,6 +2530,7 @@ Voeg de variabele <b>{{TIME_LEFT}}</b> in op de HTML-sjabloon om de timer zichtb
         </string>
         <string id="227" js="1">
             <en>AND</en>
+            <tr>VE</tr>
             <de>UND</de>
             <pl>I</pl>
             <cn>并且</cn>
@@ -2515,6 +2541,7 @@ Voeg de variabele <b>{{TIME_LEFT}}</b> in op de HTML-sjabloon om de timer zichtb
         </string>
         <string id="228" js="1">
             <en>OR</en>
+            <tr>VEYA</tr>
             <de>ODER</de>
             <pl>LUB</pl>
             <cn>或者</cn>
@@ -2525,6 +2552,7 @@ Voeg de variabele <b>{{TIME_LEFT}}</b> in op de HTML-sjabloon om de timer zichtb
         </string>
         <string id="229">
             <en>add condition</en>
+            <tr>koşul ekle</tr>
             <de>Bedingung hinzufügen</de>
             <pl>dodaj warunek</pl>
             <cn>添加条件</cn>
@@ -2535,6 +2563,7 @@ Voeg de variabele <b>{{TIME_LEFT}}</b> in op de HTML-sjabloon om de timer zichtb
         </string>
         <string id="230">
             <en>remove condition</en>
+            <tr>koşulu çıkarmak</tr>
             <de>Bedingung entfernen</de>
             <pl>usuń warunek</pl>
             <cn>移除条件</cn>
@@ -2545,6 +2574,7 @@ Voeg de variabele <b>{{TIME_LEFT}}</b> in op de HTML-sjabloon om de timer zichtb
         </string>
         <string id="235">
             <en>from table</en>
+            <tr>tablodan</tr>
             <de>aus Tabelle</de>
             <pl>z tabeli</pl>
             <fr>à partir du tableau</fr>
@@ -2555,6 +2585,7 @@ Voeg de variabele <b>{{TIME_LEFT}}</b> in op de HTML-sjabloon om de timer zichtb
         </string>
         <string id="236">
             <en>by R code</en>
+            <tr>R kodu tarafından</tr>
             <de>durch R Code</de>
             <pl>poprzez kod R</pl>
             <cn>通过R代码</cn>
@@ -2565,6 +2596,7 @@ Voeg de variabele <b>{{TIME_LEFT}}</b> in op de HTML-sjabloon om de timer zichtb
         </string>
         <string id="239">
             <en>no table selected</en>
+            <tr>seçili tablo yok</tr>
             <de>keine Tabelle ausgewählt</de>
             <pl>nie wybrano tabeli</pl>
             <cn>未选择表格</cn>
@@ -2575,6 +2607,7 @@ Voeg de variabele <b>{{TIME_LEFT}}</b> in op de HTML-sjabloon om de timer zichtb
         </string>
         <string id="241">
             <en>no column selected</en>
+            <tr>hiçbir sütun seçilmedi</tr>
             <de>keine Spalten ausgewählt</de>
             <pl>nie wybrano kolumny</pl>
             <cn>未选择列</cn>
@@ -2585,6 +2618,7 @@ Voeg de variabele <b>{{TIME_LEFT}}</b> in op de HTML-sjabloon om de timer zichtb
         </string>
         <string id="242">
             <en>WHERE</en>
+            <tr>NEREDE</tr>
             <de>WHERE</de>
             <pl>GDZIE</pl>
             <cn>当</cn>
@@ -2595,6 +2629,7 @@ Voeg de variabele <b>{{TIME_LEFT}}</b> in op de HTML-sjabloon om de timer zichtb
         </string>
         <string id="243">
             <en>like</en>
+            <tr>beğenmek</tr>
             <de>ähnlich</de>
             <pl>podobne</pl>
             <cn>类似于</cn>
@@ -2605,6 +2640,7 @@ Voeg de variabele <b>{{TIME_LEFT}}</b> in op de HTML-sjabloon om de timer zichtb
         </string>
         <string id="244">
             <en>not like</en>
+            <tr>beğenmemek</tr>
             <de>nicht ähnlich</de>
             <pl>niepodobne</pl>
             <cn>不类似于</cn>
@@ -2615,6 +2651,7 @@ Voeg de variabele <b>{{TIME_LEFT}}</b> in op de HTML-sjabloon om de timer zichtb
         </string>
         <string id="245">
             <en>Test id. Read only variable.</en>
+            <tr>Test id. Yalnızca değişkeni oku.</tr>
             <de>Test id. Diese Variable kann nur gelesen werden.</de>
             <pl>ID testu. Zmienna tylko do odczytu.</pl>
             <cn>测试id。只读变量。</cn>
