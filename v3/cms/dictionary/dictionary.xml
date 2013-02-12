@@ -2662,6 +2662,7 @@ Voeg de variabele <b>{{TIME_LEFT}}</b> in op de HTML-sjabloon om de timer zichtb
         </string>
         <string id="246">
             <en>Test session id. Read only variable.</en>
+            <tr>Test oturum id. Yalnızca değişkeni oku.</tr>
             <de>Testsitzungs id. Diese Variable kann nur gelesen werden.</de>
             <pl>ID sesji testu. Zmienna tylko do odczytu.</pl>
             <cn>测试章节id。只读变量。</cn>
@@ -2672,6 +2673,7 @@ Voeg de variabele <b>{{TIME_LEFT}}</b> in op de HTML-sjabloon om de timer zichtb
         </string>
         <string id="248">
             <en>insert</en>
+            <tr>ekle</tr>
             <de>einfügen</de>
             <pl>dodaj</pl>
             <cn>插入</cn>
@@ -2682,6 +2684,7 @@ Voeg de variabele <b>{{TIME_LEFT}}</b> in op de HTML-sjabloon om de timer zichtb
         </string>
         <string id="249">
             <en>update</en>
+            <tr>güncelleştir</tr>
             <de>aktualisieren</de>
             <pl>zmień</pl>
             <cn>更新</cn>
@@ -2692,6 +2695,7 @@ Voeg de variabele <b>{{TIME_LEFT}}</b> in op de HTML-sjabloon om de timer zichtb
         </string>
         <string id="250">
             <en>delete</en>
+            <tr>sil</tr>
             <de>löschen</de>
             <pl>usuń</pl>
             <cn>删除</cn>
@@ -2702,6 +2706,7 @@ Voeg de variabele <b>{{TIME_LEFT}}</b> in op de HTML-sjabloon om de timer zichtb
         </string>
         <string id="253">
             <en>Select the type of section to be added to the test logic</en>
+            <tr>Test mantığının eklenmesi için bölüm tipini seç</tr>
             <de>Typ der zu Testlogik hinzuzufügenden Sektion auswählen</de>
             <pl>wybierz typ sekcji jaką chciałbyś dodać do logiki testu</pl>
             <cn>选择加入测试逻辑的章节类型</cn>
@@ -2712,6 +2717,7 @@ Voeg de variabele <b>{{TIME_LEFT}}</b> in op de HTML-sjabloon om de timer zichtb
         </string>
         <string id="254">
             <en>Enter variable description that will be visible to anyone using this section in their test.</en>
+            <en>Onların testinde bu bölümü kullanan herhangi birine görünür olacak değişken tanım girin.</en>
             <de>Variablenbeschreibung eingeben die alle Benutzer dieser Sektion in ihren Tests sehen.</de>
             <pl>Wprowadź opis zmiennej który będzie widoczny dla każdego kto użyje tej sekcji w swym teście.</pl>
             <cn>添加向使用此章节用户显示的变量描述</cn>
@@ -2722,6 +2728,7 @@ Voeg de variabele <b>{{TIME_LEFT}}</b> in op de HTML-sjabloon om de timer zichtb
         </string>
         <string id="255">
             <en>Select the MySQL table whose structure and data are to be imported into this table.</en>
+            <tr>Bu tablo içine eklenen veri ve yapıda olan MySQL tablusu seç.</tr>
             <de>Wähle MySQL Tabelle aus deren Struktur und Daten in diese Tabelle importiert werden sollen.</de>
             <pl>Wybierz tabelę MySQL, której strukturę i dane chciałbyś zaimportować do tej tabeli.</pl>
             <cn>选择MySQL表格导入其结构和数据至此表格</cn>
@@ -2732,6 +2739,7 @@ Voeg de variabele <b>{{TIME_LEFT}}</b> in op de HTML-sjabloon om de timer zichtb
         </string>
         <string id="256">
             <en>Select the CSV file to be imported.</en>
+            <tr>Belirtilen CSV dosyasını seç.</tr>
             <de>Wählen Sie die zu importierende CSV Datei aus.</de>
             <pl>Wybierz plik CSV, który chciałbyś zaimportować.</pl>
             <cn>选择导入的CSV文件</cn>
@@ -2742,6 +2750,7 @@ Voeg de variabele <b>{{TIME_LEFT}}</b> in op de HTML-sjabloon om de timer zichtb
         </string>
         <string id="257">
             <en>Select the name of the column</en>
+            <tr>Sütunun ismini seç</tr>
             <de>Name der Spalte auswählen</de>
             <pl>Wybierz nazwę kolumny</pl>
             <cn>选择列名称</cn>
@@ -2752,6 +2761,7 @@ Voeg de variabele <b>{{TIME_LEFT}}</b> in op de HTML-sjabloon om de timer zichtb
         </string>
         <string id="258">
             <en>Select the column type</en>
+            <en>Sütun türünü seçin</en>
             <de>Typ der Spalte auswählen</de>
             <pl>Wybierz typ kolumny</pl>
             <cn>选择列类型</cn>
@@ -2762,6 +2772,7 @@ Voeg de variabele <b>{{TIME_LEFT}}</b> in op de HTML-sjabloon om de timer zichtb
         </string>
         <string id="259">
             <en>enter HTML value of the cell</en>
+            <tr>Hücrenin HTML değerini girin</tr>
             <de>HTML Wert der Zelle eingeben</de>
             <pl>wprowadź wartość HTML komórki</pl>
             <cn>输入单元格的HTML值</cn>
@@ -2772,6 +2783,7 @@ Voeg de variabele <b>{{TIME_LEFT}}</b> in op de HTML-sjabloon om de timer zichtb
         </string>
         <string id="260">
             <en>Enter your unique login id</en>
+            <tr>Benzersiz olan oturum açma id nizi girin</tr>
             <de>Geben sie Ihre eindeutige Login id ein</de>
             <pl>Wprowadź swój login</pl>
             <cn>输入用户名</cn>
@@ -2782,6 +2794,7 @@ Voeg de variabele <b>{{TIME_LEFT}}</b> in op de HTML-sjabloon om de timer zichtb
         </string>
         <string id="261">
             <en>Enter your password</en>
+            <tr>Şifrenizi girin</tr>
             <de>Geben Sie Ihr Passwort ein</de>
             <pl>Wprowadź swoje hasło</pl>
             <cn>输入密码</cn>
@@ -2792,6 +2805,7 @@ Voeg de variabele <b>{{TIME_LEFT}}</b> in op de HTML-sjabloon om de timer zichtb
         </string>
         <string id="262">
             <en>OUTDATED.</en>
+            <en>GEÇERSİZ.</en>
             <de></de>
             <pl>NIEAKTUALNA.</pl>
             <cn>过期版本</cn>
@@ -2802,6 +2816,7 @@ Voeg de variabele <b>{{TIME_LEFT}}</b> in op de HTML-sjabloon om de timer zichtb
         </string>
         <string id="263">
             <en>CLICK HERE TO DOWNLOAD THE LATEST VERSION</en>
+            <tr>EN SON VERSİYONU YÜKLEMEK İÇİN BURAYA TIKLAYINIZ</tr>
             <de>KLICKEN SIE HIER UM DIE NEUESTE VERSION HERUNTERZULADEN</de>
             <pl>KLIKNIJ TUTAJ ABY POBRAĆ NAJNOWSZĄ WERSJĘ</pl>
             <cn>点此下载最新版本</cn>
@@ -2812,6 +2827,7 @@ Voeg de variabele <b>{{TIME_LEFT}}</b> in op de HTML-sjabloon om de timer zichtb
         </string>
         <string id="264">
             <en>up-to-date</en>
+            <tr>güncel</tr>
             <de></de>
             <pl>aktualna</pl>
             <cn>最新版本</cn>
@@ -2822,6 +2838,7 @@ Voeg de variabele <b>{{TIME_LEFT}}</b> in op de HTML-sjabloon om de timer zichtb
         </string>
         <string id="265" js="1">
             <en>Export</en>
+            <tr>Dışa aktar</tr>
             <de>Export</de>
             <pl>Eksport</pl>
             <cn>导出</cn>
@@ -2832,6 +2849,7 @@ Voeg de variabele <b>{{TIME_LEFT}}</b> in op de HTML-sjabloon om de timer zichtb
         </string>
         <string id="266">
             <en>Import new object</en>
+            <tr>Yeni nesne al</tr>
             <de>Importiere neues Objekt</de>
             <pl>Zaimportuj nowy obiekt</pl>
             <cn>导入新对象</cn>
@@ -2842,6 +2860,7 @@ Voeg de variabele <b>{{TIME_LEFT}}</b> in op de HTML-sjabloon om de timer zichtb
         </string>
         <string id="267">
             <en>Select file with exported object</en>
+            <tr>Dışa aktarılan nesne ile dosya seç</tr>
             <de></de>
             <pl>Wybierz plik z wyeksportowanym obiektem</pl>
             <cn>选择导出对象文件</cn>
@@ -2852,6 +2871,7 @@ Voeg de variabele <b>{{TIME_LEFT}}</b> in op de HTML-sjabloon om de timer zichtb
         </string>
         <string id="268" js="1">
             <en>Importing object</en>
+            <tr>Nesneyi içe aktar</tr>
             <de>Importiere Objekt</de>
             <pl>Importowanie obiektu</pl>
             <cn>导入对象</cn>
@@ -2862,6 +2882,8 @@ Voeg de variabele <b>{{TIME_LEFT}}</b> in op de HTML-sjabloon om de timer zichtb
         </string>
         <string id="269" js="1">
             <en>Are you sure you want to import the object from this file?</en>
+            <tr>Bu dosyadan nesne almak istediğinizden emin misiniz?</tr>
+            <tr>Are you sure you want to import the object from this file?</tr>
             <de>Sind Sie sicher, dass Sie das Objekt aus dieser Datei importieren wollen?</de>
             <pl>Jesteś pewien, że chcesz zaimportować obiekt z tego pliku?</pl>
             <cn>确认从此文件中导入对象？</cn>
@@ -2872,6 +2894,7 @@ Voeg de variabele <b>{{TIME_LEFT}}</b> in op de HTML-sjabloon om de timer zichtb
         </string>
         <string id="270" js="1">
             <en>Object imported</en>
+            <tr>Nesne alma</tr>
             <de>Objekt importiert</de>
             <pl>Obiekt zaimportowany</pl>
             <cn>已导入对象</cn>
@@ -2882,6 +2905,7 @@ Voeg de variabele <b>{{TIME_LEFT}}</b> in op de HTML-sjabloon om de timer zichtb
         </string>
         <string id="271" js="1">
             <en>There was an error while importing the object</en>
+            <tr>Nesne alınırken bir hata oluştu</tr>
             <de>Es gab einen Fehler beim importieren des Objekts</de>
             <pl>Wystąpił błąd podczas importowania obiektu</pl>
             <cn>导入对象发生错误</cn>
@@ -2892,6 +2916,7 @@ Voeg de variabele <b>{{TIME_LEFT}}</b> in op de HTML-sjabloon om de timer zichtb
         </string>
         <string id="272" js="1">
             <en>File does not exist.</en>
+            <tr>Dosya yoktur.</tr>
             <de>Datei existiert nicht.</de>
             <pl>Plik nie istnieje.</pl>
             <cn>文件不存在。</cn>
@@ -2902,6 +2927,7 @@ Voeg de variabele <b>{{TIME_LEFT}}</b> in op de HTML-sjabloon om de timer zichtb
         </string>
         <string id="273" js="1">
             <en>Deleting object</en>
+            <tr>Nesne siliniyor</tr>
             <de>Lösche Objekt</de>
             <pl>Usuwanie obiektu</pl>
             <cn>删除对象</cn>
@@ -2912,6 +2938,7 @@ Voeg de variabele <b>{{TIME_LEFT}}</b> in op de HTML-sjabloon om de timer zichtb
         </string>
         <string id="274" js="1">
             <en>Saving object</en>
+            <tr>Nesne kaydediliyor</tr>
             <de>Speichere Objekt</de>
             <pl>Zapisywanie obiektu</pl>
             <cn>保存对象</cn>
@@ -2922,6 +2949,7 @@ Voeg de variabele <b>{{TIME_LEFT}}</b> in op de HTML-sjabloon om de timer zichtb
         </string>
         <string id="278" js="1">
             <en>Not logged in</en>
+            <tr>Girilmedi</tr>
             <de>Nicht eingeloggt</de>
             <pl>Nie zalogowany</pl>
             <cn>未登入</cn>
@@ -2932,6 +2960,7 @@ Voeg de variabele <b>{{TIME_LEFT}}</b> in op de HTML-sjabloon om de timer zichtb
         </string>
         <string id="283">
             <en>This is a system variable</en>
+            <tr>Bu bir sistem değişkendir</tr>
             <de>Dies ist eine Systemvariable</de>
             <pl>Jest to zmienna systemowa</pl>
             <cn>这是系统变量</cn>
@@ -2942,6 +2971,7 @@ Voeg de variabele <b>{{TIME_LEFT}}</b> in op de HTML-sjabloon om de timer zichtb
         </string>
         <string id="284" js="1">
             <en>debug</en>
+            <tr>hata ayıklama</tr>
             <de>debuggen</de>
             <pl>debug</pl>
             <cn>调试</cn>
@@ -2953,6 +2983,8 @@ Voeg de variabele <b>{{TIME_LEFT}}</b> in op de HTML-sjabloon om de timer zichtb
         <string id="285" js="1">
             <en><![CDATA[Test #{0} - debug <b>(idle)</b>]]>
             </en>
+            <tr><![CDATA[Test #{0} - hata ayıklama <b>(boşta)</b>]]>
+            </tr>
             <de><![CDATA[Test #{0} - debug <b>(wartend)</b>]]>
             </de>
             <pl><![CDATA[Test #{0} - debug <b>(bezczynny)</b>]]>
@@ -2982,6 +3014,9 @@ Voeg de variabele <b>{{TIME_LEFT}}</b> in op de HTML-sjabloon om de timer zichtb
             <en>Please ensure that all changes to the test logic have been saved prior to debugging. Unsaved changes will not be 
 
 considered in the debugging process.</en>
+           <tr>Test mantığındaki bütün değişimlerin hata ayıklama işleminden önce kaydedeildiğinden emil olun. Hata ayıklama sürecinde 
+ 
+kaydedilmemiş değişiklikler dikkate alınmayacaktır.</tr>
             <de>Stellen Sie sicher, das alle Veränderungen an der Testlogik vor dem Debuggen gespeichert sind. Ungespeicherte 
 
 Änderungen werden nicht im Debuggingprozess berücksichtigt.</de>
@@ -3005,6 +3040,8 @@ não salvas não serão consideradas no processo de debug.</br>
         <string id="288" js="1">
             <en><![CDATA[Please press the <b>begin</b> button.]]>
             </en>
+            <tr><![CDATA[Lütfen basınız <b>başlama</b> butonuna.]]>
+            </tr>
             <de><![CDATA[Bitt den <b>Start</b> Knopf drücken.]]>
             </de>
             <pl><![CDATA[Proszę nacisnąć przycisk <b>zacznij</b>.]]>
@@ -3023,6 +3060,8 @@ não salvas não serão consideradas no processo de debug.</br>
         <string id="289" js="1">
             <en><![CDATA[Test #{0} - syntax validation <b>(in progress...)]]>
             </en>
+            <tr><![CDATA[Test #{0} - sözdizimi doğrulması <b>(devam etmekte...)]]>
+            </tr>
             <de><![CDATA[Test #{0} - Syntaxvalidierung <b>(läuft ...)]]>
             </de>
             <pl><![CDATA[Test #{0} - walidacja składni <b>(w trakcie...)]]>
@@ -3040,6 +3079,7 @@ não salvas não serão consideradas no processo de debug.</br>
         </string>
         <string id="290" js="1">
             <en>Syntax validation</en>
+            <tr>Söz dizimi doğrulama</tr>         
             <de>Syntaxvalidierung</de>
             <pl>Walidacja składni</pl>
             <cn>句法验证</cn>
@@ -3051,6 +3091,8 @@ não salvas não serão consideradas no processo de debug.</br>
         <string id="291" js="1">
             <en><![CDATA[Test section with index #{0} syntax validation: <font style='color:green;'><b>PASSED</b></font>]]>
             </en>
+            <tr><![CDATA[Test bölümü ile index #{0} sözdizimi doğrulama: <font style='color:green;'><b>GEÇTİ</b></font>]]>
+            </tr>
             <de><![CDATA[Testsektion  mit Index #{0} Syntaxvalidierung: <font style='color:green;'><b>OK</b></font>]]>
             </de>
             <pl><![CDATA[Walidacja składni sekcji testu o indeksie #{0}: <font style='color:green;'><b>POWIODŁA SIĘ</b></font>]]>
@@ -3069,6 +3111,8 @@ não salvas não serão consideradas no processo de debug.</br>
         <string id="292" js="1">
             <en><![CDATA[Test section with index #{0} syntax validation: <font style='color:red;'><b>FAILED</b></font>]]>
             </en>
+            <tr><![CDATA[Test bölümü ile index #{0} sözdizimi doğrulama: <font style='color:red;'><b>KALDI</b></font>]]>
+            </tr>
             <de><![CDATA[Testsektion mit Index #{0} Syntaxvalidierung: <font style='color:red;'><b>FEHLGESCHLAGEN</b></font>]]>
             </de>
             <pl><![CDATA[Walidacja składni sekcji testu o indeksie #{0}: <font style='color:red;'><b>NIE POWIODŁA SIĘ</b></font>]]>
@@ -3087,6 +3131,8 @@ não salvas não serão consideradas no processo de debug.</br>
         <string id="293" js="1">
             <en><![CDATA[Test #{0} - syntax validation <b>(finished)</b>]]>
             </en>
+            <tr><![CDATA[Test #{0} - sözdizimi doğrulama <b>(bitti)</b>]]>
+            </tr>
             <de><![CDATA[Test #{0} - Syntaxvalidierung <b>(abgeschlossen)</b>]]>
             </de>
             <pl><![CDATA[Test #{0} - walidacja składni <b>(zakończona)</b>]]>
@@ -3105,6 +3151,8 @@ não salvas não serão consideradas no processo de debug.</br>
         <string id="294" js="1">
             <en><![CDATA[Syntax validation <font style='color:green;'>PASSED</font>.]]>
             </en>
+            <tr><![CDATA[sözdizimi doğrulama <font style='color:green;'>GEÇTİ</font>.]]>
+            </tr>
             <de><![CDATA[Syntaxvalidierung <font style='color:green;'>OK</font>.]]>
             </de>            
             <pl><![CDATA[Walidacja składni <font style='color:green;'>POMYŚLNA</font>.]]>
@@ -3123,6 +3171,8 @@ não salvas não serão consideradas no processo de debug.</br>
         <string id="295" js="1">
             <en><![CDATA[Test #{0} - syntax validation <b>(FAILED on section index #{1} - debug HALTED)</b>]]>
             </en>
+            <tr><![CDATA[Test #{0} - sözdizimi doğrulama <b>(bölüm indeksi BAŞARISIZ #{1} - hata ayıklama DURDURULDU)</b>]]>
+            </tr>
             <de><![CDATA[Test #{0} - Syntaxvalidierung <b>(FEHLGESCHLAGEN bei Sektion mit Index #{1} - debug ANGEHALEN)</b>]]>
             </de>
             <pl><![CDATA[Test #{0} - walidacja składni <b>(NIE POWIODŁA SIĘ przy sekcji o indeksie #{1} - debug ZATRZYMANY)</b>]]>
