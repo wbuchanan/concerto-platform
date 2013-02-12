@@ -50,7 +50,7 @@ if (!isset($ini)) {
                 var values = new Array();
 <?php
 foreach ($_GET as $key => $value) {
-    if ($key == "sid" || $key == "tid" || $key == "oid" || $key == "hash")
+    if ($key == "sid" || $key == "tid" || $key == "wid" || $key == "hash")
         continue;
     ?>
                 values.push($.toJSON({
@@ -60,9 +60,9 @@ foreach ($_GET as $key => $value) {
     <?php
 }
 
-if ((array_key_exists("sid", $_GET) || array_key_exists("tid", $_GET)) && array_key_exists("oid", $_GET)) {
+if ((array_key_exists("sid", $_GET) || array_key_exists("tid", $_GET)) && array_key_exists("wid", $_GET)) {
     ?>
-                test = new Concerto($("#divTestContainer"),<?= array_key_exists("oid", $_GET) ? "'" . $_GET['oid'] . "'" : "null" ?>,<?= array_key_exists("hash", $_GET) ? "'" . $_GET['hash'] . "'" : "null" ?>,<?= array_key_exists("sid", $_GET) ? $_GET['sid'] : "null" ?>,<?= array_key_exists("tid", $_GET) ? $_GET['tid'] : "null" ?>);
+                test = new Concerto($("#divTestContainer"),<?= array_key_exists("wid", $_GET) ? "'" . $_GET['wid'] . "'" : "null" ?>,<?= array_key_exists("hash", $_GET) ? "'" . $_GET['hash'] . "'" : "null" ?>,<?= array_key_exists("sid", $_GET) ? $_GET['sid'] : "null" ?>,<?= array_key_exists("tid", $_GET) ? $_GET['tid'] : "null" ?>);
                 test.run(null,values);
 <?php } ?>
     });
@@ -80,10 +80,10 @@ if ((array_key_exists("sid", $_GET) || array_key_exists("tid", $_GET)) && array_
                             <option value="0">&lt;none selected&gt;</option>
                             <?php
                             $query = array();
-                            $sql = sprintf("SELECT `id`,`db_name` FROM `%s`.`%s`", Ini::$db_master_name, User::get_mysql_table());
+                            $sql = sprintf("SELECT `id`,`db_name` FROM `%s`.`%s`", Ini::$db_master_name, UserWorkspace::get_mysql_table());
                             $z = mysql_query($sql);
                             while ($r = mysql_fetch_array($z)) {
-                                $sql = sprintf("(SELECT `id`,%s as `oid`,`name` FROM `%s`.`%s` WHERE `open`=1)", $r['id'], $r['db_name'], Test::get_mysql_table());
+                                $sql = sprintf("(SELECT `id`,%s as `wid`,`name` FROM `%s`.`%s` WHERE `open`=1)", $r['id'], $r['db_name'], Test::get_mysql_table());
                                 array_push($query, $sql);
                             }
 
@@ -92,7 +92,7 @@ if ((array_key_exists("sid", $_GET) || array_key_exists("tid", $_GET)) && array_
                             $z = mysql_query($query);
                             while ($r = mysql_fetch_array($z)) {
                                 ?>
-                                <option value="<?= $r['id'] ?>" owner="<?= $r["oid"] ?>"><?= $r['name'] ?></option>
+                                <option value="<?= $r['id'] ?>" workspace="<?= $r["wid"] ?>"><?= $r['name'] ?></option>
                                 <?php
                             }
                             ?>

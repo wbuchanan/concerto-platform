@@ -1,5 +1,4 @@
 <?php
-
 /*
   Concerto Platform - Online Adaptive Testing Platform
   Copyright (C) 2011-2012, The Psychometrics Centre, Cambridge University
@@ -20,32 +19,32 @@
  */
 
 if (!isset($ini)) {
-    require_once '../../Ini.php';
+    require_once'../../Ini.php';
     $ini = new Ini();
 }
 $logged_user = User::get_logged_user();
 if ($logged_user == null) {
-    echo json_encode(array());
-    exit();
+    echo "<script>location.reload();</script>";
+    die(Language::string(278));
 }
-
-$obj = User::from_mysql_id($_GET['oid']);
-if ($obj == null) {
-    echo json_encode(array());
-    exit();
-}
-
-$shares = array();
-
-foreach ($obj->get_workspaces() as $ws) {
-    foreach ($ws->get_shares() as $share) {
-        $invitee = User::from_mysql_id($share->invitee_id);
-        if ($invitee == null)
-            continue;
-        $row = array("id" => $share->id, "name" => $invitee->get_full_name(), "institution" => $invitee->institution_name, "workspace_id" => $share->UserWorkspace_id, "workspace_name" => $ws->name);
-        array_push($shares, $row);
-    }
-}
-
-echo json_encode($shares);
 ?>
+
+<script>
+    $(function(){
+        User.uiIniWorkspaceGrid();
+    });
+</script>
+
+<!--grid magic starts here-->
+
+<fieldset class="padding ui-widget-content ui-corner-all margin <?= User::view_class() ?>">
+    <legend>
+        <table>
+            <tr>
+                <td><span class="tooltip spanIcon ui-icon ui-icon-help" title="<?= Language::string(667) ?>"></span></td>
+                <td class=""><b><?= Language::string(666) ?></b></td>
+            </tr>
+        </table>
+    </legend>
+    <div id="div<?= $class_name ?>GridWorkspaceContainer" align="left" class="margin"></div>
+</fieldset>

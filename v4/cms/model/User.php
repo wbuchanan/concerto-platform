@@ -30,9 +30,6 @@ class User extends OModule {
     public $last_login = "";
     public $UserInstitutionType_id = 0;
     public $institution_name = "";
-    public $db_login = "";
-    public $db_password = "";
-    public $db_name = "";
     public $superuser = 0;
     public static $mysql_table_name = "User";
     public static $is_master_table = true;
@@ -58,8 +55,8 @@ class User extends OModule {
             return true;
         $shares = UserShare::from_property(array("invitee_id" => $this->id));
         foreach ($shares as $share) {
-            $user = User::from_mysql_id($share->owner_id);
-            if ($user->db_name == $db)
+            $workspace = UserWorkspace::from_mysql_id($share->UserWorkspace_id);
+            if ($workspace->db_name == $db)
                 return true;
         }
         return false;
@@ -154,7 +151,15 @@ class User extends OModule {
     }
 
     public function get_shares() {
-        return UserShare::from_property(array("owner_id" => $this->id));
+        return UserShare::from_property(array("invitee_id" => $this->id));
+    }
+
+    public function get_workspaces() {
+        return UserWorkspace::from_property(array("owner_id" => $this->id));
+    }
+
+    public function get_main_UserWorkspace() {
+        return UserWorkspace::from_property(array("main" => 1, "owner_id" => $this->id), false);
     }
 
     public static function get_logged_user() {
@@ -176,14 +181,14 @@ class User extends OModule {
             return null;
 
         if (!$logged_user->is_workspace_accessible($_SESSION['ptap_current_db'])) {
-            return $logged_user->db_name;
+            return $logged_user->get_main_UserWorkspace()->db_name;
         }
         return $_SESSION['ptap_current_db'];
     }
 
     public static function get_all_db() {
         $result = array();
-        $sql = sprintf("SELECT `db_name` FROM `%s`.`%s`", Ini::$db_master_name, User::get_mysql_table());
+        $sql = sprintf("SELECT `db_name` FROM `%s`.`%s`", Ini::$db_master_name, UserWorkspace::get_mysql_table());
         $z = mysql_query($sql);
         while ($r = mysql_fetch_array($z)) {
             array_push($result, $r['db_name']);
@@ -206,7 +211,7 @@ class User extends OModule {
 
             $_SESSION['ptap_logged_login'] = $login;
             $_SESSION['ptap_logged_password'] = $hash;
-            $_SESSION['ptap_current_db'] = $user->db_name;
+            $_SESSION['ptap_current_db'] = $user->get_main_UserWorkspace()->db_name;
             $_SESSION['ptap_view'] = 0;
         }
         return $user;
@@ -234,13 +239,18 @@ class User extends OModule {
     }
 
     public function mysql_delete() {
-        $this->remove_db_user();
+        $this->remove_workspaces();
         $this->remove_shares();
         $this->mysql_delete_object();
     }
 
+    public function remove_workspaces() {
+        foreach ($this->get_workspaces() as $workspace) {
+            $workspace->mysql_delete();
+        }
+    }
+
     public function remove_shares() {
-        $this->delete_object_links(UserShare::get_mysql_table(), "owner_id");
         $this->delete_object_links(UserShare::get_mysql_table(), "invitee_id");
     }
 
@@ -261,9 +271,10 @@ class User extends OModule {
         if (array_key_exists("deleteShare", $post)) {
             $rows = json_decode($post["deleteShare"]);
             foreach ($rows as $row) {
-                $sql = sprintf("DELETE FROM `%s`.`%s` WHERE id='%s' AND `owner_id`='%s'", Ini::$db_master_name, UserShare::get_mysql_table(), mysql_real_escape_string($row), mysql_real_escape_string($this->id));
-                if (!mysql_query($sql))
-                    return json_encode(array("result" => -6, "message" => mysql_error()));
+                $share = UserShare::from_mysql_id($row);
+                if ($share != null) {
+                    $share->mysql_delete();
+                }
             }
         }
 
@@ -272,11 +283,12 @@ class User extends OModule {
             foreach ($rows as $row) {
 
                 if ($row["id"] != 0) {
-                    $sql = sprintf("UPDATE `%s`.`%s` SET `invitee_id`='%s' WHERE `id`=%s", Ini::$db_master_name, UserShare::get_mysql_table(), mysql_real_escape_string($row["invitee_id"]));
-                    if (!mysql_query($sql))
-                        return json_encode(array("result" => -6, "message" => mysql_error()));
+                    $share = UserShare::from_mysql_id($row['id']);
+                    $share->invitee_id = $row['invitee_id'];
+                    $share->UserWorkspace_id = $row['workspace_id'];
+                    $share->mysql_save();
                 } else {
-                    $sql = sprintf("INSERT INTO `%s`.`%s` SET `owner_id`='%s', `invitee_id`='%s'", Ini::$db_master_name, UserShare::get_mysql_table(), mysql_real_escape_string($this->id), mysql_real_escape_string($row['invitee_id']));
+                    $sql = sprintf("INSERT INTO `%s`.`%s` SET `UserWorkspace_id`='%s', `invitee_id`='%s'", Ini::$db_master_name, UserShare::get_mysql_table(), mysql_real_escape_string($row['workspace_id']), mysql_real_escape_string($row['invitee_id']));
                     if (!mysql_query($sql))
                         return json_encode(array("result" => -6, "message" => mysql_error()));
                 }
@@ -284,48 +296,55 @@ class User extends OModule {
         }
 
         if ($is_new) {
-            $obj->create_db_user();
+            $ws = new UserWorkspace();
+            $ws->owner_id = $post['oid'];
+            $ws->main = 1;
+            $ws->name = "main";
+            $ws->mysql_save();
+        } else {
+            if (array_key_exists("deleteWorkspace", $post)) {
+                $rows = json_decode($post["deleteWorkspace"]);
+                foreach ($rows as $row) {
+                    $ws = UserWorkspace::from_mysql_id($row);
+                    if ($ws != null) {
+                        $ws->mysql_delete();
+                    }
+                }
+            }
+
+            if (array_key_exists("updateWorkspace", $post)) {
+                $rows = json_decode($post["updateWorkspace"], true);
+                foreach ($rows as $row) {
+
+                    if ($row["id"] != 0) {
+                        $ws = UserWorkspace::from_mysql_id($row['id']);
+                        $ws->name = $row['name'];
+                        $ws->owner_id = $this->id;
+                        $ws->mysql_save();
+                    } else {
+                        $ws = new UserWorkspace();
+                        $ws->name = $row['name'];
+                        $ws->owner_id = $this->id;
+                        $ws->mysql_save();
+                    }
+                }
+            }
         }
 
         return $post['oid'];
     }
 
-    public function create_db_user() {
-        $user = Ini::$db_users_name_prefix . $this->id;
-        $password = self::generate_password();
-        $db_name = Ini::$db_users_db_name_prefix . $this->id;
-        $sql = sprintf("CREATE USER '%s'@'localhost' IDENTIFIED BY '%s';", $user, $password);
-        mysql_query($sql);
-        $this->db_login = $user;
-        $this->db_password = $password;
-        $this->db_name = $db_name;
-        $this->mysql_save();
-
-        $sql = sprintf("CREATE DATABASE `%s` DEFAULT CHARACTER SET utf8 COLLATE utf8_general_ci", $db_name);
-        mysql_query($sql);
-
-        $sql = sprintf("GRANT ALL PRIVILEGES ON `%s`.* TO '%s'@'localhost'", $db_name, $user);
-        mysql_query($sql);
-
-        Ini::create_db_structure();
-    }
-
-    public function remove_db_user() {
-        $sql = sprintf("DROP DATABASE `%s`", $this->db_name);
-        mysql_query($sql);
-
-        $sql = sprintf("DROP USER '%s'@'localhost'", $this->db_login);
-        mysql_query($sql);
-    }
-
     public function get_session_count() {
-        $sql = sprintf("SELECT SUM(`%s`.`Test`.`session_count`) 
-            FROM `%s`.`Test`", $this->db_name, $this->db_name);
-        $z = mysql_query($sql);
-        while ($r = mysql_fetch_array($z)) {
-            return $r[0];
+        $count = 0;
+        foreach ($this->get_workspaces() as $workspace) {
+            $sql = sprintf("SELECT SUM(`%s`.`Test`.`session_count`) 
+            FROM `%s`.`Test`", $workspace->db_name, $workspace->db_name);
+            $z = mysql_query($sql);
+            while ($r = mysql_fetch_array($z)) {
+                $count+=$r[0];
+            }
         }
-        return 0;
+        return $count;
     }
 
     public static function get_list_columns() {
@@ -396,9 +415,6 @@ class User extends OModule {
             `last_login` timestamp NOT NULL default '0000-00-00 00:00:00',
             `UserInstitutionType_id` int(11) NOT NULL,
             `institution_name` text NOT NULL,
-            `db_login` text NOT NULL,
-            `db_password` text NOT NULL,
-            `db_name` text NOT NULL,
             `superuser` tinyint(1) NOT NULL,
             PRIMARY KEY  (`id`)
             ) ENGINE=InnoDB  DEFAULT CHARSET=utf8;

@@ -52,17 +52,19 @@ while ($r = mysql_fetch_array($z)) {
         $user->password = $password;
         $user->User_id = $r['id'];
         $user->mysql_save();
-
+    }
+    $user = User::from_mysql_id($r['id']);
+    foreach ($user->get_workspaces() as $workspace) {
         //dirs
-        $session_dir = Ini::$path_temp . $r['id'];
+        $session_dir = Ini::$path_temp . $workspace->id;
         if (!is_dir($session_dir)) {
             mkdir($session_dir, 0770, true);
         }
         chown($session_dir, $name);
         chgrp($session_dir, Ini::$apache_user);
         chmod($session_dir, 0770);
-        
-        $media_dir = Ini::$path_internal_media . $r['id'];
+
+        $media_dir = Ini::$path_internal_media . $workspace->id;
         if (!is_dir($media_dir)) {
             mkdir($media_dir, 0770, true);
         }

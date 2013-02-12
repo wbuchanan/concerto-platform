@@ -37,7 +37,7 @@ $server->register('run_test', // method name
     'debug' => 'xsd:string',
     'pass' => 'xsd:string',
     'time' => 'xsd:string',
-    'oid' => 'xsd:string',
+    'wid' => 'xsd:string',
     'resume_from_last_template' => 'xsd:string'
         ), array(
     'result' => 'xsd:string'
@@ -53,7 +53,7 @@ $server->register('get_last_html', // method name
     'sid' => 'xsd:string',
     'hash' => 'xsd:string',
     'pass' => 'xsd:string',
-    'oid' => 'xsd:string'
+    'wid' => 'xsd:string'
         ), array(
     'result' => 'xsd:string'
         ), 'urn:ConcertoClientWSDL', // namespace
@@ -68,7 +68,7 @@ $server->register('get_returns', // method name
     'sid' => 'xsd:string',
     'hash' => 'xsd:string',
     'pass' => 'xsd:string',
-    'oid' => 'xsd:string'
+    'wid' => 'xsd:string'
         ), array(
     'result' => 'xsd:string'
         ), 'urn:ConcertoClientWSDL', // namespace
@@ -85,24 +85,24 @@ function authorize_WS($pass) {
         return false;
 }
 
-function run_test($tid, $sid, $hash, $btn_name, $values, $debug, $pass, $time, $oid, $resume_from_last_template) {
+function run_test($tid, $sid, $hash, $btn_name, $values, $debug, $pass, $time, $wid, $resume_from_last_template) {
     if (!authorize_WS($pass))
         return false;
-    $owner = User::from_mysql_id($oid);
-    if ($owner != null)
-        mysql_select_db($owner->db_name);
+    $workspace = UserWorskpace::from_mysql_id($wid);
+    if ($workspace != null)
+        mysql_select_db($workspace->db_name);
 
-    $result = TestSession::forward($tid, $sid, $hash, json_decode($values), $btn_name, $debug, $time, $oid = null, $resume_from_last_template == "1");
+    $result = TestSession::forward($tid, $sid, $hash, json_decode($values), $btn_name, $debug, $time, $wid = null, $resume_from_last_template == "1");
     return json_encode($result);
 }
 
-function get_last_html($sid, $hash, $pass, $oid) {
+function get_last_html($sid, $hash, $pass, $wid) {
     if (!authorize_WS($pass))
         return false;
 
-    $owner = User::from_mysql_id($oid);
-    if ($owner != null)
-        mysql_select_db($owner->db_name);
+    $workspace = UserWorkspace::from_mysql_id($wid);
+    if ($workspace != null)
+        mysql_select_db($workspace->db_name);
 
     $session = TestSession::from_property(array("id" => $sid, "hash" => $hash), false);
     if ($session == null)
@@ -110,13 +110,13 @@ function get_last_html($sid, $hash, $pass, $oid) {
     return json_encode(array("HTML" => $session->HTML));
 }
 
-function get_returns($sid, $hash, $pass, $oid) {
+function get_returns($sid, $hash, $pass, $wid) {
     if (!authorize_WS($pass))
         return false;
 
-    $owner = User::from_mysql_id($oid);
-    if ($owner != null)
-        mysql_select_db($owner->db_name);
+    $workspace = UserWorkspace::from_mysql_id($wid);
+    if ($workspace != null)
+        mysql_select_db($workspace->db_name);
 
     $session = TestSession::from_property(array("id" => $sid, "hash" => $hash), false);
     if ($session == null)

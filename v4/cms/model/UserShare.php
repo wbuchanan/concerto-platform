@@ -21,13 +21,13 @@
 
 class UserShare extends OTable {
 
-    public $owner_id = 0;
+    public $UserWorkspace_id = 0;
     public $invitee_id = 0;
     public static $mysql_table_name = "UserShare";
     public static $is_master_table = true;
 
-    public function get_owner() {
-        return User::from_mysql_id($this->owner_id);
+    public function get_UserWorkspace() {
+        return UserWorkspace::from_mysql_id($this->UserWorkspace_id);
     }
 
     public function get_invitee() {
@@ -42,7 +42,7 @@ class UserShare extends OTable {
             `id` bigint(20) NOT NULL auto_increment,
             `updated` timestamp NOT NULL default CURRENT_TIMESTAMP on update CURRENT_TIMESTAMP,
             `created` timestamp NOT NULL default '0000-00-00 00:00:00',
-            `owner_id` bigint(20) NOT NULL,
+            `UserWorkspace_id` bigint(20) NOT NULL,
             `invitee_id` bigint(20) NOT NULL,
             PRIMARY KEY  (`id`)
             ) ENGINE=InnoDB  DEFAULT CHARSET=utf8;

@@ -32,39 +32,74 @@ if ($logged_user == null) {
 $owner = User::from_mysql_id($_POST['oid']);
 $shares = json_decode($_POST['shares']);
 ?>
+<script>
+    Methods.iniTooltips();
+</script>
 
 <fieldset class="padding ui-widget-content ui-corner-all margin">
     <legend>
         <table>
             <tr>
                 <td><span class="tooltip spanIcon ui-icon ui-icon-help" title="<?= Language::string(649) ?>"></span></td>
-                <td class=""><b><?= Language::string(648) ?></b></td>
+                <td class=""><b><?= Language::string(677) ?></b></td>
             </tr>
         </table>
     </legend>
-    <div class="horizontalMargin">
-        <select id = "selectUserInviteeShareDialog" class = "fullWidth ui-widget-content ui-corner-all">
-            <option value = "0">&lt;<?= Language::string(650) ?>&gt;</option>
-            <?php
-            $sql = sprintf("SELECT * FROM `%s`.`%s` WHERE `id`!='%s' ORDER BY `lastname` ASC, `firstname` ASC", Ini::$db_master_name, User::get_mysql_table(), $owner->id);
-            $z = mysql_query($sql);
-            while ($r = mysql_fetch_array($z)) {
-                $user = User::from_mysql_result($r);
-                $ignore = false;
-                foreach ($shares as $share) {
-                    if ($share->invitee_id == $user->id && $_POST['current_invitee_id'] != $share->invitee_id) {
-                        $ignore = true;
-                        break;
-                    }
-                }
-                if (!$ignore) {
-                    ?>
-                    <option value="<?= $user->id ?>" name="<?= $user->get_full_name() ?>" institution="<?= $user->institution_name ?>" <?= $_POST['current_invitee_id'] == $user->id ? "selected" : "" ?>><?= $user->get_full_description() ?></option>
-                    <?php
-                }
-            }
-            ?>
-        </select>
-    </div>
+    <table>
+        <tr>
+            <td class="noWrap horizontalPadding tdFormLabel"><?= Language::string(648) ?>:</td>
+            <td><span class="tooltip spanIcon ui-icon ui-icon-help" title="<?= Language::string(678) ?>"></span></td>
+            <td class="fullWidth">
+                <div class="horizontalMargin">
+                    <select id = "selectUserInviteeShareDialog" class = "fullWidth ui-widget-content ui-corner-all">
+                        <option value = "0">&lt;<?= Language::string(650) ?>&gt;</option>
+                        <?php
+                        $sql = sprintf("SELECT * FROM `%s`.`%s` WHERE `id`!='%s' ORDER BY `lastname` ASC, `firstname` ASC", Ini::$db_master_name, User::get_mysql_table(), $owner->id);
+                        $z = mysql_query($sql);
+                        while ($r = mysql_fetch_array($z)) {
+                            $user = User::from_mysql_result($r);
+                            $ignore = false;
+                            foreach ($shares as $share) {
+                                if ($share->invitee_id == $user->id && $_POST['current_invitee_id'] != $share->invitee_id) {
+                                    $ignore = true;
+                                    break;
+                                }
+                            }
+                            if (!$ignore) {
+                                ?>
+                                <option value="<?= $user->id ?>" name="<?= $user->get_full_name() ?>" institution="<?= $user->institution_name ?>" <?= $_POST['current_invitee_id'] == $user->id ? "selected" : "" ?>><?= $user->get_full_description() ?></option>
+                                <?php
+                            }
+                        }
+                        ?>
+                    </select>
+                </div>
+            </td>
+        </tr>
+        <tr>
+            <td class="noWrap horizontalPadding tdFormLabel"><?= Language::string(679) ?>:</td>
+            <td><span class="tooltip spanIcon ui-icon ui-icon-help" title="<?= Language::string(680) ?>"></span></td>
+            <td class="fullWidth">
+                <div class="horizontalMargin">
+                    <select id = "selectUserWorkspaceShareDialog" class = "fullWidth ui-widget-content ui-corner-all">
+                        <option value = "0">&lt;<?= Language::string(650) ?>&gt;</option>
+                        <?php
+                        $sql = sprintf("SELECT * FROM `%s`.`%s` WHERE `owner_id`='%s' ORDER BY `name` ASC", Ini::$db_master_name, UserWorkspace::get_mysql_table(), $owner->id);
+                        $z = mysql_query($sql);
+                        while ($r = mysql_fetch_array($z)) {
+                            $ws = UserWorkspace::from_mysql_result($r);
+                            $ignore = false;
+                            if (!$ignore) {
+                                ?>
+                                <option value="<?= $ws->id ?>" name="<?= $ws->name ?>" <?= $_POST['current_workspace_id'] == $ws->id ? "selected" : "" ?>><?= $ws->get_formatted_name() ?></option>
+                                <?php
+                            }
+                        }
+                        ?>
+                    </select>
+                </div>
+            </td>
+        </tr>
+    </table>
 
 </fieldset>

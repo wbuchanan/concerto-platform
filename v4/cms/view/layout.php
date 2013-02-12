@@ -106,25 +106,46 @@ if (Ini::$cms_session_keep_alive) {
                         <td><span class="tooltip spanIcon ui-icon ui-icon-help" title="<?= Language::string(626) ?>"></span></td>
                         <td>
                             <select id="selectWorkspace" class="ui-widget-content ui-corner-all" onchange="User.uiChangeWorkspace(this)">
-                                <?php $current_db = User::get_current_db(); ?>
-                                <option value="<?= $logged_user->db_name ?>" <?= $current_db == $logged_user->db_name ? "selected" : "" ?> ><?= $logged_user->id . ". " . $logged_user->get_full_name() ?></option>
                                 <?php
-                                $sql = "";
-                                if ($logged_user->superuser == 0) {
-                                    $sql = sprintf("SELECT `%s`.`User`.`id` FROM `%s`.`User` 
-                                    RIGHT JOIN `%s`.`UserShare ON `%s`.`UserShare`.`owner_id`=`%s`.`User`.`id`
-                                    WHERE `%s`.`UserShare`.`invitee_id`=%d AND `%s`.`User`.`id`!=%d
-                                    ORDER BY `%s`.`User`.`id` ASC", Ini::$db_master_name, Ini::$db_master_name, Ini::$db_master_name, Ini::$db_master_name, Ini::$db_master_name, Ini::$db_master_name, $logged_user->id, Ini::$db_master_name, $logged_user->id, Ini::$db_master_name);
-                                } else {
-                                    $sql = sprintf("SELECT `id` FROM `%s`.`User`
-                                    WHERE `id`!=%d
-                                    ORDER BY `id`", Ini::$db_master_name, $logged_user->id);
-                                }
+                                $current_db = User::get_current_db();
+
+                                $label_added = false;
+                                foreach ($logged_user->get_workspaces() as $workspace) {
+                                    if (!$label_added) {
+                                        $label_added = true;
+                                        ?>
+                                        <optgroup label="<?= $logged_user->get_full_name() ?>">
+                                            <?php
+                                        }
+                                        ?>
+                                        <option value="<?= $workspace->db_name ?>" <?= $current_db == $workspace->db_name ? "selected" : "" ?> ><?= $workspace->get_formatted_name() ?></option>
+                                        <?php
+                                    }
+                                    ?>
+                                </optgroup>
+                                <?php
+                                $sql = sprintf("SELECT `id` FROM `%s`.`%s` WHERE `id`!=%s ORDER BY `lastname` ASC, `firstname` ASC", Ini::$db_master_name, User::get_mysql_table(), $logged_user->id);
                                 $z = mysql_query($sql);
                                 while ($r = mysql_fetch_array($z)) {
+                                    $label_added = false;
                                     $user = User::from_mysql_id($r[0]);
-                                    ?>
-                                    <option value="<?= $user->db_name ?>" <?= $current_db == $user->db_name ? "selected" : "" ?> ><?= $user->id . ". " . $user->get_full_name() ?></option>
+                                    foreach ($user->get_workspaces() as $workspace) {
+                                        if ($logged_user->is_workspace_accessible($workspace->db_name)) {
+                                            if (!$label_added) {
+                                                $label_added = true;
+                                                ?>
+                                                <optgroup label="<?= $user->get_full_name() ?>">
+                                                    <?php
+                                                }
+                                                ?>
+                                                <option value="<?= $workspace->db_name ?>" <?= $current_db == $workspace->db_name ? "selected" : "" ?> ><?= $workspace->get_formatted_name() ?></option>
+                                                <?php
+                                            }
+                                        }
+                                    }
+                                    if ($label_added) {
+                                        ?>
+                                    </optgroup>
                                     <?php
                                 }
                                 ?>

@@ -27,7 +27,7 @@ class TestInstance {
     private $last_action_time;
     private $last_execution_time;
     public $TestSession_id = 0;
-    public $User_id = 0;
+    public $UserWorkspace_id = 0;
     public $is_working = false;
     public $is_data_ready = false;
     public $response = "";
@@ -39,9 +39,9 @@ class TestInstance {
     public $pending_variables = null;
     public $debug_code_appended = false;
 
-    public function __construct($session_id = 0, $owner_id = 0) {
+    public function __construct($session_id = 0, $workspace_id = 0) {
         $this->TestSession_id = $session_id;
-        $this->User_id = $owner_id;
+        $this->UserWorkspace_id = $workspace_id;
     }
 
     public function is_timedout() {
@@ -55,7 +55,7 @@ class TestInstance {
     }
 
     public function is_execution_timedout() {
-        TestSession::change_db($this->User_id);
+        TestSession::change_db($this->UserWorkspace_id);
         $session = $this->get_TestSession();
 
         if (time() - $this->last_execution_time > Ini::$r_max_execution_time && $session->status == TestSession::TEST_SESSION_STATUS_WORKING) {
@@ -95,8 +95,10 @@ class TestInstance {
             1 => array("pipe", "w"),
             2 => array("pipe", "w")
         );
+        
+        $workspace = $this->get_UserWorkspace();
 
-        $owner = $this->get_User();
+        $owner = $workspace->get_owner();
         $userR = $owner->get_UserR();
 
         $this->r = proc_open("sudo -u " . $userR->login . " " . Ini::$path_r_exe . " --vanilla --quiet", $descriptorspec, $this->pipes, Ini::$path_temp, $env);
@@ -132,7 +134,7 @@ class TestInstance {
     }
 
     public function stop($terminate = false) {
-        TestSession::change_db($this->User_id);
+        TestSession::change_db($this->UserWorkspace_id);
         $session = TestSession::from_mysql_id($this->TestSession_id);
 
         if ($this->is_started()) {
@@ -179,7 +181,7 @@ class TestInstance {
     }
 
     public function serialize() {
-        TestSession::change_db($this->User_id);
+        TestSession::change_db($this->UserWorkspace_id);
         $session = $this->get_TestSession();
 
         if (TestServer::$debug)
@@ -202,7 +204,7 @@ class TestInstance {
     }
 
     public function send_QTI_initialization() {
-        TestSession::change_db($this->User_id);
+        TestSession::change_db($this->UserWorkspace_id);
         $session = $this->get_TestSession();
 
         $qti = QTIAssessmentItem::from_mysql_id($session->QTIAssessmentItem_id);
@@ -230,7 +232,7 @@ class TestInstance {
     }
 
     public function send_QTI_response_processing() {
-        TestSession::change_db($this->User_id);
+        TestSession::change_db($this->UserWorkspace_id);
         $session = $this->get_TestSession();
 
         $qti = QTIAssessmentItem::from_mysql_id($session->QTIAssessmentItem_id);
@@ -258,7 +260,7 @@ class TestInstance {
     }
 
     public function send_variables($variables = null) {
-        TestSession::change_db($this->User_id);
+        TestSession::change_db($this->UserWorkspace_id);
         $session = $this->get_TestSession();
 
         $variables = json_encode($variables);
@@ -285,7 +287,7 @@ class TestInstance {
     }
 
     public function send_close_signal() {
-        TestSession::change_db($this->User_id);
+        TestSession::change_db($this->UserWorkspace_id);
         $session = $this->get_TestSession();
 
         if ($this->is_serialized)
@@ -311,7 +313,7 @@ class TestInstance {
     }
 
     public function read() {
-        TestSession::change_db($this->User_id);
+        TestSession::change_db($this->UserWorkspace_id);
 
         $this->code_execution_halted = false;
         $this->last_action_time = time();
@@ -451,7 +453,7 @@ class TestInstance {
     }
 
     public function run($code, $variables = null, $reset_responses = true) {
-        TestSession::change_db($this->User_id);
+        TestSession::change_db($this->UserWorkspace_id);
 
         $session = TestSession::from_mysql_id($this->TestSession_id);
 
@@ -529,7 +531,7 @@ class TestInstance {
     }
 
     public function get_ini_code($unserialize = false) {
-        TestSession::change_db($this->User_id);
+        TestSession::change_db($this->UserWorkspace_id);
 
         $code = "";
         $session = $this->get_TestSession();
@@ -542,9 +544,9 @@ class TestInstance {
                 ");
 
         include Ini::$path_internal . 'SETTINGS.php';
-        $path = Ini::$path_temp . $session->User_id;
+        $path = Ini::$path_temp . $session->UserWorkspace_id;
 
-        $user = $session->get_User();
+        $workspace = $this->get_UserWorkspace();
 
         $code .= sprintf('
             CONCERTO_TEST_ID <- %d
@@ -575,7 +577,7 @@ class TestInstance {
             rm(CONCERTO_MEDIA_PATH)
             
             %s
-            ', $test->id, $this->TestSession_id, $db_host, ($db_port != "" ? $db_port : "3306"), $user->db_login, $user->db_password, $user->db_name, $path, $mysql_timezone, Ini::$path_internal_media . $this->User_id, $unserialize ? "FALSE" : "TRUE", $unserialize ? '
+            ', $test->id, $this->TestSession_id, $db_host, ($db_port != "" ? $db_port : "3306"), $workspace->db_login, $workspace->db_password, $workspace->db_name, $path, $mysql_timezone, Ini::$path_internal_media . $this->UserWorkspace_id, $unserialize ? "FALSE" : "TRUE", $unserialize ? '
                 concerto$unserialize()
                 concerto$db$connect(CONCERTO_DB_LOGIN,CONCERTO_DB_PASSWORD,CONCERTO_DB_NAME,CONCERTO_DB_HOST,CONCERTO_DB_PORT,CONCERTO_DB_TIMEZONE)' : "", $unserialize ? 'if(exists("onUnserialize")) do.call("onUnserialize",list(lastReturn=rjson::fromJSON("' . addcslashes(json_encode($this->pending_variables), '"') . '")),envir=.GlobalEnv);' : "");
 
@@ -592,21 +594,21 @@ class TestInstance {
     }
 
     public function get_TestSession() {
-        TestSession::change_db($this->User_id);
+        TestSession::change_db($this->UserWorkspace_id);
 
         return TestSession::from_mysql_id($this->TestSession_id);
     }
 
     public function get_Test() {
-        TestSession::change_db($this->User_id);
+        TestSession::change_db($this->UserWorkspace_id);
         $session = $this->get_TestSession();
         if ($session == null)
             return null;
         return Test::from_mysql_id($session->Test_id);
     }
 
-    public function get_User() {
-        return User::from_mysql_id($this->User_id);
+    public function get_UserWorkspace() {
+        return UserWorkspace::from_mysql_id($this->UserWorkspace_id);
     }
 
 }

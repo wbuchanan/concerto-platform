@@ -47,7 +47,7 @@ class TestServer {
 
     public function stop() {
         foreach ($this->clients as $k => $v) {
-            TestSession::change_db($this->instances[$k]->User_id);
+            TestSession::change_db($this->instances[$k]->UserWorkspace_id);
             $session = TestSession::from_mysql_id($this->instances[$k]->TestSession_id);
             if ($session->debug == 0)
                 $this->serialize_instance($k);
@@ -242,7 +242,7 @@ class TestServer {
                     if (self::$debug) {
                         self::log_debug("TestServer->start() --- Client '$k' timedout");
                     }
-                    TestSession::change_db($this->instances[$k]->User_id);
+                    TestSession::change_db($this->instances[$k]->UserWorkspace_id);
                     $session = TestSession::from_mysql_id($this->instances[$k]->TestSession_id);
                     if ($session->debug == 0)
                         $this->serialize_instance($k);
@@ -283,7 +283,7 @@ class TestServer {
                             }
                         }
 
-                        TestSession::change_db($this->instances[$k]->User_id);
+                        TestSession::change_db($this->instances[$k]->UserWorkspace_id);
                         $session = TestSession::from_mysql_id($this->instances[$k]->TestSession_id);
                         if ($session->debug == 1 && $session->status == TestSession::TEST_SESSION_STATUS_WAITING && !$this->instances[$k]->debug_code_appended) {
                             $this->instances[$k]->debug_code_appended = true;
@@ -379,9 +379,9 @@ class TestServer {
 
     private function close_instance($key, $terminate = false) {
         $session_id = substr($key, 3);
-        $owner_id = null;
+        $workspace_id = null;
         if (array_key_exists($key, $this->instances)) {
-            $owner_id = $this->instances[$key]->User_id;
+            $workspace_id = $this->instances[$key]->UserWorkspace_id;
             if ($this->instances[$key]->is_started()) {
                 $this->instances[$key]->stop($terminate);
                 unset($this->instances[$key]);
@@ -396,8 +396,8 @@ class TestServer {
             self::log_debug("TestServer->close_instance() --- Client '$key' closed");
         }
 
-        if ($owner_id != null) {
-            TestSession::change_db($owner_id);
+        if ($workspace_id != null) {
+            TestSession::change_db($workspace_id);
             $session = TestSession::from_mysql_id($session_id);
             if ($session != null && $session->debug == 1) {
                 $session->remove(false);
@@ -443,8 +443,8 @@ class TestServer {
             self::log_debug("TestServer->authorize_client() --- Client authorization started");
         $data = json_decode($input);
 
-        TestSession::change_db($data->owner_id);
-        $session = TestSession::authorized_session($data->owner_id, $data->session_id, $data->hash);
+        TestSession::change_db($data->workspace_id);
+        $session = TestSession::authorized_session($data->workspace_id, $data->session_id, $data->hash);
 
         if ($session == null) {
             if (self::$debug)
@@ -467,7 +467,7 @@ class TestServer {
 
         if ($data->type == 0) {
             if (!array_key_exists($key, $this->instances)) {
-                $this->instances[$key] = new TestInstance($data->session_id, $data->owner_id);
+                $this->instances[$key] = new TestInstance($data->session_id, $data->workspace_id);
                 if (self::$debug) {
                     self::log_debug("TestServer->interpret_input() --- Client '$key' test instance created");
                 }

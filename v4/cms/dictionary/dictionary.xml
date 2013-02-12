@@ -4319,5 +4319,165 @@ Note: You can add new languages by inserting "<new_language>string translated in
             <nl></nl>
             <br></br>
         </string>
+        <string id="666">
+            <en>users workspaces</en>
+            <de></de>
+            <pl>przestrzenie pracy użytkownika</pl>
+            <cn></cn>
+            <fr></fr>
+            <bg></bg>
+            <nl></nl>
+            <br></br>
+        </string>
+        <string id="667">
+            <en>Declare you worskpaces. You can declare which user will share your workspace with you.</en>
+            <de></de>
+            <pl>Zadeklaruj swoje przestrzenie pracy. Do każdej przestrzeni pracy można zadeklarować użytkowników którzy będą ją mogli dzielić z tobą.</pl>
+            <cn></cn>
+            <fr></fr>
+            <bg></bg>
+            <nl></nl>
+            <br></br>
+        </string>
+        <string id="668" js="1">
+            <en>edit workspace</en>
+            <de></de>
+            <pl>edytuj przestrzeń pracy</pl>
+            <cn></cn>
+            <fr></fr>
+            <bg></bg>
+            <nl></nl>
+            <br></br>
+        </string>
+        <string id="669" js="1">
+            <en>remove workspace</en>
+            <de></de>
+            <pl>usuń przestrzeń pracy</pl>
+            <cn></cn>
+            <fr></fr>
+            <bg></bg>
+            <nl></nl>
+            <br></br>
+        </string>
+        <string id="670" js="1">
+            <en>add workspace</en>
+            <de></de>
+            <pl>dodaj przestrzeń pracy</pl>
+            <cn></cn>
+            <fr></fr>
+            <bg></bg>
+            <nl></nl>
+            <br></br>
+        </string>
+        <string id="671" js="1">
+            <en>adding new workspace</en>
+            <de></de>
+            <pl>dodawanie nowej przestrzeni pracy</pl>
+            <cn></cn>
+            <fr></fr>
+            <bg></bg>
+            <nl></nl>
+            <br></br>
+        </string>
+        <string id="672">
+            <en>workspace name</en>
+            <de></de>
+            <pl>nazwa przestrzeni pracy</pl>
+            <cn></cn>
+            <fr></fr>
+            <bg></bg>
+            <nl></nl>
+            <br></br>
+        </string>
+        <string id="673" js="1">
+            <en>Are you sure you want to delete workspace?</en>
+            <de></de>
+            <pl>Jesteś pewen, że chcesz usunąć przestrzeń pracy?</pl>
+            <cn></cn>
+            <fr></fr>
+            <bg></bg>
+            <nl></nl>
+            <br></br>
+        </string>
+        <string id="674" js="1">
+            <en>deleting workspace</en>
+            <de></de>
+            <pl>usuwanie przestrzeni pracy</pl>
+            <cn></cn>
+            <fr></fr>
+            <bg></bg>
+            <nl></nl>
+            <br></br>
+        </string>
+        <string id="675" js="1">
+            <en>editing workspace</en>
+            <de></de>
+            <pl>edycja przestrzeni pracy</pl>
+            <cn></cn>
+            <fr></fr>
+            <bg></bg>
+            <nl></nl>
+            <br></br>
+        </string>
+        <string id="676" js="1">
+            <en>no workspace name enterd</en>
+            <de></de>
+            <pl>nie wprowadzono nazwy przestrzeni pracy</pl>
+            <cn></cn>
+            <fr></fr>
+            <bg></bg>
+            <nl></nl>
+            <br></br>
+        </string>
+        <string id="677">
+            <en>share properties</en>
+            <de></de>
+            <pl>właściwości udziału</pl>
+            <cn></cn>
+            <fr></fr>
+            <bg></bg>
+            <nl></nl>
+            <br></br>
+        </string>
+        <string id="678">
+            <en>choose user to share workspace with</en>
+            <de></de>
+            <pl>wybierz użytkownika z którym chcesz dzielić przestrzeń pracy</pl>
+            <cn></cn>
+            <fr></fr>
+            <bg></bg>
+            <nl></nl>
+            <br></br>
+        </string>
+        <string id="679" js="1">
+            <en>workspace</en>
+            <de></de>
+            <pl>przestrzeń pracy</pl>
+            <cn></cn>
+            <fr></fr>
+            <bg></bg>
+            <nl></nl>
+            <br></br>
+        </string>
+        <string id="680">
+            <en>Workspace to share. Only previously saved workspaces will be available here.</en>
+            <de></de>
+            <pl>Przestrzeń pracy która ma być dzielona. Jedynie wcześniej zachowane przestrzenie nazw będą tutaj dostępne.</pl>
+            <cn></cn>
+            <fr></fr>
+            <bg></bg>
+            <nl></nl>
+            <br></br>
+        </string>
+        <string id="681" js="1">
+            <en>no workspace selected</en>
+            <de></de>
+            <pl>nie wybrano przestrzeni pracy</pl>
+            <cn></cn>
+            <fr></fr>
+            <bg></bg>
+            <nl></nl>
+            <br></br>
+        </string>
     </strings>
 </root> 

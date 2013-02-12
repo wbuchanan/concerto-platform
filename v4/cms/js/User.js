@@ -40,9 +40,13 @@ User.onBeforeDelete=function(oid){
 
 User.crudShareDeleted = [];
 User.crudShareUpdated = [];
+User.crudWorkspaceDeleted = [];
+User.crudWorkspaceUpdated = [];
 User.onAfterEdit=function() {
     User.crudShareDeleted = [];
     User.crudShareUpdated = [];
+    User.crudWorkspaceDeleted = [];
+    User.crudWorkspaceUpdated = [];
 };
 
 User.onAfterChangeListLength=function(){
@@ -76,31 +80,62 @@ User.getAddSaveObject=function()
 User.getFullSaveObject=function()
 {
     var obj = this.getAddSaveObject();
-    obj["deleteShare"] = User.getSerializedCrudDeleted();
-    obj["updateShare"] = User.getSerializedCrudUpdated();
+    obj["deleteShare"] = User.getSerializedCrudDeleted("shares");
+    obj["updateShare"] = User.getSerializedCrudUpdated("shares");
+    obj["deleteWorkspace"] = User.getSerializedCrudDeleted("workspaces");
+    obj["updateWorkspace"] = User.getSerializedCrudUpdated("workspaces");
     return obj;
 }
 
-User.getSerializedCrudDeleted=function(){
-    return $.toJSON(User.crudShareDeleted);
-}
-
-User.getSerializedCrudUpdated=function(){
-    var grid = $("#div"+this.className+"GridShare").data('kendoGrid');
-    var shares = new Array();
-    if(grid!=null) {
-        var data = grid.dataSource.data();
-    
-        for(var i=0;i<data.length;i++){
-            if(User.crudShareUpdated.indexOf(data[i].id)!=-1 || data[i].id==0){
-                shares.push({
-                    id:data[i].id,
-                    invitee_id:data[i].invitee_id
-                });
-            }
+User.getSerializedCrudDeleted=function(collection){
+    switch(collection){
+        case "shares":{
+            return $.toJSON(User.crudShareDeleted);
+        }
+        case "workspaces":{
+            return $.toJSON(User.crudWorkspaceDeleted);
         }
     }
-    return $.toJSON(shares);
+}
+
+User.getSerializedCrudUpdated=function(collection){
+    switch(collection){
+        case "shares":{
+            var grid = $("#div"+this.className+"GridShare").data('kendoGrid');
+            var shares = new Array();
+            if(grid!=null) {
+                var data = grid.dataSource.data();
+    
+                for(var i=0;i<data.length;i++){
+                    if(User.crudShareUpdated.indexOf(data[i].id)!=-1 || data[i].id==0){
+                        shares.push({
+                            id:data[i].id,
+                            invitee_id:data[i].invitee_id,
+                            workspace_id:data[i].workspace_id
+                        });
+                    }
+                }
+            }
+            return $.toJSON(shares);
+        }
+        case "workspaces":{
+            var grid = $("#div"+this.className+"GridWorkspace").data('kendoGrid');
+            var workspaces = new Array();
+            if(grid!=null) {
+                var data = grid.dataSource.data();
+    
+                for(var i=0;i<data.length;i++){
+                    if(User.crudWorkspaceUpdated.indexOf(data[i].id)!=-1 || data[i].id==0){
+                        workspaces.push({
+                            id:data[i].id,
+                            name:data[i].name
+                        });
+                    }
+                }
+            }
+            return $.toJSON(workspaces);
+        }
+    }
       
 }
 
@@ -118,6 +153,20 @@ User.getShares=function(){
     return shares;
 }
 
+User.getWorkspaces=function(){
+    var grid = $("#div"+this.className+"GridWorkspace").data('kendoGrid');
+    var workspaces = new Array();
+    if(grid==null) return workspaces;
+    var data = grid.dataSource.data();
+    
+    for(var i=0;i<data.length;i++){
+        workspaces.push({
+            name:data[i].name
+        });
+    }
+    return workspaces;
+}
+
 User.uiEditShare=function(obj){
     var thisClass = this;
     
@@ -128,6 +177,7 @@ User.uiEditShare=function(obj){
     $.post("view/User_grant.php",{
         oid:this.currentID,
         current_invitee_id:item.invitee_id,
+        current_workspace_id:item.workspace_id,
         shares:$.toJSON(User.getShares())
     },function(data){
         $("#div"+thisClass.className+"ShareDialog").html(data);
@@ -152,14 +202,20 @@ User.uiEditShare=function(obj){
                         Methods.alert(dictionary["s652"], "alert", dictionary["s651"]);
                         return;
                     }
+                    if($("#select"+thisClass.className+"WorkspaceShareDialog").val()==0){
+                        Methods.alert(dictionary["s681"], "alert", dictionary["s651"]);
+                        return;
+                    }
                     if(item.id!=0){
-                        User.crudUpdate("shares", item.id);
+                        User.crudUpdate(User.crudShareUpdated, item.id);
                     }
                     
                     var rowIndex = shareGrid.dataSource.data()[index];
                     rowIndex["invitee_id"]=$("#select"+thisClass.className+"InviteeShareDialog").val();
                     rowIndex["name"]=$("#select"+thisClass.className+"InviteeShareDialog").children("option[selected='selected']").attr("name");
                     rowIndex["institution"]=$("#select"+thisClass.className+"InviteeShareDialog").children("option[selected='selected']").attr("institution");
+                    rowIndex["workspace_id"] = $("#select"+thisClass.className+"WorkspaceShareDialog").val();
+                    rowIndex["workspace_name"] = $("#select"+thisClass.className+"WorkspaceShareDialog").children("option[selected='selected']").attr("name");
                     User.uiRefreshShareGrid();
                 
                     $(this).dialog("close");
@@ -178,6 +234,58 @@ User.uiEditShare=function(obj){
     });
 }
 
+User.uiEditWorkspace=function(obj){
+    var thisClass = this;
+    
+    var workspaceGrid = $("#div"+thisClass.className+"GridWorkspace").data('kendoGrid');
+    var index = obj.closest('tr')[0].sectionRowIndex;
+    var item = workspaceGrid.dataItem(workspaceGrid.tbody.find("tr:eq("+index+")"));
+    $("#input"+thisClass.className+"NameWorkspaceDialog").val(item.name);
+    $("#div"+thisClass.className+"WorkspaceDialog").dialog({
+        title:dictionary["s675"],
+        resizable:false,
+        modal:true,
+        width:400,
+        open:function(){
+            $('.ui-widget-overlay').css('position', 'fixed');  
+        },
+        close:function(){
+            //$('.ui-widget-overlay').css('position', 'absolute');
+            $(this).dialog("destroy");
+        },
+        buttons:[
+        {
+            text:dictionary["s38"],
+            click:function(){
+                if($("#input"+thisClass.className+"NameWorkspaceDialog").val()==""){
+                    Methods.alert(dictionary["s676"], "alert", dictionary["s675"]);
+                    return;
+                }
+                
+                if(item.id!=0){
+                    User.onWorkspaceChange(item.id, $("#input"+thisClass.className+"NameWorkspaceDialog").val());
+                    User.crudUpdate(User.crudWorkspaceUpdated, item.id);
+                }
+                    
+                var rowIndex = workspaceGrid.dataSource.data()[index];
+                rowIndex["name"]=$("#input"+thisClass.className+"NameWorkspaceDialog").val();
+                User.uiRefreshWorkspaceGrid();
+                
+                $(this).dialog("close");
+                
+                Methods.iniTooltips();
+            }
+        },
+        {
+            text:dictionary["s23"],
+            click:function(){
+                $(this).dialog("close");
+            }
+        }
+        ]
+    });
+}
+
 User.uiRemoveShare=function(obj){
     var thisClass = this;
     Methods.confirm(dictionary["s653"], dictionary["s654"], function(){
@@ -190,6 +298,23 @@ User.uiRemoveShare=function(obj){
         }
         
         grid.removeRow(grid.tbody.find("tr:eq("+index+")"));
+    });
+}
+
+User.uiRemoveWorkspace=function(obj){
+    var thisClass = this;
+    Methods.confirm(dictionary["s673"], dictionary["s674"], function(){
+        var grid = $("#div"+thisClass.className+"GridWorkspace").data('kendoGrid');
+        var index = obj.closest('tr')[0].sectionRowIndex;
+        var item = grid.dataItem(grid.tbody.find("tr:eq("+index+")"));
+        
+        if(item.id!=""){
+            User.crudUpdate(User.crudWorkspaceDeleted, item.id);
+        }
+        
+        grid.removeRow(grid.tbody.find("tr:eq("+index+")"));
+        
+        if(item.id!="") User.onWorkspaceChange(item.id);
     });
 }
 
@@ -223,11 +348,17 @@ User.uiAddShare=function(){
                         Methods.alert(dictionary["s652"], "alert", dictionary["s647"]);
                         return;
                     }
+                    if($("#select"+thisClass.className+"WorkspaceShareDialog").val()==0){
+                        Methods.alert(dictionary["s681"], "alert", dictionary["s647"]);
+                        return;
+                    }
                     var shareGrid = $("#div"+thisClass.className+"GridShare").data('kendoGrid');
                     shareGrid.dataSource.add({
                         invitee_id:$("#select"+thisClass.className+"InviteeShareDialog").val(),
                         name:$("#select"+thisClass.className+"InviteeShareDialog").children("option[selected='selected']").attr("name"),
-                        institution:$("#select"+thisClass.className+"InviteeShareDialog").children("option[selected='selected']").attr("institution")
+                        institution:$("#select"+thisClass.className+"InviteeShareDialog").children("option[selected='selected']").attr("institution"),
+                        workspace_id:$("#select"+thisClass.className+"WorkspaceShareDialog").val(),
+                        workspace_name:$("#select"+thisClass.className+"WorkspaceShareDialog").children("option[selected='selected']").attr("name")
                     })
                 
                     $(this).dialog("close");
@@ -246,7 +377,77 @@ User.uiAddShare=function(){
     });
 }
 
+User.onWorkspaceChange=function(wid,newName){
+    var grid = $("#div"+this.className+"GridShare").data('kendoGrid');
+    var items = grid.dataSource.data();
+    var columns = grid.columns;
+    
+    var refreshRequired = false;
+    for(var i=0;i<items.length;i++){
+        if(items[i].workspace_id==wid){
+            refreshRequired = true;
+            if(newName==null){
+                items.splice(i,1);
+                i--;
+            } else {
+                items[i].workspace_name = newName;
+            }
+        }
+    }
+    
+    if(refreshRequired){
+        User.uiReloadShareGrid(items, columns);
+    }
+}
+
+User.uiAddWorkspace=function(){
+    var thisClass = this;
+    
+    $("#input"+thisClass.className+"NameWorkspaceDialog").val("");
+    $("#div"+thisClass.className+"WorkspaceDialog").dialog({
+        title:dictionary["s671"],
+        resizable:false,
+        modal:true,
+        width:400,
+        open:function(){
+            $('.ui-widget-overlay').css('position', 'fixed');  
+        },
+        close:function(){
+            //$('.ui-widget-overlay').css('position', 'absolute');
+            $(this).dialog("destroy");
+        },
+        buttons:[
+        {
+            text:dictionary["s37"],
+            click:function(){
+                if($("#input"+thisClass.className+"NameWorkspaceDialog").val()==""){
+                    Methods.alert(dictionary["s676"], "alert", dictionary["s671"]);
+                    return;
+                }
+                
+                var workspaceGrid = $("#div"+thisClass.className+"GridWorkspace").data('kendoGrid');
+                workspaceGrid.dataSource.add({
+                    name:$("#input"+thisClass.className+"NameWorkspaceDialog").val(),
+                    main:0
+                })
+                
+                $(this).dialog("close");
+                
+                Methods.iniTooltips();
+            }
+        },
+        {
+            text:dictionary["s23"],
+            click:function(){
+                $(this).dialog("close");
+            }
+        }
+        ]
+    });
+}
+
 User.shareGridSchemaFields = null;
+User.workspaceGridSchemaFields = null;
 User.uiReloadShareGrid=function(data,columns){
     var thisClass = this;
     
@@ -270,7 +471,39 @@ User.uiReloadShareGrid=function(data,columns){
         toolbar:[
         {
             name: "create", 
-            template: '<button class="btnAdd" onclick="Table.uiAddShare()">'+dictionary["s37"]+'</button>'
+            template: '<button class="btnAdd" onclick="User.uiAddShare()">'+dictionary["s37"]+'</button>'
+        }
+        ],
+        editable: false,
+        scrollable:false
+    });
+    Methods.iniIconButton(".btnAdd", "plus");
+}
+
+User.uiReloadWorkspaceGrid=function(data,columns){
+    var thisClass = this;
+    
+    $("#div"+this.className+"GridWorkspaceContainer").html("<div id='div"+this.className+"GridWorkspace' class='grid'></div>");
+        
+    var dataSource = new kendo.data.DataSource({
+        data:data,
+        schema:{
+            model:{
+                fields:User.workspaceGridSchemaFields
+            }
+        }
+    });
+    
+    $("#div"+thisClass.className+"GridWorkspace").kendoGrid({
+        dataBound:function(e){
+            Methods.iniTooltips();  
+        },
+        dataSource: dataSource,
+        columns: columns,
+        toolbar:[
+        {
+            name: "create", 
+            template: '<button class="btnAdd" onclick="User.uiAddWorkspace()">'+dictionary["s37"]+'</button>'
         }
         ],
         editable: false,
@@ -286,6 +519,15 @@ User.uiRefreshShareGrid=function(){
     var items = grid.dataSource.data();
     
     User.uiReloadShareGrid(items, columns);
+}
+
+User.uiRefreshWorkspaceGrid=function(){
+    var grid = $("#div"+this.className+"GridWorkspace").data('kendoGrid');
+    
+    var columns = grid.columns;
+    var items = grid.dataSource.data();
+    
+    User.uiReloadWorkspaceGrid(items, columns);
 }
 
 User.uiIniShareGrid=function(){
@@ -304,6 +546,12 @@ User.uiIniShareGrid=function(){
             type:"string"
         },
         institution:{
+            type:"string"
+        },
+        workspace_id:{
+            type:"number"
+        },
+        workspace_name:{
             type:"string"
         }
     };
@@ -332,13 +580,16 @@ User.uiIniShareGrid=function(){
         dataSource: dataSource,
         columns: [{
             title:dictionary["s69"],
-            field:"invitee_id"
+            field:"id"
         },{
             title:dictionary["s70"],
             field:"name"
         },{
             title:dictionary["s421"],
             field:"institution"
+        },{
+            title:dictionary["s679"],
+            template:'#= workspace_id #. #= workspace_name #'
         },{
             title:' ',
             width:50,
@@ -349,6 +600,69 @@ User.uiIniShareGrid=function(){
         {
             name: "create", 
             template: '<button class="btnAdd" onclick="'+thisClass.className+'.uiAddShare()">'+dictionary["s646"]+'</button>'
+        }
+        ],
+        editable: false,
+        scrollable:true
+    });
+    Methods.iniIconButton(".btnAdd", "plus");
+}
+
+User.uiIniWorkspaceGrid=function(){
+    var thisClass = this;
+    
+    $("#div"+this.className+"GridWorkspaceContainer").html("<div id='div"+this.className+"GridWorkspace' class='grid'></div>");
+    
+    var fields = {
+        id:{
+            type:"number"
+        },
+        name:{
+            type:"string"
+        },
+        main:{
+            type:"number"
+        }
+    };
+    
+    var dataSource = new kendo.data.DataSource({
+        transport:{
+            read: {
+                url:"query/User_workspace_list.php?oid="+thisClass.currentID,
+                dataType:"json"
+            }
+        },
+        schema:{
+            model:{
+                id:"id",
+                fields:fields
+            }
+        }
+    });
+    
+    User.workspaceGridSchemaFields = fields;
+    
+    $("#div"+this.className+"GridWorkspace").kendoGrid({
+        dataBound:function(e){
+            Methods.iniTooltips();  
+        },
+        dataSource: dataSource,
+        columns: [{
+            title:dictionary["s69"],
+            field:"id"
+        },{
+            title:dictionary["s70"],
+            field:"name"
+        },{
+            title:' ',
+            width:50,
+            template:'<span style="display:inline-block;" class="spanIcon tooltip ui-icon ui-icon-pencil" onclick="'+thisClass.className+'.uiEditWorkspace($(this))" title="'+dictionary["s668"]+'"></span>'+
+            '#if(main==0){ #<span style="display:inline-block;" class="spanIcon tooltip ui-icon ui-icon-trash" onclick="'+thisClass.className+'.uiRemoveWorkspace($(this))" title="'+dictionary["s669"]+'"></span># } #'
+        }],
+        toolbar:[
+        {
+            name: "create", 
+            template: '<button class="btnAdd" onclick="'+thisClass.className+'.uiAddWorkspace()">'+dictionary["s670"]+'</button>'
         }
         ],
         editable: false,

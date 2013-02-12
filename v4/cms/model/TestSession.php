@@ -35,7 +35,7 @@ class TestSession extends OTable {
     public $output = "";
     public $error_output = "";
     public $state = "";
-    public $User_id = 0;
+    public $UserWorkspace_id = 0;
     public $QTIAssessmentItem_id = 0;
 
     const TEST_SESSION_STATUS_NEW = 0;
@@ -58,22 +58,22 @@ class TestSession extends OTable {
         return Template::from_mysql_id($this->Template_id);
     }
 
-    public function get_User() {
-        return User::from_mysql_id($this->User_id);
+    public function get_UserWorkspace() {
+        return UserWorkspace::from_mysql_id($this->UserWorkspace_id);
     }
 
     public function register() {
         if (array_key_exists("sids", $_SESSION)) {
             if (array_key_exists(session_id(), $_SESSION['sids'])) {
                 TestSession::unregister($_SESSION['sids'][session_id()]);
-                $_SESSION['sids'][session_id()] = $this->User_id . "-" . $this->id;
+                $_SESSION['sids'][session_id()] = $this->UserWorkspace_id . "-" . $this->id;
             }
             else
-                $_SESSION['sids'][session_id()] = $this->User_id . "-" . $this->id;
+                $_SESSION['sids'][session_id()] = $this->UserWorkspace_id . "-" . $this->id;
         }
         else {
             $_SESSION['sids'] = array();
-            $_SESSION['sids'][session_id()] = $this->User_id . "-" . $this->id;
+            $_SESSION['sids'][session_id()] = $this->UserWorkspace_id . "-" . $this->id;
         }
     }
 
@@ -86,11 +86,11 @@ class TestSession extends OTable {
         unset($_SESSION['sids'][session_id()]);
     }
 
-    public static function start_new($oid, $test_id, $debug = false) {
+    public static function start_new($wid, $test_id, $debug = false) {
         $session = new TestSession();
         $session->Test_id = $test_id;
         $session->debug = ($debug ? 1 : 0);
-        $session->User_id = $oid;
+        $session->UserWorkspace_id = $wid;
 
         $lid = $session->mysql_save();
 
@@ -129,13 +129,13 @@ class TestSession extends OTable {
 
     public function close() {
         if (TestServer::is_running())
-            TestServer::send(json_encode(array("type" => 1, "code" => "close", "owner_id" => $this->User_id, "session_id" => $this->id, "hash" => $this->hash)));
+            TestServer::send(json_encode(array("type" => 1, "code" => "close", "workspace_id" => $this->UserWorkspace_id, "session_id" => $this->id, "hash" => $this->hash)));
         $this->remove_files();
     }
 
     public function serialize() {
         if (TestServer::is_running())
-            TestServer::send(json_encode(array("type" => 1, "code" => "serialize", "owner_id" => $this->User_id, "session_id" => $this->id, "hash" => $this->hash)));
+            TestServer::send(json_encode(array("type" => 1, "code" => "serialize", "workspace_id" => $this->UserWorkspace_id, "session_id" => $this->id, "hash" => $this->hash)));
     }
 
     public function remove_files() {
@@ -200,7 +200,7 @@ class TestSession extends OTable {
 
         //R server connection
         $command_obj = json_encode(array(
-            "owner_id" => $this->User_id,
+            "workspace_id" => $this->UserWorkspace_id,
             "session_id" => $this->id,
             "hash" => $this->hash,
             "values" => $values,
@@ -296,7 +296,7 @@ class TestSession extends OTable {
             switch ($status) {
                 case TestSession::TEST_SESSION_STATUS_COMPLETED: {
                         if ($debug) {
-                            TestSession::unregister($thisSession->User_id . "-" . $thisSession->id);
+                            TestSession::unregister($thisSession->UserWorkspace_id . "-" . $thisSession->id);
                             $removed = true;
                         }
                         break;
@@ -304,7 +304,7 @@ class TestSession extends OTable {
                 case TestSession::TEST_SESSION_STATUS_ERROR:
                 case TestSession::TEST_SESSION_STATUS_TAMPERED: {
                         if ($debug) {
-                            TestSession::unregister($thisSession->User_id . "-" . $thisSession->id);
+                            TestSession::unregister($thisSession->UserWorkspace_id . "-" . $thisSession->id);
                             $removed = true;
                         }
                         else
@@ -313,8 +313,8 @@ class TestSession extends OTable {
                     }
                 case TestSession::TEST_SESSION_STATUS_TEMPLATE: {
                         if ($debug) {
-                            if ($release){
-                                TestSession::unregister($thisSession->User_id . "-" . $thisSession->id);
+                            if ($release) {
+                                TestSession::unregister($thisSession->UserWorkspace_id . "-" . $thisSession->id);
                                 $removed = true;
                             }
                         }
@@ -390,18 +390,19 @@ class TestSession extends OTable {
         return $response;
     }
 
-    public static function change_db($owner_id) {
-        $owner = User::from_mysql_id($owner_id);
-        if ($owner != null)
-            mysql_select_db($owner->db_name);
+    public static function change_db($UserWorkspace_id) {
+        $wokspace = UserWorkspace::from_mysql_id($UserWorkspace_id);
+        if ($wokspace != null) {
+            mysql_select_db($wokspace->db_name);
+        }
     }
 
     public function get_RSession_file_path() {
-        return Ini::$path_temp . $this->User_id . "/session_" . $this->id . ".Rs";
+        return Ini::$path_temp . $this->UserWorkspace_id . "/session_" . $this->id . ".Rs";
     }
 
     public function get_RSession_fifo_path() {
-        return Ini::$path_temp . $this->User_id . "/fifo_" . $this->id;
+        return Ini::$path_temp . $this->UserWorkspace_id . "/fifo_" . $this->id;
     }
 
     public function mysql_save() {
@@ -421,8 +422,8 @@ class TestSession extends OTable {
         return md5("cts" . $id . "." . rand(0, 100) . "." . time());
     }
 
-    public static function authorized_session($oid, $id, $hash) {
-        $session = TestSession::from_property(array("id" => $id, "User_id" => $oid, "hash" => $hash), false);
+    public static function authorized_session($wid, $id, $hash) {
+        $session = TestSession::from_property(array("id" => $id, "UserWorkspace_id" => $wid, "hash" => $hash), false);
         if ($session == null)
             return null;
         switch ($session->status) {
@@ -433,14 +434,14 @@ class TestSession extends OTable {
         return $session;
     }
 
-    public static function forward($tid, $sid, $hash, $values, $btn_name, $debug, $time, $oid = null, $resume_from_last_template = false, $code = null) {
+    public static function forward($tid, $sid, $hash, $values, $btn_name, $debug, $time, $wid = null, $resume_from_last_template = false, $code = null) {
         if (is_string($values))
             $values = json_decode($values, true);
 
         $session = null;
         $result = array();
-        if ($oid != null && $sid != null && $hash != null) {
-            $session = TestSession::authorized_session($oid, $sid, $hash);
+        if ($wid != null && $sid != null && $hash != null) {
+            $session = TestSession::authorized_session($wid, $sid, $hash);
 
             if ($session != null) {
 
@@ -452,7 +453,7 @@ class TestSession extends OTable {
 
                 if (Ini::$timer_tamper_prevention && $session->time_limit > 0 && $time - $session->time_tamper_prevention - Ini::$timer_tamper_prevention_tolerance > $session->time_limit) {
                     if ($session->debug == 1)
-                        TestSession::unregister($session->User_id . "-" . $session->id);
+                        TestSession::unregister($session->UserWorkspace_id . "-" . $session->id);
                     else
                         $session->close();
 
@@ -500,12 +501,12 @@ class TestSession extends OTable {
                 );
             }
         } else {
-            if ($oid != null && $tid != null) {
+            if ($wid != null && $tid != null) {
                 if ($debug == 1)
                     $debug = true;
                 else
                     $debug = false;
-                $session = TestSession::start_new($oid, $tid, $debug);
+                $session = TestSession::start_new($wid, $tid, $debug);
 
                 if ($values == null)
                     $values = array();
@@ -562,7 +563,7 @@ class TestSession extends OTable {
             `output` longtext NOT NULL,
             `error_output` longtext NOT NULL,
             `state` longtext NOT NULL,
-            `User_id` bigint(20) NOT NULL,
+            `UserWorkspace_id` bigint(20) NOT NULL,
             `QTIAssessmentItem_id` bigint(20) NOT NULL,
             PRIMARY KEY  (`id`)
             ) ENGINE=InnoDB  DEFAULT CHARSET=utf8;

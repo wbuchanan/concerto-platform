@@ -241,10 +241,28 @@ if ($oid != 0) {
     if ($oid != -1) {
         ?>
         <div id="div<?= $class_name ?>ShareDialog" class="notVisible">
-            
+
+        </div>
+
+        <div id="div<?= $class_name ?>WorkspaceDialog" class="notVisible">
+            <fieldset class="padding ui-widget-content ui-corner-all margin">
+                <legend>
+                    <table>
+                        <tr>
+                            <td><span class="tooltip spanIcon ui-icon ui-icon-help" title="<?= Language::string(672) ?>"></span></td>
+                            <td class=""><b><?= Language::string(70) ?></b></td>
+                        </tr>
+                    </table>
+                </legend>
+                <div class="horizontalMargin">
+                    <input type="text" id = "input<?= $class_name ?>NameWorkspaceDialog" class = "fullWidth ui-widget-content ui-corner-all" />
+                </div>
+
+            </fieldset>
         </div>
 
         <?php
+        include Ini::$path_internal . "cms/view/User_workspace.php";
         include Ini::$path_internal . "cms/view/User_share.php";
         ?>
         <div class="divFormFloatingBar" align="right">

@@ -21,7 +21,7 @@ $.ajaxSetup({
     cache: false
 }); 
 
-function Concerto(container,oid,hash,sid,tid,queryPath,callbackGet,callbackSend,debug,remote,defaultLoadingImageSource,resumeFromLastTemplate){
+function Concerto(container,wid,hash,sid,tid,queryPath,callbackGet,callbackSend,debug,remote,defaultLoadingImageSource,resumeFromLastTemplate){
     
     this.isFirstTemplate = true;
     this.effectTransition = 0;
@@ -41,7 +41,7 @@ function Concerto(container,oid,hash,sid,tid,queryPath,callbackGet,callbackSend,
     if(debug!=null && debug==true) this.isDebug = true;
     this.container = container;
     this.sessionID = sid;
-    this.ownerID = oid;
+    this.workspaceID = wid;
     this.hash = hash;
     this.testID = tid;
     this.queryPath = queryPath==null?"query/":queryPath;
@@ -110,8 +110,8 @@ function Concerto(container,oid,hash,sid,tid,queryPath,callbackGet,callbackSend,
         this.isTemplateReady = false;
         if(this.isStopped) return;
         
-        if(this.testID!=null && this.ownerID!=null && this.sessionID==null && this.hash==null && !this.isDebug && !this.remote){
-            var lastSession = Concerto.getSessionObject(this.ownerID,this.testID);
+        if(this.testID!=null && this.workspaceID!=null && this.sessionID==null && this.hash==null && !this.isDebug && !this.remote){
+            var lastSession = Concerto.getSessionObject(this.workspaceID,this.testID);
             if(lastSession!=null){
                 Concerto.iniSessionResumeDialog(this,btnName,values,lastSession);
                 return;
@@ -124,16 +124,16 @@ function Concerto(container,oid,hash,sid,tid,queryPath,callbackGet,callbackSend,
         var params = {};
         params["resume_from_last_template"] = this.resumeFromLastTemplate?"1":"0";
         this.resumeFromLastTemplate = false;
-        if(this.ownerID!=null && this.hash!=null && this.sessionID!=null) 
+        if(this.workspaceID!=null && this.hash!=null && this.sessionID!=null) 
         {
-            params["oid"] = this.ownerID;
+            params["wid"] = this.workspaceID;
             params["hash"] = this.hash;
             params["sid"] = this.sessionID;
         }
         else
         {
-            if(this.ownerID!=null && this.testID!=null) {
-                params["oid"] = this.ownerID;
+            if(this.workspaceID!=null && this.testID!=null) {
+                params["wid"] = this.workspaceID;
                 params["tid"] = this.testID;
             }
         }
@@ -205,21 +205,6 @@ function Concerto(container,oid,hash,sid,tid,queryPath,callbackGet,callbackSend,
             case Concerto.statusTypes.error:{
                 if(this.debug==null){
                     $(this.container).html("<h2>Fatal test exception encountered. Test halted.</h2>");
-                }
-                else {
-                /*
-                    $(this.container).html("<h2>R return code</h2>");
-                    $(this.container).append(this.debug["return"]);
-                    $(this.container).append("<hr/>");
-                    $(this.container).append("<h2>R code</h2>");
-                    $(this.container).append(this.debug["code"].replace(/\n/g,'<br />'));
-                    $(this.container).append("<hr/>");
-                    $(this.container).append("<h2>R output</h2>");
-                    for(var i=0; i<this.debug["output"].length;i++){
-                        if(this.debug["output"][i]==null) continue;
-                        $(this.container).append(this.debug["output"][i].replace(/\n/g,'<br />')+"<br/>");
-                    }
-                    */
                 }
                 break;
             }
@@ -493,13 +478,13 @@ Concerto.resetSessionCookie = function(){
     });
 }
 
-Concerto.saveSessionCookie=function(oid,sid,hash,tid){
+Concerto.saveSessionCookie=function(wid,sid,hash,tid){
     var session = Concerto.getSessionCookie();
     var date = new Date();
     var exists = false;
     for(var i=0;i<session.length;i++){
         var elem = session[i];
-        if(elem.tid == tid && elem.oid == oid){
+        if(elem.tid == tid && elem.wid == wid){
             exists = true;
             session[i].date = date.toUTCString();
             session[i].sid = sid;
@@ -508,7 +493,7 @@ Concerto.saveSessionCookie=function(oid,sid,hash,tid){
     }
     if(!exists){
         session.push({
-            oid:oid,
+            wid:wid,
             sid:sid,
             hash:hash,
             date:date.toUTCString(),
@@ -521,12 +506,12 @@ Concerto.saveSessionCookie=function(oid,sid,hash,tid){
     });
 }
 
-Concerto.removeSessionCookie=function(oid,sid,hash){ 
+Concerto.removeSessionCookie=function(wid,sid,hash){ 
     var session = Concerto.getSessionCookie();
     var result = [];
     for(var i=0;i<session.length;i++){
         var elem = session[i];
-        if(elem.oid != oid || elem.sid != sid || elem.hash != hash){
+        if(elem.wid != wid || elem.sid != sid || elem.hash != hash){
             result.push(elem);
         }
     }
@@ -538,33 +523,33 @@ Concerto.removeSessionCookie=function(oid,sid,hash){
 
 Concerto.selectTest=function(){
     var select = $("#selectTest");
-    var oid = select.children("option[selected='selected']").attr("owner");
     var tid = select.val();
+    var wid = select.children("option[value='"+tid+"']").attr("workspace");
     if(typeof test != 'undefined' && test!=null){
         test.stop();
-        test = new Concerto(test.container,oid,null,null,tid,test.queryPath,test.callbackGet,test.callbackSend,test.isDebug,test.remote,test.defaultLoadingImageSource,test.resumeFromLastTemplate);
+        test = new Concerto(test.container,wid,null,null,tid,test.queryPath,test.callbackGet,test.callbackSend,test.isDebug,test.remote,test.defaultLoadingImageSource,test.resumeFromLastTemplate);
     }
     else 
-        test = new Concerto($("#divTestContainer"),oid,null,null,tid);
+        test = new Concerto($("#divTestContainer"),wid,null,null,tid);
     test.run(null,[]);
     select.val(0);
 }
 
-Concerto.selectSession=function(oid,sid,hash){
+Concerto.selectSession=function(wid,sid,hash){
     if(typeof test != 'undefined' && test!=null){
         test.stop();
-        test = new Concerto(test.container,oid,hash,sid,null,test.queryPath,test.callbackGet,test.callbackSend,test.isDebug,test.remote,test.defaultLoadingImageSource,true);
+        test = new Concerto(test.container,wid,hash,sid,null,test.queryPath,test.callbackGet,test.callbackSend,test.isDebug,test.remote,test.defaultLoadingImageSource,true);
     }
     else 
-        test = new Concerto($("#divTestContainer"),oid,hash,sid,null,null,null,null,null,null,null,true);
+        test = new Concerto($("#divTestContainer"),wid,hash,sid,null,null,null,null,null,null,null,true);
     test.run(null,[]);
 }
 
-Concerto.getSessionObject=function(oid,tid){
+Concerto.getSessionObject=function(wid,tid){
     var session = Concerto.getSessionCookie();
     for(var i=0;i<session.length;i++){
         var s = session[i];
-        if(s.oid == oid && s.tid==tid) return s;
+        if(s.wid == wid && s.tid==tid) return s;
     }
     return null;
 }
@@ -581,14 +566,14 @@ Concerto.iniSessionResumeDialog=function(obj,btnName,values,lastSession){
             text:"resume",
             click:function(){
                 $(this).dialog("close");
-                Concerto.selectSession(lastSession.oid, lastSession.sid, lastSession.hash);
+                Concerto.selectSession(lastSession.wid, lastSession.sid, lastSession.hash);
             }
         },
         {
             text:"start new",
             click:function(){
                 $(this).dialog("close");
-                Concerto.removeSessionCookie(lastSession.oid, lastSession.sid, lastSession.hash);
+                Concerto.removeSessionCookie(lastSession.wid, lastSession.sid, lastSession.hash);
                 obj.run(btnName,values);
             }
         }

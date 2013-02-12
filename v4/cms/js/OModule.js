@@ -633,7 +633,7 @@ OModule.inheritance=function(obj)
         }
 		
         if(thisClass.reloadOnModification) { 
-            Methods.uiBlockAll();
+            //Methods.uiBlockAll();
         } else {
         
             if(isNew) Methods.uiBlock($("#divAddFormDialog").parent());
