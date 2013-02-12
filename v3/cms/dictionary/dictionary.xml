@@ -3195,6 +3195,10 @@ não salvas não serão consideradas no processo de debug.</br>
 
 style='color:red;'><b>HALTED</b></font>]]>
             </en>
+            <tr><![CDATA[Sözdizimi doğrulama <font style='color:red;'><b>KALDI</b></font> indeks bölümünde #{0} - hata ayıklama <font 
+
+style='color:red;'><b>DURDURULDU</b></font>]]>
+            </tr>
             <de><![CDATA[Syntaxvalidierung <font style='color:red;'><b>FEHLGESCHLAGEN</b></font> bei Sektion mit Index #{0} - debug 
 
 <font style='color:red;'><b>ANGEHALTEN</b></font>]]>
@@ -3226,6 +3230,7 @@ style='color:red;'><b>INTERROMPIDO</b></font>]]>
         </string>
         <string id="297" js="1">
             <en>Runtime debug</en>
+            <tr>Hata ayıklamayı çalıştırma</tr>
             <de>Laufzeit debug</de>
             <pl>Debug na żywo</pl>
             <cn>运行时间调试</cn>
@@ -3236,6 +3241,7 @@ style='color:red;'><b>INTERROMPIDO</b></font>]]>
         </string>
         <string id="298" js="1">
             <en>Running test #{0}...</en>
+            <tr>Testi çalıştır #{0}...</tr>
             <de>Lasse Test mit der id #{0} laufen ...</de>
             <pl>Uruchomienie testu #{0}...</pl>
             <cn>运行测试#{0}……</cn>
@@ -3245,6 +3251,8 @@ style='color:red;'><b>INTERROMPIDO</b></font>]]>
             <br>Rodando Teste #{0}...</br>
         </string>
         <string id="299" js="1">
+            <en><![CDATA[Test #{0} - runtime debug <b>(R code is being interpreted...)</b>]]>
+            </en>
             <en><![CDATA[Test #{0} - runtime debug <b>(R code is being interpreted...)</b>]]>
             </en>
             <de><![CDATA[Test #{0} - Laufzeit debug <b>(R Code wird interpretiert...)</b>]]>
