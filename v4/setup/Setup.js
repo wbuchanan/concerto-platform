@@ -455,15 +455,6 @@ Setup.steps = [
         ),
     new SetupStep(
         false,
-        "<b>catR</b> R package must be installed.",
-        "catR_r_package_check",
-        "<b>catR</b> package <b>IS INSTALLED</b> - <b style='color:green;'>PASSED</b>",
-        "<b>catR</b> package <b>IS NOT INSTALLED</b> - <b style='color:red;'>FAILED</b>",
-        "Install <b>catR</b> package to main R library directory.",
-        true     
-        ),
-    new SetupStep(
-        false,
         "<b>session</b> R package must be installed.",
         "session_r_package_check",
         "<b>session</b> package <b>IS INSTALLED</b> - <b style='color:green;'>PASSED</b>",

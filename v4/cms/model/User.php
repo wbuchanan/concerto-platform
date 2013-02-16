@@ -185,6 +185,11 @@ class User extends OModule {
         }
         return $_SESSION['ptap_current_db'];
     }
+    
+    public static function get_current_UserWorkspace(){
+        $db = User::get_current_db();
+        return UserWorkspace::from_property(array("db_name"=>$db),false);
+    }
 
     public static function get_all_db() {
         $result = array();

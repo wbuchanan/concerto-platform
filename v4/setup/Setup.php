@@ -203,15 +203,6 @@ class Setup {
         return ($return == 0);
     }
 
-    public static function catR_r_package_check() {
-        require '../Ini.php';
-        $ini = new Ini();
-        $array = array();
-        $return = 0;
-        exec('"' . Ini::$path_r_script . '" -e "library(catR)"', $array, $return);
-        return json_encode(array("result" => $return, "param" => "catR"));
-    }
-
     public static function RMySQL_r_package_check() {
         require '../Ini.php';
         $ini = new Ini();

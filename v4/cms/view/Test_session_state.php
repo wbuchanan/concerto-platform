@@ -54,7 +54,7 @@ if ($logged_user == null) {
                 <button id="btnStopDebug" style="font-size:smaller; white-space: nowrap;" disabled="disabled" onclick="Test.uiStopDebug()"><?= Language::string(662) ?></button>
             </td>
             <td>
-                <button id="btnStartDebug" style="font-size: smaller; white-space: nowrap;" onclick="Test.uiStartDebug('<?= Ini::$path_external ?>',<?= $logged_user->id ?>)"><?= Language::string(323) ?></button>
+                <button id="btnStartDebug" style="font-size: smaller; white-space: nowrap;" onclick="Test.uiStartDebug('<?= Ini::$path_external ?>',<?= User::get_current_UserWorkspace()->id ?>)"><?= Language::string(323) ?></button>
             </td>
         </tr>
     </table>

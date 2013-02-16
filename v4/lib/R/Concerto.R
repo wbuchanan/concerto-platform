@@ -18,12 +18,14 @@
 ##
  
 concerto <- list(
-    initialize = function(testID,sessionID,user,password,dbName,host='localhost',port=3306,tempPath,mediaPath,dbTimezone,dbConnect){
+    initialize = function(testID,sessionID,workspaceID,workspacePrefix,user,password,dbName,host='localhost',port=3306,tempPath,mediaPath,dbTimezone,dbConnect){
         print("initialization...")
 
         options(encoding='UTF-8')
         concerto$testID <<- testID
         concerto$sessionID <<- sessionID
+        concerto$workspaceID <<- workspaceID
+        concerto$workspacePrefix <<- workspacePrefix
         concerto$templateFIFOPath <<- paste(tempPath,"/fifo_",sessionID,sep='')
         concerto$sessionPath <<- paste(tempPath,"/session_",sessionID,".Rs",sep='')
         concerto$mediaPath <<- mediaPath
@@ -35,12 +37,17 @@ concerto <- list(
         print(paste("working directory set to:",tempPath))
 
         library(session)
-        library(catR)
         library(rjson)
         library(RMySQL)
 
         if(dbConnect) concerto$db$connect(user,password,dbName,host,port,dbTimezone)
     },
+
+    workspace = list(
+        get = function(workspaceID){
+            return(paste(concerto$workspacePrefix,workspaceID,sep=''))
+        }
+    ),
 
     finalize = function(){
         print("finalizing...")
@@ -68,8 +75,8 @@ concerto <- list(
     ),
 
     table = list(
-        get = function(tableID){
-            dbName <- dbEscapeStrings(concerto$db$connection,concerto$db$name)
+        get = function(tableID,workspaceID=concerto$workspaceID){
+            dbName <- dbEscapeStrings(concerto$db$connection,concerto$workspace$get(workspaceID))
             tableID <- dbEscapeStrings(concerto$db$connection,toString(tableID))
             result <- dbSendQuery(concerto$db$connection,sprintf("SELECT `id`,`name` FROM `%s`.`Table` WHERE `id`='%s'",dbName,tableID))
             response <- fetch(result,n=-1)
@@ -79,14 +86,15 @@ concerto <- list(
     ),
 
     template = list(
-        show = function(templateID,params=list(),finalize=F){
-            print(paste("showing template #",templateID,"...",sep=''))
+        show = function(templateID,params=list(),finalize=F,workspaceID=concerto$workspaceID){
+            print(paste("showing template #",workspaceID,":",templateID,"...",sep=''))
             if(!is.list(params)) stop("'params' must be a list!")
             print("template params:")
             print(params)
 
-            template <- concerto$template$get(templateID)
-            if(dim(template)[1]==0) stop(paste("Template #",templateID," not found!",sep=''))
+            template <- concerto$template$get(templateID,workspaceID=workspaceID)
+            if(dim(template)[1]==0) stop(paste("Template #",workspaceID,":",templateID," not found!",sep=''))
+            concerto$updateTemplateWorkspaceID(workspaceID)
             concerto$updateTemplateID(templateID)
 
             concerto$updateHead(concerto$template$fillHTML(template[1,"head"],params))
@@ -123,8 +131,8 @@ concerto <- list(
             return(html)
         },
 
-        get = function(templateID){
-            dbName <- dbEscapeStrings(concerto$db$connection,concerto$db$name)
+        get = function(templateID,workspaceID=concerto$workspaceID){
+            dbName <- dbEscapeStrings(concerto$db$connection,concerto$workspace$get(workspaceID))
             templateID <- dbEscapeStrings(concerto$db$connection,toString(templateID))
             result <- dbSendQuery(concerto$db$connection,sprintf("SELECT `id`,`head`,`HTML` FROM `%s`.`Template` WHERE `id`='%s'",dbName,templateID))
             response <- fetch(result,n=-1)
@@ -133,17 +141,17 @@ concerto <- list(
     ),
 
     test = list(
-        get = function(testID){
-            dbName <- dbEscapeStrings(concerto$db$connection,concerto$db$name)
+        get = function(testID,workspaceID=concerto$workspaceID){
+            dbName <- dbEscapeStrings(concerto$db$connection,concerto$workspace$get(workspaceID))
             testID <- dbEscapeStrings(concerto$db$connection,toString(testID))
             result <- dbSendQuery(concerto$db$connection,sprintf("SELECT `id`,`code` FROM `%s`.`Test` WHERE `id`='%s'",dbName,testID))
             response <- fetch(result,n=-1)
-            response$returnVariables <- concerto$test$getReturnVariables(testID)
+            response$returnVariables <- concerto$test$getReturnVariables(testID,workspaceID=workspaceID)
             return(response)
         },
 
-        getReturnVariables = function(testID){
-            dbName <- dbEscapeStrings(concerto$db$connection,concerto$db$name)
+        getReturnVariables = function(testID,workspaceID=concerto$workspaceID){
+            dbName <- dbEscapeStrings(concerto$db$connection,concerto$workspace$get(workspaceID))
             testID <- dbEscapeStrings(concerto$db$connection,toString(testID))
             result <- dbSendQuery(concerto$db$connection,sprintf("SELECT `name` FROM `%s`.`TestVariable` WHERE `Test_id`='%s' AND `type`=1",dbName,testID))
             response <- fetch(result,n=-1)
@@ -155,11 +163,11 @@ concerto <- list(
             return(result)
         },
 
-        run = function(testID,params=list()){
-            print(paste("running test #",testID,"...",sep=''))
+        run = function(testID,params=list(),workspaceID=concerto$workspaceID){
+            print(paste("running test #",workspaceID,":",testID,"...",sep=''))
 
-            test <- concerto$test$get(testID)
-            if(dim(test)[1]==0) stop(paste("Test #",testID," not found!",sep=''))
+            test <- concerto$test$get(testID,workspaceID=workspaceID)
+            if(dim(test)[1]==0) stop(paste("Test #",workspaceID,":",testID," not found!",sep=''))
 
             for(param in ls(params)){
                 assign(param,params[[param]])
@@ -250,6 +258,13 @@ concerto <- list(
         state <- dbEscapeStrings(concerto$db$connection,toString(state))
         result <- dbSendQuery(concerto$db$connection, statement = sprintf("UPDATE `%s`.`TestSession` SET `state` = '%s' WHERE `id`=%s",dbName,state,sessionID))
     },
+    
+    updateTemplateWorkspaceID = function(workspaceID) {
+        dbName <- dbEscapeStrings(concerto$db$connection,concerto$db$name)
+        sessionID <- dbEscapeStrings(concerto$db$connection,toString(concerto$sessionID))
+        workspaceID <- dbEscapeStrings(concerto$db$connection,toString(workspaceID))
+        dbSendQuery(concerto$db$connection, statement = sprintf("UPDATE `%s`.`TestSession` SET `Template_UserWorkspace_id` = '%s' WHERE `id`=%s",dbName,workspaceID,sessionID))
+    },
 
     updateTemplateID = function(templateID) {
         dbName <- dbEscapeStrings(concerto$db$connection,concerto$db$name)
@@ -263,6 +278,13 @@ concerto <- list(
         sessionID <- dbEscapeStrings(concerto$db$connection,toString(concerto$sessionID))
         qtiID <- dbEscapeStrings(concerto$db$connection,toString(qtiID))
         dbSendQuery(concerto$db$connection, statement = sprintf("UPDATE `%s`.`TestSession` SET `QTIAssessmentItem_id` = '%s' WHERE `id`=%s",dbName,qtiID,sessionID))
+    },
+
+    updateQTIWorkspaceID = function(workspaceID) {
+        dbName <- dbEscapeStrings(concerto$db$connection,concerto$db$name)
+        sessionID <- dbEscapeStrings(concerto$db$connection,toString(concerto$sessionID))
+        workspaceID <- dbEscapeStrings(concerto$db$connection,toString(workspaceID))
+        dbSendQuery(concerto$db$connection, statement = sprintf("UPDATE `%s`.`TestSession` SET `QTIAssessmentItem_UserWorkspace_id` = '%s' WHERE `id`=%s",dbName,workspaceID,sessionID))
     },
     
     interpretResponse = function(){
@@ -310,15 +332,16 @@ concerto <- list(
     },
 
     qti = list(
-        initialize = function(qtiID,params=list()){
-            print(paste("initializing QTI #",qtiID,"...",sep=''))
+        initialize = function(qtiID,params=list(),workspaceID=concerto$workspaceID){
+            print(paste("initializing QTI #",workspaceID,":",qtiID,"...",sep=''))
             if(!is.list(params)) stop("'params' must be a list!")
             print(params)
             
-            qti <- concerto$qti$get(qtiID)
-            if(dim(qti)[1]==0) stop(paste("QTI #",qtiID," not found!",sep=''))
+            qti <- concerto$qti$get(qtiID,workspaceID=workspaceID)
+            if(dim(qti)[1]==0) stop(paste("QTI #",workspaceID,":",qtiID," not found!",sep=''))
 
             concerto$updateQTIID(qtiID)
+            concerto$updateQTIWorkspaceID(workspaceID)
             concerto$updateStatus(8)
             
             #create 'result' list
@@ -333,17 +356,18 @@ concerto <- list(
             result$QTI_HTML <- concerto$template$fillHTML(result$QTI_HTML,result)
             return(result)
         },
-        responseProcessing = function(qtiID,ini,userResponse){
-            print(paste("response processing of QTI #",qtiID,"...",sep=''))
+        responseProcessing = function(qtiID,ini,userResponse,workspaceID=concerto$workspaceID){
+            print(paste("response processing of QTI #",workspaceID,":",qtiID,"...",sep=''))
             if(!is.list(ini)) stop("'initialization variable' must be a list!")
             print(ini)
             
             if(!is.list(userResponse)) stop("'user response variable' must be a list!")
             print(userResponse)
             
-            qti <- concerto$qti$get(qtiID)
-            if(dim(qti)[1]==0) stop(paste("QTI #",qtiID," not found!",sep=''))
+            qti <- concerto$qti$get(qtiID,workspaceID=workspaceID)
+            if(dim(qti)[1]==0) stop(paste("QTI #",workspaceID,":",qtiID," not found!",sep=''))
             concerto$updateQTIID(qtiID)
+            concerto$updateQTIWorkspaceID(workspaceID)
             
             concerto$updateStatus(9)
             
@@ -359,8 +383,8 @@ concerto <- list(
             
             return(result)
         },
-        get = function(qtiID){
-            dbName <- dbEscapeStrings(concerto$db$connection,concerto$db$name)
+        get = function(qtiID,workspaceID=concerto$workspaceID){
+            dbName <- dbEscapeStrings(concerto$db$connection,concerto$workspace$get(workspaceID))
             qtiID <- dbEscapeStrings(concerto$db$connection,toString(qtiID))
             result <- dbSendQuery(concerto$db$connection,sprintf("SELECT `id`,`name` FROM `%s`.`QTIAssessmentItem` WHERE `id`='%s'",dbName,qtiID))
             response <- fetch(result,n=-1)

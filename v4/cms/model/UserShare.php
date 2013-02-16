@@ -34,6 +34,39 @@ class UserShare extends OTable {
         return User::from_mysql_id($this->invitee_id);
     }
 
+    public function mysql_save() {
+        $prev = UserShare::from_mysql_id($this->id);
+        if ($this->id != 0 && $prev != null) {
+            if ($this->UserWorkspace_id != $prev->UserWorkspace_id &&
+                    $this->invitee_id != $prev->invitee_id) {
+                $shares = UserShare::from_property(array("UserWorkspace_id" => $prev->UserWorkspace_id, "invitee_id" => $prev->invitee_id));
+                $ws = $prev->get_UserWorkspace();
+                if ($ws != null && count($shares) <= 1) {
+                    $ws->revoke_privileges_db_user($prev->invitee_id);
+                }
+            }
+        }
+
+        $ws = UserWorkspace::from_mysql_id($this->UserWorkspace_id);
+        if ($ws != null) {
+            $ws->grant_privileges_db_user($this->invitee_id);
+        }
+
+        parent::mysql_save();
+    }
+
+    public function mysql_delete() {
+        $ws = $this->get_UserWorkspace();
+
+        $shares = UserShare::from_property(array("UserWorkspace_id" => $this->UserWorkspace_id, "invitee_id" => $this->invitee_id));
+
+        if ($ws != null && count($shares) <= 1) {
+            $ws->revoke_privileges_db_user($this->invitee_id);
+        }
+
+        parent::mysql_delete();
+    }
+
     public static function create_db($db = null) {
         if ($db == null)
             $db = Ini::$db_master_name;

@@ -168,12 +168,12 @@ if ($oid != 0) {
                 <?php
             }
 
-            $owner = User::from_property(array("db_name" => User::get_current_db()), false);
-            $owner_id = 0;
-            if ($owner != null)
-                $owner_id = $owner->id;
+            $ws = UserWorkspace::from_property(array("db_name" => User::get_current_db()), false);
+            $ws_id = 0;
+            if ($ws != null)
+                $ws_id = $ws->id;
             ?>
-            <button class="btnRunTest" onclick="window.open('<?= Ini::$path_external . "?oid=" . $owner_id . "&tid=" . $obj->id ?>','_blank')"><?= Language::string(362) ?></button>
+            <button class="btnRunTest" onclick="window.open('<?= Ini::$path_external . "?wid=" . $ws_id . "&tid=" . $obj->id ?>','_blank')"><?= Language::string(362) ?></button>
         </div>
         <?php
     }

@@ -59,9 +59,12 @@ class UserWorkspace extends OTable {
     }
 
     public function mysql_save() {
+        $is_new = $this->id == 0;
         $lid = parent::mysql_save();
         $this->id = $lid;
-        $this->create_db_user();
+        if ($is_new)
+            $this->create_db_user();
+        $this->grant_privileges_db_user($this->owner_id);
     }
 
     public function remove_shares() {
@@ -84,6 +87,24 @@ class UserWorkspace extends OTable {
         mysql_query($sql);
 
         parent::mysql_delete();
+    }
+
+    public function grant_privileges_db_user($user_id) {
+        $wid = User::from_mysql_id($user_id)->get_main_UserWorkspace()->id;
+        $user = Ini::$db_users_name_prefix . $wid;
+        $db_name = Ini::$db_users_db_name_prefix . $this->id;
+
+        $sql = sprintf("GRANT ALL PRIVILEGES ON `%s`.* TO '%s'@'localhost'", $db_name, $user);
+        mysql_query($sql);
+    }
+    
+    public function revoke_privileges_db_user($user_id){
+        $wid = User::from_mysql_id($user_id)->get_main_UserWorkspace()->id;
+        $user = Ini::$db_users_name_prefix . $wid;
+        $db_name = Ini::$db_users_db_name_prefix . $this->id;
+
+        $sql = sprintf("REVOKE ALL PRIVILEGES ON `%s`.* FROM '%s'@'localhost'", $db_name, $user);
+        mysql_query($sql);
     }
 
     public function create_db_user() {

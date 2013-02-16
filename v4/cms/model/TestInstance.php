@@ -207,6 +207,7 @@ class TestInstance {
         TestSession::change_db($this->UserWorkspace_id);
         $session = $this->get_TestSession();
 
+        TestSession::change_db($session->QTIAssessmentItem_UserWorkspace_id);
         $qti = QTIAssessmentItem::from_mysql_id($session->QTIAssessmentItem_id);
         $qti->validate();
 
@@ -235,6 +236,7 @@ class TestInstance {
         TestSession::change_db($this->UserWorkspace_id);
         $session = $this->get_TestSession();
 
+        TestSession::change_db($session->QTIAssessmentItem_UserWorkspace_id);
         $qti = QTIAssessmentItem::from_mysql_id($session->QTIAssessmentItem_id);
         $qti->validate();
 
@@ -547,6 +549,8 @@ class TestInstance {
         $path = Ini::$path_temp . $session->UserWorkspace_id;
 
         $workspace = $this->get_UserWorkspace();
+        $owner = $workspace->get_owner();
+        $main_workspace = $owner->get_main_UserWorkspace();
 
         $code .= sprintf('
             CONCERTO_TEST_ID <- %d
@@ -560,9 +564,11 @@ class TestInstance {
             CONCERTO_TEMP_PATH <- "%s"
             CONCERTO_DB_TIMEZONE <- "%s"
             CONCERTO_MEDIA_PATH <- "%s"
+            CONCERTO_WORKSPACE_ID <- %s
+            CONCERTO_WORKSPACE_PREFIX <- "%s"
             source("' . Ini::$path_internal . 'lib/R/Concerto.R")
                 
-            concerto$initialize(CONCERTO_TEST_ID,CONCERTO_TEST_SESSION_ID,CONCERTO_DB_LOGIN,CONCERTO_DB_PASSWORD,CONCERTO_DB_NAME,CONCERTO_DB_HOST,CONCERTO_DB_PORT,CONCERTO_TEMP_PATH,CONCERTO_MEDIA_PATH,CONCERTO_DB_TIMEZONE,%s)
+            concerto$initialize(CONCERTO_TEST_ID,CONCERTO_TEST_SESSION_ID,CONCERTO_WORKSPACE_ID,CONCERTO_WORKSPACE_PREFIX,CONCERTO_DB_LOGIN,CONCERTO_DB_PASSWORD,CONCERTO_DB_NAME,CONCERTO_DB_HOST,CONCERTO_DB_PORT,CONCERTO_TEMP_PATH,CONCERTO_MEDIA_PATH,CONCERTO_DB_TIMEZONE,%s)
             %s
             
             rm(CONCERTO_TEST_ID)
@@ -575,9 +581,11 @@ class TestInstance {
             rm(CONCERTO_TEMP_PATH)
             rm(CONCERTO_DB_TIMEZONE)
             rm(CONCERTO_MEDIA_PATH)
+            rm(CONCERTO_WORKSPACE_ID)
+            rm(CONCERTO_WORKSPACE_PREFIX)
             
             %s
-            ', $test->id, $this->TestSession_id, $db_host, ($db_port != "" ? $db_port : "3306"), $workspace->db_login, $workspace->db_password, $workspace->db_name, $path, $mysql_timezone, Ini::$path_internal_media . $this->UserWorkspace_id, $unserialize ? "FALSE" : "TRUE", $unserialize ? '
+            ', $test->id, $this->TestSession_id, $db_host, ($db_port != "" ? $db_port : "3306"), $main_workspace->db_login, $main_workspace->db_password, $workspace->db_name, $path, $mysql_timezone, Ini::$path_internal_media . $owner->id, $workspace->id, Ini::$db_users_db_name_prefix, $unserialize ? "FALSE" : "TRUE", $unserialize ? '
                 concerto$unserialize()
                 concerto$db$connect(CONCERTO_DB_LOGIN,CONCERTO_DB_PASSWORD,CONCERTO_DB_NAME,CONCERTO_DB_HOST,CONCERTO_DB_PORT,CONCERTO_DB_TIMEZONE)' : "", $unserialize ? 'if(exists("onUnserialize")) do.call("onUnserialize",list(lastReturn=rjson::fromJSON("' . addcslashes(json_encode($this->pending_variables), '"') . '")),envir=.GlobalEnv);' : "");
 

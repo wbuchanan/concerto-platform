@@ -28,6 +28,7 @@ class TestSession extends OTable {
     public $HTML = "";
     public $head = "";
     public $Template_id = 0;
+    public $Template_UserWorkspace_id = 0;
     public $time_tamper_prevention = 0;
     public $hash = "";
     public $debug = 0;
@@ -37,6 +38,7 @@ class TestSession extends OTable {
     public $state = "";
     public $UserWorkspace_id = 0;
     public $QTIAssessmentItem_id = 0;
+    public $QTIAssessmentItem_UserWorkspace_id = 0;
 
     const TEST_SESSION_STATUS_NEW = 0;
     const TEST_SESSION_STATUS_WORKING = 1;
@@ -55,7 +57,15 @@ class TestSession extends OTable {
     }
 
     public function get_Template() {
-        return Template::from_mysql_id($this->Template_id);
+        $ws = UserWorkspace::from_mysql_id($this->Template_UserWorkspace_id);
+        if ($ws == null)
+            return null;
+        $sql = sprintf("SELECT * FROM `%s`.`%s` WHERE `id`=%d", $ws->db_name, Template::get_mysql_table(), $this->Template_id);
+        $z = mysql_query($sql);
+        while ($r = mysql_fetch_array($z)) {
+            return Template::from_mysql_result($r);
+        }
+        return null;
     }
 
     public function get_UserWorkspace() {
@@ -274,7 +284,7 @@ class TestSession extends OTable {
                 $loader_effect_show_options = $loader->effect_show_options;
             }
 
-            $template = Template::from_mysql_id($thisSession->Template_id);
+            $template = $thisSession->get_Template();
 
             if ($template != null) {
                 $effect_hide = $template->effect_hide;
@@ -368,10 +378,14 @@ class TestSession extends OTable {
 
             if ($debug) {
                 $state = json_decode($state, true);
-                foreach ($state as $k => $v) {
-                    $state[$k] = htmlspecialchars($v, ENT_QUOTES);
+                if ($state != null) {
+                    foreach ($state as $k => $v) {
+                        $state[$k] = htmlspecialchars($v, ENT_QUOTES);
+                    }
+                    $state = json_encode($state);
+                } else {
+                    $state = "[]";
                 }
-                $state = json_encode($state);
 
                 $response["debug"] = array(
                     "return" => $return,
@@ -556,6 +570,7 @@ class TestSession extends OTable {
             `HTML` text NOT NULL,
             `head` text NOT NULL,
             `Template_id` bigint(20) NOT NULL,
+            `Template_UserWorkspace_id` bigint(20) NOT NULL,
             `time_tamper_prevention` INT NOT NULL,
             `hash` text NOT NULL,
             `debug` tinyint(1) NOT NULL,
@@ -565,6 +580,7 @@ class TestSession extends OTable {
             `state` longtext NOT NULL,
             `UserWorkspace_id` bigint(20) NOT NULL,
             `QTIAssessmentItem_id` bigint(20) NOT NULL,
+            `QTIAssessmentItem_UserWorkspace_id` bigint(20) NOT NULL,
             PRIMARY KEY  (`id`)
             ) ENGINE=InnoDB  DEFAULT CHARSET=utf8;
             ", $db);
