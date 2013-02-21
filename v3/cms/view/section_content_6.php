@@ -61,11 +61,16 @@ if ($logged_user == null) {
                                 <td class="tdSectionColumnIcon"><span class="spanIcon ui-icon ui-icon-help tooltip" title="<?= Language::string(246) ?>"></span></td>
                                 <td>CONCERTO_TEST_SESSION_ID</td>
                             </tr>
+                            <tr>
+                                <td class="tdSectionColumnIcon"><span class="spanIcon ui-icon ui-icon-help tooltip" title="<?= Language::string(629) ?>"></span></td>
+                                <td>USER_IP</td>
+                            </tr>
                         </table>
                     </div>
                     <div class="notVisible">
                         <input class="inputReturnVar" type="hidden" value="CONCERTO_TEST_ID" />
                         <input class="inputReturnVar" type="hidden" value="CONCERTO_TEST_SESSION_ID" />
+                        <input class="inputReturnVar" type="hidden" value="USER_IP" />
                     </div>
                 </fieldset>
             </td>

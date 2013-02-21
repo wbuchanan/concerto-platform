@@ -6736,5 +6736,15 @@ jako określona zmienna.</pl>
             <nl></nl>
             <br></br>
         </string>
+        <string id="629">
+            <en>User IP address. Read only variable.</en>
+            <de></de>
+            <pl>Adres użytkownika testu. Zmienna tylko do odczytu.</pl>
+            <cn></cn>
+            <fr></fr>
+            <bg></bg>
+            <nl></nl>
+            <br></br>
+        </string>
     </strings>
 </root> 

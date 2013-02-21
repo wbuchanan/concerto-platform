@@ -158,7 +158,9 @@ class TestSession extends OTable {
         $this->status = TestSession::TEST_SESSION_STATUS_WORKING;
         $this->mysql_save();
 
-        $code = "";
+        $code = "
+            USER_IP <<- '".$_SERVER["REMOTE_ADDR"]."'
+            ";
         $protected_vars = $test->get_TestProtectedVariables_name();
         foreach ($values as $v) {
             $val = json_decode($v);

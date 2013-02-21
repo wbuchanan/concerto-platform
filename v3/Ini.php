@@ -31,7 +31,7 @@ class Ini {
     public static $path_r_script = "";
     public static $path_temp = "";
     public static $path_mysql_home = "";
-    public static $version = "3.9.5";
+    public static $version = "3.9.6";
     public static $server_host = "127.0.0.1";
     public static $server_port = "8888";
     public static $path_unix_sock = "";
