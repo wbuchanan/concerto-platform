@@ -19,20 +19,17 @@
   Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA.
  */
 
-if (!isset($ini))
-{
+if (!isset($ini)) {
     require_once '../../Ini.php';
     $ini = new Ini();
 }
 $logged_user = User::get_logged_user();
-if ($logged_user == null)
-{
+if ($logged_user == null) {
     echo json_encode(array("result" => -1));
     exit();
 }
 
-if (!$logged_user->is_module_writeable($_POST['class_name']))
-{
+if (!$logged_user->is_module_writeable($_POST['class_name'])) {
     echo json_encode(array("result" => -2));
     exit();
 }
@@ -44,12 +41,14 @@ $obj->Owner_id = $logged_user->id;
 $oid = $obj->import($path);
 
 $response = $oid;
-if(is_numeric($response)) {
-    $oid = $response;
-    $result = 0;
-    echo json_encode(array("result" => $result, "oid" => $oid));
-    exit();
-}
-else {
+if (is_numeric($response)) {
+    if ($response > 0) {
+        $oid = $response;
+        $result = 0;
+        echo json_encode(array("result" => $result, "oid" => $oid));
+    } else {
+        echo json_encode(array("result" => $response));
+    }
+} else {
     echo $response;
 }

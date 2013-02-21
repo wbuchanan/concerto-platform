@@ -42,8 +42,10 @@ else {
 
     if (!$logged_user->is_module_writeable($class_name))
         die(Language::string(81));
-    if (!$logged_user->is_object_editable($obj))
-        die(Language::string(81));
+    if ($obj != null) {
+        if (!$logged_user->is_object_editable($obj))
+            die(Language::string(81));
+    }
 }
 
 $description = Language::string(537) . "<br/><br/>" . Language::string(213);
