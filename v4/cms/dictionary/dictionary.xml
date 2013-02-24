@@ -4489,5 +4489,85 @@ Note: You can add new languages by inserting "<new_language>string translated in
             <nl></nl>
             <br></br>
         </string>
+        <string id="683" js="1">
+            <en>apply</en>
+            <de></de>
+            <pl>zastosuj</pl>
+            <cn></cn>
+            <fr></fr>
+            <bg></bg>
+            <nl></nl>
+            <br></br>
+        </string>
+        <string id="684" js="1">
+            <en>insert comments</en>
+            <de></de>
+            <pl>wstaw komentarze</pl>
+            <cn></cn>
+            <fr></fr>
+            <bg></bg>
+            <nl></nl>
+            <br></br>
+        </string>
+        <string id="685" js="1">
+            <en>autoformat code</en>
+            <de></de>
+            <pl>autoformatuj kod</pl>
+            <cn></cn>
+            <fr></fr>
+            <bg></bg>
+            <nl></nl>
+            <br></br>
+        </string>
+        <string id="686">
+            <en>autoformat selected code</en>
+            <de></de>
+            <pl>autoformat zaznaczonego kodu</pl>
+            <cn></cn>
+            <fr></fr>
+            <bg></bg>
+            <nl></nl>
+            <br></br>
+        </string>
+        <string id="687">
+            <en>code full screen mode</en>
+            <de></de>
+            <pl>tryb pełnoekranowy kodu</pl>
+            <cn></cn>
+            <fr></fr>
+            <bg></bg>
+            <nl></nl>
+            <br></br>
+        </string>
+        <string id="688">
+            <en>code autocomplete and documentation</en>
+            <de></de>
+            <pl>autouzupełnianie kodu i dokumentacja</pl>
+            <cn></cn>
+            <fr></fr>
+            <bg></bg>
+            <nl></nl>
+            <br></br>
+        </string>
+        <string id="689" js="1">
+            <en>function wizard</en>
+            <de></de>
+            <pl>wizard funkcji</pl>
+            <cn></cn>
+            <fr></fr>
+            <bg></bg>
+            <nl></nl>
+            <br></br>
+        </string>
+        <string id="690" js="1">
+            <en>insert selected</en>
+            <de></de>
+            <pl>wprowadź wybraną</pl>
+            <cn></cn>
+            <fr></fr>
+            <bg></bg>
+            <nl></nl>
+            <br></br>
+        </string>
     </strings>
 </root> 

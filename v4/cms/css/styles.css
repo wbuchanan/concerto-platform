@@ -249,3 +249,48 @@ ul {
 .divInlineWidget {
     word-break: break-all;
 }
+
+.divFunctionWidget {
+}
+
+.divFunctionWidgetTitle{
+    font-size:larger;
+    font-weight:bold;
+}
+
+.divFunctionWidgetDescription{
+    
+}
+
+.divFunctionWidgetArgTable{
+    
+}
+
+.divFunctionWidgetArgTableDescColumn{
+    width:30px;
+}
+
+.divFunctionWidgetArgTableNameColumn{
+    
+}
+
+.divFunctionWidgetArgTableValueColumn{
+    width:100%;
+}
+
+.divFunctionWidgetElement{
+    margin:5px;
+}
+
+.divFunctionWidgetButtons{
+    
+}
+
+.divFunctionWidgetOption{
+    float:left;
+    margin-right:10px;
+}
+
+.divFunctionWidgetOptions{
+    
+}

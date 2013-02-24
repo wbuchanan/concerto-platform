@@ -30,8 +30,8 @@ if ($logged_user == null) {
 ?>
 
 <script>
-    $(function(){
-        Test.logicCodeMirror = Methods.iniCodeMirror("textareaTestLogic", "r", false,true);
+    $(function() {
+        Test.logicCodeMirror = Methods.iniCodeMirror("textareaTestLogic", "r", false, true, true);
     });
 </script>
 
@@ -45,5 +45,12 @@ if ($logged_user == null) {
         </table>
     </legend>
 
+    <div>
+        <table>
+            <tr><td style="width:30px;"><span class="spanIcon ui-icon ui-icon-info"></span></td>
+                <td><b>Ctrl+Space:</b> <?=  Language::string(688)?>, <b>F2:</b> <?=  Language::string(686)?>, <b>F11:</b> <?=  Language::string(687)?></td>
+            </tr>
+        </table>
+    </div>
     <textarea id="textareaTestLogic"><?= $obj->code ?></textarea>
 </fieldset>
