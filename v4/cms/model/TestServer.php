@@ -467,7 +467,7 @@ class TestServer {
 
         if ($data->type == 0) {
             if (!array_key_exists($key, $this->instances)) {
-                $this->instances[$key] = new TestInstance($data->session_id, $data->workspace_id);
+                $this->instances[$key] = new TestInstance($data->session_id, $data->workspace_id, $data->IP);
                 if (self::$debug) {
                     self::log_debug("TestServer->interpret_input() --- Client '$key' test instance created");
                 }

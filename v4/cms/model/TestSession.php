@@ -215,7 +215,8 @@ class TestSession extends OTable {
             "hash" => $this->hash,
             "values" => $values,
             "code" => $code,
-            "type" => 0
+            "type" => 0,
+            "IP" => $_SERVER["REMOTE_ADDR"]
                 ));
 
         if (TestServer::$debug)

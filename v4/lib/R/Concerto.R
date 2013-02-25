@@ -18,7 +18,7 @@
 ##
  
 concerto <- list(
-    initialize = function(testID,sessionID,workspaceID,workspacePrefix,user,password,dbName,host='localhost',port=3306,tempPath,mediaPath,dbTimezone,dbConnect){
+    initialize = function(testID,sessionID,workspaceID,workspacePrefix,user,password,dbName,host='localhost',port=3306,tempPath,mediaPath,dbTimezone,dbConnect,userIP){
         print("initialization...")
 
         options(encoding='UTF-8')
@@ -29,6 +29,7 @@ concerto <- list(
         concerto$templateFIFOPath <<- paste(tempPath,"/fifo_",sessionID,sep='')
         concerto$sessionPath <<- paste(tempPath,"/session_",sessionID,".Rs",sep='')
         concerto$mediaPath <<- mediaPath
+        concerto$userIP <<- userIP
 
         if(!file.exists(concerto$templateFIFOPath)){
         }
