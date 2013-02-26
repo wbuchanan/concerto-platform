@@ -1,6 +1,6 @@
 /*
  Concerto Platform - Online Adaptive Testing Platform
- Copyright (C) 2011-2012, The Psychometrics Centre, Cambridge University
+ Copyright (C) 2011-2013, The Psychometrics Centre, Cambridge University
  
  This program is free software; you can redistribute it and/or
  modify it under the terms of the GNU General Public License
@@ -333,10 +333,16 @@ Test.onScroll = function() {
 
             $(".divTestVerticalElement:eq(0)").css("top", "0px");
             $(".divTestVerticalElement:eq(1)").css("top", $(".divTestVerticalElement:eq(1)").css("height"));
+            
+            $(".divTestVerticalElement:eq(0)").css("width", "49%");
+            $(".divTestVerticalElement:eq(1)").css("width", "49%");
 
         } else {
             $(".divTestVerticalElement").css("position", "relative");
             $(".divTestVerticalElement").css("top", "auto");
+            
+            $(".divTestVerticalElement:eq(0)").css("width", "100%");
+            $(".divTestVerticalElement:eq(1)").css("width", "100%");
         }
     }
 }

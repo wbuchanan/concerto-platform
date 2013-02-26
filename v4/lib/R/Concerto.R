@@ -90,8 +90,6 @@ concerto <- list(
         show = function(templateID,params=list(),timeLimit=0,finalize=F,workspaceID=concerto$workspaceID){
             print(paste("showing template #",workspaceID,":",templateID,"...",sep=''))
             if(!is.list(params)) stop("'params' must be a list!")
-            print("template params:")
-            print(params)
 
             template <- concerto$template$get(templateID,workspaceID=workspaceID)
             if(dim(template)[1]==0) stop(paste("Template #",workspaceID,":",templateID," not found!",sep=''))
@@ -307,8 +305,6 @@ concerto <- list(
           stop("close command recieved")
       } else {
           response <- rjson::fromJSON(response)
-          print("response: ")
-          print(response)
       }
       return(response)
     },
@@ -344,7 +340,6 @@ concerto <- list(
         initialize = function(qtiID,params=list(),workspaceID=concerto$workspaceID){
             print(paste("initializing QTI #",workspaceID,":",qtiID,"...",sep=''))
             if(!is.list(params)) stop("'params' must be a list!")
-            print(params)
             
             qti <- concerto$qti$get(qtiID,workspaceID=workspaceID)
             if(dim(qti)[1]==0) stop(paste("QTI #",workspaceID,":",qtiID," not found!",sep=''))
@@ -368,10 +363,8 @@ concerto <- list(
         responseProcessing = function(qtiID,ini,userResponse,workspaceID=concerto$workspaceID){
             print(paste("response processing of QTI #",workspaceID,":",qtiID,"...",sep=''))
             if(!is.list(ini)) stop("'initialization variable' must be a list!")
-            print(ini)
             
             if(!is.list(userResponse)) stop("'user response variable' must be a list!")
-            print(userResponse)
             
             qti <- concerto$qti$get(qtiID,workspaceID=workspaceID)
             if(dim(qti)[1]==0) stop(paste("QTI #",workspaceID,":",qtiID," not found!",sep=''))
