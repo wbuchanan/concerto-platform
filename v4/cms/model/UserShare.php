@@ -37,7 +37,7 @@ class UserShare extends OTable {
     public function mysql_save() {
         $prev = UserShare::from_mysql_id($this->id);
         if ($this->id != 0 && $prev != null) {
-            if ($this->UserWorkspace_id != $prev->UserWorkspace_id &&
+            if ($this->UserWorkspace_id != $prev->UserWorkspace_id ||
                     $this->invitee_id != $prev->invitee_id) {
                 $shares = UserShare::from_property(array("UserWorkspace_id" => $prev->UserWorkspace_id, "invitee_id" => $prev->invitee_id));
                 $ws = $prev->get_UserWorkspace();

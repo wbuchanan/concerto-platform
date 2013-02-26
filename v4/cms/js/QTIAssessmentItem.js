@@ -54,7 +54,11 @@ QTIAssessmentItem.getAddSaveObject=function()
     };
 };
 
-QTIAssessmentItem.getFullSaveObject = function(){
+QTIAssessmentItem.getFullSaveObject = function(isNew){
+    if(isNew==null){
+        isNew = false;
+    }
+    
     var obj = this.getAddSaveObject();
     obj["description"]=$("#form"+this.className+"TextareaDescription").val();
     return obj;

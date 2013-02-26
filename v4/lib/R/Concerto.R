@@ -87,7 +87,7 @@ concerto <- list(
     ),
 
     template = list(
-        show = function(templateID,params=list(),finalize=F,workspaceID=concerto$workspaceID){
+        show = function(templateID,params=list(),timeLimit=0,finalize=F,workspaceID=concerto$workspaceID){
             print(paste("showing template #",workspaceID,":",templateID,"...",sep=''))
             if(!is.list(params)) stop("'params' must be a list!")
             print("template params:")
@@ -97,6 +97,7 @@ concerto <- list(
             if(dim(template)[1]==0) stop(paste("Template #",workspaceID,":",templateID," not found!",sep=''))
             concerto$updateTemplateWorkspaceID(workspaceID)
             concerto$updateTemplateID(templateID)
+            concerto$updateTimeLimit(timeLimit)
 
             concerto$updateHead(concerto$template$fillHTML(template[1,"head"],params))
             concerto$updateHTML(concerto$template$fillHTML(template[1,"HTML"],params))
@@ -272,6 +273,13 @@ concerto <- list(
         sessionID <- dbEscapeStrings(concerto$db$connection,toString(concerto$sessionID))
         templateID <- dbEscapeStrings(concerto$db$connection,toString(templateID))
         dbSendQuery(concerto$db$connection, statement = sprintf("UPDATE `%s`.`TestSession` SET `Template_id` = '%s' WHERE `id`=%s",dbName,templateID,sessionID))
+    },
+
+    updateTimeLimit = function(timeLimit) {
+        dbName <- dbEscapeStrings(concerto$db$connection,concerto$db$name)
+        sessionID <- dbEscapeStrings(concerto$db$connection,toString(concerto$sessionID))
+        timeLimit <- dbEscapeStrings(concerto$db$connection,toString(timeLimit))
+        dbSendQuery(concerto$db$connection, statement = sprintf("UPDATE `%s`.`TestSession` SET `time_limit` = '%s' WHERE `id`=%s",dbName,timeLimit,sessionID))
     },
 
     updateQTIID = function(qtiID) {

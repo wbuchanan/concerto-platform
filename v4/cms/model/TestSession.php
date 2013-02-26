@@ -75,7 +75,7 @@ class TestSession extends OTable {
     public function register() {
         if (array_key_exists("sids", $_SESSION)) {
             if (array_key_exists(session_id(), $_SESSION['sids'])) {
-                TestSession::unregister($_SESSION['sids'][session_id()]);
+                TestSession::unregister($_SESSION['sids'][session_id()], $this->UserWorkspace_id);
                 $_SESSION['sids'][session_id()] = $this->UserWorkspace_id . "-" . $this->id;
             }
             else
@@ -87,16 +87,18 @@ class TestSession extends OTable {
         }
     }
 
-    public static function unregister($id) {
+    public static function unregister($id, $returnDB) {
         $ids = explode("-", $id);
         TestSession::change_db($ids[0]);
         $obj = TestSession::from_mysql_id($ids[1]);
         if ($obj != null)
             $obj->remove();
         unset($_SESSION['sids'][session_id()]);
+        TestSession::change_db($returnDB);
     }
 
     public static function start_new($wid, $test_id, $debug = false) {
+
         $session = new TestSession();
         $session->Test_id = $test_id;
         $session->debug = ($debug ? 1 : 0);
@@ -118,6 +120,7 @@ class TestSession extends OTable {
 
         if ($debug)
             $session->register();
+        
         return $session;
     }
 
@@ -163,7 +166,6 @@ class TestSession extends OTable {
     }
 
     public function RCall($values = null, $code = null, $resume_from_last_template = false) {
-
         $test = Test::from_mysql_id($this->Test_id);
         $loader = $test->get_loader_Template();
 
@@ -217,7 +219,7 @@ class TestSession extends OTable {
             "code" => $code,
             "type" => 0,
             "IP" => $_SERVER["REMOTE_ADDR"]
-                ));
+        ));
 
         if (TestServer::$debug)
             TestServer::log_debug("TestSession->RCall --- checking for server");
@@ -256,6 +258,7 @@ class TestSession extends OTable {
         $effect_hide_options = "";
         $state = "[]";
 
+        $output = "";
         $thisSession = TestSession::from_mysql_id($this->id);
 
         $return = $result->return;
@@ -307,7 +310,7 @@ class TestSession extends OTable {
             switch ($status) {
                 case TestSession::TEST_SESSION_STATUS_COMPLETED: {
                         if ($debug) {
-                            TestSession::unregister($thisSession->UserWorkspace_id . "-" . $thisSession->id);
+                            TestSession::unregister($thisSession->UserWorkspace_id . "-" . $thisSession->id, $thisSession->UserWorkspace_id);
                             $removed = true;
                         }
                         break;
@@ -315,7 +318,7 @@ class TestSession extends OTable {
                 case TestSession::TEST_SESSION_STATUS_ERROR:
                 case TestSession::TEST_SESSION_STATUS_TAMPERED: {
                         if ($debug) {
-                            TestSession::unregister($thisSession->UserWorkspace_id . "-" . $thisSession->id);
+                            TestSession::unregister($thisSession->UserWorkspace_id . "-" . $thisSession->id, $thisSession->UserWorkspace_id);
                             $removed = true;
                         }
                         else
@@ -325,7 +328,7 @@ class TestSession extends OTable {
                 case TestSession::TEST_SESSION_STATUS_TEMPLATE: {
                         if ($debug) {
                             if ($release) {
-                                TestSession::unregister($thisSession->UserWorkspace_id . "-" . $thisSession->id);
+                                TestSession::unregister($thisSession->UserWorkspace_id . "-" . $thisSession->id, $thisSession->UserWorkspace_id);
                                 $removed = true;
                             }
                         }
@@ -373,8 +376,10 @@ class TestSession extends OTable {
 
             if (!is_array($response))
                 $response = array();
-            if (strpos(trim($output), ">") !== 0 && strpos(trim($output), "[") !== 0) {
-                $output = "> " . trim($output);
+            if ($output != null) {
+                if (strpos(trim($output), ">") !== 0 && strpos(trim($output), "[") !== 0) {
+                    $output = "> " . trim($output);
+                }
             }
 
             if ($debug) {
@@ -468,7 +473,7 @@ class TestSession extends OTable {
 
                 if (Ini::$timer_tamper_prevention && $session->time_limit > 0 && $time - $session->time_tamper_prevention - Ini::$timer_tamper_prevention_tolerance > $session->time_limit) {
                     if ($session->debug == 1)
-                        TestSession::unregister($session->UserWorkspace_id . "-" . $session->id);
+                        TestSession::unregister($session->UserWorkspace_id . "-" . $session->id, $session->UserWorkspace_id);
                     else
                         $session->close();
 

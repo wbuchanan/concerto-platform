@@ -642,7 +642,7 @@ OModule.inheritance=function(obj)
         
         var params = {};
         if(this.currentID==0&&!isNew) params = this.getAddSaveObject();
-        else params = this.getFullSaveObject();
+        else params = this.getFullSaveObject(isNew);
         if(isNew) params['oid']=0;
         
         $.post("query/save_object.php",

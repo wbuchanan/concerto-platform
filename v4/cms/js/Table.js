@@ -1,28 +1,30 @@
 /*
-Concerto Platform - Online Adaptive Testing Platform
-Copyright (C) 2011-2012, The Psychometrics Centre, Cambridge University
-
-This program is free software; you can redistribute it and/or
-modify it under the terms of the GNU General Public License
-as published by the Free Software Foundation; version 2
-of the License, and not any of the later versions.
-
-This program is distributed in the hope that it will be useful,
-but WITHOUT ANY WARRANTY; without even the implied warranty of
-MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
-GNU General Public License for more details.
-
-You should have received a copy of the GNU General Public License
-along with this program; if not, write to the Free Software
-Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA.
+ Concerto Platform - Online Adaptive Testing Platform
+ Copyright (C) 2011-2012, The Psychometrics Centre, Cambridge University
+ 
+ This program is free software; you can redistribute it and/or
+ modify it under the terms of the GNU General Public License
+ as published by the Free Software Foundation; version 2
+ of the License, and not any of the later versions.
+ 
+ This program is distributed in the hope that it will be useful,
+ but WITHOUT ANY WARRANTY; without even the implied warranty of
+ MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+ GNU General Public License for more details.
+ 
+ You should have received a copy of the GNU General Public License
+ along with this program; if not, write to the Free Software
+ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA.
  */
 
-function Table() { };
+function Table() {
+}
+;
 OModule.inheritance(Table);
 
-Table.className="Table";
+Table.className = "Table";
 
-Table.onAfterEdit=function()
+Table.onAfterEdit = function()
 {
     Table.crudIndexesDeleted = [];
     Table.crudColumnsDeleted = [];
@@ -33,35 +35,35 @@ Table.onAfterEdit=function()
     Table.crudDataUpdated = [];
 };
 
-Table.onAfterSave=function(){
+Table.onAfterSave = function() {
     Test.uiTablesChanged();
     Table.uiEdit(Table.currentID);
 };
-    
-Table.onAfterDelete=function(){
+
+Table.onAfterDelete = function() {
     Test.uiTablesChanged();
 }
 
-Table.onAfterImport=function(){
+Table.onAfterImport = function() {
     Test.uiTablesChanged();
 }
 
-Table.onAfterAdd=function(){
-    }
+Table.onAfterAdd = function() {
+}
 
-Table.getAddSaveObject=function()
+Table.getAddSaveObject = function()
 {
-    return { 
-        oid:this.currentID,
-        class_name:this.className,
-        name:$("#form"+this.className+"InputName").val()
+    return {
+        oid: this.currentID,
+        class_name: this.className,
+        name: $("#form" + this.className + "InputName").val()
     };
 };
 
-Table.onViewSwitch=function(view){
-    var grid = $("#div"+this.className+"GridStructure").data('kendoGrid');
-    if(grid!=null){
-        if(view==0){
+Table.onViewSwitch = function(view) {
+    var grid = $("#div" + this.className + "GridStructure").data('kendoGrid');
+    if (grid != null) {
+        if (view == 0) {
             grid.hideColumn(2);
             grid.hideColumn(3);
             grid.hideColumn(4);
@@ -75,17 +77,21 @@ Table.onViewSwitch=function(view){
     }
 }
 
-Table.getFullSaveObject=function(){
+Table.getFullSaveObject = function(isNew) {
+    if (isNew == null) {
+        isNew = false;
+    }
+
     var obj = this.getAddSaveObject();
     obj["deleteIndexes"] = Table.getSerializedCrudDeleted("indexes");
     obj["deleteData"] = Table.getSerializedCrudDeleted("data");
     obj["deleteColumns"] = Table.getSerializedCrudDeleted("columns");
-    obj["updateIndexes"] = Table.getSerializedCrudUpdated("indexes");
-    obj["updateData"] = Table.getSerializedCrudUpdated("data");
-    obj["updateColumns"] = Table.getSerializedCrudUpdated("columns");
-    obj["description"]=$("#form"+this.className+"TextareaDescription").val();
-    
-    return obj; 
+    obj["updateIndexes"] = Table.getSerializedCrudUpdated("indexes", isNew);
+    obj["updateData"] = Table.getSerializedCrudUpdated("data", isNew);
+    obj["updateColumns"] = Table.getSerializedCrudUpdated("columns", isNew);
+    obj["description"] = $("#form" + this.className + "TextareaDescription").val();
+
+    return obj;
 }
 
 Table.crudIndexesDeleted = [];
@@ -96,227 +102,242 @@ Table.crudColumnsUpdated = [];
 Table.crudIndexesUpdated = [];
 Table.crudDataUpdated = [];
 
-Table.getSerializedCrudDeleted=function(collection){
-    switch(collection){
-        case "columns":{
-            return $.toJSON(Table.crudColumnsDeleted);
-            break;
-        }
-        case "indexes":{
-            return $.toJSON(Table.crudIndexesDeleted);
-            break;
-        }
-        case "data":{
-            var grid = $("#div"+this.className+"GridData").data('kendoGrid');
-            if(grid!=null) {
-                var data = grid.dataSource.data();
-                if(data.length==0) return "*";
+Table.getSerializedCrudDeleted = function(collection) {
+    switch (collection) {
+        case "columns":
+            {
+                return $.toJSON(Table.crudColumnsDeleted);
+                break;
             }
-            return $.toJSON(Table.crudDataDeleted);
-            break;
-        }
+        case "indexes":
+            {
+                return $.toJSON(Table.crudIndexesDeleted);
+                break;
+            }
+        case "data":
+            {
+                var grid = $("#div" + this.className + "GridData").data('kendoGrid');
+                if (grid != null) {
+                    var data = grid.dataSource.data();
+                    if (data.length == 0)
+                        return "*";
+                }
+                return $.toJSON(Table.crudDataDeleted);
+                break;
+            }
     }
 }
 
-Table.getSerializedCrudUpdated=function(collection){
-    switch(collection){
-        case "columns":{
-            var grid = $("#div"+this.className+"GridStructure").data('kendoGrid');
-            var cols = new Array();
-            if(grid!=null) {
-                var data = grid.dataSource.data();
-    
-                for(var i=0;i<data.length;i++){
-                    if(Table.crudColumnsUpdated.indexOf(data[i].id)!=-1 || data[i].id==""){
-                        cols.push({
-                            id:data[i].id,
-                            name:data[i].name,
-                            type:data[i].type,
-                            lengthValues:data[i].lengthValues,
-                            defaultValue:data[i].defaultValue,
-                            attributes:data[i].attributes,
-                            nullable:data[i].nullable
-                        });
+Table.getSerializedCrudUpdated = function(collection, isNew) {
+    switch (collection) {
+        case "columns":
+            {
+                var grid = $("#div" + this.className + "GridStructure").data('kendoGrid');
+                var cols = new Array();
+                if (grid != null) {
+                    var data = grid.dataSource.data();
+
+                    for (var i = 0; i < data.length; i++) {
+                        if (Table.crudColumnsUpdated.indexOf(data[i].id) != -1 || data[i].id == "" || isNew) {
+                            if (isNew && data[i].name == "id")
+                                continue;
+                            cols.push({
+                                id: isNew ? "" : data[i].id,
+                                name: data[i].name,
+                                type: data[i].type,
+                                lengthValues: data[i].lengthValues,
+                                defaultValue: data[i].defaultValue,
+                                attributes: data[i].attributes,
+                                nullable: data[i].nullable
+                            });
+                        }
                     }
                 }
+                return $.toJSON(cols);
+                break;
             }
-            return $.toJSON(cols);
-            break;
-        }
-        case "indexes":{
-            var grid = $("#div"+this.className+"GridIndex").data('kendoGrid');
-            var indexes = new Array();
-            if(grid!=null) {
-                var data = grid.dataSource.data();
-    
-                for(var i=0;i<data.length;i++){
-                    if(Table.crudIndexesUpdated.indexOf(data[i].id)!=-1 || data[i].id==""){
-                        indexes.push({
-                            id:data[i].id,
-                            type:data[i].type,
-                            columns:data[i].columns
-                        });
+        case "indexes":
+            {
+                var grid = $("#div" + this.className + "GridIndex").data('kendoGrid');
+                var indexes = new Array();
+                if (grid != null) {
+                    var data = grid.dataSource.data();
+
+                    for (var i = 0; i < data.length; i++) {
+                        if (Table.crudIndexesUpdated.indexOf(data[i].id) != -1 || data[i].id == "" || isNew) {
+                            indexes.push({
+                                id: isNew ? "" : data[i].id,
+                                type: data[i].type,
+                                columns: data[i].columns
+                            });
+                        }
                     }
                 }
+                return $.toJSON(indexes);
+                break;
             }
-            return $.toJSON(indexes);
-            break;
-        }
-        case "data":{
-            var grid = $("#div"+this.className+"GridData").data('kendoGrid');
-            var row = new Array();
-            if(grid!=null) {
-                var data = grid.dataSource.data();
-    
-                for(var i=0;i<data.length;i++){
-                    if(Table.crudDataUpdated.indexOf(data[i].id)!=-1 || data[i].id==null){
-                        row.push(data[i]);
+        case "data":
+            {
+                var grid = $("#div" + this.className + "GridData").data('kendoGrid');
+                var row = new Array();
+                if (grid != null) {
+                    var data = grid.dataSource.data();
+
+                    for (var i = 0; i < data.length; i++) {
+                        if (Table.crudDataUpdated.indexOf(data[i].id) != -1 || data[i].id == null || isNew) {
+                            row.push(data[i]);
+                            if (isNew) {
+                                row[row.length - 1].id = null;
+                            }
+                        }
                     }
                 }
+                return $.toJSON(row);
+                break;
             }
-            return $.toJSON(row);
-            break;
-        }
     }
 }
 
-Table.uiSaveValidate=function(ignoreOnBefore,isNew){
+Table.uiSaveValidate = function(ignoreOnBefore, isNew) {
     var thisClass = this;
-    if(!this.checkRequiredFields([
-        $("#form"+this.className+"InputName").val()
-        ])) {
-        Methods.alert(dictionary["s415"],"alert");
+    if (!this.checkRequiredFields([
+        $("#form" + this.className + "InputName").val()
+    ])) {
+        Methods.alert(dictionary["s415"], "alert");
         return false;
     }
-    
+
     //check if the table name is free
-    $.post("query/Table_name_check.php",{
-        oid:this.currentID,
-        name:$("#form"+this.className+"InputName").val()
-    },function(data){
-        switch(data.result){
-            case OModule.queryResults.OK:{
-                Table.uiSaveValidated(ignoreOnBefore,isNew);
-                break;   
-            }
-            case 1:{
-                Methods.alert(dictionary["s632"], "info", dictionary["s274"])
-                break;
-            }
-            case OModule.queryResults.notLoggedIn:{
-                thisClass.onNotLoggedIn(dictionary["s274"]);
-                break;
-            }
+    $.post("query/Table_name_check.php", {
+        oid: this.currentID,
+        name: $("#form" + this.className + "InputName").val()
+    }, function(data) {
+        switch (data.result) {
+            case OModule.queryResults.OK:
+                {
+                    Table.uiSaveValidated(ignoreOnBefore, isNew);
+                    break;
+                }
+            case 1:
+                {
+                    Methods.alert(dictionary["s632"], "info", dictionary["s274"])
+                    break;
+                }
+            case OModule.queryResults.notLoggedIn:
+                {
+                    thisClass.onNotLoggedIn(dictionary["s274"]);
+                    break;
+                }
         }
-    },"json");
+    }, "json");
 }
 
-Table.uiRemoveColumn=function(obj){
+Table.uiRemoveColumn = function(obj) {
     var thisClass = this;
-    Methods.confirm(dictionary["s34"], dictionary["s35"], function(){
-        var grid = $("#div"+thisClass.className+"GridStructure").data('kendoGrid');
+    Methods.confirm(dictionary["s34"], dictionary["s35"], function() {
+        var grid = $("#div" + thisClass.className + "GridStructure").data('kendoGrid');
         var index = obj.closest('tr')[0].sectionRowIndex;
-        var item = grid.dataItem(grid.tbody.find("tr:eq("+index+")"));
-        
-        if(item.id!=""){
+        var item = grid.dataItem(grid.tbody.find("tr:eq(" + index + ")"));
+
+        if (item.id != "") {
             Table.crudUpdate(Table.crudColumnsDeleted, item.id);
         }
-        
-        grid.removeRow(grid.tbody.find("tr:eq("+index+")"));
-        
-        var dataGrid = $("#div"+thisClass.className+"GridData").data('kendoGrid');
-        
-        dataGrid.columns.splice(index,1);
-        for(var i=0;i<dataGrid.dataSource.data().length;i++){
+
+        grid.removeRow(grid.tbody.find("tr:eq(" + index + ")"));
+
+        var dataGrid = $("#div" + thisClass.className + "GridData").data('kendoGrid');
+
+        dataGrid.columns.splice(index, 1);
+        for (var i = 0; i < dataGrid.dataSource.data().length; i++) {
             delete dataGrid.dataSource.data()[i][item.name];
             delete dataGrid.dataSource.data()[i].fields[item.name]
             delete dataGrid.dataSource.data()[i].defaults[item.name]
         }
         //delete Table.dataGridSchemaFields[item.name];
-        
+
         Table.onColumnChange(item.name);
-        
+
         Table.structureEmptyCheck();
         Table.uiRefreshDataGrid();
     });
 }
 
-Table.structureEmptyCheck=function(){
-    var grid = $("#div"+this.className+"GridStructure").data('kendoGrid');
-    if(grid.dataSource.data().length>0){
-        $("#div"+this.className+"GridDataContainer").show();
-        $("#btn"+this.className+"DataGridCaption").show();
-        $("#div"+this.className+"DataStructureEmptyCaption").hide();
-    } 
+Table.structureEmptyCheck = function() {
+    var grid = $("#div" + this.className + "GridStructure").data('kendoGrid');
+    if (grid.dataSource.data().length > 0) {
+        $("#div" + this.className + "GridDataContainer").show();
+        $("#btn" + this.className + "DataGridCaption").show();
+        $("#div" + this.className + "DataStructureEmptyCaption").hide();
+    }
     else {
-        $("#div"+this.className+"GridDataContainer").hide();
-        $("#btn"+this.className+"DataGridCaption").hide();
-        $("#div"+this.className+"DataStructureEmptyCaption").show();
+        $("#div" + this.className + "GridDataContainer").hide();
+        $("#btn" + this.className + "DataGridCaption").hide();
+        $("#div" + this.className + "DataStructureEmptyCaption").show();
     }
 }
 
-Table.uiRefreshDataGrid=function(){
-    var grid = $("#div"+this.className+"GridData").data('kendoGrid');
-    
+Table.uiRefreshDataGrid = function() {
+    var grid = $("#div" + this.className + "GridData").data('kendoGrid');
+
     var columns = grid.columns;
     var items = grid.dataSource.data();
-    
+
     Table.uiReloadDataGrid(items, columns);
 }
-Table.uiRefreshStructureGrid=function(){
-    var grid = $("#div"+this.className+"GridStructure").data('kendoGrid');
-    
+Table.uiRefreshStructureGrid = function() {
+    var grid = $("#div" + this.className + "GridStructure").data('kendoGrid');
+
     var columns = grid.columns;
     var items = grid.dataSource.data();
-    
+
     Table.uiReloadStructureGrid(items, columns);
 }
 
-Table.structureGridSchemaFields=null;
-Table.dataGridSchemaFields=null;
+Table.structureGridSchemaFields = null;
+Table.dataGridSchemaFields = null;
 
 
-Table.uiReloadDataGrid=function(data,columns){
+Table.uiReloadDataGrid = function(data, columns) {
     var thisClass = this;
-    
-    $("#div"+this.className+"GridDataContainer").html("<div id='div"+this.className+"GridData' class='grid'></div>");
-        
+
+    $("#div" + this.className + "GridDataContainer").html("<div id='div" + this.className + "GridData' class='grid'></div>");
+
     var dataSource = new kendo.data.DataSource({
-        data:data,
-        schema:{
-            model:{
-                id:"id",
-                fields:Table.dataGridSchemaFields
+        data: data,
+        schema: {
+            model: {
+                id: "id",
+                fields: Table.dataGridSchemaFields
             }
         },
-        pageSize:20
+        pageSize: 20
     });
-    
-    $("#div"+thisClass.className+"GridData").kendoGrid({
-        save:function(e){
-            if(e.model.id!=null){
+
+    $("#div" + thisClass.className + "GridData").kendoGrid({
+        save: function(e) {
+            if (e.model.id != null) {
                 Table.crudUpdate(Table.crudDataUpdated, e.model.id);
             }
         },
-        dataBound:function(e){
-            Methods.iniTooltips();  
+        dataBound: function(e) {
+            Methods.iniTooltips();
             Table.uiIniHTMLTooltips();
         },
         dataSource: dataSource,
-        scrollable:true,
+        scrollable: true,
         resizable: true,
-        sortable:true,
-        columnMenu:{
+        sortable: true,
+        columnMenu: {
             messages: {
                 filter: dictionary["s341"],
                 columns: dictionary["s533"],
                 sortAscending: dictionary["s534"],
                 sortDescending: dictionary["s535"]
-            }  
+            }
         },
         pageable: {
-            refresh:true,
-            pageSizes:true,
+            refresh: true,
+            pageSizes: true,
             messages: {
                 display: dictionary["s527"],
                 empty: dictionary["s528"],
@@ -330,7 +351,7 @@ Table.uiReloadDataGrid=function(data,columns){
                 refresh: dictionary["s532"]
             }
         },
-        filterable:{
+        filterable: {
             messages: {
                 info: dictionary["s340"],
                 filter: dictionary["s341"],
@@ -357,58 +378,61 @@ Table.uiReloadDataGrid=function(data,columns){
             }
         },
         columns: columns,
-        toolbar:[
-        {
-            name: "create", 
-            template: '<button class="btnAdd" onclick="Table.uiAddRow()">'+dictionary["s37"]+'</button>'
-        },
-        {
-            name: "clear", 
-            template: '<button class="btnRemove" onclick="Table.uiClearRows()">'+dictionary["s366"]+'</button>'
-        }
+        toolbar: [
+            {
+                name: "create",
+                template: '<button class="btnAdd" onclick="Table.uiAddRow()">' + dictionary["s37"] + '</button>'
+            },
+            {
+                name: "clear",
+                template: '<button class="btnRemove" onclick="Table.uiClearRows()">' + dictionary["s366"] + '</button>'
+            }
         ],
         editable: {
-            mode:"incell",
-            confirmation:false
+            mode: "incell",
+            confirmation: false
         }
     });
     Methods.iniIconButton(".btnAdd", "plus");
     Methods.iniIconButton(".btnRemove", "trash");
 }
 
-Table.uiIniDataGrid=function(){
+Table.uiIniDataGrid = function() {
     var thisClass = this;
-    
-    $("#div"+this.className+"GridDataContainer").html("<div id='div"+this.className+"GridData' class='grid'></div>");
-    
-    $.post("query/Table_column_list.php?oid="+this.currentID,{},function(data){
+
+    $("#div" + this.className + "GridDataContainer").html("<div id='div" + this.className + "GridData' class='grid'></div>");
+
+    $.post("query/Table_column_list.php?oid=" + this.currentID, {}, function(data) {
         var fields = {};
-        fields["id"]={
-            editable: false, 
+        fields["id"] = {
+            editable: false,
             nullable: true
         };
         var columns = [];
-        for(var i=0;i<data.length;i++)
+        for (var i = 0; i < data.length; i++)
         {
             var templateSet = false;
             var title = data[i].name;
             fields[data[i].name] = {}
-            
+
             var col = {
-                title:title,
-                field:data[i].name
+                title: title,
+                field: data[i].name
             };
-            
+
             col["editor"] = Table.stringEditor;
             fields[data[i].name]["type"] = "string";
             fields[data[i].name]["editable"] = true;
-            if(data[i].name=="id") fields[data[i].name]["editable"] = false;
+            if (data[i].name == "id")
+                fields[data[i].name]["editable"] = false;
             fields[data[i].name]["defaultValue"] = data[i].defaultValue;
-            if(fields[data[i].name]["defaultValue"]!=null && fields[data[i].name]["defaultValue"].toLowerCase().trim()=="null") fields[data[i].name]["defaultValue"]=null;
-            if(fields[data[i].name]["defaultValue"]!=null && fields[data[i].name]["defaultValue"].toLowerCase().trim()=="current_timestamp") fields[data[i].name]["defaultValue"]=kendo.toString(new Date(),"yyyy-MM-dd HH:mm:ss");
-            fields[data[i].name]["nullable"] = data[i].nullable==1;
-            
-            switch(data[i].type){
+            if (fields[data[i].name]["defaultValue"] != null && fields[data[i].name]["defaultValue"].toLowerCase().trim() == "null")
+                fields[data[i].name]["defaultValue"] = null;
+            if (fields[data[i].name]["defaultValue"] != null && fields[data[i].name]["defaultValue"].toLowerCase().trim() == "current_timestamp")
+                fields[data[i].name]["defaultValue"] = kendo.toString(new Date(), "yyyy-MM-dd HH:mm:ss");
+            fields[data[i].name]["nullable"] = data[i].nullable == 1;
+
+            switch (data[i].type) {
                 case "tinyint":
                 case "smallint":
                 case "mediumint":
@@ -419,134 +443,143 @@ Table.uiIniDataGrid=function(){
                 case "double":
                 case "real":
                 case "bit":
-                case "serial":{
-                    col["editor"] = Table.numberEditor;
-                    fields[data[i].name]["type"]="number";
-                    break;
-                }
+                case "serial":
+                    {
+                        col["editor"] = Table.numberEditor;
+                        fields[data[i].name]["type"] = "number";
+                        break;
+                    }
                 case "set":
-                case "enum":{
-                    col["editor"] = Table.setEditor;
-                    break;
-                }
-                case "date":{
-                    fields[data[i].name]["type"]="date";
-                    col["editor"] = Table.dateEditor;
-                    col["format"]="{0:yyyy-MM-dd}";
-                    fields[data[i].name]["parse"]=function(val){
-                        return kendo.format("{0:yyyy-MM-dd}",val);
+                case "enum":
+                    {
+                        col["editor"] = Table.setEditor;
+                        break;
                     }
-                    break;
-                }
+                case "date":
+                    {
+                        fields[data[i].name]["type"] = "date";
+                        col["editor"] = Table.dateEditor;
+                        col["format"] = "{0:yyyy-MM-dd}";
+                        fields[data[i].name]["parse"] = function(val) {
+                            return kendo.format("{0:yyyy-MM-dd}", val);
+                        }
+                        break;
+                    }
                 case "timestamp":
-                case "datetime":{
-                    fields[data[i].name]["type"]="date";
-                    col["editor"] = Table.dateTimeEditor;
-                    col["format"]="{0:yyyy-MM-dd HH:mm:ss}";
-                    fields[data[i].name]["parse"]=function(val){
-                        return kendo.format("{0:yyyy-MM-dd HH:mm:ss}",val);
+                case "datetime":
+                    {
+                        fields[data[i].name]["type"] = "date";
+                        col["editor"] = Table.dateTimeEditor;
+                        col["format"] = "{0:yyyy-MM-dd HH:mm:ss}";
+                        fields[data[i].name]["parse"] = function(val) {
+                            return kendo.format("{0:yyyy-MM-dd HH:mm:ss}", val);
+                        }
+                        break;
                     }
-                    break;
-                }
-                case "year":{
-                    fields[data[i].name]["type"]="date";
-                    col["editor"] = Table.yearEditor;
-                    col["format"]="{0:yyyy}";
-                    fields[data[i].name]["parse"]=function(val){
-                        return kendo.format("{0:yyyy}",val);
+                case "year":
+                    {
+                        fields[data[i].name]["type"] = "date";
+                        col["editor"] = Table.yearEditor;
+                        col["format"] = "{0:yyyy}";
+                        fields[data[i].name]["parse"] = function(val) {
+                            return kendo.format("{0:yyyy}", val);
+                        }
+                        break;
                     }
-                    break;
-                }
-                case "time":{
-                    fields[data[i].name]["type"]="string";
-                    col["editor"] = Table.timeEditor;
-                    fields[data[i].name]["parse"]=function(val){
-                        return kendo.format("{0:HH:mm:ss}",val);
+                case "time":
+                    {
+                        fields[data[i].name]["type"] = "string";
+                        col["editor"] = Table.timeEditor;
+                        fields[data[i].name]["parse"] = function(val) {
+                            return kendo.format("{0:HH:mm:ss}", val);
+                        }
+                        //col["format"]="{0:HH:mm:ss}";
+                        break;
                     }
-                    //col["format"]="{0:HH:mm:ss}";
-                    break;
-                }
-                case "boolean":{
-                    fields[data[i].name]["type"]="numeric";
-                    col["editor"]=Table.boolEditor;
-                    col["template"]="<div align='center'><input type='checkbox' #= "+data[i].name+"==1 ? checked='checked' : '' # disabled readonly /></div>";
-                    templateSet = true;
-                    break;
-                }
-                case "HTML":{
-                    col["editor"] = Table.htmlEditor;
-                    col["template"] = '<div class="horizontalMargin" align="center">'+
-                    '<span class="spanIcon tooltipTableStructure ui-icon ui-icon-document-b" onclick="Table.uiChangeHTML($(this).next(),\''+data[i].name+'\')" title="'+dictionary["s130"]+'"></span>'+
-                    '<textarea class="notVisible">#='+data[i].name+'#</textarea>'+
-                    '</div>';
-                    fields[data[i].name]["type"]="string";
-                    fields[data[i].name]["editable"] = false;
-                    templateSet = true;
-                    break;
-                }
+                case "boolean":
+                    {
+                        fields[data[i].name]["type"] = "numeric";
+                        col["editor"] = Table.boolEditor;
+                        col["template"] = "<div align='center'><input type='checkbox' #= " + data[i].name + "==1 ? checked='checked' : '' # disabled readonly /></div>";
+                        templateSet = true;
+                        break;
+                    }
+                case "HTML":
+                    {
+                        col["editor"] = Table.htmlEditor;
+                        col["template"] = '<div class="horizontalMargin" align="center">' +
+                                '<span class="spanIcon tooltipTableStructure ui-icon ui-icon-document-b" onclick="Table.uiChangeHTML($(this).next(),\'' + data[i].name + '\')" title="' + dictionary["s130"] + '"></span>' +
+                                '<textarea class="notVisible">#=' + data[i].name + '#</textarea>' +
+                                '</div>';
+                        fields[data[i].name]["type"] = "string";
+                        fields[data[i].name]["editable"] = false;
+                        templateSet = true;
+                        break;
+                    }
             }
-            
-            if(fields[data[i].name]["nullable"] && !templateSet) col["template"]="#= "+data[i].name+"==null?'<span style=\"font-style:italic;\"><b>null</b></span>':"+data[i].name+" #";
-            
+
+            if (fields[data[i].name]["nullable"] && !templateSet)
+                col["template"] = "#= " + data[i].name + "==null?'<span style=\"font-style:italic;\"><b>null</b></span>':" + data[i].name + " #";
+
             columns.push(col);
         }
         columns.push({
-            title:' ',
-            width:30,
-            sortable:false,
-            filterable:false,
-            resizable:false,
-            template:'<span style="display:inline-block;" class="spanIcon tooltip ui-icon ui-icon-trash" onclick="'+thisClass.className+'.uiRemoveRow($(this))" title="'+dictionary["s11"]+'"></span>'
+            title: ' ',
+            width: 30,
+            sortable: false,
+            filterable: false,
+            resizable: false,
+            template: '<span style="display:inline-block;" class="spanIcon tooltip ui-icon ui-icon-trash" onclick="' + thisClass.className + '.uiRemoveRow($(this))" title="' + dictionary["s11"] + '"></span>'
         });
-        
+
         var dataSource = new kendo.data.DataSource({
-            transport:{
+            transport: {
                 read: {
-                    url:"query/Table_data_list.php?oid="+thisClass.currentID,
-                    dataType:"json"
+                    url: "query/Table_data_list.php?oid=" + thisClass.currentID,
+                    dataType: "json"
                 }
             },
-            schema:{
-                model:{
+            schema: {
+                model: {
                     id: "id",
-                    fields:fields
+                    fields: fields
                 }
             },
-            pageSize:20
+            pageSize: 20
         });
-        
+
         Table.dataGridSchemaFields = fields;
-    
-        $("#div"+thisClass.className+"GridData").kendoGrid({
-            save:function(e){
-                if(e.model.id!=null){
+
+        $("#div" + thisClass.className + "GridData").kendoGrid({
+            save: function(e) {
+                if (e.model.id != null) {
                     Table.crudUpdate(Table.crudDataUpdated, e.model.id);
                 }
             },
-            dataBound:function(e){
-                Methods.iniTooltips();  
+            dataBound: function(e) {
+                Methods.iniTooltips();
                 Table.uiIniHTMLTooltips();
-                if(this.dataSource.group().length == 0) {
-                    setTimeout( function() {
+                if (this.dataSource.group().length == 0) {
+                    setTimeout(function() {
                         $(".k-grouping-header").html(dictionary["s339"]);
                     });
                 }
             },
             dataSource: dataSource,
-            scrollable:true,
+            scrollable: true,
             resizable: true,
-            sortable:true,
-            columnMenu:{
+            sortable: true,
+            columnMenu: {
                 messages: {
                     filter: dictionary["s341"],
                     columns: dictionary["s533"],
                     sortAscending: dictionary["s534"],
                     sortDescending: dictionary["s535"]
-                }  
+                }
             },
             pageable: {
-                refresh:true,
-                pageSizes:true,
+                refresh: true,
+                pageSizes: true,
                 messages: {
                     display: dictionary["s527"],
                     empty: dictionary["s528"],
@@ -560,7 +593,7 @@ Table.uiIniDataGrid=function(){
                     refresh: dictionary["s532"]
                 }
             },
-            filterable:{
+            filterable: {
                 messages: {
                     info: dictionary["s340"],
                     filter: dictionary["s341"],
@@ -584,7 +617,7 @@ Table.uiIniDataGrid=function(){
                         lte: dictionary["s226"],
                         lt: dictionary["s225"]
                     },
-                    date:{
+                    date: {
                         eq: dictionary["s222"],
                         neq: dictionary["s221"],
                         gte: dictionary["s596"],
@@ -595,116 +628,116 @@ Table.uiIniDataGrid=function(){
                 }
             },
             columns: columns,
-            toolbar:[
-            {
-                name: "create", 
-                template: '<button class="btnAdd" onclick="Table.uiAddRow()">'+dictionary["s37"]+'</button>'
-            },
-            {
-                name: "clear", 
-                template: '<button class="btnRemove" onclick="Table.uiClearRows()">'+dictionary["s366"]+'</button>'
-            }
+            toolbar: [
+                {
+                    name: "create",
+                    template: '<button class="btnAdd" onclick="Table.uiAddRow()">' + dictionary["s37"] + '</button>'
+                },
+                {
+                    name: "clear",
+                    template: '<button class="btnRemove" onclick="Table.uiClearRows()">' + dictionary["s366"] + '</button>'
+                }
             ],
             editable: {
-                mode:"incell",
-                confirmation:false
+                mode: "incell",
+                confirmation: false
             }
         });
-        
+
         Methods.iniIconButton(".btnAdd", "plus");
         Methods.iniIconButton(".btnRemove", "trash");
-        
-    },"json");
+
+    }, "json");
 }
 
-Table.uiReloadStructureGrid=function(data,columns){
+Table.uiReloadStructureGrid = function(data, columns) {
     var thisClass = this;
-    
-    $("#div"+this.className+"GridStructureContainer").html("<div id='div"+this.className+"GridStructure' class='grid'></div>");
-        
+
+    $("#div" + this.className + "GridStructureContainer").html("<div id='div" + this.className + "GridStructure' class='grid'></div>");
+
     var dataSource = new kendo.data.DataSource({
-        data:data,
-        schema:{
-            model:{
-                fields:Table.structureGridSchemaFields
+        data: data,
+        schema: {
+            model: {
+                fields: Table.structureGridSchemaFields
             }
         }
     });
-    
-    $("#div"+thisClass.className+"GridStructure").kendoGrid({
-        dataBound:function(e){
+
+    $("#div" + thisClass.className + "GridStructure").kendoGrid({
+        dataBound: function(e) {
             Table.structureEmptyCheck();
-            Methods.iniTooltips();  
+            Methods.iniTooltips();
             Table.uiRefreshIndexableColumns();
         },
         dataSource: dataSource,
         columns: columns,
-        toolbar:[
-        {
-            name: "create", 
-            template: '<button class="btnAdd" onclick="Table.uiAddColumn()">'+dictionary["s37"]+'</button>'
-        }
+        toolbar: [
+            {
+                name: "create",
+                template: '<button class="btnAdd" onclick="Table.uiAddColumn()">' + dictionary["s37"] + '</button>'
+            }
         ],
         editable: false,
-        scrollable:true,
-        resizable:true
+        scrollable: true,
+        resizable: true
     });
     Methods.iniIconButton(".btnAdd", "plus");
 }
 
 Table.isIndexGridInitialized = false;
-Table.uiIniStructureGrid=function(){
+Table.uiIniStructureGrid = function() {
     Table.isIndexGridInitialized = false;
     var thisClass = this;
-    
-    $("#div"+this.className+"GridStructureContainer").html("<div id='div"+this.className+"GridStructure' class='grid'></div>");
-    
+
+    $("#div" + this.className + "GridStructureContainer").html("<div id='div" + this.className + "GridStructure' class='grid'></div>");
+
     var fields = {
-        id:{
-            type:"string"
+        id: {
+            type: "string"
         },
-        name:{
-            type:"string"
+        name: {
+            type: "string"
         },
-        type:{
-            type:"string"
+        type: {
+            type: "string"
         },
-        lengthValues:{
-            type:"string"
+        lengthValues: {
+            type: "string"
         },
-        defaultValue:{
-            type:"string"
+        defaultValue: {
+            type: "string"
         },
-        attributes:{
-            type:"string"
+        attributes: {
+            type: "string"
         },
-        nullable:{
-            type:"number"
+        nullable: {
+            type: "number"
         }
     };
-    
+
     var dataSource = new kendo.data.DataSource({
-        transport:{
+        transport: {
             read: {
-                url:"query/Table_column_list.php?oid="+thisClass.currentID,
-                dataType:"json"
+                url: "query/Table_column_list.php?oid=" + thisClass.currentID,
+                dataType: "json"
             }
         },
-        schema:{
-            model:{
-                id:"id",
-                fields:fields
+        schema: {
+            model: {
+                id: "id",
+                fields: fields
             }
         }
     });
-    
+
     Table.structureGridSchemaFields = fields;
-    
-    $("#div"+this.className+"GridStructure").kendoGrid({
-        dataBound:function(e){
+
+    $("#div" + this.className + "GridStructure").kendoGrid({
+        dataBound: function(e) {
             Table.structureEmptyCheck();
-            Methods.iniTooltips();  
-            if(!Table.isIndexGridInitialized) {
+            Methods.iniTooltips();
+            if (!Table.isIndexGridInitialized) {
                 Table.uiIniIndexGrid();
                 Table.isIndexGridInitialized = true;
             }
@@ -712,440 +745,443 @@ Table.uiIniStructureGrid=function(){
         },
         dataSource: dataSource,
         columns: [{
-            title:dictionary["s70"],
-            field:"name"
-        },{
-            title:dictionary["s122"],
-            field:"type"
-        },{
-            title:dictionary["s585"],
-            field:"lengthValues",
-            hidden:Methods.currentView==0
-        },{
-            title:dictionary["s538"],
-            field:"defaultValue",
-            hidden:Methods.currentView==0
-        },{
-            title:dictionary["s588"],
-            field:"attributes",
-            hidden:Methods.currentView==0
-        },{
-            title:dictionary["s590"],
-            field:"nullable",
-            template:'<input type="checkbox" #= nullable==1?"checked":"" # disabled />',
-            hidden:Methods.currentView==0
-        },{
-            title:' ',
-            width:50,
-            template:'#if(name!="id"){#<span style="display:inline-block;" class="spanIcon tooltip ui-icon ui-icon-pencil" onclick="'+thisClass.className+'.uiEditColumn($(this))" title="'+dictionary["s19"]+'"></span>'+
-            '<span style="display:inline-block;" class="spanIcon tooltip ui-icon ui-icon-trash" onclick="'+thisClass.className+'.uiRemoveColumn($(this))" title="'+dictionary["s20"]+'"></span>#}#'
-        }],
-        toolbar:[
-        {
-            name: "create", 
-            template: '<button class="btnAdd" onclick="Table.uiAddColumn()">'+dictionary["s37"]+'</button>'
-        }
+                title: dictionary["s70"],
+                field: "name"
+            }, {
+                title: dictionary["s122"],
+                field: "type"
+            }, {
+                title: dictionary["s585"],
+                field: "lengthValues",
+                hidden: Methods.currentView == 0
+            }, {
+                title: dictionary["s538"],
+                field: "defaultValue",
+                hidden: Methods.currentView == 0
+            }, {
+                title: dictionary["s588"],
+                field: "attributes",
+                hidden: Methods.currentView == 0
+            }, {
+                title: dictionary["s590"],
+                field: "nullable",
+                template: '<input type="checkbox" #= nullable==1?"checked":"" # disabled />',
+                hidden: Methods.currentView == 0
+            }, {
+                title: ' ',
+                width: 50,
+                template: '#if(name!="id"){#<span style="display:inline-block;" class="spanIcon tooltip ui-icon ui-icon-pencil" onclick="' + thisClass.className + '.uiEditColumn($(this))" title="' + dictionary["s19"] + '"></span>' +
+                        '<span style="display:inline-block;" class="spanIcon tooltip ui-icon ui-icon-trash" onclick="' + thisClass.className + '.uiRemoveColumn($(this))" title="' + dictionary["s20"] + '"></span>#}#'
+            }],
+        toolbar: [
+            {
+                name: "create",
+                template: '<button class="btnAdd" onclick="Table.uiAddColumn()">' + dictionary["s37"] + '</button>'
+            }
         ],
         editable: false,
-        scrollable:true,
-        resizable:true
+        scrollable: true,
+        resizable: true
     });
     Methods.iniIconButton(".btnAdd", "plus");
 }
 
 Table.indexGridSchemaFields = null;
-Table.uiIniIndexGrid=function(){
+Table.uiIniIndexGrid = function() {
     var thisClass = this;
-    
-    $("#div"+this.className+"GridIndexContainer").html("<div id='div"+this.className+"GridIndex' class='grid'></div>");
-    
+
+    $("#div" + this.className + "GridIndexContainer").html("<div id='div" + this.className + "GridIndex' class='grid'></div>");
+
     var fields = {
-        id:{
-            type:"string"
+        id: {
+            type: "string"
         },
-        name:{
-            type:"string"
+        name: {
+            type: "string"
         },
-        type:{
-            type:"string"
+        type: {
+            type: "string"
         },
-        columns:{
-            type:"string"
+        columns: {
+            type: "string"
         }
     };
-    
+
     var dataSource = new kendo.data.DataSource({
-        transport:{
+        transport: {
             read: {
-                url:"query/Table_index_list.php?oid="+thisClass.currentID,
-                dataType:"json"
+                url: "query/Table_index_list.php?oid=" + thisClass.currentID,
+                dataType: "json"
             }
         },
-        schema:{
-            model:{
-                id:"id",
-                fields:fields
+        schema: {
+            model: {
+                id: "id",
+                fields: fields
             }
         }
     });
-    
+
     Table.indexGridSchemaFields = fields;
-    
-    $("#div"+this.className+"GridIndex").kendoGrid({
-        dataBound:function(e){
-            Methods.iniTooltips();  
+
+    $("#div" + this.className + "GridIndex").kendoGrid({
+        dataBound: function(e) {
+            Methods.iniTooltips();
         },
         dataSource: dataSource,
         columns: [{
-            title:dictionary["s70"],
-            field:"name"
-        },{
-            title:dictionary["s122"],
-            field:"type"
-        },{
-            title:dictionary["s602"],
-            field:"columns"
-        },{
-            title:' ',
-            width:50,
-            template:'#if(type!="primary"){#<span style="display:inline-block;" class="spanIcon tooltip ui-icon ui-icon-pencil" onclick="'+thisClass.className+'.uiEditIndex($(this))" title="'+dictionary["s603"]+'"></span>'+
-            '<span style="display:inline-block;" class="spanIcon tooltip ui-icon ui-icon-trash" onclick="'+thisClass.className+'.uiRemoveIndex($(this))" title="'+dictionary["s604"]+'"></span>#}#'
-        }],
-        toolbar:[
-        {
-            name: "create", 
-            template: '<button class="btnAdd" onclick="Table.uiAddIndex()">'+dictionary["s605"]+'</button>'
-        }
+                title: dictionary["s70"],
+                field: "name"
+            }, {
+                title: dictionary["s122"],
+                field: "type"
+            }, {
+                title: dictionary["s602"],
+                field: "columns"
+            }, {
+                title: ' ',
+                width: 50,
+                template: '#if(type!="primary"){#<span style="display:inline-block;" class="spanIcon tooltip ui-icon ui-icon-pencil" onclick="' + thisClass.className + '.uiEditIndex($(this))" title="' + dictionary["s603"] + '"></span>' +
+                        '<span style="display:inline-block;" class="spanIcon tooltip ui-icon ui-icon-trash" onclick="' + thisClass.className + '.uiRemoveIndex($(this))" title="' + dictionary["s604"] + '"></span>#}#'
+            }],
+        toolbar: [
+            {
+                name: "create",
+                template: '<button class="btnAdd" onclick="Table.uiAddIndex()">' + dictionary["s605"] + '</button>'
+            }
         ],
         editable: false,
-        scrollable:true
+        scrollable: true
     });
     Methods.iniIconButton(".btnAdd", "plus");
 }
 
-Table.uiRefreshIndexableColumns = function(){
-    var grid = $("#div"+Table.className+"GridStructure").data('kendoGrid');
+Table.uiRefreshIndexableColumns = function() {
+    var grid = $("#div" + Table.className + "GridStructure").data('kendoGrid');
     var cols = grid.dataSource.data();
-    
-    var container = $("#div"+this.className+"IndexableColumns");
+
+    var container = $("#div" + this.className + "IndexableColumns");
     container.html("");
-    for(var i=0;i<cols.length;i++){
-        container.html(container.html()+"<input type='checkbox' class='checbkoxIndexableColumn' value='"+cols[i].name+"' />"+cols[i].name+"<br/>");
+    for (var i = 0; i < cols.length; i++) {
+        container.html(container.html() + "<input type='checkbox' class='checbkoxIndexableColumn' value='" + cols[i].name + "' />" + cols[i].name + "<br/>");
     }
 }
 
-Table.getIndexColumns=function(){
+Table.getIndexColumns = function() {
     var result = [];
-    $(".checbkoxIndexableColumn:checked").each(function(){
+    $(".checbkoxIndexableColumn:checked").each(function() {
         result.push($(this).val());
     });
     return result.join(",");
 }
 
-Table.decodeIndexColumns=function(columns){
+Table.decodeIndexColumns = function(columns) {
     return columns.split(",");
 }
 
-Table.uiAddIndex=function(){
+Table.uiAddIndex = function() {
     var thisClass = this;
-    
-    var type = $("#form"+Table.className+"SelectIndexType");
-    
-    $("#div"+this.className+"IndexDialog").dialog({
-        title:dictionary["s610"],
-        resizable:false,
-        modal:true,
-        width:400,
-        open:function(){
-            $('.ui-widget-overlay').css('position', 'fixed');  
+
+    var type = $("#form" + Table.className + "SelectIndexType");
+
+    $("#div" + this.className + "IndexDialog").dialog({
+        title: dictionary["s610"],
+        resizable: false,
+        modal: true,
+        width: 400,
+        open: function() {
+            $('.ui-widget-overlay').css('position', 'fixed');
         },
-        close:function(){
+        close: function() {
             type.val("index");
-            $(".checbkoxIndexableColumn").attr("checked",false);
+            $(".checbkoxIndexableColumn").attr("checked", false);
             //$('.ui-widget-overlay').css('position', 'absolute');
             $(this).dialog("destroy");
         },
-        buttons:[
-        {
-            text:dictionary["s37"],
-            click:function(){
-                
-                if($(".checbkoxIndexableColumn:checked").length==0) 
-                {
-                    Methods.alert(dictionary["s612"], "alert", dictionary["s611"]);
-                    return;
+        buttons: [
+            {
+                text: dictionary["s37"],
+                click: function() {
+
+                    if ($(".checbkoxIndexableColumn:checked").length == 0)
+                    {
+                        Methods.alert(dictionary["s612"], "alert", dictionary["s611"]);
+                        return;
+                    }
+
+                    var indexGrid = $("#div" + thisClass.className + "GridIndex").data('kendoGrid');
+                    indexGrid.dataSource.add({
+                        type: type.val(),
+                        columns: Table.getIndexColumns()
+                    })
+
+                    $(this).dialog("close");
+
+                    Methods.iniTooltips();
                 }
-                
-                var indexGrid = $("#div"+thisClass.className+"GridIndex").data('kendoGrid');
-                indexGrid.dataSource.add({
-                    type:type.val(),
-                    columns:Table.getIndexColumns()
-                })
-                
-                $(this).dialog("close");
-                
-                Methods.iniTooltips();
+            },
+            {
+                text: dictionary["s23"],
+                click: function() {
+                    $(this).dialog("close");
+                }
             }
-        },
-        {
-            text:dictionary["s23"],
-            click:function(){
-                $(this).dialog("close");
-            }
-        }
         ]
     });
 }
 
-Table.uiRemoveIndex=function(obj){
+Table.uiRemoveIndex = function(obj) {
     var thisClass = this;
-    Methods.confirm(dictionary["s613"], dictionary["s614"], function(){
-        var grid = $("#div"+thisClass.className+"GridIndex").data('kendoGrid');
+    Methods.confirm(dictionary["s613"], dictionary["s614"], function() {
+        var grid = $("#div" + thisClass.className + "GridIndex").data('kendoGrid');
         var index = obj.closest('tr')[0].sectionRowIndex;
-        var item = grid.dataItem(grid.tbody.find("tr:eq("+index+")"));
-        
-        if(item.id!=""){
+        var item = grid.dataItem(grid.tbody.find("tr:eq(" + index + ")"));
+
+        if (item.id != "") {
             Table.crudUpdate(Table.crudIndexesDeleted, item.id);
         }
-        
-        grid.removeRow(grid.tbody.find("tr:eq("+index+")"));
+
+        grid.removeRow(grid.tbody.find("tr:eq(" + index + ")"));
     });
 }
 
-Table.uiEditIndex=function(obj){
+Table.uiEditIndex = function(obj) {
     var thisClass = this;
-    
-    var indexGrid = $("#div"+thisClass.className+"GridIndex").data('kendoGrid');
+
+    var indexGrid = $("#div" + thisClass.className + "GridIndex").data('kendoGrid');
     var index = obj.closest('tr')[0].sectionRowIndex;
-    var item = indexGrid.dataItem(indexGrid.tbody.find("tr:eq("+index+")"));
-    
+    var item = indexGrid.dataItem(indexGrid.tbody.find("tr:eq(" + index + ")"));
+
     var oldType = item.type;
     var oldColumns = Table.decodeIndexColumns(item.columns);
-    
-    var type = $("#form"+Table.className+"SelectIndexType");
+
+    var type = $("#form" + Table.className + "SelectIndexType");
     type.val(oldType);
-    
+
     Table.uiRefreshIndexableColumns();
-    for(var i=0;i<oldColumns.length;i++){
+    for (var i = 0; i < oldColumns.length; i++) {
         var col = oldColumns[i];
-        $(".checbkoxIndexableColumn[value='"+col+"']").attr("checked",true);
+        $(".checbkoxIndexableColumn[value='" + col + "']").attr("checked", true);
     }
-    
-    $("#div"+this.className+"IndexDialog").dialog({
-        title:dictionary["s615"],
-        modal:true,
-        resizable:false,
-        width:400,
-        open:function(){
+
+    $("#div" + this.className + "IndexDialog").dialog({
+        title: dictionary["s615"],
+        modal: true,
+        resizable: false,
+        width: 400,
+        open: function() {
             $('.ui-widget-overlay').css('position', 'fixed');
         },
-        close:function(){
+        close: function() {
             type.val("index");
             Table.uiRefreshIndexableColumns();
             //$('.ui-widget-overlay').css('position', 'absolute');
             $(this).dialog("destroy");
         },
-        buttons:[
-        {
-            text:dictionary["s95"],
-            click:function(){
-                if($(".checbkoxIndexableColumn:checked").length==0) 
-                {
-                    Methods.alert(dictionary["s612"], "alert", dictionary["s611"]);
-                    return;
+        buttons: [
+            {
+                text: dictionary["s95"],
+                click: function() {
+                    if ($(".checbkoxIndexableColumn:checked").length == 0)
+                    {
+                        Methods.alert(dictionary["s612"], "alert", dictionary["s611"]);
+                        return;
+                    }
+
+                    if (item.id != "") {
+                        Table.crudUpdate(Table.crudIndexesUpdated, item.id);
+                    }
+
+                    //structGrid mod start
+                    var rowIndex = indexGrid.dataSource.data()[index];
+                    rowIndex["type"] = type.val();
+                    rowIndex["columns"] = Table.getIndexColumns();
+                    Table.uiRefreshIndexGrid();
+
+                    $(this).dialog("close");
+
+                    Methods.iniTooltips();
                 }
-                
-                if(item.id!=""){
-                    Table.crudUpdate(Table.crudIndexesUpdated, item.id);
+            },
+            {
+                text: dictionary["s23"],
+                click: function() {
+                    $(this).dialog("close");
                 }
-                
-                //structGrid mod start
-                var rowIndex = indexGrid.dataSource.data()[index];
-                rowIndex["type"]=type.val();
-                rowIndex["columns"]=Table.getIndexColumns();
-                Table.uiRefreshIndexGrid();
-                
-                $(this).dialog("close");
-                
-                Methods.iniTooltips();
             }
-        },
-        {
-            text:dictionary["s23"],
-            click:function(){
-                $(this).dialog("close");
-            }
-        }
         ]
     });
 }
 
-Table.onColumnChange=function(oldName,newName){
-    var grid = $("#div"+this.className+"GridIndex").data('kendoGrid');
+Table.onColumnChange = function(oldName, newName) {
+    var grid = $("#div" + this.className + "GridIndex").data('kendoGrid');
     var items = grid.dataSource.data();
     var columns = grid.columns;
-    
+
     var refreshRequired = false;
-    for(var i=0;i<items.length;i++){
+    for (var i = 0; i < items.length; i++) {
         var cols = items[i].columns;
         var colsArray = Table.decodeIndexColumns(cols);
-        if(colsArray.indexOf(oldName)!=-1){
+        if (colsArray.indexOf(oldName) != -1) {
             refreshRequired = true;
-            if(newName!=null) {
-                colsArray[colsArray.indexOf(oldName)]=newName;
+            if (newName != null) {
+                colsArray[colsArray.indexOf(oldName)] = newName;
                 items[i].columns = colsArray.join(",");
             } else {
-                colsArray.splice(colsArray.indexOf(oldName),1);
+                colsArray.splice(colsArray.indexOf(oldName), 1);
                 items[i].columns = colsArray.join(",");
             }
-            if(colsArray.length==0){
-                items.splice(i,1);
+            if (colsArray.length == 0) {
+                items.splice(i, 1);
                 i--;
             }
         }
     }
-    
-    if(refreshRequired){
+
+    if (refreshRequired) {
         Table.uiReloadIndexGrid(items, columns);
     }
 }
 
-Table.uiRefreshIndexGrid=function(){
-    var grid = $("#div"+this.className+"GridIndex").data('kendoGrid');
-    
+Table.uiRefreshIndexGrid = function() {
+    var grid = $("#div" + this.className + "GridIndex").data('kendoGrid');
+
     var columns = grid.columns;
     var items = grid.dataSource.data();
-    
+
     Table.uiReloadIndexGrid(items, columns);
 }
 
-Table.uiReloadIndexGrid=function(data,columns){
+Table.uiReloadIndexGrid = function(data, columns) {
     var thisClass = this;
-    
-    $("#div"+this.className+"GridIndexContainer").html("<div id='div"+this.className+"GridIndex' class='grid'></div>");
-        
+
+    $("#div" + this.className + "GridIndexContainer").html("<div id='div" + this.className + "GridIndex' class='grid'></div>");
+
     var dataSource = new kendo.data.DataSource({
-        data:data,
-        schema:{
-            model:{
-                fields:Table.indexGridSchemaFields
+        data: data,
+        schema: {
+            model: {
+                fields: Table.indexGridSchemaFields
             }
         }
     });
-    
-    $("#div"+thisClass.className+"GridIndex").kendoGrid({
-        dataBound:function(e){
-            Methods.iniTooltips();  
+
+    $("#div" + thisClass.className + "GridIndex").kendoGrid({
+        dataBound: function(e) {
+            Methods.iniTooltips();
         },
         dataSource: dataSource,
         columns: columns,
-        toolbar:[
-        {
-            name: "create", 
-            template: '<button class="btnAdd" onclick="Table.uiAddIndex()">'+dictionary["s37"]+'</button>'
-        }
+        toolbar: [
+            {
+                name: "create",
+                template: '<button class="btnAdd" onclick="Table.uiAddIndex()">' + dictionary["s37"] + '</button>'
+            }
         ],
         editable: false,
-        scrollable:false
+        scrollable: false
     });
     Methods.iniIconButton(".btnAdd", "plus");
 }
 
-Table.uiAddRow=function(){
-    var grid = $("#div"+this.className+"GridData").data('kendoGrid');
+Table.uiAddRow = function() {
+    var grid = $("#div" + this.className + "GridData").data('kendoGrid');
     grid.addRow();
-    
+
     Methods.iniTooltips();
     Table.uiIniHTMLTooltips();
 }
 
-Table.getColumns=function(){
-    var grid = $("#div"+this.className+"GridStructure").data('kendoGrid');
+Table.getColumns = function() {
+    var grid = $("#div" + this.className + "GridStructure").data('kendoGrid');
     var cols = new Array();
-    if(grid==null) return cols;
+    if (grid == null)
+        return cols;
     var data = grid.dataSource.data();
-    
-    for(var i=0;i<data.length;i++){
+
+    for (var i = 0; i < data.length; i++) {
         cols.push({
-            name:data[i].name,
-            type:data[i].type,
-            lengthValues:data[i].lengthValues,
-            defaultValue:data[i].defaultValue,
-            attributes:data[i].attributes,
-            nullable:data[i].nullable
+            name: data[i].name,
+            type: data[i].type,
+            lengthValues: data[i].lengthValues,
+            defaultValue: data[i].defaultValue,
+            attributes: data[i].attributes,
+            nullable: data[i].nullable
         })
     }
     return cols;
 }
 
-Table.getIndexes=function(){
-    var grid = $("#div"+this.className+"GridIndex").data('kendoGrid');
+Table.getIndexes = function() {
+    var grid = $("#div" + this.className + "GridIndex").data('kendoGrid');
     var cols = new Array();
-    if(grid==null) return cols;
+    if (grid == null)
+        return cols;
     var data = grid.dataSource.data();
-    
-    for(var i=0;i<data.length;i++){
+
+    for (var i = 0; i < data.length; i++) {
         cols.push({
-            type:data[i].type,
-            columns:data[i].columns
+            type: data[i].type,
+            columns: data[i].columns
         })
     }
     return cols;
 }
 
-Table.getSerializedIndexes=function(){
+Table.getSerializedIndexes = function() {
     var indexes = Table.getIndexes();
     var result = new Array();
-    for(var i=0;i<indexes.length;i++) {
-        result.push($.toJSON( indexes[i]));
+    for (var i = 0; i < indexes.length; i++) {
+        result.push($.toJSON(indexes[i]));
     }
     return result;
 }
 
-Table.getSerializedColumns=function(){
+Table.getSerializedColumns = function() {
     var cols = Table.getColumns();
     var result = new Array();
-    for(var i=0;i<cols.length;i++) {
-        result.push($.toJSON( cols[i]));
+    for (var i = 0; i < cols.length; i++) {
+        result.push($.toJSON(cols[i]));
     }
     return result;
 }
 
-Table.getRows=function(){
+Table.getRows = function() {
     var result = new Array();
-    
-    var struct = $("#div"+this.className+"GridStructure").data('kendoGrid');
-    var data = $("#div"+this.className+"GridData").data('kendoGrid');
-    
+
+    var struct = $("#div" + this.className + "GridStructure").data('kendoGrid');
+    var data = $("#div" + this.className + "GridData").data('kendoGrid');
+
     var cols = struct.dataSource.data();
     var rows = data.dataSource.data();
-    
-    for(var i=0;i<rows.length;i++){
+
+    for (var i = 0; i < rows.length; i++) {
         var row = {};
-        for(var j=0;j<cols.length;j++){
-            row[cols[j].name]=rows[i][cols[j].name];
+        for (var j = 0; j < cols.length; j++) {
+            row[cols[j].name] = rows[i][cols[j].name];
         }
         result.push($.toJSON(row));
     }
     return result;
 }
 
-Table.doesColumnExists=function(name){
-    var grid = $("#div"+this.className+"GridData").data('kendoGrid');
-    
+Table.doesColumnExists = function(name) {
+    var grid = $("#div" + this.className + "GridData").data('kendoGrid');
+
     var columns = grid.columns;
-    for(var i=0;i<columns.length;i++){
-        if(columns[i].field==name) return true;
+    for (var i = 0; i < columns.length; i++) {
+        if (columns[i].field == name)
+            return true;
     }
     return false;
 }
 
-Table.uiEditColumn=function(obj){
+Table.uiEditColumn = function(obj) {
     var thisClass = this;
-    
-    var structGrid = $("#div"+thisClass.className+"GridStructure").data('kendoGrid');
+
+    var structGrid = $("#div" + thisClass.className + "GridStructure").data('kendoGrid');
     var index = obj.closest('tr')[0].sectionRowIndex;
-    var item = structGrid.dataItem(structGrid.tbody.find("tr:eq("+index+")"));
+    var item = structGrid.dataItem(structGrid.tbody.find("tr:eq(" + index + ")"));
     var itemID = item.id;
     var oldName = item.name;
     var oldType = item.type;
@@ -1153,787 +1189,823 @@ Table.uiEditColumn=function(obj){
     var oldDefaultValue = item.defaultValue;
     var oldAttributes = item.attributes;
     var oldNullable = item.nullable;
-    
-    var name = $("#form"+Table.className+"InputColumnName");
+
+    var name = $("#form" + Table.className + "InputColumnName");
     name.val(oldName);
-    var type = $("#form"+Table.className+"SelectColumnType");
+    var type = $("#form" + Table.className + "SelectColumnType");
     type.val(oldType);
-    var lengthValues = $("#form"+Table.className+"InputColumnLength");
+    var lengthValues = $("#form" + Table.className + "InputColumnLength");
     lengthValues.val(oldLengthValues);
-    var defaultValue = $("#form"+Table.className+"InputColumnDefault");
+    var defaultValue = $("#form" + Table.className + "InputColumnDefault");
     defaultValue.val(oldDefaultValue);
-    var attributes = $("#form"+Table.className+"SelectColumnAttributes");
+    var attributes = $("#form" + Table.className + "SelectColumnAttributes");
     attributes.val(oldAttributes);
-    var nullable = $("#form"+Table.className+"CheckboxColumnNull");
-    nullable.attr("checked",oldNullable==1);
-    
-    $("#div"+this.className+"Dialog").dialog({
-        title:dictionary["s12"],
-        modal:true,
-        resizable:false,
-        width:400,
-        open:function(){
+    var nullable = $("#form" + Table.className + "CheckboxColumnNull");
+    nullable.attr("checked", oldNullable == 1);
+
+    $("#div" + this.className + "Dialog").dialog({
+        title: dictionary["s12"],
+        modal: true,
+        resizable: false,
+        width: 400,
+        open: function() {
             $('.ui-widget-overlay').css('position', 'fixed');
         },
-        close:function(){
+        close: function() {
             name.val("");
             type.val("text");
             lengthValues.val("");
             defaultValue.val("");
             attributes.val("");
-            nullable.attr("checked",false);
+            nullable.attr("checked", false);
             //$('.ui-widget-overlay').css('position', 'absolute');
             $(this).dialog("destroy");
         },
-        buttons:[
-        {
-            text:dictionary["s95"],
-            click:function(){
-                name.val($.trim(name.val()));
-                
-                if(name.val()=="")
-                {
-                    Methods.alert(dictionary["s13"], dictionary["s14"]);
-                    return;
-                }
-                
-                if(Table.doesColumnExists(name.val())&&oldName!=name.val()) 
-                {
-                    Methods.alert(dictionary["s15"], "alert", dictionary["s14"]);
-                    return;
-                }
-                
-                if ( !Test.variableValidation(name.val(),false))
-                {
-                    var oldValue = name.val();
-                    var newValue = Test.convertVariable(name.val(),false);
-                    name.val(newValue);
-                    Methods.alert(dictionary["s1"].format(oldValue,newValue), "info", dictionary["s2"]);
-                    return;
-                }
-                
-                Table.onColumnChange(oldName,name.val());
-                if(itemID!=""){
-                    Table.crudUpdate(Table.crudColumnsUpdated, itemID);
-                }
-                
-                //structGrid mod start
-                var rowStruct = structGrid.dataSource.data()[index];
-                rowStruct["name"]=name.val();
-                rowStruct["type"]=type.val();
-                rowStruct["lengthValues"]=lengthValues.val();
-                rowStruct["defaultValue"]=defaultValue.val();
-                rowStruct["attributes"]=attributes.val();
-                rowStruct["nullable"]=nullable.is(":checked")?1:0;
-                Table.uiRefreshStructureGrid();
-                
-                //dataGrid mod start
-                var dataGrid = $("#div"+thisClass.className+"GridData").data('kendoGrid');
-                
-                var templateSet = false;
-            
-                dataGrid.columns[index] = {
-                    title:name.val(),
-                    field:name.val()
-                };
-                
-                Table.dataGridSchemaFields[name.val()] = {};
-            
-                dataGrid.columns[index]["editor"] = Table.stringEditor;
-                Table.dataGridSchemaFields[name.val()]["type"] = "string";
-                Table.dataGridSchemaFields[name.val()]["editable"] = true;
-                Table.dataGridSchemaFields[name.val()]["defaultValue"] = defaultValue.val();
-                if(Table.dataGridSchemaFields[name.val()]["defaultValue"]!=null && Table.dataGridSchemaFields[name.val()]["defaultValue"].toLowerCase().trim()=="null") Table.dataGridSchemaFields[name.val()]["defaultValue"]=null;
-                if(Table.dataGridSchemaFields[name.val()]["defaultValue"]!=null && Table.dataGridSchemaFields[name.val()]["defaultValue"].toLowerCase().trim()=="current_timestamp") Table.dataGridSchemaFields[name.val()]["defaultValue"]=kendo.toString(new Date(),"yyyy-MM-dd HH:mm:ss");
-                Table.dataGridSchemaFields[name.val()]["nullable"] = nullable.is(":checked");
-            
-                switch(type.val()){
-                    case "tinyint":
-                    case "smallint":
-                    case "mediumint":
-                    case "int":
-                    case "bigint":
-                    case "decimal":
-                    case "float":
-                    case "double":
-                    case "real":
-                    case "bit":
-                    case "serial":{
-                        dataGrid.columns[index]["editor"] = Table.numberEditor;
-                        Table.dataGridSchemaFields[name.val()]["type"]="number";
-                        break;
+        buttons: [
+            {
+                text: dictionary["s95"],
+                click: function() {
+                    name.val($.trim(name.val()));
+
+                    if (name.val() == "")
+                    {
+                        Methods.alert(dictionary["s13"], dictionary["s14"]);
+                        return;
                     }
-                    case "set":
-                    case "enum":{
-                        dataGrid.columns[index]["editor"] = Table.setEditor;
-                        break;
+
+                    if (Table.doesColumnExists(name.val()) && oldName != name.val())
+                    {
+                        Methods.alert(dictionary["s15"], "alert", dictionary["s14"]);
+                        return;
                     }
-                    case "date":{
-                        Table.dataGridSchemaFields[name.val()]["type"]="date";
-                        dataGrid.columns[index]["editor"] = Table.dateEditor;
-                        dataGrid.columns[index]["format"]="{0:yyyy-MM-dd}";
-                        Table.dataGridSchemaFields[name.val()]["parse"]=function(val){
-                            return kendo.format("{0:yyyy-MM-dd}",val);
+
+                    if (!Test.variableValidation(name.val(), false))
+                    {
+                        var oldValue = name.val();
+                        var newValue = Test.convertVariable(name.val(), false);
+                        name.val(newValue);
+                        Methods.alert(dictionary["s1"].format(oldValue, newValue), "info", dictionary["s2"]);
+                        return;
+                    }
+
+                    Table.onColumnChange(oldName, name.val());
+                    if (itemID != "") {
+                        Table.crudUpdate(Table.crudColumnsUpdated, itemID);
+                    }
+
+                    //structGrid mod start
+                    var rowStruct = structGrid.dataSource.data()[index];
+                    rowStruct["name"] = name.val();
+                    rowStruct["type"] = type.val();
+                    rowStruct["lengthValues"] = lengthValues.val();
+                    rowStruct["defaultValue"] = defaultValue.val();
+                    rowStruct["attributes"] = attributes.val();
+                    rowStruct["nullable"] = nullable.is(":checked") ? 1 : 0;
+                    Table.uiRefreshStructureGrid();
+
+                    //dataGrid mod start
+                    var dataGrid = $("#div" + thisClass.className + "GridData").data('kendoGrid');
+
+                    var templateSet = false;
+
+                    dataGrid.columns[index] = {
+                        title: name.val(),
+                        field: name.val()
+                    };
+
+                    Table.dataGridSchemaFields[name.val()] = {};
+
+                    dataGrid.columns[index]["editor"] = Table.stringEditor;
+                    Table.dataGridSchemaFields[name.val()]["type"] = "string";
+                    Table.dataGridSchemaFields[name.val()]["editable"] = true;
+                    Table.dataGridSchemaFields[name.val()]["defaultValue"] = defaultValue.val();
+                    if (Table.dataGridSchemaFields[name.val()]["defaultValue"] != null && Table.dataGridSchemaFields[name.val()]["defaultValue"].toLowerCase().trim() == "null")
+                        Table.dataGridSchemaFields[name.val()]["defaultValue"] = null;
+                    if (Table.dataGridSchemaFields[name.val()]["defaultValue"] != null && Table.dataGridSchemaFields[name.val()]["defaultValue"].toLowerCase().trim() == "current_timestamp")
+                        Table.dataGridSchemaFields[name.val()]["defaultValue"] = kendo.toString(new Date(), "yyyy-MM-dd HH:mm:ss");
+                    Table.dataGridSchemaFields[name.val()]["nullable"] = nullable.is(":checked");
+
+                    switch (type.val()) {
+                        case "tinyint":
+                        case "smallint":
+                        case "mediumint":
+                        case "int":
+                        case "bigint":
+                        case "decimal":
+                        case "float":
+                        case "double":
+                        case "real":
+                        case "bit":
+                        case "serial":
+                            {
+                                dataGrid.columns[index]["editor"] = Table.numberEditor;
+                                Table.dataGridSchemaFields[name.val()]["type"] = "number";
+                                break;
+                            }
+                        case "set":
+                        case "enum":
+                            {
+                                dataGrid.columns[index]["editor"] = Table.setEditor;
+                                break;
+                            }
+                        case "date":
+                            {
+                                Table.dataGridSchemaFields[name.val()]["type"] = "date";
+                                dataGrid.columns[index]["editor"] = Table.dateEditor;
+                                dataGrid.columns[index]["format"] = "{0:yyyy-MM-dd}";
+                                Table.dataGridSchemaFields[name.val()]["parse"] = function(val) {
+                                    return kendo.format("{0:yyyy-MM-dd}", val);
+                                }
+                                break;
+                            }
+                        case "timestamp":
+                        case "datetime":
+                            {
+                                Table.dataGridSchemaFields[name.val()]["type"] = "date";
+                                dataGrid.columns[index]["editor"] = Table.dateTimeEditor;
+                                dataGrid.columns[index]["format"] = "{0:yyyy-MM-dd HH:mm:ss}";
+                                Table.dataGridSchemaFields[name.val()]["parse"] = function(val) {
+                                    return kendo.format("{0:yyyy-MM-dd HH:mm:ss}", val);
+                                }
+                                break;
+                            }
+                        case "year":
+                            {
+                                Table.dataGridSchemaFields[name.val()]["type"] = "date";
+                                dataGrid.columns[index]["editor"] = Table.yearEditor;
+                                dataGrid.columns[index]["format"] = "{0:yyyy}";
+                                Table.dataGridSchemaFields[name.val()]["parse"] = function(val) {
+                                    return kendo.format("{0:yyyy}", val);
+                                }
+                                break;
+                            }
+                        case "time":
+                            {
+                                Table.dataGridSchemaFields[name.val()]["type"] = "string";
+                                dataGrid.columns[index]["editor"] = Table.timeEditor;
+                                Table.dataGridSchemaFields[name.val()]["parse"] = function(val) {
+                                    return kendo.format("{0:HH:mm:ss}", val);
+                                }
+                                //col["format"]="{0:HH:mm:ss}";
+                                break;
+                            }
+                        case "boolean":
+                            {
+                                Table.dataGridSchemaFields[name.val()]["type"] = "numeric";
+                                dataGrid.columns[index]["editor"] = Table.boolEditor;
+                                dataGrid.columns[index]["template"] = "<div align='center'><input type='checkbox' #= " + name.val() + "==1 ? checked='checked' : '' # disabled readonly /></div>";
+                                templateSet = true;
+                                break;
+                            }
+                        case "tinytext":
+                        case "mediumtext":
+                        case "long":
+                        case "text":
+                            {
+                                dataGrid.columns[index]["editor"] = Table.htmlEditor;
+                                dataGrid.columns[index]["template"] = '<div class="horizontalMargin" align="center">' +
+                                        '<span class="spanIcon tooltipTableStructure ui-icon ui-icon-document-b" onclick="Table.uiChangeHTML($(this).next(),\'' + name.val() + '\')" title="' + dictionary["s130"] + '"></span>' +
+                                        '<textarea class="notVisible">#=' + name.val() + '#</textarea>' +
+                                        '</div>';
+                                Table.dataGridSchemaFields[name.val()]["type"] = "string";
+                                Table.dataGridSchemaFields[name.val()]["editable"] = false;
+                                templateSet = true;
+                                break;
+                            }
+                    }
+
+                    if (Table.dataGridSchemaFields[name.val()]["nullable"] && !templateSet)
+                        dataGrid.columns[index]["template"] = "#= " + name.val() + "==null?'<span style=\"font-style:italic;\"><b>null</b></span>':" + name.val() + " #";
+
+                    for (var i = 0; i < dataGrid.dataSource.data().length; i++) {
+                        var item = dataGrid.dataSource.data()[i];
+                        item[name.val()] = item[oldName];
+                        if (oldName != name.val()) {
+                            delete item[oldName];
+                            delete item.fields[oldName]
+                            delete item.defaults[oldName]
                         }
-                        break;
-                    }
-                    case "timestamp":
-                    case "datetime":{
-                        Table.dataGridSchemaFields[name.val()]["type"]="date";
-                        dataGrid.columns[index]["editor"] = Table.dateTimeEditor;
-                        dataGrid.columns[index]["format"]="{0:yyyy-MM-dd HH:mm:ss}";
-                        Table.dataGridSchemaFields[name.val()]["parse"]=function(val){
-                            return kendo.format("{0:yyyy-MM-dd HH:mm:ss}",val);
+                        item.fields[name.val()] = {
+                            type: Table.dataGridSchemaFields[name.val()]["type"],
+                            defaultValue: Table.dataGridSchemaFields[name.val()]["defaultValue"],
+                            editable: Table.dataGridSchemaFields[name.val()]["editable"]
                         }
-                        break;
+                        item.defaults[name.val()] = Table.dataGridSchemaFields[name.val()]["defaultValue"];
                     }
-                    case "year":{
-                        Table.dataGridSchemaFields[name.val()]["type"]="date";
-                        dataGrid.columns[index]["editor"] = Table.yearEditor;
-                        dataGrid.columns[index]["format"]="{0:yyyy}";
-                        Table.dataGridSchemaFields[name.val()]["parse"]=function(val){
-                            return kendo.format("{0:yyyy}",val);
-                        }
-                        break;
-                    }
-                    case "time":{
-                        Table.dataGridSchemaFields[name.val()]["type"]="string";
-                        dataGrid.columns[index]["editor"] = Table.timeEditor;
-                        Table.dataGridSchemaFields[name.val()]["parse"]=function(val){
-                            return kendo.format("{0:HH:mm:ss}",val);
-                        }
-                        //col["format"]="{0:HH:mm:ss}";
-                        break;
-                    }
-                    case "boolean":{
-                        Table.dataGridSchemaFields[name.val()]["type"]="numeric";
-                        dataGrid.columns[index]["editor"]=Table.boolEditor;
-                        dataGrid.columns[index]["template"]="<div align='center'><input type='checkbox' #= "+name.val()+"==1 ? checked='checked' : '' # disabled readonly /></div>";
-                        templateSet = true;
-                        break;
-                    }
-                    case "tinytext":
-                    case "mediumtext":
-                    case "long":
-                    case "text":{
-                        dataGrid.columns[index]["editor"] = Table.htmlEditor;
-                        dataGrid.columns[index]["template"] = '<div class="horizontalMargin" align="center">'+
-                        '<span class="spanIcon tooltipTableStructure ui-icon ui-icon-document-b" onclick="Table.uiChangeHTML($(this).next(),\''+name.val()+'\')" title="'+dictionary["s130"]+'"></span>'+
-                        '<textarea class="notVisible">#='+name.val()+'#</textarea>'+
-                        '</div>';
-                        Table.dataGridSchemaFields[name.val()]["type"]="string";
-                        Table.dataGridSchemaFields[name.val()]["editable"] = false;
-                        templateSet = true;
-                        break;
-                    }
+
+                    Table.uiRefreshDataGrid();
+
+                    $(this).dialog("close");
+
+                    Methods.iniTooltips();
+                    Table.uiIniHTMLTooltips();
                 }
-            
-                if(Table.dataGridSchemaFields[name.val()]["nullable"] && !templateSet) dataGrid.columns[index]["template"]="#= "+name.val()+"==null?'<span style=\"font-style:italic;\"><b>null</b></span>':"+name.val()+" #";
-                    
-                for(var i=0;i<dataGrid.dataSource.data().length;i++){
-                    var item = dataGrid.dataSource.data()[i];
-                    item[name.val()]=item[oldName];
-                    if(oldName!=name.val()){
-                        delete item[oldName];
-                        delete item.fields[oldName]
-                        delete item.defaults[oldName]
-                    }
-                    item.fields[name.val()]={
-                        type:Table.dataGridSchemaFields[name.val()]["type"],
-                        defaultValue:Table.dataGridSchemaFields[name.val()]["defaultValue"],
-                        editable: Table.dataGridSchemaFields[name.val()]["editable"]
-                    }
-                    item.defaults[name.val()]=Table.dataGridSchemaFields[name.val()]["defaultValue"];
+            },
+            {
+                text: dictionary["s23"],
+                click: function() {
+                    $(this).dialog("close");
                 }
-        
-                Table.uiRefreshDataGrid();
-                
-                $(this).dialog("close");
-                
-                Methods.iniTooltips();
-                Table.uiIniHTMLTooltips();
             }
-        },
-        {
-            text:dictionary["s23"],
-            click:function(){
-                $(this).dialog("close");
-            }
-        }
         ]
     });
 }
 
-Table.uiExportCSV=function(){
+Table.uiExportCSV = function() {
     var thisClass = this;
-    $("#div"+Table.className+"DialogExportCSV").dialog({
-        title:dictionary["s329"],
-        modal:true,
-        resizable:false,
-        open:function(){
+    $("#div" + Table.className + "DialogExportCSV").dialog({
+        title: dictionary["s329"],
+        modal: true,
+        resizable: false,
+        open: function() {
             $('.ui-widget-overlay').css('position', 'fixed');
         },
-        close:function(){
-        //$('.ui-widget-overlay').css('position', 'absolute');
+        close: function() {
+            //$('.ui-widget-overlay').css('position', 'absolute');
         },
-        buttons:[{
-            text:dictionary["s265"],
-            click:function(){
-                var delimeter = $("#inputTableCSVExportDelimeter").val();
-                var enclosure = $("#inputTableCSVExportEnclosure").val();
-                
-                if($.trim(delimeter)=="" || $.trim(enclosure)==""){
-                    Methods.alert(dictionary["s334"], "alert", dictionary["s25"]);
-                    return;
+        buttons: [{
+                text: dictionary["s265"],
+                click: function() {
+                    var delimeter = $("#inputTableCSVExportDelimeter").val();
+                    var enclosure = $("#inputTableCSVExportEnclosure").val();
+
+                    if ($.trim(delimeter) == "" || $.trim(enclosure) == "") {
+                        Methods.alert(dictionary["s334"], "alert", dictionary["s25"]);
+                        return;
+                    }
+
+                    var header = $("#inputTableCSVExportHeader").is(":checked") ? 1 : 0;
+                    location.href = 'query/Table_csv_export.php?oid=' + thisClass.currentID + "&delimeter=" + delimeter + "&enclosure=" + enclosure + "&header=" + header;
+                    $(this).dialog("close");
                 }
-                
-                var header = $("#inputTableCSVExportHeader").is(":checked")?1:0;
-                location.href='query/Table_csv_export.php?oid='+thisClass.currentID+"&delimeter="+delimeter+"&enclosure="+enclosure+"&header="+header;
-                $(this).dialog("close");
+            }, {
+                text: dictionary["s23"],
+                click: function() {
+                    $(this).dialog("close");
+                }
             }
-        },{
-            text:dictionary["s23"],
-            click:function(){
-                $(this).dialog("close");
-            }
-        }
         ]
     });
 }
 
-Table.uiImportTable=function(){
+Table.uiImportTable = function() {
     var thisClass = this;
-    Methods.confirm(dictionary["s639"], dictionary["s25"], function(){
-        $.post("view/Table_import_mysql.php",{
-            oid:thisClass.currentID
-        },function(data){
-            $("#div"+Table.className+"DialogImportMySQL").html(data);
-            var selectTable = $("#form"+thisClass.className+"SelectMySQLTable");
-        
-            $("#div"+Table.className+"DialogImportMySQL").dialog({
-                title:dictionary["s21"],
-                modal:true,
-                resizable:false,
-                open:function(){
-                    $('.ui-widget-overlay').css('position', 'fixed');  
+    Methods.confirm(dictionary["s639"], dictionary["s25"], function() {
+        $.post("view/Table_import_mysql.php", {
+            oid: thisClass.currentID
+        }, function(data) {
+            $("#div" + Table.className + "DialogImportMySQL").html(data);
+            var selectTable = $("#form" + thisClass.className + "SelectMySQLTable");
+
+            $("#div" + Table.className + "DialogImportMySQL").dialog({
+                title: dictionary["s21"],
+                modal: true,
+                resizable: false,
+                open: function() {
+                    $('.ui-widget-overlay').css('position', 'fixed');
                 },
-                close:function(){
-                //$('.ui-widget-overlay').css('position', 'absolute');  
+                close: function() {
+                    //$('.ui-widget-overlay').css('position', 'absolute');  
                 },
-                buttons:[{
-                    text:dictionary["s22"],
-                    click:function(){
-                        if(selectTable.val()==0){
-                            Methods.alert(dictionary["s24"], "alert", dictionary["s25"]);
-                            return;
-                        }
-                    
-                        Methods.uiBlock($("#div"+Table.className+"DialogImportMySQL").parent());
-                        $.post("query/Table_mysql_import.php",{
-                            oid:thisClass.currentID,
-                            table:selectTable.val()
-                        },function(data){
-                            Methods.uiUnblock($("#div"+Table.className+"DialogImportMySQL").parent());
-                            $("#div"+Table.className+"DialogImportMySQL").dialog("close");
-                            switch(parseInt(data.result)){
-                                case OModule.queryResults.OK:{
-                                    thisClass.uiEdit(thisClass.currentID);
-                                    Methods.alert(dictionary["s26"], "info", dictionary["s25"]);
-                                    break;
-                                }
-                                case OModule.queryResults.notLoggedIn:{
-                                    thisClass.onNotLoggedIn(dictionary["s25"]);
-                                    break;
-                                }
-                                case OModule.queryResults.transactionError:{
-                                    Methods.alert(dictionary["s616"]+data.message, "alert", dictionary["s25"]);  
-                                    break;
-                                }
-                                case -7:{
-                                    Methods.alert(dictionary["s638"], "alert", dictionary["s25"]);      
-                                    break;
-                                }
-                                default:{
-                                    Methods.alert(dictionary["s30"], "alert", dictionary["s25"]);
-                                    break;    
-                                }
+                buttons: [{
+                        text: dictionary["s22"],
+                        click: function() {
+                            if (selectTable.val() == 0) {
+                                Methods.alert(dictionary["s24"], "alert", dictionary["s25"]);
+                                return;
                             }
-                        },"json");
-                    }
-                }, {
-                    text:dictionary["s23"],
-                    click:function(){
-                        $(this).dialog("close");
-                    }
-                }]
+
+                            Methods.uiBlock($("#div" + Table.className + "DialogImportMySQL").parent());
+                            $.post("query/Table_mysql_import.php", {
+                                oid: thisClass.currentID,
+                                table: selectTable.val()
+                            }, function(data) {
+                                Methods.uiUnblock($("#div" + Table.className + "DialogImportMySQL").parent());
+                                $("#div" + Table.className + "DialogImportMySQL").dialog("close");
+                                switch (parseInt(data.result)) {
+                                    case OModule.queryResults.OK:
+                                        {
+                                            thisClass.uiEdit(thisClass.currentID);
+                                            Methods.alert(dictionary["s26"], "info", dictionary["s25"]);
+                                            break;
+                                        }
+                                    case OModule.queryResults.notLoggedIn:
+                                        {
+                                            thisClass.onNotLoggedIn(dictionary["s25"]);
+                                            break;
+                                        }
+                                    case OModule.queryResults.transactionError:
+                                        {
+                                            Methods.alert(dictionary["s616"] + data.message, "alert", dictionary["s25"]);
+                                            break;
+                                        }
+                                    case -7:
+                                        {
+                                            Methods.alert(dictionary["s638"], "alert", dictionary["s25"]);
+                                            break;
+                                        }
+                                    default:
+                                        {
+                                            Methods.alert(dictionary["s30"], "alert", dictionary["s25"]);
+                                            break;
+                                        }
+                                }
+                            }, "json");
+                        }
+                    }, {
+                        text: dictionary["s23"],
+                        click: function() {
+                            $(this).dialog("close");
+                        }
+                    }]
             });
         });
     });
 }
 
 Table.isFileUploaded = false;
-Table.uiImportCSV=function(){
+Table.uiImportCSV = function() {
     var thisClass = this;
-    Methods.confirm(dictionary["s639"], dictionary["s25"], function(){
-        $("#div"+Table.className+"DialogImportCSV").dialog({
-            title:dictionary["s27"],
-            resizable:false,
-            modal:true,
-            width:400,
-            close:function(){
-            //$('.ui-widget-overlay').css('position', 'absolute');
+    Methods.confirm(dictionary["s639"], dictionary["s25"], function() {
+        $("#div" + Table.className + "DialogImportCSV").dialog({
+            title: dictionary["s27"],
+            resizable: false,
+            modal: true,
+            width: 400,
+            close: function() {
+                //$('.ui-widget-overlay').css('position', 'absolute');
             },
-            beforeClose:function(){
-            
+            beforeClose: function() {
+
             },
-            open:function(){
+            open: function() {
                 $('.ui-widget-overlay').css('position', 'fixed');
-                $('#file'+Table.className+'CSVImport').fileupload({
+                $('#file' + Table.className + 'CSVImport').fileupload({
                     dataType: 'json',
                     url: 'js/lib/fileupload/php/index.php',
-                    formData:function(form){
+                    formData: function(form) {
                         return [{
-                            name:"oid",
-                            value:Table.currentID
-                        }]  
+                                name: "oid",
+                                value: Table.currentID
+                            }]
                     },
-                    send: function(e,data){
+                    send: function(e, data) {
                         Methods.modalProgress();
-                        $("#div"+Table.className+"DialogImportCSV").dialog("close");
+                        $("#div" + Table.className + "DialogImportCSV").dialog("close");
                     },
-                    progress: function(e,data) {
+                    progress: function(e, data) {
                         var progress = parseInt(data.loaded / data.total * 100, 10);
                         Methods.changeProgress(progress);
                     },
-                    done: function (e, data) {
-                        $.each(data.result, function (index, file) {
+                    done: function(e, data) {
+                        $.each(data.result, function(index, file) {
                             Table.isFileUploaded = true;
                             var delimeter = $("#inputTableCSVImportDelimeter").val();
                             var enclosure = $("#inputTableCSVImportEnclosure").val();
-                        
-                            if($.trim(delimeter)=="" || $.trim(enclosure)==""){
+
+                            if ($.trim(delimeter) == "" || $.trim(enclosure) == "") {
                                 Methods.alert(dictionary["s334"], "alert", dictionary["s25"]);
                                 return;
                             }
-                            
-                            Methods.confirm(dictionary["s28"], dictionary["s29"], function(){
-                                Methods.uiBlock($("#div"+Table.className+"DialogImportCSV").parent());
-                                $.post("query/Table_csv_import.php",{
-                                    oid:Table.currentID,
-                                    file:file.name,
-                                    delimeter:delimeter,
-                                    enclosure:enclosure,
-                                    header:$("#inputTableCSVImportHeader").is(":checked")?1:0,
-                                    id:$("#inputTableCSVImportID").is(":checked")?1:0
-                                },function(data){
-                                    Methods.uiUnblock($("#div"+Table.className+"DialogImportCSV").parent());
-                                    $("#div"+Table.className+"DialogImportCSV").dialog("close");
-                                    switch(parseInt(data.result)){
-                                        case OModule.queryResults.OK:{
-                                            Methods.alert(dictionary["s26"], "info", dictionary["s25"]);
-                                            Table.uiEdit(Table.currentID);
-                                            break;
-                                        }
-                                        case OModule.queryResults.notLoggedIn:{
-                                            thisClass.onNotLoggedIn(dictionary["s25"]);
-                                            break;
-                                        }
-                                        //file doesn't exist
-                                        case -3:{
-                                            Methods.alert(dictionary["s272"], "alert", dictionary["s25"]);
-                                            break;
-                                        }
-                                        case OModule.queryResults.transactionError:{
-                                            Methods.alert(dictionary["s616"]+data.message, "alert", dictionary["s25"]);  
-                                            break;
-                                        }
-                                        case -7:{
-                                            Methods.alert(dictionary["s638"], "alert", dictionary["s25"]);      
-                                            break;
-                                        }
-                                        default:{
-                                            Methods.alert(dictionary["s30"], "alert", dictionary["s25"]);
-                                            Table.uiEdit(Table.currentID);
-                                            break;
-                                        }
+
+                            Methods.confirm(dictionary["s28"], dictionary["s29"], function() {
+                                Methods.uiBlock($("#div" + Table.className + "DialogImportCSV").parent());
+                                $.post("query/Table_csv_import.php", {
+                                    oid: Table.currentID,
+                                    file: file.name,
+                                    delimeter: delimeter,
+                                    enclosure: enclosure,
+                                    header: $("#inputTableCSVImportHeader").is(":checked") ? 1 : 0,
+                                    id: $("#inputTableCSVImportID").is(":checked") ? 1 : 0
+                                }, function(data) {
+                                    Methods.uiUnblock($("#div" + Table.className + "DialogImportCSV").parent());
+                                    $("#div" + Table.className + "DialogImportCSV").dialog("close");
+                                    switch (parseInt(data.result)) {
+                                        case OModule.queryResults.OK:
+                                            {
+                                                Methods.alert(dictionary["s26"], "info", dictionary["s25"]);
+                                                Table.uiEdit(Table.currentID);
+                                                break;
+                                            }
+                                        case OModule.queryResults.notLoggedIn:
+                                            {
+                                                thisClass.onNotLoggedIn(dictionary["s25"]);
+                                                break;
+                                            }
+                                            //file doesn't exist
+                                        case -3:
+                                            {
+                                                Methods.alert(dictionary["s272"], "alert", dictionary["s25"]);
+                                                break;
+                                            }
+                                        case OModule.queryResults.transactionError:
+                                            {
+                                                Methods.alert(dictionary["s616"] + data.message, "alert", dictionary["s25"]);
+                                                break;
+                                            }
+                                        case -7:
+                                            {
+                                                Methods.alert(dictionary["s638"], "alert", dictionary["s25"]);
+                                                break;
+                                            }
+                                        default:
+                                            {
+                                                Methods.alert(dictionary["s30"], "alert", dictionary["s25"]);
+                                                Table.uiEdit(Table.currentID);
+                                                break;
+                                            }
                                     }
-                                },"json");
+                                }, "json");
                             });
                         });
                     }
                 });
             },
-            buttons:[{
-                text:dictionary["s23"],
-                click:function(){
-                    $(this).dialog("close");
-                }
-            }]
-        }); 
+            buttons: [{
+                    text: dictionary["s23"],
+                    click: function() {
+                        $(this).dialog("close");
+                    }
+                }]
+        });
     });
 }
 
-Table.stringEditor = function(container,options){
+Table.stringEditor = function(container, options) {
     $("<textarea style='resize:none; margin:auto; width:100%; height:100px;' data-bind='value:" + options.field + "' />").appendTo(container);
 }
 
-Table.dateEditor = function(container,options){
+Table.dateEditor = function(container, options) {
     $("<input id='cellDatepicker' type='text' style='resize:none; margin:auto; width:100%;' data-bind='value:" + options.field + "' />").appendTo(container);
     $("#cellDatepicker").kendoDatePicker({
-        format:"yyyy-MM-dd"
+        format: "yyyy-MM-dd"
     });
 }
 
-Table.dateTimeEditor = function(container,options){
+Table.dateTimeEditor = function(container, options) {
     $("<input id='cellDateTimepicker' type='text' style='resize:none; margin:auto; width:100%;' data-bind='value:" + options.field + "' />").appendTo(container);
     $("#cellDateTimepicker").kendoDateTimePicker({
-        format:"yyyy-MM-dd HH:mm:ss"
+        format: "yyyy-MM-dd HH:mm:ss"
     });
 }
 
-Table.yearEditor = function(container,options){
+Table.yearEditor = function(container, options) {
     $("<input id='cellYearpicker' type='text' style='resize:none; margin:auto; width:100%;' data-bind='value:" + options.field + "' />").appendTo(container);
     $("#cellYearpicker").kendoDatePicker({
-        format:"yyyy",
+        format: "yyyy",
         start: "century",
         depth: "decade"
     });
 }
 
-Table.timeEditor = function(container,options){
+Table.timeEditor = function(container, options) {
     $("<input id='cellTimepicker' type='text' style='resize:none; margin:auto; width:100%;' data-bind='value:" + options.field + "' />").appendTo(container);
     $("#cellTimepicker").kendoTimePicker({
-        interval:1,
+        interval: 1,
         format: "HH:mm:ss"
     });
 }
 
-Table.setEditor = function(container,options){
-    var grid = $("#div"+Table.className+"GridStructure").data('kendoGrid');
+Table.setEditor = function(container, options) {
+    var grid = $("#div" + Table.className + "GridStructure").data('kendoGrid');
     var items = grid.dataSource.data();
-    
+
     var editor = $("<select style='resize:none; margin:auto; width:100%;' data-bind='value:" + options.field + "' />");
-    
+
     var col = null;
-    for(var i=0;i<items.length;i++){
-        if(items[i].name==options.field) {
+    for (var i = 0; i < items.length; i++) {
+        if (items[i].name == options.field) {
             col = items[i];
             break;
         }
     }
-    
-    if(col.nullable==1){
-    //editor.html("<option value=''>&lt;"+dictionary["s73"]+"&gt;</option>");
+
+    if (col.nullable == 1) {
+        //editor.html("<option value=''>&lt;"+dictionary["s73"]+"&gt;</option>");
     }
-    
-    if(col.lengthValues.trim()!=""){
+
+    if (col.lengthValues.trim() != "") {
         var data = col.lengthValues.split("','");
-        
-        if(data.length>0){
-            if(data[0].charAt(0)=="'") data[0] = data[0].substr(1);
-            
-            var last = data[data.length-1];
-            if(last.charAt(last.length-1)=="'") {
-                last = last.substr(0,last.length-1);
-                data[data.length-1] = last;
+
+        if (data.length > 0) {
+            if (data[0].charAt(0) == "'")
+                data[0] = data[0].substr(1);
+
+            var last = data[data.length - 1];
+            if (last.charAt(last.length - 1) == "'") {
+                last = last.substr(0, last.length - 1);
+                data[data.length - 1] = last;
             }
         }
-        
-        for(var i=0;i<data.length;i++){
-            editor.html(editor.html()+"<option value='"+data[i]+"'>"+data[i]+"</option>");
+
+        for (var i = 0; i < data.length; i++) {
+            editor.html(editor.html() + "<option value='" + data[i] + "'>" + data[i] + "</option>");
         }
     }
-    
+
     editor.appendTo(container);
 }
 
-Table.boolEditor = function(container,options){
-    var editor = $("<select style='resize:none; margin:auto; width:100%;' data-bind='value:" + options.field + "'><option value='0'>"+dictionary["s595"]+"</option><option value='1'>"+dictionary["s594"]+"</option></select>");
-    
+Table.boolEditor = function(container, options) {
+    var editor = $("<select style='resize:none; margin:auto; width:100%;' data-bind='value:" + options.field + "'><option value='0'>" + dictionary["s595"] + "</option><option value='1'>" + dictionary["s594"] + "</option></select>");
+
     editor.appendTo(container);
 }
 
-Table.numberEditor = function(container,options){
+Table.numberEditor = function(container, options) {
     $("<input type='text' style='resize:none; margin:auto; width:100%;' data-bind='value:" + options.field + "' />").appendTo(container);
 }
-Table.htmlEditor = function(container,options){
+Table.htmlEditor = function(container, options) {
     $("<textarea style='resize:none; margin:auto; width:100%; height:100px;' data-bind='value:" + options.field + "' />").appendTo(container);
 }
 
-Table.uiAddColumn=function(){
+Table.uiAddColumn = function() {
     var thisClass = this;
-    
-    var name = $("#form"+Table.className+"InputColumnName");
-    var type = $("#form"+Table.className+"SelectColumnType");
-    var lengthValues = $("#form"+Table.className+"InputColumnLength");
-    var defaultValue = $("#form"+Table.className+"InputColumnDefault");
-    var attributes = $("#form"+Table.className+"SelectColumnAttributes");
-    var nullable = $("#form"+Table.className+"CheckboxColumnNull");
-    
-    $("#div"+this.className+"Dialog").dialog({
-        title:dictionary["s31"],
-        resizable:false,
-        modal:true,
-        width:400,
-        open:function(){
-            $('.ui-widget-overlay').css('position', 'fixed');  
+
+    var name = $("#form" + Table.className + "InputColumnName");
+    var type = $("#form" + Table.className + "SelectColumnType");
+    var lengthValues = $("#form" + Table.className + "InputColumnLength");
+    var defaultValue = $("#form" + Table.className + "InputColumnDefault");
+    var attributes = $("#form" + Table.className + "SelectColumnAttributes");
+    var nullable = $("#form" + Table.className + "CheckboxColumnNull");
+
+    $("#div" + this.className + "Dialog").dialog({
+        title: dictionary["s31"],
+        resizable: false,
+        modal: true,
+        width: 400,
+        open: function() {
+            $('.ui-widget-overlay').css('position', 'fixed');
         },
-        close:function(){
+        close: function() {
             name.val("");
             type.val("text");
             //$('.ui-widget-overlay').css('position', 'absolute');
             $(this).dialog("destroy");
         },
-        buttons:[
-        {
-            text:dictionary["s37"],
-            click:function(){
-                name.val($.trim(name.val()));
-                
-                if(name.val()=="")
-                {
-                    Methods.alert(dictionary["s13"], dictionary["s14"]);
-                    return;
-                }
-                
-                if ( !Test.variableValidation(name.val(),false))
-                {
-                    var oldValue = name.val();
-                    var newValue = Test.convertVariable(name.val(),false);
-                    name.val(newValue);
-                    Methods.alert(dictionary["s1"].format(oldValue,newValue), "info", dictionary["s2"]);
-                    return;
-                }
-                
-                if(Table.doesColumnExists(name.val())) 
-                {
-                    Methods.alert(dictionary["s15"], "alert", dictionary["s14"]);
-                    return;
-                }
-                
-                var structGrid = $("#div"+thisClass.className+"GridStructure").data('kendoGrid');
-                structGrid.dataSource.add({
-                    name:name.val(),
-                    type:type.val(),
-                    lengthValues:lengthValues.val(),
-                    defaultValue:defaultValue.val(),
-                    attributes:attributes.val(),
-                    nullable:nullable.is(":checked")?1:0
-                })
-                
-                //dataGrid mod start
-                var dataGrid = $("#div"+thisClass.className+"GridData").data('kendoGrid');
-                
-                var templateSet = false;
-            
-                var col = {
-                    title:name.val(),
-                    field:name.val()
-                };
-                
-                Table.dataGridSchemaFields[name.val()] = {};
-            
-                col["editor"] = Table.stringEditor;
-                Table.dataGridSchemaFields[name.val()]["type"] = "string";
-                Table.dataGridSchemaFields[name.val()]["editable"] = true;
-                Table.dataGridSchemaFields[name.val()]["defaultValue"] = defaultValue.val();
-                if(Table.dataGridSchemaFields[name.val()]["defaultValue"]!=null && Table.dataGridSchemaFields[name.val()]["defaultValue"].toLowerCase().trim()=="null") Table.dataGridSchemaFields[name.val()]["defaultValue"]=null;
-                if(Table.dataGridSchemaFields[name.val()]["defaultValue"]!=null && Table.dataGridSchemaFields[name.val()]["defaultValue"].toLowerCase().trim()=="current_timestamp") Table.dataGridSchemaFields[name.val()]["defaultValue"]=kendo.toString(new Date(),"yyyy-MM-dd HH:mm:ss");
-                Table.dataGridSchemaFields[name.val()]["nullable"] = nullable.is(":checked");
-            
-                switch(type.val()){
-                    case "tinyint":
-                    case "smallint":
-                    case "mediumint":
-                    case "int":
-                    case "bigint":
-                    case "decimal":
-                    case "float":
-                    case "double":
-                    case "real":
-                    case "bit":
-                    case "serial":{
-                        col["editor"] = Table.numberEditor;
-                        Table.dataGridSchemaFields[name.val()]["type"]="number";
-                        break;
+        buttons: [
+            {
+                text: dictionary["s37"],
+                click: function() {
+                    name.val($.trim(name.val()));
+
+                    if (name.val() == "")
+                    {
+                        Methods.alert(dictionary["s13"], dictionary["s14"]);
+                        return;
                     }
-                    case "set":
-                    case "enum":{
-                        col["editor"] = Table.setEditor;
-                        break;
+
+                    if (!Test.variableValidation(name.val(), false))
+                    {
+                        var oldValue = name.val();
+                        var newValue = Test.convertVariable(name.val(), false);
+                        name.val(newValue);
+                        Methods.alert(dictionary["s1"].format(oldValue, newValue), "info", dictionary["s2"]);
+                        return;
                     }
-                    case "date":{
-                        Table.dataGridSchemaFields[name.val()]["type"]="date";
-                        col["editor"] = Table.dateEditor;
-                        col["format"]="{0:yyyy-MM-dd}";
-                        Table.dataGridSchemaFields[name.val()]["parse"]=function(val){
-                            return kendo.format("{0:yyyy-MM-dd}",val);
+
+                    if (Table.doesColumnExists(name.val()))
+                    {
+                        Methods.alert(dictionary["s15"], "alert", dictionary["s14"]);
+                        return;
+                    }
+
+                    var structGrid = $("#div" + thisClass.className + "GridStructure").data('kendoGrid');
+                    structGrid.dataSource.add({
+                        name: name.val(),
+                        type: type.val(),
+                        lengthValues: lengthValues.val(),
+                        defaultValue: defaultValue.val(),
+                        attributes: attributes.val(),
+                        nullable: nullable.is(":checked") ? 1 : 0
+                    })
+
+                    //dataGrid mod start
+                    var dataGrid = $("#div" + thisClass.className + "GridData").data('kendoGrid');
+
+                    var templateSet = false;
+
+                    var col = {
+                        title: name.val(),
+                        field: name.val()
+                    };
+
+                    Table.dataGridSchemaFields[name.val()] = {};
+
+                    col["editor"] = Table.stringEditor;
+                    Table.dataGridSchemaFields[name.val()]["type"] = "string";
+                    Table.dataGridSchemaFields[name.val()]["editable"] = true;
+                    Table.dataGridSchemaFields[name.val()]["defaultValue"] = defaultValue.val();
+                    if (Table.dataGridSchemaFields[name.val()]["defaultValue"] != null && Table.dataGridSchemaFields[name.val()]["defaultValue"].toLowerCase().trim() == "null")
+                        Table.dataGridSchemaFields[name.val()]["defaultValue"] = null;
+                    if (Table.dataGridSchemaFields[name.val()]["defaultValue"] != null && Table.dataGridSchemaFields[name.val()]["defaultValue"].toLowerCase().trim() == "current_timestamp")
+                        Table.dataGridSchemaFields[name.val()]["defaultValue"] = kendo.toString(new Date(), "yyyy-MM-dd HH:mm:ss");
+                    Table.dataGridSchemaFields[name.val()]["nullable"] = nullable.is(":checked");
+
+                    switch (type.val()) {
+                        case "tinyint":
+                        case "smallint":
+                        case "mediumint":
+                        case "int":
+                        case "bigint":
+                        case "decimal":
+                        case "float":
+                        case "double":
+                        case "real":
+                        case "bit":
+                        case "serial":
+                            {
+                                col["editor"] = Table.numberEditor;
+                                Table.dataGridSchemaFields[name.val()]["type"] = "number";
+                                break;
+                            }
+                        case "set":
+                        case "enum":
+                            {
+                                col["editor"] = Table.setEditor;
+                                break;
+                            }
+                        case "date":
+                            {
+                                Table.dataGridSchemaFields[name.val()]["type"] = "date";
+                                col["editor"] = Table.dateEditor;
+                                col["format"] = "{0:yyyy-MM-dd}";
+                                Table.dataGridSchemaFields[name.val()]["parse"] = function(val) {
+                                    return kendo.format("{0:yyyy-MM-dd}", val);
+                                }
+                                break;
+                            }
+                        case "timestamp":
+                        case "datetime":
+                            {
+                                Table.dataGridSchemaFields[name.val()]["type"] = "date";
+                                col["editor"] = Table.dateTimeEditor;
+                                col["format"] = "{0:yyyy-MM-dd HH:mm:ss}";
+                                Table.dataGridSchemaFields[name.val()]["parse"] = function(val) {
+                                    return kendo.format("{0:yyyy-MM-dd HH:mm:ss}", val);
+                                }
+                                break;
+                            }
+                        case "year":
+                            {
+                                Table.dataGridSchemaFields[name.val()]["type"] = "date";
+                                col["editor"] = Table.yearEditor;
+                                col["format"] = "{0:yyyy}";
+                                Table.dataGridSchemaFields[name.val()]["parse"] = function(val) {
+                                    return kendo.format("{0:yyyy}", val);
+                                }
+                                break;
+                            }
+                        case "time":
+                            {
+                                Table.dataGridSchemaFields[name.val()]["type"] = "string";
+                                col["editor"] = Table.timeEditor;
+                                Table.dataGridSchemaFields[name.val()]["parse"] = function(val) {
+                                    return kendo.format("{0:HH:mm:ss}", val);
+                                }
+                                //col["format"]="{0:HH:mm:ss}";
+                                break;
+                            }
+                        case "boolean":
+                            {
+                                Table.dataGridSchemaFields[name.val()]["type"] = "numeric";
+                                col["editor"] = Table.boolEditor;
+                                col["template"] = "<div align='center'><input type='checkbox' #= " + name.val() + "==1 ? checked='checked' : '' # disabled readonly /></div>";
+                                templateSet = true;
+                                break;
+                            }
+                        case "tinytext":
+                        case "mediumtext":
+                        case "long":
+                        case "text":
+                            {
+                                col["editor"] = Table.htmlEditor;
+                                col["template"] = '<div class="horizontalMargin" align="center">' +
+                                        '<span class="spanIcon tooltipTableStructure ui-icon ui-icon-document-b" onclick="Table.uiChangeHTML($(this).next(),\'' + name.val() + '\')" title="' + dictionary["s130"] + '"></span>' +
+                                        '<textarea class="notVisible">#=' + name.val() + '#</textarea>' +
+                                        '</div>';
+                                Table.dataGridSchemaFields[name.val()]["type"] = "string";
+                                Table.dataGridSchemaFields[name.val()]["editable"] = false;
+                                templateSet = true;
+                                break;
+                            }
+                    }
+
+                    if (Table.dataGridSchemaFields[name.val()]["nullable"] && !templateSet)
+                        col["template"] = "#= " + name.val() + "==null?'<span style=\"font-style:italic;\"><b>null</b></span>':" + name.val() + " #";
+
+                    dataGrid.columns.splice(dataGrid.columns.length - 1, 0, col);
+
+                    for (var i = 0; i < dataGrid.dataSource.data().length; i++) {
+                        var row = dataGrid.dataSource.data()[i];
+                        row[name.val()] = Table.dataGridSchemaFields[name.val()]["defaultValue"];
+                        row.fields[name.val()] = {
+                            type: Table.dataGridSchemaFields[name.val()]["type"],
+                            defaultValue: Table.dataGridSchemaFields[name.val()]["defaultValue"],
+                            editable: type.val() != "tinytext" && type.val() != "mediumtext" && type.val() != "longtext" && type.val() != "text"
                         }
-                        break;
+                        row.defaults[name.val()] = Table.dataGridSchemaFields[name.val()]["defaultValue"];
                     }
-                    case "timestamp":
-                    case "datetime":{
-                        Table.dataGridSchemaFields[name.val()]["type"]="date";
-                        col["editor"] = Table.dateTimeEditor;
-                        col["format"]="{0:yyyy-MM-dd HH:mm:ss}";
-                        Table.dataGridSchemaFields[name.val()]["parse"]=function(val){
-                            return kendo.format("{0:yyyy-MM-dd HH:mm:ss}",val);
-                        }
-                        break;
-                    }
-                    case "year":{
-                        Table.dataGridSchemaFields[name.val()]["type"]="date";
-                        col["editor"] = Table.yearEditor;
-                        col["format"]="{0:yyyy}";
-                        Table.dataGridSchemaFields[name.val()]["parse"]=function(val){
-                            return kendo.format("{0:yyyy}",val);
-                        }
-                        break;
-                    }
-                    case "time":{
-                        Table.dataGridSchemaFields[name.val()]["type"]="string";
-                        col["editor"] = Table.timeEditor;
-                        Table.dataGridSchemaFields[name.val()]["parse"]=function(val){
-                            return kendo.format("{0:HH:mm:ss}",val);
-                        }
-                        //col["format"]="{0:HH:mm:ss}";
-                        break;
-                    }
-                    case "boolean":{
-                        Table.dataGridSchemaFields[name.val()]["type"]="numeric";
-                        col["editor"]=Table.boolEditor;
-                        col["template"]="<div align='center'><input type='checkbox' #= "+name.val()+"==1 ? checked='checked' : '' # disabled readonly /></div>";
-                        templateSet = true;
-                        break;
-                    }
-                    case "tinytext":
-                    case "mediumtext":
-                    case "long":
-                    case "text":{
-                        col["editor"] = Table.htmlEditor;
-                        col["template"] = '<div class="horizontalMargin" align="center">'+
-                        '<span class="spanIcon tooltipTableStructure ui-icon ui-icon-document-b" onclick="Table.uiChangeHTML($(this).next(),\''+name.val()+'\')" title="'+dictionary["s130"]+'"></span>'+
-                        '<textarea class="notVisible">#='+name.val()+'#</textarea>'+
-                        '</div>';
-                        Table.dataGridSchemaFields[name.val()]["type"]="string";
-                        Table.dataGridSchemaFields[name.val()]["editable"] = false;
-                        templateSet = true;
-                        break;
-                    }
+
+                    Table.uiRefreshDataGrid();
+
+                    $(this).dialog("close");
+
+                    Methods.iniTooltips();
+                    Table.structureEmptyCheck();
+                    Table.uiIniHTMLTooltips();
+                    //dataGrid mod end
                 }
-            
-                if(Table.dataGridSchemaFields[name.val()]["nullable"] && !templateSet) col["template"]="#= "+name.val()+"==null?'<span style=\"font-style:italic;\"><b>null</b></span>':"+name.val()+" #";
-                
-                dataGrid.columns.splice(dataGrid.columns.length-1,0,col);
-                
-                for(var i=0;i<dataGrid.dataSource.data().length;i++){
-                    var row = dataGrid.dataSource.data()[i];
-                    row[name.val()]=Table.dataGridSchemaFields[name.val()]["defaultValue"];
-                    row.fields[name.val()]={
-                        type:Table.dataGridSchemaFields[name.val()]["type"],
-                        defaultValue:Table.dataGridSchemaFields[name.val()]["defaultValue"],
-                        editable: type.val()!="tinytext" && type.val()!="mediumtext" && type.val()!="longtext"&&type.val()!="text"
-                    }
-                    row.defaults[name.val()]=Table.dataGridSchemaFields[name.val()]["defaultValue"];
+            },
+            {
+                text: dictionary["s23"],
+                click: function() {
+                    $(this).dialog("close");
                 }
-        
-                Table.uiRefreshDataGrid();
-                
-                $(this).dialog("close");
-                
-                Methods.iniTooltips();
-                Table.structureEmptyCheck();
-                Table.uiIniHTMLTooltips();
-            //dataGrid mod end
             }
-        },
-        {
-            text:dictionary["s23"],
-            click:function(){
-                $(this).dialog("close");
-            }
-        }
         ]
     });
 }
 
-Table.uiRemoveRow=function(obj){
-    var thisClass=this;
+Table.uiRemoveRow = function(obj) {
+    var thisClass = this;
     var index = obj.closest('tr')[0].sectionRowIndex;
-    Methods.confirm(dictionary["s32"], dictionary["s33"], function(){
-        var grid = $("#div"+thisClass.className+"GridData").data('kendoGrid');
-        var item = grid.dataItem(grid.tbody.find("tr:eq("+index+")"));
-        
-        if(item.id!=0){
+    Methods.confirm(dictionary["s32"], dictionary["s33"], function() {
+        var grid = $("#div" + thisClass.className + "GridData").data('kendoGrid');
+        var item = grid.dataItem(grid.tbody.find("tr:eq(" + index + ")"));
+
+        if (item.id != 0) {
             Table.crudUpdate(Table.crudDataDeleted, item.id);
         }
-        
-        grid.removeRow(grid.tbody.find("tr:eq("+index+")"));
+
+        grid.removeRow(grid.tbody.find("tr:eq(" + index + ")"));
     });
 }
 
-Table.uiClearRows=function(){
-    var thisClass=this;
-    Methods.confirm(dictionary["s368"], dictionary["s367"], function(){
-        var grid = $("#div"+thisClass.className+"GridData").data('kendoGrid');
-    
+Table.uiClearRows = function() {
+    var thisClass = this;
+    Methods.confirm(dictionary["s368"], dictionary["s367"], function() {
+        var grid = $("#div" + thisClass.className + "GridData").data('kendoGrid');
+
         var columns = grid.columns;
         var items = [];
-    
+
         Table.uiReloadDataGrid(items, columns);
     });
 }
 
-Table.uiChangeHTML=function(obj,field){
-    var grid = $("#div"+this.className+"GridData").data('kendoGrid');
+Table.uiChangeHTML = function(obj, field) {
+    var grid = $("#div" + this.className + "GridData").data('kendoGrid');
     var index = obj.closest("tr")[0].sectionRowIndex;
-    var item = grid.dataItem(grid.tbody.find("tr:eq("+index+")"));
-    $("#form"+Table.className+"TextareaHTML").val(obj.val());
-    $("#div"+Table.className+"DialogHTML").dialog({
-        title:dictionary["s36"],
-        resizable:false,
-        modal:true,
-        width:840,
-        open:function(){
+    var item = grid.dataItem(grid.tbody.find("tr:eq(" + index + ")"));
+    $("#form" + Table.className + "TextareaHTML").val(obj.val());
+    $("#div" + Table.className + "DialogHTML").dialog({
+        title: dictionary["s36"],
+        resizable: false,
+        modal: true,
+        width: 840,
+        open: function() {
             $('.ui-widget-overlay').css('position', 'fixed');
         },
-        close:function(){
-        //$('.ui-widget-overlay').css('position', 'absolute');  
+        close: function() {
+            //$('.ui-widget-overlay').css('position', 'absolute');  
         },
-        create:function(){
-            var thisDialog = $("#div"+Table.className+"DialogHTML");
-            Methods.iniCKEditor($(this).find("textarea"),function(){
-                thisDialog.dialog("option","position","center");
-            },800);
+        create: function() {
+            var thisDialog = $("#div" + Table.className + "DialogHTML");
+            Methods.iniCKEditor($(this).find("textarea"), function() {
+                thisDialog.dialog("option", "position", "center");
+            }, 800);
         },
-        buttons:[
-        {
-            text:dictionary["s38"],
-            click:function(){
-                obj.val(Methods.getCKEditorData($(this).find('textarea')));
-                item[field]=Methods.getCKEditorData($(this).find('textarea'));
-                $(this).dialog("close");
+        buttons: [
+            {
+                text: dictionary["s38"],
+                click: function() {
+                    obj.val(Methods.getCKEditorData($(this).find('textarea')));
+                    item[field] = Methods.getCKEditorData($(this).find('textarea'));
+                    $(this).dialog("close");
+                }
+            },
+            {
+                text: dictionary["s23"],
+                click: function() {
+                    $(this).dialog("close");
+                }
             }
-        },
-        {
-            text:dictionary["s23"],
-            click:function(){
-                $(this).dialog("close");
-            }
-        }
         ]
-    }); 
+    });
 }
 
-Table.uiIniHTMLTooltips=function(){
+Table.uiIniHTMLTooltips = function() {
     $(".tooltipTableStructure").tooltip({
-        content:function(){
-            return dictionary["s39"]+"<hr/>"+$(this).next().val();
+        content: function() {
+            return dictionary["s39"] + "<hr/>" + $(this).next().val();
         },
-        position:{
-            my: "left top", 
-            at: "left bottom", 
+        position: {
+            my: "left top",
+            at: "left bottom",
             offset: "15 0"
-        }
-    }); 
+        },
+        show: false,
+        hide: false
+    });
 }

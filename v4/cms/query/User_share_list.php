@@ -42,7 +42,7 @@ foreach ($obj->get_workspaces() as $ws) {
         $invitee = User::from_mysql_id($share->invitee_id);
         if ($invitee == null)
             continue;
-        $row = array("id" => $share->id, "name" => $invitee->get_full_name(), "institution" => $invitee->institution_name, "workspace_id" => $share->UserWorkspace_id, "workspace_name" => $ws->name);
+        $row = array("id" => $share->id, "invitee_id" => $invitee->id, "name" => $invitee->get_full_name(), "institution" => $invitee->institution_name, "workspace_id" => $share->UserWorkspace_id, "workspace_name" => $ws->name);
         array_push($shares, $row);
     }
 }

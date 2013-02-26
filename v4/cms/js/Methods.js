@@ -491,7 +491,12 @@ Methods.iniTooltips = function() {
             my: "left top",
             at: "left bottom",
             offset: "15 0"
-        }
+        },
+        content: function() {
+            return $(this).attr("title");
+        },
+        show: false,
+        hide: false
     });
 };
 
@@ -524,11 +529,17 @@ Methods.checkLatestVersion = function(callback, proxy)
                 var amax = max.split(".");
                 var avers = version.split(".");
 
-                for (var a = 0; a < 3; a++)
+                for (var a = 0; a < avers.length && a < amax.length; a++)
                 {
-                    if (parseInt(amax[a]) > parseInt(avers[a]))
+                    var m = amax[a];
+                    var v = avers[a];
+                    if (a < 3) {
+                        m = parseInt(m);
+                        v = parseInt(v);
+                    }
+                    if (m > v)
                         break;
-                    if (parseInt(amax[a]) < parseInt(avers[a]))
+                    if (m < v)
                     {
                         max = version;
                         isNewerVersion = true;
@@ -553,7 +564,9 @@ Methods.iniDescriptionTooltips = function() {
             my: "left top",
             at: "left bottom",
             offset: "15 0"
-        }
+        },
+        show: false,
+        hide: false
     });
 }
 

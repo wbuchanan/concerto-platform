@@ -21,7 +21,7 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA.
 <!-- You can put comments this way. -->
 
 <!--
-If you are interested in translating Concerto v3 to a language that is not yet supported, please contact us. Similarly, changes and/or corrections to translations are also important. We can add you as a contributor and allow you to edit the dictionary.xml file.
+If you are interested in translating Concerto to a language that is not yet supported, please contact us. Similarly, changes and/or corrections to translations are also important. We can add you as a contributor and allow you to edit the dictionary.xml file.
 Note: You can add new languages by inserting "<new_language>string translated into new_language</new_language>" tag inside <string> tags.
 
 -->
@@ -4563,6 +4563,26 @@ Note: You can add new languages by inserting "<new_language>string translated in
             <en>insert selected</en>
             <de></de>
             <pl>wprowadź wybraną</pl>
+            <cn></cn>
+            <fr></fr>
+            <bg></bg>
+            <nl></nl>
+            <br></br>
+        </string>
+        <string id="691" js="1">
+            <en>test stopped</en>
+            <de></de>
+            <pl>test zatrzymany</pl>
+            <cn></cn>
+            <fr></fr>
+            <bg></bg>
+            <nl></nl>
+            <br></br>
+        </string>
+        <string id="692" js="1">
+            <en>This share already exists.</en>
+            <de></de>
+            <pl>Taki udział już istnieje.</pl>
             <cn></cn>
             <fr></fr>
             <bg></bg>

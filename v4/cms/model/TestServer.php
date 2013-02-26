@@ -378,10 +378,10 @@ class TestServer {
     }
 
     private function close_instance($key, $terminate = false) {
-        $session_id = substr($key, 3);
-        $workspace_id = null;
+        $session_parts = explode("-", substr($key, 3));
+        $session_id = $session_parts[1];
+        $workspace_id = $session_parts[0];
         if (array_key_exists($key, $this->instances)) {
-            $workspace_id = $this->instances[$key]->UserWorkspace_id;
             if ($this->instances[$key]->is_started()) {
                 $this->instances[$key]->stop($terminate);
                 unset($this->instances[$key]);
@@ -418,7 +418,7 @@ class TestServer {
 
     private function get_client($client_sock, &$input) {
         $data = json_decode($input);
-        $key = "sid" . $data->session_id;
+        $key = "sid" . $data->workspace_id . "-" . $data->session_id;
 
         if (!array_key_exists($key, $this->clients)) {
             $this->clients[$key] = array();
@@ -463,7 +463,7 @@ class TestServer {
 
     private function interpret_input($client, $input) {
         $data = json_decode($input);
-        $key = "sid" . $data->session_id;
+        $key = "sid" . $data->workspace_id . "-" . $data->session_id;
 
         if ($data->type == 0) {
             if (!array_key_exists($key, $this->instances)) {
@@ -472,17 +472,26 @@ class TestServer {
                     self::log_debug("TestServer->interpret_input() --- Client '$key' test instance created");
                 }
             }
+            $success = false;
             if (!$this->instances[$key]->is_started()) {
-                $this->instances[$key]->start();
-                if (self::$debug) {
-                    self::log_debug("TestServer->interpret_input() --- Client '$key' test instance started");
+                if ($this->instances[$key]->start()) {
+                    $success = true;
+                    if (self::$debug) {
+                        self::log_debug("TestServer->interpret_input() --- Client '$key' test instance started");
+                    }
                 }
             }
-            $this->instances[$key]->run($data->code, $data->values);
-            if (self::$debug) {
-                self::log_debug("TestServer->interpret_input() --- Client '$key' test data sent");
-                if (self::$debug_stream_data && $data->code != null)
-                    self::log_debug($data->code, true);
+            else
+                $success = true;
+            if ($success) {
+                $this->instances[$key]->run($data->code, $data->values);
+                if (self::$debug) {
+                    self::log_debug("TestServer->interpret_input() --- Client '$key' test data sent");
+                    if (self::$debug_stream_data && $data->code != null)
+                        self::log_debug($data->code, true);
+                }
+            } else {
+                $this->close_instance($key);
             }
         } else {
             if (array_key_exists($key, $this->instances)) {

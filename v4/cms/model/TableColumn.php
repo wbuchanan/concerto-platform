@@ -46,7 +46,12 @@ class TableColumn {
         if ($ui->lengthValues != "")
             $obj->type.="(" . $ui->lengthValues . ")";
         $obj->null = $ui->nullable == 1;
-        $obj->default = strtolower($ui->defaultValue) == "null" ? null : $ui->defaultValue;
+        if (is_string($ui->defaultValue) && strtolower($ui->defaultValue) == "null")
+            $obj->default = null;
+        else if ($ui->defaultValue === null)
+            $obj->default = "";
+        else
+            $obj->default = $ui->defaultValue;
         $obj->extra = $ui->attributes;
         return $obj;
     }
@@ -56,7 +61,8 @@ class TableColumn {
         if ($this->default !== null) {
             if ($this->default != "")
                 $def.="DEFAULT '" . mysql_real_escape_string($this->default) . "'";
-        } else
+        }
+        else
             $def.="DEFAULT NULL";
         return $def;
     }

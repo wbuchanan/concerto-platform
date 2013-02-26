@@ -58,7 +58,11 @@ Template.getAddSaveObject=function()
     };
 };
 
-Template.getFullSaveObject = function(){
+Template.getFullSaveObject = function(isNew){
+    if(isNew==null){
+        isNew = false;
+    }
+    
     var obj = this.getAddSaveObject();
     obj["description"]=$("#form"+this.className+"TextareaDescription").val();
     obj["effect_show"]=$("#form"+this.className+"SelectEffectShow").val();

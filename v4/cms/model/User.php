@@ -53,6 +53,9 @@ class User extends OModule {
     public function is_workspace_accessible($db) {
         if ($this->superuser == 1)
             return true;
+        foreach($this->get_workspaces() as $ws){
+            if($ws->db_name == $db) return true;
+        }
         $shares = UserShare::from_property(array("invitee_id" => $this->id));
         foreach ($shares as $share) {
             $workspace = UserWorkspace::from_mysql_id($share->UserWorkspace_id);
@@ -293,9 +296,10 @@ class User extends OModule {
                     $share->UserWorkspace_id = $row['workspace_id'];
                     $share->mysql_save();
                 } else {
-                    $sql = sprintf("INSERT INTO `%s`.`%s` SET `UserWorkspace_id`='%s', `invitee_id`='%s'", Ini::$db_master_name, UserShare::get_mysql_table(), mysql_real_escape_string($row['workspace_id']), mysql_real_escape_string($row['invitee_id']));
-                    if (!mysql_query($sql))
-                        return json_encode(array("result" => -6, "message" => mysql_error()));
+                    $share = new UserShare();
+                    $share->invitee_id = $row['invitee_id'];
+                    $share->UserWorkspace_id = $row['workspace_id'];
+                    $share->mysql_save();
                 }
             }
         }

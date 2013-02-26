@@ -40,7 +40,7 @@ class TestInstance {
     public $debug_code_appended = false;
     public $IP = "";
 
-    public function __construct($session_id = 0, $workspace_id = 0, $ip="") {
+    public function __construct($session_id = 0, $workspace_id = 0, $ip = "") {
         $this->TestSession_id = $session_id;
         $this->UserWorkspace_id = $workspace_id;
         $this->IP = $ip;
@@ -97,11 +97,17 @@ class TestInstance {
             1 => array("pipe", "w"),
             2 => array("pipe", "w")
         );
-        
+
         $workspace = $this->get_UserWorkspace();
 
         $owner = $workspace->get_owner();
         $userR = $owner->get_UserR();
+
+        if ($userR == null) {
+            if (TestServer::$debug)
+                TestServer::log_debug("TestInstance->start() --- Test instance NOT started. R user doesn't exist.");
+            return false;
+        }
 
         $this->r = proc_open("sudo -u " . $userR->login . " " . Ini::$path_r_exe . " --vanilla --quiet", $descriptorspec, $this->pipes, Ini::$path_temp, $env);
         if (is_resource($this->r)) {
@@ -416,11 +422,6 @@ class TestInstance {
                 $error.="
                 TIMEOUT
                 ";
-
-            if (TestServer::$debug) {
-                TestServer::log_debug("TestInstance->read() --- Fatal test exception encountered on #" . $this->TestSession_id . ": ");
-                TestServer::log_debug("\n" . $error . "\n", false);
-            }
         }
 
         $this->response.=$result;

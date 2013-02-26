@@ -212,8 +212,8 @@ class Test extends OModule {
         $code = $xml->createElement("code", htmlspecialchars($this->code, ENT_QUOTES, "UTF-8"));
         $element->appendChild($code);
 
-        $loader_Template_id = $xml->createElement("loader_Template_id", htmlspecialchars($this->loader_Template_id, ENT_QUOTES, "UTF-8"));
-        $element->appendChild($loader_Template_id);
+        //$loader_Template_id = $xml->createElement("loader_Template_id", htmlspecialchars($this->loader_Template_id, ENT_QUOTES, "UTF-8"));
+        //$element->appendChild($loader_Template_id);
 
         $test_variables = $xml->createElement("TestVariables");
         $element->appendChild($test_variables);

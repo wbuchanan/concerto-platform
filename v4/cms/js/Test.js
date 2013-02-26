@@ -73,7 +73,11 @@ Test.getAddSaveObject = function()
     };
 };
 
-Test.getFullSaveObject = function() {
+Test.getFullSaveObject = function(isNew) {
+    if (isNew == null) {
+        isNew = false;
+    }
+
     var obj = this.getAddSaveObject();
     obj["parameters"] = Test.getSerializedParameterVariables();
     obj["returns"] = Test.getSerializedReturnVariables();
@@ -358,6 +362,8 @@ Test.currentFromLine = -1;
 Test.currentToLine = -1;
 Test.debugInitializeTest = function(uid) {
     //initialzing
+    if (Test.debugStopped)
+        return;
     Test.uiChangeDebugStatus(dictionary["s655"]);
     test = new Test.debugWindow.Concerto($(Test.debugWindow.document).find("#divTestContainer"), uid, null, null, Test.currentID, "../query/",
             function(data) {
@@ -394,6 +400,17 @@ Test.debugInitializeTest = function(uid) {
                         }
                     case Concerto.statusTypes.template:
                         {
+                            if (parseInt(data.data.FINISHED) == 1) {
+                                Test.debugAppendOutput(data.debug.output);
+                                Test.debugAppendOutput("<br />");
+                                Test.debugAppendOutput(data.debug.error_output);
+                                Test.uiAddOutputLineWidget(Test.currentToLine, data.debug.output);
+                                Test.debugSetState(data.debug.state);
+
+                                Test.uiChangeDebugStatus(dictionary["s656"]);
+                                Test.debugCloseTestWindow();
+                                break;
+                            }
                             Test.debugAppendOutput(data.debug.output);
                             Test.debugAppendOutput("<br />");
                             Test.debugAppendOutput(data.debug.error_output);
@@ -524,6 +541,7 @@ Test.uiStopDebug = function() {
     Test.logicCodeMirror = Methods.iniCodeMirror("textareaTestLogic", "r", false, true, true);
     $("#btnStartDebug").button("enable");
     $("#btnStopDebug").button("disable");
+    Test.uiChangeDebugStatus(dictionary["s691"]);
 }
 
 Test.uiAddOutputLineWidget = function(lineNo, output, style) {
@@ -573,7 +591,8 @@ Test.functionWidgetOptionFormat = true;
 Test.uiAddFunctionWidget = function(instance, func, html) {
     var date = new Date();
     var id = "func-" + func + "-" + date.getTime() + "-" + Math.floor((Math.random() * 1000));
-    ;
+    id = id.replace(/\./g, "___");
+
     if (html == null)
         html = $("#divFunctionDoc").html();
 
@@ -588,13 +607,14 @@ Test.uiAddFunctionWidget = function(instance, func, html) {
 
     var argTable = $("<table class='fullWidth'></table>");
     for (var i = 0; i < parsedDoc.arguments.length; i++) {
+        var formattedName = parsedDoc.arguments[i].name.replace(/\./g, "___");
         var descSpan = $('<span class="spanIcon ui-icon ui-icon-help functionArgTooltip" title="asd"></span>');
         var descText = $('<div class="notVisible divFunctionWidgetArgDescHelper">' + parsedDoc.arguments[i].description + '</div>')
 
         argTable.append("<tr argName='" + parsedDoc.arguments[i].name + "'>" +
                 "<td class='divFunctionWidgetArgTableDescColumn divFunctionWidgetArgTable'>" + (parsedDoc.arguments[i].description != "" ? (descSpan[0].outerHTML + descText[0].outerHTML) : "") + "</td>" +
                 "<td class='divFunctionWidgetArgTableNameColumn divFunctionWidgetArgTable noWrap'>" + parsedDoc.arguments[i].name + "</td>" +
-                "<td class='divFunctionWidgetArgTableValueColumn divFunctionWidgetArgTable'><textarea id='" + id + "-" + (parsedDoc.arguments[i].name == "..." ? "3dots" : parsedDoc.arguments[i].name) + "' class='notVisible'>" + parsedDoc.arguments[i].value + "</textarea></td>" +
+                "<td class='divFunctionWidgetArgTableValueColumn divFunctionWidgetArgTable'><textarea id='" + id + "-" + formattedName + "' class='notVisible'>" + parsedDoc.arguments[i].value + "</textarea></td>" +
                 "</tr>");
     }
 
@@ -622,14 +642,15 @@ Test.uiAddFunctionWidget = function(instance, func, html) {
     var chosen = false;
     var chosenCM = null;
     for (var i = 0; i < parsedDoc.arguments.length; i++) {
-        var cm = Methods.iniCodeMirror(id + "-" + (parsedDoc.arguments[i].name == "..." ? "3dots" : parsedDoc.arguments[i].name), "r", false, true, false,false);
-        if(!chosen){
+        var formattedName = parsedDoc.arguments[i].name.replace(/\./g, "___");
+        var cm = Methods.iniCodeMirror(id + "-" + formattedName, "r", false, true, false, false);
+        if (!chosen) {
             chosenCM = cm;
             chosen = true;
         }
         cmArgValues.push(cm);
     }
-    if(chosenCM!=null)
+    if (chosenCM != null)
         chosenCM.focus();
 
     Methods.iniIconButton(".btnApply", "disk");
@@ -644,7 +665,9 @@ Test.uiAddFunctionWidget = function(instance, func, html) {
         },
         content: function() {
             return $(this).next().html();
-        }
+        },
+        show: false,
+        hide: false
     });
 
     Test.functionWidgets.push(fw);
@@ -677,7 +700,8 @@ Test.uiApplyFunctionWidget = function(fw) {
     var isFirst = true;
     table.find("tr").each(function() {
         var name = $(this).attr("argName");
-        var value = $("#" + id + "-" + (name == "..." ? "3dots" : name)).val();
+        var formattedName = name.replace(/\./g, "___");
+        var value = $("#" + id + "-" + formattedName).val();
 
         if (jQuery.trim(value) == "")
             return;
@@ -879,7 +903,7 @@ Test.uiWriteAutocompleteDoc = function(html) {
             '</table>' +
             '</div>';
     var html = Test.getDocContent(html);
-    $("#divCodeAutocompleteDoc").html(infoBar+html);
+    $("#divCodeAutocompleteDoc").html(infoBar + html);
 }
 
 Test.iniAutoCompleteCodeMirror = function(mode, instance, widgetsPossible) {

@@ -30,7 +30,6 @@ if ($logged_user == null) {
 }
 
 $owner = User::from_mysql_id($_POST['oid']);
-$shares = json_decode($_POST['shares']);
 ?>
 <script>
     Methods.iniTooltips();
@@ -58,18 +57,9 @@ $shares = json_decode($_POST['shares']);
                         $z = mysql_query($sql);
                         while ($r = mysql_fetch_array($z)) {
                             $user = User::from_mysql_result($r);
-                            $ignore = false;
-                            foreach ($shares as $share) {
-                                if ($share->invitee_id == $user->id && $_POST['current_invitee_id'] != $share->invitee_id) {
-                                    $ignore = true;
-                                    break;
-                                }
-                            }
-                            if (!$ignore) {
-                                ?>
-                                <option value="<?= $user->id ?>" name="<?= $user->get_full_name() ?>" institution="<?= $user->institution_name ?>" <?= $_POST['current_invitee_id'] == $user->id ? "selected" : "" ?>><?= $user->get_full_description() ?></option>
-                                <?php
-                            }
+                            ?>
+                            <option value="<?= $user->id ?>" name="<?= $user->get_full_name() ?>" institution="<?= $user->institution_name ?>" <?= $_POST['current_invitee_id'] == $user->id ? "selected" : "" ?>><?= $user->get_full_description() ?></option>
+                            <?php
                         }
                         ?>
                     </select>
@@ -91,7 +81,7 @@ $shares = json_decode($_POST['shares']);
                             $ignore = false;
                             if (!$ignore) {
                                 ?>
-                                <option value="<?= $ws->id ?>" name="<?= $ws->name ?>" <?= $_POST['current_workspace_id'] == $ws->id ? "selected" : "" ?>><?= $ws->get_formatted_name() ?></option>
+                                <option value="<?= $ws->id ?>" name="<?= $ws->name ?>" <?= array_key_exists("current_workspace_id", $_POST) && $_POST['current_workspace_id'] == $ws->id ? "selected" : "" ?>><?= $ws->get_formatted_name() ?></option>
                                 <?php
                             }
                         }

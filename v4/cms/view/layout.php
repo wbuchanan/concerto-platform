@@ -30,65 +30,72 @@ if ($logged_user == null) {
 ?>
 
 <script>
-    $(function(){
+    $(function() {
         Methods.currentView = <?= User::is_simple_view() ? 0 : 1 ?>;
-        $(window).resize(function(){
-            $("#divTestResponse").css("height",Methods.winHeight()-100);
-            $(".divTestVerticalElement").css("height",((Methods.winHeight()-125)/2)+"px");
+        $(window).resize(function() {
+            $("#divTestResponse").css("height", Methods.winHeight() - 100);
+            $(".divTestVerticalElement").css("height", ((Methods.winHeight() - 125) / 2) + "px");
             Test.onScroll();
-            
+
             var showing = document.body.getElementsByClassName("CodeMirror-fullscreen")[0];
-            if (!showing) return;
+            if (!showing)
+                return;
             showing.CodeMirror.getWrapperElement().style.height = Methods.winHeight() + "px";
             showing.CodeMirror.getWrapperElement().style.width = Methods.winWidth() + "px";
         });
-      
-        $(window).scroll(function () { 
+
+        $(window).scroll(function() {
             Test.onScroll();
         });
 
         $("#tnd_mainMenu").tabs({
-            show:function(event,ui){
-                if(ui.index==0){
+            show: function(event, ui) {
+                if (ui.index == 0) {
                     Test.uiRefreshCodeMirrors();
                 }
-                if(ui.index==2){
+                if (ui.index == 2) {
                     Template.uiRefreshCodeMirrors();
                 }
             }
         });
         $(".tooltipTabs").tooltip({
-            position:{ my: "left top", at: "left bottom", offset: "15 0" },
-            tooltipClass:"tooltipWindow"
+            position: {my: "left top", at: "left bottom", offset: "15 0"},
+            tooltipClass: "tooltipWindow",
+            content: function() {
+                return $(this).attr("title");
+            },
+            show: false,
+            hide: false
         });
-        
+
         Methods.currentVersion = "<?= Ini::$version ?>";
-        Methods.checkLatestVersion(function(isNewerVersion,version){
+        Methods.checkLatestVersion(function(isNewerVersion, version) {
             var div = $("#divVersionCheck");
-            var newer = isNewerVersion==1;
-            if(newer)
+            var newer = isNewerVersion == 1;
+            if (newer)
             {
-                div.css("color","red");
-                div.html("<?= Language::string(262) ?> <a href='http://code.google.com/p/concerto-platform'><?= Language::string(263) ?> v"+version+"</a>");
+                div.css("color", "red");
+                div.html("<?= Language::string(262) ?> <a href='http://code.google.com/p/concerto-platform'><?= Language::string(263) ?> v" + version + "</a>");
             }
             else
             {
-                div.css("color","green");
+                div.css("color", "green");
                 div.html("<?= Language::string(264) ?>");
             }
         });
-        
+
         User.previousWorkspace = $("#selectWorkspace").val();
-        
+
 <?php
 if (Ini::$cms_session_keep_alive) {
     ?>
-                User.sessionKeepAlive(<?= Ini::$cms_session_keep_alive_interval ?>);
+            User.sessionKeepAlive(<?= Ini::$cms_session_keep_alive_interval ?>);
     <?php
 }
 ?>
     });
 </script>
+
 <div align="center" style="min-width: 970px;"><?php include Ini::$path_internal . 'cms/view/includes/header.inc.php'; ?></div>
 
 <div align="center" class="" style="min-width: 970px;" >
