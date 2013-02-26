@@ -1,7 +1,7 @@
 <?php
 /*
   Concerto Platform - Online Adaptive Testing Platform
-  Copyright (C) 2011-2012, The Psychometrics Centre, Cambridge University
+  Copyright (C) 2011-2013, The Psychometrics Centre, Cambridge University
 
   This program is free software; you can redistribute it and/or
   modify it under the terms of the GNU General Public License
