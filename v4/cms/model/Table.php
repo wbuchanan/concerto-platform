@@ -115,7 +115,7 @@ class Table extends OModule {
         }
 
         $lid = parent::mysql_save_from_post($post);
-        $obj = static::from_mysql_id($lid);
+        $obj = Table::from_mysql_id($lid);
 
         if (array_key_exists("deleteData", $post)) {
             if ($post["deleteData"] == "*") {
@@ -144,7 +144,7 @@ class Table extends OModule {
         if (array_key_exists("deleteColumns", $post)) {
             $columns = json_decode($post["deleteColumns"]);
             foreach ($columns as $column) {
-                $sql = sprintf("ALTER TABLE `%s` DROP COLUMN `%s`", mysql_real_escape_string($obj->name), mysql_real_escape_string($column->id));
+                $sql = sprintf("ALTER TABLE `%s` DROP COLUMN `%s`", mysql_real_escape_string($obj->name), mysql_real_escape_string($column));
                 if (!mysql_query($sql))
                     return json_encode(array("result" => -6, "message" => mysql_error()));
             }
@@ -190,7 +190,10 @@ class Table extends OModule {
                         continue;
                     if ($set != "")
                         $set.=",";
-                    $set.="`" . mysql_real_escape_string($k) . "`='" . mysql_real_escape_string($v) . "'";
+                    if ($v == "")
+                        $set.="`" . mysql_real_escape_string($k) . "`=NULL";
+                    else
+                        $set.="`" . mysql_real_escape_string($k) . "`='" . mysql_real_escape_string($v) . "'";
                 }
 
                 if ($row["id"] != null) {
@@ -237,6 +240,9 @@ class Table extends OModule {
         if (!mysql_query($sql)) {
             return json_encode(array("result" => -6, "message" => mysql_error()));
         }
+
+        $this->rename_restricted_columns();
+
         return 0;
     }
 
@@ -286,6 +292,29 @@ class Table extends OModule {
                 $row++;
             }
         }
+
+        $this->rename_restricted_columns();
+
+        return 0;
+    }
+
+    public function rename_restricted_columns() {
+        $sql = sprintf("SHOW COLUMNS FROM `%s`", $this->name);
+        $z = mysql_query($sql);
+        while ($r = mysql_fetch_array($z)) {
+            $tc = TableColumn::from_mysql_result($r);
+            if (in_array($tc->name, TableColumn::$restricted_names)) {
+
+                $i = 1;
+                $sql = "";
+                do {
+                    $new_name = $tc->name . "_" . $i;
+                    $sql = sprintf("ALTER TABLE `%s` CHANGE COLUMN `%s` `%s` %s", $this->name, $tc->name, $new_name, $tc->get_definition());
+                    $i++;
+                } while (!mysql_query($sql));
+            }
+        }
+        
         return 0;
     }
 

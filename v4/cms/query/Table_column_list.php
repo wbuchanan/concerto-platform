@@ -37,7 +37,7 @@ if ($obj == null) {
 
 $result = array();
 foreach ($obj->get_columns() as $col) {
-    $row = array("id" => $col->name, "name" => $col->name, "type" => $col->get_type(), "lengthValues" => $col->get_length(), "defaultValue" => $col->default, "attributes" => $col->extra, "nullable" => $col->null);
+    $row = array("id" => $col->name, "name" => $col->name, "type" => $col->get_type(), "lengthValues" => $col->get_length(), "defaultValue" => $col->default, "attributes" => $col->extra, "nullable" => $col->null?1:0);
     array_push($result, $row);
 }
 

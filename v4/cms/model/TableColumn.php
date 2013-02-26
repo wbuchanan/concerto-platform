@@ -27,12 +27,30 @@ class TableColumn {
     public $default = null;
     public $extra = "";
     public $key = "";
+    public static $restricted_names = array(
+        "parent",
+        "this",
+        "data",
+        "function",
+        "var",
+        "if",
+        "true",
+        "false",
+        "for",
+        "while",
+        "continue",
+        "return",
+        "break",
+        "case",
+        "switch",
+        "null"
+    );
 
     public static function from_mysql_result($r) {
         $obj = new TableColumn();
         $obj->name = $r['Field'];
         $obj->type = $r['Type'];
-        $obj->null = $r['Null'];
+        $obj->null = $r['Null'] == "YES";
         $obj->default = $r['Default'];
         $obj->extra = $r['Extra'];
         $obj->key = $r['Key'];
@@ -59,11 +77,21 @@ class TableColumn {
     public function get_definition() {
         $def = $this->type . " " . mysql_real_escape_string($this->extra) . " " . ($this->null ? "NULL" : "NOT NULL") . " ";
         if ($this->default !== null) {
-            if ($this->default != "")
-                $def.="DEFAULT '" . mysql_real_escape_string($this->default) . "'";
+            if ($this->default != "") {
+                if (strtolower(trim($this->default)) == "current_timestamp") {
+                    $def.="DEFAULT CURRENT_TIMESTAMP";
+                }
+                else if (strtolower(trim($this->default)) == "null") {
+                    $def.="DEFAULT NULL";
+                }
+                else
+                    $def.="DEFAULT '" . mysql_real_escape_string($this->default) . "'";
+            }
         }
-        else
-            $def.="DEFAULT NULL";
+        else {
+            if ($this->null)
+                $def.="DEFAULT NULL";
+        }
         return $def;
     }
 

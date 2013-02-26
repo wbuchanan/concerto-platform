@@ -216,7 +216,7 @@ Note: You can add new languages by inserting "<new_language>string translated in
             <nl>kolom bewerken</nl>
             <br>modifique a coluna</br>
         </string>
-        <string id="20">
+        <string id="20" js="1">
             <en>remove column</en>
             <de>entferne Spalte</de>
             <pl>usuń kolumnę</pl>
@@ -4583,6 +4583,16 @@ Note: You can add new languages by inserting "<new_language>string translated in
             <en>This share already exists.</en>
             <de></de>
             <pl>Taki udział już istnieje.</pl>
+            <cn></cn>
+            <fr></fr>
+            <bg></bg>
+            <nl></nl>
+            <br></br>
+        </string>
+        <string id="693" js="1">
+            <en>This column name is restricted. Please choose another one.</en>
+            <de></de>
+            <pl>Ta nazwa kolumny jest zastrzeżona. Proszę wybrać inną.</pl>
             <cn></cn>
             <fr></fr>
             <bg></bg>

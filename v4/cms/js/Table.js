@@ -37,7 +37,9 @@ Table.onAfterEdit = function()
 
 Table.onAfterSave = function() {
     Test.uiTablesChanged();
-    Table.uiEdit(Table.currentID);
+    //Table.uiEdit(Table.currentID);
+    
+    Table.onAfterEdit();
 };
 
 Table.onAfterDelete = function() {
@@ -253,7 +255,7 @@ Table.uiRemoveColumn = function(obj) {
             delete dataGrid.dataSource.data()[i].fields[item.name]
             delete dataGrid.dataSource.data()[i].defaults[item.name]
         }
-        //delete Table.dataGridSchemaFields[item.name];
+        delete Table.dataGridSchemaFields[item.name];
 
         Table.onColumnChange(item.name);
 
@@ -299,7 +301,8 @@ Table.dataGridSchemaFields = null;
 
 Table.uiReloadDataGrid = function(data, columns) {
     var thisClass = this;
-
+    var grid = $("#div" + this.className + "GridData").data('kendoGrid');
+    grid.destroy();
     $("#div" + this.className + "GridDataContainer").html("<div id='div" + this.className + "GridData' class='grid'></div>");
 
     var dataSource = new kendo.data.DataSource({
@@ -461,8 +464,12 @@ Table.uiIniDataGrid = function() {
                         col["editor"] = Table.dateEditor;
                         col["format"] = "{0:yyyy-MM-dd}";
                         fields[data[i].name]["parse"] = function(val) {
+                            if (val == null)
+                                return null;
                             return kendo.format("{0:yyyy-MM-dd}", val);
                         }
+                        col["template"] = "#= " + data[i].name + "==null?'<span style=\"font-style:italic;\"><b>null</b></span>':kendo.toString(" + data[i].name + ",'yyyy-MM-dd') #";
+                        templateSet = true;
                         break;
                     }
                 case "timestamp":
@@ -472,8 +479,12 @@ Table.uiIniDataGrid = function() {
                         col["editor"] = Table.dateTimeEditor;
                         col["format"] = "{0:yyyy-MM-dd HH:mm:ss}";
                         fields[data[i].name]["parse"] = function(val) {
+                            if (val == null)
+                                return null;
                             return kendo.format("{0:yyyy-MM-dd HH:mm:ss}", val);
                         }
+                        col["template"] = "#= " + data[i].name + "==null?'<span style=\"font-style:italic;\"><b>null</b></span>':kendo.toString(" + data[i].name + ",'yyyy-MM-dd HH:mm:ss') #";
+                        templateSet = true;
                         break;
                     }
                 case "year":
@@ -482,18 +493,26 @@ Table.uiIniDataGrid = function() {
                         col["editor"] = Table.yearEditor;
                         col["format"] = "{0:yyyy}";
                         fields[data[i].name]["parse"] = function(val) {
+                            if (val == null)
+                                return null;
                             return kendo.format("{0:yyyy}", val);
                         }
+                        col["template"] = "#= " + data[i].name + "==null?'<span style=\"font-style:italic;\"><b>null</b></span>':kendo.toString(" + data[i].name + ",'yyyy') #";
+                        templateSet = true;
                         break;
                     }
                 case "time":
                     {
-                        fields[data[i].name]["type"] = "string";
+                        fields[data[i].name]["type"] = "date";
                         col["editor"] = Table.timeEditor;
+                        col["format"] = "{0:HH:mm:ss}";
                         fields[data[i].name]["parse"] = function(val) {
+                            if (val == null)
+                                return null;
                             return kendo.format("{0:HH:mm:ss}", val);
                         }
-                        //col["format"]="{0:HH:mm:ss}";
+                        col["template"] = "#= " + data[i].name + "==null?'<span style=\"font-style:italic;\"><b>null</b></span>':kendo.toString(" + data[i].name + ",'HH:mm:ss') #";
+                        templateSet = true;
                         break;
                     }
                 case "boolean":
@@ -652,7 +671,8 @@ Table.uiIniDataGrid = function() {
 
 Table.uiReloadStructureGrid = function(data, columns) {
     var thisClass = this;
-
+    var grid = $("#div" + this.className + "GridStructure").data('kendoGrid');
+    grid.destroy();
     $("#div" + this.className + "GridStructureContainer").html("<div id='div" + this.className + "GridStructure' class='grid'></div>");
 
     var dataSource = new kendo.data.DataSource({
@@ -1054,7 +1074,8 @@ Table.uiRefreshIndexGrid = function() {
 
 Table.uiReloadIndexGrid = function(data, columns) {
     var thisClass = this;
-
+    var grid = $("#div" + this.className + "GridIndex").data('kendoGrid');
+    grid.destroy();
     $("#div" + this.className + "GridIndexContainer").html("<div id='div" + this.className + "GridIndex' class='grid'></div>");
 
     var dataSource = new kendo.data.DataSource({
@@ -1176,9 +1197,26 @@ Table.doesColumnExists = function(name) {
     return false;
 }
 
+Table.restrictedColumnNames = [
+    "parent",
+    "this",
+    "data",
+    "function",
+    "var",
+    "if",
+    "true",
+    "false",
+    "for",
+    "while",
+    "continue",
+    "return",
+    "break",
+    "case",
+    "switch",
+    "null"
+];
 Table.uiEditColumn = function(obj) {
     var thisClass = this;
-
     var structGrid = $("#div" + thisClass.className + "GridStructure").data('kendoGrid');
     var index = obj.closest('tr')[0].sectionRowIndex;
     var item = structGrid.dataItem(structGrid.tbody.find("tr:eq(" + index + ")"));
@@ -1248,6 +1286,11 @@ Table.uiEditColumn = function(obj) {
                         return;
                     }
 
+                    if (Table.restrictedColumnNames.indexOf(name.val()) != -1) {
+                        Methods.alert(dictionary["s693"], "alert", dictionary["s14"]);
+                        return;
+                    }
+
                     Table.onColumnChange(oldName, name.val());
                     if (itemID != "") {
                         Table.crudUpdate(Table.crudColumnsUpdated, itemID);
@@ -1268,11 +1311,12 @@ Table.uiEditColumn = function(obj) {
 
                     var templateSet = false;
 
-                    dataGrid.columns[index] = {
-                        title: name.val(),
-                        field: name.val()
-                    };
+                    dataGrid.columns[index]["title"] = name.val();
+                    dataGrid.columns[index]["field"] = name.val();
 
+                    if (oldName != name.val()) {
+                        delete Table.dataGridSchemaFields[oldName];
+                    }
                     Table.dataGridSchemaFields[name.val()] = {};
 
                     dataGrid.columns[index]["editor"] = Table.stringEditor;
@@ -1314,8 +1358,12 @@ Table.uiEditColumn = function(obj) {
                                 dataGrid.columns[index]["editor"] = Table.dateEditor;
                                 dataGrid.columns[index]["format"] = "{0:yyyy-MM-dd}";
                                 Table.dataGridSchemaFields[name.val()]["parse"] = function(val) {
+                                    if (val == null)
+                                        return null;
                                     return kendo.format("{0:yyyy-MM-dd}", val);
                                 }
+                                dataGrid.columns[index]["template"] = "#= " + name.val() + "==null?'<span style=\"font-style:italic;\"><b>null</b></span>':kendo.toString(" + name.val() + ",'yyyy-MM-dd') #";
+                                templateSet = true;
                                 break;
                             }
                         case "timestamp":
@@ -1325,8 +1373,12 @@ Table.uiEditColumn = function(obj) {
                                 dataGrid.columns[index]["editor"] = Table.dateTimeEditor;
                                 dataGrid.columns[index]["format"] = "{0:yyyy-MM-dd HH:mm:ss}";
                                 Table.dataGridSchemaFields[name.val()]["parse"] = function(val) {
+                                    if (val == null)
+                                        return null;
                                     return kendo.format("{0:yyyy-MM-dd HH:mm:ss}", val);
                                 }
+                                dataGrid.columns[index]["template"] = "#= " + name.val() + "==null?'<span style=\"font-style:italic;\"><b>null</b></span>':kendo.toString(" + name.val() + ",'yyyy-MM-dd HH:mm:ss') #";
+                                templateSet = true;
                                 break;
                             }
                         case "year":
@@ -1335,18 +1387,26 @@ Table.uiEditColumn = function(obj) {
                                 dataGrid.columns[index]["editor"] = Table.yearEditor;
                                 dataGrid.columns[index]["format"] = "{0:yyyy}";
                                 Table.dataGridSchemaFields[name.val()]["parse"] = function(val) {
+                                    if (val == null)
+                                        return null;
                                     return kendo.format("{0:yyyy}", val);
                                 }
+                                dataGrid.columns[index]["template"] = "#= " + name.val() + "==null?'<span style=\"font-style:italic;\"><b>null</b></span>':kendo.toString(" + name.val() + ",'yyyy') #";
+                                templateSet = true;
                                 break;
                             }
                         case "time":
                             {
-                                Table.dataGridSchemaFields[name.val()]["type"] = "string";
+                                Table.dataGridSchemaFields[name.val()]["type"] = "date";
                                 dataGrid.columns[index]["editor"] = Table.timeEditor;
+                                dataGrid.columns[index]["format"] = "{0:HH:mm:ss}";
                                 Table.dataGridSchemaFields[name.val()]["parse"] = function(val) {
+                                    if (val == null)
+                                        return null;
                                     return kendo.format("{0:HH:mm:ss}", val);
                                 }
-                                //col["format"]="{0:HH:mm:ss}";
+                                dataGrid.columns[index]["template"] = "#= " + name.val() + "==null?'<span style=\"font-style:italic;\"><b>null</b></span>':kendo.toString(" + name.val() + ",'HH:mm:ss') #";
+                                templateSet = true;
                                 break;
                             }
                         case "boolean":
@@ -1377,18 +1437,25 @@ Table.uiEditColumn = function(obj) {
                     if (Table.dataGridSchemaFields[name.val()]["nullable"] && !templateSet)
                         dataGrid.columns[index]["template"] = "#= " + name.val() + "==null?'<span style=\"font-style:italic;\"><b>null</b></span>':" + name.val() + " #";
 
+
                     for (var i = 0; i < dataGrid.dataSource.data().length; i++) {
                         var item = dataGrid.dataSource.data()[i];
                         item[name.val()] = item[oldName];
+
+                        item.fields[name.val()] = item.fields[oldName];
+                        if (item.fields[name.val()] == undefined)
+                            item.fields[name.val()] = {};
+
+                        item.fields[name.val()]['type'] = Table.dataGridSchemaFields[name.val()]["type"];
+                        item.fields[name.val()]['defaultValue'] = Table.dataGridSchemaFields[name.val()]["defaultValue"];
+                        item.fields[name.val()]['editable'] = Table.dataGridSchemaFields[name.val()]["editable"];
+                        item.fields[name.val()]['nullable'] = Table.dataGridSchemaFields[name.val()]["nullable"];
+                        item.fields[name.val()]['parse'] = Table.dataGridSchemaFields[name.val()]["parse"];
+
                         if (oldName != name.val()) {
                             delete item[oldName];
-                            delete item.fields[oldName]
-                            delete item.defaults[oldName]
-                        }
-                        item.fields[name.val()] = {
-                            type: Table.dataGridSchemaFields[name.val()]["type"],
-                            defaultValue: Table.dataGridSchemaFields[name.val()]["defaultValue"],
-                            editable: Table.dataGridSchemaFields[name.val()]["editable"]
+                            delete item.fields[oldName];
+                            delete item.defaults[oldName];
                         }
                         item.defaults[name.val()] = Table.dataGridSchemaFields[name.val()]["defaultValue"];
                     }
@@ -1770,6 +1837,11 @@ Table.uiAddColumn = function() {
                         return;
                     }
 
+                    if (Table.restrictedColumnNames.indexOf(name.val()) != -1) {
+                        Methods.alert(dictionary["s693"], "alert", dictionary["s14"]);
+                        return;
+                    }
+
                     var structGrid = $("#div" + thisClass.className + "GridStructure").data('kendoGrid');
                     structGrid.dataSource.add({
                         name: name.val(),
@@ -1831,8 +1903,12 @@ Table.uiAddColumn = function() {
                                 col["editor"] = Table.dateEditor;
                                 col["format"] = "{0:yyyy-MM-dd}";
                                 Table.dataGridSchemaFields[name.val()]["parse"] = function(val) {
+                                    if (val == null)
+                                        return null;
                                     return kendo.format("{0:yyyy-MM-dd}", val);
                                 }
+                                col["template"] = "#= " + name.val() + "==null?'<span style=\"font-style:italic;\"><b>null</b></span>':kendo.toString(" + name.val() + ",'yyyy-MM-dd') #";
+                                templateSet = true;
                                 break;
                             }
                         case "timestamp":
@@ -1842,8 +1918,12 @@ Table.uiAddColumn = function() {
                                 col["editor"] = Table.dateTimeEditor;
                                 col["format"] = "{0:yyyy-MM-dd HH:mm:ss}";
                                 Table.dataGridSchemaFields[name.val()]["parse"] = function(val) {
+                                    if (val == null)
+                                        return null;
                                     return kendo.format("{0:yyyy-MM-dd HH:mm:ss}", val);
                                 }
+                                col["template"] = "#= " + name.val() + "==null?'<span style=\"font-style:italic;\"><b>null</b></span>':kendo.toString(" + name.val() + ",'yyyy-MM-dd HH:mm:ss') #";
+                                templateSet = true;
                                 break;
                             }
                         case "year":
@@ -1852,18 +1932,26 @@ Table.uiAddColumn = function() {
                                 col["editor"] = Table.yearEditor;
                                 col["format"] = "{0:yyyy}";
                                 Table.dataGridSchemaFields[name.val()]["parse"] = function(val) {
+                                    if (val == null)
+                                        return null;
                                     return kendo.format("{0:yyyy}", val);
                                 }
+                                col["template"] = "#= " + name.val() + "==null?'<span style=\"font-style:italic;\"><b>null</b></span>':kendo.toString(" + name.val() + ",'yyyy') #";
+                                templateSet = true;
                                 break;
                             }
                         case "time":
                             {
-                                Table.dataGridSchemaFields[name.val()]["type"] = "string";
+                                Table.dataGridSchemaFields[name.val()]["type"] = "date";
                                 col["editor"] = Table.timeEditor;
+                                col["format"] = "{0:HH:mm:ss}";
                                 Table.dataGridSchemaFields[name.val()]["parse"] = function(val) {
+                                    if (val == null)
+                                        return null;
                                     return kendo.format("{0:HH:mm:ss}", val);
                                 }
-                                //col["format"]="{0:HH:mm:ss}";
+                                col["template"] = "#= " + name.val() + "==null?'<span style=\"font-style:italic;\"><b>null</b></span>':kendo.toString(" + name.val() + ",'HH:mm:ss') #";
+                                templateSet = true;
                                 break;
                             }
                         case "boolean":
@@ -1902,7 +1990,9 @@ Table.uiAddColumn = function() {
                         row.fields[name.val()] = {
                             type: Table.dataGridSchemaFields[name.val()]["type"],
                             defaultValue: Table.dataGridSchemaFields[name.val()]["defaultValue"],
-                            editable: type.val() != "tinytext" && type.val() != "mediumtext" && type.val() != "longtext" && type.val() != "text"
+                            editable: type.val() != "tinytext" && type.val() != "mediumtext" && type.val() != "longtext" && type.val() != "text",
+                            nullable: Table.dataGridSchemaFields[name.val()]["nullable"],
+                            parse: Table.dataGridSchemaFields[name.val()]["parse"]
                         }
                         row.defaults[name.val()] = Table.dataGridSchemaFields[name.val()]["defaultValue"];
                     }
