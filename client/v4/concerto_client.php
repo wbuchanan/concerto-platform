@@ -2,7 +2,7 @@
 
 /*
   Concerto Platform - Online Adaptive Testing Platform
-  Copyright (C) 2011-2012, The Psychometrics Centre, Cambridge University
+  Copyright (C) 2011-2013, The Psychometrics Centre, Cambridge University
 
   This program is free software; you can redistribute it and/or
   modify it under the terms of the GNU General Public License
@@ -33,16 +33,18 @@ switch ($method) {
             $result = $client->call("get_last_html", array(
                 "sid" => array_key_exists("sid", $_POST) ? $_POST['sid'] : null,
                 "hash" => array_key_exists("hash", $_POST) ? $_POST['hash'] : null,
-                "pass" => md5($ws_password)
-                    ));
+                "pass" => md5($ws_password),
+                "wid" => array_key_exists("wid", $_POST) ? $_POST['wid'] : null
+            ));
             break;
         }
     case "get_returns": {
             $result = $client->call("get_returns", array(
                 "sid" => array_key_exists("sid", $_POST) ? $_POST['sid'] : null,
                 "hash" => array_key_exists("hash", $_POST) ? $_POST['hash'] : null,
-                "pass" => md5($ws_password)
-                    ));
+                "pass" => md5($ws_password),
+                "wid" => array_key_exists("wid", $_POST) ? $_POST['wid'] : null
+            ));
             break;
         }
     default: {
@@ -55,11 +57,12 @@ switch ($method) {
                 "debug" => array_key_exists("debug", $_POST) ? $_POST['debug'] : null,
                 "pass" => md5($ws_password),
                 "time" => $time,
+                "wid" => array_key_exists("wid", $_POST) ? $_POST['wid'] : null,
                 "resume_from_last_template" => array_key_exists("resume_from_last_template", $_POST) ? $_POST['resume_from_last_template'] : "0"
-                    ));
+            ));
             break;
         }
 }
-if ($result === false)
+if ($result == -1)
     die("Authentication failed!");
 echo $result;
