@@ -120,7 +120,7 @@ class TestSession extends OTable {
 
         if ($debug)
             $session->register();
-        
+
         return $session;
     }
 
@@ -455,6 +455,13 @@ class TestSession extends OTable {
     }
 
     public static function forward($tid, $sid, $hash, $values, $btn_name, $debug, $time, $wid = null, $resume_from_last_template = false, $code = null) {
+        $workspace = UserWorkspace::from_mysql_id($wid);
+        if ($workspace != null) {
+            mysql_select_db($workspace->db_name);
+        } else {
+            return false;
+        }
+
         if (is_string($values))
             $values = json_decode($values, true);
 

@@ -32,8 +32,8 @@ $server->register('run_test', // method name
     'tid' => 'xsd:string',
     'sid' => 'xsd:string',
     'hash' => 'xsd:string',
-    'btn_name' => 'xsd:string',
     'values' => 'xsd:string',
+    'btn_name' => 'xsd:string',
     'debug' => 'xsd:string',
     'pass' => 'xsd:string',
     'time' => 'xsd:string',
@@ -85,20 +85,17 @@ function authorize_WS($pass) {
         return false;
 }
 
-function run_test($tid, $sid, $hash, $btn_name, $values, $debug, $pass, $time, $wid, $resume_from_last_template) {
+function run_test($tid, $sid, $hash, $values, $btn_name,  $debug, $pass, $time, $wid, $resume_from_last_template) {
     if (!authorize_WS($pass))
-        return false;
-    $workspace = UserWorskpace::from_mysql_id($wid);
-    if ($workspace != null)
-        mysql_select_db($workspace->db_name);
+        return -1;
 
-    $result = TestSession::forward($tid, $sid, $hash, json_decode($values), $btn_name, $debug, $time, $wid = null, $resume_from_last_template == "1");
+    $result = TestSession::forward($tid, $sid, $hash, json_decode($values), $btn_name, $debug, $time, $wid, $resume_from_last_template == "1");
     return json_encode($result);
 }
 
 function get_last_html($sid, $hash, $pass, $wid) {
     if (!authorize_WS($pass))
-        return false;
+        return -1;
 
     $workspace = UserWorkspace::from_mysql_id($wid);
     if ($workspace != null)
@@ -112,7 +109,7 @@ function get_last_html($sid, $hash, $pass, $wid) {
 
 function get_returns($sid, $hash, $pass, $wid) {
     if (!authorize_WS($pass))
-        return false;
+        return -1;
 
     $workspace = UserWorkspace::from_mysql_id($wid);
     if ($workspace != null)

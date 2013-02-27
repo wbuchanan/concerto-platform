@@ -53,10 +53,6 @@ $resume_from_last_template = 0;
 if (array_key_exists("resume_from_last_template", $_POST))
     $resume_from_last_template = $_POST['resume_from_last_template'];
 
-$workspace = UserWorkspace::from_mysql_id($wid);
-if ($workspace != null) {
-    mysql_select_db($workspace->db_name);
-}
 $result = TestSession::forward($tid, $sid, $hash, $values, $btn_name, $debug, $time, $wid, $resume_from_last_template == 1, $code);
 
 echo json_encode($result);
