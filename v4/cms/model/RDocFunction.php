@@ -26,7 +26,11 @@ class RDocFunction extends OTable {
     
     public $RDocLibrary_id = 0;
     public $name = "";
-    public $HTML = "";
+    public $RDoc_id = 0;
+    
+    public function get_RDoc(){
+        return RDoc::from_mysql_id($this->RDoc_id);
+    }
 
     public static function create_db($db = null) {
         if ($db == null)
@@ -38,7 +42,7 @@ class RDocFunction extends OTable {
             `created` timestamp NOT NULL default '0000-00-00 00:00:00',
             `RDocLibrary_id` BIGINT(20) NOT NULL ,
             `name` TEXT NOT NULL,
-            `HTML` TEXT NOT NULL
+            `RDoc_id` BIGINT(20) NOT NULL
             ) ENGINE = INNODB CHARACTER SET utf8 COLLATE utf8_general_ci;
             ", $db);
         return mysql_query($sql);

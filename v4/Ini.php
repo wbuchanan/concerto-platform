@@ -168,6 +168,7 @@ class Ini {
         return array(
             "DS_Module",
             "DS_UserInstitutionType",
+            "RDoc",
             "RDocLibrary",
             "RDocFunction",
             "Setting",
@@ -235,6 +236,7 @@ class Ini {
         require_once self::$path_internal . "cms/lib/nusoap/nusoap.php";
         require_once self::$path_internal . "cms/model/Language.php";
         require_once self::$path_internal . "cms/model/OTable.php";
+        require_once self::$path_internal . "cms/model/RDoc.php";
         require_once self::$path_internal . "cms/model/RDocLibrary.php";
         require_once self::$path_internal . "cms/model/RDocFunction.php";
         require_once self::$path_internal . "cms/model/Setting.php";

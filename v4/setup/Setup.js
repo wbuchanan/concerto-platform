@@ -481,16 +481,6 @@ Setup.steps = [
         "Install <b>rjson</b> package to main R library directory.",
         true     
         )
-    ,
-    new SetupStep(
-        false,
-        "R code <b>documentation</b> will be cached.",
-        "code_completion",
-        "R code <b>documentation</b> <b>IS CACHED</b> - <b style='color:green;'>PASSED</b>",
-        "R code <b>documentation</b> <b>IS NOT CACHED</b> - <b style='color:red;'>FAILED</b>",
-        "Please try again.",
-        true     
-        )
     ];
 Setup.maxStep = Setup.steps.length;
 
@@ -498,7 +488,7 @@ Setup.createDBStep = new SetupStep(
     true,
     "<b>MySQL</b> database update - create missing tables",
     "create_db",
-    "<b>MySQL</b> database update - create  missing tables - <b style='color:green;'>PASSED</b>",
+    "<b>MySQL</b> database update - create missing tables - <b style='color:green;'>PASSED</b>",
     "<b>MySQL</b> database update - create missing tables - <b style='color:red;'>FAILED</b>",
     "Setup application was unable to create missing database tables.",
     true

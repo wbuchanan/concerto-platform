@@ -245,65 +245,6 @@ class Setup {
         return false;
     }
 
-    public static function code_completion() {
-        require '../Ini.php';
-        $ini = new Ini();
-
-        $path = Ini::$path_temp . session_id() . ".Rc";
-
-        $sql = sprintf("TRUNCATE TABLE `%s`", RDocLibrary::get_mysql_table());
-        mysql_query($sql);
-        $sql = sprintf("TRUNCATE TABLE `%s`", RDocFunction::get_mysql_table());
-        mysql_query($sql);
-        
-        include "../SETTINGS.php";
-
-        $code = "
-        library(RMySQL)
-        library(tools)
-        unlink('$path')
-        drv <- dbDriver('MySQL')
-        con <- dbConnect(drv, user = '$db_master_user', password = '$db_master_password', dbname = '$db_master_name', host = '$db_host', port = $db_port)
-        dbSendQuery(con,statement = 'SET NAMES \"utf8\";')
-        dbSendQuery(con,statement = 'SET time_zone=\"$mysql_timezone\";')
-            
-        for(package in sort(.packages(T))){
-
-            dbSendQuery(con,paste('INSERT INTO `RDocLibrary` SET `name`=\"',package,'\"',sep=''))
-            lid <- dbGetQuery(con, paste('SELECT `id` FROM `RDocLibrary` WHERE `name`=\"',package,'\"',sep=''))[1,1]
-            library(package,character.only=T)
-            db <- Rd_db(package)
-            functions <- lsf.str(paste('package:',package,sep=''),pattern='*')
-
-            for(func in functions){
-                for(doc in db){
-                    aliases <- tools:::.Rd_get_metadata(x=doc,kind='alias')
-                    if(func %in% aliases) {
-                        fileConn<-file('$path',open='a+')
-                        tools::Rd2HTML(doc,out=fileConn)
-                        dbSendQuery(con,paste('INSERT INTO `RDocFunction` SET `name`=\"',func,'\", `RDocLibrary_id`=',lid,', HTML=\"',dbEscapeStrings(con,paste(readLines(fileConn),collapse='\n')),'\"',sep=''))
-                        unlink('$path')
-                        break
-                    }
-                }
-            }
-        }
-        ";
-
-        $fh = fopen($path, "w");
-        fwrite($fh, $code);
-        fclose($fh);
-
-        $rscript_path = Ini::$path_r_script;
-
-        `$rscript_path $path`;
-
-        if (file_exists($path))
-            unlink($path);
-
-        return json_encode(array("result" => 0, "param" => "doc"));
-    }
-
     public static function update_db($simulate = false, $only_recalculate_hash = false, $only_create_db = false) {
         require '../Ini.php';
         $ini = new Ini();

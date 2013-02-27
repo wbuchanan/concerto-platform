@@ -19,23 +19,27 @@
   Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA.
  */
 
-if (!isset($ini)) {
-    require_once '../../Ini.php';
-    $ini = new Ini();
-}
-$logged_user = User::get_logged_user();
-if ($logged_user == null) {
-    echo json_encode(array());
-    exit();
+class RDoc extends OTable {
+
+    public static $mysql_table_name = "RDoc";
+    public static $is_master_table = true;
+    
+    public $HTML = "";
+
+    public static function create_db($db = null) {
+        if ($db == null)
+            $db = Ini::$db_master_name;
+        $sql = sprintf("
+            CREATE TABLE IF NOT EXISTS `%s`.`RDoc` (
+            `id` BIGINT(20) NOT NULL AUTO_INCREMENT PRIMARY KEY ,
+            `updated` timestamp NOT NULL default CURRENT_TIMESTAMP on update CURRENT_TIMESTAMP,
+            `created` timestamp NOT NULL default '0000-00-00 00:00:00',
+            `HTML` TEXT NOT NULL
+            ) ENGINE = INNODB CHARACTER SET utf8 COLLATE utf8_general_ci;
+            ", $db);
+        return mysql_query($sql);
+    }
+
 }
 
-$sql = "SELECT `".Ini::$db_master_name."`.`".RDoc::get_mysql_table()."`.`HTML`
-    FROM `".Ini::$db_master_name."`.`".RDoc::get_mysql_table()."`
-    LEFT JOIN `".Ini::$db_master_name."`.`".RDocFunction::get_mysql_table()."` ON `".Ini::$db_master_name."`.`".RDocFunction::get_mysql_table()."`.`RDoc_id` = `".Ini::$db_master_name."`.`".RDoc::get_mysql_table()."`.`id`
-    WHERE `".Ini::$db_master_name."`.`".RDocFunction::get_mysql_table()."`.`name` = '".$_POST['func']."'";
-$z=mysql_query($sql);
-while($r=mysql_fetch_array($z)){
-    echo json_encode(array("html"=>$r[0]));
-    break;
-}
 ?>

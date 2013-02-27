@@ -66,7 +66,7 @@ concerto <- list(
 
             drv <- dbDriver('MySQL')
 
-            con <- dbConnect(drv, user = user, password = password, dbname = dbName, host = host, port = port)
+            con <- dbConnect(drv, user = user, password = password, dbname = dbName, host = host, port = port, client.flag=CLIENT_MULTI_STATEMENTS)
             dbSendQuery(con,statement = "SET NAMES 'utf8';")
             dbSendQuery(con,statement = paste("SET time_zone='",dbTimezone,"';",sep=''))
 
