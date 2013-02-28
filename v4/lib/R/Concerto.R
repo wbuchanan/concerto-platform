@@ -279,20 +279,6 @@ concerto <- list(
         timeLimit <- dbEscapeStrings(concerto$db$connection,toString(timeLimit))
         dbSendQuery(concerto$db$connection, statement = sprintf("UPDATE `%s`.`TestSession` SET `time_limit` = '%s' WHERE `id`=%s",dbName,timeLimit,sessionID))
     },
-
-    updateQTIID = function(qtiID) {
-        dbName <- dbEscapeStrings(concerto$db$connection,concerto$db$name)
-        sessionID <- dbEscapeStrings(concerto$db$connection,toString(concerto$sessionID))
-        qtiID <- dbEscapeStrings(concerto$db$connection,toString(qtiID))
-        dbSendQuery(concerto$db$connection, statement = sprintf("UPDATE `%s`.`TestSession` SET `QTIAssessmentItem_id` = '%s' WHERE `id`=%s",dbName,qtiID,sessionID))
-    },
-
-    updateQTIWorkspaceID = function(workspaceID) {
-        dbName <- dbEscapeStrings(concerto$db$connection,concerto$db$name)
-        sessionID <- dbEscapeStrings(concerto$db$connection,toString(concerto$sessionID))
-        workspaceID <- dbEscapeStrings(concerto$db$connection,toString(workspaceID))
-        dbSendQuery(concerto$db$connection, statement = sprintf("UPDATE `%s`.`TestSession` SET `QTIAssessmentItem_UserWorkspace_id` = '%s' WHERE `id`=%s",dbName,workspaceID,sessionID))
-    },
     
     interpretResponse = function(){
       closeAllConnections()
@@ -343,15 +329,10 @@ concerto <- list(
             
             qti <- concerto$qti$get(qtiID,workspaceID=workspaceID)
             if(dim(qti)[1]==0) stop(paste("QTI #",workspaceID,":",qtiID," not found!",sep=''))
-
-            concerto$updateQTIID(qtiID)
-            concerto$updateQTIWorkspaceID(workspaceID)
-            concerto$updateStatus(8)
             
             #create 'result' list
-            response <- concerto$interpretResponse()
             result <- list()
-            eval(parse(text=response$code))
+            eval(parse(text=qti[1,"ini_r_code"]))
             if(length(params)>0){
                 for(i in ls(params)){
                     result[[i]] <- params[[i]]
@@ -368,12 +349,6 @@ concerto <- list(
             
             qti <- concerto$qti$get(qtiID,workspaceID=workspaceID)
             if(dim(qti)[1]==0) stop(paste("QTI #",workspaceID,":",qtiID," not found!",sep=''))
-            concerto$updateQTIID(qtiID)
-            concerto$updateQTIWorkspaceID(workspaceID)
-            
-            concerto$updateStatus(9)
-            
-            response <- concerto$interpretResponse()
             
             result <- ini
             if(length(userResponse)>0){
@@ -381,14 +356,14 @@ concerto <- list(
                     result[[i]] <- userResponse[[i]]
                 }
             }
-            eval(parse(text=response$code))
+            eval(parse(text=qti[1,"response_proc_r_code"]))
             
             return(result)
         },
         get = function(qtiID,workspaceID=concerto$workspaceID){
             dbName <- dbEscapeStrings(concerto$db$connection,concerto$workspace$get(workspaceID))
             qtiID <- dbEscapeStrings(concerto$db$connection,toString(qtiID))
-            result <- dbSendQuery(concerto$db$connection,sprintf("SELECT `id`,`name` FROM `%s`.`QTIAssessmentItem` WHERE `id`='%s'",dbName,qtiID))
+            result <- dbSendQuery(concerto$db$connection,sprintf("SELECT `id`,`name`,`ini_r_code`,`response_proc_r_code` FROM `%s`.`QTIAssessmentItem` WHERE `id`='%s'",dbName,qtiID))
             response <- fetch(result,n=-1)
             return(response)
         },

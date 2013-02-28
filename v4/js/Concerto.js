@@ -244,7 +244,6 @@ function Concerto(container, wid, hash, sid, tid, queryPath, callbackGet, callba
         this.effectTransition = 1;
         var thisClass = this;
         $("head").append(this.data["HEAD"]);
-        console.log(this.data["HEAD"]);
         $(thisClass.container).html(thisClass.insertSpecialVariables(this.data["HTML"]));
 
         this.showEffect();

@@ -49,7 +49,7 @@ class TestInstance {
     public function is_timedout() {
         if (time() - $this->last_action_time > Ini::$r_instances_timeout) {
             if (TestServer::$debug)
-                TestServer::log_debug("TestInstance->is_timedout() --- Test instance timedout");
+                TestServer::log_debug("TestInstance->is_timedout() --- Test instance #" . $this->UserWorkspace_id . ":" . $this->TestSession_id . " timedout");
             return true;
         }
         else
@@ -62,7 +62,7 @@ class TestInstance {
 
         if (time() - $this->last_execution_time > Ini::$r_max_execution_time && $session->status == TestSession::TEST_SESSION_STATUS_WORKING) {
             if (TestServer::$debug)
-                TestServer::log_debug("TestInstance->is_execution_timedout() --- Test instance execution timedout");
+                TestServer::log_debug("TestInstance->is_execution_timedout() --- Test instance #" . $this->UserWorkspace_id . ":" . $this->TestSession_id . " execution timedout");
             return true;
         }
         else
@@ -145,6 +145,9 @@ class TestInstance {
         TestSession::change_db($this->UserWorkspace_id);
         $session = TestSession::from_mysql_id($this->TestSession_id);
 
+        if (TestServer::$debug)
+            TestServer::log_debug("TestInstance->stop() --- stopping instance #" . $this->UserWorkspace_id . ":" . $this->TestSession_id);
+
         if ($this->is_started()) {
             if ($session->status == TestSession::TEST_SESSION_STATUS_TEMPLATE)
                 $this->send_close_signal();
@@ -159,6 +162,9 @@ class TestInstance {
             $ret = proc_close($this->r);
             if (TestServer::$debug)
                 TestServer::log_debug("TestInstance->stop() --- Test instance closed with: " . $ret);
+        } else {
+            if (TestServer::$debug)
+                TestServer::log_debug("TestInstance->stop() --- not started");
         }
         return null;
     }
@@ -193,7 +199,7 @@ class TestInstance {
         $session = $this->get_TestSession();
 
         if (TestServer::$debug)
-            TestServer::log_debug("TestInstance->serialize() --- Serializing #" . $this->TestSession_id);
+            TestServer::log_debug("TestInstance->serialize() --- Serializing #" . $this->UserWorkspace_id . ":" . $this->TestSession_id);
 
         $this->response = "";
         $this->error_response = "";
@@ -211,64 +217,6 @@ class TestInstance {
         }
     }
 
-    public function send_QTI_initialization() {
-        TestSession::change_db($this->UserWorkspace_id);
-        $session = $this->get_TestSession();
-
-        TestSession::change_db($session->QTIAssessmentItem_UserWorkspace_id);
-        $qti = QTIAssessmentItem::from_mysql_id($session->QTIAssessmentItem_id);
-        $qti->validate();
-
-        $code = $qti->get_QTI_ini_R_code();
-        $json_code = json_encode(array("code" => $code));
-
-        if (TestServer::$debug) {
-            TestServer::log_debug("TestInstance->send_QTI_initialization() --- sending code to session #" . $this->TestSession_id);
-            if (TestServer::$debug_stream_data)
-                TestServer::log_debug($code, true);
-        }
-
-        $this->is_working = true;
-
-        $fp = fopen($session->get_RSession_fifo_path(), "w");
-        stream_set_blocking($fp, 0);
-        fwrite($fp, $json_code);
-        fclose($fp);
-
-        if (TestServer::$debug) {
-            TestServer::log_debug("TestInstance->send_QTI_initialization() --- finished sending code to session #" . $this->TestSession_id);
-        }
-    }
-
-    public function send_QTI_response_processing() {
-        TestSession::change_db($this->UserWorkspace_id);
-        $session = $this->get_TestSession();
-
-        TestSession::change_db($session->QTIAssessmentItem_UserWorkspace_id);
-        $qti = QTIAssessmentItem::from_mysql_id($session->QTIAssessmentItem_id);
-        $qti->validate();
-
-        $code = $qti->get_response_processing_R_code();
-        $json_code = json_encode(array("code" => $code));
-
-        if (TestServer::$debug) {
-            TestServer::log_debug("TestInstance->send_QTI_response_processing() --- sending code to session #" . $this->TestSession_id);
-            if (TestServer::$debug_stream_data)
-                TestServer::log_debug($code, true);
-        }
-
-        $this->is_working = true;
-
-        $fp = fopen($session->get_RSession_fifo_path(), "w");
-        stream_set_blocking($fp, 0);
-        fwrite($fp, $json_code);
-        fclose($fp);
-
-        if (TestServer::$debug) {
-            TestServer::log_debug("TestInstance->send_QTI_response_processing() --- finished sending code to session #" . $this->TestSession_id);
-        }
-    }
-
     public function send_variables($variables = null) {
         TestSession::change_db($this->UserWorkspace_id);
         $session = $this->get_TestSession();
@@ -276,7 +224,7 @@ class TestInstance {
         $variables = json_encode($variables);
 
         if (TestServer::$debug) {
-            TestServer::log_debug("TestInstance->send_variables() --- sending variables to session #" . $this->TestSession_id);
+            TestServer::log_debug("TestInstance->send_variables() --- sending variables to session #" . $this->UserWorkspace_id . ":" . $this->TestSession_id);
             if (TestServer::$debug_stream_data)
                 TestServer::log_debug($variables, true);
         }
@@ -292,7 +240,7 @@ class TestInstance {
         fclose($fp);
 
         if (TestServer::$debug) {
-            TestServer::log_debug("TestInstance->send_variables() --- finished sending variables to session #" . $this->TestSession_id);
+            TestServer::log_debug("TestInstance->send_variables() --- finished sending variables to session #" . $this->UserWorkspace_id . ":" . $this->TestSession_id);
         }
     }
 
@@ -304,7 +252,7 @@ class TestInstance {
             return;
 
         if (TestServer::$debug) {
-            TestServer::log_debug("TestInstance->send_close_signal() --- sending close signal to session #" . $this->TestSession_id);
+            TestServer::log_debug("TestInstance->send_close_signal() --- sending close signal to session #" . $this->UserWorkspace_id . ":" . $this->TestSession_id);
         }
 
 
@@ -318,7 +266,7 @@ class TestInstance {
         fclose($fp);
 
         if (TestServer::$debug) {
-            TestServer::log_debug("TestInstance->send_close_signal() --- finished sending close signal to session #" . $this->TestSession_id);
+            TestServer::log_debug("TestInstance->send_close_signal() --- finished sending close signal to session #" . $this->UserWorkspace_id . ":" . $this->TestSession_id);
         }
     }
 
@@ -357,28 +305,6 @@ class TestInstance {
                     if (TestServer::$debug)
                         TestServer::log_debug("TestInstance->read() --- Final template instance recognized.");
                 }
-            }
-
-            //QTI initialization
-            if ($session->status == TestSession::TEST_SESSION_STATUS_QTI_INIT && !$this->is_serializing) {
-
-                if (TestServer::$debug)
-                    TestServer::log_debug("TestInstance->read() --- QTI initialization instance recognized.");
-
-                $session->status = TestSession::TEST_SESSION_STATUS_WORKING;
-                $change_status = true;
-                $this->send_QTI_initialization();
-            }
-
-            //QTI response processing
-            if ($session->status == TestSession::TEST_SESSION_STATUS_QTI_RP && !$this->is_serializing) {
-
-                if (TestServer::$debug)
-                    TestServer::log_debug("TestInstance->read() --- QTI response processing instance recognized.");
-
-                $session->status = TestSession::TEST_SESSION_STATUS_WORKING;
-                $change_status = true;
-                $this->send_QTI_response_processing();
             }
         }
 
@@ -541,11 +467,11 @@ class TestInstance {
         $code = "";
         $session = $this->get_TestSession();
         if ($session == null)
-            return($code . "stop('session #" . $this->TestSession_id . " does not exist!')
+            return($code . "stop('session #" . $this->UserWorkspace_id . ":" . $this->TestSession_id . " does not exist!')
                 ");
         $test = $this->get_Test();
         if ($test == null)
-            return($code . "stop('test #" . $session->Test_id . " does not exist!')
+            return($code . "stop('test #" . $this->UserWorkspace_id . ":" . $session->Test_id . " does not exist!')
                 ");
 
         include Ini::$path_internal . 'SETTINGS.php';

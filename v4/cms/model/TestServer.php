@@ -33,6 +33,9 @@ class TestServer {
 
     const SOCK_TYPE_UNIX = 0;
     const SOCK_TYPE_TCP = 1;
+    const SERVER_STATUS_STOPPED = 0;
+    const SERVER_STATUS_STARTING = 1;
+    const SERVER_STATUS_RUNNING = 2;
 
     public static function log_debug($message, $code = false) {
         $t = microtime(true);
@@ -52,7 +55,7 @@ class TestServer {
             if ($session->debug == 0)
                 $this->serialize_instance($k);
             else
-                $this->close_instance($k, true, true);
+                $this->close_instance($k, true);
         }
 
         socket_close($this->main_sock);
@@ -124,7 +127,17 @@ class TestServer {
         return trim($data);
     }
 
-    public static function is_running() {
+    public static function wait_until_started() {
+        if (self::$debug) {
+            self::log_debug("TestServer::wait_until_started() --- waits until started");
+        }
+
+        while (self::get_server_status() != self::SERVER_STATUS_RUNNING) {
+            usleep(100000);
+        }
+    }
+
+    public static function get_server_status() {
         $socket = null;
         if (Ini::$server_socks_type == 1)
             $socket = socket_create(AF_INET, SOCK_STREAM, SOL_TCP);
@@ -144,25 +157,38 @@ class TestServer {
             $result = @socket_connect($socket, Ini::$path_unix_sock);
 
         socket_close($socket);
-        if (!$result)
-            return false;
+
+        $status_path = Ini::$path_unix_sock_dir . ".starting";
+        if ($result) {
+            if (self::$debug) {
+                self::log_debug("TestServer::is_running() --- Server is running");
+            }
+            if (file_exists($status_path))
+                unlink($status_path);
+            return self::SERVER_STATUS_RUNNING;
+        } else {
+            if (file_exists($status_path)) {
+                return self::SERVER_STATUS_STARTING;
+            }
+        }
 
         if (self::$debug) {
-            self::log_debug("TestServer::is_running() --- Server is running");
+            self::log_debug("TestServer::is_running() --- Server is stopped");
         }
-        return true;
+        return self::SERVER_STATUS_STOPPED;
     }
 
     public static function start_process() {
+        $status_path = Ini::$path_unix_sock_dir . ".starting";
+        $fh = fopen($status_path, "w");
+        fwrite($fh, self::SERVER_STATUS_STARTING);
+        fclose($fh);
         if (self::$debug) {
             self::log_debug("TestServer::start_process() --- Starting server process");
         }
         session_write_close();
         $command = 'nohup ' . Ini::$path_php_exe . ' ' . Ini::$path_internal . 'cms/query/socket_start.php ' . Ini::$path_internal . ' >> ' . Ini::$path_temp . date('Y-m-d') . ".php.log" . ' 2>&1 & echo $!';
         exec($command);
-        while (!self::is_running()) {
-            
-        }
         if (self::$debug) {
             self::log_debug("TestServer::start_process() --- Server process started");
         }
@@ -247,7 +273,7 @@ class TestServer {
                     if ($session->debug == 0)
                         $this->serialize_instance($k);
                     else
-                        $this->close_instance($k, true, true);
+                        $this->close_instance($k, true);
                 }
             }
 
@@ -313,8 +339,9 @@ class TestServer {
                                 }
                             }
 
-                            if ($this->instances[$k]->code_execution_halted)
-                                $this->close_instance($k);
+                            if ($this->instances[$k]->code_execution_halted) {
+                                $this->close_instance($k,true);
+                            }
                         }
                     }
 

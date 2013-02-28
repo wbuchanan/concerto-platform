@@ -24,6 +24,8 @@ class QTIAssessmentItem extends OModule {
     public $root = null;
     public $name = "";
     public $XML = "";
+    public $ini_r_code = "";
+    public $response_proc_r_code = "";
     public $description = "";
     public $xml_hash = "";
     public static $exportable = true;
@@ -299,8 +301,14 @@ class QTIAssessmentItem extends OModule {
         if ($obj != null) {
             $xml_hash = $obj->calculate_xml_hash();
             $obj->xml_hash = $xml_hash;
+
+            $obj->validate();
+            $obj->ini_r_code = $obj->get_QTI_ini_R_code();
+            $obj->response_proc_r_code = $obj->get_response_processing_R_code();
+
             $obj->mysql_save();
         }
+
         return $lid;
     }
 
@@ -379,6 +387,8 @@ class QTIAssessmentItem extends OModule {
             `created` timestamp NOT NULL default '0000-00-00 00:00:00',
             `name` text NOT NULL,
             `XML` text NOT NULL,
+            `ini_r_code` text NOT NULL,
+            `response_proc_r_code` text NOT NULL,
             `description` text NOT NULL,
             `xml_hash` text NOT NULL,
             PRIMARY KEY  (`id`)

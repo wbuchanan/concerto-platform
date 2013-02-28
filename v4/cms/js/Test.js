@@ -748,6 +748,7 @@ Test.uiApplyFunctionWidget = function(fw) {
         Test.logicCodeMirror.autoIndentRange(range.from, range.to);
         Test.logicCodeMirror.setSelection(range.to);
     }
+    Test.logicCodeMirror.focus();
 }
 
 Test.uiRemoveAllFunctionWidgets = function() {

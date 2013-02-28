@@ -37,8 +37,6 @@ class TestSession extends OTable {
     public $error_output = "";
     public $state = "";
     public $UserWorkspace_id = 0;
-    public $QTIAssessmentItem_id = 0;
-    public $QTIAssessmentItem_UserWorkspace_id = 0;
 
     const TEST_SESSION_STATUS_NEW = 0;
     const TEST_SESSION_STATUS_WORKING = 1;
@@ -141,13 +139,13 @@ class TestSession extends OTable {
     }
 
     public function close() {
-        if (TestServer::is_running())
+        if (TestServer::get_server_status() == TestServer::SERVER_STATUS_RUNNING)
             TestServer::send(json_encode(array("type" => 1, "code" => "close", "workspace_id" => $this->UserWorkspace_id, "session_id" => $this->id, "hash" => $this->hash)));
         $this->remove_files();
     }
 
     public function serialize() {
-        if (TestServer::is_running())
+        if (TestServer::get_server_status() == TestServer::SERVER_STATUS_RUNNING)
             TestServer::send(json_encode(array("type" => 1, "code" => "serialize", "workspace_id" => $this->UserWorkspace_id, "session_id" => $this->id, "hash" => $this->hash)));
     }
 
@@ -223,8 +221,12 @@ class TestSession extends OTable {
 
         if (TestServer::$debug)
             TestServer::log_debug("TestSession->RCall --- checking for server");
-        if (!TestServer::is_running())
+        if (TestServer::get_server_status() == TestServer::SERVER_STATUS_STOPPED) {
             TestServer::start_process();
+            TestServer::wait_until_started();
+        } else if (TestServer::get_server_status() == TestServer::SERVER_STATUS_STARTING) {
+            TestServer::wait_until_started();
+        }
         if (TestServer::$debug)
             TestServer::log_debug("TestSession->RCall --- server found, trying to send");
 
@@ -592,8 +594,6 @@ class TestSession extends OTable {
             `error_output` longtext NOT NULL,
             `state` longtext NOT NULL,
             `UserWorkspace_id` bigint(20) NOT NULL,
-            `QTIAssessmentItem_id` bigint(20) NOT NULL,
-            `QTIAssessmentItem_UserWorkspace_id` bigint(20) NOT NULL,
             PRIMARY KEY  (`id`)
             ) ENGINE=InnoDB  DEFAULT CHARSET=utf8;
             ", $db);
