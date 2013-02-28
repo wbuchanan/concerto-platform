@@ -221,13 +221,13 @@ function Concerto(container, wid, hash, sid, tid, queryPath, callbackGet, callba
         switch (status) {
             case Concerto.statusTypes.tampered:
                 {
-                    $(this.container).html("<h2>Session unavailable.</h2>");
+                    $(this.container).html("<h3>Session unavailable.</h3>");
                     break;
                 }
             case Concerto.statusTypes.error:
                 {
                     if (this.debug == null) {
-                        $(this.container).html("<h2>Fatal test exception encountered. Test halted.</h2>");
+                        $(this.container).html("<h3>Fatal test exception encountered. Test halted.</h3>");
                     }
                     break;
                 }

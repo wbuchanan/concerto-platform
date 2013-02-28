@@ -149,8 +149,8 @@ class TestInstance {
             TestServer::log_debug("TestInstance->stop() --- stopping instance #" . $this->UserWorkspace_id . ":" . $this->TestSession_id);
 
         if ($this->is_started()) {
-            if ($session->status == TestSession::TEST_SESSION_STATUS_TEMPLATE)
-                $this->send_close_signal();
+            //if ($session->status == TestSession::TEST_SESSION_STATUS_TEMPLATE)
+                //$this->send_close_signal();
 
             fclose($this->pipes[0]);
             fclose($this->pipes[1]);
@@ -206,7 +206,7 @@ class TestInstance {
         $this->is_serializing = true;
         $this->is_serialized = false;
         $this->is_working = true;
-        $fp = fopen($session->get_RSession_fifo_path(), "w");
+        $fp = fopen($session->get_RSession_fifo_path(), "r+");
         stream_set_blocking($fp, 0);
         fwrite($fp, "serialize");
         fclose($fp);
@@ -234,7 +234,7 @@ class TestInstance {
         $this->error_response = "";
         $this->is_working = true;
 
-        $fp = fopen($session->get_RSession_fifo_path(), "w");
+        $fp = fopen($session->get_RSession_fifo_path(), "r+");
         stream_set_blocking($fp, 0);
         fwrite($fp, $variables);
         fclose($fp);
@@ -244,6 +244,7 @@ class TestInstance {
         }
     }
 
+    /*
     public function send_close_signal() {
         TestSession::change_db($this->UserWorkspace_id);
         $session = $this->get_TestSession();
@@ -260,7 +261,7 @@ class TestInstance {
         $this->error_response = "";
         $this->is_working = true;
 
-        $fp = fopen($session->get_RSession_fifo_path(), "w");
+        $fp = fopen($session->get_RSession_fifo_path(), "r+");
         stream_set_blocking($fp, 0);
         fwrite($fp, "close");
         fclose($fp);
@@ -269,6 +270,8 @@ class TestInstance {
             TestServer::log_debug("TestInstance->send_close_signal() --- finished sending close signal to session #" . $this->UserWorkspace_id . ":" . $this->TestSession_id);
         }
     }
+     * 
+     */
 
     public function read() {
         TestSession::change_db($this->UserWorkspace_id);
@@ -285,25 +288,25 @@ class TestInstance {
         $session = TestSession::from_mysql_id($this->TestSession_id);
         $change_status = false;
 
-        //serialized
+//serialized
         if ($session->status == TestSession::TEST_SESSION_STATUS_SERIALIZED) {
             $this->is_serialized = true;
             $this->is_data_ready = true;
 
             if (TestServer::$debug)
-                TestServer::log_debug("TestInstance->read() --- Serialized instance recognized.");
+                TestServer::log_debug("TestInstance->read() --- Serialized instance recognized on #" . $this->UserWorkspace_id . ":" . $this->TestSession_id);
         } else {
 
             //template
             if ($session->status == TestSession::TEST_SESSION_STATUS_TEMPLATE && !$this->is_serializing) {
                 $this->is_data_ready = true;
                 if (TestServer::$debug)
-                    TestServer::log_debug("TestInstance->read() --- Template instance recognized.");
+                    TestServer::log_debug("TestInstance->read()--- Template instance recognized on #" . $this->UserWorkspace_id . ":" . $this->TestSession_id);
 
                 if ($session->release == 1) {
                     $this->is_finished = true;
                     if (TestServer::$debug)
-                        TestServer::log_debug("TestInstance->read() --- Final template instance recognized.");
+                        TestServer::log_debug("TestInstance->read()--- Final template instance recognized on #" . $this->UserWorkspace_id . ":" . $this->TestSession_id);
                 }
             }
         }
@@ -321,7 +324,7 @@ class TestInstance {
                 } else {
                     $this->is_finished = true;
                     if (TestServer::$debug)
-                        TestServer::log_debug("TestInstance->read() --- Completed instance recognised.");
+                        TestServer::log_debug("TestInstance->read()--- Completed instance recognised on #" . $this->UserWorkspace_id . ":" . $this->TestSession_id);
                 }
             }
             if (strpos($last_line, "+ ") === 0 && $session->debug == 1) {
@@ -330,7 +333,7 @@ class TestInstance {
                 $change_status = true;
                 $session->status = TestSession::TEST_SESSION_STATUS_WAITING_CODE;
                 if (TestServer::$debug)
-                    TestServer::log_debug("TestInstance->read() --- Waiting for code instance recognised.");
+                    TestServer::log_debug("TestInstance->read()--- Waiting for code instance recognised on #" . $this->UserWorkspace_id . ":" . $this->TestSession_id);
             }
         }
 
@@ -346,8 +349,8 @@ class TestInstance {
 
             if ($this->is_execution_timedout())
                 $error.="
-                TIMEOUT
-                ";
+TIMEOUT
+";
         }
 
         $this->response.=$result;
@@ -355,10 +358,10 @@ class TestInstance {
 
         if (strlen($this->response) > TestServer::$response_limit)
             $this->response = "( ... )
-            " . substr($this->response, strlen($this->response) - TestServer::$response_limit);
+" . substr($this->response, strlen($this->response) - TestServer::$response_limit);
         if (strlen($this->error_response) > TestServer::$response_limit)
             $this->error_response = "( ... )
-            " . substr($this->error_response, strlen($this->error_response) - TestServer::$response_limit);
+" . substr($this->error_response, strlen($this->error_response) - TestServer::$response_limit);
 
         if ($session->debug == 1 && $this->is_data_ready) {
             $session->output = $this->response;
@@ -374,7 +377,7 @@ class TestInstance {
             $this->send_variables($this->pending_variables);
             $this->pending_variables = null;
         }
-
+        
         if ($this->is_data_ready) {
             $this->last_action_time = time();
             return $this->response;
@@ -431,7 +434,7 @@ class TestInstance {
         }
 
         if (TestServer::$debug)
-            TestServer::log_debug("TestInstance->run() --- Sending " . strlen($send_code) . " data to test instance");
+            TestServer::log_debug("TestInstance->run()--- Sending " . strlen($send_code) . " data to test instance #" . $this->UserWorkspace_id . ":" . $this->TestSession_id);
         $this->last_action_time = time();
         $this->last_execution_time = time();
 
@@ -455,7 +458,7 @@ class TestInstance {
         $bytes = fwrite($this->pipes[0], $code);
 
         if (TestServer::$debug)
-            TestServer::log_debug("TestInstance->run() --- " . $bytes . " written to test instance");
+            TestServer::log_debug("TestInstance->run()--- " . $bytes . " written to test instance #" . $this->UserWorkspace_id . ":" . $this->TestSession_id);
 
         $this->is_working = true;
         $this->is_data_ready = false;
@@ -468,11 +471,11 @@ class TestInstance {
         $session = $this->get_TestSession();
         if ($session == null)
             return($code . "stop('session #" . $this->UserWorkspace_id . ":" . $this->TestSession_id . " does not exist!')
-                ");
+");
         $test = $this->get_Test();
         if ($test == null)
             return($code . "stop('test #" . $this->UserWorkspace_id . ":" . $session->Test_id . " does not exist!')
-                ");
+");
 
         include Ini::$path_internal . 'SETTINGS.php';
         $path = Ini::$path_temp . $session->UserWorkspace_id;
@@ -518,7 +521,8 @@ class TestInstance {
             %s
             ', $test->id, $this->TestSession_id, $db_host, ($db_port != "" ? $db_port : "3306"), $main_workspace->db_login, $main_workspace->db_password, $workspace->db_name, $path, $mysql_timezone, Ini::$path_internal_media . $owner->id, $workspace->id, Ini::$db_users_db_name_prefix, $this->IP, $unserialize ? "FALSE" : "TRUE", $unserialize ? '
                 concerto$unserialize()
-                concerto$db$connect(CONCERTO_DB_LOGIN,CONCERTO_DB_PASSWORD,CONCERTO_DB_NAME,CONCERTO_DB_HOST,CONCERTO_DB_PORT,CONCERTO_DB_TIMEZONE)' : "", $unserialize ? 'if(exists("onUnserialize")) do.call("onUnserialize",list(lastReturn=rjson::fromJSON("' . addcslashes(json_encode($this->pending_variables), '"') . '")),envir=.GlobalEnv);' : "");
+                concerto$db$connect(CONCERTO_DB_LOGIN,CONCERTO_DB_PASSWORD,CONCERTO_DB_NAME,CONCERTO_DB_HOST,CONCERTO_DB_PORT,CONCERTO_DB_TIMEZONE)' : "", $unserialize ? 'if(exists("onUnserialize")) do.call("onUnserialize",list(lastReturn=rjson::fromJSON("' . addcslashes(json_encode($this->pending_variables), '"') . '")), envir = .GlobalEnv);
+' : "");
 
         if ($unserialize)
             $this->pending_variables = null;
@@ -527,8 +531,8 @@ class TestInstance {
 
     public function get_final_code() {
         $code = '
-            concerto$finalize()
-            ';
+concerto$finalize()
+';
         return $code;
     }
 

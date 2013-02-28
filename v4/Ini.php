@@ -30,7 +30,7 @@ class Ini {
     public static $path_r_exe = "";
     public static $path_r_script = "";
     public static $path_temp = "";
-    public static $version = "4.0.0.alpha10";
+    public static $version = "4.0.0.beta1";
     public static $server_host = "127.0.0.1";
     public static $server_port = "8888";
     public static $path_unix_sock = "";

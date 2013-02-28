@@ -191,7 +191,8 @@ concerto <- list(
         concerto$updateStatus(7)
         dbDisconnect(concerto$db$connection)
         print("serialization finished")
-        stop("done")
+        #stop("done")
+        Sys.sleep(3600)
     },
 
     unserialize = function(){

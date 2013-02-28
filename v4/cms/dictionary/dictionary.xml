@@ -4479,16 +4479,6 @@ Note: You can add new languages by inserting "<new_language>string translated in
             <nl></nl>
             <br></br>
         </string>
-        <string id="682" js="1">
-            <en>function wizard</en>
-            <de></de>
-            <pl>wizard funkcji</pl>
-            <cn></cn>
-            <fr></fr>
-            <bg></bg>
-            <nl></nl>
-            <br></br>
-        </string>
         <string id="683" js="1">
             <en>apply</en>
             <de></de>

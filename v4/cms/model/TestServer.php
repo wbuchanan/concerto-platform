@@ -340,14 +340,14 @@ class TestServer {
                             }
 
                             if ($this->instances[$k]->code_execution_halted) {
-                                $this->close_instance($k,true);
+                                $this->close_instance($k, true);
                             }
                         }
                     }
 
                     if ($serialized || (array_key_exists($k, $this->instances) && $this->instances[$k]->is_finished)) {
                         $this->last_action_time = time();
-                        $this->close_instance($k);
+                        $this->close_instance($k,true);
                     }
                 }
             }
@@ -483,6 +483,16 @@ class TestServer {
             return false;
         }
 
+        if (!array_key_exists("sid" . $data->workspace_id . "-" . $data->session_id, $this->instances) && $session->status != TestSession::TEST_SESSION_STATUS_SERIALIZED && $session->status != TestSession::TEST_SESSION_STATUS_NEW) {
+            if (self::$debug)
+                self::log_debug("TestServer->authorize_client() --- Client authorization failed - broken session");
+            if (!socket_write($client_sock, json_encode(array("return" => -1)) . chr(0))) {
+                if (self::$debug)
+                    self::log_debug("TestServer->authorize_client() --- Error: (socket_write) " . socket_last_error() . " - " . socket_strerror(socket_last_error()));
+            }
+            return false;
+        }
+
         if (self::$debug)
             self::log_debug("TestServer->authorize_client() --- Client authorization succeeded");
         return true;
@@ -518,7 +528,7 @@ class TestServer {
                         self::log_debug($data->code, true);
                 }
             } else {
-                $this->close_instance($key);
+                $this->close_instance($key,true);
             }
         } else {
             if (array_key_exists($key, $this->instances)) {

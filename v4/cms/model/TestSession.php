@@ -164,6 +164,9 @@ class TestSession extends OTable {
     }
 
     public function RCall($values = null, $code = null, $resume_from_last_template = false) {
+        if (TestServer::$debug)
+            TestServer::log_debug("TestSession->RCall --- R call initiated #".  session_id());
+        
         $test = Test::from_mysql_id($this->Test_id);
         $loader = $test->get_loader_Template();
 
