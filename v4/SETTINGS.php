@@ -1,46 +1,46 @@
 <?php
 //MySQL
-$db_host = "localhost";
-$db_port = "3306";
-$db_master_user = "db_master_user";
-$db_master_password = "db_password";
-$db_master_name = "db_master_name";
-$db_users_name_prefix = "concerto_";
-$db_users_db_name_prefix = "concerto_";
+$db_host = "localhost"; //MySQL server host
+$db_port = "3306"; // MySQL server port
+$db_master_user = "db_master_user"; // MySQL user name with ALL privileges
+$db_master_password = "db_password"; // MySQL password for user with ALL privileges
+$db_master_name = "db_master_name"; // Concerto master MySQL database name ( user need to create it manually prior to running /setup )
+$db_users_name_prefix = "concerto_"; // prefix for MySQL user names created by Concerto ( workspace id will be appended to it ) - SET IT ONLY ONCE PRIOR TO RUNNING /setup
+$db_users_db_name_prefix = "concerto_"; // prefix for MySQL database names created by Concerto ( workspace id will be appended to it ) - SET IT ONLY ONCE PRIOR TO RUNNING /setup
 
 //paths
-$path_external = "http://domain.com/"; //e.g. http://domain.com/concerto/
-$path_r_script = "/usr/bin/Rscript"; //e.g. /usr/bin/Rscript
-$path_r_exe = "/usr/bin/R"; //e.g. /usr/bin/R
-$path_php_exe = "/usr/bin/php"; //e.g. /usr/bin/php
-$path_sock = ""; //leave blank for default - /[concerto_installation_path]/socks/
-$path_temp = ""; //leave blank for default - /[concerto_installation_path]/temp/
+$path_external = "http://domain.com/"; // Concerto full URL ending with slash character ('/'), e.g. http://domain.com/concerto/
+$path_r_script = "/usr/bin/Rscript"; // Rscript executable path, e.g. /usr/bin/Rscript
+$path_r_exe = "/usr/bin/R"; // R executable path, e.g. /usr/bin/R
+$path_php_exe = "/usr/bin/php"; // php executable path, e.g. /usr/bin/php
+$path_sock = ""; // socks directory path, leave blank for default - /[concerto_installation_path]/socks/
+$path_temp = ""; // temp directory path, leave blank for default - /[concerto_installation_path]/temp/
 
 //R connection
-$server_socks_type = "UNIX"; // UNIX or TCP, choose TCP for any other OS than Linux
+$server_socks_type = "UNIX"; // UNIX or TCP
 $server_host = "127.0.0.1"; //is socket server set to TCP, choose host to connect to
 $server_port = "8888"; //if socket server set to TCP, choose port used for connection
-$r_instances_persistant_instance_timeout = 300; //after set period of instance inactivity in seconds the instance will be closed
+$r_instances_persistant_instance_timeout = 300; //after set period of instance inactivity in seconds the instance will be serialized and closed
 $r_instances_persistant_server_timeout = 420; //after set period of server inactivity in seconds the server will be closed ( new instances can restart it anytime )
-$r_max_execution_time = 30; //maximum R execution time ( prevents infinite loops in R on server )
-$unix_locale = ""; //Unix locale LANG variable. Must be installed on the system. Leave blank for none/default.
+$r_max_execution_time = 30; //maximum R execution time after which instance will be terminated ( prevents infinite loops in R on server )
+$unix_locale = ""; //Unix locale LANG variable. Must be installed on the system. Leave blank for none/default, e.g. en_GB.UTF8
 
 //general
-$timezone = 'Europe/London';
-$mysql_timezone = '+0:00'; //leave blank to make it the same as $timezone
-$public_registration = false;
-$cms_session_keep_alive = true;
-$cms_session_keep_alive_interval = 900000; //miliseconds
-$timer_tamper_prevention = false;
-$timer_tamper_prevention_tolerance = 30;
+$timezone = 'Europe/London'; // PHP timezone settings
+$mysql_timezone = '+0:00'; // MySQL timezone settings, leave blank to make it the same as $timezone
+$public_registration = false; // is open registration from login form allowed
+$cms_session_keep_alive = true; // prevents session expiry when in panel
+$cms_session_keep_alive_interval = 900000; //time interval between session keep alive requests in miliseconds
+$timer_tamper_prevention = false; // DEPRECATED
+$timer_tamper_prevention_tolerance = 30; // DEPRECATED
 
 //remote client
-$remote_client_password = "pass";
+$remote_client_password = "pass"; // password required by remote clients to use this Concerto server
 
 //cron
-$r_users_name_prefix = "concerto_";
-$r_users_group = "concerto";
-$apache_user = "www-data";
+$r_users_name_prefix = "concerto_"; // prefix for Linux users created by Concerto ( user id will be appended to it ) - SET IT ONLY ONCE PRIOR TO RUNNING /setup
+$r_users_group = "concerto"; // Linux group name for users above
+$apache_user = "www-data"; // Apache user name
 
 //ALWAYS RUN /setup AFTER CHANGING SETTINGS IN THIS FILE!
 ?>
