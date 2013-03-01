@@ -13,26 +13,26 @@ $path_external = "http://domain.com/"; // Concerto full URL ending with slash ch
 $path_r_script = "/usr/bin/Rscript"; // Rscript executable path, e.g. /usr/bin/Rscript
 $path_r_exe = "/usr/bin/R"; // R executable path, e.g. /usr/bin/R
 $path_php_exe = "/usr/bin/php"; // php executable path, e.g. /usr/bin/php
-$path_sock = ""; // socks directory path, leave blank for default - /[concerto_installation_path]/socks/
-$path_temp = ""; // temp directory path, leave blank for default - /[concerto_installation_path]/temp/
+$path_sock = ""; // socks directory path ending with slash character ('/'), leave blank for default - /[concerto_installation_path]/socks/
+$path_temp = ""; // temp directory path ending with slash character ('/'), leave blank for default - /[concerto_installation_path]/temp/
 
 //R connection
-$server_socks_type = "UNIX"; // UNIX or TCP
-$server_host = "127.0.0.1"; //is socket server set to TCP, choose host to connect to
-$server_port = "8888"; //if socket server set to TCP, choose port used for connection
-$r_instances_persistant_instance_timeout = 300; //after set period of instance inactivity in seconds the instance will be serialized and closed
-$r_instances_persistant_server_timeout = 420; //after set period of server inactivity in seconds the server will be closed ( new instances can restart it anytime )
-$r_max_execution_time = 30; //maximum R execution time after which instance will be terminated ( prevents infinite loops in R on server )
-$unix_locale = ""; //Unix locale LANG variable. Must be installed on the system. Leave blank for none/default, e.g. en_GB.UTF8
+$server_socks_type = "UNIX"; // socket server type ( UNIX or TCP, UNIX highly reccomended )
+$server_host = "127.0.0.1"; // choose host to connect to ( only when TCP )
+$server_port = "8888"; // choose port used for connection ( only when TCP )
+$r_instances_persistant_instance_timeout = 300; // after set period of instance inactivity in seconds the instance will be serialized and closed
+$r_instances_persistant_server_timeout = 420; // after set period of server inactivity in seconds the server will be closed ( new instances can restart it anytime )
+$r_max_execution_time = 30; // maximum R execution time after which instance will be terminated ( prevents infinite loops in R on server )
+$unix_locale = ""; // Unix locale LANG variable. Must be installed on the system. Leave blank for none/default, e.g. en_GB.UTF8
+$timer_tamper_prevention = false; // DEPRECATED
+$timer_tamper_prevention_tolerance = 30; // DEPRECATED
 
 //general
 $timezone = 'Europe/London'; // PHP timezone settings
 $mysql_timezone = '+0:00'; // MySQL timezone settings, leave blank to make it the same as $timezone
 $public_registration = false; // is open registration from login form allowed
 $cms_session_keep_alive = true; // prevents session expiry when in panel
-$cms_session_keep_alive_interval = 900000; //time interval between session keep alive requests in miliseconds
-$timer_tamper_prevention = false; // DEPRECATED
-$timer_tamper_prevention_tolerance = 30; // DEPRECATED
+$cms_session_keep_alive_interval = 900000; // time interval between session keep alive requests in miliseconds
 
 //remote client
 $remote_client_password = "pass"; // password required by remote clients to use this Concerto server
