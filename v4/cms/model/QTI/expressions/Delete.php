@@ -46,7 +46,7 @@ class Delete extends AExpression {
             return "NULL";
         $exp1 = $this->expression[0]->get_R_code();
         $exp2 = $this->expression[1]->get_R_code();
-        return 'concerto$qti$delete' . "(" . $exp1 . "," . $exp2 . ",'" . $this->exp1->get_baseType . "')";
+        return 'concerto:::concerto.qti.delete' . "(" . $exp1 . "," . $exp2 . ",'" . $this->exp1->get_baseType . "')";
     }
 
     public function get_cardinality() {

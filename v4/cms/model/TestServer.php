@@ -314,7 +314,7 @@ class TestServer {
                         if ($session->debug == 1 && $session->status == TestSession::TEST_SESSION_STATUS_WAITING && !$this->instances[$k]->debug_code_appended) {
                             $this->instances[$k]->debug_code_appended = true;
                             $this->instances[$k]->run('
-                                concerto$updateState()
+                                concerto:::concerto.updateState()
                                 ', null, false);
                             continue;
                         }

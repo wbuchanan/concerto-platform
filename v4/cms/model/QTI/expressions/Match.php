@@ -46,7 +46,7 @@ class Match extends AExpression {
             return "NULL";
         $exp1 = $this->expression[0]->get_R_code();
         $exp2 = $this->expression[1]->get_R_code();
-        return "if(is.null(" . $exp1 . ") || is.null(" . $exp2 . ")) NULL else { ".'concerto$qti$equal'."(" . $exp1 . "," . $exp2 . ",'" . $this->expression[0]->get_baseType() . "') }";
+        return "if(is.null(" . $exp1 . ") || is.null(" . $exp2 . ")) NULL else { ".'concerto:::concerto.qti.equal'."(" . $exp1 . "," . $exp2 . ",'" . $this->expression[0]->get_baseType() . "') }";
     }
 
     public function get_cardinality() {

@@ -96,22 +96,22 @@ class QTIAssessmentItem extends OModule {
                         ", $response->identifier, $response->identifier, $val->get_text(), $response->identifier, $response->identifier, $val->get_text());
                 }
                 $code.=sprintf("
-                    result$%s <- " . 'concerto$convertToNumeric' . "(result$%s)
-                    result$%s.default <- " . 'concerto$convertToNumeric' . "(result$%s.default)
+                    result$%s <- " . 'concerto.convertToNumeric' . "(result$%s)
+                    result$%s.default <- " . 'concerto.convertToNumeric' . "(result$%s.default)
                     ", $response->identifier, $response->identifier, $response->identifier, $response->identifier);
             }
             if ($response->mapping != null) {
                 $code.=sprintf("
-                    result$%s.mapping.defaultValue <- " . 'concerto$convertToNumeric' . "(%s)
+                    result$%s.mapping.defaultValue <- " . 'concerto.convertToNumeric' . "(%s)
                     ", $response->identifier, $response->mapping->defaultValue);
                 if ($response->mapping->lowerBound != null) {
                     $code.=sprintf("
-                    result$%s.mapping.lowerBound <- " . 'concerto$convertToNumeric' . "(%s)
+                    result$%s.mapping.lowerBound <- " . 'concerto.convertToNumeric' . "(%s)
                     ", $response->identifier, $response->mapping->lowerBound);
                 }
                 if ($response->mapping->upperBound != null) {
                     $code.=sprintf("
-                    result$%s.mapping.upperBound <- " . 'concerto$convertToNumeric' . "(%s)
+                    result$%s.mapping.upperBound <- " . 'concerto.convertToNumeric' . "(%s)
                     ", $response->identifier, $response->mapping->upperBound);
                 }
                 $code.=sprintf("
@@ -144,8 +144,8 @@ class QTIAssessmentItem extends OModule {
                         ", $response->identifier, $response->identifier, $val->get_text(), $response->identifier, $response->identifier, $val->get_text());
                 }
                 $code.=sprintf("
-                    result$%s <- " . 'concerto$convertToNumeric' . "(result$%s)
-                    result$%s.default <- " . 'concerto$convertToNumeric' . "(result$%s.default)
+                    result$%s <- " . 'concerto.convertToNumeric' . "(result$%s)
+                    result$%s.default <- " . 'concerto.convertToNumeric' . "(result$%s.default)
                     ", $response->identifier, $response->identifier, $response->identifier, $response->identifier);
             }
         }
@@ -183,8 +183,8 @@ class QTIAssessmentItem extends OModule {
                         ", $template->identifier, $template->identifier, $val->get_text(), $template->identifier, $template->identifier, $val->get_text());
                 }
                 $code.=sprintf("
-                    result$%s <- " . 'concerto$convertToNumeric' . "(result$%s)
-                    result$%s.default <- " . 'concerto$convertToNumeric' . "(result$%s.default)
+                    result$%s <- " . 'concerto.convertToNumeric' . "(result$%s)
+                    result$%s.default <- " . 'concerto.convertToNumeric' . "(result$%s.default)
                     ", $template->identifier, $template->identifier, $template->identifier, $template->identifier);
             }
         }
@@ -201,7 +201,7 @@ class QTIAssessmentItem extends OModule {
                         ", $response->identifier, $response->identifier, $val->get_text());
                 }
                 $code.=sprintf("
-                    result$%s.correct <- " . 'concerto$convertToNumeric' . "(result$%s.correct)
+                    result$%s.correct <- " . 'concerto.convertToNumeric' . "(result$%s.correct)
                     ", $response->identifier, $response->identifier);
             }
         }

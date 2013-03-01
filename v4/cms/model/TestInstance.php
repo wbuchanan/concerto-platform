@@ -485,6 +485,8 @@ TIMEOUT
         $main_workspace = $owner->get_main_UserWorkspace();
 
         $code .= sprintf('
+            library(concerto)
+
             CONCERTO_TEST_ID <- %d
             CONCERTO_TEST_SESSION_ID <- %d
             
@@ -499,9 +501,9 @@ TIMEOUT
             CONCERTO_WORKSPACE_ID <- %s
             CONCERTO_WORKSPACE_PREFIX <- "%s"
             CONCERTO_USER_IP <- "%s"
-            source("' . Ini::$path_internal . 'lib/R/Concerto.R")
+            library(concerto)
                 
-            concerto$initialize(CONCERTO_TEST_ID,CONCERTO_TEST_SESSION_ID,CONCERTO_WORKSPACE_ID,CONCERTO_WORKSPACE_PREFIX,CONCERTO_DB_LOGIN,CONCERTO_DB_PASSWORD,CONCERTO_DB_NAME,CONCERTO_DB_HOST,CONCERTO_DB_PORT,CONCERTO_TEMP_PATH,CONCERTO_MEDIA_PATH,CONCERTO_DB_TIMEZONE,%s,CONCERTO_USER_IP)
+            concerto:::concerto.initialize(CONCERTO_TEST_ID,CONCERTO_TEST_SESSION_ID,CONCERTO_WORKSPACE_ID,CONCERTO_WORKSPACE_PREFIX,CONCERTO_DB_LOGIN,CONCERTO_DB_PASSWORD,CONCERTO_DB_NAME,CONCERTO_DB_HOST,CONCERTO_DB_PORT,CONCERTO_TEMP_PATH,CONCERTO_MEDIA_PATH,CONCERTO_DB_TIMEZONE,%s,CONCERTO_USER_IP)
             %s
             
             rm(CONCERTO_TEST_ID)
@@ -520,8 +522,8 @@ TIMEOUT
             
             %s
             ', $test->id, $this->TestSession_id, $db_host, ($db_port != "" ? $db_port : "3306"), $main_workspace->db_login, $main_workspace->db_password, $workspace->db_name, $path, $mysql_timezone, Ini::$path_internal_media . $owner->id, $workspace->id, Ini::$db_users_db_name_prefix, $this->IP, $unserialize ? "FALSE" : "TRUE", $unserialize ? '
-                concerto$unserialize()
-                concerto$db$connect(CONCERTO_DB_LOGIN,CONCERTO_DB_PASSWORD,CONCERTO_DB_NAME,CONCERTO_DB_HOST,CONCERTO_DB_PORT,CONCERTO_DB_TIMEZONE)' : "", $unserialize ? 'if(exists("onUnserialize")) do.call("onUnserialize",list(lastReturn=rjson::fromJSON("' . addcslashes(json_encode($this->pending_variables), '"') . '")), envir = .GlobalEnv);
+                concerto:::concerto.unserialize()
+                concerto:::concerto.db.connect(CONCERTO_DB_LOGIN,CONCERTO_DB_PASSWORD,CONCERTO_DB_NAME,CONCERTO_DB_HOST,CONCERTO_DB_PORT,CONCERTO_DB_TIMEZONE)' : "", $unserialize ? 'if(exists("onUnserialize")) do.call("onUnserialize",list(lastReturn=rjson::fromJSON("' . addcslashes(json_encode($this->pending_variables), '"') . '")), envir = .GlobalEnv);
 ' : "");
 
         if ($unserialize)
@@ -531,7 +533,7 @@ TIMEOUT
 
     public function get_final_code() {
         $code = '
-concerto$finalize()
+concerto:::concerto.finalize()
 ';
         return $code;
     }

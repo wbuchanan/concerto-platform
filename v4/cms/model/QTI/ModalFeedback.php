@@ -53,9 +53,9 @@ class ModalFeedback extends OQTIElement {
 
     public function get_R_code() {
         if ($this->showHide == "show")
-            return sprintf("if(".'concerto$qti$contains'."(result$%s,".'concerto$convertToNumeric'."('%s'),result$%s.baseType,result$%s.cardinality)) result$%s <- '%s'", $this->outcomeIdentifier, $this->identifier, $this->outcomeIdentifier, $this->outcomeIdentifier, $this->outcomeIdentifier, addcslashes($this->get_contents(), "'"));
+            return sprintf("if(".'concerto:::concerto.qti.contains'."(result$%s,".'concerto.convertToNumeric'."('%s'),result$%s.baseType,result$%s.cardinality)) result$%s <- '%s'", $this->outcomeIdentifier, $this->identifier, $this->outcomeIdentifier, $this->outcomeIdentifier, $this->outcomeIdentifier, addcslashes($this->get_contents(), "'"));
         else
-            return sprintf("if(!".'concerto$qti$contains'."(result$%s,".'concerto$convertToNumeric'."('%s'),result$%s.baseType,result$%s.cardinality)) result$%s <- '%s'", $this->outcomeIdentifier, $this->identifier, $this->outcomeIdentifier, $this->outcomeIdentifier, $this->outcomeIdentifier, addcslashes($this->get_contents(), "'"));
+            return sprintf("if(!".'concerto:::concerto.qti.contains'."(result$%s,".'concerto.convertToNumeric'."('%s'),result$%s.baseType,result$%s.cardinality)) result$%s <- '%s'", $this->outcomeIdentifier, $this->identifier, $this->outcomeIdentifier, $this->outcomeIdentifier, $this->outcomeIdentifier, addcslashes($this->get_contents(), "'"));
     }
 
 }
