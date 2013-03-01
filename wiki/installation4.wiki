@@ -12,9 +12,7 @@
  * *PHP open base dir* restrictions must allow access to R, Rscript and php binaries
  * *MySQL* version equal or greater than *v5*
  * *R* version equal or greater than *v2.15*
- * *session* R package must be installed
- * *RMySQL* R package must be installed
- * *rjson* R package must be installed
+ * *concerto* R package must be installed
  * Linux user with *root access*
  * MySQL user with *ALL privileges*
 
@@ -34,17 +32,30 @@ Copy the contents of the package to your Apache public www directory
 
 ===Step 3===
 
-Create new Concerto master MySQL database
+As a user with root access do:
+
+*{{{cd /var/www/concerto/lib/R}}}*
+
+... replace *{{{/var/www/concerto/}}}* with your Concerto installation directory path
+
+*{{{R CMD build concerto}}}*
+
+*{{{R CMD INSTALL -l /usr/lib/R/library concerto}}}*
+
 
 ===Step 4===
 
-Edit * {installation_dir}/SETTINGS.php * file.
+Create new Concerto master MySQL database
 
 ===Step 5===
 
-Run * http://yourdomain/{concerto_directory}/setup * and correct any reported problem.
+Edit * {installation_dir}/SETTINGS.php * file.
 
 ===Step 6===
+
+Run * http://yourdomain/{concerto_directory}/setup * and correct any reported problem.
+
+===Step 7===
 
 Run:
 
@@ -56,7 +67,7 @@ Run:
 
 Replace *www-data* with your Apache user name (corresponds to *$r_apache_user* variable from SETTINGS.php), *concerto* with your Linux group name for Concerto Linux users (corresponds to *$r_users_group* variable from SETTINGS.php) and */usr/bin/R* with path to R executable (corresponds to *$path_r_exe* variable from SETTINGS.php)
 
-===Step 7===
+===Step 8===
 
 As a root user run:
 
