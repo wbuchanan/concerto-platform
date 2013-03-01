@@ -455,30 +455,11 @@ Setup.steps = [
         ),
     new SetupStep(
         false,
-        "<b>session</b> R package must be installed.",
-        "session_r_package_check",
-        "<b>session</b> package <b>IS INSTALLED</b> - <b style='color:green;'>PASSED</b>",
-        "<b>session</b> package <b>IS NOT INSTALLED</b> - <b style='color:red;'>FAILED</b>",
-        "Install <b>session</b> package to main R library directory.",
-        true     
-        ),
-    new SetupStep(
-        false,
-        "<b>RMySQL</b> R package must be installed.",
-        "RMySQL_r_package_check",
-        "<b>RMySQL</b> package <b>IS INSTALLED</b> - <b style='color:green;'>PASSED</b>",
-        "<b>RMySQL</b> package <b>IS NOT INSTALLED</b> - <b style='color:red;'>FAILED</b>",
-        "Install <b>RMySQL</b> package to main R library directory.",
-        true     
-        )
-    ,
-    new SetupStep(
-        false,
-        "<b>rjson</b> R package must be installed.",
-        "rjson_r_package_check",
-        "<b>rjson</b> package <b>IS INSTALLED</b> - <b style='color:green;'>PASSED</b>",
-        "<b>rjson</b> package <b>IS NOT INSTALLED</b> - <b style='color:red;'>FAILED</b>",
-        "Install <b>rjson</b> package to main R library directory.",
+        "<b>concerto</b> R package must be installed.",
+        "concerto_r_package_check",
+        "<b>concerto</b> package <b>IS INSTALLED</b> - <b style='color:green;'>PASSED</b>",
+        "<b>concerto</b> package <b>IS NOT INSTALLED</b> - <b style='color:red;'>FAILED</b>",
+        "Install <b>concerto</b> package to main R library directory.",
         true     
         )
     ];

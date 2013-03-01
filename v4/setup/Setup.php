@@ -203,31 +203,13 @@ class Setup {
         return ($return == 0);
     }
 
-    public static function RMySQL_r_package_check() {
+    public static function concerto_r_package_check() {
         require '../Ini.php';
         $ini = new Ini();
         $array = array();
         $return = 0;
-        exec('"' . Ini::$path_r_script . '" -e "library(RMySQL)"', $array, $return);
-        return json_encode(array("result" => $return, "param" => "RMySQL"));
-    }
-
-    public static function rjson_r_package_check() {
-        require '../Ini.php';
-        $ini = new Ini();
-        $array = array();
-        $return = 0;
-        exec('"' . Ini::$path_r_script . '" -e "library(rjson)"', $array, $return);
-        return json_encode(array("result" => $return, "param" => "rjson"));
-    }
-
-    public static function session_r_package_check() {
-        require '../Ini.php';
-        $ini = new Ini();
-        $array = array();
-        $return = 0;
-        exec('"' . Ini::$path_r_script . '" -e "library(session)"', $array, $return);
-        return json_encode(array("result" => $return, "param" => "session"));
+        exec('"' . Ini::$path_r_script . '" -e "library(concerto)"', $array, $return);
+        return json_encode(array("result" => $return, "param" => "concerto"));
     }
 
     public static function does_patch_apply($patch_version, $previous_version) {
