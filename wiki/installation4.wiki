@@ -1,6 +1,8 @@
-==Concerto v4 installation==
+=Concerto v4 installation=
 
-===Requirements==
+----
+
+==Requirements==
 
  * *Linux* operating system
  * *PHP* version equal or greater than *v5.3*
@@ -16,7 +18,63 @@
  * Linux user with *root access*
  * MySQL user with *ALL privileges*
 
-===/SETTINGS.php file===
+----
+
+==Installation==
+
+*This tutorial assumes that Apache is your HTTP server and PHP runs as Apache module*
+
+===Step 1===
+
+Download the latest Concerto v4 package.
+
+===Step 2===
+
+Copy the contents of the package to your Apache public www directory
+
+===Step 3===
+
+Create new Concerto master MySQL database
+
+===Step 4===
+
+Edit * {installation_dir}/SETTINGS.php * file.
+
+===Step 5===
+
+Run * http://yourdomain/{concerto_directory}/setup * and correct any reported problem.
+
+===Step 6===
+
+Run:
+
+*{{{sudo visudo}}}*
+
+... and add this line:
+
+*{{{www-data ALL=(%concerto) NOPASSWD: /usr/bin/R}}}*
+
+( replace *www-data* with your Apache user name ( corresponds to *$r_apache_user* variable from SETTINGS.php ), *concerto* with your Linux group name for Concerto Linux users ( corresponds to *$r_users_group* variable from SETTINGS.php ) and */usr/bin/R* with path to R executable ( corresponds to *$path_r_exe* variable from SETTINGS.php )
+
+===Step 7===
+
+As a root user run:
+
+*{{{crontab -e}}}*
+
+... and add following lines:
+
+*{{{* * * * * php /var/www/concerto/cron/users.php}}}*
+
+... and:
+
+*{{{* * * * * php /var/www/concerto/cron/autocomplete.php}}}*
+
+( where */var/www/concerto/* is your Concerto installation directory )
+
+----
+
+==/SETTINGS.php file==
 
 This file contains all configurable options that needs to be set before you can run Concerto on your system.
 
@@ -51,28 +109,17 @@ This file contains all configurable options that needs to be set before you can 
 || $r_users_group || Linux group name for users above || "concerto" ||
 || $apache_user || Apache user name || "www-data" ||
 
-==ALWAYS RUN /setup AFTER CHANGING SETTINGS IN THIS FILE!==
+*ALWAYS RUN /setup AFTER CHANGING SETTINGS IN THIS FILE!*
 
-==This tutorial assumes that Apache is your HTTP server and PHP runs as Apache module==
+----
 
-===Step 1===
+==Uninstallation==
 
-Download the latest Concerto v4 package.
+When uninstalling it is highly recommended to first:
 
-===Step 2===
+ * remove every user through Concerto panel
+ * wait until Concerto users cron task will fire ( it will remove any Linux users and groups created by Concerto )
 
-Copy the contents of the package to your Apache public www directory
+*{{{* * * * * php /var/www/concerto/cron/users.php}}}* - using default settings it fires every minute
 
-===Step 3===
-
-Create new Concerto master MySQL database
-
-===Step 4===
-
-Edit * {installation_dir}/SETTINGS.php * file.
-
-===Step 5===
-
-Run * http://yourdomain/{concerto_directory}/setup * and correct any reported problem.
-
-===Step 6===
+ * remove files and Concerto master database
