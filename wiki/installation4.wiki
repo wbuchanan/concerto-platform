@@ -54,7 +54,7 @@ Run:
 
 *{{{www-data ALL=(%concerto) NOPASSWD: /usr/bin/R}}}*
 
-( replace *www-data* with your Apache user name ( corresponds to *$r_apache_user* variable from SETTINGS.php ), *concerto* with your Linux group name for Concerto Linux users ( corresponds to *$r_users_group* variable from SETTINGS.php ) and */usr/bin/R* with path to R executable ( corresponds to *$path_r_exe* variable from SETTINGS.php )
+Replace *www-data* with your Apache user name (corresponds to *$r_apache_user* variable from SETTINGS.php), *concerto* with your Linux group name for Concerto Linux users (corresponds to *$r_users_group* variable from SETTINGS.php) and */usr/bin/R* with path to R executable (corresponds to *$path_r_exe* variable from SETTINGS.php)
 
 ===Step 7===
 
@@ -70,7 +70,7 @@ As a root user run:
 
 *{{{0 0 1 * * php /var/www/concerto/cron/autocomplete.php}}}*
 
-( where */var/www/concerto/* is your Concerto installation directory )
+(where */var/www/concerto/* is your Concerto installation directory)
 
 ----
 
@@ -118,7 +118,7 @@ This file contains all configurable options that needs to be set before you can 
 When uninstalling it is highly recommended to first:
 
  * remove every user through Concerto panel
- * wait until Concerto users cron task will fire ( it will remove any Linux users and groups created by Concerto )
+ * wait until Concerto users cron task will fire (it will remove any Linux users and groups created by Concerto)
 
 *{{{* * * * * php /var/www/concerto/cron/users.php}}}* - using default settings it fires every minute
 
