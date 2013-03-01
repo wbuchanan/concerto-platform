@@ -68,7 +68,7 @@ As a root user run:
 
 ... and:
 
-*{{{* * * * * php /var/www/concerto/cron/autocomplete.php}}}*
+*{{{0 0 1 * * php /var/www/concerto/cron/autocomplete.php}}}*
 
 ( where */var/www/concerto/* is your Concerto installation directory )
 
