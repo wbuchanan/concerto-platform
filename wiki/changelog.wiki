@@ -13,12 +13,12 @@
 
  * completely new test tab
  * completely new debug mode
- * line by line debugging ( highlights currently debugged line )
+ * line by line debugging (highlights line that is currently being debugged)
  * debug session state updated after each line
  * debug output updated after each line
  * additional code in-line widgets for output printing
  * code auto-completion
- * built in function documentation into auto-completion suggestions
+ * function documentation built into auto-completion suggestions
  * R function insertion wizard
  * code selection auto-format option
  * full screen code editor mode
@@ -26,18 +26,18 @@
  * new built-in Concerto R functions and variables structure
  * CKEditor updated to v4
  * it's now possible to insert R session variables into HTML template HEAD tag code
- * rewritten table manipulations ( INSERT, UPDATE, DELETE ) which are now done incrementally
- * every table is exact representation of what's in MySQL database ( any changes made directly through MySQL will be represented correctly by Concerto )
- * introduced user workspaces ( separate MySQL DB for Concerto objects )
+ * rewritten table manipulations (INSERT, UPDATE, DELETE) which are now done incrementally
+ * every table is exact representation of what's in MySQL database (any changes made directly through MySQL will be represented correctly by Concerto)
+ * introduced user workspaces (separate MySQL DB for Concerto objects)
  * workspaces can be shared by users
  * updated jQuery to v1.9.1 and jQuery UI to v1.10.1
- * new test session serialization and unserialization mechanism where user can ( and is encouraged to ) handle onSerialize and onUnserialize events
+ * new test session serialization and unserialization mechanism where user can, and is encouraged to, handle onSerialize and onUnserialize events
 
 
 *Security*
 
  * every Concerto user has corresponding Linux user which defines his privileges in R session
- * every Concerto user can operate only on his own workspaces ( MySQL DBs ) and workspaces to which he has access granted by the owner
+ * every Concerto user can operate only on his own workspaces (MySQL DBs) and workspaces to which he has access granted by the owner
  * every Concerto user has corresponding MySQL user which defines his privileges in R session 
  
 *Fixes*
