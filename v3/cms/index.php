@@ -71,8 +71,6 @@ if (!isset($ini)) {
         <script src="lib/CodeMirror/mode/htmlmixed/htmlmixed.js?timestamp=<?= time() ?>"></script>
         <script src="lib/CodeMirror/mode/r/r.js?timestamp=<?= time() ?>"></script>
         <script src="lib/CodeMirror/mode/xml/xml.js?timestamp=<?= time() ?>"></script>
-        <script src="lib/CodeMirror/mode/javascript/javascript.js?timestamp=<?= time() ?>"></script>
-        <script src="lib/CodeMirror/mode/css/css.js?timestamp=<?= time() ?>"></script>
         <script src="js/lib/jquery-ui-dialog-ckeditor-patch.js?timestamp=<?= time() ?>"></script>
         <script src="js/lib/fileupload/jquery.iframe-transport.js?timestamp=<?= time() ?>"></script>
         <script src="js/lib/fileupload/jquery.fileupload.js?timestamp=<?= time() ?>"></script>
