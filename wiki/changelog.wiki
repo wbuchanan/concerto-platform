@@ -33,6 +33,7 @@
  * updated jQuery to v1.9.1 and jQuery UI to v1.10.1
  * new test session serialization and unserialization mechanism where user can, and is encouraged to, handle onSerialize and onUnserialize events
  * Concerto built in R functions are now in R package with full documentation
+ * introduced function toolbar with favourite functions and internal Concerto functions
 
 *Security*
 
