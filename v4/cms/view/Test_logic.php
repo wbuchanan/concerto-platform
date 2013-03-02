@@ -32,6 +32,11 @@ if ($logged_user == null) {
 <script>
     $(function() {
         Test.logicCodeMirror = Methods.iniCodeMirror("textareaTestLogic", "r", false, true, true);
+        Test.logicCodeMirror.on("focus",function(instance){
+            if(Test.isFunctionToolbarExpanded()){
+                Test.uiToggleFunctionToolbar();
+            }
+        });
     });
 </script>
 

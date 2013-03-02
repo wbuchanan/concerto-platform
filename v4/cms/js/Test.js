@@ -354,6 +354,7 @@ Test.uiStartDebug = function(url, uid) {
     Test.debugClearOutput();
     Test.logicCodeMirror.toTextArea();
     Test.logicCodeMirror = Methods.iniCodeMirror("textareaTestLogic", "r", true);
+
     $("#btnStartDebug").button("disable");
     $("#btnStartDebug").button("option", "label", dictionary["s324"]);
     $("#btnStopDebug").button("enable");
@@ -545,6 +546,12 @@ Test.uiStopDebug = function() {
 
     Test.logicCodeMirror.toTextArea();
     Test.logicCodeMirror = Methods.iniCodeMirror("textareaTestLogic", "r", false, true, true);
+    Test.logicCodeMirror.on("focus", function(instance) {
+        if (Test.isFunctionToolbarExpanded()) {
+            Test.uiToggleFunctionToolbar();
+        }
+    });
+
     $("#btnStartDebug").button("enable");
     $("#btnStopDebug").button("disable");
     Test.uiChangeDebugStatus(dictionary["s691"]);
@@ -1085,6 +1092,10 @@ Test.iniAutoCompleteCodeMirror = function(mode, instance, widgetsPossible) {
 }
 
 Test.uiAddFunctionWidgetFromToolbar = function(func, html) {
+
+    if (Test.logicCodeMirror.options.readonly)
+        return;
+
     var instance = Test.logicCodeMirror;
     Test.uiAddFunctionWidget(instance, func, html);
     instance.focus();
