@@ -371,9 +371,9 @@ User.uiAddShare = function() {
                             Methods.alert(dictionary["s681"], "alert", dictionary["s647"]);
                             return;
                         }
-                        
+
                         var shareGrid = $("#div" + thisClass.className + "GridShare").data('kendoGrid');
-                        
+
                         //checking if it already exists
                         var shares = shareGrid.dataSource.data();
                         for (var i = 0; i < shares.length; i++) {
@@ -383,7 +383,7 @@ User.uiAddShare = function() {
                                 return;
                             }
                         }
-                        
+
                         shareGrid.dataSource.add({
                             invitee_id: $("#select" + thisClass.className + "InviteeShareDialog").val(),
                             name: $("#select" + thisClass.className + "InviteeShareDialog").children("option[selected='selected']").attr("name"),
@@ -988,4 +988,60 @@ User.sessionKeepAlive = function(interval) {
             User.sessionKeepAlive(interval);
         });
     }, interval);
+}
+
+User.removeFavouriteFunction = function(ffid) {
+    Methods.confirm(dictionary["s703"], dictionary["s701"], function() {
+        $.post("query/User_remove_function.php", {
+            oid: ffid
+        }, function(data) {
+            switch (data.result) {
+                case OModule.queryResults.OK:
+                    {
+                        Test.uiRefreshFunctionToolbar();
+                        break;
+                    }
+                case OModule.queryResults.notLoggedIn:
+                    {
+                        User.onNotLoggedIn(dictionary["s701"]);
+                        break;
+                    }
+                case OModule.queryResults.accessDenied:
+                    {
+                        Methods.alert(dictionary["s81"], "alert", dictionary["s701"]);
+                        break;
+                    }
+            }
+        }, "json");
+    });
+}
+
+User.addFavouriteFunction = function(ffid) {
+    $.post("query/User_add_function.php", {
+        oid: ffid
+    }, function(data) {
+        switch (parseInt(data.result)) {
+            case OModule.queryResults.OK:
+                {
+                    Methods.alert(dictionary["s706"], "alert", dictionary["s702"]);
+                    Test.uiRefreshFunctionToolbar();
+                    break;
+                }
+            case OModule.queryResults.notLoggedIn:
+                {
+                    User.onNotLoggedIn(dictionary["s702"]);
+                    break;
+                }
+            case OModule.queryResults.accessDenied:
+                {
+                    Methods.alert(dictionary["s81"], "alert", dictionary["s702"]);
+                    break;
+                }
+            case 1:
+                {
+                    Methods.alert(dictionary["s704"], "alert", dictionary["s702"]);
+                    break;
+                }
+        }
+    }, "json");
 }

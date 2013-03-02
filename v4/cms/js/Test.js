@@ -333,14 +333,14 @@ Test.onScroll = function() {
 
             $(".divTestVerticalElement:eq(0)").css("top", "0px");
             $(".divTestVerticalElement:eq(1)").css("top", $(".divTestVerticalElement:eq(1)").css("height"));
-            
+
             $(".divTestVerticalElement:eq(0)").css("width", "49%");
             $(".divTestVerticalElement:eq(1)").css("width", "49%");
 
         } else {
             $(".divTestVerticalElement").css("position", "relative");
             $(".divTestVerticalElement").css("top", "auto");
-            
+
             $(".divTestVerticalElement:eq(0)").css("width", "100%");
             $(".divTestVerticalElement:eq(1)").css("width", "100%");
         }
@@ -905,7 +905,7 @@ Test.uiWriteAutocompleteDoc = function(html) {
     var infoBar = '<div>' +
             '<table>' +
             '<tr><td style="width:30px;"><span class="spanIcon ui-icon ui-icon-info"></span></td>' +
-            '<td><b>Ctrl+Enter:</b> ' + dictionary["s689"] + ', <b>Enter:</b> ' + dictionary["s690"] + ', <b>Esc:</b> ' + dictionary["s23"] + '</td>' +
+            '<td><b>Ctrl+Enter:</b> ' + dictionary["s689"] + ', <b>Enter:</b> ' + dictionary["s690"] + ', <b>Esc:</b> ' + dictionary["s23"] + ', <b>F7:</b> ' + dictionary["s705"] + '</td>' +
             '</tr>' +
             '</table>' +
             '</div>';
@@ -975,8 +975,9 @@ Test.iniAutoCompleteCodeMirror = function(mode, instance, widgetsPossible) {
                             for (var i = 0; i < data.functions.length; i++) {
                                 var name = data.functions[i].name;
                                 var pack = data.functions[i].pack;
+                                var id = data.functions[i].id;
 
-                                $("#selectCodeAutocomplete").append("<option value='" + name + "' pack='" + pack + "'>" + name + "</option>");
+                                $("#selectCodeAutocomplete").append("<option value='" + name + "' pack='" + pack + "' id='" + id + "'>" + name + "</option>");
                             }
 
                             var code = null;
@@ -1037,6 +1038,14 @@ Test.iniAutoCompleteCodeMirror = function(mode, instance, widgetsPossible) {
                                     instance.setSelection(cursor);
                                     return;
                                 }
+                                //F7
+                                if (code == 118) {
+                                    var selectedOption = $("#selectCodeAutocomplete").children("option:selected");
+                                    if (selectedOption.length == 0)
+                                        return;
+                                    User.addFavouriteFunction(selectedOption.attr("id"));
+                                    e.preventDefault();
+                                }
                                 //enter
                                 if (code == 13) {
                                     var selectedOption = $("#selectCodeAutocomplete").children("option:selected");
@@ -1073,4 +1082,97 @@ Test.iniAutoCompleteCodeMirror = function(mode, instance, widgetsPossible) {
                 break;
             }
     }
+}
+
+Test.uiAddFunctionWidgetFromToolbar = function(func, html) {
+    var instance = Test.logicCodeMirror;
+    Test.uiAddFunctionWidget(instance, func, html);
+    instance.focus();
+
+    var cursor = instance.getCursor();
+    instance.setSelection({
+        line: cursor.line,
+        ch: cursor.ch + 1
+    }, cursor);
+    instance.replaceSelection("\n");
+    instance.setSelection(cursor);
+
+    var button = $(".btnFunctionToolbarControl");
+    button.click();
+}
+
+Test.uiMouseOverFunctionToolbarTr = function(index) {
+    $(".tdFunctionToolbarIndexable").removeClass("ui-state-highlight");
+    $(".tdFunctionToolbarIndex" + index).addClass("ui-state-highlight");
+}
+
+Test.uiToggleFunctionToolbar = function() {
+    var button = $(".btnFunctionToolbarControl");
+    var toolbar = $(".divFunctionToolbar");
+    var accordion = $(".divFunctionToolbarContent");
+    if (!Test.isFunctionToolbarExpanded()) {
+        //was collapsed
+        button.button("option", "icons", {
+            primary: "ui-icon-minus",
+            secondary: null
+        });
+        toolbar.removeClass("divFunctionToolbar-collapsed");
+        toolbar.addClass("divFunctionToolbar-expanded");
+
+        accordion.show(1000, function() {
+            $(".divFunctionToolbarContent").accordion("refresh");
+        });
+    } else {
+        //was expanded
+        button.button("option", "icons", {
+            primary: "ui-icon-plus",
+            secondary: null
+        });
+        toolbar.removeClass("divFunctionToolbar-expanded");
+        toolbar.addClass("divFunctionToolbar-collapsed");
+
+        accordion.hide(1000);
+    }
+}
+
+Test.isFunctionToolbarExpanded = function() {
+    var button = $(".btnFunctionToolbarControl");
+    if (button.button("option", "icons").primary == "ui-icon-plus")
+        return false;
+    else
+        return true;
+}
+
+Test.uiRefreshFunctionToolbar = function() {
+    var toolbar = $(".divFunctionToolbar");
+    $.post("view/Test_functions.php", {
+        isFunctionToolbarExpanded: Test.isFunctionToolbarExpanded() ? 1 : 0
+    }, function(data) {
+        toolbar.html(data);
+    });
+}
+
+Test.uiDocDialog = function(html) {
+    $("#divTestDialogDoc").html(html);
+    $("#divTestDialogDoc").dialog({
+        modal: true,
+        resizable: true,
+        title: dictionary["s707"],
+        width: 925,
+        height: 600,
+        open: function() {
+            $('.ui-widget-overlay').css('position', 'fixed');
+        },
+        close: function() {
+            $('.ui-widget-overlay').css('position', 'absolute');
+        },
+        buttons: [
+            {
+                text: dictionary["s629"],
+                click: function() {
+                    $(this).dialog("close");
+                }
+            }
+        ]
+    })
 }

@@ -173,6 +173,7 @@ class Ini {
             "RDocFunction",
             "Setting",
             "User",
+            "UserFunction",
             "UserR",
             "UserShare",
             "UserWorkspace"
@@ -242,6 +243,7 @@ class Ini {
         require_once self::$path_internal . "cms/model/Setting.php";
         require_once self::$path_internal . "cms/model/OModule.php";
         require_once self::$path_internal . "cms/model/User.php";
+        require_once self::$path_internal . "cms/model/UserFunction.php";
         require_once self::$path_internal . "cms/model/UserR.php";
         require_once self::$path_internal . "cms/model/UserShare.php";
         require_once self::$path_internal . "cms/model/UserWorkspace.php";

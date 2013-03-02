@@ -114,6 +114,10 @@ ul {
     max-width: 300px;
 }
 
+.tooltipUnlimitedWindow{
+    max-width:  100% !important;
+}
+
 .no-close .ui-dialog-titlebar-close {display: none }
 
 .table {
@@ -293,4 +297,29 @@ ul {
 
 .divFunctionWidgetOptions{
     
+}
+
+.divFunctionToolbar{
+    position:fixed;
+    bottom: 50px;
+    left:0px;
+    opacity: 0.85;
+    z-index: 5;
+}
+
+.divFunctionToolbarContent{
+    padding:5px;
+    width:400px;
+}
+
+.tdFunctionToolbarIcon{
+    width: 30px;
+}
+
+.tdFunctionToolbarName{
+    font-weight: bold;
+}
+
+.tdFunctionToolbarPackage{
+    font-style: italic;
 }

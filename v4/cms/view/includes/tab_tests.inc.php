@@ -33,14 +33,5 @@ $class_label = Language::string(88);
 include Ini::$path_internal . "cms/view/includes/tab.inc.php";
 ?>
 
-<div id="divTestVarsDialog" class="notVisible">
-</div>
-
-<div id="divTestDebugDialog" class="notVisible">
-    <div id="divTestDebugAccordion" class="margin">
-        <h3><a href="#"><?= Language::string(365) ?></a></h3>
-        <div id="divTestDebugConsole"></div>
-        <h3><a href="#"><?= Language::string(364) ?> <?= Language::string(363) ?></a></h3>
-        <div id="divTestDebugTest"></div>
-    </div>
+<div id="div<?= $class_name ?>DialogDoc" class="notVisible">
 </div>

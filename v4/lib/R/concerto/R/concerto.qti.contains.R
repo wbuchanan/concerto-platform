@@ -2,7 +2,7 @@ concerto.qti.contains <-
 function(exp1,exp2,baseType,cardinality){
   if(cardinality=='ordered') {
     if(baseType!='pair') {
-      concerto.containsOrderedVector(exp1,exp2) 
+      concerto:::concerto.containsOrderedVector(exp1,exp2) 
     } else {
       j = 1;
       for(i in exp1){

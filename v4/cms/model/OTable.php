@@ -189,7 +189,7 @@ class OTable {
         $this->mysql_delete_object();
     }
 
-    public static function from_property($pairs, $is_array = true) {
+    public static function from_property($pairs, $is_array = true, $order = "`id` ASC") {
         if (static::$is_master_table)
             $db = "`" . Ini::$db_master_name . "`.";
         else
@@ -207,7 +207,7 @@ class OTable {
         if ($where != "")
             $where = "WHERE " . $where;
 
-        $sql = sprintf("SELECT * FROM %s`%s` %s ORDER BY `id` ASC", $db, static::get_mysql_table(), $where);
+        $sql = sprintf("SELECT * FROM %s`%s` %s ORDER BY " . $order, $db, static::get_mysql_table(), $where);
 
         $z = mysql_query($sql);
         while ($r = mysql_fetch_array($z)) {

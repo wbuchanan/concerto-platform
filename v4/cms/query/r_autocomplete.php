@@ -31,14 +31,17 @@ if ($logged_user == null) {
 
 $result = array();
 $result['functions'] = array();
-$sql = "SELECT `".Ini::$db_master_name."`.`".RDocFunction::get_mysql_table()."`.`name`, `".Ini::$db_master_name."`.`".RDocLibrary::get_mysql_table()."`.`name` 
-    FROM `".Ini::$db_master_name."`.`".RDocFunction::get_mysql_table()."` 
-    LEFT JOIN `".Ini::$db_master_name."`.`".RDocLibrary::get_mysql_table()."` ON `".Ini::$db_master_name."`.`".RDocLibrary::get_mysql_table()."`.`id` = `".Ini::$db_master_name."`.`".RDocFunction::get_mysql_table()."`.`RDocLibrary_id`
-    WHERE `".Ini::$db_master_name."`.`".RDocFunction::get_mysql_table()."`.`name` LIKE '".$_POST['string']."%' 
-    ORDER BY `".Ini::$db_master_name."`.`".RDocFunction::get_mysql_table()."`.`name` ASC";
-$z=mysql_query($sql);
-while($r=mysql_fetch_array($z)){
-    array_push($result['functions'], array("name"=>$r[0],"pack"=>$r[1]));
+$sql = "SELECT 
+    `" . Ini::$db_master_name . "`.`" . RDocFunction::get_mysql_table() . "`.`name`, 
+        `" . Ini::$db_master_name . "`.`" . RDocLibrary::get_mysql_table() . "`.`name`, 
+            `" . Ini::$db_master_name . "`.`" . RDocFunction::get_mysql_table() . "`.`id` 
+    FROM `" . Ini::$db_master_name . "`.`" . RDocFunction::get_mysql_table() . "` 
+    LEFT JOIN `" . Ini::$db_master_name . "`.`" . RDocLibrary::get_mysql_table() . "` ON `" . Ini::$db_master_name . "`.`" . RDocLibrary::get_mysql_table() . "`.`id` = `" . Ini::$db_master_name . "`.`" . RDocFunction::get_mysql_table() . "`.`RDocLibrary_id`
+    WHERE `" . Ini::$db_master_name . "`.`" . RDocFunction::get_mysql_table() . "`.`name` LIKE '" . $_POST['string'] . "%' 
+    ORDER BY `" . Ini::$db_master_name . "`.`" . RDocFunction::get_mysql_table() . "`.`name` ASC";
+$z = mysql_query($sql);
+while ($r = mysql_fetch_array($z)) {
+    array_push($result['functions'], array("id" => $r[2], "name" => $r[0], "pack" => $r[1]));
 }
 
 echo json_encode($result);

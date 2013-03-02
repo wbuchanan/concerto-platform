@@ -1,7 +1,5 @@
 import("session","rjson","RMySQL")
 export(
-concerto.containsOrderedVector,
-concerto.convertToNumeric,
 concerto.qti.get,
 concerto.qti.initialize,
 concerto.qti.responseProcessing,

@@ -4589,5 +4589,155 @@ Note: You can add new languages by inserting "<new_language>string translated in
             <nl></nl>
             <br></br>
         </string>
+        <string id="694">
+            <en>function toolbar</en>
+            <de></de>
+            <pl>pasek funkcji</pl>
+            <cn></cn>
+            <fr></fr>
+            <bg></bg>
+            <nl></nl>
+            <br></br>
+        </string>
+        <string id="695">
+            <en>Concerto functions</en>
+            <de></de>
+            <pl>funkcje Concerto</pl>
+            <cn></cn>
+            <fr></fr>
+            <bg></bg>
+            <nl></nl>
+            <br></br>
+        </string>
+        <string id="696">
+            <en>favourite functions</en>
+            <de></de>
+            <pl>ulubione funkcje</pl>
+            <cn></cn>
+            <fr></fr>
+            <bg></bg>
+            <nl></nl>
+            <br></br>
+        </string>
+        <string id="697">
+            <en>no "concerto" package documentation cached</en>
+            <de></de>
+            <pl>brak cache dokumentacji pakietu "concerto"</pl>
+            <cn></cn>
+            <fr></fr>
+            <bg></bg>
+            <nl></nl>
+            <br></br>
+        </string>
+        <string id="698">
+            <en>there are none favourite functions yet</en>
+            <de></de>
+            <pl>nie ma jeszcze żadnych ulubionych funkcji</pl>
+            <cn></cn>
+            <fr></fr>
+            <bg></bg>
+            <nl></nl>
+            <br></br>
+        </string>
+        <string id="699">
+            <en>insert function</en>
+            <de></de>
+            <pl>wstaw funkcję</pl>
+            <cn></cn>
+            <fr></fr>
+            <bg></bg>
+            <nl></nl>
+            <br></br>
+        </string>
+        <string id="700">
+            <en>remove function from favourites</en>
+            <de></de>
+            <pl>usuń funkcję z ulubionych</pl>
+            <cn></cn>
+            <fr></fr>
+            <bg></bg>
+            <nl></nl>
+            <br></br>
+        </string>
+        <string id="701" js="1">
+            <en>removing function from favourites</en>
+            <de></de>
+            <pl>usuwanie funkcji z ulubionych</pl>
+            <cn></cn>
+            <fr></fr>
+            <bg></bg>
+            <nl></nl>
+            <br></br>
+        </string>
+        <string id="702" js="1">
+            <en>adding function to favourites</en>
+            <de></de>
+            <pl>dodawanie funkcji do ulubionych</pl>
+            <cn></cn>
+            <fr></fr>
+            <bg></bg>
+            <nl></nl>
+            <br></br>
+        </string>
+        <string id="703" js="1">
+            <en>Are you sure you want to remove selected function from favourites ?</en>
+            <de></de>
+            <pl>Jesteś pewien, że chcesz usunąć wybraną funkcję z ulubionych ?</pl>
+            <cn></cn>
+            <fr></fr>
+            <bg></bg>
+            <nl></nl>
+            <br></br>
+        </string>
+        <string id="704" js="1">
+            <en>This function is already in your favourites.</en>
+            <de></de>
+            <pl>Ta funkcja jest już w ulubionych.</pl>
+            <cn></cn>
+            <fr></fr>
+            <bg></bg>
+            <nl></nl>
+            <br></br>
+        </string>
+        <string id="705" js="1">
+            <en>add function to favourites</en>
+            <de></de>
+            <pl>dodaj funckję do ulubionych</pl>
+            <cn></cn>
+            <fr></fr>
+            <bg></bg>
+            <nl></nl>
+            <br></br>
+        </string>
+        <string id="706" js="1">
+            <en>Function added to favourites.</en>
+            <de></de>
+            <pl>Funkcja dodana do ulubionych.</pl>
+            <cn></cn>
+            <fr></fr>
+            <bg></bg>
+            <nl></nl>
+            <br></br>
+        </string>
+        <string id="707" js="1">
+            <en>R function documentation</en>
+            <de></de>
+            <pl>Dokumentacja funkcji R</pl>
+            <cn></cn>
+            <fr></fr>
+            <bg></bg>
+            <nl></nl>
+            <br></br>
+        </string>
+        <string id="708">
+            <en>documentation</en>
+            <de></de>
+            <pl>dokumentacja</pl>
+            <cn></cn>
+            <fr></fr>
+            <bg></bg>
+            <nl></nl>
+            <br></br>
+        </string>
     </strings>
 </root> 

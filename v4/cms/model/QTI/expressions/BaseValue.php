@@ -42,7 +42,7 @@ class BaseValue extends AExpression {
     }
 
     public function get_R_code(){
-        return 'concerto.convertToNumeric'."('".$this->get_text()."')";
+        return 'concerto:::concerto.convertToNumeric'."('".$this->get_text()."')";
     }
     
     public function get_cardinality(){

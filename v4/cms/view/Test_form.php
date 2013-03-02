@@ -60,8 +60,8 @@ if ($oid > 0) {
 if ($oid != 0) {
     ?>
     <script>
-        $(function(){
-            Methods.iniIconButton(".btnGoToTop","arrow-1-n");
+        $(function() {
+            Methods.iniIconButton(".btnGoToTop", "arrow-1-n");
             Methods.iniIconButton(".btnCancel", "cancel");
             Methods.iniIconButton(".btnSave", "disk");
             Methods.iniIconButton(".btnSaveNew", "disk");
@@ -70,16 +70,16 @@ if ($oid != 0) {
     <?php
     if ($class_name::$exportable && $oid > 0) {
         ?>
-                    Methods.iniIconButton(".btnExport", "arrowthickstop-1-n");
-                    Methods.iniIconButton(".btnUpload", "gear");        
+                Methods.iniIconButton(".btnExport", "arrowthickstop-1-n");
+                Methods.iniIconButton(".btnUpload", "gear");
         <?php
     }
     ?>
             Methods.iniTooltips();
             Methods.iniDescriptionTooltips();
-                                    
-            $("#divTestResponse").css("height",Methods.winHeight()-100);
-            $(".divTestVerticalElement").css("height",((Methods.winHeight()-125)/2)+"px");
+
+            $("#divTestResponse").css("height", Methods.winHeight() - 100);
+            $(".divTestVerticalElement").css("height", ((Methods.winHeight() - 125) / 2) + "px");
             Test.onScroll();
         });
     </script>
@@ -154,8 +154,13 @@ if ($oid != 0) {
 
     if ($oid != -1) {
         ?>
+
+        <div class="divFunctionToolbar">
+            <?php include Ini::$path_internal."cms/view/Test_functions.php"; ?>
+        </div>
+
         <div class="divFormFloatingBar" align="right">
-            <button class="btnGoToTop" onclick="location.href='#'"><?= Language::string(442) ?></button>
+            <button class="btnGoToTop" onclick="location.href = '#'"><?= Language::string(442) ?></button>
             <?= $btn_cancel ?>
             <?= $btn_delete ?>
             <?= $btn_save ?>
@@ -173,7 +178,7 @@ if ($oid != 0) {
             if ($ws != null)
                 $ws_id = $ws->id;
             ?>
-            <button class="btnRunTest" onclick="window.open('<?= Ini::$path_external . "?wid=" . $ws_id . "&tid=" . $obj->id ?>','_blank')"><?= Language::string(362) ?></button>
+            <button class="btnRunTest" onclick="window.open('<?= Ini::$path_external . "?wid=" . $ws_id . "&tid=" . $obj->id ?>', '_blank')"><?= Language::string(362) ?></button>
         </div>
         <?php
     }

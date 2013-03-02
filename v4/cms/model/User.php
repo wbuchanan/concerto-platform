@@ -53,8 +53,9 @@ class User extends OModule {
     public function is_workspace_accessible($db) {
         if ($this->superuser == 1)
             return true;
-        foreach($this->get_workspaces() as $ws){
-            if($ws->db_name == $db) return true;
+        foreach ($this->get_workspaces() as $ws) {
+            if ($ws->db_name == $db)
+                return true;
         }
         $shares = UserShare::from_property(array("invitee_id" => $this->id));
         foreach ($shares as $share) {
@@ -188,10 +189,10 @@ class User extends OModule {
         }
         return $_SESSION['ptap_current_db'];
     }
-    
-    public static function get_current_UserWorkspace(){
+
+    public static function get_current_UserWorkspace() {
         $db = User::get_current_db();
-        return UserWorkspace::from_property(array("db_name"=>$db),false);
+        return UserWorkspace::from_property(array("db_name" => $db), false);
     }
 
     public static function get_all_db() {
@@ -249,7 +250,14 @@ class User extends OModule {
     public function mysql_delete() {
         $this->remove_workspaces();
         $this->remove_shares();
+        $this->remove_functions();
         $this->mysql_delete_object();
+    }
+
+    public function remove_functions() {
+        foreach ($this->get_functions() as $func) {
+            $func->mysql_delete();
+        }
     }
 
     public function remove_workspaces() {
@@ -260,6 +268,10 @@ class User extends OModule {
 
     public function remove_shares() {
         $this->delete_object_links(UserShare::get_mysql_table(), "invitee_id");
+    }
+
+    public function get_functions() {
+        return UserFunction::from_property(array("User_id" => $this->id));
     }
 
     public function mysql_save_from_post($post) {
