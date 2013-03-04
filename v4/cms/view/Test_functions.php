@@ -40,11 +40,32 @@ if (isset($_POST) && array_key_exists("isFunctionToolbarExpanded", $_POST) && $_
         Methods.iniIconButton(".btnFunctionToolbarControl", "<?= $expanded ? "minus" : "plus" ?>");
 
         $(".divFunctionToolbarContent").accordion({
-            heightStyle: "fill"
+            heightStyle: "auto"
         });
 <?php if (!$expanded) { ?>
             $(".divFunctionToolbarContent").hide(0);
 <?php } ?>
+
+        $(".tooltipDocDescription").tooltip({
+            tooltipClass: "tooltipWindow",
+            position: {
+                my: "left top",
+                at: "left bottom",
+                offset: "15 0"
+            },
+            content: function() {
+                var html = Test.getDocContent($(this).next().val());
+                var obj = $(html);
+                var desc = "";
+                obj.find("h3").each(function() {
+                    if ($(this).html() == "Description")
+                        desc = $(this).next().html();
+                });
+                return desc + "<br/><br/>" + dictionary["s709"];
+            },
+            show: false,
+            hide: false
+        });
     });
 </script>
 
@@ -72,10 +93,21 @@ if (isset($_POST) && array_key_exists("isFunctionToolbarExpanded", $_POST) && $_
                     if ($doc != null) {
                         $doc_html = $doc->HTML;
                     }
+                    $adv = false;
+                    $adv_functions = array(
+                        "concerto.qti.get",
+                        "concerto.qti.initialize",
+                        "concerto.qti.responseProcessing",
+                        "concerto.table.get",
+                        "concerto.template.fillHTML",
+                        "concerto.template.get",
+                        "concerto.test.get",
+                        "concerto.workspace.get"
+                    );
                     ?>
-                    <tr onmouseover='Test.uiMouseOverFunctionToolbarTr(<?= $count ?>)'>
+                    <tr onmouseover='Test.uiMouseOverFunctionToolbarTr(<?= $count ?>)' class="<?= in_array($func->name, $adv_functions) ? User::view_class() : "" ?>">
                         <td class='tdFunctionToolbarIcon'>
-                            <span class="spanIcon ui-icon ui-icon-help tooltip" title="<?= Language::string(708) ?>" onclick='Test.uiDocDialog(Test.getDocContent($(this).next().val()))'></span>
+                            <span class="spanIcon ui-icon ui-icon-help tooltipDocDescription" title="<?= Language::string(708) ?>" onclick='Test.uiDocDialog(Test.getDocContent($(this).next().val()))'></span>
                             <textarea class='notVisible'><?= $doc_html ?></textarea>
                         </td>
                         <td class='tdFunctionToolbarName tdFunctionToolbarIndexable tdFunctionToolbarIndex<?= $count ?>'><?= $func->name ?></td>
@@ -122,7 +154,7 @@ if (isset($_POST) && array_key_exists("isFunctionToolbarExpanded", $_POST) && $_
                 ?>
                 <tr onmouseover='Test.uiMouseOverFunctionToolbarTr(<?= $count ?>)'>
                     <td class='tdFunctionToolbarIcon'>
-                        <span class="spanIcon ui-icon ui-icon-help tooltip" title="<?= Language::string(708) ?>" onclick='Test.uiDocDialog(Test.getDocContent($(this).next().val()))'></span>
+                        <span class="spanIcon ui-icon ui-icon-help tooltipDocDescription" title="<?= Language::string(708) ?>" onclick='Test.uiDocDialog(Test.getDocContent($(this).next().val()))'></span>
                         <textarea class='notVisible'><?= $doc_html ?></textarea>
                     </td>
                     <td class='tdFunctionToolbarName tdFunctionToolbarIndexable tdFunctionToolbarIndex<?= $count ?>'><?= $func->name ?></td>

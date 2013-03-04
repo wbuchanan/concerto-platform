@@ -4739,5 +4739,15 @@ Note: You can add new languages by inserting "<new_language>string translated in
             <nl></nl>
             <br></br>
         </string>
+        <string id="709" js="1">
+            <en>click for full documentation</en>
+            <de></de>
+            <pl>kliknij dla pełnej dokumentacji</pl>
+            <cn></cn>
+            <fr></fr>
+            <bg></bg>
+            <nl></nl>
+            <br></br>
+        </string>
     </strings>
 </root> 

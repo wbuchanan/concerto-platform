@@ -1108,8 +1108,9 @@ Test.uiAddFunctionWidgetFromToolbar = function(func, html) {
     instance.replaceSelection("\n");
     instance.setSelection(cursor);
 
-    var button = $(".btnFunctionToolbarControl");
-    button.click();
+    if (Test.isFunctionToolbarExpanded()) {
+        Test.uiToggleFunctionToolbar();
+    }
 }
 
 Test.uiMouseOverFunctionToolbarTr = function(index) {
