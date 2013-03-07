@@ -7,11 +7,14 @@ Table query
 Perform query on Concerto table.
 }
 \usage{
-concerto.table.query(sql)
+concerto.table.query(sql,params)
 }
 \arguments{
   \item{sql}{
 SQL query to perform.
+}
+  \item{params}{
+Named list with parameters.
 }
 }
 \details{

@@ -5181,5 +5181,15 @@ Note: You can add new languages by inserting "<new_language>string translated in
             <nl></nl>
             <br></br>
         </string>
+        <string id="753">
+            <en>Define SQL code parameters list.</en>
+            <de></de>
+            <pl>Zdefiniuj listę parametrów kodu SQL.</pl>
+            <cn></cn>
+            <fr></fr>
+            <bg></bg>
+            <nl></nl>
+            <br></br>
+        </string>
     </strings>
 </root> 

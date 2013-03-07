@@ -1255,6 +1255,9 @@ Test.getExtendedFunctionWidgetValue = function(func, argName, values) {
     switch (func) {
         case "concerto.table.query":
             {
+                if (argName == "params") {
+                    return values["params"];
+                }
                 if (argName == "sql") {
                     result += 'paste("';
                     result += "\n" + values.type + "\n";
@@ -1536,6 +1539,8 @@ Test.getExtendedFunctionWizardValues = function(func) {
                 values["db"] = $("#selectFWdb").val();
                 values["table_name"] = $("#selectFWtable").val();
                 values["type"] = $("input[name='radioFWtype']:checked").val();
+                
+                values["params"] = $("#taFWarg-params").val();
 
                 values["select_section"] = [];
                 $(".tableFWselectSection tr").each(function() {

@@ -100,6 +100,7 @@ if (isset($_POST) && array_key_exists("isFunctionToolbarExpanded", $_POST) && $_
                         "concerto.qti.responseProcessing",
                         "concerto.table.get",
                         "concerto.template.fillHTML",
+                        "concerto.table.fillSQL",
                         "concerto.template.get",
                         "concerto.test.get",
                         "concerto.workspace.get"

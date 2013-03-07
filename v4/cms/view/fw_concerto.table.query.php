@@ -47,7 +47,7 @@ if (array_key_exists("type", $_POST))
 $ws = UserWorkspace::from_property(array("db_name" => $db), false);
 TestSession::change_db($ws->id);
 
-$table = Table::from_property(array("name"=>$table_name),false);
+$table = Table::from_property(array("name" => $table_name), false);
 $table_columns = array();
 if ($table != null)
     $table_columns = $table->get_columns();
@@ -122,14 +122,32 @@ $set_count = count($set_section);
 if (array_key_exists("set_section_add", $_POST) && $_POST['set_section_add'] == 1)
     array_push($set_section, json_decode(json_encode(array("v" => 0, "w0" => "id", "w1" => "", "c" => " `id` ="))));
 $set_count = count($set_section);
+
+$params = "list()";
+if (array_key_exists("params", $_POST))
+    $params = $_POST['params'];
 ?>
 
 <script>
     $(function() {
         Methods.iniTooltips();
         $(".divFWradioMenu").buttonset();
+        Methods.iniCodeMirror("taFWarg-params", "r", false, true, false, false);
     });
 </script>
+
+<!-- params -->
+<table class='fullWidth <?= User::view_class() ?>'>
+    <tr argName="params">
+        <td class='divFunctionWidgetArgTableDescColumn divFunctionWidgetArgTable'>
+            <span class="spanIcon ui-icon ui-icon-help functionArgTooltip" title="<?= Language::string(753) ?>"></span>
+        </td>
+        <td class='divFunctionWidgetArgTableNameColumn divFunctionWidgetArgTable noWrap'><?= Language::string(106) ?></td>
+        <td class='divFunctionWidgetArgTableValueColumn divFunctionWidgetArgTable'>
+            <textarea id='taFWarg-params' class='notVisible'><?= $params ?></textarea>
+        </td>
+    </tr>
+</table>
 
 <!-- workspace and table -->
 <fieldset class="padding ui-widget-content ui-corner-all margin">
@@ -270,11 +288,11 @@ if ($table == null) {
             for ($i = 0; $i < count($select_section); $i++) {
                 ?>
                 <script>
-        Test.functionWizardCM["tdFWselect<?= $i ?>"] = null;
+    Test.functionWizardCM["tdFWselect<?= $i ?>"] = null;
                 </script>
                 <tr class="trFWselectSectionElem<?= $i ?>" index="<?= $i ?>">
                     <td class="noWrap">
-                        <div align="center" class="divFWradioMenu" id="divFWselectRadioMenu<?= $i ?>">
+                        <div align="center" class="divFWradioMenu <?= User::view_class() ?>" id="divFWselectRadioMenu<?= $i ?>">
                             <input type="radio" id="radioFWselectRadioMenuWizard<?= $i ?>" name="radioFWselectRadioMenu<?= $i ?>" <?= $select_section[$i]->v == 0 ? "checked" : "" ?> onclick="Test.uiFunctionWizardToggleView('.tdFWselect<?= $i ?>', 0)" />
                             <label for="radioFWselectRadioMenuWizard<?= $i ?>"><?= Language::string(722) ?></label>
                             <input type="radio" id="radioFWselectRadioMenuCode<?= $i ?>" name="radioFWselectRadioMenu<?= $i ?>" <?= $select_section[$i]->v == 1 ? "checked" : "" ?> onclick="Test.uiFunctionWizardToggleView('.tdFWselect<?= $i ?>', 1)" />
@@ -288,7 +306,7 @@ if ($table == null) {
                                 <?php
                                 foreach ($table_columns as $col) {
                                     ?>
-                                    <option value="`<?= $col->name ?>`" <?= $col->name == $select_section[$i]->w0 ? "selected" : "" ?>><?= $col->name ?></option>
+                                    <option value="`<?= $col->name ?>`" <?= "`" . $col->name . "`" == $select_section[$i]->w0 ? "selected" : "" ?>><?= $col->name ?></option>
                                     <?php
                                 }
                                 ?>
@@ -296,7 +314,7 @@ if ($table == null) {
                         </div>
                         <div class="tdFWselect<?= $i ?>-1  <?= $select_section[$i]->v == 0 ? "notVisible" : "" ?>">
                             <script>
-        Test.functionWizardCM["tdFWselect<?= $i ?>"] = Methods.iniCodeMirror("taFWselectCode<?= $i ?>", "mysql", false, false, false, false);
+    Test.functionWizardCM["tdFWselect<?= $i ?>"] = Methods.iniCodeMirror("taFWselectCode<?= $i ?>", "mysql", false, false, false, false);
                             </script>
                             <textarea id="taFWselectCode<?= $i ?>" class="notVisible"><?= $select_section[$i]->c ?></textarea>
                         </div>
@@ -331,11 +349,11 @@ if ($table == null) {
             for ($i = 0; $i < count($set_section); $i++) {
                 ?>
                 <script>
-        Test.functionWizardCM["tdFWset<?= $i ?>"] = null;
+    Test.functionWizardCM["tdFWset<?= $i ?>"] = null;
                 </script>
                 <tr class="trFWsetSectionElem<?= $i ?>" index="<?= $i ?>">
                     <td class="noWrap">
-                        <div align="center" class="divFWradioMenu" id="divFWsetRadioMenu<?= $i ?>">
+                        <div align="center" class="divFWradioMenu <?= User::view_class() ?>" id="divFWsetRadioMenu<?= $i ?>">
                             <input type="radio" id="radioFWsetRadioMenuWizard<?= $i ?>" name="radioFWsetRadioMenu<?= $i ?>" <?= $set_section[$i]->v == 0 ? "checked" : "" ?> onclick="Test.uiFunctionWizardToggleView('.tdFWset<?= $i ?>', 0)" />
                             <label for="radioFWsetRadioMenuWizard<?= $i ?>"><?= Language::string(722) ?></label>
                             <input type="radio" id="radioFWsetRadioMenuCode<?= $i ?>" name="radioFWsetRadioMenu<?= $i ?>" <?= $set_section[$i]->v == 1 ? "checked" : "" ?> onclick="Test.uiFunctionWizardToggleView('.tdFWset<?= $i ?>', 1)" />
@@ -352,7 +370,7 @@ if ($table == null) {
                                                     <?php
                                                     foreach ($table_columns as $col) {
                                                         ?>
-                                                <option value="`<?= $col->name ?>`" <?= $col->name == $set_section[$i]->w0 ? "selected" : "" ?>><?= $col->name ?></option>
+                                                <option value="`<?= $col->name ?>`" <?= "`" . $col->name . "`" == $set_section[$i]->w0 ? "selected" : "" ?>><?= $col->name ?></option>
                                                 <?php
                                             }
                                             ?>
@@ -360,7 +378,7 @@ if ($table == null) {
                                     </td>
                                     <td class="fullWidth">
                                         <script>
-        Test.functionWizardCM["tdFWset<?= $i ?>-w1"] = Methods.iniCodeMirror("taFWsetCode<?= $i ?>-w1", "r", false, true, false, false);
+    Test.functionWizardCM["tdFWset<?= $i ?>-w1"] = Methods.iniCodeMirror("taFWsetCode<?= $i ?>-w1", "r", false, true, false, false);
                                         </script>
                                         <textarea id="taFWsetCode<?= $i ?>-w1" class="notVisible"><?= $set_section[$i]->w1 ?></textarea>
                                     </td>
@@ -411,7 +429,7 @@ if ($table == null) {
                 </script>
                 <tr class="trFWwhereSectionElem<?= $i ?>" index="<?= $i ?>">
                     <td class="noWrap">
-                        <div align="center" class="divFWradioMenu" id="divFWwhereRadioMenu<?= $i ?>">
+                        <div align="center" class="divFWradioMenu <?= User::view_class() ?>" id="divFWwhereRadioMenu<?= $i ?>">
                             <input type="radio" id="radioFWwhereRadioMenuWizard<?= $i ?>" name="radioFWwhereRadioMenu<?= $i ?>" <?= $where_section[$i]->v == 0 ? "checked" : "" ?> onclick="Test.uiFunctionWizardToggleView('.tdFWwhere<?= $i ?>', 0)" />
                             <label for="radioFWwhereRadioMenuWizard<?= $i ?>"><?= Language::string(722) ?></label>
                             <input type="radio" id="radioFWwhereRadioMenuCode<?= $i ?>" name="radioFWwhereRadioMenu<?= $i ?>" <?= $where_section[$i]->v == 1 ? "checked" : "" ?> onclick="Test.uiFunctionWizardToggleView('.tdFWwhere<?= $i ?>', 1)" />
@@ -424,7 +442,7 @@ if ($table == null) {
                                 <tr>
                                     <td style="<?= $i == 0 ? "visibility:hidden;" : "" ?>">
                                         <select id="selectFWwhereCondLink<?= $i ?>" class="ui-widget-content ui-corner-all" onchange="
-                                    Test.functionWizardCM['tdFWwhere<?= $i ?>'].setValue((<?= $i ?> != 0 ? $('#selectFWwhereCondLink<?= $i ?>').val() : '') + ' ' + $('#selectFWwhereColumn<?= $i ?>').val() + ' ' + $('#selectFWwhereOperator<?= $i ?>').val());
+                                        Test.functionWizardCM['tdFWwhere<?= $i ?>'].setValue((<?= $i ?> != 0 ? $('#selectFWwhereCondLink<?= $i ?>').val() : '') + ' ' + $('#selectFWwhereColumn<?= $i ?>').val() + ' ' + $('#selectFWwhereOperator<?= $i ?>').val());
                                                 ">
                                             <option value="AND" <?= $where_section[$i]->w0 == "AND" ? "selected" : "" ?>><?= Language::string(227) ?></option>
                                             <option value="OR" <?= $where_section[$i]->w0 == "OR" ? "selected" : "" ?>><?= Language::string(228) ?></option>
@@ -432,12 +450,12 @@ if ($table == null) {
                                     </td>
                                     <td>
                                         <select id="selectFWwhereColumn<?= $i ?>" class="ui-widget-content ui-corner-all" onchange="
-                                    Test.functionWizardCM['tdFWwhere<?= $i ?>'].setValue((<?= $i ?> != 0 ? $('#selectFWwhereCondLink<?= $i ?>').val() : '') + ' ' + $('#selectFWwhereColumn<?= $i ?>').val() + ' ' + $('#selectFWwhereOperator<?= $i ?>').val());
+                                        Test.functionWizardCM['tdFWwhere<?= $i ?>'].setValue((<?= $i ?> != 0 ? $('#selectFWwhereCondLink<?= $i ?>').val() : '') + ' ' + $('#selectFWwhereColumn<?= $i ?>').val() + ' ' + $('#selectFWwhereOperator<?= $i ?>').val());
                                                 ">
                                                     <?php
                                                     foreach ($table_columns as $col) {
                                                         ?>
-                                                <option value="`<?= $col->name ?>`" <?= $col->name == $where_section[$i]->w1 ? "selected" : "" ?>><?= $col->name ?></option>
+                                                <option value="`<?= $col->name ?>`" <?= "`" . $col->name . "`" == $where_section[$i]->w1 ? "selected" : "" ?>><?= $col->name ?></option>
                                                 <?php
                                             }
                                             ?>
@@ -445,7 +463,7 @@ if ($table == null) {
                                     </td>
                                     <td>
                                         <select id="selectFWwhereOperator<?= $i ?>" class="ui-widget-content ui-corner-all" onchange="
-                                    Test.functionWizardCM['tdFWwhere<?= $i ?>'].setValue((<?= $i ?> != 0 ? $('#selectFWwhereCondLink<?= $i ?>').val() : '') + ' ' + $('#selectFWwhereColumn<?= $i ?>').val() + ' ' + $('#selectFWwhereOperator<?= $i ?>').val());
+                                        Test.functionWizardCM['tdFWwhere<?= $i ?>'].setValue((<?= $i ?> != 0 ? $('#selectFWwhereCondLink<?= $i ?>').val() : '') + ' ' + $('#selectFWwhereColumn<?= $i ?>').val() + ' ' + $('#selectFWwhereOperator<?= $i ?>').val());
                                                 ">
                                             <option value="=" <?= $where_section[$i]->w2 == "=" ? "selected" : "" ?>><?= Language::string(222) ?></option>
                                             <option value="!=" <?= $where_section[$i]->w2 == "!=" ? "selected" : "" ?>><?= Language::string(221) ?></option>
@@ -510,7 +528,7 @@ if ($table == null) {
                 </script>
                 <tr class="trFWgroupSectionElem<?= $i ?>" index="<?= $i ?>">
                     <td class="noWrap">
-                        <div align="center" class="divFWradioMenu" id="divFWorderRadioMenu<?= $i ?>">
+                        <div align="center" class="divFWradioMenu <?= User::view_class() ?>" id="divFWorderRadioMenu<?= $i ?>">
                             <input type="radio" id="radioFWgroupRadioMenuWizard<?= $i ?>" name="radioFWgroupRadioMenu<?= $i ?>" <?= $group_section[$i]->v == 0 ? "checked" : "" ?> onclick="Test.uiFunctionWizardToggleView('.tdFWgroup<?= $i ?>', 0)" />
                             <label for="radioFWgroupRadioMenuWizard<?= $i ?>"><?= Language::string(722) ?></label>
                             <input type="radio" id="radioFWgroupRadioMenuCode<?= $i ?>" name="radioFWgroupRadioMenu<?= $i ?>" <?= $group_section[$i]->v == 1 ? "checked" : "" ?> onclick="Test.uiFunctionWizardToggleView('.tdFWgroup<?= $i ?>', 1)" />
@@ -523,12 +541,12 @@ if ($table == null) {
                                 <tr>
                                     <td class="fullWidth">
                                         <select id="selectFWgroupColumn<?= $i ?>" class="fullWidth ui-widget-content ui-corner-all" onchange="
-                                    Test.functionWizardCM['tdFWorder<?= $i ?>'].setValue($('#selectFWgroupColumn<?= $i ?>').val() + ' ' + $('#selectFWgroupDir<?= $i ?>').val());
+                                        Test.functionWizardCM['tdFWorder<?= $i ?>'].setValue($('#selectFWgroupColumn<?= $i ?>').val() + ' ' + $('#selectFWgroupDir<?= $i ?>').val());
                                                 ">
                                                     <?php
                                                     foreach ($table_columns as $col) {
                                                         ?>
-                                                <option value="`<?= $col->name ?>`" <?= $col->name == $group_section[$i]->w0 ? "selected" : "" ?>><?= $col->name ?></option>
+                                                <option value="`<?= $col->name ?>`" <?= "`" . $col->name . "`" == $group_section[$i]->w0 ? "selected" : "" ?>><?= $col->name ?></option>
                                                 <?php
                                             }
                                             ?>
@@ -536,7 +554,7 @@ if ($table == null) {
                                     </td>
                                     <td>
                                         <select id="selectFWgroupDir<?= $i ?>" class="ui-widget-content ui-corner-all" onchange="
-                                    Test.functionWizardCM['tdFWgroup<?= $i ?>'].setValue($('#selectFWgroupColumn<?= $i ?>').val() + ' ' + $('#selectFWgroupDir<?= $i ?>').val());
+                                        Test.functionWizardCM['tdFWgroup<?= $i ?>'].setValue($('#selectFWgroupColumn<?= $i ?>').val() + ' ' + $('#selectFWgroupDir<?= $i ?>').val());
                                                 ">
                                             <option value="ASC" <?= "ASC" == $group_section[$i]->w1 ? "selected" : "" ?>><?= Language::string(733) ?></option>
                                             <option value="DESC" <?= "DESC" == $group_section[$i]->w1 ? "selected" : "" ?>><?= Language::string(734) ?></option>
@@ -589,7 +607,7 @@ if ($table == null) {
                 </script>
                 <tr class="trFWhavingSectionElem<?= $i ?>" index="<?= $i ?>">
                     <td class="noWrap">
-                        <div align="center" class="divFWradioMenu" id="divFWhavingRadioMenu<?= $i ?>">
+                        <div align="center" class="divFWradioMenu <?= User::view_class() ?>" id="divFWhavingRadioMenu<?= $i ?>">
                             <input type="radio" id="radioFWhavingRadioMenuWizard<?= $i ?>" name="radioFWhavingRadioMenu<?= $i ?>" <?= $having_section[$i]->v == 0 ? "checked" : "" ?> onclick="Test.uiFunctionWizardToggleView('.tdFWhaving<?= $i ?>', 0)" />
                             <label for="radioFWhavingRadioMenuWizard<?= $i ?>"><?= Language::string(722) ?></label>
                             <input type="radio" id="radioFWhavingRadioMenuCode<?= $i ?>" name="radioFWhavingRadioMenu<?= $i ?>" <?= $having_section[$i]->v == 1 ? "checked" : "" ?> onclick="Test.uiFunctionWizardToggleView('.tdFWhaving<?= $i ?>', 1)" />
@@ -602,7 +620,7 @@ if ($table == null) {
                                 <tr>
                                     <td style="<?= $i == 0 ? "visibility:hidden;" : "" ?>">
                                         <select id="selectFWhavingCondLink<?= $i ?>" class="ui-widget-content ui-corner-all" onchange="
-                                    Test.functionWizardCM['tdFWhaving<?= $i ?>'].setValue((<?= $i ?> != 0 ? $('#selectFWhavingCondLink<?= $i ?>').val() : '') + ' ' + $('#selectFWhavingColumn<?= $i ?>').val() + ' ' + $('#selectFWhavingOperator<?= $i ?>').val());
+                                        Test.functionWizardCM['tdFWhaving<?= $i ?>'].setValue((<?= $i ?> != 0 ? $('#selectFWhavingCondLink<?= $i ?>').val() : '') + ' ' + $('#selectFWhavingColumn<?= $i ?>').val() + ' ' + $('#selectFWhavingOperator<?= $i ?>').val());
                                                 ">
                                             <option value="AND" <?= $having_section[$i]->w0 == "AND" ? "selected" : "" ?>><?= Language::string(227) ?></option>
                                             <option value="OR" <?= $having_section[$i]->w0 == "OR" ? "selected" : "" ?>><?= Language::string(228) ?></option>
@@ -610,12 +628,12 @@ if ($table == null) {
                                     </td>
                                     <td>
                                         <select id="selectFWhavingColumn<?= $i ?>" class="ui-widget-content ui-corner-all" onchange="
-                                    Test.functionWizardCM['tdFWhaving<?= $i ?>'].setValue((<?= $i ?> != 0 ? $('#selectFWhavingCondLink<?= $i ?>').val() : '') + ' ' + $('#selectFWhavingColumn<?= $i ?>').val() + ' ' + $('#selectFWhavingOperator<?= $i ?>').val());
+                                        Test.functionWizardCM['tdFWhaving<?= $i ?>'].setValue((<?= $i ?> != 0 ? $('#selectFWhavingCondLink<?= $i ?>').val() : '') + ' ' + $('#selectFWhavingColumn<?= $i ?>').val() + ' ' + $('#selectFWhavingOperator<?= $i ?>').val());
                                                 ">
                                                     <?php
                                                     foreach ($table_columns as $col) {
                                                         ?>
-                                                <option value="`<?= $col->name ?>`" <?= $col->name == $having_section[$i]->w1 ? "selected" : "" ?>><?= $col->name ?></option>
+                                                <option value="`<?= $col->name ?>`" <?= "`" . $col->name . "`" == $having_section[$i]->w1 ? "selected" : "" ?>><?= $col->name ?></option>
                                                 <?php
                                             }
                                             ?>
@@ -623,7 +641,7 @@ if ($table == null) {
                                     </td>
                                     <td>
                                         <select id="selectFWhavingOperator<?= $i ?>" class="ui-widget-content ui-corner-all" onchange="
-                                    Test.functionWizardCM['tdFWhaving<?= $i ?>'].setValue((<?= $i ?> != 0 ? $('#selectFWhavingCondLink<?= $i ?>').val() : '') + ' ' + $('#selectFWhavingColumn<?= $i ?>').val() + ' ' + $('#selectFWhavingOperator<?= $i ?>').val());
+                                        Test.functionWizardCM['tdFWhaving<?= $i ?>'].setValue((<?= $i ?> != 0 ? $('#selectFWhavingCondLink<?= $i ?>').val() : '') + ' ' + $('#selectFWhavingColumn<?= $i ?>').val() + ' ' + $('#selectFWhavingOperator<?= $i ?>').val());
                                                 ">
                                             <option value="=" <?= $having_section[$i]->w2 == "=" ? "selected" : "" ?>><?= Language::string(222) ?></option>
                                             <option value="!=" <?= $having_section[$i]->w2 == "!=" ? "selected" : "" ?>><?= Language::string(221) ?></option>
@@ -688,7 +706,7 @@ if ($table == null) {
                 </script>
                 <tr class="trFWorderSectionElem<?= $i ?>" index="<?= $i ?>">
                     <td class="noWrap">
-                        <div align="center" class="divFWradioMenu" id="divFWorderRadioMenu<?= $i ?>">
+                        <div align="center" class="divFWradioMenu <?= User::view_class() ?>" id="divFWorderRadioMenu<?= $i ?>">
                             <input type="radio" id="radioFWorderRadioMenuWizard<?= $i ?>" name="radioFWorderRadioMenu<?= $i ?>" <?= $order_section[$i]->v == 0 ? "checked" : "" ?> onclick="Test.uiFunctionWizardToggleView('.tdFWorder<?= $i ?>', 0)" />
                             <label for="radioFWorderRadioMenuWizard<?= $i ?>"><?= Language::string(722) ?></label>
                             <input type="radio" id="radioFWorderRadioMenuCode<?= $i ?>" name="radioFWorderRadioMenu<?= $i ?>" <?= $order_section[$i]->v == 1 ? "checked" : "" ?> onclick="Test.uiFunctionWizardToggleView('.tdFWorder<?= $i ?>', 1)" />
@@ -701,12 +719,12 @@ if ($table == null) {
                                 <tr>
                                     <td class="fullWidth">
                                         <select id="selectFWorderColumn<?= $i ?>" class="fullWidth ui-widget-content ui-corner-all" onchange="
-                                    Test.functionWizardCM['tdFWorder<?= $i ?>'].setValue($('#selectFWorderColumn<?= $i ?>').val() + ' ' + $('#selectFWorderDir<?= $i ?>').val());
+                                        Test.functionWizardCM['tdFWorder<?= $i ?>'].setValue($('#selectFWorderColumn<?= $i ?>').val() + ' ' + $('#selectFWorderDir<?= $i ?>').val());
                                                 ">
                                                     <?php
                                                     foreach ($table_columns as $col) {
                                                         ?>
-                                                <option value="`<?= $col->name ?>`" <?= $col->name == $order_section[$i]->w0 ? "selected" : "" ?>><?= $col->name ?></option>
+                                                <option value="`<?= $col->name ?>`" <?= "`" . $col->name . "`" == $order_section[$i]->w0 ? "selected" : "" ?>><?= $col->name ?></option>
                                                 <?php
                                             }
                                             ?>
@@ -714,7 +732,7 @@ if ($table == null) {
                                     </td>
                                     <td>
                                         <select id="selectFWorderDir<?= $i ?>" class="ui-widget-content ui-corner-all" onchange="
-                                    Test.functionWizardCM['tdFWorder<?= $i ?>'].setValue($('#selectFWorderColumn<?= $i ?>').val() + ' ' + $('#selectFWorderDir<?= $i ?>').val());
+                                        Test.functionWizardCM['tdFWorder<?= $i ?>'].setValue($('#selectFWorderColumn<?= $i ?>').val() + ' ' + $('#selectFWorderDir<?= $i ?>').val());
                                                 ">
                                             <option value="ASC" <?= "ASC" == $order_section[$i]->w1 ? "selected" : "" ?>><?= Language::string(733) ?></option>
                                             <option value="DESC" <?= "DESC" == $order_section[$i]->w1 ? "selected" : "" ?>><?= Language::string(734) ?></option>
