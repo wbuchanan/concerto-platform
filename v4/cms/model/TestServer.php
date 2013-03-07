@@ -423,6 +423,7 @@ class TestServer {
             self::log_debug("TestServer->close_instance() --- Client '$key' closed");
         }
 
+        /*
         if ($workspace_id != null) {
             TestSession::change_db($workspace_id);
             $session = TestSession::from_mysql_id($session_id);
@@ -430,6 +431,7 @@ class TestServer {
                 $session->remove(false);
             }
         }
+        */
     }
 
     private function serialize_instance($key) {

@@ -75,6 +75,7 @@ if (!isset($ini)) {
         <script src="lib/CodeMirror/mode/xml/xml.js"></script>
         <script src="lib/CodeMirror/mode/javascript/javascript.js"></script>
         <script src="lib/CodeMirror/mode/css/css.js"></script>
+        <script src="lib/CodeMirror/mode/mysql/mysql.js"></script>
         
         <script src="js/lib/jquery-ui-dialog-ckeditor-patch.js"></script>
         <script src="js/lib/fileupload/jquery.iframe-transport.js"></script>

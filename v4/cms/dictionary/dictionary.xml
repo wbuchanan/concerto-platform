@@ -4749,5 +4749,437 @@ Note: You can add new languages by inserting "<new_language>string translated in
             <nl></nl>
             <br></br>
         </string>
+        <string id="710">
+            <en>choose table</en>
+            <de></de>
+            <pl>wybierz tabelę</pl>
+            <cn></cn>
+            <fr></fr>
+            <bg></bg>
+            <nl></nl>
+            <br></br>
+        </string>
+        <string id="711">
+            <en>Choose table workspace and the table itself.</en>
+            <de></de>
+            <pl>Wybierz przestrzeń pracy tabeli oraz samą tabelę.</pl>
+            <cn></cn>
+            <fr></fr>
+            <bg></bg>
+            <nl></nl>
+            <br></br>
+        </string>
+        <string id="712">
+            <en>Choose table workspace.</en>
+            <de></de>
+            <pl>Wybierz przestrzeń pracy tabeli.</pl>
+            <cn></cn>
+            <fr></fr>
+            <bg></bg>
+            <nl></nl>
+            <br></br>
+        </string>
+        <string id="713">
+            <en>table</en>
+            <de></de>
+            <pl>tabela</pl>
+            <cn></cn>
+            <fr></fr>
+            <bg></bg>
+            <nl></nl>
+            <br></br>
+        </string>
+        <string id="714">
+            <en>query type</en>
+            <de></de>
+            <pl>typ kwerendy</pl>
+            <cn></cn>
+            <fr></fr>
+            <bg></bg>
+            <nl></nl>
+            <br></br>
+        </string>
+        <string id="715">
+            <en>Choose query type.</en>
+            <de></de>
+            <pl>Wybierz rodzaj kwerendy.</pl>
+            <cn></cn>
+            <fr></fr>
+            <bg></bg>
+            <nl></nl>
+            <br></br>
+        </string>
+        <string id="716">
+            <en>SELECT</en>
+            <de></de>
+            <pl>SELECT</pl>
+            <cn></cn>
+            <fr></fr>
+            <bg></bg>
+            <nl></nl>
+            <br></br>
+        </string>
+        <string id="717">
+            <en>INSERT</en>
+            <de></de>
+            <pl>INSERT</pl>
+            <cn></cn>
+            <fr></fr>
+            <bg></bg>
+            <nl></nl>
+            <br></br>
+        </string>
+        <string id="718">
+            <en>UPDATE</en>
+            <de></de>
+            <pl>UPDATE</pl>
+            <cn></cn>
+            <fr></fr>
+            <bg></bg>
+            <nl></nl>
+            <br></br>
+        </string>
+        <string id="719">
+            <en>DELETE</en>
+            <de></de>
+            <pl>DELETE</pl>
+            <cn></cn>
+            <fr></fr>
+            <bg></bg>
+            <nl></nl>
+            <br></br>
+        </string>
+        <string id="720">
+            <en>REPLACE</en>
+            <de></de>
+            <pl>REPLACE</pl>
+            <cn></cn>
+            <fr></fr>
+            <bg></bg>
+            <nl></nl>
+            <br></br>
+        </string>
+        <string id="721">
+            <en>Choose columns you wish to select.</en>
+            <de></de>
+            <pl>Wybierz kolumny do pokazania.</pl>
+            <cn></cn>
+            <fr></fr>
+            <bg></bg>
+            <nl></nl>
+            <br></br>
+        </string>
+        <string id="722">
+            <en>wizard</en>
+            <de></de>
+            <pl>wizard</pl>
+            <cn></cn>
+            <fr></fr>
+            <bg></bg>
+            <nl></nl>
+            <br></br>
+        </string>
+        <string id="723">
+            <en>code</en>
+            <de></de>
+            <pl>kod</pl>
+            <cn></cn>
+            <fr></fr>
+            <bg></bg>
+            <nl></nl>
+            <br></br>
+        </string>
+        <string id="724">
+            <en>all</en>
+            <de></de>
+            <pl>wszystkie</pl>
+            <cn></cn>
+            <fr></fr>
+            <bg></bg>
+            <nl></nl>
+            <br></br>
+        </string>
+        <string id="725">
+            <en>add column</en>
+            <de></de>
+            <pl>dodaj kolumnę</pl>
+            <cn></cn>
+            <fr></fr>
+            <bg></bg>
+            <nl></nl>
+            <br></br>
+        </string>
+        <string id="726">
+            <en>where</en>
+            <de></de>
+            <pl>gdzie</pl>
+            <cn></cn>
+            <fr></fr>
+            <bg></bg>
+            <nl></nl>
+            <br></br>
+        </string>
+        <string id="727">
+            <en>Declare conditional statements.</en>
+            <de></de>
+            <pl>Zadeklaruj twierdzenia warunkowe.</pl>
+            <cn></cn>
+            <fr></fr>
+            <bg></bg>
+            <nl></nl>
+            <br></br>
+        </string>
+        <string id="728">
+            <en>like</en>
+            <tr>beğenmek</tr>
+            <de>ähnlich</de>
+            <pl>podobne</pl>
+            <cn>类似于</cn>
+            <fr>comme</fr>
+            <bg>подобно</bg>
+            <nl>zoals</nl>
+            <br>como</br>
+        </string>
+        <string id="729">
+            <en>not like</en>
+            <tr>beğenmemek</tr>
+            <de>nicht ähnlich</de>
+            <pl>niepodobne</pl>
+            <cn>不类似于</cn>
+            <fr>pas comme</fr>
+            <bg>не е подобно</bg>
+            <nl>niet zoals</nl>
+            <br>não como</br>
+        </string>
+        <string id="730">
+            <en>WHERE clause is empty. No filters will be applied.</en>
+            <de></de>
+            <pl>Klauzula WHERE jest pusta. Żadne filtry nie zostaną zastosowane.</pl>
+            <cn></cn>
+            <fr></fr>
+            <bg></bg>
+            <nl></nl>
+            <br></br>
+        </string>
+        <string id="731">
+            <en>order by</en>
+            <de></de>
+            <pl>sortuj po</pl>
+            <cn></cn>
+            <fr></fr>
+            <bg></bg>
+            <nl></nl>
+            <br></br>
+        </string>
+        <string id="732">
+            <en>Sorting declaration.</en>
+            <de></de>
+            <pl>Deklaracja sortowania.</pl>
+            <cn></cn>
+            <fr></fr>
+            <bg></bg>
+            <nl></nl>
+            <br></br>
+        </string>
+        <string id="733">
+            <en>ascending</en>
+            <de></de>
+            <pl>rosnąco</pl>
+            <cn></cn>
+            <fr></fr>
+            <bg></bg>
+            <nl></nl>
+            <br></br>
+        </string>
+        <string id="734">
+            <en>descending</en>
+            <de></de>
+            <pl>malejąco</pl>
+            <cn></cn>
+            <fr></fr>
+            <bg></bg>
+            <nl></nl>
+            <br></br>
+        </string>
+        <string id="735">
+            <en>ORDER BY clause is empty. No sorting will be applied.</en>
+            <de></de>
+            <pl>Klauzula ORDER BY jest pusta. Żadne sortowanie nie zostanie zastosowane.</pl>
+            <cn></cn>
+            <fr></fr>
+            <bg></bg>
+            <nl></nl>
+            <br></br>
+        </string>
+        <string id="736">
+            <en>group by</en>
+            <de></de>
+            <pl>grupuj po</pl>
+            <cn></cn>
+            <fr></fr>
+            <bg></bg>
+            <nl></nl>
+            <br></br>
+        </string>
+        <string id="737">
+            <en>Grouping declaration.</en>
+            <de></de>
+            <pl>Deklaracja grupowania.</pl>
+            <cn></cn>
+            <fr></fr>
+            <bg></bg>
+            <nl></nl>
+            <br></br>
+        </string>=
+        <string id="738">
+            <en>GROUP BY clause is empty. No grouping will be applied.</en>
+            <de></de>
+            <pl>Klauzula GROUP BY jest pusta. Żadne grupowanie nie zostanie zastosowane.</pl>
+            <cn></cn>
+            <fr></fr>
+            <bg></bg>
+            <nl></nl>
+            <br></br>
+        </string>
+        <string id="739">
+            <en>having</en>
+            <de></de>
+            <pl>posiadające</pl>
+            <cn></cn>
+            <fr></fr>
+            <bg></bg>
+            <nl></nl>
+            <br></br>
+        </string>
+        <string id="740">
+            <en>Filters for aggregate functions.</en>
+            <de></de>
+            <pl>Filtry do funkcji agregacyjnych.</pl>
+            <cn></cn>
+            <fr></fr>
+            <bg></bg>
+            <nl></nl>
+            <br></br>
+        </string>
+        <string id="741">
+            <en>HAVING clause is empty.</en>
+            <de></de>
+            <pl>Klauzula HAVING jest pusta.</pl>
+            <cn></cn>
+            <fr></fr>
+            <bg></bg>
+            <nl></nl>
+            <br></br>
+        </string>
+        <string id="742">
+            <en>limit</en>
+            <de></de>
+            <pl>limit</pl>
+            <cn></cn>
+            <fr></fr>
+            <bg></bg>
+            <nl></nl>
+            <br></br>
+        </string>
+        <string id="743">
+            <en>Sets the limit on number of records returned.</en>
+            <de></de>
+            <pl>Ustanawia limit na ilości rekordów zwróconych.</pl>
+            <cn></cn>
+            <fr></fr>
+            <bg></bg>
+            <nl></nl>
+            <br></br>
+        </string>
+        <string id="744">
+            <en>unlimited</en>
+            <de></de>
+            <pl>bez limitu</pl>
+            <cn></cn>
+            <fr></fr>
+            <bg></bg>
+            <nl></nl>
+            <br></br>
+        </string>
+        <string id="745">
+            <en>limited</en>
+            <de></de>
+            <pl>z limitem</pl>
+            <cn></cn>
+            <fr></fr>
+            <bg></bg>
+            <nl></nl>
+            <br></br>
+        </string>
+        <string id="746">
+            <en>offset</en>
+            <de></de>
+            <pl>począwszy od</pl>
+            <cn></cn>
+            <fr></fr>
+            <bg></bg>
+            <nl></nl>
+            <br></br>
+        </string>
+        <string id="747">
+            <en>Set the starting record index.</en>
+            <de></de>
+            <pl>Ustaw indeks rekordu początkowego.</pl>
+            <cn></cn>
+            <fr></fr>
+            <bg></bg>
+            <nl></nl>
+            <br></br>
+        </string>
+        <string id="748">
+            <en>number of records</en>
+            <de></de>
+            <pl>ilość rekordów</pl>
+            <cn></cn>
+            <fr></fr>
+            <bg></bg>
+            <nl></nl>
+            <br></br>
+        </string>
+        <string id="749">
+            <en>Set the number of records to return.</en>
+            <de></de>
+            <pl>Ustaw ilość rekordów jaka ma zostać zwrócona.</pl>
+            <cn></cn>
+            <fr></fr>
+            <bg></bg>
+            <nl></nl>
+            <br></br>
+        </string>
+        <string id="750">
+            <en>set</en>
+            <de></de>
+            <pl>ustaw</pl>
+            <cn></cn>
+            <fr></fr>
+            <bg></bg>
+            <nl></nl>
+            <br></br>
+        </string>
+        <string id="751">
+            <en>Set record values.</en>
+            <de></de>
+            <pl>Ustaw wartości rekordu.</pl>
+            <cn></cn>
+            <fr></fr>
+            <bg></bg>
+            <nl></nl>
+            <br></br>
+        </string>
+        <string id="752">
+            <en>SET clause is empty. Record will be added with only default values.</en>
+            <de></de>
+            <pl>Klauzula SET jest pusta. Rekord zostanie dodany jedynie z wartościami domyślnymi.</pl>
+            <cn></cn>
+            <fr></fr>
+            <bg></bg>
+            <nl></nl>
+            <br></br>
+        </string>
     </strings>
 </root> 

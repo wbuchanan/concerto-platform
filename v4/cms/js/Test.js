@@ -601,6 +601,9 @@ Test.getDocContent = function(html) {
 Test.functionWidgets = [];
 Test.functionWidgetOptionComments = true;
 Test.functionWidgetOptionFormat = true;
+Test.functionWidgetExtended = [
+    "concerto.table.query"
+];
 Test.uiAddFunctionWidget = function(instance, func, html) {
     var date = new Date();
     var id = "func-" + func + "-" + date.getTime() + "-" + Math.floor((Math.random() * 1000));
@@ -631,7 +634,12 @@ Test.uiAddFunctionWidget = function(instance, func, html) {
                 "</tr>");
     }
 
-    widget.append("<div class='divFunctionWidgetElement divFunctionWidgetArgTable'>" + argTable[0].outerHTML + "</div>");
+    if (Test.functionWidgetExtended.indexOf(func) == -1)
+        widget.append("<div class='divFunctionWidgetElement divFunctionWidgetArgTable'>" + argTable[0].outerHTML + "</div>");
+    else {
+        widget.append("<div class='divFunctionWidgetElement divFunctionWidgetArgTable' style='display:none;'>" + argTable[0].outerHTML + "</div>");
+        widget.append("<div class='divFunctionWidgetElement divFunctionWidgetArgTableExt'></div>");
+    }
 
     var optionsCollection = [
         $("<div class='divFunctionWidgetOption'><label for='" + id + "-option-comments'><input type='checkbox' id='" + id + "-option-comments' " + (Test.functionWidgetOptionComments ? "checked" : "") + " />" + dictionary["s684"] + "</label></options>"),
@@ -652,19 +660,21 @@ Test.uiAddFunctionWidget = function(instance, func, html) {
     var fw = instance.addLineWidget(instance.getCursor(true).line, widget[0]);
     fw["widgetID"] = id;
 
-    var chosen = false;
-    var chosenCM = null;
-    for (var i = 0; i < parsedDoc.arguments.length; i++) {
-        var formattedName = parsedDoc.arguments[i].name.replace(/\./g, "___");
-        var cm = Methods.iniCodeMirror(id + "-" + formattedName, "r", false, true, false, false);
-        if (!chosen) {
-            chosenCM = cm;
-            chosen = true;
+    if (Test.functionWidgetExtended.indexOf(func) == -1) {
+        var chosen = false;
+        var chosenCM = null;
+        for (var i = 0; i < parsedDoc.arguments.length; i++) {
+            var formattedName = parsedDoc.arguments[i].name.replace(/\./g, "___");
+            var cm = Methods.iniCodeMirror(id + "-" + formattedName, "r", false, true, false, false);
+            if (!chosen) {
+                chosenCM = cm;
+                chosen = true;
+            }
+            cmArgValues.push(cm);
         }
-        cmArgValues.push(cm);
+        if (chosenCM != null)
+            chosenCM.focus();
     }
-    if (chosenCM != null)
-        chosenCM.focus();
 
     Methods.iniIconButton(".btnApply", "disk");
     Methods.iniIconButton(".btnCancel", "cancel");
@@ -690,11 +700,15 @@ Test.uiAddFunctionWidget = function(instance, func, html) {
     });
 
     widget.find("button.btnApply").click(function() {
-        Test.uiApplyFunctionWidget(fw);
+        Test.uiApplyFunctionWidget(func, fw);
     });
+
+    if (Test.functionWidgetExtended.indexOf(func) != -1) {
+        Test.uiRefreshExtendedFunctionWizard(func);
+    }
 }
 
-Test.uiApplyFunctionWidget = function(fw) {
+Test.uiApplyFunctionWidget = function(func, fw) {
     var id = fw["widgetID"];
     var widget = $("#" + id);
     var title = widget.find(".divFunctionWidgetTitle").text().replace(/\n/g, "");
@@ -711,10 +725,19 @@ Test.uiApplyFunctionWidget = function(fw) {
 
     var table = widget.find(".divFunctionWidgetArgTable table");
     var isFirst = true;
+
+    var efwValues = null;
+    if (Test.functionWidgetExtended.indexOf(func) != -1)
+        efwValues = Test.getExtendedFunctionWizardValues(func);
+
     table.find("tr").each(function() {
         var name = $(this).attr("argName");
         var formattedName = name.replace(/\./g, "___");
         var value = $("#" + id + "-" + formattedName).val();
+
+        if (Test.functionWidgetExtended.indexOf(func) != -1) {
+            value = Test.getExtendedFunctionWidgetValue(func, name, efwValues);
+        }
 
         if (jQuery.trim(value) == "")
             return;
@@ -1187,4 +1210,434 @@ Test.uiDocDialog = function(html) {
             }
         ]
     })
+}
+
+Test.functionWizardCM = {};
+Test.uiFunctionWizardToggleView = function(container, view) {
+    var wizard = $(container + "-0");
+    var code = $(container + "-1");
+    if (view == 0) {
+        wizard.removeClass("notVisible");
+        code.addClass("notVisible");
+    } else {
+        wizard.addClass("notVisible");
+        code.removeClass("notVisible");
+        Test.functionWizardCM[container.substr(1)].refresh();
+    }
+}
+
+Test.uiRemoveFWsectionElem = function(func, elem) {
+    $(elem).remove();
+    Test.uiRefreshExtendedFunctionWizard(func);
+}
+
+Test.uiAddFWsectionElem = function(func, section) {
+    var values = Test.getExtendedFunctionWizardValues(func);
+    values[section + "_add"] = 1;
+    Test.uiRefreshExtendedFunctionWizard(func, values);
+
+}
+
+Test.uiRefreshExtendedFunctionWizard = function(func, values) {
+    if (values == null)
+        values = Test.getExtendedFunctionWizardValues(func);
+    Methods.uiBlock(".divFunctionWidgetArgTableExt");
+    $.post("view/fw_" + func + ".php",
+            values,
+            function(data) {
+                Methods.uiUnblock(".divFunctionWidgetArgTableExt");
+                $(".divFunctionWidgetArgTableExt").html(data);
+            });
+}
+
+Test.getExtendedFunctionWidgetValue = function(func, argName, values) {
+    var result = "";
+    switch (func) {
+        case "concerto.table.query":
+            {
+                if (argName == "sql") {
+                    result += 'paste("';
+                    result += "\n" + values.type + "\n";
+                    switch (values.type) {
+                        case "SELECT":
+                            {
+                                var select_section = $.parseJSON(values.select_section);
+                                var select_result = "";
+                                for (var i = 0; i < select_section.length; i++) {
+                                    var ss = select_section[i];
+                                    if (select_result != "")
+                                        select_result += ",\n";
+                                    if (parseInt(ss.v) == 0)
+                                        select_result += ss.w0;
+                                    else
+                                        select_result += ss.c;
+                                }
+                                result += select_result + "\n";
+
+                                result += " FROM `" + values.db + "`.`" + values.table_name + "`\n";
+
+                                var where_section = $.parseJSON(values.where_section);
+                                var where_result = "";
+                                if (where_section != null) {
+                                    result += "WHERE\n";
+                                    for (var i = 0; i < where_section.length; i++) {
+                                        var ws = where_section[i];
+
+                                        if (ws.v == 0) {
+                                            if (i != 0)
+                                                where_result += ws.w0 + " ";
+                                            where_result += ws.w1 + " ";
+                                            where_result += ws.w2 + " ";
+                                            where_result += '\'",dbEscapeStrings(concerto$db$connection,toString(' + ws.w3 + ')),"\'' + "\n";
+                                        } else {
+                                            where_result += ws.c + "\n";
+                                        }
+                                    }
+                                    result += where_result;
+                                }
+
+                                var group_section = $.parseJSON(values.group_section);
+                                var group_result = "";
+                                if (group_section != null) {
+                                    result += "GROUP BY\n";
+                                    for (var i = 0; i < group_section.length; i++) {
+                                        var gs = group_section[i];
+                                        if (group_result != "")
+                                            group_result += ", ";
+                                        if (parsInt(gs.v) == 0) {
+                                            group_result += gs.w0 + " ";
+                                            group_result += gs.w1 + "\n";
+                                        }
+                                        else
+                                            group_result += gs.c = "\n";
+
+                                    }
+                                    result += group_result;
+                                }
+
+                                var having_section = $.parseJSON(values.having_section);
+                                var having_result = "";
+                                if (having_section != null) {
+                                    result += "HAVING\n";
+                                    for (var i = 0; i < having_section.length; i++) {
+                                        var hs = having_section[i];
+
+                                        if (hs.v == 0) {
+                                            if (i != 0)
+                                                having_result += hs.w0 + " ";
+                                            having_result += hs.w1 + " ";
+                                            having_result += hs.w2 + " ";
+                                            having_result += '\'",dbEscapeStrings(concerto$db$connection,toString(' + hs.w3 + ')),"\'' + "\n";
+                                        } else {
+                                            having_result += hs.c + "\n";
+                                        }
+                                    }
+                                    result += having_result;
+                                }
+
+                                var order_section = $.parseJSON(values.order_section);
+                                var order_result = "";
+                                if (order_section != null) {
+                                    result += "ORDER BY\n";
+                                    for (var i = 0; i < order_section.length; i++) {
+                                        var os = order_section[i];
+                                        if (order_result != "")
+                                            order_result += ", ";
+                                        if (parseInt(os.v) == 0) {
+                                            order_result += os.w0 + " ";
+                                            order_result += os.w1 + "\n";
+                                        }
+                                        else
+                                            order_result += os.c = "\n";
+                                    }
+                                    result += order_result;
+                                }
+
+                                var limit_section = $.parseJSON(values.limit_section);
+                                if (parseInt(limit_section.w0) == 1) {
+                                    result += "LIMIT " + limit_section.w1 + "," + limit_section.w2 + "\n";
+                                }
+                                break;
+                            }
+                        case "INSERT":
+                            {
+                                result += " INTO `" + values.db + "`.`" + values.table_name + "`\n";
+
+                                var set_section = $.parseJSON(values.set_section);
+                                var set_result = "";
+                                if (set_section != null) {
+                                    result += "SET \n";
+                                    for (var i = 0; i < set_section.length; i++) {
+                                        var ss = set_section[i];
+                                        if (set_result != "")
+                                            set_result += ",\n";
+                                        if (parseInt(ss.v) == 0) {
+                                            set_result += ss.w0 + "=";
+                                            set_result += ss.w1;
+                                        }
+                                        else
+                                            set_result += ss.c = "\n";
+                                    }
+                                    result += set_result = "\n";
+                                }
+                                break;
+                            }
+                        case "DELETE":
+                            {
+                                result += " FROM `" + values.db + "`.`" + values.table_name + "`\n";
+
+                                var where_section = $.parseJSON(values.where_section);
+                                var where_result = "";
+                                if (where_section != null) {
+                                    result += "WHERE\n";
+                                    for (var i = 0; i < where_section.length; i++) {
+                                        var ws = where_section[i];
+
+                                        if (ws.v == 0) {
+                                            if (i != 0)
+                                                where_result += ws.w0 + " ";
+                                            where_result += ws.w1 + " ";
+                                            where_result += ws.w2 + " ";
+                                            where_result += '\'",dbEscapeStrings(concerto$db$connection,toString(' + ws.w3 + ')),"\'' + "\n";
+                                        } else {
+                                            where_result += ws.c + "\n";
+                                        }
+                                    }
+                                    result += where_result;
+                                }
+
+                                var order_section = $.parseJSON(values.order_section);
+                                var order_result = "";
+                                if (order_section != null) {
+                                    result += "ORDER BY\n";
+                                    for (var i = 0; i < order_section.length; i++) {
+                                        var os = order_section[i];
+                                        if (order_result != "")
+                                            order_result += ", ";
+                                        if (parseInt(os.v) == 0) {
+                                            order_result += os.w0 + " ";
+                                            order_result += os.w1 + "\n";
+                                        }
+                                        else
+                                            order_result += os.c = "\n";
+                                    }
+                                    result += order_result;
+                                }
+
+                                var limit_section = $.parseJSON(values.limit_section);
+                                if (parseInt(limit_section.w0) == 1) {
+                                    result += "LIMIT " + limit_section.w1 + "," + limit_section.w2 + "\n";
+                                }
+                                break;
+                            }
+                        case "REPLACE":
+                            {
+                                result += " INTO `" + values.db + "`.`" + values.table_name + "`\n";
+
+                                var set_section = $.parseJSON(values.set_section);
+                                var set_result = "";
+                                if (set_section != null) {
+                                    result += "SET \n";
+                                    for (var i = 0; i < set_section.length; i++) {
+                                        var ss = set_section[i];
+                                        if (set_result != "")
+                                            set_result += ",\n";
+                                        if (parseInt(ss.v) == 0) {
+                                            set_result += ss.w0 + "=";
+                                            set_result += ss.w1;
+                                        }
+                                        else
+                                            set_result += ss.c = "\n";
+                                    }
+                                    result += set_result = "\n";
+                                }
+                                break;
+                            }
+                        case "UPDATE":
+                            {
+                                result += "`" + values.db + "`.`" + values.table_name + "`\n";
+
+                                var set_section = $.parseJSON(values.set_section);
+                                var set_result = "";
+                                if (set_section != null) {
+                                    result += "SET \n";
+                                    for (var i = 0; i < set_section.length; i++) {
+                                        var ss = set_section[i];
+                                        if (set_result != "")
+                                            set_result += ",\n";
+                                        if (parseInt(ss.v) == 0) {
+                                            set_result += ss.w0 + "=";
+                                            set_result += ss.w1;
+                                        }
+                                        else
+                                            set_result += ss.c = "\n";
+                                    }
+                                    result += set_result = "\n";
+                                }
+
+                                var where_section = $.parseJSON(values.where_section);
+                                var where_result = "";
+                                if (where_section != null) {
+                                    result += "WHERE\n";
+                                    for (var i = 0; i < where_section.length; i++) {
+                                        var ws = where_section[i];
+
+                                        if (ws.v == 0) {
+                                            if (i != 0)
+                                                where_result += ws.w0 + " ";
+                                            where_result += ws.w1 + " ";
+                                            where_result += ws.w2 + " ";
+                                            where_result += '\'",dbEscapeStrings(concerto$db$connection,toString(' + ws.w3 + ')),"\'' + "\n";
+                                        } else {
+                                            where_result += ws.c + "\n";
+                                        }
+                                    }
+                                    result += where_result;
+                                }
+
+                                var order_section = $.parseJSON(values.order_section);
+                                var order_result = "";
+                                if (order_section != null) {
+                                    result += "ORDER BY\n";
+                                    for (var i = 0; i < order_section.length; i++) {
+                                        var os = order_section[i];
+                                        if (order_result != "")
+                                            order_result += ", ";
+                                        if (parseInt(os.v) == 0) {
+                                            order_result += os.w0 + " ";
+                                            order_result += os.w1 + "\n";
+                                        }
+                                        else
+                                            order_result += os.c = "\n";
+                                    }
+                                    result += order_result;
+                                }
+
+                                var limit_section = $.parseJSON(values.limit_section);
+                                if (parseInt(limit_section.w0) == 1) {
+                                    result += "LIMIT " + limit_section.w1 + "," + limit_section.w2 + "\n";
+                                }
+                                break;
+                            }
+                    }
+                    result += '",sep="")';
+                }
+                break;
+            }
+    }
+    return result;
+}
+
+Test.getExtendedFunctionWizardValues = function(func) {
+    var values = {};
+    switch (func) {
+        case "concerto.table.query":
+            {
+                values["db"] = $("#selectFWdb").val();
+                values["table_name"] = $("#selectFWtable").val();
+                values["type"] = $("input[name='radioFWtype']:checked").val();
+
+                values["select_section"] = [];
+                $(".tableFWselectSection tr").each(function() {
+                    var index = $(this).attr("index");
+                    var elem = {};
+                    elem["v"] = $("#radioFWselectRadioMenuWizard" + index).is(":checked") ? 0 : 1;
+                    elem["w0"] = $("#selectFWselectColumn" + index).val();
+                    elem["c"] = $("#taFWselectCode" + index).val();
+                    values["select_section"].push(elem);
+                });
+                if (values["select_section"].length == 0)
+                    delete values["select_section"];
+                else
+                    values["select_section"] = $.toJSON(values["select_section"]);
+
+                values["where_section"] = [];
+                $(".tableFWwhereSection > tbody > tr").each(function() {
+                    var index = $(this).attr("index");
+                    var elem = {};
+                    elem["v"] = $("#radioFWwhereRadioMenuWizard" + index).is(":checked") ? 0 : 1;
+                    elem["w0"] = $("#selectFWwhereCondLink" + index).val();
+                    elem["w1"] = $("#selectFWwhereColumn" + index).val();
+                    elem["w2"] = $("#selectFWwhereOperator" + index).val();
+                    elem["w3"] = $("#taFWwhereCode" + index + "-w3").val();
+                    elem["c"] = $("#taFWwhereCode" + index).val();
+                    values["where_section"].push(elem);
+                });
+                if (values["where_section"].length == 0)
+                    delete values["where_section"];
+                else
+                    values["where_section"] = $.toJSON(values["where_section"]);
+
+                values["order_section"] = [];
+                $(".tableFWorderSection > tbody > tr").each(function() {
+                    var index = $(this).attr("index");
+                    var elem = {};
+                    elem["v"] = $("#radioFWorderRadioMenuWizard" + index).is(":checked") ? 0 : 1;
+                    elem["w0"] = $("#selectFWorderColumn" + index).val();
+                    elem["w1"] = $("#selectFWorderDir" + index).val();
+                    elem["c"] = $("#taFWorderCode" + index).val();
+                    values["order_section"].push(elem);
+                });
+                if (values["order_section"].length == 0)
+                    delete values["order_section"];
+                else
+                    values["order_section"] = $.toJSON(values["order_section"]);
+
+                values["group_section"] = [];
+                $(".tableFWgroupSection > tbody > tr").each(function() {
+                    var index = $(this).attr("index");
+                    var elem = {};
+                    elem["v"] = $("#radioFWgroupRadioMenuWizard" + index).is(":checked") ? 0 : 1;
+                    elem["w0"] = $("#selectFWgroupColumn" + index).val();
+                    elem["w1"] = $("#selectFWgroupDir" + index).val();
+                    elem["c"] = $("#taFWgroupCode" + index).val();
+                    values["group_section"].push(elem);
+                });
+                if (values["group_section"].length == 0)
+                    delete values["group_section"];
+                else
+                    values["group_section"] = $.toJSON(values["group_section"]);
+
+                values["having_section"] = [];
+                $(".tableFWhavingSection > tbody > tr").each(function() {
+                    var index = $(this).attr("index");
+                    var elem = {};
+                    elem["v"] = $("#radioFWhavingRadioMenuWizard" + index).is(":checked") ? 0 : 1;
+                    elem["w0"] = $("#selectFWhavingCondLink" + index).val();
+                    elem["w1"] = $("#selectFWhavingColumn" + index).val();
+                    elem["w2"] = $("#selectFWhavingOperator" + index).val();
+                    elem["w3"] = $("#taFWhavingCode" + index + "-w3").val();
+                    elem["c"] = $("#taFWhavingCode" + index).val();
+                    values["having_section"].push(elem);
+                });
+                if (values["having_section"].length == 0)
+                    delete values["having_section"];
+                else
+                    values["having_section"] = $.toJSON(values["having_section"]);
+
+                if ($("input[name='radioFWlimit']:checked").length > 0) {
+                    values["limit_section"] = {};
+                    values["limit_section"]["w0"] = $("input[name='radioFWlimit']:checked").val();
+                    values["limit_section"]["w1"] = $("#selectFWlimitOffset").val();
+                    values["limit_section"]["w2"] = $("#selectFWlimitNumber").val();
+                    values["limit_section"] = $.toJSON(values["limit_section"]);
+                }
+
+                values["set_section"] = [];
+                $(".tableFWsetSection > tbody > tr").each(function() {
+                    var index = $(this).attr("index");
+                    var elem = {};
+                    elem["v"] = $("#radioFWsetRadioMenuWizard" + index).is(":checked") ? 0 : 1;
+                    elem["w0"] = $("#selectFWsetColumn" + index).val();
+                    elem["w1"] = $("#taFWsetCode" + index + "-w1").val();
+                    elem["c"] = $("#taFWsetCode" + index).val();
+                    values["set_section"].push(elem);
+                });
+                if (values["set_section"].length == 0)
+                    delete values["set_section"];
+                else
+                    values["set_section"] = $.toJSON(values["set_section"]);
+            }
+    }
+    return values;
 }
