@@ -34,6 +34,7 @@
  * new test session serialization and unserialization mechanism where user can, and is encouraged to, handle onSerialize and onUnserialize events
  * Concerto built in R functions are now in R package with full documentation
  * introduced function toolbar with favourite functions and internal Concerto functions
+ * added extended function wizard for concerto.table.query ( MySQL database query function )
 
 *Security*
 
