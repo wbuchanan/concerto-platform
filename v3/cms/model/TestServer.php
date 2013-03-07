@@ -34,13 +34,13 @@ class TestServer {
     const SOCK_TYPE_UNIX = 0;
     const SOCK_TYPE_TCP = 1;
 
-    public static function log_debug($message, $timestamp = true) {
+    public static function log_debug($message, $timestamp = true, $file_name = "socket.log") {
         $t = microtime(true);
         $micro = sprintf("%06d", ($t - floor($t)) * 1000000);
         $d = new DateTime(date('Y-m-d H:i:s.' . $micro, $t));
         $datetime = $d->format("Y-m-d H:i:s.u");
 
-        $lfh = fopen(Ini::$path_temp . date('Y-m-d') . ".socket.log", "a");
+        $lfh = fopen(Ini::$path_temp . date('Y-m-d') . "." . $file_name, "a");
         fwrite($lfh, ($timestamp ? $datetime . " {" . memory_get_peak_usage(true) . "B} --- " : "") . $message . "\r\n");
         fclose($lfh);
     }

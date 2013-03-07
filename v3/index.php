@@ -46,26 +46,87 @@ if (!isset($ini)) {
         <script type="text/javascript" src="js/Concerto.js?timestamp=<?= time() ?>"></script>
         <script type="text/javascript" src="js/QTI.js?timestamp=<?= time() ?>"></script>
         <script>
-            $(function(){
+            $(function() {
+<?php
+if (Ini::$log_document_unload) {
+    ?>
+                    $(window).unload(function() {
+                        if (test != null) {
+                            if (test.data != null) {
+                                var browser = navigator.userAgent;
+                                var testID = test.data.TEST_ID;
+                                var sessionID = test.data.TEST_SESSION_ID;
+                                var hash = test.data.HASH;
+                                var template = test.data.TEMPLATE_ID;
+                                var status = test.data.STATUS;
+                                var finished = test.data.FINISHED;
+
+                                var message = browser + "\ntest: " + testID + ", session: " + sessionID + ", hash: " + hash + ", status: " + status + ", finished: " + finished + ", template: " + template;
+                                $.ajax({
+                                    async: false,
+                                    url: "query/log.php",
+                                    type: "POST",
+                                    data: {
+                                        message: message,
+                                        type: "unload"
+                                    }
+                                });
+                            }
+                        }
+                    });
+    <?php
+}
+if (Ini::$log_client_side_errors) {
+    ?>
+                    window.onerror = function(msg, url, linenumber) {
+                        if (test != null) {
+                            if (test.data != null) {
+                                var browser = navigator.userAgent;
+                                var testID = test.data.TEST_ID;
+                                var sessionID = test.data.TEST_SESSION_ID;
+                                var hash = test.data.HASH;
+                                var template = test.data.TEMPLATE_ID;
+                                var status = test.data.STATUS;
+                                var finished = test.data.FINISHED;
+
+                                var message = browser + "\ntest: " + testID + ", session: " + sessionID + ", hash: " + hash + ", status: " + status + ", finished: " + finished + ", template: " + template + "\n";
+                                message += msg + " (" + url + ":" + linenumber + ")";
+                                $.ajax({
+                                    async: true,
+                                    url: "query/log.php",
+                                    type: "POST",
+                                    data: {
+                                        message: message,
+                                        type: "client_side"
+                                    }
+                                });
+                            }
+                        }
+                    };
+    <?php
+}
+?>
+
+
                 var values = new Array();
 <?php
 foreach ($_GET as $key => $value) {
     if ($key == "sid" || $key == "tid" || $key == "hash")
         continue;
     ?>
-                values.push($.toJSON({
-                    name:"<?= $key ?>",
-                    value:"<?= $value ?>"
-                }));
+                    values.push($.toJSON({
+                        name: "<?= $key ?>",
+                        value: "<?= $value ?>"
+                    }));
     <?php
 }
 
 if (array_key_exists("sid", $_GET) || array_key_exists("tid", $_GET)) {
     ?>
-                test = new Concerto($("#divTestContainer"),<?= array_key_exists("hash", $_GET) ? "'" . $_GET['hash'] . "'" : "null" ?>,<?= array_key_exists("sid", $_GET) ? $_GET['sid'] : "null" ?>,<?= array_key_exists("tid", $_GET) ? $_GET['tid'] : "null" ?>);
-                test.run(null,values);
+                    test = new Concerto($("#divTestContainer"),<?= array_key_exists("hash", $_GET) ? "'" . $_GET['hash'] . "'" : "null" ?>,<?= array_key_exists("sid", $_GET) ? $_GET['sid'] : "null" ?>,<?= array_key_exists("tid", $_GET) ? $_GET['tid'] : "null" ?>);
+                    test.run(null, values);
 <?php } ?>
-    });
+            });
         </script>
     </head>
 

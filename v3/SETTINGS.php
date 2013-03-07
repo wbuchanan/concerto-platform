@@ -36,6 +36,8 @@ $forum_url = "http://concerto.e-psychometrics.com/forum/";
 $project_homepage_url = "http://code.google.com/p/concerto-platform/";
 $timer_tamper_prevention = false;
 $timer_tamper_prevention_tolerance = 30;
+$log_client_side_errors = false;
+$log_document_unload = false;
 
 //remote client
 $remote_client_password = "pass";

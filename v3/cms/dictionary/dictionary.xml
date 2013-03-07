@@ -953,7 +953,7 @@ valores.</li><li><b>REMOVER</b>: remove as linhas das tabelas que coincidem com 
         </string>
         <string id="71">
             <en>owner</en>
-            <en>sahibi</en>
+            <tr>sahibi</tr>
             <de>Besitzer</de>
             <pl>właściciel</pl>
             <cn>所有者</cn>

@@ -31,7 +31,7 @@ class Ini {
     public static $path_r_script = "";
     public static $path_temp = "";
     public static $path_mysql_home = "";
-    public static $version = "3.9.8";
+    public static $version = "3.9.9";
     public static $server_host = "127.0.0.1";
     public static $server_port = "8888";
     public static $path_unix_sock = "";
@@ -54,6 +54,8 @@ class Ini {
     public static $project_homepage_url = "";
     public static $timezone = "Europe/London";
     public static $mysql_timezone = "+0:00";
+    public static $log_client_side_errors = false;
+    public static $log_document_unload = false;
 
     function __construct($connect = true, $session = true, $headers = true) {
         //if (substr_count($_SERVER['HTTP_ACCEPT_ENCODING'], 'gzip')) ob_start("ob_gzhandler"); 
@@ -140,6 +142,8 @@ class Ini {
             self::$mysql_timezone = $timezone;
         else
             self::$mysql_timezone = $mysql_timezone;
+        self::$log_client_side_errors = $log_client_side_errors;
+        self::$log_document_unload = $log_document_unload;
     }
 
     public static function does_patch_apply($patch_version, $previous_version) {
