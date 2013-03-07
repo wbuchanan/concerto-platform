@@ -109,13 +109,13 @@ class Setup {
             return json_encode(array("result" => 1, "param" => Ini::$path_unix_sock_dir));
     }
 
-    public static function temp_directory_writable_check() {
+    public static function data_directory_writable_check() {
         require '../Ini.php';
         $ini = new Ini();
-        if (self::directory_writable_check(Ini::$path_temp))
-            return json_encode(array("result" => 0, "param" => Ini::$path_temp));
+        if (self::directory_writable_check(Ini::$path_data))
+            return json_encode(array("result" => 0, "param" => Ini::$path_data));
         else
-            return json_encode(array("result" => 1, "param" => Ini::$path_temp));
+            return json_encode(array("result" => 1, "param" => Ini::$path_data));
     }
 
     public static function files_directory_writable_check() {

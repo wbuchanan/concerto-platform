@@ -72,6 +72,16 @@ class Test extends OModule {
             }
         }
 
+        if (array_key_exists("deleteLogs", $post)) {
+            $logs = json_decode($post["deleteLogs"]);
+            foreach ($logs as $log) {
+                $log = TestSessionLog::from_mysql_id($log);
+                if ($log != null) {
+                    $log->mysql_delete();
+                }
+            }
+        }
+
         $obj = static::from_mysql_id($lid);
         if ($obj != null) {
             $xml_hash = $obj->calculate_xml_hash();

@@ -48,7 +48,7 @@ class TestInstance {
 
     public function is_timedout() {
         if (time() - $this->last_action_time > Ini::$r_instances_timeout) {
-            if (TestServer::$debug)
+            if (Ini::$log_server_events)
                 TestServer::log_debug("TestInstance->is_timedout() --- Test instance #" . $this->UserWorkspace_id . ":" . $this->TestSession_id . " timedout");
             return true;
         }
@@ -61,7 +61,7 @@ class TestInstance {
         $session = $this->get_TestSession();
 
         if (time() - $this->last_execution_time > Ini::$r_max_execution_time && $session->status == TestSession::TEST_SESSION_STATUS_WORKING) {
-            if (TestServer::$debug)
+            if (Ini::$log_server_events)
                 TestServer::log_debug("TestInstance->is_execution_timedout() --- Test instance #" . $this->UserWorkspace_id . ":" . $this->TestSession_id . " execution timedout");
             return true;
         }
@@ -89,7 +89,7 @@ class TestInstance {
             );
         }
 
-        if (TestServer::$debug)
+        if (Ini::$log_server_events)
             TestServer::log_debug("TestInstance->start() --- Test instance starting");
         $this->last_action_time = time();
         $descriptorspec = array(
@@ -104,30 +104,30 @@ class TestInstance {
         $userR = $owner->get_UserR();
 
         if ($userR == null) {
-            if (TestServer::$debug)
+            if (Ini::$log_server_events)
                 TestServer::log_debug("TestInstance->start() --- Test instance NOT started. R user doesn't exist.");
             return false;
         }
 
-        $this->r = proc_open("sudo -u " . $userR->login . " " . Ini::$path_r_exe . " --vanilla --quiet", $descriptorspec, $this->pipes, Ini::$path_temp, $env);
+        $this->r = proc_open("sudo -u " . $userR->login . " " . Ini::$path_r_exe . " --vanilla --quiet", $descriptorspec, $this->pipes, Ini::$path_data, $env);
         if (is_resource($this->r)) {
-            if (TestServer::$debug)
+            if (Ini::$log_server_events)
                 TestServer::log_debug("TestInstance->start() --- Test instance started");
 
             if (!stream_set_blocking($this->pipes[0], 0)) {
-                if (TestServer::$debug) {
+                if (Ini::$log_server_events) {
                     TestServer::log_debug("TestInstance->read() --- Error: (stream_set_blocking) #0");
                     return false;
                 }
             }
             if (!stream_set_blocking($this->pipes[1], 0)) {
-                if (TestServer::$debug) {
+                if (Ini::$log_server_events) {
                     TestServer::log_debug("TestInstance->read() --- Error: (stream_set_blocking) #1");
                     return false;
                 }
             }
             if (!stream_set_blocking($this->pipes[2], 0)) {
-                if (TestServer::$debug) {
+                if (Ini::$log_server_events) {
                     TestServer::log_debug("TestInstance->read() --- Error: (stream_set_blocking) #2");
                     return false;
                 }
@@ -135,7 +135,7 @@ class TestInstance {
 
             return true;
         } else {
-            if (TestServer::$debug)
+            if (Ini::$log_server_events)
                 TestServer::log_debug("TestInstance->start() --- Test instance NOT started");
             return false;
         }
@@ -145,7 +145,7 @@ class TestInstance {
         TestSession::change_db($this->UserWorkspace_id);
         $session = TestSession::from_mysql_id($this->TestSession_id);
 
-        if (TestServer::$debug)
+        if (Ini::$log_server_events)
             TestServer::log_debug("TestInstance->stop() --- stopping instance #" . $this->UserWorkspace_id . ":" . $this->TestSession_id);
 
         if ($this->is_started()) {
@@ -160,10 +160,10 @@ class TestInstance {
                 $this->terminate_processess();
             }
             $ret = proc_close($this->r);
-            if (TestServer::$debug)
+            if (Ini::$log_server_events)
                 TestServer::log_debug("TestInstance->stop() --- Test instance closed with: " . $ret);
         } else {
-            if (TestServer::$debug)
+            if (Ini::$log_server_events)
                 TestServer::log_debug("TestInstance->stop() --- not started");
         }
         return null;
@@ -179,7 +179,7 @@ class TestInstance {
     }
 
     public static function kill_children($ppid) {
-        if (TestServer::$debug)
+        if (Ini::$log_server_events)
             TestServer::log_debug("TestInstance->terminate_processess() --- killing children of pid:" . $ppid);
 
         $pids = preg_split('/\s+/', `ps -o pid --no-heading --ppid $ppid`);
@@ -188,7 +188,7 @@ class TestInstance {
                 TestInstance::kill_children($pid);
         }
         if (is_numeric($ppid)) {
-            if (TestServer::$debug)
+            if (Ini::$log_server_events)
                 TestServer::log_debug("TestInstance->terminate_processess() --- killing " . $ppid);
             posix_kill($ppid, 9); //9 is the SIGKILL signal
         }
@@ -198,7 +198,7 @@ class TestInstance {
         TestSession::change_db($this->UserWorkspace_id);
         $session = $this->get_TestSession();
 
-        if (TestServer::$debug)
+        if (Ini::$log_server_events)
             TestServer::log_debug("TestInstance->serialize() --- Serializing #" . $this->UserWorkspace_id . ":" . $this->TestSession_id);
 
         $this->response = "";
@@ -223,9 +223,9 @@ class TestInstance {
 
         $variables = json_encode($variables);
 
-        if (TestServer::$debug) {
+        if (Ini::$log_server_events) {
             TestServer::log_debug("TestInstance->send_variables() --- sending variables to session #" . $this->UserWorkspace_id . ":" . $this->TestSession_id);
-            if (TestServer::$debug_stream_data)
+            if (Ini::$log_server_streams)
                 TestServer::log_debug($variables, true);
         }
 
@@ -239,7 +239,7 @@ class TestInstance {
         fwrite($fp, $variables);
         fclose($fp);
 
-        if (TestServer::$debug) {
+        if (Ini::$log_server_events) {
             TestServer::log_debug("TestInstance->send_variables() --- finished sending variables to session #" . $this->UserWorkspace_id . ":" . $this->TestSession_id);
         }
     }
@@ -252,7 +252,7 @@ class TestInstance {
         if ($this->is_serialized)
             return;
 
-        if (TestServer::$debug) {
+        if (Ini::$log_server_events) {
             TestServer::log_debug("TestInstance->send_close_signal() --- sending close signal to session #" . $this->UserWorkspace_id . ":" . $this->TestSession_id);
         }
 
@@ -266,7 +266,7 @@ class TestInstance {
         fwrite($fp, "close");
         fclose($fp);
 
-        if (TestServer::$debug) {
+        if (Ini::$log_server_events) {
             TestServer::log_debug("TestInstance->send_close_signal() --- finished sending close signal to session #" . $this->UserWorkspace_id . ":" . $this->TestSession_id);
         }
     }
@@ -293,19 +293,19 @@ class TestInstance {
             $this->is_serialized = true;
             $this->is_data_ready = true;
 
-            if (TestServer::$debug)
+            if (Ini::$log_server_events)
                 TestServer::log_debug("TestInstance->read() --- Serialized instance recognized on #" . $this->UserWorkspace_id . ":" . $this->TestSession_id);
         } else {
 
             //template
             if ($session->status == TestSession::TEST_SESSION_STATUS_TEMPLATE && !$this->is_serializing) {
                 $this->is_data_ready = true;
-                if (TestServer::$debug)
+                if (Ini::$log_server_events)
                     TestServer::log_debug("TestInstance->read()--- Template instance recognized on #" . $this->UserWorkspace_id . ":" . $this->TestSession_id);
 
                 if ($session->release == 1) {
                     $this->is_finished = true;
-                    if (TestServer::$debug)
+                    if (Ini::$log_server_events)
                         TestServer::log_debug("TestInstance->read()--- Final template instance recognized on #" . $this->UserWorkspace_id . ":" . $this->TestSession_id);
                 }
             }
@@ -323,7 +323,7 @@ class TestInstance {
                     $session->status = TestSession::TEST_SESSION_STATUS_WAITING;
                 } else {
                     $this->is_finished = true;
-                    if (TestServer::$debug)
+                    if (Ini::$log_server_events)
                         TestServer::log_debug("TestInstance->read()--- Completed instance recognised on #" . $this->UserWorkspace_id . ":" . $this->TestSession_id);
                 }
             }
@@ -332,7 +332,7 @@ class TestInstance {
 
                 $change_status = true;
                 $session->status = TestSession::TEST_SESSION_STATUS_WAITING_CODE;
-                if (TestServer::$debug)
+                if (Ini::$log_server_events)
                     TestServer::log_debug("TestInstance->read()--- Waiting for code instance recognised on #" . $this->UserWorkspace_id . ":" . $this->TestSession_id);
             }
         }
@@ -363,7 +363,7 @@ TIMEOUT
             $this->error_response = "( ... )
 " . substr($this->error_response, strlen($this->error_response) - TestServer::$response_limit);
 
-        if ($session->debug == 1 && $this->is_data_ready) {
+        if ($this->is_data_ready) {
             $session->output = $this->response;
             $session->error_output = $this->error_response;
             $change_status = true;
@@ -433,7 +433,7 @@ TIMEOUT
             }
         }
 
-        if (TestServer::$debug)
+        if (Ini::$log_server_events)
             TestServer::log_debug("TestInstance->run()--- Sending " . strlen($send_code) . " data to test instance #" . $this->UserWorkspace_id . ":" . $this->TestSession_id);
         $this->last_action_time = time();
         $this->last_execution_time = time();
@@ -457,7 +457,7 @@ TIMEOUT
 
         $bytes = fwrite($this->pipes[0], $code);
 
-        if (TestServer::$debug)
+        if (Ini::$log_server_events)
             TestServer::log_debug("TestInstance->run()--- " . $bytes . " written to test instance #" . $this->UserWorkspace_id . ":" . $this->TestSession_id);
 
         $this->is_working = true;
@@ -478,7 +478,7 @@ TIMEOUT
 ");
 
         include Ini::$path_internal . 'SETTINGS.php';
-        $path = Ini::$path_temp . $session->UserWorkspace_id;
+        $path = Ini::$path_data . $session->UserWorkspace_id;
 
         $workspace = $this->get_UserWorkspace();
         $owner = $workspace->get_owner();

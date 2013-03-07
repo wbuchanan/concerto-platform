@@ -23,7 +23,7 @@ if (!isset($ini)) {
     $ini = new Ini();
 }
 
-$path = Ini::$path_temp . session_id() . ".Rc";
+$path = Ini::$path_data . session_id() . ".Rc";
 
 $sql = sprintf("TRUNCATE TABLE `%s`.`%s`", Ini::$db_master_name, RDoc::get_mysql_table());
 mysql_query($sql);

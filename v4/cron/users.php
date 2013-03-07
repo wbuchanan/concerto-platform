@@ -58,18 +58,18 @@ while ($r = mysql_fetch_array($z)) {
             mkdir($media_dir, 0770, true);
         }
         chown($media_dir, $name);
-        chgrp($media_dir, Ini::$apache_user);
+        chgrp($media_dir, Ini::$php_user);
         chmod($media_dir, 0770);
     }
     $user = User::from_mysql_id($r['id']);
     foreach ($user->get_workspaces() as $workspace) {
         //dirs
-        $session_dir = Ini::$path_temp . $workspace->id;
+        $session_dir = Ini::$path_data . $workspace->id;
         if (!is_dir($session_dir)) {
             mkdir($session_dir, 0770, true);
         }
         chown($session_dir, $name);
-        chgrp($session_dir, Ini::$apache_user);
+        chgrp($session_dir, Ini::$php_user);
         chmod($session_dir, 0770);
     }
 }

@@ -5191,5 +5191,115 @@ Note: You can add new languages by inserting "<new_language>string translated in
             <nl></nl>
             <br></br>
         </string>
+        <string id="754">
+            <en>test error logs</en>
+            <de></de>
+            <pl>logi błędów testu</pl>
+            <cn></cn>
+            <fr></fr>
+            <bg></bg>
+            <nl></nl>
+            <br></br>
+        </string>
+        <string id="755">
+            <en>Here you will find test R and javascript code errors.</en>
+            <de></de>
+            <pl>Tutaj znajdziesz błędy testu w kodzie R i javascript.</pl>
+            <cn></cn>
+            <fr></fr>
+            <bg></bg>
+            <nl></nl>
+            <br></br>
+        </string>
+        <string id="756" js="1">
+            <en>date</en>
+            <de></de>
+            <pl>data</pl>
+            <cn></cn>
+            <fr></fr>
+            <bg></bg>
+            <nl></nl>
+            <br></br>
+        </string>
+        <string id="757" js="1">
+            <en>message</en>
+            <de></de>
+            <pl>wiadomość</pl>
+            <cn></cn>
+            <fr></fr>
+            <bg></bg>
+            <nl></nl>
+            <br></br>
+        </string>
+        <string id="758" js="1">
+            <en>browser</en>
+            <de></de>
+            <pl>przeglądarka</pl>
+            <cn></cn>
+            <fr></fr>
+            <bg></bg>
+            <nl></nl>
+            <br></br>
+        </string>
+        <string id="759" js="1">
+            <en>IP</en>
+            <de></de>
+            <pl>IP</pl>
+            <cn></cn>
+            <fr></fr>
+            <bg></bg>
+            <nl></nl>
+            <br></br>
+        </string>
+        <string id="760" js="1">
+            <en>remove log</en>
+            <de></de>
+            <pl>usuń log</pl>
+            <cn></cn>
+            <fr></fr>
+            <bg></bg>
+            <nl></nl>
+            <br></br>
+        </string>
+        <string id="761" js="1">
+            <en>Are you sure you want to delete selected log?</en>
+            <de></de>
+            <pl>Jesteś pewien, że chcesz usunąć wybrany log?</pl>
+            <cn></cn>
+            <fr></fr>
+            <bg></bg>
+            <nl></nl>
+            <br></br>
+        </string>
+        <string id="762" js="1">
+            <en>removing log</en>
+            <de></de>
+            <pl>usuwanie loga</pl>
+            <cn></cn>
+            <fr></fr>
+            <bg></bg>
+            <nl></nl>
+            <br></br>
+        </string>
+        <string id="763" js="1">
+            <en>R</en>
+            <de></de>
+            <pl>R</pl>
+            <cn></cn>
+            <fr></fr>
+            <bg></bg>
+            <nl></nl>
+            <br></br>
+        </string>
+        <string id="764" js="1">
+            <en>javascript</en>
+            <de></de>
+            <pl>javascript</pl>
+            <cn></cn>
+            <fr></fr>
+            <bg></bg>
+            <nl></nl>
+            <br></br>
+        </string>
     </strings>
 </root> 

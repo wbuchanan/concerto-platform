@@ -46,26 +46,55 @@ if (!isset($ini)) {
         <script type="text/javascript" src="js/Concerto.js?timestamp=<?= time() ?>"></script>
         <script type="text/javascript" src="js/QTI.js?timestamp=<?= time() ?>"></script>
         <script>
-            $(function(){
+            $(function() {
+<?php
+if (Ini::$log_js_errors) {
+    ?>
+                    window.onerror = function(msg, url, linenumber) {
+                        if (test != null && !test.isDebug) {
+                            if (test.data != null) {
+                                var workspaceID = test.workspaceID;
+                                var sessionID = test.data.TEST_SESSION_ID;
+                                var hash = test.data.HASH;
+
+                                var message = msg + " (" + url + ":" + linenumber + ")";
+                                $.ajax({
+                                    async: true,
+                                    url: "query/log.php",
+                                    type: "POST",
+                                    data: {
+                                        wid: workspaceID,
+                                        sid: sessionID,
+                                        hash: hash,
+                                        message: message
+                                    }
+                                });
+                            }
+                        }
+                    };
+    <?php
+}
+?>
+
                 var values = new Array();
 <?php
 foreach ($_GET as $key => $value) {
     if ($key == "sid" || $key == "tid" || $key == "wid" || $key == "hash")
         continue;
     ?>
-                values.push($.toJSON({
-                    name:"<?= $key ?>",
-                    value:"<?= $value ?>"
-                }));
+                    values.push($.toJSON({
+                        name: "<?= $key ?>",
+                        value: "<?= $value ?>"
+                    }));
     <?php
 }
 
 if ((array_key_exists("sid", $_GET) || array_key_exists("tid", $_GET)) && array_key_exists("wid", $_GET)) {
     ?>
-                test = new Concerto($("#divTestContainer"),<?= array_key_exists("wid", $_GET) ? "'" . $_GET['wid'] . "'" : "null" ?>,<?= array_key_exists("hash", $_GET) ? "'" . $_GET['hash'] . "'" : "null" ?>,<?= array_key_exists("sid", $_GET) ? $_GET['sid'] : "null" ?>,<?= array_key_exists("tid", $_GET) ? $_GET['tid'] : "null" ?>);
-                test.run(null,values);
+                    test = new Concerto($("#divTestContainer"),<?= array_key_exists("wid", $_GET) ? "'" . $_GET['wid'] . "'" : "null" ?>,<?= array_key_exists("hash", $_GET) ? "'" . $_GET['hash'] . "'" : "null" ?>,<?= array_key_exists("sid", $_GET) ? $_GET['sid'] : "null" ?>,<?= array_key_exists("tid", $_GET) ? $_GET['tid'] : "null" ?>);
+                    test.run(null, values);
 <?php } ?>
-    });
+            });
         </script>
     </head>
 

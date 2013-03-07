@@ -39,6 +39,7 @@ Test.onAfterEdit = function()
     Test.currentToLine = -1;
     Test.debugStopped = true;
     Test.functionWidgets = [];
+    Test.crudLogsDeleted = [];
 };
 
 Test.onAfterImport = function() {
@@ -84,6 +85,7 @@ Test.getFullSaveObject = function(isNew) {
     obj["description"] = $("#form" + this.className + "TextareaDescription").val();
     obj["loader_Template_id"] = $("#selectLoaderTemplate").val();
     obj["code"] = $("#textareaTestLogic").val();
+    obj["deleteLogs"] = Test.getSerializedCrudDeleted("logs");
     return obj;
 }
 
@@ -1539,7 +1541,7 @@ Test.getExtendedFunctionWizardValues = function(func) {
                 values["db"] = $("#selectFWdb").val();
                 values["table_name"] = $("#selectFWtable").val();
                 values["type"] = $("input[name='radioFWtype']:checked").val();
-                
+
                 values["params"] = $("#taFWarg-params").val();
 
                 values["select_section"] = [];
@@ -1645,4 +1647,277 @@ Test.getExtendedFunctionWizardValues = function(func) {
             }
     }
     return values;
+}
+
+Test.logsGridSchemaFields = null;
+Test.uiIniLogsGrid = function() {
+    var thisClass = this;
+
+    $("#div" + this.className + "GridLogsContainer").html("<div id='div" + this.className + "GridLogs' class='grid'></div>");
+
+    var fields = {
+        id: {
+            type: "string"
+        },
+        type: {
+            type: "number"
+        },
+        IP: {
+            type: "string"
+        },
+        browser: {
+            type: "string"
+        },
+        created: {
+            type: "string"
+        },
+        message: {
+            type: "string"
+        }
+    };
+
+    var dataSource = new kendo.data.DataSource({
+        transport: {
+            read: {
+                url: "query/Test_logs_list.php?oid=" + thisClass.currentID,
+                dataType: "json"
+            }
+        },
+        schema: {
+            model: {
+                id: "id",
+                fields: fields
+            }
+        },
+        pageSize: 5
+    });
+
+    Test.logsGridSchemaFields = fields;
+
+    $("#div" + this.className + "GridLogs").kendoGrid({
+        dataBound: function(e) {
+            Methods.iniTooltips();
+        },
+        dataSource: dataSource,
+        columns: [{
+                title: dictionary["s756"],
+                field: "created",
+                width:150
+            }, {
+                title: dictionary["s122"],
+                field: "type",
+                template: '#if(type==0) {#' + dictionary["s763"] + "#} else {#" + dictionary["s764"] + "#}#",
+                width:100
+            }, {
+                title: dictionary["s757"],
+                field: "message",
+                encoded: false
+            }, {
+                title: dictionary["s758"],
+                field: "browser"
+            }, {
+                title: dictionary["s759"],
+                field: "IP",
+                width:120
+            }, {
+                title: ' ',
+                width: 50,
+                template: '<span style="display:inline-block;" class="spanIcon tooltip ui-icon ui-icon-trash" onclick="' + thisClass.className + '.uiRemoveLog($(this))" title="' + dictionary["s760"] + '"></span>'
+            }],
+        //toolbar: [
+        //{
+        //name: "create",
+        //template: '<button class="btnAdd" onclick="Table.uiAddColumn()">' + dictionary["s37"] + '</button>'
+        //}
+        //],
+        editable: false,
+        scrollable: true,
+        resizable: true,
+        sortable: true,
+        columnMenu: {
+            messages: {
+                filter: dictionary["s341"],
+                columns: dictionary["s533"],
+                sortAscending: dictionary["s534"],
+                sortDescending: dictionary["s535"]
+            }
+        },
+        pageable: {
+            refresh: true,
+            pageSizes: true,
+            messages: {
+                display: dictionary["s527"],
+                empty: dictionary["s528"],
+                page: dictionary["s529"],
+                of: dictionary["s530"],
+                itemsPerPage: dictionary["s531"],
+                first: dictionary["s523"],
+                previous: dictionary["s524"],
+                next: dictionary["s525"],
+                last: dictionary["s526"],
+                refresh: dictionary["s532"]
+            }
+        },
+        filterable: {
+            messages: {
+                info: dictionary["s340"],
+                filter: dictionary["s341"],
+                clear: dictionary["s342"],
+                and: dictionary["s227"],
+                or: dictionary["s228"]
+            },
+            operators: {
+                string: {
+                    contains: dictionary["s344"],
+                    eq: dictionary["s222"],
+                    neq: dictionary["s221"],
+                    startswith: dictionary["s343"],
+                    endswith: dictionary["s345"]
+                },
+                number: {
+                    eq: dictionary["s222"],
+                    neq: dictionary["s221"],
+                    gte: dictionary["s224"],
+                    gt: dictionary["s223"],
+                    lte: dictionary["s226"],
+                    lt: dictionary["s225"]
+                },
+                date: {
+                    eq: dictionary["s222"],
+                    neq: dictionary["s221"],
+                    gte: dictionary["s596"],
+                    gt: dictionary["s597"],
+                    lte: dictionary["s598"],
+                    lt: dictionary["s599"]
+                }
+            }
+        }
+    });
+}
+
+Test.uiRefreshLogsGrid = function() {
+    var grid = $("#div" + this.className + "GridLogs").data('kendoGrid');
+
+    var columns = grid.columns;
+    var items = grid.dataSource.data();
+
+    Test.uiReloadLogsGrid(items, columns);
+}
+
+Test.uiReloadLogsGrid = function(data, columns) {
+    var thisClass = this;
+    var grid = $("#div" + this.className + "GridLogs").data('kendoGrid');
+    grid.destroy();
+    $("#div" + this.className + "GridLogsContainer").html("<div id='div" + this.className + "GridLogs' class='grid'></div>");
+
+    var dataSource = new kendo.data.DataSource({
+        data: data,
+        schema: {
+            model: {
+                fields: Test.logsGridSchemaFields
+            }
+        }
+    });
+
+    $("#div" + thisClass.className + "GridLogs").kendoGrid({
+        dataBound: function(e) {
+            Methods.iniTooltips();
+        },
+        dataSource: dataSource,
+        columns: columns,
+        //toolbar: [
+        //{
+        //name: "create",
+        //template: '<button class="btnAdd" onclick="Table.uiAddColumn()">' + dictionary["s37"] + '</button>'
+        //}
+        //],
+        editable: false,
+        scrollable: true,
+        resizable: true,
+        sortable: true,
+        columnMenu: {
+            messages: {
+                filter: dictionary["s341"],
+                columns: dictionary["s533"],
+                sortAscending: dictionary["s534"],
+                sortDescending: dictionary["s535"]
+            }
+        },
+        pageable: {
+            refresh: true,
+            pageSizes: true,
+            messages: {
+                display: dictionary["s527"],
+                empty: dictionary["s528"],
+                page: dictionary["s529"],
+                of: dictionary["s530"],
+                itemsPerPage: dictionary["s531"],
+                first: dictionary["s523"],
+                previous: dictionary["s524"],
+                next: dictionary["s525"],
+                last: dictionary["s526"],
+                refresh: dictionary["s532"]
+            }
+        },
+        filterable: {
+            messages: {
+                info: dictionary["s340"],
+                filter: dictionary["s341"],
+                clear: dictionary["s342"],
+                and: dictionary["s227"],
+                or: dictionary["s228"]
+            },
+            operators: {
+                string: {
+                    contains: dictionary["s344"],
+                    eq: dictionary["s222"],
+                    neq: dictionary["s221"],
+                    startswith: dictionary["s343"],
+                    endswith: dictionary["s345"]
+                },
+                number: {
+                    eq: dictionary["s222"],
+                    neq: dictionary["s221"],
+                    gte: dictionary["s224"],
+                    gt: dictionary["s223"],
+                    lte: dictionary["s226"],
+                    lt: dictionary["s225"]
+                },
+                date: {
+                    eq: dictionary["s222"],
+                    neq: dictionary["s221"],
+                    gte: dictionary["s596"],
+                    gt: dictionary["s597"],
+                    lte: dictionary["s598"],
+                    lt: dictionary["s599"]
+                }
+            }
+        }
+    });
+}
+
+Test.crudLogsDeleted = [];
+Test.uiRemoveLog = function(obj) {
+    var thisClass = this;
+    Methods.confirm(dictionary["s761"], dictionary["s762"], function() {
+        var grid = $("#div" + thisClass.className + "GridLogs").data('kendoGrid');
+        var index = obj.closest('tr')[0].sectionRowIndex;
+        var item = grid.dataItem(grid.tbody.find("tr:eq(" + index + ")"));
+
+        if (item.id != "") {
+            Test.crudUpdate(Test.crudLogsDeleted, item.id);
+        }
+
+        grid.removeRow(grid.tbody.find("tr:eq(" + index + ")"));
+    });
+}
+
+Test.getSerializedCrudDeleted = function(collection) {
+    switch (collection) {
+        case "logs":
+            {
+                return $.toJSON(Test.crudLogsDeleted);
+                break;
+            }
+    }
 }

@@ -419,11 +419,11 @@ Setup.steps = [
         ),
     new SetupStep(
         false,
-        "<b>temp</b> directory path must be writable",
-        "temp_directory_writable_check",
-        "your <b>temp</b> directory: <b>{0}</b> <b>IS WRITABLE</b> - <b style='color:green;'>PASSED</b>",
-        "your <b>temp</b> directory: <b>{0}</b> <b>IS NOT WRITABLE</b> - <b style='color:red;'>FAILED</b>",
-        "Set <b>temp</b> directory rigths to 0777.",
+        "<b>data</b> directory path must be writable",
+        "data_directory_writable_check",
+        "your <b>data</b> directory: <b>{0}</b> <b>IS WRITABLE</b> - <b style='color:green;'>PASSED</b>",
+        "your <b>data</b> directory: <b>{0}</b> <b>IS NOT WRITABLE</b> - <b style='color:red;'>FAILED</b>",
+        "Set <b>data</b> directory rigths to 0777.",
         true     
         ),
     new SetupStep(

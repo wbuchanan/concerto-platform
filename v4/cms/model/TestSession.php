@@ -164,9 +164,9 @@ class TestSession extends OTable {
     }
 
     public function RCall($values = null, $code = null, $resume_from_last_template = false) {
-        if (TestServer::$debug)
-            TestServer::log_debug("TestSession->RCall --- R call initiated #".  session_id());
-        
+        if (Ini::$log_server_events)
+            TestServer::log_debug("TestSession->RCall --- R call initiated #" . session_id());
+
         $test = Test::from_mysql_id($this->Test_id);
         $loader = $test->get_loader_Template();
 
@@ -222,7 +222,7 @@ class TestSession extends OTable {
             "IP" => $_SERVER["REMOTE_ADDR"]
         ));
 
-        if (TestServer::$debug)
+        if (Ini::$log_server_events)
             TestServer::log_debug("TestSession->RCall --- checking for server");
         if (TestServer::get_server_status() == TestServer::SERVER_STATUS_STOPPED) {
             TestServer::start_process();
@@ -230,12 +230,12 @@ class TestSession extends OTable {
         } else if (TestServer::get_server_status() == TestServer::SERVER_STATUS_STARTING) {
             TestServer::wait_until_started();
         }
-        if (TestServer::$debug)
+        if (Ini::$log_server_events)
             TestServer::log_debug("TestSession->RCall --- server found, trying to send");
 
         $response = TestServer::send($command_obj);
         $result = json_decode(trim($response));
-        if (TestServer::$debug)
+        if (Ini::$log_server_events)
             TestServer::log_debug("TestSession->RCall --- sent and recieved response");
 
         $status = TestSession::TEST_SESSION_STATUS_ERROR;
@@ -320,7 +320,17 @@ class TestSession extends OTable {
                         }
                         break;
                     }
-                case TestSession::TEST_SESSION_STATUS_ERROR:
+                case TestSession::TEST_SESSION_STATUS_ERROR: {
+                        if ($debug) {
+                            TestSession::unregister($thisSession->UserWorkspace_id . "-" . $thisSession->id, $thisSession->UserWorkspace_id);
+                            $removed = true;
+                        } else {
+                            $thisSession->close();
+                            if (Ini::$log_r_errors)
+                                $thisSession->log_error(nl2br(htmlspecialchars($error_output, ENT_QUOTES)));
+                        }
+                        break;
+                    }
                 case TestSession::TEST_SESSION_STATUS_TAMPERED: {
                         if ($debug) {
                             TestSession::unregister($thisSession->UserWorkspace_id . "-" . $thisSession->id, $thisSession->UserWorkspace_id);
@@ -423,11 +433,11 @@ class TestSession extends OTable {
     }
 
     public function get_RSession_file_path() {
-        return Ini::$path_temp . $this->UserWorkspace_id . "/session_" . $this->id . ".Rs";
+        return Ini::$path_data . $this->UserWorkspace_id . "/session_" . $this->id . ".Rs";
     }
 
     public function get_RSession_fifo_path() {
-        return Ini::$path_temp . $this->UserWorkspace_id . "/fifo_" . $this->id;
+        return Ini::$path_data . $this->UserWorkspace_id . "/fifo_" . $this->id;
     }
 
     public function mysql_save() {
@@ -572,6 +582,28 @@ class TestSession extends OTable {
             }
         }
         return $result;
+    }
+
+    public function log_error($message = null, $type = TestSessionLog::TEST_SESSION_LOG_TYPE_R) {
+        if ($message == null)
+            $message = $this->error_output;
+        TestSession::create_session_log($type, $this->UserWorkspace_id, $this->id, $this->Test_id, $this->hash, $this->Template_id, $this->Template_UserWorkspace_id, $this->status, $message, $_SERVER['REMOTE_ADDR'], $_SERVER["HTTP_USER_AGENT"]);
+    }
+
+    public static function create_session_log($type, $wid, $sid, $tid, $hash, $template, $template_workspace, $status, $message, $ip, $browser) {
+        $log = new TestSessionLog();
+        $log->UserWorkspace_id = $wid;
+        $log->IP = $ip;
+        $log->Template_id = $template;
+        $log->Template_UserWorkspace_id = $template_workspace;
+        $log->TestSession_id = $sid;
+        $log->Test_id = $tid;
+        $log->browser = $browser;
+        $log->hash = $hash;
+        $log->message = $message;
+        $log->status = $status;
+        $log->type = $type;
+        $log->mysql_save();
     }
 
     public static function create_db($db = null) {

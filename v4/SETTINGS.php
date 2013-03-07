@@ -14,7 +14,7 @@ $path_r_script = "/usr/bin/Rscript"; // Rscript executable path, e.g. /usr/bin/R
 $path_r_exe = "/usr/bin/R"; // R executable path, e.g. /usr/bin/R
 $path_php_exe = "/usr/bin/php"; // php executable path, e.g. /usr/bin/php
 $path_sock = ""; // socks directory path ending with slash character ('/'), leave blank for default - /[concerto_installation_path]/socks/
-$path_temp = ""; // temp directory path ending with slash character ('/'), leave blank for default - /[concerto_installation_path]/temp/
+$path_data = ""; // data directory path ending with slash character ('/'), leave blank for default - /[concerto_installation_path]/data/
 
 //R connection
 $server_socks_type = "UNIX"; // socket server type ( UNIX or TCP, UNIX highly reccomended )
@@ -40,7 +40,13 @@ $remote_client_password = "pass"; // password required by remote clients to use 
 //cron
 $r_users_name_prefix = "concerto_"; // prefix for Linux users created by Concerto ( user id will be appended to it ) - SET IT ONLY ONCE PRIOR TO RUNNING /setup
 $r_users_group = "concerto"; // Linux group name for users above
-$apache_user = "www-data"; // Apache user name
+$php_user = "www-data"; // php user name
+
+//logs
+$log_server_events = false; // socket communication info and test server php errors will be printed to a text file in data directory
+$log_server_streams = false; // socket streams will be logged too
+$log_js_errors = true; // logs all test specific js errors from client side
+$log_r_errors = true; // logs all test specific R errors
 
 //ALWAYS RUN /setup AFTER CHANGING SETTINGS IN THIS FILE!
 ?>

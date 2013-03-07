@@ -29,7 +29,7 @@ class Ini {
     public static $path_php_exe = "";
     public static $path_r_exe = "";
     public static $path_r_script = "";
-    public static $path_temp = "";
+    public static $path_data = "";
     public static $version = "4.0.0.beta1";
     public static $server_host = "127.0.0.1";
     public static $server_port = "8888";
@@ -55,12 +55,16 @@ class Ini {
     public static $mysql_timezone = "+0:00";
     public static $r_users_name_prefix = "concerto_";
     public static $r_users_group = "concerto";
-    public static $apache_user = "www-data";
+    public static $php_user = "www-data";
     public static $db_users_name_prefix = "concerto_";
     public static $db_users_db_name_prefix = "concerto_";
     public static $db_master_name = "";
     public static $db_host = "";
     public static $db_port = "";
+    public static $log_server_events = false;
+    public static $log_server_streams = false;
+    public static $log_js_errors = true;
+    public static $log_r_errors = true;
 
     function __construct($connect = true, $session = true, $headers = true) {
         //if (substr_count($_SERVER['HTTP_ACCEPT_ENCODING'], 'gzip')) ob_start("ob_gzhandler"); 
@@ -114,10 +118,10 @@ class Ini {
         self::$path_r_script = $path_r_script;
         self::$path_r_exe = $path_r_exe;
         self::$path_php_exe = $path_php_exe;
-        if ($path_temp != "")
-            self::$path_temp = $path_temp;
+        if ($path_data != "")
+            self::$path_data = $path_data;
         else
-            self::$path_temp = self::$path_internal . "temp/";
+            self::$path_data = self::$path_internal . "data/";
         if ($path_sock != "")
             self::$path_unix_sock_dir = $path_sock;
         else
@@ -144,12 +148,16 @@ class Ini {
             self::$mysql_timezone = $mysql_timezone;
         self::$r_users_name_prefix = $r_users_name_prefix;
         self::$r_users_group = $r_users_group;
-        self::$apache_user = $apache_user;
+        self::$php_user = $php_user;
         self::$db_users_name_prefix = $db_users_name_prefix;
         self::$db_users_name_prefix = $db_users_name_prefix;
         self::$db_master_name = $db_master_name;
         self::$db_host = $db_host;
         self::$db_port = $db_port;
+        self::$log_js_errors = $log_js_errors;
+        self::$log_r_errors = $log_r_errors;
+        self::$log_server_events = $log_server_events;
+        self::$log_server_streams = $log_server_streams;
     }
 
     public static function get_user_system_tables() {
@@ -159,6 +167,7 @@ class Ini {
             "Template",
             "Test",
             "TestSession",
+            "TestSessionLog",
             "TestSessionReturn",
             "TestVariable"
         );
@@ -255,6 +264,7 @@ class Ini {
         require_once self::$path_internal . "cms/model/TestServer.php";
         require_once self::$path_internal . "cms/model/TestInstance.php";
         require_once self::$path_internal . "cms/model/TestSession.php";
+        require_once self::$path_internal . "cms/model/TestSessionLog.php";
         require_once self::$path_internal . "cms/model/TestSessionReturn.php";
         require_once self::$path_internal . "cms/model/TestVariable.php";
         require_once self::$path_internal . "cms/model/QTI/OQTIElement.php";

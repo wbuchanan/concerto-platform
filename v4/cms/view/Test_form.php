@@ -136,6 +136,7 @@ if ($oid != 0) {
     <?php
     if ($oid != -1) {
         ?>
+        <div id="div<?= $class_name ?>Logs" class="<?= User::view_class() ?>"><?php include Ini::$path_internal . "cms/view/Test_logs.php"; ?></div>
         <div id="div<?= $class_name ?>Variables" class="<?= User::view_class() ?>"><?php include Ini::$path_internal . "cms/view/Test_variables.php"; ?></div>
 
         <div id="divTestLogic" class="divTestHorizontalElement">
@@ -156,7 +157,7 @@ if ($oid != 0) {
         ?>
 
         <div class="divFunctionToolbar">
-            <?php include Ini::$path_internal."cms/view/Test_functions.php"; ?>
+            <?php include Ini::$path_internal . "cms/view/Test_functions.php"; ?>
         </div>
 
         <div class="divFormFloatingBar" align="right">

@@ -21,8 +21,6 @@
 
 class TestServer {
 
-    public static $debug = true;
-    public static $debug_stream_data = true;
     public static $sleep_microseconds = 10000;
     public static $response_limit = 256000;
     private $last_action_time;
@@ -43,7 +41,7 @@ class TestServer {
         $d = new DateTime(date('Y-m-d H:i:s.' . $micro, $t));
         $datetime = $d->format("Y-m-d H:i:s.u");
 
-        $lfh = fopen(Ini::$path_temp . date('Y-m-d') . ".socket.log", "a");
+        $lfh = fopen(Ini::$path_data . date('Y-m-d') . ".socket.log", "a");
         fwrite($lfh, ($code ? "\n" : $datetime . " {" . round(memory_get_peak_usage(true) / 1000000, 3) . "MB} --- ") . $message . "\n" . ($code ? "\n" : ""));
         fclose($lfh);
     }
@@ -61,13 +59,13 @@ class TestServer {
         socket_close($this->main_sock);
         if (file_exists(Ini::$path_unix_sock))
             unlink(Ini::$path_unix_sock);
-        if (self::$debug)
+        if (Ini::$log_server_events)
             self::log_debug("TestServer->stop() --- TestServer stopped");
         $this->is_alive = false;
     }
 
     public static function send($data) {
-        if (self::$debug) {
+        if (Ini::$log_server_events) {
             self::log_debug("TestServer::send() --- Client sends data");
         }
         $socket = null;
@@ -76,7 +74,7 @@ class TestServer {
         if (Ini::$server_socks_type == 0)
             $socket = socket_create(AF_UNIX, SOCK_STREAM, 0);
         if (!$socket) {
-            if (self::$debug) {
+            if (Ini::$log_server_events) {
                 self::log_debug("TestServer::send() --- Error: (socket_create) " . socket_last_error() . " - " . socket_strerror(socket_last_error()));
             }
             return false;
@@ -87,7 +85,7 @@ class TestServer {
         if (Ini::$server_socks_type == 0)
             $result = socket_connect($socket, Ini::$path_unix_sock);
         if (!$result) {
-            if (self::$debug) {
+            if (Ini::$log_server_events) {
                 self::log_debug("TestServer::send() --- Error: (socket_connect) " . socket_last_error() . " - " . socket_strerror(socket_last_error()));
             }
 
@@ -95,9 +93,9 @@ class TestServer {
             return false;
         }
         socket_write($socket, $data . chr(0));
-        if (self::$debug) {
+        if (Ini::$log_server_events) {
             self::log_debug("TestServer::send() --- sent data");
-            if (self::$debug_stream_data)
+            if (Ini::$log_server_streams)
                 self::log_debug($data, true);
         }
 
@@ -105,21 +103,21 @@ class TestServer {
         while ($result = socket_read($socket, 4096)) {
             $len = strlen($result);
             $data.=$result;
-            if (self::$debug) {
+            if (Ini::$log_server_events) {
                 self::log_debug("TestServer::send() --- data recieved (" . $len . ")");
-                if (self::$debug_stream_data)
+                if (Ini::$log_server_streams)
                     self::log_debug($data, true);
             }
             if (substr($result, -1, 1) == chr(0))
                 break;
         }
-        if (self::$debug) {
+        if (Ini::$log_server_events) {
             self::log_debug("TestServer::send() --- reading finished");
         }
 
         socket_close($socket);
         if ($result === false) {
-            if (self::$debug) {
+            if (Ini::$log_server_events) {
                 self::log_debug("TestServer::send() --- Error: (socket_read) " . socket_last_error() . " - " . socket_strerror(socket_last_error()));
             }
             return false;
@@ -128,7 +126,7 @@ class TestServer {
     }
 
     public static function wait_until_started() {
-        if (self::$debug) {
+        if (Ini::$log_server_events) {
             self::log_debug("TestServer::wait_until_started() --- waits until started");
         }
 
@@ -144,7 +142,7 @@ class TestServer {
         if (Ini::$server_socks_type == 0)
             $socket = socket_create(AF_UNIX, SOCK_STREAM, 0);
         if (!$socket) {
-            if (self::$debug) {
+            if (Ini::$log_server_events) {
                 self::log_debug("TestServer::is_running() --- Error: (socket_create) " . socket_last_error() . " - " . socket_strerror(socket_last_error()));
             }
             return false;
@@ -160,7 +158,7 @@ class TestServer {
 
         $status_path = Ini::$path_unix_sock_dir . ".starting";
         if ($result) {
-            if (self::$debug) {
+            if (Ini::$log_server_events) {
                 self::log_debug("TestServer::is_running() --- Server is running");
             }
             if (file_exists($status_path))
@@ -172,7 +170,7 @@ class TestServer {
             }
         }
 
-        if (self::$debug) {
+        if (Ini::$log_server_events) {
             self::log_debug("TestServer::is_running() --- Server is stopped");
         }
         return self::SERVER_STATUS_STOPPED;
@@ -183,13 +181,13 @@ class TestServer {
         $fh = fopen($status_path, "w");
         fwrite($fh, self::SERVER_STATUS_STARTING);
         fclose($fh);
-        if (self::$debug) {
+        if (Ini::$log_server_events) {
             self::log_debug("TestServer::start_process() --- Starting server process");
         }
         session_write_close();
-        $command = 'nohup ' . Ini::$path_php_exe . ' ' . Ini::$path_internal . 'cms/query/socket_start.php ' . Ini::$path_internal . ' >> ' . Ini::$path_temp . date('Y-m-d') . ".php.log" . ' 2>&1 & echo $!';
+        $command = 'nohup ' . Ini::$path_php_exe . ' ' . Ini::$path_internal . 'cms/query/socket_start.php ' . Ini::$path_internal . ' >> ' . Ini::$path_data . date('Y-m-d') . ".php.log" . ' 2>&1 & echo $!';
         exec($command);
-        if (self::$debug) {
+        if (Ini::$log_server_events) {
             self::log_debug("TestServer::start_process() --- Server process started");
         }
         session_start();
@@ -200,14 +198,14 @@ class TestServer {
         if (file_exists(Ini::$path_unix_sock))
             unlink(Ini::$path_unix_sock);
         $this->last_action_time = time();
-        if (self::$debug)
+        if (Ini::$log_server_events)
             self::log_debug("TestServer->start() --- TestServer started");
         if (Ini::$server_socks_type == 1)
             $this->main_sock = socket_create(AF_INET, SOCK_STREAM, SOL_TCP);
         if (Ini::$server_socks_type == 0)
             $this->main_sock = socket_create(AF_UNIX, SOCK_STREAM, 0);
         if (!$this->main_sock) {
-            if (self::$debug) {
+            if (Ini::$log_server_events) {
                 self::log_debug("TestServer->start() --- Error: (socket_create) " . socket_last_error() . " - " . socket_strerror(socket_last_error()));
                 self::log_debug("TestServer->start() --- Server halted!");
             }
@@ -215,7 +213,7 @@ class TestServer {
         }
 
         if (!socket_set_option($this->main_sock, SOL_SOCKET, SO_REUSEADDR, 1)) {
-            if (self::$debug) {
+            if (Ini::$log_server_events) {
                 self::log_debug("TestServer->start() --- Error: (socket_set_option) " . socket_last_error() . " - " . socket_strerror(socket_last_error()));
                 self::log_debug("TestServer->start() --- Server halted!");
             }
@@ -229,7 +227,7 @@ class TestServer {
         if (Ini::$server_socks_type == 0)
             $bind = socket_bind($this->main_sock, Ini::$path_unix_sock);
         if (!$bind) {
-            if (self::$debug) {
+            if (Ini::$log_server_events) {
                 self::log_debug("TestServer->start() --- Error: (socket_bind) " . socket_last_error() . " - " . socket_strerror(socket_last_error()));
                 self::log_debug("TestServer->start() --- Server halted!");
             }
@@ -237,7 +235,7 @@ class TestServer {
             return;
         }
         if (!socket_listen($this->main_sock)) {
-            if (self::$debug) {
+            if (Ini::$log_server_events) {
                 self::log_debug("TestServer->start() --- Error: (socket_listen) " . socket_last_error() . " - " . socket_strerror(socket_last_error()));
                 self::log_debug("TestServer->start() --- Server halted!");
             }
@@ -247,11 +245,11 @@ class TestServer {
         $this->clients = array();
         $this->instances = array();
 
-        if (self::$debug)
+        if (Ini::$log_server_events)
             self::log_debug("TestServer->start() --- TestServer initialized");
 
         if (!socket_set_nonblock($this->main_sock)) {
-            if (self::$debug) {
+            if (Ini::$log_server_events) {
                 self::log_debug("TestServer->start() --- Error: (socket_set_nonblock)");
                 self::log_debug("TestServer->start() --- Server halted!");
             }
@@ -265,7 +263,7 @@ class TestServer {
             //serialization
             foreach ($this->clients as $k => $v) {
                 if ($this->instances[$k]->is_timedout() && !$this->instances[$k]->is_serializing) {
-                    if (self::$debug) {
+                    if (Ini::$log_server_events) {
                         self::log_debug("TestServer->start() --- Client '$k' timedout");
                     }
                     TestSession::change_db($this->instances[$k]->UserWorkspace_id);
@@ -278,7 +276,7 @@ class TestServer {
             }
 
             if (time() - $this->last_action_time > Ini::$r_server_timeout) {
-                if (self::$debug)
+                if (Ini::$log_server_events)
                     self::log_debug("TestServer->start() --- Reached max idle time");
                 break;
             }
@@ -298,9 +296,9 @@ class TestServer {
 
                         $this->instances[$k]->is_data_ready = false;
                         $this->instances[$k]->is_working = false;
-                        if (self::$debug) {
+                        if (Ini::$log_server_events) {
                             self::log_debug("TestServer->start() --- Client '$k' test data read");
-                            if (self::$debug_stream_data) {
+                            if (Ini::$log_server_streams) {
                                 self::log_debug($response, true);
 
                                 if ($this->instances[$k]->error_response != "") {
@@ -328,13 +326,13 @@ class TestServer {
                             $response = json_encode($response);
 
                             if (!socket_write($this->clients[$k]["sock"], $response . chr(0))) {
-                                if (self::$debug)
+                                if (Ini::$log_server_events)
                                     self::log_debug("TestServer->start() --- Error: (socket_write) " . socket_last_error() . " - " . socket_strerror(socket_last_error()));
                             }
                             else {
-                                if (self::$debug) {
+                                if (Ini::$log_server_events) {
                                     self::log_debug("TestServer->start() --- Client '$k' test response sent back");
-                                    if (self::$debug_stream_data)
+                                    if (Ini::$log_server_streams)
                                         self::log_debug($response, false);
                                 }
                             }
@@ -347,7 +345,7 @@ class TestServer {
 
                     if ($serialized || (array_key_exists($k, $this->instances) && $this->instances[$k]->is_finished)) {
                         $this->last_action_time = time();
-                        $this->close_instance($k,true);
+                        $this->close_instance($k, true);
                     }
                 }
             }
@@ -360,14 +358,14 @@ class TestServer {
                 continue;
             }
 
-            if (self::$debug) {
+            if (Ini::$log_server_events) {
                 self::log_debug("TestServer->start() --- socket accepted");
             }
 
             $data = "";
             while ($read = socket_read($client_sock, 4096)) {
                 $len = strlen($read);
-                if (self::$debug) {
+                if (Ini::$log_server_events) {
                     self::log_debug("TestServer->start() --- socket read (" . $len . ")");
                 }
                 $data.=$read;
@@ -375,7 +373,7 @@ class TestServer {
                     break;
             }
             if ($read === false) {
-                if (self::$debug) {
+                if (Ini::$log_server_events) {
                     self::log_debug("TestServer->start() --- Error: (socket_read) " . socket_last_error() . " - " . socket_strerror(socket_last_error()));
                 }
                 socket_close($client_sock);
@@ -386,9 +384,9 @@ class TestServer {
             if ($input != "") {
                 $authorization_required = true;
 
-                if (self::$debug) {
+                if (Ini::$log_server_events) {
                     self::log_debug("TestServer->start() --- data recieved");
-                    if (self::$debug_stream_data)
+                    if (Ini::$log_server_streams)
                         self::log_debug($input, true);
                 }
                 $this->last_action_time = time();
@@ -419,19 +417,19 @@ class TestServer {
             unset($this->clients[$key]);
         }
 
-        if (self::$debug) {
+        if (Ini::$log_server_events) {
             self::log_debug("TestServer->close_instance() --- Client '$key' closed");
         }
 
         /*
-        if ($workspace_id != null) {
-            TestSession::change_db($workspace_id);
-            $session = TestSession::from_mysql_id($session_id);
-            if ($session != null && $session->debug == 1) {
-                $session->remove(false);
-            }
-        }
-        */
+          if ($workspace_id != null) {
+          TestSession::change_db($workspace_id);
+          $session = TestSession::from_mysql_id($session_id);
+          if ($session != null && $session->debug == 1) {
+          $session->remove(false);
+          }
+          }
+         */
     }
 
     private function serialize_instance($key) {
@@ -440,7 +438,7 @@ class TestServer {
                 $this->instances[$key]->serialize();
             }
         }
-        if (self::$debug) {
+        if (Ini::$log_server_events) {
             self::log_debug("TestServer->serialize_instance() --- Client '$key' is serializing");
         }
     }
@@ -452,7 +450,7 @@ class TestServer {
         if (!array_key_exists($key, $this->clients)) {
             $this->clients[$key] = array();
             $this->clients[$key]["sock"] = $client_sock;
-            if (self::$debug) {
+            if (Ini::$log_server_events) {
                 self::log_debug("TestServer->get_client() --- Client '$key' added");
             }
         } else {
@@ -460,7 +458,7 @@ class TestServer {
                 socket_close($this->clients[$key]["sock"]);
                 $this->clients[$key]["sock"] = $client_sock;
             }
-            if (self::$debug) {
+            if (Ini::$log_server_events) {
                 self::log_debug("TestServer->get_client() --- Client '$key' loaded");
             }
         }
@@ -468,7 +466,7 @@ class TestServer {
     }
 
     private function authorize_client($client_sock, $input) {
-        if (self::$debug)
+        if (Ini::$log_server_events)
             self::log_debug("TestServer->authorize_client() --- Client authorization started");
         $data = json_decode($input);
 
@@ -476,26 +474,26 @@ class TestServer {
         $session = TestSession::authorized_session($data->workspace_id, $data->session_id, $data->hash);
 
         if ($session == null) {
-            if (self::$debug)
+            if (Ini::$log_server_events)
                 self::log_debug("TestServer->authorize_client() --- Client authorization failed");
             if (!socket_write($client_sock, json_encode(array("return" => -1)) . chr(0))) {
-                if (self::$debug)
+                if (Ini::$log_server_events)
                     self::log_debug("TestServer->authorize_client() --- Error: (socket_write) " . socket_last_error() . " - " . socket_strerror(socket_last_error()));
             }
             return false;
         }
 
         if (!array_key_exists("sid" . $data->workspace_id . "-" . $data->session_id, $this->instances) && $session->status != TestSession::TEST_SESSION_STATUS_SERIALIZED && $session->status != TestSession::TEST_SESSION_STATUS_NEW) {
-            if (self::$debug)
+            if (Ini::$log_server_events)
                 self::log_debug("TestServer->authorize_client() --- Client authorization failed - broken session");
             if (!socket_write($client_sock, json_encode(array("return" => -1)) . chr(0))) {
-                if (self::$debug)
+                if (Ini::$log_server_events)
                     self::log_debug("TestServer->authorize_client() --- Error: (socket_write) " . socket_last_error() . " - " . socket_strerror(socket_last_error()));
             }
             return false;
         }
 
-        if (self::$debug)
+        if (Ini::$log_server_events)
             self::log_debug("TestServer->authorize_client() --- Client authorization succeeded");
         return true;
     }
@@ -507,7 +505,7 @@ class TestServer {
         if ($data->type == 0) {
             if (!array_key_exists($key, $this->instances)) {
                 $this->instances[$key] = new TestInstance($data->session_id, $data->workspace_id, $data->IP);
-                if (self::$debug) {
+                if (Ini::$log_server_events) {
                     self::log_debug("TestServer->interpret_input() --- Client '$key' test instance created");
                 }
             }
@@ -515,7 +513,7 @@ class TestServer {
             if (!$this->instances[$key]->is_started()) {
                 if ($this->instances[$key]->start()) {
                     $success = true;
-                    if (self::$debug) {
+                    if (Ini::$log_server_events) {
                         self::log_debug("TestServer->interpret_input() --- Client '$key' test instance started");
                     }
                 }
@@ -524,13 +522,13 @@ class TestServer {
                 $success = true;
             if ($success) {
                 $this->instances[$key]->run($data->code, $data->values);
-                if (self::$debug) {
+                if (Ini::$log_server_events) {
                     self::log_debug("TestServer->interpret_input() --- Client '$key' test data sent");
-                    if (self::$debug_stream_data && $data->code != null)
+                    if (Ini::$log_server_streams && $data->code != null)
                         self::log_debug($data->code, true);
                 }
             } else {
-                $this->close_instance($key,true);
+                $this->close_instance($key, true);
             }
         } else {
             if (array_key_exists($key, $this->instances)) {
