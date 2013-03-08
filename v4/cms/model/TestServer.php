@@ -92,9 +92,9 @@ class TestServer {
             socket_close($socket);
             return false;
         }
-        socket_write($socket, $data . chr(0));
+        $bytes = socket_write($socket, $data . chr(0));
         if (Ini::$log_server_events) {
-            self::log_debug("TestServer::send() --- sent data");
+            self::log_debug("TestServer::send() --- sent " . $bytes . " of data data");
             if (Ini::$log_server_streams)
                 self::log_debug($data, true);
         }

@@ -136,7 +136,7 @@ class TestInstance {
             return true;
         } else {
             if (Ini::$log_server_events)
-                TestServer::log_debug("TestInstance->start() --- Test instance NOT started");
+                TestServer::log_debug("TestInstance->start() --- Error: Test instance NOT started");
             return false;
         }
     }
