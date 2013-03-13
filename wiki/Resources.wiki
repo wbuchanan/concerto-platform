@@ -20,6 +20,7 @@
    * [Concerto4Workspace workspace (work in progress)]
  * *Concerto Panel*
   * [Concerto4PanelTestTab 'tests' tab (work in progress)]
+  * [Concerto4PanelQTITab 'QTI' tab (work in progress)]
   * [Concerto4PanelTemplateTab 'HTML templates' tab (work in progress)]
   * [Concerto4PanelTableTab 'tables' tab (work in progress)]
   * [Concerto4PanelUserTab 'users' tab (work in progress)]
