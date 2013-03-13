@@ -4,7 +4,9 @@ This is the environment where all tests are run. There are four mechanisms here 
 
 The URL for test run environment is exactly the same as your Concerto installation path.
 
-==1. Running the test directly using the URL paramaters==
+----
+
+==running the test directly using the URL paramaters==
 
 Lets assume that *{{{http://domain.com/}}}* is the URL for your test environment and you have a test with id #1 created in the workspace with id #2. You can use:
 
@@ -23,3 +25,31 @@ as the direct link to your test. You can give it to anyone and he or she will be
 If your test supports any additional parameters passed by URL you can declare them after *{{{wid}}}* and *{{{tid}}}* parameters. If for example you would like to add additional variable named *{{{var1}}}* and set it's value to *"example"* you would use following URL:
 
 *{{{http://domain.com/?wid=2&tid=1&var1=example}}}* 
+
+----
+
+==selecting test from the tests declared as open to public==
+
+http://concerto.e-psychometrics.com/demo/wiki/test_run_env_test_selection.png
+
+Lets assume that *{{{http://domain.com/}}}* is the URL for your test environment. If you enter this address directly without any URL paramters. You will see test selection box. Only tests declared as *open to public* will be available here. After selecting the test you wish to run it will automatically start.
+
+----
+
+==resuming ongoing test session==
+
+http://concerto.e-psychometrics.com/demo/wiki/test_run_env_session_resuming.png
+
+If you have any ongoing test sessions ( sessions where you didn't finish the test ) and you choose to run the same test again, you will be prompted with the above option dialog. You can choose to either continue previous session or start the new one. Only the last session per every test you participate in will be remembered, which means when you choose to start new session it will overwrite previous session for that specific test.
+
+----
+
+==manual session resuming==
+
+You can also manually resume any ongoing session by passing following URL parameters: *{{{wid, sid, hash}}}* , where:
+
+ * *{{{wid}}}* stands for workspace id
+ * *{{{sid}}}* stands for session id
+ * *{{{hash}}}* stands for session hash
+
+*YOU SHOULD PROBABLY NEVER USE THIS METHOD IF YOU DON'T KNOW WHAT YOU'RE DOING. YOU SHOULD USE ANY OF THE ABOVE METHODS INSTEAD.*
