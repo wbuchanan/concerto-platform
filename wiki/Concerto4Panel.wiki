@@ -8,6 +8,28 @@ This place is only available to registered and authorized users. It is possible 
 
 Concerto panel is available at *<your installation URL>/cms* URL and it is content management system and administration panel for the whole platform instance. This is the place if you want to create new test, edit your HTML templates, browse your data tables or just add new user which can access the panel.
 
+Concerto panel is divided into following sections:
+
+ * panel header
+ * panel tab menu 
+  * tests tab
+   * list view
+   * form view
+  * QTI tab
+   * list view
+   * form view
+  * HTML templates tab
+   * list view
+   * form view
+  * users tab
+   * list view
+   * form view
+ * panel footer
+
+In the following picture we can see Concerto panel with tests tab selected on list view:
+
+http://concerto.e-psychometrics.com/demo/wiki/panel.png
+
 ----
 
 ===panel header===
@@ -22,3 +44,52 @@ Located at the top of the panel and always visible. Starting from the left it co
  * *logout button* - lets you log out of the system
  * *language selection menu* - lets you change the language of Concerto panel user interface
  * *view switch* - you can switch here between Concerto panel simple view (where advanced options will be hidden) and advanced view (where everything is visible)
+
+----
+
+===panel tab menu===
+
+http://concerto.e-psychometrics.com/demo/wiki/panel_tab_menu.png
+
+Located just below the panel header. It contains:
+
+ * *tab menu options* - you can choose tab contents here:
+  * tests tab
+  * QTI tab
+  * HTML templates tab
+  * tables tab
+  * users tab
+ * *workspace selector* - you can switch your current workspace
+
+----
+
+===panel tab view switcher===
+
+http://concerto.e-psychometrics.com/demo/wiki/panel_tab_view_switcher.png
+
+Located inside every tab. It lets you switch between:
+
+ * *list of available objects* - lets you go to tab list view
+ * *currently selected object* - lets you go to tab form view (if there is any object selected)
+
+----
+
+===panel tab list view===
+
+http://concerto.e-psychometrics.com/demo/wiki/panel_tab_list_view.png
+
+Here you can see all available objects from specific tab in your currently selected workspace. Starting from the top we have:
+
+ * *multi select options*: 
+  * *'check all' button* - checks all objects on current list page
+  * *'uncheck all' button* - unchecks all objects on current list page
+  * *currently checked object counter* - show total number of currently checked objects
+  * *'delete checked' button* - deletes currently checked objects
+  * *'export checked' button* - exports currently checked objects
+ * *object addition options*:
+  * *'add new object' button* - this button will launch form to create new object
+  * *'import new object' button* - it will let you choose the export file you want to import as a new object
+  * *'download from online library' button* - it will let you choose the object you wish to download from the online library
+
+
+Some of the options available here are not visible in all of the tabs. User objects are not exportable so you won't see
