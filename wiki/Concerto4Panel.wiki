@@ -1,0 +1,7 @@
+=Concerto panel=
+
+==general description==
+
+This place is only available to registered and authorized users. It is possible to set registration to open by setting *SETTINGS.php* file variable *$public_registration* to *true*. 
+
+Concerto panel is available at *<your installation URL>/cms* URL and it is content management system and administration panel for the whole platform instance. This is the place if you want to create new test, edit your HTML templates, browse your data tables or just add new user which can access the panel.
