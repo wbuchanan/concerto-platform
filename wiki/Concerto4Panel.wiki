@@ -102,6 +102,8 @@ Here you can see all available objects from specific tab in your currently selec
    * *upload to online library* - uploads selected object to online library (option is not available in users tab)
  * *paging options and refresh table button*
 
+----
+
 ===panel form view===
 
 Each tabs form view is explained at their dedicated wiki:
@@ -111,3 +113,16 @@ Each tabs form view is explained at their dedicated wiki:
  * [Concerto4PanelTemplateTab 'HTML templates' tab]
  * [Concerto4PanelTableTab 'tables' tab]
  * [Concerto4PanelUserTab 'users' tab]
+
+----
+
+===footer===
+
+http://concerto.e-psychometrics.com/demo/wiki/panel_footer.png
+
+Footer is located at the bottom and contains few useful links to:
+
+ * changelog
+ * project homepage
+ * forum
+ * contact us
