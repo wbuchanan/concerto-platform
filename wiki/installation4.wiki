@@ -20,7 +20,7 @@
 
 ==Installation==
 
-*This tutorial assumes that Apache is your HTTP server and PHP runs as Apache module*
+*This tutorial assumes that Apache is your HTTP server*
 
 ===Step 1===
 
@@ -65,7 +65,7 @@ Run:
 
 *{{{www-data ALL=(%concerto) NOPASSWD: /usr/bin/R}}}*
 
-Replace *www-data* with your Apache user name (corresponds to *$r_apache_user* variable from SETTINGS.php), *concerto* with your Linux group name for Concerto Linux users (corresponds to *$r_users_group* variable from SETTINGS.php) and */usr/bin/R* with path to R executable (corresponds to *$path_r_exe* variable from SETTINGS.php)
+Replace *www-data* with your PHP process user name (corresponds to *$php_user* variable from SETTINGS.php), *concerto* with your Linux group name for Concerto Linux users (corresponds to *$r_users_group* variable from SETTINGS.php) and */usr/bin/R* with path to R executable (corresponds to *$path_r_exe* variable from SETTINGS.php)
 
 ===Step 8===
 
