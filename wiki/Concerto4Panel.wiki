@@ -1,7 +1,24 @@
 =Concerto panel=
 
+----
+
 ==general description==
 
 This place is only available to registered and authorized users. It is possible to set registration to open by setting *SETTINGS.php* file variable *$public_registration* to *true*. 
 
 Concerto panel is available at *<your installation URL>/cms* URL and it is content management system and administration panel for the whole platform instance. This is the place if you want to create new test, edit your HTML templates, browse your data tables or just add new user which can access the panel.
+
+----
+
+===panel header===
+
+http://concerto.e-psychometrics.com/demo/wiki/panel_header.png
+
+Located at the top of the panel and always visible. Starting from the left it contains following elements:
+
+ * *version information* - shows your instance current version 
+ * *latest version check result* - shows if your current instance version is the latest available
+ * *logged user informations* - shows currently logged user login, first name and last name
+ * *logout button* - lets you log out of the system
+ * *language selection menu* - lets you change the language of Concerto panel user interface
+ * *view switch* - you can switch here between Concerto panel simple view (where advanced options will be hidden) and advanced view (where everything is visible)
