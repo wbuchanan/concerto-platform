@@ -115,7 +115,6 @@ function Concerto(container, wid, hash, sid, tid, queryPath, callbackGet, callba
         this.isTemplateReady = false;
         if (this.isStopped)
             return;
-
         if (this.testID != null && this.workspaceID != null && this.sessionID == null && this.hash == null && !this.isDebug && !this.remote) {
             var lastSession = Concerto.getSessionObject(this.workspaceID, this.testID);
             if (lastSession != null) {
@@ -202,9 +201,9 @@ function Concerto(container, wid, hash, sid, tid, queryPath, callbackGet, callba
 
                     if (!thisClass.remote) {
                         if (thisClass.finished && !thisClass.isDebug)
-                            Concerto.removeSessionCookie(thisClass.sessionID, thisClass.hash);
+                            Concerto.removeSessionCookie(thisClass.workspaceID, thisClass.sessionID, thisClass.hash);
                         else
-                            Concerto.saveSessionCookie(thisClass.sessionID, thisClass.hash, thisClass.testID);
+                            Concerto.saveSessionCookie(thisClass.workspaceID, thisClass.sessionID, thisClass.hash, thisClass.testID);
                     }
 
                     if (thisClass.data["STATUS"] == Concerto.statusTypes.error && (thisClass.loaderTransition == 1 || thisClass.loaderTransition == 2 || thisClass.isFirstTemplate)) {

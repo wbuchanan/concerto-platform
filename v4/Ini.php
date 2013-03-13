@@ -50,7 +50,7 @@ class Ini {
     public static $contact_emails = "pl362@cam.ac.uk,mk583@cam.ac.uk,vm298@cam.ac.uk";
     public static $forum_url = "http://concerto.e-psychometrics.com/forum/";
     public static $project_homepage_url = "http://code.google.com/p/concerto-platform/";
-    public static $project_changelog_url = "";
+    public static $project_changelog_url = "https://code.google.com/p/concerto-platform/wiki/changelog";
     public static $timezone = "Europe/London";
     public static $mysql_timezone = "+0:00";
     public static $r_users_name_prefix = "concerto_";
