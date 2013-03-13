@@ -1,0 +1,36 @@
+=Concerto online library=
+
+==general idea==
+
+The general idea behind online library is to create one central storage accessible by every Concerto instance where anyone can upload any Concerto object ( test, template, table or QTI ) and share it with the rest of the Concerto users.
+
+----
+
+==downloading from Concerto object library==
+
+First click the *"download from online library* button located on every tab ( except *users* ) list view.
+
+http://concerto.e-psychometrics.com/demo/wiki/online_library_download_button.png
+
+Then the download dialog window should popup where you can select which object you want to download. In the example screenshot below we are trying to download test object from online library. You just need to select any object and click download icon next to it ( the icon is marked on the picture ).
+
+http://concerto.e-psychometrics.com/demo/wiki/online_library_download_dialog.png
+
+----
+
+==uploading to Concerto online library==
+
+You need to be on list view of any tab (except users) and click upload icon next to the object you want to upload. Upload icons are marked on the screenshot below which represents tests tab list view.
+
+http://concerto.e-psychometrics.com/demo/wiki/online_library_upload_button.png
+
+When clicked the upload dialog window will pop up. You can describe the object you want to upload using following fields that will be visible for anyone browsing the library:
+
+ * *name*: name of the object
+ * *author*: name of the author
+ * *revision*: revision of object, can be helpful if you plan to update your object from time to time
+ * *description*: description of the uploaded object (it will be visible when someone will hover the mouse over question mark icon next to specific object when on *download dialog*
+
+You can see example upload form below:
+
+http://concerto.e-psychometrics.com/demo/wiki/online_library_upload_dialog.png
