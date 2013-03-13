@@ -35,6 +35,7 @@
  * Concerto built in R functions are now in R package with full documentation
  * introduced function toolbar with favourite functions and internal Concerto functions
  * added extended function wizard for concerto.table.query ( MySQL database query function )
+ * every test has it's own error logging mechanism ( javascript errors and R errors ) with logs available from inside the panel
 
 *Security*
 
