@@ -1,0 +1,25 @@
+=Concerto test run environment=
+
+This is the environment where all tests are run. There are four mechanisms here that lets your users run the test.
+
+The URL for test run environment is exactly the same as your Concerto installation path.
+
+==1. Running the test directly using the URL paramaters==
+
+Lets assume that *{{{http://domain.com/}}}* is the URL for your test environment and you have a test with id #1 created in the workspace with id #2. You can use:
+
+*{{{http://domain.com/?wid=2&tid=1}}}* 
+
+as the direct link to your test. You can give it to anyone and he or she will be able to run your test. 
+
+*{{{?}}}* - question mark means we are starting declaration of URL parametes
+
+*{{{wid=2}}}* - means that the first variable we declare is named *{{{wid}}}* and we set it's value to *{{{2}}}*, *{{{wid}}}* stands for *workspace id*
+
+*{{{&}}}* - ampersand means that we want to declare additional parameter
+
+*{{{tid=1}}}* - and it will be variable named *{{{tid}}}* with it's value set to *{{{1}}}*, *{{{tid}}}* stands for *test id*
+
+If your test supports any additional parameters passed by URL you can declare them after *{{{wid}}}* and *{{{tid}}}* parameters. If for example you would like to add additional variable named *{{{var1}}}* and set it's value to *"example"* you would use following URL:
+
+*{{{http://domain.com/?wid=2&tid=1&var1=example}}}* 
