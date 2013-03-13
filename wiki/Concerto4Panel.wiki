@@ -101,3 +101,13 @@ Here you can see all available objects from specific tab in your currently selec
    * *export* - exports selected object into the file (options is not available in users tab)
    * *upload to online library* - uploads selected object to online library (option is not available in users tab)
  * *paging options and refresh table button*
+
+===panel form view===
+
+Each tabs form view is explained at their dedicated wiki:
+
+ * [Concerto4PanelTestTab 'tests' tab]
+ * [Concerto4PanelQTITab 'QTI' tab]
+ * [Concerto4PanelTemplateTab 'HTML templates' tab]
+ * [Concerto4PanelTableTab 'tables' tab]
+ * [Concerto4PanelUserTab 'users' tab]
