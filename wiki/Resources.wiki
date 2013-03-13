@@ -5,14 +5,14 @@
 
 *Concerto v4*
 
- * [installation4 Installing Concerto v4]
+ * [installation4 Installing Concerto v4 (work in progress)]
  * *Concerto Panel*
-  * [Concerto4PanelTestTab 'tests' tab]
-  * [Concerto4PanelTemplateTab 'HTML templates' tab]
-  * [Concerto4PanelTableTab 'tables' tab]
-  * [Concerto4PanelUserTab 'users' tab]
+  * [Concerto4PanelTestTab 'tests' tab (work in progress)]
+  * [Concerto4PanelTemplateTab 'HTML templates' tab (work in progress)]
+  * [Concerto4PanelTableTab 'tables' tab (work in progress)]
+  * [Concerto4PanelUserTab 'users' tab (work in progress)]
  * *Tutorials*
-  * [Concerto4TutorialSimpleTest simple test]
+  * [Concerto4TutorialSimpleTest simple test (work in progress)]
 
 *Concerto v3*
 
