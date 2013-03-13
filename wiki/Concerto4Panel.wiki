@@ -4,7 +4,7 @@
 
 ==general description==
 
-This place is only available to registered and authorized users. It is possible to set registration to open by setting *SETTINGS.php* file variable *$public_registration* to *true*. 
+This place is only available to registered and authorized users.
 
 Concerto panel is available at *<your installation URL>/cms* URL and it is content management system and administration panel for the whole platform instance. This is the place if you want to create new test, edit your HTML templates, browse your data tables or just add new user which can access the panel.
 
@@ -90,6 +90,14 @@ Here you can see all available objects from specific tab in your currently selec
   * *'add new object' button* - this button will launch form to create new object
   * *'import new object' button* - it will let you choose the export file you want to import as a new object
   * *'download from online library' button* - it will let you choose the object you wish to download from the online library
-
-
-Some of the options available here are not visible in all of the tabs. User objects are not exportable so you won't see
+ * *list column headers options* - you can perform here: sorting, grouping, filtering and choose which columns you want displayed
+ * *object records* - divided into varied number of columns (depends on the tab we are on) and contains four common columns available on every tab:
+  * *check* - you can manually check objects for *multi select options* above
+  * *info* - short description of the object available on mouse hover over the question mark icon
+  * *id* - object unique id number
+  * *action icons* - it's the last column and it contains action button that you can perform on specific object:
+   * *edit* - switch to selected object *form view*
+   * *delete* - removes selected object
+   * *export* - exports selected object into the file (options is not available in users tab)
+   * *upload to online library* - uploads selected object to online library (option is not available in users tab)
+ * *paging options and refresh table button*
