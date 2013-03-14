@@ -17,6 +17,10 @@
   * [Concerto4PanelTemplateTab 'HTML templates' tab (work in progress)]
   * [Concerto4PanelTableTab 'tables' tab (work in progress)]
   * [Concerto4PanelUserTab 'users' tab (work in progress)]
+ * *Creating Concerto test*
+  * [Concerto4ConcertoPackage Concerto R package]
+  * [Concerto4SessionResuming Concerto test session resuming]
+  * [Concerto4Debugging debugging Concerto test]
  * *Tutorials*
   * [Concerto4TutorialSimpleTest simple test (work in progress)]
 
