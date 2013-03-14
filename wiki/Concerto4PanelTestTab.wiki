@@ -1,7 +1,1 @@
 ='tests' tab=
-
-==general description==
-
-This tab is where users can create new tests or edit existing ones. The whole test logic is declared here. After sharing the test with public, users can monitor test error logs here.
-
-==detail view==
