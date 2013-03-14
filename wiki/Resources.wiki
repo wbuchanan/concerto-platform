@@ -11,7 +11,7 @@
   * [Concerto4TestEnvironment Concerto test run environment (work in progress)]
   * [Concerto4RemoteClient Concerto remote test run environment (work in progress)]
   * [Concerto4OnlineLibrary Concerto online library (work in progress)]
-  * [Concerto4TestBuildingBlocks Concerto test building blocks]
+  * [Concerto4TestElements Concerto test elements]
  * *Concerto Panel*
   * [Concerto4PanelTestTab 'tests' tab (work in progress)]
   * [Concerto4PanelQTITab 'QTI' tab (work in progress)]
