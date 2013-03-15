@@ -6,9 +6,7 @@ On this tab you can create new tests and edit or delete existing ones. This is t
 
 ----
 
-==form view==
-
-====main form====
+==main form==
 
 http://concerto.e-psychometrics.com/demo/wiki/panel_test_form.png
 
@@ -18,7 +16,9 @@ You can set following test properties on test tab main form:
  * *open* (visible in *advanced view*) - check this option to set test to be open for public, after that anyone will be able to run the test by selecting it from the test selection box
  * *loader* (visible in *advanced view*) - choose the template that will be shown when you submit the template and wait for another template to appear
 
-====test logs====
+----
+
+==test logs==
 
 http://concerto.e-psychometrics.com/demo/wiki/panel_test_logs.png
 
@@ -32,6 +32,24 @@ Each error log will containt following informations:
  * *browser* - test participant browser header
  * *IP* - test participant IP address
 
-====test input and output variables====
+----
+
+==test input and output variables==
 
 http://concerto.e-psychometrics.com/demo/wiki/panel_test_variables.png
+
+Declare test input parameters and return variables here. 
+
+====Input parameters==== 
+
+They are used to declare available URL parameters to pass to a test. If no input parameters are declared then no URL parameters are allowed to be passed. When declared on nested test ( test that is run inside another test by using *{{{concerto.test.run}}}* function from Concerto package ) they are the only available variables that can be passed in *{{{params}}}* named list argument.
+
+====Output variables====
+
+Variables declared here will form a return value of *{{{concerto.test.run}}}* (used to run test inside another test) function from Concerto package. The return type will be named list formed from variables declared as output variables. Return variables are also saved for all completed sessions and can be used later by *Concerto remote client* or any other external application.
+
+----
+
+==test logic==
+
+http://concerto.e-psychometrics.com/demo/wiki/panel_test_logic.png
