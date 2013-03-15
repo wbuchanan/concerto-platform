@@ -56,6 +56,10 @@ http://concerto.e-psychometrics.com/demo/wiki/panel_test_logic.png
 
 Test logic written in R code. You can use any R code you wish. Whatever R package you have installed on your system, it can be used in Concerto test logic code. Concerto comes in with its own R package named *{{{concerto}}}* which functions can also be used here. This section is the most important part of the whole Concerto panel as this is the place where you declare how the test should work.
 
+When you start test debugging your test logic R code will be interpreted line by line and any output produced by R will be inserted below line of code that produced it.
+
+To simplify process of writing R code, every function available in your R can be written using Concerto function wizard. To start function wizard for a specific function you have to start auto-completion tool, select the function of your choosing and press *Ctrl+Enter* or use *function toolbar* at the bottom left corner of your screen.
+
 You can use following key commands when test logic R code has focus:
 
  * *Ctrl+Space* - code auto-completion, shows all available functions starting with the chars you entered before pressing Ctrl+Space
@@ -67,3 +71,23 @@ You can use following key commands when test logic R code has focus:
 ==test session state==
 
 http://concerto.e-psychometrics.com/demo/wiki/panel_test_session_state.png
+
+Used for test debugging. At the top it contains current debug session state information and two buttons for starting and stopping debug session. While debug there is ongoing debug session test logic code will go into read only mode. After stopping the debug session it will be editable again.
+
+Test session state shows R logic session state. It will show any variable which is currently declared in your test session and it's value.
+
+----
+
+==test session output==
+
+http://concerto.e-psychometrics.com/demo/wiki/panel_test_session_output.png
+
+Used for test debugging. It will show you your test logic output.
+
+----
+
+==function toolbar==
+
+http://concerto.e-psychometrics.com/demo/wiki/panel_test_function_toolbar.png 
+
+It contains all Concerto functions from *{{{concerto}}}* R package in one place ready to be inserted into your test logic code as a function wizard. It also contains all functions you added to your *favourite functions*. You can remove any function previously added to favourites from here. You can get full R documentation of any function listed here by clicking the question mark icon next to the selected function.
