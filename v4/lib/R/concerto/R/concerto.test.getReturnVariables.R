@@ -6,8 +6,8 @@ function(testID,workspaceID=concerto$workspaceID){
   response <- fetch(result,n=-1)
   
   result <- c()
-  for(i in response){
-    result <- c(result,i["name"])
+  for(i in dim(response)[1]){
+    result <- c(result,response[i,"name"])
   }
   return(result)
 }

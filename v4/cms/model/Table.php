@@ -181,6 +181,8 @@ class Table extends OModule {
             }
         }
 
+        $columns = $this->get_columns();
+
         if (array_key_exists("updateData", $post)) {
             $rows = json_decode($post["updateData"], true);
             foreach ($rows as $row) {
@@ -190,10 +192,20 @@ class Table extends OModule {
                         continue;
                     if ($set != "")
                         $set.=",";
-                    if ($v == "")
-                        $set.="`" . mysql_real_escape_string($k) . "`=NULL";
-                    else
+                    if ($v == "") {
+                        $nullable = true;
+                        foreach ($columns as $col) {
+                            if ($col->name == $k) {
+                                $nullable = $col->null;
+                            }
+                        }
+                        if (!$nullable)
+                            $set.="`" . mysql_real_escape_string($k) . "`=''";
+                        else
+                            $set.="`" . mysql_real_escape_string($k) . "`=NULL";
+                    } else {
                         $set.="`" . mysql_real_escape_string($k) . "`='" . mysql_real_escape_string($v) . "'";
+                    }
                 }
 
                 if ($row["id"] != null) {
@@ -203,7 +215,7 @@ class Table extends OModule {
                 } else {
                     $sql = sprintf("INSERT INTO `%s` SET %s", mysql_real_escape_string($obj->name), $set);
                     if (!mysql_query($sql))
-                        return json_encode(array("result" => -6, "message" => mysql_error()));
+                        return json_encode(array("result" => -6, "message" => mysql_error() . " " . $sql));
                 }
             }
         }
@@ -314,7 +326,7 @@ class Table extends OModule {
                 } while (!mysql_query($sql));
             }
         }
-        
+
         return 0;
     }
 

@@ -5301,5 +5301,15 @@ Note: You can add new languages by inserting "<new_language>string translated in
             <nl></nl>
             <br></br>
         </string>
+        <string id="765" js="1">
+            <en>remove all logs</en>
+            <de></de>
+            <pl>usuń wszystkie logi</pl>
+            <cn></cn>
+            <fr></fr>
+            <bg></bg>
+            <nl></nl>
+            <br></br>
+        </string>
     </strings>
 </root> 

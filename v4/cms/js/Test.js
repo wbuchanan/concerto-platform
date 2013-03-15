@@ -1702,12 +1702,12 @@ Test.uiIniLogsGrid = function() {
         columns: [{
                 title: dictionary["s756"],
                 field: "created",
-                width:150
+                width: 150
             }, {
                 title: dictionary["s122"],
                 field: "type",
                 template: '#if(type==0) {#' + dictionary["s763"] + "#} else {#" + dictionary["s764"] + "#}#",
-                width:100
+                width: 100
             }, {
                 title: dictionary["s757"],
                 field: "message",
@@ -1718,18 +1718,18 @@ Test.uiIniLogsGrid = function() {
             }, {
                 title: dictionary["s759"],
                 field: "IP",
-                width:120
+                width: 120
             }, {
                 title: ' ',
                 width: 50,
                 template: '<span style="display:inline-block;" class="spanIcon tooltip ui-icon ui-icon-trash" onclick="' + thisClass.className + '.uiRemoveLog($(this))" title="' + dictionary["s760"] + '"></span>'
             }],
-        //toolbar: [
-        //{
-        //name: "create",
-        //template: '<button class="btnAdd" onclick="Table.uiAddColumn()">' + dictionary["s37"] + '</button>'
-        //}
-        //],
+        toolbar: [
+            {
+                name: "clear",
+                template: '<button class="btnRemove" onclick="Test.uiClearLogs()">' + dictionary["s765"] + '</button>'
+            }
+        ],
         editable: false,
         scrollable: true,
         resizable: true,
@@ -1793,6 +1793,7 @@ Test.uiIniLogsGrid = function() {
             }
         }
     });
+    Methods.iniIconButton(".btnRemove", "trash");
 }
 
 Test.uiRefreshLogsGrid = function() {
@@ -1825,12 +1826,12 @@ Test.uiReloadLogsGrid = function(data, columns) {
         },
         dataSource: dataSource,
         columns: columns,
-        //toolbar: [
-        //{
-        //name: "create",
-        //template: '<button class="btnAdd" onclick="Table.uiAddColumn()">' + dictionary["s37"] + '</button>'
-        //}
-        //],
+        toolbar: [
+            {
+                name: "clear",
+                template: '<button class="btnRemove" onclick="Test.uiClearLogs()">' + dictionary["s765"] + '</button>'
+            }
+        ],
         editable: false,
         scrollable: true,
         resizable: true,
@@ -1894,6 +1895,19 @@ Test.uiReloadLogsGrid = function(data, columns) {
             }
         }
     });
+    Methods.iniIconButton(".btnRemove", "trash");
+}
+
+Test.uiClearLogs=function(){
+    var thisClass = this;
+    Methods.confirm(dictionary["s368"], dictionary["s367"], function() {
+        var grid = $("#div" + thisClass.className + "GridLogs").data('kendoGrid');
+
+        var columns = grid.columns;
+        var items = [];
+
+        Test.uiReloadLogsGrid(items, columns);
+    });
 }
 
 Test.crudLogsDeleted = [];
@@ -1916,7 +1930,13 @@ Test.getSerializedCrudDeleted = function(collection) {
     switch (collection) {
         case "logs":
             {
-                return $.toJSON(Test.crudLogsDeleted);
+                var grid = $("#div" + this.className + "GridLogs").data('kendoGrid');
+                if (grid != null) {
+                    var data = grid.dataSource.data();
+                    if (data.length == 0)
+                        return "*";
+                }
+                return $.toJSON(Table.crudLogsDeleted);
                 break;
             }
     }

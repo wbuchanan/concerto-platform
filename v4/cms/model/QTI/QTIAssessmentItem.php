@@ -302,9 +302,11 @@ class QTIAssessmentItem extends OModule {
             $xml_hash = $obj->calculate_xml_hash();
             $obj->xml_hash = $xml_hash;
 
-            $obj->validate();
-            $obj->ini_r_code = $obj->get_QTI_ini_R_code();
-            $obj->response_proc_r_code = $obj->get_response_processing_R_code();
+            $validation = json_decode($obj->validate());
+            if ($validation->result == 0) {
+                $obj->ini_r_code = $obj->get_QTI_ini_R_code();
+                $obj->response_proc_r_code = $obj->get_response_processing_R_code();
+            }
 
             $obj->mysql_save();
         }

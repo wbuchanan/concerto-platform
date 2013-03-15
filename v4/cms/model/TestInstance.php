@@ -149,8 +149,8 @@ class TestInstance {
             TestServer::log_debug("TestInstance->stop() --- stopping instance #" . $this->UserWorkspace_id . ":" . $this->TestSession_id);
 
         if ($this->is_started()) {
-            //if ($session->status == TestSession::TEST_SESSION_STATUS_TEMPLATE)
-                //$this->send_close_signal();
+            if ($session->status == TestSession::TEST_SESSION_STATUS_TEMPLATE)
+                $this->send_close_signal();
 
             fclose($this->pipes[0]);
             fclose($this->pipes[1]);
@@ -244,7 +244,6 @@ class TestInstance {
         }
     }
 
-    /*
     public function send_close_signal() {
         TestSession::change_db($this->UserWorkspace_id);
         $session = $this->get_TestSession();
@@ -270,8 +269,6 @@ class TestInstance {
             TestServer::log_debug("TestInstance->send_close_signal() --- finished sending close signal to session #" . $this->UserWorkspace_id . ":" . $this->TestSession_id);
         }
     }
-     * 
-     */
 
     public function read() {
         TestSession::change_db($this->UserWorkspace_id);
@@ -377,7 +374,7 @@ TIMEOUT
             $this->send_variables($this->pending_variables);
             $this->pending_variables = null;
         }
-        
+
         if ($this->is_data_ready) {
             $this->last_action_time = time();
             return $this->response;
@@ -427,6 +424,21 @@ TIMEOUT
                 if ($session->debug == 0) {
                     $test = Test::from_mysql_id($session->Test_id);
                     if ($test != null) {
+
+                        //URL params
+                        if ($variables != null) {
+                            $params = $test->get_parameter_TestVariables();
+                            $params_declaration = "";
+                            foreach ($params as $param) {
+                                foreach ($variables as $kv) {
+                                    $kv = json_decode($kv);
+                                    if ($kv->name == $param->name) {
+                                        $params_declaration .=$param->name . " <- '" . addcslashes($kv->value, "'") . "'\n";
+                                    }
+                                }
+                            }
+                            $send_code .= $params_declaration;
+                        }
                         $send_code.= $test->code . $this->get_final_code();
                     }
                 }

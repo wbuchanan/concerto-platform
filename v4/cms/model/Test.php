@@ -73,11 +73,17 @@ class Test extends OModule {
         }
 
         if (array_key_exists("deleteLogs", $post)) {
-            $logs = json_decode($post["deleteLogs"]);
-            foreach ($logs as $log) {
-                $log = TestSessionLog::from_mysql_id($log);
-                if ($log != null) {
-                    $log->mysql_delete();
+            if ($post["deleteLogs"] == "*") {
+                $sql = sprintf("DELETE FROM `%s` WHERE `Test_id`=%s", TestSessionLog::get_mysql_table(), $lid);
+                if (!mysql_query($sql))
+                    return json_encode(array("result" => -6, "message" => mysql_error()));
+            } else {
+                $logs = json_decode($post["deleteLogs"]);
+                foreach ($logs as $log) {
+                    $log = TestSessionLog::from_mysql_id($log);
+                    if ($log != null) {
+                        $log->mysql_delete();
+                    }
                 }
             }
         }

@@ -37,9 +37,7 @@ Table.onAfterEdit = function()
 
 Table.onAfterSave = function() {
     Test.uiTablesChanged();
-    //Table.uiEdit(Table.currentID);
-    
-    Table.onAfterEdit();
+    Table.uiEdit(Table.currentID);
 };
 
 Table.onAfterDelete = function() {
@@ -400,7 +398,7 @@ Table.uiReloadDataGrid = function(data, columns) {
     Methods.iniIconButton(".btnRemove", "trash");
 }
 
-Table.uiIniDataGrid = function() {
+Table.uiIniDataGrid = function() { 
     var thisClass = this;
 
     $("#div" + this.className + "GridDataContainer").html("<div id='div" + this.className + "GridData' class='grid'></div>");
@@ -523,7 +521,10 @@ Table.uiIniDataGrid = function() {
                         templateSet = true;
                         break;
                     }
-                case "HTML":
+                case "tinytext":
+                case "mediumtext":
+                case "longtext":
+                case "text":
                     {
                         col["editor"] = Table.htmlEditor;
                         col["template"] = '<div class="horizontalMargin" align="center">' +
@@ -1419,7 +1420,7 @@ Table.uiEditColumn = function(obj) {
                             }
                         case "tinytext":
                         case "mediumtext":
-                        case "long":
+                        case "longtext":
                         case "text":
                             {
                                 dataGrid.columns[index]["editor"] = Table.htmlEditor;
@@ -1964,7 +1965,7 @@ Table.uiAddColumn = function() {
                             }
                         case "tinytext":
                         case "mediumtext":
-                        case "long":
+                        case "longtext":
                         case "text":
                             {
                                 col["editor"] = Table.htmlEditor;

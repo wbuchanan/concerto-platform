@@ -5,7 +5,7 @@ function(){
   response <- readLines(fifo_connection,warn=FALSE)
   closeAllConnections()
   if(response=="serialize"){
-    concerto$serialize()
+    concerto:::concerto.serialize()
   } else if(response=="close") {
     stop("close command recieved")
   } else {
