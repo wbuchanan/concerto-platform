@@ -18,7 +18,7 @@ You can set following test properties on QTI tab main form:
 
  * *name* - name of the QTI
 
-At the top of the main form header there is an icon to change test description. This description will be later visible when hovering over question mark icon next to selected QTI in the 'QTI' tab list view.
+At the top of the main form header there is an icon to change QTI description. This description will be later visible when hovering over question mark icon next to selected QTI in the 'QTI' tab list view.
 
 ----
 
