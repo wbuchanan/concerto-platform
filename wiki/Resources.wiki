@@ -8,7 +8,7 @@
  * [installation4 Installing Concerto v4]
  * *General concepts*
   * [Concerto4Panel Concerto panel (work in progress)]
-  * [Concerto4TestEnvironment Concerto test run environment (work in progress)]
+  * [Concerto4TestEnvironment running Concerto test (work in progress)]
   * [Concerto4RemoteClient Concerto remote test run environment (work in progress)]
   * [Concerto4OnlineLibrary Concerto online library (work in progress)]
  * *Concerto Panel*
