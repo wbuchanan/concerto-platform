@@ -1,1 +1,37 @@
 ='tests' tab=
+
+==general description==
+
+On this tab you can create new tests and edit or delete existing ones. This is the central place in the whole panel. Users after creating a test will come back here to monitor error logs of the specific test. 
+
+----
+
+==form view==
+
+====main form====
+
+http://concerto.e-psychometrics.com/demo/wiki/panel_test_form.png
+
+You can set following test properties on test tab main form:
+
+ * *name* - name of the test
+ * *open* (visible in *advanced view*) - check this option to set test to be open for public, after that anyone will be able to run the test by selecting it from the test selection box
+ * *loader* (visible in *advanced view*) - choose the template that will be shown when you submit the template and wait for another template to appear
+
+====test logs====
+
+http://concerto.e-psychometrics.com/demo/wiki/panel_test_logs.png
+
+After creating the test and sharing it with test participants, you can monitor if there are any problems with the test here. Any problems related to test logic (*R*) or test templates (*javascript*) will be recorded here so you can eliminate it later.
+
+Each error log will containt following informations:
+
+ * *date* - date when the error occured
+ * *type* - type of error, either *R* or *javascript*
+ * *message* - error message describing the problem encountered
+ * *browser* - test participant browser header
+ * *IP* - test participant IP address
+
+====test input and output variables====
+
+http://concerto.e-psychometrics.com/demo/wiki/panel_test_variables.png
