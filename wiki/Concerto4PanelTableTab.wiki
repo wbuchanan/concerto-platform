@@ -57,3 +57,15 @@ Here is the list of all declared indexes for the table. They are exact represent
 http://concerto.e-psychometrics.com/demo/wiki/panel_table_data.png
 
 This is the place where you can see all the records which are in the table. You can edit the records which are already in the table or delete them. You can also add new records from here. It's also possible to click on the icon at column header to sort the table by specific column or to filter the data using a set conditions.
+
+----
+
+==additional actions==
+
+http://concerto.e-psychometrics.com/demo/wiki/panel_table_buttons.png
+
+'Tables' tab have three more actions available that can be performed on any table in the system:
+
+ * *import table from MySQL table* - lets you import any MySQL table you have in your database to Concerto platform
+ * *import table from CSV file* - lets you import any well formed CSV file as a Concerto table
+ * *export table to CSV* - lets you export any of your table to CSV file format
