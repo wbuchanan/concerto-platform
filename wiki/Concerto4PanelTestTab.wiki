@@ -53,3 +53,11 @@ Variables declared here will form a return value of *{{{concerto.test.run}}}* (u
 ==test logic==
 
 http://concerto.e-psychometrics.com/demo/wiki/panel_test_logic.png
+
+Test logic written in R code. You can use any R code you wish. Whatever R package you have installed on your system it can be used in Concerto test logic code. Concerto comes in with its own R package named *{{{concerto}}}* which functions can also be used here. This section is the most important part of the whole Concerto panel as this is the place where you declare how the test should work.
+
+You can use following key commands when test logic R code has focus:
+
+ * *Ctrl+Space* - code auto-completion, shows all available functions starting with the chars you entered before pressing Ctrl+Space
+ * *F2* - auto-format selected code
+ * *F11* - full screen code editor mode 
