@@ -1,6 +1,6 @@
-=Concerto test run environment=
+=running Concerto test=
 
-This is the environment where all tests are run. There are four mechanisms here that lets your users run the test.
+There are four mechanisms in Concerto that lets your users run the test.
 
 The URL for test run environment is exactly the same as your Concerto installation path.
 
