@@ -4,6 +4,8 @@
 
 Ever Concerto platform instance has a set time a test session can be idle. It is 300 seconds (5 minutes) by default. When the test session is idle longer than that it will be closed. This actions is required as every test session launches it's own R session process which takes some system resources. However before the session is closed it saves the R session state to the file (this process will be later referenced as a *serialization*)and it can be later restored (*unserialized*). Test creators who want to implement session resuming (after the max idle time has been reached) need to write some additional code for it in the test logic.
 
+*PLEASE KEEP IN MIND THAT IT IS NOT REQUIRED TO IMPLEMENT SESSION RESUMING AFTER MAX IDLE TIME!*
+
 ==serialization process==
 
  # max idle time for test session is reached
