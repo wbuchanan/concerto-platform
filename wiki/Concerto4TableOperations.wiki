@@ -77,3 +77,14 @@ In the example above we build the query that will remove all records where *{{{i
 ----
 
 ==extended function wizard for concerto.table.query - advanced view==
+
+http://concerto.e-psychometrics.com/demo/wiki/table_advanced.png
+
+There are few more options available when using *{{{concerto.table.query}}}* function wizard in advanced view. First of all we have additional sections available when building the query for *SELECT* operation:
+
+ * *group by* - lets you specify by which columns result will be grouped when using MySQL aggregate functions
+ * *having* - lets you apply conditional statements for aggregate functions
+
+The second addition in advanced view is the possibility to switch between wizard view and MySQL code view for chosen individual elements in query sections. When switched to code view you can use any MySQL code you wish.
+
+If you declared function *{{{parameters}}}* argument (only available in advanced view) you can also insert into your MySQL code *{{{ {{var1}} }}}* where *{{{var1}}}* is your variable name passed as a *{{{parameters}}}* named list argument. The *{{{var1}}}* will be replaced at a runtime with the value of the variable.
