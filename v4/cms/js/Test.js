@@ -1622,9 +1622,9 @@ Test.getExtendedFunctionWizardValues = function(func) {
                 else
                     values["having_section"] = $.toJSON(values["having_section"]);
 
-                if ($("input[name='radioFWlimit']:checked").length > 0) {
-                    values["limit_section"] = {};
-                    values["limit_section"]["w0"] = $("input[name='radioFWlimit']:checked").val();
+                values["limit_section"] = {};
+                if (parseInt($("#radioFWlimit").val()) == 1) {
+                    values["limit_section"]["w0"] = $("#radioFWlimit").val();
                     values["limit_section"]["w1"] = $("#selectFWlimitOffset").val();
                     values["limit_section"]["w2"] = $("#selectFWlimitNumber").val();
                     values["limit_section"] = $.toJSON(values["limit_section"]);
@@ -1898,7 +1898,7 @@ Test.uiReloadLogsGrid = function(data, columns) {
     Methods.iniIconButton(".btnRemove", "trash");
 }
 
-Test.uiClearLogs=function(){
+Test.uiClearLogs = function() {
     var thisClass = this;
     Methods.confirm(dictionary["s368"], dictionary["s367"], function() {
         var grid = $("#div" + thisClass.className + "GridLogs").data('kendoGrid');

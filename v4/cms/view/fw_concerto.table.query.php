@@ -776,8 +776,10 @@ if ($table == null) {
         </table>
     </legend>
     <div class="divFormElement" style="width:30%;" align="left">
-        <label for="radioFWlimit0"><input type="radio" id="radioFWlimit0" name="radioFWlimit" onclick="Test.uiRefreshExtendedFunctionWizard('<?= $name ?>')" value="0" <?= $limit_section->w0 == "0" ? "checked" : "" ?> /><?= Language::string(744) ?></label>
-        <label for="radioFWlimit1"><input type="radio" id="radioFWlimit1" name="radioFWlimit" onclick="Test.uiRefreshExtendedFunctionWizard('<?= $name ?>')" value="1" <?= $limit_section->w0 == "1" ? "checked" : "" ?> /><?= Language::string(745) ?></label>
+        <select class="fullWidth ui-widget-content ui-corner-all" id="radioFWlimit" name="radioFWlimit" onchange="Test.uiRefreshExtendedFunctionWizard('<?= $name ?>')">
+            <option value="0" <?= $limit_section->w0 == "0" ? "selected" : "" ?> ><?= Language::string(744) ?></option>
+            <option value="1" <?= $limit_section->w0 == "1" ? "selected" : "" ?> ><?= Language::string(745) ?></option>
+        </select>
     </div>
     <div class="divFormElement <?= $limit_section->w0 == 0 ? "notVisible" : "" ?>" style="width:35%;" align="left">
         <table class="fullWidth">
