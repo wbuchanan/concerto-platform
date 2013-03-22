@@ -1,0 +1,31 @@
+=Concerto R package=
+
+==general concept==
+
+Since starting from Concerto v4 there is code auto-complete and R function documentation (available for any R package installed on your system) available for users writing code, we decided to include Concerto built in functions also as a R package.
+
+----
+
+==concerto.show.template==
+
+The most important of all the functions in the package. It informs your test logic that it's now the time to show to test participant HTML template with your test items.
+
+====arguments====
+
+ * *templateID* - ID of the template you want to show
+ * *params* - named list with parameters you want to pass to the template
+ * *timeLimit* - number of seconds after which template will be auto submitted (0 for no limit)
+ * *finalize* - set to TRUE if there is nothing more to do for your test logic after this template
+ * *workspaceID* - set this if you want to use template from different workspace then the one where the test is located
+
+====returns====
+
+Returns named list with the variable gathered from the template and:
+
+ * *LAST_PRESSED_BUTTON_NAME* - name of the button that submitted the template
+ * *OUT_OF_TIME* - 1 if the set time limit has been reached, 1 if not
+ * *TIME_TAKEN* - how much time has it taken user to submit the template
+
+====example====
+
+{{{response <- concerto.template.show(1)}}}
