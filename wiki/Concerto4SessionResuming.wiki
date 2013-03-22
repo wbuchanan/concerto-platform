@@ -20,3 +20,32 @@ Ever Concerto platform instance has a set time a test session can be idle. It is
  # test logic code starts from the beginning 
 
 ==solution==
+
+Users that want to make session resuming possible after the max idle time is reached need to implement some additional code in their test logic.
+
+The simplest solution would be to implement some kind of additional variable (let's call it *{{{session_position}}}*) and *{{{onUnserialize}}}* event handler function. Take a look at the example below:
+
+<code language="r">
+# onUnserialize function will be called automatically whenever test session will get unserialized. 
+# It accepts "lastReturn" argument which is named list with the variables
+# submitted from HTML template on which test session has been serialized.
+onUnserialize <- function(lastReturn){
+  response <<- lastReturn
+}
+
+if(!exists("session_position")){
+  # insert ini code
+  session_position <- 1
+  response <- concerto.template.show(1)
+}
+if(session_position==1){
+  # insert template #1 response processing code here
+  session_position <- 2
+  response <- concerto.template.show(2)
+}
+if(session_position==2){
+  # insert template #2 response processing code here
+  session_position <- 3
+  response <- concerto.template.show(3)
+}
+</code>
