@@ -20,7 +20,7 @@
  * *Creating Concerto test*
   * [Concerto4ConcertoPackage Concerto R package]
   * [Concerto4SessionResuming Concerto test session resuming]
-  * [Concerto4Debugging debugging Concerto test]
+  * [Concerto4Debugging writing and debugging Concerto test]
  * *Tutorials*
   * [Concerto4TutorialSimpleTest simple test (work in progress)]
 
