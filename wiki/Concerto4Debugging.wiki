@@ -39,3 +39,11 @@ To start debugging test logic R code click *begin* button located in the test se
 This is the example how your R logic code might look like when the test output is inserted into it:
 
 http://concerto.e-psychometrics.com/demo/wiki/debug_output.png
+
+After each line it's output will be inserted below the line that produced it. Yellow color is for regular output and red color is for error output. As you can see at the end of the test logic there was an error.
+
+Please take a look at the *test session state* now:
+
+http://concerto.e-psychometrics.com/demo/wiki/debug_state_finished.png
+
+it shows that there was an error and tells us what is the session state (current variables and their values) at current moment.
