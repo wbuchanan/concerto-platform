@@ -1,0 +1,51 @@
+=simple survey=
+
+==goal==
+
+We will create a simple survey using this tutorial. The survey will contain:
+ 
+ * *intro template* - a page where we will greet the user, explain the rules of the survey and ask for a user name
+ * *survey template* - a page where we will ask survey questions
+ * *outro template* - a page thanking the user for participation in the survey 
+ * *data table* - a table where all the answers will be stored for future use
+
+----
+
+==STEP 1: create intro template==
+
+ * go to *HTML template* tab
+http://concerto.e-psychometrics.com/demo/wiki/tutorial_survey1_1.png
+
+ * make sure you are on *list of available objects* section
+http://concerto.e-psychometrics.com/demo/wiki/tutorial_survey1_2.png
+
+ * click *add new object* button
+http://concerto.e-psychometrics.com/demo/wiki/tutorial_survey1_3.png
+
+ * enter *intro* as the name for your intro template and click *save* button
+http://concerto.e-psychometrics.com/demo/wiki/tutorial_survey1_4.png
+
+ * Enter some text on *HTML template* editor (you can style the text however you want)
+http://concerto.e-psychometrics.com/demo/wiki/tutorial_survey1_5.png
+
+ * Click on a button to add text field for user name
+http://concerto.e-psychometrics.com/demo/wiki/tutorial_survey1_6.png
+
+ * Enter *username* as the name of the text field and click *OK*
+http://concerto.e-psychometrics.com/demo/wiki/tutorial_survey1_8.png
+
+ * Click on a button to add a button to submit the template
+http://concerto.e-psychometrics.com/demo/wiki/tutorial_survey1_7.png
+
+ * Enter button name (*btn_next*) and button text (*next*)
+http://concerto.e-psychometrics.com/demo/wiki/tutorial_survey1_9.png
+
+ * And that's it! Your intro template is finished. It should look like this:
+http://concerto.e-psychometrics.com/demo/wiki/tutorial_survey1_10.png
+
+----
+
+==STEP 2: creating survey template==
+
+ * create new *HTML template*, name it *survey*, add *next* button to it
+ * 
