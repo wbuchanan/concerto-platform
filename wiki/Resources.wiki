@@ -23,7 +23,7 @@
   * [Concerto4TableOperations operations on tables (work in progress)]
   * [Concerto4SessionResuming Concerto test session resuming (work in progress)]
  * *Tutorials*
-  * [Concerto4TutorialSimpleTest simple test (work in progress)]
+  * [Concerto4TutorialSimpleSurvey simple survey (work in progress)]
 
 *Concerto v3*
 
