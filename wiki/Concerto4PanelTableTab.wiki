@@ -2,7 +2,7 @@
 
 ==general description==
 
-On this tab you can create data tables that will be used by your tests. Data tables can be used for anything starting from user banks, item banks or responses records. To create a table first you need to declare it's structure (columns of the table) and then you can fill it with data.
+On this tab you can create data tables that will be used by your tests. Data tables can be used for anything starting from user banks, item banks or recording responses. To create a table, you need to declare it's structure (columns of the table) before you can fill it with data.
 
 ----
 
@@ -14,7 +14,7 @@ You can set following table properties on tables tab main form:
 
  * *name* - name of the table
 
-At the top of the main form header there is an icon to change table description. This description will be later visible when hovering over question mark icon next to selected table in the 'tables' tab list view.
+At the top of the main form header there is an icon to change table description. This description will be later visible when hovering over question mark icon next to the selected table in the 'tables' tab list view.
 
 ----
 
@@ -56,7 +56,7 @@ Here is the list of all declared indexes for the table. They are exact represent
 
 http://concerto.e-psychometrics.com/demo/wiki/panel_table_data.png
 
-This is the place where you can see all the records which are in the table. You can edit the records which are already in the table or delete them. You can also add new records from here. It's also possible to click on the icon at column header to sort the table by specific column or to filter the data using a set conditions.
+This is the place where you can see all the records which are in the table. You can edit the records which are already in the table or delete them. You can also add new records from here. It's also possible to click on the icon at column header to sort the table by specific column or to filter the data using a set of conditions.
 
 ----
 
@@ -66,6 +66,6 @@ http://concerto.e-psychometrics.com/demo/wiki/panel_table_buttons.png
 
 'Tables' tab have three more actions available that can be performed on any table in the system:
 
- * *import table from MySQL table* - lets you import any MySQL table you have in your database to Concerto platform
- * *import table from CSV file* - lets you import any well formed CSV file as a Concerto table
- * *export table to CSV* - lets you export any of your table to CSV file format
+ * *import table from MySQL table* - import any MySQL table you have in your database to Concerto platform
+ * *import table from CSV file* - import any well formed CSV file as a Concerto table
+ * *export table to CSV* - export any of your table to CSV file format
