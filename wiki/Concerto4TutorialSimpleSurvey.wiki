@@ -58,12 +58,12 @@ http://concerto.e-psychometrics.com/demo/wiki/tutorial_survey1_11.png
  * Now we will add radio buttons so that user can leave their response. Click the button marked below:
 http://concerto.e-psychometrics.com/demo/wiki/tutorial_survey1_12.png
 
- * Enter *response* for the radio button name and enter *yes* as a first response value. When done clicked *OK*.
+ * Enter *response* for the radio button name and enter *1* as a first response value. When done clicked *OK*.
 http://concerto.e-psychometrics.com/demo/wiki/tutorial_survey1_13.png
 
  * Enter *yes* next to the first radio button response option so that user will know what answer does this response represent.
 
- * Add another radio button next to first one. The name of the both radio buttons should be the same, so set it to *response* and set the response value of the seconds radio button to *no*. When done just add the text *no* next to the second radio button just like before. The template should look like this:
+ * Add another radio button next to first one. The name of the both radio buttons should be the same, so set it to *response* and set the response value of the seconds radio button to *0*. When done just add the text *no* next to the second radio button just like before. The template should look like this:
 http://concerto.e-psychometrics.com/demo/wiki/tutorial_survey1_14.png
 
  * Save your template by clicking *Save* button at the bottom right corner of your screen
@@ -98,14 +98,11 @@ http://concerto.e-psychometrics.com/demo/wiki/tutorial_survey1_18.png
  * click *add* button on *table structure definition* section to add new table column
 http://concerto.e-psychometrics.com/demo/wiki/tutorial_survey1_19.png 
 
- * Enter *response_count* as the name of the new column and set it's type to *numeric*. When done click *add*.
+ * Enter *response* as the name of the new column and set it's type to *numeric*. When done click *add*.
 http://concerto.e-psychometrics.com/demo/wiki/tutorial_survey1_20.png 
 
  * Your table structure should now look like this:
 http://concerto.e-psychometrics.com/demo/wiki/tutorial_survey1_21.png 
-
- * Now click *add* button in *table data* section twice to add two new rows
-http://concerto.e-psychometrics.com/demo/wiki/tutorial_survey1_22.png 
 
  * And that's it. You can now save your table by clicking *save* button at the bottom right corner of your screen 
 http://concerto.e-psychometrics.com/demo/wiki/tutorial_survey1_23.png 
