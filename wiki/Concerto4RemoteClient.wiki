@@ -2,9 +2,9 @@
 
 ==general idea==
 
-The general idea of *Concerto remote test run environment* is to make it possible to insert Concerto tests hosted on remote server into external websites.
+The general idea of *Concerto remote test run environment* is to make it possible to insert Concerto tests hosted on remote servers into external websites.
 
-It means that in practice there can be a Concerto server located somewhere in the world and even tough your website is located on remote host you still can run the tests from that server just as if Concerto instance was installed on the same host as your website.
+It means that in practice there can be a Concerto server located somewhere in the world and though your website is located on a remote host you can still run the tests from that server as if the Concerto instance was installed on the same host as your website.
 
 ----
 
@@ -57,7 +57,7 @@ Now you can just use this javascript code somewhere on your website:
 
 *{{{$("#divTest").concerto(options);}}}*
 
-... means that we want to place the contents of the test inside container with id *divTest* on your HTML. The second variable *{{{options}}}* is required options object you want to pass to Concerto object. It contains following fields:
+... means that we want to place the contents of the test inside container with id *divTest* on your HTML. The second variable *{{{options}}}* is required options object you want to pass to Concerto object. It contains the following fields:
 
 || *name* || *description* || *default* || *example* ||
 || workspaceID || specifies id of the workspace you want to run the test from || null || 1 ||
@@ -67,7 +67,7 @@ Now you can just use this javascript code somewhere on your website:
 || params || object containing additional parameters you want to pass to the test, it's the same as adding additional URL parameters when running the test through regular test run environment || { } || { var1: 128, var2:'concerto' } ||
 || WSPath || path to */concerto_client.php* file from the package || "client/concerto_client.php" || "client/concerto_client.php" ||
 || loadingImageSource || source of the default loading image used in transitions between test HTML templates || null || "image/loading.png" ||
-|| callback || callback to be called whenever there is response received from Concerto server || function(response) { } || function(response) { alert('response received'); } ||
+|| callback || to be called whenever there is response received from Concerto server || function(response) { } || function(response) { alert('response received'); } ||
 || resumeFromLastTemplate || used only when resuming session, if set to true it will just show the last template shown in the session and will wait for user input || false || false ||
 
 One option from the table needs some more explanation. It's the *{{{callback}}}* option. You should set it's value to a function accepting *{{{response}}}* object as a argument. The argument object will contain data returned from the Concerto server.
