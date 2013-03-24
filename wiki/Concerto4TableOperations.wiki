@@ -87,4 +87,4 @@ There are few more options available when using *{{{concerto.table.query}}}* fun
 
 The second addition in advanced view is the possibility to switch between wizard view and MySQL code view for chosen individual elements in query sections. When switched to code view you can use any MySQL code you wish.
 
-If you declared function *{{{parameters}}}* argument (only available in advanced view) you can also insert into your MySQL code *{{{ {{var1}} }}}* where *{{{var1}}}* is your variable name passed as a *{{{parameters}}}* named list argument. The *{{{var1}}}* will be replaced at a runtime with the value of the variable.
+If you declared function *{{{parameters}}}* argument (only available in advanced view) you can also insert it into your MySQL code *{{{ {{var1}} }}}* where *{{{var1}}}* is your variable name passed as a *{{{parameters}}}* named list argument. The *{{{var1}}}* will be replaced at a runtime with the value of the variable.
