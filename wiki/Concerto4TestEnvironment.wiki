@@ -1,4 +1,4 @@
-=running Concerto test=
+=Running a Concerto test=
 
 There are four mechanisms in Concerto that allows users to run a test.
 
