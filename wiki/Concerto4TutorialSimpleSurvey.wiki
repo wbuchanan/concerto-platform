@@ -4,7 +4,7 @@
 
 We will create a simple survey using this tutorial. The survey will contain:
  
- * *intro template* - a page where we will greet the user, explain the rules of the survey and ask for a user name
+ * *intro template* - an introductory page where we will greet the user, explain the rules of the survey and ask for a user name
  * *survey template* - a page where we will ask survey questions
  * *outro template* - a page thanking the user for participation in the survey 
  * *data table* - a table where all the answers will be stored for future use
