@@ -1,4 +1,4 @@
-=simple survey=
+=LESSON 1: simple survey=
 
 ==goal==
 
@@ -43,9 +43,106 @@ http://concerto.e-psychometrics.com/demo/wiki/tutorial_survey1_9.png
  * And that's it! Your intro template is finished. It should look like this:
 http://concerto.e-psychometrics.com/demo/wiki/tutorial_survey1_10.png
 
+ * Save your template by clicking *Save* button at the bottom right corner of your screen
+http://concerto.e-psychometrics.com/demo/wiki/tutorial_survey1_15.png
+
 ----
 
 ==STEP 2: creating survey template==
 
- * create new *HTML template*, name it *survey*, add *next* button to it
- * 
+ * Create new *HTML template*, name it *survey*, add *submit* button to it
+
+ * Add a question text above the *submit* button: *Do you like travels?*. The template should like like this:
+http://concerto.e-psychometrics.com/demo/wiki/tutorial_survey1_11.png
+
+ * Now we will add radio buttons so that user can leave their response. Click the button marked below:
+http://concerto.e-psychometrics.com/demo/wiki/tutorial_survey1_12.png
+
+ * Enter *response* for the radio button name and enter *yes* as a first response value. When done clicked *OK*.
+http://concerto.e-psychometrics.com/demo/wiki/tutorial_survey1_13.png
+
+ * Enter *yes* next to the first radio button response option so that user will know what answer does this response represent.
+
+ * Add another radio button next to first one. The name of the both radio buttons should be the same, so set it to *response* and set the response value of the seconds radio button to *no*. When done just add the text *no* next to the second radio button just like before. The template should look like this:
+http://concerto.e-psychometrics.com/demo/wiki/tutorial_survey1_14.png
+
+ * Save your template by clicking *Save* button at the bottom right corner of your screen
+http://concerto.e-psychometrics.com/demo/wiki/tutorial_survey1_15.png 
+
+----
+
+==STEP 3: create outro template==
+
+ * Create new *HTML template*. Name it *outro* and add following text to it's HTML: *Thank you {{username}} for your time!*. The template should look like this:
+http://concerto.e-psychometrics.com/demo/wiki/tutorial_survey1_16.png 
+ 
+  * Save your template by clicking *Save* button at the bottom right corner of your screen
+http://concerto.e-psychometrics.com/demo/wiki/tutorial_survey1_15.png 
+
+----
+
+==STEP 4: create response data table==
+
+ * Go to *tables* tab
+http://concerto.e-psychometrics.com/demo/wiki/tutorial_survey1_17.png 
+
+ * Make sure you are on *list of available objects* section
+http://concerto.e-psychometrics.com/demo/wiki/tutorial_survey1_2.png
+
+  * Click *add new object* button
+http://concerto.e-psychometrics.com/demo/wiki/tutorial_survey1_3.png
+
+ * enter *responses* as a new table name and click *Save* button
+http://concerto.e-psychometrics.com/demo/wiki/tutorial_survey1_18.png
+
+ * click *add* button on *table structure definition* section to add new table column
+http://concerto.e-psychometrics.com/demo/wiki/tutorial_survey1_19.png 
+
+ * Enter *response_count* as the name of the new column and set it's type to *numeric*. When done click *add*.
+http://concerto.e-psychometrics.com/demo/wiki/tutorial_survey1_20.png 
+
+ * Your table structure should now look like this:
+http://concerto.e-psychometrics.com/demo/wiki/tutorial_survey1_21.png 
+
+ * Now click *add* button in *table data* section twice to add two new rows
+http://concerto.e-psychometrics.com/demo/wiki/tutorial_survey1_22.png 
+
+ * And that's it. You can now save your table by clicking *save* button at the bottom right corner of your screen 
+http://concerto.e-psychometrics.com/demo/wiki/tutorial_survey1_23.png 
+
+ * Your *table data* should look like this:
+http://concerto.e-psychometrics.com/demo/wiki/tutorial_survey1_24.png 
+
+----
+
+==STEP 4: Putting it all together - creating a test==
+
+ * Go to *tests* tab
+http://concerto.e-psychometrics.com/demo/wiki/tutorial_survey1_25.png  
+
+ * Make sure you are on *list of available objects* section
+http://concerto.e-psychometrics.com/demo/wiki/tutorial_survey1_2.png
+
+  * Click *add new object* button
+http://concerto.e-psychometrics.com/demo/wiki/tutorial_survey1_3.png
+
+ * Enter *survey* as the name of the new test and click *save* button
+http://concerto.e-psychometrics.com/demo/wiki/tutorial_survey1_26.png
+
+ * Put the following code in your *test logic* and place the cursor in the same position as in the picture:
+http://concerto.e-psychometrics.com/demo/wiki/tutorial_survey1_27.png
+
+Line #1: we show intro template (in our example intro template has id: 3, you should change it to the id of your intro template) and we store user response data in *{{{response1}}}* variable.
+
+Line #2: we show survey template (in our example survey template has id: 4, you should change it to the id of your survey template) and we store user response data in *{{{response2}}}* variable.
+
+Line #6: we show outro template (in our example outro template has id: 5, you should change it to the id of your outro template) and we store user response data in *{{{response3}}}* variable. Since on the outro template we have inserted *{{{ {{username}} }}}* text we can now insert any variable value there. To do that we need to specify *{{{params}}}* variable and choose the value for *{{{username}}}* param on outro template. In the example above we are using *{{{username}}}* text field value from the intro template to fill the *{{{ {{username}} }}}* param on outro template.
+
+ * Click on *function toolbar* in bottom left corner of the screen
+http://concerto.e-psychometrics.com/demo/wiki/tutorial_survey1_28.png
+
+ * Now click *insert* icon next to *{{{concerto.table.query}}}* function. *PLEASE REMEMBER THAT THE FUNCTION WIZARD WILL BE INSERTED IN CURRENT CURSOR POSITION ON CODE EDITOR. THE PROPER POSITION TO INSERT THE FUNCTION WIZARD IS SPECIFIED IN PREVIOUS INSTRUCTIONS.*
+http://concerto.e-psychometrics.com/demo/wiki/tutorial_survey1_29.png
+
+ * *{{{concerto.table.query}}}* function wizard should now be inserted into the code. Please select the previously created *responses* table:
+http://concerto.e-psychometrics.com/demo/wiki/tutorial_survey1_30.png
