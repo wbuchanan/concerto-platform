@@ -14,7 +14,7 @@ For more information about QTI please visit: http://www.imsglobal.org/question/
 
 http://concerto.e-psychometrics.com/demo/wiki/panel_qti_form.png
 
-You can set following test properties on QTI tab main form:
+You can set the following test properties on QTI tab main form:
 
  * *name* - name of the QTI
 
