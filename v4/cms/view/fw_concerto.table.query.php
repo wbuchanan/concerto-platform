@@ -366,7 +366,7 @@ if ($table == null) {
                                 <tr>
                                     <td>
                                         <select id="selectFWsetColumn<?= $i ?>" class="ui-widget-content ui-corner-all" onchange="
-            Test.functionWizardCM['tdFWset<?= $i ?>'].setValue((<?= $i ?> != 0 ? $('#selectFWsetColumn<?= $i ?>').val() + ' = ');">
+            Test.functionWizardCM['tdFWset<?= $i ?>'].setValue($('#selectFWsetColumn<?= $i ?>').val() + ' = ');">
                                                     <?php
                                                     foreach ($table_columns as $col) {
                                                         ?>

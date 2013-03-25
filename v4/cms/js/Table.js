@@ -398,7 +398,7 @@ Table.uiReloadDataGrid = function(data, columns) {
     Methods.iniIconButton(".btnRemove", "trash");
 }
 
-Table.uiIniDataGrid = function() { 
+Table.uiIniDataGrid = function() {
     var thisClass = this;
 
     $("#div" + this.className + "GridDataContainer").html("<div id='div" + this.className + "GridData' class='grid'></div>");
@@ -2025,7 +2025,7 @@ Table.uiRemoveRow = function(obj) {
         var grid = $("#div" + thisClass.className + "GridData").data('kendoGrid');
         var item = grid.dataItem(grid.tbody.find("tr:eq(" + index + ")"));
 
-        if (item.id != 0) {
+        if (item.id != 0 && item.id != null) {
             Table.crudUpdate(Table.crudDataDeleted, item.id);
         }
 

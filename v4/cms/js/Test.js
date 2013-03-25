@@ -157,6 +157,7 @@ Test.uiQTIAssessmentItemsChanged = function() {
 }
 
 Test.uiTablesChanged = function() {
+    
 }
 
 Test.variableValidation = function(value, special) {
@@ -1314,7 +1315,7 @@ Test.getExtendedFunctionWidgetValue = function(func, argName, values) {
                                             group_result += gs.w1 + "\n";
                                         }
                                         else
-                                            group_result += gs.c = "\n";
+                                            group_result += gs.c + "\n";
 
                                     }
                                     result += group_result;
@@ -1353,7 +1354,7 @@ Test.getExtendedFunctionWidgetValue = function(func, argName, values) {
                                             order_result += os.w1 + "\n";
                                         }
                                         else
-                                            order_result += os.c = "\n";
+                                            order_result += os.c + "\n";
                                     }
                                     result += order_result;
                                 }
@@ -1378,12 +1379,12 @@ Test.getExtendedFunctionWidgetValue = function(func, argName, values) {
                                             set_result += ",\n";
                                         if (parseInt(ss.v) == 0) {
                                             set_result += ss.w0 + "=";
-                                            set_result += ss.w1;
+                                            set_result += '\'",dbEscapeStrings(concerto$db$connection,toString(' + ss.w1 + ')),"\'' + "\n";
                                         }
                                         else
-                                            set_result += ss.c = "\n";
+                                            set_result += ss.c + "\n";
                                     }
-                                    result += set_result = "\n";
+                                    result += set_result + "\n";
                                 }
                                 break;
                             }
@@ -1424,7 +1425,7 @@ Test.getExtendedFunctionWidgetValue = function(func, argName, values) {
                                             order_result += os.w1 + "\n";
                                         }
                                         else
-                                            order_result += os.c = "\n";
+                                            order_result += os.c + "\n";
                                     }
                                     result += order_result;
                                 }
@@ -1449,12 +1450,12 @@ Test.getExtendedFunctionWidgetValue = function(func, argName, values) {
                                             set_result += ",\n";
                                         if (parseInt(ss.v) == 0) {
                                             set_result += ss.w0 + "=";
-                                            set_result += ss.w1;
+                                            set_result += '\'",dbEscapeStrings(concerto$db$connection,toString(' + ss.w1 + ')),"\'' + "\n";
                                         }
                                         else
-                                            set_result += ss.c = "\n";
+                                            set_result += ss.c + "\n";
                                     }
-                                    result += set_result = "\n";
+                                    result += set_result + "\n";
                                 }
                                 break;
                             }
@@ -1472,12 +1473,12 @@ Test.getExtendedFunctionWidgetValue = function(func, argName, values) {
                                             set_result += ",\n";
                                         if (parseInt(ss.v) == 0) {
                                             set_result += ss.w0 + "=";
-                                            set_result += ss.w1;
+                                            set_result += '\'",dbEscapeStrings(concerto$db$connection,toString(' + ss.w1 + ')),"\'' + "\n";
                                         }
                                         else
-                                            set_result += ss.c = "\n";
+                                            set_result += ss.c + "\n";
                                     }
-                                    result += set_result = "\n";
+                                    result += set_result + "\n";
                                 }
 
                                 var where_section = $.parseJSON(values.where_section);
@@ -1513,7 +1514,7 @@ Test.getExtendedFunctionWidgetValue = function(func, argName, values) {
                                             order_result += os.w1 + "\n";
                                         }
                                         else
-                                            order_result += os.c = "\n";
+                                            order_result += os.c + "\n";
                                     }
                                     result += order_result;
                                 }
@@ -1623,12 +1624,12 @@ Test.getExtendedFunctionWizardValues = function(func) {
                     values["having_section"] = $.toJSON(values["having_section"]);
 
                 values["limit_section"] = {};
+                values["limit_section"]["w0"] = $("#radioFWlimit").val();
                 if (parseInt($("#radioFWlimit").val()) == 1) {
-                    values["limit_section"]["w0"] = $("#radioFWlimit").val();
                     values["limit_section"]["w1"] = $("#selectFWlimitOffset").val();
                     values["limit_section"]["w2"] = $("#selectFWlimitNumber").val();
-                    values["limit_section"] = $.toJSON(values["limit_section"]);
                 }
+                values["limit_section"] = $.toJSON(values["limit_section"]);
 
                 values["set_section"] = [];
                 $(".tableFWsetSection > tbody > tr").each(function() {
