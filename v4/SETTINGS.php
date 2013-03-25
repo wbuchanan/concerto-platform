@@ -41,6 +41,7 @@ $remote_client_password = "pass"; // password required by remote clients to use 
 $r_users_name_prefix = "concerto_"; // prefix for Linux users created by Concerto ( user id will be appended to it ) - SET IT ONLY ONCE PRIOR TO RUNNING /setup
 $r_users_group = "concerto"; // Linux group name for users above
 $php_user = "www-data"; // php user name
+$php_user_group = "www-data"; // group of php user above
 
 //logs
 $log_server_events = false; // socket communication info and test server php errors will be printed to a text file in data directory

@@ -56,6 +56,7 @@ class Ini {
     public static $r_users_name_prefix = "concerto_";
     public static $r_users_group = "concerto";
     public static $php_user = "www-data";
+    public static $php_user_group = "www-data";
     public static $db_users_name_prefix = "concerto_";
     public static $db_users_db_name_prefix = "concerto_";
     public static $db_master_name = "";
@@ -149,8 +150,9 @@ class Ini {
         self::$r_users_name_prefix = $r_users_name_prefix;
         self::$r_users_group = $r_users_group;
         self::$php_user = $php_user;
+        self::$php_user_group = $php_user_group;
         self::$db_users_name_prefix = $db_users_name_prefix;
-        self::$db_users_name_prefix = $db_users_name_prefix;
+        self::$db_users_db_name_prefix = $db_users_db_name_prefix;
         self::$db_master_name = $db_master_name;
         self::$db_host = $db_host;
         self::$db_port = $db_port;
@@ -181,11 +183,11 @@ class Ini {
             "RDocLibrary",
             "RDocFunction",
             "Setting",
+            "UserR",
+            "UserWorkspace",
             "User",
             "UserFunction",
-            "UserR",
-            "UserShare",
-            "UserWorkspace"
+            "UserShare"
         );
     }
 

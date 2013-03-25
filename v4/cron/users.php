@@ -58,7 +58,7 @@ while ($r = mysql_fetch_array($z)) {
             mkdir($media_dir, 0770, true);
         }
         chown($media_dir, $name);
-        chgrp($media_dir, Ini::$php_user);
+        chgrp($media_dir, Ini::$php_user_group);
         chmod($media_dir, 0770);
     }
     $user = User::from_mysql_id($r['id']);
@@ -69,7 +69,7 @@ while ($r = mysql_fetch_array($z)) {
             mkdir($session_dir, 0770, true);
         }
         chown($session_dir, $name);
-        chgrp($session_dir, Ini::$php_user);
+        chgrp($session_dir, Ini::$php_user_group);
         chmod($session_dir, 0770);
     }
 }
