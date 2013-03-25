@@ -14,7 +14,7 @@
  * *R* version equal or greater than *v2.15*
  * *concerto* R package must be installed
  * Linux user with *root access*
- * MySQL user with *ALL privileges*
+ * MySQL user with *ALL privileges* and *GRANT* option
 
 ----
 
