@@ -119,6 +119,7 @@ This file contains all configurable options that needs to be set before you can 
 || $r_users_name_prefix || prefix for Linux users created by Concerto ( user id will be appended to it ) - *SET IT ONLY ONCE PRIOR TO RUNNING /setup* || "concerto_" ||
 || $r_users_group || Linux group name for users above || "concerto" ||
 || $php_user || PHP process user name || "www-data" ||
+|| $php_user_group || PHP process user group || "www-data" ||
 || $log_server_events || socket communication info and test server php errors will be printed to a text file in data directory || false ||
 || $log_server_streams || socket server streams will be logged too || false ||
 || $log_js_errors || logs all test specific js errors from client side || true ||
