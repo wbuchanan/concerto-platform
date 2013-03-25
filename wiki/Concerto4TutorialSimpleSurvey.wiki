@@ -22,7 +22,7 @@ http://concerto.e-psychometrics.com/demo/wiki/tutorial_survey1_2.png
  * Click *add new object* button
 http://concerto.e-psychometrics.com/demo/wiki/tutorial_survey1_3.png
 
- * enter *intro* as the name for your intro template and click *save* button
+ * Enter *intro* as the name for your intro template and click *save* button
 http://concerto.e-psychometrics.com/demo/wiki/tutorial_survey1_4.png
 
  * Enter some text on *HTML template* editor (you can style the text however you want)
@@ -73,7 +73,7 @@ http://concerto.e-psychometrics.com/demo/wiki/tutorial_survey1_15.png
 
 ==STEP 3: create outro template==
 
- * Create new *HTML template*. Name it *outro* and add following text to it's HTML: *Thank you {{username}} for your time!*. The template should look like this:
+ * Create new *HTML template*. Name it *outro* and add the following text to it's HTML: *Thank you {{username}} for your time!*. The template should look like this:
 http://concerto.e-psychometrics.com/demo/wiki/tutorial_survey1_16.png 
  
   * Save your template by clicking *Save* button at the bottom right corner of your screen
@@ -92,10 +92,10 @@ http://concerto.e-psychometrics.com/demo/wiki/tutorial_survey1_2.png
   * Click *add new object* button
 http://concerto.e-psychometrics.com/demo/wiki/tutorial_survey1_3.png
 
- * enter *responses* as a new table name and click *Save* button
+ * Enter *responses* as a new table name and click the *Save* button
 http://concerto.e-psychometrics.com/demo/wiki/tutorial_survey1_18.png
 
- * click *add* button on *table structure definition* section to add new table column
+ * Click *add* button on *table structure definition* section to add new table column
 http://concerto.e-psychometrics.com/demo/wiki/tutorial_survey1_19.png 
 
  * Enter *response* as the name of the new column and set it's type to *numeric*. When done click *add*.
@@ -104,7 +104,7 @@ http://concerto.e-psychometrics.com/demo/wiki/tutorial_survey1_20.png
  * Your table structure should now look like this:
 http://concerto.e-psychometrics.com/demo/wiki/tutorial_survey1_21.png 
 
- * And that's it. You can now save your table by clicking *save* button at the bottom right corner of your screen 
+ * And that's it. You can now save your table by clicking the *save* button at the bottom right corner of your screen 
 http://concerto.e-psychometrics.com/demo/wiki/tutorial_survey1_23.png 
 
 ----
@@ -120,7 +120,7 @@ http://concerto.e-psychometrics.com/demo/wiki/tutorial_survey1_2.png
   * Click *add new object* button
 http://concerto.e-psychometrics.com/demo/wiki/tutorial_survey1_3.png
 
- * Enter *survey* as the name of the new test and click *save* button
+ * Enter *survey* as the name of the new test and click the *save* button
 http://concerto.e-psychometrics.com/demo/wiki/tutorial_survey1_26.png
 
  * Put the following code in your *test logic* and place the cursor in the same position as in the picture:
@@ -135,7 +135,7 @@ Line #6: we show outro template (in our example outro template has id: 5, you sh
  * Click on *function toolbar* in bottom left corner of the screen
 http://concerto.e-psychometrics.com/demo/wiki/tutorial_survey1_28.png
 
- * Now click *insert* icon next to *{{{concerto.table.query}}}* function. *PLEASE REMEMBER THAT THE FUNCTION WIZARD WILL BE INSERTED IN CURRENT CURSOR POSITION ON CODE EDITOR. THE PROPER POSITION TO INSERT THE FUNCTION WIZARD IS SPECIFIED IN PREVIOUS INSTRUCTIONS.*
+ * Now click the *insert* icon next to *{{{concerto.table.query}}}* function. *PLEASE REMEMBER THAT THE FUNCTION WIZARD WILL BE INSERTED AT THE CURRENT CURSOR POSITION ON CODE EDITOR. THE PROPER POSITION TO INSERT THE FUNCTION WIZARD IS SPECIFIED IN PREVIOUS INSTRUCTIONS.*
 http://concerto.e-psychometrics.com/demo/wiki/tutorial_survey1_29.png
 
  * *{{{concerto.table.query}}}* function wizard should now be inserted into the code. Please select the previously created *responses* table:
@@ -144,15 +144,15 @@ http://concerto.e-psychometrics.com/demo/wiki/tutorial_survey1_30.png
  * Choose *INSERT* as the query you want to perform on the table
 http://concerto.e-psychometrics.com/demo/wiki/tutorial_survey1_31.png
 
- * Now choose that you want to set the value of column *response* in new row and set its value to *{{{response2$response}}}*
+ * Set the value of column *response* in new row and set its value to *{{{response2$response}}}*
 http://concerto.e-psychometrics.com/demo/wiki/tutorial_survey1_32.png
 
  * Click *apply* button when it's done
 http://concerto.e-psychometrics.com/demo/wiki/tutorial_survey1_33.png
 
- * This is how your test logic should look like now:
+ * This is how your test logic should look :
 http://concerto.e-psychometrics.com/demo/wiki/tutorial_survey1_34.png
 
- * Now just save the test by clicking *save* button. The test is now ready. You can run it by pressing *run test* button.
+ * Now just save the test by clicking the *save* button. The test is now ready. You can run it by pressing *run test* button.
 
 http://concerto.e-psychometrics.com/demo/wiki/tutorial_survey1_35.png
