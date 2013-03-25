@@ -107,9 +107,6 @@ http://concerto.e-psychometrics.com/demo/wiki/tutorial_survey1_21.png
  * And that's it. You can now save your table by clicking *save* button at the bottom right corner of your screen 
 http://concerto.e-psychometrics.com/demo/wiki/tutorial_survey1_23.png 
 
- * Your *table data* should look like this:
-http://concerto.e-psychometrics.com/demo/wiki/tutorial_survey1_24.png 
-
 ----
 
 ==STEP 4: Putting it all together - creating a test==
@@ -143,3 +140,19 @@ http://concerto.e-psychometrics.com/demo/wiki/tutorial_survey1_29.png
 
  * *{{{concerto.table.query}}}* function wizard should now be inserted into the code. Please select the previously created *responses* table:
 http://concerto.e-psychometrics.com/demo/wiki/tutorial_survey1_30.png
+
+ * Choose *INSERT* as the query you want to perform on the table
+http://concerto.e-psychometrics.com/demo/wiki/tutorial_survey1_31.png
+
+ * Now choose that you want to set the value of column *response* in new row and set its value to *{{{response2$response}}}*
+http://concerto.e-psychometrics.com/demo/wiki/tutorial_survey1_32.png
+
+ * Click *apply* button when it's done
+http://concerto.e-psychometrics.com/demo/wiki/tutorial_survey1_33.png
+
+ * This is how your test logic should look like now:
+http://concerto.e-psychometrics.com/demo/wiki/tutorial_survey1_34.png
+
+ * Now just save the test by clicking *save* button. The test is now ready. You can run it by pressing *run test* button.
+
+http://concerto.e-psychometrics.com/demo/wiki/tutorial_survey1_35.png
