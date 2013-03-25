@@ -157,7 +157,11 @@ Test.uiQTIAssessmentItemsChanged = function() {
 }
 
 Test.uiTablesChanged = function() {
-    
+    $(".divFunctionWidget").each(function() {
+        if ($(this).attr("funcName") == "concerto.table.query") {
+            Test.uiRefreshExtendedFunctionWizard("concerto.table.query");
+        }
+    });
 }
 
 Test.variableValidation = function(value, special) {
