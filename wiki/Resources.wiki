@@ -7,23 +7,23 @@
 
  * [installation4 Installing Concerto v4]
  * *General concepts*
-  * [Concerto4Panel Concerto panel (work in progress)]
-  * [Concerto4TestEnvironment running Concerto test (work in progress)]
-  * [Concerto4RemoteClient Concerto remote test run environment (work in progress)]
-  * [Concerto4OnlineLibrary Concerto online library (work in progress)]
+  * [Concerto4Panel Concerto panel]
+  * [Concerto4TestEnvironment running Concerto test]
+  * [Concerto4RemoteClient Concerto remote test run environment]
+  * [Concerto4OnlineLibrary Concerto online library]
  * *Concerto Panel*
-  * [Concerto4PanelTestTab 'tests' tab (work in progress)]
-  * [Concerto4PanelQTITab 'QTI' tab (work in progress)]
-  * [Concerto4PanelTemplateTab 'HTML templates' tab (work in progress)]
-  * [Concerto4PanelTableTab 'tables' tab (work in progress)]
-  * [Concerto4PanelUserTab 'users' tab (work in progress)]
+  * [Concerto4PanelTestTab 'tests' tab]
+  * [Concerto4PanelQTITab 'QTI' tab]
+  * [Concerto4PanelTemplateTab 'HTML templates' tab]
+  * [Concerto4PanelTableTab 'tables' tab]
+  * [Concerto4PanelUserTab 'users' tab]
  * *Creating Concerto test*
-  * [Concerto4Debugging writing and debugging Concerto test (work in progress)]
-  * [Concerto4ConcertoPackage Concerto R package (work in progress)]
-  * [Concerto4TableOperations operations on tables (work in progress)]
-  * [Concerto4SessionResuming Concerto test session resuming (work in progress)]
+  * [Concerto4Debugging writing and debugging Concerto test]
+  * [Concerto4ConcertoPackage Concerto R package]
+  * [Concerto4TableOperations operations on tables]
+  * [Concerto4SessionResuming Concerto test session resuming]
  * *Tutorials*
-  * [Concerto4TutorialSimpleSurvey simple survey (work in progress)]
+  * [Concerto4TutorialSimpleSurvey LESSON 1: simple survey]
 
 *Concerto v3*
 
