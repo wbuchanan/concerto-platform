@@ -13,13 +13,13 @@ We will create a simple survey using this tutorial. The survey will contain:
 
 ==STEP 1: create intro template==
 
- * go to *HTML template* tab
+ * Go to *HTML template* tab
 http://concerto.e-psychometrics.com/demo/wiki/tutorial_survey1_1.png
 
- * make sure you are on *list of available objects* section
+ * Make sure you are on *list of available objects* section
 http://concerto.e-psychometrics.com/demo/wiki/tutorial_survey1_2.png
 
- * click *add new object* button
+ * Click *add new object* button
 http://concerto.e-psychometrics.com/demo/wiki/tutorial_survey1_3.png
 
  * enter *intro* as the name for your intro template and click *save* button
