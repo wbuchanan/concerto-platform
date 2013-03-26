@@ -2049,6 +2049,11 @@ Table.uiChangeHTML = function(obj, field) {
     var grid = $("#div" + this.className + "GridData").data('kendoGrid');
     var index = obj.closest("tr")[0].sectionRowIndex;
     var item = grid.dataItem(grid.tbody.find("tr:eq(" + index + ")"));
+
+    if (item.id != null) {
+        Table.crudUpdate(Table.crudDataUpdated, item.id);
+    }
+
     $("#form" + Table.className + "TextareaHTML").val(obj.val());
     $("#div" + Table.className + "DialogHTML").dialog({
         title: dictionary["s36"],
