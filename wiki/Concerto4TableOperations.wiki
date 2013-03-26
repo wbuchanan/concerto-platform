@@ -2,7 +2,7 @@
 
 ==general description==
 
-In Concerto, users can create tables and use them in their test. Any table can be used in any number of different tests since tables are independent entities (the same goes with any other Concerto test: templates, QTI, etc.). A Concerto table is represented on the server side as a MySQL database table. 
+In Concerto, users can create tables and use them in their test. Any table can be used in any number of different tests since tables are independent entities (the same goes with any other Concerto object: tests, templates, QTI, etc.). A Concerto table is represented on the server side as a MySQL database table. 
 
 More advanced users can use any R code that can operate on MySQL database, but for everyone else Concerto has a *{{{concerto.table.query}}}* function in *{{{concerto}}}* package. This function contains extended function wizard that will let you create any query you want.
 
