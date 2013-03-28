@@ -20,6 +20,7 @@
  * *Creating Concerto test*
   * [Concerto4Debugging writing and debugging Concerto test]
   * [Concerto4ConcertoPackage Concerto R package]
+  * [Concerto4DynamicTemplateContent displaying dynamic content on HTML templates (work in progress)]
   * [Concerto4TableOperations operations on tables]
   * [Concerto4SessionResuming Concerto test session resuming]
  * *Tutorials*
