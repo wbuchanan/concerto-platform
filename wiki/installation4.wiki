@@ -1,4 +1,4 @@
-=Concerto v4 installation=
+=Concerto v4 installation and updating=
 
 ----
 
