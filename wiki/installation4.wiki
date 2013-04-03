@@ -85,6 +85,28 @@ As a root user run:
 
 ----
 
+==Update==
+
+*Concerto v3.x and lower are not compatible with v4.x. You need to make a clean installation first if you want to move to v4.x.*
+
+===Step 1===
+
+Download the latest Concerto v4 package.
+
+===Step 2===
+
+Copy the contents of the package to your Concerto installation directory
+
+===Step 3===
+
+Edit * {installation_dir}/SETTINGS.php * file.
+
+===Step 4===
+
+Run * http://yourdomain/{concerto_directory}/setup * and correct any reported problem.
+
+----
+
 ==/SETTINGS.php file==
 
 This file contains all configurable options that needs to be set before you can run Concerto on your system.
