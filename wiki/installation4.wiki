@@ -136,6 +136,6 @@ When uninstalling it is highly recommended to first:
  * remove every user through Concerto panel
  * wait until Concerto users cron task will fire (it will remove any Linux users and groups created by Concerto)
 
-*{{{* * * * * php /var/www/concerto/cron/users.php}}}* - using default settings it fires every minute
+*{{{* * * * * /usr/bin/php /var/www/concerto/cron/users.php}}}* - using default settings it fires every minute
 
  * remove files and Concerto master database
