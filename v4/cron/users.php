@@ -31,20 +31,20 @@ $z = mysql_query($sql);
 while ($r = mysql_fetch_array($z)) {
     $name = Ini::$r_users_name_prefix . $r['id'];
 
-    $sql = sprintf("SELECT * FROM `%s` WHERE `User_id`=%d", UserR::get_mysql_table(), $r["id"]);
+    $sql = sprintf("SELECT * FROM `%s` WHERE `User_id`=%s", UserR::get_mysql_table(), $r["id"]);
     $z2 = mysql_query($sql);
 
     //UNIX user doesn't exist
     if (mysql_num_rows($z2) == 0) {
         //adgroup
-        `addgroup $group`;
+        `/usr/sbin/addgroup $group`;
 
         //adduser
-        `adduser --disabled-login --gecos "" --ingroup $group $name`;
+        `/usr/sbin/adduser --disabled-login --gecos "" --ingroup $group $name`;
 
         //passwd
         $password = User::generate_password();
-        `passwd $name <<EOF\n$password\n$password\nEOF`;
+        `/usr/bin/passwd $name <<EOF\n$password\n$password\nEOF`;
 
         //insert UserR record
         $user = new UserR();
@@ -52,7 +52,7 @@ while ($r = mysql_fetch_array($z)) {
         $user->password = $password;
         $user->User_id = $r['id'];
         $user->mysql_save();
-        
+
         $media_dir = Ini::$path_internal_media . $r["id"];
         if (!is_dir($media_dir)) {
             mkdir($media_dir, 0770, true);
@@ -78,7 +78,7 @@ while ($r = mysql_fetch_array($z)) {
 $sql = sprintf("SELECT * FROM `%s`", UserR::get_mysql_table());
 $z = mysql_query($sql);
 while ($r = mysql_fetch_array($z)) {
-    $sql2 = sprintf("SELECT `id` FROM `%s` WHERE `id`=%d", User::get_mysql_table(), $r['User_id']);
+    $sql2 = sprintf("SELECT `id` FROM `%s` WHERE `id`=%s", User::get_mysql_table(), $r['User_id']);
     $z2 = mysql_query($sql2);
 
     //Concerto user doesn't exist
@@ -86,7 +86,7 @@ while ($r = mysql_fetch_array($z)) {
         $userR = UserR::from_mysql_id($r['id']);
 
         //deluser
-        `deluser --remove-home $userR->login`;
+        `/usr/sbin/deluser --remove-home $userR->login`;
 
         //delete UserR record
         $userR->mysql_delete();
@@ -95,6 +95,6 @@ while ($r = mysql_fetch_array($z)) {
 
 $z = mysql_query($sql);
 if (mysql_num_rows($z) == 0) {
-    `delgroup $group`;
+    `/usr/sbin/delgroup $group`;
 }
 ?>
