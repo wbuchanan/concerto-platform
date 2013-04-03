@@ -5,7 +5,7 @@
 
 *Concerto v4*
 
- * [installation4 Installing Concerto v4]
+ * [installation4 Installing and updating Concerto v4]
  * *General concepts*
   * [Concerto4Panel Concerto panel]
   * [Concerto4TestEnvironment running Concerto test]
