@@ -25,6 +25,7 @@
   * [Concerto4SessionResuming Concerto test session resuming]
  * *Tutorials*
   * [Concerto4TutorialSimpleSurvey LESSON 1: simple survey]
+  * [Concerto4TutorialSimpleSurvey2 LESSON 2: item bank, multiple answers and charts (in progress)]
 
 *Concerto v3*
 
