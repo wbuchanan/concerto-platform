@@ -1,3 +1,10 @@
-=item bank, multiple answers and charts=
+=item bank and charts=
 
 *THIS TUTORIAL ASSUMES THAT YOU UNDERSTAND AND HAVE COMPLETED [Concerto4TutorialSimpleSurvey LESSON 1]*
+
+==general description==
+
+In this lesson we will build upon what we already created in the previous lesson. The survey will be extended by adding:
+
+ * *item bank* - table that will contain all questions from the survey
+ * *charts* - we will generate dynamically a chart that will represent the distribution of users answers for each of the questions
