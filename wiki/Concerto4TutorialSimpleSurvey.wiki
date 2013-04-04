@@ -1,6 +1,6 @@
 =LESSON 1: simple survey=
 
-==goal==
+==general description==
 
 We will create a simple survey using this tutorial. The survey will contain:
  
@@ -8,6 +8,15 @@ We will create a simple survey using this tutorial. The survey will contain:
  * *survey template* - a page where we will ask survey questions
  * *outro template* - a page thanking the user for participation in the survey 
  * *data table* - a table where all the answers will be stored for future use
+
+What we will learn in this tutorial lesson:
+
+ * *how to create HTML template*
+ * *how to create table*
+ * *how to create test*
+ * *how to declare in test logic code responsible for showing HTML template to test participant*
+ * *how to show dynamic content on HTML template*
+ * *how to insert dynamic data to table at run time*
 
 ----
 
