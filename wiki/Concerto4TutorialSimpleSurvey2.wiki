@@ -1,6 +1,6 @@
 =item bank and charts=
 
-*THIS TUTORIAL ASSUMES THAT YOU UNDERSTAND AND HAVE COMPLETED [Concerto4TutorialSimpleSurvey LESSON 1]*
+*THIS TUTORIAL ASSUMES THAT YOU UNDERSTAND AND HAVE COMPLETED [Concerto4TutorialSimpleSurvey LESSON 1]. IT WILL USE THE ELEMENTS CREATED IN PREVIOUS LESSON.*
 
 ==general description==
 
@@ -8,3 +8,87 @@ In this lesson we will build upon what we already created in the previous lesson
 
  * *item bank* - table that will contain all questions from the survey
  * *charts* - we will generate dynamically a chart that will represent the distribution of users answers for each of the questions
+
+What we will learn in this tutorial:
+
+ * *how to create item bank and how to use it's items in test logic*
+ * *how to dynamically generate charts using responses data and show it in HTML template*
+
+----
+
+==Step 1: create item bank table==
+
+ * Create a table and name it *item bank*
+ * Add column named *{{{question}}}* of type *text - HTML*
+ * Item bank table structure should now look like this:
+http://concerto.e-psychometrics.com/demo/wiki/tutorial_survey2_1.png
+
+ * Add at least three items to the table data by clicking the *add* button at least three times
+http://concerto.e-psychometrics.com/demo/wiki/tutorial_survey2_3.png
+
+ * Set the question content by clicking the *edit HTML* icon button. Choose whatever question you would like. Be sure to edit the question in *source* mode which will prevent inserting any unnecessary HTML tags into item question.
+http://concerto.e-psychometrics.com/demo/wiki/tutorial_survey2_4.png
+http://concerto.e-psychometrics.com/demo/wiki/tutorial_survey2_12.png
+
+ * Save the table
+
+----
+
+==Step 2: modify previously created response table==
+
+ * Open previously created table named *responses*
+ * Add column named *question_id* of type *numeric*
+ * The table structure should now look like this:
+http://concerto.e-psychometrics.com/demo/wiki/tutorial_survey2_5.png
+
+ * Clear any previously inserted data by clicking *clear table* button
+http://concerto.e-psychometrics.com/demo/wiki/tutorial_survey2_6.png
+
+ * Save the table
+
+----
+
+==Step 3: modify previously created survey HTML template==
+
+ * Open previously created HTML template named *survey*
+ * Currently the survey should look like this:
+http://concerto.e-psychometrics.com/demo/wiki/tutorial_survey1_14.png
+
+ * Replace *"Do you like travels?"* question in HTML template with *{{question}}*
+
+ * HTML template should now look like this:
+http://concerto.e-psychometrics.com/demo/wiki/tutorial_survey2_2.png
+
+ * Below the question line please insert the chart image by clicking *image* icon button
+http://concerto.e-psychometrics.com/demo/wiki/tutorial_survey2_13.png
+
+ * Now set the image *URL* to *{{{ {{chart_url}} }}}* and click *OK* button
+http://concerto.e-psychometrics.com/demo/wiki/tutorial_survey2_14.png
+
+ * Don't worry about incorrect image path for now - it will be filled at run time. The template should now look like this:
+http://concerto.e-psychometrics.com/demo/wiki/tutorial_survey2_15.png
+
+ * Save the template
+
+----
+
+==Step 4: implement item bank and charts in test logic==
+
+ * Open previously created test named *survey*. The test logic should look like this:
+http://concerto.e-psychometrics.com/demo/wiki/tutorial_survey1_34.png
+
+ * Remove previously created table insert query. The test logic should now look like this:
+http://concerto.e-psychometrics.com/demo/wiki/tutorial_survey2_7.png 
+
+ * At the beginning of the test logic insert *{{{concerto.table.query}}}* function wizard to read the whole item bank. The configured function wizard should look like this (ids can be different):
+http://concerto.e-psychometrics.com/demo/wiki/tutorial_survey2_8.png 
+
+ * Apply the function wizard by clicking *apply* button
+ * The code should now look like this (exact query string can differ):
+http://concerto.e-psychometrics.com/demo/wiki/tutorial_survey2_9.png 
+
+ * Now assign the output of the table query (data frame with every item in item bank) to the variable named *{{{ibank}}}*:
+http://concerto.e-psychometrics.com/demo/wiki/tutorial_survey2_10.png 
+
+ * Now add a loop to iterate through every item in item bank and show the *survey* template for each of the question. We will also show items *question* column value in a template:
+http://concerto.e-psychometrics.com/demo/wiki/tutorial_survey2_11.png 
