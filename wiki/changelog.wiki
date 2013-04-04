@@ -1,6 +1,14 @@
 #labels Featured
 =CHANGELOG=
 
+==v4.0.0.beta2==
+
+*Fixes*
+
+ * setting table cell value of any of HTML types in source mode
+
+----
+
 ==v4.0.0.beta1==
 
 *Compatibility notes*
