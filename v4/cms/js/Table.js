@@ -2064,11 +2064,17 @@ Table.uiChangeHTML = function(obj, field) {
             $('.ui-widget-overlay').css('position', 'fixed');
         },
         close: function() {
+            var name = $("#form" + Table.className + "TextareaHTML").attr("name");
+            var instance = CKEDITOR.instances[name];
+            if (instance)
+            {
+                instance.setMode("wysiwyg");
+            }
             //$('.ui-widget-overlay').css('position', 'absolute');  
         },
         create: function() {
             var thisDialog = $("#div" + Table.className + "DialogHTML");
-            Methods.iniCKEditor($(this).find("textarea"), function() {
+            Methods.iniCKEditor($("#form" + Table.className + "TextareaHTML"), function() {
                 thisDialog.dialog("option", "position", "center");
             }, 800);
         },
@@ -2076,8 +2082,8 @@ Table.uiChangeHTML = function(obj, field) {
             {
                 text: dictionary["s38"],
                 click: function() {
-                    obj.val(Methods.getCKEditorData($(this).find('textarea')));
-                    item[field] = Methods.getCKEditorData($(this).find('textarea'));
+                    obj.val(Methods.getCKEditorData($(this).find('textarea:eq(0)')));
+                    item[field] = Methods.getCKEditorData($(this).find('textarea:eq(0)'));
                     $(this).dialog("close");
                 }
             },
