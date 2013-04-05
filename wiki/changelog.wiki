@@ -10,6 +10,7 @@
 *Fixes*
 
  * setting table cell value of any of HTML types in source mode
+ * added *{{{config.autoParagraph = false;}}}* to CKEditor configuration - this will prevent from adding <p> tag when entering simple text
 
 ----
 
