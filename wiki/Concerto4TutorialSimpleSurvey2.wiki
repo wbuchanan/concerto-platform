@@ -1,18 +1,18 @@
 =item bank and charts=
 
-*THIS TUTORIAL ASSUMES THAT YOU UNDERSTAND AND HAVE COMPLETED [Concerto4TutorialSimpleSurvey LESSON 1]. IT WILL USE THE ELEMENTS CREATED IN PREVIOUS LESSON.*
+*THIS TUTORIAL ASSUMES THAT YOU UNDERSTAND AND HAVE COMPLETED [Concerto4TutorialSimpleSurvey LESSON 1]. IT WILL USE THE ELEMENTS CREATED IN THE PREVIOUS LESSON.*
 
 ==general description==
 
-In this lesson we will build upon what we already created in the previous lesson. The survey will be extended by adding:
+In this lesson we will build on what we created in the previous lesson. The survey will be extended by adding the following:
 
- * *item bank* - table that will contain all questions from the survey
- * *charts* - we will generate dynamically a chart that will represent the distribution of users answers for each of the questions
+ * *item bank* - a table that will contain all questions presented in the survey
+ * *charts* - we will dynamically generate a chart that will represent the distribution of user responses for each of the questions
 
 What we will learn in this tutorial:
 
- * *how to create item bank and how to use it's items in test logic*
- * *how to dynamically generate charts using responses data and show it in HTML template*
+ * *how to create item bank and how to use the items in the test logic*
+ * *how to dynamically generate charts using response data and show it in the HTML template*
 
 ----
 
@@ -23,10 +23,10 @@ What we will learn in this tutorial:
  * Item bank table structure should now look like this:
 http://concerto.e-psychometrics.com/demo/wiki/tutorial_survey2_1.png
 
- * Add at least three items to the table data by clicking the *add* button at least three times
+ * Add items to the table data by clicking the *add* button. Add at least three items to start with.
 http://concerto.e-psychometrics.com/demo/wiki/tutorial_survey2_3.png
 
- * Set the question content by clicking the *edit HTML* icon button. Choose whatever question you would like. Be sure to edit the question in *source* mode which will prevent inserting any unnecessary HTML tags into item question.
+ * Set the question content by clicking the *edit HTML* icon button. Choose a question. Be sure to edit the question in *source* mode which will prevent inserting any unnecessary HTML tags into item question.
 http://concerto.e-psychometrics.com/demo/wiki/tutorial_survey2_4.png
 http://concerto.e-psychometrics.com/demo/wiki/tutorial_survey2_12.png
 
@@ -34,9 +34,9 @@ http://concerto.e-psychometrics.com/demo/wiki/tutorial_survey2_12.png
 
 ----
 
-==Step 2: modify previously created response table==
+==Step 2: modify previously created response tables==
 
- * Open previously created table named *responses*
+ * Open the previously created table named *responses*
  * Add column named *question_id* of type *numeric*
  * The table structure should now look like this:
 http://concerto.e-psychometrics.com/demo/wiki/tutorial_survey2_5.png
@@ -48,13 +48,13 @@ http://concerto.e-psychometrics.com/demo/wiki/tutorial_survey2_6.png
 
 ----
 
-==Step 3: modify previously created survey HTML template==
+==Step 3: modify previously created HTML template==
 
  * Open previously created HTML template named *survey*
  * Currently the survey should look like this:
 http://concerto.e-psychometrics.com/demo/wiki/tutorial_survey1_14.png
 
- * Replace *"Do you like travels?"* question in HTML template with *{{question}}*
+ * Replace *"Do you like traveling?"* question in HTML template with *{{question}}*
 
  * HTML template should now look like this:
 http://concerto.e-psychometrics.com/demo/wiki/tutorial_survey2_2.png
@@ -62,7 +62,7 @@ http://concerto.e-psychometrics.com/demo/wiki/tutorial_survey2_2.png
  * Below the question line please insert the chart image by clicking *image* icon button
 http://concerto.e-psychometrics.com/demo/wiki/tutorial_survey2_13.png
 
- * Now set the image *URL* to *{{{ {{chart_url}} }}}* and click *OK* button
+ * Now set the image *URL* to *{{{ {{chart_url}} }}}* and click *OK*
 http://concerto.e-psychometrics.com/demo/wiki/tutorial_survey2_14.png
 
  * Don't worry about incorrect image path for now - it will be filled at run time. The template should now look like this:
@@ -72,9 +72,9 @@ http://concerto.e-psychometrics.com/demo/wiki/tutorial_survey2_15.png
 
 ----
 
-==Step 4: implement item bank and charts in test logic==
+==Step 4: Implement item bank and charts in test logic==
 
- * Open previously created test named *survey*. The test logic should look like this:
+ * Open the previously created test named *survey*. The test logic should look like this:
 http://concerto.e-psychometrics.com/demo/wiki/tutorial_survey1_34.png
 
  * Remove previously created table insert query. The test logic should now look like this:
