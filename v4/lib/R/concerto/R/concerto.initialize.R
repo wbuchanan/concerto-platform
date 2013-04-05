@@ -1,5 +1,5 @@
 concerto.initialize <-
-function(testID,sessionID,workspaceID,workspacePrefix,user,password,dbName,host='localhost',port=3306,tempPath,mediaPath,dbTimezone,dbConnect,userIP){
+function(testID,sessionID,workspaceID,workspacePrefix,user,password,dbName,host='localhost',port=3306,tempPath,mediaPath,dbTimezone,dbConnect,userIP,mediaURL){
   print("initialization...") 
   
   options(encoding='UTF-8')
@@ -12,6 +12,7 @@ function(testID,sessionID,workspaceID,workspacePrefix,user,password,dbName,host=
   concerto$sessionPath <<- paste(tempPath,"/session_",sessionID,".Rs",sep='')
   concerto$mediaPath <<- mediaPath
   concerto$userIP <<- userIP
+  concerto$mediaURL <<- mediaURL
   
   setwd(tempPath)
   print(paste("working directory set to:",tempPath))

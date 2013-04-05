@@ -513,9 +513,10 @@ TIMEOUT
             CONCERTO_WORKSPACE_ID <- %s
             CONCERTO_WORKSPACE_PREFIX <- "%s"
             CONCERTO_USER_IP <- "%s"
+            CONCERTO_MEDIA_URL <- "%s"
             library(concerto)
                 
-            concerto:::concerto.initialize(CONCERTO_TEST_ID,CONCERTO_TEST_SESSION_ID,CONCERTO_WORKSPACE_ID,CONCERTO_WORKSPACE_PREFIX,CONCERTO_DB_LOGIN,CONCERTO_DB_PASSWORD,CONCERTO_DB_NAME,CONCERTO_DB_HOST,CONCERTO_DB_PORT,CONCERTO_TEMP_PATH,CONCERTO_MEDIA_PATH,CONCERTO_DB_TIMEZONE,%s,CONCERTO_USER_IP)
+            concerto:::concerto.initialize(CONCERTO_TEST_ID,CONCERTO_TEST_SESSION_ID,CONCERTO_WORKSPACE_ID,CONCERTO_WORKSPACE_PREFIX,CONCERTO_DB_LOGIN,CONCERTO_DB_PASSWORD,CONCERTO_DB_NAME,CONCERTO_DB_HOST,CONCERTO_DB_PORT,CONCERTO_TEMP_PATH,CONCERTO_MEDIA_PATH,CONCERTO_DB_TIMEZONE,%s,CONCERTO_USER_IP,CONCERTO_MEDIA_URL)
             %s
             
             rm(CONCERTO_TEST_ID)
@@ -531,9 +532,10 @@ TIMEOUT
             rm(CONCERTO_WORKSPACE_ID)
             rm(CONCERTO_WORKSPACE_PREFIX)
             rm(CONCERTO_USER_IP)
+            rm(CONCERTO_MEDIA_URL)
             
             %s
-            ', $test->id, $this->TestSession_id, $db_host, ($db_port != "" ? $db_port : "3306"), $main_workspace->db_login, $main_workspace->db_password, $workspace->db_name, $path, $mysql_timezone, Ini::$path_internal_media . $owner->id, $workspace->id, Ini::$db_users_db_name_prefix, $this->IP, $unserialize ? "FALSE" : "TRUE", $unserialize ? '
+            ', $test->id, $this->TestSession_id, $db_host, ($db_port != "" ? $db_port : "3306"), $main_workspace->db_login, $main_workspace->db_password, $workspace->db_name, $path, $mysql_timezone, Ini::$path_internal_media . $owner->id . "/", $workspace->id, Ini::$db_users_db_name_prefix, $this->IP, Ini::$path_external_media . $owner->id . "/", $unserialize ? "FALSE" : "TRUE", $unserialize ? '
                 concerto:::concerto.unserialize()
                 concerto:::concerto.db.connect(CONCERTO_DB_LOGIN,CONCERTO_DB_PASSWORD,CONCERTO_DB_NAME,CONCERTO_DB_HOST,CONCERTO_DB_PORT,CONCERTO_DB_TIMEZONE)' : "", $unserialize ? 'if(exists("onUnserialize")) do.call("onUnserialize",list(lastReturn=rjson::fromJSON("' . addcslashes(json_encode($this->pending_variables), '"') . '")), envir = .GlobalEnv);
 ' : "");
