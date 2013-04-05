@@ -42,7 +42,6 @@ As a user with root access do:
 
 *{{{R CMD INSTALL -l /usr/lib/R/library concerto}}}*
 
-
 ===Step 4===
 
 Create new Concerto master MySQL database
@@ -99,9 +98,21 @@ Copy the contents of the package to your Concerto installation directory
 
 ===Step 3===
 
-Edit * {installation_dir}/SETTINGS.php * file.
+As a user with root access do:
+
+*{{{cd /var/www/concerto/lib/R}}}*
+
+... replace *{{{/var/www/concerto/}}}* with your Concerto installation directory path
+
+*{{{R CMD build concerto}}}*
+
+*{{{R CMD INSTALL -l /usr/lib/R/library concerto}}}*
 
 ===Step 4===
+
+Edit * {installation_dir}/SETTINGS.php * file.
+
+===Step 5===
 
 Run * http://yourdomain/{concerto_directory}/setup * and correct any reported problem.
 
