@@ -92,3 +92,15 @@ http://concerto.e-psychometrics.com/demo/wiki/tutorial_survey2_10.png
 
  * Now add a loop to iterate through every item in item bank and show the *survey* template for each of the question. We will also show items *question* column value in a template:
 http://concerto.e-psychometrics.com/demo/wiki/tutorial_survey2_11.png 
+
+ * At the top of the looped block add *{{{concerto.table.query}}}* function wizard and set it so that you can retrieve all "*no*" answers for current question. Assign the output of the applied function wizard to variable named *{{{no_responses}}}*
+http://concerto.e-psychometrics.com/demo/wiki/tutorial_survey2_16.png 
+
+ * The code should now look like this:
+http://concerto.e-psychometrics.com/demo/wiki/tutorial_survey2_17.png
+
+ * Below that do the same for *yes* answers and assign the output to variable: *{{{yes_responses}}}* (*yes* responses are represented in the response table by *1*): 
+http://concerto.e-psychometrics.com/demo/wiki/tutorial_survey2_18.png
+
+ * Now we need to declare variables for chart path and full URL. We will use three variables for that: *{{{file_name}}}* - chart file name, *{{{chart_path}}}* - chart path used to save the chart, *{{{chart_url}}}* - chart URL used by HTML template to show the chart image. Two additionals variables are used here: *{{{concerto$mediaPath}}}* - test owner media directory path (used for media saving and internal file operations), *{{{concerto$mediaURL}}}* - URL of the previous directory used (used on HTML templates)
+http://concerto.e-psychometrics.com/demo/wiki/tutorial_survey2_19.png
