@@ -54,7 +54,7 @@ http://concerto.e-psychometrics.com/demo/wiki/tutorial_survey2_6.png
  * Currently the survey should look like this:
 http://concerto.e-psychometrics.com/demo/wiki/tutorial_survey1_14.png
 
- * Replace *"Do you like traveling?"* question in HTML template with *{{question}}*
+ * Replace *"Do you like travelling?"* question in HTML template with *{{question}}*
 
  * HTML template should now look like this:
 http://concerto.e-psychometrics.com/demo/wiki/tutorial_survey2_2.png
