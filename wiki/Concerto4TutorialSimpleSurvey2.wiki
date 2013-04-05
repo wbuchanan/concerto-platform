@@ -111,7 +111,7 @@ http://concerto.e-psychometrics.com/demo/wiki/tutorial_survey2_20.png
  * Now all that is left is to insert the response to the response table. Insert *{{{concerto.table.query}}}* function wizard right after the code to show the template in looped block and set it like that:
 http://concerto.e-psychometrics.com/demo/wiki/tutorial_survey2_21.png
 
- * The full test logic should look like this:
-http://concerto.e-psychometrics.com/demo/wiki/tutorial_survey2_22.png
+ * There is one more thing that we can add. To prevent chart image caching in browser we could append unique string (taken from current system time) to the chart URL:
+http://concerto.e-psychometrics.com/demo/wiki/tutorial_survey2_23.png
 
  * Save the test
