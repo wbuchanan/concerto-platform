@@ -458,21 +458,23 @@ Methods.iniCodeMirror = function(id, mode, readOnly, autocomplete, widgetsPossib
     //if(maxWidth!=null) $(obj).next().find(".CodeMirror-scroll").css("max-width",maxWidth);
     myCodeMirror.refresh();
 
-    if (myCodeMirror.lineCount() > 0) {
-        var range = {
-            from: {
-                line: 0,
-                ch: 0
-            },
-            to: {
-                line: myCodeMirror.lineCount() - 1,
-                ch: myCodeMirror.getLine(myCodeMirror.lineCount() - 1).length
-            }
-        }
-        myCodeMirror.autoFormatRange(range.from, range.to);
-        myCodeMirror.autoIndentRange(range.from, range.to);
-        //myCodeMirror.setSelection(range.to);
-    }
+    /*
+     if (myCodeMirror.lineCount() > 0) {
+     var range = {
+     from: {
+     line: 0,
+     ch: 0
+     },
+     to: {
+     line: myCodeMirror.lineCount() - 1,
+     ch: myCodeMirror.getLine(myCodeMirror.lineCount() - 1).length
+     }
+     }
+     myCodeMirror.autoFormatRange(range.from, range.to);
+     myCodeMirror.autoIndentRange(range.from, range.to);
+     //myCodeMirror.setSelection(range.to);
+     }
+     */
 
     return myCodeMirror;
 };
