@@ -104,3 +104,14 @@ http://concerto.e-psychometrics.com/demo/wiki/tutorial_survey2_18.png
 
  * Now we need to declare variables for chart path and full URL. We will use three variables for that: *{{{file_name}}}* - chart file name, *{{{chart_path}}}* - chart path used to save the chart, *{{{chart_url}}}* - chart URL used by HTML template to show the chart image. Two additionals variables are used here: *{{{concerto$mediaPath}}}* - test owner media directory path (used for media saving and internal file operations), *{{{concerto$mediaURL}}}* - URL of the previous directory used (used on HTML templates)
 http://concerto.e-psychometrics.com/demo/wiki/tutorial_survey2_19.png
+
+ * Here is the code responsible for creating chart and showing it on HTML template. Please not that we pass one more variable to HTML template: *chart_url*
+http://concerto.e-psychometrics.com/demo/wiki/tutorial_survey2_20.png
+
+ * Now all that is left is to insert the response to the response table. Insert *{{{concerto.table.query}}}* function wizard right after the code to show the template in looped block and set it like that:
+http://concerto.e-psychometrics.com/demo/wiki/tutorial_survey2_21.png
+
+ * The full test logic should look like this:
+http://concerto.e-psychometrics.com/demo/wiki/tutorial_survey2_22.png
+
+ * Save the test
