@@ -8,6 +8,9 @@ CKEDITOR.editorConfig = function( config ) {
         config.autoGrow_maxHeight = 800;
         config.autoGrow_onStartup = true;
         config.removePlugins = "resize"; 
+       
+        config.autoParagraph = false;
+        
 	// Define changes to default configuration here. For example:
 	// config.language = 'fr';
 	// config.uiColor = '#AADC6E';
