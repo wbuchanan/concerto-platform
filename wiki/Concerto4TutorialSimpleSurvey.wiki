@@ -61,7 +61,7 @@ http://concerto.e-psychometrics.com/demo/wiki/tutorial_survey1_15.png
 
  * Create new *HTML template*, name it *survey*, add *submit* button to it
 
- * Add a question text above the *submit* button: *Do you like travels?*. The template should like like this:
+ * Add a question text above the *submit* button: *Do you like travelling?*. The template should like like this:
 http://concerto.e-psychometrics.com/demo/wiki/tutorial_survey1_11.png
 
  * Now we will add radio buttons so that user can leave their response. Click the button marked below:
