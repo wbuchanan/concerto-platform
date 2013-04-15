@@ -34,7 +34,7 @@ class RDoc extends OTable {
             `id` BIGINT(20) NOT NULL AUTO_INCREMENT PRIMARY KEY ,
             `updated` timestamp NOT NULL default CURRENT_TIMESTAMP on update CURRENT_TIMESTAMP,
             `created` timestamp NOT NULL default '0000-00-00 00:00:00',
-            `HTML` TEXT NOT NULL
+            `HTML` MEDIUMTEXT NOT NULL
             ) ENGINE = INNODB CHARACTER SET utf8 COLLATE utf8_general_ci;
             ", $db);
         return mysql_query($sql);

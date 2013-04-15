@@ -251,28 +251,20 @@ class Setup {
             $previous_version = Ini::$version;
 
         $recalculate_hash = false;
-        $validate_column_names = false;
 
-        /*
-          if (Setup::does_patch_apply("3.3.0", $previous_version)) {
-          if ($simulate) {
-          array_push($versions_to_update, "3.3.0");
-          } else {
+        if (Setup::does_patch_apply("4.0.0.beta2", $previous_version)) {
+            if ($simulate) {
+                array_push($versions_to_update, "4.0.0.beta2");
+            } else {
 
-          ///COMPATIBILITY FIX FOR V3.0.0 START
-          $sql = "SHOW COLUMNS FROM `User` WHERE `Field`='last_activity'";
-          $z = mysql_query($sql);
-          if (mysql_num_rows($z) > 0) {
-          $sql = "ALTER TABLE `User` CHANGE `last_activity` `last_login` timestamp NOT NULL default '0000-00-00 00:00:00';";
-          if (!mysql_query($sql))
-          return json_encode(array("result" => 1, "param" => $sql));
-          }
+                $sql = "ALTER TABLE `" . Ini::$db_master_name . "`.`RDoc` CHANGE `HTML` `HTML` mediumtext NOT NULL;";
+                if (!mysql_query($sql))
+                    return json_encode(array("result" => 1, "param" => $sql));
 
-          Setting::set_setting("version", "3.3.0");
-          return json_encode(array("result" => 0, "param" => "3.3.0"));
-          }
-          }
-         */
+                Setting::set_setting("version", "4.0.0.beta2");
+                return json_encode(array("result" => 0, "param" => "4.0.0.beta2"));
+            }
+        }
 
         if ($simulate)
             return json_encode(array("versions" => $versions_to_update, "recalculate_hash" => $recalculate_hash, "create_db" => Ini::create_db_structure(true)));

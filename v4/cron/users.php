@@ -52,15 +52,16 @@ while ($r = mysql_fetch_array($z)) {
         $user->password = $password;
         $user->User_id = $r['id'];
         $user->mysql_save();
-
-        $media_dir = Ini::$path_internal_media . $r["id"];
-        if (!is_dir($media_dir)) {
-            mkdir($media_dir, 0775, true);
-        }
-        chown($media_dir, $name);
-        chgrp($media_dir, Ini::$php_user_group);
-        chmod($media_dir, 0775);
     }
+
+    $media_dir = Ini::$path_internal_media . $r["id"];
+    if (!is_dir($media_dir)) {
+        mkdir($media_dir, 0775, true);
+    }
+    chown($media_dir, $name);
+    chgrp($media_dir, Ini::$php_user_group);
+    chmod($media_dir, 0775);
+
     $user = User::from_mysql_id($r['id']);
     foreach ($user->get_workspaces() as $workspace) {
         //dirs
