@@ -158,7 +158,7 @@ containsOrderedVector <- function(subject,search){
 
 library(RMySQL)
 CONCERTO_DB_DRIVER <- dbDriver('MySQL')
-CONCERTO_DB_CONNECTION <- dbConnect(CONCERTO_DB_DRIVER, user = CONCERTO_DB_LOGIN, password = CONCERTO_DB_PASSWORD, dbname = CONCERTO_DB_NAME, host = CONCERTO_DB_HOST, port = CONCERTO_DB_PORT)
+CONCERTO_DB_CONNECTION <- dbConnect(CONCERTO_DB_DRIVER, user = CONCERTO_DB_LOGIN, password = CONCERTO_DB_PASSWORD, dbname = CONCERTO_DB_NAME, host = CONCERTO_DB_HOST, port = CONCERTO_DB_PORT, client.flag=CLIENT_MULTI_STATEMENTS)
 dbSendQuery(CONCERTO_DB_CONNECTION,statement = "SET NAMES 'utf8';")
 dbSendQuery(CONCERTO_DB_CONNECTION,statement = paste("SET time_zone='",CONCERTO_DB_TIMEZONE,"';",sep=''))
 

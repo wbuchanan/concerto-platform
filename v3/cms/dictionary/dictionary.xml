@@ -1455,7 +1455,8 @@ utilisées dans d'autres sections du test.</fr>
             <br>eliminar variável de retorno</br>
         </string>
         <string id="117">
-            <en>tablo düzenleme</en>
+            <en>editing table</en>
+            <tr>tablo düzenleme</tr>
             <de>Bearbeite Tabelle</de>
             <pl>edycja tabeli</pl>
             <cn>编辑表格</cn>
@@ -2805,7 +2806,7 @@ Voeg de variabele <b>{{TIME_LEFT}}</b> in op de HTML-sjabloon om de timer zichtb
         </string>
         <string id="262">
             <en>OUTDATED.</en>
-            <en>GEÇERSİZ.</en>
+            <tr>GEÇERSİZ.</tr>
             <de></de>
             <pl>NIEAKTUALNA.</pl>
             <cn>过期版本</cn>
