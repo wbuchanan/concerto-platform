@@ -6,6 +6,7 @@
 *Features*
 
  * *{{{concerto$mediaURL}}}* variable is now available in test logic
+ * object names needs to be unique in every workspace
 
 *Fixes*
 
