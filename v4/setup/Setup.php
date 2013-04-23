@@ -257,9 +257,38 @@ class Setup {
                 array_push($versions_to_update, "4.0.0.beta2");
             } else {
 
+                //RDoc.HTML should be larger
                 $sql = "ALTER TABLE `" . Ini::$db_master_name . "`.`RDoc` CHANGE `HTML` `HTML` mediumtext NOT NULL;";
                 if (!mysql_query($sql))
                     return json_encode(array("result" => 1, "param" => $sql));
+
+                //names should be unique
+                $tables = array("Test", "Template", "Table", "QTIAssessmentItem");
+                foreach (User::get_all_db() as $db) {
+                    foreach ($tables as $table) {
+                        $sql = sprintf("SELECT `name` , COUNT(  `name` ) AS `c`
+                            FROM  `%s`.`%s` 
+                            GROUP BY `name` 
+                            HAVING `c`>1", $db, $table);
+                        $z = mysql_query($sql);
+                        if (!$z)
+                            return json_encode(array("result" => 1, "param" => $sql));
+                        while ($r = mysql_fetch_array($z)) {
+                            $sql = sprintf("UPDATE `%s`.`%s` SET `name`=CONCAT(`name`,'_',`id`) WHERE `name`='%s'", $db, $table, mysql_real_escape_string($r[0]));
+                            if (!mysql_query($sql))
+                                return json_encode(array("result" => 1, "param" => $sql));
+                        }
+
+                        //change object name column to unique
+                        $sql = sprintf("ALTER TABLE `%s`.`%s` CHANGE  `name`  `name` VARCHAR( 50 ) CHARACTER SET utf8 COLLATE utf8_general_ci NOT NULL", $db, $table);
+                        if (!mysql_query($sql))
+                            return json_encode(array("result" => 1, "param" => $sql));
+
+                        $sql = sprintf("ALTER TABLE  `%s`.`%s` ADD UNIQUE ( `name` )", $db, $table);
+                        if (!mysql_query($sql))
+                            return json_encode(array("result" => 1, "param" => $sql));
+                    }
+                }
 
                 Setting::set_setting("version", "4.0.0.beta2");
                 return json_encode(array("result" => 0, "param" => "4.0.0.beta2"));

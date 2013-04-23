@@ -1722,14 +1722,14 @@ Note: You can add new languages by inserting "<new_language>string translated in
             <br>contador de seção</br>
         </string>
         <string id="336" js="1">
-            <en>At least one of the fields that should be unique is empty or already exists in the system.</en>
+            <en>At least one of the fields that should be unique and is marked with ^ is empty or already exists in the system.</en>
             <de></de>
-            <pl>Przynajmniej jedno pole, które powinno być unikalne, już istnieje w systemie lub jest puste.</pl>
-            <cn>某独特区域与现有系统重复，或者为空白。</cn>
+            <pl>Przynajmniej jedno pole, które powinno być unikalne i jest oznaczone ^, już istnieje w systemie lub jest puste.</pl>
+            <cn></cn>
             <fr></fr>
             <bg></bg>
-            <nl>Tenminste een van de unieke velden is leeg of bestaat reeds in het systeem.</nl>
-            <br>Pelo menos um dos campos que deveria ser único foi deixado em branco ou já existe no sistema</br>
+            <nl></nl>
+            <br></br>
         </string>
         <string id="337">
             <en>list of available objects</en>

@@ -105,7 +105,7 @@ if ($oid != 0) {
         <div class="divFormElement">
             <table class="fullWidth">
                 <tr>
-                    <td class="noWrap tdFormLabel">* <?= Language::string(70) ?>:</td>
+                    <td class="noWrap tdFormLabel">*^ <?= Language::string(70) ?>:</td>
                     <td class="tdFormIcon"><span class="tooltip spanIcon ui-icon ui-icon-help" title="<?= Language::string(141) ?>"></span></td>
                     <td>
                         <div class="divFormControl">
