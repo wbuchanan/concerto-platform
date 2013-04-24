@@ -128,7 +128,6 @@ if ($oid != 0) {
                 </tr>
             </table>
         </div>
-        <div id="div<?= $class_name ?>Loader" class="divFormElement <?= User::view_class() ?>"><?php include Ini::$path_internal . "cms/view/Test_loader.php"; ?></div>   
 
         <div style="clear: left;" />
     </fieldset>

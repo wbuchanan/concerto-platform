@@ -466,12 +466,15 @@ class Table extends OModule {
             `id` bigint(20) NOT NULL auto_increment,
             `updated` timestamp NOT NULL default CURRENT_TIMESTAMP on update CURRENT_TIMESTAMP,
             `created` timestamp NOT NULL default '0000-00-00 00:00:00',
-            `name` text NOT NULL,
+            `name` varchar(50) NOT NULL,
             `description` text NOT NULL,
             `xml_hash` text NOT NULL,
             PRIMARY KEY  (`id`)
             ) ENGINE=InnoDB  DEFAULT CHARSET=utf8;
             ", $db);
+        if (!mysql_query($sql))
+            return false;
+        $sql = sprintf("ALTER TABLE  `%s`.`Table` ADD UNIQUE ( `name` )", $db);
         return mysql_query($sql);
     }
 

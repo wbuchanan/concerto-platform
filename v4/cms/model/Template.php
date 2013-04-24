@@ -242,7 +242,7 @@ class Template extends OModule {
             `id` bigint(20) NOT NULL auto_increment,
             `updated` timestamp NOT NULL default CURRENT_TIMESTAMP on update CURRENT_TIMESTAMP,
             `created` timestamp NOT NULL default '0000-00-00 00:00:00',
-            `name` text NOT NULL,
+            `name` varchar(50) NOT NULL,
             `head` text NOT NULL,
             `HTML` text NOT NULL,
             `effect_show` text NOT NULL,
@@ -254,6 +254,9 @@ class Template extends OModule {
             PRIMARY KEY  (`id`)
             ) ENGINE=InnoDB  DEFAULT CHARSET=utf8;
             ", $db);
+        if (!mysql_query($sql))
+            return false;
+        $sql = sprintf("ALTER TABLE  `%s`.`Template` ADD UNIQUE ( `name` )", $db);
         return mysql_query($sql);
     }
 

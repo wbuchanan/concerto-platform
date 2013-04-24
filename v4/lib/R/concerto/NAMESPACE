@@ -9,6 +9,7 @@ concerto.table.get,
 concerto.template.fillHTML,
 concerto.template.get,
 concerto.template.show,
+concerto.template.loader,
 concerto.test.get,
 concerto.test.run,
 concerto.workspace.get

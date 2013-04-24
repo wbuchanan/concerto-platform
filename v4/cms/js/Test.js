@@ -83,7 +83,6 @@ Test.getFullSaveObject = function(isNew) {
     obj["parameters"] = Test.getSerializedParameterVariables();
     obj["returns"] = Test.getSerializedReturnVariables();
     obj["description"] = $("#form" + this.className + "TextareaDescription").val();
-    obj["loader_Template_id"] = $("#selectLoaderTemplate").val();
     obj["code"] = $("#textareaTestLogic").val();
     obj["deleteLogs"] = Test.getSerializedCrudDeleted("logs");
     return obj;
@@ -175,7 +174,6 @@ Test.uiGoToRelatedObject = function(type, oid) {
 }
 
 Test.uiTemplatesChanged = function() {
-    Test.uiRefreshLoader($("#selectLoaderTemplate").val());
 }
 
 Test.uiTestsChanged = function() {
@@ -345,19 +343,6 @@ Test.uiRefreshVariables = function(parameters, returns) {
     }, function(data) {
         Methods.uiUnblock("#div" + Test.className + "Variables");
         $("#div" + Test.className + "Variables").html(data);
-    })
-}
-
-Test.uiRefreshLoader = function(oid) {
-
-    Methods.uiBlock("#div" + Test.className + "Loader");
-    $.post("view/Test_loader.php", {
-        oid: this.currentID,
-        class_name: this.className,
-        loader: oid
-    }, function(data) {
-        Methods.uiUnblock("#div" + Test.className + "Loader");
-        $("#div" + Test.className + "Loader").html(data);
     })
 }
 

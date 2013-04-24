@@ -25,7 +25,6 @@ class Test extends OModule {
     public $description = "";
     public $session_count = 0;
     public $open = 0;
-    public $loader_Template_id = 0;
     public $code = "";
     public $xml_hash = "";
     public static $exportable = true;
@@ -120,10 +119,6 @@ class Test extends OModule {
             return Language::string(628);
     }
 
-    public function get_loader_Template() {
-        return Template::from_mysql_id($this->loader_Template_id);
-    }
-
     public function mysql_delete() {
         $this->delete_sessions();
         $this->delete_object_links(TestVariable::get_mysql_table());
@@ -176,8 +171,6 @@ class Test extends OModule {
                         break;
                     case "open": $this->open = $child->nodeValue;
                         break;
-                    case "loader_Template_id": $this->loader_Template_id = $child->nodeValue;
-                        break;
                     case "code": $this->code = $child->nodeValue;
                         break;
                 }
@@ -228,9 +221,6 @@ class Test extends OModule {
         $code = $xml->createElement("code", htmlspecialchars($this->code, ENT_QUOTES, "UTF-8"));
         $element->appendChild($code);
 
-        //$loader_Template_id = $xml->createElement("loader_Template_id", htmlspecialchars($this->loader_Template_id, ENT_QUOTES, "UTF-8"));
-        //$element->appendChild($loader_Template_id);
-
         $test_variables = $xml->createElement("TestVariables");
         $element->appendChild($test_variables);
 
@@ -252,16 +242,18 @@ class Test extends OModule {
             `id` bigint(20) NOT NULL auto_increment,
             `updated` timestamp NOT NULL default CURRENT_TIMESTAMP on update CURRENT_TIMESTAMP,
             `created` timestamp NOT NULL default '0000-00-00 00:00:00',
-            `name` text NOT NULL,
+            `name` varchar(50) NOT NULL,
             `open` tinyint(1) NOT NULL,
             `session_count` bigint(20) NOT NULL,
-            `loader_Template_id` bigint(20) NOT NULL,
             `code` longtext NOT NULL,
             `description` text NOT NULL,
             `xml_hash` text NOT NULL,
             PRIMARY KEY  (`id`)
             ) ENGINE=InnoDB  DEFAULT CHARSET=utf8;
             ", $db);
+        if (!mysql_query($sql))
+            return false;
+        $sql = sprintf("ALTER TABLE  `%s`.`Test` ADD UNIQUE ( `name` )", $db);
         return mysql_query($sql);
     }
 

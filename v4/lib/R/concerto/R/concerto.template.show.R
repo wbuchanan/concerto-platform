@@ -1,5 +1,5 @@
 concerto.template.show <-
-function(templateID,params=list(),timeLimit=0,finalize=F,workspaceID=concerto$workspaceID){
+function(templateID,params=list(),timeLimit=0,finalize=F,workspaceID=concerto$workspaceID, effectShow="default", effectShowOptions="default", effectHide="default",effectHideOptions="default"){
   print(paste("showing template #",workspaceID,":",templateID,"...",sep=''))
   if(!is.list(params)) stop("'params' must be a list!")
   
@@ -11,6 +11,23 @@ function(templateID,params=list(),timeLimit=0,finalize=F,workspaceID=concerto$wo
   
   concerto:::concerto.updateHead(concerto.template.fillHTML(template[1,"head"],params))
   concerto:::concerto.updateHTML(concerto.template.fillHTML(template[1,"HTML"],params))
+
+  if(effectShow=="default") {
+    effectShow <- template[1,"effect_show"]
+  }
+  if(effectHide=="default") {
+    effectHide <- template[1,"effect_hide"]
+  }
+  if(effectShowOptions=="default") {
+    effectShowOptions <- template[1,"effect_show_options"]
+  }
+  if(effectHideOptions=="default") {
+    effectHideOptions <- template[1,"effect_hide_options"]
+  }
+  concerto:::concerto.updateEffectShow(effectShow)  
+  concerto:::concerto.updateEffectHide(effectHide)  
+  concerto:::concerto.updateEffectShowOptions(effectShowOptions) 
+  concerto:::concerto.updateEffectHideOptions(effectHideOptions)  
   
   if(finalize){
     concerto:::concerto.test.updateAllReturnVariables()

@@ -288,6 +288,111 @@ class Setup {
                         if (!mysql_query($sql))
                             return json_encode(array("result" => 1, "param" => $sql));
                     }
+
+                    //add TestSession new columns
+                    $sql = sprintf("SHOW COLUMNS FROM `%s`.`%s` WHERE `Field`='effect_show'", $db, TestSession::get_mysql_table());
+                    $z = mysql_query($sql);
+                    if (mysql_num_rows($z) == 0) {
+                        $sql = sprintf("ALTER TABLE `%s`.`%s` ADD  `effect_show` TEXT NOT NULL", $db, TestSession::get_mysql_table());
+                        if (!mysql_query($sql))
+                            return json_encode(array("result" => 1, "param" => $sql));
+                    }
+
+                    $sql = sprintf("SHOW COLUMNS FROM `%s`.`%s` WHERE `Field`='effect_hide'", $db, TestSession::get_mysql_table());
+                    $z = mysql_query($sql);
+                    if (mysql_num_rows($z) == 0) {
+                        $sql = sprintf("ALTER TABLE `%s`.`%s` ADD  `effect_hide` TEXT NOT NULL", $db, TestSession::get_mysql_table());
+                        if (!mysql_query($sql))
+                            return json_encode(array("result" => 1, "param" => $sql));
+                    }
+
+                    $sql = sprintf("SHOW COLUMNS FROM `%s`.`%s` WHERE `Field`='effect_show_options'", $db, TestSession::get_mysql_table());
+                    $z = mysql_query($sql);
+                    if (mysql_num_rows($z) == 0) {
+                        $sql = sprintf("ALTER TABLE `%s`.`%s` ADD  `effect_show_options` TEXT NOT NULL", $db, TestSession::get_mysql_table());
+                        if (!mysql_query($sql))
+                            return json_encode(array("result" => 1, "param" => $sql));
+                    }
+
+                    $sql = sprintf("SHOW COLUMNS FROM `%s`.`%s` WHERE `Field`='effect_hide_options'", $db, TestSession::get_mysql_table());
+                    $z = mysql_query($sql);
+                    if (mysql_num_rows($z) == 0) {
+                        $sql = sprintf("ALTER TABLE `%s`.`%s` ADD  `effect_hide_options` TEXT NOT NULL", $db, TestSession::get_mysql_table());
+                        if (!mysql_query($sql))
+                            return json_encode(array("result" => 1, "param" => $sql));
+                    }
+
+                    $sql = sprintf("SHOW COLUMNS FROM `%s`.`%s` WHERE `Field`='loader_HTML'", $db, TestSession::get_mysql_table());
+                    $z = mysql_query($sql);
+                    if (mysql_num_rows($z) == 0) {
+                        $sql = sprintf("ALTER TABLE `%s`.`%s` ADD  `loader_HTML` TEXT NOT NULL", $db, TestSession::get_mysql_table());
+                        if (!mysql_query($sql))
+                            return json_encode(array("result" => 1, "param" => $sql));
+                    }
+
+                    $sql = sprintf("SHOW COLUMNS FROM `%s`.`%s` WHERE `Field`='loader_head'", $db, TestSession::get_mysql_table());
+                    $z = mysql_query($sql);
+                    if (mysql_num_rows($z) == 0) {
+                        $sql = sprintf("ALTER TABLE `%s`.`%s` ADD  `loader_head` TEXT NOT NULL", $db, TestSession::get_mysql_table());
+                        if (!mysql_query($sql))
+                            return json_encode(array("result" => 1, "param" => $sql));
+                    }
+
+                    $sql = sprintf("SHOW COLUMNS FROM `%s`.`%s` WHERE `Field`='loader_effect_show'", $db, TestSession::get_mysql_table());
+                    $z = mysql_query($sql);
+                    if (mysql_num_rows($z) == 0) {
+                        $sql = sprintf("ALTER TABLE `%s`.`%s` ADD  `loader_effect_show` TEXT NOT NULL", $db, TestSession::get_mysql_table());
+                        if (!mysql_query($sql))
+                            return json_encode(array("result" => 1, "param" => $sql));
+                    }
+
+                    $sql = sprintf("SHOW COLUMNS FROM `%s`.`%s` WHERE `Field`='loader_effect_hide'", $db, TestSession::get_mysql_table());
+                    $z = mysql_query($sql);
+                    if (mysql_num_rows($z) == 0) {
+                        $sql = sprintf("ALTER TABLE `%s`.`%s` ADD  `loader_effect_hide` TEXT NOT NULL", $db, TestSession::get_mysql_table());
+                        if (!mysql_query($sql))
+                            return json_encode(array("result" => 1, "param" => $sql));
+                    }
+
+                    $sql = sprintf("SHOW COLUMNS FROM `%s`.`%s` WHERE `Field`='loader_effect_show_options'", $db, TestSession::get_mysql_table());
+                    $z = mysql_query($sql);
+                    if (mysql_num_rows($z) == 0) {
+                        $sql = sprintf("ALTER TABLE `%s`.`%s` ADD  `loader_effect_show_options` TEXT NOT NULL", $db, TestSession::get_mysql_table());
+                        if (!mysql_query($sql))
+                            return json_encode(array("result" => 1, "param" => $sql));
+                    }
+
+                    $sql = sprintf("SHOW COLUMNS FROM `%s`.`%s` WHERE `Field`='loader_effect_hide_options'", $db, TestSession::get_mysql_table());
+                    $z = mysql_query($sql);
+                    if (mysql_num_rows($z) == 0) {
+                        $sql = sprintf("ALTER TABLE `%s`.`%s` ADD  `loader_effect_hide_options` TEXT NOT NULL", $db, TestSession::get_mysql_table());
+                        if (!mysql_query($sql))
+                            return json_encode(array("result" => 1, "param" => $sql));
+                    }
+
+                    $sql = sprintf("SHOW COLUMNS FROM `%s`.`%s` WHERE `Field`='loader_Template_id'", $db, TestSession::get_mysql_table());
+                    $z = mysql_query($sql);
+                    if (mysql_num_rows($z) == 0) {
+                        $sql = sprintf("ALTER TABLE `%s`.`%s` ADD  `loader_Template_id` bigint(20) NOT NULL", $db, TestSession::get_mysql_table());
+                        if (!mysql_query($sql))
+                            return json_encode(array("result" => 1, "param" => $sql));
+                    }
+
+                    $sql = sprintf("SHOW COLUMNS FROM `%s`.`%s` WHERE `Field`='loader_UserWorkspace_id'", $db, TestSession::get_mysql_table());
+                    $z = mysql_query($sql);
+                    if (mysql_num_rows($z) == 0) {
+                        $sql = sprintf("ALTER TABLE `%s`.`%s` ADD  `loader_UserWorkspace_id` bigint(20) NOT NULL", $db, TestSession::get_mysql_table());
+                        if (!mysql_query($sql))
+                            return json_encode(array("result" => 1, "param" => $sql));
+                    }
+
+                    $sql = sprintf("SHOW COLUMNS FROM `%s`.`%s` WHERE `Field`='loader_Template_id'", $db, Test::get_mysql_table());
+                    $z = mysql_query($sql);
+                    if (mysql_num_rows($z) > 0) {
+                        $sql = sprintf("ALTER TABLE `%s`.`%s` DROP COLUMN `loader_Template_id`", $db, Test::get_mysql_table());
+                        if (!mysql_query($sql))
+                            return json_encode(array("result" => 1, "param" => $sql));
+                    }
                 }
 
                 Setting::set_setting("version", "4.0.0.beta2");

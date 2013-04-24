@@ -37,6 +37,18 @@ class TestSession extends OTable {
     public $error_output = "";
     public $state = "";
     public $UserWorkspace_id = 0;
+    public $loader_Template_id = 0;
+    public $effect_show = "none";
+    public $effect_show_options = "";
+    public $effect_hide = "none";
+    public $effect_hide_options = "";
+    public $loader_HTML = "";
+    public $loader_head = "";
+    public $loader_effect_show = "none";
+    public $loader_effect_show_options = "";
+    public $loader_effect_hide = "none";
+    public $loader_effect_hide_options = "";
+    public $loader_UserWorkspace_id = 0;
 
     const TEST_SESSION_STATUS_NEW = 0;
     const TEST_SESSION_STATUS_WORKING = 1;
@@ -167,48 +179,40 @@ class TestSession extends OTable {
         if (Ini::$log_server_events)
             TestServer::log_debug("TestSession->RCall --- R call initiated #" . session_id());
 
-        $test = Test::from_mysql_id($this->Test_id);
-        $loader = $test->get_loader_Template();
-
         //resume from last template
         if ($resume_from_last_template) {
-            $template = $this->get_Template();
 
-            if ($template != null) {
-                $response = array(
-                    "data" => array(
-                        "HEAD" => $this->head,
-                        "HASH" => $this->hash,
-                        "TIME_LIMIT" => $this->time_limit,
-                        "HTML" => $this->HTML,
-                        "TEST_ID" => $this->Test_id,
-                        "TEST_SESSION_ID" => $this->id,
-                        "STATUS" => TestSession::TEST_SESSION_STATUS_TEMPLATE,
-                        "TEMPLATE_ID" => $this->Template_id,
-                        "FINISHED" => 0,
-                        "EFFECT_SHOW" => $template->effect_show,
-                        "EFFECT_HIDE" => $template->effect_hide,
-                        "EFFECT_SHOW_OPTIONS" => $template->effect_show_options,
-                        "EFFECT_HIDE_OPTIONS" => $template->effect_hide_options,
-                        "LOADER_HTML" => "",
-                        "LOADER_HEAD" => "",
-                        "LOADER_EFFECT_SHOW" => "none",
-                        "LOADER_EFFECT_SHOW_OPTIONS" => "",
-                        "LOADER_EFFECT_HIDE" => "none",
-                        "LOADER_EFFECT_HIDE_OPTIONS" => "",
-                    )
-                );
-
-                if ($loader != null) {
-                    $response["data"]["LOADER_HTML"] = $loader->HTML;
-                    $response["data"]["LOADER_HEAD"] = $loader->head;
-                    $response["data"]["LOADER_EFFECT_SHOW"] = $loader->effect_show;
-                    $response["data"]["LOADER_EFFECT_SHOW_OPTIONS"] = $loader->effect_show_options;
-                    $response["data"]["LOADER_EFFECT_HIDE"] = $loader->effect_hide;
-                    $response["data"]["LOADER_EFFECT_HIDE_OPTIONS"] = $loader->effect_hide_options;
-                }
-                return $response;
-            }
+            $response = array(
+                "data" => array(
+                    "HEAD" => $this->head,
+                    "HASH" => $this->hash,
+                    "TIME_LIMIT" => $this->time_limit,
+                    "HTML" => $this->HTML,
+                    "TEST_ID" => $this->Test_id,
+                    "TEST_SESSION_ID" => $this->id,
+                    "STATUS" => TestSession::TEST_SESSION_STATUS_TEMPLATE,
+                    "TEMPLATE_ID" => $this->Template_id,
+                    "LOADER_TEMPLATE_ID" => $this->loader_Template_id,
+                    "FINISHED" => 0,
+                    "EFFECT_SHOW" => $this->effect_show,
+                    "EFFECT_HIDE" => $this->effect_hide,
+                    "EFFECT_SHOW_OPTIONS" => $this->effect_show_options,
+                    "EFFECT_HIDE_OPTIONS" => $this->effect_hide_options,
+                    "LOADER_HTML" => $this->loader_HTML,
+                    "LOADER_HEAD" => $this->loader_head,
+                    "LOADER_EFFECT_SHOW" => $this->loader_effect_show,
+                    "LOADER_EFFECT_SHOW_OPTIONS" => $this->loader_effect_show_options,
+                    "LOADER_EFFECT_HIDE" => $this->loader_effect_hide,
+                    "LOADER_EFFECT_HIDE_OPTIONS" => $this->loader_effect_hide_options,
+                    "LOADER_HTML" => $this->loader_HTML,
+                    "LOADER_HEAD" => $this->loader_head,
+                    "LOADER_EFFECT_SHOW" => $this->loader_effect_show,
+                    "LOADER_EFFECT_SHOW_OPTIONS" => $this->loader_effect_show_options,
+                    "LOADER_EFFECT_HIDE" => $this->loader_effect_hide,
+                    "LOADER_EFFECT_HIDE_OPTIONS" => $this->loader_effect_hide_options
+                )
+            );
+            return $response;
         }
 
         //R server connection
@@ -250,6 +254,7 @@ class TestSession extends OTable {
         $Test_id = 0;
         $finished = 0;
 
+        $loader_Template_id = 0;
         $loader_HTML = "";
         $loader_head = "";
         $loader_effect_show = "none";
@@ -284,23 +289,18 @@ class TestSession extends OTable {
             $time_limit = $thisSession->time_limit;
             $Test_id = $thisSession->Test_id;
 
-            if ($loader != null) {
-                $loader_HTML = $loader->HTML;
-                $loader_head = $loader->head;
-                $loader_effect_hide = $loader->effect_hide;
-                $loader_effect_hide_options = $loader->effect_hide_options;
-                $loader_effect_show = $loader->effect_show;
-                $loader_effect_show_options = $loader->effect_show_options;
-            }
+            $loader_Template_id = $thisSession->loader_Template_id;
+            $loader_HTML = $thisSession->loader_HTML;
+            $loader_head = $thisSession->loader_head;
+            $loader_effect_hide = $thisSession->loader_effect_hide;
+            $loader_effect_hide_options = $thisSession->loader_effect_hide_options;
+            $loader_effect_show = $thisSession->loader_effect_show;
+            $loader_effect_show_options = $thisSession->loader_effect_show_options;
 
-            $template = $thisSession->get_Template();
-
-            if ($template != null) {
-                $effect_hide = $template->effect_hide;
-                $effect_hide_options = $template->effect_hide_options;
-                $effect_show = $template->effect_show;
-                $effect_show_options = $template->effect_show_options;
-            }
+            $effect_hide = $thisSession->effect_hide;
+            $effect_hide_options = $thisSession->effect_hide_options;
+            $effect_show = $thisSession->effect_show;
+            $effect_show_options = $thisSession->effect_show_options;
 
             if ($return != 0) {
                 $status = TestSession::TEST_SESSION_STATUS_ERROR;
@@ -374,6 +374,7 @@ class TestSession extends OTable {
                 "STATUS" => $status,
                 "TEMPLATE_ID" => $Template_id,
                 "FINISHED" => $finished,
+                "LOADER_TEMPLATE_ID" => $loader_Template_id,
                 "LOADER_HTML" => $loader_HTML,
                 "LOADER_HEAD" => $loader_head,
                 "LOADER_EFFECT_SHOW" => $loader_effect_show,
@@ -619,6 +620,18 @@ class TestSession extends OTable {
             `time_limit` int(11) NOT NULL,
             `HTML` text NOT NULL,
             `head` text NOT NULL,
+            `effect_show` text NOT NULL,
+            `effect_hide` text NOT NULL,
+            `effect_show_options` text NOT NULL,
+            `effect_hide_options` text NOT NULL,
+            `loader_Template_id` bigint(20) NOT NULL,
+            `loader_HTML` text NOT NULL,
+            `loader_head` text NOT NULL,
+            `loader_effect_show` text NOT NULL,
+            `loader_effect_hide` text NOT NULL,
+            `loader_effect_show_options` text NOT NULL,
+            `loader_effect_hide_options` text NOT NULL,
+            `loader_UserWorkspace_id` bigint(20) NOT NULL,
             `Template_id` bigint(20) NOT NULL,
             `Template_UserWorkspace_id` bigint(20) NOT NULL,
             `time_tamper_prevention` INT NOT NULL,

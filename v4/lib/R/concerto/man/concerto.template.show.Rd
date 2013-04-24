@@ -7,7 +7,7 @@ Show template to test participant.
 Display template to test participant.
 }
 \usage{
-concerto.template.show(templateID, params = list(), timeLimit = 0, finalize = F, workspaceID = concerto$workspaceID)
+concerto.template.show(templateID, params = list(), timeLimit = 0, finalize = F, workspaceID = concerto$workspaceID, effectShow="default", effectShowOptions="default", effectHide="default", effectHideOptions="default")
 }
 
 \arguments{
@@ -26,6 +26,23 @@ Logical: TRUE if after this template there is no more logic available.
   \item{workspaceID}{
 Concerto workspace ID where template object is located.
 }
+
+\item{effectShow}{
+Template show transition effect.
+}
+
+\item{effectHide}{
+Template hide transition effect.
+}
+
+\item{effectShowOptions}{
+Template show transition effect options list.
+}
+
+\item{effectHideOptions}{
+Template hide transition effect options list.
+}
+
 }
 \details{
 }
