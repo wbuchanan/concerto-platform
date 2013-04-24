@@ -147,7 +147,7 @@ This file contains all configurable options that needs to be set before you can 
 || $mysql_timezone || MySQL timezone settings, leave blank to make it the same as *$timezone* || "+0:00" ||
 || $public_registration || is open registration from login form allowed || false ||
 || $cms_session_keep_alive || prevents session expiry when in panel || true ||
-|| $cms_session_keep_alive_interval || time interval between session keep alive requests in miliseconds || 900000 ||
+|| $cms_session_keep_alive_interval || time interval between session keep alive requests in miliseconds || 300000 ||
 || $remote_client_password || password required by remote clients to use this Concerto server || "topsecret" ||
 || $r_users_name_prefix || prefix for Linux users created by Concerto ( user id will be appended to it ) - *SET IT ONLY ONCE PRIOR TO RUNNING /setup* || "concerto_" ||
 || $r_users_group || Linux group name for users above || "concerto" ||
