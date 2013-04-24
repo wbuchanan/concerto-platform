@@ -11,7 +11,7 @@ concerto.template.get(templateID, workspaceID = concerto$workspaceID)
 }
 \arguments{
   \item{templateID}{
-Template ID.
+Template ID or name.
 }
   \item{workspaceID}{
 Concerto workspace ID where template is located.
@@ -37,7 +37,8 @@ Przemyslaw Lis
 \seealso{
 }
 \examples{
-template <- concerto.template.get(1)
+template1 <- concerto.template.get(1)
+template2 <- concerto.template.get("some_other_template")
 }
 
 \keyword{ template }

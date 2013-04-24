@@ -11,7 +11,7 @@ concerto.qti.get(qtiID, workspaceID = concerto$workspaceID)
 }
 \arguments{
   \item{qtiID}{
-QTI object ID.
+QTI object ID number or name.
 }
   \item{workspaceID}{
 Concerto workspace ID where the QTI object is located.
@@ -37,7 +37,8 @@ Przemyslaw Lis
 \seealso{
 }
 \examples{
-qti <- concerto.qti.get(1,workspaceID=2)
+qti1 <- concerto.qti.get(1,workspaceID=2)
+qti2 <- concerto.qti.get("some_other_qti",workspaceID=2)
 }
 
 \keyword{ QTI }

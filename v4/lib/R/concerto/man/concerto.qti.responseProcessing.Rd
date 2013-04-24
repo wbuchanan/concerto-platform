@@ -12,7 +12,7 @@ concerto.qti.responseProcessing(qtiID, ini, userResponse, workspaceID = concerto
 
 \arguments{
   \item{qtiID}{
-QTI object ID.
+QTI object ID or name.
 }
   \item{ini}{
 Result of QTI initialization.

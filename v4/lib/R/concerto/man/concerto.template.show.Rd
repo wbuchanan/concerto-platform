@@ -12,7 +12,7 @@ concerto.template.show(templateID, params = list(), timeLimit = 0, finalize = F,
 
 \arguments{
   \item{templateID}{
-Template ID.
+Template ID or name.
 }
   \item{params}{
 Named list with parameters we want to be inserted into template HTML.

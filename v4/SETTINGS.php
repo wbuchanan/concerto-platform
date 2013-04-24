@@ -32,7 +32,7 @@ $timezone = 'Europe/London'; // PHP timezone settings
 $mysql_timezone = '+0:00'; // MySQL timezone settings, leave blank to make it the same as $timezone
 $public_registration = false; // is open registration from login form allowed
 $cms_session_keep_alive = true; // prevents session expiry when in panel
-$cms_session_keep_alive_interval = 900000; // time interval between session keep alive requests in miliseconds
+$cms_session_keep_alive_interval = 300000; // time interval between session keep alive requests in miliseconds
 
 //remote client
 $remote_client_password = "pass"; // password required by remote clients to use this Concerto server

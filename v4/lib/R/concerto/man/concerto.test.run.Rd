@@ -11,7 +11,7 @@ concerto.test.run(testID, params = list(), workspaceID = concerto$workspaceID)
 }
 \arguments{
   \item{testID}{
-Test ID.
+Test ID or name.
 }
   \item{params}{
 Named list of parameters you want to pass to the test logic.

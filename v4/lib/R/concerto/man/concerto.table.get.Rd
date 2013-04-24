@@ -11,7 +11,7 @@ concerto.table.get(tableID, workspaceID = concerto$workspaceID)
 }
 \arguments{
   \item{tableID}{
-Table object ID
+Table object ID or name.
 }
   \item{workspaceID}{
 Concerto workspace ID where the table object is located.
@@ -35,7 +35,8 @@ Przemyslaw Lis
 \seealso{
 }
 \examples{
-table <- concerto.table.get(1)
+table1 <- concerto.table.get(1)
+table2 <- concerto.table.get("some_other_table")
 }
 
 \keyword{ table }

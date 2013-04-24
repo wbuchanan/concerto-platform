@@ -11,7 +11,7 @@ concerto.qti.initialize(qtiID, params = list(), workspaceID = concerto$workspace
 }
 \arguments{
   \item{qtiID}{
-QTI object ID.
+QTI object ID or name.
 }
   \item{params}{
 Named list with parameters we want to pass to QTI initialization.

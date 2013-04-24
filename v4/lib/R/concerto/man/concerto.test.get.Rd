@@ -11,7 +11,7 @@ concerto.test.get(testID, workspaceID = concerto$workspaceID)
 }
 \arguments{
   \item{testID}{
-Test ID.
+Test ID or name.
 }
   \item{workspaceID}{
 Concerto workspace ID where test object is located.
@@ -36,7 +36,8 @@ Przemyslaw Lis
 \seealso{
 }
 \examples{
-test <- concerto.test.get(1)
+test1 <- concerto.test.get(1)
+test2 <- concerto.test.get("some_other_test")
 }
 
 \keyword{ test }
