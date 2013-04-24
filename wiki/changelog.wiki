@@ -8,6 +8,8 @@
  * *{{{concerto$mediaURL}}}* variable is now available in test logic
  * object names needs to be unique in every workspace
  * most of the functions in *{{{concerto}}}* R package now accepts object name as argument
+ * template transition effects can now be set dynamically from test logic
+ * template loader and it's transition effects can now be set dynamically from test logic
 
 *Fixes*
 
