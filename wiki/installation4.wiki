@@ -66,6 +66,12 @@ Run:
 
 Replace *www-data* with your PHP process user name (corresponds to *$php_user* variable from SETTINGS.php), *concerto* with your Linux group name for Concerto Linux users (corresponds to *$r_users_group* variable from SETTINGS.php) and */usr/bin/R* with path to R executable (corresponds to *$path_r_exe* variable from SETTINGS.php)
 
+If you see line with:
+
+*{{{Defaults requiretty}}}*
+
+... then comment it out.
+
 ===Step 8===
 
 As a root user run:
