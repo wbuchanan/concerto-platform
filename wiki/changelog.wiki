@@ -10,6 +10,7 @@
  * most of the functions in *{{{concerto}}}* R package now accepts object name as argument
  * template transition effects can now be set dynamically from test logic
  * template loader and it's transition effects can now be set dynamically from test logic
+ * it is now possible to directly enter template HTML and head tag for HTML templates and template loaders
 
 *Fixes*
 
