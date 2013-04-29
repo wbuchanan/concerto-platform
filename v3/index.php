@@ -152,7 +152,14 @@ if (array_key_exists("sid", $_GET) || array_key_exists("tid", $_GET)) {
                 </div>
             </div>
             <div id="divSessionResumeDialog" title="session resuming" style="display:none;">
-                <p>This test has an ongoing session. Would you like to resume current test session?</p>
+                <p>This test has an ongoing session. The session will be resumed. Please check the checkbox to start new session.</p>
+                <p>
+                <table><tr>
+                        <td><input type="checkbox" id="chkResumeSession" /></td>
+                        <td>start new session</td>
+                    </tr>
+                </table>
+                </p>
             </div>
         </div>
     </body>
