@@ -7,13 +7,22 @@ Loader template.
 Sets a template that will be shown when the proper templates are loaded.
 }
 \usage{
-concerto.template.loader(templateID, params = list(), workspaceID = concerto$workspaceID, effectShow="default", effectShowOptions="default", effectHide="default", effectHideOptions="default")
+concerto.template.loader(templateID=-1, HTML="", head="", params = list(), workspaceID = concerto$workspaceID, effectShow="default", effectShowOptions="default", effectHide="default", effectHideOptions="default")
 }
 
 \arguments{
   \item{templateID}{
 Template ID or name.
 }
+
+ \item{HTML}{
+Template HTML.
+}
+
+\item{head}{
+Template head tag.
+}
+
   \item{params}{
 Named list with parameters we want to be inserted into template HTML.
 }
@@ -51,7 +60,8 @@ Przemyslaw Lis
 \seealso{
 }
 \examples{
-response <- concerto.template.loader(1)
+response1 <- concerto.template.loader(1)
+response2 <- concerto.template.loader(HTML="<div align="center">loading ... please wait ...</div>")
 }
 
 \keyword{ template }

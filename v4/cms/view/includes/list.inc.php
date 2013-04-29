@@ -66,13 +66,13 @@ foreach ($cols as $col) {
     $columns_def.=",";
 }
 
-$action_template = "<span style='display:inline-block;' class='spanIcon tooltip ui-icon ui-icon-pencil' onclick='$class_name.uiEdit(" . '${ id }' . ")' title='" . Language::string(203) . "'></span>";
+$action_template = "<button style='display:inline-block;' class='btnEdit ui-state-highlight' onclick='$class_name.uiEdit(" . '${ id }' . ")'>" . Language::string(203) . "</button>";
 $action_template.= "<span style='display:inline-block;' class='spanIcon tooltip ui-icon ui-icon-trash' onclick='$class_name.uiDelete(" . '${ id }' . ")' title='" . Language::string(204) . "'></span>";
 if ($class_name::$exportable) {
     $action_template.="<span style='display:inline-block;' class='spanIcon tooltip ui-icon ui-icon-arrowthickstop-1-n' onclick='$class_name.uiExport(" . '${ id }' . ")' title='" . Language::string(265) . "'></span>";
     $action_template.="<span style='display:inline-block;' class='spanIcon tooltip ui-icon ui-icon-gear' onclick='$class_name.uiUpload(" . '${ id }' . ")' title='" . Language::string(375) . "'></span>";
 }
-$columns_def.=sprintf("{ title:'', width:85, filterable: false, sortable: false, groupable: false, resizable: false, template: \"%s\"}", $action_template);
+$columns_def.=sprintf("{ title:'', width:250, filterable: false, sortable: false, groupable: false, resizable: false, template: \"%s\"}", $action_template);
 $columns_def.="]";
 ?>
 
@@ -87,6 +87,7 @@ $columns_def.="]";
                     });
                 }
 <?= $class_name ?>.uiRefreshCheckedList();
+                Methods.iniIconButton(".btnEdit","pencil");
             },
             //toolbar: kendo.template($("#script<?= $class_name ?>ToolbarTemplate").html()),
             toolbar: [

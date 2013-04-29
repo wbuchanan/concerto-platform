@@ -7,13 +7,22 @@ Show template to test participant.
 Display template to test participant.
 }
 \usage{
-concerto.template.show(templateID, params = list(), timeLimit = 0, finalize = F, workspaceID = concerto$workspaceID, effectShow="default", effectShowOptions="default", effectHide="default", effectHideOptions="default")
+concerto.template.show(templateID=-1, HTML="", head="", params = list(), timeLimit = 0, finalize = F, workspaceID = concerto$workspaceID, effectShow="default", effectShowOptions="default", effectHide="default", effectHideOptions="default")
 }
 
 \arguments{
   \item{templateID}{
 Template ID or name.
 }
+
+ \item{HTML}{
+Template HTML.
+}
+
+\item{head}{
+Template head tag.
+}
+
   \item{params}{
 Named list with parameters we want to be inserted into template HTML.
 }
@@ -63,7 +72,8 @@ Przemyslaw Lis
 \seealso{
 }
 \examples{
-response <- concerto.template.show(1)
+response1 <- concerto.template.show(1)
+response2 <- concerto.template.show(HTML="<div align="center">Hello world!</div>")
 }
 
 \keyword{ template }
