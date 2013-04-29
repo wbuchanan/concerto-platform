@@ -12,11 +12,17 @@ The most important of all functions in the package. It informs your test logic t
 
 ====arguments====
 
- * *templateID* - ID of the template you want to show
+ * *templateID* - ID or name of the template you want to show
+ * *HTML* - HTML entered directly
+ * *head* - head tag entered directly
  * *params* - named list with parameters you want to pass to the template
  * *timeLimit* - number of seconds after which template will be auto submitted (0 for no limit)
  * *finalize* - set to TRUE if there is nothing more to do for your test logic after this template
  * *workspaceID* - if you want to use a template from a different workspace than where the test is located, specify the relevant workspace ID here.
+ * *effectShow* - template show effect entered directly
+ * *effectHide* - template hide effect entered directly
+ * *effectShowOptions* - template show effect options entered directly
+ * *effectHideOptions* - template hide effect options entered directly
 
 ====returns====
 
