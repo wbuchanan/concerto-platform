@@ -13,8 +13,7 @@ http://concerto.e-psychometrics.com/demo/wiki/panel_test_form.png
 You can set the following test properties on the test tab main form:
 
  * *name* - name of the test
- * *open* (visible in *advanced view*) - check this option to set test to be open to public. Anyone will be able to run the test by selecting it from the test selection box. 
- * *loader* (visible in *advanced view*) - choose the template that will be shown when you submit one template and wait for another template to appear. For example, by clicking the 'Start Test' button on a test's introduction page, in order to proceed to the next template that will contain test items. 
+ * *open* (visible in *advanced view*) - check this option to set test to be open to public. Anyone will be able to run the test by selecting it from the test selection box.
 
 ----
 
