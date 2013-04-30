@@ -34,7 +34,7 @@
  * [Concerto3SimpleTest Create a simple test]
  * [Concerto3AdaptiveTest Create an adaptive test]
  * Mini tutorials
-  * [Concerto3MultiItem Multi item test]
+  * [Concerto3MultiItem Multiple items per page with Likert-type scale]
   * [Concerto3NoResponse Preventing 'no response' situations]
   * [Concerto3Pictures Inserting pictures, audio & video clips into a test]
   * [Concerto3Language Multilingual tests]
