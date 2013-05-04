@@ -1,6 +1,15 @@
 #labels Featured
 =CHANGELOG=
 
+==v4.0.0.beta3==
+
+*Fixes*
+
+ * fixed data column type select display in advanced and simple view in IE
+ * fixed problem with debugging session with objects which can't be converted to string
+
+----
+
 ==v4.0.0.beta2==
 
 *Features*
