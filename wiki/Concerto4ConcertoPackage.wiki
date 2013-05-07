@@ -296,3 +296,21 @@ Named list with the test specific return variables.
 ====example====
 
 {{{result <- concerto.test.run(1)}}}
+
+----
+
+==concerto.workspace.get==
+
+Gets workspace name.
+
+====arguments====
+
+ *workspaceID* - Concerto workspace ID
+
+====return====
+
+Name of the workspace.
+
+====example====
+
+{{{dbName <- concerto.workspace.get(1)}}}
