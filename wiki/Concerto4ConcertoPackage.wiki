@@ -6,7 +6,32 @@ Since Concerto v4 has a code auto-complete function and an R function documentat
 
 ----
 
-==concerto.show.template==
+==concerto.qti.get==
+
+Retrieves specific QTI object info.
+
+====arguments====
+
+ * *qtiID* - ID or name of the QTI you want to get
+ * *workspaceID* - if you want to get a QTI from a different workspace than where the test is located, specify the relevant workspace ID here.
+
+====returns====
+
+List with QTI object properties:
+ * *id* - QTI object ID
+ * *name* - QTI object name
+ * *ini_r_code* - QTI object R code evaluated at QTI initialization
+ * *response_proc_r_code* - QTI object R code evaluated at QTI response processing
+
+====example====
+
+{{{qti <- concerto.qti.get(1)}}}
+
+{{{qti <- concerto.qti.get("second_qti")}}}
+
+----
+
+==concerto.template.show==
 
 The most important of all functions in the package. It informs your test logic that it's time to show  a specific HTML template to test participants.
 
@@ -35,3 +60,7 @@ Returns named list with the variable gathered from the template and:
 ====example====
 
 {{{response <- concerto.template.show(1)}}}
+
+{{{response <- concerto.template.show("first_template")}}}
+
+{{{response <- concerto.template.show(HTML="Please click the button: <button>click me</button>")}}}
