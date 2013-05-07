@@ -305,7 +305,7 @@ Gets workspace name.
 
 ====arguments====
 
- *workspaceID* - Concerto workspace ID
+ * *workspaceID* - Concerto workspace ID
 
 ====return====
 
