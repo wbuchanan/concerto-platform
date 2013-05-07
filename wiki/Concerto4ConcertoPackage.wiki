@@ -6,6 +6,26 @@ Since Concerto v4 has a code auto-complete function and an R function documentat
 
 ----
 
+==Concerto session variables list==
+
+This list consist of chosen Concerto session internal variables. The list should NOT be modified by test logic. However there are some variables which can prove helpful for user and can be read.
+
+ * *{{{concerto$db$connection}}}* - MySQL database connection object
+ * *{{{concerto$db$name}}}* - current session main MySQL database name
+ * *{{{concerto$mediaPath}}}* - path to private media directory (use to save media files that should be accessible from within browser)
+ * *{{{concerto$mediaURL}}}* - URL to private media directory (use to access media files saved earlier in browser)
+ * *{{{concerto$sessionID}}}* - test session id
+ * *{{{concerto$testID}}}* - parent test id
+ * *{{{concerto$userIP}}}* - IP of test participant
+ * *{{{concerto$workspaceID}}}* - parent test workspace id
+ * *{{{concerto$workspacePrefix}}}* - workspace prefixes used in system
+
+Please keep in mind that when the Concerto session is initialized, your working directory is set to your workspace private directory. You can check what is the full path to directory by typing:
+
+*{{{getwd()}}}*
+
+----
+
 ==concerto.qti.get==
 
 Retrieves specific QTI object info.
