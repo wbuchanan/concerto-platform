@@ -252,3 +252,47 @@ Returns named list with the variable gathered from the template and:
 {{{response <- concerto.template.show("first_template")}}}
 
 {{{response <- concerto.template.show(HTML="Please click the button: <button>click me</button>")}}}
+
+----
+
+==concerto.test.get==
+
+Retrieves specific test object info.
+
+====arguments====
+
+ * *testID* - ID or name of the test you want to get
+ * *workspaceID* - if you want to get a test from a different workspace than where the test is located, specify the relevant workspace ID here.
+
+====returns====
+
+List with test object properties:
+ * *id* - test object ID
+ * *name* - test object name
+ * *code* - test logic code
+
+====example====
+
+{{{test <- concerto.test.get(1)}}}
+
+{{{test <- concerto.test.get("second_test")}}}
+
+----
+
+==concerto.test.run==
+
+Runs Concerto test.
+
+====arguments====
+
+ * *testID* - test ID or name
+ * *params* - named list of parameters you want to pass to the test logic
+ * *workspaceID* - Concerto workspace ID where the test object is located
+
+====return====
+
+Named list with the test specific return variables.
+
+====example====
+
+{{{result <- concerto.test.run(1)}}}
