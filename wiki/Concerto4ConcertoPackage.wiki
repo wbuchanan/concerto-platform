@@ -170,6 +170,55 @@ HTML code with inserted parameters.
 
 ----
 
+==concerto.template.get==
+
+Retrieves specific template object info.
+
+====arguments====
+
+ * *templateID* - ID or name of the template you want to get
+ * *workspaceID* - if you want to get a template from a different workspace than where the test is located, specify the relevant workspace ID here.
+
+====returns====
+
+List with template object properties:
+ * *id* - template object ID
+ * *name* - template object name
+ * *head* - head tag of HTML template
+ * *HTML* - template HTML
+
+====example====
+
+{{{template <- concerto.template.get(1)}}}
+
+{{{template <- concerto.template.get("second_template")}}}
+
+----
+
+==concerto.template.loader==
+
+Sets a template that will be shown when the proper templates are loaded.
+
+====arguments====
+
+ * *templateID* - ID or name of the template you want to show
+ * *HTML* - HTML entered directly
+ * *head* - head tag entered directly
+ * *params* - named list with parameters you want to pass to the template
+ * *workspaceID* - if you want to use a template from a different workspace than where the test is located, specify the relevant workspace ID here
+ * *effectShow* - template show effect entered directly
+ * *effectHide* - template hide effect entered directly
+ * *effectShowOptions* - template show effect options entered directly
+ * *effectHideOptions* - template hide effect options entered directly
+
+====example====
+
+{{{response1 <- concerto.template.loader(1)}}}
+
+{{{response2 <- concerto.template.loader(HTML="<div align="center">loading ... please wait ...</div>")}}}
+
+----
+
 ==concerto.template.show==
 
 The most important of all functions in the package. It informs your test logic that it's time to show  a specific HTML template to test participants.
