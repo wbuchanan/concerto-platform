@@ -52,6 +52,32 @@ Named list with QTI session state and:
 {{{ini <- concerto.qti.initialize(1)}}}
 
 {{{ini <- concerto.qti.initialize("first_qti")}}}
+
+----
+
+==concerto.qti.responseProcessing==
+
+QTI response processing.
+
+====arguments====
+
+ * *qtID* - QTI object id or name
+ * *ini* - result of QTI initialization function
+ * *userResponse* - test participant response (result of show template function)
+ * *workspaceID* - if you want to use a QTI from a different workspace than where the test is located, specify the relevant workspace ID here
+
+====return====
+
+Named list with elements declared in QTI XML.
+
+====example====
+
+{{{qti_init <- concerto.qti.initialize(1)}}}
+
+{{{response <- concerto.template.show(1, params = list(qti = qti_init$QTI_HTML))}}}
+
+{{{qti_proc <- concerto.qti.responseProcessing(1, qti_init, response)}}}
+
 ----
 
 ==concerto.template.show==
