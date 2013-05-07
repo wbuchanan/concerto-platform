@@ -114,7 +114,7 @@ Retrieves specific table object info.
 
 ====returns====
 
-List with QTI object properties:
+List with table object properties:
  * *id* - table object ID
  * *name* - table name
 
@@ -123,6 +123,50 @@ List with QTI object properties:
 {{{table <- concerto.table.get(1)}}}
 
 {{{table <- concerto.table.get("second_table")}}}
+
+----
+
+==concerto.table.query==
+
+Perform query on Concerto database.
+
+====arguments====
+
+ * *sql* - SQL query to perform
+ * *params* - named list with parameters
+
+====return====
+
+Returns result set.
+
+====example====
+
+{{{sql <- "SELECT * FROM `itam_bank`"}}}
+
+{{{items <- concerto.table.query(sql)}}}
+
+----
+
+==concerto.template.fillHTML==
+
+Fills HTML code with given parameters.
+
+====arguments====
+
+ * *html* - HTML code
+ * *params* - named list with parameters
+
+====return====
+
+HTML code with inserted parameters.
+
+====example====
+
+{{{index <- 12}}}
+
+{{{html <- "<input type='text' name='inp{{index}}' />"}}}
+
+{{{html <- concerto.template.fillHTML(html , list(index = index))}}}
 
 ----
 
