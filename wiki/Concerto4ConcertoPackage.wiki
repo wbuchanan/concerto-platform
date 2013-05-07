@@ -80,6 +80,52 @@ Named list with elements declared in QTI XML.
 
 ----
 
+==concerto.table.fillSQL==
+
+Fills SQL code with given parameters.
+
+====arguments====
+
+ * *sql* - SQL code
+ * *params* - named list with parameters
+
+====return====
+
+SQL code with inserted parameters.
+
+====example====
+
+{{{id <- 123}}}
+
+{{{sql <- "SELECT * FROM `db`.`table` WHERE `id`={{id_value}}"}}}
+
+{{{sql <- concerto.table.fillSQL(sql, list(id_value = id))}}}
+
+----
+
+==concerto.table.get==
+
+Retrieves specific table object info.
+
+====arguments====
+
+ * *tableID* - ID or name of the table you want to get
+ * *workspaceID* - if you want to get a table from a different workspace than where the test is located, specify the relevant workspace ID here.
+
+====returns====
+
+List with QTI object properties:
+ * *id* - table object ID
+ * *name* - table name
+
+====example====
+
+{{{table <- concerto.table.get(1)}}}
+
+{{{table <- concerto.table.get("second_table")}}}
+
+----
+
 ==concerto.template.show==
 
 The most important of all functions in the package. It informs your test logic that it's time to show  a specific HTML template to test participants.
