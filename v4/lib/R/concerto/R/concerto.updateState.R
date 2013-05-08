@@ -4,7 +4,9 @@ function() {
   sessionID <- dbEscapeStrings(concerto$db$connection,toString(concerto$sessionID))
   state <- list()
   for(var in ls(envir=.GlobalEnv)){
-    if(!is.function(get(var))) state[[var]] <- toString(get(var))
+    try({
+        if(!is.function(get(var))) state[[var]] <- toString(get(var))
+        },silent=T)
   }
   state <- rjson::toJSON(state)
   state <- dbEscapeStrings(concerto$db$connection,toString(state))

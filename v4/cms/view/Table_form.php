@@ -152,45 +152,48 @@ if ($oid != 0) {
                         <td><span class="tooltip spanIcon ui-icon ui-icon-help" title="<?= Language::string(258) ?>"></span></td>
                         <td class="fullWidth">
                             <div class="horizontalMargin">
-                                <select id="form<?= $class_name ?>SelectColumnType" class="fullWidth ui-widget-content ui-corner-all">
-                                    <option class="<?= User::view_class(true) ?>" value="double"><?= Language::string(636) ?></option>
-                                    <option class="<?= User::view_class(true) ?>" value="text" <?= User::is_simple_view() ? "selected" : "" ?>><?= Language::string(637) ?></option>
-                                    <optgroup class="<?= User::view_class() ?>" label="<?= Language::string(581) ?>">
-                                        <option class="<?= User::view_class() ?>" value="tinyint">tinyint</option>
-                                        <option class="<?= User::view_class() ?>" value="smallint">smallint</option>
-                                        <option class="<?= User::view_class() ?>" value="mediumint">mediumint</option>
-                                        <option class="<?= User::view_class() ?>" value="int">int</option>
-                                        <option class="<?= User::view_class() ?>" value="bigint">bigint</option>
-                                        <option class="<?= User::view_class() ?>" value="decimal">decimal</option>
-                                        <option class="<?= User::view_class() ?>" value="float">float</option>
-                                        <option class="<?= User::view_class() ?>" value="double">double</option>
-                                        <option class="<?= User::view_class() ?>" value="real">real</option>
-                                        <option class="<?= User::view_class() ?>" value="bit">bit</option>
-                                        <option class="<?= User::view_class() ?>" value="boolean">boolean</option>
-                                        <option class="<?= User::view_class() ?>" value="serial">serial</option>
+                                <select id="form<?= $class_name ?>SelectColumnType" class="<?=User::view_class(true)?> fullWidth ui-widget-content ui-corner-all form<?= $class_name ?>SelectColumnType" onchange="$('.form<?= $class_name ?>SelectColumnType').val($(this).val());">
+                                    <option value="double"><?= Language::string(636) ?></option>
+                                    <option value="text" <?= User::is_simple_view() ? "selected" : "" ?>><?= Language::string(637) ?></option>
+                                </select>
+                                
+                                <select id="form<?= $class_name ?>SelectColumnType" class="<?=User::view_class()?> fullWidth ui-widget-content ui-corner-all form<?= $class_name ?>SelectColumnType" onchange="$('.form<?= $class_name ?>SelectColumnType').val($(this).val());">
+                                    <optgroup label="<?= Language::string(581) ?>">
+                                        <option value="tinyint">tinyint</option>
+                                        <option value="smallint">smallint</option>
+                                        <option value="mediumint">mediumint</option>
+                                        <option value="int">int</option>
+                                        <option value="bigint">bigint</option>
+                                        <option value="decimal">decimal</option>
+                                        <option value="float">float</option>
+                                        <option value="double">double</option>
+                                        <option value="real">real</option>
+                                        <option value="bit">bit</option>
+                                        <option value="boolean">boolean</option>
+                                        <option value="serial">serial</option>
                                     </optgroup>
-                                    <optgroup class="<?= User::view_class() ?>" label="<?= Language::string(583) ?>">
-                                        <option class="<?= User::view_class() ?>" value="char">char</option>
-                                        <option class="<?= User::view_class() ?>" value="varchar">varchar</option>
-                                        <option class="<?= User::view_class() ?>" value="tinytext">tinytext - HTML</option>
-                                        <option class="<?= User::view_class() ?>" value="text" <?= !User::is_simple_view() ? "selected" : "" ?>>text - HTML</option>
-                                        <option class="<?= User::view_class() ?>" value="mediumtext">mediumtext - HTML</option>
-                                        <option class="<?= User::view_class() ?>" value="longtext">longtext - HTML</option>
-                                        <option class="<?= User::view_class() ?>" value="binary">binary</option>
-                                        <option class="<?= User::view_class() ?>" value="varbinary">varbinary</option>
-                                        <option class="<?= User::view_class() ?>" value="tinyblob">tinyblob</option>
-                                        <option class="<?= User::view_class() ?>" value="mediumblob">mediumblob</option>
-                                        <option class="<?= User::view_class() ?>" value="blob">blob</option>
-                                        <option class="<?= User::view_class() ?>" value="longblob">longblob</option>
-                                        <option class="<?= User::view_class() ?>" value="enum">enum</option>
-                                        <option class="<?= User::view_class() ?>" value="set">set</option>
+                                    <optgroup label="<?= Language::string(583) ?>">
+                                        <option value="char">char</option>
+                                        <option value="varchar">varchar</option>
+                                        <option value="tinytext">tinytext - HTML</option>
+                                        <option value="text" <?= !User::is_simple_view() ? "selected" : "" ?>>text - HTML</option>
+                                        <option value="mediumtext">mediumtext - HTML</option>
+                                        <option value="longtext">longtext - HTML</option>
+                                        <option value="binary">binary</option>
+                                        <option value="varbinary">varbinary</option>
+                                        <option value="tinyblob">tinyblob</option>
+                                        <option value="mediumblob">mediumblob</option>
+                                        <option value="blob">blob</option>
+                                        <option value="longblob">longblob</option>
+                                        <option value="enum">enum</option>
+                                        <option value="set">set</option>
                                     </optgroup>
-                                    <optgroup class="<?= User::view_class() ?>" label="<?= Language::string(582) ?>">
-                                        <option class="<?= User::view_class() ?>" value="date">date</option>
-                                        <option class="<?= User::view_class() ?>" value="datetime">datetime</option>
-                                        <option class="<?= User::view_class() ?>" value="timestamp">timestamp</option>
-                                        <option class="<?= User::view_class() ?>" value="time">time</option>
-                                        <option class="<?= User::view_class() ?>" value="year">year</option>
+                                    <optgroup label="<?= Language::string(582) ?>">
+                                        <option value="date">date</option>
+                                        <option value="datetime">datetime</option>
+                                        <option value="timestamp">timestamp</option>
+                                        <option value="time">time</option>
+                                        <option value="year">year</option>
                                     </optgroup>
                                 </select>
                             </div>
