@@ -7,6 +7,7 @@
 
  * fixed data column type select display in advanced and simple view in IE
  * fixed problem with debugging session with objects which can't be converted to string
+ * *{{{concerto.test.run}}}* now accepts properly test name as *{{{testID}}}* argument
  * other minor fixes
 
 ----
