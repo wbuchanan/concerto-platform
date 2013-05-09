@@ -60,9 +60,12 @@ Run:
 
 *{{{sudo visudo}}}*
 
-... and add this line:
+... and add this lines:
 
 *{{{www-data ALL=(%concerto) NOPASSWD: /usr/bin/R}}}*
+
+*{{{www-data ALL=(%concerto) NOPASSWD: /bin/kill*}}}
+
 
 Replace *www-data* with your PHP process user name (corresponds to *$php_user* variable from SETTINGS.php), *concerto* with your Linux group name for Concerto Linux users (corresponds to *$r_users_group* variable from SETTINGS.php) and */usr/bin/R* with path to R executable (corresponds to *$path_r_exe* variable from SETTINGS.php)
 
