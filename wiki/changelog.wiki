@@ -3,6 +3,10 @@
 
 ==v4.0.0.beta3==
 
+*Compatibility notes*
+
+ * {{{www-data ALL=(%concerto) NOPASSWD: /bin/kill}}} needs to be added to *{{{visudo}}}*, please check installation guide for complete guide of visudo configuration
+
 *Fixes*
 
  * fixed data column type select display in advanced and simple view in IE
