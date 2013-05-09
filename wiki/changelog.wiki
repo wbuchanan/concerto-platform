@@ -13,6 +13,7 @@
  * fixed problem with debugging session with objects which can't be converted to string
  * *{{{concerto.test.run}}}* now accepts properly test name as *{{{testID}}}* argument
  * improved R process termination mechanism
+ * improved finished R session leftovers cleaning
  * other minor fixes
 
 ----
