@@ -5,7 +5,7 @@
 
 *Compatibility notes*
 
- * {{{www-data ALL=(%concerto) NOPASSWD: /bin/kill}}} needs to be added to *{{{visudo}}}*, please check installation guide for complete guide of visudo configuration
+ * *{{{www-data ALL=(%concerto) NOPASSWD: /bin/kill}}}* needs to be added to *{{{visudo}}}*, please check installation guide for complete guide of visudo configuration
 
 *Fixes*
 
