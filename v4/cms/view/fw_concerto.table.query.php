@@ -105,12 +105,18 @@ if (array_key_exists("having_section_add", $_POST) && $_POST['having_section_add
     array_push($having_section, json_decode(json_encode(array("v" => 0, "w0" => "AND", "w1" => "id", "w2" => "=", "w3" => "", "c" => ($having_count > 0 ? "AND" : "") . " `id` ="))));
 $having_count = count($having_section);
 
-$limit_section = array("w0" => 0, "w1" => 0, "w2" => 10);
-$limit_section = json_encode($limit_section);
+$limit_section = array("w0" => 0, "w1" => 0, "w2" => 30);
 if (array_key_exists('limit_section', $_POST)) {
     $limit_section = $_POST['limit_section'];
+    $limit_section = json_decode($limit_section, true);
 }
-$limit_section = json_decode($limit_section);
+
+if (!array_key_exists("w0", $limit_section) || !$limit_section["w0"])
+    $limit_section["w0"] = 0;
+if (!array_key_exists("w1", $limit_section) || !$limit_section["w1"])
+    $limit_section["w1"] = 0;
+if (!array_key_exists("w2", $limit_section) || !$limit_section["w2"])
+    $limit_section["w2"] = 30;
 
 $set_section = array();
 $set_section = json_encode($set_section);
@@ -789,31 +795,31 @@ if ($table == null) {
         </legend>
         <div class="divFormElement" style="width:30%;" align="left">
             <select class="fullWidth ui-widget-content ui-corner-all" id="radioFWlimit" name="radioFWlimit" onchange="Test.uiRefreshExtendedFunctionWizard('<?= $name ?>')">
-                <option value="0" <?= $limit_section->w0 == "0" ? "selected" : "" ?> ><?= Language::string(744) ?></option>
-                <option value="1" <?= $limit_section->w0 == "1" ? "selected" : "" ?> ><?= Language::string(745) ?></option>
+                <option value="0" <?= $limit_section["w0"] == "0" ? "selected" : "" ?> ><?= Language::string(744) ?></option>
+                <option value="1" <?= $limit_section["w0"] == "1" ? "selected" : "" ?> ><?= Language::string(745) ?></option>
             </select>
         </div>
-        <div class="divFormElement <?= $limit_section->w0 == 0 ? "notVisible" : "" ?>" style="width:35%;" align="left">
+        <div class="divFormElement <?= $limit_section["w0"] == 0 ? "notVisible" : "" ?>" style="width:35%;" align="left">
             <table class="fullWidth">
                 <tr>
                     <td class="noWrap tdFormLabel"><?= Language::string(746) ?>:</td>
                     <td class="tdFormIcon"><span class="tooltip spanIcon ui-icon ui-icon-help" title="<?= Language::string(747) ?>"></span></td>
                     <td>
                         <div class="divFormControl">
-                            <input id="selectFWlimitOffset" class="fullWidth ui-widget-content ui-corner-all" value="<?= $limit_section->w1 ?>" />
+                            <input id="selectFWlimitOffset" class="fullWidth ui-widget-content ui-corner-all" value="<?= $limit_section["w1"] ?>" />
                         </div>
                     </td>
                 </tr>
             </table>
         </div>
-        <div class="divFormElement <?= $limit_section->w0 == 0 ? "notVisible" : "" ?>" style="width:35%;" align="left">
+        <div class="divFormElement <?= $limit_section["w0"] == 0 ? "notVisible" : "" ?>" style="width:35%;" align="left">
             <table class="fullWidth">
                 <tr>
                     <td class="noWrap tdFormLabel"><?= Language::string(748) ?>:</td>
                     <td class="tdFormIcon"><span class="tooltip spanIcon ui-icon ui-icon-help" title="<?= Language::string(749) ?>"></span></td>
                     <td>
                         <div class="divFormControl">
-                            <input id="selectFWlimitNumber" class="fullWidth ui-widget-content ui-corner-all" value="<?= $limit_section->w2 ?>" />
+                            <input id="selectFWlimitNumber" class="fullWidth ui-widget-content ui-corner-all" value="<?= $limit_section["w2"] ?>" />
                         </div>
                     </td>
                 </tr>

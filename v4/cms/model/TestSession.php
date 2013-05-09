@@ -318,6 +318,8 @@ class TestSession extends OTable {
                             TestSession::unregister($thisSession->UserWorkspace_id . "-" . $thisSession->id, $thisSession->UserWorkspace_id);
                             $removed = true;
                         }
+                        else
+                            $thisSession->close();
                         break;
                     }
                 case TestSession::TEST_SESSION_STATUS_ERROR: {
@@ -341,11 +343,13 @@ class TestSession extends OTable {
                         break;
                     }
                 case TestSession::TEST_SESSION_STATUS_TEMPLATE: {
-                        if ($debug) {
-                            if ($release) {
+                        if ($release) {
+                            if ($debug) {
                                 TestSession::unregister($thisSession->UserWorkspace_id . "-" . $thisSession->id, $thisSession->UserWorkspace_id);
                                 $removed = true;
                             }
+                            else
+                                $thisSession->close();
                         }
                         break;
                     }

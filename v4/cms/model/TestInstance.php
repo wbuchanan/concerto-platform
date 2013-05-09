@@ -111,8 +111,10 @@ class TestInstance {
 
         $this->r = proc_open("sudo -u " . $userR->login . " " . Ini::$path_r_exe . " --vanilla --quiet", $descriptorspec, $this->pipes, Ini::$path_data, $env);
         if (is_resource($this->r)) {
-            if (Ini::$log_server_events)
-                TestServer::log_debug("TestInstance->start() --- Test instance started");
+            if (Ini::$log_server_events) {
+                $status = proc_get_status($this->r);
+                TestServer::log_debug("TestInstance->start() --- Test instance started, pid: " . $status['pid']);
+            }
 
             if (!stream_set_blocking($this->pipes[0], 0)) {
                 if (Ini::$log_server_events) {
@@ -149,8 +151,8 @@ class TestInstance {
             TestServer::log_debug("TestInstance->stop() --- stopping instance #" . $this->UserWorkspace_id . ":" . $this->TestSession_id);
 
         if ($this->is_started()) {
-            if ($session->status == TestSession::TEST_SESSION_STATUS_TEMPLATE)
-                $this->send_close_signal();
+            //if ($session->status == TestSession::TEST_SESSION_STATUS_TEMPLATE)
+            //    $this->send_close_signal();
 
             fclose($this->pipes[0]);
             fclose($this->pipes[1]);
@@ -159,9 +161,10 @@ class TestInstance {
             if ($this->is_execution_timedout() || $terminate) {
                 $this->terminate_processess();
             }
+            $ter = proc_terminate($this->r, 9);
             $ret = proc_close($this->r);
             if (Ini::$log_server_events)
-                TestServer::log_debug("TestInstance->stop() --- Test instance closed with: " . $ret);
+                TestServer::log_debug("TestInstance->stop() --- Test instance closed with: " . $ter . ":" . $ret);
         } else {
             if (Ini::$log_server_events)
                 TestServer::log_debug("TestInstance->stop() --- not started");
@@ -174,23 +177,31 @@ class TestInstance {
         if ($status !== false) {
             $ppid = $status['pid'];
 
-            TestInstance::kill_children($ppid);
+            $workspace = $this->get_UserWorkspace();
+
+            $owner = $workspace->get_owner();
+            $userR = $owner->get_UserR();
+
+            TestInstance::kill_children($ppid, $userR->login, false);
         }
     }
 
-    public static function kill_children($ppid) {
+    public static function kill_children($ppid, $user, $kill_self = true) {
         if (Ini::$log_server_events)
             TestServer::log_debug("TestInstance->terminate_processess() --- killing children of pid:" . $ppid);
 
         $pids = preg_split('/\s+/', `ps -o pid --no-heading --ppid $ppid`);
         foreach ($pids as $pid) {
             if (is_numeric($pid))
-                TestInstance::kill_children($pid);
+                TestInstance::kill_children($pid, $user);
         }
+        if (!$kill_self)
+            return;
         if (is_numeric($ppid)) {
             if (Ini::$log_server_events)
                 TestServer::log_debug("TestInstance->terminate_processess() --- killing " . $ppid);
-            posix_kill($ppid, 9); //9 is the SIGKILL signal
+
+            `sudo -u $user /bin/kill $ppid 2>&1`;
         }
     }
 
