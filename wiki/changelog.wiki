@@ -14,6 +14,7 @@
  * *{{{concerto.test.run}}}* now accepts properly test name as *{{{testID}}}* argument
  * improved R process termination mechanism
  * improved finished R session leftovers cleaning
+ * fixed exporting table to CSV
  * other minor fixes
 
 ----
