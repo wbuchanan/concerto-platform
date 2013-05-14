@@ -148,8 +148,8 @@ This file contains all configurable options that needs to be set before you can 
 || $server_socks_type || socket server type ( UNIX or TCP, *UNIX highly recommended* ) || "UNIX" ||
 || $server_host || choose host to connect to ( *only when TCP* ) || "127.0.0.1" ||
 || $server_port || choose port used for connection ( *only when TCP* ) || "8888" ||
-|| $r_instances_persistant_instance_timeout || after set period of instance inactivity in seconds the instance will be serialized and closed || 300 ||
-|| $r_instances_persistant_server_timeout || after set period of server inactivity in seconds the server will be closed ( new instances can restart it anytime ) || 420 ||
+|| $r_instances_persistant_instance_timeout || after set period of instance inactivity in seconds the instance will be serialized and closed || 60 * 15 ||
+|| $r_instances_persistant_server_timeout || after set period of server inactivity in seconds the server will be closed ( new instances can restart it anytime ) || 60 * 20 ||
 || $r_max_execution_time || maximum R execution time after which instance will be terminated ( prevents infinite loops in R on server ) || 30 ||
 || $unix_locale || Unix locale LANG variable. Must be installed on the system. Leave blank for none/default || "en_GB.UTF8" ||
 || $timezone || PHP timezone settings || "Europe/London" ||
