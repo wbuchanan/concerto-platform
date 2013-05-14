@@ -15,6 +15,7 @@
  * improved R process termination mechanism
  * improved finished R session leftovers cleaning
  * fixed exporting table to CSV
+ * improved socket server launching and instance detection mechanism
  * other minor fixes
 
 ----
