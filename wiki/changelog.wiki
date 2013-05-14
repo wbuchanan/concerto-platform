@@ -16,6 +16,7 @@
  * improved finished R session leftovers cleaning
  * fixed exporting table to CSV
  * improved socket server launching and instance detection mechanism
+ * *{{{session timed out}}}* message will appear when test session idle timeout reached and *{{{onUnserialize}}}* function is not overriden
  * other minor fixes
 
 ----
