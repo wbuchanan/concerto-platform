@@ -131,7 +131,7 @@ class TestServer {
         }
 
         while (self::get_server_status() != self::SERVER_STATUS_RUNNING) {
-            usleep(100000);
+            usleep(500000);
         }
     }
 
@@ -156,18 +156,16 @@ class TestServer {
 
         socket_close($socket);
 
-        $status_path = Ini::$path_unix_sock_dir . ".starting";
         if ($result) {
             if (Ini::$log_server_events) {
                 self::log_debug("TestServer::is_running() --- Server is running");
             }
-            if (file_exists($status_path))
-                unlink($status_path);
             return self::SERVER_STATUS_RUNNING;
         } else {
-            if (file_exists($status_path)) {
+            $output = array();
+            exec("ps -Af | grep " . Ini::$path_internal . 'cms/query/socket_start.php', $output);
+            if (count($output) > 2)
                 return self::SERVER_STATUS_STARTING;
-            }
         }
 
         if (Ini::$log_server_events) {
@@ -177,10 +175,6 @@ class TestServer {
     }
 
     public static function start_process() {
-        $status_path = Ini::$path_unix_sock_dir . ".starting";
-        $fh = fopen($status_path, "w");
-        fwrite($fh, self::SERVER_STATUS_STARTING);
-        fclose($fh);
         if (Ini::$log_server_events) {
             self::log_debug("TestServer::start_process() --- Starting server process");
         }
@@ -485,7 +479,7 @@ class TestServer {
 
         if (!array_key_exists("sid" . $data->workspace_id . "-" . $data->session_id, $this->instances) && $session->status != TestSession::TEST_SESSION_STATUS_SERIALIZED && $session->status != TestSession::TEST_SESSION_STATUS_NEW) {
             if (Ini::$log_server_events)
-                self::log_debug("TestServer->authorize_client() --- Client authorization failed - broken session");
+                self::log_debug("TestServer->authorize_client() --- Client authorization failed - invalid session");
             if (!socket_write($client_sock, json_encode(array("return" => -1)) . chr(0))) {
                 if (Ini::$log_server_events)
                     self::log_debug("TestServer->authorize_client() --- Error: (socket_write) " . socket_last_error() . " - " . socket_strerror(socket_last_error()));

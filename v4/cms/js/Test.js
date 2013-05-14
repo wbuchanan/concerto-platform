@@ -90,17 +90,17 @@ Test.getFullSaveObject = function(isNew) {
 
 Test.uiSaveValidate = function(ignoreOnBefore, isNew) {
     var thisClass = this;
-    
+
     if (!this.checkRequiredFields([
         $("#form" + this.className + "InputName").val()
     ])) {
         Methods.alert(dictionary["s415"], "alert");
         return false;
     }
-    
+
     $.post("query/check_module_unique_fields.php", {
         "class_name": this.className,
-        "oid": this.currentID,
+        "oid": (isNew ? 0 : this.currentID),
         "fields[]": [$.toJSON({
                 name: "name",
                 value: $("#form" + this.className + "InputName").val()

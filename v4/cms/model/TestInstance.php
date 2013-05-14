@@ -441,10 +441,9 @@ TIMEOUT
                             $params = $test->get_parameter_TestVariables();
                             $params_declaration = "";
                             foreach ($params as $param) {
-                                foreach ($variables as $kv) {
-                                    $kv = json_decode($kv);
-                                    if ($kv->name == $param->name) {
-                                        $params_declaration .=$param->name . " <- '" . addcslashes($kv->value, "'") . "'\n";
+                                foreach ($variables as $kv => $vv) {
+                                    if ($kv == $param->name) {
+                                        $params_declaration .=$param->name . " <- '" . addcslashes($vv, "'") . "'\n";
                                     }
                                 }
                             }
@@ -544,6 +543,8 @@ TIMEOUT
             rm(CONCERTO_WORKSPACE_PREFIX)
             rm(CONCERTO_USER_IP)
             rm(CONCERTO_MEDIA_URL)
+            
+            if(!exists("onUnserialize")) onUnserialize <- function(lastReturn){ concerto.template.show(HTML="<h3>Session timed out.</h3>",finalize=T) }
             
             %s
             ', $test->id, $this->TestSession_id, $db_host, ($db_port != "" ? $db_port : "3306"), $main_workspace->db_login, $main_workspace->db_password, $workspace->db_name, $path, $mysql_timezone, Ini::$path_internal_media . $owner->id . "/", $workspace->id, Ini::$db_users_db_name_prefix, $this->IP, Ini::$path_external_media . $owner->id . "/", $unserialize ? "FALSE" : "TRUE", $unserialize ? '

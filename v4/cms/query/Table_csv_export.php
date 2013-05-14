@@ -30,7 +30,7 @@ if ($logged_user == null)
 $table = Table::from_mysql_id($_GET['oid']);
 
 function output_table_to_csv($table, $header_row = true, $col_sep = ",", $row_sep = "\r\n", $qut = '"') {
-    $sql = sprintf("SELECT * FROM `%s`", $table->get_table_name());
+    $sql = sprintf("SELECT * FROM `%s`", $table->name);
     $z = mysql_query($sql);
     $i = 0;
     while ($r = mysql_fetch_array($z)) {
