@@ -285,7 +285,7 @@ class TestServer {
                         $serialized = true;
                     }
 
-                    if ($response != null) {
+                    if ($response !== null) {
                         $this->last_action_time = time();
 
                         $this->instances[$k]->is_data_ready = false;

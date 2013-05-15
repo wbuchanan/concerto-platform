@@ -349,6 +349,8 @@ class TestInstance {
             $error.=$append;
         }
         if (strpos($error, 'Execution halted') !== false || $this->is_execution_timedout()) {
+            if (Ini::$log_server_events)
+                TestServer::log_debug("TestInstance->read()--- Error instance recognised on #" . $this->UserWorkspace_id . ":" . $this->TestSession_id);
             $this->code_execution_halted = true;
             $this->is_data_ready = true;
 
