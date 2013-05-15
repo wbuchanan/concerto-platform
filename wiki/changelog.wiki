@@ -17,6 +17,7 @@
  * fixed exporting table to CSV
  * improved socket server launching and instance detection mechanism
  * *{{{session timed out}}}* message will appear when test session idle timeout reached and *{{{onUnserialize}}}* function is not overriden
+ * fixed not recognised error sessions in some rare cases
  * other minor fixes
 
 ----
