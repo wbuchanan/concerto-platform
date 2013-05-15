@@ -18,6 +18,7 @@
  * improved socket server launching and instance detection mechanism
  * *{{{session timed out}}}* message will appear when test session idle timeout reached and *{{{onUnserialize}}}* function is not overriden
  * fixed not recognised error sessions in some rare cases
+ * user is no longer redirected to *{{{users}}}* tab when changing workspace
  * other minor fixes
 
 ----
