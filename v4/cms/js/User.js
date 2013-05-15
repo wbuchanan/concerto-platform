@@ -718,7 +718,7 @@ User.uiChangeWorkspace = function(obj) {
                         obj.val(newWorkspace);
                         Methods.alert(dictionary["s631"], "info", dictionary["s630"], function() {
                             Methods.uiBlockAll();
-                            Methods.reload(thisClass.reloadHash);
+                            Methods.reload();
                         });
                         break;
                     }
