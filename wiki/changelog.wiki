@@ -1,6 +1,18 @@
 #labels Featured
 =CHANGELOG=
 
+==v4.0.0.beta4==
+
+*Features*
+
+ * Updated to Kendo UI Q1 2013 SP
+
+*Performance*
+ 
+ * wide tables performance in panel improved
+
+----
+
 ==v4.0.0.beta3==
 
 *Compatibility notes*
