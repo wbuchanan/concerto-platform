@@ -26,6 +26,7 @@ Table.className = "Table";
 
 Table.onAfterEdit = function()
 {
+    Table.isIndexGridInitialized = false;
     Table.crudIndexesDeleted = [];
     Table.crudColumnsDeleted = [];
     Table.crudDataDeleted = [];
@@ -329,11 +330,11 @@ Table.uiReloadDataGrid = function(data, columns) {
         resizable: true,
         sortable: true,
         columnMenu: {
+            sortable: false,
+            columns: true,
             messages: {
                 filter: dictionary["s341"],
-                columns: dictionary["s533"],
-                sortAscending: dictionary["s534"],
-                sortDescending: dictionary["s535"]
+                columns: dictionary["s533"]
             }
         },
         pageable: {
@@ -420,6 +421,9 @@ Table.uiIniDataGrid = function() {
                 title: title,
                 field: data[i].name
             };
+
+            if (i >= 20)
+                col["hidden"] = true;
 
             col["editor"] = Table.stringEditor;
             fields[data[i].name]["type"] = "string";
@@ -590,11 +594,11 @@ Table.uiIniDataGrid = function() {
             resizable: true,
             sortable: true,
             columnMenu: {
+                sortable: false,
+                columns: true,
                 messages: {
                     filter: dictionary["s341"],
-                    columns: dictionary["s533"],
-                    sortAscending: dictionary["s534"],
-                    sortDescending: dictionary["s535"]
+                    columns: dictionary["s533"]
                 }
             },
             pageable: {
@@ -682,7 +686,8 @@ Table.uiReloadStructureGrid = function(data, columns) {
             model: {
                 fields: Table.structureGridSchemaFields
             }
-        }
+        }//,
+        //pageSize: 20
     });
 
     $("#div" + thisClass.className + "GridStructure").kendoGrid({
@@ -701,7 +706,24 @@ Table.uiReloadStructureGrid = function(data, columns) {
         ],
         editable: false,
         scrollable: true,
-        resizable: true
+        resizable: true//,
+                /*
+                 pageable: {
+                 pageSizes: true,
+                 messages: {
+                 display: dictionary["s527"],
+                 empty: dictionary["s528"],
+                 page: dictionary["s529"],
+                 of: dictionary["s530"],
+                 itemsPerPage: dictionary["s531"],
+                 first: dictionary["s523"],
+                 previous: dictionary["s524"],
+                 next: dictionary["s525"],
+                 last: dictionary["s526"],
+                 refresh: dictionary["s532"]
+                 }
+                 }
+                 */
     });
     Methods.iniIconButton(".btnAdd", "plus");
 }
@@ -749,7 +771,8 @@ Table.uiIniStructureGrid = function() {
                 id: "id",
                 fields: fields
             }
-        }
+        }//,
+        //pageSize: 20
     });
 
     Table.structureGridSchemaFields = fields;
@@ -802,7 +825,24 @@ Table.uiIniStructureGrid = function() {
         ],
         editable: false,
         scrollable: true,
-        resizable: true
+        resizable: true//,
+                /*
+                 pageable: {
+                 pageSizes: true,
+                 messages: {
+                 display: dictionary["s527"],
+                 empty: dictionary["s528"],
+                 page: dictionary["s529"],
+                 of: dictionary["s530"],
+                 itemsPerPage: dictionary["s531"],
+                 first: dictionary["s523"],
+                 previous: dictionary["s524"],
+                 next: dictionary["s525"],
+                 last: dictionary["s526"],
+                 refresh: dictionary["s532"]
+                 }
+                 }
+                 */
     });
     Methods.iniIconButton(".btnAdd", "plus");
 }
@@ -840,7 +880,8 @@ Table.uiIniIndexGrid = function() {
                 id: "id",
                 fields: fields
             }
-        }
+        }//,
+        //pageSize: 20
     });
 
     Table.indexGridSchemaFields = fields;
@@ -872,7 +913,24 @@ Table.uiIniIndexGrid = function() {
             }
         ],
         editable: false,
-        scrollable: true
+        scrollable: true//,
+                /*
+                 pageable: {
+                 pageSizes: true,
+                 messages: {
+                 display: dictionary["s527"],
+                 empty: dictionary["s528"],
+                 page: dictionary["s529"],
+                 of: dictionary["s530"],
+                 itemsPerPage: dictionary["s531"],
+                 first: dictionary["s523"],
+                 previous: dictionary["s524"],
+                 next: dictionary["s525"],
+                 last: dictionary["s526"],
+                 refresh: dictionary["s532"]
+                 }
+                 }
+                 */
     });
     Methods.iniIconButton(".btnAdd", "plus");
 }
@@ -884,7 +942,7 @@ Table.uiRefreshIndexableColumns = function() {
     var container = $("#div" + this.className + "IndexableColumns");
     container.html("");
     for (var i = 0; i < cols.length; i++) {
-        container.html(container.html() + "<input type='checkbox' class='checbkoxIndexableColumn' value='" + cols[i].name + "' />" + cols[i].name + "<br/>");
+        container.append("<input type='checkbox' class='checbkoxIndexableColumn' value='" + cols[i].name + "' />" + cols[i].name + "<br/>");
     }
 }
 
@@ -1085,7 +1143,8 @@ Table.uiReloadIndexGrid = function(data, columns) {
             model: {
                 fields: Table.indexGridSchemaFields
             }
-        }
+        }//,
+        //pageSize: 20
     });
 
     $("#div" + thisClass.className + "GridIndex").kendoGrid({
@@ -1101,7 +1160,24 @@ Table.uiReloadIndexGrid = function(data, columns) {
             }
         ],
         editable: false,
-        scrollable: false
+        scrollable: false//,
+                /*
+                 pageable: {
+                 pageSizes: true,
+                 messages: {
+                 display: dictionary["s527"],
+                 empty: dictionary["s528"],
+                 page: dictionary["s529"],
+                 of: dictionary["s530"],
+                 itemsPerPage: dictionary["s531"],
+                 first: dictionary["s523"],
+                 previous: dictionary["s524"],
+                 next: dictionary["s525"],
+                 last: dictionary["s526"],
+                 refresh: dictionary["s532"]
+                 }
+                 }
+                 */
     });
     Methods.iniIconButton(".btnAdd", "plus");
 }

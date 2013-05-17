@@ -1753,6 +1753,8 @@ Test.uiIniLogsGrid = function() {
         resizable: true,
         sortable: true,
         columnMenu: {
+            sortable: false,
+            columns: true,
             messages: {
                 filter: dictionary["s341"],
                 columns: dictionary["s533"],
@@ -1855,6 +1857,8 @@ Test.uiReloadLogsGrid = function(data, columns) {
         resizable: true,
         sortable: true,
         columnMenu: {
+            sortable: false,
+            columns: true,
             messages: {
                 filter: dictionary["s341"],
                 columns: dictionary["s533"],

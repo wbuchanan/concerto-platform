@@ -78,110 +78,97 @@ $columns_def.="]";
 
 <script>
     $(function(){
-        $("#div<?= $class_name ?>Grid").kendoGrid({
-            dataBound:function(e){
-                Methods.iniTooltips();
-                if(this.dataSource.group().length == 0) {
-                    setTimeout( function() {
-                        $(".k-grouping-header").html(dictionary["s339"]);
-                    });
-                }
+    $("#div<?= $class_name ?>Grid").kendoGrid({
+    dataBound:function(e){
+    Methods.iniTooltips();
+            if (this.dataSource.group().length == 0) {
+    setTimeout(function() {
+    $(".k-grouping-header").html(dictionary["s339"]);
+    });
+    }
 <?= $class_name ?>.uiRefreshCheckedList();
-                Methods.iniIconButton(".btnEdit","pencil");
-            },
+            Methods.iniIconButton(".btnEdit", "pencil");
+    },
             //toolbar: kendo.template($("#script<?= $class_name ?>ToolbarTemplate").html()),
             toolbar: [
-                { name: "add", template: '<button class="btnAdd" onclick="<?= $class_name ?>.uiAdd()"><?= Language::string(205) ?></button>'}
+    { name: "add", template: '<button class="btnAdd" onclick="<?= $class_name ?>.uiAdd()"><?= Language::string(205) ?></button>'}
 <?php
 if ($class_name::$exportable) {
     echo ",";
     ?>
-                        { name: "import", template: '<button class="btnImport" onclick="<?= $class_name ?>.uiImport()"><?= Language::string(266) ?></button>' },
-                        { name: "download", template: '<button class="btnDownload" onclick="<?= $class_name ?>.uiDownload()"><?= Language::string(374) ?></button>' }
+        { name: "import", template: '<button class="btnImport" onclick="<?= $class_name ?>.uiImport()"><?= Language::string(266) ?></button>' },
+        { name: "download", template: '<button class="btnDownload" onclick="<?= $class_name ?>.uiDownload()"><?= Language::string(374) ?></button>' }
 <?php } ?>
-            ],
+    ],
             dataSource: {
-                transport:{
-                    read: {
-                        url:"query/get_object_list.php?class_name=<?= $class_name ?>",
-                        dataType:"json"
-                    }
-                },
-                schema:{
-                    model:{
-                        fields:<?= $fields_schema ?>
-                    }
-                },
-                pageSize:<?= $class_name ?>.listLength
-            },
+    transport:{ read: { url:"query/get_object_list.php?class_name=<?= $class_name ?>", dataType:"json" } }, schema:{ model:{ fields:<?= $fields_schema ?> } },
+            pageSize:<?= $class_name ?>.listLength
+    },
             //scrollable: false,
             filterable:{
-                messages: {
-                    info: dictionary["s340"],
-                    filter: dictionary["s341"],
-                    clear: dictionary["s342"],
-                    and: dictionary["s227"],
-                    or: dictionary["s228"]
-                },
-                operators: {
-                    string: {
-                        contains: dictionary["s344"],
-                        eq: dictionary["s222"],
-                        neq: dictionary["s221"],
-                        startswith: dictionary["s343"],
-                        endswith: dictionary["s345"]
-                    },
-                    number: {
-                        eq: dictionary["s222"],
-                        neq: dictionary["s221"],
-                        gte: dictionary["s224"],
-                        gt: dictionary["s223"],
-                        lte: dictionary["s226"],
-                        lt: dictionary["s225"]
-                    }
-                }
-            },
+    messages: {
+    info: dictionary["s340"],
+            filter: dictionary["s341"],
+            clear: dictionary["s342"],
+            and: dictionary["s227"],
+            or: dictionary["s228"]
+    },
+            operators: {
+    string: {
+    contains: dictionary["s344"],
+            eq: dictionary["s222"],
+            neq: dictionary["s221"],
+            startswith: dictionary["s343"],
+            endswith: dictionary["s345"]
+    },
+            number: {
+    eq: dictionary["s222"],
+            neq: dictionary["s221"],
+            gte: dictionary["s224"],
+            gt: dictionary["s223"],
+            lte: dictionary["s226"],
+            lt: dictionary["s225"]
+    }
+    }
+    },
             sortable:true,
             columnMenu:{
-              messages: {
-                  filter: dictionary["s341"],
-                  columns: dictionary["s533"],
-                  sortAscending: dictionary["s534"],
-                  sortDescending: dictionary["s535"]
-              }  
-            },
+    sortable: false,
+            columns: true,
+            messages: {
+    filter: dictionary["s341"],
+            columns: dictionary["s533"]
+    }
+    },
             pageable: {
-                refresh:true,
-                pageSizes:true,
-                messages: {
-                    display: dictionary["s527"],
-                    empty: dictionary["s528"],
-                    page: dictionary["s529"],
-                    of: dictionary["s530"],
-                    itemsPerPage: dictionary["s531"],
-                    first: dictionary["s523"],
-                    previous: dictionary["s524"],
-                    next: dictionary["s525"],
-                    last: dictionary["s526"],
-                    refresh: dictionary["s532"]
-                }
-            },
+    refresh:true,
+            pageSizes:true,
+            messages: {
+    display: dictionary["s527"],
+            empty: dictionary["s528"],
+            page: dictionary["s529"],
+            of: dictionary["s530"],
+            itemsPerPage: dictionary["s531"],
+            first: dictionary["s523"],
+            previous: dictionary["s524"],
+            next: dictionary["s525"],
+            last: dictionary["s526"],
+            refresh: dictionary["s532"]
+    }
+    },
             groupable:true,
             resizable: true,
             scrollable:true,
             columns:<?= $columns_def ?>
-        });
-            
-        Methods.iniIconButton(".btnAdd", "plus");
-        Methods.iniIconButton(".btnImport","arrowthickstop-1-s");
-        Methods.iniIconButton(".btnDownload","gear");
-        
-        Methods.iniIconButton(".btnCheckAll","check");
-        Methods.iniIconButton(".btnUncheckAll","close");
-        Methods.iniIconButton(".btnRemoveChecked","trash");
-        Methods.iniIconButton(".btnExportChecked","arrowthickstop-1-n");
     });
-</script>
+            Methods.iniIconButton(".btnAdd", "plus");
+            Methods.iniIconButton(".btnImport", "arrowthickstop-1-s");
+            Methods.iniIconButton(".btnDownload", "gear");
+            Methods.iniIconButton(".btnCheckAll", "check");
+            Methods.iniIconButton(".btnUncheckAll", "close");
+            Methods.iniIconButton(".btnRemoveChecked", "trash");
+            Methods.iniIconButton(".btnExportChecked", "arrowthickstop-1-n");
+    });</script>
 
 <fieldset class="padding ui-widget-content ui-corner-all margin">
     <legend class=""><b><?= Language::string(199) ?></b></legend>
