@@ -42,6 +42,7 @@ if (!isset($ini)) {
         <script type="text/javascript" src="cms/js/lib/jquery-ui-1.10.1.custom.min.js"></script>
 
         <script type="text/javascript" src="js/lib/jquery.cookie.js"></script>
+        <script type="text/javascript" src="js/lib/moment.js"></script>
         <script type="text/javascript" src="js/Compatibility.js?timestamp=<?= time() ?>"></script>
         <script type="text/javascript" src="js/Concerto.js?timestamp=<?= time() ?>"></script>
         <script type="text/javascript" src="js/QTI.js?timestamp=<?= time() ?>"></script>

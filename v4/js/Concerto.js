@@ -23,6 +23,7 @@ $.ajaxSetup({
 
 function Concerto(container, wid, hash, sid, tid, queryPath, callbackGet, callbackSend, debug, remote, defaultLoadingImageSource, resumeFromLastTemplate) {
 
+    this.timeFormat = "HH:mm:ss";
     this.isFirstTemplate = true;
     this.effectTransition = 0;
     this.loaderTransition = 0;
@@ -87,7 +88,7 @@ function Concerto(container, wid, hash, sid, tid, queryPath, callbackGet, callba
 
         if (limit > 0) {
             this.timer = limit;
-            $(".fontTimeLeft").html(this.timer);
+            $(".fontTimeLeft").html(moment.utc(new Date(1000 * this.timer)).format(this.timeFormat));
             this.timeObj = setInterval(function() {
                 thisClass.timeTick();
             }, 1000);
@@ -99,7 +100,10 @@ function Concerto(container, wid, hash, sid, tid, queryPath, callbackGet, callba
             return;
         if (this.timer > 0) {
             this.timer--;
-            $(".fontTimeLeft").html(this.timer);
+
+            var date = moment.utc(new Date(1000 * this.timer));
+
+            $(".fontTimeLeft").html(date.format(this.timeFormat));
             if (this.timer == 0) {
                 this.submit("NONE", true);
             }
