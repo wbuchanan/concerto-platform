@@ -24,7 +24,7 @@ class Test extends OModule {
     public $name = "unnamed test";
     public $description = "";
     public $session_count = 0;
-    public $open = 0;
+    public $type = 0;
     public $code = "";
     public $xml_hash = "";
     public static $exportable = true;
@@ -111,13 +111,6 @@ class Test extends OModule {
         return $result;
     }
 
-    public function format_open() {
-        if ($this->open == 1)
-            return Language::string(627);
-        else
-            return Language::string(628);
-    }
-
     public function mysql_delete() {
         $this->delete_sessions();
         $this->delete_object_links(TestVariable::get_mysql_table());
@@ -168,7 +161,7 @@ class Test extends OModule {
                         break;
                     case "description": $this->description = $child->nodeValue;
                         break;
-                    case "open": $this->open = $child->nodeValue;
+                    case "type": $this->type = $child->nodeValue;
                         break;
                     case "code": $this->code = $child->nodeValue;
                         break;
@@ -214,8 +207,8 @@ class Test extends OModule {
         $description = $xml->createElement("description", htmlspecialchars($this->description, ENT_QUOTES, "UTF-8"));
         $element->appendChild($description);
 
-        $open = $xml->createElement("open", htmlspecialchars($this->open, ENT_QUOTES, "UTF-8"));
-        $element->appendChild($open);
+        $type = $xml->createElement("type", htmlspecialchars($this->type, ENT_QUOTES, "UTF-8"));
+        $element->appendChild($type);
 
         $code = $xml->createElement("code", htmlspecialchars($this->code, ENT_QUOTES, "UTF-8"));
         $element->appendChild($code);
@@ -242,7 +235,7 @@ class Test extends OModule {
             `updated` timestamp NOT NULL default CURRENT_TIMESTAMP on update CURRENT_TIMESTAMP,
             `created` timestamp NOT NULL default '0000-00-00 00:00:00',
             `name` varchar(50) NOT NULL,
-            `open` tinyint(1) NOT NULL,
+            `type` tinyint(1) NOT NULL,
             `session_count` bigint(20) NOT NULL,
             `code` longtext NOT NULL,
             `description` text NOT NULL,

@@ -113,7 +113,7 @@ if ((array_key_exists("sid", $_GET) || array_key_exists("tid", $_GET)) && array_
                             $sql = sprintf("SELECT `id`,`db_name` FROM `%s`.`%s`", Ini::$db_master_name, UserWorkspace::get_mysql_table());
                             $z = mysql_query($sql);
                             while ($r = mysql_fetch_array($z)) {
-                                $sql = sprintf("(SELECT `id`,%s as `wid`,`name` FROM `%s`.`%s` WHERE `open`=1)", $r['id'], $r['db_name'], Test::get_mysql_table());
+                                $sql = sprintf("(SELECT `id`,%s as `wid`,`name` FROM `%s`.`%s` WHERE `type`=1)", $r['id'], $r['db_name'], Test::get_mysql_table());
                                 array_push($query, $sql);
                             }
 

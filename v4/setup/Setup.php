@@ -400,6 +400,26 @@ class Setup {
             }
         }
 
+        if (Setup::does_patch_apply("4.0.0.beta4", $previous_version)) {
+            if ($simulate) {
+                array_push($versions_to_update, "4.0.0.beta4");
+            } else {
+
+                foreach (User::get_all_db() as $db) {
+                    $sql = sprintf("SHOW COLUMNS FROM `%s`.`%s` WHERE `Field`='open'", $db, Test::get_mysql_table());
+                    $z = mysql_query($sql);
+                    if (mysql_num_rows($z) > 0) {
+                        $sql = sprintf("ALTER TABLE `%s`.`%s` CHANGE `open` `type` TINYINT(1) NOT NULL", $db, Test::get_mysql_table());
+                        if (!mysql_query($sql))
+                            return json_encode(array("result" => 1, "param" => $sql));
+                    }
+                }
+
+                Setting::set_setting("version", "4.0.0.beta4");
+                return json_encode(array("result" => 0, "param" => "4.0.0.beta4"));
+            }
+        }
+
         if ($simulate)
             return json_encode(array("versions" => $versions_to_update, "recalculate_hash" => $recalculate_hash, "create_db" => Ini::create_db_structure(true)));
         return json_encode(array("result" => 2));

@@ -1213,26 +1213,6 @@ Note: You can add new languages by inserting "<new_language>string translated in
             <nl>Geef uw log-in en wachtwoord</nl>
             <br>Entre com seu login e sua senha</br>
         </string>
-        <string id="213">
-            <en>Select the HTML template to be loaded.</en>
-            <de>Zu ladendes HTML Template auswählen.</de>
-            <pl>Wybierz szablon HTML, który chcesz wczytać.</pl>
-            <cn>选择载入HTML模板</cn>
-            <fr>Sélectionner un modèle HTML à charger.</fr>
-            <bg>Изберете HTML шаблона, който да бъде зареден</bg>
-            <nl>Selecteer de te laden HTML-sjabloon.</nl>
-            <br>Selecione o template HTML para ser lido</br>
-        </string>
-        <string id="214">
-            <en>Description of selected HTML template</en>
-            <de></de>
-            <pl>Opis obecnie wybranego szablonu HTML</pl>
-            <cn>所选HTML模板描述</cn>
-            <fr></fr>
-            <bg></bg>
-            <nl>Beschrijving van de te laden HTML-sjabloon</nl>
-            <br>Decrição do template HTML selecionado</br>
-        </string>
         <string id="221" js="1">
             <en>not equal</en>
             <de>ungleich</de>
@@ -1870,36 +1850,6 @@ Note: You can add new languages by inserting "<new_language>string translated in
             <bg></bg>
             <nl>test uitvoeren</nl>
             <br>rodar teste</br>
-        </string>
-        <string id="363">
-            <en>(javascripts and css, except inline, will be turned off)</en>
-            <pl>(javascript i CSS nie inline będa wyłączone)</pl>
-            <de></de>
-            <cn>(未运行JAVA脚本和非直列CSS)</cn>
-            <fr></fr>
-            <bg></bg>
-            <nl>(javascripts en css, behalve incline, zullen uitgeschakeld worden)</nl>
-            <br>(javascripts e css, exceto esta linha, serão deligados)</br>
-        </string>
-        <string id="364">
-            <en>test output</en>
-            <pl>widok testu</pl>
-            <de></de>
-            <cn>测试输出</cn>
-            <fr></fr>
-            <bg></bg>
-            <nl>test output</nl>
-            <br>saída do teste</br>
-        </string>
-        <string id="365">
-            <en>test console</en>
-            <pl>konsola testu</pl>
-            <de></de>
-            <cn>测试操作平台</cn>
-            <fr></fr>
-            <bg></bg>
-            <nl>test console</nl>
-            <br>console do teste</br>
         </string>
         <string id="366" js="1">
             <en>clear table</en>
@@ -2706,16 +2656,6 @@ Note: You can add new languages by inserting "<new_language>string translated in
             <nl></nl>
             <br>abrir</br>
         </string>
-        <string id="489">
-            <en>Check if you want to make this test available to run by everyone.</en>
-            <de></de>
-            <pl>Zaznacz jeśli chcesz uczynić ten test dostępnym do uruchomienia przez wszystkich.</pl>
-            <cn></cn>
-            <fr></fr>
-            <bg></bg>
-            <nl></nl>
-            <br>Selecione se você deseja manter este teste disponível para todos.</br>
-        </string>
         <string id="491">
             <en>HTML source code</en>
             <de></de>
@@ -2925,16 +2865,6 @@ Note: You can add new languages by inserting "<new_language>string translated in
             <bg></bg>
             <nl></nl>
             <br>Você tem certeza que deseja deletar os objetos selecionados</br>
-        </string>
-        <string id="522">
-            <en>go to related object</en>
-            <de></de>
-            <pl>przejdź do powiązanego obiektu</pl>
-            <cn></cn>
-            <fr></fr>
-            <bg></bg>
-            <nl></nl>
-            <br>vá para o objeto relacionado</br>
         </string>
         <string id="523" js="1">
             <en>Go to the first page</en>
@@ -5305,6 +5235,46 @@ Note: You can add new languages by inserting "<new_language>string translated in
             <en>remove all logs</en>
             <de></de>
             <pl>usuń wszystkie logi</pl>
+            <cn></cn>
+            <fr></fr>
+            <bg></bg>
+            <nl></nl>
+            <br></br>
+        </string>
+        <string id="766">
+            <en>subtest</en>
+            <de></de>
+            <pl>podtest</pl>
+            <cn></cn>
+            <fr></fr>
+            <bg></bg>
+            <nl></nl>
+            <br></br>
+        </string>
+        <string id="767">
+            <en>regular</en>
+            <de></de>
+            <pl>standardowy</pl>
+            <cn></cn>
+            <fr></fr>
+            <bg></bg>
+            <nl></nl>
+            <br></br>
+        </string>
+        <string id="768">
+            <en>featured</en>
+            <de></de>
+            <pl>polecany</pl>
+            <cn></cn>
+            <fr></fr>
+            <bg></bg>
+            <nl></nl>
+            <br></br>
+        </string>
+        <string id="769">
+            <en><![CDATA[There are three possible types:<ul><li><b>subtest</b> - can't directly run this test, it's only possible to run this test from inside of some other test</li><li><b>regular</b> - can be run by link, isn't visible on instance entry page</li><li><b>featured</b> - can be run by link, is featured on instance entry page</li></ul>]]></en>
+            <de></de>
+            <pl><![CDATA[Są trzy możliwe typy:<ul><li><b>podtest</b> - nie można bezpośrednio uruchomić testu, test można jedynie uruchomić z wnętrza innego testu</li><li><b>standardowy</b> - można uruchomić test bezpośrednio z linku, nie będzie widoczny na stronie startowej instancji</li><li><b>polecany</b> - można uruchomić test bezpośrednio z linku, będzie widoczny na stronie startowej instancji</li></ul>]]></pl>
             <cn></cn>
             <fr></fr>
             <bg></bg>

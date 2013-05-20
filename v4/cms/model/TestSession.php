@@ -553,13 +553,16 @@ class TestSession extends OTable {
                     $debug = true;
                 else
                     $debug = false;
-                $session = TestSession::start_new($wid, $tid, $debug);
+
+                $test = Test::from_mysql_id($tid);
+
+                if ($test->type != 2)
+                    $session = TestSession::start_new($wid, $tid, $debug);
 
                 if ($values == null)
                     $values = array();
 
-                $test = $session->get_Test();
-                if ($test != null) {
+                if ($test != null && $test->type != 2) {
                     $values = $test->verified_input_values($values);
                 } else {
                     $result = array(

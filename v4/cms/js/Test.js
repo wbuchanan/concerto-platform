@@ -70,7 +70,7 @@ Test.getAddSaveObject = function()
         oid: this.currentID,
         class_name: this.className,
         name: $("#form" + this.className + "InputName").val(),
-        open: $("#form" + this.className + "CheckboxOpen").is(":checked") ? 1 : 0
+        type: $("#form" + this.className + "SelectType").val()
     };
 };
 

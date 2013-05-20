@@ -118,11 +118,15 @@ if ($oid != 0) {
         <div class="divFormElement <?= User::view_class() ?>">
             <table class="fullWidth">
                 <tr>
-                    <td class="noWrap tdFormLabel"><?= Language::string(488) ?>:</td>
-                    <td class="tdFormIcon"><span class="tooltip spanIcon ui-icon ui-icon-help" title="<?= Language::string(489) ?>"></span></td>
+                    <td class="noWrap tdFormLabel"><?= Language::string(122) ?>:</td>
+                    <td class="tdFormIcon"><span class="tooltip spanIcon ui-icon ui-icon-help" title="<?= Language::string(769) ?>"></span></td>
                     <td>
                         <div class="divFormControl">
-                            <input type="checkbox" id="form<?= $class_name ?>CheckboxOpen" value="1" <?= $obj->open == 1 ? "checked" : "" ?> />
+                            <select id="form<?= $class_name ?>SelectType" class="fullWidth ui-widget-content ui-corner-all">
+                                <option value="2" <?= ($obj->type == 1 ? "selected" : "") ?>><?= Language::string(766) ?>
+                                <option value="0" <?= ($obj->type == 0 ? "selected" : "") ?>><?= Language::string(767) ?>
+                                <option value="1" <?= ($obj->type == 2 ? "selected" : "") ?>><?= Language::string(768) ?>
+                            </select>
                         </div>
                     </td>
                 </tr>

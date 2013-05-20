@@ -591,7 +591,7 @@ if ($table == null) {
                 ?>
             </table>
             <div align="center" class="ui-state-highlight <?= $group_count > 0 ? "notVisible" : "" ?>">
-                <?= Language::string(735) ?>
+                <?= Language::string(738) ?>
             </div>
             <div align="center">
                 <span class="spanIcon tooltip ui-icon ui-icon-plus" onclick="Test.uiAddFWsectionElem('<?= $name ?>', 'group_section')" title="<?= Language::string(725) ?>"></span>
