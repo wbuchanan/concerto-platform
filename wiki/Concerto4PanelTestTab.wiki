@@ -13,7 +13,7 @@ http://concerto.e-psychometrics.com/demo/wiki/panel_test_form.png
 You can set the following test properties on the test tab main form:
 
  * *name* - name of the test
- * *open* (visible in *advanced view*) - check this option to set test to be open to public. Anyone will be able to run the test by selecting it from the test selection box.
+ * *type* (visible in *advanced view*) - check this option to set test type. It can be set to: *subtest* (can only be run from inside of another test), *regular* (can be run directly by URL address), *featured* (can be run directly and it can also be chosen to run from the entry page of your Concerto instance)
 
 ----
 
