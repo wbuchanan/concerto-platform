@@ -23,6 +23,7 @@ $.ajaxSetup({
 
 function Concerto(container, wid, hash, sid, tid, queryPath, callbackGet, callbackSend, debug, remote, defaultLoadingImageSource, resumeFromLastTemplate) {
 
+    this.timeFormat = "HH:mm:ss";
     this.isFirstTemplate = true;
     this.effectTransition = 0;
     this.loaderTransition = 0;
@@ -87,7 +88,7 @@ function Concerto(container, wid, hash, sid, tid, queryPath, callbackGet, callba
 
         if (limit > 0) {
             this.timer = limit;
-            $(".fontTimeLeft").html(this.timer);
+            $(".fontTimeLeft").html(moment.utc(new Date(1000 * this.timer)).format(this.timeFormat));
             this.timeObj = setInterval(function() {
                 thisClass.timeTick();
             }, 1000);
@@ -99,7 +100,10 @@ function Concerto(container, wid, hash, sid, tid, queryPath, callbackGet, callba
             return;
         if (this.timer > 0) {
             this.timer--;
-            $(".fontTimeLeft").html(this.timer);
+
+            var date = moment.utc(new Date(1000 * this.timer));
+
+            $(".fontTimeLeft").html(date.format(this.timeFormat));
             if (this.timer == 0) {
                 this.submit("NONE", true);
             }
@@ -115,7 +119,6 @@ function Concerto(container, wid, hash, sid, tid, queryPath, callbackGet, callba
         this.isTemplateReady = false;
         if (this.isStopped)
             return;
-
         if (this.testID != null && this.workspaceID != null && this.sessionID == null && this.hash == null && !this.isDebug && !this.remote) {
             var lastSession = Concerto.getSessionObject(this.workspaceID, this.testID);
             if (lastSession != null) {
@@ -202,9 +205,9 @@ function Concerto(container, wid, hash, sid, tid, queryPath, callbackGet, callba
 
                     if (!thisClass.remote) {
                         if (thisClass.finished && !thisClass.isDebug)
-                            Concerto.removeSessionCookie(thisClass.sessionID, thisClass.hash);
+                            Concerto.removeSessionCookie(thisClass.workspaceID, thisClass.sessionID, thisClass.hash);
                         else
-                            Concerto.saveSessionCookie(thisClass.sessionID, thisClass.hash, thisClass.testID);
+                            Concerto.saveSessionCookie(thisClass.workspaceID, thisClass.sessionID, thisClass.hash, thisClass.testID);
                     }
 
                     if (thisClass.data["STATUS"] == Concerto.statusTypes.error && (thisClass.loaderTransition == 1 || thisClass.loaderTransition == 2 || thisClass.isFirstTemplate)) {
@@ -221,13 +224,13 @@ function Concerto(container, wid, hash, sid, tid, queryPath, callbackGet, callba
         switch (status) {
             case Concerto.statusTypes.tampered:
                 {
-                    $(this.container).html("<h2>Session unavailable.</h2>");
+                    $(this.container).html("<h3>Session unavailable.</h3>");
                     break;
                 }
             case Concerto.statusTypes.error:
                 {
                     if (this.debug == null) {
-                        $(this.container).html("<h2>Fatal test exception encountered. Test halted.</h2>");
+                        $(this.container).html("<h3>Fatal test exception encountered. Test halted.</h3>");
                     }
                     break;
                 }
@@ -244,7 +247,6 @@ function Concerto(container, wid, hash, sid, tid, queryPath, callbackGet, callba
         this.effectTransition = 1;
         var thisClass = this;
         $("head").append(this.data["HEAD"]);
-        console.log(this.data["HEAD"]);
         $(thisClass.container).html(thisClass.insertSpecialVariables(this.data["HTML"]));
 
         this.showEffect();
