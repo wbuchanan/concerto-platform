@@ -21,6 +21,7 @@ Concerto has a dedicated package just for that. Here is the structure of the pac
  * */jquery-1.9.1.min.js* - jQuery library
  * */jquery-ui-1.10.1.custom.min.js* - jQuery UI library
  * */jquery.json-2.3.min.js* - jQuery JSON plugin
+ * */moment.js* - javascript time formatter plugin
  * */QTI.js* - Concerto javascript QTI class
  * */SETTINGS.php* - setting file for Concerto remote test run environment
 
