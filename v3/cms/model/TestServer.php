@@ -311,7 +311,7 @@ class TestServer {
                     if ($this->instances[$k]->is_serialized) {
                         $this->close_instance($k, true);
                     }
-                    if ($response != null) {
+                    if ($response !== null) {
                         $this->instances[$k]->is_data_ready = false;
                         $this->instances[$k]->is_working = false;
                         if (self::$debug) {

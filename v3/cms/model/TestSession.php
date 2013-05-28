@@ -176,7 +176,7 @@ class TestSession extends OTable {
                     $code.=sprintf("
                     %s <- '%s'
                     %s <<- convertVariable(%s)
-                    ", $val->name, addslashes($val->value), $val->name, $val->name);
+                    ", $val->name, addcslashes($val->value,"'"), $val->name, $val->name);
                 } else {
                     $code.=sprintf("
                     %s <- c()
@@ -184,7 +184,7 @@ class TestSession extends OTable {
                     foreach ($val->value as $v) {
                         $code.=sprintf("
                             %s <- c(%s,'%s')
-                            ", $val->name, $val->name, addslashes($v));
+                            ", $val->name, $val->name, addcslashes($v,"'"));
                     }
                     $code.=sprintf("
                         %s <<- convertVariable(%s)

@@ -364,8 +364,10 @@ function Concerto(container, hash, sid, tid, queryPath, callbackGet, callbackSen
             else if (thisClass.loaderTransition == 0 && thisClass.status == Concerto.statusTypes.working) {
                 thisClass.showLoader();
             }
-            else if (thisClass.loaderTransition == 0 && (thisClass.status == Concerto.statusTypes.tampered || thisClass.status == Concerto.statusTypes.error))
+            else if (thisClass.loaderTransition == 0 && (thisClass.status == Concerto.statusTypes.tampered || thisClass.status == Concerto.statusTypes.error)){
+                $(thisClass.container).show(0);
                 thisClass.printError(thisClass.status);
+            }
         });
 
     }
