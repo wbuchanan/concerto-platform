@@ -9,6 +9,10 @@
  * from now on, in the panel, if the table contains more than 20 columns then it will only show the first 20 columns and hide the rest (user can show them manually)
  * added option to set *{{{TIME_LEFT}}}* format by setting javascript *{{{test.timeFormat}}}* variable, default is: *{{{HH:mm:ss}}}*
  * changed current tests *{{{open}}}* property to *{{{type}}}* (subtest, regular, featured) property
+
+*Fixes*
+
+ * fixed no test output situations
  * minor fixes
 
 *Performance*
