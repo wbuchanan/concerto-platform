@@ -102,13 +102,7 @@ if ($class_name::$exportable) {
             ],
             dataSource: {
                 transport:{
-                    read: {
-                        url:"query/get_object_list.php?class_name=<?= $class_name ?>",
-                        dataType:"json"
-                    }
-                },
-                schema:{
-                    model:{
+                    read: { url:"query/get_object_list.php?class_name=<?= $class_name ?>", dataType:"json" } }, schema:{ model:{
                         fields:<?= $fields_schema ?>
                     }
                 },
