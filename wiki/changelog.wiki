@@ -18,6 +18,7 @@
 *Performance*
  
  * wide tables performance in panel improved
+ * password hashing speeds improved when logging in
 
 ----
 
