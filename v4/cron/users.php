@@ -37,10 +37,10 @@ while ($r = mysql_fetch_array($z)) {
     //UNIX user doesn't exist
     if (mysql_num_rows($z2) == 0) {
         //adgroup
-        `/usr/sbin/addgroup $group`;
+        `/usr/sbin/groupadd $group`;
 
         //adduser
-        `/usr/sbin/adduser --disabled-login --gecos "" --ingroup $group $name`;
+        `/usr/sbin/useradd -s /sbin/nologin -g $group $name`;
 
         //passwd
         $password = User::generate_password();
@@ -87,7 +87,7 @@ while ($r = mysql_fetch_array($z)) {
         $userR = UserR::from_mysql_id($r['id']);
 
         //deluser
-        `/usr/sbin/deluser --remove-home $userR->login`;
+        `/usr/sbin/userdel -r $userR->login`;
 
         //delete UserR record
         $userR->mysql_delete();
@@ -96,6 +96,6 @@ while ($r = mysql_fetch_array($z)) {
 
 $z = mysql_query($sql);
 if (mysql_num_rows($z) == 0) {
-    `/usr/sbin/delgroup $group`;
+    `/usr/sbin/groupdel $group`;
 }
 ?>

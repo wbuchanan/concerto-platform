@@ -22,8 +22,8 @@
 class OTable {
 
     public $id = 0;
-    public $created = "";
-    public $updated = "";
+    public $created = 0;
+    public $updated = 0;
     public static $is_master_table = false;
 
     function __construct($params = array()) {
