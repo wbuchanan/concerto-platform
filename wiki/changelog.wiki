@@ -13,6 +13,7 @@
 *Fixes*
 
  * fixed no test output situations
+ * replaced Ubuntu specific commands with general Linux commands
  * minor fixes
 
 *Performance*
