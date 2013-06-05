@@ -1,6 +1,14 @@
 #labels Featured
 =CHANGELOG=
 
+==v4.0.0.beta5==
+
+*Fixes*
+
+ * fixed concerto.test.run function when no params specified
+
+----
+
 ==v4.0.0.beta4==
 
 *Features*
