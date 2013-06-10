@@ -18,6 +18,12 @@
 
 ----
 
+==Concerto Amazon Machine Image==
+
+If you want to launch Concerto image on Amazon EC2 instance, you can use the AMI at: https://aws.amazon.com/amis/ubuntu-13-04-concerto-v4-0-0-beta2
+
+----
+
 ==Installation==
 
 *This tutorial assumes that Apache is your HTTP server*
