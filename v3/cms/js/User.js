@@ -256,7 +256,7 @@ User.uiRegister=function(){
 
 User.getClientHash = function(login,password){
     var hash = password;
-    for(var i=0;i<5000;i++){
+    for (var i = 0; i < 10; i++) {
         var shaObj = new jsSHA(login+"-"+hash, "ASCII");
         hash = shaObj.getHash("SHA-512", "HEX");
     }

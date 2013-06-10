@@ -57,13 +57,17 @@ class User extends OModule {
 
     public function calculate_raw_password_hash($password) {
         $hash = $password;
-        for ($i = 0; $i < 5000; $i++) {
+        for ($i = 0; $i < 10; $i++) {
             $hash = hash("sha512", $this->login . "-" . $hash);
         }
         return $this->calculate_password_hash($hash);
     }
 
     public function calculate_password_hash($hash) {
+        for ($i = 0; $i < 4990; $i++) {
+            $hash = hash("sha512", $this->login . "-" . $hash);
+        }
+        
         for ($i = 0; $i < 5000; $i++) {
             $hash = hash("sha512", $hash . "-" . $this->id . "-" . $this->login . "-" . $this->last_login);
         }

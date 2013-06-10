@@ -478,7 +478,7 @@ class TestServer {
 
                 CONCERTO_DRIVER <- dbDriver('MySQL')
                 for(CONCERTO_DB_CONNECTION in dbListConnections(CONCERTO_DRIVER)) { dbDisconnect(CONCERTO_DB_CONNECTION) }
-                CONCERTO_DB_CONNECTION <- dbConnect(CONCERTO_DRIVER, user = CONCERTO_DB_LOGIN, password = CONCERTO_DB_PASSWORD, dbname = CONCERTO_DB_NAME, host = CONCERTO_DB_HOST, port = CONCERTO_DB_PORT)
+                CONCERTO_DB_CONNECTION <- dbConnect(CONCERTO_DRIVER, user = CONCERTO_DB_LOGIN, password = CONCERTO_DB_PASSWORD, dbname = CONCERTO_DB_NAME, host = CONCERTO_DB_HOST, port = CONCERTO_DB_PORT, client.flag=CLIENT_MULTI_STATEMENTS)
                 dbSendQuery(CONCERTO_DB_CONNECTION,statement = \"SET NAMES 'utf8';\")
                 dbSendQuery(CONCERTO_DB_CONNECTION,statement = \"SET time_zone='" . Ini::$mysql_timezone . "';\")
 
