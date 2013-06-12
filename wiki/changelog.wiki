@@ -6,6 +6,7 @@
 *Fixes*
 
  * fixed concerto.test.run function when no params specified
+ * fixed accessing *{{{test}}}* global javascript variable in debug mode
 
 ----
 
