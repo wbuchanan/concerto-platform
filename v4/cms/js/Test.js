@@ -17,8 +17,6 @@
  Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA.
  */
 
-test = null;
-
 function Test() {
 }
 ;
@@ -392,7 +390,7 @@ Test.debugInitializeTest = function(uid) {
     if (Test.debugStopped)
         return;
     Test.uiChangeDebugStatus(dictionary["s655"]);
-    test = new Test.debugWindow.Concerto($(Test.debugWindow.document).find("#divTestContainer"), uid, null, null, Test.currentID, "../query/",
+    Test.debugWindow.test = new Test.debugWindow.Concerto($(Test.debugWindow.document).find("#divTestContainer"), uid, null, null, Test.currentID, "../query/",
             function(data) {
                 if (Test.debugStopped)
                     return;
@@ -481,7 +479,7 @@ Test.debugInitializeTest = function(uid) {
             function(data) {
             },
             true, false, null, false);
-    test.run(null, null);
+    Test.debugWindow.test.run(null, null);
 }
 Test.debugCloseTestWindow = function() {
     Test.debugWindow.close();
@@ -544,7 +542,7 @@ Test.debugRunNextLine = function() {
         }
         return;
     }
-    test.run(null, null, Test.debugGetCurrentCode());
+    Test.debugWindow.test.run(null, null, Test.debugGetCurrentCode());
 }
 
 Test.uiChangeDebugStatus = function(label, style) {
