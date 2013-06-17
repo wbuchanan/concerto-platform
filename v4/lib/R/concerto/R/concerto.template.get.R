@@ -8,7 +8,7 @@ function(templateID,workspaceID=concerto$workspaceID){
   }
 
   templateID <- dbEscapeStrings(concerto$db$connection,toString(templateID))
-  result <- dbSendQuery(concerto$db$connection,sprintf("SELECT `id`,`name`,`head`,`HTML` FROM `%s`.`Template` WHERE `%s`='%s'",dbName,objField,templateID))
+  result <- dbSendQuery(concerto$db$connection,sprintf("SELECT `id`,`name`,`head`,`HTML`,`effect_show`,`effect_show_options`,`effect_hide`,`effect_hide_options` FROM `%s`.`Template` WHERE `%s`='%s'",dbName,objField,templateID))
   response <- fetch(result,n=-1)
   return(response)
 }

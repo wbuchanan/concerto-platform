@@ -25,6 +25,10 @@ List with template object properties:
 \item{name}{template object name}
 \item{head}{head tag contents}
 \item{HTML}{template HTML}
+\item{effect_show}{template transition show effect}
+\item{effect_show_options}{template transition show effect options}
+\item{effect_hide}{template transition hide effect}
+\item{effect_hide_options}{template transition hide effect options}
 }
 \references{
 }

@@ -19,19 +19,19 @@ function(templateID=-1, HTML="", head="", params=list(),timeLimit=0,finalize=F,w
   concerto:::concerto.updateTimeLimit(timeLimit)
 
   if(effectShow=="default") {
-    if(templateID>0) effectShow <- template[1,"effect_show"]
+    if(dim(template)[1]>0) effectShow <- template[1,"effect_show"]
     else effectShow <- "none"
   }
   if(effectHide=="default") {
-    if(templateID>0) effectHide <- template[1,"effect_hide"]
+    if(dim(template)[1]>0) effectHide <- template[1,"effect_hide"]
     else effectHide <- "none"
   }
   if(effectShowOptions=="default") {
-    if(templateID>0) effectShowOptions <- template[1,"effect_show_options"]
+    if(dim(template)[1]>0) effectShowOptions <- template[1,"effect_show_options"]
     else effectShowOptions <- ""
   }
   if(effectHideOptions=="default") {
-    if(templateID>0) effectHideOptions <- template[1,"effect_hide_options"]
+    if(dim(template)[1]>0) effectHideOptions <- template[1,"effect_hide_options"]
     else effectHideOptions <- ""
   }
   concerto:::concerto.updateEffectShow(effectShow)  
