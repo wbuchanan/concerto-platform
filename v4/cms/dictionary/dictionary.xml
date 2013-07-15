@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="UTF-8"?>
+﻿<?xml version="1.0" encoding="utf-8"?>
 <!--
 Concerto Platform - Online Adaptive Testing Platform
 Copyright (C) 2011-2013, The Psychometrics Centre, Cambridge University
@@ -17,9 +17,7 @@ You should have received a copy of the GNU General Public License
 along with this program; if not, write to the Free Software
 Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA.
 -->
-
 <!-- You can put comments this way. -->
-
 <!--
 If you are interested in translating Concerto to a language that is not yet supported, please contact us. Similarly, changes and/or corrections to translations are also important. We can add you as a contributor and allow you to edit the dictionary.xml file.
 Note: You can add new languages by inserting "<new_language>string translated into new_language</new_language>" tag inside <string> tags.
@@ -32,39 +30,33 @@ Note: You can add new languages by inserting "<new_language>string translated in
         <language id="cn">中文</language>
         <language id="de">deutsch</language>
         <language id="fr">francais</language>
+        <language id="jp">日本語</language>
         <language id="nl">nederlands</language>
         <language id="pl">polski</language>
         <language id="br">português</language>
     </languages>
-    
     <strings>
         <string id="1" js="1">
-            <en><![CDATA[Variable name validation failed. Value has been changed.<br/><br/>old value: <b>{0}</b></br>new value: <b>{1}</b>]]>
-            </en>
-            <de><![CDATA[Überprüfung des Variablennamens schlug fehl. Wert wurde geändert.<br/><br/>Alter Wert: <b>{0}</b></br>Neuer Wert: <b>{1}</b>]]>
-            </de>
-            <pl><![CDATA[Walidacja zmiennej nie powiodła się. Wartość została zmieniona.<br/><br/>poprzednia wartość: <b>{0}</b></br>nowa wartość: <b>{1}</b>]]>
-            </pl>
-            <cn><![CDATA[变量名称验证失败。数值已更改。<br/><br/>旧数值: <b>{0}</b></br>新数值: <b>{1}</b>]]>
-            </cn>  
-            <fr><![CDATA[La validation du nom de la variable a échoué. La valeur a été changée.<br/><br/>ancienne valeur: <b>{0}</b></br>nouvelle valeur: <b>{1}</b>]]>
-            </fr>
-            <bg><![CDATA[Валидизацията на името на променливата е неуспешна. Стойността е променена.<br/><br/>стара стойност: <b>{0}</b></br>нова стойност: <b>{1}</b>]]>
-            </bg>
-            <nl><![CDATA[Naamvalidatie van de variabele gefaald. De waarde werd gewijzigd.<br/><br/>oude waarde:  <b>{0}</b></br>nieuwe waarde: <b>{1}</b>]]>
-            </nl>
-            <br><![CDATA[Falha no valiação no nome da variável. O valor foi alterado.<br/><br/>valor antigo: <b>{0}</b></br>novo valor: <b>{1}</b>]]>
-            </br>
+            <en><![CDATA[Variable name validation failed. Value has been changed.<br/><br/>old value: <b>{0}</b></br>new value: <b>{1}</b>]]></en>
+            <de><![CDATA[Überprüfung des Variablennamens schlug fehl. Wert wurde geändert.<br/><br/>Alter Wert: <b>{0}</b></br>Neuer Wert: <b>{1}</b>]]></de>
+            <pl><![CDATA[Walidacja zmiennej nie powiodła się. Wartość została zmieniona.<br/><br/>poprzednia wartość: <b>{0}</b></br>nowa wartość: <b>{1}</b>]]></pl>
+            <cn><![CDATA[变量名称验证失败。数值已更改。<br/><br/>旧数值: <b>{0}</b></br>新数值: <b>{1}</b>]]></cn>
+            <fr><![CDATA[La validation du nom de la variable a échoué. La valeur a été changée.<br/><br/>ancienne valeur: <b>{0}</b></br>nouvelle valeur: <b>{1}</b>]]></fr>
+            <bg><![CDATA[Валидизацията на името на променливата е неуспешна. Стойността е променена.<br/><br/>стара стойност: <b>{0}</b></br>нова стойност: <b>{1}</b>]]></bg>
+            <nl><![CDATA[Naamvalidatie van de variabele gefaald. De waarde werd gewijzigd.<br/><br/>oude waarde:  <b>{0}</b></br>nieuwe waarde: <b>{1}</b>]]></nl>
+            <br><![CDATA[Falha no valiação no nome da variável. O valor foi alterado.<br/><br/>valor antigo: <b>{0}</b></br>novo valor: <b>{1}</b>]]></br>
+            <jp><![CDATA[変数検証失敗． 値は変更されました．<br/><br/>旧値: <b>{0}</b></br>新値: <b>{1}</b>]]></jp>
         </string>
         <string id="2" js="1">
             <en>variable validation</en>
             <de>Variablen Überprüfung</de>
             <pl>walidacja zmiennej</pl>
-            <cn>变量验证</cn>	
+            <cn>变量验证</cn>
             <fr>validation de la variable</fr>
             <bg>валидизация на променливата</bg>
             <nl>variabele validatie</nl>
             <br>validação da variável</br>
+            <jp>変数検証</jp>
         </string>
         <string id="3" js="1">
             <en>changing description</en>
@@ -75,6 +67,7 @@ Note: You can add new languages by inserting "<new_language>string translated in
             <bg>промяна на описанието</bg>
             <nl>beschrijving wijzigen</nl>
             <br>mudando descrição</br>
+            <jp>記述変更</jp>
         </string>
         <string id="4" js="1">
             <en>Concerto - confirmation</en>
@@ -85,6 +78,7 @@ Note: You can add new languages by inserting "<new_language>string translated in
             <bg>Concerto - потвърждение</bg>
             <nl>Concerto - bevestiging</nl>
             <br>Concerto - confirmação</br>
+            <jp>Concerto - 確認</jp>
         </string>
         <string id="5" js="1">
             <en>Concerto - alert</en>
@@ -95,6 +89,7 @@ Note: You can add new languages by inserting "<new_language>string translated in
             <bg>Concerto - внимание</bg>
             <nl>Concerto - waarschuwing</nl>
             <br>Concerto - alerta</br>
+            <jp>Concerto - 警告</jp>
         </string>
         <string id="6" js="1">
             <en>HTML controls `name` validation failed. Value has been changed.\r\n\r\nold value: {0}\r\nnew value: {1}</en>
@@ -105,6 +100,7 @@ Note: You can add new languages by inserting "<new_language>string translated in
             <bg>Валидизацията на името на HTML контролата неуспешна. Стойността беше променена.\r\n\r\nстара стойност: {0}\r\nнова стойност: {1}</bg>
             <nl>HTML de controle van de variabele `naam` is mislukt. De waarde werd gewijzigd.\r\n\r\noude waarde: {0}\r\nnieuw waarde: {1}</nl>
             <br>HTML o controle da variável `nome` falhou. O valor foi alterador\n\r\nvalor antigo: {0}\r\nnovo valor: {1}</br>
+            <jp>HTML制御名の検証に失敗しました．値は変更されました．\r\n\r\旧値: {0}\r\新値: {1}</jp>
         </string>
         <string id="7" js="1">
             <en>adding new object</en>
@@ -115,6 +111,7 @@ Note: You can add new languages by inserting "<new_language>string translated in
             <bg>прибавяне на нов обект</bg>
             <nl>Nieuw object toevoegen</nl>
             <br>adicionando novo objeto</br>
+            <jp>新しいオブジェクトの追加</jp>
         </string>
         <string id="8" js="1">
             <en>Are you sure you want to delete this object #{0}?</en>
@@ -125,6 +122,7 @@ Note: You can add new languages by inserting "<new_language>string translated in
             <bg>Сигурни ли сте, че искате да изтриете този обект #{0}</bg>
             <nl>Bent u zeker dat u dit object wil verwijderen #{0}?</nl>
             <br>Você tem certeza que deseja eliminar este objeto? #{0}?</br>
+            <jp>本当にオブジェクト#{0}を削除しますか?</jp>
         </string>
         <string id="9" js="1">
             <en>Object has been saved.</en>
@@ -135,6 +133,7 @@ Note: You can add new languages by inserting "<new_language>string translated in
             <bg>Обектът е съхранен</bg>
             <nl>Object opgeslagen.</nl>
             <br>O objeto foi salvo.</br>
+            <jp>オブジェクトが保存されました。</jp>
         </string>
         <string id="10" js="1">
             <en>Object has NOT been saved.</en>
@@ -145,6 +144,7 @@ Note: You can add new languages by inserting "<new_language>string translated in
             <bg>Обектът НЕ Е съхранен</bg>
             <nl>Object werd NIET opgeslagen.</nl>
             <br>O objeto NÃO foi salvo.</br>
+            <jp>オブジェクトは保存されていません。</jp>
         </string>
         <string id="11" js="1">
             <en>remove row</en>
@@ -155,6 +155,7 @@ Note: You can add new languages by inserting "<new_language>string translated in
             <bg>изтрий реда</bg>
             <nl>rij verwijderen</nl>
             <br>remover linha</br>
+            <jp>行の削除</jp>
         </string>
         <string id="12" js="1">
             <en>editing column</en>
@@ -165,6 +166,7 @@ Note: You can add new languages by inserting "<new_language>string translated in
             <bg>редактирай колоната</bg>
             <nl>kolom bewerken</nl>
             <br>editando coluna</br>
+            <jp>列の編集</jp>
         </string>
         <string id="13" js="1">
             <en>Column name is a mandatory field.</en>
@@ -175,6 +177,7 @@ Note: You can add new languages by inserting "<new_language>string translated in
             <bg>Името на колоната не е задължително</bg>
             <nl>Naam van de kolom is een verplicht veld.</nl>
             <br>O nome da coluna é um campo obrigatório.</br>
+            <jp>列名は必ず入力して下さい。</jp>
         </string>
         <string id="14" js="1">
             <en>change column name</en>
@@ -185,6 +188,7 @@ Note: You can add new languages by inserting "<new_language>string translated in
             <bg>промени името на колоната</bg>
             <nl>kolomnaam wijzigen</nl>
             <br>modifique o nome da coluna</br>
+            <jp>列名の変更</jp>
         </string>
         <string id="15" js="1">
             <en>A column with that name already exists.</en>
@@ -195,6 +199,7 @@ Note: You can add new languages by inserting "<new_language>string translated in
             <bg>Колона с такова име вече съществува</bg>
             <nl>Een kolom met die naam bestaat al</nl>
             <br>Já existe uma coluna com este nome.</br>
+            <jp>その列名は既に存在します。</jp>
         </string>
         <string id="18" js="1">
             <en>HTML</en>
@@ -205,6 +210,7 @@ Note: You can add new languages by inserting "<new_language>string translated in
             <bg>HTML</bg>
             <nl>HTML</nl>
             <br>HTML</br>
+            <jp>HTML</jp>
         </string>
         <string id="19" js="1">
             <en>edit column</en>
@@ -215,6 +221,7 @@ Note: You can add new languages by inserting "<new_language>string translated in
             <bg>редактиране на колоната</bg>
             <nl>kolom bewerken</nl>
             <br>modifique a coluna</br>
+            <jp>列の編集</jp>
         </string>
         <string id="20" js="1">
             <en>remove column</en>
@@ -225,6 +232,7 @@ Note: You can add new languages by inserting "<new_language>string translated in
             <bg>изтрий колоната</bg>
             <nl>kolom verwijderen</nl>
             <br>remova a coluna</br>
+            <jp>列の削除</jp>
         </string>
         <string id="21" js="1">
             <en>importing table from MySQL table</en>
@@ -235,6 +243,7 @@ Note: You can add new languages by inserting "<new_language>string translated in
             <bg>импортиране на таблицата от MySQL таблица</bg>
             <nl>tabel importeren vanuit MySQL tabel</nl>
             <br>importando tabeta proveniente de uma tabela MySQL</br>
+            <jp>MySQLテーブルから読み込み</jp>
         </string>
         <string id="22" js="1">
             <en>import</en>
@@ -245,6 +254,7 @@ Note: You can add new languages by inserting "<new_language>string translated in
             <bg>импортиране</bg>
             <nl>importeren</nl>
             <br>importar</br>
+            <jp>読み込み</jp>
         </string>
         <string id="23" js="1">
             <en>cancel</en>
@@ -255,6 +265,7 @@ Note: You can add new languages by inserting "<new_language>string translated in
             <bg>отмяна</bg>
             <nl>annuleren</nl>
             <br>cancelar</br>
+            <jp>取り消し</jp>
         </string>
         <string id="24" js="1">
             <en>No table selected.</en>
@@ -265,6 +276,7 @@ Note: You can add new languages by inserting "<new_language>string translated in
             <bg>Не е избрана таблица</bg>
             <nl>Geen tabel geslecteerd</nl>
             <br>Nenhuma tabela selecionada</br>
+            <jp>テーブルが選択されていません</jp>
         </string>
         <string id="25" js="1">
             <en>importing table</en>
@@ -275,6 +287,7 @@ Note: You can add new languages by inserting "<new_language>string translated in
             <bg>импортиране на таблица</bg>
             <nl>tabel importeren</nl>
             <br>importando tabela</br>
+            <jp>テーブルの読み込み</jp>
         </string>
         <string id="26" js="1">
             <en>Table structure and data imported.</en>
@@ -285,6 +298,7 @@ Note: You can add new languages by inserting "<new_language>string translated in
             <bg>Структурата на таблицата и данните са импортирани</bg>
             <nl>Structuur en data van de tabel geimporteerd</nl>
             <br>Estrutura e dados da tabela importados</br>
+            <jp>テーブル構造とデータが読み込まれました。</jp>
         </string>
         <string id="27" js="1">
             <en>Importing table from CSV file</en>
@@ -295,6 +309,7 @@ Note: You can add new languages by inserting "<new_language>string translated in
             <bg>Импортиране на таблицата от CSV файл</bg>
             <nl>Tabel importeren vanuit een CSV-bestand</nl>
             <br>Importando tabela a partir de um arquivo CSV</br>
+            <jp>CSVファイルからテーブルを読み込み</jp>
         </string>
         <string id="28" js="1">
             <en>Are you sure you want to replace the current table structure and data with that from the selected file?</en>
@@ -305,6 +320,7 @@ Note: You can add new languages by inserting "<new_language>string translated in
             <bg>Сигурни ли сте, че искате да заместите настоящата структура и данни на таблицата с тези от избраната таблица</bg>
             <nl> Bent u zeker dat u de huidige tabelstructuur en data wilt vervangen door deze uit het geselecteerde bestand?</nl>
             <br>Você tem certezaq que deseja substituir a estrutura e dados da tabela atual pelo arquivo selecionado/</br>
+            <jp>本当に現在のテーブル構造とデータを選択ファイルのものに置き換えますか?</jp>
         </string>
         <string id="29" js="1">
             <en>file uploaded</en>
@@ -315,6 +331,7 @@ Note: You can add new languages by inserting "<new_language>string translated in
             <bg>Файлът е качен</bg>
             <nl>bestand geupload</nl>
             <br>arquivo carregado</br>
+            <jp>ファイルがアップロードされました</jp>
         </string>
         <string id="30" js="1">
             <en>There was an error in importing table structure and data.</en>
@@ -325,6 +342,7 @@ Note: You can add new languages by inserting "<new_language>string translated in
             <bg>Има грешка при импортирането на стуктурата и данните на таблицата</bg>
             <nl>Er is een fout opgetreden bij het importeren van de tabelstructuur en data.</nl>
             <br>Houve um erro na importação da estrutura e dados da tabela.</br>
+            <jp>テーブル構造またはデータにエラーがあります。</jp>
         </string>
         <string id="31" js="1">
             <en>adding new column</en>
@@ -335,6 +353,7 @@ Note: You can add new languages by inserting "<new_language>string translated in
             <bg>прибавяне на нова колона</bg>
             <nl>nieuwe kolom toevoegen</nl>
             <br>inserindo nova coluna</br>
+            <jp>行の追加</jp>
         </string>
         <string id="32" js="1">
             <en>Are you sure you want to delete this row?</en>
@@ -345,6 +364,7 @@ Note: You can add new languages by inserting "<new_language>string translated in
             <bg>Сигурни ли сте, че искате да изтриете този ред</bg>
             <nl>Bent u zeker dat u deze rij wil verwijderen?</nl>
             <br>Você tem certeza que deseja remover esta linha?</br>
+            <jp>本当にこの行を削除しますか?</jp>
         </string>
         <string id="33" js="1">
             <en>deleting table row</en>
@@ -355,6 +375,7 @@ Note: You can add new languages by inserting "<new_language>string translated in
             <bg>изтриване на ред от таблицата</bg>
             <nl>tabelrij verwijderen</nl>
             <br>removendo a linha da tabela</br>
+            <jp>行の削除</jp>
         </string>
         <string id="34" js="1">
             <en>Are you sure you want to delete this column?</en>
@@ -365,6 +386,7 @@ Note: You can add new languages by inserting "<new_language>string translated in
             <bg>Сигурни ли сте, че искате да изтриете тази колона</bg>
             <nl>Bent u zeker dat u deze kolom wil verwijderen?</nl>
             <br>Você tem certeza que deseja remover esta coluna?</br>
+            <jp>本当にこの列を削除しますか?</jp>
         </string>
         <string id="35" js="1">
             <en>deleting table column</en>
@@ -375,6 +397,7 @@ Note: You can add new languages by inserting "<new_language>string translated in
             <bg>изтриване на колона от таблицата</bg>
             <nl>tabelkolom verwijderen</nl>
             <br>removendo coluna da tabela</br>
+            <jp>列の削除</jp>
         </string>
         <string id="36" js="1">
             <en>changing HTML</en>
@@ -385,6 +408,7 @@ Note: You can add new languages by inserting "<new_language>string translated in
             <bg>промяна на HTML</bg>
             <nl>HTML wijzigen</nl>
             <br>modificando HTML</br>
+            <jp>HTMLの変更</jp>
         </string>
         <string id="37" js="1">
             <en>add</en>
@@ -395,6 +419,7 @@ Note: You can add new languages by inserting "<new_language>string translated in
             <bg>прибави</bg>
             <nl>toevoegen</nl>
             <br>adicionar</br>
+            <jp>追加</jp>
         </string>
         <string id="38" js="1">
             <en>change</en>
@@ -405,6 +430,7 @@ Note: You can add new languages by inserting "<new_language>string translated in
             <bg>промени</bg>
             <nl>wijzigen</nl>
             <br>mudar</br>
+            <jp>変更</jp>
         </string>
         <string id="39" js="1">
             <en>Edit HTML. Current HTML:</en>
@@ -415,6 +441,7 @@ Note: You can add new languages by inserting "<new_language>string translated in
             <bg>Редактирай HTML. Настоящ HTML:</bg>
             <nl>Bewerk HTML. Huidige HTML:</nl>
             <br>Editar HTML. HTML atual:</br>
+            <jp>HTMLの編集　現在のHTML: </jp>
         </string>
         <string id="66" js="1">
             <en>Password and password confirmation do not match!</en>
@@ -425,6 +452,7 @@ Note: You can add new languages by inserting "<new_language>string translated in
             <bg>Паролата и потвърждението на паролата не съответстват</bg>
             <nl>wachtwoord en wachtwoordbevestiging zijn niet gelijk!</nl>
             <br>Senha e confirmação de senha não correspondem!</br>
+            <jp>入力したパスワードと再入力したパスワードが一致しません!</jp>
         </string>
         <string id="67" js="1">
             <en>login/password combination is incorrect!</en>
@@ -435,6 +463,7 @@ Note: You can add new languages by inserting "<new_language>string translated in
             <bg>Комбинацията потребителско име/парола е грешна</bg>
             <nl>login/wachtwoord combinatie is ongeldig!</nl>
             <br>login ou senha incorretos!</br>
+            <jp>ログイン名またはパスワードが間違っています!</jp>
         </string>
         <string id="69" js="1">
             <en>id</en>
@@ -445,6 +474,7 @@ Note: You can add new languages by inserting "<new_language>string translated in
             <bg>id</bg>
             <nl>id</nl>
             <br>id</br>
+            <jp>id</jp>
         </string>
         <string id="70" js="1">
             <en>name</en>
@@ -455,6 +485,7 @@ Note: You can add new languages by inserting "<new_language>string translated in
             <bg>име</bg>
             <nl>naam</nl>
             <br>nome</br>
+            <jp>名前</jp>
         </string>
         <string id="71">
             <en>owner</en>
@@ -465,6 +496,7 @@ Note: You can add new languages by inserting "<new_language>string translated in
             <bg>собственик</bg>
             <nl>eigenaar</nl>
             <br>proprietário</br>
+            <jp>所有者</jp>
         </string>
         <string id="72">
             <en>access</en>
@@ -475,6 +507,7 @@ Note: You can add new languages by inserting "<new_language>string translated in
             <bg></bg>
             <nl></nl>
             <br></br>
+            <jp>アクセス</jp>
         </string>
         <string id="73" js="1">
             <en>none</en>
@@ -485,6 +518,7 @@ Note: You can add new languages by inserting "<new_language>string translated in
             <bg>липса</bg>
             <nl>geen</nl>
             <br>nenhum</br>
+            <jp>なし</jp>
         </string>
         <string id="74">
             <en>unnamed table</en>
@@ -495,6 +529,7 @@ Note: You can add new languages by inserting "<new_language>string translated in
             <fr>tableau sans nom</fr>
             <nl>naamloze tabel</nl>
             <br>tabela sem nome</br>
+            <jp>無名の表</jp>
         </string>
         <string id="75">
             <en>unnamed template</en>
@@ -505,6 +540,7 @@ Note: You can add new languages by inserting "<new_language>string translated in
             <bg>шаблон без име</bg>
             <nl>naamloze template</nl>
             <br>template sem nome</br>
+            <jp>無名のテンプレート</jp>
         </string>
         <string id="76">
             <en>unnamed test</en>
@@ -515,6 +551,7 @@ Note: You can add new languages by inserting "<new_language>string translated in
             <bg>тест без име</bg>
             <nl>naamloze test</nl>
             <br>teste sem nome</br>
+            <jp>無名のテスト</jp>
         </string>
         <string id="77">
             <en>incognito</en>
@@ -525,6 +562,7 @@ Note: You can add new languages by inserting "<new_language>string translated in
             <bg>инкогнито</bg>
             <nl>incognito</nl>
             <br>incógnito</br>
+            <jp>匿名</jp>
         </string>
         <string id="78">
             <en>unknown</en>
@@ -535,6 +573,7 @@ Note: You can add new languages by inserting "<new_language>string translated in
             <fr>inconnu</fr>
             <nl>onbekend</nl>
             <br>desconhecido</br>
+            <jp>不明</jp>
         </string>
         <string id="81" js="1">
             <en>Access denied!</en>
@@ -545,6 +584,7 @@ Note: You can add new languages by inserting "<new_language>string translated in
             <bg>Достъп отказан</bg>
             <nl>Toegang geweigerd!</nl>
             <br>Acesso negado!</br>
+            <jp>アクセスが拒否されました!</jp>
         </string>
         <string id="82">
             <en>logged user</en>
@@ -555,6 +595,7 @@ Note: You can add new languages by inserting "<new_language>string translated in
             <bg>влязъл потребител</bg>
             <nl>aangemelde gebruiker</nl>
             <br>usuário conectado</br>
+            <jp>ログインユーザー</jp>
         </string>
         <string id="83">
             <en>log out</en>
@@ -565,6 +606,7 @@ Note: You can add new languages by inserting "<new_language>string translated in
             <bg>изход</bg>
             <nl>afmelden</nl>
             <br>desconectar</br>
+            <jp>ログアウト</jp>
         </string>
         <string id="85">
             <en>tables</en>
@@ -575,6 +617,7 @@ Note: You can add new languages by inserting "<new_language>string translated in
             <bg>таблици</bg>
             <nl>tabellen</nl>
             <br>tabelas</br>
+            <jp>テーブル</jp>
         </string>
         <string id="86">
             <en>file</en>
@@ -585,6 +628,7 @@ Note: You can add new languages by inserting "<new_language>string translated in
             <fr>fichier</fr>
             <nl>bestand</nl>
             <br>arquivo</br>
+            <jp>ファイル</jp>
         </string>
         <string id="87">
             <en>templates</en>
@@ -595,6 +639,7 @@ Note: You can add new languages by inserting "<new_language>string translated in
             <bg>шаблони</bg>
             <nl>sjablonen</nl>
             <br>templates</br>
+            <jp>テンプレート</jp>
         </string>
         <string id="88">
             <en>tests</en>
@@ -605,6 +650,7 @@ Note: You can add new languages by inserting "<new_language>string translated in
             <fr>tests</fr>
             <nl>tests</nl>
             <br>testes</br>
+            <jp>テスト</jp>
         </string>
         <string id="89">
             <en>users</en>
@@ -615,6 +661,7 @@ Note: You can add new languages by inserting "<new_language>string translated in
             <fr></fr>
             <nl></nl>
             <br></br>
+            <jp>ユーザー</jp>
         </string>
         <string id="94">
             <en>delete</en>
@@ -625,6 +672,7 @@ Note: You can add new languages by inserting "<new_language>string translated in
             <bg>изтрий</bg>
             <nl>verwijderen</nl>
             <br>eliminar</br>
+            <jp>削除</jp>
         </string>
         <string id="95" js="1">
             <en>save</en>
@@ -635,6 +683,7 @@ Note: You can add new languages by inserting "<new_language>string translated in
             <bg>съхрани</bg>
             <nl>opslaan</nl>
             <br>salvar</br>
+            <jp>保存</jp>
         </string>
         <string id="97">
             <en>description</en>
@@ -645,6 +694,7 @@ Note: You can add new languages by inserting "<new_language>string translated in
             <bg>описание</bg>
             <nl>beschrijving</nl>
             <br>descrição</br>
+            <jp>表現方法</jp>
         </string>
         <string id="104" js="1">
             <en>Edit description. Current description:</en>
@@ -655,6 +705,7 @@ Note: You can add new languages by inserting "<new_language>string translated in
             <bg>Редактиране на описанието. Настоящо описание:</bg>
             <nl>Bewerken van beschrijving. Huidige beschrijving:</nl>
             <br>Editar descrição. Descrição atual:</br>
+            <jp>表現方法の編集　現在の表現方法: </jp>
         </string>
         <string id="106">
             <en>parameters</en>
@@ -665,6 +716,7 @@ Note: You can add new languages by inserting "<new_language>string translated in
             <bg>параметри</bg>
             <nl>parameters</nl>
             <br>parâmetros</br>
+            <jp>パラメータ</jp>
         </string>
         <string id="107">
             <en>edit description</en>
@@ -675,6 +727,7 @@ Note: You can add new languages by inserting "<new_language>string translated in
             <bg>редактиране на описанието</bg>
             <nl>bewerken van beschrijving</nl>
             <br>editar descrição</br>
+            <jp>表現方法の編集</jp>
         </string>
         <string id="108">
             <en>no parameters defined</en>
@@ -685,6 +738,7 @@ Note: You can add new languages by inserting "<new_language>string translated in
             <bg>не са дефинирани параметри</bg>
             <nl>geen parameters gedefinieerd</nl>
             <br>nenhum parâmetro definido</br>
+            <jp>パラメータが定義されていません</jp>
         </string>
         <string id="109">
             <en>add parameter</en>
@@ -695,6 +749,7 @@ Note: You can add new languages by inserting "<new_language>string translated in
             <bg>добави параметър</bg>
             <nl>parameter toevoegen</nl>
             <br>adicionar um parâmetro</br>
+            <jp>パラメータの追加</jp>
         </string>
         <string id="110">
             <en>remove parameter</en>
@@ -705,6 +760,7 @@ Note: You can add new languages by inserting "<new_language>string translated in
             <bg>премахни параметър</bg>
             <nl>parameter verwijderen</nl>
             <br>eliminar parâmetro</br>
+            <jp>パラメータの削除</jp>
         </string>
         <string id="113">
             <en>returns</en>
@@ -715,6 +771,7 @@ Note: You can add new languages by inserting "<new_language>string translated in
             <bg>връща</bg>
             <nl>returns</nl>
             <br>retorno</br>
+            <jp>返り値</jp>
         </string>
         <string id="114">
             <en>no returns defined</en>
@@ -725,6 +782,7 @@ Note: You can add new languages by inserting "<new_language>string translated in
             <bg>не е дефинирано връщане</bg>
             <nl>geen returns gedefinieerd</nl>
             <br>nenhum retorno definido</br>
+            <jp>返り値が見つかりません</jp>
         </string>
         <string id="115">
             <en>add return variable</en>
@@ -735,6 +793,7 @@ Note: You can add new languages by inserting "<new_language>string translated in
             <bg>прибави променлива за връщане</bg>
             <nl>return variabele toevoegen</nl>
             <br>adicionar uma variável de retorno</br>
+            <jp>返り値変数の追加</jp>
         </string>
         <string id="116">
             <en>remove return variable</en>
@@ -745,6 +804,7 @@ Note: You can add new languages by inserting "<new_language>string translated in
             <bg>премахни променлива за връщане</bg>
             <nl>return variabele verwijderen</nl>
             <br>eliminar variável de retorno</br>
+            <jp>返り値変数の削除</jp>
         </string>
         <string id="117">
             <en>editing table</en>
@@ -755,6 +815,7 @@ Note: You can add new languages by inserting "<new_language>string translated in
             <bg>редактиране на таблица</bg>
             <nl>tabel bewerken</nl>
             <br>editando tabela</br>
+            <jp>テーブルの編集</jp>
         </string>
         <string id="118">
             <en>creating new table</en>
@@ -765,6 +826,7 @@ Note: You can add new languages by inserting "<new_language>string translated in
             <bg>създаване на нова таблица</bg>
             <nl>nieuwe tabel aanmaken</nl>
             <br>criando nova tabela</br>
+            <jp>新しいテーブルの作成</jp>
         </string>
         <string id="119">
             <en>name of the table</en>
@@ -775,6 +837,7 @@ Note: You can add new languages by inserting "<new_language>string translated in
             <bg>име на таблицата</bg>
             <nl>naam van de tabel</nl>
             <br>nome da tabela</br>
+            <jp>テーブル名</jp>
         </string>
         <string id="122" js="1">
             <en>type</en>
@@ -785,6 +848,7 @@ Note: You can add new languages by inserting "<new_language>string translated in
             <bg>вид</bg>
             <nl>type</nl>
             <br>tipo</br>
+            <jp>型</jp>
         </string>
         <string id="123">
             <en>no object selected</en>
@@ -795,6 +859,7 @@ Note: You can add new languages by inserting "<new_language>string translated in
             <bg>не е избран обект</bg>
             <nl>geen object geselecteerd</nl>
             <br>nenhum objeto selecionado</br>
+            <jp>オブジェクトが選択されていません</jp>
         </string>
         <string id="124">
             <en>MySQL table</en>
@@ -805,6 +870,7 @@ Note: You can add new languages by inserting "<new_language>string translated in
             <bg>MySQL таблица</bg>
             <nl>MySQL tabel</nl>
             <br>Tabela MySQL</br>
+            <jp>MySQLテーブル</jp>
         </string>
         <string id="125">
             <en>import table from MySQL table</en>
@@ -815,6 +881,7 @@ Note: You can add new languages by inserting "<new_language>string translated in
             <bg>Импортирай таблицата от MySQL таблицата</bg>
             <nl>tabel importeren uit MySQL tabel</nl>
             <br>importar tabela de uma tabela MySQL</br>
+            <jp>MySQLテーブルからテーブルを読み込み</jp>
         </string>
         <string id="126">
             <en>import table from CSV file</en>
@@ -825,6 +892,7 @@ Note: You can add new languages by inserting "<new_language>string translated in
             <bg>импортирай таблицана от CSV файла</bg>
             <nl>tabel importeren uit CSV-bestand</nl>
             <br>importar tabela de um arquivo CSV</br>
+            <jp>CSVファイルからテーブルを読み込み</jp>
         </string>
         <string id="127">
             <en>export table to CSV file</en>
@@ -835,6 +903,7 @@ Note: You can add new languages by inserting "<new_language>string translated in
             <bg>експортирай таблицата към CSV файл</bg>
             <nl>tabel exporteren naar CSV-bestand</nl>
             <br>exportar tabela para um arquivo CSV</br>
+            <jp>CSVファイルへテーブルを出力</jp>
         </string>
         <string id="130" js="1">
             <en>edit HTML</en>
@@ -845,6 +914,7 @@ Note: You can add new languages by inserting "<new_language>string translated in
             <bg>редактирай HTML</bg>
             <nl>HTML bewerken</nl>
             <br>editar HTML</br>
+            <jp>HTMLの編集</jp>
         </string>
         <string id="133">
             <en>editing HTML template</en>
@@ -855,6 +925,7 @@ Note: You can add new languages by inserting "<new_language>string translated in
             <bg>редактиране на HTML шаблона</bg>
             <nl>HTML-sjabloon bewerken</nl>
             <br>editando template HTML</br>
+            <jp>HTMLテンプレートの編集</jp>
         </string>
         <string id="134">
             <en>creating new HTML template</en>
@@ -865,6 +936,7 @@ Note: You can add new languages by inserting "<new_language>string translated in
             <bg>създаване на нов HTML шаблон</bg>
             <nl>nieuw HTML-sjabloon aanmaken</nl>
             <br>criando novo template HTML</br>
+            <jp>新しいHTMLテンプレートの作成</jp>
         </string>
         <string id="135">
             <en>name of HTML template</en>
@@ -875,6 +947,7 @@ Note: You can add new languages by inserting "<new_language>string translated in
             <bg>име на HTML шаблона</bg>
             <nl>naam van HTML-sjabloon</nl>
             <br>nome do template HTML</br>
+            <jp>HTMLテンプレート名</jp>
         </string>
         <string id="136">
             <en>HTML content of the template</en>
@@ -885,6 +958,7 @@ Note: You can add new languages by inserting "<new_language>string translated in
             <bg>HTML съдържание на шаблона</bg>
             <nl>HTML-inhoud van de sjabloon</nl>
             <br>conteúdo do template HTML</br>
+            <jp>テンプレートのHTML内容</jp>
         </string>
         <string id="139">
             <en>editing test</en>
@@ -895,6 +969,7 @@ Note: You can add new languages by inserting "<new_language>string translated in
             <bg>редактиране на теста</bg>
             <nl>test bewerken</nl>
             <br>editando o teste</br>
+            <jp>編集のテスト</jp>
         </string>
         <string id="140">
             <en>creating new test</en>
@@ -905,6 +980,7 @@ Note: You can add new languages by inserting "<new_language>string translated in
             <bg>създаване на нов тест</bg>
             <nl>nieuwe test aanmaken</nl>
             <br>criando um novo teste</br>
+            <jp>新しいテストの作成</jp>
         </string>
         <string id="141">
             <en>name of the test</en>
@@ -915,6 +991,7 @@ Note: You can add new languages by inserting "<new_language>string translated in
             <bg>име на теста</bg>
             <nl>naam van de test</nl>
             <br>nome do teste</br>
+            <jp>テスト名</jp>
         </string>
         <string id="167">
             <en>HTML templates</en>
@@ -925,6 +1002,7 @@ Note: You can add new languages by inserting "<new_language>string translated in
             <bg>HTML шаблони</bg>
             <nl>HTML sjablonen</nl>
             <br>template HTML</br>
+            <jp>HTMLテンプレート</jp>
         </string>
         <string id="170">
             <en>editing user</en>
@@ -935,6 +1013,7 @@ Note: You can add new languages by inserting "<new_language>string translated in
             <bg></bg>
             <nl></nl>
             <br></br>
+            <jp>ユーザーの編集</jp>
         </string>
         <string id="171">
             <en>creating new user</en>
@@ -945,6 +1024,7 @@ Note: You can add new languages by inserting "<new_language>string translated in
             <bg></bg>
             <nl></nl>
             <br></br>
+            <jp>新しいユーザーの作成</jp>
         </string>
         <string id="173">
             <en>login</en>
@@ -955,6 +1035,7 @@ Note: You can add new languages by inserting "<new_language>string translated in
             <bg>вход</bg>
             <nl>login</nl>
             <br>entrar</br>
+            <jp>ログイン</jp>
         </string>
         <string id="174">
             <en>email</en>
@@ -965,6 +1046,7 @@ Note: You can add new languages by inserting "<new_language>string translated in
             <bg>имейл</bg>
             <nl>e-mail</nl>
             <br>e-mail</br>
+            <jp>Eメール</jp>
         </string>
         <string id="175">
             <en>last login</en>
@@ -975,6 +1057,7 @@ Note: You can add new languages by inserting "<new_language>string translated in
             <bg>последно влизане</bg>
             <nl>laatste log-in</nl>
             <br>último acesso</br>
+            <jp>最終ログイン</jp>
         </string>
         <string id="178">
             <en>Please enter a unique login id</en>
@@ -985,6 +1068,7 @@ Note: You can add new languages by inserting "<new_language>string translated in
             <bg></bg>
             <nl>Vul een unieke log-in id in.</nl>
             <br>Por favor entre com um único id de login</br>
+            <jp>固有のログインIDを入力してください</jp>
         </string>
         <string id="179">
             <en>password</en>
@@ -995,6 +1079,7 @@ Note: You can add new languages by inserting "<new_language>string translated in
             <fr>mot de passe</fr>
             <nl>wachtwoord</nl>
             <br>senha</br>
+            <jp>パスワード</jp>
         </string>
         <string id="180">
             <en>Select box to set the password</en>
@@ -1004,6 +1089,7 @@ Note: You can add new languages by inserting "<new_language>string translated in
             <bg>Изберете полето за въвеждане на парола</bg>
             <nl>Selecteer het veld om het wachtwoord in te stellen</nl>
             <br>Selecione a caixa para definir a senha</br>
+            <jp>パスワードを設定するボックスを選択</jp>
         </string>
         <string id="181">
             <en>Please enter a memorable password</en>
@@ -1014,6 +1100,7 @@ Note: You can add new languages by inserting "<new_language>string translated in
             <bg></bg>
             <nl>Vul een gemakkelijk te onthouden wachtwoord in.</nl>
             <br>Por favor, adicione uma senha</br>
+            <jp>覚えやすいパスワードを入力してください</jp>
         </string>
         <string id="182">
             <en>pass. conf.</en>
@@ -1024,6 +1111,7 @@ Note: You can add new languages by inserting "<new_language>string translated in
             <bg></bg>
             <nl></nl>
             <br></br>
+            <jp>pass. conf.</jp>
         </string>
         <string id="183">
             <en>Please retype the password as above</en>
@@ -1034,6 +1122,7 @@ Note: You can add new languages by inserting "<new_language>string translated in
             <bg></bg>
             <nl>Hertyp het wachtwoord zoals hierboven</nl>
             <br>Por favor reescreve a senha como acima</br>
+            <jp>上記のパスワードを再入力してください</jp>
         </string>
         <string id="184">
             <en>first name</en>
@@ -1044,6 +1133,7 @@ Note: You can add new languages by inserting "<new_language>string translated in
             <bg>име</bg>
             <nl>voornaam</nl>
             <br>primeiro nome</br>
+            <jp>名</jp>
         </string>
         <string id="185">
             <en>last name</en>
@@ -1054,6 +1144,7 @@ Note: You can add new languages by inserting "<new_language>string translated in
             <bg>фамилия</bg>
             <nl>familienaam</nl>
             <br>último nome</br>
+            <jp>姓</jp>
         </string>
         <string id="186">
             <en>Please provide your first name</en>
@@ -1063,6 +1154,7 @@ Note: You can add new languages by inserting "<new_language>string translated in
             <bg></bg>
             <nl>Vul uw voornaam in.</nl>
             <br>Por favor, forneça seu primeiro nome</br>
+            <jp>名前を入力してください</jp>
         </string>
         <string id="187">
             <en>Please provide your last name</en>
@@ -1073,6 +1165,7 @@ Note: You can add new languages by inserting "<new_language>string translated in
             <bg></bg>
             <nl>Vul uw familienaam in.</nl>
             <br>Por favor, forneça seu último nome</br>
+            <jp>姓を入力してください</jp>
         </string>
         <string id="188">
             <en>We will contact you via this email if you run into any problems with your account etc.</en>
@@ -1083,6 +1176,7 @@ Note: You can add new languages by inserting "<new_language>string translated in
             <bg></bg>
             <nl>Wij nemen contact met u op via dit e-mailadres als u problemen met uw account ondervindt, etc.. </nl>
             <br>Caso você tenha algum problema com sua conta nós iremos contactar você através deste e-mail.</br>
+            <jp>あなたのアカウントで問題が発生したなどの場合にこのEメールを通じてあなたと連絡を取ります。</jp>
         </string>
         <string id="189">
             <en>phone no.</en>
@@ -1093,6 +1187,7 @@ Note: You can add new languages by inserting "<new_language>string translated in
             <bg>телефон:</bg>
             <nl>telefoonnummer</nl>
             <br>número de telefone</br>
+            <jp>電話番号</jp>
         </string>
         <string id="190">
             <en>This is optional contact information.</en>
@@ -1102,6 +1197,7 @@ Note: You can add new languages by inserting "<new_language>string translated in
             <fr></fr>
             <bg></bg>
             <nl>Dit is niet verplichte contact-informatie</nl>
+            <jp>これはその他の連絡先です。</jp>
         </string>
         <string id="193">
             <en>Create and manage the entire structure of each test.</en>
@@ -1112,6 +1208,7 @@ Note: You can add new languages by inserting "<new_language>string translated in
             <bg>създаване и управление на цялата структура на всеки тест </bg>
             <nl>Ontwerp en beheer de volledige structuur van elke test.</nl>
             <br>Crie e administre a estrutura completa de cada teste</br>
+            <jp>各テストの全体構造の作成と管理</jp>
         </string>
         <string id="195">
             <en>Create and edit HTML templates as they are visible to the test taker.</en>
@@ -1122,6 +1219,7 @@ Note: You can add new languages by inserting "<new_language>string translated in
             <bg>Създаване и редактиране на HTM, както те се видими за тествания</bg>
             <nl>Ontwerp en bewerk HTML sjablonen die zichtbaar zullen zijn voor de gebruiker</nl>
             <br>Crie e edite um template HTML que são visíveis ao participante do teste</br>
+            <jp>test takerに見れるHTMLテンプレートの作成と編集</jp>
         </string>
         <string id="196">
             <en>Create tables for storing and managing test data, including item content, correct responses and response history etc.</en>
@@ -1132,6 +1230,7 @@ Note: You can add new languages by inserting "<new_language>string translated in
             <bg>Създаване на таблици за сортиране и упрвление на данните от теста, включително съдържанието на айтемите, верните отговори, историята  на отговарянето и т.н.</bg>
             <nl>Ontwerp tabellen voor het opslaan en beheren van testdata, inclusief de inhoud van items, correcte antwoorden, antwoordgeschiedenis, etc...</nl>
             <br>Crie tabelas para armazenar e manusear dados do teste, incluindo o conteúdo do item, as respostas corretas e o histórico de respotas etc.</br>
+            <jp>アイテム内容、適切な応答、応答履歴などを含むテストデータを保管管理するテーブルを作成します。</jp>
         </string>
         <string id="197">
             <en>Create and manage user accounts.</en>
@@ -1142,6 +1241,7 @@ Note: You can add new languages by inserting "<new_language>string translated in
             <bg></bg>
             <nl></nl>
             <br></br>
+            <jp>ユーザーアカウントの作成と管理</jp>
         </string>
         <string id="198">
             <en>users</en>
@@ -1152,6 +1252,7 @@ Note: You can add new languages by inserting "<new_language>string translated in
             <bg></bg>
             <nl></nl>
             <br></br>
+            <jp>ユーザー</jp>
         </string>
         <string id="199">
             <en>available objects</en>
@@ -1162,6 +1263,7 @@ Note: You can add new languages by inserting "<new_language>string translated in
             <bg>достъпни обекти</bg>
             <nl>beschikbare objecten</nl>
             <br>objetos disponíveis</br>
+            <jp>利用可能オブジェクト</jp>
         </string>
         <string id="203">
             <en>edit object</en>
@@ -1172,6 +1274,7 @@ Note: You can add new languages by inserting "<new_language>string translated in
             <bg>редактиране на обект</bg>
             <nl>object bewerken</nl>
             <br>edite o objeto</br>
+            <jp>オブジェクトの編集</jp>
         </string>
         <string id="204" js="1">
             <en>delete object</en>
@@ -1182,6 +1285,7 @@ Note: You can add new languages by inserting "<new_language>string translated in
             <bg>изтриване на обект</bg>
             <nl>object verwijderen</nl>
             <br>delete o objeto</br>
+            <jp>オブジェクトの削除</jp>
         </string>
         <string id="205">
             <en>add new object</en>
@@ -1192,6 +1296,7 @@ Note: You can add new languages by inserting "<new_language>string translated in
             <bg>прибави нов обект</bg>
             <nl>Nieuw object toevoegen</nl>
             <br>adicione um novo objeto</br>
+            <jp>新しいオブジェクトの追加</jp>
         </string>
         <string id="211">
             <en>login to platform</en>
@@ -1202,6 +1307,7 @@ Note: You can add new languages by inserting "<new_language>string translated in
             <bg>вход в платформата</bg>
             <nl>log-in op platform</nl>
             <br>entre na plataforma</br>
+            <jp>プラットフォームへのログイン</jp>
         </string>
         <string id="212">
             <en>Enter your login and password.</en>
@@ -1212,6 +1318,29 @@ Note: You can add new languages by inserting "<new_language>string translated in
             <bg>Въведете Вашето потребителско име и парола. </bg>
             <nl>Geef uw log-in en wachtwoord</nl>
             <br>Entre com seu login e sua senha</br>
+            <jp>ログイン名とパスワードを入力</jp>
+        </string>
+        <string id="213">
+            <en>Select the HTML template to be loaded.</en>
+            <de>Zu ladendes HTML Template auswählen.</de>
+            <pl>Wybierz szablon HTML, który chcesz wczytać.</pl>
+            <cn>选择载入HTML模板</cn>
+            <fr>Sélectionner un modèle HTML à charger.</fr>
+            <bg>Изберете HTML шаблона, който да бъде зареден</bg>
+            <nl>Selecteer de te laden HTML-sjabloon.</nl>
+            <br>Selecione o template HTML para ser lido</br>
+            <jp>読み込むHTMLテンプレートを選択</jp>
+        </string>
+        <string id="214">
+            <en>Description of selected HTML template</en>
+            <de></de>
+            <pl>Opis obecnie wybranego szablonu HTML</pl>
+            <cn>所选HTML模板描述</cn>
+            <fr></fr>
+            <bg></bg>
+            <nl>Beschrijving van de te laden HTML-sjabloon</nl>
+            <br>Decrição do template HTML selecionado</br>
+            <jp>選択されたHTMLテンプレートの記述</jp>
         </string>
         <string id="221" js="1">
             <en>not equal</en>
@@ -1222,6 +1351,7 @@ Note: You can add new languages by inserting "<new_language>string translated in
             <bg>не е равно</bg>
             <nl>niet gelijk aan</nl>
             <br>não igual</br>
+            <jp>～と等しくない</jp>
         </string>
         <string id="222" js="1">
             <en>equal</en>
@@ -1232,6 +1362,7 @@ Note: You can add new languages by inserting "<new_language>string translated in
             <bg>равно</bg>
             <nl>gelijk aan</nl>
             <br>igual</br>
+            <jp>～と等しい</jp>
         </string>
         <string id="223" js="1">
             <en>greater than</en>
@@ -1242,6 +1373,7 @@ Note: You can add new languages by inserting "<new_language>string translated in
             <bg>повече от</bg>
             <nl>groter dan</nl>
             <br>maior do que</br>
+            <jp>～より大きい</jp>
         </string>
         <string id="224" js="1">
             <en>equal or greater than</en>
@@ -1252,6 +1384,7 @@ Note: You can add new languages by inserting "<new_language>string translated in
             <bg>повече или равно на</bg>
             <nl>groter dan of gelijk aan</nl>
             <br>maior ou igual a</br>
+            <jp>～以上</jp>
         </string>
         <string id="225" js="1">
             <en>lesser than</en>
@@ -1262,6 +1395,7 @@ Note: You can add new languages by inserting "<new_language>string translated in
             <bg>по-малко от</bg>
             <nl>kleiner dan</nl>
             <br>menor que</br>
+            <jp>～より小さい</jp>
         </string>
         <string id="226" js="1">
             <en>equal or lesser than</en>
@@ -1272,6 +1406,7 @@ Note: You can add new languages by inserting "<new_language>string translated in
             <bg>равно или по-малко от</bg>
             <nl>kleiner dan of gelijk aan</nl>
             <br>menor ou igual a</br>
+            <jp>～以下</jp>
         </string>
         <string id="227" js="1">
             <en>AND</en>
@@ -1282,6 +1417,7 @@ Note: You can add new languages by inserting "<new_language>string translated in
             <bg>И</bg>
             <nl>EN</nl>
             <br>E</br>
+            <jp>かつ</jp>
         </string>
         <string id="228" js="1">
             <en>OR</en>
@@ -1292,6 +1428,7 @@ Note: You can add new languages by inserting "<new_language>string translated in
             <bg>ИЛИ</bg>
             <nl>OF</nl>
             <br>OU</br>
+            <jp>または</jp>
         </string>
         <string id="254">
             <en>Enter variable description that will be visible to anyone using this section in their test.</en>
@@ -1302,6 +1439,7 @@ Note: You can add new languages by inserting "<new_language>string translated in
             <bg>Въведи променливата, която ще бъде видима за всеки, който използва тази секция от теста</bg>
             <nl>Voer een beschrijving van de variabele in, zichtbaar aan iedereen die deze sectie in hun test gebruikt.</nl>
             <br>Entre com uma descrição da variável que será visível a qualquer usuário desta seção no seu teste</br>
+            <jp>テスト内にてこのセクションを用いる全員に見える変数記述を入力</jp>
         </string>
         <string id="255">
             <en>Select the MySQL table whose structure and data are to be imported into this table.</en>
@@ -1312,6 +1450,7 @@ Note: You can add new languages by inserting "<new_language>string translated in
             <bg>Избери MySQL таблицата, чиято структура и данни ще бъдат ще бъдат импортирани в тази таблица</bg>
             <nl>Selecteer de MySQL tabel waarvan de structuur en data geimporteerd dienen te worden in deze tabel.</nl>
             <br>Selecione uma tabela MySQL cuja estrutura e dados serão importados para essa tabela</br>
+            <jp>このテーブルに定義とデータを読み込むMySQLテーブルの選択</jp>
         </string>
         <string id="256">
             <en>Select the CSV file to be imported.</en>
@@ -1322,6 +1461,7 @@ Note: You can add new languages by inserting "<new_language>string translated in
             <bg>Изберете CSV файл за импорт</bg>
             <nl>Selecteer het te importeren CSV-bestand.</nl>
             <br>Selecione um arquivo CSV para ser importado.</br>
+            <jp>読み込むCSVファイルを選択</jp>
         </string>
         <string id="257">
             <en>Select the name of the column</en>
@@ -1332,6 +1472,7 @@ Note: You can add new languages by inserting "<new_language>string translated in
             <bg>Изберете име на колоната</bg>
             <nl>Selecteer de naam van de kolom.</nl>
             <br>Selecione o nome da coluna</br>
+            <jp>列名の選択</jp>
         </string>
         <string id="258">
             <en>Select the column type</en>
@@ -1342,6 +1483,7 @@ Note: You can add new languages by inserting "<new_language>string translated in
             <bg>Изберете вид на колоната</bg>
             <nl>Selecteer het kolomtype</nl>
             <br>Selecione a coluna</br>
+            <jp>列の型を選択</jp>
         </string>
         <string id="259">
             <en>enter HTML value of the cell</en>
@@ -1352,6 +1494,7 @@ Note: You can add new languages by inserting "<new_language>string translated in
             <bg>въведете HTML стойност на полето</bg>
             <nl>Voer de HTML waarde in van de cel</nl>
             <br>entre com o valor HTML da célula</br>
+            <jp>このセルのHTML値を入力</jp>
         </string>
         <string id="260">
             <en>Enter your unique login id</en>
@@ -1362,6 +1505,7 @@ Note: You can add new languages by inserting "<new_language>string translated in
             <bg>Въведете Вашето уникално потребителско име</bg>
             <nl>Voer uw unieke log-in id in</nl>
             <br>Entre com seu id de login único</br>
+            <jp>あなたの固有ログインIDを入力</jp>
         </string>
         <string id="261">
             <en>Enter your password</en>
@@ -1372,6 +1516,7 @@ Note: You can add new languages by inserting "<new_language>string translated in
             <bg>Въведете парола</bg>
             <nl>Voer uw wachtwoord in</nl>
             <br>Entre com sua senha</br>
+            <jp>あなたのパスワードを入力</jp>
         </string>
         <string id="262">
             <en>OUTDATED.</en>
@@ -1382,6 +1527,7 @@ Note: You can add new languages by inserting "<new_language>string translated in
             <bg></bg>
             <nl></nl>
             <br></br>
+            <jp>期限切れ</jp>
         </string>
         <string id="263">
             <en>CLICK HERE TO DOWNLOAD THE LATEST VERSION</en>
@@ -1392,6 +1538,7 @@ Note: You can add new languages by inserting "<new_language>string translated in
             <bg>КЛИКНЕТЕ ТУК ЗА ДА СВАЛИТЕ НАЙ-НОВАТА ВЕРСИЯ</bg>
             <nl>KLIK HIER OM DE NIEUWSTE VERSIE TE DOWNLOADEN</nl>
             <br>CLIQUE AQUI PARA FAZER O DOWNLOAD DA ÚLTIMA VERSÃO</br>
+            <jp>クリックして最新版をダウンロード</jp>
         </string>
         <string id="264">
             <en>up-to-date</en>
@@ -1402,6 +1549,7 @@ Note: You can add new languages by inserting "<new_language>string translated in
             <bg></bg>
             <nl></nl>
             <br></br>
+            <jp>最新の</jp>
         </string>
         <string id="265" js="1">
             <en>Export</en>
@@ -1412,6 +1560,7 @@ Note: You can add new languages by inserting "<new_language>string translated in
             <bg>Експорт</bg>
             <nl>Exporteren</nl>
             <br>Exportar</br>
+            <jp>出力</jp>
         </string>
         <string id="266">
             <en>Import new object</en>
@@ -1422,6 +1571,7 @@ Note: You can add new languages by inserting "<new_language>string translated in
             <bg>Импорт на нов обект</bg>
             <nl>Nieuw object importeren</nl>
             <br>Importar um novo objeto</br>
+            <jp>新しいオブジェクトの読み込み</jp>
         </string>
         <string id="267">
             <en>Select file with exported object</en>
@@ -1432,6 +1582,7 @@ Note: You can add new languages by inserting "<new_language>string translated in
             <bg></bg>
             <nl></nl>
             <br>Selecione arquivo com o objeto exportado</br>
+            <jp>エクスポートしたオブジェクトでファイルを選択</jp>
         </string>
         <string id="268" js="1">
             <en>Importing object</en>
@@ -1442,6 +1593,7 @@ Note: You can add new languages by inserting "<new_language>string translated in
             <bg>Импортиране на обект</bg>
             <nl>Object importeren</nl>
             <br>Importando objeto</br>
+            <jp>オブジェクトの読み込み</jp>
         </string>
         <string id="269" js="1">
             <en>Are you sure you want to import the object from this file?</en>
@@ -1452,6 +1604,7 @@ Note: You can add new languages by inserting "<new_language>string translated in
             <bg>Сигурни ли сте, че искате да импортирате този обект от файла?</bg>
             <nl>Bent u zeker dat u het object uit dit bestand wil importeren?</nl>
             <br>Você tem certeza que deseja importar um objeto deste arquivo?</br>
+            <jp>本当にこのファイルからオブジェクトを読み込みますか?</jp>
         </string>
         <string id="270" js="1">
             <en>Object imported</en>
@@ -1462,6 +1615,7 @@ Note: You can add new languages by inserting "<new_language>string translated in
             <bg>Обектът е импортиран</bg>
             <nl>Object geimporteerd</nl>
             <br>Objeto importado</br>
+            <jp>オブジェクトが読み込まれました。</jp>
         </string>
         <string id="271" js="1">
             <en>There was an error while importing the object</en>
@@ -1472,6 +1626,7 @@ Note: You can add new languages by inserting "<new_language>string translated in
             <bg>Грешка при импортирането на обекта</bg>
             <nl>Er is een fout opgetreden tijdens het importeren van het object</nl>
             <br>Houve um erro enquanto o objeto era importado</br>
+            <jp>オブジェクトの読み込み中にエラーが発生しました。</jp>
         </string>
         <string id="272" js="1">
             <en>File does not exist.</en>
@@ -1482,6 +1637,7 @@ Note: You can add new languages by inserting "<new_language>string translated in
             <bg>Файлът не съществува</bg>
             <nl>Bestand bestaat niet</nl>
             <br>O arquivo não existe</br>
+            <jp>ファイルが存在しません。</jp>
         </string>
         <string id="273" js="1">
             <en>Deleting object</en>
@@ -1492,6 +1648,7 @@ Note: You can add new languages by inserting "<new_language>string translated in
             <bg>Изтриване на обект</bg>
             <nl>Object verwijderen</nl>
             <br>Deletando objeto</br>
+            <jp>オブジェクトの削除</jp>
         </string>
         <string id="274" js="1">
             <en>Saving object</en>
@@ -1502,6 +1659,7 @@ Note: You can add new languages by inserting "<new_language>string translated in
             <bg>Съхранение на обект</bg>
             <nl>Object opslaan</nl>
             <br>Salvando objeto</br>
+            <jp>オブジェクトの保存</jp>
         </string>
         <string id="278" js="1">
             <en>Not logged in</en>
@@ -1512,6 +1670,7 @@ Note: You can add new languages by inserting "<new_language>string translated in
             <bg>Не сте влезли</bg>
             <nl>Niet ingelogd</nl>
             <br>Não está logado</br>
+            <jp>未ログイン</jp>
         </string>
         <string id="319" js="1">
             <en>please wait...</en>
@@ -1522,6 +1681,7 @@ Note: You can add new languages by inserting "<new_language>string translated in
             <bg>Моля изчакайте...</bg>
             <nl>even geduld...</nl>
             <br>Por favor aguarde...</br>
+            <jp>しばらくお待ちください...</jp>
         </string>
         <string id="320" js="1">
             <en>Possible loss of unsaved data.</en>
@@ -1532,6 +1692,7 @@ Note: You can add new languages by inserting "<new_language>string translated in
             <bg>Възможна загуба на несъхранени данни.</bg>
             <nl>Mogelijk verlies van niet-opgeslagen data.</nl>
             <br>Possível perda de dados não salvos</br>
+            <jp>保存していないデータは破棄されます。</jp>
         </string>
         <string id="321" js="1">
             <en>Are you sure you want to continue? All unsaved changes will be lost in the following modules:</en>
@@ -1542,6 +1703,7 @@ Note: You can add new languages by inserting "<new_language>string translated in
             <bg>Сигурни ли сте, че искате да продължите? Това действие ще анулира несъхранените промени в следните модули:</bg>
             <nl>Bent u zeker dat u wilt doorgaan? Alle niet-opgeslagen wijzigingen zullen verloren gaan in de volgende modules:</nl>
             <br>Você tem certeza que deseja continuar? Todas as modificações não salvas serão perdidas nos módulos:</br>
+            <jp>次のモジュールに対する保存されていない変更は全て破棄されます。よろしいですか? モジュール名:</jp>
         </string>
         <string id="322" js="1">
             <en>Are you sure you want to continue? This action will reset unsaved changes in all modules.</en>
@@ -1552,6 +1714,7 @@ Note: You can add new languages by inserting "<new_language>string translated in
             <bg>Сигурни ли сте, че искате да продължите? Това действие ще анулира несъхранените промени във всички модули.</bg>
             <nl>Bent u zeker dat u wilt doorgaan? Deze actie zal alle niet-opgeslagen wijzigingen tenietdoen in alle modules.</nl>
             <br>Você tem certeza que deseja continuar? Esta ação irá resetar todas as modificações não salvas em todos os módulos</br>
+            <jp>この操作は全てのモジュールに対する保存されていない変更を破棄します。よろしいですか?</jp>
         </string>
         <string id="323" js="1">
             <en>begin</en>
@@ -1562,6 +1725,7 @@ Note: You can add new languages by inserting "<new_language>string translated in
             <bg>започнете</bg>
             <nl>starten</nl>
             <br>iniciar</br>
+            <jp>開始</jp>
         </string>
         <string id="324" js="1">
             <en>restart</en>
@@ -1572,6 +1736,7 @@ Note: You can add new languages by inserting "<new_language>string translated in
             <bg>започни отново</bg>
             <nl>herstarten</nl>
             <br>reiniciar</br>
+            <jp>再開</jp>
         </string>
         <string id="325">
             <en>field delimiter</en>
@@ -1582,24 +1747,18 @@ Note: You can add new languages by inserting "<new_language>string translated in
             <bg>сепаратор на поле</bg>
             <nl>veldscheidingsteken</nl>
             <br>delimitador do campo</br>
+            <jp>フィールド区切り文字</jp>
         </string>
         <string id="326">
-            <en><![CDATA[Single character used to separate fields in a row. Default character is '<b>,</b>'.]]>
-            </en>
-            <de><![CDATA[Einzelnes Zeichen welches benutzt wird um Felder in einer Zeile zu trennen. Standardzeichen ist '<b>,</b>'.]]>
-            </de>
-            <pl><![CDATA[Pojedyńczy znak używany do oddzielenia pól w rzędzie. Domyślny znak to '<b>,</b>'.]]>
-            </pl>
-            <cn><![CDATA[在行内用于划分区域的单一字符。默认字符为'<b>,</b>'。]]>
-            </cn>
-            <fr><![CDATA[Un seul caractère peut être utilisé afin de séparer les champs dans une ligne. Le caractère par défaut est '<b>,</b>'.]]>
-            </fr>
-            <bg><![CDATA[Единичен знак за отделяне на полетата в реда. Знакът по подразбиране е <b>,</b>'.]]>
-            </bg>
-            <nl><![CDATA[Enkel teken gebruikt om velden te scheiden in een rij. Standaardteken is '<b>,</b>'.]]>
-            </nl>
-            <br><![CDATA[Um único carácter pode ser usado para separar os campos de uma linha. O carácter padrão é '<b>,</b>'.]]>
-            </br>
+            <en><![CDATA[Single character used to separate fields in a row. Default character is '<b>,</b>'.]]></en>
+            <de><![CDATA[Einzelnes Zeichen welches benutzt wird um Felder in einer Zeile zu trennen. Standardzeichen ist '<b>,</b>'.]]></de>
+            <pl><![CDATA[Pojedyńczy znak używany do oddzielenia pól w rzędzie. Domyślny znak to '<b>,</b>'.]]></pl>
+            <cn><![CDATA[在行内用于划分区域的单一字符。默认字符为'<b>,</b>'。]]></cn>
+            <fr><![CDATA[Un seul caractère peut être utilisé afin de séparer les champs dans une ligne. Le caractère par défaut est '<b>,</b>'.]]></fr>
+            <bg><![CDATA[Единичен знак за отделяне на полетата в реда. Знакът по подразбиране е <b>,</b>'.]]></bg>
+            <nl><![CDATA[Enkel teken gebruikt om velden te scheiden in een rij. Standaardteken is '<b>,</b>'.]]></nl>
+            <br><![CDATA[Um único carácter pode ser usado para separar os campos de uma linha. O carácter padrão é '<b>,</b>'.]]></br>
+            <jp><![CDATA[行の区切り文字は単一文字です。 初期の区切り文字: '<b>,</b>']]></jp>
         </string>
         <string id="327">
             <en>field enclosure</en>
@@ -1610,24 +1769,18 @@ Note: You can add new languages by inserting "<new_language>string translated in
             <bg>завършване на полето</bg>
             <nl>veldbegrenzing</nl>
             <br>field enclosure</br>
+            <jp>フィールドの囲い文字</jp>
         </string>
         <string id="328">
-            <en><![CDATA[Single character used to enclose string. Default character is '<b>"</b>'.]]>
-            </en>
-            <de><![CDATA[Einzelnes Zeichen das benutzt wird um Zeichenketten abzugrenzen. Standardzeichen ist '<b>"</b>'.]]>
-            </de>
-            <pl><![CDATA[Pojedyńczy znak używany do objęcia zakresu pola. Domyślny znak to '<b>"</b>'.]]>
-            </pl>
-            <cn><![CDATA[用于标记字符串的单一字符。默认字符为'<b>"</b>'。]]>
-            </cn>
-            <fr><![CDATA[Un seur caractère peut être utilisé pour joindre des champs alphanumériques. Le caractère par défaut est '<b>"</b>'.]]>
-            </fr>
-            <bg><![CDATA[Единичен знак, използван за завършване на реда от знаци. Знакът по подразбиране е '<b>"</b>'.]]>
-            </bg>
-            <nl><![CDATA[Enkel teken gebruikt voor de begrenzing van een string. Standaardteken is '<b>"</b>'.]]>
-            </nl>
-            <br><![CDATA[Single character used to enclose string. Default character is '<b>"</b>'.]]>
-            </br>
+            <en><![CDATA[Single character used to enclose string. Default character is '<b>"</b>'.]]></en>
+            <de><![CDATA[Einzelnes Zeichen das benutzt wird um Zeichenketten abzugrenzen. Standardzeichen ist '<b>"</b>'.]]></de>
+            <pl><![CDATA[Pojedyńczy znak używany do objęcia zakresu pola. Domyślny znak to '<b>"</b>'.]]></pl>
+            <cn><![CDATA[用于标记字符串的单一字符。默认字符为'<b>"</b>'。]]></cn>
+            <fr><![CDATA[Un seur caractère peut être utilisé pour joindre des champs alphanumériques. Le caractère par défaut est '<b>"</b>'.]]></fr>
+            <bg><![CDATA[Единичен знак, използван за завършване на реда от знаци. Знакът по подразбиране е '<b>"</b>'.]]></bg>
+            <nl><![CDATA[Enkel teken gebruikt voor de begrenzing van een string. Standaardteken is '<b>"</b>'.]]></nl>
+            <br><![CDATA[Single character used to enclose string. Default character is '<b>"</b>'.]]></br>
+            <jp><![CDATA[囲い文字は単一文字です。 初期の囲い文字: '<b>"</b>']]></jp>
         </string>
         <string id="329" js="1">
             <en>Exporting table to CSV file</en>
@@ -1638,6 +1791,7 @@ Note: You can add new languages by inserting "<new_language>string translated in
             <bg>Експортиране на таблицата към CSV файл.</bg>
             <nl>Tabel exporteren naar CSV-bestand</nl>
             <br>Exportando tabela para um arquivo CSV</br>
+            <jp>CSVファイルへテーブルを出力</jp>
         </string>
         <string id="330">
             <en>header row</en>
@@ -1648,6 +1802,7 @@ Note: You can add new languages by inserting "<new_language>string translated in
             <bg>заглавен ред</bg>
             <nl>header</nl>
             <br>Linha de cabeçalho</br>
+            <jp>ヘッダ行</jp>
         </string>
         <string id="331">
             <en>Check box to import CSV with a header row. Header row values will be used as column names.</en>
@@ -1660,6 +1815,7 @@ Note: You can add new languages by inserting "<new_language>string translated in
             </bg>
             <nl>Selecteer dit vak om een CSV-bestand met header te importeren. Waarden van de header zullen gebruikt worden als kolomnamen.</nl>
             <br>Selecione a caixa para importar um arquivo CSV com linha de cabeçalho. Os valores do cabeçalho serão utilizados como nomes de coluna</br>
+            <jp>ヘッダ行付きCSVを読み込むならばチェックしてください(ヘッダ行の値は列名として使われます)</jp>
         </string>
         <string id="332">
             <en>Check box to export CSV with a header row. Header row will be first row in CSV with table column names.</en>
@@ -1670,6 +1826,7 @@ Note: You can add new languages by inserting "<new_language>string translated in
             <bg>Поле за потвърждаване на CSV със заглавен ред. Заглавния ред ще бъде първия ред в CSV с имена на колоните в таблицата.</bg>
             <nl>Selecteer dit vak om als een CSV-bestand met header te exporteren. Tabelkolomnamen zullen de eerste rij (header) vormen in het CSV-bestand.</nl>
             <br>Selecione a caixa para exportar um arquivo CSV com linha de cabeçalho. A linha de cabeçalho será a primeira linha do arquivo CSV e conterá os nomes das colunas</br>
+            <jp>ヘッダ行付きCSVとして出力するならチェックしてください(各列名がヘッダ行の各値になります)</jp>
         </string>
         <string id="333" js="1">
             <en>Error loading XML file. Cannot continue with import.</en>
@@ -1680,6 +1837,7 @@ Note: You can add new languages by inserting "<new_language>string translated in
             <bg>Грешка при зареждането на XML файла. Не може да се продължи с импортирането.</bg>
             <nl>Fout bij laden van XML-bestand. Importeren afgebroken</nl>
             <br>Erro ao ler o arquivo XML. Não é possível continuar com a importação</br>
+            <jp>XMLファイル読み込みエラー。読み込みを継続できません。</jp>
         </string>
         <string id="334" js="1">
             <en>Column delimiter and enclosure fields are mandatory.</en>
@@ -1690,6 +1848,7 @@ Note: You can add new languages by inserting "<new_language>string translated in
             <bg>Сепараторът за колони и за вършването на полета не е задължително</bg>
             <nl>Kolomscheidingsteken en veldbegrenzers zijn verplicht.</nl>
             <br>Column delimiter and enclosure fields are mandatory.</br>
+            <jp>列の区切り文字とフィールドの囲い文字は必須です。</jp>
         </string>
         <string id="335">
             <en>session count</en>
@@ -1700,16 +1859,18 @@ Note: You can add new languages by inserting "<new_language>string translated in
             <bg>броене на сесиите</bg>
             <nl>sessie teller</nl>
             <br>contador de seção</br>
+            <jp>セッションカウント</jp>
         </string>
         <string id="336" js="1">
-            <en>At least one of the fields that should be unique and is marked with ^ is empty or already exists in the system.</en>
+            <en>At least one of the fields that should be unique is empty or already exists in the system.</en>
             <de></de>
-            <pl>Przynajmniej jedno pole, które powinno być unikalne i jest oznaczone ^, już istnieje w systemie lub jest puste.</pl>
-            <cn></cn>
+            <pl>Przynajmniej jedno pole, które powinno być unikalne, już istnieje w systemie lub jest puste.</pl>
+            <cn>某独特区域与现有系统重复，或者为空白。</cn>
             <fr></fr>
             <bg></bg>
-            <nl></nl>
-            <br></br>
+            <nl>Tenminste een van de unieke velden is leeg of bestaat reeds in het systeem.</nl>
+            <br>Pelo menos um dos campos que deveria ser único foi deixado em branco ou já existe no sistema</br>
+            <jp>システム内の固有フィールドの少なくとも一つに空欄または重複があります。</jp>
         </string>
         <string id="337">
             <en>list of available objects</en>
@@ -1720,6 +1881,7 @@ Note: You can add new languages by inserting "<new_language>string translated in
             <bg>списък на достъпните обекти</bg>
             <nl>lijst van beschikbare objecten</nl>
             <br>liste os objetos disponíveis</br>
+            <jp>利用可能オブジェクトのリスト</jp>
         </string>
         <string id="338" js="1">
             <en>currently selected object:</en>
@@ -1730,6 +1892,7 @@ Note: You can add new languages by inserting "<new_language>string translated in
             <bg>актуални избрани обекти</bg>
             <nl>huidig geselecteerd object:</nl>
             <br>objeto atualmente selecionado:</br>
+            <jp>現在選択されているオブジェクト:</jp>
         </string>
         <string id="339" js="1">
             <en>Drag a column header and drop it here to group by that column</en>
@@ -1740,6 +1903,7 @@ Note: You can add new languages by inserting "<new_language>string translated in
             <bg>Изтегли заглавието на колоната и го пусни за групиране по колона</bg>
             <nl>Sleep een kolom header naar deze plaats om volgens die kolomwaarden te groeperen</nl>
             <br>Arraste um cabeçalho de coluna e solte aqui para agrupar por esta coluna</br>
+            <jp>分類する列ヘッダをドラッグしここへドロップしてください。</jp>
         </string>
         <string id="340" js="1">
             <en>Show rows with value that:</en>
@@ -1750,6 +1914,7 @@ Note: You can add new languages by inserting "<new_language>string translated in
             <fr>Montrer les lignes qui ont une valeur:</fr>
             <nl>Toon rijen met een waarde die:</nl>
             <br>Mostre as linhas com valor:</br>
+            <jp>次の値を持つ行を表示:</jp>
         </string>
         <string id="341" js="1">
             <en>Filter</en>
@@ -1760,6 +1925,7 @@ Note: You can add new languages by inserting "<new_language>string translated in
             <bg>Филтър</bg>
             <nl>Filter</nl>
             <br>Filtro</br>
+            <jp>フィルタ</jp>
         </string>
         <string id="342" js="1">
             <en>Clear</en>
@@ -1770,6 +1936,7 @@ Note: You can add new languages by inserting "<new_language>string translated in
             <bg>Изчисти</bg>
             <nl>Wissen</nl>
             <br>Limpar</br>
+            <jp>クリア</jp>
         </string>
         <string id="343" js="1">
             <en>starts with</en>
@@ -1780,6 +1947,7 @@ Note: You can add new languages by inserting "<new_language>string translated in
             <bg>Започни с</bg>
             <nl>starten met</nl>
             <br>iniciar com</br>
+            <jp>開始点</jp>
         </string>
         <string id="344" js="1">
             <en>contains</en>
@@ -1790,6 +1958,7 @@ Note: You can add new languages by inserting "<new_language>string translated in
             <bg>съдържа</bg>
             <nl>bevat</nl>
             <br>contém</br>
+            <jp>中身</jp>
         </string>
         <string id="345" js="1">
             <en>ends with</en>
@@ -1800,6 +1969,7 @@ Note: You can add new languages by inserting "<new_language>string translated in
             <bg>завършва с</bg>
             <nl>eindigt met</nl>
             <br>termina com</br>
+            <jp>終了点</jp>
         </string>
         <string id="350">
             <en>table structure definition</en>
@@ -1810,6 +1980,7 @@ Note: You can add new languages by inserting "<new_language>string translated in
             <bg>дефиниране на структурата на таблицата</bg>
             <nl>definitie van de tabelstructuur</nl>
             <br>definição da estrutura da tabela</br>
+            <jp>テーブル構造定義</jp>
         </string>
         <string id="351">
             <en>table data</en>
@@ -1820,6 +1991,7 @@ Note: You can add new languages by inserting "<new_language>string translated in
             <bg>данни на таблицата</bg>
             <nl>tabeldata</nl>
             <br>dados da tabela</br>
+            <jp>テーブルデータ</jp>
         </string>
         <string id="352">
             <en>table structure not defined</en>
@@ -1830,6 +2002,7 @@ Note: You can add new languages by inserting "<new_language>string translated in
             <bg>структурата на таблицата не е дефинирана</bg>
             <nl>tabelstructuur niet gedefinieerd</nl>
             <br>estrutura da tabela não definida</br>
+            <jp>テーブル構造が定義されていません。</jp>
         </string>
         <string id="359">
             <en>test logic</en>
@@ -1840,6 +2013,7 @@ Note: You can add new languages by inserting "<new_language>string translated in
             <bg>тестова логика</bg>
             <nl>testlogica</nl>
             <br>Lógica do teste</br>
+            <jp>テスト方法</jp>
         </string>
         <string id="362">
             <en>run test</en>
@@ -1850,6 +2024,40 @@ Note: You can add new languages by inserting "<new_language>string translated in
             <bg></bg>
             <nl>test uitvoeren</nl>
             <br>rodar teste</br>
+            <jp>テスト実行</jp>
+        </string>
+        <string id="363">
+            <en>(javascripts and css, except inline, will be turned off)</en>
+            <pl>(javascript i CSS nie inline będa wyłączone)</pl>
+            <de></de>
+            <cn>(未运行JAVA脚本和非直列CSS)</cn>
+            <fr></fr>
+            <bg></bg>
+            <nl>(javascripts en css, behalve incline, zullen uitgeschakeld worden)</nl>
+            <br>(javascripts e css, exceto esta linha, serão deligados)</br>
+            <jp>(JavascriptとCSSはインラインであるものを除き無効)</jp>
+        </string>
+        <string id="364">
+            <en>test output</en>
+            <pl>widok testu</pl>
+            <de></de>
+            <cn>测试输出</cn>
+            <fr></fr>
+            <bg></bg>
+            <nl>test output</nl>
+            <br>saída do teste</br>
+            <jp>テスト出力</jp>
+        </string>
+        <string id="365">
+            <en>test console</en>
+            <pl>konsola testu</pl>
+            <de></de>
+            <cn>测试操作平台</cn>
+            <fr></fr>
+            <bg></bg>
+            <nl>test console</nl>
+            <br>console do teste</br>
+            <jp>テストコンソール</jp>
         </string>
         <string id="366" js="1">
             <en>clear table</en>
@@ -1860,6 +2068,7 @@ Note: You can add new languages by inserting "<new_language>string translated in
             <bg></bg>
             <nl>tabel leegmaken</nl>
             <br>limpar tabela</br>
+            <jp>テーブルのクリア</jp>
         </string>
         <string id="367" js="1">
             <en>clearing table</en>
@@ -1870,6 +2079,7 @@ Note: You can add new languages by inserting "<new_language>string translated in
             <bg></bg>
             <nl>tabel leegmaken</nl>
             <br>limpando tabela</br>
+            <jp>テーブルのクリア</jp>
         </string>
         <string id="368" js="1">
             <en>Are you sure you want to clear the table? All rows will be deleted.</en>
@@ -1880,6 +2090,7 @@ Note: You can add new languages by inserting "<new_language>string translated in
             <bg></bg>
             <nl>Bent u zeker dat de tabel wil leegmaken? Alle rijen zullen verwijderd worden.</nl>
             <br>Você tem certeza que deseja limpar esta tabela? Todas as linhas serão removidas.</br>
+            <jp>すべての行が削除されます。本当にテーブルをクリアしますか?</jp>
         </string>
         <string id="370" js="1">
             <en>Version mismatch between imported object and Concerto platform. You can only import objects exported from the same version of Concerto.</en>
@@ -1890,6 +2101,7 @@ Note: You can add new languages by inserting "<new_language>string translated in
             <bg></bg>
             <nl>Versie mismatch tussen geimporteerd object en Concerto platform. Alleen geexporteerde objecten uit dezelfde versie van Concerto kunnen geimporteerd worden.</nl>
             <br>Diferença de versões entre o objeto importado e a Plataforma Concerto. Você só pode importar objetos exportados da mesma versão da Plataforma Concerto.</br>
+            <jp>読み込まれたオブジェクトとConcertoプラットフォームのバージョンが合いません。このConcertoと同じバージョンのオブジェクトのみ読み込み可能です。</jp>
         </string>
         <string id="371" js="1">
             <en>info</en>
@@ -1900,6 +2112,7 @@ Note: You can add new languages by inserting "<new_language>string translated in
             <bg></bg>
             <nl>info</nl>
             <br>info</br>
+            <jp>情報</jp>
         </string>
         <string id="374" js="1">
             <en>download from online library</en>
@@ -1910,6 +2123,7 @@ Note: You can add new languages by inserting "<new_language>string translated in
             <bg></bg>
             <nl>Download uit online bibliotheek</nl>
             <br>Download de uma biblioteca local</br>
+            <jp>オンラインライブラリからダウンロード</jp>
         </string>
         <string id="375">
             <en>upload to online library</en>
@@ -1920,6 +2134,7 @@ Note: You can add new languages by inserting "<new_language>string translated in
             <bg></bg>
             <nl>upload naar online bibliotheek</nl>
             <br>upload para uma biblioteca online</br>
+            <jp>オンラインライブラリへアップロード</jp>
         </string>
         <string id="376">
             <en>name of an object</en>
@@ -1930,6 +2145,7 @@ Note: You can add new languages by inserting "<new_language>string translated in
             <bg></bg>
             <nl>naam van een object</nl>
             <br>nome de um objeto</br>
+            <jp>オブジェクト名</jp>
         </string>
         <string id="377">
             <en>description of an object</en>
@@ -1940,6 +2156,7 @@ Note: You can add new languages by inserting "<new_language>string translated in
             <bg></bg>
             <nl>beschrijving van een object</nl>
             <br>descrição de um objeto</br>
+            <jp>オブジェクト記述</jp>
         </string>
         <string id="378" js="1">
             <en>author</en>
@@ -1950,6 +2167,7 @@ Note: You can add new languages by inserting "<new_language>string translated in
             <bg></bg>
             <nl>auteur</nl>
             <br>autor</br>
+            <jp>作者</jp>
         </string>
         <string id="379" js="1">
             <en>revision</en>
@@ -1960,6 +2178,7 @@ Note: You can add new languages by inserting "<new_language>string translated in
             <bg></bg>
             <nl>revisie</nl>
             <br>revisão</br>
+            <jp>修正</jp>
         </string>
         <string id="380">
             <en>author of an object</en>
@@ -1970,6 +2189,7 @@ Note: You can add new languages by inserting "<new_language>string translated in
             <bg></bg>
             <nl>auteur van een object</nl>
             <br>autor de um objeto</br>
+            <jp>オブジェクト作者</jp>
         </string>
         <string id="381">
             <en>revision of an object</en>
@@ -1980,6 +2200,7 @@ Note: You can add new languages by inserting "<new_language>string translated in
             <bg></bg>
             <nl>revisie van een object</nl>
             <br>revisão de um objeto</br>
+            <jp>オブジェクト修正</jp>
         </string>
         <string id="382" js="1">
             <en>uploading to online library</en>
@@ -1990,6 +2211,7 @@ Note: You can add new languages by inserting "<new_language>string translated in
             <bg></bg>
             <nl>uploaden naar online bibliotheek</nl>
             <br>uploading para uma biblioteca online</br>
+            <jp>オンラインライブラリへのアップロード</jp>
         </string>
         <string id="383" js="1">
             <en>upload</en>
@@ -2000,6 +2222,7 @@ Note: You can add new languages by inserting "<new_language>string translated in
             <bg></bg>
             <nl>upload</nl>
             <br>upload</br>
+            <jp>アップロード</jp>
         </string>
         <string id="384" js="1">
             <en>object uploaded</en>
@@ -2010,6 +2233,7 @@ Note: You can add new languages by inserting "<new_language>string translated in
             <bg></bg>
             <nl>object geupload</nl>
             <br>objeto uploaded</br>
+            <jp>アップロードされたオブジェクト</jp>
         </string>
         <string id="385" js="1">
             <en>upload date</en>
@@ -2020,6 +2244,7 @@ Note: You can add new languages by inserting "<new_language>string translated in
             <bg></bg>
             <nl>upload data</nl>
             <br>data do upload</br>
+            <jp>アップロード日時</jp>
         </string>
         <string id="386" js="1">
             <en>download count</en>
@@ -2030,6 +2255,7 @@ Note: You can add new languages by inserting "<new_language>string translated in
             <bg></bg>
             <nl>download teller</nl>
             <br>contagem de download</br>
+            <jp>ダウンロード数</jp>
         </string>
         <string id="387" js="1">
             <en>downloading object from online library</en>
@@ -2040,6 +2266,7 @@ Note: You can add new languages by inserting "<new_language>string translated in
             <bg></bg>
             <nl>object downloaden uit online bibliotheek</nl>
             <br>fazendo o download de uma bilioteca online</br>
+            <jp>オンラインライブラリからのオブジェクトのダウンロード</jp>
         </string>
         <string id="388" js="1">
             <en>object downloaded</en>
@@ -2050,6 +2277,7 @@ Note: You can add new languages by inserting "<new_language>string translated in
             <bg></bg>
             <nl>object gedownload</nl>
             <br>download do objeto efetuado</br>
+            <jp>ダウンロードされたオブジェクト</jp>
         </string>
         <string id="389" js="1">
             <en>Object download failed</en>
@@ -2060,6 +2288,7 @@ Note: You can add new languages by inserting "<new_language>string translated in
             <bg></bg>
             <nl>object download mislukt</nl>
             <br>Falha no download do objeto</br>
+            <jp>オブジェクトのダウンロードに失敗しました。</jp>
         </string>
         <string id="403">
             <en>test input/output</en>
@@ -2070,6 +2299,7 @@ Note: You can add new languages by inserting "<new_language>string translated in
             <bg></bg>
             <nl>test input/output</nl>
             <br>teste input/output</br>
+            <jp>テスト入出力</jp>
         </string>
         <string id="405">
             <en>Define test input parameters.</en>
@@ -2080,6 +2310,7 @@ Note: You can add new languages by inserting "<new_language>string translated in
             <bg></bg>
             <nl>Definieer test input parameters.</nl>
             <br>Defina parâmetros de entrada do teste</br>
+            <jp>テスト入力のパラメータを定義</jp>
         </string>
         <string id="406">
             <en>Define test return variables.</en>
@@ -2090,6 +2321,7 @@ Note: You can add new languages by inserting "<new_language>string translated in
             <bg></bg>
             <nl>Definieer test return variabelen.</nl>
             <br>Defina variáveis de saída do teste</br>
+            <jp>テスト返り値変数を定義</jp>
         </string>
         <string id="407">
             <en>HTML head tag</en>
@@ -2100,6 +2332,7 @@ Note: You can add new languages by inserting "<new_language>string translated in
             <bg></bg>
             <nl>HTML head tag</nl>
             <br>HTML head tag</br>
+            <jp>HTMLヘッダタグ</jp>
         </string>
         <string id="408">
             <en>HTML template head tag. Everything declared here will be available in every templates in the session. You can insert session variables here.</en>
@@ -2110,6 +2343,7 @@ Note: You can add new languages by inserting "<new_language>string translated in
             <bg></bg>
             <nl></nl>
             <br></br>
+            <jp>HTMLテンプレートヘッダタグを宣言。ここで宣言されたタグは全てのセッションで利用可能です。また、セッション変数も挿入可能です。</jp>
         </string>
         <string id="410" js="1">
             <en>Register new account</en>
@@ -2120,6 +2354,7 @@ Note: You can add new languages by inserting "<new_language>string translated in
             <bg></bg>
             <nl>Nieuwe account registeren</nl>
             <br>Registre uma nova conta</br>
+            <jp>新しいアカウントの登録</jp>
         </string>
         <string id="411">
             <en>log in</en>
@@ -2130,6 +2365,7 @@ Note: You can add new languages by inserting "<new_language>string translated in
             <bg></bg>
             <nl>log-in</nl>
             <br>log in</br>
+            <jp>ログイン</jp>
         </string>
         <string id="412" js="1">
             <en>register</en>
@@ -2140,6 +2376,7 @@ Note: You can add new languages by inserting "<new_language>string translated in
             <bg></bg>
             <nl>registreren</nl>
             <br>registrar</br>
+            <jp>登録</jp>
         </string>
         <string id="413">
             <en>Please fill the form below to create a new account.</en>
@@ -2150,6 +2387,7 @@ Note: You can add new languages by inserting "<new_language>string translated in
             <bg></bg>
             <nl>Gelieve onderstaand formulier in te vullen om een nieuwe account aan te maken.</nl>
             <br>Por favor preencha o formulário abaixo para criar uma nova conta</br>
+            <jp>作成するアカウント情報を入力してください。</jp>
         </string>
         <string id="414" js="1">
             <en>Account registered. You will now be redirected to the login page.</en>
@@ -2160,6 +2398,7 @@ Note: You can add new languages by inserting "<new_language>string translated in
             <bg></bg>
             <nl>Account geregistreerd. U wordt nu doorverwezen naar de log-in pagina.</nl>
             <br>Conta criada. Você será direcionado para a página de login.</br>
+            <jp>アカウントが登録されました。ログインページへリダイレクトします。</jp>
         </string>
         <string id="415" js="1">
             <en>Fields marked with * are required and can not be empty.</en>
@@ -2170,6 +2409,7 @@ Note: You can add new languages by inserting "<new_language>string translated in
             <bg></bg>
             <nl>Velden aangeduid door * zijn verplicht</nl>
             <br>Os campos marcados com * são obrigatórios.</br>
+            <jp>*マークの付いたフィールドは入力必須です。</jp>
         </string>
         <string id="416">
             <en>academic</en>
@@ -2180,6 +2420,7 @@ Note: You can add new languages by inserting "<new_language>string translated in
             <bg></bg>
             <nl>academisch</nl>
             <br>acadêmica</br>
+            <jp>研究用</jp>
         </string>
         <string id="417">
             <en>commercial</en>
@@ -2190,6 +2431,7 @@ Note: You can add new languages by inserting "<new_language>string translated in
             <bg></bg>
             <nl>commercieel</nl>
             <br>comercial</br>
+            <jp>商用</jp>
         </string>
         <string id="418">
             <en>other ( please specify below )</en>
@@ -2200,6 +2442,7 @@ Note: You can add new languages by inserting "<new_language>string translated in
             <bg></bg>
             <nl>Ander (gelieve te verduidelijken hieronder)</nl>
             <br>outra ( por favor especifique abaixo )</br>
+            <jp>その他(次の欄に記述)</jp>
         </string>
         <string id="419">
             <en>inst. type</en>
@@ -2210,6 +2453,7 @@ Note: You can add new languages by inserting "<new_language>string translated in
             <bg></bg>
             <nl></nl>
             <br></br>
+            <jp>機関の種類</jp>
         </string>
         <string id="420">
             <en>Please indicate the nature of your work</en>
@@ -2220,6 +2464,7 @@ Note: You can add new languages by inserting "<new_language>string translated in
             <bg></bg>
             <nl>Geef de aard van uw werk aan</nl>
             <br>Por favor indique a natureza de seu trabalho</br>
+            <jp>業務の種別を入力してください</jp>
         </string>
         <string id="421" js="1">
             <en>inst. name</en>
@@ -2230,6 +2475,7 @@ Note: You can add new languages by inserting "<new_language>string translated in
             <bg></bg>
             <nl></nl>
             <br></br>
+            <jp>機関名</jp>
         </string>
         <string id="422">
             <en>Please provide the name of your institution</en>
@@ -2240,6 +2486,7 @@ Note: You can add new languages by inserting "<new_language>string translated in
             <bg></bg>
             <nl>Geef de naam van uw instelling</nl>
             <br>Por favor forneça um nome para a sua instituição</br>
+            <jp>機関名を入力してください</jp>
         </string>
         <string id="424">
             <en>create an account</en>
@@ -2250,6 +2497,7 @@ Note: You can add new languages by inserting "<new_language>string translated in
             <bg></bg>
             <nl>Account aanmaken</nl>
             <br>Criar uma conta</br>
+            <jp>アカウントの作成</jp>
         </string>
         <string id="425">
             <en>forgot your password?</en>
@@ -2260,6 +2508,7 @@ Note: You can add new languages by inserting "<new_language>string translated in
             <bg></bg>
             <nl>wachtwoord vergeten?</nl>
             <br>Esqueceu sua senha?</br>
+            <jp>パスワードを忘れましたか?</jp>
         </string>
         <string id="426" js="1">
             <en>There is no user with the selected login.</en>
@@ -2270,6 +2519,7 @@ Note: You can add new languages by inserting "<new_language>string translated in
             <bg></bg>
             <nl>Er is geen gebruiker met de geselecteerde log-in.</nl>
             <br>Não há nenhum usuário com o login selecionado</br>
+            <jp>選択したログインにはユーザーがいません。</jp>
         </string>
         <string id="427" js="1">
             <en>recovering password</en>
@@ -2280,6 +2530,7 @@ Note: You can add new languages by inserting "<new_language>string translated in
             <bg></bg>
             <nl>wachtwoord ophalen</nl>
             <br>recuperando senha</br>
+            <jp>パスワードの復帰</jp>
         </string>
         <string id="428">
             <en>Concerto password recovery</en>
@@ -2290,62 +2541,51 @@ Note: You can add new languages by inserting "<new_language>string translated in
             <bg></bg>
             <nl>Concerto wachtwoord ophalen</nl>
             <br>Senha do Concerto recuperada</br>
+            <jp>Concertoパスワードの復帰</jp>
         </string>
         <string id="429">
-            <en><![CDATA[To recover password please follow this link: <a href='%s'>LINK TO RECOVER PASSWORD</a>.]]>
-            </en>
+            <en><![CDATA[To recover password please follow this link: <a href='%s'>LINK TO RECOVER PASSWORD</a>.]]></en>
             <de></de>
-            <pl><![CDATA[Aby odzyskać hasło proszę podążyć za tym linkiem: <a href='%s'>LINK DO ODZYSKANIA HASŁA</a>.]]>
-            </pl>
+            <pl><![CDATA[Aby odzyskać hasło proszę podążyć za tym linkiem: <a href='%s'>LINK DO ODZYSKANIA HASŁA</a>.]]></pl>
             <cn></cn>
             <fr></fr>
             <bg></bg>
-            <nl><![CDATA[Om wachtwoord op te halen, gelieve deze link te volgen: <a href='%s'>LINK NAAR WACHTWOORD OPHALING</a>.]]>
-            </nl>
-            <br><![CDATA[Para recuperar uma senha por favor vá neste link: <a href='%s'>LINK PARA RECUPERAR SENHA</a>.]]>
-            </br>
+            <nl><![CDATA[Om wachtwoord op te halen, gelieve deze link te volgen: <a href='%s'>LINK NAAR WACHTWOORD OPHALING</a>.]]></nl>
+            <br><![CDATA[Para recuperar uma senha por favor vá neste link: <a href='%s'>LINK PARA RECUPERAR SENHA</a>.]]></br>
+            <jp><![CDATA[パスワードを復帰します。次のリンクを確認してください: <a href='%s'>復帰パスワード</a>]]></jp>
         </string>
         <string id="430">
-            <en><![CDATA[Your new password is: <b>%s</b>]]>
-            </en>
+            <en><![CDATA[Your new password is: <b>%s</b>]]></en>
             <de></de>
-            <pl><![CDATA[Twoje nowe hasło to: <b>%s</b>]]>
-            </pl>
+            <pl><![CDATA[Twoje nowe hasło to: <b>%s</b>]]></pl>
             <cn></cn>
             <fr></fr>
             <bg></bg>
-            <nl><![CDATA[Uw nieuw wachtwoord is: <b>%s</b>]]>
-            </nl>
-            <br><![CDATA[Sua nova senha é: <b>%s</b>]]>
-            </br>
+            <nl><![CDATA[Uw nieuw wachtwoord is: <b>%s</b>]]></nl>
+            <br><![CDATA[Sua nova senha é: <b>%s</b>]]></br>
+            <jp><![CDATA[あなたのパスワード: <b>%s</b>]]></jp>
         </string>
         <string id="431" js="1">
-            <en><![CDATA[Your new password has been sent to your email address. <b>Delivery of email can take up to several minutes.</b>]]>
-            </en>
+            <en><![CDATA[Your new password has been sent to your email address. <b>Delivery of email can take up to several minutes.</b>]]></en>
             <de></de>
-            <pl><![CDATA[Twoje nowe hasło zostało wysłane na twój adres email. <b>Dostarczenie maila może zająć nawet kilkanaście minut.</b>]]>
-            </pl>
+            <pl><![CDATA[Twoje nowe hasło zostało wysłane na twój adres email. <b>Dostarczenie maila może zająć nawet kilkanaście minut.</b>]]></pl>
             <cn></cn>
             <fr></fr>
             <bg></bg>
-            <nl><![CDATA[Uw nieuw wachtwoord werd verzonden naar uw e-mailadres. <b>Dit kan enkele minuten duren.</b>]]>
-            </nl>
-            <br><![CDATA[Sua nova senha foi enviada para o e-mail cadastrado. <b>O envio da senha pode levar alguns minutos.</b>]]>
-            </br>
+            <nl><![CDATA[Uw nieuw wachtwoord werd verzonden naar uw e-mailadres. <b>Dit kan enkele minuten duren.</b>]]></nl>
+            <br><![CDATA[Sua nova senha foi enviada para o e-mail cadastrado. <b>O envio da senha pode levar alguns minutos.</b>]]></br>
+            <jp><![CDATA[新しいパスワードがあなたのEメールアドレスに送信されました。 <b>数分後に確認してください</b>。]]></jp>
         </string>
         <string id="432" js="1">
-            <en><![CDATA[Mail has been sent to your user email account for verification. <b>Delivery of email can take up to several minutes.</b> Please follow the link in verification email to continue password recovery process.]]>
-            </en>
+            <en><![CDATA[Mail has been sent to your user email account for verification. <b>Delivery of email can take up to several minutes.</b> Please follow the link in verification email to continue password recovery process.]]></en>
             <de></de>
-            <pl><![CDATA[List weryfikacyjny został wysłany na skrzynkę pocztową twojego użytkownika. <b>Dostarczenie maila może zająć nawet kilkanaście minut.</b> Proszę podążyć za linkiem w liście weryfikacyjnym aby kontynuować process odzyskiwania hasła.]]>
-            </pl>
+            <pl><![CDATA[List weryfikacyjny został wysłany na skrzynkę pocztową twojego użytkownika. <b>Dostarczenie maila może zająć nawet kilkanaście minut.</b> Proszę podążyć za linkiem w liście weryfikacyjnym aby kontynuować process odzyskiwania hasła.]]></pl>
             <cn></cn>
             <fr></fr>
             <bg></bg>
-            <nl><![CDATA[E-mail werd verzonden naar uw user e-mailaccount voor bevestiging. <b>Dit kan enkele minuten duren.</b> Gelieve de link in de bevestingsmail te volgen om het wachtwoord-ophalingsproces voort te zetten.]]>
-            </nl>
-            <br><![CDATA[Um e-mail foi enviado para sua conta de e-mail para verificação <b>O envio do email pode levar alguns minutos.</b> Por favor siga as instruções no e-mail para continuar com a recuperação da senha.]]>
-            </br>
+            <nl><![CDATA[E-mail werd verzonden naar uw user e-mailaccount voor bevestiging. <b>Dit kan enkele minuten duren.</b> Gelieve de link in de bevestingsmail te volgen om het wachtwoord-ophalingsproces voort te zetten.]]></nl>
+            <br><![CDATA[Um e-mail foi enviado para sua conta de e-mail para verificação <b>O envio do email pode levar alguns minutos.</b> Por favor siga as instruções no e-mail para continuar com a recuperação da senha.]]></br>
+            <jp><![CDATA[Eメールアカウント確認のためのメールが送られました。 <b>数分後に確認してください。</b> パスワード復帰手続きを継続するにはメールに記載されたリンクをクリックしてください。]]></jp>
         </string>
         <string id="433">
             <en>Please enter your login id</en>
@@ -2356,6 +2596,7 @@ Note: You can add new languages by inserting "<new_language>string translated in
             <bg></bg>
             <nl>Voer uw log-in ID in</nl>
             <br>Por favor entre com seu login</br>
+            <jp>あなたのログインIDを入力してください</jp>
         </string>
         <string id="434">
             <en>Please enter your password</en>
@@ -2366,6 +2607,7 @@ Note: You can add new languages by inserting "<new_language>string translated in
             <bg></bg>
             <nl>Voer uw wachtwoord in</nl>
             <br>Por favor entre com a sua senha</br>
+            <jp>あなたのパスワードを入力してください</jp>
         </string>
         <string id="442">
             <en>go to top</en>
@@ -2376,6 +2618,7 @@ Note: You can add new languages by inserting "<new_language>string translated in
             <bg></bg>
             <nl>ga naar top</nl>
             <br>vá para o topo</br>
+            <jp>トップへ</jp>
         </string>
         <string id="443">
             <en>export</en>
@@ -2386,6 +2629,7 @@ Note: You can add new languages by inserting "<new_language>string translated in
             <bg></bg>
             <nl>exporteren</nl>
             <br>exportar</br>
+            <jp>出力</jp>
         </string>
         <string id="444" js="1">
             <en>Uploading file failed.</en>
@@ -2395,6 +2639,7 @@ Note: You can add new languages by inserting "<new_language>string translated in
             <fr></fr>
             <bg>Uploaden van bestand mislukt.</bg>
             <br>O processo de upload do arquivo falhou</br>
+            <jp>ファイルのアップロードに失敗しました。</jp>
         </string>
         <string id="451">
             <en>forum</en>
@@ -2405,6 +2650,7 @@ Note: You can add new languages by inserting "<new_language>string translated in
             <bg></bg>
             <nl>forum</nl>
             <br>fórum</br>
+            <jp>フォーラム</jp>
         </string>
         <string id="452">
             <en>contact us</en>
@@ -2415,6 +2661,7 @@ Note: You can add new languages by inserting "<new_language>string translated in
             <bg></bg>
             <nl>contact</nl>
             <br>contate-nos</br>
+            <jp>連絡先</jp>
         </string>
         <string id="453">
             <en>project homepage</en>
@@ -2425,6 +2672,7 @@ Note: You can add new languages by inserting "<new_language>string translated in
             <bg></bg>
             <nl>project homepage</nl>
             <br>homepage do projeto</br>
+            <jp>プロジェクトのホームページ</jp>
         </string>
         <string id="457">
             <en>unnamed QTI assessment item</en>
@@ -2435,6 +2683,7 @@ Note: You can add new languages by inserting "<new_language>string translated in
             <fr></fr>
             <nl></nl>
             <br>Item QTI sem nome</br>
+            <jp>無名のQTI評価項目</jp>
         </string>
         <string id="458">
             <en>QTI assessment item</en>
@@ -2445,6 +2694,7 @@ Note: You can add new languages by inserting "<new_language>string translated in
             <fr></fr>
             <nl></nl>
             <br>QTI Item</br>
+            <jp>QTI評価項目</jp>
         </string>
         <string id="459">
             <en>QTI (beta)</en>
@@ -2455,6 +2705,7 @@ Note: You can add new languages by inserting "<new_language>string translated in
             <fr></fr>
             <nl></nl>
             <br>QTI (beta)</br>
+            <jp>QTI (beta)</jp>
         </string>
         <string id="460" final="no">
             <en>You can implement QTI assessment items into your test here.</en>
@@ -2465,6 +2716,7 @@ Note: You can add new languages by inserting "<new_language>string translated in
             <fr></fr>
             <nl></nl>
             <br>Você pode implementar itens QTI em seu teste aqui.</br>
+            <jp>ここにあなたのテストのQTI評価項目を実装できます。</jp>
         </string>
         <string id="461">
             <en>QTI assessment items</en>
@@ -2475,6 +2727,7 @@ Note: You can add new languages by inserting "<new_language>string translated in
             <fr></fr>
             <nl></nl>
             <br>itens QTI</br>
+            <jp>QTI評価項目</jp>
         </string>
         <string id="462">
             <en>editing QTI assessment item</en>
@@ -2485,6 +2738,7 @@ Note: You can add new languages by inserting "<new_language>string translated in
             <bg></bg>
             <nl></nl>
             <br>Editanto item QTI</br>
+            <jp>QTI評価項目の編集</jp>
         </string>
         <string id="463">
             <en>creating new QTI assessment item</en>
@@ -2495,6 +2749,7 @@ Note: You can add new languages by inserting "<new_language>string translated in
             <bg></bg>
             <nl></nl>
             <br>criando novo item QTI</br>
+            <jp>新しいQTI評価項目の作成</jp>
         </string>
         <string id="464">
             <en>name of QTI assessment item</en>
@@ -2505,6 +2760,7 @@ Note: You can add new languages by inserting "<new_language>string translated in
             <bg></bg>
             <nl></nl>
             <br>nome do item QTI</br>
+            <jp>QTI評価項目名</jp>
         </string>
         <string id="465">
             <en>XML</en>
@@ -2515,6 +2771,7 @@ Note: You can add new languages by inserting "<new_language>string translated in
             <bg></bg>
             <nl></nl>
             <br>XML</br>
+            <jp>XML</jp>
         </string>
         <string id="466">
             <en>QTI assessment item XML code.</en>
@@ -2525,6 +2782,7 @@ Note: You can add new languages by inserting "<new_language>string translated in
             <bg></bg>
             <nl></nl>
             <br>Item QTI in código XML</br>
+            <jp>QTI評価項目のXMLコード</jp>
         </string>
         <string id="470" js="1">
             <en>QTI XML has been successfuly validated.</en>
@@ -2535,6 +2793,7 @@ Note: You can add new languages by inserting "<new_language>string translated in
             <bg></bg>
             <nl></nl>
             <br>O XML QTI foi validado com sucesso.</br>
+            <jp>QTIXMLの検証に成功しました。</jp>
         </string>
         <string id="471" js="1">
             <en>QTI XML is incorrect. Correct XML and press revalidate button.</en>
@@ -2545,6 +2804,7 @@ Note: You can add new languages by inserting "<new_language>string translated in
             <bg></bg>
             <nl></nl>
             <br>XML QTI está incorreto. Corrija o XML e depois pressione o botão revalidar.</br>
+            <jp>QTIXMLが間違っています。XMLを修正し再検証ボタンを押してください。</jp>
         </string>
         <string id="472" js="1">
             <en>Error type: </en>
@@ -2555,6 +2815,7 @@ Note: You can add new languages by inserting "<new_language>string translated in
             <bg></bg>
             <nl></nl>
             <br>Tipo de Erro:</br>
+            <jp>エラー種別:</jp>
         </string>
         <string id="473" js="1">
             <en>element: </en>
@@ -2565,6 +2826,7 @@ Note: You can add new languages by inserting "<new_language>string translated in
             <bg></bg>
             <nl></nl>
             <br>elemento:</br>
+            <jp>要素:</jp>
         </string>
         <string id="474" js="1">
             <en>target: </en>
@@ -2575,6 +2837,7 @@ Note: You can add new languages by inserting "<new_language>string translated in
             <bg></bg>
             <nl></nl>
             <br>alvo:</br>
+            <jp>対象:</jp>
         </string>
         <string id="475" js="1">
             <en>XML root</en>
@@ -2585,6 +2848,7 @@ Note: You can add new languages by inserting "<new_language>string translated in
             <bg></bg>
             <nl></nl>
             <br>raiz do XML:</br>
+            <jp>XMLルート要素</jp>
         </string>
         <string id="476" js="1">
             <en>attribute not allowed</en>
@@ -2595,6 +2859,7 @@ Note: You can add new languages by inserting "<new_language>string translated in
             <bg></bg>
             <nl></nl>
             <br>atributo não permitido</br>
+            <jp>許可されない属性</jp>
         </string>
         <string id="477" js="1">
             <en>attribute required</en>
@@ -2605,6 +2870,7 @@ Note: You can add new languages by inserting "<new_language>string translated in
             <bg></bg>
             <nl></nl>
             <br>atributo obrigatório</br>
+            <jp>要求属性</jp>
         </string>
         <string id="478" js="1">
             <en>child not allowed</en>
@@ -2615,6 +2881,7 @@ Note: You can add new languages by inserting "<new_language>string translated in
             <bg></bg>
             <nl></nl>
             <br>não é permitido crianças</br>
+            <jp>許可されない子</jp>
         </string>
         <string id="479" js="1">
             <en>child required</en>
@@ -2625,6 +2892,7 @@ Note: You can add new languages by inserting "<new_language>string translated in
             <bg></bg>
             <nl></nl>
             <br>criança necessária</br>
+            <jp>要求子</jp>
         </string>
         <string id="480" js="1">
             <en>class does not exist</en>
@@ -2635,6 +2903,7 @@ Note: You can add new languages by inserting "<new_language>string translated in
             <bg></bg>
             <nl></nl>
             <br>a classe não existe</br>
+            <jp>存在しないクラスです。</jp>
         </string>
         <string id="487">
             <en>revalidate</en>
@@ -2645,6 +2914,7 @@ Note: You can add new languages by inserting "<new_language>string translated in
             <bg></bg>
             <nl></nl>
             <br>revalidação</br>
+            <jp>再検証</jp>
         </string>
         <string id="488">
             <en>open</en>
@@ -2655,6 +2925,18 @@ Note: You can add new languages by inserting "<new_language>string translated in
             <bg></bg>
             <nl></nl>
             <br>abrir</br>
+            <jp>開く</jp>
+        </string>
+        <string id="489">
+            <en>Check if you want to make this test available to run by everyone.</en>
+            <de></de>
+            <pl>Zaznacz jeśli chcesz uczynić ten test dostępnym do uruchomienia przez wszystkich.</pl>
+            <cn></cn>
+            <fr></fr>
+            <bg></bg>
+            <nl></nl>
+            <br>Selecione se você deseja manter este teste disponível para todos.</br>
+            <jp>全員にこのテストを利用可能としたいならチェックしてください</jp>
         </string>
         <string id="491">
             <en>HTML source code</en>
@@ -2665,6 +2947,7 @@ Note: You can add new languages by inserting "<new_language>string translated in
             <bg></bg>
             <nl></nl>
             <br>código fonte HTML</br>
+            <jp>HTMLソースコード</jp>
         </string>
         <string id="494">
             <en>You can declare input and output variables here, which can later be used in variable assignment when the test is nested.</en>
@@ -2675,6 +2958,7 @@ Note: You can add new languages by inserting "<new_language>string translated in
             <bg></bg>
             <nl></nl>
             <br>Você pode declarar variáveis de input e output aqui, que poderão ser utlizadas posteriormente na alocação de variáveis quando o teste é aninhado.</br>
+            <jp>入出力変数をここに宣言できます。それらは後でこのテストが入れ子にされた場合、変数割り当てに用いられます。</jp>
         </string>
         <string id="495">
             <en>You can declare test logic here.</en>
@@ -2685,6 +2969,7 @@ Note: You can add new languages by inserting "<new_language>string translated in
             <bg></bg>
             <nl></nl>
             <br>Você pode declara a lógica do seu teste aqui</br>
+            <jp>テスト方法をここに宣言できます。</jp>
         </string>
         <string id="497" js="1">
             <en>Online Library</en>
@@ -2695,6 +2980,7 @@ Note: You can add new languages by inserting "<new_language>string translated in
             <bg></bg>
             <nl></nl>
             <br>Biblioteca online</br>
+            <jp>オンラインライブラリ</jp>
         </string>
         <string id="498" js="1">
             <en>Choose an object you want to download from Online Library.</en>
@@ -2705,6 +2991,7 @@ Note: You can add new languages by inserting "<new_language>string translated in
             <bg></bg>
             <nl></nl>
             <br>Selecione um objeto que você deseja fazer o download da Biblioteca Online</br>
+            <jp>オンラインライブラリからダウンロードしたいオブジェクトを選択してください。</jp>
         </string>
         <string id="499">
             <en>Describe object you have selected to upload to Online Library.</en>
@@ -2715,6 +3002,7 @@ Note: You can add new languages by inserting "<new_language>string translated in
             <bg></bg>
             <nl></nl>
             <br>Descreva o objeto que você selecionou para o upload para a Biblioteca Online</br>
+            <jp>オンラインライブラリにアップロードするよう選択したオブジェクトを説明してください。</jp>
         </string>
         <string id="501">
             <en>You can declare template HTML presentation properties here.</en>
@@ -2725,6 +3013,7 @@ Note: You can add new languages by inserting "<new_language>string translated in
             <bg></bg>
             <nl></nl>
             <br>Você pode declarar um propriedade de apresentação de um template HTML aqui.</br>
+            <jp>ここにテンプレートHTMLプレゼンテーションプロパティを宣言できます。</jp>
         </string>
         <string id="502">
             <en>You can declare table structure here.</en>
@@ -2735,6 +3024,7 @@ Note: You can add new languages by inserting "<new_language>string translated in
             <bg></bg>
             <nl></nl>
             <br>Você pode declarar uma estrutura de tabela aqui.</br>
+            <jp>ここにテーブル構造を宣言できます。</jp>
         </string>
         <string id="503">
             <en>You can add/edit/delete table records here.</en>
@@ -2745,6 +3035,7 @@ Note: You can add new languages by inserting "<new_language>string translated in
             <bg></bg>
             <nl></nl>
             <br>Você pode adicionar/editar/remover registros de uma tabela aqui.</br>
+            <jp>ここに追加/編集/削除するテーブルレコードを追加できます。</jp>
         </string>
         <string id="504">
             <en>CSV file properties</en>
@@ -2755,6 +3046,7 @@ Note: You can add new languages by inserting "<new_language>string translated in
             <bg></bg>
             <nl></nl>
             <br>propriedades de arquivo CSV</br>
+            <jp>CSVファイルプロパティ</jp>
         </string>
         <string id="505">
             <en>Declare properties of CSV file you want to import.</en>
@@ -2765,6 +3057,7 @@ Note: You can add new languages by inserting "<new_language>string translated in
             <bg></bg>
             <nl></nl>
             <br>Declare as propriedades do arquivo CSV que você deseja importar.</br>
+            <jp>読み込みたいCSVファイルのプロパティを宣言してください。</jp>
         </string>
         <string id="506">
             <en>Declare properties of CSV file you want to export table to.</en>
@@ -2775,6 +3068,7 @@ Note: You can add new languages by inserting "<new_language>string translated in
             <bg></bg>
             <nl></nl>
             <br>Declare as propriedade do arquivo CSV que você deseja exportar</br>
+            <jp>テーブルを出力したいCSVファイルのプロパティを宣言してください。</jp>
         </string>
         <string id="507">
             <en>column properties</en>
@@ -2785,6 +3079,7 @@ Note: You can add new languages by inserting "<new_language>string translated in
             <bg></bg>
             <nl></nl>
             <br>propriedades da coluna</br>
+            <jp>列プロパティ</jp>
         </string>
         <string id="508">
             <en>Declare column properties.</en>
@@ -2795,6 +3090,7 @@ Note: You can add new languages by inserting "<new_language>string translated in
             <bg></bg>
             <nl></nl>
             <br>Declare as propriedades da coluna</br>
+            <jp>列プロパティの宣言</jp>
         </string>
         <string id="510">
             <en>save as new</en>
@@ -2805,6 +3101,7 @@ Note: You can add new languages by inserting "<new_language>string translated in
             <bg></bg>
             <nl></nl>
             <br>Salvar como</br>
+            <jp>名前を付けて保存</jp>
         </string>
         <string id="512">
             <en>check all</en>
@@ -2815,6 +3112,7 @@ Note: You can add new languages by inserting "<new_language>string translated in
             <bg></bg>
             <nl></nl>
             <br>selecionar tudo</br>
+            <jp>全てチェック</jp>
         </string>
         <string id="513">
             <en>uncheck all</en>
@@ -2825,6 +3123,7 @@ Note: You can add new languages by inserting "<new_language>string translated in
             <bg></bg>
             <nl></nl>
             <br>desmarcar tudo</br>
+            <jp>すべてのチェックを外す</jp>
         </string>
         <string id="514">
             <en>checked objects count: </en>
@@ -2835,6 +3134,7 @@ Note: You can add new languages by inserting "<new_language>string translated in
             <bg></bg>
             <nl></nl>
             <br>número de objetos selecionados:</br>
+            <jp>チェックされたオブジェクトの数:</jp>
         </string>
         <string id="515">
             <en>delete checked</en>
@@ -2845,6 +3145,7 @@ Note: You can add new languages by inserting "<new_language>string translated in
             <bg></bg>
             <nl></nl>
             <br>deletar selecionados</br>
+            <jp>チェックしたものの削除</jp>
         </string>
         <string id="516">
             <en>export checked</en>
@@ -2855,6 +3156,7 @@ Note: You can add new languages by inserting "<new_language>string translated in
             <bg></bg>
             <nl></nl>
             <br>exportar selecionados</br>
+            <jp>チェックしたもののエクスポート</jp>
         </string>
         <string id="517" js="1">
             <en>Are you sure you want to delete selected objects?</en>
@@ -2865,6 +3167,18 @@ Note: You can add new languages by inserting "<new_language>string translated in
             <bg></bg>
             <nl></nl>
             <br>Você tem certeza que deseja deletar os objetos selecionados</br>
+            <jp>本当に選択されたオブジェクトを削除しますか?</jp>
+        </string>
+        <string id="522">
+            <en>go to related object</en>
+            <de></de>
+            <pl>przejdź do powiązanego obiektu</pl>
+            <cn></cn>
+            <fr></fr>
+            <bg></bg>
+            <nl></nl>
+            <br>vá para o objeto relacionado</br>
+            <jp>関連オブジェクトへジャンプ</jp>
         </string>
         <string id="523" js="1">
             <en>Go to the first page</en>
@@ -2875,6 +3189,7 @@ Note: You can add new languages by inserting "<new_language>string translated in
             <bg></bg>
             <nl></nl>
             <br>Vá para a primeira página</br>
+            <jp>最初のページへ戻る</jp>
         </string>
         <string id="524" js="1">
             <en>Go to the previous page</en>
@@ -2885,6 +3200,7 @@ Note: You can add new languages by inserting "<new_language>string translated in
             <bg></bg>
             <nl></nl>
             <br>Vá para a página anterior</br>
+            <jp>前のページへ戻る</jp>
         </string>
         <string id="525" js="1">
             <en>Go to the next page</en>
@@ -2895,6 +3211,7 @@ Note: You can add new languages by inserting "<new_language>string translated in
             <bg></bg>
             <nl></nl>
             <br>Vá para a próxima página</br>
+            <jp>次のページへ進む</jp>
         </string>
         <string id="526" js="1">
             <en>Go to the last page</en>
@@ -2905,6 +3222,7 @@ Note: You can add new languages by inserting "<new_language>string translated in
             <bg></bg>
             <nl></nl>
             <br>Vá para a última página</br>
+            <jp>最後のページへ進む</jp>
         </string>
         <string id="527" js="1">
             <en>{0} - {1} of {2} objects</en>
@@ -2915,6 +3233,7 @@ Note: You can add new languages by inserting "<new_language>string translated in
             <bg></bg>
             <nl></nl>
             <br>{0} - {1} de {2} objetos</br>
+            <jp>{2}オブジェクトの{0} - {1}</jp>
         </string>
         <string id="528" js="1">
             <en>No objects to display</en>
@@ -2925,6 +3244,7 @@ Note: You can add new languages by inserting "<new_language>string translated in
             <bg></bg>
             <nl></nl>
             <br>Nenhum objeto para mostrar</br>
+            <jp>表示するオブジェクトがありません。</jp>
         </string>
         <string id="529" js="1">
             <en>Page</en>
@@ -2935,6 +3255,7 @@ Note: You can add new languages by inserting "<new_language>string translated in
             <bg></bg>
             <nl></nl>
             <br>Página</br>
+            <jp>ページ</jp>
         </string>
         <string id="530" js="1">
             <en>of {0}</en>
@@ -2945,6 +3266,7 @@ Note: You can add new languages by inserting "<new_language>string translated in
             <bg></bg>
             <nl></nl>
             <br>de {0}</br>
+            <jp>{0}の</jp>
         </string>
         <string id="531" js="1">
             <en>items per page</en>
@@ -2955,6 +3277,7 @@ Note: You can add new languages by inserting "<new_language>string translated in
             <bg></bg>
             <nl></nl>
             <br>items por página</br>
+            <jp>ページ毎のアイテム数</jp>
         </string>
         <string id="532" js="1">
             <en>refresh</en>
@@ -2965,6 +3288,7 @@ Note: You can add new languages by inserting "<new_language>string translated in
             <bg></bg>
             <nl></nl>
             <br>atualizar</br>
+            <jp>再読み込み</jp>
         </string>
         <string id="533" js="1">
             <en>Columns</en>
@@ -2975,6 +3299,7 @@ Note: You can add new languages by inserting "<new_language>string translated in
             <bg></bg>
             <nl></nl>
             <br>Colunas</br>
+            <jp>列</jp>
         </string>
         <string id="534" js="1">
             <en>Sort Ascending</en>
@@ -2985,6 +3310,7 @@ Note: You can add new languages by inserting "<new_language>string translated in
             <bg></bg>
             <nl></nl>
             <br>Ordenar crescente</br>
+            <jp>昇順にソート</jp>
         </string>
         <string id="535" js="1">
             <en>Sort Descending</en>
@@ -2995,6 +3321,7 @@ Note: You can add new languages by inserting "<new_language>string translated in
             <bg></bg>
             <nl></nl>
             <br>Ordenar decrescente</br>
+            <jp>降順にソート</jp>
         </string>
         <string id="536">
             <en>loader</en>
@@ -3005,6 +3332,7 @@ Note: You can add new languages by inserting "<new_language>string translated in
             <bg></bg>
             <nl></nl>
             <br></br>
+            <jp>ローダ</jp>
         </string>
         <string id="537">
             <en>Choose the template you wish to be shown whenever R code will be interpreted. No variable insertion is possible on loader templates. Loader templates from nested tests are ignored.</en>
@@ -3015,6 +3343,7 @@ Note: You can add new languages by inserting "<new_language>string translated in
             <bg></bg>
             <nl></nl>
             <br>Selecionar o template que você deseja que seja exibido sempre que o código R for interpretado. Nenhuma inserção é possível para ler templates. Carregar templates de testes aninhados serão ignorados.</br>
+            <jp>Rコードが解釈されたらすぐ表示させたいテンプレートを選択してください。ただしローダテンプレートに変数の挿入されていないもののみ選択できます。また、入れ子されたテストのローダテンプレートは無視されます。</jp>
         </string>
         <string id="538" js="1">
             <en>default</en>
@@ -3025,6 +3354,7 @@ Note: You can add new languages by inserting "<new_language>string translated in
             <bg></bg>
             <nl></nl>
             <br>padrão</br>
+            <jp>初期値</jp>
         </string>
         <string id="539">
             <en>template transition effects</en>
@@ -3035,6 +3365,7 @@ Note: You can add new languages by inserting "<new_language>string translated in
             <bg></bg>
             <nl></nl>
             <br>efeitos de transição de template</br>
+            <jp>テンプレート転移効果</jp>
         </string>
         <string id="540">
             <en>Sets template transition effects. You can set effect for showing template and for template hiding.</en>
@@ -3045,6 +3376,7 @@ Note: You can add new languages by inserting "<new_language>string translated in
             <bg></bg>
             <nl></nl>
             <br>Conjunto de efeitos de transição de templates. Você pode selecionar efeito para mostrar o template e para ocultar o template.</br>
+            <jp>テンプレート転移効果を設定してください。テンプレートを表示あるいは非表示する効果を設定可能です</jp>
         </string>
         <string id="541">
             <en>effect: show</en>
@@ -3055,6 +3387,7 @@ Note: You can add new languages by inserting "<new_language>string translated in
             <bg></bg>
             <nl></nl>
             <br>efeito: mostrar</br>
+            <jp>効果: 表示</jp>
         </string>
         <string id="542">
             <en>effect: hide</en>
@@ -3065,6 +3398,7 @@ Note: You can add new languages by inserting "<new_language>string translated in
             <bg></bg>
             <nl></nl>
             <br>efeito: esconder</br>
+            <jp>効果: 非表示</jp>
         </string>
         <string id="543">
             <en>Set an effect when showing the template.</en>
@@ -3075,6 +3409,7 @@ Note: You can add new languages by inserting "<new_language>string translated in
             <bg></bg>
             <nl></nl>
             <br>Selecionar um efeito quando mostrar o template.</br>
+            <jp>テンプレート表示時の効果を設定</jp>
         </string>
         <string id="544">
             <en>Set an effect when hiding the template.</en>
@@ -3085,6 +3420,7 @@ Note: You can add new languages by inserting "<new_language>string translated in
             <bg></bg>
             <nl></nl>
             <br>Selecionar o efeito quando for esconder o template</br>
+            <jp>テンプレート非表示時の効果を設定</jp>
         </string>
         <string id="545">
             <en>effect</en>
@@ -3095,6 +3431,7 @@ Note: You can add new languages by inserting "<new_language>string translated in
             <bg></bg>
             <nl></nl>
             <br>efeito</br>
+            <jp>効果</jp>
         </string>
         <string id="546">
             <en>Choose transition effect.</en>
@@ -3105,6 +3442,7 @@ Note: You can add new languages by inserting "<new_language>string translated in
             <bg></bg>
             <nl></nl>
             <br>Selecionar o efeito de transição.</br>
+            <jp>転移効果を選択</jp>
         </string>
         <string id="547">
             <en>direction</en>
@@ -3115,6 +3453,7 @@ Note: You can add new languages by inserting "<new_language>string translated in
             <bg></bg>
             <nl></nl>
             <br>direção</br>
+            <jp>方向</jp>
         </string>
         <string id="548">
             <en>The direction of the effect. Can be 'vertical' or 'horizontal'.</en>
@@ -3125,6 +3464,7 @@ Note: You can add new languages by inserting "<new_language>string translated in
             <bg></bg>
             <nl></nl>
             <br>Direção do efeito. Pode ser 'vertical' ou 'horizontal'.</br>
+            <jp>効果の方向(垂直方向/水平方向)</jp>
         </string>
         <string id="549">
             <en>horizontal</en>
@@ -3135,6 +3475,7 @@ Note: You can add new languages by inserting "<new_language>string translated in
             <bg></bg>
             <nl></nl>
             <br>horizontal</br>
+            <jp>水平方向</jp>
         </string>
         <string id="550">
             <en>vertical</en>
@@ -3145,6 +3486,7 @@ Note: You can add new languages by inserting "<new_language>string translated in
             <bg></bg>
             <nl></nl>
             <br>vertical</br>
+            <jp>垂直方向</jp>
         </string>
         <string id="551">
             <en>duration</en>
@@ -3155,6 +3497,7 @@ Note: You can add new languages by inserting "<new_language>string translated in
             <bg></bg>
             <nl></nl>
             <br>duração</br>
+            <jp>継続時間</jp>
         </string>
         <string id="552">
             <en>Duration of effect in miliseconds.</en>
@@ -3165,6 +3508,7 @@ Note: You can add new languages by inserting "<new_language>string translated in
             <bg></bg>
             <nl></nl>
             <br>Duração do efeito em milisegundos</br>
+            <jp>効果継続時間を入力(ミリ秒)</jp>
         </string>
         <string id="553">
             <en>The direction of the effect. Can be 'left', 'right', 'up', 'down'.</en>
@@ -3175,6 +3519,7 @@ Note: You can add new languages by inserting "<new_language>string translated in
             <bg></bg>
             <nl></nl>
             <br>A direção do efeito. Pode ser 'esquerda', 'direita', 'para cima', 'para baixo'.</br>
+            <jp>効果の方向(左/右/上/下)</jp>
         </string>
         <string id="554">
             <en>left</en>
@@ -3185,6 +3530,7 @@ Note: You can add new languages by inserting "<new_language>string translated in
             <bg></bg>
             <nl></nl>
             <br>esquerda</br>
+            <jp>左</jp>
         </string>
         <string id="555">
             <en>right</en>
@@ -3195,6 +3541,7 @@ Note: You can add new languages by inserting "<new_language>string translated in
             <bg></bg>
             <nl></nl>
             <br>direita</br>
+            <jp>右</jp>
         </string>
         <string id="556">
             <en>up</en>
@@ -3205,6 +3552,7 @@ Note: You can add new languages by inserting "<new_language>string translated in
             <bg></bg>
             <nl></nl>
             <br>para cima</br>
+            <jp>上</jp>
         </string>
         <string id="557">
             <en>down</en>
@@ -3215,6 +3563,7 @@ Note: You can add new languages by inserting "<new_language>string translated in
             <bg></bg>
             <nl></nl>
             <br>para baixo</br>
+            <jp>下</jp>
         </string>
         <string id="558">
             <en>Number of pieces to be exploded to/imploded from.</en>
@@ -3225,6 +3574,7 @@ Note: You can add new languages by inserting "<new_language>string translated in
             <bg></bg>
             <nl></nl>
             <br>Número de pedaços para ser exploded to/imploded from.</br>
+            <jp>爆発する/内破する欠片の数</jp>
         </string>
         <string id="559">
             <en>pieces</en>
@@ -3235,6 +3585,7 @@ Note: You can add new languages by inserting "<new_language>string translated in
             <bg></bg>
             <nl></nl>
             <br>pedaços</br>
+            <jp>欠片</jp>
         </string>
         <string id="560">
             <en>horizontally first</en>
@@ -3245,6 +3596,7 @@ Note: You can add new languages by inserting "<new_language>string translated in
             <bg></bg>
             <nl></nl>
             <br>primeiro horizontalmente</br>
+            <jp>水平優位</jp>
         </string>
         <string id="561">
             <en>Whether to fold horizontally first or not. Can be true or false.</en>
@@ -3255,6 +3607,7 @@ Note: You can add new languages by inserting "<new_language>string translated in
             <bg></bg>
             <nl></nl>
             <br>Whether to fold horizontally first or not. Can be true or false.</br>
+            <jp>水平優位に畳みますか?(true/false)</jp>
         </string>
         <string id="562">
             <en>size</en>
@@ -3265,6 +3618,7 @@ Note: You can add new languages by inserting "<new_language>string translated in
             <bg></bg>
             <nl></nl>
             <br>tamanho</br>
+            <jp>大きさ</jp>
         </string>
         <string id="563">
             <en>Size to be folded to ( in pixels ).</en>
@@ -3275,6 +3629,7 @@ Note: You can add new languages by inserting "<new_language>string translated in
             <bg></bg>
             <nl></nl>
             <br>Tamanho para ser dobrado ( em pixels ).</br>
+            <jp>折り畳む大きさ ( ピクセル数 ).</jp>
         </string>
         <string id="564">
             <en>percent</en>
@@ -3285,6 +3640,7 @@ Note: You can add new languages by inserting "<new_language>string translated in
             <bg></bg>
             <nl></nl>
             <br>porcento</br>
+            <jp>パーセント</jp>
         </string>
         <string id="565">
             <en>The percentage to scale to.</en>
@@ -3295,6 +3651,7 @@ Note: You can add new languages by inserting "<new_language>string translated in
             <bg></bg>
             <nl></nl>
             <br>Porcentagem da escala</br>
+            <jp>拡大・縮小パーセント</jp>
         </string>
         <string id="568">
             <en>The direction of the effect. Can be 'both', 'vertical' or 'horizontal'.</en>
@@ -3305,6 +3662,7 @@ Note: You can add new languages by inserting "<new_language>string translated in
             <bg></bg>
             <nl></nl>
             <br>Direção do efeito. Pode ser 'ambas', 'vertical' ou 'horizontal'.</br>
+            <jp>効果の方向(両方/垂直方向/水平方向)</jp>
         </string>
         <string id="569">
             <en>both</en>
@@ -3315,6 +3673,7 @@ Note: You can add new languages by inserting "<new_language>string translated in
             <bg></bg>
             <nl></nl>
             <br>ambas</br>
+            <jp>両方</jp>
         </string>
         <string id="570">
             <en>origin</en>
@@ -3325,6 +3684,7 @@ Note: You can add new languages by inserting "<new_language>string translated in
             <bg></bg>
             <nl></nl>
             <br>origem</br>
+            <jp>原点</jp>
         </string>
         <string id="571">
             <en>The vanishing point.</en>
@@ -3335,6 +3695,7 @@ Note: You can add new languages by inserting "<new_language>string translated in
             <bg></bg>
             <nl></nl>
             <br>Ponto de fuga</br>
+            <jp>消滅点</jp>
         </string>
         <string id="572">
             <en>top left</en>
@@ -3345,6 +3706,7 @@ Note: You can add new languages by inserting "<new_language>string translated in
             <bg></bg>
             <nl></nl>
             <br>topo à esquerda</br>
+            <jp>左上</jp>
         </string>
         <string id="573">
             <en>top center</en>
@@ -3355,6 +3717,7 @@ Note: You can add new languages by inserting "<new_language>string translated in
             <bg></bg>
             <nl></nl>
             <br>topo ao centro</br>
+            <jp>上中央</jp>
         </string>
         <string id="574">
             <en>top right</en>
@@ -3365,6 +3728,7 @@ Note: You can add new languages by inserting "<new_language>string translated in
             <bg>topo à direita</bg>
             <nl></nl>
             <br>topo à direita</br>
+            <jp>右上</jp>
         </string>
         <string id="575">
             <en>middle left</en>
@@ -3375,6 +3739,7 @@ Note: You can add new languages by inserting "<new_language>string translated in
             <bg></bg>
             <nl></nl>
             <br>meio à esquerda</br>
+            <jp>中段左</jp>
         </string>
         <string id="576">
             <en>middle center</en>
@@ -3385,6 +3750,7 @@ Note: You can add new languages by inserting "<new_language>string translated in
             <bg></bg>
             <nl></nl>
             <br>meio ao centro</br>
+            <jp>中央</jp>
         </string>
         <string id="577">
             <en>middle right</en>
@@ -3395,6 +3761,7 @@ Note: You can add new languages by inserting "<new_language>string translated in
             <bg></bg>
             <nl></nl>
             <br>meio à direita</br>
+            <jp>中段右</jp>
         </string>
         <string id="578">
             <en>bottom left</en>
@@ -3405,6 +3772,7 @@ Note: You can add new languages by inserting "<new_language>string translated in
             <bg></bg>
             <nl></nl>
             <br>abaixo à esquerda</br>
+            <jp>左下</jp>
         </string>
         <string id="579">
             <en>bottom center</en>
@@ -3415,6 +3783,7 @@ Note: You can add new languages by inserting "<new_language>string translated in
             <bg></bg>
             <nl></nl>
             <br>abaixo ao centro</br>
+            <jp>下中央</jp>
         </string>
         <string id="580">
             <en>bottom right</en>
@@ -3425,6 +3794,7 @@ Note: You can add new languages by inserting "<new_language>string translated in
             <bg></bg>
             <nl></nl>
             <br>abaixo à direita</br>
+            <jp>右下</jp>
         </string>
         <string id="581">
             <en>NUMERIC</en>
@@ -3435,6 +3805,7 @@ Note: You can add new languages by inserting "<new_language>string translated in
             <bg></bg>
             <nl></nl>
             <br>NÚMERICO</br>
+            <jp>数字</jp>
         </string>
         <string id="582">
             <en>DATE AND TIME</en>
@@ -3445,6 +3816,7 @@ Note: You can add new languages by inserting "<new_language>string translated in
             <bg></bg>
             <nl></nl>
             <br>DATA E TEMPO</br>
+            <jp>日時</jp>
         </string>
         <string id="583">
             <en>STRING</en>
@@ -3455,6 +3827,7 @@ Note: You can add new languages by inserting "<new_language>string translated in
             <bg></bg>
             <nl></nl>
             <br>STRING</br>
+            <jp>文字列</jp>
         </string>
         <string id="585" js="1">
             <en>length/values</en>
@@ -3465,6 +3838,7 @@ Note: You can add new languages by inserting "<new_language>string translated in
             <bg></bg>
             <nl></nl>
             <br>comprimento/valores</br>
+            <jp>長さ/値</jp>
         </string>
         <string id="586">
             <en>Length of variables or possible values for data type 'set' and 'enum'. Leave blank for default.</en>
@@ -3475,19 +3849,18 @@ Note: You can add new languages by inserting "<new_language>string translated in
             <bg></bg>
             <nl></nl>
             <br>Comprimento das variáveis ou valores possíveis para o tipo de dados 'set e 'enum'. Deixe em branco para padrão</br>
+            <jp>変数の長さまたは入り得る値のデータ型('set'または'enum') (空白時にはデフォルト設定を用います)</jp>
         </string>
         <string id="587">
-            <en><![CDATA[Default value for a column. Can be set to <b>NULL</b> for nullable columns or <b>CURRENT_TIMESTAMP</b> for type 'timestamp'.]]>
-            </en>
+            <en><![CDATA[Default value for a column. Can be set to <b>NULL</b> for nullable columns or <b>CURRENT_TIMESTAMP</b> for type 'timestamp'.]]></en>
             <de></de>
-            <pl><![CDATA[Domyślna wartość kolumny. Może być ustawiona na <b>NULL</b> dla kolumn dopuszczających NULL lub <b>CURRENT_TIMESTAMP</b> dla typu 'timestamp'.]]>
-            </pl>
+            <pl><![CDATA[Domyślna wartość kolumny. Może być ustawiona na <b>NULL</b> dla kolumn dopuszczających NULL lub <b>CURRENT_TIMESTAMP</b> dla typu 'timestamp'.]]></pl>
             <cn></cn>
             <fr></fr>
             <bg></bg>
             <nl></nl>
-            <br><![CDATA[Valor padrão para uma coluna. Pode ser definido como <b>NULL</b> para colunas nulas ou <b>CURRENT_TIMESTAMP</b> para tipo 'timestamp'.]]>
-            </br>
+            <br><![CDATA[Valor padrão para uma coluna. Pode ser definido como <b>NULL</b> para colunas nulas ou <b>CURRENT_TIMESTAMP</b> para tipo 'timestamp'.]]></br>
+            <jp><![CDATA[列の初期値　nullが許可される列('nullable'型)には<b>NULL</b>を、'timestamp'型であれば<b>CURRENT_TIMESTAMP</b>を設定可能です。]]></jp>
         </string>
         <string id="588" js="1">
             <en>attributes</en>
@@ -3498,6 +3871,7 @@ Note: You can add new languages by inserting "<new_language>string translated in
             <bg></bg>
             <nl></nl>
             <br>atributos</br>
+            <jp>属性</jp>
         </string>
         <string id="589">
             <en>column attributes</en>
@@ -3508,6 +3882,7 @@ Note: You can add new languages by inserting "<new_language>string translated in
             <bg></bg>
             <nl></nl>
             <br>atributos de colunas</br>
+            <jp>列属性</jp>
         </string>
         <string id="590" js="1">
             <en>nullable</en>
@@ -3518,6 +3893,7 @@ Note: You can add new languages by inserting "<new_language>string translated in
             <bg></bg>
             <nl></nl>
             <br>nullable</br>
+            <jp>null可</jp>
         </string>
         <string id="591">
             <en>Check if column accepts NULL value.</en>
@@ -3528,6 +3904,7 @@ Note: You can add new languages by inserting "<new_language>string translated in
             <bg></bg>
             <nl></nl>
             <br>Selecione se a coluna aceita valores NULL</br>
+            <jp>列がnull値を許容するならチェック</jp>
         </string>
         <string id="594" js="1">
             <en>true</en>
@@ -3538,6 +3915,7 @@ Note: You can add new languages by inserting "<new_language>string translated in
             <bg></bg>
             <nl></nl>
             <br>verdadeiro</br>
+            <jp>真</jp>
         </string>
         <string id="595" js="1">
             <en>false</en>
@@ -3548,6 +3926,7 @@ Note: You can add new languages by inserting "<new_language>string translated in
             <bg></bg>
             <nl></nl>
             <br>falso</br>
+            <jp>偽</jp>
         </string>
         <string id="596" js="1">
             <en>Is after or equal to</en>
@@ -3558,6 +3937,7 @@ Note: You can add new languages by inserting "<new_language>string translated in
             <bg></bg>
             <nl></nl>
             <br>É igual ou depois de</br>
+            <jp>以降</jp>
         </string>
         <string id="597" js="1">
             <en>Is after</en>
@@ -3568,6 +3948,7 @@ Note: You can add new languages by inserting "<new_language>string translated in
             <bg></bg>
             <nl></nl>
             <br>É depois de</br>
+            <jp>より後</jp>
         </string>
         <string id="598" js="1">
             <en>Is before or equal to</en>
@@ -3578,6 +3959,7 @@ Note: You can add new languages by inserting "<new_language>string translated in
             <bg></bg>
             <nl></nl>
             <br>É antes do depois de</br>
+            <jp>以前</jp>
         </string>
         <string id="599" js="1">
             <en>Is before</en>
@@ -3588,6 +3970,7 @@ Note: You can add new languages by inserting "<new_language>string translated in
             <bg></bg>
             <nl></nl>
             <br>É depois de</br>
+            <jp>より前</jp>
         </string>
         <string id="600">
             <en>table indexes</en>
@@ -3598,6 +3981,7 @@ Note: You can add new languages by inserting "<new_language>string translated in
             <bg></bg>
             <nl></nl>
             <br></br>
+            <jp>テーブルインデックス</jp>
         </string>
         <string id="601">
             <en>Table indexes definition.</en>
@@ -3608,6 +3992,7 @@ Note: You can add new languages by inserting "<new_language>string translated in
             <bg></bg>
             <nl></nl>
             <br></br>
+            <jp>テーブルインデックス定義</jp>
         </string>
         <string id="602" js="1">
             <en>columns</en>
@@ -3618,6 +4003,7 @@ Note: You can add new languages by inserting "<new_language>string translated in
             <bg></bg>
             <nl></nl>
             <br></br>
+            <jp>列</jp>
         </string>
         <string id="603" js="1">
             <en>edit index</en>
@@ -3628,6 +4014,7 @@ Note: You can add new languages by inserting "<new_language>string translated in
             <bg></bg>
             <nl></nl>
             <br></br>
+            <jp>インデックス編集</jp>
         </string>
         <string id="604" js="1">
             <en>remove index</en>
@@ -3638,6 +4025,7 @@ Note: You can add new languages by inserting "<new_language>string translated in
             <bg></bg>
             <nl></nl>
             <br></br>
+            <jp>インデックス削除</jp>
         </string>
         <string id="605" js="1">
             <en>add index</en>
@@ -3648,6 +4036,7 @@ Note: You can add new languages by inserting "<new_language>string translated in
             <bg></bg>
             <nl></nl>
             <br></br>
+            <jp>インデックス追加</jp>
         </string>
         <string id="606">
             <en>index properties</en>
@@ -3658,6 +4047,7 @@ Note: You can add new languages by inserting "<new_language>string translated in
             <bg></bg>
             <nl></nl>
             <br></br>
+            <jp>インデックスプロパティ</jp>
         </string>
         <string id="607">
             <en>Declare index properties.</en>
@@ -3668,6 +4058,7 @@ Note: You can add new languages by inserting "<new_language>string translated in
             <bg></bg>
             <nl></nl>
             <br></br>
+            <jp>インデックスプロパティの宣言</jp>
         </string>
         <string id="608">
             <en>Select index type.</en>
@@ -3678,6 +4069,7 @@ Note: You can add new languages by inserting "<new_language>string translated in
             <bg></bg>
             <nl></nl>
             <br></br>
+            <jp>インデックス型の選択</jp>
         </string>
         <string id="609">
             <en>Select indexed columns.</en>
@@ -3688,6 +4080,7 @@ Note: You can add new languages by inserting "<new_language>string translated in
             <bg></bg>
             <nl></nl>
             <br></br>
+            <jp>インデックス化された列の選択</jp>
         </string>
         <string id="610" js="1">
             <en>adding new index</en>
@@ -3698,16 +4091,7 @@ Note: You can add new languages by inserting "<new_language>string translated in
             <bg></bg>
             <nl></nl>
             <br></br>
-        </string>
-        <string id="610" js="1">
-            <en>adding new index</en>
-            <de></de>
-            <pl>dodawanie nowego indeksu</pl>
-            <cn></cn>
-            <fr></fr>
-            <bg></bg>
-            <nl></nl>
-            <br></br>
+            <jp>新しいインデックスの追加</jp>
         </string>
         <string id="611" js="1">
             <en>no column selected for indexing</en>
@@ -3718,6 +4102,7 @@ Note: You can add new languages by inserting "<new_language>string translated in
             <bg></bg>
             <nl></nl>
             <br></br>
+            <jp>インデックス化する列が選択されていません。</jp>
         </string>
         <string id="612" js="1">
             <en>check columns that you wish to index</en>
@@ -3728,6 +4113,7 @@ Note: You can add new languages by inserting "<new_language>string translated in
             <bg></bg>
             <nl></nl>
             <br></br>
+            <jp>インデックス化したい列をチェック</jp>
         </string>
         <string id="613" js="1">
             <en>Are you sure you want to delete table index?</en>
@@ -3738,6 +4124,7 @@ Note: You can add new languages by inserting "<new_language>string translated in
             <bg></bg>
             <nl></nl>
             <br></br>
+            <jp>本当にテーブルインデックスを削除しますか?</jp>
         </string>
         <string id="614" js="1">
             <en>deleting table index</en>
@@ -3748,6 +4135,7 @@ Note: You can add new languages by inserting "<new_language>string translated in
             <bg></bg>
             <nl></nl>
             <br></br>
+            <jp>テーブルインデックス削除</jp>
         </string>
         <string id="615" js="1">
             <en>editing table index</en>
@@ -3758,6 +4146,7 @@ Note: You can add new languages by inserting "<new_language>string translated in
             <bg></bg>
             <nl></nl>
             <br></br>
+            <jp>テーブルインデックス編集</jp>
         </string>
         <string id="616" js="1">
             <en>MySQL transaction error: </en>
@@ -3768,6 +4157,7 @@ Note: You can add new languages by inserting "<new_language>string translated in
             <bg></bg>
             <nl></nl>
             <br></br>
+            <jp>MySQLトランザクションエラー:</jp>
         </string>
         <string id="618">
             <en>For best experience, it is strongly recommended to use the latest version available of browser of your choice.</en>
@@ -3778,6 +4168,7 @@ Note: You can add new languages by inserting "<new_language>string translated in
             <bg></bg>
             <nl></nl>
             <br></br>
+            <jp>最も快適にご利用頂くため、あなたの選んだブラウザから利用可能な最新のバージョンを利用することを強く推奨します。</jp>
         </string>
         <string id="619">
             <en>test output</en>
@@ -3788,6 +4179,7 @@ Note: You can add new languages by inserting "<new_language>string translated in
             <bg></bg>
             <nl></nl>
             <br></br>
+            <jp>テスト出力</jp>
         </string>
         <string id="620">
             <en>Test output from the server are printed here.</en>
@@ -3798,6 +4190,7 @@ Note: You can add new languages by inserting "<new_language>string translated in
             <bg></bg>
             <nl></nl>
             <br></br>
+            <jp>サーバからのテスト出力がここに表示されます。</jp>
         </string>
         <string id="621">
             <en>test session state</en>
@@ -3808,6 +4201,7 @@ Note: You can add new languages by inserting "<new_language>string translated in
             <bg></bg>
             <nl></nl>
             <br></br>
+            <jp>テストセッション状態</jp>
         </string>
         <string id="622">
             <en>Test session state.</en>
@@ -3818,6 +4212,7 @@ Note: You can add new languages by inserting "<new_language>string translated in
             <bg></bg>
             <nl></nl>
             <br></br>
+            <jp>テストセッション状態</jp>
         </string>
         <string id="623">
             <en>super user</en>
@@ -3828,6 +4223,7 @@ Note: You can add new languages by inserting "<new_language>string translated in
             <bg></bg>
             <nl></nl>
             <br></br>
+            <jp>スーパーユーザ</jp>
         </string>
         <string id="624">
             <en>Super user can manage user list and switch to database of every other user.</en>
@@ -3838,6 +4234,7 @@ Note: You can add new languages by inserting "<new_language>string translated in
             <bg></bg>
             <nl></nl>
             <br></br>
+            <jp>スーパーユーザはユーザリストの管理と、全ユーザのデータベースに切り替えることが可能です。</jp>
         </string>
         <string id="625">
             <en>current workspace:</en>
@@ -3848,6 +4245,7 @@ Note: You can add new languages by inserting "<new_language>string translated in
             <bg></bg>
             <nl></nl>
             <br></br>
+            <jp>現在のワークスペース:</jp>
         </string>
         <string id="626">
             <en>Choose the workspace you want to switch to. You need to be invited by other users to their workspace before you can switch to it.</en>
@@ -3858,6 +4256,7 @@ Note: You can add new languages by inserting "<new_language>string translated in
             <bg></bg>
             <nl></nl>
             <br></br>
+            <jp>切り替えたいワークスペースを選択して下さい。ただし、他のユーザーのワークスペースに切り替える場合は、事前にそのワークスペースのユーザから招待される必要があります。</jp>
         </string>
         <string id="627" js="1">
             <en>yes</en>
@@ -3868,6 +4267,7 @@ Note: You can add new languages by inserting "<new_language>string translated in
             <bg></bg>
             <nl></nl>
             <br></br>
+            <jp>はい</jp>
         </string>
         <string id="628" js="1">
             <en>no</en>
@@ -3878,6 +4278,7 @@ Note: You can add new languages by inserting "<new_language>string translated in
             <bg></bg>
             <nl></nl>
             <br></br>
+            <jp>いいえ</jp>
         </string>
         <string id="629" js="1">
             <en>ok</en>
@@ -3888,6 +4289,7 @@ Note: You can add new languages by inserting "<new_language>string translated in
             <bg></bg>
             <nl></nl>
             <br></br>
+            <jp>OK</jp>
         </string>
         <string id="630" js="1">
             <en>changing workspace</en>
@@ -3898,6 +4300,7 @@ Note: You can add new languages by inserting "<new_language>string translated in
             <bg></bg>
             <nl></nl>
             <br></br>
+            <jp>ワークスペース変更</jp>
         </string>
         <string id="631" js="1">
             <en>Workspace changed.</en>
@@ -3908,6 +4311,7 @@ Note: You can add new languages by inserting "<new_language>string translated in
             <bg></bg>
             <nl></nl>
             <br></br>
+            <jp>ワークスペースが変更されました。</jp>
         </string>
         <string id="632" js="1">
             <en>There is already a table with this name. Please choose another one.</en>
@@ -3918,6 +4322,7 @@ Note: You can add new languages by inserting "<new_language>string translated in
             <bg></bg>
             <nl></nl>
             <br></br>
+            <jp>同名のテーブルが既に存在します。他の名前を選択してください。</jp>
         </string>
         <string id="633" js="1">
             <en>Validating XML</en>
@@ -3928,6 +4333,7 @@ Note: You can add new languages by inserting "<new_language>string translated in
             <bg></bg>
             <nl></nl>
             <br></br>
+            <jp>XML検証</jp>
         </string>
         <string id="634">
             <en>simple view</en>
@@ -3938,6 +4344,7 @@ Note: You can add new languages by inserting "<new_language>string translated in
             <bg></bg>
             <nl></nl>
             <br></br>
+            <jp>簡易表示</jp>
         </string>
         <string id="635">
             <en>advanced view</en>
@@ -3948,6 +4355,7 @@ Note: You can add new languages by inserting "<new_language>string translated in
             <bg></bg>
             <nl></nl>
             <br></br>
+            <jp>詳細表示</jp>
         </string>
         <string id="636">
             <en>numeric ( double type )</en>
@@ -3958,6 +4366,7 @@ Note: You can add new languages by inserting "<new_language>string translated in
             <bg></bg>
             <nl></nl>
             <br></br>
+            <jp>数値(double型)</jp>
         </string>
         <string id="637">
             <en>text ( HTML )</en>
@@ -3968,6 +4377,7 @@ Note: You can add new languages by inserting "<new_language>string translated in
             <bg></bg>
             <nl></nl>
             <br></br>
+            <jp>テキスト(HTML)</jp>
         </string>
         <string id="638" js="1">
             <en>Operation failed. It is required from imported table to have a column named `id` as first column in the table with index PRIMARY and auto_increment attribute.</en>
@@ -3978,6 +4388,7 @@ Note: You can add new languages by inserting "<new_language>string translated in
             <bg></bg>
             <nl></nl>
             <br></br>
+            <jp>操作失敗。読み込まれるテーブルには'id'という名前の列が最初の列にあり、それにPRIMARYインデックスとauto_increment属性が付随している必要があります。</jp>
         </string>
         <string id="639" js="1">
             <en>Are you sure you want to perform this action? You will permanently loose current table structure and data.</en>
@@ -3988,6 +4399,7 @@ Note: You can add new languages by inserting "<new_language>string translated in
             <bg></bg>
             <nl></nl>
             <br></br>
+            <jp>現在のテーブル構造とデータは永久に失われます。本当にこの動作を実行しますか?</jp>
         </string>
         <string id="640">
             <en>add `id` column</en>
@@ -3998,6 +4410,7 @@ Note: You can add new languages by inserting "<new_language>string translated in
             <bg></bg>
             <nl></nl>
             <br></br>
+            <jp>'id'列追加</jp>
         </string>
         <string id="641">
             <en>Check if you don't have `id` column on your CSV file. It will be added automatically.</en>
@@ -4008,6 +4421,7 @@ Note: You can add new languages by inserting "<new_language>string translated in
             <bg></bg>
             <nl></nl>
             <br></br>
+            <jp>CSVファイルに'id'列がないならばチェック(自動的に'id'列が付与されます)</jp>
         </string>
         <string id="642">
             <en>workspace sharing</en>
@@ -4018,6 +4432,7 @@ Note: You can add new languages by inserting "<new_language>string translated in
             <bg></bg>
             <nl></nl>
             <br></br>
+            <jp>ワークスペース共有</jp>
         </string>
         <string id="643">
             <en>Choose which user you want to make privileged enough to access your workspace. Be aware that you are granting full access to your database to selected users.</en>
@@ -4028,6 +4443,7 @@ Note: You can add new languages by inserting "<new_language>string translated in
             <bg></bg>
             <nl></nl>
             <br></br>
+            <jp>あなたのワークスペースへの任意アクセス特権を与えるユーザを選択してください。この権利を与えたユーザはあなたのデータベースに任意のアクセスが可能となる点に注意してください。</jp>
         </string>
         <string id="644" js="1">
             <en>edit grant</en>
@@ -4038,6 +4454,7 @@ Note: You can add new languages by inserting "<new_language>string translated in
             <bg></bg>
             <nl></nl>
             <br></br>
+            <jp>許可編集</jp>
         </string>
         <string id="645" js="1">
             <en>remove grant</en>
@@ -4048,6 +4465,7 @@ Note: You can add new languages by inserting "<new_language>string translated in
             <bg></bg>
             <nl></nl>
             <br></br>
+            <jp>許可削除</jp>
         </string>
         <string id="646" js="1">
             <en>add grant</en>
@@ -4058,6 +4476,7 @@ Note: You can add new languages by inserting "<new_language>string translated in
             <bg></bg>
             <nl></nl>
             <br></br>
+            <jp>許可追加</jp>
         </string>
         <string id="647" js="1">
             <en>adding new grant</en>
@@ -4068,6 +4487,7 @@ Note: You can add new languages by inserting "<new_language>string translated in
             <bg></bg>
             <nl></nl>
             <br></br>
+            <jp>新しい許可の追加</jp>
         </string>
         <string id="648">
             <en>user</en>
@@ -4078,6 +4498,7 @@ Note: You can add new languages by inserting "<new_language>string translated in
             <bg></bg>
             <nl></nl>
             <br></br>
+            <jp>ユーザ</jp>
         </string>
         <string id="649">
             <en>Choose user to whom you want to grant privilege of full access to your workspace.</en>
@@ -4088,6 +4509,7 @@ Note: You can add new languages by inserting "<new_language>string translated in
             <bg></bg>
             <nl></nl>
             <br></br>
+            <jp>あなたのワークスペースに任意アクセス特権を与えたいユーザを選択してください。</jp>
         </string>
         <string id="650">
             <en>none choosen</en>
@@ -4098,6 +4520,7 @@ Note: You can add new languages by inserting "<new_language>string translated in
             <bg></bg>
             <nl></nl>
             <br></br>
+            <jp>未選択</jp>
         </string>
         <string id="651" js="1">
             <en>editing grant</en>
@@ -4108,6 +4531,7 @@ Note: You can add new languages by inserting "<new_language>string translated in
             <bg></bg>
             <nl></nl>
             <br></br>
+            <jp>許可編集</jp>
         </string>
         <string id="652" js="1">
             <en>no user selected</en>
@@ -4118,6 +4542,7 @@ Note: You can add new languages by inserting "<new_language>string translated in
             <bg></bg>
             <nl></nl>
             <br></br>
+            <jp>ユーザが選択されていません</jp>
         </string>
         <string id="653" js="1">
             <en>Are you sure you want to delete user grant?</en>
@@ -4128,6 +4553,7 @@ Note: You can add new languages by inserting "<new_language>string translated in
             <bg></bg>
             <nl></nl>
             <br></br>
+            <jp>本当にユーザ許可を削除しますか?</jp>
         </string>
         <string id="654" js="1">
             <en>deleting user grant</en>
@@ -4138,6 +4564,7 @@ Note: You can add new languages by inserting "<new_language>string translated in
             <bg></bg>
             <nl></nl>
             <br></br>
+            <jp>ユーザ許可削除</jp>
         </string>
         <string id="655" js="1">
             <en>initializing...</en>
@@ -4148,6 +4575,7 @@ Note: You can add new languages by inserting "<new_language>string translated in
             <bg></bg>
             <nl></nl>
             <br></br>
+            <jp>初期化中...</jp>
         </string>
         <string id="656" js="1">
             <en>test finished</en>
@@ -4158,6 +4586,7 @@ Note: You can add new languages by inserting "<new_language>string translated in
             <bg></bg>
             <nl></nl>
             <br></br>
+            <jp>テスト終了</jp>
         </string>
         <string id="657" js="1">
             <en>running line #{0}</en>
@@ -4168,6 +4597,7 @@ Note: You can add new languages by inserting "<new_language>string translated in
             <bg></bg>
             <nl></nl>
             <br></br>
+            <jp>実行中の行 #{0}</jp>
         </string>
         <string id="658" js="1">
             <en>awaiting user input...</en>
@@ -4178,6 +4608,7 @@ Note: You can add new languages by inserting "<new_language>string translated in
             <bg></bg>
             <nl></nl>
             <br></br>
+            <jp>ユーザ入力待ち...</jp>
         </string>
         <string id="659" js="1">
             <en>error after line #{0}!</en>
@@ -4188,6 +4619,7 @@ Note: You can add new languages by inserting "<new_language>string translated in
             <bg></bg>
             <nl></nl>
             <br></br>
+            <jp>#{0}行以降でエラー!</jp>
         </string>
         <string id="660" js="1">
             <en>session is unavailable!</en>
@@ -4198,6 +4630,7 @@ Note: You can add new languages by inserting "<new_language>string translated in
             <bg></bg>
             <nl></nl>
             <br></br>
+            <jp>セッションが利用不能です!</jp>
         </string>
         <string id="661">
             <en>not started</en>
@@ -4208,6 +4641,7 @@ Note: You can add new languages by inserting "<new_language>string translated in
             <bg></bg>
             <nl></nl>
             <br></br>
+            <jp>未開始</jp>
         </string>
         <string id="662">
             <en>stop</en>
@@ -4218,6 +4652,7 @@ Note: You can add new languages by inserting "<new_language>string translated in
             <bg></bg>
             <nl></nl>
             <br></br>
+            <jp>停止</jp>
         </string>
         <string id="663">
             <en>changelog</en>
@@ -4228,6 +4663,7 @@ Note: You can add new languages by inserting "<new_language>string translated in
             <bg></bg>
             <nl></nl>
             <br></br>
+            <jp>変更履歴</jp>
         </string>
         <string id="664" js="1">
             <en>no function selected</en>
@@ -4238,6 +4674,7 @@ Note: You can add new languages by inserting "<new_language>string translated in
             <bg></bg>
             <nl></nl>
             <br></br>
+            <jp>関数が選択されていません</jp>
         </string>
         <string id="665">
             <en>updated on</en>
@@ -4248,6 +4685,7 @@ Note: You can add new languages by inserting "<new_language>string translated in
             <bg></bg>
             <nl></nl>
             <br></br>
+            <jp>更新</jp>
         </string>
         <string id="666">
             <en>users workspaces</en>
@@ -4258,6 +4696,7 @@ Note: You can add new languages by inserting "<new_language>string translated in
             <bg></bg>
             <nl></nl>
             <br></br>
+            <jp>ユーザワークスペース</jp>
         </string>
         <string id="667">
             <en>Declare you worskpaces. You can declare which user will share your workspace with you.</en>
@@ -4268,6 +4707,7 @@ Note: You can add new languages by inserting "<new_language>string translated in
             <bg></bg>
             <nl></nl>
             <br></br>
+            <jp>あなたのワークスペースを宣言してください。ワークスペースを共有するユーザの宣言も可能です。</jp>
         </string>
         <string id="668" js="1">
             <en>edit workspace</en>
@@ -4278,6 +4718,7 @@ Note: You can add new languages by inserting "<new_language>string translated in
             <bg></bg>
             <nl></nl>
             <br></br>
+            <jp>ワークスペース編集</jp>
         </string>
         <string id="669" js="1">
             <en>remove workspace</en>
@@ -4288,6 +4729,7 @@ Note: You can add new languages by inserting "<new_language>string translated in
             <bg></bg>
             <nl></nl>
             <br></br>
+            <jp>ワークスペース削除</jp>
         </string>
         <string id="670" js="1">
             <en>add workspace</en>
@@ -4298,6 +4740,7 @@ Note: You can add new languages by inserting "<new_language>string translated in
             <bg></bg>
             <nl></nl>
             <br></br>
+            <jp>ワークスペース追加</jp>
         </string>
         <string id="671" js="1">
             <en>adding new workspace</en>
@@ -4308,6 +4751,7 @@ Note: You can add new languages by inserting "<new_language>string translated in
             <bg></bg>
             <nl></nl>
             <br></br>
+            <jp>新しいワークスペースの追加</jp>
         </string>
         <string id="672">
             <en>workspace name</en>
@@ -4318,6 +4762,7 @@ Note: You can add new languages by inserting "<new_language>string translated in
             <bg></bg>
             <nl></nl>
             <br></br>
+            <jp>ワークスペース名</jp>
         </string>
         <string id="673" js="1">
             <en>Are you sure you want to delete workspace?</en>
@@ -4328,6 +4773,7 @@ Note: You can add new languages by inserting "<new_language>string translated in
             <bg></bg>
             <nl></nl>
             <br></br>
+            <jp>本当にワークスペースを削除しますか?</jp>
         </string>
         <string id="674" js="1">
             <en>deleting workspace</en>
@@ -4338,6 +4784,7 @@ Note: You can add new languages by inserting "<new_language>string translated in
             <bg></bg>
             <nl></nl>
             <br></br>
+            <jp>ワークスペース削除</jp>
         </string>
         <string id="675" js="1">
             <en>editing workspace</en>
@@ -4348,6 +4795,7 @@ Note: You can add new languages by inserting "<new_language>string translated in
             <bg></bg>
             <nl></nl>
             <br></br>
+            <jp>ワークスペース編集</jp>
         </string>
         <string id="676" js="1">
             <en>no workspace name enterd</en>
@@ -4358,6 +4806,7 @@ Note: You can add new languages by inserting "<new_language>string translated in
             <bg></bg>
             <nl></nl>
             <br></br>
+            <jp>ワークスペース名が入力されていません</jp>
         </string>
         <string id="677">
             <en>share properties</en>
@@ -4368,6 +4817,7 @@ Note: You can add new languages by inserting "<new_language>string translated in
             <bg></bg>
             <nl></nl>
             <br></br>
+            <jp>共有プロパティ</jp>
         </string>
         <string id="678">
             <en>choose user to share workspace with</en>
@@ -4378,6 +4828,7 @@ Note: You can add new languages by inserting "<new_language>string translated in
             <bg></bg>
             <nl></nl>
             <br></br>
+            <jp>ワークスペースを共有するユーザの選択</jp>
         </string>
         <string id="679" js="1">
             <en>workspace</en>
@@ -4388,6 +4839,7 @@ Note: You can add new languages by inserting "<new_language>string translated in
             <bg></bg>
             <nl></nl>
             <br></br>
+            <jp>ワークスペース</jp>
         </string>
         <string id="680">
             <en>Workspace to share. Only previously saved workspaces will be available here.</en>
@@ -4398,6 +4850,7 @@ Note: You can add new languages by inserting "<new_language>string translated in
             <bg></bg>
             <nl></nl>
             <br></br>
+            <jp>共有するワークスペース(予め保存されたワークスペースのみ利用可能)</jp>
         </string>
         <string id="681" js="1">
             <en>no workspace selected</en>
@@ -4408,6 +4861,7 @@ Note: You can add new languages by inserting "<new_language>string translated in
             <bg></bg>
             <nl></nl>
             <br></br>
+            <jp>ワークスペースが選択されていません</jp>
         </string>
         <string id="683" js="1">
             <en>apply</en>
@@ -4418,6 +4872,7 @@ Note: You can add new languages by inserting "<new_language>string translated in
             <bg></bg>
             <nl></nl>
             <br></br>
+            <jp>適用</jp>
         </string>
         <string id="684" js="1">
             <en>insert comments</en>
@@ -4428,6 +4883,7 @@ Note: You can add new languages by inserting "<new_language>string translated in
             <bg></bg>
             <nl></nl>
             <br></br>
+            <jp>コメント挿入</jp>
         </string>
         <string id="685" js="1">
             <en>autoformat code</en>
@@ -4438,6 +4894,7 @@ Note: You can add new languages by inserting "<new_language>string translated in
             <bg></bg>
             <nl></nl>
             <br></br>
+            <jp>コードの自動整形</jp>
         </string>
         <string id="686">
             <en>autoformat selected code</en>
@@ -4448,6 +4905,7 @@ Note: You can add new languages by inserting "<new_language>string translated in
             <bg></bg>
             <nl></nl>
             <br></br>
+            <jp>選択コードの自動整形</jp>
         </string>
         <string id="687">
             <en>code full screen mode</en>
@@ -4458,6 +4916,7 @@ Note: You can add new languages by inserting "<new_language>string translated in
             <bg></bg>
             <nl></nl>
             <br></br>
+            <jp>コードフルスクリーンモード</jp>
         </string>
         <string id="688">
             <en>code autocomplete and documentation</en>
@@ -4468,6 +4927,7 @@ Note: You can add new languages by inserting "<new_language>string translated in
             <bg></bg>
             <nl></nl>
             <br></br>
+            <jp>コード自動補完と資料化</jp>
         </string>
         <string id="689" js="1">
             <en>function wizard</en>
@@ -4478,6 +4938,7 @@ Note: You can add new languages by inserting "<new_language>string translated in
             <bg></bg>
             <nl></nl>
             <br></br>
+            <jp>関数ウィザード</jp>
         </string>
         <string id="690" js="1">
             <en>insert selected</en>
@@ -4488,6 +4949,7 @@ Note: You can add new languages by inserting "<new_language>string translated in
             <bg></bg>
             <nl></nl>
             <br></br>
+            <jp>選択部分を挿入</jp>
         </string>
         <string id="691" js="1">
             <en>test stopped</en>
@@ -4498,6 +4960,7 @@ Note: You can add new languages by inserting "<new_language>string translated in
             <bg></bg>
             <nl></nl>
             <br></br>
+            <jp>テスト停止</jp>
         </string>
         <string id="692" js="1">
             <en>This share already exists.</en>
@@ -4508,6 +4971,7 @@ Note: You can add new languages by inserting "<new_language>string translated in
             <bg></bg>
             <nl></nl>
             <br></br>
+            <jp>この共有は既に存在します。</jp>
         </string>
         <string id="693" js="1">
             <en>This column name is restricted. Please choose another one.</en>
@@ -4518,6 +4982,7 @@ Note: You can add new languages by inserting "<new_language>string translated in
             <bg></bg>
             <nl></nl>
             <br></br>
+            <jp>その列名は禁止されています。他の名前を選択してください。</jp>
         </string>
         <string id="694">
             <en>function toolbar</en>
@@ -4528,6 +4993,7 @@ Note: You can add new languages by inserting "<new_language>string translated in
             <bg></bg>
             <nl></nl>
             <br></br>
+            <jp>関数ツールバー</jp>
         </string>
         <string id="695">
             <en>Concerto functions</en>
@@ -4538,6 +5004,7 @@ Note: You can add new languages by inserting "<new_language>string translated in
             <bg></bg>
             <nl></nl>
             <br></br>
+            <jp>Concerto関数</jp>
         </string>
         <string id="696">
             <en>favourite functions</en>
@@ -4548,6 +5015,7 @@ Note: You can add new languages by inserting "<new_language>string translated in
             <bg></bg>
             <nl></nl>
             <br></br>
+            <jp>お気に入り関数</jp>
         </string>
         <string id="697">
             <en>no "concerto" package documentation cached</en>
@@ -4558,6 +5026,7 @@ Note: You can add new languages by inserting "<new_language>string translated in
             <bg></bg>
             <nl></nl>
             <br></br>
+            <jp>"concentro"パッケージ資料がキャッシュされていません</jp>
         </string>
         <string id="698">
             <en>there are none favourite functions yet</en>
@@ -4568,6 +5037,7 @@ Note: You can add new languages by inserting "<new_language>string translated in
             <bg></bg>
             <nl></nl>
             <br></br>
+            <jp>まだお気に入り関数がありません</jp>
         </string>
         <string id="699">
             <en>insert function</en>
@@ -4578,6 +5048,7 @@ Note: You can add new languages by inserting "<new_language>string translated in
             <bg></bg>
             <nl></nl>
             <br></br>
+            <jp>関数挿入</jp>
         </string>
         <string id="700">
             <en>remove function from favourites</en>
@@ -4588,6 +5059,7 @@ Note: You can add new languages by inserting "<new_language>string translated in
             <bg></bg>
             <nl></nl>
             <br></br>
+            <jp>お気に入り関数削除</jp>
         </string>
         <string id="701" js="1">
             <en>removing function from favourites</en>
@@ -4598,6 +5070,7 @@ Note: You can add new languages by inserting "<new_language>string translated in
             <bg></bg>
             <nl></nl>
             <br></br>
+            <jp>お気に入り関数削除</jp>
         </string>
         <string id="702" js="1">
             <en>adding function to favourites</en>
@@ -4608,6 +5081,7 @@ Note: You can add new languages by inserting "<new_language>string translated in
             <bg></bg>
             <nl></nl>
             <br></br>
+            <jp>お気に入り関数追加</jp>
         </string>
         <string id="703" js="1">
             <en>Are you sure you want to remove selected function from favourites ?</en>
@@ -4618,6 +5092,7 @@ Note: You can add new languages by inserting "<new_language>string translated in
             <bg></bg>
             <nl></nl>
             <br></br>
+            <jp>本当に選択したお気に入り関数を削除しますか?</jp>
         </string>
         <string id="704" js="1">
             <en>This function is already in your favourites.</en>
@@ -4628,6 +5103,7 @@ Note: You can add new languages by inserting "<new_language>string translated in
             <bg></bg>
             <nl></nl>
             <br></br>
+            <jp>この関数は既にお気に入りに追加されています。</jp>
         </string>
         <string id="705" js="1">
             <en>add function to favourites</en>
@@ -4638,6 +5114,7 @@ Note: You can add new languages by inserting "<new_language>string translated in
             <bg></bg>
             <nl></nl>
             <br></br>
+            <jp>関数をお気に入りに追加</jp>
         </string>
         <string id="706" js="1">
             <en>Function added to favourites.</en>
@@ -4648,6 +5125,7 @@ Note: You can add new languages by inserting "<new_language>string translated in
             <bg></bg>
             <nl></nl>
             <br></br>
+            <jp>お気に入りに追加されている関数</jp>
         </string>
         <string id="707" js="1">
             <en>R function documentation</en>
@@ -4658,6 +5136,7 @@ Note: You can add new languages by inserting "<new_language>string translated in
             <bg></bg>
             <nl></nl>
             <br></br>
+            <jp>R関数資料</jp>
         </string>
         <string id="708">
             <en>documentation</en>
@@ -4668,6 +5147,7 @@ Note: You can add new languages by inserting "<new_language>string translated in
             <bg></bg>
             <nl></nl>
             <br></br>
+            <jp>資料</jp>
         </string>
         <string id="709" js="1">
             <en>click for full documentation</en>
@@ -4678,6 +5158,7 @@ Note: You can add new languages by inserting "<new_language>string translated in
             <bg></bg>
             <nl></nl>
             <br></br>
+            <jp>クリックで全資料</jp>
         </string>
         <string id="710">
             <en>choose table</en>
@@ -4688,6 +5169,7 @@ Note: You can add new languages by inserting "<new_language>string translated in
             <bg></bg>
             <nl></nl>
             <br></br>
+            <jp>テーブル選択</jp>
         </string>
         <string id="711">
             <en>Choose table workspace and the table itself.</en>
@@ -4698,6 +5180,7 @@ Note: You can add new languages by inserting "<new_language>string translated in
             <bg></bg>
             <nl></nl>
             <br></br>
+            <jp>テーブルワークスペースとテーブルの選択</jp>
         </string>
         <string id="712">
             <en>Choose table workspace.</en>
@@ -4708,6 +5191,7 @@ Note: You can add new languages by inserting "<new_language>string translated in
             <bg></bg>
             <nl></nl>
             <br></br>
+            <jp>テーブルワークスペースを選択</jp>
         </string>
         <string id="713">
             <en>table</en>
@@ -4718,6 +5202,7 @@ Note: You can add new languages by inserting "<new_language>string translated in
             <bg></bg>
             <nl></nl>
             <br></br>
+            <jp>テーブル</jp>
         </string>
         <string id="714">
             <en>query type</en>
@@ -4728,6 +5213,7 @@ Note: You can add new languages by inserting "<new_language>string translated in
             <bg></bg>
             <nl></nl>
             <br></br>
+            <jp>クエリタイプ</jp>
         </string>
         <string id="715">
             <en>Choose query type.</en>
@@ -4738,6 +5224,7 @@ Note: You can add new languages by inserting "<new_language>string translated in
             <bg></bg>
             <nl></nl>
             <br></br>
+            <jp>クエリタイプを選択</jp>
         </string>
         <string id="716">
             <en>SELECT</en>
@@ -4748,6 +5235,7 @@ Note: You can add new languages by inserting "<new_language>string translated in
             <bg></bg>
             <nl></nl>
             <br></br>
+            <jp>SELECT</jp>
         </string>
         <string id="717">
             <en>INSERT</en>
@@ -4758,6 +5246,7 @@ Note: You can add new languages by inserting "<new_language>string translated in
             <bg></bg>
             <nl></nl>
             <br></br>
+            <jp>INSERT</jp>
         </string>
         <string id="718">
             <en>UPDATE</en>
@@ -4768,6 +5257,7 @@ Note: You can add new languages by inserting "<new_language>string translated in
             <bg></bg>
             <nl></nl>
             <br></br>
+            <jp>UPDATE</jp>
         </string>
         <string id="719">
             <en>DELETE</en>
@@ -4778,6 +5268,7 @@ Note: You can add new languages by inserting "<new_language>string translated in
             <bg></bg>
             <nl></nl>
             <br></br>
+            <jp>DELETE</jp>
         </string>
         <string id="720">
             <en>REPLACE</en>
@@ -4788,6 +5279,7 @@ Note: You can add new languages by inserting "<new_language>string translated in
             <bg></bg>
             <nl></nl>
             <br></br>
+            <jp>REPLACE</jp>
         </string>
         <string id="721">
             <en>Choose columns you wish to select.</en>
@@ -4798,6 +5290,8 @@ Note: You can add new languages by inserting "<new_language>string translated in
             <bg></bg>
             <nl></nl>
             <br></br>
+            <jp>選択したい列の選択</jp>
+            <!-- 元文の意味がよく分からない -->
         </string>
         <string id="722">
             <en>wizard</en>
@@ -4808,6 +5302,7 @@ Note: You can add new languages by inserting "<new_language>string translated in
             <bg></bg>
             <nl></nl>
             <br></br>
+            <jp>ウィザード</jp>
         </string>
         <string id="723">
             <en>code</en>
@@ -4818,6 +5313,7 @@ Note: You can add new languages by inserting "<new_language>string translated in
             <bg></bg>
             <nl></nl>
             <br></br>
+            <jp>コード</jp>
         </string>
         <string id="724">
             <en>all</en>
@@ -4828,6 +5324,7 @@ Note: You can add new languages by inserting "<new_language>string translated in
             <bg></bg>
             <nl></nl>
             <br></br>
+            <jp>全て</jp>
         </string>
         <string id="725">
             <en>add column</en>
@@ -4838,6 +5335,7 @@ Note: You can add new languages by inserting "<new_language>string translated in
             <bg></bg>
             <nl></nl>
             <br></br>
+            <jp>列追加</jp>
         </string>
         <string id="726">
             <en>where</en>
@@ -4848,6 +5346,7 @@ Note: You can add new languages by inserting "<new_language>string translated in
             <bg></bg>
             <nl></nl>
             <br></br>
+            <jp>場所</jp>
         </string>
         <string id="727">
             <en>Declare conditional statements.</en>
@@ -4858,6 +5357,7 @@ Note: You can add new languages by inserting "<new_language>string translated in
             <bg></bg>
             <nl></nl>
             <br></br>
+            <jp>条件文の宣言</jp>
         </string>
         <string id="728">
             <en>like</en>
@@ -4869,6 +5369,7 @@ Note: You can add new languages by inserting "<new_language>string translated in
             <bg>подобно</bg>
             <nl>zoals</nl>
             <br>como</br>
+            <jp>類似</jp>
         </string>
         <string id="729">
             <en>not like</en>
@@ -4880,6 +5381,7 @@ Note: You can add new languages by inserting "<new_language>string translated in
             <bg>не е подобно</bg>
             <nl>niet zoals</nl>
             <br>não como</br>
+            <jp>非類似</jp>
         </string>
         <string id="730">
             <en>WHERE clause is empty. No filters will be applied.</en>
@@ -4890,6 +5392,7 @@ Note: You can add new languages by inserting "<new_language>string translated in
             <bg></bg>
             <nl></nl>
             <br></br>
+            <jp>WHERE節が空です。フィルタは適用されません。</jp>
         </string>
         <string id="731">
             <en>order by</en>
@@ -4900,6 +5403,7 @@ Note: You can add new languages by inserting "<new_language>string translated in
             <bg></bg>
             <nl></nl>
             <br></br>
+            <jp>順序付け</jp>
         </string>
         <string id="732">
             <en>Sorting declaration.</en>
@@ -4910,6 +5414,7 @@ Note: You can add new languages by inserting "<new_language>string translated in
             <bg></bg>
             <nl></nl>
             <br></br>
+            <jp>並べ替えの宣言</jp>
         </string>
         <string id="733">
             <en>ascending</en>
@@ -4920,6 +5425,7 @@ Note: You can add new languages by inserting "<new_language>string translated in
             <bg></bg>
             <nl></nl>
             <br></br>
+            <jp>昇順</jp>
         </string>
         <string id="734">
             <en>descending</en>
@@ -4930,6 +5436,7 @@ Note: You can add new languages by inserting "<new_language>string translated in
             <bg></bg>
             <nl></nl>
             <br></br>
+            <jp>降順</jp>
         </string>
         <string id="735">
             <en>ORDER BY clause is empty. No sorting will be applied.</en>
@@ -4940,6 +5447,7 @@ Note: You can add new languages by inserting "<new_language>string translated in
             <bg></bg>
             <nl></nl>
             <br></br>
+            <jp>ORDER BY節が空です。並べ替えは行われません。</jp>
         </string>
         <string id="736">
             <en>group by</en>
@@ -4950,6 +5458,7 @@ Note: You can add new languages by inserting "<new_language>string translated in
             <bg></bg>
             <nl></nl>
             <br></br>
+            <jp>分類分け</jp>
         </string>
         <string id="737">
             <en>Grouping declaration.</en>
@@ -4960,7 +5469,8 @@ Note: You can add new languages by inserting "<new_language>string translated in
             <bg></bg>
             <nl></nl>
             <br></br>
-        </string>=
+            <jp>分類宣言</jp>
+        </string>
         <string id="738">
             <en>GROUP BY clause is empty. No grouping will be applied.</en>
             <de></de>
@@ -4970,6 +5480,7 @@ Note: You can add new languages by inserting "<new_language>string translated in
             <bg></bg>
             <nl></nl>
             <br></br>
+            <jp>GROUP BY節が空です。分類分けは行われません。</jp>
         </string>
         <string id="739">
             <en>having</en>
@@ -4980,6 +5491,7 @@ Note: You can add new languages by inserting "<new_language>string translated in
             <bg></bg>
             <nl></nl>
             <br></br>
+            <jp>所持</jp>
         </string>
         <string id="740">
             <en>Filters for aggregate functions.</en>
@@ -4990,6 +5502,7 @@ Note: You can add new languages by inserting "<new_language>string translated in
             <bg></bg>
             <nl></nl>
             <br></br>
+            <jp>集約関数フィルタ</jp>
         </string>
         <string id="741">
             <en>HAVING clause is empty.</en>
@@ -5000,6 +5513,7 @@ Note: You can add new languages by inserting "<new_language>string translated in
             <bg></bg>
             <nl></nl>
             <br></br>
+            <jp>HAVING節が空です。</jp>
         </string>
         <string id="742">
             <en>limit</en>
@@ -5010,6 +5524,7 @@ Note: You can add new languages by inserting "<new_language>string translated in
             <bg></bg>
             <nl></nl>
             <br></br>
+            <jp>制限</jp>
         </string>
         <string id="743">
             <en>Sets the limit on number of records returned.</en>
@@ -5020,6 +5535,7 @@ Note: You can add new languages by inserting "<new_language>string translated in
             <bg></bg>
             <nl></nl>
             <br></br>
+            <jp>返却レコード数の宣言を設定</jp>
         </string>
         <string id="744">
             <en>unlimited</en>
@@ -5030,6 +5546,7 @@ Note: You can add new languages by inserting "<new_language>string translated in
             <bg></bg>
             <nl></nl>
             <br></br>
+            <jp>無制限</jp>
         </string>
         <string id="745">
             <en>limited</en>
@@ -5040,6 +5557,7 @@ Note: You can add new languages by inserting "<new_language>string translated in
             <bg></bg>
             <nl></nl>
             <br></br>
+            <jp>制限付き</jp>
         </string>
         <string id="746">
             <en>offset</en>
@@ -5050,6 +5568,7 @@ Note: You can add new languages by inserting "<new_language>string translated in
             <bg></bg>
             <nl></nl>
             <br></br>
+            <jp>オフセット</jp>
         </string>
         <string id="747">
             <en>Set the starting record index.</en>
@@ -5060,6 +5579,7 @@ Note: You can add new languages by inserting "<new_language>string translated in
             <bg></bg>
             <nl></nl>
             <br></br>
+            <jp>レコードインデックスの開始を設定</jp>
         </string>
         <string id="748">
             <en>number of records</en>
@@ -5070,6 +5590,7 @@ Note: You can add new languages by inserting "<new_language>string translated in
             <bg></bg>
             <nl></nl>
             <br></br>
+            <jp>レコード数</jp>
         </string>
         <string id="749">
             <en>Set the number of records to return.</en>
@@ -5080,6 +5601,7 @@ Note: You can add new languages by inserting "<new_language>string translated in
             <bg></bg>
             <nl></nl>
             <br></br>
+            <jp>返却レコード数の設定</jp>
         </string>
         <string id="750">
             <en>set</en>
@@ -5090,6 +5612,7 @@ Note: You can add new languages by inserting "<new_language>string translated in
             <bg></bg>
             <nl></nl>
             <br></br>
+            <jp>設定</jp>
         </string>
         <string id="751">
             <en>Set record values.</en>
@@ -5100,6 +5623,7 @@ Note: You can add new languages by inserting "<new_language>string translated in
             <bg></bg>
             <nl></nl>
             <br></br>
+            <jp>レコード値の設定</jp>
         </string>
         <string id="752">
             <en>SET clause is empty. Record will be added with only default values.</en>
@@ -5110,6 +5634,7 @@ Note: You can add new languages by inserting "<new_language>string translated in
             <bg></bg>
             <nl></nl>
             <br></br>
+            <jp>SET節が空です。レコードは初期値のまま追加されます。</jp>
         </string>
         <string id="753">
             <en>Define SQL code parameters list.</en>
@@ -5120,6 +5645,7 @@ Note: You can add new languages by inserting "<new_language>string translated in
             <bg></bg>
             <nl></nl>
             <br></br>
+            <jp>SQLコードパラメータリストの定義</jp>
         </string>
         <string id="754">
             <en>test error logs</en>
@@ -5130,6 +5656,7 @@ Note: You can add new languages by inserting "<new_language>string translated in
             <bg></bg>
             <nl></nl>
             <br></br>
+            <jp>テストエラー履歴</jp>
         </string>
         <string id="755">
             <en>Here you will find test R and javascript code errors.</en>
@@ -5140,6 +5667,7 @@ Note: You can add new languages by inserting "<new_language>string translated in
             <bg></bg>
             <nl></nl>
             <br></br>
+            <jp>ここにRまたはJavascriptテストコードのエラーが表示されます。</jp>
         </string>
         <string id="756" js="1">
             <en>date</en>
@@ -5150,6 +5678,7 @@ Note: You can add new languages by inserting "<new_language>string translated in
             <bg></bg>
             <nl></nl>
             <br></br>
+            <jp>日付</jp>
         </string>
         <string id="757" js="1">
             <en>message</en>
@@ -5160,6 +5689,7 @@ Note: You can add new languages by inserting "<new_language>string translated in
             <bg></bg>
             <nl></nl>
             <br></br>
+            <jp>メッセージ</jp>
         </string>
         <string id="758" js="1">
             <en>browser</en>
@@ -5170,6 +5700,7 @@ Note: You can add new languages by inserting "<new_language>string translated in
             <bg></bg>
             <nl></nl>
             <br></br>
+            <jp>ブラウザ</jp>
         </string>
         <string id="759" js="1">
             <en>IP</en>
@@ -5180,6 +5711,7 @@ Note: You can add new languages by inserting "<new_language>string translated in
             <bg></bg>
             <nl></nl>
             <br></br>
+            <jp>IP</jp>
         </string>
         <string id="760" js="1">
             <en>remove log</en>
@@ -5190,6 +5722,7 @@ Note: You can add new languages by inserting "<new_language>string translated in
             <bg></bg>
             <nl></nl>
             <br></br>
+            <jp>削除履歴</jp>
         </string>
         <string id="761" js="1">
             <en>Are you sure you want to delete selected log?</en>
@@ -5200,6 +5733,7 @@ Note: You can add new languages by inserting "<new_language>string translated in
             <bg></bg>
             <nl></nl>
             <br></br>
+            <jp>本当に選択された履歴を削除しますか?</jp>
         </string>
         <string id="762" js="1">
             <en>removing log</en>
@@ -5210,6 +5744,7 @@ Note: You can add new languages by inserting "<new_language>string translated in
             <bg></bg>
             <nl></nl>
             <br></br>
+            <jp>履歴削除</jp>
         </string>
         <string id="763" js="1">
             <en>R</en>
@@ -5220,6 +5755,7 @@ Note: You can add new languages by inserting "<new_language>string translated in
             <bg></bg>
             <nl></nl>
             <br></br>
+            <jp>R</jp>
         </string>
         <string id="764" js="1">
             <en>javascript</en>
@@ -5230,6 +5766,7 @@ Note: You can add new languages by inserting "<new_language>string translated in
             <bg></bg>
             <nl></nl>
             <br></br>
+            <jp>Javascript</jp>
         </string>
         <string id="765" js="1">
             <en>remove all logs</en>
@@ -5240,6 +5777,7 @@ Note: You can add new languages by inserting "<new_language>string translated in
             <bg></bg>
             <nl></nl>
             <br></br>
+            <jp>全履歴削除</jp>
         </string>
         <string id="766">
             <en>subtest</en>
@@ -5250,6 +5788,7 @@ Note: You can add new languages by inserting "<new_language>string translated in
             <bg></bg>
             <nl></nl>
             <br></br>
+            <jp></jp>
         </string>
         <string id="767">
             <en>regular</en>
@@ -5260,6 +5799,7 @@ Note: You can add new languages by inserting "<new_language>string translated in
             <bg></bg>
             <nl></nl>
             <br></br>
+            <jp></jp>
         </string>
         <string id="768">
             <en>featured</en>
@@ -5270,6 +5810,7 @@ Note: You can add new languages by inserting "<new_language>string translated in
             <bg></bg>
             <nl></nl>
             <br></br>
+            <jp></jp>
         </string>
         <string id="769">
             <en><![CDATA[There are three possible types:<ul><li><b>subtest</b> - can't directly run this test, it's only possible to run this test from inside of some other test</li><li><b>regular</b> - can be run by link, isn't visible on instance entry page</li><li><b>featured</b> - can be run by link, is featured on instance entry page</li></ul>]]></en>
@@ -5280,6 +5821,7 @@ Note: You can add new languages by inserting "<new_language>string translated in
             <bg></bg>
             <nl></nl>
             <br></br>
+            <jp></jp>
         </string>
     </strings>
-</root> 
+</root>
