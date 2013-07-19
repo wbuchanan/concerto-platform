@@ -1,11 +1,19 @@
 #labels Featured
 =CHANGELOG=
 
+==v4.0.0.beta6==
+
+*Fixes*
+
+ * fixed the format of variables passed through URL (they are now properly decoded)
+
+----
+
 ==v4.0.0.beta5==
 
 *Fixes*
 
- * fixed concerto.test.run function when no params specified
+ * fixed *{{{concerto.test.run}}}* function when no params specified
  * fixed accessing *{{{test}}}* global javascript variable in debug mode
  * default template transition effects are now properly used when no transition specified in *{{{concerto.template.show}}}* function
  * added japanese language
