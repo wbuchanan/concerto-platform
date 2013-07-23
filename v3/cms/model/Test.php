@@ -38,6 +38,10 @@ class Test extends OModule {
     public function mysql_save_from_post($post) {
         $lid = parent::mysql_save_from_post($post);
 
+        $sections = array();
+        if (isset($post['sections']))
+            $sections = json_decode($post["sections"], true);
+
         if ($this->id != 0) {
             $this->delete_sections();
             $this->delete_templates();
@@ -46,12 +50,10 @@ class Test extends OModule {
             $i = 0;
         } else {
             $found = false;
-            if (isset($post['sections'])) {
-                foreach ($post['sections'] as $section) {
-                    if ($section['counter'] == 1) {
-                        $found = true;
-                        break;
-                    }
+            foreach ($sections as $section) {
+                if ($section['counter'] == 1) {
+                    $found = true;
+                    break;
                 }
             }
             if (!$found) {
@@ -63,12 +65,10 @@ class Test extends OModule {
             }
 
             $found = false;
-            if (isset($post['sections'])) {
-                foreach ($post['sections'] as $section) {
-                    if ($section['counter'] == 2) {
-                        $found = true;
-                        break;
-                    }
+            foreach ($sections as $section) {
+                if ($section['counter'] == 2) {
+                    $found = true;
+                    break;
                 }
             }
             if (!$found) {
@@ -108,46 +108,43 @@ class Test extends OModule {
             }
         }
 
-        if (isset($post['sections'])) {
-            foreach ($post['sections'] as $section) {
-                $s = new TestSection();
-                $s->counter = $section['counter'];
-                $s->TestSectionType_id = $section['type'];
-                $s->end = $section['end'];
-                $s->Test_id = $lid;
+        foreach ($sections as $section) {
+            $s = new TestSection();
+            $s->counter = $section['counter'];
+            $s->TestSectionType_id = $section['type'];
+            $s->end = $section['end'];
+            $s->Test_id = $lid;
 
-                $s->parent_counter = $section['parent'];
+            $s->parent_counter = $section['parent'];
 
-                $slid = $s->mysql_save();
+            $slid = $s->mysql_save();
 
-                $vals = $section['value'];
-                $vals = json_decode($vals);
+            $vals = $section['value'];
 
-                foreach (get_object_vars($vals) as $k => $v) {
-                    $index = substr($k, 1);
-                    $value = $v;
+            foreach ($vals as $k => $v) {
+                $index = substr($k, 1);
+                $value = $v;
 
-                    $sv = new TestSectionValue();
-                    $sv->TestSection_id = $slid;
-                    $sv->index = $index;
-                    $sv->value = $value;
-                    $sv->mysql_save();
-                }
+                $sv = new TestSectionValue();
+                $sv->TestSection_id = $slid;
+                $sv->index = $index;
+                $sv->value = $value;
+                $sv->mysql_save();
+            }
 
-                if ($s->TestSectionType_id == DS_TestSectionType::LOAD_HTML_TEMPLATE) {
-                    $ts = TestSection::from_mysql_id($slid);
-                    $vals = $ts->get_values();
-                    $template = Template::from_mysql_id($vals[0]);
-                    if ($template != null) {
-                        $html = Template::output_html($template->HTML, $vals, $template->get_outputs(), $template->get_inserts());
+            if ($s->TestSectionType_id == DS_TestSectionType::LOAD_HTML_TEMPLATE) {
+                $ts = TestSection::from_mysql_id($slid);
+                $vals = $ts->get_values();
+                $template = Template::from_mysql_id($vals[0]);
+                if ($template != null) {
+                    $html = Template::output_html($template->HTML, $vals, $template->get_outputs(), $template->get_inserts());
 
-                        $test_template = new TestTemplate();
-                        $test_template->Test_id = $lid;
-                        $test_template->TestSection_id = $slid;
-                        $test_template->Template_id = $vals[0];
-                        $test_template->HTML = $html;
-                        $test_template->mysql_save();
-                    }
+                    $test_template = new TestTemplate();
+                    $test_template->Test_id = $lid;
+                    $test_template->TestSection_id = $slid;
+                    $test_template->Template_id = $vals[0];
+                    $test_template->HTML = $html;
+                    $test_template->mysql_save();
                 }
             }
         }
@@ -696,11 +693,11 @@ class Test extends OModule {
 
             if (count($test_section["value"]) == 0)
                 $test_section['value'] = "{}";
-            else
-                $test_section['value'] = json_encode($test_section['value']);
 
             array_push($post["sections"], $test_section);
         }
+
+        $post['sections'] = json_encode($post['sections']);
 
         $post["parameters"] = array();
         $elements = $xpath->query("/export/Test[@id='" . $element_id . "']/TestVariables/TestVariable");

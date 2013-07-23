@@ -36,7 +36,6 @@ if (!$logged_user->is_object_editable($obj))
 
 <script>
     $(function(){
-        
         $( "#divTestLogic" ).sortable({
             items: "> div.sortable",
             handle: ".sortableHandle",
