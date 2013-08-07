@@ -6,6 +6,7 @@
 *Fixes*
 
  * fixed the format of variables passed through URL (they are now properly decoded)
+ * variable value length limit in debug mode added
 
 ----
 
