@@ -8,6 +8,7 @@
  * fixed the format of variables passed through URL (they are now properly decoded)
  * variable value length limit in debug mode added
  * test with ongoing sessions removal fix
+ * updated to jQuery v1.10.2 and jQuery UI v1.10.3
 
 ----
 
