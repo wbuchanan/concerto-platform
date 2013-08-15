@@ -6,6 +6,7 @@ function() {
   for(var in ls(envir=.GlobalEnv)){
     try({
         if(!is.function(get(var))) state[[var]] <- toString(get(var))
+        if(nchar(state[[var]])>100) state[[var]] <- paste(substr(state[[var]],0,100),"...",sep='')
         },silent=T)
   }
   state <- rjson::toJSON(state)

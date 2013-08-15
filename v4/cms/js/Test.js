@@ -1089,6 +1089,8 @@ Test.iniAutoCompleteCodeMirror = function(mode, instance, widgetsPossible) {
                                 //F7
                                 if (code == 118) {
                                     var selectedOption = $("#selectCodeAutocomplete").children("option:selected");
+                                    $("#selectCodeAutocomplete").blur();
+                                    instance.focus();
                                     if (selectedOption.length == 0)
                                         return;
                                     User.addFavouriteFunction(selectedOption.attr("id"));

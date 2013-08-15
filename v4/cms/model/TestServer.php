@@ -256,7 +256,7 @@ class TestServer {
 
             //serialization
             foreach ($this->clients as $k => $v) {
-                if ($this->instances[$k]->is_timedout() && !$this->instances[$k]->is_serializing) {
+                if ($this->instances[$k] != null && $this->instances[$k]->is_timedout() && !$this->instances[$k]->is_serializing) {
                     if (Ini::$log_server_events) {
                         self::log_debug("TestServer->start() --- Client '$k' timedout");
                     }

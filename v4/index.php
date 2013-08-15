@@ -35,11 +35,11 @@ if (!isset($ini)) {
 
         <link rel="stylesheet" href="css/styles.css?timestamp=<?= time() ?>" />
         <link rel="stylesheet" href="css/QTI.css?timestamp=<?= time() ?>" />
-        <link rel="stylesheet" href="cms/css/jQueryUI/cupertino/jquery-ui-1.10.1.custom.min.css" />
+        <link rel="stylesheet" href="cms/css/jQueryUI/cupertino/jquery-ui-1.10.3.custom.min.css" />
 
-        <script type="text/javascript" src="cms/js/lib/jquery-1.9.1.min.js"></script>
+        <script type="text/javascript" src="cms/js/lib/jquery-1.10.2.min.js"></script>
         <script type="text/javascript" src="cms/js/lib/jquery.json-2.3.min.js"></script>
-        <script type="text/javascript" src="cms/js/lib/jquery-ui-1.10.1.custom.min.js"></script>
+        <script type="text/javascript" src="cms/js/lib/jquery-ui-1.10.3.custom.min.js"></script>
 
         <script type="text/javascript" src="js/lib/jquery.cookie.js"></script>
         <script type="text/javascript" src="js/lib/moment.js"></script>

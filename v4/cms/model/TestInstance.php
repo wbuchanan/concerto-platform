@@ -443,9 +443,10 @@ TIMEOUT
                             $params = $test->get_parameter_TestVariables();
                             $params_declaration = "";
                             foreach ($params as $param) {
-                                foreach ($variables as $kv => $vv) {
-                                    if ($kv == $param->name) {
-                                        $params_declaration .=$param->name . " <- '" . addcslashes($vv, "'") . "'\n";
+                                foreach ($variables as $var) {
+                                    $var = json_decode($var);
+                                    if ($var->name == $param->name) {
+                                        $params_declaration .=$var->name . " <- '" . addcslashes($var->value, "'") . "'\n";
                                     }
                                 }
                             }
