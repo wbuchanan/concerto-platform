@@ -479,7 +479,7 @@ Now, that scoring is complete, the values can be written into the database:
   * In the table dropdown menu, select the results table
   * For query type, select UPDATE
   * In the set area
-    * Click the + sign and select ext from the dropdown menu. In the text field write finScores[1]
+    * Click the + sign and select ext from the dropdown menu. In the text field write finScores<nowiki>[1]</nowiki>
     * Click the + sign and select agr from the dropdown menu. In the text field write finScores[2]
     * Click the + sign and select con from the dropdown menu. In the text field write finScores[3]
     * Click the + sign and select neu from the dropdown menu. In the text field write finScores[4]
@@ -525,7 +525,7 @@ concerto.table.query(sql=paste("UPDATE `concerto4_23`.`results` SET
 This is by far the shortest section of the test-logic, as it will contain only a single statement, namely the one showing the result page, using the previously calculated scores as a parameter for the specified placeholders. Again, make sure to replace the number from the example with the actual template number of your result page.
 {{{
 response <- concerto.template.show(20, params = list(
- ext = finScores![1], 
+ ext = finScores[1], 
  agr = finScores[2], 
  con = finScores[3], 
  neu = finScores[4], 
