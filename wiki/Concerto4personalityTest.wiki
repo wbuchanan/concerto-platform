@@ -12,8 +12,7 @@ In addition to the test itself, three demographical variables are going to be as
 == Pages ==
 
 In order to create this test on Concerto, it needs to be considered what type of pages needs to be shown to a participant to fulfill the requirements above.
-# Introductory page: upon starting the test, the participant should see some introductory words about the test. At the same page he or she can enter the demographic information
-# Question page: the test itself consists of 50 questions that need to be asked. Therefore there needs to be a page where the questions are asked
-# Result/Goodbye page:  once a participant answered all questions, his or her results are going to be shown to him, along with an explanation
+  # Introductory page: upon starting the test, the participant should see some introductory words about the test. At the same page he or she can enter the demographic information
+  # Question page: the test itself consists of 50 questions that need to be asked. Therefore there needs to be a page where the questions are asked
+  # Result/Goodbye page:  once a participant answered all questions, his or her results are going to be shown to him, along with an explanation
 Therefore, we already know that three pages are required.  The next step is to determine, what kind of data is going to be used in the test.
-
