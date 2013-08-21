@@ -58,3 +58,53 @@ This list should help in terms of how to write the actual R code to administer t
   *structure test logic file
 = Creating the pages (HTML templates) =
 == Welcome/demographics page ==
+Welcome/demographics page
+  * go to HTML template tab
+ 
+  * Make sure you are on list of available objects section
+ 
+  * Click the add new object button
+ 
+  * Enter introduction as the name for your welcome/demographics page and click the save button.
+ 
+You now created a new and empty template. As established above, it should contain an introduction, as well as the possibility for the participant to enter his or her demographical information.
+In order to display the introduction, just type into the editor on screen and format the text as necessary. 
+ After doing so, the next steps will explain how to add the objects that will be used to ask the participant the demographic information.
+  * Gender will be indicated by pressing one of two radio buttons (male/female)
+  * Age will be indicated by a number entered by the participant in a text field
+  * Occupation will be indicated by pressing one of four radio buttons (student (school)/student(university)/worker/no occupation)
+  * The participant can indicate that he or she understood the instructions and the correctness of his or her demographic information by pressing a checkbox.
+  * A button will be used to advance to the next section of the test
+First, the radio buttons to indicate gender are created:
+  * Click the button that shows a selected radio button (marked below)
+ 
+  * Enter gender for the Name, and enter m as Value, and click OK
+ 
+  * Enter Male in the text editor right next to the radio button that appeared in the template
+  * Create another radio button that has also gender as its Name, but f for the Value and enter Female in the text editor next to the second button
+  * Add a text prompting a response in front of the radio buttons (e.g. “Gender:”
+Next, a text field is created to allow the participant to enter his or her age. Make sure to start a new line.
+  * Click the button that shows an empty text field with a cursor in it (marked below)
+ 
+  * Enter age for the Name and make sure the dropdown menu type has Text selected and click OK
+ 
+  * Enter Age: next to the text field that appeared in the template
+Then, the radio buttons to indicate occupation are created. Make sure to start a new line.
+  * Create four radio buttons with occupation as their Names, and the Values 1, 2, 3, and 4. Don’t forget to name these buttons in the editor by writing Student (School), Student (University), Working, and Unoccupied, next to the respective buttons. 
+The next item added is the checkbox for confirming of having understood the instruction and the correctness of the data provided:
+  * Click the button that shows a checked checkbox (marked below)
+ 
+  * Enter confirm for the Name and 1 for the Value
+  * Make sure that the Selected option is not selected and press OK
+ 
+  * Enter a text prompting the user to click the checkbox to confirm the correctness of his or her demographic data and that he or she understood the instructions of the test next to the checkbox that appeared in the template.
+Finally, a button is added that allows the participant to proceed to the next page. Make sure to start a new line.
+  * Click the button that shows a button (marked below)
+ 
+  * Enter continue for the Name, Start the Test for the Text/Value
+  * Make sure the dropdown menu for Type has “Button” selected and click OK
+ 
+You are done designing the welcome template. Click save on the bottom of the page. 
+ 
+
+For reference, your template should look similar to this:
