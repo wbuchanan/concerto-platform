@@ -430,9 +430,15 @@ Result section
 
 
 This is by far the shortest section of the test-logic, as it will contain only a single statement, namely the one showing the result page, using the previously calculated scores as a parameter for the specified placeholders. Again, make sure to replace the number from the example with the actual template number of your result page.
-
-
-
+{{{
+response <- concerto.template.show(20, params = list(
+ ext = finScores[1], 
+ agr = finScores[2], 
+ con = finScores[3], 
+ neu = finScores[4], 
+ ope = finScores[5])
+)
+}}}
 As this is the only code relevant, this concludes the result section.
 Conclusion/Summary
 A full version of the test-logic file, including comments to every single instruction, can be found at URL3
