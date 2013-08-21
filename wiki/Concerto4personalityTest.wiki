@@ -159,11 +159,11 @@ Keep in mind that some fields are going to store numerical data, while others wi
   * Openness to Experience score (numerical)
   * Test ID (numerical)
 In order to add these fields to the table
-  * Click the add button in the table structure definition section
+  * Click the add button in the *table structure definition* section
  
   * Enter a descriptive name (e.g. sessionID, gender, …) , select the appropriate type, and click add.  
   * After adding all fields, click save to save this table. 
-Your table structure definition should look similar to this:
+Your *table structure definition* should look similar to this:
  
 == Responses table ==
   * Go to tables tab
@@ -175,7 +175,7 @@ Therefore, there need to be the following fields:
   * Session ID
   * Question (it will suffice to store the question’s item number, since the text of the question will be stored in the questions table)
   * Response
-All fields will be of numerical data type. In order to add these fields to the table, click the add button in the table structure definition section, enter a descriptive name, select the appropriate type, and click add. After adding all fields, click save to save this table. It should look like this:
+All fields will be of numerical data type. In order to add these fields to the table, click the add button in the *table structure definition* section, enter a descriptive name, select the appropriate type, and click add. After adding all fields, click save to save this table. It should look like this:
  
 
 == Questions table ==
@@ -197,7 +197,7 @@ Since the questions table is supposed to provide the questions, as well as scori
   * Confirm the warning message by clicking yes
  
   * Click *OK* to confirm the confirming message
-Both the table structures as well as the data are now ready to use. It is important however to ensure that each field has the appropriate data type. While question and dimension are text fields, the inverted field should be of numerical type. In order to change that, click on the pencil in the row of the inverted entry in the table structure definition area. Change the type to numeric and click save. The table structure definition area should look like:
+Both the table structures as well as the data are now ready to use. It is important however to ensure that each field has the appropriate data type. While question and dimension are text fields, the inverted field should be of numerical type. In order to change that, click on the pencil in the row of the inverted entry in the *table structure definition* section. Change the type to numeric and click save. The *table structure definition* section should look like:
  
 Click save to save this table.
 As both the pages and the database are set up, it is time to start writing the test logic that connects all these bits and pieces.
@@ -462,13 +462,13 @@ Now, that scoring is complete, the values can be written into the database:
   * Click the arrow next to concerto.table.query
   * In the table dropdown menu, select the results table
   * For query type, select UPDATE
-  * In the set area
+  * In the *set* section
     * Click the + sign and select ext from the dropdown menu. In the text field write {{{finScores[1]}}}
     * Click the + sign and select agr from the dropdown menu. In the text field write {{{finScores[2]}}}
     * Click the + sign and select con from the dropdown menu. In the text field write {{{finScores[3]}}}
     * Click the + sign and select neu from the dropdown menu. In the text field write {{{finScores[4]}}}
     * Click the + sign and select ope from the dropdown menu. In the text field write {{{finScores[5]}}}
-  * In the where area
+  * In the *where* section
     * Click the + sign and select sessionID from the dropdown menu. In the text field write concerto$sessionID
   * Uncheck the insert commesnts and the autoformat code checkbox and click apply
 This concludes the creation of the score calculation section. Your code of this section should look, apart from formatting, like this:
