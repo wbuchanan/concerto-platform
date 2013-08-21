@@ -16,3 +16,44 @@ In order to create this test on Concerto, it needs to be considered what type of
   # Question page: the test itself consists of 50 questions that need to be asked. Therefore there needs to be a page where the questions are asked
   # Result/Goodbye page:  once a participant answered all questions, his or her results are going to be shown to him, along with an explanation
 Therefore, we already know that three pages are required.  The next step is to determine, what kind of data is going to be used in the test.
+
+== Data/Tables ==
+
+The only input that comes from the database, are 
+  * the questions
+  * their scoring information
+
+Data that is going to be stored in the tables are
+  * the demographical data
+  * the responses to each question
+  * the final scores
+Data that is going to be stored in the tables are
+  * the demographical data
+  * the responses to each question
+  * the final scores
+It is sensible to store the final scores as well as the demographical data together, and the single response to each question separately. Summarizing, there will be the following tables:
+  * a table containing the questions and their scoring information
+  * a table containing the demographical data and the final scores
+  * a table containing item-level data (i.e. response to each question)
+After determining how many tables and pages are required to administer the test, it is advisable to think of the rough structure of the test in terms of administration.
+Test administration
+It is assumed, for this tutorial, that all questions have to be answered and all demographic information has to be filled in. 
+  # show the introductory page to the participant
+    # participant fills in demographic data and presses OK: continue
+    # participant does not fill in demographic data and presses OK: do nothing
+  # show the question page and ask the ‘next’ question (if available)
+    # participant chooses an answer and presses OK: continue
+    # participant does not choose an answer and presses OK: repeat question
+  # once the participant answered all questions, calculate the scores
+  # show the result page along with the explanations
+This list should help in terms of how to write the actual R code to administer the test exactly as is required. Together with the previous points, it is now possible to set up the tables, the pages, and start to structure the test-logic file. The next section explains step by step how to do these things, which are summarized in the list below:
+  *create tables holding 
+    * the questions
+    * result & demographic data
+    * question responses
+  *create pages
+    * introduction/demographic page
+    * question page
+    * result page
+  *structure test logic file
+Creating the pages (HTML templates)
