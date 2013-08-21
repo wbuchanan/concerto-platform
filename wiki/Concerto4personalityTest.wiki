@@ -56,4 +56,5 @@ This list should help in terms of how to write the actual R code to administer t
     * question page
     * result page
   *structure test logic file
-Creating the pages (HTML templates)
+= Creating the pages (HTML templates) =
+== Welcome/demographics page ==
