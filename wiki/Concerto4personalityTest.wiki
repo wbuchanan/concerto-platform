@@ -479,7 +479,7 @@ Now, that scoring is complete, the values can be written into the database:
   * In the table dropdown menu, select the results table
   * For query type, select UPDATE
   * In the set area
-    * Click the + sign and select ext from the dropdown menu. In the text field write finScores<nowiki>[1]</nowiki>
+    * Click the + sign and select ext from the dropdown menu. In the text field write finScores![1]
     * Click the + sign and select agr from the dropdown menu. In the text field write finScores[2]
     * Click the + sign and select con from the dropdown menu. In the text field write finScores[3]
     * Click the + sign and select neu from the dropdown menu. In the text field write finScores[4]
