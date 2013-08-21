@@ -478,11 +478,11 @@ Now, that scoring is complete, the values can be written into the database:
   * In the table dropdown menu, select the results table
   * For query type, select UPDATE
   * In the set area
-    * Click the + sign and select ext from the dropdown menu. In the text field write @@finScores[1]@@
-    * Click the + sign and select agr from the dropdown menu. In the text field write finScores[2]
-    * Click the + sign and select con from the dropdown menu. In the text field write finScores[3]
-    * Click the + sign and select neu from the dropdown menu. In the text field write finScores[4]
-    * Click the + sign and select ope from the dropdown menu. In the text field write finScores[5]
+    * Click the + sign and select ext from the dropdown menu. In the text field write {{{finScores[1]}}}
+    * Click the + sign and select agr from the dropdown menu. In the text field write {{{finScores[2]}}}
+    * Click the + sign and select con from the dropdown menu. In the text field write {{{finScores[3]}}}
+    * Click the + sign and select neu from the dropdown menu. In the text field write {{{finScores[4]}}}
+    * Click the + sign and select ope from the dropdown menu. In the text field write {{{finScores[5]}}}
   * In the where area
     * Click the + sign and select sessionID from the dropdown menu. In the text field write concerto$sessionID
   * Uncheck the insert commesnts and the autoformat code checkbox and click apply
