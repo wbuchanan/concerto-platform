@@ -1,8 +1,9 @@
 #summary This tutorial helps the reader to deepen his or her understanding of Concerto v4 by creating a personality test (nonadaptive).
 = Introduction =
-This tutorial intends to help you create a psychological test (non-adaptive) with Concerto. By taking the reader through the entire process of implementing a test – from analyzing the test and determining what type of pages and data tables are required, over creating both templates and tables, to writing the test logic in R – his or her understanding of R and the Concerto platform should be furthered.
-It is assumed that the reader already familiarized him- or herself with the Concerto platform (i.e. took one of the simple tutorials) and has a basic understanding of R or any other experience in programming/scripting languages
-The test that will be implemented in this tutorial is the Big Five Personality Test. It consists of 50 Questions that can be answered on a five point Likert scale, with options ranging from “disagree” to “agree”. A sample can be accessed at http://personality-testing.info/print/big-five-personality-test.pdf
+This tutorial intends to help you create a psychological test (non-adaptive) with Concerto. By taking the reader through the entire process of implementing a test – from analyzing the test and determining what type of pages and data tables are required, over creating both templates and tables, to writing the test logic in R – his or her understanding of R and the Concerto platform should be furthered. It is assumed that the reader already familiarized him- or herself with the Concerto platform (i.e. took one of the simple tutorials) and has a basic understanding of R or any other experience in programming/scripting languages.
+
+The test implemented in this tutorial is the Big Five Personality Test. It consists of 50 Questions that can be answered on a five point Likert scale, with options ranging from “disagree” to “agree”. A sample can be accessed at http://personality-testing.info/print/big-five-personality-test.pdf
+
 In addition to the test itself, three demographical variables are going to be assessed: age, gender, and occupation. At the end of the test, the participant will be informed of his or her result, along with an explanation of these results.
 = Preparation =
 == Pages ==
