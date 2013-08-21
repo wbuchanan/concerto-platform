@@ -525,7 +525,7 @@ concerto.table.query(sql=paste("UPDATE `concerto4_23`.`results` SET
 This is by far the shortest section of the test-logic, as it will contain only a single statement, namely the one showing the result page, using the previously calculated scores as a parameter for the specified placeholders. Again, make sure to replace the number from the example with the actual template number of your result page.
 {{{
 response <- concerto.template.show(20, params = list(
- ext = finScores<nowiki>[1]</nowiki>, 
+ ext = finScores![1], 
  agr = finScores[2], 
  con = finScores[3], 
  neu = finScores[4], 
