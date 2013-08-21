@@ -1,5 +1,5 @@
 #summary This tutorial helps the reader to deepen his or her understanding of Concerto v4 by creating a personality test (nonadaptive).
-[f>toc]
+[[f>toc]]
 = Introduction =
 This tutorial intends to help you create a psychological test (non-adaptive) with Concerto. By taking the reader through the entire process of implementing a test – from analyzing the test and determining what type of pages and data tables are required, over creating both templates and tables, to writing the test logic in R – his or her understanding of R and the Concerto platform should be furthered.
 It is assumed that the reader already familiarized him- or herself with the Concerto platform (i.e. took one of the simple tutorials) and has a basic understanding of R or any other experience in programming/scripting languages
