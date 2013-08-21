@@ -103,7 +103,8 @@ You are done designing the welcome template. Click save on the bottom of the pag
 
 For reference, your template should look similar to this:
 
-Question page
+
+== Question page ==
   * Make sure you saved the current template!
   * Click on list of available objects
   * Click the add new object button
@@ -120,24 +121,7 @@ The question template is now finished and should look similar to this:
 Click save to save the question template and then continue to create the results template.
 
 
-Question page
-  * Make sure you saved the current template!
-  * Click on list of available objects
-  * Click the add new object button
-  * Enter question as the name for your question page and click the save button
-The template for your question page was created. There are going to be two principal elements on this page: the question, and the answer option. 
-Since the question is going to be taken from the database (the table), a placeholder needs to be put into the template that is later automatically replaced with the question text.
-  * Enter {{question}} into the editor
-In order to create the answering options for this test, which are the mutually exclusive options of “disagree”, “slightly disagree”, “neutral”, “slightly agree” and “agree”, radio buttons are going to be used to allow the participant to answer a question.
-  * Create five radio buttons with answer as their Names, and the Values 1, 2, 3, 4, and 5. Don’t forget to name these radio buttons in the editor by writing disagree, slightly disagree, neutral, slightly agree, and agree next to the respective buttons. Make sure that the radio button of disagree has the Value 1, the radio button of slightly disagree has 2, and so on.
-Finally, a button to proceed to the next question (or page) is added:
-  * Create a button with continue for the name and {{buttonText}} for the Text. This is to demonstrate how a button’s label can be dynamically changed.
-The question template is now finished and should look similar to this:
- 
-Click save to save the question template and then continue to create the results template.
-
-
-Results page
+== Results page ==
   * go to HTML template tab
   * Make sure you are on list of available objects section
   * Click the add new object button
@@ -155,8 +139,8 @@ Finally, a button is added that allows the participant to proceed to the next pa
 Click save to save the results template. Your template should look similar to this:
  
 You are now finished creating all the templates and continue to create the tables.
-Creating the database (tables)
-Results table
+= Creating the database (tables) =
+== Results table ==
   * Go to tables tab
   * Make sure you are on list of available objects section
   * Click the add new object button
@@ -180,7 +164,7 @@ In order to add these fields to the table
   * After adding all fields, click save to save this table. 
 Your table structure definition should look similar to this:
  
-Responses table
+== Responses table ==
   * Go to tables tab
   * Make sure you are on list of available objects section
   * Click the add new object button
@@ -193,7 +177,7 @@ Therefore, there need to be the following fields:
 All fields will be of numerical data type. In order to add these fields to the table, click the add button in the table structure definition section, enter a descriptive name, select the appropriate type, and click add. After adding all fields, click save to save this table. It should look like this:
  
 
-Questions table
+== Questions table ==
 Since the questions table is supposed to provide the questions, as well as scoring information to the test, the table would not only be required to be created and structured, but also filled with data. It is easier in most occasions however, to create this type of information beforehand, and import the information into Concerto. Therefore, a .csv file was created and is available at URL. (For purposes of testing the test after completing writing the test-logic, a shortened version with only 15 questions is available at URL2) Then proceed as described below:
   * Go to tables tab
   * Make sure you are on list of available objects section
