@@ -103,3 +103,117 @@ You are done designing the welcome template. Click save on the bottom of the pag
  
 
 For reference, your template should look similar to this:
+
+Question page
+  * Make sure you saved the current template!
+  * Click on list of available objects
+  * Click the add new object button
+  * Enter question as the name for your question page and click the save button
+The template for your question page was created. There are going to be two principal elements on this page: the question, and the answer option. 
+Since the question is going to be taken from the database (the table), a placeholder needs to be put into the template that is later automatically replaced with the question text.
+  * Enter {{question}} into the editor
+In order to create the answering options for this test, which are the mutually exclusive options of “disagree”, “slightly disagree”, “neutral”, “slightly agree” and “agree”, radio buttons are going to be used to allow the participant to answer a question.
+  * Create five radio buttons with answer as their Names, and the Values 1, 2, 3, 4, and 5. Don’t forget to name these radio buttons in the editor by writing disagree, slightly disagree, neutral, slightly agree, and agree next to the respective buttons. Make sure that the radio button of disagree has the Value 1, the radio button of slightly disagree has 2, and so on.
+Finally, a button to proceed to the next question (or page) is added:
+  * Create a button with continue for the name and {{buttonText}} for the Text. This is to demonstrate how a button’s label can be dynamically changed.
+The question template is now finished and should look similar to this:
+ 
+Click save to save the question template and then continue to create the results template.
+
+
+Question page
+  * Make sure you saved the current template!
+  * Click on list of available objects
+  * Click the add new object button
+  * Enter question as the name for your question page and click the save button
+The template for your question page was created. There are going to be two principal elements on this page: the question, and the answer option. 
+Since the question is going to be taken from the database (the table), a placeholder needs to be put into the template that is later automatically replaced with the question text.
+  * Enter {{question}} into the editor
+In order to create the answering options for this test, which are the mutually exclusive options of “disagree”, “slightly disagree”, “neutral”, “slightly agree” and “agree”, radio buttons are going to be used to allow the participant to answer a question.
+  * Create five radio buttons with answer as their Names, and the Values 1, 2, 3, 4, and 5. Don’t forget to name these radio buttons in the editor by writing disagree, slightly disagree, neutral, slightly agree, and agree next to the respective buttons. Make sure that the radio button of disagree has the Value 1, the radio button of slightly disagree has 2, and so on.
+Finally, a button to proceed to the next question (or page) is added:
+  * Create a button with continue for the name and {{buttonText}} for the Text. This is to demonstrate how a button’s label can be dynamically changed.
+The question template is now finished and should look similar to this:
+ 
+Click save to save the question template and then continue to create the results template.
+
+
+Results page
+  * go to HTML template tab
+  * Make sure you are on list of available objects section
+  * Click the add new object button
+  * Enter result as the name for your welcome/demographics page and click the save button.
+The template for your result page was created. It will contain four elements: a text that sees the participant off, the participant’s actual results, the interpretation of these results, as well as the button to end the test.
+In order to write the outro, simply type it into the editor. Then create placeholder for the participant’s scores. Since the score actually consists of five sub scores (extroversion, agreeableness, conscientiousness, neuroticism, and openness to experience), create  five placeholders, one for each sub score by typing {{ext}}, {{agr}}, {{con}}, {{neu}}, and {{ope}} into the editor. You should spell out the full term before each placeholder, like Extroversion: {{ext}} for a better understanding.
+Since the interpretation is not entirely dependent on the score, just type the interpretation of each individual score into the editor.
+Finally, the submit button that ends the test needs to be added.
+Finally, a button is added that allows the participant to proceed to the next page:
+  * Click the button that shows a button (marked below)
+  * Enter submit for the Name
+  * Enter Submit for the Text/Value
+  * Select Submit in the Type dropdown menu 
+  * Click OK
+Click save to save the results template. Your template should look similar to this:
+ 
+You are now finished creating all the templates and continue to create the tables.
+Creating the database (tables)
+Results table
+  * Go to tables tab
+  * Make sure you are on list of available objects section
+  * Click the add new object button
+  * Enter results as a new table name and click the save button
+This just created an empty table. It is now necessary to structure the table, i.e. to determine what type of data this table is going to contain. As established before, the results should contain the scores of the personality test, and the demographic data. In addition, there needs to be a way to uniquely identify a participant, which is accomplished by storing the unique session ID assigned to each participant taking the test. Not as important, but maybe important for later reference, is storing the test ID, referring to the test-logic file that was used in this specific instance. 
+Keep in mind that some fields are going to store numerical data, while others will store text data. Therefore there need to be the following fields:
+  * Session ID (numerical)
+  * Gender (text)
+  * Age (numerical)
+  * Occupation (numerical)
+  * Extroversion score (numerical)
+  * Agreeableness score (numerical)
+  * Conscientiousness score (numerical)
+  * Neuroticism score (numerical)
+  * Openness to Experience score (numerical)
+  * Test ID (numerical)
+In order to add these fields to the table
+  * Click the add button in the table structure definition section
+ 
+  * Enter a descriptive name (e.g. sessionID, gender, …) , select the appropriate type, and click add.  
+  * After adding all fields, click save to save this table. 
+Your table structure definition should look similar to this:
+ 
+Responses table
+  * Go to tables tab
+  * Make sure you are on list of available objects section
+  * Click the add new object button
+  * Enter responses as a new table name and click the save button
+This created an empty table. It is now necessary to structure the table, i.e. to determine what type of data this table is going to contain. As established before, the question table should record the responses of a user to each question individually. This requires uniquely identifying the user, the question itself, and the response.
+Therefore, there need to be the following fields:
+  * Session ID
+  * Question (it will suffice to store the question’s item number, since the text of the question will be stored in the questions table)
+  * Response
+All fields will be of numerical data type. In order to add these fields to the table, click the add button in the table structure definition section, enter a descriptive name, select the appropriate type, and click add. After adding all fields, click save to save this table. It should look like this:
+ 
+
+Questions table
+Since the questions table is supposed to provide the questions, as well as scoring information to the test, the table would not only be required to be created and structured, but also filled with data. It is easier in most occasions however, to create this type of information beforehand, and import the information into Concerto. Therefore, a .csv file was created and is available at URL. (For purposes of testing the test after completing writing the test-logic, a shortened version with only 15 questions is available at URL2) Then proceed as described below:
+  * Go to tables tab
+  * Make sure you are on list of available objects section
+  * Click the add new object button
+  * Enter questions as a new table name and click the save button
+  * Click the import table from CSV file button
+ 
+  * Confirm the warning message by clicking yes
+ 
+  * Make sure add ‘id’ column is not checked (the data file provided already has an id column)
+  * Check header row (the data file provided contains descriptions of the columns in the topmost row)
+  * Make sure that field delimiter is set to ,
+  * Make sure that field enclosure is set to "
+  * Click the Choose File button and select the file you downloaded previously
+ 
+  * Confirm the warning message by clicking yes
+ 
+  * Click OK to confirm the confirming message
+Both the table structures as well as the data are now ready to use. It is important however to ensure that each field has the appropriate data type. While question and dimension are text fields, the inverted field should be of numerical type. In order to change that, click on the pencil in the row of the inverted entry in the table structure definition area. Change the type to numeric and click save. The table structure definition area should look like:
+ 
+Click save to save this table.
+As both the pages and the database are set up, it is time to start writing the test logic that connects all these bits and pieces.
