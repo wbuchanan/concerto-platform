@@ -52,7 +52,7 @@ This list should help in terms of how to write the actual R code to administer t
     * result page
   *structure test logic file
 = Creating the pages (HTML templates) =
-Welcome/demographics page
+== Welcome/demographics page ==
   * go to HTML template tab
  
   * Make sure you are on list of available objects section
