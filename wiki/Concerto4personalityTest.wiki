@@ -342,7 +342,7 @@ Before it is possible to ask the first question, or any other question, it is ne
   * Click the *arrow* next to *concerto.table.query*
   * In the *table* dropdown menu, select the questions table
   * For *query type*, select *SELECT*
-  * Ensure that *<all>* is selected in the *columns* section
+  * Ensure that {{{*<all>*}}} is selected in the *columns* section
   * Uncheck the *insert comments* and the *autoformat code* checkbox and click *apply*
 Again, in order to access the values provided by the database query, it needs to be assigned to a variable. Place your cursor just in front of the code that was just created and type a meaningful name (e.g. _questions_) followed by the assign arrow _<-_.
 Apart from formatting, your code should in the question section should look like
