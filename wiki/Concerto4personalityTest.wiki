@@ -60,7 +60,7 @@ This list should help in terms of how to write the actual R code to administer t
  
   * Click the *add new object* button
  
-  * Enter introduction as the name for your welcome/demographics page and click the *save* button.
+  * Enter _introduction_ as the name for your welcome/demographics page and click the *save* button.
  
 You now created a new and empty template. As established above, it should contain an introduction, as well as the possibility for the participant to enter his or her demographical information.
 In order to display the introduction, just type into the editor on screen and format the text as necessary. 
@@ -73,30 +73,30 @@ After doing so, the next steps will explain how to add the objects that will be 
 First, the radio buttons to indicate gender are created:
   * Click the button that shows a selected radio button (marked below)
  
-  * Enter gender for the *Name*, and enter m as *Value*, and click *OK*
+  * Enter _gender_ for the *Name*, and enter _m_ as *Value*, and click *OK*
  
-  * Enter Male in the text editor right next to the radio button that appeared in the template
-  * Create another radio button that has also gender as its *Name*, but f for the *Value* and enter Female in the text editor next to the second button
-  * Add a text prompting a response in front of the radio buttons (e.g. “Gender:”)
+  * Enter _Male_ in the text editor right next to the radio button that appeared in the template
+  * Create another radio button that has also _gender_ as its *Name*, but _f_ for the *Value* and enter _Female_ in the text editor next to the second button
+  * Add a text prompting a response in front of the radio buttons (e.g. “_Gender:_”)
 Next, a text field is created to allow the participant to enter his or her age. Make sure to start a new line.
   * Click the button that shows an empty text field with a cursor in it (marked below)
  
-  * Enter age for the *Name* and make sure the dropdown menu *type* has *Text* selected and click *OK*
+  * Enter _age_ for the *Name* and make sure the dropdown menu *type* has *Text* selected and click *OK*
  
-  * Enter Age: next to the text field that appeared in the template
-Then, the radio buttons to indicate occupation are created. Make sure to start a new line.
-  * Create four radio buttons with occupation as their *Name*s, and the *Value*s 1, 2, 3, and 4. Don’t forget to name these buttons in the editor by writing Student (School), Student (University), Working, and Unoccupied, next to the respective buttons. 
+  * Enter _Age:_ next to the text field that appeared in the template
+Then, the radio buttons to indicate _occupation_ are created. Make sure to start a new line.
+  * Create four radio buttons with occupation as their *Name*s, and the *Value*s _1_, _2_, _3_, and _4_. Don’t forget to name these buttons in the editor by writing _Student (School)_, _Student (University)_, _Working_, and _Unoccupied_, next to the respective buttons. 
 The next item added is the checkbox for confirming of having understood the instruction and the correctness of the data provided:
   * Click the button that shows a checked checkbox (marked below)
  
-  * Enter confirm for the *Name* and 1 for the *Value*
+  * Enter _confirm_ for the *Name* and _1_ for the *Value*
   * Make sure that the *Selected* option is not selected and press *OK*
  
   * Enter a text prompting the user to click the checkbox to confirm the correctness of his or her demographic data and that he or she understood the instructions of the test next to the checkbox that appeared in the template.
 Finally, a button is added that allows the participant to proceed to the next page. Make sure to start a new line.
   * Click the button that shows a button (marked below)
  
-  * Enter continue for the *Name*, Start the Test for the *Text/Value*
+  * Enter _continue_ for the *Name*, _Start the Test_ for the *Text/Value*
   * Make sure the dropdown menu for *Type* has “Button” selected and click *OK*
  
 You are done designing the welcome template. Click save on the bottom of the page. 
@@ -109,14 +109,14 @@ For reference, your template should look similar to this:
   * Make sure you saved the current template!
   * Click on *list of available objects*
   * Click the *add new object* button
-  * Enter question as the name for your question page and click the *save* button
+  * Enter _question_ as the name for your question page and click the *save* button
 The template for your question page was created. There are going to be two principal elements on this page: the question, and the answer option. 
 Since the question is going to be taken from the database (the table), a placeholder needs to be put into the template that is later automatically replaced with the question text.
-  * Enter {{question}} into the editor
+  * Enter _{{question}}_ into the editor
 In order to create the answering options for this test, which are the mutually exclusive options of “disagree”, “slightly disagree”, “neutral”, “slightly agree” and “agree”, radio buttons are going to be used to allow the participant to answer a question.
-  * Create five radio buttons with answer as their *Name*s, and the *Value*s 1, 2, 3, 4, and 5. Don’t forget to name these radio buttons in the editor by writing disagree, slightly disagree, neutral, slightly agree, and agree next to the respective buttons. Make sure that the radio button of disagree has the *Value* 1, the radio button of slightly disagree has 2, and so on.
+  * Create five radio buttons with _answer_ as their *Name*s, and the *Value*s _1_, _2_, _3_, _4_, and _5_. Don’t forget to name these radio buttons in the editor by writing _disagree_, _slightly disagree_, _neutral_, _slightly agree_, and _agree_ next to the respective buttons. Make sure that the radio button of _disagree_ has the *Value* _1_, the radio button of _slightly disagree_ has _2_, and so on.
 Finally, a button to proceed to the next question (or page) is added:
-  * Create a button with continue for the *Name* and {{buttonText}} for the *Text*. This is to demonstrate how a button’s label can be dynamically changed.
+  * Create a button with _continue_ for the *Name* and _{{buttonText}}_ for the *Text*. This is to demonstrate how a button’s label can be dynamically changed.
 The question template is now finished and should look similar to this:
  
 Click save to save the question template and then continue to create the results template.
@@ -126,18 +126,18 @@ Click save to save the question template and then continue to create the results
   * go to *HTML template* tab
   * Make sure you are on *list of available objects* section
   * Click the *add new object* button
-  * Enter result as the name for your welcome/demographics page and click the *save* button.
+  * Enter _result_ as the name for your welcome/demographics page and click the *save* button.
 The template for your result page was created. It will contain four elements: a text that sees the participant off, the participant’s actual results, the interpretation of these results, as well as the button to end the test.
-In order to write the outro, simply type it into the editor. Then create placeholder for the participant’s scores. Since the score actually consists of five sub scores (extroversion, agreeableness, conscientiousness, neuroticism, and openness to experience), create  five placeholders, one for each sub score by typing {{ext}}, {{agr}}, {{con}}, {{neu}}, and {{ope}} into the editor. You should spell out the full term before each placeholder, like Extroversion: {{ext}} for a better understanding.
+In order to write the outro, simply type it into the editor. Then create placeholder for the participant’s scores. Since the score actually consists of five sub scores (extroversion, agreeableness, conscientiousness, neuroticism, and openness to experience), create  five placeholders, one for each sub score by typing _{{ext}}_, _{{agr}}_, _{{con}}_, _{{neu}}_, and _{{ope}}_ into the editor. You should spell out the full term before each placeholder, like _Extroversion: {{ext}}_ for a better understanding.
 Since the interpretation is not entirely dependent on the score, just type the interpretation of each individual score into the editor.
 Finally, the submit button that ends the test needs to be added.
 Finally, a button is added that allows the participant to proceed to the next page:
   * Click the button that shows a button (marked below)
-  * Enter submit for the *Name*
-  * Enter Submit for the *Text/Value*
+  * Enter _submit_ for the *Name*
+  * Enter _Submit_ for the *Text/Value*
   * Select Submit in the *Type* dropdown menu 
   * Click *OK*
-Click save to save the results template. Your template should look similar to this:
+Click *save* to save the results template. Your template should look similar to this:
  
 You are now finished creating all the templates and continue to create the tables.
 = Creating the database (tables) =
@@ -145,7 +145,7 @@ You are now finished creating all the templates and continue to create the table
   * Go to *tables* tab
   * Make sure you are on *list of available objects* section
   * Click the *add new object* button
-  * Enter results as a new table name and click the *save* button
+  * Enter _results_ as a new table name and click the *save* button
 This just created an empty table. It is now necessary to structure the table, i.e. to determine what type of data this table is going to contain. As established before, the results should contain the scores of the personality test, and the demographic data. In addition, there needs to be a way to uniquely identify a participant, which is accomplished by storing the unique session ID assigned to each participant taking the test. Not as important, but maybe important for later reference, is storing the test ID, referring to the test-logic file that was used in this specific instance. 
 Keep in mind that some fields are going to store numerical data, while others will store text data. Therefore there need to be the following fields:
   * Session ID (numerical)
@@ -161,15 +161,15 @@ Keep in mind that some fields are going to store numerical data, while others wi
 In order to add these fields to the table
   * Click the *add* button in the *table structure definition* section
  
-  * Enter a descriptive name (e.g. sessionID, gender, …) , select the appropriate type, and click *add*.  
-  * After adding all fields, click save to save this table. 
+  * Enter a descriptive name (e.g. _sessionID_, _gender_, …) , select the appropriate *type*, and click *add*.  
+  * After adding all fields, click *save* to save this table. 
 Your *table structure definition* should look similar to this:
  
 == Responses table ==
   * Go to *tables* tab
   * Make sure you are on *list of available objects* section
   * Click the *add new object* button
-  * Enter responses as a new table name and click the *save* button
+  * Enter _responses_ as a new table name and click the *save* button
 This created an empty table. It is now necessary to structure the table, i.e. to determine what type of data this table is going to contain. As established before, the question table should record the responses of a user to each question individually. This requires uniquely identifying the user, the question itself, and the response.
 Therefore, there need to be the following fields:
   * Session ID
@@ -183,21 +183,21 @@ Since the questions table is supposed to provide the questions, as well as scori
   * Go to *tables* tab
   * Make sure you are on *list of available objects* section
   * Click the *add new object* button
-  * Enter questions as a new table name and click the *save* button
+  * Enter _questions_ as a new table name and click the *save* button
   * Click the import table from CSV file button
  
-  * Confirm the warning message by clicking yes
+  * Confirm the warning message by clicking *yes*
  
   * Make sure *add ‘id’ column is not checked* (the data file provided already has an id column)
   * Check *header row* (the data file provided contains descriptions of the columns in the topmost row)
-  * Make sure that *field delimiter* is set to ,
-  * Make sure that *field enclosure* is set to "
+  * Make sure that *field delimiter* is set to _,_
+  * Make sure that *field enclosure* is set to _"_
   * Click the *Choose File* button and select the file you downloaded previously
  
-  * Confirm the warning message by clicking yes
+  * Confirm the warning message by clicking *yes*
  
   * Click *OK* to confirm the confirming message
-Both the table structures as well as the data are now ready to use. It is important however to ensure that each field has the appropriate data type. While question and dimension are text fields, the inverted field should be of numerical type. In order to change that, click on the pencil in the row of the inverted entry in the *table structure definition* section. Change the type to numeric and click *save*. The *table structure definition* section should look like:
+Both the table structures as well as the data are now ready to use. It is important however to ensure that each field has the appropriate data type. While _question_ and _dimension_ are text fields, the _inverted_ field should be of numerical type. In order to change that, click on the pencil in the row of the _inverted_ entry in the *table structure definition* section. Change the type to numeric and click *save*. The *table structure definition* section should look like:
  
 click *save* to save this table.
 As both the pages and the database are set up, it is time to start writing the test logic that connects all these bits and pieces.
@@ -208,7 +208,7 @@ The test itself is going to be controlled by the test logic, written in R code. 
   * Go to the tests tab
   * Make sure you are in the *list of available objects* section
   * Click the *add new object* button
-  * Enter personality_test as the name of the new test and click the *save* button
+  * Enter _personality_test_ as the name of the new test and click the *save* button
 This created an empty test logic file that is ready to be filled with R code.
 == Structuring the test logic ==
 While this might not be necessary, structuring the file before writing the actual code helps in visualizing the required steps, and makes the test logic file easily maintainable. To illustrate how the test logic file should be structured, the flowchart shown above is used as a reference:
@@ -270,19 +270,24 @@ In order to display a page in Concerto, you can use the function toolbar, or sim
 {{{
 concerto.template.show(18)
 }}}
-It is important that the number enclosed in the brackets refers to the number of the introductory page template. If you do not know this number, you can look it up by navigating to the HTML Templates tab and look at the id of your introduction page. Also note that in this case it is not required to pass any variable to the page, because there is no dynamically created content.
+It is important that the number enclosed in the brackets refers to the number of the introductory page template. If you do not know this number, you can look it up by navigating to the *HTML Templates* tab and look at the *id* of your _introduction page_. Also note that in this case it is not required to pass any variable to the page, because there is no dynamically created content.
 In order to access the demographic data, and to see whether it was completely filled in, we need to store these values in a variable. This is achieved by simply assigning the value of the template to a variable, like:
+{{{
 demographicData <- concerto.template.show(18)
+}}}
 The code should now look something like this:
-
-
-
+{{{
+completed <- FALSE
+while(completed == FALSE) {
+ demographicaData <- concerto.template.show(18)
+}
+}}}
 The next step is to save the demographic data to the database and continue to the question section. Therefore, in order to continue to the question section, it is important to ensure that all information was provided and the participant confirmed he or she understood the instructions. Only then it makes sense to store the information in the database and continue.
-To determine whether the information was given, or not, it is required to access the data stored in the demographicsData variable. This can be done by referring to the elements of the introduction page by using the $ sign, like for example with age:
+To determine whether the information was given, or not, it is required to access the data stored in the demographicsData variable. This can be done by referring to the elements of the introduction page by using the {{{$}}} sign, like for example with age:
 {{{
 demographicData$age
 }}}
-As established above, the test can only start when the participant has filled in all demographical data, as well as confirmed the correctness of it and that he or she understood the instructions. Therefore it is necessary to check whether the demographicData variable and its sub-variables contain values or not. Unless all of the sub-variables contain appropriate values, the completed flag is not going to be set to TRUE (enabling the test to continue).
+As established above, the test can only start when the participant has filled in all demographical data, as well as confirmed the correctness of it and that he or she understood the instructions. Therefore it is necessary to check whether the {{{demographicData}}} variable and its sub-variables contain values or not. Unless all of the sub-variables contain appropriate values, the completed flag is not going to be set to TRUE (enabling the test to continue).
 This can be achieved by using a conditional statement like the one shown in the code below:
 {{{
 completed <- FALSE
@@ -295,16 +300,16 @@ while(completed == FALSE) {
 }
 }}}
 The statement checks whether a radio button was clicked at all (if not, it returns NULL), if something was entered into the text field (if not, an empty string is returned), and whether the checkbox was checked or not (if not, it returns NULL).
-Now, if a user provided all information and checked the checkbox, the flag will change and allow the code to continue outside the loop. Before going on to the question section, the variables should be stored in the database. The function toolbar provides an easy way of generating the code necessary for doing so. Please ensure that your cursor is outside the loop before you execute the following steps:
-  * Click the function toolbar
-  * Click the arrow next to concerto.table.query
-  * In the table dropdown menu, select the results table
-  * For query type, select INSERT
-  * Click the + sign and select sessionID from the dropdown menu. In the text field write concerto$sessionID
-  * Click the + sign and select gender from the dropdown menu. In the text field write demographicData$gender
-  * Click the + sign and select age from the dropdown menu. In the text field write demographicData$age
-  * Click the + sign and select occupation from the dropdown menu. In the text field write demographicData$occupation
-  * Uncheck the insert comments and the autoformat code checkbox and click apply
+Now, if a user provided all information and checked the checkbox, the flag will change and allow the code to continue outside the loop. Before going on to the question section, the variables should be stored in the database. The *function toolbar* provides an easy way of generating the code necessary for doing so. Please ensure that your cursor is outside the loop before you execute the following steps:
+  * Click the *function toolbar*
+  * Click the *arrow* next to *concerto.table.query*
+  * In the *table* dropdown menu, select the _results_ table
+  * For *query type*, select *INSERT*
+  * Click the *+* sign and select _sessionID_ from the dropdown menu. In the text field write _concerto$sessionID_
+  * Click the *+* sign and select _gender_ from the dropdown menu. In the text field write _demographicData$gender_
+  * Click the *+* sign and select _age_ from the dropdown menu. In the text field write _demographicData$age_
+  * Click the *+* sign and select _occupation_ from the dropdown menu. In the text field write _demographicData$occupation_
+  * Uncheck the *insert comments* and the *autoformat code* checkbox and click *apply*
 This concludes the creation of the introductory section. Your code should now look something like this (it might look different because of formatting, but the content should be the same, apart from some numbers):
 {{{
 completed <- FALSE
@@ -332,14 +337,14 @@ concerto.table.query(sql=paste("INSERT INTO `concerto4_23`.`results` SET
     #store the response in a variable
     #save the response in the database
 }}}
-Before it is possible to ask the first question, or any other question, it is necessary to load the question data from the data base. Again, the function toolbar provides an easy way of doing so. Please ensure that your cursor is below the ‘load question data’ comment before following this list of steps:
-  * Click the function toolbar
-  * Click the arrow next to concerto.table.query
-  * In the table dropdown menu, select the questions table
-  * For query type, select SELECT
-  * Ensure that <all> is selected in the columns section
-  * Uncheck the insert comments and the autoformat code checkbox and click apply
-Again, in order to access the values provided by the database query, it needs to be assigned to a variable. Place your cursor just in front of the code that was just created and type a meaningful name (e.g. questions) followed by the assign arrow <-.
+Before it is possible to ask the first question, or any other question, it is necessary to load the question data from the data base. Again, the *function toolbar* provides an easy way of doing so. Please ensure that your cursor is below the ‘load question data’ comment before following this list of steps:
+  * Click the *function toolbar*
+  * Click the *arrow* next to *concerto.table.query*
+  * In the *table* dropdown menu, select the questions table
+  * For *query type*, select *SELECT*
+  * Ensure that *<all>* is selected in the *columns* section
+  * Uncheck the *insert comments* and the *autoformat code* checkbox and click *apply*
+Again, in order to access the values provided by the database query, it needs to be assigned to a variable. Place your cursor just in front of the code that was just created and type a meaningful name (e.g. _questions_) followed by the assign arrow _<-_.
 Apart from formatting, your code should in the question section should look like
 {{{
 questions <- concerto.table.query(sql=paste("SELECT * FROM `concerto4_23`.`questions`",sep=""),params=list())
@@ -365,7 +370,7 @@ In order to supply both the question and the button text to the page, they need 
 response <- concerto.template.show(19, params = list(question = questions$question[i],
  buttonText = btnTxt))
 }}}
-The statement in the list states that the placeholder called question, shall take the value of the i-th question of the questions variable that was created before, and the placeholder called buttonText takes the value of the variable btnTxt.
+The statement in the list states that the placeholder called question, shall take the value of the i-th question of the questions variable that was created before, and the placeholder called _buttonText_ takes the value of the variable _btnTxt_.
 Similarly to the previous situation of not continuing the test if the participant did not fill in all demographical data, it is now required to prevent the test from continuing when no response is given. Therefore, a structure similar to the one used in the introduction section can be set up, like the following:
 {{{
 responses <- c()
@@ -384,16 +389,16 @@ while(responseProvided == FALSE) {
 }
 }}}
 After it is ensured that the response variable will contain a valid response, it can be stored in a variable storing all of the participant’s responses, as well as saving the value in the database. The code should be written AFTER the while loop, but before the end of the FOR loop.
-In order to store the response of a question into a variable that contains all responses, an empty vector should be created before the for loop (e.g. responses <- c() ). Within the for loop, that vector is going to be updated with new responses, like this: responses <- c(responses, response)
+In order to store the response of a question into a variable that contains all responses, an empty vector should be created before the for loop (e.g. {{{responses <- c()}}} ). Within the for loop, that vector is going to be updated with new responses, like this: {{{responses <- c(responses, response)}}}
 Afterwards, the response should be stored in the database. For this, the function toolbar is going to be used again (please ensure to set your cursor below statement described above but within the for-loop):
-  * Click the function toolbar
-  * Click the arrow next to concerto.table.query
-  * In the table dropdown menu, select the responses table
-  * For query type, select INSERT
-  * Click the + sign and select sessionID from the dropdown menu. In the text field write concerto$sessionID
-  * Click the + sign and select questionNr from the dropdown menu. In the text field write i
-  * Click the + sign and select response from the dropdown menu. In the text field write response
-  * Uncheck the insert comments and the autoformat code checkbox and click apply
+  * Click the *function toolbar*
+  * Click the *arrow* next to *concerto.table.query*
+  * In the *table* dropdown menu, select the _responses table_
+  * For *query type*, select *INSERT*
+  * Click the *+* sign and select _sessionID_ from the dropdown menu. In the text field write _concerto$sessionID
+  _* Click the *+* sign and select _questionNr_ from the dropdown menu. In the text field write _i_
+  * Click the *+* sign and select _response_ from the dropdown menu. In the text field write _response_
+  * Uncheck the *insert comments* and the *autoformat code* checkbox and click *apply*
 This concludes the creation of the question section. Your code of this section should look, apart from formatting, like this:
 {{{
 responses <- c()
