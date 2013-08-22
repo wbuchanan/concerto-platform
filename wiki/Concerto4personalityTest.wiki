@@ -433,15 +433,15 @@ concerto.table.query(sql=paste("INSERT INTO `concerto4_23`.`responses` SET
 Although this section only contains two statements, the actual code to carry out the score calculation is more complicated than it might seem. Looking at the scoring sheet of the paper test reveals the following information: certain items belong to certain sub scores, and certain items, across all sub scores, need to be subtracted rather than added to its sub score.
 As is with the whole of the implementation of this test, there are multiple ways of accomplishing the calculation, the presented option is only one of many possibilities to carry out the calculation.
 Because we can assume that a valid response was given to all questions, the first step should be to multiply all responses by -1 that are flagged as that – there is a field in the table called inverted, that contains a 0 for responses that are to be added, and a 1 for values that need to be subtracted. After determining which values need to be changed, a loop is set up that actually multiplies all values by -1 that are flagged for doing so.
-Looking for specific values in a vector of numbers (or any type of data in a given array of data) can be done using the which() function. The code should identify all indices, where the inverted value is set to 1. 
+Looking for specific values in a vector of numbers (or any type of data in a given array of data) can be done using the {{{which()}}} function. The code should identify all indices, where the _inverted_ value is set to 1. 
 Only the responses with these indices should be multiplied by -1. In order to do this automatically, each of these previously found indices is going to serve as an index of the responses variable (storing all responses). This way, only the responses to the marked questions are going to be subject to the change. An example is shown below:
 {{{
 invertedQuestionIndices <- which(questions$inverted == 1)
 for(i in 1:length(invertedQuestionIndices))
   responses[invertedQuestionIndices[i]] = as.numeric(responses[invertedQuestionIndices[i]]) * -1
 }}}
-After ‘inverting’ all responses, it is an easy task to calculate the sub scores. In lay terms, for each dimension, all responses to a question of a certain dimension should be added (as the questions that require its response to be subtracted have already been multiplied by -1, a simple addition suffices). Once the sub scores of a certain dimension were added up, the sum should be stored in a variable that, in the end, contains all five dimension scores. To simplify looping through all dimension, setting up a vector that marks each of these dimensions is recommended. It does not only serve as a counter, but also as a comparison value for the dimension field in the question table.
-In order to find all values for a certain dimension, the which() function can be used again. Then, again, the resulting vector serves as a provider for the indices of the sub scores for a particular dimension. After all scores of one dimension were added, the result is stored in the final vector. The example is shown below:
+After ‘inverting’ all responses, it is an easy task to calculate the sub scores. In lay terms, for each dimension, all responses to a question of a certain dimension should be added (as the questions that require its response to be subtracted have already been multiplied by -1, a simple addition suffices). Once the sub scores of a certain dimension were added up, the sum should be stored in a variable that, in the end, contains all five dimension scores. To simplify looping through all dimension, setting up a vector that marks each of these dimensions is recommended. It does not only serve as a counter, but also as a comparison value for the _dimension_ field in the question table.
+In order to find all values for a certain dimension, the {{{which()}}} function can be used again. Then, again, the resulting vector serves as a provider for the indices of the sub scores for a particular dimension. After all scores of one dimension were added, the result is stored in the final vector. The example is shown below:
 {{{
 dimensions <- c('e','a','c','n','o')
 finScores <- c()
@@ -463,19 +463,19 @@ finScores[4] = finScores[4] + 38
 finScores[5] = finScores[5] +  8
 }}}
 Now, that scoring is complete, the values can be written into the database:
-  * Click the function toolbar
-  * Click the arrow next to concerto.table.query
-  * In the table dropdown menu, select the results table
-  * For query type, select UPDATE
+  * Click the *function toolbar*
+  * Click the *arrow* next to *concerto.table.query*
+  * In the *table* dropdown menu, select the results table
+  * For *query type*, select *UPDATE*
   * In the *set* section
-    * Click the + sign and select ext from the dropdown menu. In the text field write {{{finScores[1]}}}
-    * Click the + sign and select agr from the dropdown menu. In the text field write {{{finScores[2]}}}
-    * Click the + sign and select con from the dropdown menu. In the text field write {{{finScores[3]}}}
-    * Click the + sign and select neu from the dropdown menu. In the text field write {{{finScores[4]}}}
-    * Click the + sign and select ope from the dropdown menu. In the text field write {{{finScores[5]}}}
+    * Click the *+* sign and select _ext_ from the dropdown menu. In the text field write {{{finScores[1]}}}
+    * Click the *+* sign and select _agr_ from the dropdown menu. In the text field write {{{finScores[2]}}}
+    * Click the *+* sign and select _con_ from the dropdown menu. In the text field write {{{finScores[3]}}}
+    * Click the *+* sign and select _neu_ from the dropdown menu. In the text field write {{{finScores[4]}}}
+    * Click the *+* sign and select _ope_ from the dropdown menu. In the text field write {{{finScores[5]}}}
   * In the *where* section
-    * Click the + sign and select sessionID from the dropdown menu. In the text field write concerto$sessionID
-  * Uncheck the insert commesnts and the autoformat code checkbox and click apply
+    * Click the *+* sign and select _sessionID_ from the dropdown menu. In the text field write _concerto$sessionID_
+  * Uncheck the *insert comments* and the *autoformat code* checkbox and click *apply*
 This concludes the creation of the score calculation section. Your code of this section should look, apart from formatting, like this:
 {{{
 invertedQuestionIndices <- which(questions$inverted == 1)
