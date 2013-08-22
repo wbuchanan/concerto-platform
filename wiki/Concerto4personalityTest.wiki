@@ -395,8 +395,8 @@ Afterwards, the response should be stored in the database. For this, the functio
   * Click the *arrow* next to *concerto.table.query*
   * In the *table* dropdown menu, select the _responses table_
   * For *query type*, select *INSERT*
-  * Click the *+* sign and select _sessionID_ from the dropdown menu. In the text field write _concerto$sessionID
-  _* Click the *+* sign and select _questionNr_ from the dropdown menu. In the text field write _i_
+  * Click the *+* sign and select _sessionID_ from the dropdown menu. In the text field write _concerto$sessionID_
+  * Click the *+* sign and select _questionNr_ from the dropdown menu. In the text field write _i_
   * Click the *+* sign and select _response_ from the dropdown menu. In the text field write _response_
   * Uncheck the *insert comments* and the *autoformat code* checkbox and click *apply*
 This concludes the creation of the question section. Your code of this section should look, apart from formatting, like this:
