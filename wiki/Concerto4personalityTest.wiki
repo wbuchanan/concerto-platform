@@ -43,14 +43,14 @@ It is assumed, for this tutorial, that all questions have to be answered and all
   # once the participant answered all questions, calculate the scores
   # show the result page along with the explanations
 This list should help in terms of how to write the actual R code to administer the test exactly as is required. Together with the previous points, it is now possible to set up the tables, the pages, and start to structure the test-logic file. The next section explains step by step how to do these things, which are summarized in the list below:
-  *create tables holding 
-    * the questions
-    * result & demographic data
-    * question responses
   *create pages
     * introduction/demographic page
     * question page
     * result page
+  *create tables holding 
+    * the questions
+    * result & demographic data
+    * question responses
   *structure test logic file
 = Creating the pages (HTML templates) =
 == Welcome/demographics page ==
