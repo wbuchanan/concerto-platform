@@ -166,7 +166,7 @@ The next line requiring change is the one that actually displays the page to the
 response <- concerto.template.show(19, params = list(question = questions$question[i], buttonText = btnTxt))
 }}}
 It needs to be adapted to provide information to all the new placeholders like this:
-{{{ 
+{{{
 response <- concerto.template.show(19, params = list(
 question1 = questions$question[i],
 question2 = questions$question[1+i],
