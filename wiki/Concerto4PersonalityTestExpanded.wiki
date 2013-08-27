@@ -135,16 +135,15 @@ First, it is required to identify the code that is controlling the presentation 
 {{{
 responses <- c()
 for(i in 1:length(questions$question)) {
-
   responseProvided <- FALSE
-while(responseProvided == FALSE) {
+  while(responseProvided == FALSE) {
    if(i < length(questions$question))
     btnTxt = "Next Question"
    else
     btnTxt = "Finish Test"
-    response <- concerto.template.show(19, params = list(question = questions$question[i], buttonText = btnTxt))
-    if(!is.null(response$answer))
-      responseProvided == TRUE
+   response <- concerto.template.show(19, params = list(question = questions$question[i], buttonText = btnTxt))
+   if(!is.null(response$answer))
+     responseProvided == TRUE
   }
 }
 responses <- (responses, response$answer)  
