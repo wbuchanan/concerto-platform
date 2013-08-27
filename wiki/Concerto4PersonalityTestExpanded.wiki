@@ -54,24 +54,31 @@ In order to ask five different questions, the obvious and simple change is to ch
 However, the radio buttons still correspond to the same variable answer as specified in the first tutorial. In order to change this, instead of double-clicking each button and changing the value manually, one can achieve the same by manipulating the source code. Click the Source button on the top left of the editor.
 The editor view switches the source code view. It contains code of five copies of question placeholders and answer elements, as well as the button element at the bottom. In order to explain how to change the radio buttons to accommodate for the change, only one such answer element is going to be looked at in detail for the remainder of this section.
 As was established, and can be looked up in the previous tutorial, the name of the radio-buttons value was ‘answer’. When checking for the answer value, the R-code referred to this answer value. Therefore, in order to be able to get five different answers out of one page, the name of this variable needs to change. If you are not confident with code, this can also be achieved manually in the normal editor view by double-clicking each button and changing the value there (one row of buttons needs to have the same name). This tutorial will used the faster version of modifying the source code however. Thecode snippet below highlights the variable names that need to be changed:
-
+{{{
+<p style="text-align: center;">
+disagree<input name="answer" type="radio" value="1" />&nbsp; 
+slightly disagree<input name="answer" type="radio" value="2" />&nbsp; 
+neutral<input name="answer" type="radio" value="3" />&nbsp; 
+slightly agree<input name="answer" type="radio" value="4" />&nbsp; 
+agree<input name="answer" type="radio" 
+}}}
 
 
 
 Similarly to assigning different names to the placeholders, assigning different names to the names of the radio buttons achieves the goal of having five different sets of questions with five different sets of answers. Systematically replace the name of the buttons with answer1, answer2, and so on. Please make sure that one set of radio buttons grouped together needs to have the same name (answer1, answer2, …), as they need to stay related to a question. Once completed, the source code should look like:
-
-
-
-
-
-
-
-
-
-
-
-
-
+{{{
+<p style="text-align: center;">{{question1}}</p>
+<p style="text-align: center;">sdisagree<input name="answer1" type="radio" value="1" />&nbsp; slightly disagree<input name="answer1" type="radio" value="2" />&nbsp; neutral<input name="answer1" type="radio" value="3" />&nbsp; slightly agree<input name="answer1" type="radio" value="4" />&nbsp; agree<input name="answer1" type="radio" value="5" /></p>
+<p style="text-align: center;">{{question2}}</p>
+<p style="text-align: center;">disagree<input name="answer2" type="radio" value="1" />&nbsp; slightly disagree<input name="answer2" type="radio" value="2" />&nbsp; neutral<input name="answer2" type="radio" value="3" />&nbsp; slightly agree<input name="answer2" type="radio" value="4" />&nbsp; agree<input name="answer2" type="radio" value="5" /></p>
+<p style="text-align: center;">{{question3}}</p>
+<p style="text-align: center;">disagree<input name="answer3" type="radio" value="1" />&nbsp; slightly disagree<input name="answer3" type="radio" value="2" />&nbsp; neutral<input name="answer3" type="radio" value="3" />&nbsp; slightly agree<input name="answer3" type="radio" value="4" />&nbsp; agree<input name="answer3" type="radio" value="5" /></p>
+<p style="text-align: center;">{{question4}}</p>
+<p style="text-align: center;">disagree<input name="answer4" type="radio" value="1" />&nbsp; slightly disagree<input name="answer4" type="radio" value="2" />&nbsp; neutral<input name="answer4" type="radio" value="3" />&nbsp; slightly agree<input name="answer4" type="radio" value="4" />&nbsp; agree<input name="answer4" type="radio" value="5" /></p>
+<p style="text-align: center;">{{question5}}</p>
+<p style="text-align: center;">disagree<input name="answer5" type="radio" value="1" />&nbsp; slightly disagree<input name="answer5" type="radio" value="2" />&nbsp; neutral<input name="answer5" type="radio" value="3" />&nbsp; slightly agree<input name="answer5" type="radio" value="4" />&nbsp; agree<input name="answer5" type="radio" value="5" /></p>
+<p style="text-align: center;"><input name="continue" type="button" value="{{buttonText}}" /></p>
+}}}
 
 Again, the reader is reminded that there is an alternative version of accomplishing this, by manually clicking each button in the normal editor view and changing the name there.
 After changing the variable name either way, make sure to save the page.
@@ -125,28 +132,40 @@ This created an empty test logic file that is ready to be filled with R code.
 Question section
 First, it is required to identify the code that is controlling the presentation of the question page and handling the responses given. This section is presented below
  
+{{{
+responses <- c()
+for(i in 1:length(questions$question)) {
 
-
-
-
-
-
-
-
-
-
-
-
+  responseProvided <- FALSE
+while(responseProvided == FALSE) {
+   if(i < length(questions$question))
+    btnTxt = "Next Question"
+   else
+    btnTxt = "Finish Test"
+    response <- concerto.template.show(19, params = list(question = questions$question[i], buttonText = btnTxt))
+    if(!is.null(response$answer))
+      responseProvided == TRUE
+  }
+}
+responses <- (responses, response$answer)  
+concerto.table.query(sql=paste("INSERT INTO `concerto4_23`.`responses` SET 
+   `sessionID`='",dbEscapeStrings(concerto$db$connection,toString(concerto$sessionID)),"’,
+   `questionNr`='",dbEscapeStrings(concerto$db$connection,toString(i)),"',
+   `response`='",dbEscapeStrings(concerto$db$connection,toString(response)),"’          
+   ",sep=""),params=list()
+  )
+}
+}}}
 
 First of all, the loop presenting the page, needs to be restricted to not rune as often as many questions there are, rather than only running the total number of questions/5 times:
-for(i in 1:length(questions$question)/5)
+{{{for(i in 1:length(questions$question)/5)}}}
 This also applies to the condition within the while loop that checks for being at the last question. As it now needs to switch the button label when it arrives at the last five questions, the statement needs to be changed to:
-if(i < length(questions$question)/5)
+{{{if(i < length(questions$question)/5)}}}
 Also, the button label referring to “Next Question” seems to be erroneous in the new context of the test. It should be changed to something like “Next Questions” or “Next Block of Questions”.
 The next line requiring change is the one that actually displays the page to the user:
-response <- concerto.template.show(19, params = list(question = questions$question[i], buttonText = btnTxt))
+{{{response <- concerto.template.show(19, params = list(question = questions$question[i], buttonText = btnTxt))}}}
 It needs to be adapted to provide information to all the new placeholders like this:
- 
+{{{ 
 response <- concerto.template.show(19, params = list(
 question1 = questions$question[i],
 question2 = questions$question[1+i],
@@ -154,7 +173,9 @@ question3 = questions$question[2+i],
 question4 = questions$question[3+i],
 question5 = questions$question[4+i],
 buttonText = btnTxt))
+}}}
 However, this will only work for the first set of questions. If the code is implemented like this, when i is equal to 1, questions 1-5 will be presented. When i takes the value of 2, questions 2-6 will be presented, and so on. Therefore, there needs to be an extra change towards the way of indexing:
+{{{
 response <- concerto.template.show(21, params = list(
 question1 = questions$question[1+(i-  #*5],
 question2 = questions$question[2+(i-  #*5],
@@ -162,22 +183,26 @@ question3 = questions$question[3+(i-  #*5],
 question4 = questions$question[4+(i-  #*5],
 question5 = questions$question[5+(i-  #*5],
 buttonText = btnTxt))
+}}}
 This way, when i equals 1, question1 will receive the “1+0*5“th question (i.e. 1st), question2 “2+0*5” (i.e. 2nd), and so on. For i equals 2, question1 will receive the “1+1*5”th question (i.e. 6th), question2 “2+1*5 (i.e. 7th), and so on.
 Also keep in mind that a new page was created, therefore, change the number in the show-statement to the one of your new question page!
 The next statement checks whether a response was provided.
-if(!is.null(response$answer))
+{{{if(!is.null(response$answer))}}}
 It now, however, needs to check if responses to all five questions were given.
-if(!is.null(response$answer  # && !is.null(response$answer  # && !is.null(response$answer  # && !is.null(response$answer  # && !is.null(response$answer5))
+{{{if(!is.null(response$answer1) && !is.null(response$answer2) && !is.null(response$answer3) && !is.null(response$answer4) && !is.null(response$answer5))}}}
 The next step is to change the line of code that previously stored the one response into a variable
-responses <- (responses, response$answer)  
+{{{responses <- (responses, response$answer)}}}  
 in such a way that it stores all the responses given on one page.
-responses <- (responses, response$answer  #
-responses <- (responses, response$answer  #
-responses <- (responses, response$answer  #
-responses <- (responses, response$answer  #
+{{{
+responses <- (responses, response$answer1)
+responses <- (responses, response$answer2)
+responses <- (responses, response$answer3)
+responses <- (responses, response$answer4)
 responses <- (responses, response$answer5)
-Finally, these values need to be stored in the database. While this could be done by simply copy/pasting the statement 5 times, it can be solved more elegant by employing yet another loop and changing the values of questionNr and changing the variable that is going to be stored in the response field.
 
+}}}
+Finally, these values need to be stored in the database. While this could be done by simply copy/pasting the statement 5 times, it can be solved more elegant by employing yet another loop and changing the values of questionNr and changing the variable that is going to be stored in the response field.
+{{{
 for(j in 1:5) {
    concerto.table.query(sql=paste("INSERT INTO `concerto4_23`.`responses` SET `sessionID`='",dbEscapeStrings(concerto$db$connection,toString(concerto$sessionID)),"’,
    `questionNr`='",dbEscapeStrings(concerto$db$connection,toString(j+(i-  #*5)),"',
@@ -185,37 +210,52 @@ for(j in 1:5) {
    ",sep=""),params=list()
   )
 }
+}}}
 This concludes the question section.
 
 Result section
 The changes required for the new result sections involve analyzing a participant’s sub score, and choosing the message to be put on the results page accordingly. This will involve changing the statement that includes the parameters handed to the page to display (adding the explanation is required), as well as adding the code to analyze a person’s score.
-
-
-
+{{{
+response <- concerto.template.show(20, params = list(
+ ext = finScores[1], 
+ agr = finScores[2], 
+ con = finScores[3], 
+ neu = finScores[4], 
+ ope = finScores[5])
+)
+}}}
 
 This statement needs to be expanded to something like this
+{{{
 response <- concerto.template.show(20, params = list(
  ext = finScores[1], 
  exExt = explanations[1],
  agr = finScores[2], 
- exAgr = explanations[2],,
+ exAgr = explanations[2],
  con = finScores[3], 
- exCon = explanations[3],,
+ exCon = explanations[3],
  neu = finScores[4], 
- exNeu = explanations[4],,
+ exNeu = explanations[4],
  ope = finScores[5],
- exOpe = explanations[5],)
+ exOpe = explanations[5])
 )
+}}}
 in order to allow for explanations to be shown on the results page. The next step involves in defining what the content of these variables is. Make sure to place the following code, BEFORE the one just described.
 
 As this tutorial is aiming at teaching how to create tests and not to develop an accurate psychological test, a very simplified algorithm is used to determine the score-interpretation. If a given value is less or equal to 20 (a sub score ranges from 0 to 40), the score is considered ‘low’, otherwise ‘high’.
 Again, this task is prone to be done in a for loop, as there are five sub scores, and the process of determining for which score to load is the same for each. The loop has to decide whether a score is high or low, and then has to query the database for the appropriate value for the respective dimension.
-
-
-
-
-
-
+{{{
+explanations <- c()
+for(i in 1:5) {
+  if(finScores[i] <= 20) 
+    score = 1
+  else 
+    score = 2
+  
+  text <- 
+  explanations <- c(explanations,text)
+}
+}}}
 This loop first identifies the value of a subscore, and assigns a value to the score variable. This variable is going to be used later on in the query, that selects the appropriate value depending on the counter i (identifying the dimension) and the value of the score variable. TO do so, place the cursor after the <- symbol and use the function toolbar:
   * Click the function toolbar
   * Click the arrow next to concerto.table.query
