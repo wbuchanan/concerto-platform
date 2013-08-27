@@ -55,13 +55,13 @@ This list should help in terms of how to write the actual R code to administer t
 = Creating the pages (HTML templates) =
 == Welcome/demographics page ==
   * go to *HTML template* tab
- 
+ http://cambridgepsychometrics.com/~mike/1.png
   * Make sure you are on *list of available objects* section
- 
+ http://cambridgepsychometrics.com/~mike/2.png
   * Click the *add new object* button
- 
+ http://cambridgepsychometrics.com/~mike/3.png
   * Enter _introduction_ as the name for your welcome/demographics page and click the *save* button.
- 
+ http://cambridgepsychometrics.com/~mike/4.png
 You now created a new and empty template. As established above, it should contain an introduction, as well as the possibility for the participant to enter his or her demographical information.
 In order to display the introduction, just type into the editor on screen and format the text as necessary. 
 After doing so, the next steps will explain how to add the objects that will be used to ask the participant the demographic information.
