@@ -1,52 +1,52 @@
 #summary Furthering the understanding of R and Concerto by modifying the previously created personality test.
 
-Building up on the test created in the previous tutorial, this section aims at furthering the understanding of R/Concerto by modifying two aspects of the test: the number of questions/items displayed on the question page, and how the results are explained to the participant. It is assumed that the reader has completed the previous tutorial (URL4) as this section heavily builds upon it.
+Building up on the test created in the previous tutorial, this section aims at furthering the understanding of R/Concerto by modifying two aspects of the test: the number of questions/items displayed on the question page, and how the results are explained to the participant. It is assumed that the reader has completed the previous tutorial (URL  # as this section heavily builds upon it.
 In order to determine what needs to be changed to achieve the goals described above, a similar structure as in the previous tutorial is used.
 =Preparation=
 ==Pages==
-a)	Introductory page: no change
-b)	Question page: needs to provide placeholders and answer buttons for 5 questions instead of only 1
-c)	Result/Goodbye page: remains in the same format, only the text provided to it changes. The explanation written in the editor will be removed, and replaced with placeholders, that are then fed explanations from the database depending on a score.
+  #	Introductory page: no change
+  #	Question page: needs to provide placeholders and answer buttons for 5 questions instead of only 1
+  #	Result/Goodbye page: remains in the same format, only the text provided to it changes. The explanation written in the editor will be removed, and replaced with placeholders, that are then fed explanations from the database depending on a score.
 ==Data/Tables==
 An additional input table, providing the explanations for all the scores is required
 No additional data is going to be stored.
 Therefore, the only changes to tables are:
-a)	a table containing the explanations of all the sub scores.
+  #	a table containing the explanations of all the sub scores.
 ==Test administration==
 The flow of test administration changes very slightly. Changes to the original flow are written in bold
-1)	show the introductory page to the participant
-a.	participant fills in demographic data and presses OK: continue
-b.	participant does not fill in demographic data and presses OK: do nothing
-2)	show the question page and ask the ‘next’ 5 questions (if available)
-a.	participant answers all items and presses OK: continue
-b.	participant does not answer all items and presses OK: repeat question
-3)	once the participant answered all questions, calculate the scores
-4)	show the result page along with the score-dependent explanations
+  #	show the introductory page to the participant
+    #	participant fills in demographic data and presses OK: continue
+    #	participant does not fill in demographic data and presses OK: do nothing
+  #	show the question page and ask the ‘next’ 5 questions (if available)
+    #	participant answers all items and presses OK: continue
+    #	participant does not answer all items and presses OK: repeat question
+  #	once the participant answered all questions, calculate the scores
+  #	show the result page along with the score-dependent explanations
 This list should help in terms of how to write the actual R code to administer the test exactly as is required. Together with the previous points, it is now possible to set up the tables, the pages, and start to structure the test-logic file. The next section explains step by step how to do these things, which are summarized in the list below:
-•	create tables holding 
-o	the questions
-o	result & demographic data
-o	question responses
-•	create pages
-o	introduction/demographic page
-o	question page
-o	result page
-•	structure test logic file
+  *create tables holding 
+    *the questions
+    *result & demographic data
+    *question responses
+  *create pages
+    *introduction/demographic page
+    *question page
+    *result page
+  *structure test logic file
 =Modifying the pages (HTML templates)=
 ==Question page==
 It is possible to either modify the page that already exists, or simply create a new one. By creating a new page, the old is saved and could be used later on. However, as the old page only needs to be expanded, it is sensible to expand on it, despite creating a new page. Therefore, a new page is created, as a copy of the already existing page.
 In order to do so,
-•	go to HTML template tab
-•	Make sure you are on list of available objects section
-•	Click the edit object button in the row of your question template
-•	Mark all the elements in the editor and copy it (CTRL+C)
-•	Click on list of available objects
-•	Click add new object and enter question5 as the name and click save.
-•	Paste the previously copied source code into the editor and click save.
+  *go to HTML template tab
+  *Make sure you are on list of available objects section
+  *Click the edit object button in the row of your question template
+  *Mark all the elements in the editor and copy it (CTRL+  #
+  *Click on list of available objects
+  *Click add new object and enter question5 as the name and click save.
+  *Paste the previously copied source code into the editor and click save.
 To accommodate five questions simultaneously on the question page, one could manually add the radio buttons, button descriptions, and question placeholder four additional times. As this would be very time consuming, a faster method is proposed.
 By copying the existing structure four times, the visual aspect can be created in almost an instant. To do so,
-•	Copy the placeholder as well as the radio buttons
-•	Paste it four times below the first set of question/buttons, but above the Continue button
+  *Copy the placeholder as well as the radio buttons
+  *Paste it four times below the first set of question/buttons, but above the Continue button
 The editor should now look similar to this:
  
 However, while it certainly looks correct, thinking about what happened in the background, reveals that we just copied everything four times. If this page would be used with the current test-logic, the same question would be asked five times, and it would not matter which of the buttons was clicked, as long as at least one was selected.
@@ -77,12 +77,12 @@ Again, the reader is reminded that there is an alternative version of accomplish
 After changing the variable name either way, make sure to save the page.
 Result page
 In a similar fashion, the current result page will be kept and a new one named resultsDynamic will be created by copying the contents of the old page.
-•	Click on list of available objects section
-•	Click the edit object button in the row of your results template
-•	Mark all the elements in the editor and copy it (CTRL+C)
-•	Click on list of available objects
-•	Click add new object and enter resultsDynamic as the name and click save.
-•	Paste the previously copied source code into the editor and click save.
+  *Click on list of available objects section
+  *Click the edit object button in the row of your results template
+  *Mark all the elements in the editor and copy it (CTRL+  #
+  *Click on list of available objects
+  *Click add new object and enter resultsDynamic as the name and click save.
+  *Paste the previously copied source code into the editor and click save.
 As the interpretations of the scores are going to be put dynamically on the page, the text written in the editor can largely be deleted. What should remain is the general explanation of the subscore. Then, new placeholders (e.g. {{exExt}}, {{exAgr}}, …) need to be created, maybe below each raw score. Put the explanation of the score (not the interpretation) in front of the placeholders.
 Your editor should now look similar to this:
  
@@ -90,18 +90,18 @@ Once done, click save to save the changes. This concludes the changes made to th
 Modifying the database (tables)
 As established above, a new table is going to be added, containing the interpretations of the scores. Similar to the table of questions, this table is provided as well, you can download it at URL5.
 To create the table out of the file:
-•	Go to tables tab
-•	Make sure you are on list of available objects section
-•	Click the add new object button
-•	Enter interpretations as a new table name and click the save button
-•	Click the import table from CSV file button
-•	Confirm the warning message by clicking yes
-•	Make sure add ‘id’ column is checked (the data file provided already has no id column)
-•	Check header row (the data file provided contains descriptions of the columns in the topmost row)
-•	Make sure that field delimiter is set to ,
-•	Make sure that field enclosure is set to "
-•	Click the Choose File button and select the file you downloaded previously
-As subscore and level (high/low) are determined by a numerical value, change the type of the both fields to numerical. In order to change that, click on the pencil in the row of the entry in the table structure definition area. Change the type to numeric and click save. The table structure definition area should look like:
+  *Go to tables tab
+  *Make sure you are on list of available objects section
+  *Click the add new object button
+  *Enter interpretations as a new table name and click the save button
+  *Click the import table from CSV file button
+  *Confirm the warning message by clicking yes
+  *Make sure add ‘id’ column is checked (the data file provided already has no id column)
+  *Check header row (the data file provided contains descriptions of the columns in the topmost row)
+  *Make sure that field delimiter is set to ,
+  *Make sure that field enclosure is set to "
+  *Click the Choose File button and select the file you downloaded previously
+As subscore and level (high/low) are determined by a numerical value, change the type of the both fields to numerical. In order to change that, click on the pencil in the row of the entry in the table structure definition are    # Change the type to numeric and click save. The table structure definition area should look like:
  
 This concludes the changes made to the tables/database.
  
@@ -109,18 +109,18 @@ Creating the test logic (tests)
 The test-logic code is going to be changed at two key-points. First, the presentation of five question at the same time (and therefore, storing five answers in the database). Then, the result section will be changed in order to present the participant only with the relevant interpretations of his or her scores.
 Similarly to before, a new test logic file will be created, where the code from the existing test logic will be copied over.
 Creating a new test logic file
-•	Go to the tests tab
-•	Make sure you are in the list of available objects section
-•	Click the add new object button
-•	Enter personality_test as the name of the new test and click the save button
+  *Go to the tests tab
+  *Make sure you are in the list of available objects section
+  *Click the add new object button
+  *Enter personality_test as the name of the new test and click the save button
 This created an empty test logic file that is ready to be filled with R code.
-•	go to tests tab
-•	Make sure you are on list of available objects section
-•	Click the edit object button in the row of your personality test
-•	Mark all the code and copy it (CTRL+C)
-•	Click on list of available objects
-•	Click add new object and enter personality2 as the name and click save.
-•	Paste the previously copied source code into the editor and click save.
+  *go to tests tab
+  *Make sure you are on list of available objects section
+  *Click the edit object button in the row of your personality test
+  *Mark all the code and copy it (CTRL+  #
+  *Click on list of available objects
+  *Click add new object and enter personality2 as the name and click save.
+  *Paste the previously copied source code into the editor and click save.
 
 Question section
 First, it is required to identify the code that is controlling the presentation of the question page and handling the responses given. This section is presented below
@@ -156,32 +156,32 @@ question5 = questions$question[4+i],
 buttonText = btnTxt))
 However, this will only work for the first set of questions. If the code is implemented like this, when i is equal to 1, questions 1-5 will be presented. When i takes the value of 2, questions 2-6 will be presented, and so on. Therefore, there needs to be an extra change towards the way of indexing:
 response <- concerto.template.show(21, params = list(
-question1 = questions$question[1+(i-1)*5],
-question2 = questions$question[2+(i-1)*5],
-question3 = questions$question[3+(i-1)*5],
-question4 = questions$question[4+(i-1)*5],
-question5 = questions$question[5+(i-1)*5],
+question1 = questions$question[1+(i-  #*5],
+question2 = questions$question[2+(i-  #*5],
+question3 = questions$question[3+(i-  #*5],
+question4 = questions$question[4+(i-  #*5],
+question5 = questions$question[5+(i-  #*5],
 buttonText = btnTxt))
 This way, when i equals 1, question1 will receive the “1+0*5“th question (i.e. 1st), question2 “2+0*5” (i.e. 2nd), and so on. For i equals 2, question1 will receive the “1+1*5”th question (i.e. 6th), question2 “2+1*5 (i.e. 7th), and so on.
 Also keep in mind that a new page was created, therefore, change the number in the show-statement to the one of your new question page!
 The next statement checks whether a response was provided.
 if(!is.null(response$answer))
 It now, however, needs to check if responses to all five questions were given.
-if(!is.null(response$answer1) && !is.null(response$answer2) && !is.null(response$answer3) && !is.null(response$answer4) && !is.null(response$answer5))
+if(!is.null(response$answer  # && !is.null(response$answer  # && !is.null(response$answer  # && !is.null(response$answer  # && !is.null(response$answer5))
 The next step is to change the line of code that previously stored the one response into a variable
 responses <- (responses, response$answer)  
 in such a way that it stores all the responses given on one page.
-responses <- (responses, response$answer1)
-responses <- (responses, response$answer2)
-responses <- (responses, response$answer3)
-responses <- (responses, response$answer4)
+responses <- (responses, response$answer  #
+responses <- (responses, response$answer  #
+responses <- (responses, response$answer  #
+responses <- (responses, response$answer  #
 responses <- (responses, response$answer5)
 Finally, these values need to be stored in the database. While this could be done by simply copy/pasting the statement 5 times, it can be solved more elegant by employing yet another loop and changing the values of questionNr and changing the variable that is going to be stored in the response field.
 
 for(j in 1:5) {
    concerto.table.query(sql=paste("INSERT INTO `concerto4_23`.`responses` SET `sessionID`='",dbEscapeStrings(concerto$db$connection,toString(concerto$sessionID)),"’,
-   `questionNr`='",dbEscapeStrings(concerto$db$connection,toString(j+(i-1)*5)),"',
-   `response`='",dbEscapeStrings(concerto$db$connection,toString(responses[j+(i-1)*5])),"’          
+   `questionNr`='",dbEscapeStrings(concerto$db$connection,toString(j+(i-  #*5)),"',
+   `response`='",dbEscapeStrings(concerto$db$connection,toString(responses[j+(i-  #*5])),"’          
    ",sep=""),params=list()
   )
 }
@@ -217,16 +217,16 @@ Again, this task is prone to be done in a for loop, as there are five sub scores
 
 
 This loop first identifies the value of a subscore, and assigns a value to the score variable. This variable is going to be used later on in the query, that selects the appropriate value depending on the counter i (identifying the dimension) and the value of the score variable. TO do so, place the cursor after the <- symbol and use the function toolbar:
-•	Click the function toolbar
-•	Click the arrow next to concerto.table.query
-•	In the table dropdown menu, select the interpretations table
-•	For query type, select SELECT
-•	In the columns section select text
-•	Click on the + in the where section
-•	Select subscore, equal, and write i in the text field
-•	Click on the + in the where section
-•	Select level, equal, and write score in the text field
-•	Uncheck the insert comments and the autoformat code checkbox and click apply
+  *Click the function toolbar
+  *Click the arrow next to concerto.table.query
+  *In the table dropdown menu, select the interpretations table
+  *For query type, select SELECT
+  *In the columns section select text
+  *Click on the + in the where section
+  *Select subscore, equal, and write i in the text field
+  *Click on the + in the where section
+  *Select level, equal, and write score in the text field
+  *Uncheck the insert comments and the autoformat code checkbox and click apply
 Finally, do not forget to change the numerical value of the show statement to the number of the new results page.
 
 This concludes the results section and thus the entire additional tutorial. The full code can be accessed at: URL6
