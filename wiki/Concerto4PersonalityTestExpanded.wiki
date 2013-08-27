@@ -1,6 +1,6 @@
 #summary Furthering the understanding of R and Concerto by modifying the previously created personality test.
 
-Building up on the test created in the previous tutorial, this section aims at furthering the understanding of R/Concerto by modifying two aspects of the test: the number of questions/items displayed on the question page, and how the results are explained to the participant. It is assumed that the reader has completed the previous tutorial (URL  # as this section heavily builds upon it.
+Building up on the test created in the previous tutorial, this section aims at furthering the understanding of R/Concerto by modifying two aspects of the test: the number of questions/items displayed on the question page, and how the results are explained to the participant. It is assumed that the reader has completed the previous tutorial (URL4) as this section heavily builds upon it.
 In order to determine what needs to be changed to achieve the goals described above, a similar structure as in the previous tutorial is used.
 =Preparation=
 ==Pages==
@@ -162,7 +162,9 @@ This also applies to the condition within the while loop that checks for being a
 {{{if(i < length(questions$question)/5)}}}
 Also, the button label referring to “Next Question” seems to be erroneous in the new context of the test. It should be changed to something like “Next Questions” or “Next Block of Questions”.
 The next line requiring change is the one that actually displays the page to the user:
-{{{response <- concerto.template.show(19, params = list(question = questions$question[i], buttonText = btnTxt))}}}
+{{{
+response <- concerto.template.show(19, params = list(question = questions$question[i], buttonText = btnTxt))
+}}}
 It needs to be adapted to provide information to all the new placeholders like this:
 {{{ 
 response <- concerto.template.show(19, params = list(
@@ -173,7 +175,9 @@ question4 = questions$question[3+i],
 question5 = questions$question[4+i],
 buttonText = btnTxt))
 }}}
+
 However, this will only work for the first set of questions. If the code is implemented like this, when i is equal to 1, questions 1-5 will be presented. When i takes the value of 2, questions 2-6 will be presented, and so on. Therefore, there needs to be an extra change towards the way of indexing:
+
 {{{
 response <- concerto.template.show(21, params = list(
 question1 = questions$question[1+(i-  #*5],
@@ -183,14 +187,21 @@ question4 = questions$question[4+(i-  #*5],
 question5 = questions$question[5+(i-  #*5],
 buttonText = btnTxt))
 }}}
+
 This way, when i equals 1, question1 will receive the “1+0*5“th question (i.e. 1st), question2 “2+0*5” (i.e. 2nd), and so on. For i equals 2, question1 will receive the “1+1*5”th question (i.e. 6th), question2 “2+1*5 (i.e. 7th), and so on.
 Also keep in mind that a new page was created, therefore, change the number in the show-statement to the one of your new question page!
 The next statement checks whether a response was provided.
-{{{if(!is.null(response$answer))}}}
+{{{
+if(!is.null(response$answer))
+}}}
 It now, however, needs to check if responses to all five questions were given.
-{{{if(!is.null(response$answer1) && !is.null(response$answer2) && !is.null(response$answer3) && !is.null(response$answer4) && !is.null(response$answer5))}}}
+{{{
+if(!is.null(response$answer1) && !is.null(response$answer2) && !is.null(response$answer3) && !is.null(response$answer4) && !is.null(response$answer5))
+}}}
 The next step is to change the line of code that previously stored the one response into a variable
-{{{responses <- (responses, response$answer)}}}  
+{{{
+responses <- (responses, response$answer)
+}}}  
 in such a way that it stores all the responses given on one page.
 {{{
 responses <- (responses, response$answer1)
