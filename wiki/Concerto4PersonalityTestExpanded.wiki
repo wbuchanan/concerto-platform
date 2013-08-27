@@ -1,6 +1,6 @@
 #summary Furthering the understanding of R and Concerto by modifying the previously created personality test.
 
-Building up on the test created in the previous tutorial, this section aims at furthering the understanding of R/Concerto by modifying two aspects of the test: the number of questions/items displayed on the question page, and how the results are explained to the participant. It is assumed that the reader has completed the previous tutorial (URL4) as this section heavily builds upon it.
+Building up on the test created in the previous tutorial, this section aims at furthering the understanding of R/Concerto by modifying two aspects of the test: the number of questions/items displayed on the question page, and how the results are explained to the participant. It is assumed that the reader has completed the previous tutorial (URL  # as this section heavily builds upon it.
 In order to determine what needs to be changed to achieve the goals described above, a similar structure as in the previous tutorial is used.
 =Preparation=
 ==Pages==
@@ -225,6 +225,7 @@ This concludes the question section.
 
 Result section
 The changes required for the new result sections involve analyzing a participant’s sub score, and choosing the message to be put on the results page accordingly. This will involve changing the statement that includes the parameters handed to the page to display (adding the explanation is required), as well as adding the code to analyze a person’s score.
+
 {{{
 response <- concerto.template.show(20, params = list(
  ext = finScores[1], 
@@ -236,6 +237,7 @@ response <- concerto.template.show(20, params = list(
 }}}
 
 This statement needs to be expanded to something like this
+
 {{{
 response <- concerto.template.show(20, params = list(
  ext = finScores[1], 
@@ -250,10 +252,12 @@ response <- concerto.template.show(20, params = list(
  exOpe = explanations[5])
 )
 }}}
+
 in order to allow for explanations to be shown on the results page. The next step involves in defining what the content of these variables is. Make sure to place the following code, BEFORE the one just described.
 
 As this tutorial is aiming at teaching how to create tests and not to develop an accurate psychological test, a very simplified algorithm is used to determine the score-interpretation. If a given value is less or equal to 20 (a sub score ranges from 0 to 40), the score is considered ‘low’, otherwise ‘high’.
 Again, this task is prone to be done in a for loop, as there are five sub scores, and the process of determining for which score to load is the same for each. The loop has to decide whether a score is high or low, and then has to query the database for the appropriate value for the respective dimension.
+
 {{{
 explanations <- c()
 for(i in 1:5) {
@@ -266,6 +270,7 @@ for(i in 1:5) {
   explanations <- c(explanations,text)
 }
 }}}
+
 This loop first identifies the value of a subscore, and assigns a value to the score variable. This variable is going to be used later on in the query, that selects the appropriate value depending on the counter i (identifying the dimension) and the value of the score variable. TO do so, place the cursor after the <- symbol and use the function toolbar:
   * Click the function toolbar
   * Click the arrow next to concerto.table.query
