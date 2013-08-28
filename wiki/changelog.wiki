@@ -1,6 +1,14 @@
 #labels Featured
 =CHANGELOG=
 
+==v4.0.0.beta7==
+
+*Fixes*
+
+ * fixed test type field in test form
+
+----
+
 ==v4.0.0.beta6==
 
 *Fixes*
