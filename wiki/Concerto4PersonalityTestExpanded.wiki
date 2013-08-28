@@ -41,7 +41,7 @@ In order to do so,
   * Click the *edit object* button in the row of your _question_ template
   * Mark all the elements in the editor and copy it (CTRL+C)
   * Click on *list of available objects*
-  * Click *add new objec*t and enter _question5_ as the name and click *save*.
+  * Click *add new object* and enter _question5_ as the name and click *save*.
   * Paste the previously copied source code into the editor and click *save*.
 To accommodate five questions simultaneously on the question page, one could manually add the radio buttons, button descriptions, and question placeholder four additional times. As this would be very time consuming, a faster method is proposed.
 By copying the existing structure four times, the visual aspect can be created in almost an instant. To do so,
