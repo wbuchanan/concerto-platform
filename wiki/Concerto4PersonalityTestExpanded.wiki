@@ -48,6 +48,7 @@ By copying the existing structure four times, the visual aspect can be created i
   * Copy the placeholder as well as the radio buttons
   * Paste it four times below the first set of question/buttons, but above the *Continue* button
 The editor should now look similar to this:
+
 http://cambridgepsychometrics.com/~mike/27.png 
 
 However, while it certainly looks correct, thinking about what happened in the background, reveals that we just copied everything four times. If this page would be used with the current test-logic, the same question would be asked five times, and it would not matter which of the buttons was clicked, as long as at least one was selected.
