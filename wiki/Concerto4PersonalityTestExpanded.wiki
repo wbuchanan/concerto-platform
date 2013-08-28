@@ -287,4 +287,4 @@ This loop first identifies the value of a subscore, and assigns a value to the s
 
 Finally, do not forget to change the numerical value of the show statement to the number of the new results page.
 
-This concludes the results section and thus the entire additional tutorial. The full code can be accessed at: URL6
+This concludes the results section and thus the entire additional tutorial. The full code can be accessed at: http://cambridgepsychometrics.com/~mike/personality_new.R
