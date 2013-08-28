@@ -13,15 +13,15 @@ No additional data is going to be stored.
 Therefore, the only changes to tables are:
   #	a table containing the explanations of all the sub scores.
 ==Test administration==
-The flow of test administration changes very slightly. Changes to the original flow are written in bold
+The flow of test administration changes very slightly. Changes to the original flow are written in *bold*
   #	show the introductory page to the participant
     #	participant fills in demographic data and presses OK: continue
     #	participant does not fill in demographic data and presses OK: do nothing
-  #	show the question page and ask the ‘next’ 5 questions (if available)
-    #	participant answers all items and presses OK: continue
-    #	participant does not answer all items and presses OK: repeat question
+  #	show the question page and ask the ‘next’ *5 questions* (if available)
+    #	participant *answers all items* and presses OK: continue
+    #	participant does *not answer all items* and presses OK: repeat question
   #	once the participant answered all questions, calculate the scores
-  #	show the result page along with the score-dependent explanations
+  #	show the result page along with the *score-dependent explanations*
 This list should help in terms of how to write the actual R code to administer the test exactly as is required. Together with the previous points, it is now possible to set up the tables, the pages, and start to structure the test-logic file. The next section explains step by step how to do these things, which are summarized in the list below:
   * create tables holding 
     * the questions
@@ -36,24 +36,28 @@ This list should help in terms of how to write the actual R code to administer t
 ==Question page==
 It is possible to either modify the page that already exists, or simply create a new one. By creating a new page, the old is saved and could be used later on. However, as the old page only needs to be expanded, it is sensible to expand on it, despite creating a new page. Therefore, a new page is created, as a copy of the already existing page.
 In order to do so,
-  * go to HTML template tab
-  * Make sure you are on list of available objects section
-  * Click the edit object button in the row of your question template
+  * go to *HTML template* tab
+  * Make sure you are on *list of available objects* section
+  * Click the *edit object* button in the row of your _question_ template
   * Mark all the elements in the editor and copy it (CTRL+  #
-  * Click on list of available objects
-  * Click add new object and enter question5 as the name and click save.
-  * Paste the previously copied source code into the editor and click save.
+  * Click on *list of available objects*
+  * Click *add new objec*t and enter _question5_ as the name and click *save*.
+  * Paste the previously copied source code into the editor and click *save*.
 To accommodate five questions simultaneously on the question page, one could manually add the radio buttons, button descriptions, and question placeholder four additional times. As this would be very time consuming, a faster method is proposed.
 By copying the existing structure four times, the visual aspect can be created in almost an instant. To do so,
   * Copy the placeholder as well as the radio buttons
-  * Paste it four times below the first set of question/buttons, but above the Continue button
+  * Paste it four times below the first set of question/buttons, but above the *Continue* button
 The editor should now look similar to this:
  
 However, while it certainly looks correct, thinking about what happened in the background, reveals that we just copied everything four times. If this page would be used with the current test-logic, the same question would be asked five times, and it would not matter which of the buttons was clicked, as long as at least one was selected.
-In order to ask five different questions, the obvious and simple change is to change the name of the placeholders to allow for different parameters, like question1, question2, and so on.
-However, the radio buttons still correspond to the same variable answer as specified in the first tutorial. In order to change this, instead of double-clicking each button and changing the value manually, one can achieve the same by manipulating the source code. Click the Source button on the top left of the editor.
+
+In order to ask five different questions, the obvious and simple change is to change the name of the placeholders to allow for different parameters, like _question1_, _question2_, and so on.
+
+However, the radio buttons still correspond to the same variable _answer_ as specified in the first tutorial. In order to change this, instead of double-clicking each button and changing the value manually, one can achieve the same by manipulating the source code. Click the *Source* button on the top left of the editor.
+
 The editor view switches the source code view. It contains code of five copies of question placeholders and answer elements, as well as the button element at the bottom. In order to explain how to change the radio buttons to accommodate for the change, only one such answer element is going to be looked at in detail for the remainder of this section.
-As was established, and can be looked up in the previous tutorial, the name of the radio-buttons value was ‘answer’. When checking for the answer value, the R-code referred to this answer value. Therefore, in order to be able to get five different answers out of one page, the name of this variable needs to change. If you are not confident with code, this can also be achieved manually in the normal editor view by double-clicking each button and changing the value there (one row of buttons needs to have the same name). This tutorial will used the faster version of modifying the source code however. Thecode snippet below highlights the variable names that need to be changed:
+
+As was established, and can be looked up in the previous tutorial, the name of the radio-buttons value was _answer_. When checking for the answer value, the R-code referred to this _answer_ value. Therefore, in order to be able to get five different answers out of one page, the name of this variable needs to change. If you are not confident with code, this can also be achieved manually in the normal editor view by double-clicking each button and changing the value there (one row of buttons needs to have the same name). This tutorial will used the faster version of modifying the source code however. The code snippet below highlights the variable names that need to be changed:
 {{{
 <p style="text-align: center;">
 disagree<input name="answer" type="radio" value="1" />&nbsp; 
@@ -62,10 +66,7 @@ neutral<input name="answer" type="radio" value="3" />&nbsp;
 slightly agree<input name="answer" type="radio" value="4" />&nbsp; 
 agree<input name="answer" type="radio" 
 }}}
-
-
-
-Similarly to assigning different names to the placeholders, assigning different names to the names of the radio buttons achieves the goal of having five different sets of questions with five different sets of answers. Systematically replace the name of the buttons with answer1, answer2, and so on. Please make sure that one set of radio buttons grouped together needs to have the same name (answer1, answer2, …), as they need to stay related to a question. Once completed, the source code should look like:
+Similarly to assigning different names to the placeholders, assigning different names to the names of the radio buttons achieves the goal of having five different sets of questions with five different sets of answers. Systematically replace the name of the buttons with _answer1_, _answer2_, and so on. Please make sure that one set of radio buttons grouped together needs to have the same name (_answer1_, _answer2_, …), as they need to stay related to a question. Once completed, the source code should look like:
 {{{
 <p style="text-align: center;">{{question1}}</p>
 <p style="text-align: center;">sdisagree<input name="answer1" type="radio" value="1" />&nbsp; slightly disagree<input name="answer1" type="radio" value="2" />&nbsp; neutral<input name="answer1" type="radio" value="3" />&nbsp; slightly agree<input name="answer1" type="radio" value="4" />&nbsp; agree<input name="answer1" type="radio" value="5" /></p>
@@ -82,14 +83,14 @@ Similarly to assigning different names to the placeholders, assigning different 
 
 Again, the reader is reminded that there is an alternative version of accomplishing this, by manually clicking each button in the normal editor view and changing the name there.
 After changing the variable name either way, make sure to save the page.
-Result page
+==Result page==
 In a similar fashion, the current result page will be kept and a new one named resultsDynamic will be created by copying the contents of the old page.
   * Click on list of available objects section
   * Click the edit object button in the row of your results template
-  * Mark all the elements in the editor and copy it (CTRL+  #
+  * Mark all the elements in the editor and copy it (CTRL+C)
   * Click on list of available objects
   * Click add new object and enter resultsDynamic as the name and click save.
-  * Paste the previously copied source code into the editor and click save.
+  * Paste the previously copied source code into the editor (CTRL+V) and click save.
 As the interpretations of the scores are going to be put dynamically on the page, the text written in the editor can largely be deleted. What should remain is the general explanation of the subscore. Then, new placeholders (e.g. {{exExt}}, {{exAgr}}, …) need to be created, maybe below each raw score. Put the explanation of the score (not the interpretation) in front of the placeholders.
 Your editor should now look similar to this:
  
