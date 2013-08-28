@@ -85,52 +85,52 @@ Again, the reader is reminded that there is an alternative version of accomplish
 After changing the variable name either way, make sure to save the page.
 ==Result page==
 In a similar fashion, the current result page will be kept and a new one named resultsDynamic will be created by copying the contents of the old page.
-  * Click on list of available objects section
-  * Click the edit object button in the row of your results template
+  * Click on *list of available objects* section
+  * Click the *edit object* button in the row of your results template
   * Mark all the elements in the editor and copy it (CTRL+C)
-  * Click on list of available objects
-  * Click add new object and enter resultsDynamic as the name and click save.
-  * Paste the previously copied source code into the editor (CTRL+V) and click save.
-As the interpretations of the scores are going to be put dynamically on the page, the text written in the editor can largely be deleted. What should remain is the general explanation of the subscore. Then, new placeholders (e.g. {{exExt}}, {{exAgr}}, …) need to be created, maybe below each raw score. Put the explanation of the score (not the interpretation) in front of the placeholders.
+  * Click on *list of available objects*
+  * Click *add new object* and enter _resultsDynamic_ as the *name* and click *save*.
+  * Paste (CTRL+V) the previously copied source code into the editor and click *save*.
+As the interpretations of the scores are going to be put dynamically on the page, the text written in the editor can largely be deleted. What should remain is the general explanation of the subscore. Then, new placeholders (e.g. _{{exExt}}_, _{{exAgr}}_, …) need to be created, maybe below each raw score. Put the explanation of the score (not the interpretation) in front of the placeholders.
 Your editor should now look similar to this:
  
-Once done, click save to save the changes. This concludes the changes made to the pages.
-Modifying the database (tables)
+Once done, click *save* to save the changes. This concludes the changes made to the pages.
+=Modifying the database (tables)=
 As established above, a new table is going to be added, containing the interpretations of the scores. Similar to the table of questions, this table is provided as well, you can download it at URL5.
 To create the table out of the file:
-  * Go to tables tab
-  * Make sure you are on list of available objects section
-  * Click the add new object button
-  * Enter interpretations as a new table name and click the save button
-  * Click the import table from CSV file button
-  * Confirm the warning message by clicking yes
-  * Make sure add ‘id’ column is checked (the data file provided already has no id column)
-  * Check header row (the data file provided contains descriptions of the columns in the topmost row)
-  * Make sure that field delimiter is set to ,
-  * Make sure that field enclosure is set to "
-  * Click the Choose File button and select the file you downloaded previously
-As subscore and level (high/low) are determined by a numerical value, change the type of the both fields to numerical. In order to change that, click on the pencil in the row of the entry in the table structure definition are    # Change the type to numeric and click save. The table structure definition area should look like:
+  * Go to *tables* tab
+  * Make sure you are on *list of available objects* section
+  * Click the *add new object* button
+  * Enter _interpretations_ as a new table name and click the *save* button
+  * Click the *import table from CSV file* button
+  * Confirm the warning message by clicking *yes*
+  * Make sure *add ‘id’ column* is checked (the data file provided already has no id column)
+  * Check *header row* (the data file provided contains descriptions of the columns in the topmost row)
+  * Make sure that field delimiter is set to _,_
+  * Make sure that field enclosure is set to _"_
+  * Click the *Choose File* button and select the file you downloaded previously
+As _subscore_ and level (high/low) are determined by a numerical value, change the type of the both fields to numerical. In order to change that, click on the *pencil* in the row of the entry in the *table structure definition* area. Change the *type* to _numeric_ and click *save*. The *table structure definition* area should look like:
  
 This concludes the changes made to the tables/database.
  
-Creating the test logic (tests)
+=Creating the test logic (tests)=
 The test-logic code is going to be changed at two key-points. First, the presentation of five question at the same time (and therefore, storing five answers in the database). Then, the result section will be changed in order to present the participant only with the relevant interpretations of his or her scores.
 Similarly to before, a new test logic file will be created, where the code from the existing test logic will be copied over.
-Creating a new test logic file
+==Creating a new test logic file==
   * Go to the tests tab
-  * Make sure you are in the list of available objects section
-  * Click the add new object button
-  * Enter personality_test as the name of the new test and click the save button
+  * Make sure you are in the *list of available objects* section
+  * Click the *add new object* button
+  * Enter _personality_test_ as the name of the new test and click the *save* button
 This created an empty test logic file that is ready to be filled with R code.
-  * go to tests tab
-  * Make sure you are on list of available objects section
-  * Click the edit object button in the row of your personality test
-  * Mark all the code and copy it (CTRL+  #
-  * Click on list of available objects
-  * Click add new object and enter personality2 as the name and click save.
-  * Paste the previously copied source code into the editor and click save.
+  * go to *tests* tab
+  * Make sure you are on *list of available objects* section
+  * Click the *edit object* button in the row of your _personality_ test
+  * Mark all the code and copy it (CTRL+C)
+  * Click on *list of available objects*
+  * Click *add new object* and enter _personality2_ as the *name* and click *save*.
+  * Paste the previously copied source code into the editor and click *save*.
 
-Question section
+==Question section==
 First, it is required to identify the code that is controlling the presentation of the question page and handling the responses given. This section is presented below
  
 {{{
@@ -177,19 +177,19 @@ question5 = questions$question[4+i],
 buttonText = btnTxt))
 }}}
 
-However, this will only work for the first set of questions. If the code is implemented like this, when i is equal to 1, questions 1-5 will be presented. When i takes the value of 2, questions 2-6 will be presented, and so on. Therefore, there needs to be an extra change towards the way of indexing:
+However, this will only work for the first set of questions. If the code is implemented like this, when {{{i}}} is equal to _1_, questions 1-5 will be presented. When {{{i}}} takes the value of _2_, questions 2-6 will be presented, and so on. Therefore, there needs to be an extra change towards the way of indexing:
 
 {{{
 response <- concerto.template.show(21, params = list(
-question1 = questions$question[1+(i-  #*5],
-question2 = questions$question[2+(i-  #*5],
-question3 = questions$question[3+(i-  #*5],
-question4 = questions$question[4+(i-  #*5],
-question5 = questions$question[5+(i-  #*5],
+question1 = questions$question[1+(i-1)*5],
+question2 = questions$question[2+(i-1)*5],
+question3 = questions$question[3+(i-1)*5],
+question4 = questions$question[4+(i-1)*5],
+question5 = questions$question[5+(i-1)*5],
 buttonText = btnTxt))
 }}}
 
-This way, when i equals 1, question1 will receive the “1+0*5“th question (i.e. 1st), question2 “2+0*5” (i.e. 2nd), and so on. For i equals 2, question1 will receive the “1+1*5”th question (i.e. 6th), question2 “2+1*5 (i.e. 7th), and so on.
+This way, when {{{i}}} equals _1_, _question1_ will receive the “1+0*5“th question (i.e. 1st), _question2_ “2+0*5” (i.e. 2nd), and so on. For {{{i}}} equals _2_, _question1_ will receive the “1+1*5”th question (i.e. 6th), _question2_ “2+1*5 (i.e. 7th), and so on.
 Also keep in mind that a new page was created, therefore, change the number in the show-statement to the one of your new question page!
 The next statement checks whether a response was provided.
 {{{
@@ -212,7 +212,7 @@ responses <- (responses, response$answer4)
 responses <- (responses, response$answer5)
 
 }}}
-Finally, these values need to be stored in the database. While this could be done by simply copy/pasting the statement 5 times, it can be solved more elegant by employing yet another loop and changing the values of questionNr and changing the variable that is going to be stored in the response field.
+Finally, these values need to be stored in the database. While this could be done by simply copy/pasting the statement 5 times, it can be solved more elegant by employing yet another loop and changing the values of _questionNr_ and changing the variable that is going to be stored in the _response_ field.
 {{{
 for(j in 1:5) {
    concerto.table.query(sql=paste("INSERT INTO `concerto4_23`.`responses` SET `sessionID`='",dbEscapeStrings(concerto$db$connection,toString(concerto$sessionID)),"’,
@@ -257,6 +257,7 @@ response <- concerto.template.show(20, params = list(
 in order to allow for explanations to be shown on the results page. The next step involves in defining what the content of these variables is. Make sure to place the following code, BEFORE the one just described.
 
 As this tutorial is aiming at teaching how to create tests and not to develop an accurate psychological test, a very simplified algorithm is used to determine the score-interpretation. If a given value is less or equal to 20 (a sub score ranges from 0 to 40), the score is considered ‘low’, otherwise ‘high’.
+
 Again, this task is prone to be done in a for loop, as there are five sub scores, and the process of determining for which score to load is the same for each. The loop has to decide whether a score is high or low, and then has to query the database for the appropriate value for the respective dimension.
 
 {{{
@@ -272,17 +273,18 @@ for(i in 1:5) {
 }
 }}}
 
-This loop first identifies the value of a subscore, and assigns a value to the score variable. This variable is going to be used later on in the query, that selects the appropriate value depending on the counter i (identifying the dimension) and the value of the score variable. TO do so, place the cursor after the <- symbol and use the function toolbar:
-  * Click the function toolbar
-  * Click the arrow next to concerto.table.query
-  * In the table dropdown menu, select the interpretations table
-  * For query type, select SELECT
-  * In the columns section select text
-  * Click on the + in the where section
-  * Select subscore, equal, and write i in the text field
-  * Click on the + in the where section
-  * Select level, equal, and write score in the text field
-  * Uncheck the insert comments and the autoformat code checkbox and click apply
+This loop first identifies the value of a subscore, and assigns a value to the score variable. This variable is going to be used later on in the query, that selects the appropriate value depending on the counter i (identifying the dimension) and the value of the score variable. To do so, place the cursor after the <- symbol and use the function toolbar:
+  * Click the *function toolbar*
+  * Click the *arrow* next to *concerto.table.query*
+  * In the *table* dropdown menu, select the _interpretations_ table
+  * For *query type*, select *SELECT*
+  * In the *columns* section select _text_
+  * Click on the *+* in the *where* section
+  * Select _subscore_, *equal*, and write _i_ in the text field
+  * Click on the *+* in the where section
+  * Select _level_, *equal*, and write _score_ in the text field
+  * Uncheck the *insert comments* and the *autoformat code* checkbox and click *apply*
+
 Finally, do not forget to change the numerical value of the show statement to the number of the new results page.
 
 This concludes the results section and thus the entire additional tutorial. The full code can be accessed at: URL6
