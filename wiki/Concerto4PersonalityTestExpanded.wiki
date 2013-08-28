@@ -48,7 +48,7 @@ By copying the existing structure four times, the visual aspect can be created i
   * Copy the placeholder as well as the radio buttons
   * Paste it four times below the first set of question/buttons, but above the *Continue* button
 The editor should now look similar to this:
- 
+http://cambridgepsychometrics.com/~mike/27.png 
 However, while it certainly looks correct, thinking about what happened in the background, reveals that we just copied everything four times. If this page would be used with the current test-logic, the same question would be asked five times, and it would not matter which of the buttons was clicked, as long as at least one was selected.
 
 In order to ask five different questions, the obvious and simple change is to change the name of the placeholders to allow for different parameters, like _question1_, _question2_, and so on.
@@ -93,7 +93,7 @@ In a similar fashion, the current result page will be kept and a new one named r
   * Paste (CTRL+V) the previously copied source code into the editor and click *save*.
 As the interpretations of the scores are going to be put dynamically on the page, the text written in the editor can largely be deleted. What should remain is the general explanation of the subscore. Then, new placeholders (e.g. _{{exExt}}_, _{{exAgr}}_, …) need to be created, maybe below each raw score. Put the explanation of the score (not the interpretation) in front of the placeholders.
 Your editor should now look similar to this:
- 
+ http://cambridgepsychometrics.com/~mike/28.png
 Once done, click *save* to save the changes. This concludes the changes made to the pages.
 =Modifying the database (tables)=
 As established above, a new table is going to be added, containing the interpretations of the scores. Similar to the table of questions, this table is provided as well, you can download it at URL5.
@@ -110,7 +110,7 @@ To create the table out of the file:
   * Make sure that field enclosure is set to _"_
   * Click the *Choose File* button and select the file you downloaded previously
 As _subscore_ and level (high/low) are determined by a numerical value, change the type of the both fields to numerical. In order to change that, click on the *pencil* in the row of the entry in the *table structure definition* area. Change the *type* to _numeric_ and click *save*. The *table structure definition* area should look like:
- 
+ http://cambridgepsychometrics.com/~mike/29.png
 This concludes the changes made to the tables/database.
  
 =Creating the test logic (tests)=
