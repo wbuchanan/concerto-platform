@@ -96,7 +96,7 @@ Your editor should now look similar to this:
  http://cambridgepsychometrics.com/~mike/28.png
 Once done, click *save* to save the changes. This concludes the changes made to the pages.
 =Modifying the database (tables)=
-As established above, a new table is going to be added, containing the interpretations of the scores. Similar to the table of questions, this table is provided as well, you can download it at URL5.
+As established above, a new table is going to be added, containing the interpretations of the scores. Similar to the table of questions, this table is provided as well, you can download [http://cambridgepsychometrics.com/~mike/bigfiveinterpretation.csv here].
 To create the table out of the file:
   * Go to *tables* tab
   * Make sure you are on *list of available objects* section
