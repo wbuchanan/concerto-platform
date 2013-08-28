@@ -39,7 +39,7 @@ In order to do so,
   * go to *HTML template* tab
   * Make sure you are on *list of available objects* section
   * Click the *edit object* button in the row of your _question_ template
-  * Mark all the elements in the editor and copy it (CTRL+  #
+  * Mark all the elements in the editor and copy it (CTRL+C)
   * Click on *list of available objects*
   * Click *add new objec*t and enter _question5_ as the name and click *save*.
   * Paste the previously copied source code into the editor and click *save*.
