@@ -542,4 +542,4 @@ response <- concerto.template.show(20, params = list(
 }}}
 As this is the only code relevant, this concludes the result section.
 = Conclusion/Summary =
-A full version of the test-logic file, including comments to every single instruction, can be found at URL3
+A full version of the test-logic file, including comments to every single instruction, can be found [http://cambridgepsychometrics.com/~mike/personality.R here]
