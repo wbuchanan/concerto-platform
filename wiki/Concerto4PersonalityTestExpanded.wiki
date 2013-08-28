@@ -1,6 +1,6 @@
 #summary Furthering the understanding of R and Concerto by modifying the previously created personality test.
 
-Building up on the test created in the previous tutorial, this section aims at furthering the understanding of R/Concerto by modifying two aspects of the test: the number of questions/items displayed on the question page, and how the results are explained to the participant. It is assumed that the reader has completed the [https://code.google.com/p/concerto-platform/wiki/Concerto4PersonalityTest previous tutorial]as this section heavily builds upon it.
+Building up on the test created in the previous tutorial, this section aims at furthering the understanding of R/Concerto by modifying two aspects of the test: the number of questions/items displayed on the question page, and how the results are explained to the participant. It is assumed that the reader has completed the [https://code.google.com/p/concerto-platform/wiki/Concerto4PersonalityTest previous tutorial] as this section heavily builds upon it.
 In order to determine what needs to be changed to achieve the goals described above, a similar structure as in the previous tutorial is used.
 =Preparation=
 ==Pages==
