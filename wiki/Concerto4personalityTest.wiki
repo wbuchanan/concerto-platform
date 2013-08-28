@@ -193,7 +193,7 @@ All fields will be of numerical data type. In order to add these fields to the t
  http://cambridgepsychometrics.com/~mike/21.png
 
 == Questions table ==
-Since the questions table is supposed to provide the questions, as well as scoring information to the test, the table would not only be required to be created and structured, but also filled with data. It is easier in most occasions however, to create this type of information beforehand, and import the information into Concerto. Therefore, a .csv file was created and is available at URL. (For purposes of testing the test after completing writing the test-logic, a shortened version with only 15 questions is available at URL2) Then proceed as described below:
+Since the questions table is supposed to provide the questions, as well as scoring information to the test, the table would not only be required to be created and structured, but also filled with data. It is easier in most occasions however, to create this type of information beforehand, and import the information into Concerto. Therefore, a .csv file was created and is available [http://cambridgepsychometrics.com/~mike/bigfivequestions.csv here]. (For purposes of testing the test after completing writing the test-logic, a shortened version with only 15 questions is available [http://cambridgepsychometrics.com/~mike/bigfivequestions_short.csv here]) Then proceed as described below:
   * Go to *tables* tab
   * Make sure you are on *list of available objects* section
   * Click the *add new object* button
