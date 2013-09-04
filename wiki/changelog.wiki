@@ -6,6 +6,7 @@
 *Fixes*
 
  * fixed test type field in test form
+ * fixed table imports with no data
 
 ----
 
