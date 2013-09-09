@@ -77,16 +77,13 @@ if (Ini::$log_js_errors) {
 }
 ?>
 
-                var values = new Array();
+                var values = {};
 <?php
 foreach ($_GET as $key => $value) {
     if ($key == "sid" || $key == "tid" || $key == "wid" || $key == "hash")
         continue;
     ?>
-                    values.push($.toJSON({
-                        name: "<?= $key ?>",
-                        value: "<?= $value ?>"
-                    }));
+                    values["<?= $key ?>"] = "<?= addcslashes($value, '"') ?>";
     <?php
 }
 

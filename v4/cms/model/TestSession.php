@@ -560,7 +560,7 @@ class TestSession extends OTable {
                     $session = TestSession::start_new($wid, $tid, $debug);
 
                 if ($values == null)
-                    $values = array();
+                    $values = "{}";
 
                 if ($test != null && $test->type != 2) {
                     $values = $test->verified_input_values($values);

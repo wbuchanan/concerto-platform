@@ -442,11 +442,12 @@ TIMEOUT
                         if ($variables != null) {
                             $params = $test->get_parameter_TestVariables();
                             $params_declaration = "";
+                            $variables = json_encode($variables);
+                            $variables = json_decode($variables, true);
                             foreach ($params as $param) {
-                                foreach ($variables as $var) {
-                                    $var = json_decode($var);
-                                    if ($var->name == $param->name) {
-                                        $params_declaration .=$var->name . " <- '" . addcslashes($var->value, "'") . "'\n";
+                                foreach ($variables as $var_k => $var_v) {
+                                    if ($var_k == $param->name) {
+                                        $params_declaration .=$var_k . " <- '" . addcslashes($var_v, "'") . "'\n";
                                     }
                                 }
                             }

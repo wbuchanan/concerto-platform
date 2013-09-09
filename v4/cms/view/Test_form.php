@@ -123,9 +123,9 @@ if ($oid != 0) {
                     <td>
                         <div class="divFormControl">
                             <select id="form<?= $class_name ?>SelectType" class="fullWidth ui-widget-content ui-corner-all">
-                                <option value="2" <?= ($obj->type == 1 ? "selected" : "") ?>><?= Language::string(766) ?>
+                                <option value="2" <?= ($obj->type == 2 ? "selected" : "") ?>><?= Language::string(766) ?>
                                 <option value="0" <?= ($obj->type == 0 ? "selected" : "") ?>><?= Language::string(767) ?>
-                                <option value="1" <?= ($obj->type == 2 ? "selected" : "") ?>><?= Language::string(768) ?>
+                                <option value="1" <?= ($obj->type == 1 ? "selected" : "") ?>><?= Language::string(768) ?>
                             </select>
                         </div>
                     </td>

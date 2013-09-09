@@ -394,6 +394,8 @@ class Table extends OModule {
                 $lines = explode(";\n", $sql);
 
                 foreach ($lines as $line) {
+                    if ($line == "")
+                        continue;
                     if (!mysql_query(htmlspecialchars_decode($line))) {
                         return json_encode(array("result" => -6, "message" => mysql_error()));
                     }
@@ -424,7 +426,17 @@ class Table extends OModule {
         $db_password = $db_master_password;
         $db_name = User::get_current_db();
         $db_table = $this->name;
-        return `mysqldump --opt --host=$db_host --port=$db_port --user=$db_user --password="$db_password" --no-create-info --compact $db_name $db_table | grep -v '^\/\*![0-4][0-9]\{4\}.*\/;$'`;
+
+        $count = 0;
+        $sql = sprintf("SELECT COUNT(*) FROM `%s`", $db_table);
+        $z = mysql_query($sql);
+        if ($r = mysql_fetch_row($z)) {
+            $count = $r[0];
+        }
+        if ($count == 0)
+            return "";
+        else
+            return `mysqldump --opt --host=$db_host --port=$db_port --user=$db_user --password="$db_password" --no-create-info --compact $db_name $db_table | grep -v '^\/\*![0-4][0-9]\{4\}.*\/;$'`;
     }
 
     public function calculate_xml_hash() {
