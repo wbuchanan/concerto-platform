@@ -6,6 +6,7 @@
 
  * *Linux* operating system
  * *PHP* version equal or greater than *v5.3*
+ * *php-process* package (needs to be installed in some Linux distributions such as CentOS)
  * *PHP safe mode* must be turned *OFF*
  * *PHP magic quotes* must be turned *OFF*
  * *PHP short open tags* must be turned *ON*
@@ -40,6 +41,10 @@ Copy the contents of the package to your Apache public www directory
 
 As a user with root access do:
 
+Start R by typing: *{{{R}}}*
+
+Then type *{{{install.packages("rjson")}}}* at the R prompt, afterwards quit R with *{{{q()}}}*
+
 *{{{cd /var/www/concerto/lib/R}}}*
 
 ... replace *{{{/var/www/concerto/}}}* with your Concerto installation directory path
@@ -47,6 +52,8 @@ As a user with root access do:
 *{{{R CMD build concerto}}}*
 
 *{{{R CMD INSTALL -l /usr/lib/R/library concerto}}}*
+
+
 
 ===Step 4===
 
