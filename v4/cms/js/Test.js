@@ -390,7 +390,7 @@ Test.debugInitializeTest = function(uid) {
     if (Test.debugStopped)
         return;
     Test.uiChangeDebugStatus(dictionary["s655"]);
-    Test.debugWindow.test = new Test.debugWindow.Concerto($(Test.debugWindow.document).find("#divTestContainer"), uid, null, null, Test.currentID, "../query/",
+    Test.debugWindow.test = new Test.debugWindow.Concerto($(Test.debugWindow.document).find("#divTestContainer"), uid, null, null, Test.currentID, "query/",
             function(data) {
                 if (Test.debugStopped)
                     return;

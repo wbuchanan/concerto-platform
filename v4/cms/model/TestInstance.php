@@ -182,7 +182,7 @@ class TestInstance {
             $owner = $workspace->get_owner();
             $userR = $owner->get_UserR();
 
-            TestInstance::kill_children($ppid, $userR->login, false);
+            TestInstance::kill_children($ppid, $userR->login, true);
         }
     }
 

@@ -100,11 +100,13 @@ class Test extends OModule {
     public function verified_input_values($values) {
         $result = array();
         $params = $this->get_parameter_TestVariables();
-        foreach ($values as $vk => $vv) {
-            foreach ($params as $param) {
-                if ($param->name == $vk) {
-                    $result[$vk] = $vv;
-                    break;
+        if (is_array($values)) {
+            foreach ($values as $vk => $vv) {
+                foreach ($params as $param) {
+                    if ($param->name == $vk) {
+                        $result[$vk] = $vv;
+                        break;
+                    }
                 }
             }
         }
