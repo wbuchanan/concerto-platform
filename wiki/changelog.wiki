@@ -5,7 +5,7 @@
 
 *Fixes*
 
- * minor fixes (which might generate PHP warnings)
+ * minor fixes (prevents some PHP warnings)
 
 ----
 
