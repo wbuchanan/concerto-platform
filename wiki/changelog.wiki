@@ -1,6 +1,14 @@
 #labels Featured
 =CHANGELOG=
 
+==v4.0.0.beta8==
+
+*Fixes*
+
+ * minor fixes (which might generate PHP warnings)
+
+----
+
 ==v4.0.0.beta7==
 
 *Fixes*
