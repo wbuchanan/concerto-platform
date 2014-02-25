@@ -21,7 +21,7 @@
 
 ==Concerto Amazon Machine Image==
 
-If you want to launch Concerto image on Amazon EC2 instance, you can use the AMI at: https://aws.amazon.com/amis/ubuntu-13-04-concerto-v4-0-0-beta5 . After setting up Concerto instance it is recommended to update Concerto version to the latest available using the guide below.
+If you want to launch Concerto image on Amazon EC2 instance, you can search for: *Ubuntu 13.04 - Concerto v4.0.0.beta5* in your EC2 Management Console AMI search engine. After setting up Concerto instance it is recommended to update Concerto version to the latest available using the guide below.
 
 ----
 
