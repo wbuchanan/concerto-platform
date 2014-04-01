@@ -10,6 +10,9 @@ function(testID,workspaceID=concerto$workspaceID){
   testID <- dbEscapeStrings(concerto$db$connection,toString(testID))
   result <- dbSendQuery(concerto$db$connection,sprintf("SELECT `id`,`name`,`code` FROM `%s`.`Test` WHERE `%s`='%s'",dbName,objField,testID))
   response <- fetch(result,n=-1)
-  response$returnVariables <- concerto:::concerto.test.getReturnVariables(testID,workspaceID=workspaceID)
+  if(dim(response)[1] == 1) {
+    response <- as.list(response[1,])
+    response$returnVariables <- concerto:::concerto.test.getReturnVariables(testID,workspaceID=workspaceID)
+  }
   return(response)
 }

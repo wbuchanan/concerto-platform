@@ -109,7 +109,7 @@ class TestInstance {
             return false;
         }
 
-        $this->r = proc_open("sudo -u " . $userR->login . " " . Ini::$path_r_exe . " --vanilla --quiet", $descriptorspec, $this->pipes, Ini::$path_data, $env);
+        $this->r = proc_open("sudo -u " . $userR->login . " " . Ini::$path_r_exe . " --no-save --no-restore --quiet", $descriptorspec, $this->pipes, Ini::$path_data, $env);
         if (is_resource($this->r)) {
             if (Ini::$log_server_events) {
                 $status = proc_get_status($this->r);
