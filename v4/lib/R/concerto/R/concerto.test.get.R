@@ -12,6 +12,7 @@ function(testID,workspaceID=concerto$workspaceID){
   response <- fetch(result,n=-1)
   if(dim(response)[1] == 1) {
     response <- as.list(response[1,])
+    testID <- response$id
     response$returnVariables <- concerto:::concerto.test.getReturnVariables(testID,workspaceID=workspaceID)
   }
   return(response)
