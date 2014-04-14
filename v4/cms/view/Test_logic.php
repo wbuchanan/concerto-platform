@@ -57,5 +57,5 @@ if ($logged_user == null) {
             </tr>
         </table>
     </div>
-    <textarea id="textareaTestLogic"><?= $obj->code ?></textarea>
+    <textarea id="textareaTestLogic"><?= htmlspecialchars(stripslashes($obj->code)) ?></textarea>
 </fieldset>
