@@ -125,7 +125,7 @@ class Table extends OModule {
             } else {
                 $rows = json_decode($post["deleteData"]);
                 foreach ($rows as $row) {
-                    $sql = sprintf("DELETE FROM `%s` WHERE id='%s'", mysql_real_escape_string($obj->name), mysql_real_escape_string($row->id));
+                    $sql = sprintf("DELETE FROM `%s` WHERE id='%s'", mysql_real_escape_string($obj->name), mysql_real_escape_string($row));
                     if (!mysql_query($sql))
                         return json_encode(array("result" => -6, "message" => mysql_error()));
                 }
