@@ -135,7 +135,7 @@ class Table extends OModule {
         if (array_key_exists("deleteIndexes", $post)) {
             $indexes = json_decode($post["deleteIndexes"]);
             foreach ($indexes as $index) {
-                $sql = sprintf("DROP INDEX `%s` ON `%s`", mysql_real_escape_string($index->id), mysql_real_escape_string($obj->name));
+                $sql = sprintf("DROP INDEX `%s` ON `%s`", mysql_real_escape_string($index), mysql_real_escape_string($obj->name));
                 if (!mysql_query($sql))
                     return json_encode(array("result" => -6, "message" => mysql_error()));
             }
