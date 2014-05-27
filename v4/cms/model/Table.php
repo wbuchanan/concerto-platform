@@ -297,7 +297,7 @@ class Table extends OModule {
                 for ($i = 1; $i <= count($column_names); $i++) {
                     if ($i > 1)
                         $sql.=", ";
-                    $sql.=sprintf("`%s`='%s'", $column_names[$i - 1], mysql_real_escape_string($data[$i - 1]));
+                    $sql.=sprintf("`%s`='%s'", $column_names[$i - 1], mysql_real_escape_string(utf8_encode($data[$i - 1])));
                 }
                 if (!mysql_query($sql))
                     return json_encode(array("result" => -6, "message" => mysql_error()));
