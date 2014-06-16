@@ -20,6 +20,9 @@ The Concerto panel is divided into the following sections:
   * HTML templates tab
    * list view
    * form view
+  * tables tab
+   * list view
+   * form view
   * users tab
    * list view
    * form view
