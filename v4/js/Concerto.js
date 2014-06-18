@@ -468,13 +468,13 @@ function Concerto(container, wid, hash, sid, tid, queryPath, callbackGet, callba
     this.addSubmitEvents = function() {
         var thisClass = this;
 
-        $(container).find(":button:not(.notInteractive)").click(function() {
+        $(container).find(":button:not(.notInteractive)").bind("click", function() {
             thisClass.submit($(this).attr("name"));
         });
-        $(container).find("input:image:not(.notInteractive)").click(function() {
+        $(container).find("input:image:not(.notInteractive)").bind("click", function() {
             thisClass.submit($(this).attr("name"));
         });
-        $(container).find("input:submit:not(.notInteractive)").click(function() {
+        $(container).find("input:submit:not(.notInteractive)").bind("click", function() {
             thisClass.submit($(this).attr("name"));
         });
     }
