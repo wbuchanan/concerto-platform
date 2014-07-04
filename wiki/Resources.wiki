@@ -33,6 +33,8 @@
  * [Concerto3Tabs General manual]
  * [Concerto3SimpleTest Create a simple test]
  * [Concerto3AdaptiveTest Create an adaptive test]
+ * [Concerto3AdaptiveTest_catRupdate Adaptive tests using catR 3.0]
+_If you have downloaded Concerto v3 on your own server on or after 2014-04-25, it is likely that you are using the updated version of catR. If you are using our demo server, then please use the Create an Adaptive Test tutorial and not this version. We have not updated catR on our demo server._
  * Mini tutorials
   * [Concerto3MultiItem Multiple items per page with Likert-type scale]
   * [Concerto3NoResponse Preventing 'no response' situations]
