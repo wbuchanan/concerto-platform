@@ -102,7 +102,7 @@ Follow the table below to add new sections to your test, using the editor. Pleas
 || *SECTION TYPE* || *DETAILS* ||
 || Set variable || SET VARIABLE *responses* by R code:  *c(responses, correct_answer == response)*   _Note: The operation *correct_answer==response* is to compare the correct_answer with response and give value 1 if the statement is true and 0 if false. In this way, the elements in the vector responses will be digits either 1 or 0, corresponding to right or wrong._ ||
 || Set variable || SET VARIABLE *theta* by R code: *it<-itempar[items_administered,1:4, drop=F]* and in the next line *thetaEst(it, responses)*  _(Note: the above two lines of code should be in separate lines; do not enter them continuously as one sentence!)_||
-|| Set variable || SET VARIABLE *current_item* by R code:  *nextItem(catBank, theta=theta, out=as.numeric(items_administered))[[1]]*   _Please pay attention to all the digits and letters, as well as the brackets, since even a small typo will stop the test from running properly._||
+|| Set variable || SET VARIABLE *current_item* by R code:  *nextItem(catBank, theta=theta, out=as.numeric(items_administered))`[[1]]`*   _Please pay attention to all the digits and letters, as well as the brackets, since even a small typo will stop the test from running properly._||
 || Set variable || SET VARIABLE *items_administered* by R code:  *c(items_administered, current_item)*||
 || - ||  http://cambridgepsychometrics.com/~vaishali/v3.7/Aug08Adaptive/5.JPG  ||
 
