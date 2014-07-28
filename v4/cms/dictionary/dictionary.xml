@@ -4391,7 +4391,7 @@ Note: You can add new languages by inserting "<new_language>string translated in
             <jp>操作失敗。読み込まれるテーブルには'id'という名前の列が最初の列にあり、それにPRIMARYインデックスとauto_increment属性が付随している必要があります。</jp>
         </string>
         <string id="639" js="1">
-            <en>Are you sure you want to perform this action? You will permanently loose current table structure and data.</en>
+            <en>Are you sure you want to perform this action? You will permanently lose current table structure and data.</en>
             <de></de>
             <pl>Jesteś pewien, że chcesz wykonać wybraną akcję? Spowoduje to trwałą utrate obecnej struktury i danych tabeli.</pl>
             <cn></cn>

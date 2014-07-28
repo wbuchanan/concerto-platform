@@ -1307,8 +1307,13 @@ Table.uiEditColumn = function(obj) {
 
     var name = $("#form" + Table.className + "InputColumnName");
     name.val(oldName);
-    var type = $(".form" + Table.className + "SelectColumnType");
+
+    var typeClass = "sctSimple";
+    if (Methods.currentView === 1)
+        typeClass = "sctAdvanced";
+    var type = $(".form" + Table.className + "SelectColumnType." + typeClass);
     type.val(oldType);
+
     var lengthValues = $("#form" + Table.className + "InputColumnLength");
     lengthValues.val(oldLengthValues);
     var defaultValue = $("#form" + Table.className + "InputColumnDefault");
@@ -1867,7 +1872,10 @@ Table.uiAddColumn = function() {
     var thisClass = this;
 
     var name = $("#form" + Table.className + "InputColumnName");
-    var type = $(".form" + Table.className + "SelectColumnType");
+    var typeClass = "sctSimple";
+    if (Methods.currentView === 1)
+        typeClass = "sctAdvanced";
+    var type = $(".form" + Table.className + "SelectColumnType." + typeClass);
     var lengthValues = $("#form" + Table.className + "InputColumnLength");
     var defaultValue = $("#form" + Table.className + "InputColumnDefault");
     var attributes = $("#form" + Table.className + "SelectColumnAttributes");

@@ -152,12 +152,12 @@ if ($oid != 0) {
                         <td><span class="tooltip spanIcon ui-icon ui-icon-help" title="<?= Language::string(258) ?>"></span></td>
                         <td class="fullWidth">
                             <div class="horizontalMargin">
-                                <select id="form<?= $class_name ?>SelectColumnType" class="<?=User::view_class(true)?> fullWidth ui-widget-content ui-corner-all form<?= $class_name ?>SelectColumnType" onchange="$('.form<?= $class_name ?>SelectColumnType').val($(this).val());">
+                                <select id="form<?= $class_name ?>SelectColumnType" class="<?=User::view_class(true)?> fullWidth ui-widget-content ui-corner-all form<?= $class_name ?>SelectColumnType sctSimple" onchange="$('.form<?= $class_name ?>SelectColumnType').val($(this).val());">
                                     <option value="double"><?= Language::string(636) ?></option>
                                     <option value="text" <?= User::is_simple_view() ? "selected" : "" ?>><?= Language::string(637) ?></option>
                                 </select>
                                 
-                                <select id="form<?= $class_name ?>SelectColumnType" class="<?=User::view_class()?> fullWidth ui-widget-content ui-corner-all form<?= $class_name ?>SelectColumnType" onchange="$('.form<?= $class_name ?>SelectColumnType').val($(this).val());">
+                                <select id="form<?= $class_name ?>SelectColumnType" class="<?=User::view_class()?> fullWidth ui-widget-content ui-corner-all form<?= $class_name ?>SelectColumnType sctAdvanced" onchange="$('.form<?= $class_name ?>SelectColumnType').val($(this).val());">
                                     <optgroup label="<?= Language::string(581) ?>">
                                         <option value="tinyint">tinyint</option>
                                         <option value="smallint">smallint</option>

@@ -512,6 +512,8 @@ TIMEOUT
 
         $code .= sprintf('
             library(concerto)
+            
+            Sys.setlocale("LC_ALL","C") 
 
             CONCERTO_TEST_ID <- %d
             CONCERTO_TEST_SESSION_ID <- %d
