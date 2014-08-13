@@ -147,8 +147,8 @@ This file contains all configurable options that needs to be set before you can 
 || *VARIABLE NAME* || *DESCRIPTION* || *EXAMPLE VALUE* ||
 || $db_host || MySQL server host || "localhost" ||
 || $db_port || MySQL server port || 3306 ||
-|| $db_master_user || MySQL user name with ALL privileges || "root" ||
-|| $db_master_password || MySQL password for user with ALL privileges || "topsecret" ||
+|| $db_master_user || MySQL user name with ALL privileges and GRANT option || "root" ||
+|| $db_master_password || MySQL password for user with ALL privileges and GRANT option || "topsecret" ||
 || $db_master_name || Concerto master MySQL database name ( user need to create it manually prior to running /setup ) || "concerto" ||
 || $db_users_name_prefix || prefix for MySQL user names created by Concerto ( workspace id will be appended to it ) - *SET IT ONLY ONCE PRIOR TO RUNNING /setup *|| "concerto_" ||
 || $db_users_db_name_prefix || prefix for MySQL database names created by Concerto ( workspace id will be appended to it ) - *SET IT ONLY ONCE PRIOR TO RUNNING /setup* || "concerto_" ||
