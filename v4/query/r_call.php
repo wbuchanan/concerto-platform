@@ -18,6 +18,9 @@
   along with this program; if not, write to the Free Software
   Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA.
  */
+
+header('Content-type: application/json; charset=utf-8');
+
 $time = time();
 if (!isset($ini)) {
     require_once'../Ini.php';

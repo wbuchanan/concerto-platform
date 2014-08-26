@@ -99,6 +99,8 @@ if ((array_key_exists("sid", $_GET) || array_key_exists("tid", $_GET)) && array_
 
     <body>
         <div id="divTestContainer">
+            <div align="center" style="color: red; font-weight: bold;"><noscript>Your browser does not support JavaScript!</noscript></div>
+            <br/>
             <div align="center"><img src="cms/css/img/logo.png" /> v<?= Ini::$version ?></div>
             <div align="center">
                 <div style="display: table;">
@@ -129,7 +131,8 @@ if ((array_key_exists("sid", $_GET) || array_key_exists("tid", $_GET)) && array_
                 </div>
             </div>
             <div id="divSessionResumeDialog" title="session resuming" style="display:none;">
-                <p>This test has an ongoing session. Would you like to resume current test session?</p>
+                <p>This test has an ongoing session. To resume the test, press the OK button below</p>
+                <p><label for="chkStartNew"><input type="checkbox" id="chkStartNew" /> No, please start a new test</label></p>
             </div>
         </div>
     </body>

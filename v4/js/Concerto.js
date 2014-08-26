@@ -18,7 +18,7 @@
  */
 
 $.ajaxSetup({
-    cache: false
+    contentType: "application/x-www-form-urlencoded; charset=UTF-8"
 });
 
 function Concerto(container, wid, hash, sid, tid, queryPath, callbackGet, callbackSend, debug, remote, defaultLoadingImageSource, resumeFromLastTemplate) {
@@ -159,7 +159,7 @@ function Concerto(container, wid, hash, sid, tid, queryPath, callbackGet, callba
             params["code"] = code;
 
         var date = new Date();
-        $.post((this.remote ? this.queryPath : this.queryPath + "r_call.php") + "?timestamp=" + date.getTime(),
+        $.post((this.remote ? this.queryPath : this.queryPath + "r_call.php"),
                 params,
                 function(data) {
                     thisClass.data = data.data;
@@ -603,18 +603,15 @@ Concerto.iniSessionResumeDialog = function(obj, btnName, values, lastSession) {
         },
         buttons: [
             {
-                text: "resume",
+                text: "OK",
                 click: function() {
                     $(this).dialog("close");
-                    Concerto.selectSession(lastSession.wid, lastSession.sid, lastSession.hash);
-                }
-            },
-            {
-                text: "start new",
-                click: function() {
-                    $(this).dialog("close");
-                    Concerto.removeSessionCookie(lastSession.wid, lastSession.sid, lastSession.hash);
-                    obj.run(btnName, values);
+                    if($("#chkStartNew").is(":checked")){
+                        Concerto.removeSessionCookie(lastSession.wid, lastSession.sid, lastSession.hash);
+                        obj.run(btnName, values);
+                    } else {
+                        Concerto.selectSession(lastSession.wid, lastSession.sid, lastSession.hash);
+                    }
                 }
             }
         ]
