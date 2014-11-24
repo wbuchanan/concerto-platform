@@ -40,7 +40,7 @@ while ($r = mysql_fetch_array($z)) {
         `/usr/sbin/groupadd $group`;
 
         //adduser
-        `/usr/sbin/useradd -s /sbin/nologin -g $group $name`;
+        `/usr/sbin/useradd -d /home/$name -s /sbin/nologin -g $group $name`;
 
         //passwd
         $password = User::generate_password();
@@ -72,6 +72,14 @@ while ($r = mysql_fetch_array($z)) {
         chown($session_dir, $name);
         chgrp($session_dir, Ini::$php_user_group);
         chmod($session_dir, 0770);
+        
+        $home_dir = "/home/$name";
+        if (!is_dir($home_dir)) {
+            mkdir($home_dir, 0750, true);
+        }
+        chown($home_dir, $name);
+        chgrp($home_dir, Ini::$php_user_group);
+        chmod($home_dir, 0750);
     }
 }
 

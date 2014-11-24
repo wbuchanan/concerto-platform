@@ -49,6 +49,7 @@ class TestSession extends OTable {
     public $loader_effect_hide = "none";
     public $loader_effect_hide_options = "";
     public $loader_UserWorkspace_id = 0;
+    public $resume_declined = 0;
 
     const TEST_SESSION_STATUS_NEW = 0;
     const TEST_SESSION_STATUS_WORKING = 1;
@@ -647,6 +648,7 @@ class TestSession extends OTable {
             `release` tinyint(1) NOT NULL,
             `output` longtext NOT NULL,
             `error_output` longtext NOT NULL,
+            `resume_declined` tinyint(1) NOT NULL,
             `state` longtext NOT NULL,
             `UserWorkspace_id` bigint(20) NOT NULL,
             PRIMARY KEY  (`id`)
