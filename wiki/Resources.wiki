@@ -23,6 +23,7 @@
   * [Concerto4DynamicContent displaying dynamic content on HTML templates]
   * [Concerto4TableOperations operations on tables]
   * [Concerto4SessionResuming Concerto test session resuming]
+  * [SpecialTopics Concerto special topics]  
  * *Tutorials*
   * [Concerto4TutorialSimpleSurvey LESSON 1: simple survey]
   * [Concerto4TutorialSimpleSurvey2 LESSON 2: item bank and charts]
